@@ -1,0 +1,170 @@
+.type {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .caption {
+    font-size: var(--caption-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--caption-letter-spacing);
+    line-height: var(--caption-line-height);
+    text-transform: uppercase;
+  }
+  
+  .buttonLabel {
+    font-size: var(--button-label-font-size);
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: var(--button-label-letter-spacing);
+    line-height: var(--button-label-line-height);
+    text-transform: uppercase;
+  }
+  
+  .buttonLabelL {
+    font-size: var(--button-label-l-font-size);
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: var(--button-label-l-letter-spacing);
+    line-height: var(--button-label-l-line-height);
+    text-transform: uppercase;
+  }
+  
+  .link {
+    font-size: var(--link-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--link-letter-spacing);
+    line-height: var(--link-line-height);
+    text-transform: capitalize;
+  }
+  
+  .headlineXXl {
+    font-size: var(--headline-xxl-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--headline-xxl-letter-spacing);
+    line-height: var(--headline-xxl-line-height);
+  }
+  
+  .headlineXl {
+    font-size: var(--headline-xl-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--headline-xl-letter-spacing);
+    line-height: var(--headline-xl-line-height);
+  }
+  
+  .headlineL {
+    font-size: var(--headline-l-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--headline-l-letter-spacing);
+    line-height: var(--headline-l-line-height);
+  }
+  
+  .headlineM {
+    font-size: var(--headline-m-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--headline-m-letter-spacing);
+    line-height: var(--headline-m-line-height);
+  }
+  
+  .headlineS {
+    font-size: var(--headline-s-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--headline-s-letter-spacing);
+    line-height: var(--headline-s-line-height);
+  }
+  
+  .bodyXl {
+    font-size: var(--body-xl-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--body-xl-letter-spacing);
+    line-height: var(--body-xl-line-height);
+  }
+  
+  .bodyL {
+    font-size: var(--body-l-font-size);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--body-l-letter-spacing);
+    line-height: var(--body-l-line-height);
+  }
+  
+  .bodyM {
+    font-size: medium;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--body-m-letter-spacing);
+    line-height: 150%;
+  }
+  
+  .bodyS {
+    font-size: medium;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: var(--body-s-letter-spacing);
+    line-height: 150%;
+  }
+  
+  @media screen and (max-width: 1280px) {
+    .headlineXl {
+      font-size: var(--headline-l-font-size);
+      letter-spacing: var(--headline-l-letter-spacing);
+      line-height: var(--headline-l-line-height);
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .headlineXXl {
+      font-size: var(--headline-xl-font-size);
+      font-style: normal;
+      font-weight: normal;
+      letter-spacing: var(--headline-xl-letter-spacing);
+      line-height: var(--headline-xl-line-height);
+    }
+  
+    .headlineL {
+      font-size: var(--headline-m-font-size);
+      letter-spacing: var(--headline-m-letter-spacing);
+      line-height: var(--headline-m-line-height);
+    }
+  }
+  
+  @media screen and (max-width: 414px) {
+    .headlineL {
+      font-size: var(--headline-s-font-size);
+      letter-spacing: var(--headline-s-letter-spacing);
+      line-height: var(--headline-s-line-height);
+    }
+  
+    .headlineS {
+      font-size: var(--body-l-font-size);
+      letter-spacing: var(--body-l-letter-spacing);
+      line-height: var(--body-l-line-height);
+    }
+  
+    .bodyL {
+      font-size: var(--body-m-font-size);
+      letter-spacing: var(--body-m-letter-spacing);
+      line-height: var(--body-m-line-height);
+    }
+  
+    .headlineXl {
+      font-size: var(--headline-m-font-size);
+      letter-spacing: var(--headline-m-letter-spacing);
+      line-height: var(--headline-m-line-height);
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .headlineXl {
+      font-size: var(--headline-s-font-size);
+      letter-spacing: var(--headline-s-letter-spacing);
+      line-height: var(--headline-s-line-height);
+    }
+  }

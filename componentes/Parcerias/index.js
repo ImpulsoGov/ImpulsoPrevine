@@ -1,0 +1,1 @@
+export { Parcerias } from "./Parcerias.jsx";
