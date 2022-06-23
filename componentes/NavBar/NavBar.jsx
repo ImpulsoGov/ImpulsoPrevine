@@ -13,13 +13,14 @@ const NavBar = ({
     <div className="container_navbar">
       <div className="logoWrappe_navbar">
         <div className="logo_navbar">
-        <img
-            alt="impulso-previne-logo_navbar"
-            src= {ImpulsoPrevineLogo}
-          />
+          <a href="/">
+            <img
+              alt="impulso-previne-logo_navbar"
+              src= {ImpulsoPrevineLogo}
+            />
+          </a>
         </div>
       </div>
-
           <ul className="links_navbar">
             {links?.map((link, index) => {
               return (
@@ -102,7 +103,7 @@ const NavBar = ({
             display: none; /*hide original SELECT element:*/
           }
           
-          @media screen and (max-width: 1280px) {
+          @media screen and (max-width: 790px) {
             .container_navbar {
               padding: 15px;
               padding-top: 25px;
