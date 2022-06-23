@@ -4,11 +4,13 @@ import Typography, { ETYPOGRAPHY_VARIANTS } from "../Typography/Typography.jsx";
 
 
 const IFrame = ({
-  link
+  height,
+  link,
+  id
 }) => {
   return (
-    <div className="iframe" align="center">
-      <iframe width="80%" height="4000" src={link} allowfullscreen></iframe>
+    <div className="iframe" align="center" id="formulario">
+      <iframe width="80%" height={height} src={link} allowfullscreen></iframe>
       <style jsx>{`
         .iframe{
           margin-top: 40px;

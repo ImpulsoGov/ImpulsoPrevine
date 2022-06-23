@@ -16,6 +16,7 @@ const Index = () => {
         ]}
         />
       <IFrame
+        height="7000"
         link="https://datastudio.google.com/embed/reporting/12fb288f-4955-4930-b091-63da3f846c51/page/p_wbmkd7yvuc"
       />
       <Footer
