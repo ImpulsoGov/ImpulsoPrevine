@@ -3,7 +3,7 @@ import React from "react";
 // import "./NavBar.css";
 import Typography, { ETYPOGRAPHY_VARIANTS } from "../Typography/Typography.jsx";
 import {ButtonLogin} from "../ButtonLogin/ButtonLogin.jsx";
-import ImpulsoPrevineLogo from "../estatico/impulso-previne-logo.svg"
+const ImpulsoPrevineLogo = "/impulso-previne-logo.svg";
 
 const NavBar = ({
   links,

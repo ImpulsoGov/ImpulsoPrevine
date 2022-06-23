@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 // import "./Slider.css"
-import Left from "../estatico/left-icon.svg"
-import Right from "../estatico/right-icon.svg"
+const Right = "/right-icon.svg";
+const Left = "/left-icon.svg";
 
 const CoreSlider = ({
     titulo,

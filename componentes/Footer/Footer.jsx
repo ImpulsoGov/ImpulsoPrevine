@@ -1,13 +1,12 @@
 import React from "react";
 
 import Typography, { ETYPOGRAPHY_VARIANTS } from "../Typography/Typography.jsx";
-import FacebookSVG from "../estatico/facebook.svg";
-import InstagramSVG from "../estatico/instagram.svg";
-import LinkedInSVG from "../estatico/linked-in.svg";
-import TwitterSVG from "../estatico/twitter.svg";
-import ImpulsoPrevineLogo from "../estatico/impulso-previne-logo.svg"
-import ImpulsoLogo from "../estatico/impulso-gov-logo-branco.svg"
-
+const FacebookSVG = "/facebook.svg";
+const InstagramSVG = "/instagram.svg";
+const LinkedInSVG = "/linked-in.svg";
+const TwitterSVG = "/twitter.svg";
+const ImpulsoPrevineLogo = "/impulso-previne-logo.svg";
+const ImpulsoLogo = "/impulso-gov-logo-branco.svg";
 
 const Footer = ({
   address,
@@ -21,7 +20,7 @@ const Footer = ({
         <div className="logoWrapperFooter">
           <img
             alt="impulso-previne-logoFooter"
-            src= {ImpulsoPrevineLogo}
+            src={ImpulsoPrevineLogo}
           />
         </div>
       </div>
@@ -47,7 +46,7 @@ const Footer = ({
             <div className="logo-impulsoFooter">
               <img 
                   alt="impulso-gov-logoFooter"
-                  src= {ImpulsoLogo}
+                  src={ImpulsoLogo}
                 />
               </div>
             </div>
