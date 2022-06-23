@@ -44,10 +44,12 @@ const Footer = ({
           <div className="conteiner-logo-impulso-govFooter">
             <div className="realizacaoLabelFooter">Realização:</div>
             <div className="logo-impulsoFooter">
-              <img 
-                  alt="impulso-gov-logoFooter"
-                  src={ImpulsoLogo}
-                />
+              <a href="https://impulsogov.org/">
+                <img 
+                    alt="impulso-gov-logoFooter"
+                    src={ImpulsoLogo}
+                  />
+              </a>
               </div>
             </div>
         </ul>
