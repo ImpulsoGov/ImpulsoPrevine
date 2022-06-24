@@ -10,7 +10,7 @@
   background-color: #1F1F1F;
 
 }
-a, u {
+.containerFooter a {
   color: #FFFFFF;
   text-decoration: none;
 }
@@ -26,14 +26,14 @@ a, u {
   max-width: 140px;
 }
 
-.logo-impulsoFooter {
+.logoImpulsoFooter {
   height: 24px;
   min-width: 140px;
   max-width: 140px;
 }
 
 
-.conteiner-logo-impulso-govFooter{
+.conteinerLogoImpulsoGovFooter{
   margin-left: auto;
   display: flex;
   justify-content: center;
@@ -92,6 +92,7 @@ a, u {
 
 .socialMediaFooter {
   height: 20px;
+  margin-right: 5px;
 }
 
 .socialMedia:not(:last-child) {
