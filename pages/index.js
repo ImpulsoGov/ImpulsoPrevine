@@ -2,7 +2,6 @@ import Layout from "../componentes/Layout";
 import { Footer } from "../componentes/Footer/Footer.jsx";
 import { HomeBanner } from "../componentes/HomeBanner/HomeBanner.jsx";
 import { NavBar } from "../componentes/NavBar/NavBar.jsx";
-import { FileDownloader } from "../componentes/FileDownloader/Filedownloader";
 
 const Index = () => {
   return (
@@ -21,7 +20,6 @@ const Index = () => {
         tituloDestaque = ""
         texto = ""
       />
-      <FileDownloader />
       <Footer
         address={{
             first: "Rua Aracaju 100 - Vila Madalena",
