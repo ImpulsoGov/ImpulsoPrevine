@@ -17,7 +17,7 @@ const Index = () => {
       <FormConsultoria
           title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."
           mail=""
-          link="/formulario"
+          link="/manual-impulso-previne"
           button="Baixar manual"
       />      
     </Layout>

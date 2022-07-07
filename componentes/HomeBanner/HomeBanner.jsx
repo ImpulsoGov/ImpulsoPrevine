@@ -35,11 +35,12 @@ const HomeBanner = ({
             font-family: 'Inter';
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 42px;
             line-height: 150%;
             margin-top: 60px;
             margin-bottom: 60px;
             padding-right: 43%;
+            color: #FFF;
         }
         
         .conteinerChamadasHeader{

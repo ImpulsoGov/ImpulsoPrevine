@@ -94,7 +94,9 @@ class Slider extends Component{
                     </button>
                 </div>
                 <div className={style.conteinerChamadaSlider}>
-                    <a className={style.chamadaSlider}>
+                    <a 
+                        href={this.props.link}
+                        className={style.chamadaSlider}>
                         {this.props.chamada}
                     </a>
                 </div>
