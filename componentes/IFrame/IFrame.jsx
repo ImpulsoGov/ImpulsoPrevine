@@ -1,7 +1,5 @@
 import React from "react";
 
-import Typography, { ETYPOGRAPHY_VARIANTS } from "../Typography/Typography.jsx";
-
 
 const IFrame = ({
   height,

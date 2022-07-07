@@ -1,25 +1,13 @@
 import Layout from "../../componentes/Layout";
-import { Footer } from "../../componentes/Footer/Footer.jsx";
 import { Header } from "../../componentes/Header/Header.jsx";
-import { NavBar } from "../../componentes/NavBar/NavBar.jsx";
 import { Content3Col } from "../../componentes/Content3Col/Content3Col.jsx";
 import { TextCol } from "../../componentes/TextCol/TextCol.jsx";
 import { Slider } from "../../componentes/Slider/Slider.jsx";
-import { ImagensFull } from "../../componentes/Imagens/ImagensFull.jsx";
-import { IFrame } from "../../componentes/IFrame/IFrame.jsx";
+import { FormConsultoria } from "../../componentes/FormConsultoria/FormConsultoria";
 
 const Index = () => {
   return (
     <Layout pageTitle="Previne Brasil | Consultoria">
-      <NavBar 
-        links={[
-          { label: "A Impulso Gov", url: "/impulsogov" },
-          { label: "O Previne Brasil", url: "/previnebrasil" },
-          { label: "Indicadores", url: "/indicadores" },
-          { label: "Capitação", url: "/capitacao" },
-          { label: "Consultoria", url: "/consultoria" }
-        ]}
-        />
       <Header
         titulo = "Consultoria para o seu município"
         tituloDestaque = " 100% gratuita"
@@ -48,59 +36,29 @@ const Index = () => {
             />
         }        
       />
-      <Slider 
+    <FormConsultoria
+        title="Preencha o formulário abaixo para receber nossa consultoria ou, se quiser conversar sobre outro assunto, envie um e-mail para "
+        mail="contato@impulsogov.org."
+        link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
+        button="enviar"
+    />      
+    <Slider 
         titulo = {"Veja o que os outros municípios acharam"}
         core = {[
             {
-                titulo : "João Fulano",
-                subtitulo : "Coordenador de AP  |  Belo Horizonte - MG",
-                corpo : "Você preenche um formulário, nós entramos em contato em até três dias úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia. úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia."
+                titulo : "Márcia",
+                subtitulo : "Coordenadora de APS | Rio Paranaíba - MG",
+                corpo : "Excelente! De uma forma geral nos sentimos satisfeitos com o trabalho realizado pelos consultores, principalmente a forma de trabalho dos mesmos, que deram o máximo de atenção possível a nós e mostraram realmente na pratica a melhor forma de atingirmos os indicadores."
             },
             {
-                titulo : "José Beltrano",
-                subtitulo : "Coordenador de AP  |  Santo André - SP",
-                corpo : "Você preenche um formulário, nós entramos em contato em até três dias úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia. úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia.Ajudou muito os andreenses"
-            },
-            {
-                titulo : "Antonio Sicrano",
-                subtitulo : "Coordenador de AP  |  Diadema - SP",
-                corpo : "Você preenche um formulário, nós entramos em contato em até três dias úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia. úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia.Ajudou muito os diademenses"
-            },
-            {
-                titulo : "Maria Fulana",
-                subtitulo : "Coordenador de AP  |  São Bernardo do Campo - SP",
-                corpo : "Você preenche um formulário, nós entramos em contato em até três dias úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia. úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia.Ajudou muito os são-bernardenses"
-            }
+              titulo : "Márcia",
+              subtitulo : "Coordenadora de APS | Rio Paranaíba - MG",
+              corpo : "Excelente! De uma forma geral nos sentimos satisfeitos com o trabalho realizado pelos consultores, principalmente a forma de trabalho dos mesmos, que deram o máximo de atenção possível a nós e mostraram realmente na pratica a melhor forma de atingirmos os indicadores."
+          },
+
         ]}
         chamada = "TAMBÉM QUERO A CONSULTORIA"
     />
-    <IFrame
-        height="2500"
-        link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
-        id="formulario"
-      />
-      <Footer
-        address={{
-            first: "Rua Aracaju 100 - Vila Madalena",
-            second: "São Paulo - SP, 01010-100",
-        }}
-        contactCopyright={{
-            copyright: "© 2022 Impulso",
-            email: "contato@impulsogov.org",
-        }}
-        links={[
-          { label: "A Impulso Gov", url: "/impulsogov" },
-          { label: "O Previne Brasil", url: "/previnebrasil" },
-          { label: "Indicadores", url: "/indicadores" },
-          { label: "Capitação", url: "/capitacao" },
-          { label: "Consultoria", url: "/consultoria" }
-        ]}
-        socialMediaURLs={{
-            facebook: "/facebook",
-            instagram: "/instagram",
-            linkedIn: "/linkedin",
-            twitter: "/twitter",
-        }} />
     </Layout>
   )
 }

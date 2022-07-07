@@ -1,142 +1,137 @@
-import React from "react";
+import React, {useState} from "react";
+import cx from "classnames";
+import style from"./NavBar.module.css";
+const NavBarIconBranco  = "/hamburgerIconBranco.svg"
+const NavBarIconDark  = "/hamburgerIconDark.svg"
 
-// import "./NavBar.css";
-import Typography, { ETYPOGRAPHY_VARIANTS } from "../Typography/Typography.jsx";
-import {ButtonLogin} from "../ButtonLogin/ButtonLogin.jsx";
-const ImpulsoPrevineLogo = "/impulso-previne-logo.svg";
-
-const NavBar = ({
-  links,
-  municipios
-}) => {
+const NavBarMenu = (tema) => {
+  let theme = (tema=="ColorIP") ?  NavBarIconBranco : NavBarIconDark
+  return theme
+}
+const Dropdown = (props) => {
   return (
-    <div className="container_navbar">
-      <div className="logoWrappe_navbar">
-        <div className="logo_navbar">
-          <a href="/">
-            <img
-              alt="impulso-previne-logo_navbar"
-              src= {ImpulsoPrevineLogo}
-            />
-          </a>
+    <div className={style["dropdownNavBar"]}>
+      <div>{props.link}</div>
+      <div className={style.dropdownContentNavBar}>
+        <div className={style.iconDropdownNavBar}>
+          <div className={style.iconDropdownContainerNavBar}></div>
+        </div>
+        <div className={style.itensDropdownNavBar}>
+          {props.subtitles.map((subtitle)=>{
+            return(
+              <div>
+                <div className={style.dropdownItemNavBar}><a href={subtitle.url}>{subtitle.label}</a></div>
+              </div>
+            )
+          })}
         </div>
       </div>
-          <ul className="links_navbar">
-            {links?.map((link, index) => {
-              return (
-                <li key={index} className="link_navbar">
-                  <a href={link?.url}>
-                    <Typography
-                      as="span"
-                      className="linkLabel_navbar"
-                      variant={ETYPOGRAPHY_VARIANTS.BODY_M}
-                    >
-                      {link?.label}
-                    </Typography>
-                  </a>
-                </li>
-              );
+    </div>
+  )
+}
+const DropdownMenu = (attr) => {  
+  if (attr.index==2){
+    return(
+      <Dropdown 
+        link={attr.link.label}
+        subtitles={attr.props.subtitles}
+      />
+    )
+  }else{
+    return(
+      <a href={attr.link.url} className={style["theme"+attr.props.theme.cor]}>
+        {attr.link.label}
+      </a>
+    )
+  }
+}
+
+const DropdownMenuMoblie = (attr) => {  
+  const [active,setMode] = useState(false)
+  const menuVisible = () =>{
+    setMode(!active)
+    return active
+  }
+
+  if (attr.index==0){
+    return(
+      <div>
+        <a
+          onClick = {menuVisible} 
+        >{attr.link.label}
+        </a>
+        { active &&
+          <div className={cx(style.subMenuMoblie, style.themeColorIP)}>
+            {attr.props.subtitles.map((subtitle)=>{
+              return(
+                <a 
+                  href={subtitle.url}
+                  className={style.linkNavBarMoblie}>{subtitle.label}</a>
+              )
             })}
-          </ul>
-        <style jsx>{`
-        html,body {
-          height:100%;
-          margin:0;
-          padding:0;
+          </div>
         }
-        .container_navbar {
-            background-color: #145C56;
-            color: #FFFFFF;
-            display: flex;
-            padding: 28px 40px;
-            top: 0;
-            margin: 0;
-            text-align: left;
-          }
-          .logoWrapper_navbar {
-            height: 24px;
-            width: 372px;
-          }
-          
-          .logo_navbar {
-            height: 24px;
-            width: 140px;
-            position: relative;
-          }
-            
-          .links_navbar {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-          }
-          
-          .link_navbar {
-            padding-right: 24px;
-            white-space: nowrap;
-          }
-          
-          .containerCidadeLogin_navbar {
-            align-items: center;
-            display: flex;
-            height: 100%;
-            margin-left: auto;
-            justify-content: center;
-          }
-          
-          .ButtonLoginBox_navbar {
-            height: 30px;
-            margin-right: 15px;
-            margin-left: 10px;
-          }
-        
-          .citySelect_navbar{
-            background-color: #145C56;
-            color: #FFFFFF;
-            border: none;
-            text-align: center;
-          }
-        
-          .citySelect_navbar select {
-            display: none; /*hide original SELECT element:*/
-          }
-          
-          @media screen and (max-width: 790px) {
-            .container_navbar {
-              padding: 15px;
-              padding-top: 25px;
-              flex-direction: column;
-              align-items: center;
-            }
-            .links_navbar{
-              flex-direction: column;
-              justify-content: center;
-            }
-            .link_navbar{
-              margin-top: 15px;
-              text-align: center;
-            }
-            .containerCidadeLogin_navbar {
-              display: flex;
-              flex-direction: column;
-              height: fit-content;
-              width: 100%;
-              margin-top: 10px;
-              justify-content: center;
-            }
-        
-            .ButtonLoginBox_navbar {
-              height: 30px;
-              margin-right: 0px;
-              margin-top: 10px;
-              position: relative;
-              left: 0;
-            }
-          
-          }        
-        `}</style>
+      </div>
+    )
+  }else{
+    return(
+      <a href={attr.link.label}>
+        {attr.link.label}
+      </a>
+    )
+  }
+}
+
+const NavBar = (props) => {
+  const [active,setMode] = useState(true)
+  const menuVisible = () =>{
+    setMode(!active)
+    return active
+  }
+  return (
+    <div>
+      <div className={cx(style.container_navbar,style["theme"+props.theme.cor])}>
+        <div className={style.logoWrapper_navbar}>
+          <div className={style.logo_navbar}>
+            <a href="/">
+              <img
+                  alt="impulso-previne-logo_navbar"
+                  src= {String(props.theme.logoProjeto)}
+                />
+              </a>
+          </div>
+        </div>
+
+            <div className={style.links_navbar}>
+              {props.menu.map((link, index) => {
+                  return (
+                    <div key={index} className={style.link_navbar}>
+                      {DropdownMenu({index,link,props})}
+                    </div>
+                  );
+                })}
+            </div>
+
+          <div className={style["buttonMoblie"+props.theme.cor]}
+            onClick = {menuVisible} 
+          >
+            <img
+                id="navBarIcon"
+                alt="NavBarIcon"
+                src= {NavBarMenu(props.theme.cor)}
+              />
+          </div>
+      </div>
+      <div className={active ?  style["linksNavBarMoblie"] : cx(style["linksNavBarMoblie"], style["linksNavBarMoblieVisible"])}>
+        {props.menu.map((link, index) => {
+              return (
+                <div key={index} className={style.link_navbar}>
+                  {DropdownMenuMoblie({index,link,props})}
+                </div>
+              );
+        })}
+
+      </div>
     </div>
 )};
 

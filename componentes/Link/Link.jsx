@@ -35,9 +35,7 @@ const Link = ({
         )}
         {...props}
       >
-        <Typography as="span" variant={fontVariant}>
           {children}
-        </Typography>
       </a>
   );
 };

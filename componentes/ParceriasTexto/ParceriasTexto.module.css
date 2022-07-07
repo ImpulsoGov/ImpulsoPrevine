@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+.container_parceiros {
+    background: #FFFFFF;
+    border-radius: 0px 45px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    padding: 82px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+  }
+  .textoParcerias{
+    color: #1F1F1F;
+    font-size: 32px;
+    width: 844px;
+  }
+  .parceirosLabel {
+    color: #1F1F1F;
+    text-align: left;
+    font-size: 16px;
+    margin: 96px 0 0 0;
+  }
+  .gridContainer {
+    column-gap: 30px;
+    justify-content:left;
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    margin: 0;
+  }
+  
+  .imageContainer {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    max-width: 110px;
+  }
+    
+@media screen and (max-width: 640px) {
+  .container_parceiros {
+    flex-direction: column;
+    padding: 40px;
+    width: 100%;
+    border-radius: 0;
+  }
+  .textoParcerias{
+    font-size: 24px;
+    width: 100%;
+  }
+  .parceirosLabel {
+    color: #1F1F1F;
+    text-align: left;
+    line-height: 150%;
+    font-size: 16px;
+    margin: 48px 0 0 0;
+  }
+  .logo_parceiros{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+  }
+  .gridContainer {
+    grid-template-columns: auto auto;
+  }
+}
