@@ -1,57 +1,19 @@
 import React from "react";
 
+import style from "./ImagensFull.module.css";
+import style2 from "./ImagensFull2.module.css";
+import style3 from "./ImagensFull3.module.css";
+
 const ImagensFull = ({
   imagem
   }) => {
     return (
-      <div className="containerBanner1 ">
+      <div className={style.containerBanner1}>
         <img
-            className="imageContainerBanner1"
+            className={style.imageContainerBanner1}
             alt="BannerImage1"
             src= {String(imagem)}
           />
-        <style jsx>{`
-        .containerBanner1 {
-          display: flex;
-          height: 85%;
-        }
-        
-        .imageContainerBanner1{
-          width: 95%;
-          border-radius: 0px 0px 25px 0px;
-          object-fit: cover;
-          }
-          
-          /* SMALL */
-          @media screen and (max-width: 1023px) {
-          .containerBanner1 {
-            height: 50%;
-          }
-          .imageContainerBanner1{
-            border-radius: 0px 0px 15px 0px;
-          }  
-          }
-          
-          /* MEDIUM */
-          @media screen and (min-width: 1024px)and (max-width: 1400px) {
-          .containerBanner1 {
-            height: 70%;
-          }
-          .imageContainerBanner1{
-            border-radius: 0px 0px 20px 0px;
-          }
-          }
-          
-          /* XLARGE */
-          @media screen and (min-width: 1920px) {
-          .containerBanner1 {
-            height: 92%;
-          }
-          .imageContainerBanner1{
-            border-radius: 0px 0px 30px 0px;
-          }
-          }        
-        `}</style>
       </div>
   )};
 
@@ -59,56 +21,25 @@ const ImagensFull = ({
     imagem
     }) => {
       return (
-        <div className="containerBanner1-2 ">
+        <div className={style2.containerBanner2}>
           <img
-              className="imageContainerBanner1-2"
+              className={style2.imageContainerBanner2}
               alt="BannerImage1"
               src= {String(imagem)}
             />
-          <style jsx>{`
-          .containerBanner1-2 {
-            display: flex;
-            height: 85%;
-          }
-          
-          .imageContainerBanner1-2{
-            width: 95%;
-            border-radius: 0px 25px 25px 0px;
-            object-fit: cover;
-          }
-          
-          /* SMALL */
-          @media screen and (max-width: 1023px) {
-            .containerBanner1-2 {
-              height: 50%;
-            }
-            .imageContainerBanner1-2{
-              border-radius: 0px 15px 15px 0px;
-              margin-bottom: 25px;
-            }  
-          }
-          
-          /* MEDIUM */
-          @media screen and (min-width: 1024px)and (max-width: 1400px) {
-            .containerBanner1-2 {
-              height: 70%;
-            }
-            .imageContainerBanner1-2{
-              border-radius: 0px 20px 20px 0px;
-            }
-          }
-          
-          /* XLARGE */
-          @media screen and (min-width: 1920px) {
-            .containerBanner1-2 {
-              height: 92%;
-            }
-            .imageContainerBanner1-2{
-              border-radius: 0px 30px 30px 0px;
-            }
-          }
-          `}</style>
         </div>
     )};
-  
-  export {ImagensFull, ImagensFull2};
+    const ImagensFull3 = ({
+      imagem
+      }) => {
+        return (
+          <div className={style3.containerBanner3}>
+            <img
+                className={style3.imageContainerBanner3}
+                alt="BannerImage1"
+                src= {String(imagem)}
+              />
+          </div>
+      )};
+    
+  export {ImagensFull, ImagensFull2,ImagensFull3};

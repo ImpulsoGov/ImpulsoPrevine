@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+.containerFooter {
+  display: flex;
+  flex-direction: row;
+  padding: 70px 82px 75px 82px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+}
+.containerFooter a:hover{
+  color: #1D856C;
+}
+
+.themeNullFooter{ 
+  color:#606E78;
+}
+.themeBlackFooter{
+  background-color: #1F1F1F;
+  color: #FFFFFF;
+}
+.themeWhiteFooter{ 
+  background-color: #FFFFFF;
+  color:#606E78;
+}
+
+.containerFooter a {
+  text-decoration: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+}
+.realizacaoLabelFooter {
+  margin: 0 15px 0 0;
+  height: fit-content;
+}
+.logoImpulso {
+  height: 24px;
+  margin-left: 20px;
+}
+
+.logoWrapperFooter {
+  height: 24px;
+  min-width: 100px;
+  max-width: 140px;
+  margin-right: 204px;
+}
+
+.logoImpulsoFooter {
+  height: 24px;
+  margin: 2px;
+}
+
+.logoFrameFooter {
+  width: 20%;
+  display: flex;
+  justify-content: left;
+}
+
+.infoLinksWrapperFooter {
+  width: 100%;
+}
+
+.listFooter {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 32px;
+}
+
+.itemFooter {
+  padding-right: 24px;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+}
+.realizacaoFooter{
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+.contactAddressSocialMediasFooter {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.contactAddressFooter {
+  display: flex;
+  margin-right: 94px;
+  font-size: 14px;
+}
+
+.contactFooter {
+  margin-right: 94px;
+  width: 30%;
+}
+
+.socialMediasFooter {
+  align-items: center;
+  display: flex;
+}
+
+.socialMediaFooter {
+  height: 20px;
+}
+
+.socialMediaFooter:not(:last-child) {
+  margin-right: 28px;
+}
+
+@media screen and (max-width: 1023px) {
+  .containerFooter {
+    display: block;
+    padding: 48px 40px 50px 40px;
+  }
+  .logoWrapperFooter {
+    height: 24px;
+    min-width: none;
+    margin-bottom: 40px;
+  }
+  .realizacaoFooter{
+    display: flex;
+    flex-direction: column;
+    margin-left: none;
+    margin-top: 16px;
+    align-items: flex-start;
+  }
+  .logoImpulso {
+    margin-left: 0px;
+  }
+  
+  .realizacaoLabelFooter {
+    margin: 0 15px 0 0;
+    left: 0;
+  }
+  
+  .infoLinksWrapperFooter {
+    margin-left: 0;
+  }
+
+  .listFooter {
+    display: block;
+    margin-top: 26px;
+    text-align: center;
+  }
+
+  .itemFooter {
+    margin-top: 16px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+
+  .contactAddressSocialMediasFooter {
+    flex-direction: column;
+    text-align: center;
+    text-align: left;
+  }
+
+  .contactAddressFooter {
+    display: block;
+    margin-right: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .contactFooter {
+    margin-left: 0;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .socialMediasFooter {
+    margin-top: 25px;
+    width: 100%;
+  }
+  .socialMediaFooter {
+    height: 13px;
+  }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1438px) {
+  .conteinerUpperFooter{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ffffff25;
+  }
+  .realizacaoFooter{
+    margin-left: 0;
+    margin-bottom: 32px;
+  }
+}

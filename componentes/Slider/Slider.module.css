@@ -21,6 +21,9 @@
     margin-bottom: 200px;
 }
 .btnSlider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     background: #1D856C;
     padding: 15px;
@@ -141,6 +144,7 @@
     .coreSubTitulo{
         font-size: 24px;
         margin-bottom: 15px;
+        width: 600px;
     }
     .coreCorpo{
         font-size: 16px;

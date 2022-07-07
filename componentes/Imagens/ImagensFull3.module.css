@@ -1,0 +1,40 @@
+.containerBanner3 {
+  display: flex;
+  height: 85%;
+}
+
+.imageContainerBanner3{
+  height: 600px;
+  width: 98%;
+  border-radius: 0px 0px 0px 0px;
+  object-fit: cover;
+}
+
+/* SMALL */
+@media screen and (max-width: 1023px) {
+  .imageContainerBanner3{
+    height: 300px;
+    border-radius: 0px 0px 15px 0px;
+}  
+}
+
+/* MEDIUM */
+@media screen and (min-width: 1024px)and (max-width: 1400px) {
+.containerBanner3 {
+  height: 70%;
+}
+.imageContainerBanner3{
+  height: 500px;
+  border-radius: 0px 40px 0px 0px;
+}
+}
+
+/* XLARGE */
+@media screen and (min-width: 1920px) {
+  .containerBanner3 {
+    height: 900px;
+  }
+  .imageContainerBanner3{
+    border-radius: 0px 0px 30px 0px;
+  }
+}
