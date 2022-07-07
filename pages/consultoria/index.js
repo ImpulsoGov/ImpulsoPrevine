@@ -58,6 +58,7 @@ const Index = () => {
 
         ]}
         chamada = "TAMBÉM QUERO A CONSULTORIA"
+        link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
     />
     </Layout>
   )

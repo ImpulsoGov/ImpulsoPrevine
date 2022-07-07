@@ -9,12 +9,14 @@ const FormConsultoria = ({
     button
 })=>{
     return(
-        <div className={style.containerFormConsultoria}>
-            <div className={style.titleFormConsultoria}>{title}<span className={style.mailFormConsultoria}>{mail}</span></div>
-            <a 
-                className={style.buttonFormConsultoria}
-                href={link}
-                >{button.toUpperCase()}</a>
+        <div id="formulario">
+            <div className={style.containerFormConsultoria}>
+                <div className={style.titleFormConsultoria}>{title}<span className={style.mailFormConsultoria}>{mail}</span></div>
+                <a 
+                    className={style.buttonFormConsultoria}
+                    href={link}
+                    >{button.toUpperCase()}</a>
+            </div>
         </div>
     )
 }
