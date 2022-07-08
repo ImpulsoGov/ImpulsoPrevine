@@ -33,7 +33,7 @@ const Layout = (props) => {
         }
         subtitles = {[
           { label: "Indicadores de Desempenho", url:"/indicadores" },
-          { label: "Captação Ponderada", url:"/capitacao" },
+          { label: "Capitação Ponderada", url:"/capitacao" },
           { label: "Ações Estratégicas", url: "/acoes-estrategicas" },
         ]}
       />
