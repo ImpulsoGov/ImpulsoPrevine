@@ -1,5 +1,4 @@
 import Layout from "../componentes/Layout";
-import { Footer } from "../componentes/Footer/Footer.jsx";
 import { HomeBanner } from "../componentes/HomeBanner/HomeBanner.jsx";
 import { ImagemFundo } from "../componentes/ImagemFundo/ImagemFundo"
 import { ParceriasTexto } from "../componentes/ParceriasTexto/ParceriasTexto";

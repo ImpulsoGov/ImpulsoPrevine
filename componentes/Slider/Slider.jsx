@@ -97,7 +97,7 @@ class Slider extends Component{
                     <a 
                         href={this.props.link}
                         className={style.chamadaSlider}>
-                        {this.props.chamada}
+                        {this.props.chamada.toUpperCase()}
                     </a>
                 </div>
             </div>

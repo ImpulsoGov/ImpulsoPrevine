@@ -56,6 +56,7 @@
     display: block;
   }
   .dropdownItemNavBar{
+    color: #fff;
     font-size: inherit;
     padding: 10px 15px 10px 15px;
   }
@@ -63,7 +64,7 @@
     background-color: #145C56;
   }
   .dropdownItemNavBar a:hover {
-    color: #FFF;
+    color: #fff;
   }
 
   .itensDropdownNavBar{

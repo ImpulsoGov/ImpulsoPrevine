@@ -1,6 +1,5 @@
 .conteinerHeader{
-    background-color: #FFF;
-    border-radius: 10px;
+    background-color: #145C56;
     padding: 148px 72px 148px 64px;
     font-family: 'Inter';
     font-style: normal;
@@ -10,8 +9,9 @@
 .tituloHeader{
     line-height: 110%;
     letter-spacing: -0.04em;
-    font-size: 112px;
+    font-size: 128px;
     padding-right: 10%;
+    color: #FFF;
 }
 
 .tituloDestaqueHeader{
@@ -23,11 +23,12 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 42px;
     line-height: 150%;
     margin-top: 60px;
     margin-bottom: 60px;
     padding-right: 43%;
+    color: #FFF;
 }
 
 .conteinerChamadasHeader{
@@ -56,21 +57,21 @@
     color: #ef8264;
 }
 
-/* SMALL */
-@media screen and (max-width: 1023px) {
+/* EXTRA SMALL */
+@media screen and (max-width: 649px) {
     .conteinerHeader{
         justify-content: center;
-        text-align: center;
+        text-align: left;
         padding: 72px 54px 96px 54px;
     }
     .tituloHeader{
         font-size: 32px;
         line-height: 110%;
         padding: 0;
-        text-align: center;
+        text-align: left;
     }
     .textoHeader{
-        text-align: center;
+        text-align: left;
         font-size: 16px;
         line-height: 110%;
         padding: 0;
@@ -83,6 +84,21 @@
     .buttonHeader{
         margin: 0 0 25px 0;
         display: block;
+    }
+}
+
+/* SMALL */
+@media screen and (min-width: 650px) and (max-width: 1023px) {
+    .tituloHeader{
+        font-size: 52px;
+        padding-right: 10%;
+    }
+    .textoHeader{
+        font-size: 24px;
+        padding-right: 44%;
+    }
+    .conteinerChamadasHeader{
+        font-size: 10px;
     }
 }
 
@@ -107,8 +123,8 @@
         padding: 200px 72px 148px 90px;
     }
     .tituloHeader{
-        font-size: 148px;
-        padding-right: 20%;
+        font-size: 128px;
+        padding-right: 0;
     }
     .textoHeader{
         font-size: 32px;
