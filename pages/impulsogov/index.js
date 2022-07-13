@@ -12,7 +12,7 @@ const Index = () => {
         }}
         titulo = "A Impulso Gov"
         texto = 
-            "A Impulso Gov é uma organização brasileira de saúde pública, sem fins lucrativos, e que trabalha ao lado de gestores municipais e estaduais para impulsionar o uso de dados e tecnologia no setor público, assegurando o direito à uma vida saudável a todas as brasileiras e brasileiros, sem exceção.<br/><br/><b>Quer saber mais sobre a Impulso Gov Acesse o nosso <a style='text-decoration: none' href='impulsogov.org'>site.</a> </b>"
+            "Impulso Gov, uma organização sem fins lucrativos e suprapartidária que apoia profissionais do SUS no aprimoramento das políticas públicas por meio do uso de dados e tecnologia, para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.<br/><br/><b>Quer saber mais sobre a Impulso Gov Acesse o nosso <a style='text-decoration: none' href='impulsogov.org'>site.</a> </b>"
         />
         <FormConsultoria
             title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."

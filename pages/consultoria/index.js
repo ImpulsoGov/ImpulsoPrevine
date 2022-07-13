@@ -11,37 +11,37 @@ const Index = () => {
       <Header
         titulo = "Consultoria para o seu município"
         tituloDestaque = " 100% gratuita"
-        texto = "Queremos ajudar você e seu município e temos um time preparado para isso. E o melhor: tudo é feito de forma gratuita, simples e rápida!" 
-        botao = { { label: "VER A ANÁLISE DO SEU MUNICÍPIO", url: "/indicadores" }}
-        chamada = {{ label: "CONHEÇA A CONSULTORIA GRATUITA", url: "#formulario" }}
+        texto = "Queremos ajudar você e seu município e temos um time preparado para isso. Você pode marcar uma consultoria ou tirar suas dúvidas de forma rápida e descomplicada. E o melhor: tudo de forma gratuita." 
+        botao = { { label: "Inscreva-se para a consultoria", url: "#formulario"}}
+        chamada = {{ label: "", url: "" }}
         />
       <Content3Col
-        titulo = "Por que devo fazer?"
+        titulo = "Consultoria 100% gratuita e personalizada"
         child1 = {
             <TextCol
-                titulo = "Descomplicada"
-                corpo = "Você preenche um formulário, nós entramos em contato em até três dias úteis e já marcamos a primeira conversa. Não precisa assinar nada, é sem burocracia."
+                titulo = "O que é?"
+                corpo = "Uma consultoria para auxiliar seu município a melhorar o desempenho nos indicadores de desempenho e cadastro do Previne Brasil"
             />
         }
         child2 = {
             <TextCol
-                titulo = "Gratuita"
-                corpo = "A consultoria é 100% gratuita. Você poderá marcar até três encontros totalmente gratuitos e ter acesso a análises e materiais criados por nossos especialistas."
+                titulo = "Como funciona?"
+                corpo = "Três encontros gratuitos com nosso time de especialistas, que preparam diagnóstico, plano de ação e acompanhamento de resultados personalizados para o seu município."
             />
         }
         child3 = {
             <TextCol
-                titulo = "Personalizada"
-                corpo = "Trazemos análises e recomendações personalizadas para seu município melhorar nos indicadores e na capitação ponderada, sempre adequando à realidade local."
+                titulo = "Quem pode fazer?"
+                corpo = "Municípios de até 40 mil habitantes que desejam ter apoio na gestão do Previne Brasil."
             />
         }        
       />
     <FormConsultoria
-        title="Preencha o formulário abaixo para receber nossa consultoria ou, se quiser conversar sobre outro assunto, envie um e-mail para "
-        mail="contato@impulsogov.org."
+        title="Se interessou pela nossa consultoria? Preencha o formulário abaixo para fazer sua inscrição.Em caso de dúvidas, escreva para "
+        mail="contato@impulsogov.org"
         link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
         button="enviar"
-    />      
+    />  
     <Slider 
         titulo = {"Veja o que os outros municípios acharam"}
         core = {[
@@ -57,7 +57,7 @@ const Index = () => {
           },
 
         ]}
-        chamada = "TAMBÉM QUERO A CONSULTORIA"
+        chamada = "Quero me inscrever para a consultoria"
         link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
     />
     </Layout>
