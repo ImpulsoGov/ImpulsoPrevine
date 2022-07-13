@@ -12,9 +12,9 @@ const tagManagerArgs = {
 
 if (process.browser) {
   TagManager.initialize(tagManagerArgs);
+  ReactGA.initialize("UA-207677934-1");
 }
 
-ReactGA.initialize("UA-207677934-1");
 
 const Layout = (props) => {
   return (
