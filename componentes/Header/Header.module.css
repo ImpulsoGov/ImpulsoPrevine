@@ -107,17 +107,17 @@
         padding: 200px 72px 148px 90px;
     }
     .tituloHeader{
-        font-size: 148px;
-        padding-right: 20%;
+        font-size: 128px;
+        padding-right: 0%;
     }
     .textoHeader{
-        font-size: 32px;
+        font-size: 20px;
         padding-right: 44%;
         margin-top: 80px;
         margin-bottom: 80px;
     }
     .conteinerChamadasHeader{
-        font-size: 22px;
+        font-size: 15px;
     }
     .buttonHeader{
         padding: 20px 28px 20px 28px;

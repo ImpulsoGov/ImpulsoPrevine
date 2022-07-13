@@ -164,8 +164,8 @@
         padding: 0;
     }
     .tituloSlider{
-        font-size: 85px;
-        margin-bottom: 260px;
+        font-size: 64px;
+        margin-bottom: 200px;
     }
     .btnSlider{
         width: 90px;
@@ -185,10 +185,10 @@
         margin-bottom: 15px;
     }
     .coreCorpo{
-        font-size: 32px;
+        font-size: 24px;
     }
     .chamadaSlider{
-        font-size: 20px;
+        font-size: 15px;
         padding: 18px;
     }
 }
