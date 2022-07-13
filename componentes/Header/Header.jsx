@@ -14,8 +14,8 @@ const Header = ({
         <div className="tituloHeader">{titulo}<span className="tituloDestaqueHeader">{tituloDestaque}</span></div>
         <div className="textoHeader">{texto}</div>
         <div className="conteinerChamadasHeader">
-            <a className="buttonHeader" href={botao?.url}>{botao?.label.toUpperCase()}</a>
-            <a className="consultoriaHeader" href={chamada?.url}>{chamada?.label.toUpperCase()}</a>
+            {botao.label && <a className="buttonHeader" href={botao?.url}>{botao?.label.toUpperCase()}</a>}
+            {chamada.label && <a className="consultoriaHeader" href={chamada?.url}>{chamada?.label.toUpperCase()}</a>}
         </div>
         <style jsx>{`
         .conteinerHeader{

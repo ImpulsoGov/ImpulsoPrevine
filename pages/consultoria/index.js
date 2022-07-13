@@ -12,8 +12,8 @@ const Index = () => {
         titulo = "Consultoria para o seu município"
         tituloDestaque = " 100% gratuita"
         texto = "Queremos ajudar você e seu município e temos um time preparado para isso. Você pode marcar uma consultoria ou tirar suas dúvidas de forma rápida e descomplicada. E o melhor: tudo de forma gratuita." 
-        botao = { { label: "Inscreva-se para a consultoria", url: "https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"}}
-        chamada = {{ label: "Tire sua dúvida", url: "#formulario" }}
+        botao = { { label: "Inscreva-se para a consultoria", url: "#formulario"}}
+        chamada = {{ label: "", url: "" }}
         />
       <Content3Col
         titulo = "Consultoria 100% gratuita e personalizada"
@@ -37,17 +37,11 @@ const Index = () => {
         }        
       />
     <FormConsultoria
-        title="Se interessou pela nossa consultoria? Preencha o formulário abaixo para fazer sua inscrição."
-        mail=""
+        title="Se interessou pela nossa consultoria? Preencha o formulário abaixo para fazer sua inscrição.Em caso de dúvidas, escreva para "
+        mail="contato@impulsogov.org"
         link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
         button="enviar"
     />  
-    <FormConsultoria
-        title="Em caso de dúvidas, escreva para "
-        mail="contato@impulsogov.org"
-        link=""
-        button=""
-    />      
     <Slider 
         titulo = {"Veja o que os outros municípios acharam"}
         core = {[
