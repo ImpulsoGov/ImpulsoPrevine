@@ -17,9 +17,9 @@ const Dropdown = (props) => {
           <div className={style.iconDropdownContainerNavBar}></div>
         </div>
         <div className={style.itensDropdownNavBar}>
-          {props.subtitles.map((subtitle)=>{
+          {props.subtitles.map((subtitle,index)=>{
             return(
-              <div>
+              <div key={index}>
                 <div className={style.dropdownItemNavBar}><a href={subtitle.url}>{subtitle.label}</a></div>
               </div>
             )
