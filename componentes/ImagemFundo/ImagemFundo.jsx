@@ -19,9 +19,9 @@ const ImagemFundo = ({
                 <div className={style.gradienteImagemFundo}>
                     <div className={style.chamadaImagemFundo}>{chamada}<span className={style.chamadaColor}>{chamadacolor}</span></div>
                     <div className={style.cardsImagemFundo}>
-                        {cards.map((card)=>{
+                        {cards.map((card,index)=>{
                             return(
-                                <div className={style.cardImagemFundo}>
+                                <div className={style.cardImagemFundo} key={index}>
                                     <div className={style.cardTitleImagemFundo}>{card.title}</div>
                                     <div className={style.cardBodyImagemFundo}>{card.body}</div>
                                 </div>
