@@ -1,7 +1,9 @@
 import Script from 'next/script'
 import { GA_TRACKING_ID } from './lib/gtag'
 
-const Analytics = () => (
+const Analytics = () => {
+    console.log(GA_TRACKING_ID)
+    return(
   <>
     <Script
       strategy="afterInteractive"
@@ -21,6 +23,7 @@ const Analytics = () => (
       }}
     />
   </>
+    
 )
-
+    }
 export default Analytics

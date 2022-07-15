@@ -3,18 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { NavBar } from './NavBar/NavBar';
 import { Footer } from './Footer/Footer';
-import ReactGA from "react-ga";
-import TagManager from "react-gtm-module";
-
-const tagManagerArgs = {
-  gtmId: "GTM-W8RVZBL",
-};
-
-if (process.browser) {
-  TagManager.initialize(tagManagerArgs);
-  ReactGA.initialize("UA-207677934-1");
-}
-
 
 const Layout = (props) => {
   return (
