@@ -2,7 +2,6 @@ import Script from 'next/script'
 import { GA_TRACKING_ID } from './lib/gtag'
 
 const Analytics = () => {
-    console.log(GA_TRACKING_ID)
     return(
   <>
     <Script
