@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import { NavBar } from './NavBar/NavBar';
-import { Footer } from './Footer/Footer';
+import { NavBar } from '@impulsogov/design-system';
+import { Footer } from '@impulsogov/design-system';
 import TagManager from "react-gtm-module";
 
 const tagManagerArgs = {

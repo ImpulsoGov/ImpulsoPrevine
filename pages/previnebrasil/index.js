@@ -1,6 +1,6 @@
 import Layout from "../../componentes/Layout";
-import { TituloTexto } from "../../componentes/TituloTexto/TituloTexto.jsx";
-import { FormConsultoria } from "../../componentes/FormConsultoria/FormConsultoria";
+import { TituloTexto } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
 
 const Index = () => {
   return (

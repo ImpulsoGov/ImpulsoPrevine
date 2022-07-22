@@ -1,8 +1,21 @@
 import Layout from "../componentes/Layout";
-import { HomeBanner } from "../componentes/HomeBanner/HomeBanner.jsx";
-import { ImagemFundo } from "../componentes/ImagemFundo/ImagemFundo"
-import { ParceriasTexto } from "../componentes/ParceriasTexto/ParceriasTexto";
-import { FormConsultoria } from "../componentes/FormConsultoria/FormConsultoria";
+import { HomeBanner } from "@impulsogov/design-system";
+import { ImagemFundo } from "@impulsogov/design-system"
+import { ParceriasTexto } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
+
+let importAll = (r)=> {
+  return r.keys().map(r);
+}
+const images = importAll(require.context("../public/parceiros", false, /\.(png|svg)$/));
+const parceiros = images.map((image)=>{
+  return(
+      {
+          alt: image.default.src.split("/").slice(-1)[0].split(".")[0],
+          src: image.default.src
+      }
+  )
+})
 
 const Index = () => {
   return (
@@ -42,6 +55,7 @@ const Index = () => {
       <ParceriasTexto
           text = "O Impulso Previne é uma realização da <span style='color:#1D856C'>ImpulsoGov</span>, uma organização brasileira de saúde pública, sem fins lucrativos, que trabalha ao lado de gestores municipais e estaduais para impulsionar o uso de dados e tecnologia no setor público."
           label = "Junto à Impulso Gov, o projeto conta com uma rede de apoio institucional e financiadores:"
+          parceiros = {parceiros}
       />
     <FormConsultoria
         title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."
