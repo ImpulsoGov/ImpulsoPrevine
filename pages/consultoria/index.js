@@ -1,9 +1,9 @@
 import Layout from "../../componentes/Layout";
-import { Header } from "../../componentes/Header/Header.jsx";
-import { Content3Col } from "../../componentes/Content3Col/Content3Col.jsx";
-import { TextCol } from "../../componentes/TextCol/TextCol.jsx";
-import { Slider } from "../../componentes/Slider/Slider.jsx";
-import { FormConsultoria } from "../../componentes/FormConsultoria/FormConsultoria";
+import { Header } from "@impulsogov/design-system";
+import { Content3Col } from "@impulsogov/design-system";
+import { TextCol } from "@impulsogov/design-system";
+import { Slider } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
 
 const Index = () => {
   return (

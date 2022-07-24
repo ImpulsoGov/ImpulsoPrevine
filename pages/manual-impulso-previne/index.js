@@ -1,6 +1,6 @@
 import Layout from "../../componentes/Layout";
-import { IFrame } from "../../componentes/IFrame/IFrame.jsx";
-import { HomeBanner } from "../../componentes/HomeBanner/HomeBanner"
+import { IFrame } from "@impulsogov/design-system";
+import { HomeBanner } from "@impulsogov/design-system"
 
 const Index = () => {
   return (
