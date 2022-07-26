@@ -8,6 +8,10 @@ const Index = () => {
         height="3000"
         link="https://datastudio.google.com/embed/reporting/d28c7264-d346-4b64-9042-4455f0235f35/page/p_mdgdcavlwc"
       />
+      <IFrame
+        height="3000"
+        link="https://gabriellearruda-acoes-estrategicas-app-41jlka.streamlitapp.com/"
+      />
     </Layout>
   )
 }
