@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <Layout pageTitle="Previne Brasil | Ações Estratégicas">
       <IFrame
-        height="3200"
+        height="3400"
         link="https://datastudio.google.com/embed/reporting/d28c7264-d346-4b64-9042-4455f0235f35/page/p_mdgdcavlwc"
       />
       <IFrame
