@@ -10,7 +10,7 @@ const Index = () => {
       />
       <IFrame
         height="3000"
-        link="https://gabriellearruda-acoes-estrategicas-app-41jlka.streamlitapp.com/?embed=true"
+        link="https://acoesestrategicas.herokuapp.com/"
       />
     </Layout>
   )
