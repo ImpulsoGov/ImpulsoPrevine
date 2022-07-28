@@ -2,23 +2,57 @@ import Layout from "../../componentes/Layout";
 import { TituloTexto } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 
-const Index = () => {
+import { getData } from '../../utils/cms'
+import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
+
+export async function getStaticProps() {
+  const res = [
+    await getData(LAYOUT),
+    await getData(IMPULSOGOV),
+  ]
+  return {
+    props: {
+      res : res
+    }
+  }
+}
+
+
+
+const Index = ({res}) => {
   return (
-    <Layout pageTitle="Previne Brasil | O Previne Brasil">
+    <Layout 
+      pageTitle="Previne Brasil | O Previne Brasil"
+      logoIPColor={res[0].logoIps[0].logo[0].url}
+      logoIPWhite = {res[0].logoIps[0].logo[1].url}
+      menus = {res[0].menus}
+      dropdown = {res[0].dropDownMenus}
+      footer = {res[0].footers}
+      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
+      socialMedia = { [
+        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
+        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
+        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
+      ]}
+      copyright = {{
+        label: res[0].copyrights[0].copyright,
+        contato : res[0].copyrights[0].contato
+      }}
+      >
       <TituloTexto
         imagem = {{
           posicao: null,
           url: ''
         }}
-        titulo = "O Previne Brasil"
-        texto= "<div> O Previne Brasil é a nova política de financiamento federal da Atenção Primária à Saúde, instituído em 2019 pela <a href='http://189.28.128.100/dab/docs/portaldab/documentos/financiamento/portarias/prt_2979_12_11_2019.pdf'>Portaria nº 2.979, de 12 de novembro de 2019</a> e, posteriormente, atualizado pela publicação da <a href='https://www.in.gov.br/en/web/dou/-/portaria-gm/ms-n-102-de-20-de-janeiro-de-2022-375495336'>Portaria nº102 de 20 de janeiro de 2022.</a><br/>O Previne Brasil estrutura o financiamento levando em consideração a dependência da população local dos serviços do SUS e o desempenho dos municípios no cuidado oferecido pela rede de Atenção Primária à Saúde (APS).<br/>O programa cria condições que devem ser atendidas pelos municípios para que o governo federal efetue o repasse. São quatro critérios que orientam essa nova política: a capitação ponderada, o pagamento por desempenho, o incentivo para ações estratégicas e o incentivo financeiro com base em critério populacional, incorporado em setembro de 2021 ao programa. <br/> O componente de capitação ponderada diz respeito ao número de pessoas cadastradas sob responsabilidade das equipes de Saúde da Família (eSF) e de Atenção Primária (eAP). As equipes de Saúde da Família Ribeirinha (eSFR), equipes de Consultório na Rua (eCR) e equipes de Atenção Primária Prisional (eAPP) também tem seus cadastros contabilizados. <br/>Já o componente de pagamento por desempenho considera o cumprimento de metas de performance em indicadores específicos relacionados ao cuidado oferecido pela APS para a definição do valor a ser transferido aos municípios. Até o final de 2021, o Ministério da Saúde calculava os repasses como se todas as metas estivessem sido cumpridas. A partir de janeiro deste ano, com a publicação da <a href='https://www.in.gov.br/en/web/dou/-/portaria-gm/ms-n-102-de-20-de-janeiro-de-2022-375495336'>Portaria nº102 de 20 de janeiro de 2022.</a>, ocorrerá a transição escalonada do cumprimento dos indicadores de desempenho do Previne Brasil. <br/>Para definir o valor que será repassado por este critério, a cada quadrimestre o ministério avalia o desempenho nos indicadores e calcula uma nota de 0 a 10 para cada município, chamada de ISF (Indicador Sintético Final). Caso encerre um quadrimestre sem ter atingido as metas, o município terá um ISF menor que 10 e receberá um repasse proporcional nos meses seguintes até a próxima avaliação.<br/><br/><br/>Para o financiamento no <b>primeiro quadrimestre de 2022</b>, será considerado:<br/><br/>1- O percentual de alcance real das metas dos indicadores 1 (consultas pré-natal) e 2 (exames de HIV e sífilis em gestantes) <br/><br/>2- O percentual de alcance de 100% das metas do restante dos indicadores, considerando a apuração do ISF obtido no terceiro quadrimestre de 2021. <br/><br/><br/>Para o financiamento no <b>segundo quadrimestre de 2022</b>, será considerado:<br/><br/>1- o percentual de alcance real para das metas dos indicadores 1 (consultas pré-natal), 2 (exames de HIV e sífilis em gestantes), 3 (atendimento odontológico em gestantes), 4 (citopatológico) e 5 (vacinação infantil); <br/><br/>2 – o percentual de alcance de 100% das metas dos indicadores 6 e 7 (acompanhamento de hipertensos e diabéticos), considerando a apuração do ISF obtido no primeiro quadrimestre de 2022.<br/><br/>Para o financiamento no <b>terceiro quadrimestre de 2022</b>, será considerado o percentual de alcance real das metas de todos os sete indicadores, considerando a apuração do ISF obtido no segundo quadrimestre de 2022.<br/>O componente de Incentivos para ações estratégicas considera a adesão da gestão municipal a programas, estratégias e serviços de saúde, levando em conta as especificidades e prioridades em saúde, assim como aspectos estruturais e de produção assistencial das equipes e unidades de saúde locais, ou ainda o cumprimento de requisitos definidos pelo Ministério da Saúde. As ações estratégicas são divididas em quatro categorias, agrupadas de acordo com suas características. São elas: Prioritárias; Saúde Bucal; Promoção da Saúde e Especificidades. Uma vez que o município seja elegível, ele receberá o financiamento referente a sua adesão, que poderá ser em parcela única, ou mensalmente.<br/><br/>A implantação de tais ações estratégicas também visa qualificar as ações e serviços da APS no município como um todo, o que pode impactar positivamente nos resultados alcançados nos indicadores acompanhados no componente de pagamento por desempenho. <br/>Para o incentivo financeiro com base em critério Populacional, regulamentado pela <a href='https://bvsms.saude.gov.br/bvs/saudelegis/gm/2021/prt2254_06_09_2021.html#:~:text=PORTARIA%20GM%2FMS%20N%C2%BA%202.254%2C%20DE%203%20DE%20SETEMBRO,sobre%20o%20custeio%20da%20Aten%C3%A7%C3%A3o%20Prim%C3%A1ria%20%C3%A0%20Sa%C3%BAde'>Portaria GM/MS nº 2.254, de 03 de setembro de 2021</a>, o valor per capita definido anualmente em ato do Ministério da Saúde é calculado de  acordo com a estimativa populacional dos municípios e Distrito Federal mais recente divulgada pelo IBGE.<br/><br/><br/>Quer saber mais? Baixe o manual gratuito do Previne Brasil e envie sua dúvida para os nossos especialistas!</div>"
+        titulo = {res[1].tituloTextos[1].titulo}
+        texto = {res[1].tituloTextos[1].texto.html}
 
       />
       <FormConsultoria
-          title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."
+          title={res[1].formConsultorias[0].titulo}
           mail=""
-          link="/manual-impulso-previne"
-          button="Baixar manual"
+          link={res[1].formConsultorias[0].link}
+          button={res[1].formConsultorias[0].button}
       />      
     </Layout>
   )
