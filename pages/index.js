@@ -33,7 +33,6 @@ const Parceiros = (res)=>{
 
 
 const Index = ({res}) => {
-  console.log(res)
   return (
     <Layout 
       pageTitle="Previne Brasil | Home"
