@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import { NavBar } from './NavBar/NavBar';
-import { Footer } from './Footer/Footer';
+import { NavBar } from '@impulsogov/design-system';
+import { Footer } from '@impulsogov/design-system';
 import TagManager from "react-gtm-module";
 
 const tagManagerArgs = {
@@ -24,22 +24,11 @@ const Layout = (props) => {
       </Head>
       <NavBar 
         theme={{
-          logoProjeto : useRouter().pathname == '/' ? "https://github.com/ImpulsoGov/DesignSystem/raw/dev-componente-footer/componentes/estatico/impulso-previne-logo-branco.svg" : "https://github.com/ImpulsoGov/DesignSystem/raw/dev-componente-footer/componentes/estatico/impulso-previne-logo-preto.svg",
+          logoProjeto : useRouter().pathname == '/' ? props.logoIPWhite : props.logoIPColor,
           cor : useRouter().pathname == '/' ? "ColorIP" : "White"
         }}
-        menu={
-            [
-              { label: "A Impulso Gov", url: "/impulsogov" },
-              { label: "O Previne Brasil", url: "/previnebrasil" },
-              { label: "Análise", url: "" },
-              { label: "Consultoria", url: "/consultoria" }
-            ]
-        }
-        subtitles = {[
-          { label: "Indicadores de Desempenho", url:"/indicadores" },
-          { label: "Capitação Ponderada", url:"/capitacao" },
-          { label: "Ações Estratégicas", url: "/acoes-estrategicas" },
-        ]}
+        menu={ props.menus }
+        subtitles = { props.dropdown}
       />
 
       <div className={props.color}>
@@ -48,8 +37,8 @@ const Layout = (props) => {
 
       <Footer
         theme={{
-          logoProjeto : "https://github.com/ImpulsoGov/DesignSystem/raw/dev-componente-footer/componentes/estatico/impulso-previne-logo-branco.svg",
-          logoImpulso: "https://github.com/ImpulsoGov/DesignSystem/raw/dev-componente-footer/componentes/estatico/impulso-gov-logo-branco-color.svg",
+          logoProjeto : props.logoIPWhite,
+          logoImpulso: props.logoImpulso,
           cor : "Black"
         }}
         address={{
@@ -57,23 +46,11 @@ const Layout = (props) => {
             second: "",
         }}
         contactCopyright={{
-            copyright: "© 2022 Impulso",
-            email: "contato@impulsogov.org",
+            copyright: props.copyright.label,
+            email: props.copyright.contato,
         }}
-        links={[
-          { label: "A Impulso Gov", url: "/impulsogov" },
-          { label: "O Previne Brasil", url: "/previnebrasil" },
-          { label: "Indicadores", url: "/indicadores" },
-          { label: "Capitação", url: "/capitacao" },
-          { label: "Ações Estratégicas", url: "/acoes-estrategicas" },
-          { label: "Consultoria", url: "/consultoria" }
-        ]}
-        socialMediaURLs={{
-            facebook: "/facebook",
-            instagram: "/instagram",
-            linkedIn: "/linkedin",
-            twitter: "/twitter",
-        }} 
+        links={ props.footer}
+        socialMediaURLs={props.socialMedia} 
       />
 </div>
   )

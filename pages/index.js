@@ -1,53 +1,84 @@
 import Layout from "../componentes/Layout";
-import { HomeBanner } from "../componentes/HomeBanner/HomeBanner.jsx";
-import { ImagemFundo } from "../componentes/ImagemFundo/ImagemFundo"
-import { ParceriasTexto } from "../componentes/ParceriasTexto/ParceriasTexto";
-import { FormConsultoria } from "../componentes/FormConsultoria/FormConsultoria";
+import { HomeBanner } from "@impulsogov/design-system";
+import { ImagemFundo } from "@impulsogov/design-system"
+import { ParceriasTexto } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
 
-const Index = () => {
+import { getData } from '../utils/cms'
+import { LAYOUT, HOME } from '../utils/QUERYS'
+
+export async function getStaticProps() {
+  const res = [
+    await getData(LAYOUT),
+    await getData(HOME),
+  ]
+  return {
+    props: {
+      res : res
+    }
+  }
+}
+
+const Parceiros = (res)=>{
+  const parceiros = res.map((logo)=>{
+    return(
+        {
+            alt: logo.fileName,
+            src: logo.url
+        }
+    )
+  }).reverse()
+  return parceiros
+}
+
+
+const Index = ({res}) => {
   return (
     <Layout 
       pageTitle="Previne Brasil | Home"
       color="layoutColor"
+      logoIPColor={res[0].logoIps[0].logo[0].url}
+      logoIPWhite = {res[0].logoIps[0].logo[1].url}
+      menus = {res[0].menus}
+      dropdown = {res[0].dropDownMenus}
+      footer = {res[0].footers}
+      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
+      socialMedia = { [
+        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
+        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
+        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
+      ]}
+      copyright = {{
+        label: res[0].copyrights[0].copyright,
+        contato : res[0].copyrights[0].contato
+      }}
     >
       <HomeBanner
-        titulo = "Uma ferramenta gratuita para transformar seu desempenho no Previne Brasil."
+        titulo = {res[1].homeBanners[0].titulo}
         tituloDestaque = ""
         texto = ""
       />
       <ImagemFundo
-          chamada = "Com uma forma eficiente de monitorar e agir sobre indicadores, "
-          chamadacolor = "queremos ajudar gestores a transformar a saúde pública do país."
-          cards = {[
-              {
-                  title : "Análises",
-                  body : "Dados detalhados e recomendações pensadas para diferentes contextos de município. Em um só lugar."
-              },
-              {
-                  title : "Consultoria",
-                  body : "Profissionais capacitados e prontos para auxiliar, sem custo, os municípios na gestão do Previne Brasil."
-              },
-              {
-                  title : "Previne Brasil",
-                  body : "Todas as informações que o gestor precisa ter sobre o Programa, cálculo de metas, repasses financeiros e mais."
-              }
-          ]}
+          chamada = {res[1].imagemFundos[0].titulo}
+          chamadacolor = {res[1].imagemFundos[0].tituloColor}
+          cards = {res[1].imagemfundoContents}
           botao = {
                       {
-                          label : "Saiba mais sobre o impulso previne",
-                          url : "/previnebrasil"
+                          label : res[1].imagemFundos[0].buttonLabel,
+                          url : res[1].imagemFundos[0].buttonLink
                       }
           }
       />
       <ParceriasTexto
-          text = "O Impulso Previne é uma realização da <span style='color:#1D856C'>ImpulsoGov</span>, uma organização brasileira de saúde pública, sem fins lucrativos, que trabalha ao lado de gestores municipais e estaduais para impulsionar o uso de dados e tecnologia no setor público."
-          label = "Junto à Impulso Gov, o projeto conta com uma rede de apoio institucional e financiadores:"
+          text = {res[1].parceirosAll[0].titulo.text}
+          label = {res[1].parceirosAll[0].labelImages}
+          parceiros = {Parceiros(res[1].logoParceiros[0].logoparceiro)}
       />
     <FormConsultoria
-        title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."
+        title={res[1].formConsultorias[0].titulo}
         mail=""
-        link="/manual-impulso-previne"
-        button="Baixar manual"
+        link={res[1].formConsultorias[0].link}
+        button={res[1].formConsultorias[0].button}
     />      
     </Layout>
   )

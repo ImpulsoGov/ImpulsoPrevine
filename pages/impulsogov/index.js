@@ -1,24 +1,55 @@
 import Layout from "../../componentes/Layout";
-import { TituloTexto } from "../../componentes/TituloTexto/TituloTexto.jsx";
-import { FormConsultoria } from "../../componentes/FormConsultoria/FormConsultoria";
+import { TituloTexto } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
 
-const Index = () => {
+import { getData } from '../../utils/cms'
+import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
+
+export async function getStaticProps() {
+  const res = [
+    await getData(LAYOUT),
+    await getData(IMPULSOGOV),
+  ]
+  return {
+    props: {
+      res : res
+    }
+  }
+}
+
+const Index = ({res}) => {
   return (
-    <Layout pageTitle="Previne Brasil | O Previne Brasil">
+    <Layout 
+      pageTitle="Previne Brasil | Home"
+      logoIPColor={res[0].logoIps[0].logo[0].url}
+      logoIPWhite = {res[0].logoIps[0].logo[1].url}
+      menus = {res[0].menus}
+      dropdown = {res[0].dropDownMenus}
+      footer = {res[0].footers}
+      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
+      socialMedia = { [
+        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
+        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
+        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
+      ]}
+      copyright = {{
+        label: res[0].copyrights[0].copyright,
+        contato : res[0].copyrights[0].contato
+      }}
+    >
       <TituloTexto
         imagem = {{
           posicao: null,
           url: ''
         }}
-        titulo = "A Impulso Gov"
-        texto = 
-            "Impulso Gov, uma organização sem fins lucrativos e suprapartidária que apoia profissionais do SUS no aprimoramento das políticas públicas por meio do uso de dados e tecnologia, para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.<br/><br/><b>Quer saber mais sobre a Impulso Gov Acesse o nosso <a style='text-decoration: none' href='impulsogov.org'>site.</a> </b>"
+        titulo = {res[1].tituloTextos[0].titulo}
+        texto = {res[1].tituloTextos[0].texto.html}
         />
         <FormConsultoria
-            title="Receba um manual gratuito e simplificado com todos os detalhes sobre o Previne Brasil."
-            mail=""
-            link="/manual-impulso-previne"
-            button="Baixar manual"
+          title={res[1].formConsultorias[0].titulo}
+          mail=""
+          link={res[1].formConsultorias[0].link}
+          button={res[1].formConsultorias[0].button}
         />      
 
     </Layout>

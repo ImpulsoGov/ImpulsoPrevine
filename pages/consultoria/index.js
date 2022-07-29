@@ -1,64 +1,97 @@
 import Layout from "../../componentes/Layout";
-import { Header } from "../../componentes/Header/Header.jsx";
-import { Content3Col } from "../../componentes/Content3Col/Content3Col.jsx";
-import { TextCol } from "../../componentes/TextCol/TextCol.jsx";
-import { Slider } from "../../componentes/Slider/Slider.jsx";
-import { FormConsultoria } from "../../componentes/FormConsultoria/FormConsultoria";
+import { Header } from "@impulsogov/design-system";
+import { Content3Col } from "@impulsogov/design-system";
+import { TextCol } from "@impulsogov/design-system";
+import { Slider } from "@impulsogov/design-system";
+import { FormConsultoria } from "@impulsogov/design-system";
 
-const Index = () => {
+import { getData } from '../../utils/cms'
+import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
+
+export async function getStaticProps() {
+  const res = [
+    await getData(LAYOUT),
+    await getData(CONSULTORIA),
+  ]
+  return {
+    props: {
+      res : res
+    }
+  }
+}
+
+
+const Index = ({res}) => {
   return (
-    <Layout pageTitle="Previne Brasil | Consultoria">
+    <Layout 
+      pageTitle="Previne Brasil | Consultoria"
+      logoIPColor={res[0].logoIps[0].logo[0].url}
+      logoIPWhite = {res[0].logoIps[0].logo[1].url}
+      menus = {res[0].menus}
+      dropdown = {res[0].dropDownMenus}
+      footer = {res[0].footers}
+      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
+      socialMedia = { [
+        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
+        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
+        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
+      ]}
+      copyright = {{
+        label: res[0].copyrights[0].copyright,
+        contato : res[0].copyrights[0].contato
+      }}
+    >
       <Header
-        titulo = "Consultoria para o seu município"
-        tituloDestaque = " 100% gratuita"
-        texto = "Queremos ajudar você e seu município e temos um time preparado para isso. Você pode marcar uma consultoria ou tirar suas dúvidas de forma rápida e descomplicada. E o melhor: tudo de forma gratuita." 
-        botao = { { label: "Inscreva-se para a consultoria", url: "#formulario"}}
+        titulo = {res[1].headers[0].titulo}
+        tituloDestaque = {res[1].headers[0].tituloColor}
+        texto = {res[1].headers[0].texto} 
+        botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
         />
       <Content3Col
-        titulo = "Consultoria 100% gratuita e personalizada"
+        titulo = {res[1].content3Cols[0].titulo}
         child1 = {
             <TextCol
-                titulo = "O que é?"
-                corpo = "Uma consultoria para auxiliar seu município a melhorar o desempenho nos indicadores de desempenho e cadastro do Previne Brasil"
+                titulo = {res[1].cards[0].titulo}
+                corpo = {res[1].cards[0].texto}
             />
         }
         child2 = {
             <TextCol
-                titulo = "Como funciona?"
-                corpo = "Três encontros gratuitos com nosso time de especialistas, que preparam diagnóstico, plano de ação e acompanhamento de resultados personalizados para o seu município."
+                titulo = {res[1].cards[1].titulo}
+                corpo = {res[1].cards[1].texto}
             />
         }
         child3 = {
             <TextCol
-                titulo = "Quem pode fazer?"
-                corpo = "Municípios de até 40 mil habitantes que desejam ter apoio na gestão do Previne Brasil."
+                titulo = {res[1].cards[2].titulo}
+                corpo = {res[1].cards[2].texto}
             />
         }        
       />
     <FormConsultoria
-        title="Se interessou pela nossa consultoria? Preencha o formulário abaixo para fazer sua inscrição.Em caso de dúvidas, escreva para "
-        mail="previne@impulsogov.org"
-        link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
-        button="enviar"
+        title={res[1].formConsultorias[0].titulo}
+        mail={res[1].formConsultorias[0].tituloColor}
+        link={res[1].formConsultorias[0].link}
+        button={res[1].formConsultorias[0].button}
     />  
     <Slider 
-        titulo = {"Veja o que os outros municípios acharam"}
+        titulo = {res[1].sliders[0].titulo}
         core = {[
             {
-                titulo : "Márcia",
-                subtitulo : "Coordenadora de APS | Rio Paranaíba - MG",
-                corpo : "Excelente! De uma forma geral nos sentimos satisfeitos com o trabalho realizado pelos consultores, principalmente a forma de trabalho dos mesmos, que deram o máximo de atenção possível a nós e mostraram realmente na pratica a melhor forma de atingirmos os indicadores."
+                titulo : res[1].sliderCards[0].nome,
+                subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
+                corpo : res[1].sliderCards[0].texto
             },
             {
-              titulo : "Márcia",
-              subtitulo : "Coordenadora de APS | Rio Paranaíba - MG",
-              corpo : "Excelente! De uma forma geral nos sentimos satisfeitos com o trabalho realizado pelos consultores, principalmente a forma de trabalho dos mesmos, que deram o máximo de atenção possível a nós e mostraram realmente na pratica a melhor forma de atingirmos os indicadores."
-          },
+              titulo : res[1].sliderCards[0].nome,
+              subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
+              corpo : res[1].sliderCards[0].texto
+            },
 
         ]}
-        chamada = "Quero me inscrever para a consultoria"
-        link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
+        chamada = {res[1].sliders[0].button}
+        link = {res[1].sliders[0].buttonLink}
     />
     </Layout>
   )
