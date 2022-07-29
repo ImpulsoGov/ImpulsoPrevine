@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
 }
 .layoutColor{
   background-color: #145C56;
