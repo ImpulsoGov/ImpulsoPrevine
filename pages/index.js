@@ -52,6 +52,8 @@ const Index = ({res}) => {
         label: res[0].copyrights[0].copyright,
         contato : res[0].copyrights[0].contato
       }}
+      NavBarIconBranco =  {res[0].logoMenuMoblies[0].logo.url}
+      NavBarIconDark =  {res[0].logoMenuMoblies[1].logo.url}
     >
       <HomeBanner
         titulo = {res[1].homeBanners[0].titulo}

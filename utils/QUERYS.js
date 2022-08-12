@@ -32,6 +32,11 @@ export const LAYOUT = `
     contato
     copyright
   }
+  logoMenuMoblies {
+    logo {
+      url
+    }
+  }
 }
 `
 
