@@ -29,6 +29,8 @@ const Layout = (props) => {
         }}
         menu={ props.menus }
         subtitles = { props.dropdown}
+        NavBarIconBranco = {props.NavBarIconBranco}
+        NavBarIconDark = {props.NavBarIconDark}
       />
 
       <div className={props.color}>
