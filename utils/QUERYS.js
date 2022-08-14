@@ -134,3 +134,15 @@ export const MANUAL = `
   }
 }
 `
+export const ANALISE = `
+{
+  buttonBars {
+    label
+    link
+  },
+  headers {
+    texto
+    titulo
+  }
+}
+`
