@@ -19,7 +19,6 @@ export async function getStaticProps() {
 
 
 const Index = ({res}) => {
-    console.log(res)
   return (
     <Layout 
       pageTitle="Previne Brasil | Análise"
