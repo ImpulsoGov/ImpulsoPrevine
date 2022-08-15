@@ -46,7 +46,6 @@ const Index = ({res}) => {
     >
       <Header
         titulo = {res[1].headers[0].titulo}
-        tituloDestaque = {res[1].headers[0].tituloColor}
         texto = {res[1].headers[0].texto} 
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}

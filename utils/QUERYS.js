@@ -96,7 +96,6 @@ export const CONSULTORIA = `
     buttonLink
     texto
     titulo
-    tituloColor
   }
   content3Cols {
     titulo
@@ -129,6 +128,18 @@ export const CONSULTORIA = `
 export const MANUAL = `
 {
   homeBanners(last: 1) {
+    texto
+    titulo
+  }
+}
+`
+export const ANALISE = `
+{
+  buttonBars {
+    label
+    link
+  },
+  headers {
     texto
     titulo
   }
