@@ -23,7 +23,6 @@ const Index = ({res}) => {
       logoIPColor={res[0].logoIps[0].logo[0].url}
       logoIPWhite = {res[0].logoIps[0].logo[1].url}
       menus = {res[0].menus}
-      dropdown = {res[0].dropDownMenus}
       footer = {res[0].footers}
       logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
       socialMedia = { [

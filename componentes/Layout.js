@@ -28,7 +28,6 @@ const Layout = (props) => {
           cor : useRouter().pathname == '/' ? "ColorIP" : "White"
         }}
         menu={ props.menus }
-        subtitles = { props.dropdown}
         NavBarIconBranco = {props.NavBarIconBranco}
         NavBarIconDark = {props.NavBarIconDark}
       />

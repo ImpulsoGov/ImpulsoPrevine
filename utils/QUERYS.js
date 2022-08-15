@@ -4,10 +4,6 @@ export const LAYOUT = `
     label
     url
   }
-  dropDownMenus {
-    label
-    url
-  }
   logoIps {
     logo {
       url
