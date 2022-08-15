@@ -96,7 +96,6 @@ export const CONSULTORIA = `
     buttonLink
     texto
     titulo
-    tituloColor
   }
   content3Cols {
     titulo
