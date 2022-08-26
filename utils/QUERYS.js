@@ -141,3 +141,67 @@ export const ANALISE = `
   }
 }
 `
+export const POSTS = `
+{
+  blogArtigos {
+    autor
+    avatar {
+      url
+      id
+    }
+    data
+    tag
+    titulo
+    texto {
+      raw
+    }
+    createdAt
+    id
+    capa {
+      url
+    }
+
+  }
+}
+`
+
+export const POST =(id)=>{
+  return(`
+    {
+      blogArtigo(where: {id: "${id}"}) {
+        id
+        autor
+        avatar {
+          url
+        }
+        createdAt
+        tag
+        texto {
+          html
+        }
+        titulo
+        capa {
+          url
+        }
+      }
+    }
+    `
+  )
+}
+
+export const POSTID = `
+{
+  blogArtigos {
+    id
+  }
+}
+`
+export const LISTA_ARTIGOS = `
+{
+  listaArtigos {
+    titulo
+    buttonLabel
+    buttonLink
+  }
+}
+`
