@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { useEffect,useState,useContext } from 'react'
+import { useEffect,useState } from 'react'
 import { useRouter } from 'next/router'
 import * as gtag from '../componentes/Analytics/lib/gtag'
 import Analytics from '../componentes/Analytics/Analytics'
@@ -26,6 +26,7 @@ if (process.browser) {
 function MyApp(props) {
   const { Component, pageProps } = props;
   const router = useRouter()
+  let path = useRouter().pathname
   useEffect(() => {
     const handleRouteChange = url => {
       gtag.pageview(url)
@@ -49,7 +50,7 @@ function MyApp(props) {
         });
       })
     }
-  }, []);
+  }, [cidade]);
 
   return (
     <>
@@ -66,8 +67,8 @@ function MyApp(props) {
             setMunicipio = {setCidade}
             data={data}
             theme={{
-              logoProjeto : useRouter().pathname == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url,
-              cor : useRouter().pathname == '/' ? "ColorIP" : "White"
+              logoProjeto : path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url,
+              cor : path == '/' ? "ColorIP" : "White"
             }}
             menu={ props.res[0].menus }
             NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
