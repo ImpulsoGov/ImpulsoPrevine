@@ -13,7 +13,6 @@ import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
 import axios from 'axios';
-import Link from 'next/link'
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -48,7 +47,10 @@ function MyApp(props) {
           setCidade(response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2));
           setLoading(true)
         });
-      })
+      },()=> {
+        setCidade("São Paulo - SP");
+        setLoading(true)
+    })
     }
   }, [cidade]);
 

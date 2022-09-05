@@ -33,7 +33,7 @@ const Parceiros = (res)=>{
 
 const Index = ({res}) => {
   return (
-    <>
+    <div style={{backgroundColor: "#145C56"}}>
       <HomeBanner
         titulo = {res[1].homeBanners[0].titulo}
         tituloDestaque = ""
@@ -61,7 +61,7 @@ const Index = ({res}) => {
           link={res[1].formConsultorias[0].link}
           button={res[1].formConsultorias[0].button}
       />      
-    </>
+    </div>
   )
 }
 
