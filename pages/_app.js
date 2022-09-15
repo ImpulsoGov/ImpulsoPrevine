@@ -37,7 +37,7 @@ function MyApp(props) {
   }, [router.events])
 
   const [cidade, setCidade] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     const nav = typeof window !== 'undefined' ? navigator.geolocation : false
     if (nav && cidade.length ==0){
