@@ -44,8 +44,15 @@ function MyApp(props) {
       nav.getCurrentPosition(async (position)=> {
         await axios.get('https://nominatim.openstreetmap.org/reverse?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&zoom=10&format=json')
         .then(response => {
-          setCidade(response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2));
-          setLoading(true)
+          if(response.data.address["ISO3166-2-lvl4"].slice(-2)=='DF'){
+            let res = "Brasília"+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
+            setCidade(res);
+            setLoading(true)
+          }else{
+            let res = response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
+            setCidade(res);
+            setLoading(true)
+          }
         });
       },()=> {
         setCidade("São Paulo - SP");
