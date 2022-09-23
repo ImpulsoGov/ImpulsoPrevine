@@ -51,7 +51,7 @@ const Index = ({res}) => {
       label: "Indicadores de Desempenho",
     },
     {
-      label: "Captação Ponderada",
+      label: "Capitação Ponderada",
     },
     {
       label: "Incentivos a Ações Estratégicas",
