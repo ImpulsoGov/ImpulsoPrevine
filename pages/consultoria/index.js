@@ -4,6 +4,7 @@ import { Content3Col } from "@impulsogov/design-system";
 import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
+import { TituloTexto } from "@impulsogov/design-system";
 
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
@@ -75,6 +76,16 @@ const Index = ({res}) => {
         chamada = {res[1].sliders[0].button}
         link = {res[1].sliders[0].buttonLink}
     />
+    <TituloTexto
+        imagem = {{
+          posicao: null,
+          url: ''
+        }}
+        titulo = "Mais sobre nós"
+        texto = """A Impulso Gov é uma organização sem fins lucrativos e suprapartidária que apoia governos e gestores públicos no aprimoramento das políticas públicas de saúde por meio do uso inteligente de dados e tecnologia.
+
+O Impulso Previne, por sua vez, é uma ferramenta gratuita desenvolvida pela Impulso Gov, financiada pela Umane e com apoio institucional do Conasems e da Frente Nacional dos Prefeitos (FNP), para apoiar os municípios na gestão do Previne Brasil. A solução centraliza, em uma única plataforma, informações, dados e análises dos componentes do programa para apresentá-los de forma descomplicada e didática aos gestores públicos."""
+        />
   </>
   )
 }
