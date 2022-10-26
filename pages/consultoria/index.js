@@ -31,33 +31,14 @@ const Index = ({res}) => {
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
         />
-      <Content3Col
-        titulo = {res[1].content3Cols[0].titulo}
-        child1 = {
-            <TextCol
-                titulo = {res[1].cards[0].titulo}
-                corpo = {res[1].cards[0].texto}
-            />
-        }
-        child2 = {
-            <TextCol
-                titulo = {res[1].cards[1].titulo}
-                corpo = {res[1].cards[1].texto}
-            />
-        }
-        child3 = {
-            <TextCol
-                titulo = {res[1].cards[2].titulo}
-                corpo = {res[1].cards[2].texto}
-            />
-        }        
-      />
-    <FormConsultoria
-        title={res[1].formConsultorias[0].titulo}
-        mail={res[1].formConsultorias[0].tituloColor}
-        link={res[1].formConsultorias[0].link}
-        button={res[1].formConsultorias[0].button}
-    />  
+      <TituloTexto
+        imagem = {{
+          posicao: null,
+          url: ''
+        }}
+        titulo = "3 encontros com estratégias únicas e um plano de ação para o seu município."
+        texto = "Nas <b>consultorias do Impulso Previne</b>, escolhemos municípios periodicamente para uma sequência de mentorias com nossa equipe de especialistas para monitorar seus indicadores.<br><br>Você faz a inscrição e assim que o município atender aos critérios da próxima rodada, você receberá um convite."
+        />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
         core = {[
