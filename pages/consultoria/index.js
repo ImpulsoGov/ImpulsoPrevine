@@ -40,6 +40,12 @@ const Index = ({res}) => {
         titulo = "3 encontros com estratégias únicas e um plano de ação para o seu município."
         texto = "Nas <b>consultorias do Impulso Previne</b>, escolhemos municípios periodicamente para uma sequência de mentorias com nossa equipe de especialistas para monitorar seus indicadores.<br><br>Você faz a inscrição e assim que o município atender aos critérios da próxima rodada, você receberá um convite."
         />
+      <Banner2col
+          chamada = "Serviços gratuitos para ajudar equipes na gestão de saúde pública."
+          subtexto = "Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
+          chamadacolor = ""
+          cards = ""
+      />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
         core = {[
