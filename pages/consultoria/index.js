@@ -5,6 +5,7 @@ import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
+import { Banner2col } from "@impulsogov/design-system";
 
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
