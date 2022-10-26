@@ -44,7 +44,16 @@ const Index = ({res}) => {
           chamada = "Serviços gratuitos para ajudar equipes na gestão de saúde pública."
           subtexto = "Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
           chamadacolor = ""
-          cards = ""
+            cards = {[
+              {
+                  title : "Conteúdos informativos",
+                  body : "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
+              },
+              {
+                  title : "Consultoria especializada",
+                  body : "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
+              }
+          ]}
       />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
