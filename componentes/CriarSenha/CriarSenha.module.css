@@ -1,0 +1,81 @@
+.CriarSenhaContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.CriarSenhaCampos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.CriarSenhaCampo{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid rgba(113, 114, 119, 0.25);
+    border-radius: 8px;
+    box-sizing: border-box
+}
+
+.CriarSenhaCampo:focus {
+    outline: 1px solid rgba(113, 114, 119, 0.5);
+}
+.CriarSenhaTitulo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: #1F1F1F;
+    width: 100%;
+    margin-bottom: 32px;
+}
+.CriarSenhaMessage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0px 16px 1px;
+    background-color: #E95F3A;
+    color:#fff;
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%
+    }
+.CriarSenhaCampoButton{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 1023px) {
+    .CriarSenhaTitulo{
+        font-size: 24px;
+    }
+    
+    .CriarSenhaCampo{
+        height: 50px;
+        padding: 5px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1365px){
+    .LoginTitulo{
+        font-size: 24px;
+    }
+    
+    .LoginCampo{
+        height: 50px;
+        padding: 5px;
+    }
+}

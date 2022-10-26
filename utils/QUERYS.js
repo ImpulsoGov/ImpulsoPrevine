@@ -1,6 +1,6 @@
 export const LAYOUT = `
 {
-  menus {
+  menus(orderBy: ordem_ASC) {
     label
     url
   }
@@ -9,7 +9,7 @@ export const LAYOUT = `
       url
     }
   }
-  footers {
+  footers(orderBy: ordem_ASC) {
     label
     url
   }
@@ -42,6 +42,9 @@ export const HOME = `
     titulo
   }
   imagemFundos {
+    imagem {
+      url
+    }
     titulo
     tituloColor
     buttonLabel

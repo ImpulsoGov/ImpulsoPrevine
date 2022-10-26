@@ -4,7 +4,7 @@ import { getData } from '../../utils/cms';
 import { LAYOUT } from '../../utils/QUERYS';
 import { PanelSelector } from "@impulsogov/design-system"
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
   ]
@@ -57,14 +57,20 @@ const Index = ({res}) => {
       label: "Incentivos a Ações Estratégicas",
     },
   ]
+  const titles = [
+    {
+      label: "Análises",
+    }
+  ]
+  
   return (
     <>
       {
         isLoading==true &&
         <PanelSelector
-          links = {dsLink}
-          list={labels}
-          title="Análises"
+          links = {[dsLink]}
+          list={[labels]}
+          titles={titles}
         />
       }
     </>

@@ -40,6 +40,7 @@ const Index = ({res}) => {
         texto = ""
       />
       <ImagemFundo
+          imagem = {res[1].imagemFundos[0].imagem.url}
           chamada = {res[1].imagemFundos[0].titulo}
           chamadacolor = {res[1].imagemFundos[0].tituloColor}
           cards = {res[1].imagemfundoContents}
