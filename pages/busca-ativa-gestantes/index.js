@@ -7,10 +7,15 @@ import { DATA_STUDIO_URL } from "../../constants/dataStudio";
 
 
 export async function getServerSideProps({req}) {
-  console.log('kkkkkkkkkkkkk')
+  let redirect 
   const userIsActive = req.cookies['next-auth.session-token']
   const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
-  if(!userIsActive || !userIsActiveSecure) {
+  if(userIsActive){
+    redirect=true
+  }else{
+      if(userIsActiveSecure){redirect=true}else{redirect=false}
+  }
+  if(!redirect) {
     return {
       redirect: {
         destination: "/",
