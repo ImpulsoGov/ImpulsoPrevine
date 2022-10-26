@@ -5,7 +5,7 @@ import Context from "../../utils/Context"
 import { getData } from '../../utils/cms'
 import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
     await getData(IMPULSOGOV),

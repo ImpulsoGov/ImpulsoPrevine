@@ -6,7 +6,7 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import { getData } from '../utils/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
     await getData(HOME),
