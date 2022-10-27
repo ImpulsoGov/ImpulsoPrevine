@@ -5,7 +5,7 @@ import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
-import { Banner2col } from "@impulsogov/design-system";
+import { ImagemFundo } from "@impulsogov/design-system";
 
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
@@ -32,6 +32,28 @@ const Index = ({res}) => {
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
         />
+      <ImagemFundo
+          imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
+          chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
+          chamadacolor=""
+          subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
+          cards={[
+            {
+                title : "Conteúdos informativos",
+                body : "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
+            },
+            {
+                title : "Consultoria especializada",
+                body : "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
+            }
+        ]}
+          botao={
+            {
+              label: "",
+              url: ""
+            }
+          }
+        />
       <TituloTexto
         imagem = {{
           posicao: null,
@@ -40,21 +62,6 @@ const Index = ({res}) => {
         titulo = "3 encontros com estratégias únicas e um plano de ação para o seu município."
         texto = "Nas <b>consultorias do Impulso Previne</b>, escolhemos municípios periodicamente para uma sequência de mentorias com nossa equipe de especialistas para monitorar seus indicadores.<br><br>Você faz a inscrição e assim que o município atender aos critérios da próxima rodada, você receberá um convite."
         />
-      <Banner2col
-          chamada = "Serviços gratuitos para ajudar equipes na gestão de saúde pública."
-          subtexto = "Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
-          chamadacolor = ""
-            cards = {[
-              {
-                  title : "Conteúdos informativos",
-                  body : "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
-              },
-              {
-                  title : "Consultoria especializada",
-                  body : "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
-              }
-          ]}
-      />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
         core = {[
