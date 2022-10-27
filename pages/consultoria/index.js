@@ -37,6 +37,7 @@ const Index = ({res}) => {
           chamada=""
           chamadacolor=""
           subtexto=""
+          cards=""
           botao={
             {
               label: "",
