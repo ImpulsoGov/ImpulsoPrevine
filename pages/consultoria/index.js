@@ -32,6 +32,18 @@ const Index = ({res}) => {
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
         />
+      <ImagemFundo
+          imagem=""
+          chamada=""
+          chamadacolor=""
+          subtexto=""
+          botao={
+            {
+              label: "",
+              url: ""
+            }
+          }
+        />
       <TituloTexto
         imagem = {{
           posicao: null,
