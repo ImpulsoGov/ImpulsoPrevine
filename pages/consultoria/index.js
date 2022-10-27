@@ -5,7 +5,7 @@ import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
-import { Banner2col } from "@impulsogov/design-system";
+import { ImagemFundo } from "@impulsogov/design-system"
 
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
@@ -32,6 +32,39 @@ const Index = ({res}) => {
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
         />
+      <ImagemFundo
+          imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
+          chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
+          chamadacolor=""
+          subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
+          cards={[
+            {
+                title : "Conteúdos informativos",
+                body : "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
+            },
+            {
+                title : "Consultoria especializada",
+                body : "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
+            }
+        ]}
+          botao={
+            {
+              label: "",
+              url: ""
+            }
+          }
+        />
+      <ImagemFundo
+          chamada = {res[1].imagemFundos[0].titulo}
+          chamadacolor = {res[1].imagemFundos[0].tituloColor}
+          cards = {res[1].imagemfundoContents}
+          botao = {
+                      {
+                          label : res[1].imagemFundos[0].buttonLabel,
+                          url : res[1].imagemFundos[0].buttonLink
+                      }
+          }
+      />
       <TituloTexto
         imagem = {{
           posicao: null,
