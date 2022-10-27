@@ -33,13 +33,13 @@ const Index = ({res}) => {
         chamada = {{ label: "", url: "" }}
         />
       <ImagemFundo
-          imagem=""
+          imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
           chamada=""
           chamadacolor=""
           subtexto=""
           cards={
             {
-              title: ""
+              title: "",
               body: ""
             }
           }
