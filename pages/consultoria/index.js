@@ -34,9 +34,9 @@ const Index = ({res}) => {
         />
       <ImagemFundo
           imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
-          chamada=""
+          chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
           chamadacolor=""
-          subtexto=""
+          subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
           cards={[
             {
               title: "",
@@ -50,7 +50,7 @@ const Index = ({res}) => {
               title: "",
               body: ""
             }
-          }]
+          ]}
           botao={
             {
               label: "",
