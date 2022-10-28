@@ -33,11 +33,19 @@ const Index = ({res}) => {
         chamada = {{ label: "", url: "" }}
         />
       <ImagemFundo
-          imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
-          chamada=" Lorem Ipsum"
+          imagem="https://media.graphassets.com/XizUiZ1Remyy3m71GEq8"
+          chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
           chamadacolor=""
-          subtexto=" Lorem Ipsum"
+          subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
           cards={[
+            {
+              title: "Conteúdos informativos",
+              body: "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
+            },
+            {
+              title: "Consultoria especializada",
+              body: "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
+            },
             {
               title: "Lorem Ipsum",
               body: "Lorem Ipsum"
@@ -50,9 +58,7 @@ const Index = ({res}) => {
               title: "Lorem Ipsum",
               body: "Lorem Ipsum"
             }
-
-
-        ]}
+          ]}
           botao={
             {
               label: "",
