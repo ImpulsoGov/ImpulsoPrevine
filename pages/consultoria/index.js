@@ -33,7 +33,7 @@ const Index = ({res}) => {
         chamada = {{ label: "", url: "" }}
         />
       <ImagemFundo
-          imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
+          imagem="https://media.graphassets.com/XizUiZ1Remyy3m71GEq8"
           chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
           chamadacolor=""
           subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
