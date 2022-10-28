@@ -45,10 +45,6 @@ const Index = ({res}) => {
             {
               title: "Consultoria especializada",
               body: "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
-            },
-            {
-              title: "Lorem Ipsum",
-              body: "Lorem Ipsum"
             }
           ]}
           botao={
