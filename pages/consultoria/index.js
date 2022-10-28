@@ -49,20 +49,12 @@ const Index = ({res}) => {
             {
               title: "Lorem Ipsum",
               body: "Lorem Ipsum"
-            },
-            {
-              title: "Lorem Ipsum",
-              body: "Lorem Ipsum"
-            },
-            {
-              title: "Lorem Ipsum",
-              body: "Lorem Ipsum"
             }
           ]}
           botao={
             {
-              label: "",
-              url: ""
+              label: "Fazer inscrição",
+              url: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
             }
           }
         />
