@@ -5,6 +5,7 @@ import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
+import { ImagemFundo } from "@impulsogov/design-system";
 
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
@@ -30,6 +31,28 @@ const Index = ({res}) => {
         texto = {res[1].headers[0].texto} 
         botao = { { label: res[1].headers[0].button, url: res[1].headers[0].buttonLink}}
         chamada = {{ label: "", url: "" }}
+        />
+      <ImagemFundo
+          imagem="https://media.graphassets.com/XizUiZ1Remyy3m71GEq8"
+          chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
+          chamadacolor=""
+          subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
+          cards={[
+            {
+              title: "Conteúdos informativos",
+              body: "Receba comunicados por e-mail e WhatsApp com dicas sobre como melhorar os resultados nos indicadores do Previne Brasil."
+            },
+            {
+              title: "Consultoria especializada",
+              body: "Participe de um ciclo de encontros sobre desempenho do município nos principais indicadores de Saúde Preventiva."
+            }
+          ]}
+          botao={
+            {
+              label: "Fazer inscrição",
+              url: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
+            }
+          }
         />
       <TituloTexto
         imagem = {{
