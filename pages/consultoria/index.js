@@ -33,7 +33,7 @@ const Index = ({res}) => {
         chamada = {{ label: "", url: "" }}
         />
       <ImagemFundo
-          imagem="https://media.graphassets.com/XizUiZ1Remyy3m71GEq8"
+          imagem="https://raw.githubusercontent.com/ImpulsoGov/ImpulsoPrevine/f8125b30bc6e2188c0bb1f54ca7febbae1af6d89/public/Imagereto.png"
           chamada="Serviços gratuitos para ajudar equipes na gestão de saúde pública."
           chamadacolor=""
           subtexto="Temos duas maneiras de usar a tecnologia de forma inteligente para apoiar o trabalho de Coordenadoras e equipes de Atenção Primária à Saúde."
