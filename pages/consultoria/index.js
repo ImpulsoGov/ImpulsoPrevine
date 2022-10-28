@@ -34,15 +34,25 @@ const Index = ({res}) => {
         />
       <ImagemFundo
           imagem="https://media.graphassets.com/H0vZeX1QAatt3wtpwooX"
-          chamada=""
+          chamada=" Lorem Ipsum"
           chamadacolor=""
-          subtexto=""
-          cards={
+          subtexto=" Lorem Ipsum"
+          cards={[
             {
-              title: "",
-              body: ""
+              title: "Lorem Ipsum",
+              body: "Lorem Ipsum"
+            },
+            {
+              title: "Lorem Ipsum",
+              body: "Lorem Ipsum"
+            },
+            {
+              title: "Lorem Ipsum",
+              body: "Lorem Ipsum"
             }
-          }
+
+
+        ]}
           botao={
             {
               label: "",

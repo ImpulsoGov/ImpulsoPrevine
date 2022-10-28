@@ -77,7 +77,17 @@ function MyApp(props) {
       </Head>
       <Context.Provider value={[cidade, setCidade]}>
         {isLoading && 
-          <NavBar 
+          <NavBar
+          user={
+            {                  
+                nome : "nome",
+                cargo : "cargo",
+                button : {label:"sair"},
+                label : "E",
+                login : "signIn",
+                logout : "signOut"
+            }
+          } 
             municipio={cidade}
             setMunicipio = {setCidade}
             data={data}
