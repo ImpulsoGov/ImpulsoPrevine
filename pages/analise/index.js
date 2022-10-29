@@ -57,14 +57,19 @@ const Index = ({res}) => {
       label: "Incentivos a Ações Estratégicas",
     },
   ]
+  const titles = [
+    {
+      label: "Análises",
+    }
+  ]
   return (
     <>
       {
         isLoading==true &&
         <PanelSelector
-          links = {dsLink}
-          list={labels}
-          title="Análises"
+          links = {[dsLink]}
+          list={[labels]}
+          titles={titles}        
         />
       }
     </>
