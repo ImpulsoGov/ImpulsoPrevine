@@ -46,7 +46,12 @@ function MyApp(props) {
   console.log(props.ses)
   const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
   const cargo = props.ses != null ? props.ses.user.cargo : ""
-
+  useEffect(()=>{
+    window.dataLayer = window.dataLayer || []; 
+    window.dataLayer.push({ 
+   'gtm.load': props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user 
+    });
+  })
   useEffect(() => {
     const nav = typeof window !== 'undefined' ? navigator.geolocation : false
     if (nav && cidade.length ==0){

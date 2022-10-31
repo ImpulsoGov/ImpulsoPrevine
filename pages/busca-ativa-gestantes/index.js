@@ -2,7 +2,7 @@ import { PanelSelector} from "@impulsogov/design-system";
 import { useSession } from "next-auth/react"
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL } from "../../constants/dataStudio";
+import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
 
 
 
@@ -33,7 +33,7 @@ export async function getServerSideProps({req}) {
   }
 }
 
-const genParam = (token,municipio_uf,equipe)=>{
+const genParamEquipe = (token,municipio_uf,equipe)=>{
   let params = {
     "token": token,
     "municipio_uf": municipio_uf,
@@ -43,13 +43,32 @@ const genParam = (token,municipio_uf,equipe)=>{
   return encodedParams
 }
 
-const urlGenBuscaAtiva = (data_studio,token,municipio_uf,equipe)=>{
+const genParamCoordenacaoAPS = (token,municipio_uf)=>{
+  let params = {
+    "token": token,
+    "municipio_uf": municipio_uf,
+  }
+  var encodedParams = encodeURIComponent(JSON.stringify(params))
+  return encodedParams
+}
+
+
+const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe)=>{
   let baseURL = data_studio
-  let param = genParam(token,municipio_uf,equipe)
+  let param = genParamEquipe(token,municipio_uf,equipe)
   const link = baseURL  + param 
   console.log(link)
   return link
-  }
+}
+
+  const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf)=>{
+    let baseURL = data_studio
+    let param = genParamCoordenacaoAPS(token,municipio_uf)
+    const link = baseURL  + param 
+    console.log(link)
+    return link
+    }
+  
 
 
 const Index = ({res}) => {
@@ -80,8 +99,8 @@ const Index = ({res}) => {
       <PanelSelector
       links = {[
         [
-          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
-          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
+          urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio),
+          urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
         ], 
         [
           "https://datastudio.google.com/embed/reporting/bf7923fb-24b9-4cbf-81ab-8ba507d13a97/page/NvkxC",
