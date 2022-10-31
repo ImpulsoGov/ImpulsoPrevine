@@ -1,1 +1,1 @@
-export const DATA_STUDIO_URL = 'https://datastudio.google.com/embed/reporting/39f0c2cd-0f38-4814-940d-4abdec7f4b76/page/p_ifs1dyf9xc?params='
+export const DATA_STUDIO_URL = 'https://datastudio.google.com/embed/reporting/89ea36ef-4bb2-4c3c-bd8a-c859d1804376/page/NvkxC?params='

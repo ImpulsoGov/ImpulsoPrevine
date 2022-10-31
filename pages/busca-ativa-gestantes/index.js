@@ -33,18 +33,19 @@ export async function getServerSideProps({req}) {
   }
 }
 
-const genParam = (token,municipio_uf)=>{
+const genParam = (token,municipio_uf,equipe)=>{
   let params = {
     "token": token,
-    "municipio_uf": municipio_uf
+    "municipio_uf": municipio_uf,
+    "equipe": equipe
   }
   var encodedParams = encodeURIComponent(JSON.stringify(params))
   return encodedParams
 }
 
-const urlGenBuscaAtiva = (data_studio,token,municipio_uf)=>{
+const urlGenBuscaAtiva = (data_studio,token,municipio_uf,equipe)=>{
   let baseURL = data_studio
-  let param = genParam(token,municipio_uf)
+  let param = genParam(token,municipio_uf,equipe)
   const link = baseURL  + param 
   console.log(link)
   return link
@@ -79,8 +80,8 @@ const Index = ({res}) => {
       <PanelSelector
       links = {[
         [
-          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio),
-          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio),
+          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
+          urlGenBuscaAtiva(DATA_STUDIO_URL,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
         ], 
         [
           "https://datastudio.google.com/embed/reporting/bf7923fb-24b9-4cbf-81ab-8ba507d13a97/page/NvkxC",
