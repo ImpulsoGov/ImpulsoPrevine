@@ -26,7 +26,6 @@ if (process.browser) {
 }
 
 
-
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps }} = props;
   const router = useRouter()
@@ -74,7 +73,9 @@ function MyApp(props) {
     })
     }
   }, [cidade]);
-  return (
+  let logoProjectDesktop = path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url
+  const logoProjetoMobile= props.res[0].logoIps[1].logo[0].url
+    return (
     <>
       <Head>
         <title>{props.pageTitle}</title>
@@ -108,7 +109,7 @@ function MyApp(props) {
               setMunicipio = {setCidade}
               data={data}
               theme={{
-                logoProjeto : path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url,
+                logoProjeto : useWindowWidth() > 1000 ? logoProjectDesktop : logoProjetoMobile,
                 cor : path == '/' ? "ColorIP" : "White"
               }}
               menu={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
@@ -167,5 +168,21 @@ MyApp.getInitialProps = async(context)=> {
     ses
   }
 }
+
+const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth ] = useState(undefined);
+  useEffect(() => {
+      const handleWindowResize = () => {
+          setWindowWidth(window.innerWidth);
+      };
+
+      window.addEventListener('resize', handleWindowResize);
+      handleWindowResize()
+      return () => window.removeEventListener('resize', handleWindowResize);
+    
+  },[]);
+  return windowWidth;
+};
+
 
 export default MyApp
