@@ -75,6 +75,7 @@ function MyApp(props) {
   }, [cidade]);
   let logoProjectDesktop = path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url
   const logoProjetoMobile= props.res[0].logoIps[1].logo[0].url
+  let width = useWindowWidth()
     return (
     <>
       <Head>
@@ -100,6 +101,7 @@ function MyApp(props) {
                     cargo : cargo,
                     button : {label:"sair"},
                     label : props.ses == null || typeof(props.ses) == undefined  ? "Entrar" : nome[0],
+                    equipe : props.ses?.user?.equipe,
                     login : signIn,
                     logout : signOut
                 }
@@ -109,7 +111,7 @@ function MyApp(props) {
               setMunicipio = {setCidade}
               data={data}
               theme={{
-                logoProjeto : useWindowWidth() > 1000 ? logoProjectDesktop : logoProjetoMobile,
+                logoProjeto : width > 1000 ? logoProjectDesktop : logoProjetoMobile,
                 cor : path == '/' ? "ColorIP" : "White"
               }}
               menu={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
