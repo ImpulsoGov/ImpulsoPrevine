@@ -10,7 +10,7 @@ import { ImagemFundo } from "@impulsogov/design-system";
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
     await getData(CONSULTORIA),

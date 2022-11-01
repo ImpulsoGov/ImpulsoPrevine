@@ -1,0 +1,92 @@
+.CadastroConteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.CadastroCampos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.CadastroCampo{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid rgba(113, 114, 119, 0.25);
+    border-radius: 8px;
+    box-sizing: border-box
+}
+
+.CadastroCampo:focus {
+    outline: 1px solid rgba(113, 114, 119, 0.5);
+}
+.CadastroCampoWP{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #606E78;
+}
+.CadastroTitulo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: #1F1F1F;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.CadastroCampoButton{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    text-transform: uppercase;
+}
+.CadastroMessage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0px 16px 1px;
+    background-color: #E95F3A;
+    color:#fff;
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%
+    }
+
+@media screen and (max-width: 1023px) {
+    .CadastroTitulo{
+        font-size: 24px;
+    }
+    
+    .CadastroCampo{
+        height: 50px;
+        padding: 5px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1365px){
+    .CadastroTitulo{
+        font-size: 24px;
+    }
+    
+    .CadastroCampo{
+        height: 45px;
+        padding: 5px;
+    }
+}

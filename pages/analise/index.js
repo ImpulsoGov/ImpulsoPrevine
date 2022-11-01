@@ -4,7 +4,7 @@ import { getData } from '../../utils/cms';
 import { LAYOUT } from '../../utils/QUERYS';
 import { PanelSelector } from "@impulsogov/design-system"
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
   ]

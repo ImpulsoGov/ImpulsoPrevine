@@ -6,7 +6,7 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import { getData } from '../utils/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
     await getData(HOME),
@@ -40,7 +40,7 @@ const Index = ({res}) => {
         texto = ""
       />
       <ImagemFundo
-          imagem="https://media.graphassets.com/wOdRiF1HQ2azIVk9iCxI"
+          imagem = {res[1].imagemFundos[0].imagem.url}
           chamada = {res[1].imagemFundos[0].titulo}
           chamadacolor = {res[1].imagemFundos[0].tituloColor}
           cards = {res[1].imagemfundoContents}

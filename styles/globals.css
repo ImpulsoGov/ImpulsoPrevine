@@ -2,7 +2,7 @@
 html,
 body {
   padding: 0;
-  margin: 35px 0 0 0;
+  margin: 0;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -26,4 +26,10 @@ a {
   padding-top: 100px;
   padding-bottom: 100px;
   position: relative;
+}
+
+@media screen and (max-width: 1000px) {
+  body{
+    margin-top: 40px;
+  }
 }
