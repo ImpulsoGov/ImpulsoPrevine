@@ -51,7 +51,7 @@ const Index = ({res}) => {
       label: "Indicadores de Desempenho",
     },
     {
-      label: "Captação Ponderada",
+      label: "Capitação Ponderada",
     },
     {
       label: "Incentivos a Ações Estratégicas",
@@ -62,7 +62,6 @@ const Index = ({res}) => {
       label: "Análises",
     }
   ]
-  
   return (
     <>
       {
@@ -70,7 +69,7 @@ const Index = ({res}) => {
         <PanelSelector
           links = {[dsLink]}
           list={[labels]}
-          titles={titles}
+          titles={titles}        
         />
       }
     </>
