@@ -53,22 +53,29 @@ const genParamCoordenacaoAPS = (token,municipio_uf)=>{
 }
 
 
-const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe)=>{
-  let baseURL = data_studio
-  let param = genParamEquipe(token,municipio_uf,equipe)
-  const link = baseURL  + param 
-  console.log(link)
-  return link
-}
-
-  const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf)=>{
+const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
+  if (cargo == "Coordenação de Equipe"){
     let baseURL = data_studio
-    let param = genParamCoordenacaoAPS(token,municipio_uf)
+    let param = genParamEquipe(token,municipio_uf,equipe)
     const link = baseURL  + param 
     console.log(link)
     return link
+  }else{
+    return ""
+  }
+}
+
+  const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo)=>{
+    if (cargo == "Coordenação APS"){
+      let baseURL = data_studio
+      let param = genParamCoordenacaoAPS(token,municipio_uf)
+      const link = baseURL  + param 
+      console.log(link)
+      return link
+    }else{
+      return ""
     }
-  
+  }
 
 
 const Index = ({res}) => {
@@ -84,31 +91,22 @@ const Index = ({res}) => {
   
 
   if(session){
-    const labelsBuscaAtiva = [
-      [
-        ...[session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser" ? {label: "Coordenação APS"}: []],
-        ...[session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser" ? {label: "Coordenação de Equipe"}: []],
-      ],
-      titlesBuscaAtiva.length > 1 &&
-      [
-        ...(session.user?.cargo) == "Coordenação APS" || session.user?.cargo == "Impulser" ? {label: "Coordenação APS"}: [],
-        ...(session.user?.cargo) == "Coordenação de Equipe" || session.user?.cargo == "Impulser" ? {label: "Coordenação APS"}: [],
-      ]
-    ]
+    const labelsBuscaAtiva = [[]]
+    if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
+    if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
+    if(titlesBuscaAtiva.length > 1){
+      labelsBuscaAtiva.push([])
+      if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
+      if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
+  }
+    const links = [[]]
+    if (session.user?.cargo == "Coordenação APS") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
+    if (session.user?.cargo == "Coordenação de Equipe") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <PanelSelector
-      links = {[
-        [
-          urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio),
-          urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe),
-        ], 
-        [
-          "https://datastudio.google.com/embed/reporting/bf7923fb-24b9-4cbf-81ab-8ba507d13a97/page/NvkxC",
-          "https://datastudio.google.com/embed/reporting/bf7923fb-24b9-4cbf-81ab-8ba507d13a97/page/NvkxC"
-        ], 
-      ]}
-      list={labelsBuscaAtiva}
-      titles={titlesBuscaAtiva}
+        links = {links}
+        list={labelsBuscaAtiva}
+        titles={titlesBuscaAtiva}
       />
     )
   }
