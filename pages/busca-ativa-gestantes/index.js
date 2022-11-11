@@ -54,7 +54,7 @@ const genParamCoordenacaoAPS = (token,municipio_uf)=>{
 
 
 const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
-  if (cargo == "Coordenação de Equipe" || cargo == "IMPULSER"){
+  if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
     let baseURL = data_studio
     let param = genParamEquipe(token,municipio_uf,equipe)
     const link = baseURL  + param 
@@ -66,7 +66,7 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
 }
 
   const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo)=>{
-    if (cargo == "Coordenação APS" || cargo == "IMPULSER"){
+    if (cargo == "Coordenação APS" || cargo == "Impulser"){
       let baseURL = data_studio
       let param = genParamCoordenacaoAPS(token,municipio_uf)
       const link = baseURL  + param 
@@ -100,8 +100,8 @@ const Index = ({res}) => {
       if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
   }
     const links = [[]]
-    if (session.user?.cargo == "Coordenação APS") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
-    if (session.user?.cargo == "Coordenação de Equipe") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
+    if (session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
+    if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <PanelSelector
         links = {links}
