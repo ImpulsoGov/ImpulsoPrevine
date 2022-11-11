@@ -54,7 +54,7 @@ const genParamCoordenacaoAPS = (token,municipio_uf)=>{
 
 
 const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
-  if (cargo == "Coordenação de Equipe"){
+  if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
     let baseURL = data_studio
     let param = genParamEquipe(token,municipio_uf,equipe)
     const link = baseURL  + param 
@@ -66,7 +66,7 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
 }
 
   const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo)=>{
-    if (cargo == "Coordenação APS"){
+    if (cargo == "Coordenação APS" || cargo == "Impulser"){
       let baseURL = data_studio
       let param = genParamCoordenacaoAPS(token,municipio_uf)
       const link = baseURL  + param 
