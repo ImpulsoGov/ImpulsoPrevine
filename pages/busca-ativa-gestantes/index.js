@@ -4,8 +4,6 @@ import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
 
-
-
 export async function getServerSideProps({req}) {
   let redirect 
   const userIsActive = req.cookies['next-auth.session-token']
@@ -77,7 +75,6 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
     }
   }
 
-
 const Index = ({res}) => {
   const { data: session,status } = useSession()
 
@@ -87,8 +84,6 @@ const Index = ({res}) => {
     },
     //{label: "Cadastros - Gestantes"},
   ]
-  
-  
 
   if(session){
     const labelsBuscaAtiva = [[]]
@@ -113,8 +108,6 @@ const Index = ({res}) => {
   return(
     <p>{status}</p>
   )
-  
-    
 }
 
 export default Index;
