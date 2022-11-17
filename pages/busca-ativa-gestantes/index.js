@@ -5,11 +5,6 @@ import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
-// IMPORTS PARA BANNER TEMPORÁRIO
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
 
 export async function getServerSideProps({req}) {
   let redirect 
@@ -129,23 +124,6 @@ const Index = ({res}) => {
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Dificuldades no carregamento do painel</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><p>Infelizmente estamos enfretando problemas no sistema. 
-          Se seu painel não recarregar por favor faça logout e entre novamente.
-          <br></br>Se o problema persistir não hesite em nos contactar.
-          <br></br>Estamos trabalhando em consertar o mais rápido possível. Agradecemos a compreensão.</p></Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Fechar
-          </Button>
-          <Button variant="primary" href="https://forms.gle/edB3WsYYtJq9Afq39">
-            Entrar em contato
-          </Button>
-        </Modal.Footer>
-      </Modal>
       <PanelSelector
         links = {links}
         list={labelsBuscaAtiva}
