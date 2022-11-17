@@ -1,9 +1,10 @@
 import { PanelSelector} from "@impulsogov/design-system";
-import { useSession } from "next-auth/react"
+import { useSession,signOut } from "next-auth/react"
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
-
+import { validatetoken } from "../../services/validateToken";
+import { useEffect,useState } from "react";
 export async function getServerSideProps({req}) {
   let redirect 
   const userIsActive = req.cookies['next-auth.session-token']
@@ -56,7 +57,6 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
     let baseURL = data_studio
     let param = genParamEquipe(token,municipio_uf,equipe)
     const link = baseURL  + param 
-    console.log(link)
     return link
   }else{
     return ""
@@ -68,7 +68,6 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
       let baseURL = data_studio
       let param = genParamCoordenacaoAPS(token,municipio_uf)
       const link = baseURL  + param 
-      console.log(link)
       return link
     }else{
       return ""
@@ -77,14 +76,32 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
 
 const Index = ({res}) => {
   const { data: session,status } = useSession()
-
+  const [tokenValido, setTokenValido] = useState();
+  useEffect(()=>{
+    if(session){
+      validatetoken(session?.user?.access_token)
+      .then(response=>{
+        console.log(response)
+        setTokenValido(response)
+        console.log("tokenValido",tokenValido)
+      }).catch(error=>{
+        setTokenValido(false)
+        console.log(error)
+      })
+      }
+  })
+  useEffect(()=>{
+    if(session && session?.user?.access_token){
+      if(tokenValido!=true && tokenValido!==undefined) signOut()
+    }
+  },[tokenValido])
   const titlesBuscaAtiva = [
     {
       label: "Indicadores Gestantes",
     },
     //{label: "Cadastros - Gestantes"},
   ]
-
+  console.log("tokenValido_out",tokenValido)
   if(session){
     const labelsBuscaAtiva = [[]]
     if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
@@ -97,12 +114,14 @@ const Index = ({res}) => {
     const links = [[]]
     if (session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-    return (
+      return (
+        <>
       <PanelSelector
         links = {links}
         list={labelsBuscaAtiva}
         titles={titlesBuscaAtiva}
       />
+      </>
     )
   }
   return(

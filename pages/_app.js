@@ -16,6 +16,7 @@ import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
 import axios from 'axios';
+import { validatetoken } from '../services/validateToken'
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -42,7 +43,7 @@ function MyApp(props) {
   const [cidade, setCidade] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
-  console.log(props.ses)
+  //console.log(props.ses)
   const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
   const cargo = props.ses != null ? props.ses.user.cargo : ""
   useEffect(()=>{
@@ -167,7 +168,7 @@ MyApp.getInitialProps = async(context)=> {
   return {
     ...pageProps,
     res,
-    ses
+    ses,
   }
 }
 
