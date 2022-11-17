@@ -9,14 +9,12 @@ import { getData } from '../utils/cms'
 import { LAYOUT } from '../utils/QUERYS'
 import App from 'next/app'
 import Head from 'next/head';
-import { NavBar } from '@impulsogov/design-system';
-import { Footer } from '@impulsogov/design-system';
+import { NavBar,Footer } from '@impulsogov/design-system';
 import { AjustBar } from '../componentes/AjustBar/AjustBar'
 import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
 import axios from 'axios';
-import { validatetoken } from '../services/validateToken'
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -43,7 +41,7 @@ function MyApp(props) {
   const [cidade, setCidade] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
-  //console.log(props.ses)
+  console.log(props.ses)
   const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
   const cargo = props.ses != null ? props.ses.user.cargo : ""
   useEffect(()=>{
@@ -90,7 +88,7 @@ function MyApp(props) {
           rel="stylesheet"
         />
       </Head>
-      <SessionProvider session={session} refetchInterval={1*30} refetchOnWindowFocus={true} clientMaxAge={1*60}>
+      <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={1*60}>
         <Context.Provider value={[cidade, setCidade]}>
         <Auth setStatus={setStatus}>
           <AjustBar/>
