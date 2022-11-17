@@ -1,5 +1,5 @@
 import { PanelSelector} from "@impulsogov/design-system";
-import { useSession } from "next-auth/react"
+import { useSession,signOut } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
