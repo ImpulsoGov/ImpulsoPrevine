@@ -1,10 +1,16 @@
 import { PanelSelector} from "@impulsogov/design-system";
-import { useSession,signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
+import React, { useState,useEffect } from 'react';
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
-import { validatetoken } from "../../services/validateToken";
-import { useEffect,useState } from "react";
+import { validatetoken} from "../../services/validateToken"
+// IMPORTS PARA BANNER TEMPORÁRIO
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+
 export async function getServerSideProps({req}) {
   let redirect 
   const userIsActive = req.cookies['next-auth.session-token']
@@ -31,7 +37,6 @@ export async function getServerSideProps({req}) {
     }
   }
 }
-
 const genParamEquipe = (token,municipio_uf,equipe)=>{
   let params = {
     "token": token,
@@ -41,16 +46,6 @@ const genParamEquipe = (token,municipio_uf,equipe)=>{
   var encodedParams = encodeURIComponent(JSON.stringify(params))
   return encodedParams
 }
-
-const genParamCoordenacaoAPS = (token,municipio_uf)=>{
-  let params = {
-    "token": token,
-    "municipio_uf": municipio_uf,
-  }
-  var encodedParams = encodeURIComponent(JSON.stringify(params))
-  return encodedParams
-}
-
 
 const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
   if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
@@ -63,16 +58,29 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
   }
 }
 
-  const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo)=>{
-    if (cargo == "Coordenação APS" || cargo == "Impulser"){
-      let baseURL = data_studio
-      let param = genParamCoordenacaoAPS(token,municipio_uf)
-      const link = baseURL  + param 
-      return link
-    }else{
-      return ""
-    }
-  }
+const StaticLinksAPS = [
+  {
+    municipio : "Três Marias - MG",
+    painel : "https://datastudio.google.com/embed/reporting/debb95fc-aa06-4a9e-a33e-046954d02ac8/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Juquitiba - SP",
+    painel : "https://datastudio.google.com/embed/reporting/5862cd94-9d64-42d8-900b-be12ee896733/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Minaçu - GO",
+    painel : "https://datastudio.google.com/embed/reporting/e7908f33-f4b3-4f8a-a1d6-41f08b00706e/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Guapó - GO",
+    painel : "https://datastudio.google.com/embed/reporting/7f3a4af5-2c81-4c84-b5da-793f4759231a/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Rio Piracicaba - MG",
+    painel : "https://datastudio.google.com/embed/reporting/0c705ca9-5e14-46e1-9291-e459714b60d3/page/p_0txoctrxyc"
+  },
+  
+]
 
 const Index = ({res}) => {
   const { data: session,status } = useSession()
@@ -81,12 +89,10 @@ const Index = ({res}) => {
     if(session){
       validatetoken(session?.user?.access_token)
       .then(response=>{
-        console.log(response)
         setTokenValido(response)
         console.log("tokenValido",tokenValido)
       }).catch(error=>{
         setTokenValido(false)
-        console.log(error)
       })
       }
   })
@@ -101,7 +107,10 @@ const Index = ({res}) => {
     },
     //{label: "Cadastros - Gestantes"},
   ]
-  console.log("tokenValido_out",tokenValido)
+  const [show, setShow] = useState(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   if(session){
     const labelsBuscaAtiva = [[]]
     if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
@@ -112,10 +121,31 @@ const Index = ({res}) => {
       if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
   }
     const links = [[]]
-    if (session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
+    StaticLinksAPS.forEach(item => {
+      if (session.user?.cargo){
+        if (item.municipio == session.user?.municipio) links[0].push(item.painel)
+      }
+    })
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-      return (
-        <>
+    return (
+      <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Dificuldades no carregamento do painel</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><p>Infelizmente estamos enfretando problemas no sistema. 
+          Se seu painel não recarregar por favor faça logout e entre novamente.
+          <br></br>Se o problema persistir não hesite em nos contactar.
+          <br></br>Estamos trabalhando em consertar o mais rápido possível. Agradecemos a compreensão.</p></Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Fechar
+          </Button>
+          <Button variant="primary" href="https://forms.gle/edB3WsYYtJq9Afq39">
+            Entrar em contato
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <PanelSelector
         links = {links}
         list={labelsBuscaAtiva}
