@@ -62,23 +62,23 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
 const StaticLinksAPS = [
   {
     municipio : "Três Marias - MG",
-    painel : "https://www.impulsogov.org/"
+    painel : "https://datastudio.google.com/embed/reporting/debb95fc-aa06-4a9e-a33e-046954d02ac8/page/p_kl3q988fyc"
   },
   {
     municipio : "Juquitiba - SP",
-    painel : "https://www.impulsogov.org/"
+    painel : "https://datastudio.google.com/embed/reporting/5862cd94-9d64-42d8-900b-be12ee896733/page/p_kl3q988fyc"
   },
   {
     municipio : "Minaçu - GO",
-    painel : "link3"
+    painel : "https://datastudio.google.com/embed/reporting/e7908f33-f4b3-4f8a-a1d6-41f08b00706e/page/p_kl3q988fyc"
   },
   {
     municipio : "Guapó - GO",
-    painel : "link4"
+    painel : "https://datastudio.google.com/embed/reporting/7f3a4af5-2c81-4c84-b5da-793f4759231a/page/p_kl3q988fyc"
   },
   {
     municipio : "Rio Piracicaba - MG",
-    painel : "link5"
+    painel : "https://datastudio.google.com/embed/reporting/0c705ca9-5e14-46e1-9291-e459714b60d3/page/p_0txoctrxyc"
   },
   
 ]
