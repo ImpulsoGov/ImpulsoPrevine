@@ -2,7 +2,6 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios"
 import FormData from "form-data"
-import { TOKEN_URL } from "../../../constants/auth"
 import { API_URL } from "../../../constants/API_URL";
 
 export const cargo_nome = async (token,mail)=>{
@@ -73,10 +72,14 @@ providers: [
   })
 ],
 session: {
-  strategy: "jwt"
+  strategy: "jwt",
+  maxAge: 1 * 60,
+  updateAge: 1 * 60
 },
+refetchInterval: 1,
 jwt: {
-  secret: 'v5oY81w077SDsgs/2VLSGql/5PJ3vwrWoHJISb2zCZk='
+  secret: 'v5oY81w077SDsgs/2VLSGql/5PJ3vwrWoHJISb2zCZk=',
+  maxAge: 1 * 60
 },
 callbacks: {
   jwt: async ({ token, user }) => {

@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react';
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
-
+import { validatetoken} from "../../services/validateToken"
 // IMPORTS PARA BANNER TEMPORÁRIO
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
@@ -52,7 +52,6 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
     let baseURL = data_studio
     let param = genParamEquipe(token,municipio_uf,equipe)
     const link = baseURL  + param 
-    console.log(link)
     return link
   }else{
     return ""
@@ -85,7 +84,23 @@ const StaticLinksAPS = [
 
 const Index = ({res}) => {
   const { data: session,status } = useSession()
-
+  const [tokenValido, setTokenValido] = useState();
+  useEffect(()=>{
+    if(session){
+      validatetoken(session?.user?.access_token)
+      .then(response=>{
+        setTokenValido(response)
+        console.log("tokenValido",tokenValido)
+      }).catch(error=>{
+        setTokenValido(false)
+      })
+      }
+  })
+  useEffect(()=>{
+    if(session && session?.user?.access_token){
+      if(tokenValido!=true && tokenValido!==undefined) signOut()
+    }
+  },[tokenValido])
   const titlesBuscaAtiva = [
     {
       label: "Indicadores Gestantes",
@@ -112,7 +127,6 @@ const Index = ({res}) => {
       }
     })
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-    console.log(links)
     return (
       <>
       <Modal show={show} onHide={handleClose}>
@@ -143,8 +157,6 @@ const Index = ({res}) => {
   return(
     <p>{status}</p>
   )
-  
-    
 }
 
 export default Index;

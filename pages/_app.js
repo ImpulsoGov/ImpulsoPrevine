@@ -9,8 +9,7 @@ import { getData } from '../utils/cms'
 import { LAYOUT } from '../utils/QUERYS'
 import App from 'next/app'
 import Head from 'next/head';
-import { NavBar } from '@impulsogov/design-system';
-import { Footer } from '@impulsogov/design-system';
+import { NavBar,Footer } from '@impulsogov/design-system';
 import { AjustBar } from '../componentes/AjustBar/AjustBar'
 import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
@@ -89,7 +88,7 @@ function MyApp(props) {
           rel="stylesheet"
         />
       </Head>
-      <SessionProvider session={session}>
+      <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={1*60}>
         <Context.Provider value={[cidade, setCidade]}>
         <Auth setStatus={setStatus}>
           <AjustBar/>
@@ -167,7 +166,7 @@ MyApp.getInitialProps = async(context)=> {
   return {
     ...pageProps,
     res,
-    ses
+    ses,
   }
 }
 
