@@ -121,7 +121,7 @@ const Index = ({res}) => {
         </Modal.Header>
         <Modal.Body><p>Infelizmente estamos enfretando problemas no sistema. 
           Se seu painel não recarregar por favor faça logout e entre novamente.
-          <br></br>Se o problema persistir não exite em nos contactar.
+          <br></br>Se o problema persistir não hesite em nos contactar.
           <br></br>Estamos trabalhando em consertar o mais rápido possível. Agradecemos a compreensão.</p></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
