@@ -88,7 +88,7 @@ function MyApp(props) {
           rel="stylesheet"
         />
       </Head>
-      <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={1*60}>
+      <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={8 * 60 * 60}>
         <Context.Provider value={[cidade, setCidade]}>
         <Auth setStatus={setStatus}>
           <AjustBar/>
