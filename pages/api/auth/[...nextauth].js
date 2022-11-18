@@ -73,13 +73,13 @@ providers: [
 ],
 session: {
   strategy: "jwt",
-  maxAge: 1 * 60,
-  updateAge: 1 * 60
+  maxAge: 8 * 60 * 60,
+  updateAge: 8 * 60 * 60
 },
 refetchInterval: 1,
 jwt: {
   secret: 'v5oY81w077SDsgs/2VLSGql/5PJ3vwrWoHJISb2zCZk=',
-  maxAge: 1 * 60
+  maxAge: 8 * 60 * 60
 },
 callbacks: {
   jwt: async ({ token, user }) => {
