@@ -86,6 +86,10 @@ const StaticLinksAPS = [
     municipio : "Rio da Conceição - MG",
     painel : "https://datastudio.google.com/embed/reporting/b90349d3-870d-4651-b158-1b6beabb3cdc/page/p_kl3q988fyc"
   },
+  {
+    municipio : "Tamandaré - PE",
+    painel : "https://datastudio.google.com/embed/reporting/c404a5f6-2820-43a0-9456-1921c55d8a63/page/p_0txoctrxyc"
+  },
 ]
 
 const Index = ({res}) => {
