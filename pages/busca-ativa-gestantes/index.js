@@ -83,7 +83,7 @@ const StaticLinksAPS = [
     painel : "https://datastudio.google.com/embed/reporting/81698d81-bc4e-4c3c-857e-5051f16240d3/page/p_lyb3f8rxyc"
   },
   {
-    municipio : "Rio da Conceição - MG",
+    municipio : "Rio da Conceição - TO",
     painel : "https://datastudio.google.com/embed/reporting/b90349d3-870d-4651-b158-1b6beabb3cdc/page/p_kl3q988fyc"
   },
   {
@@ -136,6 +136,7 @@ const Index = ({res}) => {
         if (item.municipio == session.user?.municipio) links[0].push(item.painel)
       }
     })
+
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <>
