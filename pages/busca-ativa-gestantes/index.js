@@ -56,25 +56,40 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
 const StaticLinksAPS = [
   {
     municipio : "Três Marias - MG",
-    painel : "https://datastudio.google.com/embed/reporting/debb95fc-aa06-4a9e-a33e-046954d02ac8/page/p_kl3q988fyc"
+    painel : "https://datastudio.google.com/embed/reporting/bdcd085d-d6f8-4c3c-99ba-e111c9fb0aba/page/p_kl3q988fyc"
   },
   {
     municipio : "Juquitiba - SP",
-    painel : "https://datastudio.google.com/embed/reporting/5862cd94-9d64-42d8-900b-be12ee896733/page/p_kl3q988fyc"
+    painel : "https://datastudio.google.com/embed/reporting/7d8ee03d-7baf-4cb6-b9aa-53b743486f27/page/p_kl3q988fyc"
   },
   {
     municipio : "Minaçu - GO",
-    painel : "https://datastudio.google.com/embed/reporting/e7908f33-f4b3-4f8a-a1d6-41f08b00706e/page/p_kl3q988fyc"
+    painel : "https://datastudio.google.com/embed/reporting/f975d9fd-d049-4ef0-b29d-055d21a0eee7/page/p_kl3q988fyc"
   },
   {
     municipio : "Guapó - GO",
-    painel : "https://datastudio.google.com/embed/reporting/7f3a4af5-2c81-4c84-b5da-793f4759231a/page/p_kl3q988fyc"
+    painel : "https://datastudio.google.com/embed/reporting/74a8f252-6070-48a4-ac02-ffc5d9945cec/page/p_kl3q988fyc"
   },
   {
     municipio : "Rio Piracicaba - MG",
-    painel : "https://datastudio.google.com/embed/reporting/0c705ca9-5e14-46e1-9291-e459714b60d3/page/p_0txoctrxyc"
+    painel : "https://datastudio.google.com/embed/reporting/ed0bbe75-0388-4af2-9b1c-d7c6f2eb19df/page/p_kl3q988fyc"
   },
-  
+  {
+    municipio : "Xapuri - AC",
+    painel : "https://datastudio.google.com/embed/reporting/89d049d7-34aa-47f9-88d5-fb61df3f6164/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Viçosa - MG",
+    painel : "https://datastudio.google.com/embed/reporting/81698d81-bc4e-4c3c-857e-5051f16240d3/page/p_lyb3f8rxyc"
+  },
+  {
+    municipio : "Rio da Conceição - TO",
+    painel : "https://datastudio.google.com/embed/reporting/b90349d3-870d-4651-b158-1b6beabb3cdc/page/p_kl3q988fyc"
+  },
+  {
+    municipio : "Tamandaré - PE",
+    painel : "https://datastudio.google.com/embed/reporting/c404a5f6-2820-43a0-9456-1921c55d8a63/page/p_0txoctrxyc"
+  },
 ]
 
 const Index = ({res}) => {
@@ -121,6 +136,7 @@ const Index = ({res}) => {
         if (item.municipio == session.user?.municipio) links[0].push(item.painel)
       }
     })
+
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <>
