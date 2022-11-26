@@ -132,7 +132,7 @@ const Index = ({res}) => {
   }
     const links = [[]]
     StaticLinksAPS.forEach(item => {
-      if (session.user?.cargo){
+      if (session.user?.cargo == "Coordenação APS"){
         if (item.municipio == session.user?.municipio) links[0].push(item.painel)
       }
     })
