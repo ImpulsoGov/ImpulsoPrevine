@@ -3,7 +3,7 @@ import { useSession,signOut } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../utils/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
+import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 
 export async function getServerSideProps({req}) {
@@ -96,22 +96,25 @@ const Index = ({res}) => {
     {
       label: "Indicadores Gestantes",
     },
-    //{label: "Cadastros - Gestantes"},
+    {
+      label: "Cadastros Gestantes"
+    },
   ]
 
   if(session){
-    const labelsBuscaAtiva = [[]]
+    const labelsBuscaAtiva = [[],[]]
     if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
     if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
     if(titlesBuscaAtiva.length > 1){
       labelsBuscaAtiva.push([])
-      if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
-      if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
+      if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[1].push({label: "Duplicados por Município"})
+      if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[1].push({label: "Duplicados por Equipe"})
   }
-    const links = [[]]
+    const links = [[],[]]
     if (session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-
+    if (session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser") links[1].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
+    if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[1].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_CADASTROS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <>
       <PanelSelector
