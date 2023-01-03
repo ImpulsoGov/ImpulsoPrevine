@@ -24,7 +24,9 @@ O Impulso Previne é uma realização da ImpulsoGov, uma organização sem fins 
 ## :rocket: Contexto
 
 O Previne Brasil é um programa para Atenção Básica que condiciona o repasse financeiro do MS para todos os municípios do Brasil. São avaliados os cadastros e 7 indicadores e a partir deles, é calculado o financiamento ponderado e por desempenho. 
+
 O desenho do programa é bastante complexo e faltam ferramentas para o entendimento e acompanhamento por parte do gestor público, resultando em perda de financiamento para AB se não atingir as metas e grande dificuldade em fazer um autodiagnóstico e definir um plano de ação.
+
 Assim criamos o Impulso Previne como coach virtual para guiar o gestor até o sucesso.
  
 <div id='estrutura'/>  
