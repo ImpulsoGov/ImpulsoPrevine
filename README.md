@@ -38,7 +38,7 @@ Essa aplicação foi implementada com [Next.js](https://nextjs.org/) como princi
 Essa aplicação é construida com a biblioteca de componentes do [Design System](https://designsystem.impulsogov.org/) da ImpulsoGov.
 
 ```plain
-etl
+root
 ├─ componentes
 ├─ constants
 ├─ pages
