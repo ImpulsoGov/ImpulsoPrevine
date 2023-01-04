@@ -15,6 +15,7 @@ import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
 import axios from 'axios';
+import { validateCredentials,validacao } from "../services/validateCredentials"
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -102,7 +103,9 @@ function MyApp(props) {
                     label : props.ses == null || typeof(props.ses) == undefined  ? "Entrar" : nome[0],
                     equipe : props.ses?.user?.equipe,
                     login : signIn,
-                    logout : signOut
+                    logout : signOut,
+                    validarCredencial : validateCredentials,
+                    validacao : validacao
                 }
               }
 
