@@ -22,7 +22,6 @@ const validateCredentials = async(mail,senha)=>{
       return error.response.data
     });
 
-    console.log(res)
     return res
 }
 
