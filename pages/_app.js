@@ -16,6 +16,7 @@ import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
 import axios from 'axios';
 import { validateCredentials,validacao } from "../services/validateCredentials"
+import { solicitarNovaSenha,alterarSenha,validarCodigo } from '../services/esqueciMinhaSenha'
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -118,6 +119,13 @@ function MyApp(props) {
               menu={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
               NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
               NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
+              esqueciMinhaSenha = {{
+                reqs : {
+                    mail : solicitarNovaSenha,
+                    codigo : validarCodigo,
+                    alterarSenha : alterarSenha
+                },
+              }}
             />
           }
             <Component {...pageProps} />
