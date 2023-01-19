@@ -17,6 +17,7 @@ import TagManager from "react-gtm-module";
 import axios from 'axios';
 import { validateCredentials,validacao } from "../services/validateCredentials"
 import { solicitarNovaSenha,alterarSenha,validarCodigo } from '../services/esqueciMinhaSenha'
+import { primeiroAcesso,criarSenha } from '../services/primeiroAcesso'
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -126,6 +127,24 @@ function MyApp(props) {
                     alterarSenha : alterarSenha
                 },
               }}
+              ModalInicio={{
+                titulo: "Faça o login para ver os dados restritos.",
+                chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
+                botaoPrincipal : {
+                    label: "entrar",
+                },
+                botaoSecundario : {
+                    label: "primeiro acesso",
+                }
+              }}
+              primeiroAcesso={{
+                  reqs:{
+                      mail : primeiroAcesso,
+                      codigo : validarCodigo,
+                      alterarSenha : criarSenha,
+                  }
+              }}
+        
             />
           }
             <Component {...pageProps} />
