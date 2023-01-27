@@ -115,9 +115,11 @@ function MyApp(props) {
               data={data}
               theme={{
                 logoProjeto : width > 1000 ? logoProjectDesktop : logoProjetoMobile,
-                cor : path == '/' ? "ColorIP" : "White"
+                cor : path == '/' ? "ColorIP" : "White",
+                logoLink : props.ses ? '/inicio' : '/'
               }}
-              menu={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+              seletorMunicipios = {path == '/analise'}
+              menu={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
               NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
               NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
               esqueciMinhaSenha = {{
@@ -162,7 +164,7 @@ function MyApp(props) {
                 copyright: props.res[0].copyrights[0].copyright,
                 email: props.res[0].copyrights[0].contato,
             }}
-            links={ props.res[0].footers}
+            links={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
             socialMediaURLs={[
               { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
               { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
