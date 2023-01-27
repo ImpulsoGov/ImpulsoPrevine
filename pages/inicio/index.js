@@ -59,11 +59,11 @@ const Index = ({res}) => {
                         icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
                         links: [
                             {
-                            label: 'Pré-Natal',
-                            link: '/busca-ativa?initialTitle=0&painel=0'
+                                label: 'Pré-Natal',
+                                link: '/busca-ativa?initialTitle=0&painel=0'
                             },
                         ],
-                        texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita tion ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+                        texto: '',
                         titulo: 'Listas Nominais'
                         },
                         {
@@ -74,7 +74,7 @@ const Index = ({res}) => {
                             link: '/cadastros-duplicados?initialTitle=0&painel=0'
                             },
                         ],
-                        texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita tion ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+                        texto: '',
                         titulo: 'Cadastros Duplicados'
                         }
                     ]}
