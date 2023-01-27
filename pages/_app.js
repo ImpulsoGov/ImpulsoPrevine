@@ -156,6 +156,7 @@ function MyApp(props) {
               logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
               cor : "Black"
             }}
+            logoLink = {props.ses ? '/inicio' : '/'}
             address={{
                 first: "",
                 second: "",
@@ -164,7 +165,7 @@ function MyApp(props) {
                 copyright: props.res[0].copyrights[0].copyright,
                 email: props.res[0].copyrights[0].contato,
             }}
-            links={ props.ses ? props.res[0].menus :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+            links={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
             socialMediaURLs={[
               { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
               { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},

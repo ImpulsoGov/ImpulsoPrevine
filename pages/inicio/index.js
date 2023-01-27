@@ -78,7 +78,8 @@ const Index = ({res}) => {
                         titulo: 'Cadastros Duplicados'
                         }
                     ]}
-                />         
+                />
+                <p>Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’.</p>         
             </>
         )
     }
