@@ -47,7 +47,7 @@ const Index = ({res}) => {
                     greeting = "Bem vindo(a)"
                     municipio_uf = {session.user.municipio}
                     nome_usuario = {session.user.nome}
-                    texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com uma lista de possíveis cadastros duplicados de gestantes e listas nominais para monitoramento, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
+                    texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com uma listas nominais para monitoramento e lista de possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
                 <CardAlert
                     destaque="IMPORTANTE: "
@@ -56,30 +56,30 @@ const Index = ({res}) => {
                 <CardLargeGrid
                     cards={[
                         {
-                        icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
-                        links: [
-                            {
-                                label: 'Pré-Natal',
-                                link: '/busca-ativa?initialTitle=0&painel=0'
-                            },
-                        ],
-                        texto: '',
-                        titulo: 'Listas Nominais'
+                            icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
+                            links: [
+                                {
+                                    label: 'Pré-Natal',
+                                    link: '/busca-ativa?initialTitle=0&painel=0'
+                                },
+                            ],
+                            texto: '',
+                            titulo: 'Listas Nominais'
                         },
                         {
-                        icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
-                        links: [
-                            {
-                            label: 'Gestantes',
-                            link: '/cadastros-duplicados?initialTitle=0&painel=0'
-                            },
-                        ],
-                        texto: '',
-                        titulo: 'Cadastros Duplicados'
+                            icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
+                            links: [
+                                {
+                                label: 'Gestantes',
+                                link: '/cadastros-duplicados?initialTitle=0&painel=0'
+                                },
+                            ],
+                            texto: '',
+                            titulo: 'Cadastros Duplicados'
                         }
                     ]}
+                    obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
                 />
-                <p>Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’.</p>         
             </>
         )
     }
