@@ -63,7 +63,7 @@ const Index = ({res}) => {
                                     link: '/busca-ativa?initialTitle=0&painel=0'
                                 },
                             ],
-                            texto: '',
+                            texto: 'Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
                             titulo: 'Listas Nominais'
                         },
                         {
@@ -74,7 +74,7 @@ const Index = ({res}) => {
                                 link: '/cadastros-duplicados?initialTitle=0&painel=0'
                                 },
                             ],
-                            texto: '',
+                            texto: 'Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.',
                             titulo: 'Cadastros Duplicados'
                         }
                     ]}
