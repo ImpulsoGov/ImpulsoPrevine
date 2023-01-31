@@ -10,7 +10,6 @@ import { LAYOUT } from '../utils/QUERYS'
 import App from 'next/app'
 import Head from 'next/head';
 import { NavBar,Footer } from '@impulsogov/design-system';
-import { AjustBar } from '../componentes/AjustBar/AjustBar'
 import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
@@ -149,7 +148,9 @@ function MyApp(props) {
         
             />
           }
-            <Component {...pageProps} />
+            <div style={{paddingTop:"75px"}}>
+              <Component {...pageProps} />
+            </div>
           <Footer
             theme={{
               logoProjeto : props.res[0].logoIps[0].logo[1].url,

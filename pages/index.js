@@ -6,7 +6,23 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import { getData } from '../utils/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
-export async function getServerSideProps() {
+export async function getServerSideProps({req}) {
+  let redirect 
+  const userIsActive = req.cookies['next-auth.session-token']
+  const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
+  if(userIsActive){
+    redirect=true
+  }else{
+      if(userIsActiveSecure){redirect=true}else{redirect=false}
+  }
+  if(redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
   const res = [
     await getData(LAYOUT),
     await getData(HOME),
