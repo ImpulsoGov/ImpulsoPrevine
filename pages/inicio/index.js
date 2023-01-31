@@ -34,19 +34,20 @@ export async function getServerSideProps({req}) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
-    const cargo = (usuario)=>{
-        if (usuario.cargo == "Coordenação APS") return "coordenador(a) da APS"
-        if (usuario.cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
-        if (usuario.cargo == "Impulser") return usuario.cargo
+    const cargo_transform = (cargo)=>{
+        if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
+        if (cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
+        if (cargo == "Impulser") return cargo
     }
+    const cargo = cargo_transform(session?.user?.cargo)
     if (session){
         return (
             <>
                 <Greeting
-                    cargo = {cargo(session.user)}
+                    cargo = {cargo}
                     greeting = "Bem vindo(a)"
-                    municipio_uf = {session.user.municipio}
-                    nome_usuario = {session.user.nome}
+                    municipio_uf = {session?.user.municipio}
+                    nome_usuario = {session?.user.nome}
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
                 <CardAlert
