@@ -95,7 +95,7 @@ callbacks: {
   },
 },
 pages: {
-  signIn: '/',
+  signIn: '/inicio',
   signOut: '/auth/signout',
 }
 }
