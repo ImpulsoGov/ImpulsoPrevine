@@ -100,7 +100,7 @@ function MyApp(props) {
                     nome : nome,
                     cargo : cargo,
                     button : {label:"sair"},
-                    label : props.ses == null || typeof(props.ses) == undefined  ? "Entrar" : nome[0],
+                    label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
                     equipe : props.ses?.user?.equipe,
                     login : signIn,
                     logout : signOut,
@@ -117,7 +117,7 @@ function MyApp(props) {
                 cor : path == '/' ? "ColorIP" : "White",
                 logoLink : props.ses ? '/inicio' : '/'
               }}
-              seletorMunicipios = {path == '/analise'}
+              seletorMunicipios = {path == 'analise'}
               menu={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
               NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
               NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
@@ -131,6 +131,7 @@ function MyApp(props) {
               ModalInicio={{
                 titulo: "Faça o login para ver os dados restritos.",
                 chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
+                cardAlert: "<p>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22,<a href='analise'>clique aqui.</a></p>",
                 botaoPrincipal : {
                     label: "entrar",
                 },
