@@ -117,7 +117,7 @@ function MyApp(props) {
                 cor : path == '/' ? "ColorIP" : "White",
                 logoLink : props.ses ? '/inicio' : '/'
               }}
-              seletorMunicipios = {path == 'analise'}
+              seletorMunicipios = {path == '/analise'}
               menu={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
               NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
               NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
