@@ -7,6 +7,7 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
 import { ImagemFundo } from "@impulsogov/design-system";
 
+import { sliderCardsDataTransform } from "../../helpers/slidersDataTransform";
 import { getData } from '../../utils/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
 
@@ -80,19 +81,7 @@ const Index = ({res}) => {
         />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
-        core = {[
-            {
-                titulo : res[1].sliderCards[0].nome,
-                subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
-                corpo : res[1].sliderCards[0].texto
-            },
-            {
-              titulo : res[1].sliderCards[0].nome,
-              subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
-              corpo : res[1].sliderCards[0].texto
-            },
-
-        ]}
+        core = {sliderCardsDataTransform(res[1].sliderCards)}
         chamada = {res[1].sliders[0].button}
         link = {res[1].sliders[0].buttonLink}
     />
