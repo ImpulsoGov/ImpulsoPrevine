@@ -1,19 +1,14 @@
-import { getData } from '../../utils/cms'
-import { LAYOUT } from '../../utils/QUERYS'
-import { useSession } from "next-auth/react"
-import { ConteudoTrilha } from '@impulsogov/design-system'
+import { getData } from '../../utils/cms';
+import { LAYOUT } from '../../utils/QUERYS';
+import { getSession,useSession } from "next-auth/react";
+import { useRouter } from 'next/router';
+import { ConteudoTrilha } from '@impulsogov/design-system';
+import { consultarAvaliacaoConclusao,concluirConteudo } from '../../services/capacitacao';
 
-
-export async function getServerSideProps({req}) {
-    let redirect 
-    const userIsActive = req.cookies['next-auth.session-token']
-    const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
-    if(userIsActive){
-      redirect=true
-    }else{
-        if(userIsActiveSecure){redirect=true}else{redirect=false}
-    }
-    if(!redirect) {
+export async function getServerSideProps(ctx) {
+    const session = await getSession(ctx)
+    const AvaliacaoConclusao = await consultarAvaliacaoConclusao(session?.user?.id,ctx?.query?.conteudo_codigo,session?.user?.access_token)
+    if(session==null) {
       return {
         redirect: {
           destination: "/",
@@ -26,28 +21,32 @@ export async function getServerSideProps({req}) {
     ]
     return {
         props: {
-        res : res
+            res : res,
+            AvaliacaoConclusao : AvaliacaoConclusao
         }
     }
 }
 
 
-const Index = ({res}) => {
+const Index = ({AvaliacaoConclusao}) => {
     const { data: session,status } = useSession()
-    return(
+    const router = useRouter()
+    console.log(AvaliacaoConclusao)
+      return(
         <>
             <ConteudoTrilha
                 avaliacao={{
                     botaoConcluido: {
                     label: 'CONCLUÍDA',
-                    submit: ()=>console.log('')
                     },
                     botaoConcluir: {
                     label: 'MARCAR COMO CONCLUÍDA',
-                    submit: ()=>console.log('')
+                    submit: concluirConteudo,
+                    arg:[session?.user?.id,router.query?.conteudo_codigo,session?.user?.access_token]
                     },
                     chamadaAvaliacao: 'Como você avalia esse conteúdo?',
-                    concluido: false
+                    concluido: AvaliacaoConclusao?.data ? AvaliacaoConclusao?.data[0]?.concluido : false,
+                    nota: AvaliacaoConclusao?.data ? AvaliacaoConclusao?.data[0]?.avaliacao : 0,
                 }}
                 buttonBar={{
                     botaoDuvidas: {
@@ -82,7 +81,7 @@ const Index = ({res}) => {
                     },
                     titulo: 'Material Complementar'
                 }}
-                video="https://www.youtube.com/embed/odEX6URNmJ4"
+                conteudo="https://www.youtube.com/embed/odEX6URNmJ4"
             />        
         </>
     )
