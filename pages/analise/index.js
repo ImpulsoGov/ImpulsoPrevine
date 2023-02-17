@@ -1,6 +1,6 @@
 import { useEffect,useState,useContext } from 'react';
 import Context from "../../utils/Context";
-import { getData } from '../../utils/cms';
+import { getData } from '../../services/cms';
 import { LAYOUT } from '../../utils/QUERYS';
 import { PanelSelector } from "@impulsogov/design-system"
 

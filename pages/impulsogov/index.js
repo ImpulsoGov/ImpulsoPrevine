@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TituloTexto } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 import Context from "../../utils/Context"
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
 
 export async function getServerSideProps() {
