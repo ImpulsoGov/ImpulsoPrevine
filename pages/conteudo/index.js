@@ -83,11 +83,11 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         arquivo: res[1]?.conteudos[0]?.materialComplementar[0]?.label,
                         icon: 'https://media.graphassets.com/aFcM8jxSSyStgrfCL8Uw',
                         titulo: '',
-                        url:  res[1]?.conteudos[0]?.materialComplementar[0]?.url
+                        url:  res[1]?.conteudos[0]?.materialComplementar[0]?.url ? res[1]?.conteudos[0]?.materialComplementar[0]?.url : ''
                         },
                         titulo: 'Material Complementar'
                     }}
-                    conteudo={res[1]?.conteudos[0].url}
+                    conteudo={{url : res[1]?.conteudos[0].url, tipo : res[1]?.conteudos[0].tipo}}
                 />         
             } 
         </>

@@ -69,7 +69,6 @@ const Index = ({res}) => {
                     modulo={conteudosDataTransform(res[1].trilhas[0].conteudo,router.query?.trilhaID,session?.user?.id,session?.user?.access_token)}
                     ultimoModulo = {1}
                     mobile= {width < 1023}
-              
           />
         }
       </>
