@@ -58,12 +58,12 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         botaoDuvidas: {
                         icon: 'https://media.graphassets.com/yaYuyi0KS3WkqhKPUzro',
                         label: 'DÚVIDAS E SUGESTÕES',
-                        url: ''
+                        url: '/'
                         },
                         botaoProximo: {
                         icon: 'https://media.graphassets.com/FopDhDizS82SqCD9vD36',
                         label: 'PRÓXIMA',
-                        url: ''
+                        url: '/'
                         },
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',
@@ -74,20 +74,20 @@ const Index = ({res,AvaliacaoConclusao}) => {
                     descricao={{
                         modulo: 'MÓDULO '+res[1]?.trilhas[0]?.conteudo[0]?.moduloId,
                         moduloTitulo: res[1]?.trilhas[0]?.conteudo[0]?.titulo.toUpperCase(),
-                        texto: res[1]?.conteudos[0]?.tituloTexto.texto.html,
-                        titulo: res[1]?.conteudos[0]?.tituloTexto.titulo,
+                        texto: res[1]?.conteudos[0]?.tituloTexto?.texto?.html,
+                        titulo: res[1]?.conteudos[0]?.tituloTexto?.titulo,
                         trilha: res[1]?.trilhas[0]?.titulo.toUpperCase()
                     }}
                     materialComplementar={{
                         card: {
-                        arquivo: res[1]?.conteudos[0].materialComplementar[0].label,
+                        arquivo: res[1]?.conteudos[0]?.materialComplementar[0]?.label,
                         icon: 'https://media.graphassets.com/aFcM8jxSSyStgrfCL8Uw',
                         titulo: '',
-                        url:  res[1]?.conteudos[0].materialComplementar[0].url
+                        url:  res[1]?.conteudos[0]?.materialComplementar[0]?.url
                         },
                         titulo: 'Material Complementar'
                     }}
-                    conteudo="https://www.youtube.com/embed/odEX6URNmJ4"
+                    conteudo={res[1]?.conteudos[0].url}
                 />         
             } 
         </>

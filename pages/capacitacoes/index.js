@@ -44,7 +44,7 @@ const Index = ({res}) => {
             <CardTrilha
                 titulo="Hipertensão e Diabetes"
                 progressao={0}
-                linkTrilha="/capacitacao"
+                linkTrilha="/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"
                 linkSobre="/conteudo-programatico"
             />
         </>
