@@ -1,4 +1,4 @@
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { SobreTrilha } from '@impulsogov/design-system'
@@ -39,16 +39,15 @@ const Index = ({res}) => {
             <SobreTrilha
                 tituloTrilha= "Hipertensão e Diabetes"
                 botaoVoltar= {{label: "VOLTAR",url : "/capacitacoes"}}
-                botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao"}}
-                botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "/grupo-whatsapp"}}
-                sobre= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate nunc ut pretium porttitor. Curabitur ac venenatis purus. Curabitur sed varius ligula, congue tempor ligula. Nulla vel erat ut risus imperdiet sodales. Integer justo elit, lacinia vel pretium auctor, consectetur id ex. Phasellus eget tempor nisl. Nulla et eros posuere, vestibulum velit eu, auctor ipsum. Sed vitae lacinia lacus. Cras pharetra interdum ante finibus ullamcorper. Donec non mollis neque, interdum consectetur odio.Sed viverra eu arcu cursus accumsan. Fusce mollis elementum tellus sed vulputate. Duis porta tristique bibendum. Nullam semper maximus velit ut tempus. Cras blandit, est non hendrerit ultrices, nisi massa vulputate erat, ut viverra ligula diam id nisl. Praesent suscipit feugiat lorem a mollis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec consequat diam id euismod egestas."
+                botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
+                botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
+                sobre= "A Trilha de Capacitação da Impulso Gov é uma coletânea de materiais produzidos por especialistas em saúde com ampla experiência na gestão e na rotina de unidades de Atenção Primária à Saúde. Para essa edição, exploramos os indicadores 6 e 7 do Previne Brasil, que são focados no atendimento de pessoas com hipertensão e diabetes. Com materiais em formatos variados, a proposta da nossa trilha de capacitação é fortalecer a atuação da APS no acompanhamento de pessoas com essas condições por meio da capacitação dos profissionais que atuam nessa frente de cuidado.
+                Vamos falar sobre as particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária; sobre as melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes; sobre dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde e sobre formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade."
                 conteudo={[
-                        {titulo: "Metodologias desenvolvida por profissionais especializados"},
-                        {titulo: "Metodologias inovadoras e 100% online"},
-                        {titulo: "Certificado Digital"},
-                        {titulo: "Aprenda a hora que quiser e no seu tempo"},
-                        {titulo: "Mais de 80 cursos para você se especializar"},
-                        {titulo: "Experimente áreas diferentes"}
+                        {titulo: "06/03 | Módulos I e II liberados"},
+                        {titulo: "20/03 | Encontro ao vivo - Acesse aqui"},
+                        {titulo: "20/03 | Módulos III e IV liberados"},
+                        {titulo: "03/04 | Encontro ao vivo - Acesse aqui"},
                 ]}
                 nossoTime={{
                     titulo: "Nosso Time",

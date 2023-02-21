@@ -3,7 +3,7 @@ import { ImagemFundo } from "@impulsogov/design-system"
 import { ParceriasTexto } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
 
-import { getData } from '../utils/cms'
+import { getData } from '../services/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
 export async function getServerSideProps({req}) {

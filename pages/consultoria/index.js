@@ -1,13 +1,10 @@
-import Layout from "../../componentes/Layout";
 import { Header } from "@impulsogov/design-system";
-import { Content3Col } from "@impulsogov/design-system";
-import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
-import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
 import { ImagemFundo } from "@impulsogov/design-system";
 
-import { getData } from '../../utils/cms'
+import { sliderCardsDataTransform } from "../../helpers/slidersDataTransform";
+import { getData } from '../../services/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
 
 export async function getServerSideProps({req}) {
@@ -80,19 +77,7 @@ const Index = ({res}) => {
         />
     <Slider 
         titulo = {res[1].sliders[0].titulo}
-        core = {[
-            {
-                titulo : res[1].sliderCards[0].nome,
-                subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
-                corpo : res[1].sliderCards[0].texto
-            },
-            {
-              titulo : res[1].sliderCards[0].nome,
-              subtitulo : res[1].sliderCards[0].cargo + " | " +res[1].sliderCards[0].municipio + " - " +res[1].sliderCards[0].uf,
-              corpo : res[1].sliderCards[0].texto
-            },
-
-        ]}
+        core = {sliderCardsDataTransform(res[1].sliderCards)}
         chamada = {res[1].sliders[0].button}
         link = {res[1].sliders[0].buttonLink}
     />

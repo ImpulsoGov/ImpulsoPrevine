@@ -144,3 +144,76 @@ export const ANALISE = `
   }
 }
 `
+export const CAPACITACAO = (TRILHA_ID)=>{
+  return(
+  `
+  {
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          titulo
+          moduloId
+          conteudos {
+            tipo
+            tituloTexto {
+              ... on TituloTexto {
+                titulo
+                texto {
+                  html
+                }
+              }
+            }
+            url
+            materialComplementar {
+              ... on Link {
+                label
+                url
+              }
+            }
+            titulo
+            codigo
+          }
+        }
+      }
+      titulo
+      id
+    }
+  }
+  `
+  )
+}
+
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
+  return(
+  `
+  {
+    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}) {
+      codigo
+      materialComplementar {
+        ... on Link {
+          url
+          label
+        }
+      }
+      tipo
+      tituloTexto {
+        ... on TituloTexto {
+          titulo
+          texto {
+            html
+          }
+        }
+      }
+      url
+    }
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          moduloId
+          titulo
+        }
+      }
+      titulo
+    }  }
+  `
+)}

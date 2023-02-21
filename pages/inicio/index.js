@@ -1,4 +1,4 @@
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { Greeting, CardAlert, CardLargeGrid} from '@impulsogov/design-system'

@@ -1,4 +1,4 @@
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { TituloTexto, CardTrilha } from '@impulsogov/design-system'
@@ -44,7 +44,7 @@ const Index = ({res}) => {
             <CardTrilha
                 titulo="Hipertensão e Diabetes"
                 progressao={0}
-                linkTrilha="/capacitacao"
+                linkTrilha="/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"
                 linkSobre="/conteudo-programatico"
             />
         </>
