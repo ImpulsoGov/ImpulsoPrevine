@@ -67,7 +67,7 @@ const Index = ({res}) => {
                     botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
                     modulos={modulosDataTransform(res[1].trilhas[0].conteudo)}
                     modulo={conteudosDataTransform(res[1].trilhas[0].conteudo,router.query?.trilhaID,session?.user?.id,session?.user?.access_token)}
-                    ultimoModulo = {1}
+                    ultimoModulo = {0}
                     mobile= {width < 1023}
           />
         }

@@ -11,7 +11,7 @@ const Index = ({res}) => {
       </div>
       <IFrame
         height="2000"
-        link="https://docs.google.com/forms/d/e/1FAIpQLSelCjrYy908a4dpluwiTI6uev78eDesDWKiHUixOheKzg1nhQ/viewform?usp=sf_link"
+        link="https://docs.google.com/forms/d/e/1FAIpQLSelCjrYy908a4dpluwiTI6uev78eDesDWKiHUixOheKzg1nhQ/viewform"
       />   
     </>
   )
