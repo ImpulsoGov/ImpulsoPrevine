@@ -35,7 +35,19 @@ export async function getServerSideProps(ctx) {
 const Index = ({res,AvaliacaoConclusao}) => {
     const { data: session,status } = useSession()
     const router = useRouter()
-    console.log(res)
+    const codigoConteudo = ()=>{
+        const proxima = router.query.proximo.slice(0,80)
+        const codigo = proxima.split("?")[1].split("&")[0].split("=")[1]
+        return codigo
+    }
+    const proximo = {
+        pathname: '/conteudo',
+        query: {
+            codigo_conteudo: codigoConteudo(),
+            trilhaID: router.query.trilhaID,
+            proximo:router.query.proximo.slice(78,router.query.proximo.length)
+        }
+    }
     return(
         <>
             {
@@ -63,7 +75,7 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         botaoProximo: {
                         icon: 'https://media.graphassets.com/FopDhDizS82SqCD9vD36',
                         label: 'PRÓXIMA',
-                        url: '/'
+                        url: proximo
                         },
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',
@@ -87,7 +99,10 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         },
                         titulo: 'Material Complementar'
                     }}
-                    conteudo={{url : res[1]?.conteudos[0].url, tipo : res[1]?.conteudos[0].tipo}}
+                    conteudo={{
+                        url : res[1]?.conteudos[0]?.tipo == 'quizz' ? res[1]?.conteudos[0]?.url+session?.user?.mail : res[1]?.conteudos[0]?.url,
+                        tipo : res[1]?.conteudos[0]?.tipo
+                    }}
                 />         
             } 
         </>

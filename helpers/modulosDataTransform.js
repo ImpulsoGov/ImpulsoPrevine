@@ -13,7 +13,6 @@ const modulosDataTransform = (modulosCMS)=>{
 
 const conteudosDataTransform = (conteudosCMS,trilhaID,userID,token)=>{
     const conteudos = []
-    console.log(conteudosCMS)
     conteudosCMS.forEach((modulo) => {
         let moduloID = modulo.moduloId
         modulo.conteudos.forEach((element,index) => {
@@ -21,13 +20,28 @@ const conteudosDataTransform = (conteudosCMS,trilhaID,userID,token)=>{
                 const res = await consultarAvaliacaoConclusao(userID,element.codigo,token).then(async(res)=>{return res})
                 return res
             }
+            let proximo_codigo = index + 1 < modulo.conteudos.length ? modulo.conteudos[index+1].codigo : ''
+            const proximo = ()=>{
+                let url_base = `/conteudo?codigo_conteudo=${element.codigo}&trilhaID=${trilhaID}&proximo=`
+                for(let i=index;i<modulo.conteudos.length;i++){
+                    if(i+1<modulo.conteudos.length){
+                        let url_param = `${encodeURIComponent(`/conteudo?codigo_conteudo=${modulo.conteudos[i+1].codigo}&trilhaID=${trilhaID}&proximo=`)}`
+                        url_base = url_base + url_param
+                    }else{
+                        let url_param = `${encodeURIComponent(`/conteudo?codigo_conteudo=1&trilhaID=${trilhaID}&proximo=`)}`
+                        url_base = url_base + url_param
+                    }
+                }
+                return url_base
+            }
             conteudos.push({
                 id: index+1,
                 titulo: element.titulo,
                 moduloID: moduloID,
                 formato:element.tipo,
                 concluido: concluido(), 
-                link:"/conteudo?codigo_conteudo="+element.codigo+"&trilhaID="+trilhaID
+                link:proximo()
+
             })
         });
     

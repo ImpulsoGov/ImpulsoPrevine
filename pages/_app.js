@@ -43,6 +43,7 @@ function MyApp(props) {
     }
   }, [router.events])
   const [cidade, setCidade] = useState("");
+  const [conteudoLinks,setConteudoLinks] = useState()
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   console.log(props.ses)
@@ -65,93 +66,93 @@ function MyApp(props) {
         />
       </Head>
       <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={8 * 60 * 60}>
-        <Context.Provider value={[cidade, setCidade]}>
-        <Auth setStatus={setStatus}>
-          {isLoading && 
-            <NavBar 
-              user={
-                {                  
-                    nome : nome,
-                    cargo : cargo,
-                    button : {label:"sair"},
-                    label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
-                    equipe : props.ses?.user?.equipe,
-                    login : signIn,
-                    logout : signOut,
-                    validarCredencial : validateCredentials,
-                    validacao : validacao
-                }
-              }
-
-              municipio={cidade}
-              setMunicipio = {setCidade}
-              data={data}
-              theme={{
-                logoProjeto : width > 1000 ? 
-                path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url : 
-                props.res[0].logoIps[1].logo[0].url,
-                cor : path == '/' ? "ColorIP" : "White",
-                logoLink : props.ses ? '/inicio' : '/'
-              }}
-              seletorMunicipios = {path == '/analise'}
-              menu={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4],{label: "Capacitações", url : "/capacitacoes"}] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
-              NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
-              NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
-              esqueciMinhaSenha = {{
-                reqs : {
-                    mail : solicitarNovaSenha,
-                    codigo : validarCodigo,
-                    alterarSenha : alterarSenha
-                },
-              }}
-              ModalInicio={{
-                titulo: "Faça o login para ver os dados restritos.",
-                chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
-                cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
-                botaoPrincipal : {
-                    label: "entrar",
-                },
-                botaoSecundario : {
-                    label: "primeiro acesso",
-                }
-              }}
-              primeiroAcesso={{
-                  reqs:{
-                      mail : primeiroAcesso,
-                      codigo : validarCodigo,
-                      alterarSenha : criarSenha,
+          <Context.Provider value={[cidade, setCidade]}>
+          <Auth setStatus={setStatus}>
+            {isLoading && 
+              <NavBar 
+                user={
+                  {                  
+                      nome : nome,
+                      cargo : cargo,
+                      button : {label:"sair"},
+                      label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
+                      equipe : props.ses?.user?.equipe,
+                      login : signIn,
+                      logout : signOut,
+                      validarCredencial : validateCredentials,
+                      validacao : validacao
                   }
+                }
+
+                municipio={cidade}
+                setMunicipio = {setCidade}
+                data={data}
+                theme={{
+                  logoProjeto : width > 1000 ? 
+                  path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url : 
+                  props.res[0].logoIps[1].logo[0].url,
+                  cor : path == '/' ? "ColorIP" : "White",
+                  logoLink : props.ses ? '/inicio' : '/'
+                }}
+                seletorMunicipios = {path == '/analise'}
+                menu={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4],{label: "Capacitações", url : "/capacitacoes"}] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+                NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
+                NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
+                esqueciMinhaSenha = {{
+                  reqs : {
+                      mail : solicitarNovaSenha,
+                      codigo : validarCodigo,
+                      alterarSenha : alterarSenha
+                  },
+                }}
+                ModalInicio={{
+                  titulo: "Faça o login para ver os dados restritos.",
+                  chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
+                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
+                  botaoPrincipal : {
+                      label: "entrar",
+                  },
+                  botaoSecundario : {
+                      label: "primeiro acesso",
+                  }
+                }}
+                primeiroAcesso={{
+                    reqs:{
+                        mail : primeiroAcesso,
+                        codigo : validarCodigo,
+                        alterarSenha : criarSenha,
+                    }
+                }}
+          
+              />
+            }
+              <div style={{paddingTop:"75px"}}>
+                <Component {...pageProps} />
+              </div>
+            <Footer
+              theme={{
+                logoProjeto : props.res[0].logoIps[0].logo[1].url,
+                logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
+                cor : "Black"
               }}
-        
+              logoLink = {props.ses ? '/inicio' : '/'}
+              address={{
+                  first: "",
+                  second: "",
+              }}
+              contactCopyright={{
+                  copyright: props.res[0].copyrights[0].copyright,
+                  email: props.res[0].copyrights[0].contato,
+              }}
+              links={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+              socialMediaURLs={[
+                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
+                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
+                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
+              ]} 
             />
-          }
-            <div style={{paddingTop:"75px"}}>
-              <Component {...pageProps} />
-            </div>
-          <Footer
-            theme={{
-              logoProjeto : props.res[0].logoIps[0].logo[1].url,
-              logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
-              cor : "Black"
-            }}
-            logoLink = {props.ses ? '/inicio' : '/'}
-            address={{
-                first: "",
-                second: "",
-            }}
-            contactCopyright={{
-                copyright: props.res[0].copyrights[0].copyright,
-                email: props.res[0].copyrights[0].contato,
-            }}
-            links={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
-            socialMediaURLs={[
-              { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
-              { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
-              { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
-            ]} 
-          />
-          </Auth>
-        </Context.Provider>
+            </Auth>
+          </Context.Provider>
         <Analytics />
       </SessionProvider>
     </>
