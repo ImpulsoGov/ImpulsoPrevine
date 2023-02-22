@@ -70,7 +70,7 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         botaoDuvidas: {
                         icon: 'https://media.graphassets.com/yaYuyi0KS3WkqhKPUzro',
                         label: 'DÚVIDAS E SUGESTÕES',
-                        url: '/'
+                        url: '/duvidas'
                         },
                         botaoProximo: {
                         icon: 'https://media.graphassets.com/FopDhDizS82SqCD9vD36',

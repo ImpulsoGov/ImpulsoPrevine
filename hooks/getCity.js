@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 //Cidade retornada quando usuario não permite acesso à localização
 const setCityDefault = ()=> {
     setCidade("São Paulo - SP");

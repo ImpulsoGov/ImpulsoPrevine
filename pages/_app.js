@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import axios from 'axios';
 import { useEffect,useState } from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession,getSession,signOut,signIn } from "next-auth/react"
@@ -17,8 +18,9 @@ import { validateCredentials,validacao } from "../services/validateCredentials"
 import { solicitarNovaSenha,alterarSenha,validarCodigo } from '../services/esqueciMinhaSenha'
 import { primeiroAcesso,criarSenha } from '../services/primeiroAcesso'
 import { addUserDataLayer } from '../hooks/addUserDataLayer'
-import { getCity } from '../hooks/getCity'
+// import { getCity } from '../hooks/getCity'
 import { useWindowWidth } from '../helpers/useWindowWidth'
+
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -46,7 +48,32 @@ function MyApp(props) {
   const [conteudoLinks,setConteudoLinks] = useState()
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
-  console.log(props.ses)
+  
+  //Cidade retornada quando usuario não permite acesso à localização
+  const setCityDefault = ()=> {
+    setCidade("São Paulo - SP");
+    setLoading(true)
+  }
+  const setCidadeCarregamento = (response,setCidade,setLoading)=> {
+    if(response.data.address["ISO3166-2-lvl4"].slice(-2)=='DF'){
+        let res = "Brasília"+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
+        setCidade(res);
+        setLoading(true)
+    }else{
+        let res = response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
+        setCidade(res);
+        setLoading(true)
+    }
+  }
+  const getCity = (cidade,setCidade,setLoading) => {
+    const nav = typeof window !== 'undefined' ? navigator.geolocation : false
+    const getUserCity = async (position)=> {
+        await axios.get('https://nominatim.openstreetmap.org/reverse?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&zoom=10&format=json')
+        .then(response =>setCidadeCarregamento(response,setCidade,setLoading));
+    }
+        if (nav && cidade.length ==0) nav.getCurrentPosition(getUserCity,setCityDefault)
+  }
+
   const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
   const cargo = props.ses != null ? props.ses.user.cargo : ""
   useEffect(()=>addUserDataLayer(props.ses))
