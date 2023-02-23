@@ -13,7 +13,6 @@ const consultarAvaliacaoConclusaoClient = async(usuario_id,codigo_conteudo,token
             url:  API_URL + 'impulsoprevine/capacitacao/consulta-avaliacao-conclusao',
             headers: { 
                 'Authorization': 'Bearer ' + token, 
-                ...data.getHeaders()
               },
             data : data
         };
@@ -26,14 +25,16 @@ const consultarAvaliacaoConclusaoClient = async(usuario_id,codigo_conteudo,token
         });
         return res
     } catch (error) {
-        return false
+        return error
     }
 
 }
 
 const consultarAvaliacaoConclusao = async(usuario_id,codigo_conteudo,token)=>{
     const res = await consultarAvaliacaoConclusaoClient(usuario_id,codigo_conteudo,token)
-    if (res?.error == null) return res
+    if (res?.error == null){
+        if(res?.data.length>0) return res.data
+    }
     return false
 }
 

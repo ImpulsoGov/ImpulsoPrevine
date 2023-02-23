@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 
 export async function getServerSideProps({req}) {
-  const trilhaID = req?.url?.split('=').length == 1 ? '' : req?.url.split('=')[1]
+  const trilhaID = req?.url?.split('=').length == 1 ? '' : req?.url.split('=')[1].split('&')[0]
   let redirect 
   const userIsActive = req.cookies['next-auth.session-token']
   const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
@@ -56,17 +56,19 @@ const Index = ({res}) => {
   const { data: session,status } = useSession()
   let width = useWindowWidth()
   const router = useRouter()
+  const modulo = conteudosDataTransform(res[1].trilhas[0].conteudo,router.query?.trilhaID,session?.user?.id,session?.user?.access_token)
+  console.log(modulo)
   return(
       <>
         {
-          res[1]?.trilhas.length>0 &&
+          res[1]?.trilhas.length>0 && modulo &&
             <ModulosTrilha
               tituloTrilha= {res[1].trilhas[0].titulo}
               botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"/grupo-whatsapp"}}
               modulos={modulosDataTransform(res[1].trilhas[0].conteudo)}
-              modulo={conteudosDataTransform(res[1].trilhas[0].conteudo,router.query?.trilhaID,session?.user?.id,session?.user?.access_token)}
-              ultimoModulo = {1}
+              modulo={modulo}
+              ultimoModulo = {router.query?.modulo ? router.query?.modulo : 1}
               mobile= {width < 1023}
             />
         }

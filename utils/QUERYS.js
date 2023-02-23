@@ -187,7 +187,7 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
   return(
   `
   {
-    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}) {
+    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
       codigo
       materialComplementar {
         ... on Link {
