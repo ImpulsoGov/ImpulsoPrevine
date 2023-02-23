@@ -41,13 +41,16 @@ const Index = ({res}) => {
                 botaoVoltar= {{label: "VOLTAR",url : "/capacitacoes"}}
                 botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
                 botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
-                sobre= "A Trilha de Capacitação da Impulso Gov é uma coletânea de materiais produzidos por especialistas em saúde com ampla experiência na gestão e na rotina de unidades de Atenção Primária à Saúde. Para essa edição, exploramos os indicadores 6 e 7 do Previne Brasil, que são focados no atendimento de pessoas com hipertensão e diabetes. Com materiais em formatos variados, a proposta da nossa trilha de capacitação é fortalecer a atuação da APS no acompanhamento de pessoas com essas condições por meio da capacitação dos profissionais que atuam nessa frente de cuidado.Vamos falar sobre as particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária; sobre as melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes; sobre dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde e sobre formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade."
-                conteudo={[
-                        {titulo: "06/03 | Módulos I e II liberados"},
-                        {titulo: "20/03 | Encontro ao vivo - Acesse aqui"},
-                        {titulo: "20/03 | Módulos III e IV liberados"},
-                        {titulo: "03/04 | Encontro ao vivo - Acesse aqui"},
-                ]}
+                sobre= {{titulo: "Sobre", texto:"<p>A Trilha de Capacitação da Impulso Gov é uma coletânea de materiais produzidos por especialistas em saúde com ampla experiência na gestão e na rotina de unidades de Atenção Primária à Saúde.</p><p>Para essa edição, exploramos os indicadores 6 e 7 do Previne Brasil, que são focados no atendimento de pessoas com hipertensão e diabetes. Com materiais em formatos variados, a proposta da nossa trilha de capacitação é fortalecer a atuação da APS no acompanhamento de pessoas com essas condições por meio da capacitação dos profissionais que atuam nessa frente de cuidado.</p>Vamos falar sobre as particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária, sobre as melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes; sobre dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde e sobre formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade."}}
+                conteudo={{
+                    titulo : "Agenda",
+                    texto : [
+                        {texto: "06/03 | Módulos I e II liberados"},
+                        {texto: "20/03 | Encontro ao vivo - Acesse aqui"},
+                        {texto: "20/03 | Módulos III e IV liberados"},
+                        {texto: "03/04 | Encontro ao vivo - Acesse aqui"},
+                    ]
+                }}
                 nossoTime={{
                     titulo: "Nosso Time",
                     membros:[
