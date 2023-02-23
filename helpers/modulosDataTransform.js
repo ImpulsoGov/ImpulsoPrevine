@@ -11,14 +11,15 @@ const modulosDataTransform = (modulosCMS)=>{
     return modulos
 }
 
-const conteudosDataTransform = (conteudosCMS,trilhaID,userID,token)=>{
+const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
     const conteudos = []
     
-    conteudosCMS.forEach((modulo) => {
-        let moduloID = modulo.moduloId
-        modulo.conteudos.forEach((element,index) => {
+    for(let i=0;i<conteudosCMS.length;i++){
+        let moduloID = conteudosCMS[i].moduloId
+        let modulo = conteudosCMS[i]
+        for(let index=0;index<modulo.conteudos.length;index++){
             const proximo = ()=>{
-                let url_base = `/conteudo?codigo_conteudo=${element.codigo}&trilhaID=${trilhaID}&proximo=`
+                let url_base = `/conteudo?codigo_conteudo=${modulo.conteudos[index].codigo}&trilhaID=${trilhaID}&proximo=`
                 for(let i=index;i<modulo.conteudos.length;i++){
                     if(i+1<modulo.conteudos.length){
                         let url_param = `${encodeURIComponent(`/conteudo?codigo_conteudo=${modulo.conteudos[i+1].codigo}&trilhaID=${trilhaID}&proximo=`)}`
@@ -30,23 +31,19 @@ const conteudosDataTransform = (conteudosCMS,trilhaID,userID,token)=>{
                 }
                 return url_base
             }
-            const concluido = async()=>await consultarAvaliacaoConclusao(userID,element.codigo,token).then((res)=>{
-                console.log(res)
-                conteudos.push({
-                    id: index+1,
-                    titulo: element.titulo,
-                    moduloID: moduloID,
-                    formato:element.tipo,
-                    concluido: res ? res[0].concluido:false, 
-                    link:proximo()
+            const concluido = await consultarAvaliacaoConclusao(userID,modulo.conteudos[index].codigo,token)
+            let item = {
+                id: index+1,
+                titulo: modulo.conteudos[index].titulo,
+                moduloID: moduloID,
+                formato:modulo.conteudos[index].tipo,
+                concluido: concluido != false ? concluido[0].concluido : concluido, 
+                link:proximo()
+            }
+            conteudos.push(item)
+        }
+    }
     
-                })
-            })
-            concluido()
-            
-        });
-    
-    });
     return conteudos
 }
 

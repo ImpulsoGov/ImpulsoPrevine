@@ -41,8 +41,10 @@ const Index = ({res,AvaliacaoConclusao}) => {
     }
     if(codigoConteudo[0] == 'codigo_conteudo') proximo.query['codigo_conteudo'] = codigoConteudo[1]
     proximo.query['trilhaID'] = router.query.trilhaID
+    const modulo = Number(router.query.codigo_conteudo?.split('-')[1][3])
     if(codigoConteudo[0] == 'codigo_conteudo') proximo.query['proximo'] = router.query.proximo.slice(80,router.query.proximo.length)
-    if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] = Number(router.query.codigo_conteudo?.split('-')[1][3])+1
+    if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] = modulo+1
+    console.log(res)
     return(
         <>
             {
@@ -79,8 +81,8 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         }
                     }}
                     descricao={{
-                        modulo: 'MÓDULO '+res[1]?.trilhas[0]?.conteudo[0]?.moduloId,
-                        moduloTitulo: res[1]?.trilhas[0]?.conteudo[0]?.titulo.toUpperCase(),
+                        modulo: 'MÓDULO '+res[1]?.trilhas[0]?.conteudo[modulo]?.moduloId,
+                        moduloTitulo: res[1]?.trilhas[0]?.conteudo[modulo]?.titulo.toUpperCase(),
                         texto: res[1]?.conteudos[0]?.tituloTexto?.texto?.html,
                         titulo: res[1]?.conteudos[0]?.tituloTexto?.titulo,
                         trilha: res[1]?.trilhas[0]?.titulo.toUpperCase()

@@ -1,17 +1,18 @@
 import { useState,useEffect } from 'react'
 import { getData,getDataCapacitacao } from '../../services/cms'
 import { LAYOUT,CAPACITACAO } from '../../utils/QUERYS'
-import { useSession } from "next-auth/react"
+import { useSession,getSession } from "next-auth/react"
 import { ModulosTrilha } from '@impulsogov/design-system'
 import { conteudosDataTransform, modulosDataTransform } from '../../helpers/modulosDataTransform'
 import { useRouter } from 'next/router';
 
 
-export async function getServerSideProps({req}) {
-  const trilhaID = req?.url?.split('=').length == 1 ? '' : req?.url.split('=')[1].split('&')[0]
+export async function getServerSideProps(ctx) {
+  const trilhaID = ctx?.req?.url?.split('=').length == 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
+  const session = await getSession(ctx)
   let redirect 
-  const userIsActive = req.cookies['next-auth.session-token']
-  const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
+  const userIsActive = ctx?.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx?.req.cookies['__Secure-next-auth.session-token']
   if(userIsActive){
     redirect=true
   }else{
@@ -25,9 +26,12 @@ export async function getServerSideProps({req}) {
       }, 
     }
   }
+  const capacitacaoDataCMS = ctx?.req?.url && await getDataCapacitacao(CAPACITACAO(trilhaID))
+  const conteudosData = await conteudosDataTransform(capacitacaoDataCMS.trilhas[0].conteudo,trilhaID,session?.user?.id,session?.user?.access_token)
   const res = [
       await getData(LAYOUT),
-      req?.url && await getDataCapacitacao(CAPACITACAO(trilhaID))
+      capacitacaoDataCMS,
+      conteudosData
   ]
   return {
       props: {
@@ -53,21 +57,19 @@ const useWindowWidth = () => {
   
 
 const Index = ({res}) => {
-  const { data: session,status } = useSession()
+  //const { data: session,status } = useSession()
   let width = useWindowWidth()
   const router = useRouter()
-  const modulo = conteudosDataTransform(res[1].trilhas[0].conteudo,router.query?.trilhaID,session?.user?.id,session?.user?.access_token)
-  console.log(modulo)
   return(
       <>
         {
-          res[1]?.trilhas.length>0 && modulo &&
+          res[1]?.trilhas.length>0 && 
             <ModulosTrilha
               tituloTrilha= {res[1].trilhas[0].titulo}
               botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"/grupo-whatsapp"}}
               modulos={modulosDataTransform(res[1].trilhas[0].conteudo)}
-              modulo={modulo}
+              modulo={res[2]}
               ultimoModulo = {router.query?.modulo ? router.query?.modulo : 1}
               mobile= {width < 1023}
             />

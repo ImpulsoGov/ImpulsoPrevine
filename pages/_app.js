@@ -1,10 +1,8 @@
 import '../styles/globals.css'
-import axios from 'axios';
 import { useEffect,useState } from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession,getSession,signOut,signIn } from "next-auth/react"
 import { useRouter } from 'next/router'
-import * as gtag from '../componentes/Analytics/lib/gtag'
 import Analytics from '../componentes/Analytics/Analytics'
 import { getData } from '../services/cms'
 import { LAYOUT } from '../utils/QUERYS'
@@ -18,67 +16,28 @@ import { validateCredentials,validacao } from "../services/validateCredentials"
 import { solicitarNovaSenha,alterarSenha,validarCodigo } from '../services/esqueciMinhaSenha'
 import { primeiroAcesso,criarSenha } from '../services/primeiroAcesso'
 import { addUserDataLayer } from '../hooks/addUserDataLayer'
-// import { getCity } from '../hooks/getCity'
+import { getCity } from '../hooks/getCity'
 import { useWindowWidth } from '../helpers/useWindowWidth'
+import { rotaDinamica } from '../hooks/rotaDinamica'
 
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
 
-if (process.browser) {
-  TagManager.initialize(tagManagerArgs);
-}
-
-
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps }} = props;
   const router = useRouter()
   let path = useRouter().pathname
-  useEffect(() => {
-    const handleRouteChange = url => {
-      gtag.pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+  const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
+  let width = useWindowWidth()
   const [cidade, setCidade] = useState("");
-  const [conteudoLinks,setConteudoLinks] = useState()
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
-  
-  //Cidade retornada quando usuario não permite acesso à localização
-  const setCityDefault = ()=> {
-    setCidade("São Paulo - SP");
-    setLoading(true)
-  }
-  const setCidadeCarregamento = (response,setCidade,setLoading)=> {
-    if(response.data.address["ISO3166-2-lvl4"].slice(-2)=='DF'){
-        let res = "Brasília"+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
-        setCidade(res);
-        setLoading(true)
-    }else{
-        let res = response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
-        setCidade(res);
-        setLoading(true)
-    }
-  }
-  const getCity = (cidade,setCidade,setLoading) => {
-    const nav = typeof window !== 'undefined' ? navigator.geolocation : false
-    const getUserCity = async (position)=> {
-        await axios.get('https://nominatim.openstreetmap.org/reverse?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&zoom=10&format=json')
-        .then(response =>setCidadeCarregamento(response,setCidade,setLoading));
-    }
-        if (nav && cidade.length ==0) nav.getCurrentPosition(getUserCity,setCityDefault)
-  }
-
-  const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
-  const cargo = props.ses != null ? props.ses.user.cargo : ""
+  useEffect(() => TagManager.initialize(tagManagerArgs))
+  useEffect(()=>rotaDinamica(router), [router.events])
   useEffect(()=>addUserDataLayer(props.ses))
   useEffect(()=>getCity(cidade,setCidade,setLoading), [cidade]);
-  let width = useWindowWidth()
     return (
     <>
       <Head>
@@ -100,7 +59,7 @@ function MyApp(props) {
                 user={
                   {                  
                       nome : nome,
-                      cargo : cargo,
+                      cargo : props.ses != null ? props.ses.user.cargo : "",
                       button : {label:"sair"},
                       label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
                       equipe : props.ses?.user?.equipe,
