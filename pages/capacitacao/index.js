@@ -69,8 +69,8 @@ const Index = ({res}) => {
               botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"/grupo-whatsapp"}}
               modulos={modulosDataTransform(res[1].trilhas[0].conteudo)}
-              modulo={res[2]}
-              ultimoModulo = {router.query?.modulo ? router.query?.modulo : 1}
+              modulo={res[2][0]}
+              ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
               mobile= {width < 1023}
             />
         }
