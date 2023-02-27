@@ -38,7 +38,7 @@ const Index = ({res}) => {
         <>
             <SobreTrilha
                 tituloTrilha= "Hipertensão e Diabetes"
-                botaoVoltar= {{label: "VOLTAR",url : "/capacitacoes"}}
+                botaoVoltar= {{label: "VOLTAR",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
                 botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
                 botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
                 sobre= {{titulo: "Sobre", texto:"<p>A Trilha de Capacitação da Impulso Gov é uma coletânea de materiais produzidos por especialistas em saúde com ampla experiência na gestão e na rotina de unidades de Atenção Primária à Saúde.</p><p>Para essa edição, exploramos os indicadores 6 e 7 do Previne Brasil, que são focados no atendimento de pessoas com hipertensão e diabetes. Com materiais em formatos variados, a proposta da nossa trilha de capacitação é fortalecer a atuação da APS no acompanhamento de pessoas com essas condições por meio da capacitação dos profissionais que atuam nessa frente de cuidado.</p>Vamos falar sobre as particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária, sobre as melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes; sobre dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde e sobre formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade."}}

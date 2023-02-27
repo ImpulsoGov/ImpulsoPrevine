@@ -53,7 +53,6 @@ const Index = ({res}) => {
                     titulo="Hipertensão e Diabetes"
                     progressao={data[0].progresso }
                     linkTrilha={"/capacitacao?trilhaID="+res[1].trilhas[0].id}
-                    linkSobre="/conteudo-programatico"
                 />
             }
         </>
