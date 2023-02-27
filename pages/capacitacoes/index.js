@@ -3,7 +3,7 @@ import { LAYOUT,CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { TituloTexto, CardTrilha } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export async function getServerSideProps({req}) {
@@ -39,7 +39,8 @@ const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
     const ProgressoClient = async()=> session && await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
-    const Progresso = ProgressoClient().then((res)=>setData(res))
+    useEffect(()=>{ProgressoClient().then((res)=>setData(res))},[]) 
+    console.log(data)
     return(
         <>
             <TituloTexto

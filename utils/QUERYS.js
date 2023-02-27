@@ -153,6 +153,7 @@ export const CAPACITACAO = (TRILHA_ID)=>{
         ... on Modulo {
           titulo
           moduloId
+          liberado
           conteudos {
             tipo
             tituloTexto {

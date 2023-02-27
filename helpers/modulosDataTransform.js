@@ -5,7 +5,8 @@ const modulosDataTransform = (modulosCMS)=>{
     modulosCMS.forEach(element => {
         modulos.push({
             titulo: element.titulo,
-            id: element.moduloId
+            id: element.moduloId,
+            liberado:element.liberado
         })
     });
     return modulos
@@ -71,9 +72,11 @@ const progresso = async(ConteudosCMS,userID,token)=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
         item.qtd.forEach(element=>{
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0].conteudosConcluidos
-            element.modulo != 0 ? 
+            element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=(23.75/element.conteudosQTD)*element.conclusao:
             element.progresso=5
+            if(element.conclusao == 0) element.progresso=0
+
         })
         item.progresso = Math.round(item.qtd.reduce((accumulator, currentValue) => {return accumulator + currentValue.progresso},0))
     })
