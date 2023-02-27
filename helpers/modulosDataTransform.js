@@ -36,7 +36,9 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
                 }
                 return url_base
             }
-            const Concluido = avaliacoes_usuario?.filter((item)=>item.codigo_conteudo == modulo.conteudos[index].codigo)
+            const Concluido = avaliacoes_usuario ?
+            avaliacoes_usuario?.filter((item)=>item.codigo_conteudo == modulo.conteudos[index].codigo):
+            false
             let item = {
                 id: index+1,
                 titulo: modulo.conteudos[index].titulo,
@@ -48,7 +50,7 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
             conteudos.push(item)
         }
     }
-    const ultimoModulo = Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6])))
+    const ultimoModulo = avaliacoes_usuario.length>0 ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
     return [conteudos,ultimoModulo]
 }
 

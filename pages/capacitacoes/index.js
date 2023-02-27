@@ -40,7 +40,6 @@ const Index = ({res}) => {
     const [data,setData] = useState(false)
     const ProgressoClient = async()=> session && await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
     useEffect(()=>{ProgressoClient().then((res)=>setData(res))},[]) 
-    console.log(data)
     return(
         <>
             <TituloTexto

@@ -68,7 +68,7 @@ const consultarAvaliacaoConclusaoPorUsuario = async(usuario_id,token)=>{
     const res = await consultarAvaliacaoConclusaoPorUsuarioClient(usuario_id,token)
     if (res?.error == null){
         if(typeof(res?.data)=='undefined') return res?.error
-        if(res?.data.length>0) return res.data
+        if(res?.data.length>=0) return res.data
     }
     return false
 }
