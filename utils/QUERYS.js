@@ -153,6 +153,7 @@ export const CAPACITACAO = (TRILHA_ID)=>{
         ... on Modulo {
           titulo
           moduloId
+          liberado
           conteudos {
             tipo
             tituloTexto {
@@ -187,7 +188,7 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
   return(
   `
   {
-    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}) {
+    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
       codigo
       materialComplementar {
         ... on Link {
@@ -217,3 +218,20 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
     }  }
   `
 )}
+
+export const CONTEUDOS_TRILHAS =
+    `
+    {
+      trilhas {
+        conteudo {
+          ... on Modulo {
+            moduloId
+            conteudos {
+              codigo
+            }
+          }
+        }
+        id
+      }
+    }
+    `

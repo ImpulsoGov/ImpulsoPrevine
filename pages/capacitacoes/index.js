@@ -1,7 +1,9 @@
-import { getData } from '../../services/cms'
-import { LAYOUT } from '../../utils/QUERYS'
+import { getData, getDataCapacitacao } from '../../services/cms'
+import { LAYOUT,CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { TituloTexto, CardTrilha } from '@impulsogov/design-system'
+import { progresso } from '../../helpers/modulosDataTransform'
+import { useEffect, useState } from 'react'
 
 
 export async function getServerSideProps({req}) {
@@ -22,7 +24,8 @@ export async function getServerSideProps({req}) {
       }
     }
     const res = [
-        await getData(LAYOUT),
+        await getData(LAYOUT),  
+        await getDataCapacitacao(CONTEUDOS_TRILHAS)
     ]
     return {
         props: {
@@ -34,6 +37,9 @@ export async function getServerSideProps({req}) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
+    const [data,setData] = useState(false)
+    const ProgressoClient = async()=> session && await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{ProgressoClient().then((res)=>setData(res))},[]) 
     return(
         <>
             <TituloTexto
@@ -41,12 +47,15 @@ const Index = ({res}) => {
                 texto="Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel de cadastros duplicados, listas nominais para monitoramento, referentes a cada um dos indicadores do Previne Brasil."
                 imagem = {{posicao: null,url: ''}}
             />
-            <CardTrilha
-                titulo="Hipertensão e Diabetes"
-                progressao={0}
-                linkTrilha="/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"
-                linkSobre="/conteudo-programatico"
-            />
+            {
+                data &&
+                <CardTrilha
+                    titulo="Hipertensão e Diabetes"
+                    progressao={data[0].progresso }
+                    linkTrilha={"/capacitacao?trilhaID="+res[1].trilhas[0].id}
+                    linkSobre="/conteudo-programatico"
+                />
+            }
         </>
     )
 }
