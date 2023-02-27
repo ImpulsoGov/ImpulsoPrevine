@@ -75,6 +75,7 @@ return(
               modulo={res[2][0]}
               ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
               mobile= {width < 1023}
+              checkSobre={res[2][2]}
             />
         }
       </>

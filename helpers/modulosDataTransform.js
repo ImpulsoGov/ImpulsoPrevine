@@ -19,6 +19,7 @@ const modulosDataTransform = async(ConteudosCMS,userID,token)=>{
 const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
     const conteudos = []
     const avaliacoes_usuario = await consultarAvaliacaoConclusaoPorUsuario(userID,token)
+    const checkSobre = avaliacoes_usuario.filter(item=>item.codigo_conteudo=="HD-MOD0-C0").length>0
     for(let i=0;i<conteudosCMS.length;i++){
         let moduloID = conteudosCMS[i].moduloId
         let modulo = conteudosCMS[i]
@@ -51,7 +52,7 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
         }
     }
     const ultimoModulo = avaliacoes_usuario.length>0 ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
-    return [conteudos,ultimoModulo]
+    return [conteudos,ultimoModulo,checkSobre]
 }
 
 const progresso = async(ConteudosCMS,userID,token)=>{

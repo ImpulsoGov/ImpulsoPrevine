@@ -44,7 +44,7 @@ const Index = ({res}) => {
         <>
             <TituloTexto
                 titulo="Trilhas de Capacitação"
-                texto="Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel de cadastros duplicados, listas nominais para monitoramento, referentes a cada um dos indicadores do Previne Brasil."
+                texto="Nossas trilhas de capacitação possuem materiais teóricos e práticos para ajudar profissionais da APS no processo de educação continuada em saúde. Comece já!"
                 imagem = {{posicao: null,url: ''}}
             />
             {
@@ -52,8 +52,7 @@ const Index = ({res}) => {
                 <CardTrilha
                     titulo="Hipertensão e Diabetes"
                     progressao={data[0].progresso }
-                    linkTrilha={"/capacitacao?trilhaID="+res[1].trilhas[0].id}
-                    linkSobre="/conteudo-programatico"
+                    linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
                 />
             }
         </>

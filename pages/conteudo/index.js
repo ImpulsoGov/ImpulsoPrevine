@@ -44,7 +44,6 @@ const Index = ({res,AvaliacaoConclusao}) => {
     const modulo = Number(router.query.codigo_conteudo?.split('-')[1][3])
     if(codigoConteudo[0] == 'codigo_conteudo') proximo.query['proximo'] = router.query.proximo.slice(80,router.query.proximo.length)
     if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] = modulo+1
-    console.log(res)
     return(
         <>
             {
