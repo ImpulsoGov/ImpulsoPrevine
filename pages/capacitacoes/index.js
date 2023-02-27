@@ -52,7 +52,7 @@ const Index = ({res}) => {
                 <CardTrilha
                     titulo="Hipertensão e Diabetes"
                     progressao={data[0].progresso }
-                    linkTrilha={"/capacitacao?trilhaID="+res[1].trilhas[0].id}
+                    linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
                 />
             }
         </>
