@@ -57,18 +57,22 @@ const useWindowWidth = () => {
   
 
 const Index = ({res}) => {
-  //const { data: session,status } = useSession()
+  const { data: session,status } = useSession()
   let width = useWindowWidth()
   const router = useRouter()
-  return(
+  const [data,setData] = useState(false)
+  const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+  useEffect(()=>{modulos().then((res)=>setData(res))},[]) 
+  console.log(data)
+return(
       <>
         {
-          res[1]?.trilhas.length>0 && 
+          res[1]?.trilhas.length>0 && session && data &&
             <ModulosTrilha
               tituloTrilha= {res[1].trilhas[0].titulo}
               botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"/grupo-whatsapp"}}
-              modulos={modulosDataTransform(res[1].trilhas[0].conteudo)}
+              modulos={data}
               modulo={res[2][0]}
               ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
               mobile= {width < 1023}

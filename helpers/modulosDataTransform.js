@@ -1,15 +1,19 @@
 import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
 
-const modulosDataTransform = (modulosCMS)=>{
+const modulosDataTransform = async(ConteudosCMS,userID,token)=>{
+    //Pegando dados de uma unica trilha, debito tecnico generalizar para muiltiplas trilhas
     const modulos = []
-    modulosCMS.forEach(element => {
-        modulos.push({
-            titulo: element.titulo,
-            id: element.moduloId,
-            liberado:element.liberado
-        })
-    });
-    return modulos
+    return progresso(ConteudosCMS,userID,token).then(res=>{
+        ConteudosCMS[0].conteudo.forEach((element,index) => {
+            modulos.push({
+                titulo: element.titulo,
+                id: element.moduloId,
+                liberado:element.liberado,
+                concluido: res[0].qtd[index].finalizado
+            })
+        });
+        return modulos
+    })
 }
 
 const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
@@ -76,7 +80,11 @@ const progresso = async(ConteudosCMS,userID,token)=>{
             element.progresso=(23.75/element.conteudosQTD)*element.conclusao:
             element.progresso=5
             if(element.conclusao == 0) element.progresso=0
-
+            if(element.modulo==0){
+                element.finalizado = element.progresso == 5 ? true : false
+            }else{
+                element.finalizado = element.progresso == 23.75 ? true : false
+            }
         })
         item.progresso = Math.round(item.qtd.reduce((accumulator, currentValue) => {return accumulator + currentValue.progresso},0))
     })
