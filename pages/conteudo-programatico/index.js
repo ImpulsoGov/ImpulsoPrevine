@@ -1,13 +1,16 @@
 import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { useSession } from "next-auth/react"
+import { useSession,getSession } from "next-auth/react"
 import { SobreTrilha } from '@impulsogov/design-system'
+import { concluirConteudo } from '../../services/capacitacao'
 
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps(ctx) {
+    const session = await getSession(ctx)
+    if (session.user) concluirConteudo(session?.user?.id,"HD-MOD0-C0",session?.user?.access_token)
     let redirect 
-    const userIsActive = req.cookies['next-auth.session-token']
-    const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
+    const userIsActive = ctx.req.cookies['next-auth.session-token']
+    const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
     if(userIsActive){
       redirect=true
     }else{
