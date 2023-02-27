@@ -81,9 +81,9 @@ const Index = ({res}) => {
                             foto:"https://media.graphassets.com/6hUfUhefTXSSwdHkJpBN",
                             nome:"Fernanda Soares",
                             titulo:"Especialista em saúde"
-                        }
+                        },
                         {
-                            foto:"https://media.graphassets.com/6hUfUhefTXSSwdHkJpBN",
+                            foto:"https://media.graphassets.com/B3TEL5HTZut9F44mRMkE",
                             nome:"Murilo Celli",
                             titulo:"Especialista em Negócios"
                         }
