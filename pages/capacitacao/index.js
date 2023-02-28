@@ -69,7 +69,7 @@ return(
           res[1]?.trilhas.length>0 && session && data &&
             <ModulosTrilha
               tituloTrilha= {res[1].trilhas[0].titulo}
-              botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
+              botaoVoltar= {{label: "VOLTAR",url:"/inicio"}}
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"/grupo-whatsapp"}}
               modulos={data}
               modulo={res[2][0]}
