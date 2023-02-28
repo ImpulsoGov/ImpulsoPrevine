@@ -50,10 +50,6 @@ const Index = ({res}) => {
                     nome_usuario = {session?.user.nome}
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
-                <CardAlert
-                    destaque="IMPORTANTE: "
-                    msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-                />   
                 <CardLargeGrid
                     cards={[
                         {
