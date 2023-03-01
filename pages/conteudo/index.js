@@ -90,7 +90,7 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         card: {
                         arquivo: res[1]?.conteudos[0]?.materialComplementar[0]?.label,
                         icon: 'https://media.graphassets.com/aFcM8jxSSyStgrfCL8Uw',
-                        titulo: '',
+                        titulo: res[1]?.conteudos[0]?.materialComplementar[0]?.label ? res[1]?.conteudos[0]?.materialComplementar[0]?.label : '',
                         url:  res[1]?.conteudos[0]?.materialComplementar[0]?.url ? res[1]?.conteudos[0]?.materialComplementar[0]?.url : ''
                         },
                         titulo: 'Material Complementar'
