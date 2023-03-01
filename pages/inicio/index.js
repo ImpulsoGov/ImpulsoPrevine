@@ -1,8 +1,9 @@
-import { getData } from '../../services/cms'
-import { LAYOUT } from '../../utils/QUERYS'
+import { getData, getDataCapacitacao } from '../../services/cms'
+import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardAlert, CardLargeGrid} from '@impulsogov/design-system'
-
+import { Greeting, CardTrilha, CardLargeGrid} from '@impulsogov/design-system'
+import { progresso } from '../../helpers/modulosDataTransform'
+import { useEffect, useState } from 'react'
 
 export async function getServerSideProps({req}) {
     let redirect 
@@ -23,6 +24,7 @@ export async function getServerSideProps({req}) {
     }
     const res = [
         await getData(LAYOUT),
+        await getDataCapacitacao(CONTEUDOS_TRILHAS)
     ]
     return {
         props: {
@@ -34,6 +36,9 @@ export async function getServerSideProps({req}) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
+    const [data,setData] = useState(false)
+    const ProgressoClient = async()=> session && await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{ProgressoClient().then((res)=>setData(res))},[]) 
     const cargo_transform = (cargo)=>{
         if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
         if (cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
@@ -50,6 +55,14 @@ const Index = ({res}) => {
                     nome_usuario = {session?.user.nome}
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
+                {
+                data &&
+                    <CardTrilha
+                        titulo="Trilha de Capacitação: Hipertensão e Diabetes"
+                        progressao={data[0].progresso }
+                        linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
+                    />
+                }
                 <CardLargeGrid
                     cards={[
                         {
