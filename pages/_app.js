@@ -28,17 +28,20 @@ const tagManagerArgs = {
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps }} = props;
   const router = useRouter()
-  let path = useRouter().pathname
+  const dynamicRoute = router.asPath
+  let path = router.pathname
   const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
   let width = useWindowWidth()
   const [cidade, setCidade] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
+  const [active, setMode] = useState(true)
   useEffect(() => TagManager.initialize(tagManagerArgs))
   useEffect(()=>rotaDinamica(router), [router.events])
   useEffect(()=>addUserDataLayer(props.ses))
   useEffect(()=>getCity(cidade,setCidade,setLoading), [cidade]);
-    return (
+  useEffect(() =>setMode(true),[dynamicRoute])
+  return (
     <>
       <Head>
         <title>{props.pageTitle}</title>
@@ -56,6 +59,7 @@ function MyApp(props) {
           <Auth setStatus={setStatus}>
             {isLoading && 
               <NavBar 
+                login= {{titulo: "Faça o login para ver o painel de busca ativa"}}
                 user={
                   {                  
                       nome : nome,
@@ -81,6 +85,12 @@ function MyApp(props) {
                   logoLink : props.ses ? '/inicio' : '/'
                 }}
                 seletorMunicipios = {path == '/analise'}
+                showMenuMobile = {{
+                  states:{
+                    active : active,
+                    setMode : setMode
+                  }
+                }}
                 menu={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4],{label: "Capacitações", url : "/capacitacoes"}] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
                 NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
                 NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
@@ -90,6 +100,9 @@ function MyApp(props) {
                       codigo : validarCodigo,
                       alterarSenha : alterarSenha
                   },
+                  chamadas: {
+                    sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                  }
                 }}
                 ModalInicio={{
                   titulo: "Faça o login para ver os dados restritos.",
@@ -107,9 +120,11 @@ function MyApp(props) {
                         mail : primeiroAcesso,
                         codigo : validarCodigo,
                         alterarSenha : criarSenha,
-                    }
+                    },
+                    chamadas: {
+                      sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                  }
                 }}
-          
               />
             }
               <div style={{paddingTop:"75px"}}>
