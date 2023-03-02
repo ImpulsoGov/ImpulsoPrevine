@@ -54,7 +54,6 @@ const Index = ({res,AvaliacaoConclusao}) => {
         setAvaliacao(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
         setStarHover(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
     }, [dynamicRoute])
-    console.log(starHover)
     return(
         <>
             {
