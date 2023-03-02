@@ -33,7 +33,7 @@ const consultarAvaliacaoConclusaoClient = async(usuario_id,codigo_conteudo,token
 const consultarAvaliacaoConclusao = async(usuario_id,codigo_conteudo,token)=>{
     const res = await consultarAvaliacaoConclusaoClient(usuario_id,codigo_conteudo,token)
     if (res?.error == null){
-        if(res?.data.length>0) return res.data
+        if(res.data) if(res?.data.length>0) return res.data
     }
     return false
 }

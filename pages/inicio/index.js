@@ -37,8 +37,12 @@ export async function getServerSideProps({req}) {
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
-    const ProgressoClient = async()=> session && await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
-    useEffect(()=>{ProgressoClient().then((res)=>setData(res))},[]) 
+    const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{
+        session && res && 
+        ProgressoClient().then((response)=>{
+        setData(response)
+    })},[session]) 
     const cargo_transform = (cargo)=>{
         if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
         if (cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
@@ -46,7 +50,7 @@ const Index = ({res}) => {
     }
     const cargo = cargo_transform(session?.user?.cargo)
     if (session){
-        return (
+        return(
             <>
                 <Greeting
                     cargo = {cargo}
@@ -56,7 +60,7 @@ const Index = ({res}) => {
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
                 {
-                data &&
+                    data &&
                     <CardTrilha
                         titulo="Trilha de Capacitação: Hipertensão e Diabetes"
                         progressao={data[0].progresso }
