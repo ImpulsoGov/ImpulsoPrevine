@@ -49,9 +49,9 @@ const Index = ({res}) => {
                     titulo : "Cronograma",
                     texto : [
                         {texto: "06/03 | Módulos I e II liberados"},
-                        {texto: "21/03 | Encontro ao vivo"},
+                        {texto: "21/03 às 14h | Encontro ao vivo"},
                         {texto: "20/03 | Módulos III e IV liberados"},
-                        {texto: "07/04 | Encontro ao vivo"},
+                        {texto: "04/04 às 14h | Encontro ao vivo"},
                     ]
                 }}
                 nossoTime={{
