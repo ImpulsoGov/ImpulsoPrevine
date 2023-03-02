@@ -4,6 +4,7 @@ import { getSession,useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
 import { ConteudoTrilha } from '@impulsogov/design-system';
 import { consultarAvaliacaoConclusao,concluirConteudo,avaliarConteudo } from '../../services/capacitacao';
+import { useEffect, useState } from 'react';
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -33,6 +34,9 @@ export async function getServerSideProps(ctx) {
 
 const Index = ({res,AvaliacaoConclusao}) => {
     const { data: session,status } = useSession()
+    const [concluido,setConcluido] = useState(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.concluido : false);
+    const [Avaliacao,setAvaliacao] = useState(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null);
+    const [starHover,setStarHover] = useState(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
     const router = useRouter()
     const codigoConteudo = router.query.proximo.slice(0,80).split("?")[1].split("&")[0].split("=")
     const proximo = {
@@ -44,6 +48,13 @@ const Index = ({res,AvaliacaoConclusao}) => {
     const modulo = Number(router.query.codigo_conteudo?.split('-')[1][3])
     if(codigoConteudo[0] == 'codigo_conteudo') proximo.query['proximo'] = router.query.proximo.slice(80,router.query.proximo.length)
     if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] = modulo+1
+    const dynamicRoute = router.asPath
+    useEffect(() => {
+        setConcluido(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.concluido : false);
+        setAvaliacao(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
+        setStarHover(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
+    }, [dynamicRoute])
+    console.log(starHover)
     return(
         <>
             {
@@ -59,8 +70,14 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         },
                         req:avaliarConteudo,
                         chamadaAvaliacao: 'Como você avalia esse conteúdo?',
-                        concluido: AvaliacaoConclusao ? AvaliacaoConclusao[0]?.concluido : false,
-                        nota: AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : 0,
+                        states : {
+                            concluido : concluido,
+                            setConcluido : setConcluido,
+                            Avaliacao : Avaliacao,
+                            setAvaliacao : setAvaliacao,
+                            starHover : starHover,
+                            setStarHover : setStarHover
+                        },
                     }}
                     buttonBar={{
                         botaoDuvidas: {

@@ -89,7 +89,8 @@ const Index = ({res}) => {
                         }
                     ]}
                     obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
-                />
+                    theme= "ColorIP"
+                    />
             </>
         )
     }
