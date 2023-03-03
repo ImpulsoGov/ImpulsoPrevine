@@ -235,3 +235,18 @@ export const CONTEUDOS_TRILHAS =
       }
     }
     `
+
+    export const FAQ =
+    `
+    {
+      faqs() {
+        titulo
+        perguntas {
+          ... on Pergunta {
+            pergunta
+            resposta
+          }
+        }
+      }
+    }
+    `
