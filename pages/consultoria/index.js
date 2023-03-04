@@ -1,14 +1,10 @@
-import Layout from "../../componentes/Layout";
 import { Header } from "@impulsogov/design-system";
-import { Content3Col } from "@impulsogov/design-system";
-import { TextCol } from "@impulsogov/design-system";
 import { Slider } from "@impulsogov/design-system";
-import { FormConsultoria } from "@impulsogov/design-system";
 import { TituloTexto } from "@impulsogov/design-system";
 import { ImagemFundo } from "@impulsogov/design-system";
 
 import { sliderCardsDataTransform } from "../../helpers/slidersDataTransform";
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT, CONSULTORIA} from '../../utils/QUERYS'
 
 export async function getServerSideProps({req}) {

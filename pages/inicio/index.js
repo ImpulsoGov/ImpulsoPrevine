@@ -1,8 +1,9 @@
-import { getData } from '../../utils/cms'
-import { LAYOUT } from '../../utils/QUERYS'
+import { getData, getDataCapacitacao } from '../../services/cms'
+import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardAlert, CardLargeGrid} from '@impulsogov/design-system'
-
+import { Greeting, CardTrilha, CardLargeGrid} from '@impulsogov/design-system'
+import { progresso } from '../../helpers/modulosDataTransform'
+import { useEffect, useState } from 'react'
 
 export async function getServerSideProps({req}) {
     let redirect 
@@ -23,6 +24,7 @@ export async function getServerSideProps({req}) {
     }
     const res = [
         await getData(LAYOUT),
+        await getDataCapacitacao(CONTEUDOS_TRILHAS)
     ]
     return {
         props: {
@@ -34,6 +36,13 @@ export async function getServerSideProps({req}) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
+    const [data,setData] = useState(false)
+    const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{
+        session && res && 
+        ProgressoClient().then((response)=>{
+        setData(response)
+    })},[session]) 
     const cargo_transform = (cargo)=>{
         if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
         if (cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
@@ -41,7 +50,7 @@ const Index = ({res}) => {
     }
     const cargo = cargo_transform(session?.user?.cargo)
     if (session){
-        return (
+        return(
             <>
                 <Greeting
                     cargo = {cargo}
@@ -50,10 +59,14 @@ const Index = ({res}) => {
                     nome_usuario = {session?.user.nome}
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
-                <CardAlert
-                    destaque="IMPORTANTE: "
-                    msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-                />   
+                {
+                    data &&
+                    <CardTrilha
+                        titulo="Trilha de Capacitação: Hipertensão e Diabetes"
+                        progressao={data[0].progresso }
+                        linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
+                    />
+                }
                 <CardLargeGrid
                     cards={[
                         {
@@ -80,7 +93,8 @@ const Index = ({res}) => {
                         }
                     ]}
                     obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
-                />
+                    theme= "ColorIP"
+                    />
             </>
         )
     }

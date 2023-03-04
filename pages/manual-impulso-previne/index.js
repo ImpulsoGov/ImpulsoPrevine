@@ -1,8 +1,7 @@
-import Layout from "../../componentes/Layout";
 import { IFrame } from "@impulsogov/design-system";
 import { HomeBanner } from "@impulsogov/design-system"
 
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT, MANUAL} from '../../utils/QUERYS'
 
 export async function getStaticProps() {

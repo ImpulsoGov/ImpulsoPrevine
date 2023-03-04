@@ -3,9 +3,8 @@ import { useEffect,useState } from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession,getSession,signOut,signIn } from "next-auth/react"
 import { useRouter } from 'next/router'
-import * as gtag from '../componentes/Analytics/lib/gtag'
 import Analytics from '../componentes/Analytics/Analytics'
-import { getData } from '../utils/cms'
+import { getData } from '../services/cms'
 import { LAYOUT } from '../utils/QUERYS'
 import App from 'next/app'
 import Head from 'next/head';
@@ -13,71 +12,36 @@ import { NavBar,Footer } from '@impulsogov/design-system';
 import Context from '../utils/Context'
 import {data} from '../utils/Municipios'
 import TagManager from "react-gtm-module";
-import axios from 'axios';
 import { validateCredentials,validacao } from "../services/validateCredentials"
 import { solicitarNovaSenha,alterarSenha,validarCodigo } from '../services/esqueciMinhaSenha'
 import { primeiroAcesso,criarSenha } from '../services/primeiroAcesso'
+import { addUserDataLayer } from '../hooks/addUserDataLayer'
+import { getCity } from '../hooks/getCity'
+import { useWindowWidth } from '../helpers/useWindowWidth'
+import { rotaDinamica } from '../hooks/rotaDinamica'
+
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
 
-if (process.browser) {
-  TagManager.initialize(tagManagerArgs);
-}
-
-
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps }} = props;
   const router = useRouter()
-  let path = useRouter().pathname
-  useEffect(() => {
-    const handleRouteChange = url => {
-      gtag.pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+  const dynamicRoute = router.asPath
+  let path = router.pathname
+  const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
+  let width = useWindowWidth()
   const [cidade, setCidade] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
-  console.log(props.ses)
-  const nome = props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user.nome
-  const cargo = props.ses != null ? props.ses.user.cargo : ""
-  useEffect(()=>{
-    window.dataLayer = window.dataLayer || []; 
-    window.dataLayer.push({ 
-   'gtm.load': props.ses == null || typeof(props.ses) == undefined ? "" : props.ses.user 
-    });
-  })
-  useEffect(() => {
-    const nav = typeof window !== 'undefined' ? navigator.geolocation : false
-    if (nav && cidade.length ==0){
-      nav.getCurrentPosition(async (position)=> {
-        await axios.get('https://nominatim.openstreetmap.org/reverse?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&zoom=10&format=json')
-        .then(response => {
-          if(response.data.address["ISO3166-2-lvl4"].slice(-2)=='DF'){
-            let res = "Brasília"+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
-            setCidade(res);
-            setLoading(true)
-          }else{
-            let res = response.data.address.city+" - "+response.data.address["ISO3166-2-lvl4"].slice(-2)
-            setCidade(res);
-            setLoading(true)
-          }
-        });
-      },()=> {
-        setCidade("São Paulo - SP");
-        setLoading(true)
-    })
-    }
-  }, [cidade]);
-  let logoProjectDesktop = path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url
-  const logoProjetoMobile= props.res[0].logoIps[1].logo[0].url
-  let width = useWindowWidth()
-    return (
+  const [active, setMode] = useState(true)
+  useEffect(() => TagManager.initialize(tagManagerArgs))
+  useEffect(()=>rotaDinamica(router), [router.events])
+  useEffect(()=>addUserDataLayer(props.ses))
+  useEffect(()=>getCity(cidade,setCidade,setLoading), [cidade]);
+  useEffect(() =>setMode(true),[dynamicRoute])
+  return (
     <>
       <Head>
         <title>{props.pageTitle}</title>
@@ -91,91 +55,105 @@ function MyApp(props) {
         />
       </Head>
       <SessionProvider session={session} refetchInterval={60*60} refetchOnWindowFocus={true} clientMaxAge={8 * 60 * 60}>
-        <Context.Provider value={[cidade, setCidade]}>
-        <Auth setStatus={setStatus}>
-          {isLoading && 
-            <NavBar 
-              user={
-                {                  
-                    nome : nome,
-                    cargo : cargo,
-                    button : {label:"sair"},
-                    label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
-                    equipe : props.ses?.user?.equipe,
-                    login : signIn,
-                    logout : signOut,
-                    validarCredencial : validateCredentials,
-                    validacao : validacao
-                }
-              }
-
-              municipio={cidade}
-              setMunicipio = {setCidade}
-              data={data}
-              theme={{
-                logoProjeto : width > 1000 ? logoProjectDesktop : logoProjetoMobile,
-                cor : path == '/' ? "ColorIP" : "White",
-                logoLink : props.ses ? '/inicio' : '/'
-              }}
-              seletorMunicipios = {path == '/analise'}
-              menu={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
-              NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
-              NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
-              esqueciMinhaSenha = {{
-                reqs : {
-                    mail : solicitarNovaSenha,
-                    codigo : validarCodigo,
-                    alterarSenha : alterarSenha
-                },
-              }}
-              ModalInicio={{
-                titulo: "Faça o login para ver os dados restritos.",
-                chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
-                cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
-                botaoPrincipal : {
-                    label: "entrar",
-                },
-                botaoSecundario : {
-                    label: "primeiro acesso",
-                }
-              }}
-              primeiroAcesso={{
-                  reqs:{
-                      mail : primeiroAcesso,
-                      codigo : validarCodigo,
-                      alterarSenha : criarSenha,
+          <Context.Provider value={[cidade, setCidade]}>
+          <Auth setStatus={setStatus}>
+            {isLoading && 
+              <NavBar 
+                login= {{titulo: "Faça o login para ver o painel de busca ativa"}}
+                user={
+                  {                  
+                      nome : nome,
+                      cargo : props.ses != null ? props.ses.user.cargo : "",
+                      button : {label:"sair"},
+                      label : props.ses == null || typeof(props.ses) == undefined  ? "Acesso Restrito" : nome[0],
+                      equipe : props.ses?.user?.equipe,
+                      login : signIn,
+                      logout : signOut,
+                      validarCredencial : validateCredentials,
+                      validacao : validacao
                   }
+                }
+
+                municipio={cidade}
+                setMunicipio = {setCidade}
+                data={data}
+                theme={{
+                  logoProjeto : width > 1000 ? 
+                  path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url : 
+                  props.res[0].logoIps[1].logo[0].url,
+                  cor : path == '/' ? "ColorIP" : "White",
+                  logoLink : props.ses ? '/inicio' : '/'
+                }}
+                seletorMunicipios = {path == '/analise'}
+                showMenuMobile = {{
+                  states:{
+                    active : active,
+                    setMode : setMode
+                  }
+                }}
+                menu={ props.ses ? [{label: "Início", url : "/inicio"},{label: "Dados Restritos", url : "", sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]},{label: "Trilha de capacitação", url : "/capacitacoes"},{label: "Dados Públicos - Q3/22", url : "/analise"}] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+                NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
+                NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
+                esqueciMinhaSenha = {{
+                  reqs : {
+                      mail : solicitarNovaSenha,
+                      codigo : validarCodigo,
+                      alterarSenha : alterarSenha
+                  },
+                  chamadas: {
+                    sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                  }
+                }}
+                ModalInicio={{
+                  titulo: "Faça o login para ver os dados restritos.",
+                  chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
+                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
+                  botaoPrincipal : {
+                      label: "entrar",
+                  },
+                  botaoSecundario : {
+                      label: "primeiro acesso",
+                  }
+                }}
+                primeiroAcesso={{
+                    reqs:{
+                        mail : primeiroAcesso,
+                        codigo : validarCodigo,
+                        alterarSenha : criarSenha,
+                    },
+                    chamadas: {
+                      sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                  }
+                }}
+              />
+            }
+              <div style={{paddingTop:"75px"}}>
+                <Component {...pageProps} />
+              </div>
+            <Footer
+              theme={{
+                logoProjeto : props.res[0].logoIps[0].logo[1].url,
+                logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
+                cor : "Black"
               }}
-        
+              logoLink = {props.ses ? '/inicio' : '/'}
+              address={{
+                  first: "",
+                  second: "",
+              }}
+              contactCopyright={{
+                  copyright: props.res[0].copyrights[0].copyright,
+                  email: props.res[0].copyrights[0].contato,
+              }}
+              links={ props.ses ? [props.res[0].menus[1],props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+              socialMediaURLs={[
+                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
+                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
+                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
+              ]} 
             />
-          }
-            <div style={{paddingTop:"75px"}}>
-              <Component {...pageProps} />
-            </div>
-          <Footer
-            theme={{
-              logoProjeto : props.res[0].logoIps[0].logo[1].url,
-              logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
-              cor : "Black"
-            }}
-            logoLink = {props.ses ? '/inicio' : '/'}
-            address={{
-                first: "",
-                second: "",
-            }}
-            contactCopyright={{
-                copyright: props.res[0].copyrights[0].copyright,
-                email: props.res[0].copyrights[0].contato,
-            }}
-            links={ props.ses ? [{label: "Dados Públicos", url : "analise"},props.res[0].menus[4]] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
-            socialMediaURLs={[
-              { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
-              { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
-              { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
-            ]} 
-          />
-          </Auth>
-        </Context.Provider>
+            </Auth>
+          </Context.Provider>
         <Analytics />
       </SessionProvider>
     </>
@@ -203,21 +181,4 @@ MyApp.getInitialProps = async(context)=> {
     ses,
   }
 }
-
-const useWindowWidth = () => {
-  const [windowWidth, setWindowWidth ] = useState(undefined);
-  useEffect(() => {
-      const handleWindowResize = () => {
-          setWindowWidth(window.innerWidth);
-      };
-
-      window.addEventListener('resize', handleWindowResize);
-      handleWindowResize()
-      return () => window.removeEventListener('resize', handleWindowResize);
-    
-  },[]);
-  return windowWidth;
-};
-
-
 export default MyApp

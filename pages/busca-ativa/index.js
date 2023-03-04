@@ -1,11 +1,12 @@
-import { PanelSelector} from "@impulsogov/design-system";
+import { PanelSelector, CardAlert, TituloTexto, ButtonLight} from "@impulsogov/design-system";
 import { useSession,signOut } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getData } from '../../utils/cms'
+import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
+import style from "../duvidas/Duvidas.module.css"
 
 export async function getServerSideProps({req}) {
   let redirect 
@@ -111,6 +112,20 @@ const Index = ({res}) => {
     if (session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser") links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
     return (
       <>
+        <div className={style.BotaoVoltar}>
+        <ButtonLight icone={{posicao: 'right',
+          url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+          label="VOLTAR" link="/inicio"/>
+        </div>
+        <TituloTexto
+                titulo="Lista nominal"
+                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                imagem = {{posicao: null,url: ''}}
+            />
+        <CardAlert
+              destaque="IMPORTANTE: "
+              msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
+          />  
         <PanelSelector
           links = {links}
           list={labelsBuscaAtiva}
