@@ -1,5 +1,5 @@
 import { PanelSelector, CardAlert, TituloTexto, ButtonLight} from "@impulsogov/design-system";
-import { useSession,signOut, getSession } from "next-auth/react"
+import { useSession,signOut } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../services/cms'
@@ -7,12 +7,24 @@ import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
-import { redirectHome } from "../../helpers/redirectHome";
 
 export async function getServerSideProps({req}) {
-  const session = await getSession(ctx)
-  const redirect = redirectHome(ctx,session)
-  if(redirect) return redirect
+  let redirect 
+  const userIsActive = req.cookies['next-auth.session-token']
+  const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
+  if(userIsActive){
+    redirect=true
+  }else{
+      if(userIsActiveSecure){redirect=true}else{redirect=false}
+  }
+  if(!redirect) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
   const res = [
     await getData(LAYOUT),
   ]

@@ -5,15 +5,20 @@ import { useRouter } from 'next/router';
 import { ConteudoTrilha } from '@impulsogov/design-system';
 import { consultarAvaliacaoConclusao,concluirConteudo,avaliarConteudo } from '../../services/capacitacao';
 import { useEffect, useState } from 'react';
-import { redirectHome, redirectHomeNotLooged } from '../../helpers/redirectHome';
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
-    const redirect = redirectHomeNotLooged(ctx)
-    if(redirect) return redirect
     const codigo_conteudo = ctx?.req?.url.split('=').length <= 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
     const trilhaID = ctx?.req?.url.split('=').length < 1 ? '' : ctx?.req?.url.split('=')[2].split('&')[0]
     const AvaliacaoConclusao = await consultarAvaliacaoConclusao(session?.user?.id,ctx?.query?.codigo_conteudo,session?.user?.access_token)
+    if(session==null) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+        }, 
+      }
+    }
     const res = [
         await getData(LAYOUT),
         ctx?.req?.url && await getDataCapacitacao(CONTEUDO_CAPACITACAO(codigo_conteudo,trilhaID))

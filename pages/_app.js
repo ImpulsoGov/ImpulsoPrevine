@@ -91,16 +91,7 @@ function MyApp(props) {
                     setMode : setMode
                   }
                 }}
-                menu={ props.ses ? 
-                  [{label: "Início", url : "/inicio"}].concat(
-                  props.ses.user.perfis.includes(5 || 8 || 9) ? 
-                  [{
-                    label: "Dados Restritos", url : "",
-                    sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]
-                  }] : []).concat(
-                  [{label: "Trilha de capacitação", url : "/capacitacoes"},
-                  {label: "Dados Públicos - Q3/22", url : "/analise"}])
-                  :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
+                menu={ props.ses ? [{label: "Início", url : "/inicio"},{label: "Dados Restritos", url : "", sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]},{label: "Trilha de capacitação", url : "/capacitacoes"},{label: "Dados Públicos - Q3/22", url : "/analise"}] :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3]]}
                 NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
                 NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
                 esqueciMinhaSenha = {{
