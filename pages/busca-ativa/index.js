@@ -7,12 +7,12 @@ import { LAYOUT } from '../../utils/QUERYS'
 import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
+import { redirectHome } from "../../helpers/redirectHome";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
-  const userIsActive = ctx.req.cookies['next-auth.session-token']
-  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-  let redirect = !userIsActive || !userIsActiveSecure || session?.user.perfis.includes(5 || 8 || 9)
+  const redirect = redirectHome(ctx,session)
+  if(redirect) return redirect
   if(redirect) {
     return {
       redirect: {

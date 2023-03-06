@@ -9,7 +9,7 @@ import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../helpers/redirectHome";
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
   if(redirect) return redirect
