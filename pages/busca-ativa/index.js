@@ -1,10 +1,10 @@
 import { PanelSelector, CardAlert, TituloTexto, ButtonLight} from "@impulsogov/design-system";
-import { useSession,getSession,signOut } from "next-auth/react"
+import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
+import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../helpers/redirectHome";
@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
       }, 
     }
   }
-const res = [
+  const res = [
     await getData(LAYOUT),
   ]
   return {
@@ -99,7 +99,7 @@ const Index = ({res}) => {
     },
   ]
 
-  if(session && session?.user.perfis.includes(5 || 8 || 9)){
+  if(session){
     const labelsBuscaAtiva = [[],[]]
     if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
     if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
