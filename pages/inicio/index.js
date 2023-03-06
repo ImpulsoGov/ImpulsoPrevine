@@ -1,15 +1,20 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, CardLargeGrid} from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { useEffect, useState } from 'react'
 
-export async function getServerSideProps(ctx) {
-    const userIsActive = ctx.req.cookies['next-auth.session-token']
-    const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-    let redirect = !(userIsActive || userIsActiveSecure) 
-    if(redirect) {
+export async function getServerSideProps({req}) {
+    let redirect 
+    const userIsActive = req.cookies['next-auth.session-token']
+    const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
+    if(userIsActive){
+      redirect=true
+    }else{
+        if(userIsActiveSecure){redirect=true}else{redirect=false}
+    }
+    if(!redirect) {
       return {
         redirect: {
           destination: "/",
@@ -23,7 +28,7 @@ export async function getServerSideProps(ctx) {
     ]
     return {
         props: {
-            res : res
+        res : res
         }
     }
 }
@@ -62,37 +67,34 @@ const Index = ({res}) => {
                         linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
                     />
                 }
-                {
-                    session?.user.perfis.includes(5 || 8 || 9) &&
-                    <CardLargeGrid
-                        cards={[
-                            {
-                                icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
-                                links: [
-                                    {
-                                        label: 'Pré-Natal',
-                                        link: '/busca-ativa?initialTitle=0&painel=0'
-                                    },
-                                ],
-                                texto: 'Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
-                                titulo: 'Listas Nominais'
-                            },
-                            {
-                                icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
-                                links: [
-                                    {
-                                    label: 'Gestantes',
-                                    link: '/cadastros-duplicados?initialTitle=0&painel=0'
-                                    },
-                                ],
-                                texto: 'Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.',
-                                titulo: 'Cadastros Duplicados'
-                            }
-                        ]}
-                        obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
-                        theme= "ColorIP"
+                <CardLargeGrid
+                    cards={[
+                        {
+                            icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
+                            links: [
+                                {
+                                    label: 'Pré-Natal',
+                                    link: '/busca-ativa?initialTitle=0&painel=0'
+                                },
+                            ],
+                            texto: 'Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
+                            titulo: 'Listas Nominais'
+                        },
+                        {
+                            icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
+                            links: [
+                                {
+                                label: 'Gestantes',
+                                link: '/cadastros-duplicados?initialTitle=0&painel=0'
+                                },
+                            ],
+                            texto: 'Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.',
+                            titulo: 'Cadastros Duplicados'
+                        }
+                    ]}
+                    obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
+                    theme= "ColorIP"
                     />
-                }
             </>
         )
     }
