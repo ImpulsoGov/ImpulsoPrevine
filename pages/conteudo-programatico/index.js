@@ -3,27 +3,14 @@ import { LAYOUT } from '../../utils/QUERYS'
 import { useSession,getSession } from "next-auth/react"
 import { SobreTrilha } from '@impulsogov/design-system'
 import { concluirConteudo } from '../../services/capacitacao'
+import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
-    if (session.user) concluirConteudo(session?.user?.id,"HD-MOD0-C0",session?.user?.access_token)
-    let redirect 
-    const userIsActive = ctx.req.cookies['next-auth.session-token']
-    const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-    if(userIsActive){
-      redirect=true
-    }else{
-        if(userIsActiveSecure){redirect=true}else{redirect=false}
-    }
-    if(!redirect) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
-        }, 
-      }
-    }
+    const redirect = redirectHomeNotLooged(ctx)
+    if(redirect) return redirect
+    if (session?.user) concluirConteudo(session?.user?.id,"HD-MOD0-C0",session?.user?.access_token)
     const res = [
         await getData(LAYOUT),
     ]

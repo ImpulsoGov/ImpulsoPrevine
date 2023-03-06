@@ -1,23 +1,19 @@
 import { PanelSelector, CardAlert, TituloTexto, ButtonLight} from "@impulsogov/design-system";
-import { useSession,signOut } from "next-auth/react"
+import { useSession,getSession,signOut } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
+import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 
-export async function getServerSideProps({req}) {
-  let redirect 
-  const userIsActive = req.cookies['next-auth.session-token']
-  const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
-  if(userIsActive){
-    redirect=true
-  }else{
-      if(userIsActiveSecure){redirect=true}else{redirect=false}
-  }
-  if(!redirect) {
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive || !userIsActiveSecure || session?.user.perfis.includes(5 || 8 || 9)
+  if(redirect) {
     return {
       redirect: {
         destination: "/",
@@ -25,7 +21,7 @@ export async function getServerSideProps({req}) {
       }, 
     }
   }
-  const res = [
+const res = [
     await getData(LAYOUT),
   ]
   return {
@@ -103,7 +99,7 @@ const Index = ({res}) => {
     },
   ]
 
-  if(session){
+  if(session && session?.user.perfis.includes(5 || 8 || 9)){
     const labelsBuscaAtiva = [[],[]]
     if(session.user?.cargo == "Coordenação APS" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
     if(session.user?.cargo == "Coordenação de Equipe" || session.user?.cargo == "Impulser")  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})

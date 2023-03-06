@@ -5,27 +5,14 @@ import { useSession,getSession } from "next-auth/react"
 import { ModulosTrilha } from '@impulsogov/design-system'
 import { conteudosDataTransform, modulosDataTransform } from '../../helpers/modulosDataTransform'
 import { useRouter } from 'next/router';
+import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 
 
 export async function getServerSideProps(ctx) {
-  const trilhaID = ctx?.req?.url?.split('=').length == 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
   const session = await getSession(ctx)
-  let redirect 
-  const userIsActive = ctx?.req.cookies['next-auth.session-token']
-  const userIsActiveSecure = ctx?.req.cookies['__Secure-next-auth.session-token']
-  if(userIsActive){
-    redirect=true
-  }else{
-      if(userIsActiveSecure){redirect=true}else{redirect=false}
-  }
-  if(!redirect) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
-      }, 
-    }
-  }
+  const redirect = redirectHomeNotLooged(ctx,session)
+  if(redirect) return redirect
+  const trilhaID = ctx?.req?.url?.split('=').length == 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
   const capacitacaoDataCMS = ctx?.req?.url && await getDataCapacitacao(CAPACITACAO(trilhaID))
   const conteudosData = await conteudosDataTransform(capacitacaoDataCMS.trilhas[0].conteudo,trilhaID,session?.user?.id,session?.user?.access_token)
   const res = [
@@ -63,7 +50,7 @@ const Index = ({res}) => {
   const [data,setData] = useState(false)
   const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,session?.user?.id,session?.user?.access_token)
   useEffect(()=>{modulos().then((res)=>setData(res))},[]) 
-return(
+  return(
       <>
         {
           res[1]?.trilhas.length>0 && session && data &&
