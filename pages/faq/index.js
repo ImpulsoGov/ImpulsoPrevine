@@ -3,7 +3,6 @@ import { ToggleList } from "@impulsogov/design-system";
 import { redirectHomeNotLooged } from "../../helpers/redirectHome";
 import { getData } from '../../services/cms'
 import { LAYOUT, FAQ } from '../../utils/QUERYS'
-import { getSession } from "next-auth/react";
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
@@ -17,6 +16,10 @@ export async function getServerSideProps(ctx) {
       }, 
     }
   }
+  const res = [
+    await getData(LAYOUT),
+    await getData(FAQ),
+  ]
   return {
     props: {
       res : res

@@ -4,8 +4,6 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import Context from "../../utils/Context"
 import { getData } from '../../services/cms'
 import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
-import { redirectHomeNotLooged } from "../../helpers/redirectHome";
-import { getSession } from "next-auth/react";
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
