@@ -4,8 +4,19 @@ import { HomeBanner } from "@impulsogov/design-system"
 import { getData } from '../../services/cms'
 import { LAYOUT, MANUAL} from '../../utils/QUERYS'
 
-export async function getStaticProps() {
-  const res = [
+export async function getServerSideProps(ctx) {
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(!redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
+    const res = [
     await getData(LAYOUT),
     await getData(MANUAL),
   ]

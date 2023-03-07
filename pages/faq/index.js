@@ -1,9 +1,21 @@
 import { TituloTexto } from "@impulsogov/design-system";
 import { ToggleList } from "@impulsogov/design-system";
+import { redirectHomeNotLooged } from "../../helpers/redirectHome";
 import { getData } from '../../services/cms'
 import { LAYOUT, FAQ } from '../../utils/QUERYS'
 
 export async function getServerSideProps(ctx) {
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(!redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
   const res = [
     await getData(LAYOUT),
     await getData(FAQ),
