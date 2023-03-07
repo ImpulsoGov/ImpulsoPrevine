@@ -13,14 +13,6 @@ export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
   if(redirect) return redirect
-  if(redirect) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
-      }, 
-    }
-  }
   const res = [
     await getData(LAYOUT),
   ]

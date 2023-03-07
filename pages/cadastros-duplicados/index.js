@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../services/cms'
 import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
+import { DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../helpers/redirectHome";

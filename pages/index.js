@@ -6,16 +6,11 @@ import { FormConsultoria } from "@impulsogov/design-system";
 import { getData } from '../services/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
-export async function getServerSideProps({req}) {
-  let redirect 
-  const userIsActive = req.cookies['next-auth.session-token']
-  const userIsActiveSecure = req.cookies['__Secure-next-auth.session-token']
-  if(userIsActive){
-    redirect=true
-  }else{
-      if(userIsActiveSecure){redirect=true}else{redirect=false}
-  }
-  if(redirect) {
+export async function getServerSideProps(ctx) {
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(!redirect) {
     return {
       redirect: {
         destination: "/inicio",

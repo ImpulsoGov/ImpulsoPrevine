@@ -94,7 +94,7 @@ function MyApp(props) {
                 menu={ 
                   props.ses ? 
                   [{label: "Início", url : "/inicio"}].concat(
-                    props.ses.user.perfis.includes(5 || 8 || 9) ? 
+                    (props.ses?.user.perfis.includes(5) || props.ses?.user.perfis.includes(8) || props.ses?.user.perfis.includes(9)) ? 
                       [{
                         label: "Dados Restritos", url : "",
                         sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]

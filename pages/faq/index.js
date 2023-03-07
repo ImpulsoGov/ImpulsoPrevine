@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { TituloTexto } from "@impulsogov/design-system";
 import { ToggleList } from "@impulsogov/design-system";
-import Context from "../../utils/Context"
 import { getData } from '../../services/cms'
 import { LAYOUT, FAQ } from '../../utils/QUERYS'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const res = [
     await getData(LAYOUT),
     await getData(FAQ),
@@ -17,8 +15,7 @@ export async function getServerSideProps() {
   }
 }
 
-const Index = ({res}) => {
-  const [cidade, setCidade] = useContext(Context);
+const Index = () => {
   return (
     <>
       <TituloTexto
