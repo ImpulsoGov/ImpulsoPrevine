@@ -1,9 +1,17 @@
-import { useContext } from "react";
+import { getSession } from "next-auth/react";
 import { IFrame } from "@impulsogov/design-system";
 import { ButtonLight } from "@impulsogov/design-system";
 import style from "./Duvidas.module.css"
+import { redirectHomeNotLooged } from "../../helpers/redirectHome";
 
-const Index = ({res}) => {
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  const redirect = redirectHomeNotLooged(ctx,session)
+  if(redirect) return redirect
+}
+
+
+const Index = () => {
   return (
     <>
       <div className={style.BotaoVoltar}>

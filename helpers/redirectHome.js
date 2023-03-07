@@ -16,8 +16,8 @@ const redirectHome = (ctx,session)=>{
 const redirectHomeNotLooged = (ctx)=>{
   const userIsActive = ctx.req.cookies['next-auth.session-token']
   const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-  let redirect = !userIsActive || !userIsActiveSecure 
-  if(!redirect) {
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(redirect) {
     return {
       redirect: {
         destination: "/",
