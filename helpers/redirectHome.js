@@ -2,7 +2,7 @@
 const redirectHome = (ctx,session)=>{
     const userIsActive = ctx.req.cookies['next-auth.session-token']
     const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-    let redirect = (!userIsActive || !userIsActiveSecure) && !session?.user.perfis.includes(5 || 8 || 9) 
+    let redirect = (!userIsActive || !userIsActiveSecure) && !(session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9))
     if(redirect) {
       return {
         redirect: {

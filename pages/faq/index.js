@@ -2,8 +2,6 @@ import { TituloTexto } from "@impulsogov/design-system";
 import { ToggleList } from "@impulsogov/design-system";
 import { getData } from '../../services/cms'
 import { LAYOUT, FAQ } from '../../utils/QUERYS'
-import { getSession } from "next-auth/react";
-import { redirectHomeNotLooged } from "../../helpers/redirectHome";
 
 export async function getServerSideProps(ctx) {
   const res = [

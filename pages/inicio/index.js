@@ -58,7 +58,7 @@ const Index = ({res}) => {
                     />
                 }
                 {
-                    session?.user.perfis.includes(5 || 8 || 9) &&
+                    (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
                     <CardLargeGrid
                         cards={[
                             {
