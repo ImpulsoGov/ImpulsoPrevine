@@ -8,6 +8,7 @@ export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHomeNotLooged(ctx,session)
   if(redirect) return redirect
+  return { props: {} }
 }
 
 
