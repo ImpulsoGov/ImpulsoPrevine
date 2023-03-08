@@ -73,7 +73,6 @@ function MyApp(props) {
                       validacao : validacao
                   }
                 }
-
                 municipio={cidade}
                 setMunicipio = {setCidade}
                 data={data}
@@ -120,10 +119,15 @@ function MyApp(props) {
                   cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
                   botaoPrincipal : {
                       label: "entrar",
+                      theme: 'ColorIP'
                   },
                   botaoSecundario : {
                       label: "primeiro acesso",
-                  }
+                  },
+                  botaoAjuda: {
+                    label: 'ESTOU COM PROBLEMAS NO LOGIN',
+                    link: 'https://docs.google.com/forms/d/e/1FAIpQLSe1i7zkVOz-T24xfD3F4XCM2J-hYnoTKYCMHG3EVMLUoBNpMg/viewform?usp=sf_link'
+                  },
                 }}
                 primeiroAcesso={{
                     reqs:{
