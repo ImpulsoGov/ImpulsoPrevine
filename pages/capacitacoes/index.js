@@ -4,12 +4,12 @@ import { useSession, getSession } from "next-auth/react"
 import { TituloTexto, CardTrilha } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { useEffect, useState } from 'react'
-import { redirectHomeNotLooged } from '../../helpers/redirectHome'
+import { redirectHomeTrilha } from '../../helpers/redirectHome'
 
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
-    const redirect = redirectHomeNotLooged(ctx,session)
+    const redirect = redirectHomeTrilha(ctx,session)
     if(redirect) return redirect
       const res = [
         await getData(LAYOUT),  

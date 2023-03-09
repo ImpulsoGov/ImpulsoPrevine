@@ -50,7 +50,7 @@ const Index = ({res}) => {
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
                 {
-                    data &&
+                    data && session?.user.perfis.includes(7) &&
                     <CardTrilha
                         titulo="Trilha de Capacitação: Hipertensão e Diabetes"
                         progressao={data[0].progresso }
