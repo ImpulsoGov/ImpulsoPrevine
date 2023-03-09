@@ -38,7 +38,7 @@ function MyApp(props) {
   const [active, setMode] = useState(true)
   useEffect(() => TagManager.initialize(tagManagerArgs))
   useEffect(()=>rotaDinamica(router), [router.events])
-  useEffect(()=>addUserDataLayer(props.ses))
+  useEffect(()=>addUserDataLayer(props.ses),[session])
   useEffect(()=>getCity(cidade,setCidade,setLoading), [cidade]);
   useEffect(() =>setMode(true),[dynamicRoute])
   return (
