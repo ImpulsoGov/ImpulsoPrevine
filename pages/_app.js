@@ -20,7 +20,6 @@ import { getCity } from '../hooks/getCity'
 import { useWindowWidth } from '../helpers/useWindowWidth'
 import { rotaDinamica } from '../hooks/rotaDinamica'
 
-
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
