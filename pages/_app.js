@@ -20,7 +20,6 @@ import { getCity } from '../hooks/getCity'
 import { useWindowWidth } from '../helpers/useWindowWidth'
 import { rotaDinamica } from '../hooks/rotaDinamica'
 
-
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
@@ -36,9 +35,9 @@ function MyApp(props) {
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true)
-  useEffect(() => TagManager.initialize(tagManagerArgs))
+  useEffect(() => TagManager.initialize(tagManagerArgs),[])
   useEffect(()=>rotaDinamica(router), [router.events])
-  useEffect(()=>addUserDataLayer(props.ses))
+  useEffect(()=>addUserDataLayer(props.ses),[props.ses])
   useEffect(()=>getCity(cidade,setCidade,setLoading), [cidade]);
   useEffect(() =>setMode(true),[dynamicRoute])
   return (
