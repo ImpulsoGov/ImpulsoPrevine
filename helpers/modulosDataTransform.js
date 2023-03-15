@@ -56,6 +56,8 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
 }
 
 const progresso = async(ConteudosCMS,userID,token)=>{
+    var certificado = true;
+
     //Modulos Concluidos pelo usuario
     const modulos_usuario = await consultarAvaliacaoConclusaoPorUsuario(userID,token)
     const UsuarioConclusoes = (codigoTrilha,modulos_usuario,modulosID)=>{
@@ -83,6 +85,9 @@ const progresso = async(ConteudosCMS,userID,token)=>{
             element.progresso=(23.75/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao
             if(element.conclusao == 0) element.progresso=0
+            if(element.conclusao/element.conteudosQTD<0.5){
+                certificado = false;
+            }
             if(element.modulo==0){
                 element.finalizado = element.progresso == 5
             }else{
@@ -91,7 +96,7 @@ const progresso = async(ConteudosCMS,userID,token)=>{
         })
         item.progresso = Math.round(item.qtd.reduce((accumulator, currentValue) => {return accumulator + currentValue.progresso},0))
     })
-    return conteudos_por_modulo
+    return [conteudos_por_modulo, certificado]
 
 }
 export {modulosDataTransform,conteudosDataTransform,progresso}

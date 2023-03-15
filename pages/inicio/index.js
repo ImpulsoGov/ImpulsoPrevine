@@ -27,11 +27,12 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
+    const [certificado,setCertificado] = useState(false)
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
     useEffect(()=>{
         session && res && 
         ProgressoClient().then((response)=>{
-        setData(response)
+        setData(response[0]),setCertificado(response[1])
     })},[session]) 
     const cargo_transform = (cargo)=>{
         if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
@@ -55,6 +56,8 @@ const Index = ({res}) => {
                         titulo="Trilha de Capacitação: Hipertensão e Diabetes"
                         progressao={data[0].progresso }
                         linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
+                        linkCertificado="https://forms.gle/osZtTZLmB6zSP7fQA"
+                        certificadoLiberado={certificado}
                     />
                 }
                 {
