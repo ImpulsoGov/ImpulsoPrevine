@@ -5,12 +5,12 @@ import { useSession,getSession } from "next-auth/react"
 import { ModulosTrilha } from '@impulsogov/design-system'
 import { conteudosDataTransform, modulosDataTransform } from '../../helpers/modulosDataTransform'
 import { useRouter } from 'next/router';
-import { redirectHomeNotLooged } from '../../helpers/redirectHome'
+import { redirectHomeTrilha } from '../../helpers/redirectHome'
 
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
-  const redirect = redirectHomeNotLooged(ctx,session)
+  const redirect = redirectHomeTrilha(ctx,session)
   if(redirect) return redirect
   const trilhaID = ctx?.req?.url?.split('=').length == 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
   const capacitacaoDataCMS = ctx?.req?.url && await getDataCapacitacao(CAPACITACAO(trilhaID))

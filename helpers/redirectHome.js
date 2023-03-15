@@ -28,4 +28,20 @@ const redirectHomeNotLooged = (ctx)=>{
   return false
 }
 
-export {redirectHome,redirectHomeNotLooged}
+const redirectHomeTrilha = (ctx,session)=>{
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = (!userIsActive || !userIsActiveSecure) && !session?.user.perfis.includes(7)
+  if(redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
+  return false
+}
+
+
+export {redirectHome,redirectHomeNotLooged,redirectHomeTrilha}

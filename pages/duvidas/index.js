@@ -2,11 +2,11 @@ import { getSession } from "next-auth/react";
 import { IFrame } from "@impulsogov/design-system";
 import { ButtonLight } from "@impulsogov/design-system";
 import style from "./Duvidas.module.css"
-import { redirectHomeNotLooged } from "../../helpers/redirectHome";
+import { redirectHomeTrilha } from "../../helpers/redirectHome";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
-  const redirect = redirectHomeNotLooged(ctx,session)
+  const redirect = redirectHomeTrilha(ctx,session)
   if(redirect) return redirect
   return { props: {} }
 }

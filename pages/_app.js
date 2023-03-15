@@ -91,14 +91,15 @@ function MyApp(props) {
                 }}
                 menu={ 
                   props.ses ? 
-                  [{label: "Início", url : "/inicio"}].concat(
+                  [{label: "Início", url : "/inicio"}]
+                  .concat(
                     (props.ses?.user.perfis.includes(5) || props.ses?.user.perfis.includes(8) || props.ses?.user.perfis.includes(9)) ? 
                       [{
                         label: "Dados Restritos", url : "",
                         sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]
-                      }] : []).concat(
-                      [{label: "Trilha de capacitação", url : "/capacitacoes"},
-                      {label: "Dados Públicos - Q3/22", url : "/analise"}])
+                      }] : [])
+                      .concat(props.ses?.user.perfis.includes(7) ?[{label: "Trilha de capacitação", url : "/capacitacoes"}] : [])
+                      .concat([{label: "Dados Públicos - Q3/22", url : "/analise"}])
                   :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3],props.res[0].menus[4]]}
                 NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
                 NavBarIconDark = {props.res[0].logoMenuMoblies[1].logo.url}
