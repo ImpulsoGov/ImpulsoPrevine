@@ -96,7 +96,12 @@ function MyApp(props) {
                     (props.ses?.user.perfis.includes(5) || props.ses?.user.perfis.includes(8) || props.ses?.user.perfis.includes(9)) ? 
                       [{
                         label: "Dados Restritos", url : "",
-                        sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]
+                        sub:[
+                          {label: "Listas Nominal - Diabéticos", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal - Gestantes", url: "/busca-ativa/gestantes?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal - Hipertensos", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0"},
+                          {label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}
+                        ]
                       }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ?[{label: "Trilha de capacitação", url : "/capacitacoes"}] : [])
                       .concat([{label: "Dados Públicos - Q3/22", url : "/analise"}])
@@ -141,7 +146,7 @@ function MyApp(props) {
                 }}
               />
             }
-              <div style={{paddingTop:"75px"}}>
+              <div className='NavBarPadding'>
                 <Component {...pageProps} />
               </div>
             <Footer
