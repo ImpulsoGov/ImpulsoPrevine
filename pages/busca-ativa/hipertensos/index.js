@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../../constants/dataStudio";
+import { DATA_STUDIO_URL_HIPERTENSOS_EQUIPE, DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS } from "../../../constants/dataStudio";
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import style from "../../duvidas/Duvidas.module.css"
@@ -95,15 +95,9 @@ const Index = ({res}) => {
     if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
     if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
     const links = [[],[],[]]
-    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
-    if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
+    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
+    if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_HIPERTENSOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
    
-    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[1].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
-    if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[1].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-   
-    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[2].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
-    if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[2].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-
     return (
       <>
         <div className={style.BotaoVoltar}>
