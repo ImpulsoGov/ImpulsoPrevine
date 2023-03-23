@@ -22,40 +22,44 @@ export async function getServerSideProps(ctx) {
     }
   }
 }
-const genParamEquipe = (token,municipio_uf,equipe)=>{
+const genParamEquipe = (token,municipio_uf,equipe,faixa_etaria)=>{
   let params = {
     "token": token,
     "municipio_uf": municipio_uf,
-    "equipe": equipe
+    "equipe": equipe,
+    "faixa_etaria" : faixa_etaria
   }
   var encodedParams = encodeURIComponent(JSON.stringify(params))
   return encodedParams
 }
 
-const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo)=>{
+const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo,faixa_etaria)=>{
+  console.log(cargo)
   if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
     let baseURL = data_studio
-    let param = genParamEquipe(token,municipio_uf,equipe)
+    let param = genParamEquipe(token,municipio_uf,equipe,faixa_etaria)
     const link = baseURL  + param 
+    console.log(link)
     return link
   }else{
     return ""
   }
 }
 
-const genParamCoordenacaoAPS = (token,municipio_uf)=>{
+const genParamCoordenacaoAPS = (token,municipio_uf,faixa_etaria)=>{
   let params = {
     "token": token,
     "municipio_uf": municipio_uf,
+    "faixa_etaria": faixa_etaria
   }
   var encodedParams = encodeURIComponent(JSON.stringify(params))
   return encodedParams
 }
 
-const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo)=>{
+const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo,faixa_etaria)=>{
   if (cargo == "Coordenação APS" || cargo == "Impulser"){
     let baseURL = data_studio
-    let param = genParamCoordenacaoAPS(token,municipio_uf)
+    let param = genParamCoordenacaoAPS(token,municipio_uf,faixa_etaria)
     const link = baseURL  + param 
     return link
   }else{
@@ -89,15 +93,24 @@ const Index = ({res}) => {
       label: "Indicadores Diabéticos",
     },
   ]
-
+  const faixas_etarias = ["0 a 40 anos","41 a 49 anos","50 a 59 anos","60 a 70 anos","70 anos ou mais"]
   if(session){
-    const labelsBuscaAtiva = [[],[]]
-    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Coordenação APS"})
-    if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Coordenação de Equipe"})
+    const labelsBuscaAtiva = [[]]
+    faixas_etarias.forEach(faixa_etaria => {
+      if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "APS - " + faixa_etaria})
+    });
+    faixas_etarias.forEach(faixa_etaria => {
+      if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Equipe - " + faixa_etaria})
+    });
     const links = [[],[]]
-    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_DIABETICOS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
-    if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_DIABETICOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
-
+    faixas_etarias.forEach(faixa_etaria => {
+      if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_DIABETICOS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo,faixa_etaria))
+    });
+    faixas_etarias.forEach(faixa_etaria => {
+      if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_DIABETICOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo,faixa_etaria))
+    });
+    console.log(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_DIABETICOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo,faixas_etarias[0]))
+    console.log(links)
     return (
       <>
         <div className={style.BotaoVoltar}>
