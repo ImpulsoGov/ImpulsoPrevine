@@ -4,11 +4,11 @@ import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
-import { DATA_STUDIO_URL_HIPERTENSOS_EQUIPE, DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS } from "../../../constants/dataStudio";
+import { DATA_STUDIO_URL_HIPERTENSOS_EQUIPE, DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS,DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS_GRAFICOS } from "../../../constants/dataStudio";
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import style from "../../duvidas/Duvidas.module.css"
-import { urlGenBuscaAtivaCoordenacaoAPS,urlGenBuscaAtivaEquipe } from "../../../helpers/urlGenBuscaAtiva";
+import { urlGenBuscaAtivaCoordenacaoAPS,urlGenBuscaAtivaEquipe, urlGenBuscaAtivaCoordenacaoAPSGraficos } from "../../../helpers/urlGenBuscaAtiva";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -54,13 +54,15 @@ const Index = ({res}) => {
   const faixas_etarias = ["0 a 40 anos","41 a 49 anos","50 a 59 anos","60 a 70 anos","70 anos ou mais"]
   if(session){
     const labelsBuscaAtiva = [[]]
+    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "APS - Geral"})
     faixas_etarias.forEach(faixa_etaria => {
-      if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "APS - " + faixa_etaria})
+      if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: session.user.perfis.includes(5) ? "APS " + faixa_etaria : faixa_etaria})
     });
     faixas_etarias.forEach(faixa_etaria => {
-      if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Equipe - " + faixa_etaria})
+      if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: session.user.perfis.includes(5) ? "Equipe " + faixa_etaria : faixa_etaria})
     });
     const links = [[],[]]
+    if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPSGraficos(DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS_GRAFICOS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     faixas_etarias.forEach(faixa_etaria => {
       if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo,faixa_etaria))
     });
