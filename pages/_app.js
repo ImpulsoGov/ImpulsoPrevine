@@ -97,9 +97,9 @@ function MyApp(props) {
                       [{
                         label: "Dados Restritos", url : "",
                         sub:[
-                          {label: "Listas Nominal - Diabéticos", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0"},
-                          {label: "Listas Nominal - Gestantes", url: "/busca-ativa/gestantes?initialTitle=0&painel=0"},
-                          {label: "Listas Nominal - Hipertensos", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0"},
                           {label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}
                         ]
                       }] : [])

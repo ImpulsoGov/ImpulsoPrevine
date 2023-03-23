@@ -8,6 +8,7 @@ import { DATA_STUDIO_URL_DIABETICOS_EQUIPE, DATA_STUDIO_URL_DIABETICOS_COORDENAC
 import { validatetoken} from "../../../services/validateToken"
 import style from "../../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../../helpers/redirectHome";
+import { urlGenBuscaAtivaCoordenacaoAPS,urlGenBuscaAtivaEquipe } from "../../../helpers/urlGenBuscaAtiva";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -20,50 +21,6 @@ export async function getServerSideProps(ctx) {
     props: {
       res : res
     }
-  }
-}
-const genParamEquipe = (token,municipio_uf,equipe,faixa_etaria)=>{
-  let params = {
-    "token": token,
-    "municipio_uf": municipio_uf,
-    "equipe": equipe,
-    "faixa_etaria" : faixa_etaria
-  }
-  var encodedParams = encodeURIComponent(JSON.stringify(params))
-  return encodedParams
-}
-
-const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo,faixa_etaria)=>{
-  console.log(cargo)
-  if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
-    let baseURL = data_studio
-    let param = genParamEquipe(token,municipio_uf,equipe,faixa_etaria)
-    const link = baseURL  + param 
-    console.log(link)
-    return link
-  }else{
-    return ""
-  }
-}
-
-const genParamCoordenacaoAPS = (token,municipio_uf,faixa_etaria)=>{
-  let params = {
-    "token": token,
-    "municipio_uf": municipio_uf,
-    "faixa_etaria": faixa_etaria
-  }
-  var encodedParams = encodeURIComponent(JSON.stringify(params))
-  return encodedParams
-}
-
-const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo,faixa_etaria)=>{
-  if (cargo == "Coordenação APS" || cargo == "Impulser"){
-    let baseURL = data_studio
-    let param = genParamCoordenacaoAPS(token,municipio_uf,faixa_etaria)
-    const link = baseURL  + param 
-    return link
-  }else{
-    return ""
   }
 }
 
@@ -90,7 +47,7 @@ const Index = ({res}) => {
   },[tokenValido])
   const titlesBuscaAtiva = [
     {
-      label: "Indicadores Diabéticos",
+      label: "Indicadores Diabetes",
     },
   ]
   const faixas_etarias = ["0 a 40 anos","41 a 49 anos","50 a 59 anos","60 a 70 anos","70 anos ou mais"]
@@ -109,8 +66,6 @@ const Index = ({res}) => {
     faixas_etarias.forEach(faixa_etaria => {
       if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_DIABETICOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo,faixa_etaria))
     });
-    console.log(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_DIABETICOS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo,faixas_etarias[0]))
-    console.log(links)
     return (
       <>
         <div className={style.BotaoVoltar}>

@@ -67,11 +67,11 @@ const Index = ({res}) => {
                                 icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
                                 links: [
                                     {
-                                        label: 'Diabéticos',
+                                        label: 'Diabetes',
                                         link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
                                     },
                                     {
-                                        label: 'Hipertensos',
+                                        label: 'Hipertensão',
                                         link: '/busca-ativa/hipertensos?initialTitle=0&painel=0'
                                     },
                                     {
