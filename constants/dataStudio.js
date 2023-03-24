@@ -10,5 +10,5 @@ export const DATA_STUDIO_URL_DIABETICOS_COORDENACAO_APS_GRAFICOS = "https://look
 
 export const DATA_STUDIO_URL_HIPERTENSOS_EQUIPE = 'https://lookerstudio.google.com/embed/reporting/1bf496e7-a0be-4514-b8ab-166b7fa38c2a/page/NvkxC?params='
 export const DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS ='https://lookerstudio.google.com/embed/reporting/e784e262-9f4b-49c4-9b85-480c70c39c9a/page/p_kl3q988fyc?params='
-export const DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS_GRAFICOS = "https://lookerstudio.google.com/u/0/reporting/2858527e-b42a-4d8e-8982-f34959b27a40/page/p_kl3q988fyc?params="
+export const DATA_STUDIO_URL_HIPERTENSOS_COORDENACAO_APS_GRAFICOS = "https://lookerstudio.google.com/embed/reporting/2858527e-b42a-4d8e-8982-f34959b27a40/page/p_kl3q988fyc?params="
 
