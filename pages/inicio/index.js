@@ -55,6 +55,8 @@ const Index = ({res}) => {
                         titulo="Trilha de Capacitação: Hipertensão e Diabetes"
                         progressao={data[0].progresso }
                         linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
+                        linkCertificado="/"
+                        certificadoLiberado= {false}
                     />
                 }
                 {
@@ -65,8 +67,16 @@ const Index = ({res}) => {
                                 icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
                                 links: [
                                     {
+                                        label: 'Diabetes',
+                                        link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
+                                    },
+                                    {
+                                        label: 'Hipertensão',
+                                        link: '/busca-ativa/hipertensos?initialTitle=0&painel=0'
+                                    },
+                                    {
                                         label: 'Pré-Natal',
-                                        link: '/busca-ativa?initialTitle=0&painel=0'
+                                        link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
                                     },
                                 ],
                                 texto: 'Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
@@ -76,9 +86,10 @@ const Index = ({res}) => {
                                 icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
                                 links: [
                                     {
-                                    label: 'Gestantes',
-                                    link: '/cadastros-duplicados?initialTitle=0&painel=0'
+                                        label: 'Gestantes',
+                                        link: '/cadastros-duplicados?initialTitle=0&painel=0'
                                     },
+                                    
                                 ],
                                 texto: 'Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.',
                                 titulo: 'Cadastros Duplicados'

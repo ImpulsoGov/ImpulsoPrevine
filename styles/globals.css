@@ -28,8 +28,16 @@ a {
   position: relative;
 }
 
+.NavBarPadding {
+   padding-top: 76px
+}
+
 @media screen and (max-width: 1000px) {
   body{
     margin-top: 40px;
   }
+  .NavBarPadding {
+    padding-top: 30px
+  }
+ 
 }

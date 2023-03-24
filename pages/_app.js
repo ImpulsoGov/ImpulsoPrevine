@@ -96,9 +96,14 @@ function MyApp(props) {
                     (props.ses?.user.perfis.includes(5) || props.ses?.user.perfis.includes(8) || props.ses?.user.perfis.includes(9)) ? 
                       [{
                         label: "Dados Restritos", url : "",
-                        sub:[{label: "Listas Nominais", url: "/busca-ativa?initialTitle=0&painel=0"},{label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}]
+                        sub:[
+                          {label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0"},
+                          {label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0"},
+                          {label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0"}
+                        ]
                       }] : [])
-                      .concat(props.ses?.user.perfis.includes(7) ?[{label: "Trilha de capacitação", url : "/capacitacoes"}] : [])
+                      .concat(props.ses?.user.perfis.includes(7) ?[{label: "Aprenda", url : "/capacitacoes"}] : [])
                       .concat([{label: "Dados Públicos - Q3/22", url : "/analise"}])
                   :  [props.res[0].menus[0],props.res[0].menus[1],props.res[0].menus[3],props.res[0].menus[4]]}
                 NavBarIconBranco = {props.res[0].logoMenuMoblies[0].logo.url}
@@ -141,7 +146,7 @@ function MyApp(props) {
                 }}
               />
             }
-              <div style={{paddingTop:"75px"}}>
+              <div className='NavBarPadding'>
                 <Component {...pageProps} />
               </div>
             <Footer
