@@ -47,7 +47,7 @@ const Index = ({res}) => {
   },[tokenValido])
   const titlesBuscaAtiva = [
     {
-      label: "Indicadores Hipertensão",
+      label: "Indicador Hipertensão",
     }
   ]
 

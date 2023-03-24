@@ -47,7 +47,7 @@ const Index = ({res}) => {
   },[tokenValido])
   const titlesBuscaAtiva = [
     {
-      label: "Indicadores Diabetes",
+      label: "Indicador Diabetes",
     },
   ]
   const faixas_etarias = ["0 a 40 anos","41 a 49 anos","50 a 59 anos","60 a 70 anos","70 anos ou mais"]
