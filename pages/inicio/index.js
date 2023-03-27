@@ -56,7 +56,7 @@ const Index = ({res}) => {
                         progressao={data[0].progresso }
                         linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
                         linkCertificado="/"
-                        certificadoLiberado= {false}
+                        certificadoLiberado= {data[0].progresso>50 ? true : false}
                     />
                 }
                 {
