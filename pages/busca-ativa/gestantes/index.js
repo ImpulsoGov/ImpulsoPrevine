@@ -1,13 +1,13 @@
-import { PanelSelector, CardAlert, TituloTexto, ButtonLight} from "@impulsogov/design-system";
+import { PanelSelector, CardAlert, TituloTexto, ButtonLight, ButtonBar} from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getData } from '../../services/cms'
-import { LAYOUT } from '../../utils/QUERYS'
-import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../constants/dataStudio";
-import { validatetoken} from "../../services/validateToken"
-import style from "../duvidas/Duvidas.module.css"
-import { redirectHome } from "../../helpers/redirectHome";
+import { getData } from '../../../services/cms'
+import { LAYOUT } from '../../../utils/QUERYS'
+import { DATA_STUDIO_URL_EQUIPE, DATA_STUDIO_URL_COORDENACAO_APS, DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS } from "../../../constants/dataStudio";
+import { validatetoken} from "../../../services/validateToken"
+import { redirectHome } from "../../../helpers/redirectHome";
+import style from "../../duvidas/Duvidas.module.css"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -97,6 +97,7 @@ const Index = ({res}) => {
     const links = [[],[]]
     if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
+
     return (
       <>
         <div className={style.BotaoVoltar}>
@@ -105,7 +106,7 @@ const Index = ({res}) => {
           label="VOLTAR" link="/inicio"/>
         </div>
         <TituloTexto
-                titulo="Lista nominal"
+                titulo="Lista Nominal Gestantes"
                 texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
                 imagem = {{posicao: null,url: ''}}
             />
