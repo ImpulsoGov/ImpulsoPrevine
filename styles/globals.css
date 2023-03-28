@@ -6,6 +6,7 @@ body {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
+  height: 100%;
 }
 .layoutColor{
   background-color: #145C56;
@@ -29,15 +30,18 @@ a {
 }
 
 .NavBarPadding {
-   padding-top: 76px
+   padding-top: 76px;
+   height: 100%;
 }
 
 @media screen and (max-width: 1000px) {
   body{
     margin-top: 40px;
+    height: 100%;
   }
   .NavBarPadding {
-    padding-top: 30px
+    padding-top: 30px;
+    height: 100%;
   }
  
 }
