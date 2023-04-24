@@ -57,7 +57,7 @@ return(
             <ModulosTrilha
               tituloTrilha= {res[1].trilhas[0].titulo}
               botaoVoltar= {{label: "VOLTAR",url:"/capacitacoes"}}
-              botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
+              botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"https://chat.whatsapp.com/HMky15GvFczLGSSNZAlJCb"}}
               modulos={data}
               modulo={res[2][0]}
               ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
