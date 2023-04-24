@@ -28,15 +28,13 @@ const Index = ({res}) => {
                 tituloTrilha= "Hipertensão e Diabetes"
                 botaoVoltar= {{label: "VOLTAR",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
                 botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
-                botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
+                botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/HMky15GvFczLGSSNZAlJCb"}}
                 sobre= {{titulo: "Sobre", texto:"<p>Na trilha de capacitação sobre os indicadores de hipertensão e diabetes do Previne Brasil, vamos falar sobre:<ul><li>Particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária;</li><li>As melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes;<li>Dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde;</li><li>E formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade.</li></ul>"}}
                 conteudo={{
                     titulo : "Cronograma",
                     texto : [
-                        {texto: "06/03 | Módulos I e II liberados"},
-                        {texto: "21/03 às 14h | Encontro ao vivo"},
-                        {texto: "20/03 | Módulos III e IV liberados"},
-                        {texto: "04/04 às 14h | Encontro ao vivo"},
+                        {texto: "Fórum 1: 10/05 às 14h"},
+                        {texto: "Fórum 2: 24/05 às 14h"},
                     ]
                 }}
                 nossoTime={{
