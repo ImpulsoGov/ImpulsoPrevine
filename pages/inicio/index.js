@@ -1,11 +1,12 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid} from '@impulsogov/design-system'
+import { Greeting, CardTrilha, CardLargeGrid, ModalAlert , NPS , CardAlertModal } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { useEffect, useState } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
+import { NPSConsulta,NPSAvaliacao } from '../../services/NPS'
 
 
 export async function getServerSideProps(ctx) {
@@ -27,7 +28,14 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
+    const [dataNPS,setDataNPS] = useState(false)
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    const NPSDataClient = async()=> await NPSConsulta(session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{
+        session &&  
+        NPSDataClient().then((response)=>{
+        setDataNPS(response)
+    })},[session]) 
     useEffect(()=>{
         session && res && 
         ProgressoClient().then((response)=>{
@@ -39,9 +47,25 @@ const Index = ({res}) => {
         if (cargo == "Impulser") return cargo
     }
     const cargo = cargo_transform(session?.user?.cargo)
+    console.log(dataNPS)
     if (session){
         return(
             <>
+                {
+                    !dataNPS &&
+                    <ModalAlert
+                        Child={CardAlertModal}
+                        childProps = {{
+                            child : NPS,
+                            childProps:{
+                                titulo : "Como você avalia sua experiência na área logada até agora?",
+                                user : session?.user?.id,
+                                token : session?.user?.access_token,
+                                submit : NPSAvaliacao
+                            }
+                        }}
+                    />
+                }
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem vindo(a)"

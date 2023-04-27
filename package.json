@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@impulsogov/design-system": "^1.0.18",
+    "@impulsogov/design-system": "^1.0.30",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.2",
     "core-js": "^3.23.5",
