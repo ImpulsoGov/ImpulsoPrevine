@@ -1,6 +1,6 @@
 export const LAYOUT = `
 {
-  menus {
+  menus(orderBy: ordem_ASC) {
     label
     url
   }
@@ -9,7 +9,7 @@ export const LAYOUT = `
       url
     }
   }
-  footers {
+  footers(orderBy: ordem_ASC) {
     label
     url
   }
@@ -42,6 +42,9 @@ export const HOME = `
     titulo
   }
   imagemFundos {
+    imagem {
+      url
+    }
     titulo
     tituloColor
     buttonLabel
@@ -141,67 +144,109 @@ export const ANALISE = `
   }
 }
 `
-export const POSTS = `
-{
-  blogArtigos {
-    autor
-    avatar {
-      url
+export const CAPACITACAO = (TRILHA_ID)=>{
+  return(
+  `
+  {
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          titulo
+          moduloId
+          liberado
+          conteudos {
+            tipo
+            tituloTexto {
+              ... on TituloTexto {
+                titulo
+                texto {
+                  html
+                }
+              }
+            }
+            url
+            materialComplementar {
+              ... on Link {
+                label
+                url
+              }
+            }
+            titulo
+            codigo
+          }
+        }
+      }
+      titulo
       id
     }
-    data
-    tag
-    titulo
-    texto {
-      raw
-    }
-    createdAt
-    id
-    capa {
+  }
+  `
+  )
+}
+
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
+  return(
+  `
+  {
+    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
+      codigo
+      materialComplementar {
+        ... on Link {
+          url
+          label
+        }
+      }
+      tipo
+      tituloTexto {
+        ... on TituloTexto {
+          titulo
+          texto {
+            html
+          }
+        }
+      }
       url
     }
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          moduloId
+          titulo
+        }
+      }
+      titulo
+    }  }
+  `
+)}
 
-  }
-}
-`
-
-export const POST =(id)=>{
-  return(`
+export const CONTEUDOS_TRILHAS =
+    `
     {
-      blogArtigo(where: {id: "${id}"}) {
+      trilhas {
+        conteudo {
+          ... on Modulo {
+            moduloId
+            conteudos {
+              codigo
+            }
+          }
+        }
         id
-        autor
-        avatar {
-          url
-        }
-        createdAt
-        tag
-        texto {
-          html
-        }
+      }
+    }
+    `
+
+    export const FAQ =
+    `
+    {
+      faqs() {
         titulo
-        capa {
-          url
+        perguntas {
+          ... on Pergunta {
+            pergunta
+            resposta
+          }
         }
       }
     }
     `
-  )
-}
-
-export const POSTID = `
-{
-  blogArtigos {
-    id
-  }
-}
-`
-export const LISTA_ARTIGOS = `
-{
-  listaArtigos {
-    titulo
-    buttonLabel
-    buttonLink
-  }
-}
-`
