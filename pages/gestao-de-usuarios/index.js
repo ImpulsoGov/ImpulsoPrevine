@@ -10,14 +10,84 @@ import { getData } from '../../services/cms';
 import { LAYOUT } from '../../utils/QUERYS';
 
 const COLUMNS = [
-    { field: 'nome_usuario', headerName: 'Nome', width: 300, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'municipio', headerName: 'Município', width: 200, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'mail', headerName: 'E-Mail', width: 300, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'cpf', headerName: 'CPF', width: 200, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'cargo', headerName: 'Cargo', width: 200, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'telefone', headerName: 'Telefone', width: 200, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'equipe', headerName: 'Equipe (INE)', width: 200, headerAlign: 'center', align: 'center', editable: true },
-    { field: 'autorizacoes', headerName: 'Autorizações', width: 200, headerAlign: 'center', align: 'center' },
+    {
+        field: 'nome_usuario',
+        headerName: 'Nome',
+        width: 300,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'municipio',
+        headerName: 'Município',
+        width: 200,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'mail',
+        headerName: 'E-Mail',
+        width: 300,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'cpf',
+        headerName: 'CPF',
+        width: 200,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'cargo',
+        headerName: 'Cargo',
+        width: 200,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'telefone',
+        headerName: 'Telefone',
+        width: 200,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'equipe',
+        headerName: 'Equipe (INE)',
+        width: 200,
+        headerAlign: 'center',
+        align: 'center',
+        editable: true
+    },
+    {
+        field: 'autorizacoes',
+        headerName: 'Autorizações',
+        width: 300,
+        headerAlign: 'center',
+        align: 'center',
+        renderCell: (params) => {
+            return (
+                <div>
+                    {
+                        params.value.map((autorizacao) => (
+                            <Badge
+                                key={ autorizacao }
+                                badgeContent={ autorizacao }
+                                color="secondary"
+                            />
+                        ))
+                    }
+                </div>
+            );
+        }
+    }
 ];
 
 const data = [
@@ -161,7 +231,7 @@ function EditToolbar(props) {
                 disabled={ !selectedCellParams }
                 variant="outlined"
             >
-                { cellMode === 'edit' ? 'Save' : 'Edit' }
+                { cellMode === 'edit' ? 'Salvar' : 'Editar' }
             </Button>
             <Button
                 onClick={ handleCancel }
@@ -170,7 +240,7 @@ function EditToolbar(props) {
                 variant="outlined"
                 sx={ { ml: 1 } }
             >
-                Cancel
+                Cancelar
             </Button>
         </Box>
     );
@@ -246,12 +316,14 @@ const Index = ({ res }) => {
 
                     <div style={ { padding: 80, paddingTop: 0, height: 800, width: '100%' } }>
                         <DataGrid
-                            rows={ formatarLinhas(data) }
+                            rows={ data }
                             columns={ COLUMNS }
+                            // editMode="row"
                             onCellKeyDown={ handleCellKeyDown }
                             cellModesModel={ cellModesModel }
                             onCellEditStop={ handleCellEditStop }
                             onCellModesModelChange={ (model) => setCellModesModel(model) }
+                            // rowHeight={ 100 }
                             slots={ {
                                 toolbar: EditToolbar,
                             } }
@@ -279,7 +351,7 @@ const Index = ({ res }) => {
                                     whiteSpace: "break-spaces",
                                     lineHeight: 1,
                                     textAlign: "center"
-                                }
+                                },
                             } }
                         />
                     </div>
