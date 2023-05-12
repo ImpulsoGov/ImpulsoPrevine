@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+.BotaoVoltar{
+    padding: 30px 80px 30px 80px;
+}
+
+/* XLARGE */
+@media screen and (min-width: 1920px) {
+    .BotaoVoltar{
+        padding: 30px 80px 30px 125px;
+        padding-right: 125px;
+    }
+    
+}
+
+/* LARGE */
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+}
+
+/* REGULAR */
+@media screen and (min-width: 1025px)and (max-width: 1439px) {
+}
+
+/* MEDIUM */
+@media screen and (min-width: 768px)and (max-width: 1024px) {
+}
+
+/* SMALL */
+@media screen and (min-width: 375px)and (max-width: 767px) {
+}
+
+/* XSMALL */
+@media screen and (max-width: 374px) {
+}

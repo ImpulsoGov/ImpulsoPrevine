@@ -1,13 +1,25 @@
-import Layout from "../componentes/Layout";
 import { HomeBanner } from "@impulsogov/design-system";
 import { ImagemFundo } from "@impulsogov/design-system"
 import { ParceriasTexto } from "@impulsogov/design-system";
 import { FormConsultoria } from "@impulsogov/design-system";
+import { Alert } from "@impulsogov/design-system";
 
-import { getData } from '../utils/cms'
+
+import { getData } from '../services/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(!redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
   const res = [
     await getData(LAYOUT),
     await getData(HOME),
@@ -32,34 +44,17 @@ const Parceiros = (res)=>{
 }
 
 
+
 const Index = ({res}) => {
   return (
-    <Layout 
-      pageTitle="Previne Brasil | Home"
-      color="layoutColor"
-      logoIPColor={res[0].logoIps[0].logo[0].url}
-      logoIPWhite = {res[0].logoIps[0].logo[1].url}
-      menus = {res[0].menus}
-      footer = {res[0].footers}
-      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
-      socialMedia = { [
-        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
-        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
-        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
-      ]}
-      copyright = {{
-        label: res[0].copyrights[0].copyright,
-        contato : res[0].copyrights[0].contato
-      }}
-      NavBarIconBranco =  {res[0].logoMenuMoblies[0].logo.url}
-      NavBarIconDark =  {res[0].logoMenuMoblies[1].logo.url}
-    >
+    <div style={{backgroundColor: "#145C56"}}>
       <HomeBanner
         titulo = {res[1].homeBanners[0].titulo}
         tituloDestaque = ""
         texto = ""
       />
       <ImagemFundo
+          imagem = {res[1].imagemFundos[0].imagem.url}
           chamada = {res[1].imagemFundos[0].titulo}
           chamadacolor = {res[1].imagemFundos[0].tituloColor}
           cards = {res[1].imagemfundoContents}
@@ -75,13 +70,13 @@ const Index = ({res}) => {
           label = {res[1].parceirosAll[0].labelImages}
           parceiros = {Parceiros(res[1].logoParceiros[0].logoparceiro)}
       />
-    <FormConsultoria
-        title={res[1].formConsultorias[0].titulo}
-        mail=""
-        link={res[1].formConsultorias[0].link}
-        button={res[1].formConsultorias[0].button}
-    />      
-    </Layout>
+      <FormConsultoria
+          title={res[1].formConsultorias[0].titulo}
+          mail=""
+          link={res[1].formConsultorias[0].link}
+          button={res[1].formConsultorias[0].button}
+      />      
+    </div>
   )
 }
 

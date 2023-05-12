@@ -1,0 +1,1 @@
+export { FullModal } from "./FullModal"

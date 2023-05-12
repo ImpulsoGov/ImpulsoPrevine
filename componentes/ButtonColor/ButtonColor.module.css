@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@40;500&display=swap");
+
+.ButtonColorContainer{
+    border: 1px solid rgba(96, 110, 120, 0.15);
+    background-color: #1D856C;
+    color: #fff;
+    border-radius: 100px;
+    padding: 0px 30px;
+    font-size: 15px;
+    font-family: 'inter';
+    font-weight: 500;
+    line-height: 100%;
+    box-sizing: border-box;
+    width: fit-content;
+    height: 64px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.ButtonColorContainer:hover{
+    border: 1px solid rgba(96, 110, 120, 0.50);
+    background-color: #1d856df0;
+    cursor: pointer;
+}
+

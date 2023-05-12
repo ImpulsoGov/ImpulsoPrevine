@@ -1,14 +1,12 @@
-import Layout from "../../componentes/Layout";
-import { Header } from "@impulsogov/design-system";
-import { ButtonBar } from "@impulsogov/design-system";
-import { ButtonLight } from "@impulsogov/design-system";
-import { getData } from '../../utils/cms';
-import { LAYOUT, ANALISE } from '../../utils/QUERYS';
+import { useEffect,useState,useContext } from 'react';
+import Context from "../../utils/Context";
+import { getData } from '../../services/cms';
+import { LAYOUT } from '../../utils/QUERYS';
+import { PanelSelector } from "@impulsogov/design-system"
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = [
     await getData(LAYOUT),
-    await getData(ANALISE),
   ]
   return {
     props: {
@@ -17,41 +15,64 @@ export async function getStaticProps() {
   }
 }
 
+const urlGenIndicadores = (cidade)=>{
+  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
+  let baseURL = 'https://datastudio.google.com/embed/reporting/a7b8746b-caff-4d07-8a57-ce3739c52f0a/page/p_1i1fd8auvc?params=%7B%22df58%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
+  let endURL = '"%7D'
+  const link = baseURL  + encode(cidade) + endURL
+  return link
+}
+
+const urlGenCaptacao = (cidade)=>{
+  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
+  let baseURL = 'https://datastudio.google.com/embed/reporting/12fb288f-4955-4930-b091-63da3f846c51/page/p_8qgdgiz2xc/edit?params=%7B%22df56%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
+  let endURL = '"%7D'
+  const link = baseURL  + encode(cidade) + endURL
+  return link
+}
+const urlGenAE = (cidade)=>{
+  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
+  let baseURL = 'https://datastudio.google.com/embed/reporting/b3614781-b39a-4f3b-8956-d628c3db169c/page/cMHxC/edit?params=%7B%22df4%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
+  let endURL = '"%7D'
+  const link = baseURL  + encode(cidade) + endURL
+  return link
+}
 
 const Index = ({res}) => {
+  const [cidade, setCidade] = useContext(Context);
+  const [dsLink, setDSLink] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  useEffect(() => {
+    setDSLink([urlGenIndicadores(cidade),urlGenCaptacao(cidade),urlGenAE(cidade)])
+    setLoading(true)
+  }, [cidade]);
+  const labels = [
+    {
+      label: "Indicadores de Desempenho",
+    },
+    {
+      label: "Capitação Ponderada",
+    },
+    {
+      label: "Incentivos a Ações Estratégicas",
+    },
+  ]
+  const titles = [
+    {
+      label: "Análises",
+    }
+  ]
   return (
-    <Layout 
-      pageTitle="Previne Brasil | Análise"
-      logoIPColor={res[0].logoIps[0].logo[0].url}
-      logoIPWhite = {res[0].logoIps[0].logo[1].url}
-      menus = {res[0].menus}
-      footer = {res[0].footers}
-      logoImpulso = {res[0].logoImpulsos[0].logo[0].url}
-      socialMedia = { [
-        { url: res[0].socialMedias[0].url, logo: res[0].socialMedias[0].logo[0].url},
-        { url: res[0].socialMedias[1].url, logo: res[0].socialMedias[1].logo[0].url},
-        { url: res[0].socialMedias[2].url, logo: res[0].socialMedias[2].logo[0].url},
-      ]}
-      copyright = {{
-        label: res[0].copyrights[0].copyright,
-        contato : res[0].copyrights[0].contato
-      }}
-      NavBarIconBranco =  {res[0].logoMenuMoblies[0].logo.url}
-      NavBarIconDark =  {res[0].logoMenuMoblies[1].logo.url}
-    >
-      <Header
-        titulo = {res[1].headers[1].titulo}
-        texto = {res[1].headers[1].texto}
-        botao = {{label : null,url:null}}
-        chamada = {{label : null,url:null}}
+    <>
+      {
+        isLoading==true &&
+        <PanelSelector
+          links = {[dsLink]}
+          list={[labels]}
+          titles={titles}        
         />
-        <ButtonBar
-            child1 = {<ButtonLight label={res[1].buttonBars[0].label} link={res[1].buttonBars[0].link}/>}
-            child2= {<ButtonLight label={res[1].buttonBars[1].label} link={res[1].buttonBars[1].link}/>}
-            child3 = {<ButtonLight label={res[1].buttonBars[2].label} link={res[1].buttonBars[2].link}/>}
-
-        />    
-        </Layout>
+      }
+    </>
   )
 }
 
