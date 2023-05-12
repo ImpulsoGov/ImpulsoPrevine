@@ -224,11 +224,6 @@ export const ANALISE = `
       }
     }`
     
-    export const CAPACITACAO = (TRILHA_ID)=>{
-}
-
-export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
-)}
 
 export const CONTEUDOS_TRILHAS =
     `
@@ -246,3 +241,78 @@ export const CONTEUDOS_TRILHAS =
       }
     }
     `
+export const CAPACITACAO = (TRILHA_ID)=>{
+  return(
+  `
+  {
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          titulo
+          moduloId
+          liberado
+          conteudos {
+            tipo
+            tituloTexto {
+              ... on TituloTexto {
+                titulo
+                texto {
+                  html
+                }
+              }
+            }
+            url
+            materialComplementar {
+              ... on Link {
+                label
+                url
+              }
+            }
+            titulo
+            codigo
+          }
+        }
+      }
+      titulo
+      id
+    }
+  }
+  `
+  )
+}
+
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
+  return(
+  `
+  {
+    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
+      codigo
+      materialComplementar {
+        ... on Link {
+          url
+          label
+        }
+      }
+      tipo
+      tituloTexto {
+        ... on TituloTexto {
+          titulo
+          texto {
+            html
+          }
+        }
+      }
+      url
+    }
+    trilhas(where: {id: "${TRILHA_ID}"}) {
+      conteudo {
+        ... on Modulo {
+          moduloId
+          titulo
+        }
+      }
+      titulo
+    }  }
+  `
+)}
+
