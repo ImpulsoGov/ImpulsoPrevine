@@ -223,3 +223,26 @@ export const ANALISE = `
         buttonLink
       }
     }`
+    
+    export const CAPACITACAO = (TRILHA_ID)=>{
+}
+
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
+)}
+
+export const CONTEUDOS_TRILHAS =
+    `
+    {
+      trilhas {
+        conteudo {
+          ... on Modulo {
+            moduloId
+            conteudos {
+              codigo
+            }
+          }
+        }
+        id
+      }
+    }
+    `
