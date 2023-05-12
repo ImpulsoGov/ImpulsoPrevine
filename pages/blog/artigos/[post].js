@@ -1,6 +1,6 @@
 import Layout from "../../../componentes/Layout"
 import { ConteudoBlog } from '@impulsogov/design-system'
-import { getData } from '../../../utils/cms'
+import { getData } from '../../../services/cms'
 import { LAYOUT,POST, POSTID } from '../../../utils/QUERYS'
 
 export async function getStaticPaths() {
