@@ -2,7 +2,7 @@ import { TituloTexto } from "@impulsogov/design-system";
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { DataGrid, GridCellModes } from '@mui/x-data-grid';
+import { DataGrid, GridRowModes } from '@mui/x-data-grid';
 import { getSession, useSession } from "next-auth/react";
 import React from "react";
 import { redirectHomeNotLooged } from '../../helpers/redirectHome';
@@ -85,6 +85,18 @@ const COLUMNS = [
                         ))
                     }
                 </div>
+            );
+        }
+    },
+    {
+        field: 'editarAutorizacoes',
+        headerName: 'Editar autorizações',
+        width: 300,
+        headerAlign: 'center',
+        align: 'center',
+        renderCell: (params) => {
+            return (
+                <button>✎</button>
             );
         }
     }
@@ -184,16 +196,16 @@ function EditToolbar(props) {
         if (!selectedCellParams) {
             return;
         }
-        const { id, field } = selectedCellParams;
+        const { id } = selectedCellParams;
         if (cellMode === 'edit') {
             setCellModesModel({
                 ...cellModesModel,
-                [id]: { ...cellModesModel[id], [field]: { mode: GridCellModes.View } },
+                [id]: { mode: GridRowModes.View },
             });
         } else {
             setCellModesModel({
                 ...cellModesModel,
-                [id]: { ...cellModesModel[id], [field]: { mode: GridCellModes.Edit } },
+                [id]: { mode: GridRowModes.Edit },
             });
         }
     };
@@ -202,12 +214,11 @@ function EditToolbar(props) {
         if (!selectedCellParams) {
             return;
         }
-        const { id, field } = selectedCellParams;
+        const { id } = selectedCellParams;
         setCellModesModel({
             ...cellModesModel,
             [id]: {
-                ...cellModesModel[id],
-                [field]: { mode: GridCellModes.View, ignoreModifications: true },
+                mode: GridRowModes.View, ignoreModifications: true
             },
         });
     };
@@ -252,18 +263,18 @@ const Index = ({ res }) => {
     const [cellModesModel, setCellModesModel] = React.useState({});
 
     const handleCellFocus = React.useCallback((event) => {
-        const row = event.currentTarget.parentElement;
-        const id = row.dataset.id;
-        const field = event.currentTarget.dataset.field;
-        setSelectedCellParams({ id, field });
+        // const row = event.currentTarget.parentElement;
+        const id = event.currentTarget.dataset.id;
+        // const field = event.currentTarget.dataset.field;
+        setSelectedCellParams({ id });
     }, []);
 
     const cellMode = React.useMemo(() => {
         if (!selectedCellParams) {
             return 'view';
         }
-        const { id, field } = selectedCellParams;
-        return cellModesModel[id]?.[field]?.mode || 'view';
+        const { id } = selectedCellParams;
+        return cellModesModel[id]?.mode || 'view';
     }, [cellModesModel, selectedCellParams]);
 
     const handleCellKeyDown = React.useCallback(
@@ -279,27 +290,6 @@ const Index = ({ res }) => {
     const handleCellEditStop = React.useCallback((params, event) => {
         event.defaultMuiPrevented = true;
     }, []);
-
-    const getBadgesAutorizacoes = (autorizacoes) => {
-        const badgesAutorizacoes = autorizacoes.map((autorizacao) => (
-            <Badge
-                key={ autorizacao }
-                badgeContent={ autorizacao }
-                color="secondary"
-            />
-        ));
-
-        return badgesAutorizacoes;
-    };
-
-    const adicionarBadgesAutorizacoes = (linha) => {
-        const badgesAutorizacoes = getBadgesAutorizacoes(linha.autorizacoes);
-
-        return { ...linha, autorizacoes: badgesAutorizacoes[0] };
-    };
-
-    const formatarLinhas = (linhas) => linhas
-        .map((linha) => adicionarBadgesAutorizacoes(linha));
 
     return (
         <>
@@ -318,11 +308,11 @@ const Index = ({ res }) => {
                         <DataGrid
                             rows={ data }
                             columns={ COLUMNS }
-                            // editMode="row"
-                            onCellKeyDown={ handleCellKeyDown }
-                            cellModesModel={ cellModesModel }
-                            onCellEditStop={ handleCellEditStop }
-                            onCellModesModelChange={ (model) => setCellModesModel(model) }
+                            editMode="row"
+                            onRowKeyDown={ handleCellKeyDown }
+                            rowModesModel={ cellModesModel }
+                            onRowEditStop={ handleCellEditStop }
+                            onRowModesModelChange={ (model) => setCellModesModel(model) }
                             // rowHeight={ 100 }
                             slots={ {
                                 toolbar: EditToolbar,
@@ -335,7 +325,7 @@ const Index = ({ res }) => {
                                     cellModesModel,
                                     setCellModesModel,
                                 },
-                                cell: {
+                                row: {
                                     onFocus: handleCellFocus,
                                 },
                             } }
