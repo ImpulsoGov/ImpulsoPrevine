@@ -24,10 +24,6 @@ export const LAYOUT = `
     }
     url
   }
-  copyrights {
-    contato
-    copyright
-  }
   logoMenuMoblies {
     logo {
       url
