@@ -161,8 +161,8 @@ function MyApp(props) {
                   second: "",
               }}
               contactCopyright={{
-                  copyright: props.res[0].copyrights[0].copyright,
-                  email: props.res[0].copyrights[0].contato,
+                  copyright: "© 2023 Impulso",
+                  email: "contato@impulsogov.org",
               }}
               links={ [props.res[0].menus[0],props.res[0].menus[7]] }
               socialMediaURLs={[
