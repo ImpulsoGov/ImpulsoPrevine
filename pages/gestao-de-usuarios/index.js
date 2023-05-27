@@ -1,354 +1,425 @@
-import { TituloTexto } from "@impulsogov/design-system";
+import { ButtonColorSubmit, Spinner, TituloSmallTexto, TituloTexto } from '@impulsogov/design-system';
+import Alert from '@mui/material/Alert';
 import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Snackbar from '@mui/material/Snackbar';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
-import { getSession, useSession } from "next-auth/react";
-import React from "react";
+import { getSession, useSession } from 'next-auth/react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { MultipleSelectCheckmarks } from '../../componentes/MultipleSelectCheckmarks';
+import { Toolbar } from '../../componentes/Toolbar';
 import { redirectHomeNotLooged } from '../../helpers/redirectHome';
 import { getData } from '../../services/cms';
+import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
 import { LAYOUT } from '../../utils/QUERYS';
 
-const COLUMNS = [
-    {
-        field: 'nome_usuario',
-        headerName: 'Nome',
-        width: 300,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'municipio',
-        headerName: 'Município',
-        width: 200,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'mail',
-        headerName: 'E-Mail',
-        width: 300,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'cpf',
-        headerName: 'CPF',
-        width: 200,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'cargo',
-        headerName: 'Cargo',
-        width: 200,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'telefone',
-        headerName: 'Telefone',
-        width: 200,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'equipe',
-        headerName: 'Equipe (INE)',
-        width: 200,
-        headerAlign: 'center',
-        align: 'center',
-        editable: true
-    },
-    {
-        field: 'autorizacoes',
-        headerName: 'Autorizações',
-        width: 300,
-        headerAlign: 'center',
-        align: 'center',
-        renderCell: (params) => {
-            return (
-                <div>
-                    {
-                        params.value.map((autorizacao) => (
-                            <Badge
-                                key={ autorizacao }
-                                badgeContent={ autorizacao }
-                                color="secondary"
-                            />
-                        ))
-                    }
-                </div>
-            );
-        }
-    },
-    {
-        field: 'editarAutorizacoes',
-        headerName: 'Editar autorizações',
-        width: 300,
-        headerAlign: 'center',
-        align: 'center',
-        renderCell: (params) => {
-            return (
-                <button>✎</button>
-            );
-        }
-    }
-];
-
-const data = [
-    {
-        "mail": "aangelicasouza24@gmail.com",
-        "cpf": "06385182614",
-        "nome_usuario": "Angelica Souza Toledo Andrade",
-        "municipio": "Viçosa - MG",
-        "cargo": "Coordenação de Equipe",
-        "telefone": "31986936665",
-        "equipe": "0000278130",
-        "autorizacoes": ["Plataforma IP", "Plataforma IP - Coordenação de Equipe", "Plataforma IP - Capacitação"]
-    },
-    {
-        "mail": "abpirenopolis@gmail.com",
-        "cpf": "01297610105",
-        "nome_usuario": "Lucilia Goulão",
-        "municipio": "Pirenópolis - GO",
-        "cargo": "Coordenação de APS",
-        "telefone": "62992700421",
-        "equipe": "0",
-        "autorizacoes": ["Plataforma IP", "Plataforma IP - Coordenação de Equipe"]
-    },
-    {
-        "mail": "adriana-bispodos-santos@hotmail.com",
-        "cpf": "25426438811",
-        "nome_usuario": "Adriana Bispo Dos Santos",
-        "municipio": "Juquitiba - SP",
-        "cargo": "Coordenação APS",
-        "telefone": "11912394343",
-        "equipe": "0",
-        "autorizacoes": ["Plataforma IP - Coordenação de Equipe", "Plataforma IP - Capacitação"]
-    },
-    {
-        "mail": "aguedagabriela@gmail.com",
-        "cpf": "09310820489",
-        "nome_usuario": "Agueda Gabriela Ferreira Miranda Galindo",
-        "municipio": "Alagoinha - PE",
-        "cargo": "Coordenação de Equipe",
-        "telefone": "87991527468",
-        "equipe": "0000134996",
-        "autorizacoes": ["Plataforma IP", "Plataforma IP - Coordenação de Equipe", "Plataforma IP - Capacitação"]
-    },
-    {
-        "mail": "aldiza_lopes@hotmail.com",
-        "cpf": "01708361260",
-        "nome_usuario": "Aldiza Lopes Da Silva",
-        "municipio": "Lábrea - AM",
-        "cargo": "Coordenação de Equipe",
-        "telefone": "97991628405",
-        "equipe": "0EQ01AMLAB",
-        "autorizacoes": ["Plataforma IP"]
-    },
-    {
-        "mail": "alessandraenfermeira2010@hotmail.com",
-        "cpf": "03319837532",
-        "nome_usuario": "Alessandra Ramos",
-        "municipio": "Santo Antônio do Descoberto - GO",
-        "cargo": "Coordenação de Equipe",
-        "telefone": "61995058384",
-        "equipe": "0000466204",
-        "autorizacoes": ["Plataforma IP - Coordenação de Equipe"]
-    },
-    {
-        "mail": "aline.santos2277@gmail.com",
-        "cpf": "01512606219",
-        "nome_usuario": "Aline Alves Dos Santos",
-        "municipio": "Lábrea - AM",
-        "cargo": "Coordenação de Equipe",
-        "telefone": "97984251509",
-        "equipe": "0EQ02AMLAB",
-        "autorizacoes": ["Plataforma IP - Capacitação"]
-    },
-];
-
 export async function getServerSideProps(ctx) {
-    const session = await getSession(ctx);
-    const redirect = redirectHomeNotLooged(ctx, session); //alterar para gerenciador de usuarios somente
-    if (redirect) return redirect;
-    const res = [
-        await getData(LAYOUT)
-    ];
-    return {
-        props: {
-            res: res
-        }
-    };
+  const session = await getSession(ctx);
+  const redirect = redirectHomeNotLooged(ctx, session); //alterar para gerenciador de usuarios somente
+  if (redirect) return redirect;
+  const res = [
+    await getData(LAYOUT)
+  ];
+  return {
+    props: {
+      res: res
+    }
+  };
 }
 
-function EditToolbar(props) {
-    const { selectedCellParams, cellMode, cellModesModel, setCellModesModel } = props;
+const GestaoDeUsuarios = () => {
+  const { data: session } = useSession();
+  const [rows, setRows] = useState([]);
+  const [selectedRowId, setSelectedRowId] = useState('');
+  const [rowModesModel, setRowModesModel] = useState({});
+  const [shouldShowModal, setShouldShowModal] = useState(false);
+  const [autorizacoes, setAutorizacoes] = useState([]);
+  const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
+  const [snackbar, setSnackbar] = useState(null);
 
-    const handleSaveOrEdit = () => {
-        if (!selectedCellParams) {
-            return;
-        }
-        const { id } = selectedCellParams;
-        if (cellMode === 'edit') {
-            setCellModesModel({
-                ...cellModesModel,
-                [id]: { mode: GridRowModes.View },
-            });
-        } else {
-            setCellModesModel({
-                ...cellModesModel,
-                [id]: { mode: GridRowModes.Edit },
-            });
-        }
-    };
+  useEffect(() => {
+    listarPerfis()
+      .then((perfis) => setAutorizacoes(perfis));
 
-    const handleCancel = () => {
-        if (!selectedCellParams) {
-            return;
-        }
-        const { id } = selectedCellParams;
-        setCellModesModel({
-            ...cellModesModel,
-            [id]: {
-                mode: GridRowModes.View, ignoreModifications: true
-            },
-        });
-    };
+    listarUsuarios()
+      .then((usuarios) => {
+        const linhas = transformarDadosEmLinhas(usuarios);
+        setRows(linhas);
+      });
+  }, []);
 
-    const handleMouseDown = (event) => {
-        // Keep the focus in the cell
-        event.preventDefault();
-    };
-
-    return (
-        <Box
-            sx={ {
-                borderBottom: 1,
-                borderColor: 'divider',
-                p: 1,
-            } }
-        >
-            <Button
-                onClick={ handleSaveOrEdit }
-                onMouseDown={ handleMouseDown }
-                disabled={ !selectedCellParams }
-                variant="outlined"
-            >
-                { cellMode === 'edit' ? 'Salvar' : 'Editar' }
-            </Button>
-            <Button
-                onClick={ handleCancel }
-                onMouseDown={ handleMouseDown }
-                disabled={ cellMode === 'view' }
-                variant="outlined"
-                sx={ { ml: 1 } }
-            >
-                Cancelar
-            </Button>
-        </Box>
-    );
-}
-
-const Index = ({ res }) => {
-    const { data: session, status } = useSession();
-    const [selectedCellParams, setSelectedCellParams] = React.useState(null);
-    const [cellModesModel, setCellModesModel] = React.useState({});
-
-    const handleCellFocus = React.useCallback((event) => {
-        // const row = event.currentTarget.parentElement;
-        const id = event.currentTarget.dataset.id;
-        // const field = event.currentTarget.dataset.field;
-        setSelectedCellParams({ id });
-    }, []);
-
-    const cellMode = React.useMemo(() => {
-        if (!selectedCellParams) {
-            return 'view';
-        }
-        const { id } = selectedCellParams;
-        return cellModesModel[id]?.mode || 'view';
-    }, [cellModesModel, selectedCellParams]);
-
-    const handleCellKeyDown = React.useCallback(
-        (params, event) => {
-            if (cellMode === 'edit') {
-                // Prevents calling event.preventDefault() if Tab is pressed on a cell in edit mode
-                event.defaultMuiPrevented = true;
-            }
-        },
-        [cellMode],
-    );
-
-    const handleCellEditStop = React.useCallback((params, event) => {
-        event.defaultMuiPrevented = true;
-    }, []);
-
-    return (
-        <>
+  const columns = useMemo(() => [
+    {
+      field: 'nome',
+      headerName: 'Nome',
+      width: 300,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'municipio',
+      headerName: 'Município',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'mail',
+      headerName: 'E-Mail',
+      width: 300,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'cpf',
+      headerName: 'CPF',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'cargo',
+      headerName: 'Cargo',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'telefone',
+      headerName: 'Telefone',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'equipe',
+      headerName: 'Equipe (INE)',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true
+    },
+    {
+      field: 'autorizacoes',
+      headerName: 'Autorizações',
+      width: 300,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return (
+          <div>
             {
-                data && session?.user.perfis.includes(2) &&
-                <>
-                    <TituloTexto imagem={ {
-                        posicao: null,
-                        url: ''
+              params.value.map((autorizacao) => (
+                <div key={ autorizacao }>
+                  <Badge
+                    key={ autorizacao }
+                    badgeContent={ autorizacao }
+                    color='primary'
+                    sx={ {
+                      '& .MuiBadge-colorPrimary': {
+                        backgroundColor: '#2EB280'
+                      },
                     } }
-                        titulo='Bem vindo a área de gestão de usuários'
-                        texto=''
-                    />
-
-                    <div style={ { padding: 80, paddingTop: 0, height: 800, width: '100%' } }>
-                        <DataGrid
-                            rows={ data }
-                            columns={ COLUMNS }
-                            editMode="row"
-                            onRowKeyDown={ handleCellKeyDown }
-                            rowModesModel={ cellModesModel }
-                            onRowEditStop={ handleCellEditStop }
-                            onRowModesModelChange={ (model) => setCellModesModel(model) }
-                            // rowHeight={ 100 }
-                            slots={ {
-                                toolbar: EditToolbar,
-                            } }
-                            slotProps={ {
-                                toolbar: {
-                                    cellMode,
-                                    selectedCellParams,
-                                    setSelectedCellParams,
-                                    cellModesModel,
-                                    setCellModesModel,
-                                },
-                                row: {
-                                    onFocus: handleCellFocus,
-                                },
-                            } }
-                            initialState={ {
-                                ...data.initialState,
-                                pagination: { paginationModel: { pageSize: 10 } },
-                            } }
-                            pageSizeOptions={ [10, 30, 45] }
-                            getRowId={ (row) => row.cpf }
-                            sx={ {
-                                '& .MuiDataGrid-columnHeaderTitle': {
-                                    textOverflow: "clip",
-                                    whiteSpace: "break-spaces",
-                                    lineHeight: 1,
-                                    textAlign: "center"
-                                },
-                            } }
-                        />
-                    </div>
-                </>
+                  />
+                </div>
+              ))
             }
-        </>
+          </div>
+        );
+      }
+    },
+    {
+      field: 'editarAutorizacoes',
+      headerName: 'Editar autorizações',
+      width: 300,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return (
+          <Button
+            onClick={ params.value }
+            variant='text'
+            sx={ {
+              ml: 1,
+              fontSize: '20px',
+              color: '#606E78'
+            } }
+          >
+            ✎
+          </Button>
+        );
+      }
+    }
+  ], []);
+
+  const showModal = useCallback(() => {
+    setShouldShowModal(true);
+  }, []);
+
+  const closeModal = useCallback(() => setShouldShowModal(false), []);
+
+  const transformarDadosEmLinhas = useCallback((dados) => {
+    return dados.map((dado) => ({
+      id: dado['id_usuario'],
+      mail: dado.mail,
+      cpf: dado.cpf,
+      nome: dado['nome_usuario'],
+      municipio: dado.municipio,
+      cargo: dado.cargo,
+      telefone: dado.telefone,
+      equipe: dado.equipe,
+      autorizacoes: dado.autorizacoes,
+      editarAutorizacoes: showModal
+    }));
+  }, [showModal]);
+
+  const handleCloseSnackbar = useCallback(() => setSnackbar(null), []);
+
+  const handleRowFocus = useCallback((event) => {
+    const rowId = event.currentTarget.dataset.id;
+    const { autorizacoes } = rows.find(({ id }) => id === rowId);
+
+    setSelectedRowId(rowId);
+    setSelectedRowAutorizacoes([...autorizacoes]);
+  }, [rows]);
+
+  const rowMode = useMemo(() => {
+    if (!selectedRowId) {
+      return 'view';
+    }
+
+    return rowModesModel[selectedRowId]?.mode || 'view';
+  }, [rowModesModel, selectedRowId]);
+
+  const handleRowKeyDown = useCallback(
+    (_params, event) => {
+      if (rowMode === 'edit') {
+        // Prevents calling event.preventDefault() if Tab is pressed on a cell in edit mode
+        event.defaultMuiPrevented = true;
+      }
+    },
+    [rowMode],
+  );
+
+  const handleRowEditStop = useCallback((_params, event) => {
+    event.defaultMuiPrevented = true;
+  }, []);
+
+  const processRowUpdate = useCallback(async (newRow) => {
+    const usuarioId = newRow.id;
+    const dadosAtualizados = await atualizarUsuario(usuarioId, newRow);
+    const linhasAtualizadas = rows.map((row) => row.id === newRow.id
+      ? {
+        ...dadosAtualizados,
+        autorizacoes: newRow.autorizacoes,
+        editarAutorizacoes: newRow.editarAutorizacoes
+      }
+      : row
     );
+
+    setRows(linhasAtualizadas);
+    setSnackbar({ children: 'Usuário salvo com sucesso', severity: 'success' });
+
+    return newRow;
+  }, [rows]);
+
+  const handleProcessRowUpdateError = useCallback((error) => {
+    setSnackbar({ children: error.message, severity: 'error' });
+  }, []);
+
+  const handleSaveClick = useCallback(() => {
+    if (!selectedRowId) {
+      return;
+    }
+
+    setRowModesModel({
+      ...rowModesModel,
+      [selectedRowId]: { mode: GridRowModes.View },
+    });
+  }, [rowModesModel, selectedRowId]);
+
+  const handleEditClick = useCallback(() => {
+    if (!selectedRowId) {
+      return;
+    }
+
+    setRowModesModel({
+      ...rowModesModel,
+      [selectedRowId]: { mode: GridRowModes.Edit },
+    });
+  }, [rowModesModel, selectedRowId]);
+
+  const handleCancelClick = useCallback(() => {
+    if (!selectedRowId) {
+      return;
+    }
+
+    setRowModesModel({
+      ...rowModesModel,
+      [selectedRowId]: {
+        mode: GridRowModes.View, ignoreModifications: true
+      },
+    });
+  }, [rowModesModel, selectedRowId]);
+
+  const handleSelectChange = useCallback((event) => {
+    const { target: { value } } = event;
+
+    // On autofill we get a stringified value.
+    setSelectedRowAutorizacoes(
+      typeof value === 'string' ? value.split(', ') : value,
+    );
+  }, []);
+
+  const getSelectedAutorizacoesIds = useCallback(() => {
+    const autorizacoesIds = selectedRowAutorizacoes.map((autorizacao) => {
+      const { id } = autorizacoes.find(({ descricao }) => descricao === autorizacao);
+
+      return id;
+    });
+
+    return autorizacoesIds;
+  }, [selectedRowAutorizacoes, autorizacoes]);
+
+  const handleAutorizacoesEdit = useCallback(async () => {
+    const usuarioId = selectedRowId;
+    const autorizacoesIds = getSelectedAutorizacoesIds();
+    const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+    const novasAutorizacoes = response.map(({ descricao }) => descricao);
+    const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
+      ? { ...row, autorizacoes: novasAutorizacoes }
+      : row
+    );
+
+    setRows(linhasAtualizadas);
+    setSnackbar({
+      children: 'Autorizações atualizadas com sucesso',
+      severity: 'success'
+    });
+  }, [getSelectedAutorizacoesIds, selectedRowId, rows]);
+
+  return (
+    <>
+      { rows.length !== 0 && session?.user.perfis.includes(2)
+        ? (
+          <>
+            <TituloTexto imagem={ {
+              posicao: null,
+              url: ''
+            } }
+              titulo='Bem vindo a área de gestão de usuários'
+              texto=''
+            />
+
+            <Modal
+              open={ shouldShowModal }
+              onClose={ closeModal }
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+            >
+              <div style={ {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '60%',
+                height: '60vh',
+                backgroundColor: 'white',
+                borderRadius: '15px',
+                padding: '30px 50px 30px 40px',
+              } }>
+                <TituloSmallTexto
+                  imagem={ {
+                    posicao: null,
+                    url: ''
+                  } }
+                  texto=''
+                  titulo='Alterar autorizações'
+                />
+
+                <div style={ {
+                  display: 'flex',
+                  justifyContent: 'space-around'
+                } }>
+                  <MultipleSelectCheckmarks
+                    label='Autorizações'
+                    options={ autorizacoes }
+                    selectedOptions={ selectedRowAutorizacoes }
+                    handleChange={ handleSelectChange }
+                  />
+
+                  <ButtonColorSubmit
+                    label='ALTERAR'
+                    submit={ handleAutorizacoesEdit }
+                  />
+                </div>
+              </div>
+            </Modal>
+
+            <div style={ { padding: 80, paddingTop: 0, height: 800, width: '100%' } }>
+              <DataGrid
+                rows={ rows }
+                columns={ columns }
+                editMode='row'
+                onRowKeyDown={ handleRowKeyDown }
+                rowModesModel={ rowModesModel }
+                onRowEditStop={ handleRowEditStop }
+                onRowModesModelChange={ (model) => setRowModesModel(model) }
+                processRowUpdate={ processRowUpdate }
+                onProcessRowUpdateError={ handleProcessRowUpdateError }
+                rowHeight={ 100 }
+                slots={ {
+                  toolbar: Toolbar,
+                } }
+                slotProps={ {
+                  toolbar: {
+                    rowMode,
+                    selectedRowId,
+                    save: handleSaveClick,
+                    edit: handleEditClick,
+                    cancel: handleCancelClick,
+                  },
+                  row: {
+                    onFocus: handleRowFocus,
+                  },
+                } }
+                initialState={ {
+                  pagination: { paginationModel: { pageSize: 50 } },
+                } }
+                sx={ {
+                  '& .MuiDataGrid-columnHeaderTitle': {
+                    textOverflow: 'clip',
+                    whiteSpace: 'break-spaces',
+                    lineHeight: 1,
+                    textAlign: 'center'
+                  },
+                } }
+              />
+
+              { snackbar !== null && (
+                <Snackbar
+                  open
+                  anchorOrigin={ { vertical: 'bottom', horizontal: 'center' } }
+                  onClose={ handleCloseSnackbar }
+                  autoHideDuration={ 6000 }
+                >
+                  <Alert { ...snackbar } onClose={ handleCloseSnackbar } />
+                </Snackbar>
+              ) }
+            </div>
+          </>
+        )
+        : <Spinner height='50vh' />
+      }
+    </>
+  );
 };
 
-export default Index;
+export default GestaoDeUsuarios;
