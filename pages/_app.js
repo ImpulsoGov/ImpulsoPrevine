@@ -152,23 +152,23 @@ function MyApp(props) {
               theme={ {
                 logoProjeto: props.res[0].logoIps[0].logo[1].url,
                 logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
-                cor: "Black"
-              } }
-              logoLink={ props.ses ? '/inicio' : '/' }
-              address={ {
-                first: "",
-                second: "",
-              } }
-              contactCopyright={ {
-                ccopyright: "© 2023 Impulso",
-                email: "contato@impulsogov.org",
-              } }
-              links={ [props.res[0].menus[0], props.res[0].menus[7]] }
-              socialMediaURLs={ [
-                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url },
-                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url },
-                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url },
-              ] }
+                cor : "Black"
+              }}
+              logoLink = {props.ses ? '/inicio' : '/'}
+              address={{
+                  first: "",
+                  second: "",
+              }}
+              contactCopyright={{
+                  copyright: "© 2023 Impulso",
+                  email: "contato@impulsogov.org",
+              }}
+              links={ [props.res[0].menus[0],props.res[0].menus[7]] }
+              socialMediaURLs={[
+                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
+                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
+                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
+              ]} 
             />
           </Auth>
         </Context.Provider>

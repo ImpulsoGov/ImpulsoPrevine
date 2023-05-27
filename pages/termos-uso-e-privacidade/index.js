@@ -12,7 +12,7 @@ export default function Glossario({ res }) {
           url: ''
         } }
         titulo="Termos de Uso e Politica de Privacidade"
-        texto="Bem-vindo à página de Saúde Mental da ImpulsoGov. Ao acessar ou usar este site, você concorda em cumprir e ficar vinculado aos seguintes termos e condições de uso."
+        texto="Bem-vindo à página do Impulso Previne da ImpulsoGov. Ao acessar ou usar este site, você concorda em cumprir e ficar vinculado aos seguintes termos e condições de uso."
       />
       <ToggleList
         title="Termos de Uso"
