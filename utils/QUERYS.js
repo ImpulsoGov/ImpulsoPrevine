@@ -24,17 +24,13 @@ export const LAYOUT = `
     }
     url
   }
-  copyrights {
-    contato
-    copyright
-  }
   logoMenuMoblies {
     logo {
       url
     }
   }
 }
-`
+`;
 
 export const HOME = `
 {
@@ -72,7 +68,7 @@ export const HOME = `
     title
   }
 }
-`
+`;
 export const IMPULSOGOV = `
 {
   tituloTextos {
@@ -87,7 +83,7 @@ export const IMPULSOGOV = `
     link
   }
 }
-`
+`;
 export const CONSULTORIA = `
 {
   headers {
@@ -122,7 +118,7 @@ export const CONSULTORIA = `
     uf
   }
 }
-`
+`;
 
 export const MANUAL = `
 {
@@ -131,7 +127,7 @@ export const MANUAL = `
     titulo
   }
 }
-`
+`;
 export const ANALISE = `
 {
   buttonBars {
@@ -143,10 +139,10 @@ export const ANALISE = `
     titulo
   }
 }
-`
-export const CAPACITACAO = (TRILHA_ID)=>{
-  return(
-  `
+`;
+export const CAPACITACAO = (TRILHA_ID) => {
+  return (
+    `
   {
     trilhas(where: {id: "${TRILHA_ID}"}) {
       conteudo {
@@ -181,12 +177,12 @@ export const CAPACITACAO = (TRILHA_ID)=>{
     }
   }
   `
-  )
-}
+  );
+};
 
-export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
-  return(
-  `
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO, TRILHA_ID) => {
+  return (
+    `
   {
     conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
       codigo
@@ -217,10 +213,11 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
       titulo
     }  }
   `
-)}
+  );
+};
 
 export const CONTEUDOS_TRILHAS =
-    `
+  `
     {
       trilhas {
         conteudo {
@@ -234,10 +231,10 @@ export const CONTEUDOS_TRILHAS =
         id
       }
     }
-    `
+    `;
 
-    export const FAQ =
-    `
+export const FAQ =
+  `
     {
       faqs() {
         titulo
@@ -249,4 +246,4 @@ export const CONTEUDOS_TRILHAS =
         }
       }
     }
-    `
+    `;
