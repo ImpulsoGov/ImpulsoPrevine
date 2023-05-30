@@ -1,6 +1,6 @@
 import Layout from "../../componentes/Layout";
 import { PreviewArtigoDestaque } from "@impulsogov/design-system"
-import { ListaArtigos } from "@impulsogov/design-system";
+import { ListaArtigos, TituloTexto } from "@impulsogov/design-system";
 
 import { getData } from '../../services/cms'
 import { LAYOUT, LISTA_ARTIGOS, POSTS } from '../../utils/QUERYS'
@@ -45,6 +45,22 @@ const Index = ({res}) => {
             texto = {artigoDestaque.texto}
             autor = {{avatar: artigoDestaque.avatar, nome: artigoDestaque.autor, data:artigoDestaque.data}}
             imagem = {artigoDestaque.imagem}
+        />
+        <TituloTexto
+        imagem = {{
+          posicao: null,
+          url: ''
+        }}
+        titulo = ' '
+        texto = ''
+        />
+        <TituloTexto
+        imagem = {{
+          posicao: null,
+          url: ''
+        }}
+        titulo = 'Outros artigos'
+        texto = ''
         />
         <ListaArtigos
             resumo = {true}
