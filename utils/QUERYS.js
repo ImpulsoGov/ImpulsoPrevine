@@ -140,6 +140,103 @@ export const ANALISE = `
   }
 }
 `
+
+    export const FAQ =
+    `
+    {
+      faqs() {
+        titulo
+        perguntas {
+          ... on Pergunta {
+            pergunta
+            resposta
+          }
+        }
+      }
+    }
+    `
+
+    export const POSTS = `
+    {
+      blogArtigos {
+        autor
+        avatar {
+          url
+          id
+        }
+        data
+        tag
+        titulo
+        texto {
+          raw
+        }
+        createdAt
+        id
+        capa {
+          url
+        }
+    
+      }
+    }
+    `
+    
+    export const POST =(id)=>{
+      return(`
+        {
+          blogArtigo(where: {id: "${id}"}) {
+            id
+            autor
+            avatar {
+              url
+            }
+            createdAt
+            tag
+            texto {
+              html
+            }
+            titulo
+            capa {
+              url
+            }
+          }
+        }
+        `
+      )
+    }
+    
+    export const POSTID = `
+    {
+      blogArtigos {
+        id
+      }
+    }
+    `
+    export const LISTA_ARTIGOS = `
+    {
+      listaArtigos {
+        titulo
+        buttonLabel
+        buttonLink
+      }
+    }`
+    
+
+export const CONTEUDOS_TRILHAS =
+    `
+    {
+      trilhas {
+        conteudo {
+          ... on Modulo {
+            moduloId
+            conteudos {
+              codigo
+            }
+          }
+        }
+        id
+      }
+    }
+    `
 export const CAPACITACAO = (TRILHA_ID)=>{
   return(
   `
@@ -216,33 +313,33 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
 )}
 
 export const CONTEUDOS_TRILHAS =
-    `
-    {
-      trilhas {
-        conteudo {
-          ... on Modulo {
-            moduloId
-            conteudos {
-              codigo
-            }
-          }
+`
+{
+  trilhas {
+    conteudo {
+      ... on Modulo {
+        moduloId
+        conteudos {
+          codigo
         }
-        id
       }
     }
-    `
+    id
+  }
+}
+`
 
-    export const FAQ =
-    `
-    {
-      faqs() {
-        titulo
-        perguntas {
-          ... on Pergunta {
-            pergunta
-            resposta
-          }
-        }
+export const FAQ =
+`
+{
+  faqs() {
+    titulo
+    perguntas {
+      ... on Pergunta {
+        pergunta
+        resposta
       }
     }
-    `
+  }
+}
+`
