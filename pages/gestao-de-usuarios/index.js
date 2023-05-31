@@ -1,19 +1,17 @@
-import { ButtonColorSubmit, Spinner, TituloSmallTexto, TituloTexto } from '@impulsogov/design-system';
+import { Spinner, TituloTexto } from '@impulsogov/design-system';
 import Alert from '@mui/material/Alert';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Snackbar from '@mui/material/Snackbar';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { MultipleSelectCheckmarks } from '../../componentes/MultipleSelectCheckmarks';
+import { EdicaoAutorizacoes } from '../../componentes/EdicaoAutorizacoes';
 import { Toolbar } from '../../componentes/Toolbar';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
-import { getData } from '../../services/cms';
 import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
-import { LAYOUT } from '../../utils/QUERYS';
 
 const MENSAGENS_DE_ERRO = {
   nomeVazio: 'O campo "Nome" não pode ser vazio',
@@ -29,19 +27,17 @@ const MENSAGENS_DE_ERRO = {
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   const redirect = redirectHomeGestaoUsuarios(ctx, session);
+
   if (redirect) return redirect;
-  const res = [
-    await getData(LAYOUT)
-  ];
+
   return {
     props: {
-      res: res
+
     }
   };
 }
 
 const GestaoDeUsuarios = () => {
-  const { data: session } = useSession();
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
@@ -361,11 +357,13 @@ const GestaoDeUsuarios = () => {
   }, [getSelectedAutorizacoesIds, selectedRowId, rows, handleUpdateError, validarAutorizacoesSelecionadas]);
 
   const getSelectedRowNome = useCallback(() => {
-    if (selectedRowId) {
-      const { nome } = rows.find(({ id }) => id === selectedRowId);
-
-      return nome;
+    if (!selectedRowId) {
+      return;
     }
+
+    const { nome } = rows.find(({ id }) => id === selectedRowId);
+
+    return nome;
   }, [rows, selectedRowId]);
 
   // const handleAddClick = useCallback(() => {
@@ -408,43 +406,13 @@ const GestaoDeUsuarios = () => {
               aria-labelledby='modal-modal-title'
               aria-describedby='modal-modal-description'
             >
-              <div style={ {
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '60%',
-                height: '60vh',
-                backgroundColor: 'white',
-                borderRadius: '15px',
-                padding: '30px 40px',
-              } }>
-                <TituloSmallTexto
-                  imagem={ {
-                    posicao: null,
-                    url: ''
-                  } }
-                  texto=''
-                  titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
-                />
-
-                <div style={ {
-                  display: 'flex',
-                  gap: '40px'
-                } }>
-                  <MultipleSelectCheckmarks
-                    label='Autorizações'
-                    options={ autorizacoes }
-                    selectedOptions={ selectedRowAutorizacoes }
-                    handleChange={ handleSelectChange }
-                  />
-
-                  <ButtonColorSubmit
-                    label='SALVAR'
-                    submit={ handleAutorizacoesEdit }
-                  />
-                </div>
-              </div>
+              <EdicaoAutorizacoes
+                nomeUsuario={ getSelectedRowNome() }
+                autorizacoes={ autorizacoes }
+                autorizacoesSelecionadas={ selectedRowAutorizacoes }
+                handleSelectChange={ handleSelectChange }
+                handleEdicaoAutorizacoes={ handleAutorizacoesEdit }
+              />
             </Modal>
 
             <div style={ { padding: 80, paddingTop: 0, height: 800, width: '100%' } }>
