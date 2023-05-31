@@ -7,6 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
 import { getSession, useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { v4 as uuidV4 } from 'uuid';
 import { MultipleSelectCheckmarks } from '../../componentes/MultipleSelectCheckmarks';
 import { Toolbar } from '../../componentes/Toolbar';
 import { redirectHomeNotLooged } from '../../helpers/redirectHome';
@@ -167,7 +168,8 @@ const GestaoDeUsuarios = () => {
 
   const transformarDadosEmLinhas = useCallback((dados) => {
     return dados.map((dado) => ({
-      id: dado['id_usuario'],
+      id: uuidV4(),
+      usuarioId: dado['id_usuario'],
       mail: dado.mail,
       cpf: dado.cpf,
       nome: dado['nome_usuario'],
@@ -176,7 +178,8 @@ const GestaoDeUsuarios = () => {
       telefone: dado.telefone,
       equipe: dado.equipe,
       autorizacoes: dado.autorizacoes,
-      editarAutorizacoes: showModal
+      editarAutorizacoes: showModal,
+      isNew: false,
     }));
   }, [showModal]);
 
@@ -212,14 +215,23 @@ const GestaoDeUsuarios = () => {
     event.defaultMuiPrevented = true;
   }, []);
 
-  const processRowUpdate = useCallback(async (newRow) => {
-    const usuarioId = newRow.id;
-    const dadosAtualizados = await atualizarUsuario(usuarioId, newRow);
-    const linhasAtualizadas = rows.map((row) => row.id === newRow.id
+  const processRowUpdate = useCallback(async (newRowData) => {
+    const { usuarioId } = newRowData;
+    const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
+    const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
       ? {
-        ...dadosAtualizados,
-        autorizacoes: newRow.autorizacoes,
-        editarAutorizacoes: newRow.editarAutorizacoes
+        id: newRowData.id,
+        usuarioId: dadosAtualizados['id_usuario'],
+        mail: dadosAtualizados.mail,
+        cpf: dadosAtualizados.cpf,
+        nome: dadosAtualizados['nome_usuario'],
+        municipio: dadosAtualizados.municipio,
+        cargo: dadosAtualizados.cargo,
+        telefone: dadosAtualizados.telefone,
+        equipe: dadosAtualizados.equipe,
+        autorizacoes: newRowData.autorizacoes,
+        editarAutorizacoes: newRowData.editarAutorizacoes,
+        isNew: false,
       }
       : row
     );
@@ -227,7 +239,7 @@ const GestaoDeUsuarios = () => {
     setRows(linhasAtualizadas);
     setSnackbar({ children: 'Usuário salvo com sucesso', severity: 'success' });
 
-    return newRow;
+    return newRowData;
   }, [rows]);
 
   const handleProcessRowUpdateError = useCallback((error) => {
@@ -267,6 +279,12 @@ const GestaoDeUsuarios = () => {
         mode: GridRowModes.View, ignoreModifications: true
       },
     });
+
+    // const selectedRow = rows.find((row) => row.id === selectedRowId);
+
+    // if (selectedRow.isNew) {
+    //   setRows(rows.filter((row) => row.id !== selectedRowId));
+    // }
   }, [rowModesModel, selectedRowId]);
 
   const handleSelectChange = useCallback((event) => {
@@ -289,7 +307,7 @@ const GestaoDeUsuarios = () => {
   }, [selectedRowAutorizacoes, autorizacoes]);
 
   const handleAutorizacoesEdit = useCallback(async () => {
-    const usuarioId = selectedRowId;
+    const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
     const autorizacoesIds = getSelectedAutorizacoesIds();
     const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
     const novasAutorizacoes = response.map(({ descricao }) => descricao);
@@ -304,6 +322,27 @@ const GestaoDeUsuarios = () => {
       severity: 'success'
     });
   }, [getSelectedAutorizacoesIds, selectedRowId, rows]);
+
+  // const handleAddClick = useCallback(() => {
+  //   const id = 'randomId()';
+  //   setRows((oldRows) => [...oldRows, {
+  //     id,
+  //     mail: '',
+  //     cpf: '',
+  //     nome: '',
+  //     municipio: '',
+  //     cargo: '',
+  //     telefone: '',
+  //     equipe: '',
+  //     autorizacoes: [],
+  //     editarAutorizacoes: showModal,
+  //     isNew: true
+  //   }]);
+  //   setRowModesModel((oldModel) => ({
+  //     ...oldModel,
+  //     [id]: { mode: GridRowModes.Edit, fieldToFocus: 'nome' },
+  //   }));
+  // }, [showModal]);
 
   return (
     <>
@@ -385,6 +424,7 @@ const GestaoDeUsuarios = () => {
                     save: handleSaveClick,
                     edit: handleEditClick,
                     cancel: handleCancelClick,
+                    // add: handleAddClick
                   },
                   row: {
                     onFocus: handleRowFocus,
