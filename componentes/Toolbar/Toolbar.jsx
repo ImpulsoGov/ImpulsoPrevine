@@ -14,11 +14,22 @@ function Toolbar({ selectedRowId, rowMode, save, edit, cancel }) {
         p: 1,
       } }
     >
+      {/* <Button
+        onClick={ add }
+        onMouseDown={ handleMouseDown }
+        disabled={ rowMode === 'edit' }
+        variant='outlined'
+        sx={ { ml: 1 } }
+      >
+        Adicionar
+      </Button> */}
+
       <Button
         onClick={ rowMode === 'edit' ? save : edit }
         onMouseDown={ handleMouseDown }
         disabled={ !selectedRowId }
         variant='outlined'
+        sx={ { ml: 1 } }
       >
         { rowMode === 'edit' ? 'Salvar' : 'Editar' }
       </Button>
