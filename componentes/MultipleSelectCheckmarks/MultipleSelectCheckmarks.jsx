@@ -39,10 +39,10 @@ function MultipleSelectCheckmarks({
         MenuProps={ MenuProps }
         sx={ { width: '100%' } }
       >
-        { options.map((autorizacao) => (
-          <MenuItem key={ autorizacao.id } value={ autorizacao.descricao }>
-            <Checkbox checked={ selectedOptions.includes(autorizacao.descricao) } />
-            <ListItemText primary={ autorizacao.descricao } />
+        { options.map((option) => (
+          <MenuItem key={ option.id } value={ option.descricao }>
+            <Checkbox checked={ selectedOptions.includes(option.descricao) } />
+            <ListItemText primary={ option.descricao } />
           </MenuItem>
         )) }
       </Select>
