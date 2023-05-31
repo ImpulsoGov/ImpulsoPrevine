@@ -10,14 +10,14 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { MultipleSelectCheckmarks } from '../../componentes/MultipleSelectCheckmarks';
 import { Toolbar } from '../../componentes/Toolbar';
-import { redirectHomeNotLooged } from '../../helpers/redirectHome';
+import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
 import { getData } from '../../services/cms';
 import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
 import { LAYOUT } from '../../utils/QUERYS';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-  const redirect = redirectHomeNotLooged(ctx, session); //alterar para gerenciador de usuarios somente
+  const redirect = redirectHomeGestaoUsuarios(ctx, session);
   if (redirect) return redirect;
   const res = [
     await getData(LAYOUT)
@@ -354,7 +354,7 @@ const GestaoDeUsuarios = () => {
 
   return (
     <>
-      { rows.length !== 0 && session?.user.perfis.includes(2)
+      { rows.length !== 0
         ? (
           <>
             <TituloTexto imagem={ {
