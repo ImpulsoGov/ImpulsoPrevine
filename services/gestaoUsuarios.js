@@ -30,7 +30,7 @@ export const atualizarUsuario = async (id, dados) => {
   try {
     const requestData = new FormData();
 
-    requestData.append('nome', dados.nome);
+    requestData.append('nome_usuario', dados.nome);
     requestData.append('mail', dados.mail);
     requestData.append('cpf', dados.cpf);
     requestData.append('municipio', dados.municipio);
