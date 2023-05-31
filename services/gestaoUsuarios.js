@@ -56,6 +56,6 @@ export const atualizarAutorizacoes = async (usuarioId, autorizacoesIds) => {
 
     return response.data;
   } catch (error) {
-    console.log(error.response.data);
+    throw new Error(JSON.stringify(error.response.data.detail));
   }
 };
