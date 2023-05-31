@@ -323,6 +323,14 @@ const GestaoDeUsuarios = () => {
     });
   }, [getSelectedAutorizacoesIds, selectedRowId, rows]);
 
+  const getSelectedRowNome = useCallback(() => {
+    if (selectedRowId) {
+      const { nome } = rows.find(({ id }) => id === selectedRowId);
+
+      return nome;
+    }
+  }, [rows, selectedRowId]);
+
   // const handleAddClick = useCallback(() => {
   //   const id = 'randomId()';
   //   setRows((oldRows) => [...oldRows, {
@@ -372,7 +380,7 @@ const GestaoDeUsuarios = () => {
                 height: '60vh',
                 backgroundColor: 'white',
                 borderRadius: '15px',
-                padding: '30px 50px 30px 40px',
+                padding: '30px 40px',
               } }>
                 <TituloSmallTexto
                   imagem={ {
@@ -380,12 +388,12 @@ const GestaoDeUsuarios = () => {
                     url: ''
                   } }
                   texto=''
-                  titulo='Alterar autorizações'
+                  titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
                 />
 
                 <div style={ {
                   display: 'flex',
-                  justifyContent: 'space-around'
+                  gap: '40px'
                 } }>
                   <MultipleSelectCheckmarks
                     label='Autorizações'
@@ -395,7 +403,7 @@ const GestaoDeUsuarios = () => {
                   />
 
                   <ButtonColorSubmit
-                    label='ALTERAR'
+                    label='SALVAR'
                     submit={ handleAutorizacoesEdit }
                   />
                 </div>
