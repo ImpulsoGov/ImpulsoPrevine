@@ -353,7 +353,7 @@ const GestaoDeUsuarios = () => {
               posicao: null,
               url: ''
             } }
-              titulo='Bem vindo a área de gestão de usuários'
+              titulo='Boas-vindas à área de gestão de usuários'
               texto=''
             />
 
