@@ -15,6 +15,17 @@ import { getData } from '../../services/cms';
 import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
 import { LAYOUT } from '../../utils/QUERYS';
 
+const MENSAGENS_DE_ERRO = {
+  nomeVazio: 'O campo "Nome" não pode ser vazio',
+  municipioVazio: 'O campo "Municipio" não pode ser vazio',
+  emailVazio: 'O campo "E-mail" não pode ser vazio',
+  cpfVazio: 'O campo "CPF" não pode ser vazio',
+  cargoVazio: 'O campo "Cargo" não pode ser vazio',
+  telefoneVazio: 'O campo "Telefone" não pode ser vazio',
+  equipeVazio: 'O campo "Equipe" não pode ser vazio',
+  autorizacoesVazias: 'Selecione ao menos uma autorização',
+};
+
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   const redirect = redirectHomeGestaoUsuarios(ctx, session);
@@ -215,8 +226,21 @@ const GestaoDeUsuarios = () => {
     event.defaultMuiPrevented = true;
   }, []);
 
+  const validarCamposDadosUsuario = useCallback((dados) => {
+    if (!dados.nome) throw new Error(MENSAGENS_DE_ERRO.nomeVazio);
+    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+    if (!dados.mail) throw new Error(MENSAGENS_DE_ERRO.emailVazio);
+    if (!dados.cpf) throw new Error(MENSAGENS_DE_ERRO.cpfVazio);
+    if (!dados.cargo) throw new Error(MENSAGENS_DE_ERRO.cargoVazio);
+    if (!dados.telefone) throw new Error(MENSAGENS_DE_ERRO.telefoneVazio);
+    if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
+  }, []);
+
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
+
+    validarCamposDadosUsuario(newRowData);
+
     const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
     const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
       ? {
@@ -240,9 +264,9 @@ const GestaoDeUsuarios = () => {
     setSnackbar({ children: 'Usuário salvo com sucesso', severity: 'success' });
 
     return newRowData;
-  }, [rows]);
+  }, [rows, validarCamposDadosUsuario]);
 
-  const handleProcessRowUpdateError = useCallback((error) => {
+  const handleUpdateError = useCallback((error) => {
     setSnackbar({ children: error.message, severity: 'error' });
   }, []);
 
@@ -306,22 +330,35 @@ const GestaoDeUsuarios = () => {
     return autorizacoesIds;
   }, [selectedRowAutorizacoes, autorizacoes]);
 
-  const handleAutorizacoesEdit = useCallback(async () => {
-    const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
-    const autorizacoesIds = getSelectedAutorizacoesIds();
-    const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
-    const novasAutorizacoes = response.map(({ descricao }) => descricao);
-    const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
-      ? { ...row, autorizacoes: novasAutorizacoes }
-      : row
-    );
+  const validarAutorizacoesSelecionadas = useCallback(() => {
+    if (selectedRowAutorizacoes.length === 0) {
+      throw new Error(MENSAGENS_DE_ERRO.autorizacoesVazias);
+    }
+  }, [selectedRowAutorizacoes]);
 
-    setRows(linhasAtualizadas);
-    setSnackbar({
-      children: 'Autorizações atualizadas com sucesso',
-      severity: 'success'
-    });
-  }, [getSelectedAutorizacoesIds, selectedRowId, rows]);
+  const handleAutorizacoesEdit = useCallback(async () => {
+    try {
+      const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
+      const autorizacoesIds = getSelectedAutorizacoesIds();
+
+      validarAutorizacoesSelecionadas();
+
+      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const novasAutorizacoes = response.map(({ descricao }) => descricao);
+      const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
+        ? { ...row, autorizacoes: novasAutorizacoes }
+        : row
+      );
+
+      setRows(linhasAtualizadas);
+      setSnackbar({
+        children: 'Autorizações atualizadas com sucesso',
+        severity: 'success'
+      });
+    } catch (error) {
+      handleUpdateError(error);
+    }
+  }, [getSelectedAutorizacoesIds, selectedRowId, rows, handleUpdateError, validarAutorizacoesSelecionadas]);
 
   const getSelectedRowNome = useCallback(() => {
     if (selectedRowId) {
@@ -420,7 +457,7 @@ const GestaoDeUsuarios = () => {
                 onRowEditStop={ handleRowEditStop }
                 onRowModesModelChange={ (model) => setRowModesModel(model) }
                 processRowUpdate={ processRowUpdate }
-                onProcessRowUpdateError={ handleProcessRowUpdateError }
+                onProcessRowUpdateError={ handleUpdateError }
                 rowHeight={ 100 }
                 slots={ {
                   toolbar: Toolbar,
