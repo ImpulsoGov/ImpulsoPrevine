@@ -1,14 +1,13 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
-import Alert from '@mui/material/Alert';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Snackbar from '@mui/material/Snackbar';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
 import { getSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { EdicaoAutorizacoes } from '../../componentes/EdicaoAutorizacoes';
+import { SnackBar } from '../../componentes/SnackBar';
 import { Toolbar } from '../../componentes/Toolbar';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
 import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
@@ -190,7 +189,7 @@ const GestaoDeUsuarios = () => {
     }));
   }, [showModal]);
 
-  const handleCloseSnackbar = useCallback(() => setSnackbar(null), []);
+  const handleSnackbarClose = useCallback(() => setSnackbar(null), []);
 
   const handleRowFocus = useCallback((event) => {
     const rowId = event.currentTarget.dataset.id;
@@ -456,16 +455,10 @@ const GestaoDeUsuarios = () => {
                 } }
               />
 
-              { snackbar !== null && (
-                <Snackbar
-                  open
-                  anchorOrigin={ { vertical: 'bottom', horizontal: 'center' } }
-                  onClose={ handleCloseSnackbar }
-                  autoHideDuration={ 6000 }
-                >
-                  <Alert { ...snackbar } onClose={ handleCloseSnackbar } />
-                </Snackbar>
-              ) }
+              <SnackBar
+                config={ snackbar }
+                handleSnackbarClose={ handleSnackbarClose }
+              />
             </div>
           </>
         )
