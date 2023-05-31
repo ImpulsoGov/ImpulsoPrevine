@@ -80,7 +80,7 @@ const GestaoDeUsuarios = () => {
     },
     {
       field: 'mail',
-      headerName: 'E-Mail',
+      headerName: 'E-mail',
       width: 300,
       headerAlign: 'center',
       align: 'center',
