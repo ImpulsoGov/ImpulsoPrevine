@@ -80,13 +80,13 @@ const progresso = async(ConteudosCMS,userID,token)=>{
         item.qtd.forEach(element=>{
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0].conteudosConcluidos
             element.modulo != 0 && element.conteudosQTD>0 ? 
-            element.progresso=(23.75/element.conteudosQTD)*element.conclusao:
+            element.progresso=(19/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao
             if(element.conclusao == 0) element.progresso=0
             if(element.modulo==0){
                 element.finalizado = element.progresso == 5
             }else{
-                element.finalizado = element.progresso == 23.75 
+                element.finalizado = element.progresso == 19
             }
         })
         item.progresso = Math.round(item.qtd.reduce((accumulator, currentValue) => {return accumulator + currentValue.progresso},0))

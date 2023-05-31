@@ -26,7 +26,7 @@ const validateCredentials = async(mail,senha)=>{
     return res
 }
 
-const validacao = (setResposta,validarCredencial,entrar,mail,senha)=>{
+const validacao = (setResposta,validarCredencial,entrar,mail,senha, setEsperandoResposta)=>{
   const res = async()=> await validarCredencial(mail,senha)
   if(mail.length < 1 || senha.length < 1){
     const msg_campo_vazio = "Preencha todos os campos"
@@ -36,9 +36,10 @@ const validacao = (setResposta,validarCredencial,entrar,mail,senha)=>{
     res().then((response)=>{
       console.log(response)
       if (typeof(response["access_token"]) !== "undefined"){
-          entrar('credentials', { redirect: true,username:mail, password: senha })
+        entrar('credentials', { redirect: true,username:mail, password: senha })
       }else{
-          setResposta(response["detail"])
+        setResposta(response["detail"])
+        setEsperandoResposta(false);
       }
       return res
     })
