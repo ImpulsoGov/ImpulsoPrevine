@@ -30,7 +30,7 @@ export const LAYOUT = `
     }
   }
 }
-`
+`;
 
 export const HOME = `
 {
@@ -68,7 +68,7 @@ export const HOME = `
     title
   }
 }
-`
+`;
 export const IMPULSOGOV = `
 {
   tituloTextos {
@@ -83,7 +83,7 @@ export const IMPULSOGOV = `
     link
   }
 }
-`
+`;
 export const CONSULTORIA = `
 {
   headers {
@@ -118,7 +118,7 @@ export const CONSULTORIA = `
     uf
   }
 }
-`
+`;
 
 export const MANUAL = `
 {
@@ -127,7 +127,7 @@ export const MANUAL = `
     titulo
   }
 }
-`
+`;
 export const ANALISE = `
 {
   buttonBars {
@@ -274,12 +274,12 @@ export const CAPACITACAO = (TRILHA_ID)=>{
     }
   }
   `
-  )
-}
+  );
+};
 
-export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
-  return(
-  `
+export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO, TRILHA_ID) => {
+  return (
+    `
   {
     conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
       codigo
@@ -310,5 +310,6 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO,TRILHA_ID)=>{
       titulo
     }  }
   `
-)}
+  );
+};
 
