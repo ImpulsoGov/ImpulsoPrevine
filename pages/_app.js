@@ -103,7 +103,7 @@ function MyApp(props) {
                             ]
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Aprenda", url: "/capacitacoes" }] : [])
-                      .concat([{ label: "Dados Públicos - Q3/22", url: "/analise" }])
+                      .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1], props.res[0].menus[3], props.res[0].menus[4]] }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
