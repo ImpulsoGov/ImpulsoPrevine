@@ -61,7 +61,7 @@ const progresso = async(ConteudosCMS,userID,token)=>{
     const UsuarioConclusoes = (codigoTrilha,modulos_usuario,modulosID)=>{
         return modulosID.map(modulo=>{
             const cont = modulos_usuario
-            .filter(item=>item.codigo_conteudo.slice(0,2)==codigoTrilha)
+            ?.filter(item=>item.codigo_conteudo.slice(0,2)==codigoTrilha)
             .map((item)=>{return {modulo:item.codigo_conteudo[6],conteudo:item.codigo_conteudo[9]}})
             .filter(item=>modulo==item.modulo).length
             return {modulo:modulo,conteudosConcluidos:cont}
