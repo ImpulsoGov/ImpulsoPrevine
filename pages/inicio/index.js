@@ -1,13 +1,73 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid, ModalAlert , NPS , CardAlertModal } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, CardLargeGrid, ModalAlert , CardAlertModal, ButtonColorSubmit } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
-import { NPSConsulta,NPSAvaliacao } from '../../services/NPS'
+import style from "./ModalAlert.module.css";
 
+import {NPSConsulta, NPSAvaliacao} from "../../services/NPS"
+
+const NPS = ({user, token, submit})=>{
+    const [display, setDisplay] = useState(true)
+    const [avaliacao,setAvaliacao] = useState(0)
+    const [avaliacaoHover,setAvaliacaoHover] = useState(0)
+    const avaliacoes = [1,2,3,4,5]
+    const refModal = useRef()
+    useEffect(() => {
+        const handleClick = e => {if (display && !refModal?.current?.contains(e.target)) setDisplay(false);}
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
+      },[display]);
+      
+    return(
+        display &&
+        <div className={style.ModalAlert}> 
+            <div className={style.Alert} ref={refModal}>
+                <div className={style.close}>
+                    <a 
+                        className={style.ModalExit}
+                        onClick={()=>setDisplay(false)}
+                    ></a>
+                </div>
+            <div className={style.tituloNPS}>Como você avalia sua experiência na área logada até agora?</div>
+            <div className={style.NPSAvaliacao}>
+                {avaliacoes.map((item)=>{
+                    return(
+                        <div 
+                            className={
+                                avaliacaoHover+1 <= item ?
+                                style.avaliacao : 
+                                style.avaliacaoColor 
+                            } 
+                            key={item}
+                            onMouseEnter={()=>{setAvaliacaoHover(item)}}
+                            onMouseLeave={()=>{setAvaliacaoHover(avaliacao==0 ? 0 : avaliacao)}}
+                            onClick={()=>setAvaliacao(item)}
+                    >{item}</div>
+                    )
+                })}
+            </div>
+            <div className={style.escala}>
+                <div>Muito ruim</div>
+                <div>Muito boa</div>
+            </div>
+            <a 
+                onClick={()=>setDisplay(false)}
+            >
+                <ButtonColorSubmit
+                    label="Avaliar"
+                    submit={submit}
+                    arg={{"user":user,"avaliacao":avaliacao,"token":token}}
+                    disable={avaliacao==0}
+                />
+            </a>
+            </div>
+        </div>
+    )
+}
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -47,24 +107,27 @@ const Index = ({res}) => {
         if (cargo == "Impulser") return cargo
     }
     const cargo = cargo_transform(session?.user?.cargo)
-    console.log(dataNPS)
     if (session){
         return(
             <>
                 {
                     !dataNPS &&
-                    <ModalAlert
-                        Child={CardAlertModal}
-                        childProps = {{
-                            child : NPS,
-                            childProps:{
-                                titulo : "Como você avalia sua experiência na área logada até agora?",
-                                user : session?.user?.id,
-                                token : session?.user?.access_token,
-                                submit : NPSAvaliacao
-                            }
-                        }}
+                    <NPS 
+                        user = {session?.user?.id}
+                        token = {session?.user?.access_token}
+                        submit = {NPSAvaliacao}
                     />
+                    // <ModalAlert
+                    //     Child={NPS}
+                    //     childProps = {{
+                    //         child : NPS,
+                    //         childProps:{
+                    //             user : session?.user?.id,
+                    //             token : session?.user?.access_token,
+                    //             submit : NPSAvaliacao
+                    //         }
+                    //     }}
+                    // />
                 }
                 <Greeting
                     cargo = {cargo}

@@ -30,7 +30,6 @@ async function NPSAvaliacaoClient(usuario_id,avaliacao,token){
     let data = new FormData();
     data.append('user_id', usuario_id);
     data.append('avaliacao', avaliacao);
-    console.log(token)
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
@@ -52,7 +51,6 @@ async function NPSAvaliacaoClient(usuario_id,avaliacao,token){
     return res
 }
 async function NPSAvaliacao(args){
-    console.log(args)
     const res = await NPSAvaliacaoClient(args.user,args.avaliacao,args.token)
     if (res?.error!=null) return res
     return false
