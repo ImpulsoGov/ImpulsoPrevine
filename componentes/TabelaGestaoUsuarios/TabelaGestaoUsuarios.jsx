@@ -13,6 +13,7 @@ function TabelaGestaoUsuarios({
   autorizacoes,
   showSuccessMessage,
   showErrorMessage,
+  handleAddClick,
 }) {
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
@@ -325,27 +326,6 @@ function TabelaGestaoUsuarios({
     }
   }, [getSelectedAutorizacoesIds, selectedRowId, rows, showErrorMessage, validarAutorizacoesSelecionadas, showSuccessMessage]);
 
-  // const handleAddClick = useCallback(() => {
-  //   const id = 'randomId()';
-  //   setRows((oldRows) => [...oldRows, {
-  //     id,
-  //     mail: '',
-  //     cpf: '',
-  //     nome: '',
-  //     municipio: '',
-  //     cargo: '',
-  //     telefone: '',
-  //     equipe: '',
-  //     autorizacoes: [],
-  //     editarAutorizacoes: showModal,
-  //     isNew: true
-  //   }]);
-  //   setRowModesModel((oldModel) => ({
-  //     ...oldModel,
-  //     [id]: { mode: GridRowModes.Edit, fieldToFocus: 'nome' },
-  //   }));
-  // }, [showModal]);
-
   return (
     <div className={ styles.Container }>
       <DataGrid
@@ -369,7 +349,7 @@ function TabelaGestaoUsuarios({
             save: handleSaveClick,
             edit: handleEditClick,
             cancel: handleCancelClick,
-            // add: handleAddClick
+            add: handleAddClick
           },
           row: {
             onFocus: handleRowFocus,

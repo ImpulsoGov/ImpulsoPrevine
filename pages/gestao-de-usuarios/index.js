@@ -1,6 +1,7 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
 import { getSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
+import { ModalCadastroUsuario } from '../../componentes/ModalCadastroUsuario';
 import { SnackBar } from '../../componentes/SnackBar';
 import { TabelaGestaoUsuarios } from '../../componentes/TabelaGestaoUsuarios';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
@@ -21,6 +22,7 @@ const GestaoDeUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
   const [snackbar, setSnackbar] = useState(null);
+  const [showModalCadastro, setShowModalCadastro] = useState(false);
 
   useEffect(() => {
     listarPerfis()
@@ -42,39 +44,44 @@ const GestaoDeUsuarios = () => {
     setSnackbar({ children: message, severity: 'success' });
   }, []);
 
+  const closeModalCadastro = useCallback(() => setShowModalCadastro(false), []);
+
+  const openModalCadastro = useCallback(() => setShowModalCadastro(true), []);
+
   return (
     <>
+      <TituloTexto
+        imagem={ {
+          posicao: null,
+          url: ''
+        } }
+        titulo='Boas-vindas à área de gestão de usuários'
+        texto=''
+      />
+
       { usuarios.length !== 0
         ? (
-          <>
-            <TituloTexto
-              imagem={ {
-                posicao: null,
-                url: ''
-              } }
-              titulo='Boas-vindas à área de gestão de usuários'
-              texto=''
-            />
-
-            <TabelaGestaoUsuarios
-              usuarios={ usuarios }
-              autorizacoes={ autorizacoes }
-              showSuccessMessage={ showSuccessMessage }
-              showErrorMessage={ showErrorMessage }
-            />
-
-            {/* <CadastroUsuario
-              titulo='Adicionar usuário'
-            /> */}
-
-            <SnackBar
-              config={ snackbar }
-              handleSnackbarClose={ handleSnackbarClose }
-            />
-          </>
+          <TabelaGestaoUsuarios
+            usuarios={ usuarios }
+            autorizacoes={ autorizacoes }
+            showSuccessMessage={ showSuccessMessage }
+            showErrorMessage={ showErrorMessage }
+            handleAddClick={ openModalCadastro }
+          />
         )
         : <Spinner height='50vh' />
       }
+
+      <ModalCadastroUsuario
+        titulo='Adicionar usuário'
+        isOpen={ showModalCadastro }
+        closeModal={ closeModalCadastro }
+      />
+
+      <SnackBar
+        config={ snackbar }
+        handleSnackbarClose={ handleSnackbarClose }
+      />
     </>
   );
 };

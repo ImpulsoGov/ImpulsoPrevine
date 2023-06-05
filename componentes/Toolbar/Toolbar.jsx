@@ -1,7 +1,9 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-function Toolbar({ selectedRowId, rowMode, save, edit, cancel }) {
+function Toolbar({
+  selectedRowId, rowMode, save, edit, cancel, add
+}) {
   const handleMouseDown = (event) => {
     event.preventDefault();
   };
@@ -14,7 +16,7 @@ function Toolbar({ selectedRowId, rowMode, save, edit, cancel }) {
         p: 1,
       } }
     >
-      {/* <Button
+      <Button
         onClick={ add }
         onMouseDown={ handleMouseDown }
         disabled={ rowMode === 'edit' }
@@ -22,7 +24,7 @@ function Toolbar({ selectedRowId, rowMode, save, edit, cancel }) {
         sx={ { ml: 1 } }
       >
         Adicionar
-      </Button> */}
+      </Button>
 
       <Button
         onClick={ rowMode === 'edit' ? save : edit }
