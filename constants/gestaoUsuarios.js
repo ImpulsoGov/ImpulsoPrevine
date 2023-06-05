@@ -1,0 +1,33 @@
+export const MENSAGENS_DE_ERRO = {
+  nomeVazio: 'O campo "Nome" não pode ser vazio',
+  municipioVazio: 'O campo "Municipio" não pode ser vazio',
+  emailVazio: 'O campo "E-mail" não pode ser vazio',
+  cpfVazio: 'O campo "CPF" não pode ser vazio',
+  cargoVazio: 'O campo "Cargo" não pode ser vazio',
+  telefoneVazio: 'O campo "Telefone" não pode ser vazio',
+  equipeVazio: 'O campo "Equipe" não pode ser vazio',
+  autorizacoesVazias: 'Selecione ao menos uma autorização',
+};
+
+export const CARGOS = [
+  'Coordenação de Equipe',
+  'Coordenação APS',
+  'Impulser',
+  'Médica (o)',
+  'Técnica (o) de Enfermagem',
+  'Enfermeira (o)',
+  'Gestão APS',
+  'Gestor(a) de RAPS',
+  'Apoiador(a) Institucional ou Referência Técnica',
+  'Gerente',
+  'Diretor(a)',
+  'Secretário Municipal de Saúde.',
+  'Supervisor(a)',
+  'Especialista',
+  'Coordenador(a)',
+  'Assessor(a)',
+  'Chefe de Serviço',
+  'Gestor(a) de Serviço',
+  'Profissional Administrativo',
+  'Chefe de Setor',
+];
