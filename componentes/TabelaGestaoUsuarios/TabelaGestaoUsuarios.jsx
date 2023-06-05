@@ -1,11 +1,10 @@
 import { Badge, Button } from '@mui/material';
-import Modal from '@mui/material/Modal';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
 import { atualizarAutorizacoes, atualizarUsuario } from '../../services/gestaoUsuarios';
-import { EdicaoAutorizacoes } from '../EdicaoAutorizacoes';
+import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
 
@@ -305,7 +304,7 @@ function TabelaGestaoUsuarios({
     }
   }, [selectedRowAutorizacoes]);
 
-  const handleAutorizacoesEdit = useCallback(async () => {
+  const editarAutorizacoesUsuario = useCallback(async () => {
     try {
       const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
       const autorizacoesIds = getSelectedAutorizacoesIds();
@@ -389,20 +388,15 @@ function TabelaGestaoUsuarios({
         } }
       />
 
-      <Modal
-        open={ showModalAutorizacoes }
-        onClose={ closeModalAutorizacoes }
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
-        <EdicaoAutorizacoes
-          nomeUsuario={ getSelectedRowNome() }
-          autorizacoes={ autorizacoes }
-          autorizacoesSelecionadas={ selectedRowAutorizacoes }
-          handleSelectChange={ handleAutorizacoesChange }
-          handleEdicaoAutorizacoes={ handleAutorizacoesEdit }
-        />
-      </Modal>
+      <ModalAutorizacoes
+        nomeUsuario={ getSelectedRowNome() }
+        autorizacoes={ autorizacoes }
+        autorizacoesSelecionadas={ selectedRowAutorizacoes }
+        handleSelectChange={ handleAutorizacoesChange }
+        handleEditClick={ editarAutorizacoesUsuario }
+        isOpen={ showModalAutorizacoes }
+        closeModal={ closeModalAutorizacoes }
+      />
     </div>
   );
 }
