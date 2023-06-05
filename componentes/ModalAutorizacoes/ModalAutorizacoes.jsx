@@ -5,7 +5,7 @@ import { MultipleSelectCheckmarks } from '../MultipleSelectCheckmarks';
 import styles from './ModalAutorizacoes.module.css';
 
 function ModalAutorizacoes({
-  nomeUsuario,
+  titulo,
   autorizacoes,
   autorizacoesSelecionadas,
   handleSelectChange,
@@ -27,7 +27,7 @@ function ModalAutorizacoes({
             url: ''
           } }
           texto=''
-          titulo={ `Autorizações de <strong>${nomeUsuario}</strong>` }
+          titulo={ titulo }
         />
 
         <div className={ styles.SelectContainer }>

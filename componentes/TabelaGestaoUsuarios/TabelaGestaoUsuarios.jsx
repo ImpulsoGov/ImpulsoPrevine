@@ -369,7 +369,7 @@ function TabelaGestaoUsuarios({
       />
 
       <ModalAutorizacoes
-        nomeUsuario={ getSelectedRowNome() }
+        titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
         autorizacoes={ autorizacoes }
         autorizacoesSelecionadas={ selectedRowAutorizacoes }
         handleSelectChange={ handleAutorizacoesChange }
