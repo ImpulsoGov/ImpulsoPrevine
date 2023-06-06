@@ -2,8 +2,7 @@ import { Badge, Button } from '@mui/material';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
-import { atualizarAutorizacoes, atualizarUsuario } from '../../services/gestaoUsuarios';
+import { atualizarUsuario } from '../../services/gestaoUsuarios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
@@ -16,7 +15,9 @@ function TabelaGestaoUsuarios({
   handleAddClick,
   openModalAutorizacoes,
   closeModalAutorizacoes,
-  showModalAutorizacoes
+  showModalAutorizacoes,
+  handleAutorizacoesEdit,
+  validarCamposObrigatorios
 }) {
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
@@ -236,20 +237,10 @@ function TabelaGestaoUsuarios({
     setSelectedRowAutorizacoes([...autorizacoes]);
   }, [rows]);
 
-  const validarCamposDadosUsuario = useCallback((dados) => {
-    if (!dados.nome) throw new Error(MENSAGENS_DE_ERRO.nomeVazio);
-    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
-    if (!dados.mail) throw new Error(MENSAGENS_DE_ERRO.emailVazio);
-    if (!dados.cpf) throw new Error(MENSAGENS_DE_ERRO.cpfVazio);
-    if (!dados.cargo) throw new Error(MENSAGENS_DE_ERRO.cargoVazio);
-    if (!dados.telefone) throw new Error(MENSAGENS_DE_ERRO.telefoneVazio);
-    if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
-  }, []);
-
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
 
-    validarCamposDadosUsuario(newRowData);
+    validarCamposObrigatorios(newRowData);
 
     const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
     const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
@@ -274,7 +265,7 @@ function TabelaGestaoUsuarios({
     showSuccessMessage('Usuário salvo com sucesso');
 
     return newRowData;
-  }, [rows, validarCamposDadosUsuario, showSuccessMessage]);
+  }, [rows, validarCamposObrigatorios, showSuccessMessage]);
 
   const handleAutorizacoesChange = useCallback((event) => {
     const { target: { value } } = event;
@@ -284,43 +275,6 @@ function TabelaGestaoUsuarios({
       typeof value === 'string' ? value.split(', ') : value,
     );
   }, []);
-
-  const getSelectedAutorizacoesIds = useCallback(() => {
-    const autorizacoesIds = selectedRowAutorizacoes.map((autorizacao) => {
-      const { id } = autorizacoes.find(({ descricao }) => descricao === autorizacao);
-
-      return id;
-    });
-
-    return autorizacoesIds;
-  }, [selectedRowAutorizacoes, autorizacoes]);
-
-  const validarAutorizacoesSelecionadas = useCallback(() => {
-    if (selectedRowAutorizacoes.length === 0) {
-      throw new Error(MENSAGENS_DE_ERRO.autorizacoesVazias);
-    }
-  }, [selectedRowAutorizacoes]);
-
-  const editarAutorizacoesUsuario = useCallback(async () => {
-    try {
-      const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
-      const autorizacoesIds = getSelectedAutorizacoesIds();
-
-      validarAutorizacoesSelecionadas();
-
-      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
-      const novasAutorizacoes = response.map(({ descricao }) => descricao);
-      const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
-        ? { ...row, autorizacoes: novasAutorizacoes }
-        : row
-      );
-
-      setRows(linhasAtualizadas);
-      showSuccessMessage('Autorizações atualizadas com sucesso');
-    } catch (error) {
-      showErrorMessage(error);
-    }
-  }, [getSelectedAutorizacoesIds, selectedRowId, rows, showErrorMessage, validarAutorizacoesSelecionadas, showSuccessMessage]);
 
   return (
     <div className={ styles.Container }>
@@ -369,7 +323,9 @@ function TabelaGestaoUsuarios({
         autorizacoes={ autorizacoes }
         autorizacoesSelecionadas={ selectedRowAutorizacoes }
         handleSelectChange={ handleAutorizacoesChange }
-        handleEditClick={ editarAutorizacoesUsuario }
+        handleEditClick={ () => handleAutorizacoesEdit({
+          rows, selectedRowId, selectedRowAutorizacoes, setRows
+        }) }
         isOpen={ showModalAutorizacoes }
         closeModal={ closeModalAutorizacoes }
       />
