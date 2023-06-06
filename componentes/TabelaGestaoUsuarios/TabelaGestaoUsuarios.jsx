@@ -1,17 +1,33 @@
 import { Badge, Button } from '@mui/material';
 import { DataGrid, GridRowModes } from '@mui/x-data-grid';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { v4 as uuidV4 } from 'uuid';
+import { atualizarUsuario } from '../../services/gestaoUsuarios';
+import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
 
 function TabelaGestaoUsuarios({
-  rows,
-  selectedRowId,
-  processRowUpdate,
-  handleProcessRowUpdateError,
-  handleRowFocus
+  usuarios,
+  autorizacoes,
+  showSuccessMessage,
+  showErrorMessage,
+  handleAddClick,
+  openModalAutorizacoes,
+  closeModalAutorizacoes,
+  showModalAutorizacoes,
+  handleAutorizacoesEdit,
+  validarCamposObrigatorios
 }) {
+  const [rows, setRows] = useState([]);
+  const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
+  const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
+
+  useEffect(() => {
+    const linhas = transformarDadosEmLinhas(usuarios);
+    setRows(linhas);
+  }, [usuarios, transformarDadosEmLinhas]);
 
   const columns = useMemo(() => [
     {
@@ -123,6 +139,23 @@ function TabelaGestaoUsuarios({
     }
   ], []);
 
+  const transformarDadosEmLinhas = useCallback((dados) => {
+    return dados.map((dado) => ({
+      id: uuidV4(),
+      usuarioId: dado['id_usuario'],
+      mail: dado.mail,
+      cpf: dado.cpf,
+      nome: dado['nome_usuario'],
+      municipio: dado.municipio,
+      cargo: dado.cargo,
+      telefone: dado.telefone,
+      equipe: dado.equipe,
+      autorizacoes: dado.autorizacoes,
+      editarAutorizacoes: openModalAutorizacoes,
+      isNew: false,
+    }));
+  }, [openModalAutorizacoes]);
+
   const rowMode = useMemo(() => {
     if (!selectedRowId) {
       return 'view';
@@ -186,26 +219,62 @@ function TabelaGestaoUsuarios({
     // }
   }, [rowModesModel, selectedRowId]);
 
-  // const handleAddClick = useCallback(() => {
-  //   const id = 'randomId()';
-  //   setRows((oldRows) => [...oldRows, {
-  //     id,
-  //     mail: '',
-  //     cpf: '',
-  //     nome: '',
-  //     municipio: '',
-  //     cargo: '',
-  //     telefone: '',
-  //     equipe: '',
-  //     autorizacoes: [],
-  //     editarAutorizacoes: showModal,
-  //     isNew: true
-  //   }]);
-  //   setRowModesModel((oldModel) => ({
-  //     ...oldModel,
-  //     [id]: { mode: GridRowModes.Edit, fieldToFocus: 'nome' },
-  //   }));
-  // }, [showModal]);
+  const getSelectedRowNome = useCallback(() => {
+    if (!selectedRowId) {
+      return;
+    }
+
+    const { nome } = rows.find(({ id }) => id === selectedRowId);
+
+    return nome;
+  }, [rows, selectedRowId]);
+
+  const handleRowFocus = useCallback((event) => {
+    const rowId = event.currentTarget.dataset.id;
+    const { autorizacoes } = rows.find(({ id }) => id === rowId);
+
+    setSelectedRowId(rowId);
+    setSelectedRowAutorizacoes([...autorizacoes]);
+  }, [rows]);
+
+  const processRowUpdate = useCallback(async (newRowData) => {
+    const { usuarioId } = newRowData;
+
+    validarCamposObrigatorios(newRowData);
+
+    const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
+    const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
+      ? {
+        id: newRowData.id,
+        usuarioId: dadosAtualizados['id_usuario'],
+        mail: dadosAtualizados.mail,
+        cpf: dadosAtualizados.cpf,
+        nome: dadosAtualizados['nome_usuario'],
+        municipio: dadosAtualizados.municipio,
+        cargo: dadosAtualizados.cargo,
+        telefone: dadosAtualizados.telefone,
+        equipe: dadosAtualizados.equipe,
+        autorizacoes: newRowData.autorizacoes,
+        editarAutorizacoes: newRowData.editarAutorizacoes,
+        isNew: false,
+      }
+      : row
+    );
+
+    setRows(linhasAtualizadas);
+    showSuccessMessage('Usuário salvo com sucesso');
+
+    return newRowData;
+  }, [rows, validarCamposObrigatorios, showSuccessMessage]);
+
+  const handleAutorizacoesChange = useCallback((event) => {
+    const { target: { value } } = event;
+
+    // On autofill we get a stringified value.
+    setSelectedRowAutorizacoes(
+      typeof value === 'string' ? value.split(', ') : value,
+    );
+  }, []);
 
   return (
     <div className={ styles.Container }>
@@ -218,7 +287,7 @@ function TabelaGestaoUsuarios({
         onRowEditStop={ handleRowEditStop }
         onRowModesModelChange={ (model) => setRowModesModel(model) }
         processRowUpdate={ processRowUpdate }
-        onProcessRowUpdateError={ handleProcessRowUpdateError }
+        onProcessRowUpdateError={ showErrorMessage }
         rowHeight={ 100 }
         slots={ {
           toolbar: Toolbar,
@@ -230,7 +299,7 @@ function TabelaGestaoUsuarios({
             save: handleSaveClick,
             edit: handleEditClick,
             cancel: handleCancelClick,
-            // add: handleAddClick
+            add: handleAddClick
           },
           row: {
             onFocus: handleRowFocus,
@@ -247,6 +316,18 @@ function TabelaGestaoUsuarios({
             textAlign: 'center'
           },
         } }
+      />
+
+      <ModalAutorizacoes
+        titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
+        autorizacoes={ autorizacoes }
+        autorizacoesSelecionadas={ selectedRowAutorizacoes }
+        handleSelectChange={ handleAutorizacoesChange }
+        handleEditClick={ () => handleAutorizacoesEdit({
+          rows, selectedRowId, selectedRowAutorizacoes, setRows
+        }) }
+        isOpen={ showModalAutorizacoes }
+        closeModal={ closeModalAutorizacoes }
       />
     </div>
   );

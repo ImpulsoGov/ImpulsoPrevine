@@ -1,24 +1,12 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
-import Modal from '@mui/material/Modal';
 import { getSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
-import { EdicaoAutorizacoes } from '../../componentes/EdicaoAutorizacoes';
+import { ModalCadastroUsuario } from '../../componentes/ModalCadastroUsuario';
 import { SnackBar } from '../../componentes/SnackBar';
 import { TabelaGestaoUsuarios } from '../../componentes/TabelaGestaoUsuarios';
+import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
-import { atualizarAutorizacoes, atualizarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
-
-const MENSAGENS_DE_ERRO = {
-  nomeVazio: 'O campo "Nome" não pode ser vazio',
-  municipioVazio: 'O campo "Municipio" não pode ser vazio',
-  emailVazio: 'O campo "E-mail" não pode ser vazio',
-  cpfVazio: 'O campo "CPF" não pode ser vazio',
-  cargoVazio: 'O campo "Cargo" não pode ser vazio',
-  telefoneVazio: 'O campo "Telefone" não pode ser vazio',
-  equipeVazio: 'O campo "Equipe" não pode ser vazio',
-  autorizacoesVazias: 'Selecione ao menos uma autorização',
-};
+import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -27,19 +15,16 @@ export async function getServerSideProps(ctx) {
   if (redirect) return redirect;
 
   return {
-    props: {
-
-    }
+    props: {}
   };
 }
 
 const GestaoDeUsuarios = () => {
-  const [rows, setRows] = useState([]);
-  const [selectedRowId, setSelectedRowId] = useState('');
-  const [shouldShowModal, setShouldShowModal] = useState(false);
+  const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
-  const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
   const [snackbar, setSnackbar] = useState(null);
+  const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
+  const [showModalCadastro, setShowModalCadastro] = useState(false);
 
   useEffect(() => {
     listarPerfis()
@@ -47,45 +32,80 @@ const GestaoDeUsuarios = () => {
 
     listarUsuarios()
       .then((usuarios) => {
-        const linhas = transformarDadosEmLinhas(usuarios);
-        setRows(linhas);
+        setUsuarios(usuarios);
       });
   }, []);
 
-  const showModal = useCallback(() => {
-    setShouldShowModal(true);
-  }, []);
-
-  const closeModal = useCallback(() => setShouldShowModal(false), []);
-
-  const transformarDadosEmLinhas = useCallback((dados) => {
-    return dados.map((dado) => ({
-      id: uuidV4(),
-      usuarioId: dado['id_usuario'],
-      mail: dado.mail,
-      cpf: dado.cpf,
-      nome: dado['nome_usuario'],
-      municipio: dado.municipio,
-      cargo: dado.cargo,
-      telefone: dado.telefone,
-      equipe: dado.equipe,
-      autorizacoes: dado.autorizacoes,
-      editarAutorizacoes: showModal,
-      isNew: false,
-    }));
-  }, [showModal]);
-
   const handleSnackbarClose = useCallback(() => setSnackbar(null), []);
 
-  const handleTableRowFocus = useCallback((event) => {
-    const rowId = event.currentTarget.dataset.id;
-    const { autorizacoes } = rows.find(({ id }) => id === rowId);
+  const showErrorMessage = useCallback((error) => {
+    setSnackbar({ children: error.message, severity: 'error' });
+  }, []);
 
-    setSelectedRowId(rowId);
-    setSelectedRowAutorizacoes([...autorizacoes]);
-  }, [rows]);
+  const showSuccessMessage = useCallback((message) => {
+    setSnackbar({ children: message, severity: 'success' });
+  }, []);
 
-  const validarCamposDadosUsuario = useCallback((dados) => {
+  const openModalAutorizacoes = useCallback(() => {
+    setShowModalAutorizacoes(true);
+  }, []);
+
+  const closeModalAutorizacoes = useCallback(() => setShowModalAutorizacoes(false), []);
+
+  const closeModalCadastro = useCallback(() => setShowModalCadastro(false), []);
+
+  const openModalCadastro = useCallback(() => setShowModalCadastro(true), []);
+
+  const getSelectedAutorizacoesIds = useCallback((autorizacoesSelecionadas) => {
+    const autorizacoesIds = autorizacoesSelecionadas.map((autorizacao) => {
+      const { id } = autorizacoes.find(({ descricao }) => descricao === autorizacao);
+
+      return id;
+    });
+
+    return autorizacoesIds;
+  }, [autorizacoes]);
+
+  const validarAutorizacoesSelecionadas = useCallback((autorizacoesSelecionadas) => {
+    if (autorizacoesSelecionadas.length === 0) {
+      throw new Error(MENSAGENS_DE_ERRO.autorizacoesVazias);
+    }
+  }, []);
+
+  const getDescricaoAutorizacoes = useCallback((dadosAutorizacoes) => {
+    return dadosAutorizacoes.map(({ descricao }) => descricao);
+  }, []);
+
+  const editarAutorizacoesUsuario = useCallback(async ({
+    rows, selectedRowId, selectedRowAutorizacoes, setRows
+  }) => {
+    try {
+      const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
+
+      validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
+
+      const autorizacoesIds = getSelectedAutorizacoesIds(selectedRowAutorizacoes);
+      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const novasAutorizacoes = getDescricaoAutorizacoes(response);
+      const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
+        ? { ...row, autorizacoes: novasAutorizacoes }
+        : row
+      );
+
+      setRows(linhasAtualizadas);
+      showSuccessMessage('Autorizações atualizadas com sucesso');
+    } catch (error) {
+      showErrorMessage(error);
+    }
+  }, [
+    getSelectedAutorizacoesIds,
+    showErrorMessage,
+    validarAutorizacoesSelecionadas,
+    showSuccessMessage,
+    getDescricaoAutorizacoes
+  ]);
+
+  const validarCamposObrigatorios = useCallback((dados) => {
     if (!dados.nome) throw new Error(MENSAGENS_DE_ERRO.nomeVazio);
     if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
     if (!dados.mail) throw new Error(MENSAGENS_DE_ERRO.emailVazio);
@@ -95,143 +115,85 @@ const GestaoDeUsuarios = () => {
     if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
   }, []);
 
-  const processRowUpdate = useCallback(async (newRowData) => {
-    const { usuarioId } = newRowData;
-
-    validarCamposDadosUsuario(newRowData);
-
-    const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
-    const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-      ? {
-        id: newRowData.id,
-        usuarioId: dadosAtualizados['id_usuario'],
-        mail: dadosAtualizados.mail,
-        cpf: dadosAtualizados.cpf,
-        nome: dadosAtualizados['nome_usuario'],
-        municipio: dadosAtualizados.municipio,
-        cargo: dadosAtualizados.cargo,
-        telefone: dadosAtualizados.telefone,
-        equipe: dadosAtualizados.equipe,
-        autorizacoes: newRowData.autorizacoes,
-        editarAutorizacoes: newRowData.editarAutorizacoes,
-        isNew: false,
-      }
-      : row
-    );
-
-    setRows(linhasAtualizadas);
-    setSnackbar({ children: 'Usuário salvo com sucesso', severity: 'success' });
-
-    return newRowData;
-  }, [rows, validarCamposDadosUsuario]);
-
-  const handleError = useCallback((error) => {
-    setSnackbar({ children: error.message, severity: 'error' });
-  }, []);
-
-  const handleSelectChange = useCallback((event) => {
-    const { target: { value } } = event;
-
-    // On autofill we get a stringified value.
-    setSelectedRowAutorizacoes(
-      typeof value === 'string' ? value.split(', ') : value,
-    );
-  }, []);
-
-  const getSelectedAutorizacoesIds = useCallback(() => {
-    const autorizacoesIds = selectedRowAutorizacoes.map((autorizacao) => {
-      const { id } = autorizacoes.find(({ descricao }) => descricao === autorizacao);
-
-      return id;
-    });
-
-    return autorizacoesIds;
-  }, [selectedRowAutorizacoes, autorizacoes]);
-
-  const validarAutorizacoesSelecionadas = useCallback(() => {
-    if (selectedRowAutorizacoes.length === 0) {
-      throw new Error(MENSAGENS_DE_ERRO.autorizacoesVazias);
-    }
-  }, [selectedRowAutorizacoes]);
-
-  const handleAutorizacoesEdit = useCallback(async () => {
+  const cadastrarNovoUsuario = useCallback(async (dados) => {
     try {
-      const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
-      const autorizacoesIds = getSelectedAutorizacoesIds();
+      validarCamposObrigatorios(dados);
+      validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
 
-      validarAutorizacoesSelecionadas();
+      const whatsapp = dados.whatsapp ? '1' : '0';
+      const usuarioCadastrado = await cadastrarUsuario({ ...dados, whatsapp });
+      const { id_usuario: usuarioId } = usuarioCadastrado;
+      const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
+      const autorizacoesUsuario = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
 
-      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
-      const novasAutorizacoes = response.map(({ descricao }) => descricao);
-      const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
-        ? { ...row, autorizacoes: novasAutorizacoes }
-        : row
-      );
+      const novoUsuario = {
+        mail: usuarioCadastrado.mail,
+        cpf: usuarioCadastrado.cpf,
+        nome_usuario: usuarioCadastrado['nome_usuario'],
+        id_usuario: usuarioCadastrado['id_usuario'],
+        municipio: usuarioCadastrado.municipio,
+        cargo: usuarioCadastrado.cargo,
+        telefone: usuarioCadastrado.telefone,
+        equipe: usuarioCadastrado.equipe,
+        autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario)
+      };
 
-      setRows(linhasAtualizadas);
-      setSnackbar({
-        children: 'Autorizações atualizadas com sucesso',
-        severity: 'success'
-      });
+      setUsuarios([...usuarios, novoUsuario]);
+      showSuccessMessage('Usuário cadastrado com sucesso');
     } catch (error) {
-      handleError(error);
+      showErrorMessage(error);
     }
-  }, [getSelectedAutorizacoesIds, selectedRowId, rows, handleError, validarAutorizacoesSelecionadas]);
-
-  const getSelectedRowNome = useCallback(() => {
-    if (!selectedRowId) {
-      return;
-    }
-
-    const { nome } = rows.find(({ id }) => id === selectedRowId);
-
-    return nome;
-  }, [rows, selectedRowId]);
+  }, [
+    usuarios,
+    showErrorMessage,
+    showSuccessMessage,
+    getSelectedAutorizacoesIds,
+    validarAutorizacoesSelecionadas,
+    getDescricaoAutorizacoes,
+    validarCamposObrigatorios
+  ]);
 
   return (
     <>
-      { rows.length !== 0
+      <TituloTexto
+        imagem={ {
+          posicao: null,
+          url: ''
+        } }
+        titulo='Boas-vindas à área de gestão de usuários'
+        texto=''
+      />
+
+      { usuarios.length !== 0
         ? (
-          <>
-            <TituloTexto imagem={ {
-              posicao: null,
-              url: ''
-            } }
-              titulo='Boas-vindas à área de gestão de usuários'
-              texto=''
-            />
-
-            <TabelaGestaoUsuarios
-              rows={ rows }
-              selectedRowId={ selectedRowId }
-              processRowUpdate={ processRowUpdate }
-              handleProcessRowUpdateError={ handleError }
-              handleRowFocus={ handleTableRowFocus }
-            />
-
-            <Modal
-              open={ shouldShowModal }
-              onClose={ closeModal }
-              aria-labelledby='modal-modal-title'
-              aria-describedby='modal-modal-description'
-            >
-              <EdicaoAutorizacoes
-                nomeUsuario={ getSelectedRowNome() }
-                autorizacoes={ autorizacoes }
-                autorizacoesSelecionadas={ selectedRowAutorizacoes }
-                handleSelectChange={ handleSelectChange }
-                handleEdicaoAutorizacoes={ handleAutorizacoesEdit }
-              />
-            </Modal>
-
-            <SnackBar
-              config={ snackbar }
-              handleSnackbarClose={ handleSnackbarClose }
-            />
-          </>
+          <TabelaGestaoUsuarios
+            usuarios={ usuarios }
+            autorizacoes={ autorizacoes }
+            showSuccessMessage={ showSuccessMessage }
+            showErrorMessage={ showErrorMessage }
+            handleAddClick={ openModalCadastro }
+            openModalAutorizacoes={ openModalAutorizacoes }
+            closeModalAutorizacoes={ closeModalAutorizacoes }
+            showModalAutorizacoes={ showModalAutorizacoes }
+            handleAutorizacoesEdit={ editarAutorizacoesUsuario }
+            validarCamposObrigatorios={ validarCamposObrigatorios }
+          />
         )
         : <Spinner height='50vh' />
       }
+
+      <ModalCadastroUsuario
+        titulo='Adicionar usuário'
+        isOpen={ showModalCadastro }
+        closeModal={ closeModalCadastro }
+        handleAddClick={ cadastrarNovoUsuario }
+        autorizacoes={ autorizacoes }
+      />
+
+      <SnackBar
+        config={ snackbar }
+        handleSnackbarClose={ handleSnackbarClose }
+      />
     </>
   );
 };
