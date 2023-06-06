@@ -59,3 +59,24 @@ export const atualizarAutorizacoes = async (usuarioId, autorizacoesIds) => {
     throw new Error(JSON.stringify(error.response.data.detail));
   }
 };
+
+export const cadastrarUsuario = async (dados) => {
+  try {
+    const requestData = new FormData();
+
+    requestData.append('nome_usuario', dados.nome);
+    requestData.append('mail', dados.email);
+    requestData.append('cpf', dados.cpf);
+    requestData.append('municipio', dados.municipio);
+    requestData.append('equipe', dados.equipe);
+    requestData.append('cargo', dados.cargo);
+    requestData.append('telefone', dados.telefone);
+    requestData.append('whatsapp', dados.whatsapp);
+
+    const response = await instance.post('/usuarios-ip', requestData);
+
+    return response.data;
+  } catch (error) {
+    throw new Error(JSON.stringify(error.response.data.detail));
+  }
+};

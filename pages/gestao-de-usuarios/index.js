@@ -5,7 +5,7 @@ import { ModalCadastroUsuario } from '../../componentes/ModalCadastroUsuario';
 import { SnackBar } from '../../componentes/SnackBar';
 import { TabelaGestaoUsuarios } from '../../componentes/TabelaGestaoUsuarios';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
-import { listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
+import { cadastrarUsuario, listarPerfis, listarUsuarios } from '../../services/gestaoUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
