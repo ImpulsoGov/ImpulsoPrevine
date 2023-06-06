@@ -22,6 +22,7 @@ const GestaoDeUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
   const [snackbar, setSnackbar] = useState(null);
+  const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
   const [showModalCadastro, setShowModalCadastro] = useState(false);
 
   useEffect(() => {
@@ -43,6 +44,12 @@ const GestaoDeUsuarios = () => {
   const showSuccessMessage = useCallback((message) => {
     setSnackbar({ children: message, severity: 'success' });
   }, []);
+
+  const openModalAutorizacoes = useCallback(() => {
+    setShowModalAutorizacoes(true);
+  }, []);
+
+  const closeModalAutorizacoes = useCallback(() => setShowModalAutorizacoes(false), []);
 
   const closeModalCadastro = useCallback(() => setShowModalCadastro(false), []);
 
@@ -67,6 +74,9 @@ const GestaoDeUsuarios = () => {
             showSuccessMessage={ showSuccessMessage }
             showErrorMessage={ showErrorMessage }
             handleAddClick={ openModalCadastro }
+            openModalAutorizacoes={ openModalAutorizacoes }
+            closeModalAutorizacoes={ closeModalAutorizacoes }
+            showModalAutorizacoes={ showModalAutorizacoes }
           />
         )
         : <Spinner height='50vh' />

@@ -14,11 +14,13 @@ function TabelaGestaoUsuarios({
   showSuccessMessage,
   showErrorMessage,
   handleAddClick,
+  openModalAutorizacoes,
+  closeModalAutorizacoes,
+  showModalAutorizacoes
 }) {
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
-  const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
   const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
 
   useEffect(() => {
@@ -135,12 +137,6 @@ function TabelaGestaoUsuarios({
       }
     }
   ], []);
-
-  const openModalAutorizacoes = useCallback(() => {
-    setShowModalAutorizacoes(true);
-  }, []);
-
-  const closeModalAutorizacoes = useCallback(() => setShowModalAutorizacoes(false), []);
 
   const transformarDadosEmLinhas = useCallback((dados) => {
     return dados.map((dado) => ({
