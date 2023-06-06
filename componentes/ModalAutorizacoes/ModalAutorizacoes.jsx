@@ -1,7 +1,7 @@
 import { ButtonColorSubmit, TituloSmallTexto } from '@impulsogov/design-system';
 import Modal from '@mui/material/Modal';
 import React from 'react';
-import { MultipleSelectCheckmarks } from '../MultipleSelectCheckmarks';
+import { Select } from '../Select';
 import styles from './ModalAutorizacoes.module.css';
 
 function ModalAutorizacoes({
@@ -31,11 +31,13 @@ function ModalAutorizacoes({
         />
 
         <div className={ styles.SelectContainer }>
-          <MultipleSelectCheckmarks
+          <Select
             label='Autorizações'
             options={ autorizacoes }
             selectedOptions={ autorizacoesSelecionadas }
             handleChange={ handleSelectChange }
+            width='75%'
+            isMulti
           />
 
           <ButtonColorSubmit
