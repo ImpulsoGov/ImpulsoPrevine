@@ -114,6 +114,45 @@ const GestaoDeUsuarios = () => {
     if (!dados.telefone) throw new Error(MENSAGENS_DE_ERRO.telefoneVazio);
     if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
   }, []);
+
+  const cadastrarNovoUsuario = useCallback(async (dados) => {
+    try {
+      validarCamposObrigatorios(dados);
+      validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
+
+      const whatsapp = dados.whatsapp ? '1' : '0';
+      const usuarioCadastrado = await cadastrarUsuario({ ...dados, whatsapp });
+      const { id_usuario: usuarioId } = usuarioCadastrado;
+      const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
+      const autorizacoesUsuario = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+
+      const novoUsuario = {
+        mail: usuarioCadastrado.mail,
+        cpf: usuarioCadastrado.cpf,
+        nome_usuario: usuarioCadastrado['nome_usuario'],
+        id_usuario: usuarioCadastrado['id_usuario'],
+        municipio: usuarioCadastrado.municipio,
+        cargo: usuarioCadastrado.cargo,
+        telefone: usuarioCadastrado.telefone,
+        equipe: usuarioCadastrado.equipe,
+        autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario)
+      };
+
+      setUsuarios([...usuarios, novoUsuario]);
+      showSuccessMessage('Usuário cadastrado com sucesso');
+    } catch (error) {
+      showErrorMessage(error);
+    }
+  }, [
+    usuarios,
+    showErrorMessage,
+    showSuccessMessage,
+    getSelectedAutorizacoesIds,
+    validarAutorizacoesSelecionadas,
+    getDescricaoAutorizacoes,
+    validarCamposObrigatorios
+  ]);
+
   return (
     <>
       <TituloTexto
@@ -147,6 +186,8 @@ const GestaoDeUsuarios = () => {
         titulo='Adicionar usuário'
         isOpen={ showModalCadastro }
         closeModal={ closeModalCadastro }
+        handleAddClick={ cadastrarNovoUsuario }
+        autorizacoes={ autorizacoes }
       />
 
       <SnackBar
