@@ -7,7 +7,7 @@
   height: 70vh;
   background-color: white;
   border-radius: 15px;
-  padding: 30px 40px;
+  padding: 0 40px 30px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,6 @@
 
 .Formulario {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 40px;
 }

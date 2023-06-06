@@ -1,13 +1,16 @@
 import { ButtonColorSubmit, TituloSmallTexto } from '@impulsogov/design-system';
 import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { CARGOS } from '../../constants/gestaoUsuarios';
+import { Select } from '../Select';
 import styles from './ModalCadastroUsuario.module.css';
 
-function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
+function ModalCadastroUsuario({
+  titulo, isOpen, closeModal, handleAddClick, autorizacoes
+}) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
@@ -16,6 +19,16 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
   const [telefone, setTelefone] = useState('');
   const [equipe, setEquipe] = useState('');
   const [whatsapp, setWhatsapp] = useState(false);
+  const [autorizacoesSelecionadas, setAutorizacoesSelecionadas] = useState([]);
+
+  const handleAutorizacoesChange = useCallback((event) => {
+    const { target: { value } } = event;
+
+    // On autofill we get a stringified value.
+    setAutorizacoesSelecionadas(
+      typeof value === 'string' ? value.split(', ') : value,
+    );
+  }, []);
 
   return (
     <Modal
@@ -36,7 +49,7 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
 
         <form className={ styles.Formulario }>
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='Nome'
             value={ nome }
@@ -46,7 +59,7 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
           />
 
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='E-mail'
             value={ email }
@@ -56,7 +69,7 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
           />
 
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='CPF'
             value={ cpf }
@@ -66,7 +79,7 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
           />
 
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='Município'
             value={ municipio }
@@ -75,23 +88,18 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
             } }
           />
 
-          <TextField
-            sx={ { width: '30%' } }
-            id='outlined-controlled'
+          <Select
             label='Cargo'
-            select
-            value={ cargo }
-            onChange={ (event) => {
+            options={ CARGOS }
+            selectedOptions={ cargo }
+            handleChange={ (event) => {
               setCargo(event.target.value);
             } }
-          >
-            { CARGOS.map((cargo) => (
-              <MenuItem key={ cargo } value={ cargo }>{ cargo }</MenuItem>
-            )) }
-          </TextField>
+            width='30%'
+          />
 
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='Telefone'
             value={ telefone }
@@ -101,7 +109,7 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
           />
 
           <TextField
-            sx={ { width: '30%' } }
+            sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='Equipe'
             value={ equipe }
@@ -110,18 +118,40 @@ function ModalCadastroUsuario({ titulo, isOpen, closeModal }) {
             } }
           />
 
-          <label>
-            <Checkbox
-              checked={ whatsapp }
-              onChange={ (event) => setWhatsapp(event.target.checked) }
-            />
-            Whatsapp
-          </label>
+          <Select
+            label='Autorizações'
+            options={ autorizacoes }
+            selectedOptions={ autorizacoesSelecionadas }
+            handleChange={ handleAutorizacoesChange }
+            width='30%'
+            isMulti
+          />
+
+          <FormControlLabel
+            sx={ { m: 1 } }
+            control={
+              <Checkbox
+                checked={ whatsapp }
+                onChange={ (event) => setWhatsapp(event.target.checked) }
+              />
+            }
+            label='Whatsapp'
+          />
         </form>
 
         <ButtonColorSubmit
           label='ADICIONAR'
-          submit={ () => console.log() }
+          submit={ () => handleAddClick({
+            nome,
+            email,
+            cpf,
+            municipio,
+            cargo,
+            telefone,
+            equipe,
+            whatsapp,
+            autorizacoesSelecionadas
+          }) }
         />
       </div>
     </Modal>
