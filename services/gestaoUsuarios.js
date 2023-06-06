@@ -65,7 +65,7 @@ export const cadastrarUsuario = async (dados) => {
     const requestData = new FormData();
 
     requestData.append('nome_usuario', dados.nome);
-    requestData.append('mail', dados.email);
+    requestData.append('mail', dados.mail);
     requestData.append('cpf', dados.cpf);
     requestData.append('municipio', dados.municipio);
     requestData.append('equipe', dados.equipe);

@@ -12,7 +12,7 @@ function ModalCadastroUsuario({
   titulo, isOpen, closeModal, handleAddClick, autorizacoes
 }) {
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState('');
   const [cpf, setCpf] = useState('');
   const [municipio, setMunicipio] = useState('');
   const [cargo, setCargo] = useState('');
@@ -62,9 +62,9 @@ function ModalCadastroUsuario({
             sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
             label='E-mail'
-            value={ email }
+            value={ mail }
             onChange={ (event) => {
-              setEmail(event.target.value);
+              setMail(event.target.value);
             } }
           />
 
@@ -143,7 +143,7 @@ function ModalCadastroUsuario({
           label='ADICIONAR'
           submit={ () => handleAddClick({
             nome,
-            email,
+            mail,
             cpf,
             municipio,
             cargo,
