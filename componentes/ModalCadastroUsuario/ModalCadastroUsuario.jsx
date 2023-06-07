@@ -51,7 +51,7 @@ function ModalCadastroUsuario({
     >
       <div className={ styles.Container }>
         { isLoading
-          ? <Spinner height='50vh' />
+          ? <Spinner />
           : (
             <>
               <TituloSmallTexto
