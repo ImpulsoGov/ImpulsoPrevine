@@ -84,6 +84,7 @@ const GestaoDeUsuarios = () => {
       const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
 
       validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
+      setLoading(true);
 
       const autorizacoesIds = getSelectedAutorizacoesIds(selectedRowAutorizacoes);
       const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
@@ -94,8 +95,10 @@ const GestaoDeUsuarios = () => {
       );
 
       setRows(linhasAtualizadas);
+      setLoading(false);
       showSuccessMessage('Autorizações atualizadas com sucesso');
     } catch (error) {
+      setLoading(false);
       showErrorMessage(error);
     }
   }, [
@@ -182,6 +185,7 @@ const GestaoDeUsuarios = () => {
             showModalAutorizacoes={ showModalAutorizacoes }
             handleAutorizacoesEdit={ editarAutorizacoesUsuario }
             validarCamposObrigatorios={ validarCamposObrigatorios }
+            isLoading={ loading }
           />
         )
         : <Spinner height='50vh' />

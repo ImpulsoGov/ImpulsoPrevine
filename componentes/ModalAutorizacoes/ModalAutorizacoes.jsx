@@ -1,4 +1,4 @@
-import { ButtonColorSubmit, TituloSmallTexto } from '@impulsogov/design-system';
+import { ButtonColorSubmit, Spinner, TituloSmallTexto } from '@impulsogov/design-system';
 import Modal from '@mui/material/Modal';
 import React from 'react';
 import { Select } from '../Select';
@@ -11,7 +11,8 @@ function ModalAutorizacoes({
   handleSelectChange,
   handleEditClick,
   isOpen,
-  closeModal
+  closeModal,
+  isLoading
 }) {
   return (
     <Modal
@@ -20,31 +21,40 @@ function ModalAutorizacoes({
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <div className={ styles.EdicaoAutorizacoesContainer }>
-        <TituloSmallTexto
-          imagem={ {
-            posicao: null,
-            url: ''
-          } }
-          texto=''
-          titulo={ titulo }
-        />
+      <div className={
+        `${styles.EdicaoAutorizacoesContainer} ${isLoading && styles.Loading}`
+      }>
+        { isLoading
+          ? <Spinner />
+          : (
+            <>
+              <TituloSmallTexto
+                imagem={ {
+                  posicao: null,
+                  url: ''
+                } }
+                texto=''
+                titulo={ titulo }
+              />
 
-        <div className={ styles.SelectContainer }>
-          <Select
-            label='Autorizações'
-            options={ autorizacoes }
-            selectedOptions={ autorizacoesSelecionadas }
-            handleChange={ handleSelectChange }
-            width='75%'
-            isMulti
-          />
+              <div className={ styles.SelectContainer }>
+                <Select
+                  label='Autorizações'
+                  options={ autorizacoes }
+                  selectedOptions={ autorizacoesSelecionadas }
+                  handleChange={ handleSelectChange }
+                  width='75%'
+                  isMulti
+                />
 
-          <ButtonColorSubmit
-            label='SALVAR'
-            submit={ handleEditClick }
-          />
-        </div>
+                <ButtonColorSubmit
+                  label='SALVAR'
+                  submit={ handleEditClick }
+                />
+              </div>
+            </>
+          )
+        }
       </div>
     </Modal>
   );

@@ -10,6 +10,12 @@
   padding: 30px 40px;
 }
 
+.Loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .SelectContainer {
   display: flex;
   gap: 40px;

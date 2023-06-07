@@ -17,7 +17,8 @@ function TabelaGestaoUsuarios({
   closeModalAutorizacoes,
   showModalAutorizacoes,
   handleAutorizacoesEdit,
-  validarCamposObrigatorios
+  validarCamposObrigatorios,
+  isLoading
 }) {
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
@@ -328,6 +329,7 @@ function TabelaGestaoUsuarios({
         }) }
         isOpen={ showModalAutorizacoes }
         closeModal={ closeModalAutorizacoes }
+        isLoading={ isLoading }
       />
     </div>
   );
