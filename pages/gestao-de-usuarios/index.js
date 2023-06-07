@@ -25,6 +25,7 @@ const GestaoDeUsuarios = () => {
   const [snackbar, setSnackbar] = useState(null);
   const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
   const [showModalCadastro, setShowModalCadastro] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     listarPerfis()
@@ -115,10 +116,11 @@ const GestaoDeUsuarios = () => {
     if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
   }, []);
 
-  const cadastrarNovoUsuario = useCallback(async (dados) => {
+  const cadastrarNovoUsuario = useCallback(async (dados, callbackLimparDados) => {
     try {
       validarCamposObrigatorios(dados);
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
+      setLoading(true);
 
       const whatsapp = dados.whatsapp ? '1' : '0';
       const usuarioCadastrado = await cadastrarUsuario({ ...dados, whatsapp });
@@ -139,8 +141,11 @@ const GestaoDeUsuarios = () => {
       };
 
       setUsuarios([...usuarios, novoUsuario]);
+      setLoading(false);
+      callbackLimparDados();
       showSuccessMessage('Usuário cadastrado com sucesso');
     } catch (error) {
+      setLoading(false);
       showErrorMessage(error);
     }
   }, [
@@ -188,6 +193,7 @@ const GestaoDeUsuarios = () => {
         closeModal={ closeModalCadastro }
         handleAddClick={ cadastrarNovoUsuario }
         autorizacoes={ autorizacoes }
+        isLoading={ loading }
       />
 
       <SnackBar
