@@ -8,11 +8,10 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@impulsogov/design-system": "^1.0.44",
+    "@impulsogov/design-system": "^1.0.46",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "axios": "^0.27.2",
