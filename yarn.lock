@@ -1114,10 +1114,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@impulsogov/design-system@^1.0.41":
-  version "1.0.41"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.41.tgz#7bf00cbe28dde522f10adad795ec9c9e3868df8c"
-  integrity sha512-U/pJqEsDHlBs9YBVnAUDd3g7MNUMkJa+lyBWJtQr7k8lpM0DC0Pi0D4Ku/THAruX5iRaoo2rcRarFv/u0HPBbg==
+"@impulsogov/design-system@^1.0.44":
+  version "1.0.44"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.44.tgz#971b528db0a9e7baab234f8a3730090102a31d4f"
+  integrity sha512-dHFEK49+4OUrC0lzvQXklrOKCvQkT8nX1v8rAWihSNS3fwDHx5CN6sdHvhVJjjeNwU5+UJ2EitUm24nB5j+15w==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
@@ -1128,18 +1128,17 @@
     "@impulsogov/designsystem" "^0.0.20"
     "@mdx-js/react" "^2.3.0"
     "@mui/material" "^5.12.3"
-    "@mui/x-data-grid" "^6.3.1"
+    "@mui/x-data-grid" "^6.6.0"
     "@tippyjs/react" "^4.2.6"
     axios "^1.1.3"
     classnames "^2.3.1"
     dompurify "^2.3.10"
-    echarts "^5.4.2"
+    echarts "^5.4.1"
     echarts-for-react "^3.0.2"
     form-data "^4.0.0"
     next "^13.0.3"
     react "^18.2.0"
     react-dom "^18.2.0"
-    react-echarts-wrapper "^1.0.3"
 
 "@impulsogov/designsystem@^0.0.20":
   version "0.0.20"
@@ -1298,6 +1297,17 @@
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@mui/utils" "^5.12.3"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    reselect "^4.1.8"
+
+"@mui/x-data-grid@^6.6.0":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.8.0.tgz#6f04084dceca61c71e5594f6437ee7f038c89f01"
+  integrity sha512-L4CJb2zJDkyBXItfY1QwXt57ap1vIigPGiNrmuJZ8APS1jHafO1dftBWSfJyDJXsnQ5UsDBXsX1nagX51AebpQ==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@mui/utils" "^5.13.1"
     clsx "^1.2.1"
     prop-types "^15.8.1"
     reselect "^4.1.8"
@@ -1815,11 +1825,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-batch-processor@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/batch-processor/-/batch-processor-1.0.0.tgz#75c95c32b748e0850d10c2b168f6bdbe9891ace8"
-  integrity sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA==
-
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz"
@@ -2114,7 +2119,7 @@ echarts-for-react@^3.0.2:
     fast-deep-equal "^3.1.3"
     size-sensor "^1.0.1"
 
-echarts@^5.4.2:
+echarts@^5.4.1:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/echarts/-/echarts-5.4.2.tgz#9f38781c9c6ae323e896956178f6956952c77a48"
   integrity sha512-2W3vw3oI2tWJdyAz+b8DuWS0nfXtSDqlDmqgin/lfzbkB01cuMEN66KWBlmur3YMp5nEDEEt5s23pllnAzB4EA==
@@ -2126,13 +2131,6 @@ electron-to-chromium@^1.4.202:
   version "1.4.237"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.237.tgz"
   integrity sha512-vxVyGJcsgArNOVUJcXm+7iY3PJAfmSapEszQD1HbyPLl0qoCmNQ1o/EX3RI7Et5/88In9oLxX3SGF8J3orkUgA==
-
-element-resize-detector@latest:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/element-resize-detector/-/element-resize-detector-1.2.4.tgz#3e6c5982dd77508b5fa7e6d5c02170e26325c9b1"
-  integrity sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==
-  dependencies:
-    batch-processor "1.0.0"
 
 emoji-regex@^9.2.2:
   version "9.2.2"
@@ -2976,11 +2974,6 @@ lodash.merge@^4.6.2:
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-lodash.throttle@latest:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
-  integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
-
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
@@ -3433,14 +3426,6 @@ react-dom@^17.0.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
-
-react-echarts-wrapper@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-echarts-wrapper/-/react-echarts-wrapper-1.0.3.tgz#6c5f9aeaa425bf7b1285fdf3ce814cc544821d2a"
-  integrity sha512-j4skTRmfLoQtSV9iKDPDDsF29g06nKaxsA3Hswf/Hg80NupczcMadWbHLlws4ychkzQg29XfArJHw526pVnOgQ==
-  dependencies:
-    element-resize-detector latest
-    lodash.throttle latest
 
 react-ga@^3.3.1:
   version "3.3.1"
