@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@impulsogov/design-system']);
+const withTM = require('next-transpile-modules')(['@impulsogov/design-system','echarts','echarts-for-react']);
 
 module.exports = withTM({
   reactStrictMode: true,
