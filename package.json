@@ -6,12 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@impulsogov/design-system": "^1.0.38",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@impulsogov/design-system": "^1.0.38",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "axios": "^0.27.2",
@@ -31,7 +32,9 @@
     "react-gtm-module": "^2.0.11"
   },
   "devDependencies": {
+    "cypress": "^12.14.0",
     "eslint": "8.18.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "12.1.6",
+    "eslint-plugin-cypress": "^2.13.3"
   }
 }
