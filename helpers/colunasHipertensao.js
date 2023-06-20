@@ -1,3 +1,25 @@
+const PrazoProximaConsultaStyle = ({value})=> {
+    const emDia = {
+        backgroundColor: "#E7FBF3",
+        border: "1px solid #9DEECD",
+        borderRadius: "5px",
+        color: "#1D856C",
+        padding: "2px",
+        fontWeight : 550,
+    }
+    const prazo = {
+        backgroundColor: "#FFF0E1",
+        border: "1px solid #F4CCAB",
+        borderRadius: "5px",
+        color: "#E98633",
+        padding: "2px",
+        fontWeight : 550,
+    }
+    const style = (value=="Em dia") ? emDia : prazo
+    return <div style={style}>{value}</div>
+}
+
+
 const colunasHipertensao = [
     {
       align: 'left',
@@ -32,7 +54,7 @@ const colunasHipertensao = [
       field: 'prazo_proxima_consulta',
       headerAlign: 'center',
       headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
-      renderCell: () => {},
+      renderCell: PrazoProximaConsultaStyle,
       width: 130
     },
     {
@@ -47,7 +69,7 @@ const colunasHipertensao = [
       field: 'prazo_proxima_afericao_pa',
       headerAlign: 'center',
       headerName: 'PRAZO PARA PRÓXIMA AFERIÇÃO DE PA',
-      renderCell: function noRefCheck() {},
+      renderCell: PrazoProximaConsultaStyle,
       width: 130
     },
     {

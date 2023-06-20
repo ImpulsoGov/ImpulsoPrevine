@@ -1,4 +1,4 @@
-import { PanelSelector, CardAlert, TituloTexto, ButtonLight, PainelBuscaAtiva} from "@impulsogov/design-system";
+import { PanelSelector, CardAlert, TituloTexto, ButtonLight, PainelBuscaAtiva , ScoreCardGrid } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -30,17 +30,12 @@ const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
   const [tabelaData, setTabelaData] = useState();
-
   const HipertensaoTabelaData = async()=> await tabelaHipertensao('355060','0001540971',session?.user?.access_token)
   useEffect(()=>{
       session &&  
       HipertensaoTabelaData().then((response)=>{
-        console.log(response)
         setTabelaData(response)
-        console.log(tabelaData)
   })},[session]) 
-  console.log(tabelaData)
-
   useEffect(()=>{
     if(session){
       validatetoken(session?.user?.access_token)
@@ -62,6 +57,7 @@ const Index = ({res}) => {
     }
   ]
   if(session){
+    console.log(session.user)
     if(session.user.perfis.includes(5) || session.user.perfis.includes(9)){
       return (
         <>
@@ -81,25 +77,39 @@ const Index = ({res}) => {
             />  
             {
               tabelaData &&
-              <PainelBuscaAtiva
-                cards={[
+              <ScoreCardGrid
+                valores={[
                   {
-                    descricao: 'Total de pessoas com Hipertensão',
-                    valor: 102
+                    descricao: 'Total de pessoas com hipertensão',
+                    valor: tabelaData.length
                   },
                   {
-                    descricao: 'Total de pessoas com Hipertensão',
-                    valor: 102
+                    descricao: 'Total de pessoas com consulta e aferição de PA em dia',
+                    valor: tabelaData.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)
                   },
                   {
-                    descricao: 'Total de pessoas com Hipertensão',
-                    valor: 102
+                    descricao: 'Total de pessoas com diagnóstico autorreferido',
+                    valor: tabelaData.reduce((acumulador,item)=>{ 
+                      return (item.identificacao_condicao_hipertensao == "Autorreferida") ?
+                      acumulador + 1 : acumulador;
+                    },0)
                   },
                   {
-                    descricao: 'Total de pessoas com Hipertensão',
-                    valor: 102
+                    descricao: 'Total de pessoas com diagnóstico clínico',
+                    valor: tabelaData.reduce((acumulador,item)=>{ 
+                      return (item.identificacao_condicao_hipertensao == "Diagnóstico Clínico") ?
+                      acumulador + 1 : acumulador;
+                    },0)
                   }
                 ]}
+             />
+            }
+            {
+              tabelaData &&
+              <PainelBuscaAtiva
                 dadosFiltros={[
                   {
                     data: [
