@@ -34,7 +34,7 @@ describe('Primeiro acesso', () => {
         });
 
         it('É exibida a input de email', () => {
-          cy.get('input[placeholder*="E-mail"]').should('be.visible');
+          cy.get('input[placeholder="E-mail"]').should('be.visible');
         });
 
         it('É exibido o botão VOLTAR', () => {
