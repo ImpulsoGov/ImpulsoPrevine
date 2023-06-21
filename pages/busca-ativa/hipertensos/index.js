@@ -1,4 +1,4 @@
-import { PanelSelector, CardAlert, TituloTexto, ButtonLight, PainelBuscaAtiva , ScoreCardGrid } from "@impulsogov/design-system";
+import { PanelSelector, CardAlert, TituloTexto, ButtonLight, PainelBuscaAtiva , ScoreCardGrid , Spinner} from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../../services/cms'
@@ -150,6 +150,7 @@ const Index = ({res}) => {
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     return (
       <>
+        
         <div className={style.BotaoVoltar}>
         <ButtonLight icone={{posicao: 'right',
           url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
@@ -165,7 +166,7 @@ const Index = ({res}) => {
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
           />  
           {
-            tabelaDataAPS &&
+            tabelaDataAPS ?
             <PainelBuscaAtiva
               dadosFiltros={[
                 {
@@ -194,7 +195,7 @@ const Index = ({res}) => {
                 colunas: colunasHipertensao,
                 data:tabelaDataAPS
               }}
-            />
+            /> : <Spinner/>
           }
       </>
     )
