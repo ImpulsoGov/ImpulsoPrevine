@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@impulsogov/design-system": "^1.0.38",
+    "@impulsogov/design-system": "^1.0.58",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.0",
