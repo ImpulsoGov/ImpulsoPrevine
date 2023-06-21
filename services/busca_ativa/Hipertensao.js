@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../../constants/API_URL";
 
-const tabelaHipertensao = async(municipio_uf,equipe,token)=>{
+const tabelaHipertensaoEquipe = async(municipio_uf,equipe,token)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
@@ -13,6 +13,28 @@ const tabelaHipertensao = async(municipio_uf,equipe,token)=>{
       
       const res = axios.request(config)
       .then((response) => {
+        console.log(response)
+        return response.data;
+      })
+      .catch((error) => {
+        return error.response.data;
+      });      
+
+      return res
+}
+const tabelaHipertensaoAPS = async(municipio_uf,token)=>{
+    let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: API_URL + `impulsoprevine/busca-ativa/hipertensao-por-municipio?municipio_uf=${municipio_uf}`,
+        headers: { 
+          'Authorization': 'Bearer ' + token
+        }
+      };
+      
+      const res = axios.request(config)
+      .then((response) => {
+        console.log(response)
         return response.data;
       })
       .catch((error) => {
@@ -22,4 +44,4 @@ const tabelaHipertensao = async(municipio_uf,equipe,token)=>{
       return res
 }
 
-export { tabelaHipertensao }
+export { tabelaHipertensaoEquipe, tabelaHipertensaoAPS }
