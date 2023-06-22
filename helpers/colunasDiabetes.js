@@ -30,9 +30,9 @@ const colunasDiabetes = [
     },
     {
       align: 'center',
-      field: 'cidadao_cpf',
+      field: 'cidadao_cpf_dt_nascimento',
       headerAlign: 'center',
-      headerName: 'CPF',
+      headerName: 'CPF/DATA DE NASCIMENTO',
       width: 130
     },
     {

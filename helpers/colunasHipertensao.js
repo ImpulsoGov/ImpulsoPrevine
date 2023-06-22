@@ -19,6 +19,23 @@ const PrazoProximaConsultaStyle = ({value})=> {
     return <div style={style}>{value}</div>
 }
 
+const FormatarData = (str)=>{
+    if(!str.value) return null
+    const parts = str.value.split('-');
+    const dia = parts[2];
+    const mes = parts[1];
+    const ano = parts[0];
+    const date = `${dia}/${mes}/${ano}`
+    return date
+}
+const FormatarDataNascimento = (str)=>{ 
+    const parts = str.value.split('-');
+    const dia = parts[2];
+    const mes = parts[1];
+    const ano = parts[0];
+    const date = `${dia}/${mes}/${ano}`
+    return str.value.includes('-') ?  date : str.value
+}
 
 const colunasHipertensao = [
     {
@@ -30,9 +47,10 @@ const colunasHipertensao = [
     },
     {
       align: 'center',
-      field: 'cidadao_cpf',
+      field: 'cidadao_cpf_dt_nascimento',
       headerAlign: 'center',
-      headerName: 'CPF',
+      headerName: 'CPF/DATA DE NASCIMENTO',
+      renderCell : FormatarDataNascimento,
       width: 130
     },
     {
@@ -47,6 +65,7 @@ const colunasHipertensao = [
       field: 'dt_ultima_consulta',
       headerAlign: 'center',
       headerName: 'DATA DA CONSULTA MAIS RECENTE',
+      renderCell : FormatarData,
       width: 120
     },
     {
@@ -62,6 +81,7 @@ const colunasHipertensao = [
       field: 'dt_afericao_pressao_mais_recente',
       headerAlign: 'center',
       headerName: 'DATA DA AFERIÇÃO DE PA MAIS RECENTE',
+      renderCell : FormatarData,
       width: 130
     },
     {
