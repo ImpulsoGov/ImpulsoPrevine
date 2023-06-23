@@ -290,19 +290,31 @@ const Index = ({res}) => {
                     data: [
                       {
                         name: 'Apenas consulta em dia',
-                        value: 30
+                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                          return (item.prazo_proxima_consulta == "Em dia") ?
+                          acumulador + 1 : acumulador;
+                        },0)*100)/tabelaDataAPS.length)
                       },
                       {
                         name: 'Consulta e Aferição em dia',
-                        value: 31
+                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                          return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                          acumulador + 1 : acumulador;
+                        },0)*100)/tabelaDataAPS.length)
                       },
                       {
                         name: 'Apenas Aferição de PA em dia',
-                        value: 15
+                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                          return (item.prazo_proxima_afericao_pa == "Em dia") ?
+                          acumulador + 1 : acumulador;
+                        },0)*100)/tabelaDataAPS.length)
                       },
                       {
                         name: 'Nada em dia',
-                        value: 24
+                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                          return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
+                          acumulador + 1 : acumulador;
+                        },0)*100)/tabelaDataAPS.length)
                       }
                     ],
                     emphasis: {
@@ -333,7 +345,7 @@ const Index = ({res}) => {
                   }
                 ],
                 tooltip: {
-                  formatter: '{b} : {d}%',
+                  formatter: '{b}',
                   trigger: 'item'
                 }
               }}
