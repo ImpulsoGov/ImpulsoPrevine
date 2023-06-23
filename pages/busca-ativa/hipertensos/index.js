@@ -1,4 +1,12 @@
-import { PanelSelector, CardAlert, TituloTexto, ButtonLight, PainelBuscaAtiva , ScoreCardGrid , Spinner} from "@impulsogov/design-system";
+import { 
+  CardAlert,
+  TituloTexto, 
+  ButtonLight, 
+  PainelBuscaAtiva , 
+  ScoreCardGrid , 
+  Spinner, 
+  GraficoBuscaAtiva
+} from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../../services/cms'
@@ -26,31 +34,25 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
-  const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
+
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio,session?.user?.access_token)
-  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
-  useEffect(()=>{
-      session &&  session.user.perfis.includes(9) &&
-      HipertensaoTabelaDataEquipe().then((response)=>{
-        setTabelaDataEquipe(response)
-  })},[session]) 
   useEffect(()=>{
     session && session.user.perfis.includes(8) &&
     HipertensaoTabelaDataAPS().then((response)=>{
       setTabelaDataAPS(response)
-})},[session]) 
+  })},[session]) 
 
   useEffect(()=>{
-    if(session){
-      validatetoken(session?.user?.access_token)
-      .then(response=>{
-        setTokenValido(response)
-      }).catch(error=>{
-        setTokenValido(false)
-      })
-      }
-  })
+      if(session){
+        validatetoken(session?.user?.access_token)
+        .then(response=>{
+          setTokenValido(response)
+        }).catch(error=>{
+          setTokenValido(false)
+        })
+        }
+    })
   useEffect(()=>{
     if(session && session?.user?.access_token){
       if(tokenValido!=true && tokenValido!==undefined) signOut()
@@ -61,10 +63,16 @@ const Index = ({res}) => {
       label: "Indicador Hipertensão",
     }
   ]
-  if(session){
-    console.log(session.user)
+  if(session){  
     if(session.user.perfis.includes(9)){
-      return (
+      const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
+      const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+      useEffect(()=>{
+        session &&  session.user.perfis.includes(9) &&
+        HipertensaoTabelaDataEquipe().then((response)=>{
+          setTabelaDataEquipe(response)
+      })},[session]) 
+        return (
         <>
           <div className={style.BotaoVoltar}>
           <ButtonLight icone={{posicao: 'right',
@@ -165,6 +173,172 @@ const Index = ({res}) => {
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
           />  
+            {
+              tabelaDataAPS &&
+              <ScoreCardGrid
+                valores={[
+                  {
+                    descricao: 'Total de pessoas com hipertensão',
+                    valor: tabelaDataAPS.length
+                  },
+                  {
+                    descricao: 'Total de pessoas com consulta e aferição de PA em dia',
+                    valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)
+                  },
+                  {
+                    descricao: 'Total de pessoas com diagnóstico autorreferido',
+                    valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.identificacao_condicao_hipertensao == "Autorreferida") ?
+                      acumulador + 1 : acumulador;
+                    },0)
+                  },
+                  {
+                    descricao: 'Total de pessoas com diagnóstico clínico',
+                    valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.identificacao_condicao_hipertensao == "Diagnóstico Clínico") ?
+                      acumulador + 1 : acumulador;
+                    },0)
+                  }
+                ]}
+             />
+            }
+            {
+              tabelaDataAPS &&
+              <GraficoBuscaAtiva
+              dataBarra={{
+                color: [
+                  '#1D856C',
+                  '#2EB280',
+                  '#55D499',
+                  '#9DEECD'
+                ],
+                grid: {
+                  containLabel: true,
+                  top: '20%'
+                },
+                legend: {
+                  data: [
+                    'Apenas consulta em dia',
+                    'consulta e aferição de PA em dia',
+                    'Apenas aferição de PA em dia',
+                    'Nada em dia'
+                  ],
+                  top: 'top'
+                },
+                series: [
+                  {
+                    data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      if(item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                      return acumulador
+                    },{})),
+                    name: 'Apenas consulta em dia',
+                    stack: 'stack',
+                    type: 'bar'
+                  },
+                  {
+                    data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                      return acumulador
+                    },{})),
+                    name: 'consulta e aferição de PA em dia',
+                    stack: 'stack',
+                    type: 'bar'
+                  },
+                  {
+                    data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      if(item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                      return acumulador
+                    },{})),
+                    name: 'Apenas aferição de PA em dia',
+                    stack: 'stack',
+                    type: 'bar'
+                  },
+                  {
+                    data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                      return acumulador
+                    },{})),
+                    name: 'Nada em dia',
+                    stack: 'stack',
+                    type: 'bar'
+                  }
+                ],
+                tooltip: {
+                  trigger: 'axis'
+                },
+                xAxis: {
+                  data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
+                  type: 'category'
+                },
+                yAxis: {
+                  type: 'value'
+                }
+              }}
+              dataRosca={{
+                color: [
+                  '#1D856C',
+                  '#2EB280',
+                  '#55D499',
+                  '#9DEECD'
+                ],
+                series: [
+                  {
+                    avoidLabelOverlap: false,
+                    data: [
+                      {
+                        name: 'Apenas consulta em dia',
+                        value: 30
+                      },
+                      {
+                        name: 'Consulta e Aferição em dia',
+                        value: 31
+                      },
+                      {
+                        name: 'Apenas Aferição de PA em dia',
+                        value: 15
+                      },
+                      {
+                        name: 'Nada em dia',
+                        value: 24
+                      }
+                    ],
+                    emphasis: {
+                      label: {
+                        fontSize: '20',
+                        fontWeight: 'bold',
+                        show: true
+                      }
+                    },
+                    label: {
+                      formatter: '{c}%',
+                      position: 'inside',
+                      show: true,
+                      textStyle: {
+                        color: 'white',
+                        fontSize: 12
+                      }
+                    },
+                    labelLine: {
+                      show: false
+                    },
+                    name: 'Gráfico de rosca',
+                    radius: [
+                      '35%',
+                      '70%'
+                    ],
+                    type: 'pie'
+                  }
+                ],
+                tooltip: {
+                  formatter: '{b} : {d}%',
+                  trigger: 'item'
+                }
+              }}
+            />
+            }
           {
             tabelaDataAPS ?
             <PainelBuscaAtiva
