@@ -38,7 +38,7 @@ const Index = ({res}) => {
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio,session?.user?.access_token)
   useEffect(()=>{
-    session && session.user.perfis.includes(8) &&
+    session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     HipertensaoTabelaDataAPS().then((response)=>{
       setTabelaDataAPS(response)
   })},[session]) 
