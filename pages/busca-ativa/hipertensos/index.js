@@ -5,7 +5,9 @@ import {
   PainelBuscaAtiva , 
   ScoreCardGrid , 
   Spinner, 
-  GraficoBuscaAtiva
+  GraficoBuscaAtiva,
+  ButtonPrint,
+  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -13,7 +15,6 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import style from "../../duvidas/Duvidas.module.css"
 import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 
@@ -75,10 +76,20 @@ const Index = ({res}) => {
     if(session.user.perfis.includes(9)){
         return (
         <>
-          <div className={style.BotaoVoltar}>
-          <ButtonLight icone={{posicao: 'right',
-            url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-            label="VOLTAR" link="/inicio"/>
+          <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+            <ButtonLight icone={{posicao: 'right',
+              url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+              label="VOLTAR" link="/inicio"/>
+          {
+            tabelaDataEquipe &&
+            <div style={{marginLeft:"auto"}}>
+              <ButtonPrint
+                label="CLICK AQUI PARA IMPRIMIR"
+                escala="0.78"
+                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
+              />
+            </div>
+          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Hipertensão"
@@ -173,10 +184,22 @@ const Index = ({res}) => {
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     return (
       <>
-        <div className={style.BotaoVoltar}>
-        <ButtonLight icone={{posicao: 'right',
-          url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-          label="VOLTAR" link="/inicio"/>
+        <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+          <ButtonLight icone={{posicao: 'right',
+            url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+            label="VOLTAR" link="/inicio"
+          />
+          {
+            tabelaDataAPS &&
+            <div style={{marginLeft:"auto"}}>
+              <ButtonPrint
+                label="CLICK AQUI PARA IMPRIMIR"
+                escala="0.78"
+                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
+              />
+            </div>
+          }
+
         </div>
         <TituloTexto
                 titulo="Lista Nominal Hipertensão"

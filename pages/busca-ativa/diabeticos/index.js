@@ -70,10 +70,20 @@ const Index = ({res}) => {
     if(session.user.perfis.includes(9)){
         return (
         <>
-          <div className={style.BotaoVoltar}>
-          <ButtonLight icone={{posicao: 'right',
-            url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-            label="VOLTAR" link="/inicio"/>
+          <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+            <ButtonLight icone={{posicao: 'right',
+              url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+              label="VOLTAR" link="/inicio"/>
+          {
+            tabelaDataEquipe &&
+            <div style={{marginLeft:"auto"}}>
+              <ButtonPrint
+                label="CLICK AQUI PARA IMPRIMIR"
+                escala="0.78"
+                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
+              />
+            </div>
+          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Hipertensão"
@@ -168,11 +178,21 @@ const Index = ({res}) => {
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     return (
       <>
-        <div className={style.BotaoVoltar}>
-        <ButtonLight icone={{posicao: 'right',
-          url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-          label="VOLTAR" link="/inicio"/>
-        </div>
+          <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+            <ButtonLight icone={{posicao: 'right',
+              url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+              label="VOLTAR" link="/inicio"/>
+          {
+            tabelaDataAPS &&
+            <div style={{marginLeft:"auto"}}>
+              <ButtonPrint
+                label="CLICK AQUI PARA IMPRIMIR"
+                escala="0.78"
+                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
+              />
+            </div>
+          }
+          </div>
         <TituloTexto
                 titulo="Lista Nominal Diabetes"
                 texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
