@@ -5,7 +5,9 @@ import {
   PainelBuscaAtiva , 
   ScoreCardGrid , 
   Spinner, 
-  GraficoBuscaAtiva
+  GraficoBuscaAtiva,
+  ButtonPrint,
+  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
