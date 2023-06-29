@@ -88,7 +88,7 @@ const Index = ({res}) => {
           }
           </div>
           <TituloTexto
-                  titulo="Lista Nominal Hipertensão"
+                  titulo="Lista Nominal Diabetes"
                   texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
                   imagem = {{posicao: null,url: ''}}
               />
