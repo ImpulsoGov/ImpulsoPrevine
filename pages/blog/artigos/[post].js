@@ -28,8 +28,8 @@ const Index = ({res}) => {
       <ConteudoBlog
           titulo = {res[1].blogArtigo.titulo}
           texto = {res[1].blogArtigo.texto.html}
-          capa = {res[1].blogArtigo.capa.url}
-          autor = {{avatar: res[1].blogArtigo.avatar.url, nome: res[1].blogArtigo.autor, data:res[1].blogArtigo.createdAt}}
+          capa = {res[1].blogArtigo?.capa?.url}
+          autor = {{avatar: res[1].blogArtigo?.avatar?.url, nome: res[1].blogArtigo.autor, data:res[1].blogArtigo.createdAt}}
       />
     </>
   )
