@@ -47,8 +47,8 @@ const Indicadores = ({res}) => {
                 
         <Grid12Col
           items={[
-            <GraficoInfo descricao=" Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{   label: '',   url: '/' }} titulo="Desempenho do Município" tooltip=""/> ,
-            <GraficoInfo descricao=" Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{   label: '',   url: '/' }} titulo="Desempenho do Município" tooltip=""/>
+            <GraficoInfo descricao="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{   label: '',   url: '/' }} titulo="Desempenho do Município" tooltip=""/> ,
+            <GraficoInfo descricao="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{   label: '',   url: '/' }} titulo="Desempenho do Município" tooltip=""/>
           ]}
         />
 
