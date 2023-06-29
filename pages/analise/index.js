@@ -1,24 +1,11 @@
 import { useEffect,useState,useContext } from 'react';
-import { redirectHomeNotLooged } from "../../helpers/redirectHome";
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { getData } from '../../services/cms';
-import { LAYOUT } from '../../utils/QUERYS';
-import { ButtonLight, PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
+import { PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
 import Indicadores from "./indicadores"
 import Cadastros from "./cadastros"
 import Acoes from "./acoes_estrategicas"
 
-export async function getServerSideProps() {
-  const res = [
-    await getData(LAYOUT),
-  ]
-  return {
-    props: {
-      res : res
-    }
-  }
-}
 
 const Index = ({res}) => {
   const router = useRouter();
