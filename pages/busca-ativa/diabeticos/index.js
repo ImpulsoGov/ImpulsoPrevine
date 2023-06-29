@@ -82,7 +82,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLICK AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasDiabetes}/>}
               />
             </div>
           }
@@ -190,7 +190,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLICK AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasDiabetes}/>}
               />
             </div>
           }
