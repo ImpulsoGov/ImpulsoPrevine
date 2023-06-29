@@ -4,7 +4,7 @@ import { getData } from '../../../services/cms';
 import { LAYOUT } from '../../../utils/QUERYS';
 import { redirectHomeNotLooged } from "../../../helpers/redirectHome";
 import { v1 as uuidv1 } from 'uuid';
-import { ButtonLight, PanelSelectorSM, TituloTexto, GraficoInfo , Grid12Col} from "@impulsogov/design-system"
+import { ButtonLight, PanelSelectorSM, TituloTexto, GraficoInfo , Grid12Col, TituloSmallTexto} from "@impulsogov/design-system"
 
 export async function getServerSideProps() {
   const res = [
@@ -36,7 +36,7 @@ const Indicadores = ({res}) => {
 
   return (
     <div>
-      <TituloTexto
+      <TituloSmallTexto
           imagem={{
             posicao: null,
             url: ''
