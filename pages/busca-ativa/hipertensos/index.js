@@ -323,10 +323,9 @@ const Index = ({res}) => {
               data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
               type: 'category',
               axisLabel : {
-                width : 50,
+                width : 25,
                 show : true,
                 interval : 0,
-                hideOverlap : false,
                 overflow : "break"
               }
             },
