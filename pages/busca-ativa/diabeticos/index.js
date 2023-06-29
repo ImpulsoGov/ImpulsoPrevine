@@ -82,7 +82,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLICK AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasDiabetes}/>}
               />
             </div>
           }
@@ -190,7 +190,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLICK AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasDiabetes}/>}
               />
             </div>
           }
@@ -317,13 +317,8 @@ const Index = ({res}) => {
               data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
               type: 'category',
               axisLabel : {
-                width : 50,
-                show : true,
-                interval : 0,
-                hideOverlap : false,
-                overflow : "break"
+                rotate : 45
               }
-
             },
             yAxis: {
               type: 'value'
