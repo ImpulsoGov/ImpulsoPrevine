@@ -16,8 +16,8 @@ const Indicadores = () => {
 
       <Grid12Col
         items={[
-          <GraficoInfo key={ uuidv1() } descricao="<br></br>Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Desempenho do Município" tooltip="" />,
-          <GraficoInfo key={ uuidv1() } descricao="<br></br>Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Histórico de Desempenho" tooltip="" />
+          <GraficoInfo key={ uuidv1() } descricao="<br>Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Desempenho do Município" tooltip="" />,
+          <GraficoInfo key={ uuidv1() } descricao="<br>Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Histórico de Desempenho" tooltip="" />
         ]}
       />
 
@@ -34,13 +34,12 @@ const Indicadores = () => {
         link={{
           label: '',
           url: '/'
-
         }}
         titulo=""
         tooltip=""
       />
 
-      <GraficoInfo descricao="<br></br>Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b>, o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b> quantas pessoas ainda precisam ser cadastradas antes do atendimento </b>, a <b> variação percentual de desempenho da competência atual para a anterior </b>,  e <b> recomendações </b> de como bater as metas." 
+      <GraficoInfo descricao="<br>Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b>, o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b> quantas pessoas ainda precisam ser cadastradas antes do atendimento </b>, a <b> variação percentual de desempenho da competência atual para a anterior </b>,  e <b> recomendações </b> de como bater as metas." 
       destaque="" 
       fonte="" 
       link={{ 
