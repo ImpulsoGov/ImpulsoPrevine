@@ -40,7 +40,7 @@ const Indicadores = () => {
         tooltip=""
       />
 
-      <GraficoInfo descricao="Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b>, o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b> quantas pessoas ainda precisam ser cadastradas antes do atendimento </b>, a <b> variação percentual de desempenho da competência atual para a anterior </b>,  e <b> recomendações </b> de como bater as metas." 
+      <GraficoInfo descricao="<br></br>Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b>, o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b> quantas pessoas ainda precisam ser cadastradas antes do atendimento </b>, a <b> variação percentual de desempenho da competência atual para a anterior </b>,  e <b> recomendações </b> de como bater as metas." 
       destaque="" 
       fonte="" 
       link={{ 

@@ -1,74 +1,19 @@
-import { useEffect,useState,useContext } from 'react';
-import { redirectHomeNotLooged } from "../../../helpers/redirectHome";
-import { useRouter } from 'next/router';
-import { getData } from '../../../services/cms';
-import { LAYOUT } from '../../../utils/QUERYS';
 import { v1 as uuidv1 } from 'uuid';
-import { ButtonLight, PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
+import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 
-export async function getServerSideProps() {
-  const res = [
-    await getData(LAYOUT),
-  ]
-  return {
-    props: {
-      res : res
-    }
-  }
-}
-
-const urlGenIndicadores = (cidade)=>{
-  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
-  let baseURL = 'https://datastudio.google.com/embed/reporting/a7b8746b-caff-4d07-8a57-ce3739c52f0a/page/p_1i1fd8auvc?params=%7B%22df58%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
-  let endURL = '"%7D'
-  const link = baseURL  + encode(cidade) + endURL
-  return link
-}
-
-const urlGenCaptacao = (cidade)=>{
-  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
-  let baseURL = 'https://datastudio.google.com/embed/reporting/12fb288f-4955-4930-b091-63da3f846c51/page/p_8qgdgiz2xc/edit?params=%7B%22df56%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
-  let endURL = '"%7D'
-  const link = baseURL  + encode(cidade) + endURL
-  return link
-}
-const urlGenAE = (cidade)=>{
-  const encode = (city)=> encodeURIComponent(encodeURIComponent(city))
-  let baseURL = 'https://datastudio.google.com/embed/reporting/b3614781-b39a-4f3b-8956-d628c3db169c/page/cMHxC/edit?params=%7B%22df4%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580'
-  let endURL = '"%7D'
-  const link = baseURL  + encode(cidade) + endURL
-  return link
-}
-
-const Cadastro = ({res}) => {
-  const router = useRouter();
-  const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
-  const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-  useEffect(() => {
-    setActiveTabIndex(Number(router.query?.painel));
-  }, [router.query?.painel]);
-
-  useEffect(() => {
-    router.push({
-      pathname: router.pathname,
-      query: { painel: activeTabIndex }
-    },
-      undefined, { shallow: true }
-    );
-  }, [activeTabIndex]);
-
+const Cadastros = () => {
   return (
     <div>
-      <TituloTexto
-        imagem={ {
+      <TituloSmallTexto
+        key={ uuidv1() }
+        imagem={{
           posicao: null,
           url: ''
-        } }
-        titulo="Capitação ponderada"
-        texto=""
+        }}
+        texto="Veja como estão os cadastros no seu município."
+        titulo="<b> Capitação Ponderada </b>"
       />
-    </div>
+       </div>
   )
 }
-
-export default Cadastro;
+export default Cadastros;
