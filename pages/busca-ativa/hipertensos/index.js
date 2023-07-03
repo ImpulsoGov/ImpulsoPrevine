@@ -84,7 +84,7 @@ const Index = ({res}) => {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
               <ButtonPrint
-                label="CLICK AQUI PARA IMPRIMIR"
+                label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
                 child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
               />
@@ -193,7 +193,7 @@ const Index = ({res}) => {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
               <ButtonPrint
-                label="CLICK AQUI PARA IMPRIMIR"
+                label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
                 child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
               />
@@ -272,7 +272,7 @@ const Index = ({res}) => {
             legend: {
               data: [
                 'Apenas consulta em dia',
-                'consulta e aferição de PA em dia',
+                'Consulta e aferição de PA em dia',
                 'Apenas aferição de PA em dia',
                 'Nada em dia'
               ],
@@ -280,8 +280,8 @@ const Index = ({res}) => {
             },
             series: [
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas consulta em dia',
@@ -289,17 +289,17 @@ const Index = ({res}) => {
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
-                name: 'consulta e aferição de PA em dia',
+                name: 'Consulta e aferição de PA em dia',
                 stack: 'stack',
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas aferição de PA em dia',
@@ -307,8 +307,8 @@ const Index = ({res}) => {
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Nada em dia',
@@ -327,7 +327,12 @@ const Index = ({res}) => {
               }
             },
             yAxis: {
-              type: 'value'
+              type: 'value',
+              axisLabel : {
+                formatter : function(value) {
+                  return value.toLocaleString('pt-BR')
+                }
+              }
             }
           }}
           dataRosca={{
@@ -344,7 +349,7 @@ const Index = ({res}) => {
                   {
                     name: 'Apenas consulta em dia',
                     value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                      return (item.prazo_proxima_consulta == "Em dia") ?
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
                       acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.length)
                   },
@@ -358,7 +363,7 @@ const Index = ({res}) => {
                   {
                     name: 'Apenas Aferição de PA em dia',
                     value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                      return (item.prazo_proxima_afericao_pa == "Em dia") ?
+                      return (item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia" ) ?
                       acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.length)
                   },
