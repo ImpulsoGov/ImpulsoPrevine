@@ -80,7 +80,7 @@ const Index = ({res}) => {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
               <ButtonPrint
-                label="CLICK AQUI PARA IMPRIMIR"
+                label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
                 child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasDiabetes}/>}
               />
@@ -188,7 +188,7 @@ const Index = ({res}) => {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
               <ButtonPrint
-                label="CLICK AQUI PARA IMPRIMIR"
+                label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
                 child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasDiabetes}/>}
               />
@@ -266,7 +266,7 @@ const Index = ({res}) => {
             legend: {
               data: [
                 'Apenas consulta em dia',
-                'consulta e solicitação de hemoglobina glicada em dia',
+                'Consulta e solicitação de hemoglobina glicada em dia',
                 'Apenas solicitação de hemoglobina glicada em dia',
                 'Nada em dia'
               ],
@@ -274,8 +274,8 @@ const Index = ({res}) => {
             },
             series: [
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas consulta em dia',
@@ -283,17 +283,17 @@ const Index = ({res}) => {
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
-                name: 'consulta e aferição de PA em dia',
+                name: 'Consulta e solicitação de hemoglobina glicada em dia',
                 stack: 'stack',
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas solicitação de hemoglobina glicada em dia',
@@ -301,8 +301,8 @@ const Index = ({res}) => {
                 type: 'bar'
               },
               {
-                data: Object.values(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") acumulador[item.equipe_ine_cadastro] = (acumulador[item.equipe_ine_cadastro] || 0) + 1
+                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                  if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Nada em dia',
@@ -321,7 +321,12 @@ const Index = ({res}) => {
               }
             },
             yAxis: {
-              type: 'value'
+              type: 'value',
+              axisLabel : {
+                formatter : function(value) {
+                  return value.toLocaleString('pt-BR')
+                }
+              }
             }
           }}
           dataRosca={{
@@ -338,7 +343,7 @@ const Index = ({res}) => {
                   {
                     name: 'Apenas consulta em dia',
                     value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                      return (item.prazo_proxima_consulta == "Em dia") ?
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                       acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.length)
                   },
@@ -352,7 +357,7 @@ const Index = ({res}) => {
                   {
                     name: 'Apenas Solicitação de Hemoglobina Glicada em dia',
                     value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                      return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
+                      return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
                       acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.length)
                   },
