@@ -51,7 +51,7 @@ root
 ```
 
 - componentes: componentes que podem ser reutilizados em outras partes da aplicação.
-- constants: armazena constantes como url da aplicação e dos paineis no datastudio.
+- constants: armazena constantes como url's de API's e de recursos embbed.
 - pages: arquivos das páginas da aplicação.
 - public: imagens para utilização na aplicação.
 - services: importa outros serviços, como validador de token de login.
