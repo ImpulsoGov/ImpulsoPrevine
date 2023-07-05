@@ -10,7 +10,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'ordenacao',
       headerName: 'Ordenação',
-      flex: 75,
+      flex: 110,
       description:
         'A ordenação dos indicadores é uma sugestão feita, levando em consideração o peso do indicador, duração, nota do indicador e quanto falta para alcançar a meta.',
       headerClassName: styles.cabecalho,
@@ -19,7 +19,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'indicador',
       headerName: 'Indicador',
-      flex: 70,
+      flex: 105,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -29,7 +29,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'dominadorInformado',
       headerName: 'Denominador utilizado (Denominador informado)',
-      flex: 140,
+      flex: 130,
       align: 'center',
       headerAlign: 'center',
       description:'O denominador utilizado pode ser o informado (identificado) ou o estimado.'+
@@ -41,7 +41,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'N_totaldePessoas_baterMeta',
       headerName: 'Nº total de pessoas para bater a meta',
-      flex: 85,
+      flex: 110,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -51,7 +51,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'PessoasNaoCadastradas',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
-      flex: 280,
+      flex: 290,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -61,7 +61,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'Nota',
       headerName: 'Nota',
-      flex: 60,
+      flex: 80,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -71,7 +71,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'VariacaoDesempenho',
       headerName: 'Variação de desempenho de Q1-23/Q3-22',
-      flex: 95,
+      flex: 125,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -81,7 +81,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'Recomendacoes',
       headerName: 'Recomendações',
-      flex: 100,
+      flex: 155,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -135,8 +135,8 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
         sx={{
           '& .MuiDataGrid-columnHeaderTitle': {
             fontWeight: 'bold',
-            fontSize: '16px',
-            lineHeight: '1.1rem',
+            fontSize: '14px',
+            lineHeight: '1.0rem',
             whiteSpace: 'normal',
             textAlign: 'center',
           },
