@@ -141,7 +141,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
             textAlign: 'center',
           },
           '& .MuiDataGrid-toolbarContainer': {
-            backgroundColor: 'black', // cor de fundo da barra de ferramentas
+            backgroundColor: '#1B1C1E', // cor de fundo da barra de ferramentas
           },
           '& .MuiButton-root': {
             color: '#D4DBE7', // cor do texto dos botões
