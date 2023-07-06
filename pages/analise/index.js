@@ -2,9 +2,9 @@ import { useEffect,useState,useContext } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
 import { PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
-import Indicadores from "./indicadores"
-import Cadastros from "./cadastros"
-import Acoes from "./acoes_estrategicas"
+import Indicadores from "../../componentes/indicadores"
+import Cadastros from "../../componentes/cadastros"
+import Acoes from "../../componentes/acoes_estrategicas"
 
 
 const Index = ({res}) => {

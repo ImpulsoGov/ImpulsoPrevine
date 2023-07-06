@@ -1,6 +1,6 @@
 import { v1 as uuidv1 } from 'uuid';
 import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
-import TabelaIndicadores from "../../../componentes/TabelaIndicadores/TabelaIndicadores"
+import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 
 const Indicadores = () => {
   return (
