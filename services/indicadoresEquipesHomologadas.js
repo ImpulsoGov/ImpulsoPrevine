@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../constants/API_URL";
 
-const indicadoresEquipesHomologadas = async (municipio_uf) => {
+const AcessoindicadoresEquipesHomologadas = async (municipio_uf) => {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
@@ -18,4 +18,4 @@ const indicadoresEquipesHomologadas = async (municipio_uf) => {
   return res
 }
 
-  export {indicadoresEquipesHomologadas}
+  export {AcessoindicadoresEquipesHomologadas}
