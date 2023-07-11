@@ -7,7 +7,6 @@ import { conteudosDataTransform, modulosDataTransform } from '../../helpers/modu
 import { useRouter } from 'next/router';
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
 
-
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHomeTrilha(ctx,session)
@@ -18,7 +17,8 @@ export async function getServerSideProps(ctx) {
   const res = [
       await getData(LAYOUT),
       capacitacaoDataCMS,
-      conteudosData
+      conteudosData,
+      trilhaID
   ]
   return {
       props: {
@@ -48,7 +48,7 @@ const Index = ({res}) => {
   let width = useWindowWidth()
   const router = useRouter()
   const [data,setData] = useState(false)
-  const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+  const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,res[3],session?.user?.id,session?.user?.access_token)
   useEffect(()=>{modulos().then((res)=>setData(res))},[session]) 
 return(
       <>
