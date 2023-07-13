@@ -51,7 +51,7 @@ const Index = ({res}) => {
                 data.map((trilha,index)=>
                     TrilhasLiberadas.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
                         <CardTrilha
-                            titulo={trilha?.titulo}
+                            titulo={trilha?.titulo ? trilha.titulo : "Trilha de Capacitação"}
                             progressao={trilha.progresso }
                             linkTrilha={trilha.progresso>0 ? "/capacitacao?trilhaID="+trilha.TrilhaID : 'conteudo-programatico'}
                             linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
