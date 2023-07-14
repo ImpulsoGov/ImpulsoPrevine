@@ -52,6 +52,13 @@ const Index = ({res}) => {
       setTabelaDataEquipe(response)
   })},[session]) 
 
+  const [tabelaData, setTabelaData] = useState();
+  useEffect(()=>{
+    (tabelaDataAPS || tabelaDataEquipe) && session &&
+    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
+  },[session,tabelaDataAPS,tabelaDataEquipe])
+
+
   useEffect(()=>{
       if(session){
         validatetoken(session?.user?.access_token)
@@ -147,7 +154,7 @@ const Index = ({res}) => {
              />
             }
             {
-              tabelaDataEquipe &&
+              tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
                 dadosFiltros={[
                   {
@@ -176,7 +183,9 @@ const Index = ({res}) => {
                   colunas: colunasHipertensao,
                   data:tabelaDataEquipe
                 }}
-              />
+                data={tabelaData}
+                setData={setTabelaData}
+              /> : <Spinner/>
             }
         </>
       )
@@ -410,7 +419,7 @@ const Index = ({res}) => {
           />
         }
         {
-          tabelaDataAPS ?
+          tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
             dadosFiltros={[
               {
@@ -439,7 +448,9 @@ const Index = ({res}) => {
               colunas: colunasHipertensao,
               data:tabelaDataAPS
             }}
-          /> : <Spinner/>
+            data={tabelaData}
+            setData={setTabelaData}
+      /> : <Spinner/>
         }
       </>
     )
