@@ -1,14 +1,18 @@
 import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
+import { acessoModulosTrilhasClient } from "../services/acessoTrilha";
 
-const modulosDataTransform = async(ConteudosCMS,userID,token)=>{
-    //Pegando dados de uma unica trilha, debito tecnico generalizar para muiltiplas trilhas
+const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
     const modulos = []
+    const modulos_liberados_res = await acessoModulosTrilhasClient(userID,TrilhaID,token)
+    const modulos_liberados = modulos_liberados_res.map(item => item.modulos[0]).sort()
     return progresso(ConteudosCMS,userID,token).then(res=>{
-        ConteudosCMS[0].conteudo.forEach((element,index) => {
+        const trilha = ConteudosCMS.map((trilha)=>{if(trilha.id=TrilhaID) return trilha})
+        trilha[0].conteudo.forEach((element,index) => {
+            console.log(modulos_liberados)
             modulos.push({
                 titulo: element.titulo,
                 id: element.moduloId,
-                liberado:element.liberado,
+                liberado:modulos_liberados.includes(element.moduloId),
                 concluido: res[0].qtd[index].finalizado
             })
         });

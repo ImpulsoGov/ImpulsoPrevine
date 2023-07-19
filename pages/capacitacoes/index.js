@@ -5,7 +5,7 @@ import { TituloTexto, CardTrilha } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { useEffect, useState } from 'react'
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
-
+import { acessoTrilhasClient } from '../../services/acessoTrilha'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -26,11 +26,19 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
+    const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    const TrilhasLiberadasClient = async()=> await acessoTrilhasClient(session?.user?.id,session?.user?.access_token)
     useEffect(()=>{
         session && res &&
         ProgressoClient().then((res)=>setData(res))
     },[session]) 
+    useEffect(()=>{
+        session && 
+        TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
+    },[session]) 
+
+    console.log(data)
     return(
         <>
             <TituloTexto
@@ -39,14 +47,18 @@ const Index = ({res}) => {
                 imagem = {{posicao: null,url: ''}}
             />
             {
-                data &&
-                <CardTrilha
-                    titulo="Hipertensão e Diabetes"
-                    progressao={data[0].progresso }
-                    linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
-                    linkCertificado= {data[0].progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                    certificadoLiberado= {data[0].progresso>50 ? true : false}
-            />
+                data && TrilhasLiberadas &&
+                data.map((trilha,index)=>
+                    TrilhasLiberadas.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
+                        <CardTrilha
+                            titulo={trilha?.titulo ? trilha.titulo : "Trilha de Capacitação"}
+                            progressao={trilha.progresso }
+                            linkTrilha={trilha.progresso>0 ? "/capacitacao?trilhaID="+trilha.TrilhaID : 'conteudo-programatico'}
+                            linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
+                            certificadoLiberado= {trilha.progresso>50 ? true : false}
+                            key={index}
+                        />
+                )
             }
         </>
     )
