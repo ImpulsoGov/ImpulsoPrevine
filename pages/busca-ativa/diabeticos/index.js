@@ -53,16 +53,22 @@ const Index = ({res}) => {
       setTabelaDataEquipe(response)
   })},[session]) 
 
+  const [tabelaData, setTabelaData] = useState();
   useEffect(()=>{
-      if(session){
-        validatetoken(session?.user?.access_token)
-        .then(response=>{
-          setTokenValido(response)
-        }).catch(error=>{
-          setTokenValido(false)
-        })
-        }
-    })
+    (tabelaDataAPS || tabelaDataEquipe) && session &&
+    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
+  },[session,tabelaDataAPS,tabelaDataEquipe])
+
+  useEffect(()=>{
+    if(session){
+      validatetoken(session?.user?.access_token)
+      .then(response=>{
+        setTokenValido(response)
+      }).catch(error=>{
+        setTokenValido(false)
+      })
+    }
+  })
   useEffect(()=>{
     if(session && session?.user?.access_token){
       if(tokenValido!=true && tokenValido!==undefined) signOut()
@@ -82,7 +88,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasDiabetes}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
               />
             </div>
           }
@@ -143,7 +149,7 @@ const Index = ({res}) => {
              />
             }
             {
-              tabelaDataEquipe &&
+              tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
                 dadosFiltros={[
                   {
@@ -172,7 +178,9 @@ const Index = ({res}) => {
                   colunas: colunasDiabetes,
                   data:tabelaDataEquipe
                 }}
-              />
+                data={tabelaData}
+                setData={setTabelaData}
+              /> : <Spinner/>
             }
         </>
       )
@@ -190,7 +198,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasDiabetes}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
               />
             </div>
           }
@@ -404,7 +412,7 @@ const Index = ({res}) => {
           />
         }
         {
-          tabelaDataAPS ?
+          tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
             dadosFiltros={[
               {
@@ -433,6 +441,9 @@ const Index = ({res}) => {
               colunas: colunasDiabetes,
               data:tabelaDataAPS
             }}
+            data={tabelaData}
+            setData={setTabelaData}
+
           /> : <Spinner/>
         }
       </>
