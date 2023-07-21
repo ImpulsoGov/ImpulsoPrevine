@@ -85,11 +85,11 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
                         botaoProximo: {
                         icon: 'https://media.graphassets.com/FopDhDizS82SqCD9vD36',
                         label: 'PRÓXIMA',
-                        url: ModulosLiberados.map(item => item.modulos[0]).sort().includes(modulo+1) ? proximo : false
+                        url: (codigoConteudo[0] == 'codigo_conteudo' || ModulosLiberados.map(item => item.modulos[0]).sort().includes(modulo+1)) ? proximo : false
                         },
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',
-                        label: 'VOLTAR',
+                        label: 'VOLTAR'+ (codigoConteudo[0] != 'codigo_conteudo' || ModulosLiberados.map(item => item.modulos[0]).sort().includes(modulo+1)).toString(),
                         url: '/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce'
                         }
                     }}
