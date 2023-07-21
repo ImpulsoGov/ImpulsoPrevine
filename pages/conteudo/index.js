@@ -89,7 +89,7 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
                         },
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',
-                        label: 'VOLTAR'+ (codigoConteudo[0] != 'codigo_conteudo' || ModulosLiberados.map(item => item.modulos[0]).sort().includes(modulo+1)).toString(),
+                        label: 'VOLTAR',
                         url: '/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce'
                         }
                     }}
