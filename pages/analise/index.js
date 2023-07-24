@@ -7,8 +7,6 @@ import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
 
-console.log("Este é um texto de exemplo no console");
-
 const Index = ({ res }) => {
   AcessoindicadoresDesempenho("Abadia de Goiás - GO")
     .then(result => {
