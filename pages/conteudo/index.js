@@ -6,6 +6,7 @@ import { ConteudoTrilha } from '@impulsogov/design-system';
 import { consultarAvaliacaoConclusao,concluirConteudo,avaliarConteudo } from '../../services/capacitacao';
 import { useEffect, useState } from 'react';
 import { redirectHomeTrilha } from '../../helpers/redirectHome';
+import { acessoModulosTrilhasClient } from "../../services/acessoTrilha";
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -14,6 +15,7 @@ export async function getServerSideProps(ctx) {
     const codigo_conteudo = ctx?.req?.url.split('=').length <= 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
     const trilhaID = ctx?.req?.url.split('=').length < 1 ? '' : ctx?.req?.url.split('=')[2].split('&')[0]
     const AvaliacaoConclusao = await consultarAvaliacaoConclusao(session?.user?.id,ctx?.query?.codigo_conteudo,session?.user?.access_token)
+    const ModulosLiberados = await acessoModulosTrilhasClient(session?.user?.id,trilhaID,session?.user?.access_token)
     const res = [
         await getData(LAYOUT),
         ctx?.req?.url && await getDataCapacitacao(CONTEUDO_CAPACITACAO(codigo_conteudo,trilhaID))
@@ -21,13 +23,14 @@ export async function getServerSideProps(ctx) {
     return {
         props: {
             res : res,
-            AvaliacaoConclusao : AvaliacaoConclusao
+            AvaliacaoConclusao : AvaliacaoConclusao,
+            ModulosLiberados : ModulosLiberados
         }
     }
 }
 
 
-const Index = ({res,AvaliacaoConclusao}) => {
+const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
     const { data: session,status } = useSession()
     const [concluido,setConcluido] = useState(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.concluido : false);
     const [Avaliacao,setAvaliacao] = useState(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null);
@@ -42,7 +45,7 @@ const Index = ({res,AvaliacaoConclusao}) => {
     proximo.query['trilhaID'] = router.query.trilhaID
     const modulo = Number(router.query.codigo_conteudo?.split('-')[1][3])
     if(codigoConteudo[0] == 'codigo_conteudo') proximo.query['proximo'] = router.query.proximo.slice(80,router.query.proximo.length)
-    if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] = modulo+1
+    if(codigoConteudo[0] != 'codigo_conteudo') proximo.query['modulo'] =  modulo + 1 
     const dynamicRoute = router.asPath
     useEffect(() => {
         setConcluido(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.concluido : false);
@@ -82,7 +85,7 @@ const Index = ({res,AvaliacaoConclusao}) => {
                         botaoProximo: {
                         icon: 'https://media.graphassets.com/FopDhDizS82SqCD9vD36',
                         label: 'PRÓXIMA',
-                        url: proximo
+                        url: (codigoConteudo[0] == 'codigo_conteudo' || ModulosLiberados.map(item => item.modulos[0]).sort().includes(modulo+1)) ? proximo : false
                         },
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',

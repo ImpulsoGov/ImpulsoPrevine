@@ -234,6 +234,7 @@ export const CONTEUDOS_TRILHAS =
           }
         }
         id
+        titulo
       }
     }
     `
