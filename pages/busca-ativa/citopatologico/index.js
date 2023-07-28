@@ -7,7 +7,7 @@ import {
     Spinner, 
     GraficoBuscaAtiva,
     ButtonPrint,
-    TabelaHiperDiaImpressao,
+    TabelaCitoImpressao,
     PanelSelector
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -77,7 +77,7 @@ useEffect(()=>{
 },[tokenValido])
 if(session){  
     if(session.user.perfis.includes(9)){
-        const CardsChild = tabelaDataEquipe && <ScoreCardGrid
+        const CardsChild = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
                 descricao: 'Total de mulheres',
@@ -105,7 +105,7 @@ if(session){
                 },0)
             }
         ]}
-    />
+        /> : <Spinner/>
     const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
     const TabelaChildSemExame = tabelaDataEquipe ? <PainelBuscaAtiva
         dadosFiltros={[
@@ -199,7 +199,7 @@ if(session){
             <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasCito}/>}
+                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
             />
             </div>
         }
@@ -249,7 +249,7 @@ if(session){
     )
 }
 if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
-    const CardsChild = tabelaDataAPS && <ScoreCardGrid
+    const CardsChild = tabelaDataAPS ? <ScoreCardGrid
         valores={[
             {
                 descricao: 'Total de mulheres',
@@ -277,7 +277,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 },0)
             }
         ]}
-    />
+    /> : <Spinner/>
     const GraficoChild = tabelaDataAPS && <GraficoBuscaAtiva
         dataBarra={{
             color: [
@@ -540,7 +540,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasCito}/>}
+                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
             />
             </div>
         }
