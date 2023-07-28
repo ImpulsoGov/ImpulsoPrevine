@@ -205,7 +205,7 @@ if(session){
         }
         </div>
         <TituloTexto
-                titulo="Lista de citopatológico"
+                titulo="Lista Nominal de Citopatológico"
                 texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
                 imagem = {{posicao: null,url: ''}}
         />
@@ -461,6 +461,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             },
             {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
@@ -545,7 +546,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         }
         </div>
         <TituloTexto
-                titulo="Lista Nominal de citopatológico"
+                titulo="Lista Nominal de Citopatológico"
                 texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
                 imagem = {{posicao: null,url: ''}}
             />

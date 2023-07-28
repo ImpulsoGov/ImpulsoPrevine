@@ -66,6 +66,10 @@ const Index = ({res}) => {
                                 icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
                                 links: [
                                     {
+                                        label: 'Citopatológico',
+                                        link: '/busca-ativa/citopatologico'
+                                    },
+                                    {
                                         label: 'Diabetes',
                                         link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
                                     },

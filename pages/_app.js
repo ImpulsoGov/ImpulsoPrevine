@@ -96,6 +96,7 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
+                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },
                               { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
