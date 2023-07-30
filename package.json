@@ -11,11 +11,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@impulsogov/design-system": "^1.0.73",
+    "@impulsogov/design-system": "^1.0.91",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "axios": "^0.27.2",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "^5.3.0",
     "core-js": "^3.23.5",
     "dompurify": "^2.3.8",
     "form-data": "^4.0.0",
