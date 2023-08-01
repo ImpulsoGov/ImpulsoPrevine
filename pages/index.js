@@ -82,7 +82,7 @@ const Index = ({res}) => {
               <><div style={{alignContent:"center"}}>
                   <TituloSmallTexto
                     key={ uuidv1() }
-                    botao={{label: 'VER DESEMPENHO DOS MUNICIPIOS',url: '/analise'}}
+                    botao={{label: 'VER DESEMPENHO DOS MUNICÍPIOS',url: '/analise'}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo="<b>Análises do Previne</b>"
                     titulo=""
@@ -111,7 +111,7 @@ const Index = ({res}) => {
               <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />,
               <TituloSmallTexto
                 key={ uuidv1() }
-                botao={{label: 'SER MUNICIPIO PARCEIRO',url: '/consultoria'}}
+                botao={{label: 'SER MUNICÍPIO PARCEIRO',url: '/consultoria'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
