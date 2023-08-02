@@ -20,6 +20,7 @@ import { colunasCito } from "../../../helpers/colunasCito";
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
+
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
 const redirect = redirectHome(ctx,session)
@@ -145,7 +146,7 @@ if(session){
         setData={setTabelaData}
     /> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
-    const TabelaChildComExame = tabelaDataEquipe ? 
+    const TabelaChildComExame = tabelaDataEquipe && tabelaDataEquipeComExame ? 
     <>
     <PainelBuscaAtiva
         dadosFiltros={[
@@ -189,7 +190,12 @@ if(session){
 
         return (
         <>
-        <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+        <div 
+            style={
+                window.screen.width > 1024 ?
+                {padding: "30px 80px 30px 80px",display: "flex"} :
+                {padding: "0",display: "flex"} 
+            }>
             <ButtonLight icone={{posicao: 'right',
             url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
             label="VOLTAR" link="/inicio"/>
@@ -529,7 +535,13 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
 
     return (
     <>
-        <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+        <div 
+            style={
+                window.screen.width > 1024 ?
+                {padding: "30px 80px 30px 80px",display: "flex"} :
+                {padding: "30px 0 0 5px",display: "flex"} 
+            }
+        >
             <ButtonLight icone={{posicao: 'right',
                 url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                 label="VOLTAR" link="/inicio"
@@ -555,15 +567,15 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
         <div 
-        style={{
-            marginLeft : "80px",
-            marginTop : "30px",
-            color: "#1F1F1F",
-            fontSize: "22px",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            lineHeight: "130%",
-        }}
+            style={{
+                marginLeft : window.screen.width > 1024 ?  "30px" : "20px",
+                marginTop : "80px",
+                color: "#1F1F1F",
+                fontSize: "22px",
+                fontFamily: "Inter",
+                fontWeight: 500,
+                lineHeight: "130%",
+            }}
         >
         {session.user.municipio} - Q2/23
         </div>

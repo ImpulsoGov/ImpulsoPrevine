@@ -3,6 +3,9 @@ import { LAYOUT } from '../../utils/QUERYS'
 import { useSession,getSession } from "next-auth/react"
 import { SobreTrilha } from '@impulsogov/design-system'
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
+import { useRouter } from 'next/router';
+import { concluirConteudo } from '../../services/capacitacao';
+import trilhas from '../../data/trilhas.json' assert { type: 'json' };
 
 
 export async function getServerSideProps(ctx) {
@@ -22,12 +25,17 @@ export async function getServerSideProps(ctx) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
+    const router = useRouter()
+    const trilhaID = router.query.trilha
+    const siglaTrilha = trilhas.trilhas.find(item => item?.ID == trilhaID)?.sigla
+    console.log(siglaTrilha,trilhaID)
+    //concluirConteudo(session?.user?.id,"XX-MOD0-C0",session?.user?.access_token)
     return(
         <>
             <SobreTrilha
                 tituloTrilha= "Hipertensão e Diabetes"
-                botaoVoltar= {{label: "VOLTAR",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
-                botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
+                botaoVoltar= {{label: "VOLTAR",url : `/capacitacao?trilhaID=${trilhaID}`}}
+                botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : `/capacitacao?trilhaID=${trilhaID}`}}
                 botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/HMky15GvFczLGSSNZAlJCb"}}
                 sobre= {{titulo: "Sobre", texto:"<p>Na trilha de capacitação sobre os indicadores de hipertensão e diabetes do Previne Brasil, vamos falar sobre:<ul><li>Particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária;</li><li>As melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes;<li>Dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde;</li><li>E formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade.</li></ul>"}}
                 conteudo={{
@@ -53,11 +61,6 @@ const Index = ({res}) => {
                         {
                             foto:"https://media.graphassets.com/rMzefbmrQ7SXzZeUf39n",
                             nome:"Kleverson Miranda",
-                            titulo:"Especialista em saúde"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/1UChvJwVQG83514nI3FI",
-                            nome:"Camila Coelho",
                             titulo:"Especialista em saúde"
                         },
                         {

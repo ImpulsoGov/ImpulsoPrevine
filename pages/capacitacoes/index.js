@@ -24,6 +24,7 @@ export async function getServerSideProps(ctx) {
 
 
 const Index = ({res}) => {
+    console.log(res)
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
     const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
@@ -31,7 +32,9 @@ const Index = ({res}) => {
     const TrilhasLiberadasClient = async()=> await acessoTrilhasClient(session?.user?.id,session?.user?.access_token)
     useEffect(()=>{
         session && res &&
-        ProgressoClient().then((res)=>setData(res))
+        ProgressoClient().then((res)=>{
+            setData(res)
+        })
     },[session]) 
     useEffect(()=>{
         session && 
@@ -48,17 +51,35 @@ const Index = ({res}) => {
             />
             {
                 data && TrilhasLiberadas &&
-                data.map((trilha,index)=>
-                    TrilhasLiberadas.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
-                        <CardTrilha
-                            titulo={trilha?.titulo ? trilha.titulo : "Trilha de Capacitação"}
-                            progressao={trilha.progresso }
-                            linkTrilha={trilha.progresso>0 ? "/capacitacao?trilhaID="+trilha.TrilhaID : 'conteudo-programatico'}
-                            linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                            certificadoLiberado= {trilha.progresso>50 ? true : false}
-                            key={index}
-                        />
-                )
+                <div 
+                    style={
+                        window.screen.width >= 1024 ?
+                        {
+                            display : "flex",
+                            gap : "30px",
+                            marginLeft : "80px",
+                            marginBottom : "30px"
+                        }:
+                        {
+                            display : "flex",
+                            flexDirection : "column",
+                            gap : "15px",
+                        }
+                }>
+                    {
+                        data.map((trilha,index)=>{
+                            return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
+                                <CardTrilha
+                                    titulo={trilha?.titulo}
+                                    progressao={trilha.progresso }
+                                    linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}`}
+                                    linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
+                                    certificadoLiberado= {trilha.progresso>50 ? true : false}
+                                    key={index}
+                                />
+                        })
+                    }
+                </div>
             }
         </>
     )

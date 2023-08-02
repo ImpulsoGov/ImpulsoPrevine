@@ -52,6 +52,7 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
         setAvaliacao(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
         setStarHover(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
     }, [dynamicRoute])
+    console.log(res[1]?.conteudos[0]?.url)
     return(
         <>
             {
@@ -90,7 +91,7 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
                         botaoVoltar: {
                         icon: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG',
                         label: 'VOLTAR',
-                        url: '/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce'
+                        url: `/capacitacao?trilhaID=${router.query.trilhaID}`
                         }
                     }}
                     descricao={{

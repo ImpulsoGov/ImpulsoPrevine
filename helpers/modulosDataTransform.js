@@ -8,7 +8,6 @@ const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
     return progresso(ConteudosCMS,userID,token).then(res=>{
         const trilha = ConteudosCMS.map((trilha)=>{if(trilha.id=TrilhaID) return trilha})
         trilha[0].conteudo.forEach((element,index) => {
-            console.log(modulos_liberados)
             modulos.push({
                 titulo: element.titulo,
                 id: element.moduloId,
@@ -16,6 +15,7 @@ const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
                 concluido: res[0].qtd[index].finalizado
             })
         });
+        console.log(modulos)
         return modulos
     })
 }
@@ -75,14 +75,17 @@ const progresso = async(ConteudosCMS,userID,token)=>{
     const conteudos_por_modulo = ConteudosCMS.map(trilha=>{
         return {
             TrilhaID: trilha.id,
-            codigoTrilha:trilha.conteudo[0].conteudos[0].codigo.slice(0,2),
+            titulo : trilha.titulo,
+            codigoTrilha:trilha.conteudo[0].conteudos[0]?.codigo.slice(0,2),
             qtd :trilha.conteudo.map((item)=>{return {modulo : item.moduloId, conteudosQTD : item.conteudos.length}})
         }
     })
+
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
         item.qtd.forEach(element=>{
-            element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0].conteudosConcluidos
+            element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
+            console.log(element,conclusoes)
             element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=(19/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao
