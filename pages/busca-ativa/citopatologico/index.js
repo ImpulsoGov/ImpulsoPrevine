@@ -40,6 +40,10 @@ const { data: session,status } = useSession()
 const [tokenValido, setTokenValido] = useState();
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
 
+const [activeTabIndex, setActiveTabIndex] = useState(0);
+const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+
+
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio,session?.user?.access_token)
 useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
@@ -55,7 +59,7 @@ useEffect(()=>{
     setTabelaDataEquipe(response)
 })},[session]) 
 
-const [tabelaData, setTabelaData] = useState();
+const [tabelaData, setTabelaData] = useState(null);
 useEffect(()=>{
     (tabelaDataAPS || tabelaDataEquipe) && session &&
     setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
@@ -78,7 +82,29 @@ useEffect(()=>{
 },[tokenValido])
 if(session){  
     if(session.user.perfis.includes(9)){
-        const CardsChild = tabelaDataEquipe ? <ScoreCardGrid
+        const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
+        valores={[
+            {
+                descricao: 'Total de mulheres',
+                valor: tabelaDataEquipe.length
+            },
+            {
+                descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
+                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
+                return (item.id_status_usuario == 13) ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+            {
+                descricao: 'Total de mulheres com a coleta vencida ou a vencer até o fim do quadrimestre',
+                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
+                return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+        ]}
+        /> : <Spinner/>
+        const CardsChildComExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
                 descricao: 'Total de mulheres',
@@ -91,24 +117,12 @@ if(session){
                 acumulador + 1 : acumulador;
                 },0)
             },
-            {
-                descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
-                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 13) ?
-                acumulador + 1 : acumulador;
-                },0)
-            },
-            {
-                descricao: 'Total de mulheres com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
-                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 16) ?
-                acumulador + 1 : acumulador;
-                },0)
-            }
         ]}
         /> : <Spinner/>
     const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
-    const TabelaChildSemExame = tabelaDataEquipe ? <PainelBuscaAtiva
+    const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
+    <>
+    <PainelBuscaAtiva
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_nome))],
@@ -144,10 +158,9 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
-    /> : <Spinner/>
+    /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
-    const TabelaChildComExame = tabelaDataEquipe && tabelaDataEquipeComExame ? 
-    <>
+    const TabelaChildComExame = tabelaDataEquipeComExame && tabelaDataEquipe && tabelaDataEquipeComExame && tabelaData ? 
     <PainelBuscaAtiva
         dadosFiltros={[
             {
@@ -184,11 +197,11 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
-    /> </>: <Spinner/>
-    const Children = [[TabelaChildSemExame],[TabelaChildComExame]]
+    /> : <Spinner/>
+    const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
 
-        return (
+    return (
         <>
         <div 
             style={
@@ -212,7 +225,7 @@ if(session){
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto="Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes e coleta de citopatológico"
                 imagem = {{posicao: null,url: ''}}
         />
         <CardAlert
@@ -232,25 +245,28 @@ if(session){
         >
             {session.user.municipio} - Q2/23
         </div>
-        <PanelSelector
+        {
+            tabelaData &&
+            <PanelSelector
             components={[Children]}
             conteudo = "components"
             list={[
                 [
-                  {
-                    label: 'lista nominal (mulheres com exame a ser realizado)'.toUpperCase()
-                  },
-                  {
-                    label: 'lista nominal (mulheres em dia com exame)'.toUpperCase()
-                  }
+                    {
+                        label: 'MULHERES COM EXAME A SER REALIZADO'
+                    },
+                    {
+                        label: 'MULHERES EM DIA COM EXAME'
+                    }
                 ],
                 ]}
-              titles={[
-                {
-                  label: ''
-                },
+            titles={[
+                    {
+                        label: ''
+                    },
                 ]}
-        />
+            />
+    }
     </>
     )
 }
@@ -278,180 +294,205 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             {
                 descricao: 'Total de mulheres com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
                 valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 16) ?
+                return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
                 acumulador + 1 : acumulador;
                 },0)
             }
         ]}
     /> : <Spinner/>
-    const GraficoChild = tabelaDataAPS && <GraficoBuscaAtiva
-        dataBarra={{
-            color: [
-            '#1D856C',
-            '#316d79',
-            '#503740',
-            '#F4BF81',
-            '#B26161',
-            ],
-            grid: {
-            containLabel: true,
-            top: '20%'
-            },
-            legend: {
-            data: [
-                'Coleta em dia',
-                'Nunca realizou coleta',
-                'Coleta com menos de 25 anos',
-                'Vence no final do quadrimestre',
-                'Coleta vencida'
-            ],
-            top: 'top'
-            },
-            series: [
-            {
-                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                if(item.id_status_usuario == 12) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                return acumulador
-                },{})),
-                name: 'Coleta em dia',
-                stack: 'stack',
-                type: 'bar'
-            },
-            {
-                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                if(item.id_status_usuario == 13) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                return acumulador
-                },{})),
-                name: 'Nunca realizou coleta',
-                stack: 'stack',
-                type: 'bar'
-            },
-            {
-                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                if(item.id_status_usuario == 14) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                return acumulador
-                },{})),
-                name: 'Coleta com menos de 25 anos',
-                stack: 'stack',
-                type: 'bar'
-            },
-            {
-                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                if(item.id_status_usuario == 15) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                return acumulador
-                },{})),
-                name: 'Vence no final do quadrimestre',
-                stack: 'stack',
-                type: 'bar'
-            },
-            {
-                data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                if(item.id_status_usuario == 16) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                return acumulador
-                },{})),
-                name: 'Coleta vencida',
-                stack: 'stack',
-                type: 'bar'
-            }
-            ],
-            tooltip: {
-            trigger: 'axis'
-            },
-            xAxis: {
-            data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome))],
-            type: 'category',
-            axisLabel : {
-                rotate : 45
-            }
-            },
-            yAxis: {
-            type: 'value',
-            axisLabel : {
-                formatter : function(value) {
-                return value.toLocaleString('pt-BR')
-                }
-            }
-            }
-        }}
-        dataRosca={{
-            color: [
-                '#1D856C',
-                '#316d79',
-                '#503740',
-                '#F4BF81',
-                '#B26161',
-            ],
-            series: [
-            {
-                avoidLabelOverlap: false,
-                data: [
-                {
-                    name: 'Coleta em dia',
-                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                    return (item.id_status_usuario == 12) ? acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length).toFixed(2)
-                },
-                {
-                    name: 'Nunca realizou coleta',
-                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                    return (item.id_status_usuario == 13) ?
-                    acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length).toFixed(2)
-                },
-                {
-                    name: 'Coleta com menos de 25 anos',
-                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                    return (item.id_status_usuario == 14) ? acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length).toFixed(2)
-                },
-                {
-                    name: 'Vence no final do quadrimestre',
-                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                    return (item.id_status_usuario == 15) ?
-                    acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length).toFixed(2)
-                },
-                {
-                    name: 'Coleta vencida',
-                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                    return (item.id_status_usuario == 16) ?
-                    acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length).toFixed(2)
-                }
-                ],
-                emphasis: {
-                label: {
-                    fontSize: '20',
-                    fontWeight: 'bold',
-                    show: true
-                }
-                },
-                label: {
-                formatter: '{c}%',
-                position: 'inside',
-                show: true,
-                textStyle: {
-                    color: 'white',
-                    fontSize: 12
-                }
-                },
-                labelLine: {
-                show: false
-                },
-                name: 'Gráfico de rosca',
-                radius: [
-                '35%',
-                '70%'
-                ],
-                type: 'pie'
-            }
-            ],
-            tooltip: {
-            formatter: '{b}',
-            trigger: 'item'
-            }
-        }}
-    />
+    const GraficoChild = tabelaDataAPS && 
+        <>
+            <h2 style={{
+                marginTop : '30px',
+                marginLeft : '120px',
+                color: "#1F1F1F",
+                fontSize: "22px",
+                fontFamily: "Inter",
+                fontWeight: 500,
+                lineHeight: "130%",
+            }}>
+                Mulheres dentro da faixa etaria de 25 a 64 anos 
+            </h2>
+            <GraficoBuscaAtiva
+                dataBarra={{
+                    title: {
+                        text: 'Distribuição por equipe',
+                        subtext: '',
+                        left: '80'
+                    },
+                    color: [
+                        '#2EB280',
+                        '#E95F3A',
+                        '#EABF2E',
+                        '#57C7DC',
+                        '#7579EA',
+                    ],
+                    grid: {
+                    containLabel: true,
+                    top: '20%'
+                    },
+                    legend: {
+                    data: [
+                        'Coleta em dia',
+                        'Nunca realizou coleta',
+                        'Coleta antes dos 25 anos de idade',
+                        'Vence neste quadrimestre',
+                        'Coleta vencida'
+                    ],
+                    top: '60',
+                    left: '80',
+                    },
+                    series: [
+                    {
+                        data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        if(item.id_status_usuario == 12) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                        return acumulador
+                        },{})),
+                        name: 'Coleta em dia',
+                        stack: 'stack',
+                        type: 'bar'
+                    },
+                    {
+                        data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        if(item.id_status_usuario == 13) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                        return acumulador
+                        },{})),
+                        name: 'Nunca realizou coleta',
+                        stack: 'stack',
+                        type: 'bar'
+                    },
+                    {
+                        data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        if(item.id_status_usuario == 14) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                        return acumulador
+                        },{})),
+                        name: 'Coleta antes dos 25 anos de idade',
+                        stack: 'stack',
+                        type: 'bar'
+                    },
+                    {
+                        data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        if(item.id_status_usuario == 15) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                        return acumulador
+                        },{})),
+                        name: 'Vence neste quadrimestre',
+                        stack: 'stack',
+                        type: 'bar'
+                    },
+                    {
+                        data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        if(item.id_status_usuario == 16) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                        return acumulador
+                        },{})),
+                        name: 'Coleta vencida',
+                        stack: 'stack',
+                        type: 'bar'
+                    }
+                    ],
+                    tooltip: {
+                    trigger: 'axis'
+                    },
+                    xAxis: {
+                    data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome))],
+                    type: 'category',
+                    axisLabel : {
+                        rotate : 45
+                    }
+                    },
+                    yAxis: {
+                    type: 'value',
+                    axisLabel : {
+                        formatter : function(value) {
+                        return value.toLocaleString('pt-BR')
+                        }
+                    }
+                    }
+                }}
+                dataRosca={{
+                    title: {
+                        text: 'Consolidado Municipal',
+                        left: '80'
+                    },
+
+                    color: [
+                        '#2EB280',
+                        '#E95F3A',
+                        '#EABF2E',
+                        '#57C7DC',
+                        '#7579EA',
+                    ],
+                    series: [
+                    {
+                        avoidLabelOverlap: false,
+                        data: [
+                        {
+                            name: 'Coleta em dia',
+                            value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                            return (item.id_status_usuario == 12) ? acumulador + 1 : acumulador;
+                            },0)*100)/tabelaDataAPS.length).toFixed(2)
+                        },
+                        {
+                            name: 'Nunca realizou coleta',
+                            value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                            return (item.id_status_usuario == 13) ?
+                            acumulador + 1 : acumulador;
+                            },0)*100)/tabelaDataAPS.length).toFixed(2)
+                        },
+                        {
+                            name: 'Coleta com menos de 25 anos',
+                            value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                            return (item.id_status_usuario == 14) ? acumulador + 1 : acumulador;
+                            },0)*100)/tabelaDataAPS.length).toFixed(2)
+                        },
+                        {
+                            name: 'Vence no final do quadrimestre',
+                            value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                            return (item.id_status_usuario == 15) ?
+                            acumulador + 1 : acumulador;
+                            },0)*100)/tabelaDataAPS.length).toFixed(2)
+                        },
+                        {
+                            name: 'Coleta vencida',
+                            value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                            return (item.id_status_usuario == 16) ?
+                            acumulador + 1 : acumulador;
+                            },0)*100)/tabelaDataAPS.length).toFixed(2)
+                        }
+                        ],
+                        emphasis: {
+                        label: {
+                            fontSize: '20',
+                            fontWeight: 'bold',
+                            show: true
+                        }
+                        },
+                        label: {
+                        formatter: '{c}%',
+                        position: 'inside',
+                        show: true,
+                        textStyle: {
+                            color: 'white',
+                            fontSize: 12
+                        }
+                        },
+                        labelLine: {
+                        show: false
+                        },
+                        name: 'Gráfico de rosca',
+                        radius: [
+                        '35%',
+                        '70%'
+                        ],
+                        type: 'pie'
+                    }
+                    ],
+                    tooltip: {
+                    formatter: '{b}',
+                    trigger: 'item'
+                    }
+                }}
+            />
+        </>
     const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
     const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
         dadosFiltros={[
@@ -568,8 +609,8 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         />  
         <div 
             style={{
-                marginLeft : window.screen.width > 1024 ?  "30px" : "20px",
-                marginTop : "80px",
+                marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
+                marginTop : "30px",
                 color: "#1F1F1F",
                 fontSize: "22px",
                 fontFamily: "Inter",

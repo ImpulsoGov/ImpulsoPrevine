@@ -13,7 +13,6 @@ const tabelaCitoEquipe = async(municipio_uf,equipe,token)=>{
       
       const res = axios.request(config)
       .then((response) => {
-        console.log(response)
         return response.data;
       })
       .catch((error) => {

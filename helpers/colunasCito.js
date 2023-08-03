@@ -92,9 +92,9 @@ const selecionar_status_usuario_descricao = ({value})=> {
       {[12].includes(value) &&  <span style={checkSymbolStyle}>✔</span>} 
       <span>{descricao}</span>
       </div>
-  }
+}
   
-  const prazoStyle = ({value})=>{
+const prazoStyle = ({value})=>{
     const atencao = {
       backgroundColor: "#F4CCAB",
       border: "1px solid #E98633",
@@ -153,7 +153,15 @@ const selecionar_status_usuario_descricao = ({value})=> {
         {value}
         </div>
   
+}
+
+const formatar_nome = ({value})=>{
+  const name = {
+    width : '100%',
+    padding : '20px'
   }
+  return <div style={name}>{value}</div>
+}
   
 
 const colunasCito=[
@@ -162,6 +170,7 @@ const colunasCito=[
       field: 'paciente_nome',
       headerAlign: 'center',
       headerName: 'NOME',
+      renderCell : formatar_nome,
       width: 320
     },
     {
@@ -184,7 +193,7 @@ const colunasCito=[
       field: 'vencimento_da_coleta',
       headerAlign: 'center',
       headerName: 'VENCIMENTO DA COLETA',
-      width: 100
+      width: 105
     },
     {
       align: 'center',

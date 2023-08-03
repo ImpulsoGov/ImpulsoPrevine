@@ -103,7 +103,7 @@ function MyApp(props) {
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])
-                      .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Aprenda", url: "/capacitacoes" }] : [])
+                      .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
                       .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1], props.res[0].menus[3], props.res[0].menus[4]].concat([{ label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }

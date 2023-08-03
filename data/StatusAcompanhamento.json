@@ -72,12 +72,12 @@
     },
     {
       "id_status_usuario" : 14,
-      "status_usuario_descricao" : "Coleta com menos de 25 anos",
+      "status_usuario_descricao" : "Coleta antes dos 25 anos",
       "atualizacao_data" : "2023-07-03T03:00:00.000Z"
     },
     {
       "id_status_usuario" : 15,
-      "status_usuario_descricao" : "Vence no final do quadrimestre",
+      "status_usuario_descricao" : "Vence neste quadrimestre",
       "atualizacao_data" : "2023-07-03T03:00:00.000Z"
     },
     {
