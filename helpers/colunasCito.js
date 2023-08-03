@@ -2,8 +2,8 @@ import status_usuario_descricao from "../data/StatusAcompanhamento.json" assert 
 
 const selecionar_status_usuario_descricao = ({value})=> {
     const alert = {
-      backgroundColor: "#F8BBAE",
-      border: "1px solid #EF565D",
+      backgroundColor: "#FFECEC",
+      border: "1px solid #F8BBAE",
       borderRadius: "5px",
       color: "#EF565D",
       padding: "2px",
@@ -16,8 +16,8 @@ const selecionar_status_usuario_descricao = ({value})=> {
       padding : "3px 10px"
     }
     const atencao = {
-      backgroundColor: "#F4CCAB",
-      border: "1px solid #E98633",
+      backgroundColor: "#FFF0E1",
+      border: "1px solid #F4CCAB",
       borderRadius: "5px",
       color: "#E98633",
       padding: "2px",
@@ -31,7 +31,7 @@ const selecionar_status_usuario_descricao = ({value})=> {
     }
     const check = {
         backgroundColor: "#E7FBF3",
-        border: "1px solid #1D856C",
+        border: "1px solid #9DEECD",
         borderRadius: "5px",
         color: "#1D856C",
         padding: "2px",
@@ -96,8 +96,8 @@ const selecionar_status_usuario_descricao = ({value})=> {
   
 const prazoStyle = ({value})=>{
     const atencao = {
-      backgroundColor: "#F4CCAB",
-      border: "1px solid #E98633",
+      backgroundColor: "#FFF0E1",
+      border: "1px solid #F4CCAB",
       borderRadius: "5px",
       color: "#E98633",
       padding: "2px",
@@ -111,7 +111,7 @@ const prazoStyle = ({value})=>{
     }
     const check = {
         backgroundColor: "#E7FBF3",
-        border: "1px solid #1D856C",
+        border: "1px solid #9DEECD",
         borderRadius: "5px",
         color: "#1D856C",
         padding: "2px",
