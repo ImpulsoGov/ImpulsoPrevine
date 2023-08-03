@@ -53,7 +53,7 @@ const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
       {/* <div style={{paddingTop:80}}></div> */}
-      <div style={{paddingTop:100,  textAlign:"center", paddingBottom:150, paddingLeft:80, paddingRight:80}}>
+      <div style={{paddingTop:100, textAlign:"center", paddingBottom:150, paddingLeft:80, paddingRight:80}}>
         <div style={{maxWidth:1000, textAlign:"center"}}>
           <NovoTituloTexto
             titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
@@ -76,7 +76,7 @@ const Index = ({res}) => {
             texto="Melhore a atuação da sua unidade e do seu município com:"
           />
           <Grid12Col
-            proporcao="5-7"
+            proporcao="7-5"
             items={ [
               <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />,
               <><div style={{alignContent:"center"}}>
@@ -106,7 +106,7 @@ const Index = ({res}) => {
             ] }
           />
           <Grid12Col
-            proporcao="5-7"
+            proporcao="7-5"
             items={ [
               <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />,
               <TituloSmallTexto
