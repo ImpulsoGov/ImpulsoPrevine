@@ -1,8 +1,23 @@
 import { v1 as uuidv1 } from 'uuid';
+import React, { useState, useEffect } from 'react';
 import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
+import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
 
 const Indicadores = () => {
+  const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
+
+  useEffect(() => {
+    // Chamada para obter os dados dos indicadores
+    AcessoindicadoresDesempenho("Abadia de Goiás - GO")
+      .then(result => {
+        console.log("RESULTADO", result);
+        setIndicadoresData(result); // Armazene os dados no estado
+      })
+      .catch(error => {
+        console.error("ERRO", error);
+      });
+  }, []);
   return (
     <div>
       <TituloSmallTexto
@@ -49,8 +64,8 @@ const Indicadores = () => {
         }}
         titulo="Como melhorar o desempenho dos indicadores" tooltip="" />
 
-      <TabelaIndicadores
-       
+      <TabelaIndicadores 
+        TabIndicadores={indicadoresData} 
       />
     </div>
   )
