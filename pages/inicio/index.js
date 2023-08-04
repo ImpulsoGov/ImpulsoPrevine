@@ -48,16 +48,32 @@ const Index = ({res}) => {
                     nome_usuario = {session?.user.nome}
                     texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
                 />
-                {
-                    data && session?.user.perfis.includes(7) &&
-                    <CardTrilha
-                        titulo="Trilha de Capacitação: Hipertensão e Diabetes"
-                        progressao={data[0].progresso }
-                        linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
-                        linkCertificado= {data[0].progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                        certificadoLiberado= {data[0].progresso>50 ? true : false}
-                    />
-                }
+                <div 
+                    style={
+                        window.screen.width >= 1024 ?
+                        {
+                            display : "flex",
+                            gap : "30px",
+                            marginLeft : "80px",
+                            marginBottom : "30px"
+                        }:
+                        {
+                            display : "flex",
+                            flexDirection : "column",
+                            gap : "15px",
+                        }
+                }>
+                    {
+                        data && session?.user.perfis.includes(7) &&
+                        <CardTrilha
+                            titulo="Trilha de Capacitação: Hipertensão e Diabetes"
+                            progressao={data[0].progresso }
+                            linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
+                            linkCertificado= {data[0].progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
+                            certificadoLiberado= {data[0].progresso>50 ? true : false}
+                        />
+                    }
+                </div>
                 {
                     (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
                     <CardLargeGrid

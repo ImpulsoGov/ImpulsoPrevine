@@ -75,7 +75,7 @@ const progresso = async(ConteudosCMS,userID,token)=>{
     const conteudos_por_modulo = ConteudosCMS.map(trilha=>{
         return {
             TrilhaID: trilha.id,
-            codigoTrilha:trilha.conteudo[0].conteudos[0].codigo.slice(0,2),
+            codigoTrilha:trilha.conteudo[0].conteudos[0]?.codigo.slice(0,2),
             qtd :trilha.conteudo.map((item)=>{return {modulo : item.moduloId, conteudosQTD : item.conteudos.length}})
         }
     })
