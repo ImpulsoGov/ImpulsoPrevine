@@ -38,7 +38,6 @@ const Index = ({res}) => {
         TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
     },[session]) 
 
-    console.log(data)
     return(
         <>
             <TituloTexto
@@ -46,20 +45,36 @@ const Index = ({res}) => {
                 texto="Nossas trilhas de capacitação possuem materiais teóricos e práticos para ajudar profissionais da APS no processo de educação continuada em saúde. Comece já!"
                 imagem = {{posicao: null,url: ''}}
             />
-            {
-                data && TrilhasLiberadas &&
-                data.map((trilha,index)=>
-                    TrilhasLiberadas.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
-                        <CardTrilha
-                            titulo={trilha?.titulo ? trilha.titulo : "Trilha de Capacitação"}
-                            progressao={trilha.progresso }
-                            linkTrilha={trilha.progresso>0 ? "/capacitacao?trilhaID="+trilha.TrilhaID : 'conteudo-programatico'}
-                            linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                            certificadoLiberado= {trilha.progresso>50 ? true : false}
-                            key={index}
-                        />
-                )
-            }
+            <div 
+                style={
+                    window.screen.width >= 1024 ?
+                    {
+                        display : "flex",
+                        gap : "30px",
+                        marginLeft : "80px",
+                        marginBottom : "30px"
+                    }:
+                    {
+                        display : "flex",
+                        flexDirection : "column",
+                        gap : "15px",
+                    }
+            }>
+                {
+                    data && TrilhasLiberadas &&
+                    data.map((trilha,index)=>
+                        TrilhasLiberadas.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
+                            <CardTrilha
+                                titulo={trilha?.titulo ? trilha.titulo : "Trilha de Capacitação"}
+                                progressao={trilha.progresso }
+                                linkTrilha={trilha.progresso>0 ? "/capacitacao?trilhaID="+trilha.TrilhaID : 'conteudo-programatico'}
+                                linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
+                                certificadoLiberado= {trilha.progresso>50 ? true : false}
+                                key={index}
+                            />
+                    )
+                }
+            </div>
         </>
     )
 }
