@@ -78,7 +78,7 @@ function MyApp(props) {
                   logoProjeto: width > 1000 ?
                     path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
-                  cor: path == '/' ? "Cinza" : "White",
+                  cor: (path == '/' || path == '/apoio') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }
                 seletorMunicipios={ path == '/analise' }
