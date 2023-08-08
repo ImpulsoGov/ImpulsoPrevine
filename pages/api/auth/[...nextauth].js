@@ -2,12 +2,12 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios"
 import FormData from "form-data"
-import { API_URL } from "../../../constants/API_URL";
+import { API_URL_USUARIOS } from "../../../constants/API_URL";
 
 export const cargo_nome = async (token,mail)=>{
   let config = {
     method: 'get',
-    url: API_URL+'suporte/ger_usuarios/cargo-nome?id='+mail+'&id_cod=1',
+    url: API_URL_USUARIOS+'suporte/ger_usuarios/cargo-nome?id='+mail+'&id_cod=1',
     headers: { 
       'Authorization': 'Bearer '+token
     }
@@ -27,7 +27,7 @@ const getToken = async(credentials)=>{
   data.append('password', credentials.password);
   const config = {
     method: 'post',
-    url: API_URL + 'suporte/usuarios/token',
+    url: API_URL_USUARIOS + 'suporte/usuarios/token',
     headers: { 
       ...data.getHeaders()
     },
@@ -60,7 +60,6 @@ providers: [
     },
     async authorize(credentials, req) {
       const token = await getToken(credentials)  
-      console.log(token)
       if (token) {
         // Any object returned will be saved in `user` property of the JWT
         return token
