@@ -6,6 +6,7 @@ import { redirectHomeTrilha } from '../../helpers/redirectHome'
 import { useRouter } from 'next/router';
 import { concluirConteudo } from '../../services/capacitacao';
 import trilhas from '../../data/trilhas.json' assert { type: 'json' };
+import { useEffect } from 'react'
 
 
 export async function getServerSideProps(ctx) {
@@ -28,8 +29,10 @@ const Index = ({res}) => {
     const router = useRouter()
     const trilhaID = router.query.trilha
     const siglaTrilha = trilhas.trilhas.find(item => item?.ID == trilhaID)?.sigla
-    console.log(siglaTrilha,trilhaID)
-    //concluirConteudo(session?.user?.id,"XX-MOD0-C0",session?.user?.access_token)
+    useEffect(()=>{
+        session && concluirConteudo(session?.user?.id,`${siglaTrilha}-MOD0-C0`,session?.user?.access_token)
+    },[session])
+    
     return(
         <>
             <SobreTrilha

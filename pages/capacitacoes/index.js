@@ -68,6 +68,7 @@ const Index = ({res}) => {
                 }>
                     {
                         data.map((trilha,index)=>{
+                            console.log(trilha)
                             return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
                                 <CardTrilha
                                     titulo={trilha?.titulo}

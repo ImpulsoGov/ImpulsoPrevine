@@ -1,5 +1,6 @@
 import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
 import { acessoModulosTrilhasClient } from "../services/acessoTrilha";
+import trilhasIDSigla from '../data/trilhas.json' assert { type: 'json' };
 
 const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
     const modulos = []
@@ -23,7 +24,7 @@ const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
 const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
     const conteudos = []
     const avaliacoes_usuario = await consultarAvaliacaoConclusaoPorUsuario(userID,token)
-    const checkSobre = avaliacoes_usuario.filter(item=>item.codigo_conteudo=="HD-MOD0-C0").length>0
+    const checkSobre = avaliacoes_usuario.filter(item=>item.codigo_conteudo.slice(3,10)=="MOD0-C0").length>0
     for(let i=0;i<conteudosCMS.length;i++){
         let moduloID = conteudosCMS[i].moduloId
         let modulo = conteudosCMS[i]
@@ -55,7 +56,9 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
             item.titulo !=0 && conteudos.push(item)
         }
     }
-    const ultimoModulo = avaliacoes_usuario.length>0 ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
+    const siglaTrilha = trilhasIDSigla.trilhas.filter(item=>item.ID == trilhaID)[0]?.sigla
+    const ultimoModulo = avaliacoes_usuario.filter(item=>item?.codigo_conteudo.slice(3,10)=="MOD0-C0")[0] ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
+    console.log(avaliacoes_usuario.filter(item=>item.codigo_conteudo==siglaTrilha),avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6])))
     return [conteudos,ultimoModulo,checkSobre]
 }
 
@@ -76,16 +79,17 @@ const progresso = async(ConteudosCMS,userID,token)=>{
         return {
             TrilhaID: trilha.id,
             titulo : trilha.titulo,
-            codigoTrilha:trilha.conteudo[0].conteudos[0]?.codigo.slice(0,2),
+            codigoTrilha:trilha.conteudo[1].conteudos[0]?.codigo.slice(0,2),
             qtd :trilha.conteudo.map((item)=>{return {modulo : item.moduloId, conteudosQTD : item.conteudos.length}})
         }
     })
 
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
+        console.log(conclusoes,item.titulo)
         item.qtd.forEach(element=>{
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
-            console.log(element,conclusoes)
+            console.log(element,item.titulo)
             element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=(19/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao
