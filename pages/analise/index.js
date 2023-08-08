@@ -5,8 +5,17 @@ import { PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
+import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
 
 const Index = ({ res }) => {
+  AcessoindicadoresDesempenho("Abadia de Goiás - GO")
+    .then(result => {
+      console.log("RESULTADO", result);
+    })
+    .catch(error => {
+      console.error("ERRO", error);
+    });
+
   const router = useRouter();
   const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);

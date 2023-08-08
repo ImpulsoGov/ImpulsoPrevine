@@ -8,15 +8,16 @@ const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
 
   useEffect(() => {
-    // Chamada para obter os dados dos indicadores
-    AcessoindicadoresDesempenho("Abadia de Goiás - GO")
-      .then(result => {
+    async function fetchData() {
+      try {
+        const result = await AcessoindicadoresDesempenho("Abadia de Goiás - GO");
         console.log("RESULTADO", result);
-        setIndicadoresData(result); // Armazene os dados no estado
-      })
-      .catch(error => {
+        setIndicadoresData(result);
+      } catch (error) {
         console.error("ERRO", error);
-      });
+      }
+    }
+    fetchData();
   }, []);
   return (
     <div>
