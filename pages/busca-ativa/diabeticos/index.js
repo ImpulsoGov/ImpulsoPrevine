@@ -95,7 +95,7 @@ const Index = ({res}) => {
           </div>
           <TituloTexto
                   titulo="Lista Nominal Diabetes"
-                  texto="Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes, coleta de citopatológico."
+                  texto=""
                   imagem = {{posicao: null,url: ''}}
               />
           <CardAlert
@@ -205,7 +205,7 @@ const Index = ({res}) => {
           </div>
         <TituloTexto
                 titulo="Lista Nominal Diabetes"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto=""
                 imagem = {{posicao: null,url: ''}}
             />
         <CardAlert
@@ -262,10 +262,10 @@ const Index = ({res}) => {
           <GraficoBuscaAtiva
           dataBarra={{
             color: [
-              '#1D856C',
-              '#2EB280',
-              '#55D499',
-              '#9DEECD'
+              '#EABF2E',
+              '#57C7DC',
+              '#7579EA',
+              '#E95F3A',
             ],
             grid: {
               containLabel: true,
@@ -339,10 +339,10 @@ const Index = ({res}) => {
           }}
           dataRosca={{
             color: [
-              '#1D856C',
-              '#2EB280',
-              '#55D499',
-              '#9DEECD'
+              '#EABF2E',
+              '#57C7DC',
+              '#7579EA',
+              '#E95F3A',
             ],
             series: [
               {

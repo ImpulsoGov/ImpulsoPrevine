@@ -53,7 +53,7 @@ const Index = ({res}) => {
                     greeting = "Bem vindo(a)"
                     municipio_uf = {session?.user.municipio}
                     nome_usuario = {session?.user.nome}
-                    texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão, diabetes e coleta de citopatológico, do Previne Brasil."
+                    texto = ""
                 />
                 <div 
                     style={

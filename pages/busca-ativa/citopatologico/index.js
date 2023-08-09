@@ -20,6 +20,7 @@ import { colunasCito } from "../../../helpers/colunasCito";
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -43,6 +44,16 @@ const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 
+const router = useRouter();
+
+useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: { aba: activeTabIndex }
+    },
+      undefined, { shallow: true }
+    );
+  }, [activeTabIndex]);
 
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio,session?.user?.access_token)
 useEffect(()=>{
@@ -225,7 +236,7 @@ if(session){
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"
-                texto="Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes e coleta de citopatológico"
+                texto=""
                 imagem = {{posicao: null,url: ''}}
         />
         <CardAlert
@@ -250,6 +261,13 @@ if(session){
             <PanelSelector
             components={[Children]}
             conteudo = "components"
+            states={{
+                activeTabIndex: Number(activeTabIndex),
+                setActiveTabIndex: setActiveTabIndex,
+                activeTitleTabIndex: activeTitleTabIndex,
+                setActiveTitleTabIndex: setActiveTitleTabIndex
+            }}
+
             list={[
                 [
                     {
@@ -600,9 +618,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto=""
                 imagem = {{posicao: null,url: ''}}
-            />
+        />
         <CardAlert
             destaque="IMPORTANTE: "
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
@@ -623,16 +641,22 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         <PanelSelector
             components={[Children]}
             conteudo = "components"
+            states={ {
+                activeTabIndex: Number(activeTabIndex),
+                setActiveTabIndex: setActiveTabIndex,
+                activeTitleTabIndex: activeTitleTabIndex,
+                setActiveTitleTabIndex: setActiveTitleTabIndex
+              } }
             list={[
                 [
                   {
                     label: 'GRÁFICOS'
                   },
                   {
-                    label: 'lista nominal (mulheres com exame a ser realizado)'.toUpperCase()
+                    label: 'MULHERES COM EXAME A SER REALIZADO'
                   },
                   {
-                    label: 'lista nominal (mulheres em dia com exame)'.toUpperCase()
+                    label: 'MULHERES EM DIA COM EXAME'
                   }
                 ],
                 ]}
