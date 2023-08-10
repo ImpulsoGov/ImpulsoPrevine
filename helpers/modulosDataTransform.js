@@ -57,8 +57,7 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
         }
     }
     const siglaTrilha = trilhasIDSigla.trilhas.filter(item=>item.ID == trilhaID)[0]?.sigla
-    const ultimoModulo = avaliacoes_usuario.filter(item=>item?.codigo_conteudo.slice(3,10)=="MOD0-C0")[0] ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
-    console.log(avaliacoes_usuario.filter(item=>item.codigo_conteudo==siglaTrilha),avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6])))
+    const ultimoModulo = avaliacoes_usuario.filter(item=>item?.codigo_conteudo.slice(3,10)=="MOD0-C0")[0] ? Math.max(...[...new Set(avaliacoes_usuario.filter(item=>item.codigo_conteudo.slice(0,2)==siglaTrilha).map((item)=>Number(item.codigo_conteudo[6])))]) : 0
     return [conteudos,ultimoModulo,checkSobre]
 }
 
