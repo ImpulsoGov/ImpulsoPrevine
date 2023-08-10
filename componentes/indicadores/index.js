@@ -10,7 +10,7 @@ const Indicadores = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await AcessoindicadoresDesempenho("Abadia de Goiás - GO");
+        const result = await AcessoindicadoresDesempenho("Jati - CE");
         console.log("RESULTADO", result);
         setIndicadoresData(result);
       } catch (error) {

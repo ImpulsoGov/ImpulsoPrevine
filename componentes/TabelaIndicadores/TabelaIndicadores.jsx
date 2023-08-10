@@ -7,7 +7,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
 
   const colunas = useMemo(() => [
     {
-      field: 'ordenacao',
+      field: 'indicador_score',
       headerName: 'Ordenação',
       flex: 110,
       description:
@@ -16,7 +16,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       
     },
     {
-      field: 'indicador',
+      field: 'indicador_nome',
       headerName: 'Indicador',
       flex: 105,
       align: 'center',
@@ -26,7 +26,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,      
     },
     {
-      field: 'dominadorInformado',
+      field: 'indicador_denominador_utilizado_informado',
       headerName: 'Denominador utilizado (Denominador informado)',
       flex: 130,
       align: 'center',
@@ -38,7 +38,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'N_totaldePessoas_baterMeta',
+      field: 'indicador_usuarios_100_porcento_meta',
       headerName: 'Nº total de pessoas para bater a meta',
       flex: 110,
       align: 'center',
@@ -48,7 +48,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'PessoasNaoCadastradas',
+      field: 'indicador_usuarios_cadastrados_sem_atendimento',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
       flex: 290,
       align: 'center',
@@ -58,7 +58,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'Nota',
+      field: 'indicador_nota',
       headerName: 'Nota',
       flex: 80,
       align: 'center',
@@ -68,7 +68,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'VariacaoDesempenho',
+      field: 'delta_formatado',
       headerName: 'Variação de desempenho de Q1-23/Q3-22',
       flex: 125,
       align: 'center',
@@ -78,7 +78,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'Recomendacoes',
+      field: 'indicador_recomendacao',
       headerName: 'Recomendações',
       flex: 155,
       align: 'center',
@@ -94,24 +94,24 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       return []; // Retorna um array vazio se TabIndicadores for undefined
     }
 
-    return TabIndicadores.map(({ ordenacao,
-      indicador,
-      dominadorInformado,
-      N_totaldePessoas_baterMeta,
-      PessoasNaoCadastradas,
-      Nota,
-      VariacaoDesempenho,
-      Recomendacoes
+    return TabIndicadores.map(({ indicador_score,
+      indicador_nome,
+      indicador_denominador_utilizado_informado,
+      indicador_usuarios_100_porcento_meta,
+      indicador_usuarios_cadastrados_sem_atendimento,
+      indicador_nota,
+      delta_formatado,
+      indicador_recomendacao
     }) => ({
       id: uuidV4(),
-      ordenacao,
-      indicador,
-      dominadorInformado,
-      N_totaldePessoas_baterMeta,
-      PessoasNaoCadastradas,
-      Nota,
-      VariacaoDesempenho,
-      Recomendacoes
+      indicador_score,
+      indicador_nome,
+      indicador_denominador_utilizado_informado,
+      indicador_usuarios_100_porcento_meta,
+      indicador_usuarios_cadastrados_sem_atendimento,
+      indicador_nota,
+      delta_formatado,
+      indicador_recomendacao
     }));
   }, [TabIndicadores]);
 
@@ -160,7 +160,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
         disableColumnMenu
         initialState={{
           sorting: {
-            sortModel: [{ field: 'ordenacao', sort: 'asc' }],
+            sortModel: [{ field: 'indicador_score', sort: 'asc' }],
           },
         }}
         rowHeight={30} // altura das linhas
