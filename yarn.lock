@@ -1214,10 +1214,10 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
-"@impulsogov/design-system@^1.0.93":
-  "integrity" "sha512-w5YGENN0jCx4dEPjfS5BupWxE99OZVk0JKVOQ0YI6KRzNbW5tvfpK+YzDtCeW7m0X+hW8+UlTrni+fdBuiQxgQ=="
-  "resolved" "https://registry.npmjs.org/@impulsogov/design-system/-/design-system-1.0.93.tgz"
-  "version" "1.0.93"
+"@impulsogov/design-system@^1.0.101":
+  "integrity" "sha512-df3RqGXcXB1M4L726rvBWvZAbSekOg5Be4fc/Z4xMB1VjZllvnNZOoad1qXIGDg9edVxS/rXCvPvlIEfY6ufQw=="
+  "resolved" "https://registry.npmjs.org/@impulsogov/design-system/-/design-system-1.0.101.tgz"
+  "version" "1.0.101"
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"

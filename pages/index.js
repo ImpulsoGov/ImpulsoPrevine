@@ -4,7 +4,8 @@ import { FormConsultoria,
   CardIP, 
   Grid12Col, 
   NovoTituloTexto,
-  ImagensFull2
+  ImagensFull2,
+  Margem
 } from "@impulsogov/design-system";
 import { v1 as uuidv1 } from "uuid";
 
@@ -52,33 +53,40 @@ const Parceiros = (res)=>{
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
-      {/* <div style={{paddingTop:80}}></div> */}
-      <div style={{paddingTop:100, textAlign:"center", paddingBottom:150, paddingLeft:80, paddingRight:80}}>
-        <div style={{maxWidth:1000, textAlign:"center"}}>
-          <NovoTituloTexto
-            titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
-            texto="Somos parte de uma organização não governamental financiada por entidades filantrópicas para desenvolver a saúde pública <b>de forma totalmente gratuita.</b>"
-          />
-        </div>
-        <div style={{paddingTop:75}}></div>
-        <ImagensFull2 imagem="https://media.graphassets.com/E153wwplTJe02eMPPMip" />
-      </div>
+      <Margem 
+        componente={
+          <>
+            <div style={{paddingTop:80}}></div>
+            <NovoTituloTexto
+              titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
+              texto="Somos parte de uma organização não governamental financiada por entidades filantrópicas para desenvolver a saúde pública <b>de forma totalmente gratuita.</b>"
+            />
+            <div style={{paddingTop:75}}></div>
+            <ImagensFull2 imagem="https://media.graphassets.com/zSjt74JRTda4QD5B6kRJ" />
+            <div style={{paddingTop:75}}></div>
+          </>
+        } 
+      />
       <ParceriasTexto
           text = "“A ImpulsoGov, uma organização sem fins lucrativos que atua fomentando uso de dados e tecnologia na gestão pública, tem apoiado gratuitamente municípios na melhoria de seus processos…”"
           parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/07YT7KxzQR6zW8LR4qOM"}]}
       />
-      <div style={{paddingTop:150, paddingBottom:150, paddingLeft:80, paddingRight:80}}>
-          <TituloSmallTexto
-            botao={{label: '',url: ''}}
-            imagem={{posicao: null,url: ''}}
-            supertitulo=""
-            titulo="<b>Suporte para coordenação e assistência da APS</b>"
-            texto="Melhore a atuação da sua unidade e do seu município com:"
-          />
-          <Grid12Col
+      
+      <Margem 
+        componente={
+          <>
+            <div style={{paddingTop:75}}></div>
+              <TituloSmallTexto
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null,url: ''}}
+                supertitulo=""
+                titulo="<b>Suporte para coordenação e assistência da APS</b>"
+                texto="Melhore a atuação da sua unidade e do seu município com:"
+              />
+            <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />,
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/fQK1X6QxilACEvc2IfQ0" />,
               <><div style={{alignContent:"center"}}>
                   <TituloSmallTexto
                     key={ uuidv1() }
@@ -102,13 +110,13 @@ const Index = ({res}) => {
                 titulo=""
                 texto="Confira informações atualizadas sobre atenção primária à saúde nos artigos do nosso blog e em nossas capacitações.<br><br>"
               />,
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WJpXZINRS16gcFMCysFe" />
             ] }
           />
           <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/2ygpjbc4T2yPmyMOfvKD" />,
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WX9nahBsT2qFcm0luXeI" />,
               <TituloSmallTexto
                 key={ uuidv1() }
                 botao={{label: 'SER MUNICÍPIO PARCEIRO',url: '/consultoria'}}
@@ -119,9 +127,15 @@ const Index = ({res}) => {
               />
             ] }
           />
-          
           <div style={{paddingTop:150}}></div>
-          <Grid12Col
+          </>
+        } 
+      />
+
+      <Margem 
+        componente={
+          <>
+            <Grid12Col
               proporcao="3-3-3-3"
               items={ [
                 <>
@@ -155,35 +169,41 @@ const Index = ({res}) => {
                 />
               ] }
             />
-          <div style={{paddingTop:75}}></div>
-          <TituloSmallTexto
-            key={ uuidv1() }
-            botao={{label: '',url: ''}}
-            imagem={{posicao: null,url: ''}}
-            supertitulo=""
-            titulo="<b>Resultados na prática</b>"
-            texto=""
-          />
-          <Grid12Col
-              proporcao="6-6"
-              items={ [
-                <CardIP
-                  key={ uuidv1() }
-                  titulo="PARCEIRO DESDE 2022"
-                  indicador="Brejo de Areia/MA"
-                  descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
-                />,
-                <CardIP
-                  key={ uuidv1() }
-                  titulo="PARCEIRO DESDE 2022"
-                  indicador="Minaçu/GO"
-                  descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
-                />
-              ] }
+            <div style={{paddingTop:75}}></div>
+            <TituloSmallTexto
+              key={ uuidv1() }
+              botao={{label: '',url: ''}}
+              imagem={{posicao: null,url: ''}}
+              supertitulo=""
+              titulo="<b>Resultados na prática</b>"
+              texto=""
             />
-          
-          <div style={{paddingTop:150}}></div>
-          <Grid12Col
+            <Grid12Col
+                proporcao="6-6"
+                items={ [
+                  <CardIP
+                    key={ uuidv1() }
+                    titulo="PARCEIRO DESDE 2022"
+                    indicador="Brejo de Areia/MA"
+                    descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
+                  />,
+                  <CardIP
+                    key={ uuidv1() }
+                    titulo="PARCEIRO DESDE 2022"
+                    indicador="Minaçu/GO"
+                    descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
+                  />
+                ] }
+              />
+            <div style={{paddingTop:150}}></div>
+          </>
+        } 
+      />
+
+      <Margem 
+        componente={
+          <>
+            <Grid12Col
               proporcao="6-6"
               items={ [
                 <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/TxOWmwUSBOO1fnpZfRlu" />,
@@ -197,7 +217,10 @@ const Index = ({res}) => {
                 />
               ] }
             />
-      </div>
+            <div style={{paddingTop:75}}></div>
+          </>
+        } 
+      />
       
       <FormConsultoria
           title="Faça parte da nossa lista de transmissão e receba toda semana em seu e-mail dicas e atualizações sobre indicadores, portarias, registro e boas práticas na APS."
