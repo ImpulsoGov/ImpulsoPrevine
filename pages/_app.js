@@ -145,7 +145,12 @@ function MyApp(props) {
                 } }
               />
             }
-            <div className='NavBarPadding'>
+            <div 
+              style={{
+                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : "30px",
+                  height: "100%"
+              }}
+            >
               <Component { ...pageProps } />
             </div>
             <Footer

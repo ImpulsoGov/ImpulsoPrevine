@@ -29,19 +29,9 @@ a {
   position: relative;
 }
 
-.NavBarPadding {
-   padding-top: 76px;
-   height: 100%;
-}
-
 @media screen and (max-width: 1000px) {
   body{
     margin-top: 40px;
     height: 100%;
-  }
-  .NavBarPadding {
-    padding-top: 0px;
-    height: 100%;
-  }
- 
+  } 
 }
