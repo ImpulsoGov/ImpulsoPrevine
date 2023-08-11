@@ -76,17 +76,17 @@ const Index = ({res}) => {
               key={ uuidv1() }
               botao={{label: '',url: ''}}
               imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
+              supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
               titulo=""
-              texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
+              texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
             />
             <TituloSmallTexto
               key={ uuidv1() }
               botao={{label: '',url: ''}}
               imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
+              supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
               titulo=""
-              texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
+              texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
             />
             </>
             ,

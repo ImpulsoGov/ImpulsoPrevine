@@ -86,7 +86,7 @@ const Index = ({res}) => {
             <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/fQK1X6QxilACEvc2IfQ0" />,
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/fBWSb6X9QbyS6G1wX0I9" />,
               <><div style={{alignContent:"center"}}>
                   <TituloSmallTexto
                     key={ uuidv1() }
