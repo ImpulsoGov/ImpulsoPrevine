@@ -292,7 +292,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     const CardsChild = tabelaDataAPS ? <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de mulheres',
+                descricao: 'Total de mulheres de 25 a 64 anos',
                 valor: tabelaDataAPS.length
             },
             {
@@ -313,6 +313,13 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 descricao: 'Total de mulheres com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
                 valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+            {
+                descricao: 'Coleta realizada antes dos 25 anos (Não contabilizada para o Previne Brasil',
+                valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
+                return (item.id_status_usuario == 14) ?
                 acumulador + 1 : acumulador;
                 },0)
             }
