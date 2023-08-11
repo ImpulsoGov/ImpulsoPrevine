@@ -67,7 +67,7 @@ const Index = ({res}) => {
             <TituloSmallTexto
               key={ uuidv1() }
               botao={{label: '',url: ''}}
-              imagem={{posicao: null, url: ''}}
+              imagem={{posicao: true, url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
               supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
               titulo=""
               texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
@@ -116,12 +116,14 @@ const Index = ({res}) => {
               titulo="PARCEIRO DESDE 2022"
               indicador="Brejo de Areia/MA"
               descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
+              height={210}
             />
             <CardIP
               key={ uuidv1() }
               titulo="PARCEIRO DESDE 2022"
               indicador="Minaçu/GO"
               descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
+              height={210}
             />
             </>
           ] }
@@ -169,7 +171,7 @@ const Index = ({res}) => {
           theme="IPVerde"
       />
       <ToggleList
-        title="Dúvidas sobre a parceria da Impulso com os municípios?"
+        title="<strong>Dúvidas sobre a parceria da Impulso com os municípios?</strong>"
         list={[
           {
             title: 'Geral',
