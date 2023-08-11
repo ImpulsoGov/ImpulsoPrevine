@@ -146,7 +146,7 @@ const Index = ({res}) => {
                     botao={{label: '',url: ''}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo=""
-                    titulo="<b>Nós somos uma rede</b>"
+                    titulo="<b>Nós somos uma rede!</b>"
                     texto=""
                   />
                 </>,
