@@ -104,29 +104,30 @@ const Index = ({res}) => {
             items={ [
               <TituloSmallTexto
                 key={ uuidv1() }
-                botao={{label: 'VER MATERIAIS',url: '/blog'}}
-                imagem={{posicao: null,url: ''}}
-                supertitulo="<b>Conteúdos gratuitos</b>"
-                titulo=""
-                texto="Confira informações atualizadas sobre atenção primária à saúde nos artigos do nosso blog e em nossas capacitações.<br><br>"
-              />,
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WJpXZINRS16gcFMCysFe" />
-            ] }
-          />
-          <Grid12Col
-            proporcao="7-5"
-            items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WX9nahBsT2qFcm0luXeI" />,
-              <TituloSmallTexto
-                key={ uuidv1() }
                 botao={{label: 'SER MUNICÍPIO PARCEIRO',url: '/consultoria'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
                 texto="Seja nosso parceiro para receber apoio especializado da nossa equipe e treinamentos focados nos seus desafios.<br/><br/>"
+              />,
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WX9nahBsT2qFcm0luXeI" />
+            ] }
+          />
+          <Grid12Col
+            proporcao="7-5"
+            items={ [
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WJpXZINRS16gcFMCysFe" />,
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: 'VER MATERIAIS',url: '/blog'}}
+                imagem={{posicao: null,url: ''}}
+                supertitulo="<b>Conteúdos gratuitos</b>"
+                titulo=""
+                texto="Confira informações atualizadas sobre atenção primária à saúde nos artigos do nosso blog e em nossas capacitações.<br><br>"
               />
             ] }
           />
+          
           <div style={{paddingTop:150}}></div>
           </>
         } 
