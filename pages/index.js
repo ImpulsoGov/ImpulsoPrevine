@@ -146,7 +146,7 @@ const Index = ({res}) => {
                     botao={{label: '',url: ''}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo=""
-                    titulo="<b>Somos uma rede com</b>"
+                    titulo="<b>Nós somos uma rede</b>"
                     texto=""
                   />
                 </>,
@@ -154,7 +154,7 @@ const Index = ({res}) => {
                   key={ uuidv1() }
                   titulo=""
                   indicador="+12 mil profissionais"
-                  descricao="que recebem dicas semanais sobre APS"
+                  descricao="recebem dicas semanais sobre APS"
                 />,
                 <CardIP
                   key={ uuidv1() }
@@ -166,7 +166,7 @@ const Index = ({res}) => {
                   key={ uuidv1() }
                   titulo=""
                   indicador="+70 municípios"
-                  descricao="apoiados diretamente por especialistas"
+                  descricao="são apoiados diretamente por especialistas"
                 />
               ] }
             />
