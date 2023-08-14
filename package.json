@@ -1,7 +1,7 @@
 {
   "name": "next-landing-page",
   "version": "0.1.0",
-  "private": true,d
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
