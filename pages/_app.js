@@ -76,9 +76,9 @@ function MyApp(props) {
                 data={ data }
                 theme={ {
                   logoProjeto: width > 1000 ?
-                    path == '/' ? props.res[0].logoIps[0].logo[1].url : props.res[0].logoIps[0].logo[0].url :
+                    path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
-                  cor: path == '/' ? "ColorIP" : "White",
+                  cor: (path == '/' || path == '/apoio') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }
                 seletorMunicipios={ path == '/analise' }
@@ -105,7 +105,7 @@ function MyApp(props) {
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
                       .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
-                    : [props.res[0].menus[0], props.res[0].menus[1], props.res[0].menus[3], props.res[0].menus[4]].concat([{ label: "Blog", url: "/blog" }]) }
+                    : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/consultoria" }, { label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
                 esqueciMinhaSenha={ {
@@ -146,7 +146,12 @@ function MyApp(props) {
                 } }
               />
             }
-            <div className='NavBarPadding'>
+            <div 
+              style={{
+                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : "30px",
+                  height: "100%"
+              }}
+            >
               <Component { ...pageProps } />
             </div>
             <Footer

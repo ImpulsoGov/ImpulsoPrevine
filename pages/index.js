@@ -1,8 +1,13 @@
-import { HomeBanner } from "@impulsogov/design-system";
-import { ImagemFundo } from "@impulsogov/design-system"
-import { ParceriasTexto } from "@impulsogov/design-system";
-import { FormConsultoria } from "@impulsogov/design-system";
-import { Alert } from "@impulsogov/design-system";
+import { FormConsultoria, 
+  TituloSmallTexto, 
+  ParceriasTexto ,
+  CardIP, 
+  Grid12Col, 
+  NovoTituloTexto,
+  ImagensFull2,
+  Margem
+} from "@impulsogov/design-system";
+import { v1 as uuidv1 } from "uuid";
 
 
 import { getData } from '../services/cms'
@@ -47,35 +52,185 @@ const Parceiros = (res)=>{
 
 const Index = ({res}) => {
   return (
-    <div style={{backgroundColor: "#145C56"}}>
-      <HomeBanner
-        titulo = {res[1].homeBanners[0].titulo}
-        tituloDestaque = ""
-        texto = ""
-      />
-      <ImagemFundo
-          imagem = {res[1].imagemFundos[0].imagem.url}
-          chamada = {res[1].imagemFundos[0].titulo}
-          chamadacolor = {res[1].imagemFundos[0].tituloColor}
-          cards = {res[1].imagemfundoContents}
-          botao = {
-                      {
-                          label : res[1].imagemFundos[0].buttonLabel,
-                          url : res[1].imagemFundos[0].buttonLink
-                      }
-          }
+    <div style={{backgroundColor: "#E6ECF0"}}>
+      <Margem 
+        componente={
+          <>
+            <div style={{paddingTop:80}}></div>
+            <NovoTituloTexto
+              titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
+              texto="Somos parte de uma organização não governamental financiada por entidades filantrópicas para desenvolver a saúde pública <b>de forma totalmente gratuita.</b>"
+            />
+            <div style={{paddingTop:75}}></div>
+            <ImagensFull2 imagem="https://media.graphassets.com/zSjt74JRTda4QD5B6kRJ" />
+            <div style={{paddingTop:75}}></div>
+          </>
+        } 
       />
       <ParceriasTexto
-          text = {res[1].parceirosAll[0].titulo.text}
-          label = {res[1].parceirosAll[0].labelImages}
-          parceiros = {Parceiros(res[1].logoParceiros[0].logoparceiro)}
+          text = "“A ImpulsoGov, uma organização sem fins lucrativos que atua fomentando uso de dados e tecnologia na gestão pública, tem apoiado gratuitamente municípios na melhoria de seus processos…”"
+          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/07YT7KxzQR6zW8LR4qOM"}]}
       />
+      
+      <Margem 
+        componente={
+          <>
+            <div style={{paddingTop:75}}></div>
+              <TituloSmallTexto
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null,url: ''}}
+                supertitulo=""
+                titulo="<b>Suporte para coordenação e assistência da APS</b>"
+                texto="Melhore a atuação da sua unidade e do seu município com:"
+              />
+            <Grid12Col
+            proporcao="7-5"
+            items={ [
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/fBWSb6X9QbyS6G1wX0I9" />,
+              <><div style={{alignContent:"center"}}>
+                  <TituloSmallTexto
+                    key={ uuidv1() }
+                    botao={{label: 'VER DESEMPENHO DOS MUNICÍPIOS',url: '/analise'}}
+                    imagem={{posicao: null,url: ''}}
+                    supertitulo="<b>Análises do Previne</b>"
+                    titulo=""
+                    texto="Veja o desempenho de qualquer município nas categorias do Previne Brasil e sugestões para alcançar as metas definidas.<br><br>"
+                  />
+                </div></>,
+            ] }
+          />
+          <Grid12Col
+            proporcao="5-7"
+            items={ [
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: 'SER MUNICÍPIO PARCEIRO',url: '/consultoria'}}
+                imagem={{posicao: null,url: ''}}
+                supertitulo="<b>Mentorias exclusivas</b>"
+                titulo=""
+                texto="Seja nosso parceiro para receber apoio especializado da nossa equipe e treinamentos focados nos seus desafios.<br/><br/>"
+              />,
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WX9nahBsT2qFcm0luXeI" />
+            ] }
+          />
+          <Grid12Col
+            proporcao="7-5"
+            items={ [
+              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/WJpXZINRS16gcFMCysFe" />,
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: 'VER MATERIAIS',url: '/blog'}}
+                imagem={{posicao: null,url: ''}}
+                supertitulo="<b>Conteúdos gratuitos</b>"
+                titulo=""
+                texto="Confira informações atualizadas sobre atenção primária à saúde nos artigos do nosso blog e em nossas capacitações.<br><br>"
+              />
+            ] }
+          />
+          
+          <div id="espaco150"></div>
+          </>
+        } 
+      />
+
+      <Margem 
+        componente={
+          <>
+            <Grid12Col
+              proporcao="3-3-3-3"
+              items={ [
+                <>
+                  <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/0SldadgShetVZtLRwCpE" />
+                  <TituloSmallTexto
+                    key={ uuidv1() }
+                    botao={{label: '',url: ''}}
+                    imagem={{posicao: null,url: ''}}
+                    supertitulo=""
+                    titulo="<b>Nós somos uma rede!</b>"
+                    texto=""
+                  />
+                </>,
+                <CardIP
+                  key={ uuidv1() }
+                  titulo=""
+                  indicador="+12 mil profissionais"
+                  descricao="recebem dicas semanais sobre APS"
+                />,
+                <CardIP
+                  key={ uuidv1() }
+                  titulo=""
+                  indicador="+300 gestores"
+                  descricao="usam diariamente nossas ferramentas"
+                />,
+                <CardIP
+                  key={ uuidv1() }
+                  titulo=""
+                  indicador="+70 municípios"
+                  descricao="são apoiados diretamente por especialistas"
+                />
+              ] }
+            />
+            <div style={{paddingTop:75}}></div>
+            <Grid12Col
+                proporcao="6-6"
+                items={ [
+                  <TituloSmallTexto
+                    key={ uuidv1() }
+                    botao={{label: '',url: ''}}
+                    imagem={{posicao: null,url: ''}}
+                    supertitulo=""
+                    titulo="<b>Resultados na prática</b>"
+                    texto=""
+                  />,
+                  <></>,
+                  <CardIP
+                    key={ uuidv1() }
+                    titulo="PARCEIRO DESDE 2022"
+                    indicador="Brejo de Areia/MA"
+                    descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
+                  />,
+                  <CardIP
+                    key={ uuidv1() }
+                    titulo="PARCEIRO DESDE 2022"
+                    indicador="Minaçu/GO"
+                    descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
+                  />
+                ] }
+              />
+            <div id="espaco150" ></div>
+          </>
+        } 
+      />
+
+      <Margem 
+        componente={
+          <>
+            <Grid12Col
+              proporcao="6-6"
+              items={ [
+                <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/TxOWmwUSBOO1fnpZfRlu" />,
+                <TituloSmallTexto
+                  key={ uuidv1() }
+                  botao={{label: 'CONHECER MAIS DA IMPULSOGOV',url: 'https://impulsogov.org/'}}
+                  imagem={{posicao: null,url: ''}}
+                  supertitulo=""
+                  titulo="<b>Impulsionamos o SUS com tecnologia</b>"
+                  texto="Na ImpulsoGov, acreditamos que tecnologia deve facilitar o dia a dia da profissional do SUS e permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>O Impulso Previne é um de seus projetos e foca nos critérios do Previne Brasil, o atual modelo de financiamento da atenção primária à saúde no Brasil.<br/><br/>"
+                />
+              ] }
+            />
+            <div style={{paddingTop:75}}></div>
+          </>
+        } 
+      />
+      
       <FormConsultoria
-          title={res[1].formConsultorias[0].titulo}
+          title="Faça parte da nossa lista de transmissão e receba toda semana em seu e-mail dicas e atualizações sobre indicadores, portarias, registro e boas práticas na APS."
           mail=""
-          link={res[1].formConsultorias[0].link}
-          button={res[1].formConsultorias[0].button}
-      />      
+          link="https://www.impulsoprevine.org/manual-impulso-previne"
+          button="Fazer inscrição na lista"
+          theme="IPVerde"
+      />
     </div>
   )
 }
