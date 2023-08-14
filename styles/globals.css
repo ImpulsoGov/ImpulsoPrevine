@@ -29,6 +29,29 @@ a {
   position: relative;
 }
 
+#espaco150{
+  padding-top: 150px;
+}
+
+/* .TituloTexto_containerTextoSmall__775T_{
+  padding-top: 0;
+  padding-bottom: 0;
+} */
+@media screen and (max-width: 640px) {
+  #espaco150{
+    padding-top: 75px;
+  }
+
+  .Grid12Col_GridContainer__5LRcN .ImagensFull2_imageContainerBanner2__ZFiF6{
+    display: none;
+  } 
+
+  .Grid12Col_GridContainer__5LRcN{
+    margin: 0px 0px 30px 0px;
+  }
+
+}
+
 @media screen and (max-width: 1000px) {
   body{
     margin-top: 40px;

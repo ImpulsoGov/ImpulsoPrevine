@@ -128,7 +128,7 @@ const Index = ({res}) => {
             ] }
           />
           
-          <div style={{paddingTop:150}}></div>
+          <div id="espaco150"></div>
           </>
         } 
       />
@@ -196,7 +196,7 @@ const Index = ({res}) => {
                   />
                 ] }
               />
-            <div style={{paddingTop:150}}></div>
+            <div id="espaco150" ></div>
           </>
         } 
       />
