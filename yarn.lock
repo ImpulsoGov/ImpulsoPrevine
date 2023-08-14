@@ -1214,10 +1214,17 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
+<<<<<<< HEAD
 "@impulsogov/design-system@^1.0.105":
   "integrity" "sha512-vY243L0LubeqIfI7Q2uoDIwknSLWYT3UE9bTe4qKx0XSd5js4X76g/4Tn0+8kFVo92Uv0mW05ueaXgX63EjJfA=="
   "resolved" "https://registry.npmjs.org/@impulsogov/design-system/-/design-system-1.0.105.tgz"
   "version" "1.0.105"
+=======
+"@impulsogov/design-system@1.0.104":
+  version "1.0.104"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.104.tgz#09d11c352531e7a8587b7bf0663d6fe4623627cf"
+  integrity sha512-3c92o/Jyzv3aRDqDuUy5xGMdeJ99sLchpFctMuC8eMZHjEtk3Sa2paeByMB21emeI9Eau/K1q4+W+gseXiuXQQ==
+>>>>>>> origin/feat-busca-ativa-cito
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
