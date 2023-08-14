@@ -171,17 +171,18 @@ const Index = ({res}) => {
               ] }
             />
             <div style={{paddingTop:75}}></div>
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: null,url: ''}}
-              supertitulo=""
-              titulo="<b>Resultados na prática</b>"
-              texto=""
-            />
             <Grid12Col
                 proporcao="6-6"
                 items={ [
+                  <TituloSmallTexto
+                    key={ uuidv1() }
+                    botao={{label: '',url: ''}}
+                    imagem={{posicao: null,url: ''}}
+                    supertitulo=""
+                    titulo="<b>Resultados na prática</b>"
+                    texto=""
+                  />,
+                  <></>,
                   <CardIP
                     key={ uuidv1() }
                     titulo="PARCEIRO DESDE 2022"
