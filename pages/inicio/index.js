@@ -3,6 +3,7 @@ import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
 import { Greeting, CardTrilha, CardLargeGrid, ModalAlert , CardAlertModal, ButtonColorSubmit } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
+import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
@@ -26,12 +27,18 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
+    const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
+    const TrilhasLiberadasClient = async()=> await acessoTrilhasClient(session?.user?.id,session?.user?.access_token)
     useEffect(()=>{
         session && res && 
         ProgressoClient().then((response)=>{
         setData(response)
     })},[session]) 
+    useEffect(()=>{
+        session && 
+        TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
+    },[session]) 
     const cargo_transform = (cargo)=>{
         if (cargo == "Coordenação de APS") return "coordenador(a) da APS"
         if (cargo == "Coordenação de Equipe") return "coordenador(a) de equipe"
@@ -46,18 +53,39 @@ const Index = ({res}) => {
                     greeting = "Bem vindo(a)"
                     municipio_uf = {session?.user.municipio}
                     nome_usuario = {session?.user.nome}
-                    texto = "Você está na área logada da Coordenação da APS do seu município. Aqui você vai encontrar um painel com as listas nominais para monitoramento e os possíveis cadastros duplicados de gestantes, referentes aos indicadores de gestantes, hipertensão e diabetes, do Previne Brasil."
+                    texto = ""
                 />
-                {
-                    data && session?.user.perfis.includes(7) &&
-                    <CardTrilha
-                        titulo="Trilha de Capacitação: Hipertensão e Diabetes"
-                        progressao={data[0].progresso }
-                        linkTrilha={data[0].progresso>0 ? "/capacitacao?trilhaID="+res[1].trilhas[0].id : 'conteudo-programatico'}
-                        linkCertificado= {data[0].progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                        certificadoLiberado= {data[0].progresso>50 ? true : false}
-                    />
-                }
+                <div 
+                    style={
+                        window.screen.width >= 1024 ?
+                        {
+                            display : "flex",
+                            gap : "30px",
+                            marginLeft : "80px",
+                            marginBottom : "30px"
+                        }:
+                        {
+                            display : "flex",
+                            flexDirection : "column",
+                            gap : "15px",
+                        }
+                }>
+
+                    {
+                        data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
+                        data.map((trilha,index)=>{
+                            return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
+                                <CardTrilha
+                                    titulo={trilha?.titulo}
+                                    progressao={trilha.progresso }
+                                    linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}`}
+                                    linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
+                                    certificadoLiberado= {trilha.progresso>50 ? true : false}
+                                    key={index}
+                                />
+                        })
+                    }
+                </div>
                 {
                     (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
                     <CardLargeGrid
@@ -65,6 +93,10 @@ const Index = ({res}) => {
                             {
                                 icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
                                 links: [
+                                    {
+                                        label: 'Citopatológico',
+                                        link: '/busca-ativa/citopatologico'
+                                    },
                                     {
                                         label: 'Diabetes',
                                         link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
@@ -78,7 +110,7 @@ const Index = ({res}) => {
                                         link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
                                     },
                                 ],
-                                texto: 'Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
+                                texto: 'Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes e coleta de citopatológico. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
                                 titulo: 'Listas Nominais'
                             },
                             {

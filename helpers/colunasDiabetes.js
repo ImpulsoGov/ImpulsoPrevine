@@ -36,6 +36,13 @@ const FormatarDataNascimento = (str)=>{
   const date = `${dia}/${mes}/${ano}`
   return str.value.includes('-') ?  date : str.value
 }
+const formatar_nome = ({value})=>{
+  const name = {
+    width : '100%',
+    padding : '20px'
+  }
+  return <div style={name}>{value}</div>
+}
 
 
 const colunasDiabetes = [
@@ -44,6 +51,7 @@ const colunasDiabetes = [
     field: 'cidadao_nome',
     headerAlign: 'center',
     headerName: 'NOME',
+    renderCell : formatar_nome,
     width: 240
   },
   {

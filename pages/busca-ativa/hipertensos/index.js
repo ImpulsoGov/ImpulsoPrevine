@@ -52,26 +52,17 @@ const Index = ({res}) => {
       setTabelaDataEquipe(response)
   })},[session]) 
 
+  const [tabelaData, setTabelaData] = useState();
   useEffect(()=>{
-      if(session){
-        validatetoken(session?.user?.access_token)
-        .then(response=>{
-          setTokenValido(response)
-        }).catch(error=>{
-          setTokenValido(false)
-        })
-        }
-    })
+    (tabelaDataAPS || tabelaDataEquipe) && session &&
+    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
+  },[session,tabelaDataAPS,tabelaDataEquipe])
+
   useEffect(()=>{
     if(session && session?.user?.access_token){
       if(tokenValido!=true && tokenValido!==undefined) signOut()
     }
   },[tokenValido])
-  const titlesBuscaAtiva = [
-    {
-      label: "Indicador Hipertensão",
-    }
-  ]
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -86,14 +77,14 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataEquipe} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
               />
             </div>
           }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Hipertensão"
-                  texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                  texto=""
                   imagem = {{posicao: null,url: ''}}
               />
           <CardAlert
@@ -147,7 +138,7 @@ const Index = ({res}) => {
              />
             }
             {
-              tabelaDataEquipe &&
+              tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
                 dadosFiltros={[
                   {
@@ -176,7 +167,9 @@ const Index = ({res}) => {
                   colunas: colunasHipertensao,
                   data:tabelaDataEquipe
                 }}
-              />
+                data={tabelaData}
+                setData={setTabelaData}
+              /> : <Spinner/>
             }
         </>
       )
@@ -195,7 +188,7 @@ const Index = ({res}) => {
               <ButtonPrint
                 label="CLIQUE AQUI PARA IMPRIMIR"
                 escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaDataAPS} colunas={colunasHipertensao}/>}
+                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
               />
             </div>
           }
@@ -203,7 +196,7 @@ const Index = ({res}) => {
         </div>
         <TituloTexto
                 titulo="Lista Nominal Hipertensão"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto=""
                 imagem = {{posicao: null,url: ''}}
             />
         <CardAlert
@@ -260,10 +253,10 @@ const Index = ({res}) => {
           <GraficoBuscaAtiva
           dataBarra={{
             color: [
-              '#1D856C',
-              '#2EB280',
-              '#55D499',
-              '#9DEECD'
+              '#EABF2E',
+              '#57C7DC',
+              '#7579EA',
+              '#E95F3A',
             ],
             grid: {
               containLabel: true,
@@ -337,10 +330,10 @@ const Index = ({res}) => {
           }}
           dataRosca={{
             color: [
-              '#1D856C',
-              '#2EB280',
-              '#55D499',
-              '#9DEECD'
+              '#EABF2E',
+              '#57C7DC',
+              '#7579EA',
+              '#E95F3A',
             ],
             series: [
               {
@@ -410,7 +403,7 @@ const Index = ({res}) => {
           />
         }
         {
-          tabelaDataAPS ?
+          tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
             dadosFiltros={[
               {
@@ -439,7 +432,9 @@ const Index = ({res}) => {
               colunas: colunasHipertensao,
               data:tabelaDataAPS
             }}
-          /> : <Spinner/>
+            data={tabelaData}
+            setData={setTabelaData}
+      /> : <Spinner/>
         }
       </>
     )

@@ -107,7 +107,7 @@ const Index = ({res}) => {
         </div>
         <TituloTexto
                 titulo="Lista Nominal Gestantes"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto="Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes, coleta de citopatológico."
                 imagem = {{posicao: null,url: ''}}
             />
         <CardAlert

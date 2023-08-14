@@ -96,13 +96,14 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
+                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },
                               { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])
-                      .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Aprenda", url: "/capacitacoes" }] : [])
+                      .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
                       .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/consultoria" }, { label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }

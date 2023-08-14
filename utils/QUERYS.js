@@ -234,6 +234,7 @@ export const CONTEUDOS_TRILHAS =
           }
         }
         id
+        titulo
       }
     }
     `
@@ -313,3 +314,45 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO, TRILHA_ID) => {
   );
 };
 
+export const CONTEUDO_PROGRAMATICO = (TRILHA_ID) => {
+  return (
+    `{
+      trilhas(where: {id: "${TRILHA_ID}"}) {
+        titulo
+        sobre {
+          ... on Sobre {
+            id
+            conteudo {
+              ... on ConteudoSobre {
+                buttons {
+                  ... on Link {
+                    label
+                    url
+                  }
+                }
+                item
+              }
+            }
+            nossoTime {
+              ... on Membro {
+                cargo
+                nome
+                foto {
+                  url
+                }
+              }
+            }
+            tituloTexto {
+              ... on TituloTexto {
+                titulo
+                texto {
+                  html
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  )
+}

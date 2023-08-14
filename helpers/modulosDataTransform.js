@@ -1,17 +1,22 @@
 import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
+import { acessoModulosTrilhasClient } from "../services/acessoTrilha";
+import trilhasIDSigla from '../data/trilhas.json' assert { type: 'json' };
 
-const modulosDataTransform = async(ConteudosCMS,userID,token)=>{
-    //Pegando dados de uma unica trilha, debito tecnico generalizar para muiltiplas trilhas
+const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
     const modulos = []
+    const modulos_liberados_res = await acessoModulosTrilhasClient(userID,TrilhaID,token)
+    const modulos_liberados = modulos_liberados_res.map(item => item.modulos[0]).sort()
     return progresso(ConteudosCMS,userID,token).then(res=>{
-        ConteudosCMS[0].conteudo.forEach((element,index) => {
+        const trilha = ConteudosCMS.map((trilha)=>{if(trilha.id=TrilhaID) return trilha})
+        trilha[0].conteudo.forEach((element,index) => {
             modulos.push({
                 titulo: element.titulo,
                 id: element.moduloId,
-                liberado:element.liberado,
+                liberado:modulos_liberados.includes(element.moduloId),
                 concluido: res[0].qtd[index].finalizado
             })
         });
+        console.log(modulos)
         return modulos
     })
 }
@@ -19,7 +24,7 @@ const modulosDataTransform = async(ConteudosCMS,userID,token)=>{
 const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
     const conteudos = []
     const avaliacoes_usuario = await consultarAvaliacaoConclusaoPorUsuario(userID,token)
-    const checkSobre = avaliacoes_usuario.filter(item=>item.codigo_conteudo=="HD-MOD0-C0").length>0
+    const checkSobre = avaliacoes_usuario.filter(item=>item.codigo_conteudo.slice(3,10)=="MOD0-C0").length>0
     for(let i=0;i<conteudosCMS.length;i++){
         let moduloID = conteudosCMS[i].moduloId
         let modulo = conteudosCMS[i]
@@ -51,7 +56,8 @@ const conteudosDataTransform = async(conteudosCMS,trilhaID,userID,token)=>{
             item.titulo !=0 && conteudos.push(item)
         }
     }
-    const ultimoModulo = avaliacoes_usuario.length>0 ? Math.max(...avaliacoes_usuario?.map((item)=>Number(item.codigo_conteudo[6]))) : 0
+    const siglaTrilha = trilhasIDSigla.trilhas.filter(item=>item.ID == trilhaID)[0]?.sigla
+    const ultimoModulo = avaliacoes_usuario.filter(item=>item?.codigo_conteudo.slice(3,10)=="MOD0-C0")[0] ? Math.max(...[...new Set(avaliacoes_usuario.filter(item=>item.codigo_conteudo.slice(0,2)==siglaTrilha).map((item)=>Number(item.codigo_conteudo[6])))]) : 0
     return [conteudos,ultimoModulo,checkSobre]
 }
 
@@ -71,14 +77,18 @@ const progresso = async(ConteudosCMS,userID,token)=>{
     const conteudos_por_modulo = ConteudosCMS.map(trilha=>{
         return {
             TrilhaID: trilha.id,
-            codigoTrilha:trilha.conteudo[0].conteudos[0].codigo.slice(0,2),
+            titulo : trilha.titulo,
+            codigoTrilha:trilha.conteudo[1].conteudos[0]?.codigo.slice(0,2),
             qtd :trilha.conteudo.map((item)=>{return {modulo : item.moduloId, conteudosQTD : item.conteudos.length}})
         }
     })
+
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
+        console.log(conclusoes,item.titulo)
         item.qtd.forEach(element=>{
-            element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0].conteudosConcluidos
+            element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
+            console.log(element,item.titulo)
             element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=(19/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao
