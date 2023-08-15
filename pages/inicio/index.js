@@ -78,7 +78,7 @@ const Index = ({res}) => {
                                 <CardTrilha
                                     titulo={trilha?.titulo}
                                     progressao={trilha.progresso }
-                                    linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}`}
+                                    linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
                                     linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
                                     certificadoLiberado= {trilha.progresso>50 ? true : false}
                                     key={index}
