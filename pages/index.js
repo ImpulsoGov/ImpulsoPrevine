@@ -1,11 +1,14 @@
-import { FormConsultoria, 
+import { 
+  FormConsultoria, 
   TituloSmallTexto, 
   ParceriasTexto ,
   CardIP, 
   Grid12Col, 
   NovoTituloTexto,
   ImagensFull2,
-  Margem
+  Margem,
+  ModalAlert,
+  Alert,
 } from "@impulsogov/design-system";
 import { v1 as uuidv1 } from "uuid";
 
@@ -53,6 +56,44 @@ const Parceiros = (res)=>{
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
+      <ModalAlert
+        Child = {Alert}
+        childProps = {{
+          titulos : {
+              Titulo : "Vacinação Infantil",
+              SubTitulo : "Capacitação sobre o Previne Brasil:"
+          },
+          Info : [
+              {
+                  icon : "https://media.graphassets.com/mK0XWA2qSyK3tSPER5SM",
+                  info : "23/08"
+              },
+              {
+                  icon : "https://media.graphassets.com/Bsq3OasQQxWNFuN0Ldhs",
+                  info : "19hs"
+              },
+              {
+                  icon : "https://media.graphassets.com/wb3wQPKRQY6o1Mb7pLzE",
+                  info : "Online"
+              },
+              {
+                  icon : "https://media.graphassets.com/Ui2qHF9IR9WyqEQv8H1v",
+                  info : "Gratuito"
+              },
+          ],
+          cardProfissional : {
+              profissional : "https://media.graphassets.com/2sqDyLFbTJylgJKYorEy",
+              logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
+              nome : "Isabela dos Santos",
+              cargo : "Especialista em Saúde Coletiva"
+          },
+          botao : {
+              label : "QUERO ME INSCREVER",
+              url : "https://bit.ly/inscricao-webinar-14"
+          }
+        }
+        }
+      />
       <Margem 
         componente={
           <>
