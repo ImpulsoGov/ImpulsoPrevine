@@ -175,7 +175,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
             sortModel: [{ field: 'indicador_score', sort: 'asc' }],
           },
         }}
-        rowHeight={350} // altura das linhas
+        rowHeight={400} // altura das linhas
       />
     </div>
   );
