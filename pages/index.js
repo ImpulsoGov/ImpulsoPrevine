@@ -110,7 +110,7 @@ const Index = ({res}) => {
       />
       <ParceriasTexto
           text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
-          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/CyaxHYkHRaukr4CwSJw6"}]}
+          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/gjPxnSNWTY6tbtK0UXk5"}]}
       />
       
       <Margem 
