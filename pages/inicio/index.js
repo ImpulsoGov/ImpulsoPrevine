@@ -1,7 +1,7 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid, ModalAlert , CardAlertModal, ButtonColorSubmit } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, CardLargeGrid, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
@@ -59,15 +59,18 @@ const Index = ({res}) => {
                     style={
                         window.screen.width >= 1024 ?
                         {
-                            display : "flex",
-                            gap : "30px",
+                            display : "grid",
+                            gridTemplateColumns : "auto auto",
+                            columnGap : "24px",
+                            gridRowGap : "24px",
                             marginLeft : "80px",
-                            marginBottom : "30px"
+                            marginRight : "45px"
                         }:
                         {
                             display : "flex",
                             flexDirection : "column",
                             gap : "15px",
+                            marginLeft : "15px"
                         }
                 }>
 
@@ -85,47 +88,45 @@ const Index = ({res}) => {
                                 />
                         })
                     }
+                    {
+                        (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
+                        <>
+                        <CardLarge
+                            icon= 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697'
+                            links={ [
+                                {
+                                    label: 'Diabetes',
+                                    link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
+                                },
+                                {
+                                    label: 'Hipertensão',
+                                    link: '/busca-ativa/hipertensos?initialTitle=0&painel=0'
+                                },
+                                {
+                                    label: 'Pré-Natal',
+                                    link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
+                                },
+                            ]}
+                            texto= 'Oferecemos listas nominais para monitoramento: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.'
+                            titulo= 'Listas Nominais'
+                            obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
+                            theme= "ColorIP"
+                        />
+                        <CardLarge
+                            icon= 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU'
+                            links= {[
+                                {
+                                    label: 'Gestantes',
+                                    link: '/cadastros-duplicados?initialTitle=0&painel=0'
+                                },
+                            ]}
+                            texto='Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.'
+                            titulo= 'Cadastros Duplicados'
+                            theme= "ColorIP"
+                        />
+                        </>
+                    }
                 </div>
-                {
-                    (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
-                    <CardLargeGrid
-                        cards={[
-                            {
-                                icon: 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697',
-                                links: [
-                                    {
-                                        label: 'Diabetes',
-                                        link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
-                                    },
-                                    {
-                                        label: 'Hipertensão',
-                                        link: '/busca-ativa/hipertensos?initialTitle=0&painel=0'
-                                    },
-                                    {
-                                        label: 'Pré-Natal',
-                                        link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
-                                    },
-                                ],
-                                texto: 'Oferecemos listas nominais para monitoramento: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.',
-                                titulo: 'Listas Nominais'
-                            },
-                            {
-                                icon: 'https://media.graphassets.com/6cOfkxeyT7245Fn19kgU',
-                                links: [
-                                    {
-                                        label: 'Gestantes',
-                                        link: '/cadastros-duplicados?initialTitle=0&painel=0'
-                                    },
-                                    
-                                ],
-                                texto: 'Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.',
-                                titulo: 'Cadastros Duplicados'
-                            }
-                        ]}
-                        obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
-                        theme= "ColorIP"
-                    />
-                }
             </>
         )
     }
