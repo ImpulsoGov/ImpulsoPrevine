@@ -1,20 +1,25 @@
-import { getData } from '../../services/cms'
-import { LAYOUT } from '../../utils/QUERYS'
+import { getData, getDataCapacitacao } from '../../services/cms'
+import { LAYOUT, CONTEUDO_PROGRAMATICO } from '../../utils/QUERYS'
 import { useSession,getSession } from "next-auth/react"
 import { SobreTrilha } from '@impulsogov/design-system'
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
+import { useRouter } from 'next/router';
+import { concluirConteudo } from '../../services/capacitacao';
+import trilhas from '../../data/trilhas.json' assert { type: 'json' };
+import { useEffect } from 'react'
 
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     const redirect = redirectHomeTrilha(ctx,session)
+    const trilhaID = ctx?.req?.url.split('=').length < 1 ? '' : ctx?.req?.url.split('=')[1].split('&')[0]
     if(redirect) return redirect
     const res = [
-        await getData(LAYOUT),
+        await getDataCapacitacao(CONTEUDO_PROGRAMATICO(trilhaID))
     ]
     return {
         props: {
-        res : res
+            res : res
         }
     }
 }
@@ -22,57 +27,38 @@ export async function getServerSideProps(ctx) {
 
 const Index = ({res}) => {
     const { data: session,status } = useSession()
+    const router = useRouter()
+    const trilhaID = router.query.trilha
+    const siglaTrilha = trilhas.trilhas.find(item => item?.ID == trilhaID)?.sigla
+    useEffect(()=>{
+        session && router.query.inicio=='1' && concluirConteudo(session?.user?.id,`${siglaTrilha}-MOD0-C0`,session?.user?.access_token)
+    },[session])
     return(
         <>
-            <SobreTrilha
-                tituloTrilha= "Hipertensão e Diabetes"
-                botaoVoltar= {{label: "VOLTAR",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
-                botaoIniciar= {{label: "INICIAR CAPACITAÇÃO",url : "/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"}}
-                botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url : "https://chat.whatsapp.com/HMky15GvFczLGSSNZAlJCb"}}
-                sobre= {{titulo: "Sobre", texto:"<p>Na trilha de capacitação sobre os indicadores de hipertensão e diabetes do Previne Brasil, vamos falar sobre:<ul><li>Particularidades dos indicadores focados em hipertensão e diabetes para o financiamento da Atenção Primária;</li><li>As melhores práticas de registro e extração de relatórios para acompanhar as pessoas com hipertensão e diabetes;<li>Dicas para captar e identificar usuários, para conduzir a consulta e para dar continuidade ao tratamento com foco na promoção da saúde;</li><li>E formas de gerenciar as atividades e agendas dos profissionais para adaptar a rotina da sua unidade de saúde e garantir mais produtividade.</li></ul>"}}
-                conteudo={{
-                    titulo : "Cronograma",
-                    texto : [
-                        {texto: "Fórum 1: 10/05 às 14h"},
-                        {texto: "Fórum 2: 24/05 às 14h"},
-                    ]
-                }}
-                nossoTime={{
-                    titulo: "Nosso Time",
-                    membros:[
-                        {
-                            foto:"https://media.graphassets.com/Qn3jx6jxSiun4A9PjyM1",
-                            nome:"Juliana Ramalho",
-                            titulo:"Responsável Técnica"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/XHc9FnRR5ycU6LmzBRJO",
-                            nome:"Isabela dos Santos",
-                            titulo:"Especialista em saúde"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/rMzefbmrQ7SXzZeUf39n",
-                            nome:"Kleverson Miranda",
-                            titulo:"Especialista em saúde"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/1UChvJwVQG83514nI3FI",
-                            nome:"Camila Coelho",
-                            titulo:"Especialista em saúde"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/6hUfUhefTXSSwdHkJpBN",
-                            nome:"Fernanda Soares",
-                            titulo:"Especialista em saúde"
-                        },
-                        {
-                            foto:"https://media.graphassets.com/B3TEL5HTZut9F44mRMkE",
-                            nome:"Murilo Celli",
-                            titulo:"Especialista em Negócios"
-                        }
-                    ]
-                }}
-            />   
+            {
+                
+                <SobreTrilha
+                    tituloTrilha= {res[0]?.trilhas[0]?.titulo}
+                    botaoVoltar= {{label: "VOLTAR",url : `/capacitacao?trilhaID=${trilhaID}`}}
+                    botaoIniciar= { router.query.inicio=='1' ? {label: "INICIAR CAPACITAÇÃO",url : `/capacitacao?trilhaID=${trilhaID}`} : {url : `/capacitacao?trilhaID=${trilhaID}`} }
+                    botaoWhatsapp= {{label: res[0]?.trilhas[0]?.sobre?.conteudo?.buttons[0]?.label, url : res[0]?.trilhas[0]?.sobre?.conteudo?.buttons[0]?.url}}
+                    sobre= {{titulo: res[0]?.trilhas[0]?.sobre?.tituloTexto.titulo, texto:res[0]?.trilhas[0]?.sobre?.tituloTexto.texto.html}}
+                    conteudo={{
+                        titulo : "Cronograma",
+                        texto : res[0]?.trilhas[0]?.sobre?.conteudo?.item?.map(item=>{ return {"texto" : item}})
+                    }}
+                    nossoTime={{
+                        titulo: "Nosso Time",
+                        membros: res[0]?.trilhas[0]?.sobre?.nossoTime?.map(item=>{
+                            return {
+                                foto : item?.foto?.url,
+                                nome : item?.nome,
+                                cargo : item?.cargo
+                            }
+                        })
+                    }}
+                />   
+            }
         </>
     )
 }

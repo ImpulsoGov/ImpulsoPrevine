@@ -50,6 +50,7 @@ const Index = ({res}) => {
   const [data,setData] = useState(false)
   const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,res[3],session?.user?.id,session?.user?.access_token)
   useEffect(()=>{modulos().then((res)=>setData(res))},[session]) 
+  console.log(res)
 return(
       <>
         {
@@ -63,6 +64,7 @@ return(
               ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
               mobile= {width < 1023}
               checkSobre={res[2][2]}
+              trilhaID={res[3]}
             />
         }
       </>
