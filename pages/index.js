@@ -149,7 +149,7 @@ const Index = ({res}) => {
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
-                texto="Informações sempre atualizadas sobre atenção primária à saúde diretamente por e-mail, no nosso blog e em nossas capacitações.<br/><br/>"
+                texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
               />,
               <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
             ] }
@@ -164,7 +164,7 @@ const Index = ({res}) => {
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Conteúdos gratuitos</b>"
                 titulo=""
-                texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
+                texto="Informações sempre atualizadas sobre atenção primária à saúde diretamente por e-mail, no nosso blog e em nossas capacitações.<br/><br/>"
               />
             ] }
           />
