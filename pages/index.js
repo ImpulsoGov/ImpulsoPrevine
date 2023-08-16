@@ -109,8 +109,8 @@ const Index = ({res}) => {
         } 
       />
       <ParceriasTexto
-          text = "“A ImpulsoGov, uma organização sem fins lucrativos que atua fomentando uso de dados e tecnologia na gestão pública, tem apoiado gratuitamente municípios na melhoria de seus processos…”"
-          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/07YT7KxzQR6zW8LR4qOM"}]}
+          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
+          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/CyaxHYkHRaukr4CwSJw6"}]}
       />
       
       <Margem 
