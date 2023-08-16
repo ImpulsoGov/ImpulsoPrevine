@@ -64,7 +64,8 @@ const Index = ({res}) => {
                             columnGap : "24px",
                             gridRowGap : "24px",
                             marginLeft : "80px",
-                            marginRight : "45px"
+                            marginRight : "45px",
+                            marginBottom : "20px"
                         }:
                         {
                             display : "flex",
