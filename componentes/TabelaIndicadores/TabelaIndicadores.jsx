@@ -6,11 +6,39 @@ import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicad
 
 const TabelaIndicadores = ({ TabIndicadores}) => {
 
+  const getCellClassName = (params) => { //define cor do texto da coluna quadrimestre 
+    const value = parseFloat(params.value);
+    
+    if (value > 0) {
+      return styles.TextoVerde; // Classe CSS para texto verde
+    } else if (value < 0) {
+      return styles.TextoVermelho; // Classe CSS para texto vermelho
+    }
+  
+    return ''; // Nenhuma classe se o valor for 0
+  };
+
+  const getNotaCellClassName = (params) => { //define cor da coluna segundo a nota 
+    const nota = parseFloat(params.value);
+  
+    if (nota > 0 && nota <= 5) {
+      return styles.NotaRosa; // Classe CSS para nota rosa
+    } else if (nota > 5 && nota <= 8) {
+      return styles.NotaLaranja; // Classe CSS para nota laranja
+    } else if (nota > 8 && nota <= 9.9) {
+      return styles.NotaAmarela; // Classe CSS para nota amarela
+    } else if (nota === 10) {
+      return styles.NotaVerde; // Classe CSS para nota verde
+    }
+  
+    return ''; // Nenhuma classe se a nota não se encaixar em nenhuma das condições
+  };
+
   const colunas = useMemo(() => [
     {
       field: 'indicador_score',
       headerName: 'Ordenação',
-      flex: 90,
+      flex: 100,
       cellClassName: 'multi-line-cell',
       description:
         'A ordenação dos indicadores é uma sugestão feita, levando em consideração o peso do indicador, duração, nota do indicador e quanto falta para alcançar a meta.',
@@ -74,6 +102,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       description: 
       '',
       headerClassName: styles.cabecalho,
+      cellClassName: getNotaCellClassName,
     },
     {
       field: 'delta_formatado',
@@ -84,13 +113,14 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       description: 
       'Calculamos a variação percentual entre o desempenho da competência atual e da competência anterior (como mostrado no gráfico de histórico de desempenho), para que o município saiba quão grande foi o crescimento ou a queda de um quadrimestre para o outro.',
       headerClassName: styles.cabecalho,
+      cellClassName: getCellClassName,
     },
     {
       field: 'indicador_recomendacao',
       headerName: 'Recomendações',
       flex: 240,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
           {params.value}
         </div>
       ),
@@ -131,18 +161,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     }));
   }, [TabIndicadores, ultimoPeriodo]);
 
-  const CustomHeader = () => {
-    return (
-      <div className={styles.customHeader}>
-        <GridToolbarContainer>
-          <GridToolbarColumnsButton />
-          <GridToolbarFilterButton />
-          <GridToolbarExport />
-        </GridToolbarContainer>
-      </div>
-    );
-  };
-
   return (
 
     <div style={{ height: '100%', width: '100%' }}>
@@ -168,9 +186,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
         rows={linhas}
         columns={colunas}
         density="comfortable"
-        components={{
-          Toolbar: CustomHeader,
-        }}
         autoHeight
         hideFooter
         disableColumnMenu
@@ -179,7 +194,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             sortModel: [{ field: 'indicador_score', sort: 'asc' }],
           },
         }}
-        rowHeight={400} // altura das linhas
+        getRowHeight={() => 'auto'} // altura das linhas
       />
     </div>
   );
