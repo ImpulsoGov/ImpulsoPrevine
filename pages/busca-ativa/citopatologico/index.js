@@ -70,11 +70,9 @@ useEffect(()=>{
     setTabelaDataEquipe(response)
 })},[session]) 
 
-const [tabelaData, setTabelaData] = useState(null);
-useEffect(()=>{
-    (tabelaDataAPS || tabelaDataEquipe) && session &&
-    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
-},[session,tabelaDataAPS,tabelaDataEquipe])
+const [tabelaData, setTabelaData] = useState([]);
+const [tabelaDataEquipeSemExame,setTabelaDataEquipeSemExame] = useState([])
+const [tabelaDataEquipeComExame,setTabelaDataEquipeComExame] = useState([])
 
 useEffect(()=>{
     if(session){
@@ -130,7 +128,7 @@ if(session){
             },
         ]}
         /> : <Spinner/>
-    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
+    setTabelaDataEquipeSemExame(tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12))
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
@@ -170,7 +168,7 @@ if(session){
         data={tabelaData}
         setData={setTabelaData}
     /></> : <Spinner/>
-    const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
+    setTabelaDataEquipeComExame([...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))])
     const TabelaChildComExame = tabelaDataEquipeComExame && tabelaDataEquipe && tabelaDataEquipeComExame && tabelaData ? 
     <PainelBuscaAtiva
         dadosFiltros={[
@@ -677,6 +675,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     )
 }
 }
+if(status=="unauthenticated") router.push('/')
 return(
     <p>{status}</p>
 )
