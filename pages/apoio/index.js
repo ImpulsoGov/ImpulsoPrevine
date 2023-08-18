@@ -50,61 +50,69 @@ const Index = ({res}) => {
     <Margem 
       componente={
         <>
-          <div style={{paddingTop:80}}></div>
-          <NovoTituloTexto
-            titulo="Seja um município parceiro para receber apoio especializado"
-            texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
-          />
-          <div style={{paddingTop:75}}></div>
-          <ImagensFull2 imagem="https://media.graphassets.com/FfVjftkQ3SyAspy1BUaE" />
+        <Margem 
+          componente={
+            <>
+              <div style={{paddingTop:80}}></div>
+              <NovoTituloTexto
+                titulo="Seja um município parceiro para receber apoio especializado"
+                texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
+              />
+              <div style={{paddingTop:75}}></div>
+              <ImagensFull2 imagem="https://media.graphassets.com/FfVjftkQ3SyAspy1BUaE" />
+          </>
+          } 
+        />          
+        <div id="espaco150"></div>
+        <Margem 
+          componente={
+            <>
+            <NovoTituloTexto
+              titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
+              texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
+            />
+          </>
+          } 
+        />
+        <div style={{paddingTop:50}}></div>
+        <Grid12Col
+          proporcao="5-7"
+          items={ [
+            <>
+            <TituloSmallTexto
+              key={ uuidv1() }
+              botao={{label: '',url: ''}}
+              imagem={{height: '45px', posicao: true, width: '45px', url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
+              supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
+              titulo=""
+              texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
+            />
+            <div style={{paddingTop:30}}></div>
+            <TituloSmallTexto
+              key={ uuidv1() }
+              botao={{label: '',url: ''}}
+              imagem={{posicao: null, url: ''}}
+              supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
+              titulo=""
+              texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
+            />
+            <div style={{paddingTop:15}}></div>
+            <TituloSmallTexto
+              key={ uuidv1() }
+              botao={{label: '',url: ''}}
+              imagem={{posicao: null, url: ''}}
+              supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
+              titulo=""
+              texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
+            />
+            </>
+            ,
+            <>
+              <ImagensFull2 imagem="https://media.graphassets.com/YgWm2k6qTXWl97z82Ahm" />
+            </>
+          ] }
+        />
           <div id="espaco150"></div>
-          <NovoTituloTexto
-            titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
-            texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
-          />
-          <div style={{paddingTop:50}}></div>
-          <Grid12Col
-            proporcao="5-7"
-            items={ [
-              <>
-              <TituloSmallTexto
-                key={ uuidv1() }
-                botao={{label: '',url: ''}}
-                imagem={{height: '45px', posicao: true, width: '45px', url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
-                supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
-                titulo=""
-                texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
-              />
-              <div style={{paddingTop:30}}></div>
-              <TituloSmallTexto
-                key={ uuidv1() }
-                botao={{label: '',url: ''}}
-                imagem={{posicao: null, url: ''}}
-                supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
-                titulo=""
-                texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
-              />
-              <div style={{paddingTop:15}}></div>
-              <TituloSmallTexto
-                key={ uuidv1() }
-                botao={{label: '',url: ''}}
-                imagem={{posicao: null, url: ''}}
-                supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
-                titulo=""
-                texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
-              />
-              </>
-              ,
-              <>
-                <ImagensFull2 imagem="https://media.graphassets.com/YgWm2k6qTXWl97z82Ahm" />
-              </>
-            ] }
-          />
-          <div id="espaco150"></div>
-          <NovoTituloTexto
-            titulo="Siga o passo-a-passo e faça parte da nossa rede"
-            texto="Confira as etapas necessárias para formalizar a sua parceria com o Impulso Previne."
-          />
           <Margem 
             componente={
               <>
@@ -112,6 +120,7 @@ const Index = ({res}) => {
                   titulo="Siga o passo-a-passo e faça parte da nossa rede"
                   texto="Confira as etapas necessárias para formalizar a sua parceria com o Impulso Previne."
                 />
+                <div style={{paddingTop:50}}></div>
                 <Grid12Col
                   proporcao="6-6"
                   items={ [
@@ -127,6 +136,7 @@ const Index = ({res}) => {
                         titulo=""
                         texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
                       />,
+                    <></>,<></>,
                       <TituloSmallTexto
                         key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
                         supertitulo="<b>3. Reunião de apresentação"
