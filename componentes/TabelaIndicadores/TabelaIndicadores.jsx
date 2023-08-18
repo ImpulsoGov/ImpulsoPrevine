@@ -50,7 +50,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       headerName: 'Indicador',
       flex: 90,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
           {params.value}
         </div>
       ),
