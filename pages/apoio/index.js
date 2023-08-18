@@ -50,68 +50,106 @@ const Index = ({res}) => {
     <Margem 
       componente={
         <>
-        <Margem 
-          componente={
-            <>
-              <div style={{paddingTop:80}}></div>
+          <Margem 
+            componente={
+              <>
+                <div style={{paddingTop:80}}></div>
+                <NovoTituloTexto
+                  titulo="Seja um município parceiro para receber apoio especializado"
+                  texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
+                />
+                <div style={{paddingTop:75}}></div>
+                <ImagensFull2 imagem="https://media.graphassets.com/FfVjftkQ3SyAspy1BUaE" />
+            </>
+            } 
+            />          
+          <div id="espaco150"></div>
+          <Margem 
+            componente={
+              <>
               <NovoTituloTexto
-                titulo="Seja um município parceiro para receber apoio especializado"
-                texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
+                titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
+                texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
               />
-              <div style={{paddingTop:75}}></div>
-              <ImagensFull2 imagem="https://media.graphassets.com/FfVjftkQ3SyAspy1BUaE" />
-          </>
-          } 
-        />          
-        <div id="espaco150"></div>
-        <Margem 
-          componente={
-            <>
-            <NovoTituloTexto
-              titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
-              texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
-            />
-          </>
-          } 
-        />
-        <div style={{paddingTop:50}}></div>
-        <Grid12Col
-          proporcao="5-7"
-          items={ [
-            <>
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{height: '45px', posicao: true, width: '45px', url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
-              supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
-              titulo=""
-              texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
-            />
-            <div style={{paddingTop:30}}></div>
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
-              titulo=""
-              texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
-            />
-            <div style={{paddingTop:15}}></div>
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
-              titulo=""
-              texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
-            />
             </>
-            ,
-            <>
-              <ImagensFull2 imagem="https://media.graphassets.com/YgWm2k6qTXWl97z82Ahm" />
-            </>
-          ] }
-        />
+            } 
+          />
+          <div style={{paddingTop:50}}></div>
+          <Grid12Col
+            proporcao="5-7"
+            items={ [
+              <>
+              <img src="https://media.graphassets.com/jIO4zsZmQsOPprUPJyGi"></img>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{posicao: true, width: '45px', url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
+                supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
+                titulo=""
+                texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
+              />
+              <div style={{paddingTop:30}}></div>
+              <img src="https://media.graphassets.com/JLbMSywjQniTURPqAgep"></img>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null, url: ''}}
+                supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
+                titulo=""
+                texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
+              />
+              <div style={{paddingTop:15}}></div>
+              <img src="https://media.graphassets.com/FEyQQyfR0aCU7XN5IvnJ"></img>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null, url: ''}}
+                supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
+                titulo=""
+                texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
+              />
+              </>
+              ,
+              <>
+                <ImagensFull2 imagem="https://media.graphassets.com/YgWm2k6qTXWl97z82Ahm" />
+              </>
+            ] }
+          />
+          <div id="espaco150"></div>
+          <Grid12Col
+            proporcao="6-6"
+            items={ [
+              <>
+              <img src="https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg"></img>
+              <TituloSmallTexto
+                  key={ uuidv1() }
+                  botao={{label: '',url: 'https://impulsogov.org/'}}
+                  imagem={{posicao: null, url: 'https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg'}}
+                  supertitulo=""
+                  titulo="<b>Mais de 70 municípios já foram apoiados diretamente pelo Impulso Previne</b>"
+                  texto="Com o nosso apoio, ajudamos a construir histórias de sucesso<br>"
+                />
+                </>
+              ,
+              <>
+              <CardIP
+                key={ uuidv1() }
+                titulo="PARCEIRO DESDE 2022"
+                indicador="Brejo de Areia/MA"
+                descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
+                height={210}
+              />
+              <div style={{paddingTop:20}}></div>
+              <CardIP
+                key={ uuidv1() }
+                titulo="PARCEIRO DESDE 2022"
+                indicador="Minaçu/GO"
+                descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
+                height={210}
+              />
+              </>
+            ] }
+          />
           <div id="espaco150"></div>
           <Margem 
             componente={
@@ -124,31 +162,42 @@ const Index = ({res}) => {
                 <Grid12Col
                   proporcao="6-6"
                   items={ [
-                    <TituloSmallTexto
-                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: true, url: 'https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg'}}
-                        supertitulo="<b>1. Formulário de inscrição"
-                        titulo=""
-                        texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município."
-                      />,
-                    <TituloSmallTexto
-                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
-                        supertitulo="<b>2. Convite para municípios"
-                        titulo=""
-                        texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
-                      />,
-                    <></>,<></>,
+                    <>
+                      <ImagensFull2 imagem="https://media.graphassets.com/r43ZVW6rQ3ekuItEUW9P" />
+                      <TituloSmallTexto
+                          key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: true, url: 'https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg'}}
+                          supertitulo="<b>1. Formulário de inscrição"
+                          titulo=""
+                          texto="O(a) Coordenador(a) de APS ou Secretário(a) de Saúde do município deve preenchê-lo com as principais informações sobre o município."
+                        />
+                    </>,
+                    <>
+                      <ImagensFull2 imagem="https://media.graphassets.com/CCWgGFBEQYugyOYPzPz3" />
+                      <TituloSmallTexto
+                          key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
+                          supertitulo="<b>2. Convite para municípios"
+                          titulo=""
+                          texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
+                        />
+                    </>,
+                    <>
+                      <ImagensFull2 imagem="https://media.graphassets.com/ByrE2VoJQsOca0J7NorQ" />
                       <TituloSmallTexto
                         key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
                         supertitulo="<b>3. Reunião de apresentação"
                         titulo=""
-                        texto="Realizamos um encontro inicial para apresentação do programa e detalhamento do nosso acordo de cooperação técnica"
-                      />,
+                        texto="Realizamos um encontro inicial para apresentação do programa e detalhamento do nosso acordo de cooperação técnica."
+                      />
+                    </>,
+                    <>
+                      <ImagensFull2 imagem="https://media.graphassets.com/EYTEyJkxS2yvOcWtDTKC" />
                       <TituloSmallTexto
                         key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
                         supertitulo="<b>4. Parceria formada</b>"
                         titulo=""
-                        texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município"
-                      />,
+                        texto="Pronto! Seu município é nosso parceiro e pode receber nosso apoio gratuito."
+                      />
+                    </>,
                   ] }
                 />
             </>
@@ -162,38 +211,6 @@ const Index = ({res}) => {
       {/* <div style={{paddingTop:100, paddingBottom:150, paddingLeft:80, paddingRight:80}}>
         <div style={{paddingTop:50}}></div>
         <div style={{paddingTop:50}}></div>
-        <Grid12Col
-          proporcao="6-6"
-          items={ [
-            <>
-            <TituloSmallTexto
-                key={ uuidv1() }
-                botao={{label: '',url: 'https://impulsogov.org/'}}
-                imagem={{posicao: null, url: 'https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg'}}
-                supertitulo=""
-                titulo="<b>Mais de 70 municípios já foram apoiados diretamente pelo Impulso Previne</b>"
-                texto="Com o nosso apoio, ajudamos a construir histórias de sucesso<br>"
-              />
-              </>
-            ,
-            <>
-            <CardIP
-              key={ uuidv1() }
-              titulo="PARCEIRO DESDE 2022"
-              indicador="Brejo de Areia/MA"
-              descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e rendeu no 1º quadrimestre de 2023 um resultado 35% melhor que seus 4 municípios vizinhos."
-              height={210}
-            />
-            <CardIP
-              key={ uuidv1() }
-              titulo="PARCEIRO DESDE 2022"
-              indicador="Minaçu/GO"
-              descricao="Com apoio da nossa equipe de especialistas em saúde, no 3º quadrimestre de 2022, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil!"
-              height={210}
-            />
-            </>
-          ] }
-        />
       </div> */}
 
 
@@ -204,7 +221,7 @@ const Index = ({res}) => {
           button="Preencher inscrição"
           theme="IPVerde"
       />
-      <ToggleList
+      {/* <ToggleList
         title="<strong>Dúvidas sobre a parceria da Impulso com os municípios?</strong>"
         list={[
           {
@@ -258,7 +275,7 @@ const Index = ({res}) => {
             ],
           },
         ]}
-      />
+      /> */}
   </div>
   )
 }
