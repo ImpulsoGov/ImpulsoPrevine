@@ -120,7 +120,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       headerName: 'Recomendações',
       flex: 240,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
           {params.value}
         </div>
       ),
