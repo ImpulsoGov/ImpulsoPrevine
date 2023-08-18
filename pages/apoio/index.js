@@ -1,5 +1,5 @@
 import { TituloTexto,
-  Slider,
+  Margem,
   FormConsultoria, 
   ToggleList,
   TituloSmallTexto, 
@@ -47,54 +47,110 @@ export async function getServerSideProps({req}) {
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
-      <div style={{paddingTop:100, paddingBottom:150, paddingLeft:80, paddingRight:80}}>
-        <NovoTituloTexto
-          titulo="Seja um município parceiro para receber apoio especializado"
-          texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
-        />
-        <div style={{paddingTop:75}}></div>
-        <ImagensFull2 imagem="https://media.graphassets.com/E153wwplTJe02eMPPMip" />
-        <div style={{paddingTop:150}}></div>
-        <NovoTituloTexto
-          titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
-          texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
-        />
+    <Margem 
+      componente={
+        <>
+          <div style={{paddingTop:80}}></div>
+          <NovoTituloTexto
+            titulo="Seja um município parceiro para receber apoio especializado"
+            texto="A cada 3 meses, selecionamos um grupo de municípios para um ciclo de mentorias gratuitas com nosso time de especialistas em saúde pública."
+          />
+          <div style={{paddingTop:75}}></div>
+          <ImagensFull2 imagem="https://media.graphassets.com/FfVjftkQ3SyAspy1BUaE" />
+          <div id="espaco150"></div>
+          <NovoTituloTexto
+            titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
+            texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
+          />
+          <div style={{paddingTop:50}}></div>
+          <Grid12Col
+            proporcao="5-7"
+            items={ [
+              <>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{height: '45px', posicao: true, width: '45px', url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
+                supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
+                titulo=""
+                texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
+              />
+              <div style={{paddingTop:30}}></div>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null, url: ''}}
+                supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
+                titulo=""
+                texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
+              />
+              <div style={{paddingTop:15}}></div>
+              <TituloSmallTexto
+                key={ uuidv1() }
+                botao={{label: '',url: ''}}
+                imagem={{posicao: null, url: ''}}
+                supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
+                titulo=""
+                texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
+              />
+              </>
+              ,
+              <>
+                <ImagensFull2 imagem="https://media.graphassets.com/YgWm2k6qTXWl97z82Ahm" />
+              </>
+            ] }
+          />
+          <div id="espaco150"></div>
+          <NovoTituloTexto
+            titulo="Siga o passo-a-passo e faça parte da nossa rede"
+            texto="Confira as etapas necessárias para formalizar a sua parceria com o Impulso Previne."
+          />
+          <Margem 
+            componente={
+              <>
+                <NovoTituloTexto
+                  titulo="Siga o passo-a-passo e faça parte da nossa rede"
+                  texto="Confira as etapas necessárias para formalizar a sua parceria com o Impulso Previne."
+                />
+                <Grid12Col
+                  proporcao="6-6"
+                  items={ [
+                    <TituloSmallTexto
+                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: true, url: 'https://media.graphassets.com/RfAzQFuVRhsuaPFSaMHg'}}
+                        supertitulo="<b>1. Formulário de inscrição"
+                        titulo=""
+                        texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município."
+                      />,
+                    <TituloSmallTexto
+                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
+                        supertitulo="<b>2. Convite para municípios"
+                        titulo=""
+                        texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
+                      />,
+                      <TituloSmallTexto
+                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
+                        supertitulo="<b>3. Reunião de apresentação"
+                        titulo=""
+                        texto="Realizamos um encontro inicial para apresentação do programa e detalhamento do nosso acordo de cooperação técnica"
+                      />,
+                      <TituloSmallTexto
+                        key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
+                        supertitulo="<b>4. Parceria formada</b>"
+                        titulo=""
+                        texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município"
+                      />,
+                  ] }
+                />
+            </>
+            } 
+          />
+          <div id="espaco150"></div>
+        </>
+      } 
+    />
+    
+      {/* <div style={{paddingTop:100, paddingBottom:150, paddingLeft:80, paddingRight:80}}>
         <div style={{paddingTop:50}}></div>
-        <Grid12Col
-          proporcao="6-6"
-          items={ [
-            <>
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: true, url: 'https://media.graphassets.com/M7BvFZfZT62J6SnO3hlr'}}
-              supertitulo="<b>Ferramentas de gestão para acelerar o monitoramento nominal e a busca ativa"
-              titulo=""
-              texto="Gere automaticamente a lista de pacientes com consultas e exames pendentes por área de referência para direcionar as visitas do seu agente comunitário."
-            />
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Encontros de capacitação com dicas e troca de experiências entre municípios"
-              titulo=""
-              texto="Participe de reuniões com nosso time de sanitaristas para revisar conteúdos importantes e converse com a rede de municípios parceiros da ImpulsoGov."
-            />
-            <TituloSmallTexto
-              key={ uuidv1() }
-              botao={{label: '',url: ''}}
-              imagem={{posicao: null, url: ''}}
-              supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
-              titulo=""
-              texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registro e estratégias de cuidado."
-            />
-            </>
-            ,
-            <>
-              <ImagensFull2 imagem="https://media.graphassets.com/E153wwplTJe02eMPPMip" />
-            </>
-          ] }
-        />
         <div style={{paddingTop:50}}></div>
         <Grid12Col
           proporcao="6-6"
@@ -128,41 +184,9 @@ const Index = ({res}) => {
             </>
           ] }
         />
-        <div style={{paddingTop:150}}></div>
-        <NovoTituloTexto
-          titulo="Siga o passo-a-passo e faça parte da nossa rede"
-          texto="Confira as etapas necessárias para formalizar a sua parceria com o Impulso Previne."
-        />
-        <Grid12Col
-          proporcao="6-6"
-          items={ [
-            <TituloSmallTexto
-                key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
-                supertitulo="<b>1. Formulário de inscrição"
-                titulo=""
-                texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município."
-              />,
-            <TituloSmallTexto
-                key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
-                supertitulo="<b>2. Convite para municípios"
-                titulo=""
-                texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
-              />,
-              <TituloSmallTexto
-                key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
-                supertitulo="<b>3. Reunião de apresentação"
-                titulo=""
-                texto="Realizamos um encontro inicial para apresentação do programa e detalhamento do nosso acordo de cooperação técnica"
-              />,
-              <TituloSmallTexto
-                key={ uuidv1() } botao={{label: '',url: ''}} imagem={{posicao: null, url: ''}}
-                supertitulo="<b>4. Parceria formada</b>"
-                titulo=""
-                texto="O Coordenador de Atenção Primária à Saúde do município deve preenchê-lo com as principais informações sobre o município"
-              />,
-          ] }
-        />
-      </div>
+      </div> */}
+
+
       <FormConsultoria
           title="Inscreva-se e melhore o desempenho do seu município na atenção primária"
           mail=""
