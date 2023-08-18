@@ -147,7 +147,7 @@ function MyApp(props) {
             }
             <div 
               style={{
-                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : "30px",
+                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
                   height: "100%"
               }}
             >
