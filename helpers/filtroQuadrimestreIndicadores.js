@@ -1,7 +1,8 @@
 const filtrarPorPeriodoCodigo = (dados, periodoSelecionado) => {
   if (!periodoSelecionado) {
-    // Encontre o último período existente nos dados
+    // Encontra o último período existente nos dados
     const ultimosPeriodos = dados.map(item => item.periodo_codigo);
+    ultimosPeriodos.sort(); // Classificar os períodos em ordem
     periodoSelecionado = ultimosPeriodos[ultimosPeriodos.length - 1];
   }
 
