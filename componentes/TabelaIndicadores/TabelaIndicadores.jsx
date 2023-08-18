@@ -4,7 +4,7 @@ import { v4 as uuidV4 } from 'uuid';
 import styles from './Tabelas.module.css';
 import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores'
 
-const TabelaIndicadores = ({ TabIndicadores, periodoSelecionado }) => {
+const TabelaIndicadores = ({ TabIndicadores}) => {
 
   const colunas = useMemo(() => [
     {
@@ -101,9 +101,11 @@ const TabelaIndicadores = ({ TabIndicadores, periodoSelecionado }) => {
       headerClassName: styles.cabecalho,
     },
   ]);
+ 
+  const ultimoPeriodo = TabIndicadores.length > 0 ? TabIndicadores[TabIndicadores.length - 1].periodo_codigo : undefined;
 
   const linhas = useMemo(() => {
-    const dadosFiltrados = filtrarPorPeriodoCodigo(TabIndicadores, periodoSelecionado);
+    const dadosFiltrados = filtrarPorPeriodoCodigo(TabIndicadores, ultimoPeriodo);
     if (!TabIndicadores) {
       return []; // Retorna um array vazio se TabIndicadores for undefined
     }
@@ -127,7 +129,7 @@ const TabelaIndicadores = ({ TabIndicadores, periodoSelecionado }) => {
       delta_formatado,
       indicador_recomendacao
     }));
-  }, [TabIndicadores, periodoSelecionado]);
+  }, [TabIndicadores, ultimoPeriodo]);
 
   const CustomHeader = () => {
     return (

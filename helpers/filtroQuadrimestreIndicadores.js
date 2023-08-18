@@ -1,7 +1,11 @@
 const filtrarPorPeriodoCodigo = (dados, periodoSelecionado) => {
-  const periodoFiltrar = periodoSelecionado || '2023.Q1';
+  if (!periodoSelecionado) {
+    // Encontre o último período existente nos dados
+    const ultimosPeriodos = dados.map(item => item.periodo_codigo);
+    periodoSelecionado = ultimosPeriodos[ultimosPeriodos.length - 1];
+  }
 
-  return dados.filter(item => item.periodo_codigo === periodoFiltrar);
+  return dados.filter(item => item.periodo_codigo === periodoSelecionado);
 };
 
 export {filtrarPorPeriodoCodigo}
