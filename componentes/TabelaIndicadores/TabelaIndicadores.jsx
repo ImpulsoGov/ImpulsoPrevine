@@ -90,7 +90,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       headerName: 'Recomendações',
       flex: 240,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px" }}>
           {params.value}
         </div>
       ),
@@ -179,7 +179,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             sortModel: [{ field: 'indicador_score', sort: 'asc' }],
           },
         }}
-        rowHeight={400} // altura das linhas
+        getRowHeight={() => 'auto'} // altura das linhas
       />
     </div>
   );
