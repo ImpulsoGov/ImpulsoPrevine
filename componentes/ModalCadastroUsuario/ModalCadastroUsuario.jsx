@@ -45,6 +45,10 @@ function ModalCadastroUsuario({
           } }
           texto=''
           titulo={ titulo }
+          botao={{
+            label: '',
+            url: ''
+          }}
         />
 
         <form className={ styles.Formulario }>

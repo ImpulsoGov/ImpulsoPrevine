@@ -42,6 +42,9 @@ const Index = ({res}) => {
   const [cidade, setCidade] = useContext(Context);
   const [dsLink, setDSLink] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+
   useEffect(() => {
     setDSLink([urlGenIndicadores(cidade),urlGenCaptacao(cidade),urlGenAE(cidade)])
     setLoading(true)
@@ -69,7 +72,14 @@ const Index = ({res}) => {
         <PanelSelector
           links = {[dsLink]}
           list={[labels]}
-          titles={titles}        
+          titles={titles}
+          states={ {
+            activeTabIndex: Number(activeTabIndex),
+            setActiveTabIndex: setActiveTabIndex,
+            activeTitleTabIndex: activeTitleTabIndex,
+            setActiveTitleTabIndex: setActiveTitleTabIndex
+          } }
+    
         />
       }
     </>

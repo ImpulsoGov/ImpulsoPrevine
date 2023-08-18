@@ -68,6 +68,8 @@ const Index = ({res}) => {
   const [tokenValido, setTokenValido] = useState();
   const router = useRouter()
   const panel = router.query?.painel
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const initialTitle = router.query?.initialTitle
   useEffect(()=>{
     if(session){
@@ -120,6 +122,12 @@ const Index = ({res}) => {
             titles={titlesBuscaAtiva}
             panel={Number(panel)}
             initialTitle={Number(initialTitle)}
+            states={{
+              activeTabIndex: Number(activeTabIndex),
+              setActiveTabIndex: setActiveTabIndex,
+              activeTitleTabIndex: activeTitleTabIndex,
+              setActiveTitleTabIndex: setActiveTitleTabIndex
+            }}
         />
       </>
     )
