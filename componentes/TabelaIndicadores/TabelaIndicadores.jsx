@@ -34,6 +34,29 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     return ''; // Nenhuma classe se a nota não se encaixar em nenhuma das condições
   };
 
+  const NotaTooltip = () => ( //tooltip com os quadrados e cor das notas 
+    <div>
+      <div className={`${styles.quadradoTooltip} ${styles.NotaRosa}`}></div>
+      &gt; 0 e &lt;= 5<br />
+      <div className={`${styles.quadradoTooltip} ${styles.NotaLaranja}`}></div>
+      &gt; 5 e &lt;= 8<br />
+      <div className={`${styles.quadradoTooltip} ${styles.NotaAmarela}`}></div>
+      &gt; 8 e &lt;= 9.9<br />
+      <div className={`${styles.quadradoTooltip} ${styles.NotaVerde}`}></div>
+      = 10
+    </div>
+  );
+
+  const getUsuariosSemAtendimentoCellClassName = (params) => {
+    const value = parseFloat(params.value);
+  
+    if (value !== 0) {
+      return styles.CelulaVermelha; // Classe CSS para célula vermelha
+    }
+  
+    return ''; // Nenhuma classe se o valor for zero
+  };
+
   const colunas = useMemo(() => [
     {
       field: 'indicador_score',
@@ -92,6 +115,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       description: 
       'A partir dos denominadores informado e estimado, calculamos dentro do número total de pessoas para bater a meta e quantas o município ainda não cadastrou (de acordo com o denominador estimado) e ainda precisam ser cadastradas, acompanhadas e atendidas, para que a meta seja cumprida.',
       headerClassName: styles.cabecalho,
+      cellClassName: getUsuariosSemAtendimentoCellClassName,
     },
     {
       field: 'indicador_nota',
@@ -99,8 +123,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       flex: 65,
       align: 'center',
       headerAlign: 'center',
-      description: 
-      '',
+      description: <NotaTooltip />,
       headerClassName: styles.cabecalho,
       cellClassName: getNotaCellClassName,
     },

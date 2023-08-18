@@ -36,3 +36,14 @@
   background-color: #5CDAAC;
 }
 
+.CelulaVermelha{
+  background-color: #F8BBAE
+}
+
+.quadradoTooltip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
