@@ -2,8 +2,9 @@ import { DataGrid, GridToolbarContainer, GridToolbarColumnsButton, GridToolbarFi
 import React, {useMemo } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styles from './Tabelas.module.css';
+import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores'
 
-const TabelaIndicadores = ({ TabIndicadores }) => {
+const TabelaIndicadores = ({ TabIndicadores, periodoSelecionado }) => {
 
   const colunas = useMemo(() => [
     {
@@ -102,11 +103,12 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
   ]);
 
   const linhas = useMemo(() => {
+    const dadosFiltrados = filtrarPorPeriodoCodigo(TabIndicadores, periodoSelecionado);
     if (!TabIndicadores) {
       return []; // Retorna um array vazio se TabIndicadores for undefined
     }
 
-    return TabIndicadores.map(({ indicador_score,
+    return dadosFiltrados.map(({ indicador_score,
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
@@ -125,7 +127,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       delta_formatado,
       indicador_recomendacao
     }));
-  }, [TabIndicadores]);
+  }, [TabIndicadores, periodoSelecionado]);
 
   const CustomHeader = () => {
     return (
