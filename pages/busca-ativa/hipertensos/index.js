@@ -116,7 +116,7 @@ const Index = ({res}) => {
                   {
                     descricao: 'Total de pessoas com consulta e aferição de PA em dia',
                     valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                      return (item.status_usuario == "Em dia com consulta e aferição de PA") ?
                       acumulador + 1 : acumulador;
                     },0)
                   },
@@ -227,7 +227,7 @@ const Index = ({res}) => {
               {
                 descricao: 'Total de pessoas com consulta e aferição de PA em dia',
                 valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                  return (item.status_usuario == "Em dia com consulta e aferição de PA") ?
                   acumulador + 1 : acumulador;
                 },0)
               },
@@ -274,7 +274,7 @@ const Index = ({res}) => {
             series: [
               {
                 data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                  if(item.status_usuario == "Apenas consulta em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas consulta em dia',
@@ -283,7 +283,7 @@ const Index = ({res}) => {
               },
               {
                 data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                  if(item.status_usuario == "Em dia com consulta e aferição de PA") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Consulta e aferição de PA em dia',
@@ -292,7 +292,7 @@ const Index = ({res}) => {
               },
               {
                 data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                  if(item.status_usuario == "Apenas aferição de PA em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Apenas aferição de PA em dia',
@@ -301,7 +301,7 @@ const Index = ({res}) => {
               },
               {
                 data: Object.entries(tabelaDataAPS.reduce((acumulador,item)=>{ 
-                  if(item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                  if(item.status_usuario == "Nada em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                   return acumulador
                 },{})),
                 name: 'Nada em dia',
