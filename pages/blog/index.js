@@ -1,11 +1,12 @@
-import Layout from "../../componentes/Layout";
 import { PreviewArtigoDestaque } from "@impulsogov/design-system"
 import { ListaArtigos, TituloTexto } from "@impulsogov/design-system";
-
+import { redirectAreaAbertaLogIn } from "../../helpers/redirectHome";
 import { getData } from '../../services/cms'
 import { LAYOUT, LISTA_ARTIGOS, POSTS } from '../../utils/QUERYS'
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
+  const redirect = redirectAreaAbertaLogIn(ctx)
+  if(redirect) return redirect
   const res = [
     await getData(LAYOUT),
     await getData(POSTS),

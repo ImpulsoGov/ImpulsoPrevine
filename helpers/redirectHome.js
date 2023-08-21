@@ -28,6 +28,21 @@ const redirectHomeNotLooged = (ctx)=>{
   return false
 }
 
+const redirectAreaAbertaLogIn = (ctx)=>{
+  const userIsActive = ctx.req.cookies['next-auth.session-token']
+  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
+  let redirect = !userIsActive && !userIsActiveSecure 
+  if(!redirect) {
+    return {
+      redirect: {
+        destination: "/inicio",
+        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
+      }, 
+    }
+  }
+  return false
+}
+
 const redirectHomeTrilha = (ctx,session)=>{
   const userIsActive = ctx.req.cookies['next-auth.session-token']
   const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
@@ -58,4 +73,4 @@ const redirectHomeGestaoUsuarios = (ctx,session)=>{
   return false
 }
 
-export { redirectHome, redirectHomeNotLooged, redirectHomeTrilha, redirectHomeGestaoUsuarios }
+export { redirectHome, redirectHomeNotLooged, redirectHomeTrilha, redirectHomeGestaoUsuarios , redirectAreaAbertaLogIn }
