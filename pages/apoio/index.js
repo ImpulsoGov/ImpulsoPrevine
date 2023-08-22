@@ -116,28 +116,12 @@ const Index = ({res}) => {
             ] }
           />
           <div id="espaco150"></div>
-        </>
-      } 
-    />
-
-    <Margem 
-        componente={
-          <>
           <Slider 
             titulo = {res[1].sliders[0].titulo}
             core = {sliderCardsDataTransform(res[1].sliderCards)}
             chamada = {res[1].sliders[0].button}
             link = {res[1].sliders[0].buttonLink}
           />
-        </>
-        } 
-      />
-
-    
-
-    <Margem 
-      componente={
-        <> 
           <div id="espaco150"></div>
           <Margem 
             componente={
@@ -219,6 +203,7 @@ const Index = ({res}) => {
         </>
       } 
     />
+
 
     <FormConsultoria
         title="Inscreva-se e melhore o desempenho do seu município na atenção primária"
