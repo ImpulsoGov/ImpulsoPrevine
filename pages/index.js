@@ -97,13 +97,19 @@ const Index = ({res}) => {
       <Margem 
         componente={
           <>
-            <div style={{paddingTop:80}}></div>
-            <NovoTituloTexto
-              titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
-              texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
+            <div style={{paddingTop:80}}></div>         
+            <Margem 
+              componente={
+                <>
+                  <NovoTituloTexto
+                    titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
+                    texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
+                  />
+                  <div style={{paddingTop:75}}></div>
+                  <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
+              </>
+              } 
             />
-            <div style={{paddingTop:75}}></div>
-            <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
             <div style={{paddingTop:75}}></div>
           </>
         } 
