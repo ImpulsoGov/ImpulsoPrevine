@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
+import {AcessoindicadoresEquipesHomologadas}  from '../../services/indicadoresEquipesHomologadas'
+import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
 
 const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
@@ -18,6 +20,7 @@ const Indicadores = () => {
     }
     fetchData();
   }, []);
+
   return (
     <div>
       <TituloSmallTexto
@@ -33,10 +36,17 @@ const Indicadores = () => {
       <Grid12Col
         items={[
           <GraficoInfo key={uuidv1()} descricao="<br>Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Desempenho do Município" tooltip="" />,
+
           <GraficoInfo key={uuidv1()} descricao="<br>Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez. " destaque="" fonte="" link={{ label: '', url: '/' }} titulo="Histórico de Desempenho" tooltip="" />
         ]}
       />
-
+      <Grid12Col
+        items={[
+          <GraficoDesempenhoMunicipio 
+          GrafDesempenho={indicadoresData} 
+          />
+        ]}
+      />
       <GraficoInfo
         key={uuidv1()}
         descricao="<b> Fonte: SISAB </b>
@@ -64,8 +74,8 @@ const Indicadores = () => {
         }}
         titulo="Como melhorar o desempenho dos indicadores" tooltip="" />
 
-      <TabelaIndicadores 
-        TabIndicadores={indicadoresData} 
+      <TabelaIndicadores
+        TabIndicadores={indicadoresData}
       />
     </div>
   )

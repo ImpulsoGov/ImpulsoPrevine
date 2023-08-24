@@ -1,4 +1,4 @@
-import { DataGrid, GridToolbarContainer, GridToolbarColumnsButton, GridToolbarFilterButton, GridToolbarExport } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import React, {useMemo } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styles from './Tabelas.module.css';
