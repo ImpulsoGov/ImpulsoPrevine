@@ -5,6 +5,7 @@ import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
 import {AcessoindicadoresEquipesHomologadas}  from '../../services/indicadoresEquipesHomologadas'
 import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
+import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
 
 const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
@@ -44,6 +45,9 @@ const Indicadores = () => {
         items={[
           <GraficoDesempenhoMunicipio 
           GrafDesempenho={indicadoresData} 
+          />,
+          <GraficoHistoricoDesempenho
+          GrafHistorico={indicadoresData} 
           />
         ]}
       />

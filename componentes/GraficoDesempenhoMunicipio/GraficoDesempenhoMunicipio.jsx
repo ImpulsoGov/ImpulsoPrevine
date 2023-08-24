@@ -21,14 +21,14 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
       left: '8%',
       right: '1%',
       bottom: '1%',
-      width: '95%', // Ajuste o valor conforme necessário
+      width: '95%', 
       height: '90%',
       containLabel: true
     },
     xAxis: [
       {
         type: 'category',
-        data: dadosOrdenados.map(indicador_nome=> indicador_nome.indicador_nome),
+        data: dadosOrdenados.map(indicador=> indicador.indicador_nome),
         axisLabel: {
           rotate: 50,
           interval: 0
