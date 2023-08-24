@@ -1,26 +1,16 @@
 import { v1 as uuidv1 } from 'uuid';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
-import { AcessoindicadoresEquipesHomologadas } from '../../services/indicadoresEquipesHomologadas'
+import {AcessoindicadoresEquipesHomologadas}  from '../../services/indicadoresEquipesHomologadas'
 import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
 import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
-
+import Context from "../../utils/Context";
 const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await AcessoindicadoresDesempenho("Jati - CE");
-        setIndicadoresData(result);
-      } catch (error) {
-        console.error("ERRO", error);
-      }
-    }
-    fetchData();
-  }, []);
+  const [cidade, setCidade] = useContext(Context);
+  useEffect(() =>{AcessoindicadoresDesempenho(cidade).then((result)=>setIndicadoresData(result))}, [cidade]);
 
   return (
     <div>
@@ -102,10 +92,7 @@ const Indicadores = () => {
           posicao: null,
           url: ''
         }}
-        supertitulo=""
-        texto="<br>Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b>, o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b> quantas pessoas ainda precisam ser cadastradas antes do atendimento </b>, a <b> variação percentual de desempenho da competência atual para a anterior </b>,  e <b> recomendações </b> de como bater as metas."
-        titulo="<b>Como melhorar o desempenho dos indicadores</b>"
-      />
+        titulo="Como melhorar o desempenho dos indicadores" tooltip="" />
 
       <TabelaIndicadores
         TabIndicadores={indicadoresData}
