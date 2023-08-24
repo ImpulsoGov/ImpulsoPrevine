@@ -4,7 +4,7 @@ import ReactEcharts from 'echarts-for-react';
 const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
   
   const indicadores = [...new Set(GrafHistorico.map(item => item.indicador_nome))];
-  const periodos = GrafHistorico.map(item => item.periodo_codigo);
+  const periodos = [...new Set(GrafHistorico.map(item => item.periodo_codigo))];
 
   const series = indicadores.map(indicador => {
     const dadosPorIndicador = periodos.map(periodo => {
@@ -34,13 +34,14 @@ const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: periodos
+      data: periodos,
+      
     },
     yAxis:{
         type: 'value',
       },
     series: series
   };
-  return <ReactEcharts option={option} />;
+  return <ReactEcharts option={option} autoResize={true} />;
 }
 export default GraficoHistoricoDesempenho;

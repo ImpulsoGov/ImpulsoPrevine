@@ -21,8 +21,6 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
       left: '8%',
       right: '1%',
       bottom: '1%',
-      width: '95%', 
-      height: '90%',
       containLabel: true
     },
     xAxis: [
@@ -88,7 +86,7 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
     ]
   };
 
-  return <ReactEcharts option={option} />;
+  return <ReactEcharts option={option} autoResize={true}/>;
 };
 
 export default GraficoDesempenhoMunicipio;

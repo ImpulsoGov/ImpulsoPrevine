@@ -61,7 +61,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_score',
       headerName: 'Ordenação',
-      flex: 100,
+      flex: 1.7,
       cellClassName: 'multi-line-cell',
       description:
         'A ordenação dos indicadores é uma sugestão feita, levando em consideração o peso do indicador, duração, nota do indicador e quanto falta para alcançar a meta.',
@@ -71,7 +71,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_nome',
       headerName: 'Indicador',
-      flex: 90,
+      flex: 1.2,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
           {params.value}
@@ -87,7 +87,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_denominador_utilizado_informado',
       headerName: 'Denominador utilizado (Denominador informado)',
-      flex: 105,
+      flex: 1.7,
       align: 'center',
       headerAlign: 'center',
       description:'O denominador utilizado pode ser o informado (identificado) ou o estimado.'+
@@ -99,7 +99,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_100_porcento_meta',
       headerName: 'Nº total de pessoas para bater a meta',
-      flex: 100,
+      flex: 1.5,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -109,7 +109,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_cadastrados_sem_atendimento',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
-      flex: 200,
+      flex: 2.5,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -120,7 +120,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_nota',
       headerName: 'Nota',
-      flex: 65,
+      flex: 1,
       align: 'center',
       headerAlign: 'center',
       description: <NotaTooltip />,
@@ -130,7 +130,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'delta_formatado',
       headerName: 'Variação de desempenho de Q1-23/Q3-22',
-      flex: 100,
+      flex: 1.4,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -141,7 +141,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_recomendacao',
       headerName: 'Recomendações',
-      flex: 240,
+      flex: 2.8,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px" }}>
           {params.value}
