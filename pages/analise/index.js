@@ -14,7 +14,7 @@ const Indicadores = () => {
   useEffect(() =>{AcessoindicadoresDesempenho(cidade).then((result)=>setIndicadoresData(result))}, [cidade]);
 
   return (
-    <div>
+    <div style={{ margin: '50px'}}>
       <TituloSmallTexto
         key={uuidv1()}
         imagem={{
