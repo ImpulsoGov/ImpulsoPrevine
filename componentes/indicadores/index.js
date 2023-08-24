@@ -1,26 +1,15 @@
 import { v1 as uuidv1 } from 'uuid';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
-import {AcessoindicadoresEquipesHomologadas}  from '../../services/indicadoresEquipesHomologadas'
 import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
 import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
-
+import Context from "../../utils/Context";
 const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await AcessoindicadoresDesempenho("Jati - CE");
-        setIndicadoresData(result);
-      } catch (error) {
-        console.error("ERRO", error);
-      }
-    }
-    fetchData();
-  }, []);
+  const [cidade, setCidade] = useContext(Context);
+  useEffect(() =>{AcessoindicadoresDesempenho(cidade).then((result)=>setIndicadoresData(result))}, [cidade]);
 
   return (
     <div>
@@ -76,7 +65,8 @@ const Indicadores = () => {
           label: '',
           url: '/'
         }}
-        titulo="Como melhorar o desempenho dos indicadores" tooltip="" />
+        titulo="Como melhorar o desempenho dos indicadores" tooltip="" 
+      />
 
       <TabelaIndicadores
         TabIndicadores={indicadoresData}
