@@ -7,6 +7,7 @@ import {AcessoindicadoresEquipesHomologadas}  from '../../services/indicadoresEq
 import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
 import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
 import Context from "../../utils/Context";
+
 const Indicadores = () => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
   const [cidade, setCidade] = useContext(Context);

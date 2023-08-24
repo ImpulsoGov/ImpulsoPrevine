@@ -35,7 +35,9 @@ const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
       type: 'category',
       boundaryGap: false,
       data: periodos,
-      
+      axisLabel: {
+        rotate: 45, 
+      },
     },
     yAxis:{
         type: 'value',

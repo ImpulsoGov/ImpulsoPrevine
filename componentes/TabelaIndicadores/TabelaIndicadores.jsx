@@ -6,35 +6,35 @@ import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicad
 
 const TabelaIndicadores = ({ TabIndicadores}) => {
 
-  const getCellClassName = (params) => { //define cor do texto da coluna quadrimestre 
+  const getCellClassName = (params) => {  
     const value = parseFloat(params.value);
     
     if (value > 0) {
-      return styles.TextoVerde; // Classe CSS para texto verde
+      return styles.TextoVerde; 
     } else if (value < 0) {
-      return styles.TextoVermelho; // Classe CSS para texto vermelho
+      return styles.TextoVermelho; 
     }
   
-    return ''; // Nenhuma classe se o valor for 0
+    return ''; 
   };
 
-  const getNotaCellClassName = (params) => { //define cor da coluna segundo a nota 
+  const getNotaCellClassName = (params) => {  
     const nota = parseFloat(params.value);
   
     if (nota > 0 && nota <= 5) {
-      return styles.NotaRosa; // Classe CSS para nota rosa
+      return styles.NotaRosa; 
     } else if (nota > 5 && nota <= 8) {
-      return styles.NotaLaranja; // Classe CSS para nota laranja
+      return styles.NotaLaranja; 
     } else if (nota > 8 && nota <= 9.9) {
-      return styles.NotaAmarela; // Classe CSS para nota amarela
+      return styles.NotaAmarela; 
     } else if (nota === 10) {
-      return styles.NotaVerde; // Classe CSS para nota verde
+      return styles.NotaVerde; 
     }
   
-    return ''; // Nenhuma classe se a nota não se encaixar em nenhuma das condições
+    return ''; 
   };
 
-  const NotaTooltip = () => ( //tooltip com os quadrados e cor das notas 
+  const NotaTooltip = () => (  
     <div>
       <div className={`${styles.quadradoTooltip} ${styles.NotaRosa}`}></div>
       &gt; 0 e &lt;= 5<br />
@@ -51,10 +51,10 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     const value = parseFloat(params.value);
   
     if (value !== 0) {
-      return styles.CelulaVermelha; // Classe CSS para célula vermelha
+      return styles.CelulaVermelha; 
     }
   
-    return ''; // Nenhuma classe se o valor for zero
+    return '';
   };
 
   const colunas = useMemo(() => [
@@ -197,13 +197,13 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             textAlign: 'center',
           },
           '& .MuiDataGrid-toolbarContainer': {
-            backgroundColor: '#1B1C1E', // cor de fundo da barra de ferramentas
+            backgroundColor: '#1B1C1E', 
           },
           '& .MuiButton-root': {
-            color: '#D4DBE7', // cor do texto dos botões
+            color: '#D4DBE7', 
           },
           '& .MuiButton-outlined': {
-            borderColor: '#D4DBE7', //  cor da borda dos botões
+            borderColor: '#D4DBE7', 
           },
         }}
         rows={linhas}
