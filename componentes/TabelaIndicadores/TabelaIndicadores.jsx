@@ -71,7 +71,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_nome',
       headerName: 'Indicador',
-      flex: 1.2,
+      flex: 1.4,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
           {params.value}
@@ -87,7 +87,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_denominador_utilizado_informado',
       headerName: 'Denominador utilizado (Denominador informado)',
-      flex: 1.7,
+      flex: 1.5,
       align: 'center',
       headerAlign: 'center',
       description:'O denominador utilizado pode ser o informado (identificado) ou o estimado.'+
@@ -99,7 +99,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_100_porcento_meta',
       headerName: 'Nº total de pessoas para bater a meta',
-      flex: 1.5,
+      flex: 1.4,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -109,7 +109,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_cadastrados_sem_atendimento',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
-      flex: 2.5,
+      flex: 2.4,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -120,7 +120,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_nota',
       headerName: 'Nota',
-      flex: 1,
+      flex: 1.1,
       align: 'center',
       headerAlign: 'center',
       description: <NotaTooltip />,
@@ -141,7 +141,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_recomendacao',
       headerName: 'Recomendações',
-      flex: 2.8,
+      flex: 2.9,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px" }}>
           {params.value}
@@ -191,13 +191,18 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
         sx={{
           '& .MuiDataGrid-columnHeaderTitle': {
             fontWeight: 'bold',
-            fontSize: '12px',
-            lineHeight: '1.0rem',
+            fontSize: '11px',
+            lineHeight: '0.6rem',
             whiteSpace: 'normal',
             textAlign: 'center',
           },
           '& .MuiDataGrid-toolbarContainer': {
             backgroundColor: '#1B1C1E', 
+          },
+          '& .MuiDataGrid-cell': {
+            fontSize: '11px',
+            lineHeight: '0.6rem',
+            whiteSpace: 'normal',
           },
           '& .MuiButton-root': {
             color: '#D4DBE7', 

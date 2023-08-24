@@ -27,6 +27,7 @@ const Indicadores = () => {
 
       <Grid12Col
         items={[
+          <div style={{ borderRight: '2px solid #ddd', paddingRight: '10px' }}>
           <TituloSmallTexto
             botao={{
               label: '',
@@ -39,7 +40,7 @@ const Indicadores = () => {
             supertitulo=""
             texto="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados."
             titulo="<b> Desempenho do Município </b>"
-          />,
+          /></div>,
           <TituloSmallTexto
             botao={{
               label: '',
@@ -56,11 +57,11 @@ const Indicadores = () => {
         ]}
       />
       <Grid12Col
-        style={{ margin: '20px 0', border: '1px solid #ddd', padding: '10px' }}
         items={[
+          <div style={{ borderRight: '2px solid #ddd', paddingRight: '10px' }}>
           <GraficoDesempenhoMunicipio
             GrafDesempenho={indicadoresData}
-          />,
+          /></div>,
           <GraficoHistoricoDesempenho
             GrafHistorico={indicadoresData}
           />
@@ -93,7 +94,9 @@ const Indicadores = () => {
           posicao: null,
           url: ''
         }}
-        titulo="Como melhorar o desempenho dos indicadores" tooltip="" />
+        supertitulo=""
+        texto="Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b> , o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b>quantas pessoas ainda precisam ser cadastradas antes do atendimento</b>, a <b>variação percentual de desempenho da competência atual para a anterior</b>,  e <b>recomendações</b> de como bater as metas."
+        titulo="<b>Como melhorar o desempenho dos indicadores </b>" tooltip="" />
 
       <TabelaIndicadores
         TabIndicadores={indicadoresData}
