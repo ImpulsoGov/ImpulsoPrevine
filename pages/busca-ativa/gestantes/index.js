@@ -69,6 +69,8 @@ const Index = ({res}) => {
   const router = useRouter()
   const panel = router.query?.painel
   const initialTitle = router.query?.initialTitle
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   useEffect(()=>{
     if(session){
       validatetoken(session?.user?.access_token)
@@ -107,7 +109,7 @@ const Index = ({res}) => {
         </div>
         <TituloTexto
                 titulo="Lista Nominal Gestantes"
-                texto="Oferecemos três listas nominais para monitoramento dos seguintes grupos: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos."
+                texto="Oferecemos quatro listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes, coleta de citopatológico."
                 imagem = {{posicao: null,url: ''}}
             />
         <CardAlert
@@ -120,6 +122,12 @@ const Index = ({res}) => {
           titles={titlesBuscaAtiva}
           panel={Number(panel)}
           initialTitle={Number(initialTitle)}
+          states={ {
+            activeTabIndex: Number(activeTabIndex),
+            setActiveTabIndex: setActiveTabIndex,
+            activeTitleTabIndex: activeTitleTabIndex,
+            setActiveTitleTabIndex: setActiveTitleTabIndex
+          } }
         />
       </>
     )

@@ -1,0 +1,48 @@
+{
+"data": [
+	{
+		"id_faixa_etaria" : 0,
+		"faixa_etaria_descricao" : "Sem dados",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 1,
+		"faixa_etaria_descricao" : "0 a 40 anos",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 2,
+		"faixa_etaria_descricao" : "41 a 49 anos",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 3,
+		"faixa_etaria_descricao" : "50 a 59 anos",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 4,
+		"faixa_etaria_descricao" : "60 a 70 anos",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 5,
+		"faixa_etaria_descricao" : "70 anos ou mais",
+		"atualizacao_data" : "2023-05-02T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 6,
+		"faixa_etaria_descricao" : "25 a 39 anos",
+		"atualizacao_data" : "2023-07-03T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 7,
+		"faixa_etaria_descricao" : "40 a 49 anos",
+		"atualizacao_data" : "2023-07-03T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 8,
+		"faixa_etaria_descricao" : "50 a 64 anos",
+		"atualizacao_data" : "2023-07-03T03:00:00.000Z"
+	}
+]}
