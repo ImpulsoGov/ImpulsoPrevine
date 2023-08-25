@@ -60,7 +60,7 @@ const Indicadores = () => {
               }}
               supertitulo=""
               texto="Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez."
-              titulo="<b> Histórico de Desempenho </b>"
+              titulo="<b> Histórico de Desempenho hj</b>"
             /> <GraficoHistoricoDesempenho
               GrafHistorico={indicadoresData}
             /></>
