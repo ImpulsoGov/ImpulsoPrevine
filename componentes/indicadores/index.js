@@ -43,7 +43,7 @@ const Indicadores = () => {
               }}
               supertitulo=""
               texto="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados."
-              titulo="<b> Desempenho do Município </b>"
+              titulo="<b> Desempenho do Município l </b>"
             /><GraficoDesempenhoMunicipio
               GrafDesempenho={indicadoresData}
             />
