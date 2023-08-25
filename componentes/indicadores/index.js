@@ -17,7 +17,7 @@ const Indicadores = () => {
     <div>
       <TituloSmallTexto
         key={uuidv1()}
-        imagem={{
+        imagem={{ 
           posicao: null,
           url: ''
         }}
