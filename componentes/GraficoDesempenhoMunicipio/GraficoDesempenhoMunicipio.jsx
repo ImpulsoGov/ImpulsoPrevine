@@ -35,7 +35,10 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
     ],
     yAxis: [
       {
-        type: 'value'
+        type: 'value',
+        splitLine: {
+          show: false, 
+        },
       }
     ],
     series: [
@@ -43,15 +46,15 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         name: 'Meta (%)',
         type: 'scatter',
         symbol: 'circle',
-        symbolSize: 10,
+        symbolSize: 8,
         itemStyle: {
           color: '#000'
         },
         data: filteredData.map(indicador=> indicador.indicador_meta),
         label: {
           show: true,
-          position: 'insideTop',
-          offset: [0, 5],
+          position: 'top',
+          offset: [0, -3],
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           },
@@ -68,7 +71,7 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         label: {
           show: true,
           position: 'top',
-          offset: [0, 5],
+          offset: [0, 15],
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           }

@@ -41,6 +41,9 @@ const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
     },
     yAxis:{
         type: 'value',
+        splitLine: {
+          show: false, 
+        },
       },
     series: series
   };
