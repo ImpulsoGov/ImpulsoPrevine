@@ -85,10 +85,8 @@ const progresso = async(ConteudosCMS,userID,token)=>{
 
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
-        console.log(conclusoes,item.titulo)
         item.qtd.forEach(element=>{
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
-            console.log(element,item.titulo)
             element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=(19/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conteudosQTD)*element.conclusao

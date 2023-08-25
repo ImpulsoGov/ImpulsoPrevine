@@ -71,8 +71,6 @@ useEffect(()=>{
 })},[session]) 
 
 const [tabelaData, setTabelaData] = useState([]);
-const [tabelaDataEquipeSemExame,setTabelaDataEquipeSemExame] = useState([])
-const [tabelaDataEquipeComExame,setTabelaDataEquipeComExame] = useState([])
 
 useEffect(()=>{
     if(session){
@@ -128,7 +126,7 @@ if(session){
             },
         ]}
         /> : <Spinner/>
-    setTabelaDataEquipeSemExame(tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12))
+    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
@@ -168,8 +166,8 @@ if(session){
         data={tabelaData}
         setData={setTabelaData}
     /></> : <Spinner/>
-    setTabelaDataEquipeComExame([...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))])
-    const TabelaChildComExame = tabelaDataEquipeComExame && tabelaDataEquipe && tabelaDataEquipeComExame && tabelaData ? 
+    const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
+    const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
         dadosFiltros={[
             {
