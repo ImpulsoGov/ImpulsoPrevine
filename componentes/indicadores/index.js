@@ -42,8 +42,8 @@ const Indicadores = () => {
                 url: ''
               }}
               supertitulo=""
-              texto="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados."
-              titulo="<b> Desempenho do Município l </b>"
+              texto="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados. <br></br>"
+              titulo="<b>Desempenho do Município</b>"
             /><GraficoDesempenhoMunicipio
               GrafDesempenho={indicadoresData}
             />
@@ -59,14 +59,13 @@ const Indicadores = () => {
                 url: ''
               }}
               supertitulo=""
-              texto="Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez."
-              titulo="<b> Histórico de Desempenho hj</b>"
+              texto="Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez. <br></br>"
+              titulo="<b> Histórico de Desempenho</b>"
             /> <GraficoHistoricoDesempenho
               GrafHistorico={indicadoresData}
             /></>
         ]}
       />
-
       <TituloSmallTexto
         botao={{
           label: '',

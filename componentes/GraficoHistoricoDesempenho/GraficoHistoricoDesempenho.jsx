@@ -26,9 +26,9 @@ const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
       trigger: 'axis'
     },
     grid: {
-      left: '5%',
+      left: '6%',
       right: '5%',
-      bottom: '1%',
+      bottom: '0%',
       containLabel: true
     },
     xAxis: {
@@ -43,7 +43,7 @@ const GraficoHistoricoDesempenho = ({GrafHistorico}) => {
         type: 'value',
         splitLine: {
           show: false, 
-        },
+        }, 
       },
     series: series
   };

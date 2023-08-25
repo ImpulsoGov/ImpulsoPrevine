@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores';
+import styles from './GraficoDesempenhoMunicipio.module.css';
 import { Spinner } from '@impulsogov/design-system'
+
 const GraficoComSeletor = ({
   setSelectedPeriodo,
   GrafDesempenho,
   option
-  })=><>
-    <select onChange={(e) => setSelectedPeriodo(e.target.value)}>
+}) => <>
+    <select
+      onChange={(e) => setSelectedPeriodo(e.target.value)}
+      className={styles.customSelect}
+    >
       {
-        [...new Set(GrafDesempenho.map(item=> item.periodo_codigo))].reverse().map(item=><option key={item} value={item}>{item}</option>)
+        [...new Set(GrafDesempenho.map(item => item.periodo_codigo))].reverse().map(item => (
+          <option key={item} value={item}>{`Quadrimestre: ${item}`}</option>
+        ))
       }
     </select>
     <ReactEcharts key={Math.random()} option={option} />
   </>
 
-const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
-  const [data,setData] = useState([])
+const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
+  const [data, setData] = useState([])
   const [selectedPeriodo, setSelectedPeriodo] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     setData(filtrarPorPeriodoCodigo(GrafDesempenho)?.sort((a, b) => a.indicador_score - b.indicador_score))
-  },[GrafDesempenho])
-  useEffect(()=>{
+  }, [GrafDesempenho])
+  useEffect(() => {
     setData(filtrarPorPeriodoCodigo(GrafDesempenho)?.sort((a, b) => a.indicador_score - b.indicador_score))
-  },[selectedPeriodo])
+  }, [selectedPeriodo])
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -33,17 +40,15 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
     },
     legend: {},
     grid: {
-      left: '8%',
-      right: '1%',
-      bottom: '1%',
-      width: '95%', 
-      height: '90%',
+      left: '6%',
+      right: '5%',
+      bottom: '0%',
       containLabel: true
     },
     xAxis: [
       {
         type: 'category',
-        data: data.map(indicador=> indicador.indicador_nome),
+        data: data.map(indicador => indicador.indicador_nome),
         axisLabel: {
           rotate: 50,
           interval: 0
@@ -54,7 +59,7 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
       {
         type: 'value',
         splitLine: {
-          show: false, 
+          show: false,
         },
       }
     ],
@@ -67,11 +72,11 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         itemStyle: {
           color: '#000'
         },
-        data: data.map(indicador=> indicador.indicador_meta),
+        data: data.map(indicador => indicador.indicador_meta),
         label: {
           show: true,
           position: 'top',
-          offset: [0, -3],
+
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           },
@@ -84,11 +89,11 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         itemStyle: {
           color: '#379CFA'
         },
-        data: data.map(indicador=> indicador.indicador_nota_porcentagem),
+        data: data.map(indicador => indicador.indicador_nota_porcentagem),
         label: {
           show: true,
-          position: 'top',
-          offset: [0, 5],
+          position: 'insideTop',
+
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           }
@@ -101,15 +106,15 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         itemStyle: {
           color: '#D4DBE7'
         },
-        data: data.map(indicador=> indicador.indicador_diferenca_meta),
+        data: data.map(indicador => indicador.indicador_diferenca_meta),
       }
     ]
   };
 
-  return data.length>0 ? <GraficoComSeletor
-  setSelectedPeriodo={setSelectedPeriodo}
-  GrafDesempenho={GrafDesempenho}
-  option={option}
+  return data.length > 0 ? <GraficoComSeletor
+    setSelectedPeriodo={setSelectedPeriodo}
+    GrafDesempenho={GrafDesempenho}
+    option={option}
   /> : <Spinner />
 };
 
