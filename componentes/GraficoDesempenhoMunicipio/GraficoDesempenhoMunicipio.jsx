@@ -52,7 +52,10 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
     ],
     yAxis: [
       {
-        type: 'value'
+        type: 'value',
+        splitLine: {
+          show: false, 
+        },
       }
     ],
     series: [
@@ -67,8 +70,8 @@ const GraficoDesempenhoMunicipio = ({GrafDesempenho}) => {
         data: data.map(indicador=> indicador.indicador_meta),
         label: {
           show: true,
-          position: 'insideTop',
-          offset: [0, 5],
+          position: 'top',
+          offset: [0, -3],
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           },
