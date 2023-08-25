@@ -56,61 +56,29 @@ const Parceiros = (res)=>{
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
-      <ModalAlert
-        Child = {Alert}
-        childProps = {{
-          titulos : {
-              Titulo : "Vacinação Infantil",
-              SubTitulo : "Capacitação sobre o Previne Brasil:"
-          },
-          Info : [
-              {
-                  icon : "https://media.graphassets.com/mK0XWA2qSyK3tSPER5SM",
-                  info : "23/08"
-              },
-              {
-                  icon : "https://media.graphassets.com/Bsq3OasQQxWNFuN0Ldhs",
-                  info : "19hs"
-              },
-              {
-                  icon : "https://media.graphassets.com/wb3wQPKRQY6o1Mb7pLzE",
-                  info : "Online"
-              },
-              {
-                  icon : "https://media.graphassets.com/Ui2qHF9IR9WyqEQv8H1v",
-                  info : "Gratuito"
-              },
-          ],
-          cardProfissional : {
-              profissional : "https://media.graphassets.com/2sqDyLFbTJylgJKYorEy",
-              logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
-              nome : "Isabela dos Santos",
-              cargo : "Especialista em Saúde Coletiva"
-          },
-          botao : {
-              label : "QUERO ME INSCREVER",
-              url : "https://bit.ly/inscricao-webinar-14"
-          }
-        }
-        }
-      />
       <Margem 
         componente={
           <>
-            <div style={{paddingTop:80}}></div>
-            <NovoTituloTexto
-              titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
-              texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
+            <div style={{paddingTop:80}}></div>         
+            <Margem 
+              componente={
+                <>
+                  <NovoTituloTexto
+                    titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
+                    texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
+                  />
+                  <div style={{paddingTop:75}}></div>
+                  <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
+              </>
+              } 
             />
-            <div style={{paddingTop:75}}></div>
-            <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
             <div style={{paddingTop:75}}></div>
           </>
         } 
       />
       <ParceriasTexto
-          text = "“A ImpulsoGov, uma organização sem fins lucrativos que atua fomentando uso de dados e tecnologia na gestão pública, tem apoiado gratuitamente municípios na melhoria de seus processos…”"
-          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/07YT7KxzQR6zW8LR4qOM"}]}
+          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
+          parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/gjPxnSNWTY6tbtK0UXk5"}]}
       />
       
       <Margem 
@@ -149,7 +117,7 @@ const Index = ({res}) => {
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
-                texto="Informações sempre atualizadas sobre atenção primária à saúde diretamente por e-mail, no nosso blog e em nossas capacitações.<br/><br/>"
+                texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
               />,
               <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
             ] }
@@ -164,7 +132,7 @@ const Index = ({res}) => {
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Conteúdos gratuitos</b>"
                 titulo=""
-                texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
+                texto="Informações sempre atualizadas sobre atenção primária à saúde diretamente por e-mail, no nosso blog e em nossas capacitações.<br/><br/>"
               />
             ] }
           />

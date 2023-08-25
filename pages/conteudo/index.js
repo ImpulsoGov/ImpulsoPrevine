@@ -52,7 +52,7 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
         setAvaliacao(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
         setStarHover(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
     }, [dynamicRoute])
-    console.log(res[1]?.conteudos[0]?.url)
+    console.log(res[1]?.conteudos[0]?.materialComplementar)
     return(
         <>
             {
@@ -101,15 +101,19 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
                         titulo: res[1]?.conteudos[0]?.tituloTexto?.titulo,
                         trilha: res[1]?.trilhas[0]?.titulo.toUpperCase()
                     }}
-                    materialComplementar={{
-                        card: {
-                        arquivo: res[1]?.conteudos[0]?.materialComplementar[0]?.label,
-                        icon: 'https://media.graphassets.com/aFcM8jxSSyStgrfCL8Uw',
-                        titulo: res[1]?.conteudos[0]?.materialComplementar[0]?.label ? res[1]?.conteudos[0]?.materialComplementar[0]?.label : '',
-                        url:  res[1]?.conteudos[0]?.materialComplementar[0]?.url ? res[1]?.conteudos[0]?.materialComplementar[0]?.url : ''
-                        },
-                        titulo: 'Material Complementar'
-                    }}
+                    materialComplementar={
+                        res[1]?.conteudos[0]?.materialComplementar?.length>0 ?
+                        {
+                            titulo: 'Material Complementar',
+                            card : res[1]?.conteudos[0]?.materialComplementar?.map(item=>{
+                                return {
+                                    icon : 'https://media.graphassets.com/aFcM8jxSSyStgrfCL8Uw',
+                                    url : item?.url ? item?.url : '',
+                                    arquivo : item?.label,
+                                }
+                            })
+                        }:undefined
+                    }
                     conteudo={{
                         url : res[1]?.conteudos[0]?.tipo == 'quizz' ? res[1]?.conteudos[0]?.url+session?.user?.mail : res[1]?.conteudos[0]?.url,
                         tipo : res[1]?.conteudos[0]?.tipo

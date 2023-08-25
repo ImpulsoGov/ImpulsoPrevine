@@ -28,6 +28,10 @@ function ModalAutorizacoes({
           } }
           texto=''
           titulo={ titulo }
+          botao={{
+            label: '',
+            url: ''
+          }}
         />
 
         <div className={ styles.SelectContainer }>

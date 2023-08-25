@@ -96,8 +96,7 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
-                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },
-                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
+                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
@@ -105,7 +104,7 @@ function MyApp(props) {
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
                       .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
-                    : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/consultoria" }, { label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
+                    : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
                 esqueciMinhaSenha={ {
@@ -148,7 +147,7 @@ function MyApp(props) {
             }
             <div 
               style={{
-                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : "30px",
+                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
                   height: "100%"
               }}
             >
