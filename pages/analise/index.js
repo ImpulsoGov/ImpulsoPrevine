@@ -44,7 +44,10 @@ const Indicadores = () => {
             supertitulo=""
             texto="Verifique como foi o desempenho do seu município em relação a meta preconizada pelo Ministério da Saúde para as <b> equipes avaliadas** no quadrimestre selecionado. </b> Veja também o desempenho nos quadrimestres passados."
             titulo="<b> Desempenho do Município </b>"
+          /><GraficoDesempenhoMunicipio
+            GrafDesempenho={indicadoresData}
           /></div>,
+          <>
           <TituloSmallTexto
             botao={{
               label: '',
@@ -58,17 +61,17 @@ const Indicadores = () => {
             texto="Veja o <b> histórico de desempenho (%) </b> geral do seu município ao longo do tempo ou selecione um (ou mais) indicador(es) por vez."
             titulo="<b> Histórico de Desempenho </b>"
           />
+          <GraficoHistoricoDesempenho
+            GrafHistorico={indicadoresData}
+          />
+          </>
         ]}
       />
       <Grid12Col
         items={[
           <div style={{ borderRight: '2px solid #ddd', paddingRight: '10px' }}>
-          <GraficoDesempenhoMunicipio
-            GrafDesempenho={indicadoresData}
-          /></div>,
-          <GraficoHistoricoDesempenho
-            GrafHistorico={indicadoresData}
-          />
+          </div>,
+          
         ]}
       />
 
