@@ -40,9 +40,9 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
     },
     legend: {},
     grid: {
-      left: '6%',
+      left: '9%',
       right: '5%',
-      bottom: '0%',
+      bottom: '1%',
       containLabel: true
     },
     xAxis: [
@@ -50,7 +50,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         type: 'category',
         data: data.map(indicador => indicador.indicador_nome),
         axisLabel: {
-          rotate: 50,
+          rotate: 40,
           interval: 0
         }
       }

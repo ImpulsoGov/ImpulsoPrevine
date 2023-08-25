@@ -24,7 +24,7 @@ const Index = ({ res }) => {
   }, [activeTabIndex]);
 
   return (
-    <div>
+    <div >
 
       <TituloTexto
         imagem={{

@@ -1,10 +1,11 @@
 .customSelect {
   border: 1.5px solid #95B5B3;
-  border-radius: 7px; 
+  border-radius: 8px; 
   width: 220px; 
   text-align: center; 
   padding: 4px;
   transition: border-color 0.3s;
+  margin-bottom: 20px;
 }
 
 .customSelect:hover {

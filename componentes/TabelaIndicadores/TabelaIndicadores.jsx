@@ -59,16 +59,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
 
   const colunas = useMemo(() => [
     {
-      field: 'indicador_score',
-      headerName: 'Ordenação',
-      flex: 1.7,
-      cellClassName: 'multi-line-cell',
-      description:
-        'A ordenação dos indicadores é uma sugestão feita, levando em consideração o peso do indicador, duração, nota do indicador e quanto falta para alcançar a meta.',
-      headerClassName: styles.cabecalho,
-      
-    },
-    {
       field: 'indicador_nome',
       headerName: 'Indicador',
       flex: 1.4,
@@ -87,7 +77,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_denominador_utilizado_informado',
       headerName: 'Denominador utilizado (Denominador informado)',
-      flex: 1.5,
+      flex: 1.7,
       align: 'center',
       headerAlign: 'center',
       description:'O denominador utilizado pode ser o informado (identificado) ou o estimado.'+
@@ -99,7 +89,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_100_porcento_meta',
       headerName: 'Nº total de pessoas para bater a meta',
-      flex: 1.4,
+      flex: 1.5,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -109,7 +99,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_usuarios_cadastrados_sem_atendimento',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
-      flex: 2.4,
+      flex: 3.4,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -120,7 +110,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_nota',
       headerName: 'Nota',
-      flex: 1.1,
+      flex: 1.3,
       align: 'center',
       headerAlign: 'center',
       description: <NotaTooltip />,
@@ -130,7 +120,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'delta_formatado',
       headerName: 'Variação de desempenho de Q1-23/Q3-22',
-      flex: 1.4,
+      flex: 1.8,
       align: 'center',
       headerAlign: 'center',
       description: 
@@ -141,7 +131,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
     {
       field: 'indicador_recomendacao',
       headerName: 'Recomendações',
-      flex: 2.9,
+      flex: 3,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px" }}>
           {params.value}
@@ -163,7 +153,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       return []; // Retorna um array vazio se TabIndicadores for undefined
     }
 
-    return dadosFiltrados.map(({ indicador_score,
+    return dadosFiltrados.map(({
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
@@ -173,7 +163,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       indicador_recomendacao
     }) => ({
       id: uuidV4(),
-      indicador_score,
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
@@ -191,7 +180,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
         sx={{
           '& .MuiDataGrid-columnHeaderTitle': {
             fontWeight: 'bold',
-            fontSize: '11px',
+            fontSize: '14px',
             lineHeight: '1rem',
             whiteSpace: 'normal',
             textAlign: 'center',
@@ -217,11 +206,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
         autoHeight
         hideFooter
         disableColumnMenu
-        initialState={{
-          sorting: {
-            sortModel: [{ field: 'indicador_score', sort: 'asc' }],
-          },
-        }}
         getRowHeight={() => 'auto'} // altura das linhas
         headerHeight={150}
       />
