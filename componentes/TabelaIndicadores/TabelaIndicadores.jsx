@@ -192,7 +192,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
           '& .MuiDataGrid-columnHeaderTitle': {
             fontWeight: 'bold',
             fontSize: '11px',
-            lineHeight: '0.6rem',
+            lineHeight: '1rem',
             whiteSpace: 'normal',
             textAlign: 'center',
           },
@@ -200,8 +200,8 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             backgroundColor: '#1B1C1E', 
           },
           '& .MuiDataGrid-cell': {
-            fontSize: '11px',
-            lineHeight: '0.6rem',
+            fontSize: '14px',
+            lineHeight: '1rem',
             whiteSpace: 'normal',
           },
           '& .MuiButton-root': {
@@ -223,6 +223,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
           },
         }}
         getRowHeight={() => 'auto'} // altura das linhas
+        headerHeight={150}
       />
     </div>
   );
