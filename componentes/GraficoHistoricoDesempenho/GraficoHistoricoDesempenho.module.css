@@ -25,11 +25,15 @@
 
 .checkboxes {
   top: 100%;
+  border: 1.5px solid #95B5B3;
+  border-radius: 8px; 
   position: absolute;
   padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  background-color: #EBECED;
+  transition: border-color 0.3s;
   align-items: flex-start;
   text-align: left;
   z-index: 2;
