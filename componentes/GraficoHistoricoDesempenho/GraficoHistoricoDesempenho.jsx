@@ -49,7 +49,9 @@ const GraficoHistoricoComSeletor = ({
 };
 
 const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
-  const [selectedIndicadores, setSelectedIndicadores] = useState([]);
+  const [selectedIndicadores, setSelectedIndicadores] = useState(
+    [...new Set(GrafHistorico.map(item => item.indicador_nome))]
+  ); 
   const [series, setSeries] = useState([]);
   const [filteredSeries, setFilteredSeries] = useState([]);
   const [graphLoading, setGraphLoading] = useState(true);
@@ -75,13 +77,9 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
     });
 
     setSeries(newSeries);
+    setFilteredSeries(newSeries); 
     setGraphLoading(false);
   }, [GrafHistorico, selectedIndicadores]);
-
-  useEffect(() => {
-    const filteredSeries = series.filter(item => selectedIndicadores.includes(item.name));
-    setFilteredSeries(filteredSeries);
-  }, [series, selectedIndicadores]);
 
   const option = {
     tooltip: {
