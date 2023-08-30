@@ -14,7 +14,7 @@ const Acoes = () => {
           url: ''
         }}
         texto="  "
-        titulo="<b> Estamos passando por melhorias essa página volta em breve (previsto para o fim de Setembro). </b>"
+        titulo="<b> Estamos passando por melhorias. Essa página volta em breve (previsto para o fim de Setembro). </b>"
         botao={{
           label: '',
           url: ''
