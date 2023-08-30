@@ -1,9 +1,8 @@
 import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
-import { GraficoInfo, Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
+import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
-import { AcessoindicadoresEquipesHomologadas } from '../../services/indicadoresEquipesHomologadas'
 import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
 import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
 import Context from "../../utils/Context";
