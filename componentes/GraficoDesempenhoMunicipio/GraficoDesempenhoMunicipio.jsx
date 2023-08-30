@@ -70,7 +70,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {
-          color: '#000'
+          color: '#7579EA'
         },
         data: data.map(indicador => indicador.indicador_meta),
         label: {
@@ -87,7 +87,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         type: 'bar',
         stack: 'Ad',
         itemStyle: {
-          color: '#379CFA'
+          color: '#2EB280'
         },
         data: data.map(indicador => indicador.indicador_nota_porcentagem),
         label: {
@@ -104,7 +104,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         type: 'bar',
         stack: 'Ad',
         itemStyle: {
-          color: '#D4DBE7'
+          color: '#57C7DC'
         },
         data: data.map(indicador => indicador.indicador_diferenca_meta),
       }
