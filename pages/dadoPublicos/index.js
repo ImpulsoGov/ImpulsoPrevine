@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelectorSM, TituloTexto, SearchBar } from "@impulsogov/design-system"
+import { PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
+import { MunicipioSelector } from "../../componentes/MunicipioSelector";
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
+import { data } from "../../utils/Municipios"
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
@@ -55,12 +57,11 @@ const Index = ({ res }) => {
           url: ''
         }}
         titulo="Resultados do Previne Brasil"
-        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas.<br>
-        Selecione seu município no seletor abaixo: </br>"
-
+        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas."
       />
-
-
+      <MunicipioSelector
+        municipios={data.map((item) => ({ nome: item.nome, uf: item.uf }))}
+      />
       <PanelSelectorSM
         panel={Number(router.query?.painel)}
         states={{
