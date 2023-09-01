@@ -1,11 +1,11 @@
 import React from 'react';
-import './MunicipioSelector.module.css';
+import styles from './MunicipioSelector.module.css';
 
 const MunicipioSelector  = ({ municipios, onChange }) => {
   return (
     <div>
       <label htmlFor="municipio"></label>
-      <select className="municipio" onChange={onChange}>
+      <select className={styles.municipio} onChange={onChange}>
         <option value="">Selecionar Município</option>
         {municipios.map((municipio, index) => (
           <option key={index} value={municipio.nome}>
