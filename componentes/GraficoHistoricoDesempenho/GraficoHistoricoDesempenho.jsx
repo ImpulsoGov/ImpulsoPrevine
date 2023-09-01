@@ -17,13 +17,13 @@ const GraficoHistoricoComSeletor = ({
       setSelectedIndicadores(prevSelected => [...prevSelected, value]);
     }
   };
-
+  console.log(selectedIndicadores)
   return (
     <div>
       <div className={styles.selectorBox}>
         <div className={styles.selectorHeader} onClick={() => setShowCheckboxes(!showCheckboxes)}>
           <span>Indicador de Desempenho</span>
-          <div className={styles.arrowIcon}>{showCheckboxes ? 'v' : 'v'}</div>
+          <div className={styles.arrowIcon}>{showCheckboxes ? '▼' : '▼'}</div>
         </div>
         {showCheckboxes && (
           <div className={styles.checkboxes}>
@@ -43,7 +43,7 @@ const GraficoHistoricoComSeletor = ({
           </div>
         )}
       </div>
-      <ReactEcharts option={option} />
+      <ReactEcharts key={Math.random()} option={option} />
     </div>
   );
 };
@@ -80,7 +80,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
     setFilteredSeries(newSeries); 
     setGraphLoading(false);
   }, [GrafHistorico, selectedIndicadores]);
-
+  useEffect(()=>setSelectedIndicadores([...new Set(GrafHistorico.map(item => item.indicador_nome))]),[GrafHistorico])
   const option = {
     tooltip: {
       trigger: 'axis',
