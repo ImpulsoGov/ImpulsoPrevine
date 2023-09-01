@@ -143,6 +143,7 @@ if(session){
             },
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
@@ -182,6 +183,7 @@ if(session){
             },
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
@@ -313,7 +315,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 },0)
             },
             {
-                descricao: 'Coleta realizada antes dos 25 anos (Não contabilizada para o Previne Brasil',
+                descricao: 'Coleta realizada antes dos 25 anos (Não contabilizada para o Previne Brasil)',
                 valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 14) ?
                 acumulador + 1 : acumulador;
@@ -570,6 +572,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             },
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
