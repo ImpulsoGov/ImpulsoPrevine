@@ -54,7 +54,7 @@ const Index = ({ res }) => {
                 <>
                   <NovoTituloTexto
                     titulo="Analise os resultados do Previne Brasil nos últimos quadrimestres"
-                    texto="Selecione o seu município no menu superior e clique no <br> componente do programa que você quer ver.</br>"
+                    texto="Confira gratuitamente uma nova maneira de acompanhar o desempenho de qualquer município no Previne Brasil com informações comparativas a partir dos dados públicos do SISAB.</br>"
                   />
                 </>
 
@@ -76,7 +76,7 @@ const Index = ({ res }) => {
                 <div key={uuidv1()} style={{ position: 'relative' }}>
                   <CardIP
                     titulo=""
-                    indicador={<span style={{ color: '#1F1F1F', fontSize: '28px' }}>Indicadores de Desempenho</span>}
+                    indicador={<span style={{ color: '#1F1F1F', fontSize: '29px' }}> <br></br>Indicadores de Desempenho </span>}
                     descricao={
                       <span style={{ fontSize: '18px' }}>
                         Compare resultados dos 7 indicadores entre um quadrimestre e outro.
@@ -98,10 +98,10 @@ const Index = ({ res }) => {
                  <div key={uuidv1()} style={{ position: 'relative' }}>
                  <CardIP
                    titulo=""
-                   indicador={<span style={{ color: '#1F1F1F', fontSize: '27.2px' }}>Capitação Ponderada - cadastros</span>}
+                   indicador={<span style={{ color: '#1F1F1F', fontSize: '27.2px' }}><br></br> Capitação Ponderada - cadastros</span>}
                    descricao={
                      <span style={{ fontSize: '18px' }}>
-                       Acompanhe a evolução nos cadastros de cada equipe do seu município..
+                       Acompanhe a evolução nos cadastros de cada equipe do seu município.
                        <br></br>
                        <br></br>
                        <br></br>
@@ -120,7 +120,7 @@ const Index = ({ res }) => {
                 <div key={uuidv1()} style={{ position: 'relative' }}>
                 <CardIP
                   titulo=""
-                  indicador={<span style={{ color: '#1F1F1F', fontSize: '28px' }}>Incentivos a Ações Estratégicas</span>}
+                  indicador={<span style={{ color: '#1F1F1F', fontSize: '28px' }}><br></br> Incentivos a Ações Estratégicas</span>}
                   descricao={
                     <span style={{ fontSize: '18px' }}>
                       Confira o histórico de repasses e as ações que se enquadram no seu perfil.

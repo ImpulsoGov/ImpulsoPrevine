@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelectorSM, TituloTexto } from "@impulsogov/design-system"
+import { PanelSelectorSM, TituloTexto, SearchBar } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
@@ -57,7 +57,9 @@ const Index = ({ res }) => {
         titulo="Resultados do Previne Brasil"
         texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas.<br>
         Selecione seu município no seletor abaixo: </br>"
+
       />
+
 
       <PanelSelectorSM
         panel={Number(router.query?.painel)}
