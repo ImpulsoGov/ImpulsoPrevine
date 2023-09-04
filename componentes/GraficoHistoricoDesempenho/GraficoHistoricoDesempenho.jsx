@@ -43,7 +43,7 @@ const GraficoHistoricoComSeletor = ({
           </div>
         )}
       </div>
-      <ReactEcharts key={Math.random()} option={option} />
+      <ReactEcharts key={Math.random()} option={option} style={{ height: '400px' }}/>
     </div>
   );
 };

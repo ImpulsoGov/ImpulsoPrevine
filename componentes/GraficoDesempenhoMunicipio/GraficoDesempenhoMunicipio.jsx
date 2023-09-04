@@ -19,7 +19,7 @@ const GraficoComSeletor = ({
         ))
       }
     </select>
-    <ReactEcharts key={Math.random()} option={option} />
+    <ReactEcharts key={Math.random()} option={option} style={{ height: '400px' }} />
   </>
 
 const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
@@ -38,11 +38,13 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         type: 'shadow'
       }
     },
-    legend: {},
+    legend: {
+      y: '-5',
+    },
     grid: {
       left: '9%',
       right: '5%',
-      bottom: '1%',
+      bottom: '0%',
       containLabel: true
     },
     xAxis: [
