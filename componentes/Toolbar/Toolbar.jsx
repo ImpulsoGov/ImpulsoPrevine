@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { GridToolbarExport } from '@mui/x-data-grid';
 
 function Toolbar({
   selectedRowId, rowMode, save, edit, cancel, add
@@ -45,6 +46,8 @@ function Toolbar({
       >
         Cancelar
       </Button>
+
+      <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
     </Box>
   );
 }
