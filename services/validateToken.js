@@ -1,10 +1,10 @@
 import axios from "axios";
-import { API_URL } from "../constants/API_URL";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 
 const validatetoken = async(token)=>{
     let config = {
         method: 'get',
-        url: API_URL+'suporte/validate-token',
+        url: API_URL_USUARIOS+'suporte/validate-token',
         headers: { 
         'Authorization': 'Bearer '+ token
         }
