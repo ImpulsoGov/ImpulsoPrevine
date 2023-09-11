@@ -113,7 +113,7 @@ const Index = ({res}) => {
             items={ [
               <TituloSmallTexto
                 key={ uuidv1() }
-                botao={{label: 'SER MUNICÍPIO PARCEIRO',url: '/consultoria'}}
+                botao={{label: 'SER MUNICÍPIO PARCEIRO',url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
