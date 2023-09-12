@@ -7,7 +7,6 @@ import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
 import { CaracterizacaoMunicipalResumo } from '../../services/caracterizacao_municipal_resumo'
 import { MunicipioSelector } from "../../componentes/MunicipioSelector";
-import { CardsIndicadores } from "../../componentes/CardsIndicadores/CardsIndicadores"
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
 import { data } from "../../utils/Municipios"
