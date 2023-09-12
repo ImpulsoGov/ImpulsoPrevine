@@ -1,16 +1,14 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelectorSM, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system"
+import { PanelSelectorSM, TituloTexto, ScoreCardGrid,Margem } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
-import { CaracterizacaoMunicipalResumo } from '../../services/caracterizacao_municipal_resumo'
 import { MunicipioSelector } from "../../componentes/MunicipioSelector";
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
 import { data } from "../../utils/Municipios"
-import Context from "../../utils/Context";
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
@@ -50,10 +48,6 @@ const Index = ({ res }) => {
     );
   }, [activeTabIndex]);
 
-  const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
-  const [cidade, setCidade] = useContext(Context);
-  useEffect(() => { CaracterizacaoMunicipalResumo(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
-
   return (
     <div >
 
@@ -70,40 +64,38 @@ const Index = ({ res }) => {
       />
       <Margem
         componente={
-          <>
-            <ScoreCardGrid
-              valores={[
-                {
-                  descricao: 'Total de pessoas com Hipertensão',
-                  valor: 102
-                },
-                {
-                  descricao: 'Total de pessoas com consulta e aferição de PA em dia',
-                  valor: 102
-                },
-                {
-                  descricao: 'Total de pessoas com Hipertensão',
-                  valor: 102
-                },
-                {
-                  descricao: 'Total de pessoas com Hipertensão',
-                  valor: 102
-                }
-                ,
-                {
-                  descricao: 'Total de pessoas com Hipertensão',
-                  valor: 102
-                }
-                ,
-                {
-                  descricao: 'Total de pessoas com Hipertensão',
-                  valor: 102
-                }
-              ]}
-            />
-            
-          </>
-        }
+        <>
+      <ScoreCardGrid
+        valores={[
+          {
+            descricao: 'Total de pessoas com Hipertensão',
+            valor: 102
+          },
+          {
+            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
+            valor: 102
+          },
+          {
+            descricao: 'Total de pessoas com Hipertensão',
+            valor: 102
+          },
+          {
+            descricao: 'Total de pessoas com Hipertensão',
+            valor: 102
+          },
+          {
+            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
+            valor: 102
+          },
+          {
+            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
+            valor: 102
+          }
+          
+        ]}
+      />
+      </>
+      } 
       />
 
       <PanelSelectorSM
