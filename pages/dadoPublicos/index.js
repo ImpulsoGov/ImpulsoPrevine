@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelectorSM, TituloTexto, ScoreCardGrid,Margem } from "@impulsogov/design-system"
+import { PanelSelectorSM, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
+import { CaracterizacaoMunicipalResumo } from ".././../services/caracterizacao_municipal_resumo"
 import { MunicipioSelector } from "../../componentes/MunicipioSelector";
+import { CardsIndicadores } from '../../componentes/CardsIndicadores/CardsIndicadores';
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
 import { data } from "../../utils/Municipios"
@@ -35,6 +37,9 @@ const Index = ({ res }) => {
   const router = useRouter();
   const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+  const [scoreCardData, setScoreCardData] = useState([]);
+  const [selectedMunicipio, setSelectedMunicipio] = useState('São Paulo - SP'); // Estado para rastrear o município selecionado
+
   useEffect(() => {
     setActiveTabIndex(Number(router.query?.painel));
   }, [router.query?.painel]);
@@ -47,6 +52,26 @@ const Index = ({ res }) => {
       undefined, { shallow: true }
     );
   }, [activeTabIndex]);
+
+  useEffect(() => {
+    async function fetchScoreCardData() {
+      try {
+        const dataFromAPI = await CaracterizacaoMunicipalResumo(selectedMunicipio);
+        
+        const mappedData = CardsIndicadores(dataFromAPI);
+        setScoreCardData(mappedData);
+      } catch (error) {
+        console.error('Erro ao buscar os dados:', error);
+      }
+    }
+
+    fetchScoreCardData();
+  }, [selectedMunicipio]);
+
+  const handleMunicipioChange = (event) => {
+    const municipio = event.target.value;
+    setSelectedMunicipio(municipio);
+  };
 
   return (
     <div >
@@ -61,41 +86,16 @@ const Index = ({ res }) => {
       />
       <MunicipioSelector
         municipios={data.map((item) => ({ nome: item.nome, uf: item.uf }))}
+        onChange={handleMunicipioChange}
       />
       <Margem
         componente={
-        <>
-      <ScoreCardGrid
-        valores={[
-          {
-            descricao: 'Total de pessoas com Hipertensão',
-            valor: 102
-          },
-          {
-            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
-            valor: 102
-          },
-          {
-            descricao: 'Total de pessoas com Hipertensão',
-            valor: 102
-          },
-          {
-            descricao: 'Total de pessoas com Hipertensão',
-            valor: 102
-          },
-          {
-            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
-            valor: 102
-          },
-          {
-            descricao: 'Total de pessoas com consulta e aferição de PA em dia',
-            valor: 102
-          }
-          
-        ]}
-      />
-      </>
-      } 
+          <>
+            <ScoreCardGrid
+              valores={scoreCardData}
+            />
+          </>
+        }
       />
 
       <PanelSelectorSM
