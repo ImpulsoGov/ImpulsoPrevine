@@ -22,7 +22,6 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf) => {
         }
         if(chaves.includes(chave)) responseCard.push({descricao : descricoes[chave], valor: response.data[0][chave].toLocaleString('pt-BR')});
       })
-      console.log(responseCard)
       return responseCard;
     })
     .catch(function (error) {
