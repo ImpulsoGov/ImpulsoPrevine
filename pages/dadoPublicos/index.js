@@ -1,4 +1,4 @@
-import { useEffect, useState , useContext} from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
 import { PanelSelectorSM, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system";
@@ -7,7 +7,7 @@ import Cadastros from "../../componentes/cadastros";
 import Acoes from "../../componentes/acoes_estrategicas";
 import { CaracterizacaoMunicipalResumo } from ".././../services/caracterizacao_municipal_resumo";
 import { MunicipioSelector } from "../../componentes/MunicipioSelector";
-import CardsIndicadores  from "../../componentes/CardsIndicadores/CardsIndicadores";
+import CardsIndicadores from "../../componentes/CardsIndicadores/CardsIndicadores";
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
 import { data } from "../../utils/Municipios"
@@ -39,7 +39,7 @@ const Index = ({ res }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const [scoreCardData, setScoreCardData] = useState([]);
-  const [selectedMunicipio, setSelectedMunicipio] = useContext(Context); 
+  const [selectedMunicipio, setSelectedMunicipio] = useContext(Context);
 
   useEffect(() => {
     setActiveTabIndex(Number(router.query?.painel));
@@ -59,9 +59,13 @@ const Index = ({ res }) => {
       try {
         const dataFromAPI = await CaracterizacaoMunicipalResumo(selectedMunicipio);
         console.log("Dados obtidos do banco de dados:", dataFromAPI);
-        const mappedData = <CardsIndicadores dataFromAPI={dataFromAPI} />;
-        console.log("Dados mapeados:", mappedData);
-        setScoreCardData(mappedData);
+        
+
+        // Chame CardsIndicadores e armazene os resultados em uma variável
+        const cardsIndicadores = CardsIndicadores({ dataFromAPI: dataFromAPI });
+
+        // Defina os resultados em scoreCardData
+        setScoreCardData(cardsIndicadores);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
       }
@@ -75,7 +79,7 @@ const Index = ({ res }) => {
     setSelectedMunicipio(municipio);
   };
 
-  console.log("Dados para ScoreCardGrid:", scoreCardData); 
+  console.log("Dados para ScoreCardGrid:", scoreCardData);
 
   return (
     <div >
@@ -96,8 +100,15 @@ const Index = ({ res }) => {
         componente={
           <>
             <ScoreCardGrid
-              valores={scoreCardData}
-            />
+              valores={Array.isArray(scoreCardData) ? scoreCardData : []}
+            >
+              {CardsIndicadores({ dataFromAPI: scoreCardData }).map((item, index) => (
+                <div key={index}>
+                  <h3>{item.descricao}</h3>
+                  <p>{item.valor}</p>
+                </div>
+              ))}
+            </ScoreCardGrid>
           </>
         }
       />
