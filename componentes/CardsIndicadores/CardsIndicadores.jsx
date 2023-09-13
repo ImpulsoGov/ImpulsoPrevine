@@ -1,42 +1,48 @@
 import React from 'react';
 
 const CardsIndicadores = ({ dataFromAPI }) => {
-  
+  // Verifique se os dadosFromAPI não são nulos
+  if (!dataFromAPI || !Array.isArray(dataFromAPI)) {
+    return []; 
+  }
+
   const mappedData = [
     {
       descricao: 'Tipologia',
-      valor: dataFromAPI.municipio_tipologia 
+      valor: municipio_tipologia,
     },
     {
       descricao: 'População IBGE (2020)',
-      valor: dataFromAPI.municipio_populacao_2020 
+      valor: municipio_populacao_2020,
     },
     {
       descricao: 'Nº total de equipes',
-      valor: dataFromAPI.equipe_total 
+      valor: equipe_total,
     },
     {
       descricao: 'Parâmetro',
-      valor: dataFromAPI.cadastro_parametro 
+      valor: cadastro_parametro,
     },
     {
       descricao: 'Nº de cadastros das equipes válidas',
-      valor: dataFromAPI.cadastros_equipes_validas 
+      valor: cadastros_equipes_validas,
     },
     {
       descricao: 'Nº de cadastros vulneráveis das equipes válidas',
-      valor: dataFromAPI.cadastros_equipes_validas_com_ponderacao 
+      valor: cadastros_equipes_validas_com_ponderacao,
     },
   ];
 
-  const cards = mappedData.map((item, index) => (
-    <div key={index}>
-      <h3>{item.descricao}</h3>
-      <p>{item.valor}</p>
+  return (
+    <div>
+      {mappedData.map((item, index) => (
+        <div key={index}>
+          <h3>{item.descricao}</h3>
+          <p>{item.valor}</p>
+        </div>
+      ))}
     </div>
-  ));
-
-  return <div>{cards}</div>;
+  );
 };
 
 export default CardsIndicadores;

@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useContext} from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelectorSM, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system"
-import Indicadores from "../../componentes/indicadores"
-import Cadastros from "../../componentes/cadastros"
-import Acoes from "../../componentes/acoes_estrategicas"
-import { CaracterizacaoMunicipalResumo } from ".././../services/caracterizacao_municipal_resumo"
+import { PanelSelectorSM, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system";
+import Indicadores from "../../componentes/indicadores";
+import Cadastros from "../../componentes/cadastros";
+import Acoes from "../../componentes/acoes_estrategicas";
+import { CaracterizacaoMunicipalResumo } from ".././../services/caracterizacao_municipal_resumo";
 import { MunicipioSelector } from "../../componentes/MunicipioSelector";
-import { CardsIndicadores } from '../../componentes/CardsIndicadores/CardsIndicadores';
+import CardsIndicadores  from "../../componentes/CardsIndicadores/CardsIndicadores";
 import { getData } from '../../services/cms'
 import { LAYOUT, HOME } from '../../utils/QUERYS'
 import { data } from "../../utils/Municipios"
+import Context from "../../utils/Context";
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
@@ -38,7 +39,7 @@ const Index = ({ res }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const [scoreCardData, setScoreCardData] = useState([]);
-  const [selectedMunicipio, setSelectedMunicipio] = useState('São Paulo - SP'); 
+  const [selectedMunicipio, setSelectedMunicipio] = useContext(Context); 
 
   useEffect(() => {
     setActiveTabIndex(Number(router.query?.painel));
@@ -58,8 +59,8 @@ const Index = ({ res }) => {
       try {
         const dataFromAPI = await CaracterizacaoMunicipalResumo(selectedMunicipio);
         console.log("Dados obtidos do banco de dados:", dataFromAPI);
-        const mappedData = CardsIndicadores(dataFromAPI);
-        console.log("MAPEADOOOSS", mappedData);
+        const mappedData = <CardsIndicadores dataFromAPI={dataFromAPI} />;
+        console.log("Dados mapeados:", mappedData);
         setScoreCardData(mappedData);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
