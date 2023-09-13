@@ -7,13 +7,15 @@ import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/
 import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
 import Context from "../../utils/Context";
 
-const Indicadores = () => {
+const Indicadores = ({
+  municipio,
+}) => {
   const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
   const [cidade, setCidade] = useContext(Context);
   useEffect(() => { AcessoindicadoresDesempenho(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
 
   return (
-    <div >
+    <div style={{margin : "0px 80px"}}>
       <TituloSmallTexto
         key={uuidv1()}
         imagem={{

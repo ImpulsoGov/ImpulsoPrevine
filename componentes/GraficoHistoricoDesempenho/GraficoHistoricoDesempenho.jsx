@@ -17,7 +17,6 @@ const GraficoHistoricoComSeletor = ({
       setSelectedIndicadores(prevSelected => [...prevSelected, value]);
     }
   };
-  console.log(selectedIndicadores)
   return (
     <div>
       <div className={styles.selectorBox}>
