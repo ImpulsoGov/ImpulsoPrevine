@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores';
 import styles from './GraficoDesempenhoMunicipio.module.css';
-import { Spinner } from '@impulsogov/design-system'
+import { Spinner } from '@impulsogov/design-system';
 
 const GraficoComSeletor = ({
   setSelectedPeriodo,
   GrafDesempenho,
   option
-}) => <>
+}) => (
+  <>
     <select
       onChange={(e) => setSelectedPeriodo(e.target.value)}
       className={styles.customSelect}
@@ -21,16 +22,17 @@ const GraficoComSeletor = ({
     </select>
     <ReactEcharts key={Math.random()} option={option} style={{ height: '400px' }} />
   </>
+);
 
 const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const [selectedPeriodo, setSelectedPeriodo] = useState(null);
+
   useEffect(() => {
-    setData(filtrarPorPeriodoCodigo(GrafDesempenho)?.sort((a, b) => a.indicador_score - b.indicador_score))
-  }, [GrafDesempenho])
-  useEffect(() => {
-    setData(filtrarPorPeriodoCodigo(GrafDesempenho)?.sort((a, b) => a.indicador_score - b.indicador_score))
-  }, [selectedPeriodo])
+    const filteredData = filtrarPorPeriodoCodigo(GrafDesempenho, selectedPeriodo)?.sort((a, b) => a.indicador_score - b.indicador_score);
+    setData(filteredData);
+  }, [GrafDesempenho, selectedPeriodo]);
+
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -78,7 +80,6 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         label: {
           show: true,
           position: 'top',
-
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           },
@@ -95,7 +96,6 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
         label: {
           show: true,
           position: 'insideTop',
-
           formatter: function (params) {
             return params.value !== 0 ? params.value + '%' : '';
           }
@@ -113,11 +113,18 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
     ]
   };
 
-  return data.length > 0 ? <GraficoComSeletor
-    setSelectedPeriodo={setSelectedPeriodo}
-    GrafDesempenho={GrafDesempenho}
-    option={option}
-  /> : <Spinner />
+  // Renderização condicional com base no comprimento de 'data'
+  if (data.length > 0) {
+    return (
+      <GraficoComSeletor
+        setSelectedPeriodo={setSelectedPeriodo}
+        GrafDesempenho={GrafDesempenho}
+        option={option}
+      />
+    );
+  } else {
+    return <Spinner />;
+  }
 };
 
 export default GraficoDesempenhoMunicipio;

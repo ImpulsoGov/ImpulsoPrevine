@@ -64,7 +64,7 @@ const Index = ({ res }) => {
           url: ''
         }}
         titulo="Resultados do Previne Brasil"
-        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas."
+        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas. </br><br><b> SELECIONE SEU MUNICIPIO ABAIXO<b>"
       />
       <MunicipioSelector
         municipios={data}
