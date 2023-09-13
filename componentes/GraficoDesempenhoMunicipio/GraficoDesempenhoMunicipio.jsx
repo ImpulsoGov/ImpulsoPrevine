@@ -113,7 +113,6 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
     ]
   };
 
-  // Renderização condicional com base no comprimento de 'data'
   if (data.length > 0) {
     return (
       <GraficoComSeletor
