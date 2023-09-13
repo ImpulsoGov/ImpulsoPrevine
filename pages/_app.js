@@ -30,14 +30,14 @@ function MyApp(props) {
   let path = router.pathname;
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
-  const [cidade, setCidade] = useState("");
+  const [cidade, setCidade] = useState("São Paulo - SP");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true);
   useEffect(() => TagManager.initialize(tagManagerArgs), []);
   useEffect(() => rotaDinamica(router), [router.events]);
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
-  useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
+  //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
   return (
     <>
