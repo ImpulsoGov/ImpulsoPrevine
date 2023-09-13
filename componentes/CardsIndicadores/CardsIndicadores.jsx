@@ -29,7 +29,14 @@ const CardsIndicadores = ({ dataFromAPI }) => {
     },
   ];
 
-  return <>{mappedData}</>;
+  const cards = mappedData.map((item, index) => (
+    <div key={index}>
+      <h3>{item.descricao}</h3>
+      <p>{item.valor}</p>
+    </div>
+  ));
+
+  return <div>{cards}</div>;
 };
 
 export default CardsIndicadores;

@@ -38,7 +38,7 @@ const Index = ({ res }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(Number(router.query?.painel));
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const [scoreCardData, setScoreCardData] = useState([]);
-  const [selectedMunicipio, setSelectedMunicipio] = useState('São Paulo - SP'); // Estado para rastrear o município selecionado
+  const [selectedMunicipio, setSelectedMunicipio] = useState('São Paulo - SP'); 
 
   useEffect(() => {
     setActiveTabIndex(Number(router.query?.painel));
@@ -57,8 +57,9 @@ const Index = ({ res }) => {
     async function fetchScoreCardData() {
       try {
         const dataFromAPI = await CaracterizacaoMunicipalResumo(selectedMunicipio);
-        
+        console.log("Dados obtidos do banco de dados:", dataFromAPI);
         const mappedData = CardsIndicadores(dataFromAPI);
+        console.log("MAPEADOOOSS", mappedData);
         setScoreCardData(mappedData);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
@@ -72,6 +73,8 @@ const Index = ({ res }) => {
     const municipio = event.target.value;
     setSelectedMunicipio(municipio);
   };
+
+  console.log("Dados para ScoreCardGrid:", scoreCardData); 
 
   return (
     <div >
