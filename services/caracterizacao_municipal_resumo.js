@@ -20,7 +20,17 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf) => {
           'cadastros_equipes_validas' : 'Nº de cadastros das equipes válidas',
           'cadastros_equipes_validas_com_ponderacao' : 'Nº de cadastros vulneráveis das equipes válidas',
         }
-        if(chaves.includes(chave)) responseCard.push({descricao : descricoes[chave], valor: response.data[0][chave].toLocaleString('pt-BR')});
+        if (chave === 'municipio_tipologia') {
+          const valor = response.data[0][chave];
+          if (valor.startsWith('Intermediario')) {
+            // Se o valor começar com "Intermediario", quebre a linha
+            responseCard.push({ descricao: descricoes[chave], valor: valor.replace('Intermediario', 'Intermediario \n') });
+          } else {
+            responseCard.push({ descricao: descricoes[chave], valor });
+          }
+        } else if (chaves.includes(chave)) {
+          responseCard.push({ descricao: descricoes[chave], valor: response.data[0][chave].toLocaleString('pt-BR') });
+        }
       })
       return responseCard;
     })
@@ -31,4 +41,4 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf) => {
   return res
 }
 
-  export {CaracterizacaoMunicipalResumo}
+export { CaracterizacaoMunicipalResumo }
