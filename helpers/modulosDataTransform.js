@@ -91,7 +91,7 @@ const progresso = async(ConteudosCMS,userID,token)=>{
             element.progresso=(5/element.conclusao)*element.conclusao
             if(element.conclusao == 0) element.progresso=0
             if(element.modulo==0){
-                element.finalizado = element.progresso == (5/item.qtd[0].conclusao)
+                element.finalizado = element.progresso == (5/item.qtd[0].conteudosQTD)
             }else{
                 element.finalizado = element.progresso == 95/(item.qtd.length-1)
             }
