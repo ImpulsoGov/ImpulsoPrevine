@@ -41,7 +41,6 @@ const Index = ({res}) => {
         TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
     },[session]) 
 
-    console.log(data)
     return(
         <>
             <TituloTexto
@@ -68,7 +67,6 @@ const Index = ({res}) => {
                 }>
                     {
                         data.map((trilha,index)=>{
-                            console.log(trilha)
                             return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
                                 <CardTrilha
                                     titulo={trilha?.titulo}
