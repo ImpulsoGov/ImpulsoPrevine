@@ -57,8 +57,6 @@ const validarCodigoClient = async(mail,codigo)=>{
       url: API_URL_USUARIOS + 'suporte/ger_usuarios/validar-codigo',
       data : data
     };
-  console.log(mail,codigo)
-  console.log(data)
   const res = await axios(config)
   .then(function (response) {
     return response.data;

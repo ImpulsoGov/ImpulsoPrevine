@@ -16,7 +16,6 @@ const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
                 concluido: res[0].qtd[index].finalizado
             })
         });
-        console.log(modulos)
         return modulos
     })
 }
@@ -86,12 +85,10 @@ const progresso = async(ConteudosCMS,userID,token)=>{
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
         item.qtd.forEach(element=>{
-            console.log(item.qtd)
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
             element.modulo != 0 && element.conteudosQTD>0 ? 
             element.progresso=((95/(item.qtd.length-1))/element.conteudosQTD)*element.conclusao:
             element.progresso=(5/element.conclusao)*element.conclusao
-            console.log(element.progresso)
             if(element.conclusao == 0) element.progresso=0
             if(element.modulo==0){
                 element.finalizado = element.progresso == (5/item.qtd[0].conclusao)

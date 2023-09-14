@@ -50,7 +50,6 @@ const Index = ({res}) => {
   const [data,setData] = useState(false)
   const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,res[3],session?.user?.id,session?.user?.access_token)
   useEffect(()=>{modulos().then((res)=>setData(res))},[session]) 
-  console.log(res)
 return(
       <>
         {

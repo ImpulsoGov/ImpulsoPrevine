@@ -14,7 +14,6 @@ const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo,faix
         let baseURL = data_studio
         let param = genParamEquipe(token,municipio_uf,equipe,faixa_etaria)
         const link = baseURL  + param 
-        console.log(link)
         return link
     }else{
         return ""
