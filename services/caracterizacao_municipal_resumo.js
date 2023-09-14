@@ -25,6 +25,7 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf) => {
           if (valor.startsWith('Intermediario')) {
             // Se o valor começar com "Intermediario", quebre a linha
             responseCard.push({ descricao: descricoes[chave], valor: valor.replace('Intermediario', 'Intermediario \n') });
+          
           } else {
             responseCard.push({ descricao: descricoes[chave], valor });
           }

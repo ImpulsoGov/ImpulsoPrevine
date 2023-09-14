@@ -1,19 +1,26 @@
 import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
-import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
-import TabelaIndicadores from "/componentes/TabelaIndicadores/TabelaIndicadores"
-import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
-import GraficoDesempenhoMunicipio from "/componentes/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio"
-import GraficoHistoricoDesempenho from "/componentes/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho"
+import { TituloSmallTexto } from "@impulsogov/design-system"
+import TabelaAcoesEstrategicas from "/componentes/TabelaAcoesEstrategicas/TabelaAcoesEstrategicas"
+import {AcoesEstrategicasVigenteAgrupada } from '../../services/acoes_estrategicas_vigente_agrupada'
 import Context from "../../utils/Context";
 
-const Indicadores = () => {
-  const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
+const acoes_estrategicas = ({
+  municipio,
+}) => {
+  const [indicadoresData, setIndicadoresData] = useState([]); 
   const [cidade, setCidade] = useContext(Context);
-  useEffect(() => { AcessoindicadoresDesempenho(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
-
+  useEffect(() => {
+    AcoesEstrategicasVigenteAgrupada(cidade)
+      .then((result) => {
+        console.log(result); // Verifique os dados no console
+        setIndicadoresData(result);
+      });
+  }, [cidade]);
+  
+  
   return (
-    <div >
+    <div style={{margin : "0px 80px"}}>
       <TituloSmallTexto
         key={uuidv1()}
         imagem={{
@@ -97,6 +104,10 @@ const Indicadores = () => {
         titulo="<b> Ações Estratégicas implementadas em vigor </b>"
       />
 
+      <TabelaAcoesEstrategicas
+        TabAcoes={indicadoresData}
+        />
+
       <TituloSmallTexto
         botao={{
           label: '',
@@ -117,4 +128,4 @@ const Indicadores = () => {
   )
 }
 
-export default Indicadores;
+export default acoes_estrategicas;

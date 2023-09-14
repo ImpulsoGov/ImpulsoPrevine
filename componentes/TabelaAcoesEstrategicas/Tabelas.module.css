@@ -1,0 +1,8 @@
+.cabecalho {
+  background-color: #2EB280;
+  border-radius: 2px;
+}
+
+.customHeader {
+  height: 70px; /* Altura desejada para o cabeçalho da coluna */
+}
