@@ -102,6 +102,10 @@ const Index = ({res}) => {
                             icon= 'https://media.graphassets.com/jo1S3VXcTCyTFw4Ke697'
                             links={ [
                                 {
+                                    label: 'Citopatológico',
+                                    link: '/busca-ativa/citopatologico'
+                                },
+                                {
                                     label: 'Diabetes',
                                     link: '/busca-ativa/diabeticos?initialTitle=0&painel=0'
                                 },
@@ -114,7 +118,7 @@ const Index = ({res}) => {
                                     link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
                                 },
                             ]}
-                            texto= 'Oferecemos listas nominais para monitoramento: gestantes, pessoas com hipertensão e pessoas com diabetes. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.'
+                            texto= 'Oferecemos listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes e coleta do citopatológico. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.'
                             titulo= 'Listas Nominais'
                             obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
                             theme= "ColorIP"

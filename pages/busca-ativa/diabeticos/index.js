@@ -57,6 +57,7 @@ const Index = ({res}) => {
   useEffect(()=>{
     (tabelaDataAPS || tabelaDataEquipe) && session &&
     setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
+    console.log(tabelaDataEquipe)
   },[session,tabelaDataAPS,tabelaDataEquipe])
 
   useEffect(()=>{
@@ -126,7 +127,7 @@ const Index = ({res}) => {
                   },
                   {
                     descricao: 'Total de pessoas com consulta e solicitação de hemoglobina glicada em dia',
-                    valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
+                    valor: tabelaDataEquipe?.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
                       acumulador + 1 : acumulador;
                     },0)

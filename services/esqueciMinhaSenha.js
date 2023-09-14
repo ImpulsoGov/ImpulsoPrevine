@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../constants/API_URL";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 import FormData from "form-data";
 
 const solicitarNovaSenhaClient = async(mail)=>{
@@ -8,7 +8,7 @@ const solicitarNovaSenhaClient = async(mail)=>{
 
   let config = {
       method: 'post',
-      url: API_URL + 'suporte/ger_usuarios/solicitar-nova-senha',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/solicitar-nova-senha',
       data : data
     };
   const res = await axios(config)
@@ -31,7 +31,7 @@ const alterarSenhaClient = async(mail,codigo,nova_senha)=>{
 
   let config = {
     method: 'post',
-    url: API_URL + 'suporte/ger_usuarios/alterar-senha',
+    url: API_URL_USUARIOS + 'suporte/ger_usuarios/alterar-senha',
     data : data
   };
 
@@ -54,7 +54,7 @@ const validarCodigoClient = async(mail,codigo)=>{
 
   let config = {
       method: 'post',
-      url: API_URL + 'suporte/ger_usuarios/validar-codigo',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/validar-codigo',
       data : data
     };
   console.log(mail,codigo)
