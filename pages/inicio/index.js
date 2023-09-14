@@ -7,6 +7,7 @@ import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
+import { generatePDF } from '../../helpers/generatePDF'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -78,13 +79,18 @@ const Index = ({res}) => {
                     {
                         data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
                         data.map((trilha,index)=>{
+                            const GerarCertificado = () => {
+                                const carga_horaria = '10';
+                                generatePDF(trilha.titulo, session?.user?.nome, carga_horaria);
+                            }
+
                             return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
                                 <CardTrilha
                                     titulo={trilha?.titulo}
                                     progressao={trilha.progresso }
                                     linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
-                                    linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                                    certificadoLiberado= {trilha.progresso>50 ? true : false}
+                                    linkCertificado= {GerarCertificado} 
+                                    certificadoLiberado= {trilha.progresso>50}
                                     key={index}
                                 />
                         })
