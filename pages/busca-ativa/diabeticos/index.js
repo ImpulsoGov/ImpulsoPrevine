@@ -113,7 +113,7 @@ const Index = ({res}) => {
                 lineHeight: "130%",
               }}
             >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q3/23
         </div>
 
             {
@@ -223,7 +223,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q3/23
         </div>
         {
           tabelaDataAPS &&
