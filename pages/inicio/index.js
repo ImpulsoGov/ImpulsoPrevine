@@ -76,7 +76,7 @@ const Index = ({res}) => {
                 }>
 
                     {
-                        data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
+                        data && session?.user.perfis.includes(7) && TrilhasLiberadas && Array.isArray(TrilhasLiberadas) &&
                         data.map((trilha,index)=>{
                             return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
                                 <CardTrilha
