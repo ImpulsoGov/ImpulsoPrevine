@@ -57,7 +57,6 @@ const Index = ({res}) => {
   useEffect(()=>{
     (tabelaDataAPS || tabelaDataEquipe) && session &&
     setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
-    console.log(tabelaDataEquipe)
   },[session,tabelaDataAPS,tabelaDataEquipe])
 
   useEffect(()=>{
