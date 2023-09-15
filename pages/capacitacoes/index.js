@@ -6,6 +6,7 @@ import { progresso } from '../../helpers/modulosDataTransform'
 import { useEffect, useState } from 'react'
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
+import { generatePDF } from '../../helpers/generatePDF'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -24,7 +25,6 @@ export async function getServerSideProps(ctx) {
 
 
 const Index = ({res}) => {
-    console.log(res)
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
     const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
@@ -40,7 +40,6 @@ const Index = ({res}) => {
         session && 
         TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
     },[session]) 
-
     return(
         <>
             <TituloTexto
@@ -67,15 +66,22 @@ const Index = ({res}) => {
                 }>
                     {
                         data.map((trilha,index)=>{
+                            const GerarCertificado = () => {
+                                const carga_horaria = '10';
+                                generatePDF(trilha.titulo, session?.user?.nome, carga_horaria);
+                            }
+                        
                             return TrilhasLiberadas?.some(trilhaLiberada=>trilhaLiberada.trilha_id==trilha.TrilhaID) &&
+                                <>
                                 <CardTrilha
                                     titulo={trilha?.titulo}
                                     progressao={trilha.progresso }
                                     linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
-                                    linkCertificado= {trilha.progresso>50 ? "https://forms.gle/osZtTZLmB6zSP7fQA" : "/"} 
-                                    certificadoLiberado= {trilha.progresso>50 ? true : false}
+                                    Certificado= {GerarCertificado} 
+                                    certificadoLiberado= {trilha.progresso>50}
                                     key={index}
                                 />
+                                </>
                         })
                     }
                 </div>
