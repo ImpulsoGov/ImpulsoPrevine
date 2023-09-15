@@ -89,7 +89,7 @@ const Index = ({res}) => {
                                     titulo={trilha?.titulo}
                                     progressao={trilha.progresso }
                                     linkTrilha={trilha.progresso>0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
-                                    linkCertificado= {GerarCertificado} 
+                                    Certificado= {GerarCertificado} 
                                     certificadoLiberado= {trilha.progresso>50}
                                     key={index}
                                 />
