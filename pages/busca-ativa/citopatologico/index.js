@@ -642,7 +642,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 lineHeight: "130%",
             }}
         >
-        {session.user.municipio} - Q2/23
+        {session.user.municipio} - Q3/23
         </div>
         <PanelSelector
             components={[Children]}
