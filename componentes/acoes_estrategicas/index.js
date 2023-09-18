@@ -2,13 +2,16 @@ import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
 import { TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaAcoesEstrategicas from "/componentes/TabelaAcoesEstrategicas/TabelaAcoesEstrategicas"
-import {AcoesEstrategicasVigenteAgrupada } from '../../services/acoes_estrategicas_vigente_agrupada'
+import GraficoValorConsolidado from "/componentes/GraficoValorConsolidado/GraficoValorConsolidado"
+import GraficoHistoricoAcaoEstrategica from "/componentes/GraficoHistoricoAcaoEstrategica/GraficoHistoricoAcaoEstrategica"
+import { AcoesEstrategicasVigenteAgrupada } from '../../services/acoes_estrategicas_vigente_agrupada'
+import { AcoesEstrategicasRepasses } from '../../services/acoes_estrategicas_repasses'
 import Context from "../../utils/Context";
 
 const acoes_estrategicas = ({
   municipio,
 }) => {
-  const [indicadoresData, setIndicadoresData] = useState([]); 
+  const [indicadoresData, setIndicadoresData] = useState([]);
   const [cidade, setCidade] = useContext(Context);
   useEffect(() => {
     AcoesEstrategicasVigenteAgrupada(cidade)
@@ -17,10 +20,12 @@ const acoes_estrategicas = ({
         setIndicadoresData(result);
       });
   }, [cidade]);
-  
-  
+
+  const [indicadoresDataGraf, setIndicadoresDataGraf] = useState([]); // Estado para armazenar os dados dos indicadores
+  const [cidadeG, setCidadeG] = useContext(Context);
+  useEffect(() => { AcoesEstrategicasRepasses(cidadeG).then((result) => setIndicadoresDataGraf(result)) }, [cidadeG]);
   return (
-    <div style={{margin : "0px 80px"}}>
+    <div style={{ margin: "0px 80px" }}>
       <TituloSmallTexto
         key={uuidv1()}
         imagem={{
@@ -47,6 +52,10 @@ const acoes_estrategicas = ({
         supertitulo=""
         texto="Veja abaixo o histórico de repasses do componente de incentivos para ações estratégicas do seu município, considerando todas as ações implementadas, ou seja, <b>o valor consolidado do município</b> em cada mês. <br></br>"
         titulo="<b> Histórico de repasses </b>"
+      />
+
+      <GraficoValorConsolidado
+        GrafValorConsolidado={indicadoresDataGraf}
       />
 
       <TituloSmallTexto
@@ -76,6 +85,10 @@ const acoes_estrategicas = ({
         texto="Veja o histórico de repasses <b> de cada ação estratégica </b>  do seu município que foi implementada e continua em vigor*."
         titulo="" tooltip="" />
 
+      <GraficoHistoricoAcaoEstrategica
+        GrafAcaoEstrategica={indicadoresDataGraf}
+      />
+        
       <TituloSmallTexto
         botao={{
           label: '',
@@ -106,7 +119,7 @@ const acoes_estrategicas = ({
 
       <TabelaAcoesEstrategicas
         TabAcoes={indicadoresData}
-        />
+      />
 
       <TituloSmallTexto
         botao={{
