@@ -1,6 +1,6 @@
 import axios from "axios";
 import FormData from "form-data";
-import { API_URL } from "../constants/API_URL";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 
 
 const validateCredentials = async(mail,senha)=>{
@@ -10,7 +10,7 @@ const validateCredentials = async(mail,senha)=>{
     
     var config = {
         method: 'post',
-        url: API_URL + 'suporte/usuarios/token',
+        url: API_URL_USUARIOS + 'suporte/usuarios/token',
         data : data
     };
     

@@ -76,7 +76,6 @@ const Index = ({res}) => {
       validatetoken(session?.user?.access_token)
       .then(response=>{
         setTokenValido(response)
-        console.log("tokenValido",tokenValido)
       }).catch(error=>{
         setTokenValido(false)
       })

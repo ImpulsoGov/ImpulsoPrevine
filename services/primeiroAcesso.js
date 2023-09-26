@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../constants/API_URL";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 import FormData from "form-data";
 
 const primeiroAcessoClient = async(mail)=>{
@@ -8,7 +8,7 @@ const primeiroAcessoClient = async(mail)=>{
     
     let config = {
       method: 'post',
-      url: API_URL + 'suporte/ger_usuarios/primeiro-acesso',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/primeiro-acesso',
       data : data
     };
     
@@ -36,7 +36,7 @@ const primeiroAcesso = async(mail)=>{
   
     let config = {
       method: 'post',
-      url: API_URL + 'suporte/ger_usuarios/criar-senha',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/criar-senha',
       data : data
     };
   

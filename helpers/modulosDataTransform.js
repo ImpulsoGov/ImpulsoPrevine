@@ -16,7 +16,6 @@ const modulosDataTransform = async(ConteudosCMS,TrilhaID,userID,token)=>{
                 concluido: res[0].qtd[index].finalizado
             })
         });
-        console.log(modulos)
         return modulos
     })
 }
@@ -85,18 +84,16 @@ const progresso = async(ConteudosCMS,userID,token)=>{
 
     conteudos_por_modulo.forEach(item=>{
         const conclusoes = UsuarioConclusoes(item.codigoTrilha,modulos_usuario,[...Array(item.qtd.length).keys()])
-        console.log(conclusoes,item.titulo)
         item.qtd.forEach(element=>{
             element.conclusao=conclusoes.filter(conclusao=>conclusao.modulo==element.modulo)[0]?.conteudosConcluidos
-            console.log(element,item.titulo)
             element.modulo != 0 && element.conteudosQTD>0 ? 
-            element.progresso=(19/element.conteudosQTD)*element.conclusao:
-            element.progresso=(5/element.conteudosQTD)*element.conclusao
+            element.progresso=((95/(item.qtd.length-1))/element.conteudosQTD)*element.conclusao:
+            element.progresso=(5/element.conclusao)*element.conclusao
             if(element.conclusao == 0) element.progresso=0
             if(element.modulo==0){
-                element.finalizado = element.progresso == 5
+                element.finalizado = element.progresso == (5/item.qtd[0].conteudosQTD)
             }else{
-                element.finalizado = element.progresso == 19
+                element.finalizado = element.progresso == 95/(item.qtd.length-1)
             }
         })
         item.progresso = Math.round(item.qtd.reduce((accumulator, currentValue) => {return accumulator + currentValue.progresso},0))

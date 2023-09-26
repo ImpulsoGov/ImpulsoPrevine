@@ -13,6 +13,7 @@ const Cadastros = ({
 
   return (
     <div style={{ margin: "0px 80px" }}>
+
       <TituloSmallTexto
         key={uuidv1()}
         imagem={{

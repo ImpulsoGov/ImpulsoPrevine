@@ -113,7 +113,7 @@ const Index = ({res}) => {
                 lineHeight: "130%",
               }}
             >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q3/23
         </div>
 
             {
@@ -126,7 +126,7 @@ const Index = ({res}) => {
                   },
                   {
                     descricao: 'Total de pessoas com consulta e solicitação de hemoglobina glicada em dia',
-                    valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
+                    valor: tabelaDataEquipe?.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
                       acumulador + 1 : acumulador;
                     },0)
@@ -223,7 +223,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q3/23
         </div>
         {
           tabelaDataAPS &&
