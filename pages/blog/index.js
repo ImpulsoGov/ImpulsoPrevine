@@ -28,11 +28,9 @@ const Index = ({res}) => {
             titulo : artigo.titulo,
             texto :artigo.texto.raw.children[0].children[0].text,
             autor : artigo.autor,
-
             avatar: artigo?.avatar?.url,  
             data:  artigo.createdAt,
             imagem : artigo?.capa?.url,
-
           }
     )});
     const artigoDestaque = artigos.sort((a,b) => new Date(b.data) - new Date(a.data))[0];

@@ -1,13 +1,15 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid, CardLarge } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
 import { generatePDF } from '../../helpers/generatePDF'
+import {NPSConsulta, NPSAvaliacao} from "../../services/NPS"
+import style from "./ModalAlert.module.css";
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -25,12 +27,78 @@ export async function getServerSideProps(ctx) {
 }
 
 
+const NPS = ({user, token, submit})=>{
+    const [display, setDisplay] = useState(true)
+    const [avaliacao,setAvaliacao] = useState(0)
+    const [avaliacaoHover,setAvaliacaoHover] = useState(0)
+    const avaliacoes = [1,2,3,4,5]
+    const refModal = useRef()
+    useEffect(() => {
+        const handleClick = e => {if (display && !refModal?.current?.contains(e.target)) setDisplay(false);}
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
+      },[display]);
+
+    return(
+        display &&
+        <div className={style.ModalAlert}> 
+            <div className={style.Alert} ref={refModal}>
+                <div className={style.close}>
+                    <a 
+                        className={style.ModalExit}
+                        onClick={()=>setDisplay(false)}
+                    ></a>
+                </div>
+            <div className={style.tituloNPS}>Como você avalia sua experiência na área logada até agora?</div>
+            <div className={style.NPSAvaliacao}>
+                {avaliacoes.map((item)=>{
+                    return(
+                        <div 
+                            className={
+                                avaliacaoHover+1 <= item ?
+                                style.avaliacao : 
+                                style.avaliacaoColor 
+                            } 
+                            key={item}
+                            onMouseEnter={()=>{setAvaliacaoHover(item)}}
+                            onMouseLeave={()=>{setAvaliacaoHover(avaliacao==0 ? 0 : avaliacao)}}
+                            onClick={()=>setAvaliacao(item)}
+                    >{item}</div>
+                    )
+                })}
+            </div>
+            <div className={style.escala}>
+                <div>Muito ruim</div>
+                <div>Muito boa</div>
+            </div>
+            <a 
+                onClick={()=>setDisplay(false)}
+            >
+                <ButtonColorSubmit
+                    label="Avaliar"
+                    submit={submit}
+                    arg={{"user":user,"avaliacao":avaliacao,"token":token}}
+                    disable={avaliacao==0}
+                />
+            </a>
+            </div>
+        </div>
+    )
+}
+
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
+    const [dataNPS,setDataNPS] = useState(true)
     const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
     const TrilhasLiberadasClient = async()=> await acessoTrilhasClient(session?.user?.id,session?.user?.access_token)
+    const NPSDataClient = async()=> await NPSConsulta(session?.user?.id,session?.user?.access_token)
+    useEffect(()=>{
+        session &&  
+        NPSDataClient().then((response)=>{
+        setDataNPS(response)
+    })},[session]) 
     useEffect(()=>{
         session && res && 
         ProgressoClient().then((response)=>{
@@ -49,6 +117,14 @@ const Index = ({res}) => {
     if (session){
         return(
             <>
+                {
+                    !dataNPS &&
+                    <NPS 
+                        user = {session?.user?.id}
+                        token = {session?.user?.access_token}
+                        submit = {NPSAvaliacao}
+                    />                    
+                }
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem vindo(a)"
