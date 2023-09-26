@@ -1,0 +1,13 @@
+.customSelect {
+  border: 1.5px solid #95B5B3;
+  border-radius: 8px; 
+  width: 530px; 
+  text-align: left; 
+  padding: 10px;
+  transition: border-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.customSelect:hover {
+  background-color: #EBECED; /* Altera a cor da borda no hover */
+}

@@ -1,0 +1,50 @@
+.TextoVermelho {
+  color: #cf6868;
+}
+
+.TextoVerde {
+  color: #7ab37d;
+}
+
+.TextoCinza {
+  color: #9ba4a5;
+}
+
+.cabecalho {
+  background-color: #D4DBE7;
+  border-radius: 2px;
+}
+
+.customHeader {
+  height: 70px; /* Altura desejada para o cabeçalho da coluna */
+}
+
+.NotaRosa{
+  background-color: #FF8C8C;
+}
+
+.NotaLaranja{
+  background-color: #FFB45D;
+}
+
+.NotaAmarela{
+  background-color: #FFF065;
+}
+
+.NotaVerde{
+  background-color: #5CDAAC;
+}
+
+.CelulaVermelha{
+  background-color: #F8BBAE
+}
+
+.quadradoTooltip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+

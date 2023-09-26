@@ -1,4 +1,4 @@
-import { Footer, NavBar } from '@impulsogov/design-system';
+import { Footer, NavBar, SearchBar } from '@impulsogov/design-system';
 import { SessionProvider, getSession, signIn, signOut, useSession } from "next-auth/react";
 import App from 'next/app';
 import Head from 'next/head';
@@ -30,19 +30,19 @@ function MyApp(props) {
   let path = router.pathname;
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
-  const [cidade, setCidade] = useState("");
+  const [cidade, setCidade] = useState("São Paulo - SP");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true);
   useEffect(() => TagManager.initialize(tagManagerArgs), []);
   useEffect(() => rotaDinamica(router), [router.events]);
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
-  useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
+  //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
   return (
     <>
       <Head>
-        <title>{ props.pageTitle }</title>
+        <title>{props.pageTitle}</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -78,7 +78,7 @@ function MyApp(props) {
                   logoProjeto: width > 1000 ?
                     path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
-                  cor: (path == '/' || path == '/apoio') ? "Cinza" : "White",
+                  cor: (path == '/' || path == '/apoio' || path == '/analise') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }
                 seletorMunicipios={ path == '/analise' }
