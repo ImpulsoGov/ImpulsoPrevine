@@ -59,6 +59,13 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
 
   const colunas = useMemo(() => [
     {
+      field: 'indicador_score',
+      hide: true, 
+      headerClassName: styles.invisivel,
+      cellClassName: styles.invisivel,
+      
+    },
+    {
       field: 'indicador_nome',
       headerName: 'Indicador',
       flex: 1.6,
@@ -144,16 +151,24 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       headerClassName: styles.cabecalho,
     },
   ]);
+
+  const sortModel = [
+    {
+      field: 'indicador_score', // Campo pelo qual deseja ordenar
+      sort: 'asc', // Você pode usar 'asc' para ordenação ascendente ou 'desc' para ordenação descendente
+    },
+  ];
  
   const ultimoPeriodo = TabIndicadores.length > 0 ? TabIndicadores[TabIndicadores.length - 1].periodo_codigo : undefined;
 
   const linhas = useMemo(() => {
     const dadosFiltrados = filtrarPorPeriodoCodigo(TabIndicadores, ultimoPeriodo);
     if (!TabIndicadores) {
-      return []; // Retorna um array vazio se TabIndicadores for undefined
+      return []; 
     }
 
     return dadosFiltrados.map(({
+      indicador_score,
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
@@ -163,6 +178,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       indicador_recomendacao
     }) => ({
       id: uuidV4(),
+      indicador_score,
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
@@ -202,6 +218,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
         }}
         rows={linhas}
         columns={colunas}
+        sortModel={sortModel}
         density="comfortable"
         autoHeight
         hideFooter

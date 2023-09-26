@@ -82,7 +82,7 @@ const Index = ({ res }) => {
                 </span>
               }
             />
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-110px', marginLeft: '-25px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-110px', marginLeft: '-20px' }}>
               <ButtonColor
                 label={card.buttonText}
                 link={card.link}

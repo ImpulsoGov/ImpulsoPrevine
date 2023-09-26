@@ -81,7 +81,7 @@ function MyApp(props) {
                   cor: (path == '/' || path == '/apoio' || path == '/analise') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }
-                seletorMunicipios={ path == '/analise' }
+               
                 showMenuMobile={ {
                   states: {
                     active: active,

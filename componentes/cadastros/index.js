@@ -1,6 +1,6 @@
 import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
-import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
+import {  TituloSmallTexto } from "@impulsogov/design-system"
 import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
 import Context from "../../utils/Context";
 
