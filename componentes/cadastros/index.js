@@ -153,7 +153,7 @@ const Cadastros = ({
         texto=""
         titulo=""
       />
-
+    
       <div style={{ paddingBottom: '105px' }}></div>
     </div>
   )
