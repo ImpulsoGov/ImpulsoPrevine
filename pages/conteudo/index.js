@@ -52,7 +52,6 @@ const Index = ({res,AvaliacaoConclusao,ModulosLiberados}) => {
         setAvaliacao(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
         setStarHover(AvaliacaoConclusao ? AvaliacaoConclusao[0]?.avaliacao : null)
     }, [dynamicRoute])
-    console.log(res[1]?.conteudos[0]?.materialComplementar)
     return(
         <>
             {
