@@ -252,6 +252,12 @@ const Index = ({res}) => {
           tabelaDataAPS &&
           <GraficoBuscaAtiva
           dataBarra={{
+            title: {
+              text: 'Distribuição por equipe',
+              subtext: '',
+              left: '80',
+              top: 'top'
+            },            
             color: [
               '#EABF2E',
               '#57C7DC',
@@ -269,7 +275,7 @@ const Index = ({res}) => {
                 'Apenas aferição de PA em dia',
                 'Nada em dia'
               ],
-              top: 'top'
+              top: '60'
             },
             series: [
               {
@@ -329,6 +335,10 @@ const Index = ({res}) => {
             }
           }}
           dataRosca={{
+            title: {
+              text: 'Consolidado Municipal',
+              left: '80'
+            },
             color: [
               '#EABF2E',
               '#57C7DC',
