@@ -89,7 +89,7 @@ const NPS = ({user, token, submit})=>{
 const Index = ({res}) => {
     const { data: session,status } = useSession()
     const [data,setData] = useState(false)
-    const [dataNPS,setDataNPS] = useState(false)
+    const [dataNPS,setDataNPS] = useState(true)
     const [TrilhasLiberadas,setTrilhasLiberadas] = useState([])
     const ProgressoClient = async()=> await progresso(res[1].trilhas,session?.user?.id,session?.user?.access_token)
     const TrilhasLiberadasClient = async()=> await acessoTrilhasClient(session?.user?.id,session?.user?.access_token)
