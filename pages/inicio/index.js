@@ -1,7 +1,7 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession } from "next-auth/react"
-import { Greeting, CardTrilha, CardLargeGrid, CardLarge } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
@@ -9,6 +9,7 @@ import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { getSession } from "next-auth/react";
 import { generatePDF } from '../../helpers/generatePDF'
 import {NPSConsulta, NPSAvaliacao} from "../../services/NPS"
+import style from "./ModalAlert.module.css";
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -116,7 +117,7 @@ const Index = ({res}) => {
     if (session){
         return(
             <>
-                 {
+                {
                     !dataNPS &&
                     <NPS 
                         user = {session?.user?.id}
