@@ -13,17 +13,6 @@ import { data } from "../../utils/Municipios"
 import Context from "../../utils/Context";
 
 export async function getServerSideProps(ctx) {
-  const userIsActive = ctx.req.cookies['next-auth.session-token']
-  const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-  let redirect = !userIsActive && !userIsActiveSecure
-  if (!redirect) {
-    return {
-      redirect: {
-        destination: "/dadoPublicos",
-        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
-      },
-    }
-  }
   const res = [
     await getData(LAYOUT),
   ]
