@@ -1,40 +1,39 @@
 import { DataGrid } from '@mui/x-data-grid';
-import React, {useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styles from './Tabelas.module.css';
-import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores'
+import { filtrarPorPeriodoCodigo } from '../../helpers/filtroQuadrimestreIndicadores';
 
-const TabelaIndicadores = ({ TabIndicadores}) => {
-
-  const getCellClassName = (params) => {  
+const TabelaIndicadores = ({ TabIndicadores }) => {
+  const getCellClassName = (params) => {
     const value = parseFloat(params.value);
-    
+
     if (value > 0) {
-      return styles.TextoVerde; 
+      return styles.TextoVerde;
     } else if (value < 0) {
-      return styles.TextoVermelho; 
+      return styles.TextoVermelho;
     }
-  
-    return ''; 
+
+    return '';
   };
 
-  const getNotaCellClassName = (params) => {  
+  const getNotaCellClassName = (params) => {
     const nota = parseFloat(params.value);
-  
+
     if (nota > 0 && nota <= 5) {
-      return styles.NotaRosa; 
+      return styles.NotaRosa;
     } else if (nota > 5 && nota <= 8) {
-      return styles.NotaLaranja; 
+      return styles.NotaLaranja;
     } else if (nota > 8 && nota <= 9.9) {
-      return styles.NotaAmarela; 
+      return styles.NotaAmarela;
     } else if (nota === 10) {
-      return styles.NotaVerde; 
+      return styles.NotaVerde;
     }
-  
-    return ''; 
+
+    return '';
   };
 
-  const NotaTooltip = () => (  
+  const NotaTooltip = () => (
     <div>
       <div className={`${styles.quadradoTooltip} ${styles.NotaRosa}`}></div>
       &gt; 0 e &lt;= 5<br />
@@ -49,37 +48,37 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
 
   const getUsuariosSemAtendimentoCellClassName = (params) => {
     const value = parseFloat(params.value);
-  
+
     if (value !== 0) {
-      return styles.CelulaVermelha; 
+      return styles.CelulaVermelha;
     }
-  
+
     return '';
   };
 
   const colunas = useMemo(() => [
     {
       field: 'indicador_score',
-      hide: true, 
-      headerClassName: styles.invisivel,
-      cellClassName: styles.invisivel,
-      
+      headerName: '',
+      flex: 0,
+      width: 0, 
+      cellClassName: styles.colunaBranca,
+      headerClassName: styles.cabecalho,
     },
     {
       field: 'indicador_nome',
       headerName: 'Indicador',
       flex: 1.6,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px"  }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding: '15px' }}>
           {params.value}
         </div>
       ),
       cellClassName: 'multi-line-cell',
       align: 'center',
       headerAlign: 'center',
-      description: 
-      '',
-      headerClassName: styles.cabecalho,      
+      description: '',
+      headerClassName: styles.cabecalho,
     },
     {
       field: 'indicador_denominador_utilizado_informado',
@@ -87,10 +86,10 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       flex: 1.7,
       align: 'center',
       headerAlign: 'center',
-      description:'O denominador utilizado pode ser o informado (identificado) ou o estimado.'+
-      'O denominador informado - é o número de pessoas cadastradas informado pelo município, que impactam o indicador (ex.: o número de gestantes cadastradas é utilizado como referência para o indicador de pré-natal).' +
-      'O denominador estimado -  é uma estimativa criada pelo ministério da saúde de quantas pessoas o município deveria ter cadastradas naquela categoria. O denominador utilizado será o informado caso o valor seja igual ou maior que 85% do denominador estimado. Caso ele seja menor, o denominador estimado será utilizado para cálculo da meta.'+
-      'Nesse campo, é possível comparar o denominador utilizado e o informado, para saber quão próximo dos 85% está, caso o utilizado seja o estimado.',
+      description: 'O denominador utilizado pode ser o informado (identificado) ou o estimado.' +
+        'O denominador informado - é o número de pessoas cadastradas informado pelo município, que impactam o indicador (ex.: o número de gestantes cadastradas é utilizado como referência para o indicador de pré-natal).' +
+        'O denominador estimado -  é uma estimativa criada pelo ministério da saúde de quantas pessoas o município deveria ter cadastradas naquela categoria. O denominador utilizado será o informado caso o valor seja igual ou maior que 85% do denominador estimado. Caso ele seja menor, o denominador estimado será utilizado para cálculo da meta.' +
+        'Nesse campo, é possível comparar o denominador utilizado e o informado, para saber quão próximo dos 85% está, caso o utilizado seja o estimado.',
       headerClassName: styles.cabecalho,
     },
     {
@@ -99,8 +98,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       flex: 1.7,
       align: 'center',
       headerAlign: 'center',
-      description: 
-      'A partir de dados do SISAB, fazemos um cálculo de quantas pessoas devem ser atendidas dentro de cada indicador, para que o município atinja a meta estabelecida. Se o número indicado for igual a zero, isso significa que o município já atingiu ou ultrapassou a meta estabelecida pelo Previne Brasil.',
+      description: 'A partir de dados do SISAB, fazemos um cálculo de quantas pessoas devem ser atendidas dentro de cada indicador, para que o município atinja a meta estabelecida. Se o número indicado for igual a zero, isso significa que o município já atingiu ou ultrapassou a meta estabelecida pelo Previne Brasil.',
       headerClassName: styles.cabecalho,
     },
     {
@@ -109,8 +107,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       flex: 3.8,
       align: 'center',
       headerAlign: 'center',
-      description: 
-      'A partir dos denominadores informado e estimado, calculamos dentro do número total de pessoas para bater a meta e quantas o município ainda não cadastrou (de acordo com o denominador estimado) e ainda precisam ser cadastradas, acompanhadas e atendidas, para que a meta seja cumprida.',
+      description: 'A partir dos denominadores informado e estimado, calculamos dentro do número total de pessoas para bater a meta e quantas o município ainda não cadastrou (de acordo com o denominador estimado) e ainda precisam ser cadastradas, acompanhadas e atendidas, para que a meta seja cumprida.',
       headerClassName: styles.cabecalho,
       cellClassName: getUsuariosSemAtendimentoCellClassName,
     },
@@ -130,8 +127,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       flex: 1.75,
       align: 'center',
       headerAlign: 'center',
-      description: 
-      'Calculamos a variação percentual entre o desempenho da competência atual e da competência anterior (como mostrado no gráfico de histórico de desempenho), para que o município saiba quão grande foi o crescimento ou a queda de um quadrimestre para o outro.',
+      description: 'Calculamos a variação percentual entre o desempenho da competência atual e da competência anterior (como mostrado no gráfico de histórico de desempenho), para que o município saiba quão grande foi o crescimento ou a queda de um quadrimestre para o outro.',
       headerClassName: styles.cabecalho,
       cellClassName: getCellClassName,
     },
@@ -140,31 +136,30 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
       headerName: 'Recomendações',
       flex: 2.35,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding : "15px" }}>
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding: '15px' }}>
           {params.value}
         </div>
       ),
       align: 'center',
       headerAlign: 'center',
-      description: 
-      '',
+      description: '',
       headerClassName: styles.cabecalho,
     },
   ]);
 
   const sortModel = [
     {
-      field: 'indicador_score', // Campo pelo qual deseja ordenar
-      sort: 'asc', // Você pode usar 'asc' para ordenação ascendente ou 'desc' para ordenação descendente
+      field: 'indicador_score',
+      sort: 'asc',
     },
   ];
- 
+
   const ultimoPeriodo = TabIndicadores.length > 0 ? TabIndicadores[TabIndicadores.length - 1].periodo_codigo : undefined;
 
   const linhas = useMemo(() => {
     const dadosFiltrados = filtrarPorPeriodoCodigo(TabIndicadores, ultimoPeriodo);
     if (!TabIndicadores) {
-      return []; 
+      return [];
     }
 
     return dadosFiltrados.map(({
@@ -190,7 +185,6 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
   }, [TabIndicadores, ultimoPeriodo]);
 
   return (
-
     <div style={{ height: '100%', width: '100%' }}>
       <DataGrid
         sx={{
@@ -202,7 +196,7 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             textAlign: 'center',
           },
           '& .MuiDataGrid-toolbarContainer': {
-            backgroundColor: '#1B1C1E', 
+            backgroundColor: '#1B1C1E',
           },
           '& .MuiDataGrid-cell': {
             fontSize: '14px',
@@ -210,10 +204,10 @@ const TabelaIndicadores = ({ TabIndicadores}) => {
             whiteSpace: 'normal',
           },
           '& .MuiButton-root': {
-            color: '#D4DBE7', 
+            color: '#D4DBE7',
           },
           '& .MuiButton-outlined': {
-            borderColor: '#D4DBE7', 
+            borderColor: '#D4DBE7',
           },
         }}
         rows={linhas}
