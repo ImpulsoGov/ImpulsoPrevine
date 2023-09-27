@@ -7,7 +7,7 @@ import Context from "../../utils/Context";
 const Cadastros = ({
   municipio,
 }) => {
-  const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
+  const [indicadoresData, setIndicadoresData] = useState([]); 
   const [cidade, setCidade] = useContext(Context);
   useEffect(() => { AcessoindicadoresDesempenho(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
 
