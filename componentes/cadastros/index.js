@@ -1,15 +1,17 @@
 import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
-import {  TituloSmallTexto } from "@impulsogov/design-system"
-import { AcessoindicadoresDesempenho } from '../../services/indicadoresDesempenho'
+import { TituloSmallTexto } from "@impulsogov/design-system"
+import { CadastrosEquipeContagem } from '../../services/capitacao_ponderada_contagem_equipes'
+import GraficoSuasEquipes from "/componentes/GraficoSuasEquipes/GraficoSuasEquipes"
 import Context from "../../utils/Context";
 
 const Cadastros = ({
   municipio,
 }) => {
-  const [indicadoresData, setIndicadoresData] = useState([]); 
+  const [indicadoresData, setIndicadoresData] = useState([]);
   const [cidade, setCidade] = useContext(Context);
-  useEffect(() => { AcessoindicadoresDesempenho(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
+  useEffect(() => { CadastrosEquipeContagem(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
+  console.log(indicadoresData);
 
   return (
     <div style={{ margin: "0px 80px" }}>
@@ -26,6 +28,9 @@ const Cadastros = ({
           label: '',
           url: ''
         }}
+      />
+      <GraficoSuasEquipes
+        GrafCapitacao={indicadoresData}
       />
 
       <TituloSmallTexto
@@ -153,7 +158,7 @@ const Cadastros = ({
         texto=""
         titulo=""
       />
-    
+
       <div style={{ paddingBottom: '105px' }}></div>
     </div>
   )
