@@ -167,7 +167,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
-      indicador_usuarios_cadastrados_sem_atendimento,
+      indicador_usuarios_cadastrar_para_meta,
       indicador_nota,
       delta_formatado,
       indicador_recomendacao
@@ -177,7 +177,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       indicador_nome,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
-      indicador_usuarios_cadastrados_sem_atendimento,
+      indicador_usuarios_cadastrar_para_meta,
       indicador_nota,
       delta_formatado,
       indicador_recomendacao
