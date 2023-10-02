@@ -102,7 +102,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
-      field: 'indicador_usuarios_cadastrados_sem_atendimento',
+      field: 'indicador_usuarios_cadastrar_para_meta',
       headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
       flex: 3.8,
       align: 'center',
