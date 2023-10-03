@@ -58,7 +58,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
   useEffect(() => {
     const selectedData = GrafHistorico.filter(item => selectedIndicadores.includes(item.indicador_nome));
 
-    const periodos = [...new Set(selectedData.map(item => item.periodo_codigo))];
+    const periodos = [...new Set(selectedData.map(item => item.periodo_codigo))].sort();
 
     const newSeries = selectedIndicadores.map(indicador => {
       const dadosPorIndicador = periodos.map(periodo => {
