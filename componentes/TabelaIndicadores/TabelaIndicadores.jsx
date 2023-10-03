@@ -76,7 +76,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       flex: 2.5,
       align: 'center',
       headerAlign: 'center',
-      description: 'Refere-se ao número de consultas, procedimentos ou exames que foram contabilizados no quadrimestre. Esse número é usado como referência para calcular o desempenho do indicador, permitindo avaliar a porcentagem que o município alcançou em relação a meta estabelecida.',
+      description: 'Refere-se ao número de pessoas em dia com os critérios de consultas, procedimentos e exames e que contabilizaram neste quadrimestre.',
       headerClassName: styles.cabecalho,
       
     },
