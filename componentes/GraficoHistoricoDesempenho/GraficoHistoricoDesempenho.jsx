@@ -93,7 +93,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: [...new Set(GrafHistorico.map(item => item.periodo_codigo))].sort(),
+      data: [...new Set(GrafHistorico.map(item => item.periodo_codigo))],
       axisLabel: {
         rotate: 45,
       },
