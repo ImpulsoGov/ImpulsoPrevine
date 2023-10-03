@@ -70,7 +70,7 @@ const colunasHipertensao = [
     },
     {
       align: 'center',
-      field: 'dt_ultima_consulta',
+      field: 'dt_consulta_mais_recente',
       headerAlign: 'center',
       headerName: 'DATA DA CONSULTA MAIS RECENTE',
       renderCell : FormatarData,
