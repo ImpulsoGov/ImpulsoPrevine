@@ -46,16 +46,6 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     </div>
   );
 
-  const getUsuariosSemAtendimentoCellClassName = (params) => {
-    const value = parseFloat(params.value);
-
-    if (value !== 0) {
-      return styles.CelulaVermelha;
-    }
-
-    return '';
-  };
-
   const colunas = useMemo(() => [
     {
       field: 'indicador_score',
@@ -81,6 +71,16 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerClassName: styles.cabecalho,
     },
     {
+      field: 'indicador_numerador',
+      headerName: 'Numerador',
+      flex: 2.5,
+      align: 'center',
+      headerAlign: 'center',
+      description: 'Refere-se ao número de pessoas em dia com os critérios de consultas, procedimentos e exames e que contabilizaram neste quadrimestre.',
+      headerClassName: styles.cabecalho,
+      
+    },
+    {
       field: 'indicador_denominador_utilizado_informado',
       headerName: 'Denominador utilizado (Denominador informado)',
       flex: 1.7,
@@ -101,16 +101,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       description: 'A partir de dados do SISAB, fazemos um cálculo de quantas pessoas devem ser atendidas dentro de cada indicador, para que o município atinja a meta estabelecida. Se o número indicado for igual a zero, isso significa que o município já atingiu ou ultrapassou a meta estabelecida pelo Previne Brasil.',
       headerClassName: styles.cabecalho,
     },
-    {
-      field: 'indicador_usuarios_cadastrar_para_meta',
-      headerName: 'Quantas pessoas ainda não foram cadastradas no denominador desse indicador, precisam ser atendidas para bater a meta?',
-      flex: 3.8,
-      align: 'center',
-      headerAlign: 'center',
-      description: 'A partir dos denominadores informado e estimado, calculamos dentro do número total de pessoas para bater a meta e quantas o município ainda não cadastrou (de acordo com o denominador estimado) e ainda precisam ser cadastradas, acompanhadas e atendidas, para que a meta seja cumprida.',
-      headerClassName: styles.cabecalho,
-      cellClassName: getUsuariosSemAtendimentoCellClassName,
-    },
+    
     {
       field: 'indicador_nota',
       headerName: 'Nota',
@@ -124,7 +115,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'delta_formatado',
       headerName: 'Variação de desempenho de Q1-23/Q3-22',
-      flex: 1.75,
+      flex: 2,
       align: 'center',
       headerAlign: 'center',
       description: 'Calculamos a variação percentual entre o desempenho da competência atual e da competência anterior (como mostrado no gráfico de histórico de desempenho), para que o município saiba quão grande foi o crescimento ou a queda de um quadrimestre para o outro.',
@@ -134,7 +125,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     {
       field: 'indicador_recomendacao',
       headerName: 'Recomendações',
-      flex: 2.35,
+      flex: 3.4,
       renderCell: (params) => (
         <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding: '15px' }}>
           {params.value}
@@ -165,9 +156,9 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     return dadosFiltrados.map(({
       indicador_score,
       indicador_nome,
+      indicador_numerador,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
-      indicador_usuarios_cadastrar_para_meta,
       indicador_nota,
       delta_formatado,
       indicador_recomendacao
@@ -175,9 +166,9 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       id: uuidV4(),
       indicador_score,
       indicador_nome,
+      indicador_numerador,
       indicador_denominador_utilizado_informado,
       indicador_usuarios_100_porcento_meta,
-      indicador_usuarios_cadastrar_para_meta,
       indicador_nota,
       delta_formatado,
       indicador_recomendacao
