@@ -28,9 +28,9 @@ const Index = ({ res }) => {
       link: "/dadoPublicos"
     },
     {
-      title: "Captação Ponderada - Cadastros",
+      title: "Capitação Ponderada - Cadastros", 
       description: "Acompanhe a evolução nos cadastros de cada equipe do seu município.",
-      buttonText: "CAPTAÇÃO PONDERADA",
+      buttonText: "CAPITAÇÃO PONDERADA",
       link: "/dadoPublicos?painel=1"
     },
     {
@@ -82,7 +82,7 @@ const Index = ({ res }) => {
                 </span>
               }
             />
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-110px', marginLeft: '-25px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-110px', marginLeft: '-20px' }}>
               <ButtonColor
                 label={card.buttonText}
                 link={card.link}
