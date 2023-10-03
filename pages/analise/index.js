@@ -28,7 +28,7 @@ const Index = ({ res }) => {
       link: "/dadoPublicos"
     },
     {
-      title: "Capitação Ponderada - Cadastros",
+      title: "Capitação Ponderada - Cadastros", 
       description: "Acompanhe a evolução nos cadastros de cada equipe do seu município.",
       buttonText: "CAPITAÇÃO PONDERADA",
       link: "/dadoPublicos?painel=1"
