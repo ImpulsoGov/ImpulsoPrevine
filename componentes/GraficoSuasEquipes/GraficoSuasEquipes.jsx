@@ -28,13 +28,11 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
       }
     },
     legend: {
-      orient: 'vertical', 
-      right: 0, 
-      top: '70',
+      
     },
     grid: {
-      left: '0%',
-      right: '8%',
+      left: '2%',
+      right: '2%',
       bottom: '0%',
       containLabel: true,
     },
