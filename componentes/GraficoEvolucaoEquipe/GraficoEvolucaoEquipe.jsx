@@ -17,7 +17,7 @@ const formatarData = (data) => {
     'jan', 'fev', 'mar', 'abr', 'mai', 'jun',
     'jul', 'ago', 'set', 'out', 'nov', 'dez'
   ];
-  
+
   const [ano, mes, _] = data.split('-');
   return `${meses[parseInt(mes) - 1]} ${ano}`;
 };
@@ -66,8 +66,8 @@ const GraficoEvolucaoEquipecomSeletor = ({
         </div>
         <span >&nbsp; e sua diferença para meta</span>
       </div>
-    
-      <ReactEcharts key={Math.random()} option={option} style={{ height: '400px' }}/>
+
+      <ReactEcharts key={Math.random()} option={option} style={{ height: '450px' }} />
     </div>
   );
 };
@@ -80,14 +80,12 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
   const [filteredSeries, setFilteredSeries] = useState([]);
   const [graphLoading, setGraphLoading] = useState(true);
 
-  // Filtrar os dados a partir de setembro de 2022
   const GrafEvolucaoFiltrado = GrafEvolucao.filter(item => {
     const dataInicio = new Date(item.data_inicio);
     const setembro2022 = new Date('2022-09-01');
     return dataInicio >= setembro2022;
   });
 
-  // Formatar e ordenar as datas apenas das entradas filtradas
   const datasFiltradas = [...new Set(GrafEvolucaoFiltrado.map(item => {
     const dataFormatada = formatarData(item.data_inicio);
     return dataFormatada;
@@ -117,25 +115,34 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
       };
     });
 
-    // Adicione uma série separada para "municipio_ultimo_parametro"
     newSeries.push({
       name: "Parâmetro municipal mais recente",
       type: 'line',
+      color: '#F10096',
       data: selectedData.map(item => item.municipio_ultimo_parametro),
-      symbol: 'circle',
-      symbolSize: 8,
+      showSymbol: false, 
+        emphasis: {
+          symbol: 'circle', 
+          symbolSize: 8,
+        },
     });
 
     setSeries(newSeries);
-    setFilteredSeries(newSeries); 
+    setFilteredSeries(newSeries);
     setGraphLoading(false);
   }, [GrafEvolucao, selectedIndicadores]);
-  
+
   useEffect(() => setSelectedIndicadores([...new Set(GrafEvolucao.map(item => item.equipe_status))]), [GrafEvolucao]);
-  
+
   const option = {
     tooltip: {
       trigger: 'axis',
+    },
+    legend: {
+      data: ['Cadastros Total', 'Cadastros com Ponderação', 'Parâmetro municipal mais recente'],
+      top: 25, 
+      left: 'center', 
+      orient: 'horizontal'
     },
     grid: {
       left: '1%',
@@ -146,7 +153,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: datasOrdenadas, // Use as datas formatadas ordenadas
+      data: datasOrdenadas, 
       axisLabel: {
         rotate: 45,
       },
@@ -157,10 +164,26 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
         show: false,
       },
       axisLabel: {
-        formatter: formatar, 
+        formatter: formatar,
       },
     },
-    series: filteredSeries, 
+    series: filteredSeries.map((serie, index) => {
+      if (serie.name === 'cadastro_total') {
+        return {
+          ...serie,
+          name: 'Cadastros Total',
+          color: '#0072F0',
+        };
+      } else if (serie.name === 'cadastros_com_pontuacao') {
+        return {
+          ...serie,
+          name: 'Cadastros com Ponderação',
+          color: '#00B6CB',
+        };
+      } else {
+        return serie; 
+      }
+    }),
   };
 
   return (
