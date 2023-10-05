@@ -2,7 +2,9 @@ import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
 import { TituloSmallTexto } from "@impulsogov/design-system"
 import { CadastrosEquipeContagem } from '../../services/capitacao_ponderada_contagem_equipes'
+import { CadastrosEquipes } from '../../services/capitacao_ponderada_cadastros_por_equipe'
 import GraficoSuasEquipes from "/componentes/GraficoSuasEquipes/GraficoSuasEquipes"
+import GraficoEvolucaoEquipe from "/componentes/GraficoEvolucaoEquipe/GraficoEvolucaoEquipe"
 import Context from "../../utils/Context";
 
 const Cadastros = ({
@@ -12,6 +14,10 @@ const Cadastros = ({
   const [cidade, setCidade] = useContext(Context);
   useEffect(() => { CadastrosEquipeContagem(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
   console.log(indicadoresData);
+
+  const [CaptacaoEvolucao, setCaptacaoEvolucao] = useState([]);
+  useEffect(() => { CadastrosEquipes(cidade).then((result) => setCaptacaoEvolucao(result)) }, [cidade]);
+  console.log(CaptacaoEvolucao);
 
   return (
     <div style={{ margin: "0px 80px" }}>
@@ -43,8 +49,11 @@ const Cadastros = ({
           url: ''
         }}
         supertitulo=""
-        texto="Confira aqui sua evolução nos cadastros, considerando a produção de: ________ e sua diferença para meta"
+        
         titulo="<b>Evolução dos cadastros<b/>"
+      />
+      <GraficoEvolucaoEquipe
+        GrafEvolucao={CaptacaoEvolucao}
       />
 
       <TituloSmallTexto

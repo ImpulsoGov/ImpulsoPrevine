@@ -28,16 +28,17 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
       }
     },
     legend: {
-      
     },
     grid: {
-      left: '2%',
-      right: '2%',
+      left: '0%',
+      right: '0%',
       bottom: '0%',
       containLabel: true,
     },
     xAxis: [
       {
+        type: 'value',
+
         splitLine: {
           show: false,
         },
@@ -49,7 +50,7 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
     yAxis: [
       {
         type: 'category',
-
+        data: ['' ],
         splitLine: {
           show: false,
         },
@@ -177,7 +178,7 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
     return <Spinner />;
   } else {
     return (
-      <ReactEcharts option={option} style={{ height: '200px' }} />
+      <ReactEcharts option={option} style={{ height: '200px', width: '100%' }} />
     );
   }
 };
