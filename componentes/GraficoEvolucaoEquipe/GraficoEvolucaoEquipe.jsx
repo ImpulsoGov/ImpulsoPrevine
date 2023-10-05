@@ -188,7 +188,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
 
   return (
     <div>
-      {graphLoading ? (
+      {graphLoading || (selectedIndicadores.length === 0) ? (
         <Spinner />
       ) : (
         <div>
