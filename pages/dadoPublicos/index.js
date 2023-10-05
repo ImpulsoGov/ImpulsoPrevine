@@ -13,6 +13,7 @@ import { data } from "../../utils/Municipios"
 import Context from "../../utils/Context";
 
 export async function getServerSideProps(ctx) {
+  
   const res = [
     await getData(LAYOUT),
   ]
@@ -53,7 +54,7 @@ const Index = ({ res }) => {
           url: ''
         }}
         titulo="Resultados do Previne Brasil"
-        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas. </br><br><b> SELECIONE SEU MUNICIPIO ABAIXO<b>"
+        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas. </br><br><b> DIGITE O SEU MUNICÍPIO ABAIXO<b>"
       />
       
       <MunicipioSelector
