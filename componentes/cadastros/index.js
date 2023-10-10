@@ -3,8 +3,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { TituloSmallTexto } from "@impulsogov/design-system"
 import { CadastrosEquipeContagem } from '../../services/capitacao_ponderada_contagem_equipes'
 import { CadastrosEquipes } from '../../services/capitacao_ponderada_cadastros_por_equipe'
+import { ValidacaoProducao } from '../../services/capitacao_ponderada_validacao_producao'
 import GraficoSuasEquipes from "/componentes/GraficoSuasEquipes/GraficoSuasEquipes"
 import GraficoEvolucaoEquipe from "/componentes/GraficoEvolucaoEquipe/GraficoEvolucaoEquipe"
+import TabelaDesempenhoEquipes from "/componentes/TabelaDesempenhoEquipes/TabelaDesempenhoEquipes";
+import TabelaCadastroPreliminar from "/componentes/TabelaCadastroPreliminar/TabelaCadastroPreliminar";
 import Context from "../../utils/Context";
 
 const Cadastros = ({
@@ -18,6 +21,10 @@ const Cadastros = ({
   const [CaptacaoEvolucao, setCaptacaoEvolucao] = useState([]);
   useEffect(() => { CadastrosEquipes(cidade).then((result) => setCaptacaoEvolucao(result)) }, [cidade]);
   console.log(CaptacaoEvolucao);
+
+  const [CapValidacaoProducao, setCapValidacaoProducao] = useState([]);
+  useEffect(() => { ValidacaoProducao(cidade).then((result) => setCapValidacaoProducao(result)) }, [cidade]);
+  console.log(CapValidacaoProducao);
 
   return (
     <div style={{ margin: "0px 80px" }}>
@@ -49,7 +56,7 @@ const Cadastros = ({
           url: ''
         }}
         supertitulo=""
-        
+
         titulo="<b>Evolução dos cadastros<b/>"
       />
       <GraficoEvolucaoEquipe
@@ -84,6 +91,10 @@ const Cadastros = ({
         titulo="<b>Desempenho das equipes</b>" tooltip=""
       />
 
+      <TabelaDesempenhoEquipes
+        TabDesempenhos={CaptacaoEvolucao}
+      />
+
       <TituloSmallTexto
         botao={{
           label: '',
@@ -93,9 +104,9 @@ const Cadastros = ({
           posicao: null,
           url: ''
         }}
-        supertitulo=""
-        texto="Seus cadastros podem não estar contabilizando por erros no registro. Confira aqui sua evolução nas validações das fichas de cadastro e descubra como melhorar. "
-        titulo="<b>Validação das fichas de produção de cadastro<b/>"
+        supertitulo="<b><u>LEGENDA</u></b>"
+        texto="<p style='color:#606E78'> ✔️Equipes Válidas  ⚠️Equipes Homologadas  ❌Equipes Cadastradas"
+        titulo=""
       />
 
       <TituloSmallTexto
@@ -152,6 +163,10 @@ const Cadastros = ({
         supertitulo=""
         texto="Você tem ___ cadastros reprovados em análise preliminar. Atualize os cadastros para que sejam contabilizados, mas <b> fique atento aos prazos de envio conforme o calendário</b> do SISAB:<br> <br><u>- Validação da produção na competência</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência</br> <u>- Validação da produção para o quadrimestre do Previne Brasil</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência que encerra o quadrimestre (abril, agosto ou dezembro)</br> <br>Caso as condições listadas acima não sejam cumpridas, o prazo máximo para envio é de 120 dias após o fechamento da competência, nesse cenário a produção enviada será contabilizada somente para série histórica. Envios realizados fora da janela de 120 dias serão descartados para uso em qualquer finalidade.</br><br>Envie as instruções para os seus estabelecimentos de saúde!</br>"
         titulo="<b>Cadastros Preliminares Inválidos<b/>"
+      />
+
+      <TabelaCadastroPreliminar
+        TabCadPreliminar={CapValidacaoProducao}
       />
 
       <TituloSmallTexto

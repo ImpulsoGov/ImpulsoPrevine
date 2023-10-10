@@ -1,0 +1,21 @@
+.cabecalho {
+  background-color: #96D8BF;
+  border-radius: 2px;
+
+}
+
+.customHeader {
+  height: 70px; 
+}
+
+.tabelaContainer {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.paginacao {
+  background-color: #fff;
+  z-index: 1;
+  bottom: 0;
+  position: sticky;
+}
