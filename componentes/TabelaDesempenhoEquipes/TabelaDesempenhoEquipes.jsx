@@ -19,7 +19,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
       case 'cadastradas':
         return '❌';
       default:
-        return status; // Retorna o status original se não houver correspondência
+        return status; 
     }
   };
 
@@ -92,7 +92,6 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
     },
   ]);
 
-  // Função para obter o nome do mês a partir do número do mês
   const obterNomeMes = (numeroMes) => {
     const nomesMeses = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -116,7 +115,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
     const endIndex = startIndex + rowsPerPage;
 
     return dadosOrdenados.slice(startIndex, endIndex).map(({ data_inicio, equipe_nome, equipe_id_ine, equipe_status, cadastros_com_pontuacao, cadastro_total }) => {
-      // Formata a data para exibir o mês como nome
+   
       const [ano, mes, dia] = data_inicio.split('-');
       const mesNome = obterNomeMes(Number(mes));
 
@@ -175,13 +174,12 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
           autoHeight
           hideFooter
           disableColumnMenu
-          getRowHeight={() => 'auto'} // altura das linhas
+          getRowHeight={() => 'auto'}
           headerHeight={150}
 
         />
       </div>
 
-      {/* Adicione o componente de paginação */}
       <div className={styles['paginacao']}>
         <Pagination
           count={Math.ceil(TabDesempenhos.length / rowsPerPage)}
