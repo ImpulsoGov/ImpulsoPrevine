@@ -4,8 +4,10 @@ import { TituloSmallTexto } from "@impulsogov/design-system"
 import { CadastrosEquipeContagem } from '../../services/capitacao_ponderada_contagem_equipes'
 import { CadastrosEquipes } from '../../services/capitacao_ponderada_cadastros_por_equipe'
 import { ValidacaoProducao } from '../../services/capitacao_ponderada_validacao_producao'
+import { ValidacaoProducaoAplicada } from '../../services/capitacao_ponderada_validacao_producao_aplicada'
 import GraficoSuasEquipes from "/componentes/GraficoSuasEquipes/GraficoSuasEquipes"
 import GraficoEvolucaoEquipe from "/componentes/GraficoEvolucaoEquipe/GraficoEvolucaoEquipe"
+import GraficoFichaProducao from "/componentes/GraficoFichaProducao/GraficoFichaProducao"
 import TabelaDesempenhoEquipes from "/componentes/TabelaDesempenhoEquipes/TabelaDesempenhoEquipes";
 import TabelaCadastroPreliminar from "/componentes/TabelaCadastroPreliminar/TabelaCadastroPreliminar";
 import Context from "../../utils/Context";
@@ -25,6 +27,10 @@ const Cadastros = ({
   const [CapValidacaoProducao, setCapValidacaoProducao] = useState([]);
   useEffect(() => { ValidacaoProducao(cidade).then((result) => setCapValidacaoProducao(result)) }, [cidade]);
   console.log(CapValidacaoProducao);
+
+  const [CapValidacaoProducaoAplicada, setCapValidacaoProducaoAplicada] = useState([]);
+  useEffect(() => { ValidacaoProducaoAplicada(cidade).then((result) => setCapValidacaoProducaoAplicada(result)) }, [cidade]);
+  console.log(CapValidacaoProducaoAplicada);
 
   return (
     <div style={{ margin: "0px 80px" }}>
@@ -121,6 +127,10 @@ const Cadastros = ({
         supertitulo=""
         texto="Seus cadastros podem não estar contabilizando por erros no registro. Confira aqui sua evolução nas validações das fichas de cadastro e descubra como melhorar. "
         titulo="<b>Validação das fichas de produção de cadastro<b/>"
+      />
+
+      <GraficoFichaProducao
+        GrafFicha={CapValidacaoProducaoAplicada}
       />
 
       <TituloSmallTexto

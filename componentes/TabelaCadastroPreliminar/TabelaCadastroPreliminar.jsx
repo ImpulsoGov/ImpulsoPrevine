@@ -74,7 +74,7 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
           sx={{
             '& .MuiDataGrid-columnHeaderTitle': {
               fontWeight: 'bold',
-              fontSize: '14px',
+              fontSize: '14px', 
               lineHeight: '1rem',
               whiteSpace: 'normal',
               textAlign: 'center',
