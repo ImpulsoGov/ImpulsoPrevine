@@ -87,6 +87,22 @@ useEffect(()=>{
     if(tokenValido!=true && tokenValido!==undefined) signOut()
 }
 },[tokenValido])
+const datefiltrosCito = [
+    "vencimento_da_coleta",
+  ]
+  const rotulosfiltrosCito = [
+    "VENCIMENTO DA COLETA",
+    "PRAZO PARA PRÓXIMA COLETA",
+    "NOMES DE A-Z",
+    "IDADE",
+  ]
+  const IDFiltrosCito = {
+    "VENCIMENTO DA COLETA" : "vencimento_da_coleta",
+    "PRAZO PARA PRÓXIMA COLETA" : "prazo_proxima_coleta",
+    "NOMES DE A-Z": "paciente_nome",
+    "IDADE" : "idade",
+  }
+
 if(session){  
     if(session.user.perfis.includes(9)){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
@@ -137,11 +153,6 @@ if(session){
                 rotulo: 'Filtrar por nome da equipe'
             },
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
@@ -166,6 +177,9 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
     /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
@@ -175,11 +189,6 @@ if(session){
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
                 filtro: 'equipe_nome',
                 rotulo: 'Filtrar por nome da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
             },
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria))],
@@ -206,6 +215,9 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
@@ -525,11 +537,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 rotulo: 'Filtrar por nome da equipe'
             },
             {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
@@ -554,6 +561,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataAPS ? 
@@ -564,11 +574,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
                 filtro: 'equipe_nome',
                 rotulo: 'Filtrar por nome da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
             },
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria))],
@@ -595,6 +600,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]
 

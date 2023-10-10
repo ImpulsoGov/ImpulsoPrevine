@@ -74,6 +74,22 @@ const Index = ({res}) => {
       if(tokenValido!=true && tokenValido!==undefined) signOut()
     }
   },[tokenValido])
+  const datefiltrosDiabetes = [
+    "dt_consulta_mais_recente",
+    "dt_solicitacao_hemoglobina_glicada_mais_recente",
+  ]
+  const rotulosfiltrosDiabetes = [
+    "DATA DA CONSULTA MAIS RECENTE",
+    "PRAZO PARA PRÓXIMA CONSULTA",
+    "NOMES DE A-Z",
+    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE",
+  ]
+  const IDFiltrosDiabetes = {
+    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
+    "PRAZO PARA PRÓXIMA CONSULTA" : "prazo_proxima_consulta",
+    "NOMES DE A-Z": "cidadao_nome",
+    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+  }
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -180,6 +196,9 @@ const Index = ({res}) => {
                 }}
                 data={tabelaData}
                 setData={setTabelaData}
+                datefiltros={datefiltrosDiabetes}
+                IDFiltros={IDFiltrosDiabetes}
+                rotulosfiltros={rotulosfiltrosDiabetes}    
               /> : <Spinner/>
             }
         </>
@@ -454,7 +473,9 @@ const Index = ({res}) => {
             }}
             data={tabelaData}
             setData={setTabelaData}
-
+            datefiltros={datefiltrosDiabetes}
+            IDFiltros={IDFiltrosDiabetes}
+            rotulosfiltros={rotulosfiltrosDiabetes}
           /> : <Spinner/>
         }
       </>

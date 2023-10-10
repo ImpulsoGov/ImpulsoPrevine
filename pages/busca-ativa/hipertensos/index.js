@@ -63,6 +63,22 @@ const Index = ({res}) => {
       if(tokenValido!=true && tokenValido!==undefined) signOut()
     }
   },[tokenValido])
+  const datefiltrosHipertensao = [
+    "dt_afericao_pressao_mais_recente",
+    "dt_consulta_mais_recente",
+  ]
+  const rotulosfiltrosHipertensao = [
+    "DATA DA CONSULTA MAIS RECENTE",
+    "PRAZO PARA PRÓXIMA CONSULTA",
+    "NOMES DE A-Z",
+    "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
+  ]
+  const IDFiltrosHipertensao = {
+    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
+    "PRAZO PARA PRÓXIMA CONSULTA" : "prazo_proxima_consulta",
+    "NOMES DE A-Z": "cidadao_nome",
+    "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
+  }
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -169,7 +185,10 @@ const Index = ({res}) => {
                 }}
                 data={tabelaData}
                 setData={setTabelaData}
-              /> : <Spinner/>
+                datefiltros={datefiltrosHipertensao}
+                IDFiltros={IDFiltrosHipertensao}
+                rotulosfiltros={rotulosfiltrosHipertensao}    
+                /> : <Spinner/>
             }
         </>
       )
@@ -444,6 +463,9 @@ const Index = ({res}) => {
             }}
             data={tabelaData}
             setData={setTabelaData}
+            datefiltros={datefiltrosHipertensao}
+            IDFiltros={IDFiltrosHipertensao}
+            rotulosfiltros={rotulosfiltrosHipertensao}    
       /> : <Spinner/>
         }
       </>
