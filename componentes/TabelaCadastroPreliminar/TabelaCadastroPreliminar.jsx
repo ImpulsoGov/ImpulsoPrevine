@@ -24,6 +24,11 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
       field: 'recomendacao',
       headerName: 'Recomendação',
       flex: 4,
+      renderCell: (params) => (
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding: "15px" }}>
+          {params.value}
+        </div>
+      ),
       align: 'justify',
       headerAlign: 'center',
       headerClassName: styles.cabecalho,
@@ -32,6 +37,11 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
       field: 'validacao_quantidade',
       headerName: 'Quantidade',
       flex: 2,
+      renderCell: (params) => (
+        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', overflowWrap: 'break-word', padding: "15px" }}>
+          {params.value}
+        </div>
+      ),
       align: 'center',
       headerAlign: 'center',
       headerClassName: styles.cabecalho,

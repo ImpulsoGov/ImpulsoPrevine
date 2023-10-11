@@ -32,14 +32,13 @@ const GraficoFichaProducaocomSeletor = ({
   const handleCheckboxChange = (value) => {
     let updatedSelectedIndicadores;
     if (selectedIndicadores.includes(value)) {
-      // Se o checkbox já estiver selecionado, desmarque-o
+      
       updatedSelectedIndicadores = selectedIndicadores.filter(indicador => indicador !== value);
     } else {
-      // Se o checkbox estiver desmarcado, adicione-o à lista de selecionados
+      
       updatedSelectedIndicadores = [...selectedIndicadores, value];
     }
 
-    // Verifique se todos os checkboxes foram desmarcados, e se sim, selecione todos automaticamente
     if (updatedSelectedIndicadores.length === 0) {
       updatedSelectedIndicadores = [...new Set(GrafFicha.map(item => item.equipe_nome))];
     }
