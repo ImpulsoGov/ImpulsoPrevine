@@ -436,16 +436,6 @@ const Index = ({res}) => {
           <PainelBuscaAtiva
             dadosFiltros={[
               {
-                data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
-                filtro: 'equipe_nome_cadastro',
-                rotulo: 'Filtrar por nome da equipe'
-              },
-              {
-                data: [...new Set(tabelaDataAPS.map(item => item.equipe_ine_cadastro))],
-                filtro: 'equipe_ine_cadastro',
-                rotulo: 'Filtrar por INE da equipe'
-              },
-              {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
                 filtro: 'acs_nome_cadastro',
                 rotulo: 'Filtrar por nome do ACS'
@@ -454,6 +444,11 @@ const Index = ({res}) => {
                 data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_hipertensao))],
                 filtro: 'identificacao_condicao_hipertensao',
                 rotulo: 'Filtrar por tipo de diagnóstico'
+              },
+              {
+                data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
+                filtro: 'equipe_nome_cadastro',
+                rotulo: 'Filtrar por nome da equipe'
               },
             ]}
             painel="hipertensao"
@@ -471,10 +466,9 @@ const Index = ({res}) => {
       </>
     )
 }
+}else{
+  signOut()
 }
-return(
-    <p>{status}</p>
-  )
 }
 
 export default Index;

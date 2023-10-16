@@ -571,15 +571,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     <PainelBuscaAtiva
         dadosFiltros={[
             {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por nome do ACS'
             },
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.id_status_usuario))],
@@ -588,9 +582,15 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 rotulo: 'Filtrar por status'
             },
             {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                filtro: 'id_faixa_etaria',
+                rotulo: 'Filtrar por faixa etária'
+            },
+            {
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
+                filtro: 'equipe_nome',
+                rotulo: 'Filtrar por nome da equipe'
             },
         ]}
         painel="cito"
@@ -683,11 +683,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     </>
     )
 }
+}else{
+    signOut()
 }
-if(status=="unauthenticated") router.push('/')
-return(
-    <p>{status}</p>
-)
+
 }
 
 export default Index;
