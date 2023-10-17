@@ -45,6 +45,9 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
       align: 'center',
       headerAlign: 'center',
       headerClassName: styles.cabecalho,
+      valueFormatter: (params) => {
+        return params.value.toLocaleString(); 
+      },
     },
   ]);
 

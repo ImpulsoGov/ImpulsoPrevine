@@ -1,4 +1,4 @@
-import { DataGrid , Pagination} from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import React, { useMemo } from 'react';
 import styles from './TabelaFichasCadastro.module.css';
 import { v4 as uuidV4 } from 'uuid';
@@ -118,8 +118,10 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
     return linhasData;
   }, [dadosAgrupados]);
 
+  console.log("Dados a serem passados para a tabela:", linhas);
+
   return (
-    <div style={{ maxHeight: '900px', overflowY: 'auto' }}>
+    <div style={{ maxHeight: '800px', overflowY: 'auto' }}>
       <div >
         <DataGrid
           sx={{
@@ -152,7 +154,6 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
           autoHeight
           hideFooter
           disableColumnMenu
-          pagination={false}
           getRowHeight={() => 'auto'}
           headerHeight={150}
 
