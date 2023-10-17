@@ -69,7 +69,7 @@ const GestaoDeUsuarios = () => {
                         links= {[
                             {
                                 label: 'Painel de Acompanhamento',
-                                link: '/'
+                                link: '/gestao-usuarios/gestao-trilha'
                             },
                             {
                                 label: 'Adicionar/Remover Acesso Individual',

@@ -33,6 +33,7 @@ const tabelaCitoAPS = async(municipio_uf,token)=>{
       
       const res = axios.request(config)
       .then((response) => {
+        console.log(response,municipio_uf,token)
         return response.data;
       })
       .catch((error) => {

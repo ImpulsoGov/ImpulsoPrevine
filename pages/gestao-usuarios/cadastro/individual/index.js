@@ -1,12 +1,12 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
 import { getSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { ModalCadastroUsuario } from '../../../componentes/ModalCadastroUsuario';
-import { SnackBar } from '../../componentes/SnackBar';
-import { TabelaGestaoUsuarios } from '../../../componentes/TabelaGestaoUsuarios';
-import { MENSAGENS_DE_ERRO } from '../../../constants/gestaoUsuarios';
-import { redirectHomeGestaoUsuarios } from '../../../helpers/redirectHome';
-import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '../../../services/gestaoUsuarios';
+import { ModalCadastroUsuario } from '../../../../componentes/ModalCadastroUsuario';
+import { SnackBar } from '../../../../componentes/SnackBar';
+import { TabelaGestaoUsuarios } from '../../../../componentes/TabelaGestaoUsuarios';
+import { MENSAGENS_DE_ERRO } from '../../../../constants/gestaoUsuarios';
+import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
+import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '../../../../services/gestaoUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
