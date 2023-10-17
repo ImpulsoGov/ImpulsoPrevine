@@ -49,7 +49,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
       agrupados[chaveMes].validacao[validacao_nome].aplicacao[validacao_aplicacao] += validacao_quantidade;
     });
   
-    // Converter o objeto em um array de valores
+  
     const valoresAgrupados = Object.values(agrupados);
   
   
@@ -89,7 +89,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
       headerAlign: 'right',
       headerClassName: styles.cabecalho,
       valueFormatter: (params) => {
-        return params.value.toLocaleString(); // Formata a quantidade com vírgula
+        return params.value.toLocaleString(); 
       },
     },
   ]);
