@@ -97,7 +97,6 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
   const linhas = useMemo(() => {
     const linhasData = [];
 
-
     dadosAgrupados.forEach((agrupado) => {
       const { periodo_data_inicio, validacao } = agrupado;
       Object.keys(validacao).forEach((validacao_nome) => {
@@ -151,11 +150,10 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
 
           rows={linhas}
           columns={colunas}
-          autoHeight
           hideFooter
           disableColumnMenu
           getRowHeight={() => 'auto'}
-          headerHeight={150}
+          autoHeight
 
         />
       </div>
