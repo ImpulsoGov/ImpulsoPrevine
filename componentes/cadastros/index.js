@@ -10,6 +10,7 @@ import GraficoEvolucaoEquipe from "/componentes/GraficoEvolucaoEquipe/GraficoEvo
 import GraficoFichaProducao from "/componentes/GraficoFichaProducao/GraficoFichaProducao"
 import TabelaDesempenhoEquipes from "/componentes/TabelaDesempenhoEquipes/TabelaDesempenhoEquipes";
 import TabelaCadastroPreliminar from "/componentes/TabelaCadastroPreliminar/TabelaCadastroPreliminar";
+import TabelaFichasCadastro from "/componentes/TabelaFichasCadastro/TabelaFichasCadastro";
 import Context from "../../utils/Context";
 
 const Cadastros = ({
@@ -18,19 +19,15 @@ const Cadastros = ({
   const [indicadoresData, setIndicadoresData] = useState([]);
   const [cidade, setCidade] = useContext(Context);
   useEffect(() => { CadastrosEquipeContagem(cidade).then((result) => setIndicadoresData(result)) }, [cidade]);
-  console.log(indicadoresData);
 
   const [CaptacaoEvolucao, setCaptacaoEvolucao] = useState([]);
   useEffect(() => { CadastrosEquipes(cidade).then((result) => setCaptacaoEvolucao(result)) }, [cidade]);
-  console.log(CaptacaoEvolucao);
 
   const [CapValidacaoProducao, setCapValidacaoProducao] = useState([]);
   useEffect(() => { ValidacaoProducao(cidade).then((result) => setCapValidacaoProducao(result)) }, [cidade]);
-  console.log(CapValidacaoProducao);
 
   const [CapValidacaoProducaoAplicada, setCapValidacaoProducaoAplicada] = useState([]);
   useEffect(() => { ValidacaoProducaoAplicada(cidade).then((result) => setCapValidacaoProducaoAplicada(result)) }, [cidade]);
-  console.log(CapValidacaoProducaoAplicada);
 
   return (
     <div style={{ margin: "0px 80px" }}>
@@ -159,6 +156,10 @@ const Cadastros = ({
         supertitulo=""
         texto=""
         titulo="<b>Aplicações de fichas de cadastro<b/>"
+      />
+
+      <TabelaFichasCadastro
+        TabFichas={CapValidacaoProducaoAplicada}
       />
 
       <TituloSmallTexto

@@ -10,7 +10,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
   const rowsPerPage = 25;
 
   const mapearStatusParaEmoji = (status) => {
-    console.log('Valor de equipe_status:', status);
+
     switch (status.toLowerCase()) {
       case 'homologadas':
         return '⚠️';
