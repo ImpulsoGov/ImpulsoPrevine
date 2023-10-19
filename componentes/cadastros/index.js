@@ -29,6 +29,14 @@ const Cadastros = ({
   const [CapValidacaoProducaoAplicada, setCapValidacaoProducaoAplicada] = useState([]);
   useEffect(() => { ValidacaoProducaoAplicada(cidade).then((result) => setCapValidacaoProducaoAplicada(result)) }, [cidade]);
 
+  const quantidadeCadastrosPreliminaresInvalidos = CapValidacaoProducao.reduce((total, item) => {
+    if (item.validacao_nome === "Preliminar>Reprovado(PROF)") {
+      return total + item.validacao_quantidade;
+    }
+    return total;
+  }, 0);
+
+
   return (
     <div style={{ margin: "0px 80px" }}>
 
@@ -172,7 +180,7 @@ const Cadastros = ({
           url: ''
         }}
         supertitulo=""
-        texto="Você tem ___ cadastros reprovados em análise preliminar. Atualize os cadastros para que sejam contabilizados, mas <b> fique atento aos prazos de envio conforme o calendário</b> do SISAB:<br> <br><u>- Validação da produção na competência</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência</br> <u>- Validação da produção para o quadrimestre do Previne Brasil</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência que encerra o quadrimestre (abril, agosto ou dezembro)</br> <br>Caso as condições listadas acima não sejam cumpridas, o prazo máximo para envio é de 120 dias após o fechamento da competência, nesse cenário a produção enviada será contabilizada somente para série histórica. Envios realizados fora da janela de 120 dias serão descartados para uso em qualquer finalidade.</br><br>Envie as instruções para os seus estabelecimentos de saúde!</br>"
+        texto={`Você tem ${quantidadeCadastrosPreliminaresInvalidos} cadastros reprovados em análise preliminar. Atualize os cadastros para que sejam contabilizados, mas <b> fique atento aos prazos de envio conforme o calendário</b> do SISAB:<br> <br><u>- Validação da produção na competência</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência</br> <u>- Validação da produção para o quadrimestre do Previne Brasil</u> - Envio deve ser realizado até o décimo dia útil posterior ao fechamento da competência que encerra o quadrimestre (abril, agosto ou dezembro)</br> <br>Caso as condições listadas acima não sejam cumpridas, o prazo máximo para envio é de 120 dias após o fechamento da competência, nesse cenário a produção enviada será contabilizada somente para série histórica. Envios realizados fora da janela de 120 dias serão descartados para uso em qualquer finalidade.</br><br>Envie as instruções para os seus estabelecimentos de saúde!</br>`}
         titulo="<b>Cadastros Preliminares Inválidos<b/>"
       />
 
