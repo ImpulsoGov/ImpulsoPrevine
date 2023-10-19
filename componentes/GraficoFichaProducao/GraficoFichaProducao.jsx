@@ -94,7 +94,7 @@ const handleExclusiveNovoCheckboxChange = (value) => {
   return (
     <div>
       <div className={styles.textContainer}>
-        <div className={styles.selectorBox}>
+        <div className={`${styles.selectorBox} ${styles.equipeSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowCheckboxes(!showCheckboxes)}>
             <span >Equipe</span>
             <div className={styles.arrowIcon}>{showCheckboxes ? '▼' : '▼'}</div>
@@ -121,7 +121,7 @@ const handleExclusiveNovoCheckboxChange = (value) => {
           )}
         </div>
 
-        <div className={styles.selectorBox}>
+        <div className={`${styles.selectorBox} ${styles.estabelecimentoSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxes(!showNovoCheckboxes)}>
             <span>Esabelecimento </span>
             <div className={styles.arrowIcon}>{showNovoCheckboxes ? '▼' : '▼'}</div>
