@@ -76,19 +76,23 @@ const Index = ({res}) => {
   },[tokenValido])
   const datefiltrosDiabetes = [
     "dt_consulta_mais_recente",
-    "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "dt_solicitacao_hemoglobina_glicada_mais_recente"
   ]
   const rotulosfiltrosDiabetes = [
+    "NOMES DE A-Z",
+    "NOME DO ACS DE A-Z",
     "DATA DA CONSULTA MAIS RECENTE",
     "PRAZO PARA PRÓXIMA CONSULTA",
-    "NOMES DE A-Z",
     "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE",
+    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE"
   ]
   const IDFiltrosDiabetes = {
+    "NOMES DE A-Z": "cidadao_nome",
+    "NOME DO ACS DE A-Z": "acs_nome_cadastro",
     "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
     "PRAZO PARA PRÓXIMA CONSULTA" : "prazo_proxima_consulta",
-    "NOMES DE A-Z": "cidadao_nome",
     "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "prazo_proxima_solicitacao_hemoglobina"
   }
   if(session){  
     if(session.user.perfis.includes(9)){

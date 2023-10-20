@@ -104,7 +104,7 @@ const colunasHipertensao = [
       align: 'center',
       field: 'acs_nome_cadastro',
       headerAlign: 'center',
-      headerName: 'ACS RESPONSÁVEL',
+      headerName: 'PROFISSIONAL RESPONSÁVEL',
       width: 250
     }
   ]

@@ -214,7 +214,7 @@ const colunasCito=[
       align: 'center',
       field: 'acs_nome',
       headerAlign: 'center',
-      headerName: 'ACS',
+      headerName: 'PROFISSIONAL RESPONSÁVEL',
       width: 250
     }
   ]
