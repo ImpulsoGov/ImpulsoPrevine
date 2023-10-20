@@ -32,16 +32,16 @@ const TabelaDesempenhoEquipesComSeletor = ({
 
     const teamsForSelectedCnes = TabDesempenhos
       .filter(item => updatedSelectedNovoIndicador.includes(item.cnes_nome))
-      .map((item => item.equipe_status) && (item => item.equipe_nome));
+      .map(item => item.equipe_status);
 
     setSelectedNovoIndicador(updatedSelectedNovoIndicador);
     setSelectedIndicadores(teamsForSelectedCnes);
 
     if (updatedSelectedNovoIndicador.length === 0) {
       // Se sim, marque todos automaticamente
-      setSelectedIndicadores([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicadorequipe([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
       setSelectedNovoIndicador([...new Set(TabDesempenhos.map(item => item.cnes_nome))]);
-      setSelectedNovoIndicador([...new Set(TabDesempenhos.map(item => item.equipe_status))]);
+      setSelectedIndicadores([...new Set(TabDesempenhos.map(item => item.equipe_status))]);
     }
 
   };
@@ -69,16 +69,16 @@ const TabelaDesempenhoEquipesComSeletor = ({
 
     const filtered = TabDesempenhos
       .filter(item => updatedSelectedIndicadores.includes(item.equipe_status))
-      .map((item => item.cnes_nome) && (item => item.equipe_nome));
+      .map((item => item.equipe_nome));
 
     setSelectedIndicadores(updatedSelectedIndicadores);
-    setSelectedNovoIndicador(filtered);
+    setSelectedNovoIndicadorequipe(filtered);
 
     if (updatedSelectedIndicadores.length === 0) {
       // Se sim, marque todos automaticamente
-      setSelectedIndicadores([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicadorequipe([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
       setSelectedNovoIndicador([...new Set(TabDesempenhos.map(item => item.cnes_nome))]);
-      setSelectedNovoIndicador([...new Set(TabDesempenhos.map(item => item.equipe_status))]);
+      setSelectedIndicadores([...new Set(TabDesempenhos.map(item => item.equipe_status))]);
     }
 
   };
@@ -87,11 +87,11 @@ const TabelaDesempenhoEquipesComSeletor = ({
     const updatedSelectedIndicadores = [value];
 
     const filtered = TabDesempenhos
-      .filter(item => updatedSelectedIndicadores.includes(item.equipe_status))
-      .map((item => item.cnes_nome) && (item => item.equipe_nome));
+    .filter(item => updatedSelectedIndicadores.includes(item.equipe_status))
+    .map(item => item.equipe_nome);
 
     setSelectedIndicadores(updatedSelectedIndicadores);
-    setSelectedNovoIndicador(filtered);
+    setSelectedNovoIndicadorequipe(filtered);
   };
 
   const handleNovoCheckboxChangeequipe = (value) => {
@@ -112,8 +112,10 @@ const TabelaDesempenhoEquipesComSeletor = ({
 
     if (updatedSelectedNovoIndicadorequipe.length === 0) {
       // Se sim, marque todos automaticamente
-      setSelectedNovoIndicadorperiodo([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
-      setSelectedNovoIndicadorequipe([...new Set(TabDesempenhos.map(item => item.data_inicio))]);
+      setSelectedNovoIndicadorequipe([...new Set(TabDesempenhos.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicador([...new Set(TabDesempenhos.map(item => item.cnes_nome))]);
+      setSelectedIndicadores([...new Set(TabDesempenhos.map(item => item.equipe_status))]);
+      setSelectedNovoIndicadorperiodo([...new Set(TabDesempenhos.map(item => item.data_inicio))]);
     }
 
   };
@@ -256,7 +258,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         </div>
         <div className={`${styles.selectorBox} ${styles.PeriodoSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxesperiodo(!showNovoCheckboxesperiodo)}>
-            <span>Validação </span>
+            <span>Periodo </span>
             <div className={styles.arrowIcon}>{showNovoCheckboxesperiodo ? '▼' : '▼'}</div>
           </div>
           {showNovoCheckboxesperiodo && (
@@ -410,7 +412,16 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
     const startIndex = (page - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
 
-    return dadosOrdenados.slice(startIndex, endIndex).map(({ data_inicio, equipe_nome, equipe_id_ine, equipe_status, cadastros_com_pontuacao, cadastro_total }) => {
+    const dadosFiltrados = dadosOrdenados.filter(item => {
+      return (
+        selectedIndicadores.includes(item.equipe_status) &&
+        selectedNovoIndicador.includes(item.cnes_nome) &&
+        selectedNovoIndicadorequipe.includes(item.equipe_nome) &&
+        selectedNovoIndicadorperiodo.includes(item.data_inicio)
+      );
+    });
+
+    return dadosFiltrados.slice(startIndex, endIndex).map(({ data_inicio, equipe_nome, equipe_id_ine, equipe_status, cadastros_com_pontuacao, cadastro_total }) => {
 
       const [ano, mes, dia] = data_inicio.split('-');
       const mesNome = obterNomeMes(Number(mes));
