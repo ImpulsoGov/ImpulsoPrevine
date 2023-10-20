@@ -2,6 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import React, { useMemo } from 'react';
 import styles from './TabelaFichasCadastro.module.css';
 import { v4 as uuidV4 } from 'uuid';
+import { Spinner } from '@impulsogov/design-system';
 
 const TabelaFichasCadastro = ({ TabFichas }) => {
   const obterNomeMes = (numeroMes) => {
@@ -116,6 +117,9 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
   return (
     <div style={{ maxHeight: '800px', overflowY: 'auto' }}>
       <div >
+    {dadosAgrupados.length === 0 ? (
+      <Spinner />
+      ) : (
         <DataGrid
           sx={{
             '& .MuiDataGrid-columnHeaderTitle': {
@@ -150,8 +154,11 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
           autoHeight
           paginationMode="server"
         />
+        )}
       </div>
+      
     </div>
+  
   );
 };
 

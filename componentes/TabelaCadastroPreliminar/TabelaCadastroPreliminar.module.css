@@ -39,6 +39,8 @@
 }
 
 .checkboxes {
+  max-height: 350px; /* Defina a altura máxima desejada */
+  overflow-y: auto;
   top: 100%;
   border: 1.5px solid #95B5B3;
   border-radius: 8px; 
@@ -61,3 +63,15 @@
   background-color: #EBECED; /* Altera a cor da borda no hover */
 }
 
+.button {
+  margin-right: 3px;
+  padding: 3px;
+}
+
+.equipeSelector,
+.periodoSelector
+ {
+  display: inline-block;
+  margin-right: 30px; 
+ 
+}
