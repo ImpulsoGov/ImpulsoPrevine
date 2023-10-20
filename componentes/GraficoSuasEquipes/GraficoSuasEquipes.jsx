@@ -62,7 +62,7 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
     ],
     series: [
       {
-        name: 'Cadastrados',
+        name: 'Cadastradas',
         type: 'bar',
         stack: 'Unico',
         itemStyle: {
