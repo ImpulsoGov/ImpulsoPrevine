@@ -5,7 +5,6 @@ import { v4 as uuidV4 } from 'uuid';
 import { Spinner } from '@impulsogov/design-system';
 
 const TabelaFichasCadastro = ({ TabFichas }) => {
-  
   const obterNomeMes = (numeroMes) => {
     const nomesMeses = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -18,7 +17,6 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
     if (!Array.isArray(TabFichas)) {
       return [];
     }
-
     const dadosOrdenados = [...TabFichas].sort((a, b) => {
       const dataA = new Date(a.periodo_data_inicio);
       const dataB = new Date(b.periodo_data_inicio);
@@ -42,18 +40,16 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
           aplicacao: {},
         };
       }
-  
+
       if (!agrupados[chaveMes].validacao[validacao_nome].aplicacao[validacao_aplicacao]) {
         agrupados[chaveMes].validacao[validacao_nome].aplicacao[validacao_aplicacao] = 0;
       }
-  
+
       agrupados[chaveMes].validacao[validacao_nome].aplicacao[validacao_aplicacao] += validacao_quantidade;
     });
-  
-  
+
     const valoresAgrupados = Object.values(agrupados);
-  
-  
+
     return valoresAgrupados;
   }, [TabFichas]);
 
@@ -90,7 +86,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
       headerAlign: 'right',
       headerClassName: styles.cabecalho,
       valueFormatter: (params) => {
-        return params.value.toLocaleString(); 
+        return params.value.toLocaleString();
       },
     },
   ]);
@@ -117,8 +113,6 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
 
     return linhasData;
   }, [dadosAgrupados]);
-
-  console.log("Dados a serem passados para a tabela:", linhas);
 
   return (
     <div style={{ maxHeight: '800px', overflowY: 'auto' }}>
@@ -149,7 +143,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
             '& .MuiButton-outlined': {
               borderColor: '#D4DBE7',
             },
-            
+
           }}
 
           rows={linhas}
@@ -158,7 +152,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
           disableColumnMenu
           getRowHeight={() => 'auto'}
           autoHeight
-
+          paginationMode="server"
         />
         )}
       </div>
