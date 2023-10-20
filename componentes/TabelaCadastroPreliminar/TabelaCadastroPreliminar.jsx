@@ -160,16 +160,20 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
   );
 
   const calculateQuantidade = (equipeNomes) => {
-    const filteredData = TabCadPreliminar.filter((item) =>
-      equipeNomes.includes(item.equipe_nome) &&
-      item.validacao_nome === "Preliminar>Reprovado(PROF)"
-    );
+    if (equipeNomes && Array.isArray(equipeNomes)) {
+      const filteredData = TabCadPreliminar.filter((item) =>
+        equipeNomes.includes(item.equipe_nome) &&
+        item.validacao_nome === "Preliminar>Reprovado(PROF)"
+      );
   
-    const quantidade = filteredData.reduce((acc, item) => {
-      return acc + item.validacao_quantidade;
-    }, 0);
+      const quantidade = filteredData.reduce((acc, item) => {
+        return acc + item.validacao_quantidade;
+      }, 0);
   
-    return quantidade;
+      return quantidade;
+    } else {
+      return 0; // Retorne um valor padrão ou trate o caso em que equipeNomes não é um array válido.
+    }
   };
   
   const colunas = useMemo(() => [
