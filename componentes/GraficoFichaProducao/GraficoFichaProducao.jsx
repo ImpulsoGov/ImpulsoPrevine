@@ -29,12 +29,15 @@ const GraficoFichaProducaocomSeletor = ({
   setSelectedNovoIndicador,
   selectedNovoIndicadorapli,
   setSelectedNovoIndicadorapli,
+  selectedNovoIndicadorvalidacao,
+  setSelectedNovoIndicadorvalidacao,
   GrafFicha,
   option,
 }) => {
   const [showCheckboxes, setShowCheckboxes] = useState(false);
   const [showNovoCheckboxescnes, setShowNovoCheckboxescnes] = useState(false);
   const [showNovoCheckboxesaplicacao, setShowNovoCheckboxesaplicacao] = useState(false);
+  const [showNovoCheckboxesvalidacao, setShowNovoCheckboxesvalidacao] = useState(false);
 
   const handleCheckboxChange = (value) => {
     let updatedSelectedIndicadores;
@@ -94,7 +97,6 @@ const GraficoFichaProducaocomSeletor = ({
     }
 
   };
-
   const handleExclusiveNovoCheckboxChangecnes = (value) => {
 
     const updatedSelectedNovoIndicador = [value];
@@ -117,30 +119,64 @@ const GraficoFichaProducaocomSeletor = ({
 
     const teamsForSelectedApli = GrafFicha
       .filter(item => updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao))
-      .map(item => item.equipe_nome);
+      .map(item => item.validacao_nome);
 
     setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
-    setSelectedIndicadores(teamsForSelectedApli);
+    setSelectedNovoIndicadorvalidacao(teamsForSelectedApli);
     
 
     if (updatedSelectedNovoIndicadorapli.length === 0) {
       // Se sim, marque todos automaticamente
-      setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicadorvalidacao([...new Set(GrafFicha.map(item => item.validacao_nome))]);
       setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]);
     }
 
   };
-
   const handleExclusiveNovoCheckboxChangesapli = (value) => {
 
     const updatedSelectedNovoIndicadorapli = [value];
 
     const teamsForSelectedApli = GrafFicha
       .filter(item => updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao))
-      .map(item => item.equipe_nome);
+      .map(item => item.validacao_nome);
 
     setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
-    setSelectedIndicadores(teamsForSelectedApli);
+    setSelectedNovoIndicadorvalidacao(teamsForSelectedApli);
+  };
+
+  const handleNovoCheckboxChangevalidacao = (value) => {
+    let updatedSelectedNovoIndicadorvalidacao;
+    if (selectedNovoIndicadorvalidacao.includes(value)) {
+      updatedSelectedNovoIndicadorvalidacao = selectedNovoIndicadorvalidacao.filter(indicador => indicador !== value);
+    } else {
+      updatedSelectedNovoIndicadorvalidacao = [...selectedNovoIndicadorvalidacao, value];
+    }
+
+    const teamsForSelectedValidacao = GrafFicha
+      .filter(item => updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome))
+      .map(item => item.validacao_aplicacao);
+
+    setSelectedNovoIndicadorvalidacao(updatedSelectedNovoIndicadorvalidacao);
+    setSelectedNovoIndicadorapli(teamsForSelectedValidacao);
+    
+
+    if (updatedSelectedNovoIndicadorvalidacao.length === 0) {
+      // Se sim, marque todos automaticamente
+      setSelectedIndicadores([...new Set(GrafFicha.map(item => item.validacao_nome))]);
+      setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]);
+    }
+
+  }; 
+  const handleExclusiveNovoCheckboxChangesvalidacao = (value) => {
+
+    const updatedSelectedNovoIndicadorvalidacao = [value];
+
+    const teamsForSelectedValidacao = GrafFicha
+      .filter(item => updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome))
+      .map(item => item.validacao_aplicacao);
+
+    setSelectedNovoIndicadorvalidacao(updatedSelectedNovoIndicadorvalidacao);
+    setSelectedNovoIndicadorapli(teamsForSelectedValidacao);
   };
   
   const selectAllTeams = () => {
@@ -148,6 +184,7 @@ const GraficoFichaProducaocomSeletor = ({
     setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
     setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]);
     setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]);
+    setSelectedNovoIndicadorvalidacao([...new Set(GrafFicha.map(item => item.validacao_nome))]);
    
   };
 
@@ -232,6 +269,32 @@ const GraficoFichaProducaocomSeletor = ({
             </div>
           )}
         </div>
+        <div className={`${styles.selectorBox} ${styles.Validacaoelector}`}>
+          <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxesvalidacao(!showNovoCheckboxesvalidacao)}>
+            <span>Validação </span>
+            <div className={styles.arrowIcon}>{showNovoCheckboxesvalidacao ? '▼' : '▼'}</div>
+          </div>
+          {showNovoCheckboxesvalidacao && (
+            <div className={styles.checkboxes}>
+              <button className={styles.button} onClick={selectAllTeams}>Selecionar Todos</button>
+              {selectedNovoIndicadorvalidacao.filter((indicador, index, self) => self.indexOf(indicador) === index).map((indicador, index) => (
+                <div key={index} className={styles.checkboxItem}>
+                  <label>
+                    <button className={styles.button} onClick={() => handleExclusiveNovoCheckboxChangesvalidacao(indicador)}>Apenas</button>
+                    <input
+                      type="checkbox"
+                      value={indicador}
+                      checked={selectedNovoIndicadorvalidacao.includes(indicador)}
+                      onChange={(e) => handleNovoCheckboxChangevalidacao(e.target.value)}
+                    />
+                    {indicador}
+                  </label>
+                </div>
+              ))
+              }
+            </div>
+          )}
+        </div>
       </div>
       <ReactEcharts key={Math.random()} option={option} style={{ height: '450px' }} />
     </div>
@@ -249,6 +312,10 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
 
   const [selectedNovoIndicadorapli, setSelectedNovoIndicadorapli] = useState(
     [...new Set(GrafFicha.map(item => item.validacao_aplicacao))]
+  );
+
+  const [selectedNovoIndicadorvalidacao, setSelectedNovoIndicadorvalidacao] = useState(
+    [...new Set(GrafFicha.map(item => item.validacao_nome))]
   );
 
   const [series, setSeries] = useState([]);
@@ -271,7 +338,8 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
     const selectedData = GrafFichaFiltrado.filter(item =>
       selectedIndicadores.includes(item.equipe_nome) &&
       selectedNovoIndicador.includes(item.cnes_nome) &&
-      selectedNovoIndicadorapli.includes(item.validacao_aplicacao)
+      selectedNovoIndicadorapli.includes(item.validacao_aplicacao) &&
+      selectedNovoIndicadorvalidacao.includes(item.validacao_nome)
     );
 
     const periodos = [...new Set(selectedData.map(item => item.periodo_data_inicio))].sort();
@@ -298,11 +366,12 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
     setSeries(newSeries);
     setFilteredSeries(newSeries);
     setGraphLoading(false);
-  }, [GrafFicha, selectedIndicadores, selectedNovoIndicador, selectedNovoIndicadorapli]);
+  }, [GrafFicha, selectedIndicadores, selectedNovoIndicador, selectedNovoIndicadorapli, selectedNovoIndicadorvalidacao]);
 
   useEffect(() => setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]), [GrafFicha]);
   useEffect(() => setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]), [GrafFicha]);
   useEffect(() => setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]), [GrafFicha]);
+  useEffect(() => setSelectedNovoIndicadorvalidacao([...new Set(GrafFicha.map(item => item.validacao_nome))]), [GrafFicha]);
   
 
   const option = {
@@ -356,6 +425,8 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
             setSelectedNovoIndicador={setSelectedNovoIndicador}
             selectedNovoIndicadorapli={selectedNovoIndicadorapli}
             setSelectedNovoIndicadorapli={setSelectedNovoIndicadorapli}
+            selectedNovoIndicadorvalidacao={selectedNovoIndicadorvalidacao}
+            setSelectedNovoIndicadorvalidacao={setSelectedNovoIndicadorvalidacao}
           />
         </div>
       )}

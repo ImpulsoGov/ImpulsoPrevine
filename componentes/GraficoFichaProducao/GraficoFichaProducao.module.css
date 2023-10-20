@@ -2,7 +2,7 @@
   margin-bottom: 2px;
   border: 1.5px solid #95B5B3;
   border-radius: 8px; 
-  width: 250px; 
+  width: 220px; 
   text-align: center; 
   padding: 10px;
   transition: border-color 0.3s;
@@ -60,7 +60,9 @@
 
 .equipeSelector,
 .estabelecimentoSelector,
-.AplicacaoSelector {
+.AplicacaoSelector,
+.Validacaoelector {
   display: inline-block;
-  margin-right: 35px; 
+  margin-right: 50px; 
+  margin-left: 50px; 
 }
