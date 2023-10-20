@@ -219,7 +219,7 @@ const GraficoFichaProducaocomSeletor = ({
         </div>
         <div className={`${styles.selectorBox} ${styles.estabelecimentoSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxescnes(!showNovoCheckboxescnes)}>
-            <span>Esabelecimento </span>
+            <span>Estabelecimento </span>
             <div className={styles.arrowIcon}>{showNovoCheckboxescnes ? '▼' : '▼'}</div>
           </div>
           {showNovoCheckboxescnes && (
