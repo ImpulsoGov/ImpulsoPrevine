@@ -114,7 +114,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
         </div>
         <div className={`${styles.selectorBox} ${styles.periodoSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxes(!showNovoCheckboxes)}>
-            <span>Periodo </span>
+            <span>Período </span>
             <div className={styles.arrowIcon}>{showNovoCheckboxes ? '▼' : '▼'}</div>
           </div>
           {showNovoCheckboxes && (
