@@ -27,11 +27,14 @@ const GraficoFichaProducaocomSeletor = ({
   setSelectedIndicadores,
   selectedNovoIndicador,
   setSelectedNovoIndicador,
+  selectedNovoIndicadorapli,
+  setSelectedNovoIndicadorapli,
   GrafFicha,
   option,
 }) => {
   const [showCheckboxes, setShowCheckboxes] = useState(false);
-  const [showNovoCheckboxes, setShowNovoCheckboxes] = useState(false);
+  const [showNovoCheckboxescnes, setShowNovoCheckboxescnes] = useState(false);
+  const [showNovoCheckboxesaplicacao, setShowNovoCheckboxesaplicacao] = useState(false);
 
   const handleCheckboxChange = (value) => {
     let updatedSelectedIndicadores;
@@ -50,11 +53,17 @@ const GraficoFichaProducaocomSeletor = ({
     setSelectedIndicadores(updatedSelectedIndicadores);
     setSelectedNovoIndicador(filteredCnes);
 
+    if (updatedSelectedIndicadores.length === 0) {
+      // Se sim, marque todos automaticamente
+      setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]);
+    }
+
   };
   const handleExclusiveCheckboxChange = (value) => {
-   
+
     const updatedSelectedIndicadores = [value];
-    
+
     const filteredCnes = GrafFicha
       .filter(item => updatedSelectedIndicadores.includes(item.equipe_nome))
       .map(item => item.cnes_nome);
@@ -63,33 +72,84 @@ const GraficoFichaProducaocomSeletor = ({
     setSelectedNovoIndicador(filteredCnes);
   };
 
-  const handleNovoCheckboxChange = (value) => {
-  let updatedSelectedNovoIndicador;
-  if (selectedNovoIndicador.includes(value)) {
-    updatedSelectedNovoIndicador = selectedNovoIndicador.filter(indicador => indicador !== value);
-  } else {
-    updatedSelectedNovoIndicador = [...selectedNovoIndicador, value];
-  }
+  const handleNovoCheckboxChangecnes = (value) => {
+    let updatedSelectedNovoIndicador;
+    if (selectedNovoIndicador.includes(value)) {
+      updatedSelectedNovoIndicador = selectedNovoIndicador.filter(indicador => indicador !== value);
+    } else {
+      updatedSelectedNovoIndicador = [...selectedNovoIndicador, value];
+    }
 
-  const teamsForSelectedCnes = GrafFicha
-    .filter(item => updatedSelectedNovoIndicador.includes(item.cnes_nome))
-    .map(item => item.equipe_nome);
+    const teamsForSelectedCnes = GrafFicha
+      .filter(item => updatedSelectedNovoIndicador.includes(item.cnes_nome))
+      .map(item => item.equipe_nome);
 
-  setSelectedNovoIndicador(updatedSelectedNovoIndicador);
-  setSelectedIndicadores(teamsForSelectedCnes);
-};
+    setSelectedNovoIndicador(updatedSelectedNovoIndicador);
+    setSelectedIndicadores(teamsForSelectedCnes);
 
-const handleExclusiveNovoCheckboxChange = (value) => {
+    if (updatedSelectedNovoIndicador.length === 0) {
+      // Se sim, marque todos automaticamente
+      setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]);
+    }
+
+  };
+
+  const handleExclusiveNovoCheckboxChangecnes = (value) => {
+
+    const updatedSelectedNovoIndicador = [value];
+
+    const teamsForSelectedCnes = GrafFicha
+      .filter(item => updatedSelectedNovoIndicador.includes(item.cnes_nome))
+      .map(item => item.equipe_nome);
+
+    setSelectedNovoIndicador(updatedSelectedNovoIndicador);
+    setSelectedIndicadores(teamsForSelectedCnes);
+  };
   
-  const updatedSelectedNovoIndicador = [value];
- 
-  const teamsForSelectedCnes = GrafFicha
-    .filter(item => updatedSelectedNovoIndicador.includes(item.cnes_nome))
-    .map(item => item.equipe_nome);
+  const handleNovoCheckboxChangeaplicacao = (value) => {
+    let updatedSelectedNovoIndicadorapli;
+    if (selectedNovoIndicadorapli.includes(value)) {
+      updatedSelectedNovoIndicadorapli = selectedNovoIndicadorapli.filter(indicador => indicador !== value);
+    } else {
+      updatedSelectedNovoIndicadorapli = [...selectedNovoIndicadorapli, value];
+    }
 
-  setSelectedNovoIndicador(updatedSelectedNovoIndicador);
-  setSelectedIndicadores(teamsForSelectedCnes);
-};
+    const teamsForSelectedApli = GrafFicha
+      .filter(item => updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao))
+      .map(item => item.equipe_nome);
+
+    setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
+    setSelectedIndicadores(teamsForSelectedApli);
+    
+
+    if (updatedSelectedNovoIndicadorapli.length === 0) {
+      // Se sim, marque todos automaticamente
+      setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
+      setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]);
+    }
+
+  };
+
+  const handleExclusiveNovoCheckboxChangesapli = (value) => {
+
+    const updatedSelectedNovoIndicadorapli = [value];
+
+    const teamsForSelectedApli = GrafFicha
+      .filter(item => updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao))
+      .map(item => item.equipe_nome);
+
+    setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
+    setSelectedIndicadores(teamsForSelectedApli);
+  };
+  
+  const selectAllTeams = () => {
+    
+    setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]);
+    setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]);
+    setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]);
+   
+  };
 
   return (
     <div>
@@ -101,48 +161,73 @@ const handleExclusiveNovoCheckboxChange = (value) => {
           </div>
           {showCheckboxes && (
             <div className={styles.checkboxes}>
-              {
-                [...new Set(GrafFicha.map(item => item.equipe_nome))].map((indicador, index) => (
-                  <div key={index} className={styles.checkboxItem}>
-                    <label>
-                      <button className={styles.button} onClick={() => handleExclusiveCheckboxChange(indicador)}>Apenas</button>
-                      <input
-                        type="checkbox"
-                        value={indicador}
-                        checked={selectedIndicadores.includes(indicador)}
-                        onChange={(e) => handleCheckboxChange(e.target.value)}
-                      />
-                      {indicador}
-                    </label>
-                  </div>
-                ))
+               <button className={styles.button} onClick={selectAllTeams}>Selecionar Todos</button>
+              {selectedIndicadores.filter((indicador, index, self) => self.indexOf(indicador) === index).map((indicador, index) => (
+                <div key={index} className={styles.checkboxItem}>
+                  <label>
+                    <button className={styles.button} onClick={() => handleExclusiveCheckboxChange(indicador)}>Apenas</button>
+                    <input
+                      type="checkbox"
+                      value={indicador}
+                      checked={selectedIndicadores.includes(indicador)}
+                      onChange={(e) => handleCheckboxChange(e.target.value)}
+                    />
+                    {indicador}
+                  </label>
+                </div>
+              ))
               }
             </div>
           )}
         </div>
-
         <div className={`${styles.selectorBox} ${styles.estabelecimentoSelector}`}>
-          <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxes(!showNovoCheckboxes)}>
+          <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxescnes(!showNovoCheckboxescnes)}>
             <span>Esabelecimento </span>
-            <div className={styles.arrowIcon}>{showNovoCheckboxes ? '▼' : '▼'}</div>
+            <div className={styles.arrowIcon}>{showNovoCheckboxescnes ? '▼' : '▼'}</div>
           </div>
-          {showNovoCheckboxes && (
+          {showNovoCheckboxescnes && (
             <div className={styles.checkboxes}>
-              {
-                [...new Set(GrafFicha.map(item => item.cnes_nome))].map((indicador, index) => (
-                  <div key={index} className={styles.checkboxItem}>
-                    <label>
-                      <button className={styles.button} onClick={() => handleExclusiveNovoCheckboxChange(indicador)}>Apenas</button>
-                      <input
-                        type="checkbox"
-                        value={indicador}
-                        checked={selectedNovoIndicador.includes(indicador)}
-                        onChange={(e) => handleNovoCheckboxChange(e.target.value)}
-                      />
-                      {indicador}
-                    </label>
-                  </div>
-                ))
+              <button className={styles.button} onClick={selectAllTeams}>Selecionar Todos</button>
+              {selectedNovoIndicador.filter((indicador, index, self) => self.indexOf(indicador) === index).map((indicador, index) => (
+                <div key={index} className={styles.checkboxItem}>
+                  <label>
+                    <button className={styles.button} onClick={() => handleExclusiveNovoCheckboxChangecnes(indicador)}>Apenas</button>
+                    <input
+                      type="checkbox"
+                      value={indicador}
+                      checked={selectedNovoIndicador.includes(indicador)}
+                      onChange={(e) => handleNovoCheckboxChangecnes(e.target.value)}
+                    />
+                    {indicador}
+                  </label>
+                </div>
+              ))
+              }
+            </div>
+          )}
+        </div>
+        <div className={`${styles.selectorBox} ${styles.AplicacaoSelector}`}>
+          <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxesaplicacao(!showNovoCheckboxesaplicacao)}>
+            <span>Aplicação </span>
+            <div className={styles.arrowIcon}>{showNovoCheckboxesaplicacao ? '▼' : '▼'}</div>
+          </div>
+          {showNovoCheckboxesaplicacao && (
+            <div className={styles.checkboxes}>
+              <button className={styles.button} onClick={selectAllTeams}>Selecionar Todos</button>
+              {selectedNovoIndicadorapli.filter((indicador, index, self) => self.indexOf(indicador) === index).map((indicador, index) => (
+                <div key={index} className={styles.checkboxItem}>
+                  <label>
+                    <button className={styles.button} onClick={() => handleExclusiveNovoCheckboxChangesapli(indicador)}>Apenas</button>
+                    <input
+                      type="checkbox"
+                      value={indicador}
+                      checked={selectedNovoIndicadorapli.includes(indicador)}
+                      onChange={(e) => handleNovoCheckboxChangeaplicacao(e.target.value)}
+                    />
+                    {indicador}
+                  </label>
+                </div>
+              ))
               }
             </div>
           )}
@@ -160,6 +245,10 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
 
   const [selectedNovoIndicador, setSelectedNovoIndicador] = useState(
     [...new Set(GrafFicha.map(item => item.cnes_nome))]
+  );
+
+  const [selectedNovoIndicadorapli, setSelectedNovoIndicadorapli] = useState(
+    [...new Set(GrafFicha.map(item => item.validacao_aplicacao))]
   );
 
   const [series, setSeries] = useState([]);
@@ -181,7 +270,8 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
   useEffect(() => {
     const selectedData = GrafFichaFiltrado.filter(item =>
       selectedIndicadores.includes(item.equipe_nome) &&
-      selectedNovoIndicador.includes(item.cnes_nome)
+      selectedNovoIndicador.includes(item.cnes_nome) &&
+      selectedNovoIndicadorapli.includes(item.validacao_aplicacao)
     );
 
     const periodos = [...new Set(selectedData.map(item => item.periodo_data_inicio))].sort();
@@ -208,10 +298,12 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
     setSeries(newSeries);
     setFilteredSeries(newSeries);
     setGraphLoading(false);
-  }, [GrafFicha, selectedIndicadores, selectedNovoIndicador]);
+  }, [GrafFicha, selectedIndicadores, selectedNovoIndicador, selectedNovoIndicadorapli]);
 
   useEffect(() => setSelectedIndicadores([...new Set(GrafFicha.map(item => item.equipe_nome))]), [GrafFicha]);
   useEffect(() => setSelectedNovoIndicador([...new Set(GrafFicha.map(item => item.cnes_nome))]), [GrafFicha]);
+  useEffect(() => setSelectedNovoIndicadorapli([...new Set(GrafFicha.map(item => item.validacao_aplicacao))]), [GrafFicha]);
+  
 
   const option = {
     tooltip: {
@@ -262,6 +354,8 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
             option={option}
             selectedNovoIndicador={selectedNovoIndicador}
             setSelectedNovoIndicador={setSelectedNovoIndicador}
+            selectedNovoIndicadorapli={selectedNovoIndicadorapli}
+            setSelectedNovoIndicadorapli={setSelectedNovoIndicadorapli}
           />
         </div>
       )}

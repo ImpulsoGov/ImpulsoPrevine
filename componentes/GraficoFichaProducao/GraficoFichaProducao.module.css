@@ -1,10 +1,10 @@
 .selectorBox {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
   border: 1.5px solid #95B5B3;
   border-radius: 8px; 
-  width: 220px; 
+  width: 250px; 
   text-align: center; 
-  padding: 3px;
+  padding: 10px;
   transition: border-color 0.3s;
   font-size: 13px;
   position: relative;
@@ -59,7 +59,8 @@
 }
 
 .equipeSelector,
-.estabelecimentoSelector {
+.estabelecimentoSelector,
+.AplicacaoSelector {
   display: inline-block;
-  margin-right: 20px; 
+  margin-right: 35px; 
 }
