@@ -258,7 +258,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         </div>
         <div className={`${styles.selectorBox} ${styles.PeriodoSelector}`}>
           <div className={styles.selectorHeader} onClick={() => setShowNovoCheckboxesperiodo(!showNovoCheckboxesperiodo)}>
-            <span>Periodo </span>
+            <span>Período </span>
             <div className={styles.arrowIcon}>{showNovoCheckboxesperiodo ? '▼' : '▼'}</div>
           </div>
           {showNovoCheckboxesperiodo && (
