@@ -580,7 +580,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         painel="cito"
         tabela={{
         colunas: colunasCito,
-        data:ccc
+        data:tabelaDataAPSSemExame
         }}
         data={tabelaData}
         setData={setTabelaData}
