@@ -167,7 +167,7 @@ if(session){
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
                 filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
         ]}
         painel="cito"
@@ -205,7 +205,7 @@ if(session){
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.acs_nome))],
                 filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
         ]}
         painel="cito"
@@ -551,7 +551,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
                 filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
         ]}
         painel="cito"
@@ -573,7 +573,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
                 filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.id_status_usuario.toString()))],

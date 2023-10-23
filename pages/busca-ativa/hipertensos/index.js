@@ -167,11 +167,6 @@ const Index = ({res}) => {
                     rotulo: 'Filtrar por nome da equipe'
                   },
                   {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_ine_cadastro))],
-                    filtro: 'equipe_ine_cadastro',
-                    rotulo: 'Filtrar por INE da equipe'
-                  },
-                  {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
                     filtro: 'acs_nome_cadastro',
                     rotulo: 'Filtrar por nome do ACS'

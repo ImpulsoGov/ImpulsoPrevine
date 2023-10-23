@@ -22,6 +22,7 @@ const PrazoProximaConsultaStyle = ({value})=> {
 const FormatarData = (str)=>{
     if(!str.value) return null
     const parts = str.value.split('-');
+    console.log(str.value,parts)
     const dia = parts[2];
     const mes = parts[1];
     const ano = parts[0];
