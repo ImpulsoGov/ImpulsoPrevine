@@ -580,14 +580,14 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         painel="cito"
         tabela={{
         colunas: colunasCito,
-        data:tabelaDataAPSSemExame
+        data:ccc
         }}
         data={tabelaData}
         setData={setTabelaData}
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}   
-        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
+        atualizacao = {new Date(tabelaDataAPSSemExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
             return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
@@ -637,7 +637,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}    
-        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
+        atualizacao = {new Date(tabelaDataAPSComExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
             return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
