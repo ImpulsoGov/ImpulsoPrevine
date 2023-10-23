@@ -92,13 +92,13 @@ const datefiltrosCito = [
   ]
   const rotulosfiltrosCito = [
     "NOMES DE A-Z",
-    "NOME DO ACS DE A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL A-Z",
     "VENCIMENTO DA COLETA MAIS ANTIGO",
     "PRAZO PARA PRÓXIMA COLETA",
     ]
   const IDFiltrosCito = {
     "NOMES DE A-Z": "paciente_nome",
-    "NOME DO ACS DE A-Z": "acs_nome",
+    "NOME DO PROFISSIONAL RESPONSÁVEL A-Z": "acs_nome",
     "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
     "PRAZO PARA PRÓXIMA COLETA" : "prazo_proxima_coleta",
     }
@@ -153,13 +153,13 @@ if(session){
                 rotulo: 'Filtrar por nome da equipe'
             },
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria))],
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
@@ -191,13 +191,13 @@ if(session){
                 rotulo: 'Filtrar por nome da equipe'
             },
             {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria))],
+                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
             {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
