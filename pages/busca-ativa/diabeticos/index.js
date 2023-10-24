@@ -175,7 +175,7 @@ const Index = ({res}) => {
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
                     filtro: 'acs_nome_cadastro',
-                    rotulo: 'Filtrar por nome do ACS'
+                    rotulo: 'Filtrar por nome do Profissional Responsável'
                   },
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.identificacao_condicao_diabetes))],
@@ -458,7 +458,7 @@ const Index = ({res}) => {
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
                 filtro: 'acs_nome_cadastro',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
               },
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_diabetes))],
@@ -497,9 +497,8 @@ const Index = ({res}) => {
       </>
     )
 }
-}else{
-  signOut()
+if(status === "authenticated") signOut()
+  
+  }
 }
-}
-
 export default Index;

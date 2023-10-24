@@ -728,9 +728,8 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     </>
     )
 }
-}else{
-    signOut()
 }
+if(status === "authenticated") signOut()
 
 }
 

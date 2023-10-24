@@ -217,6 +217,7 @@ const Index = ({res}) => {
             </>
         )
     }
+    if(status === "authenticated") signOut()
 }
 
 export default Index;

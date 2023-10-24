@@ -73,7 +73,7 @@ const Index = ({res}) => {
     "PRAZO PARA PRÓXIMA CONSULTA",
     "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
     "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA",
-    "NOME DO ACS DE A-Z"
+    "NOME DO PROFISSIONAL RESPONSÁVEL"
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
@@ -81,7 +81,7 @@ const Index = ({res}) => {
     "PRAZO PARA PRÓXIMA CONSULTA" : "prazo_proxima_consulta",
     "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
     "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA" : "prazo_proxima_afericao_pa",
-    "NOME DO ACS DE A-Z" : "acs_nome_cadastro"
+    "NOME DO PROFISSIONAL RESPONSÁVEL" : "acs_nome_cadastro"
     }
   if(session){  
     if(session.user.perfis.includes(9)){
@@ -162,19 +162,19 @@ const Index = ({res}) => {
               <PainelBuscaAtiva
                 dadosFiltros={[
                   {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_nome_cadastro))],
-                    filtro: 'equipe_nome_cadastro',
-                    rotulo: 'Filtrar por nome da equipe'
-                  },
-                  {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
                     filtro: 'acs_nome_cadastro',
-                    rotulo: 'Filtrar por nome do ACS'
+                    rotulo: 'Filtrar por nome do Profissional Responsável'
                   },
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.identificacao_condicao_hipertensao))],
                     filtro: 'identificacao_condicao_hipertensao',
                     rotulo: 'Filtrar por tipo de diagnóstico'
+                  },
+                  {
+                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_nome_cadastro))],
+                    filtro: 'equipe_nome_cadastro',
+                    rotulo: 'Filtrar por nome da equipe'
                   },
                 ]}
                 painel="hipertensao"
@@ -448,7 +448,7 @@ const Index = ({res}) => {
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
                 filtro: 'acs_nome_cadastro',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
               },
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_hipertensao))],
@@ -487,9 +487,8 @@ const Index = ({res}) => {
       </>
     )
 }
-}else{
-  signOut()
 }
+if(status === "authenticated") signOut()
 }
 
 export default Index;
