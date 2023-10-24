@@ -488,7 +488,7 @@ const Index = ({res}) => {
     )
 }
 }
-if(status !== "authenticated") signOut()
+if(status === "unauthenticateds") signOut()
 }
 
 export default Index;

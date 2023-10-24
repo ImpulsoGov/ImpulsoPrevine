@@ -729,7 +729,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     )
 }
 }
-if(status !== "authenticated") signOut()
+if(status === "unauthenticated") signOut()
 
 }
 
