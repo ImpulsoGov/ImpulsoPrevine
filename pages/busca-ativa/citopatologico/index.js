@@ -555,6 +555,17 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
         dadosFiltros={[
             {
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por nome do Profissional Responsável'
+            },
+            {
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_status_usuario.toString()))],
+                labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
+                filtro: 'id_status_usuario',
+                rotulo: 'Filtrar por status'
+            },
+            {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
                 filtro: 'equipe_nome',
                 rotulo: 'Filtrar por nome da equipe'
@@ -564,17 +575,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
-            },
-            {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_status_usuario.toString()))],
-                labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
-                filtro: 'id_status_usuario',
-                rotulo: 'Filtrar por status'
-            },
-            {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
         ]}
         painel="cito"
