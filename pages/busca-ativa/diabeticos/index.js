@@ -497,7 +497,7 @@ const Index = ({res}) => {
       </>
     )
 }
-if(status === "authenticated") signOut()
+if(status !== "authenticated") signOut()
   
   }
 }

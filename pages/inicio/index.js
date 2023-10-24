@@ -114,6 +114,7 @@ const Index = ({res}) => {
         if (cargo == "Impulser") return cargo
     }
     const cargo = cargo_transform(session?.user?.cargo)
+    console.log(status)
     if (session){
         return(
             <>
@@ -217,7 +218,7 @@ const Index = ({res}) => {
             </>
         )
     }
-    if(status === "authenticated") signOut()
+    if(status !== "authenticated") signOut()
 }
 
 export default Index;
