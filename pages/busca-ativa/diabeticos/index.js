@@ -198,6 +198,17 @@ const Index = ({res}) => {
                 datefiltros={datefiltrosDiabetes}
                 IDFiltros={IDFiltrosDiabetes}
                 rotulosfiltros={rotulosfiltrosDiabetes}    
+                atualizacao = {new Date(tabelaDataEquipe.reduce((maisRecente, objeto) => {
+                  const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+                  const dataMaisRecenteAnterior = new Date(maisRecente);
+                  return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+              }, "2000-01-01")).toLocaleString('pt-BR', { 
+                timeZone: 'UTC',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+               })}
+
               /> : <Spinner/>
             }
         </>
@@ -470,6 +481,17 @@ const Index = ({res}) => {
             datefiltros={datefiltrosDiabetes}
             IDFiltros={IDFiltrosDiabetes}
             rotulosfiltros={rotulosfiltrosDiabetes}
+            atualizacao = {new Date(tabelaDataAPS.reduce((maisRecente, objeto) => {
+              const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+              const dataMaisRecenteAnterior = new Date(maisRecente);
+              return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+          }, "2000-01-01")).toLocaleString('pt-BR', { 
+            timeZone: 'UTC',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+           })}
+
           /> : <Spinner/>
         }
       </>
