@@ -95,14 +95,12 @@ const datefiltrosCito = [
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
     "VENCIMENTO DA COLETA MAIS ANTIGO",
     "IDADE MENOR-MAIOR",
-    "PRAZO PARA PRÓXIMA COLETA",
     ]
   const IDFiltrosCito = {
     "NOMES DE A-Z": "paciente_nome",
     "NOME DO PROFISSIONAL RESPONSÁVEL A-Z": "acs_nome",
     "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
     "IDADE MENOR-MAIOR" : "idade",
-    "PRAZO PARA PRÓXIMA COLETA" : "prazo_proxima_coleta",
     }
 if(session){  
     if(session.user.perfis.includes(9)){
