@@ -98,7 +98,7 @@ const datefiltrosCito = [
     ]
   const IDFiltrosCito = {
     "NOMES DE A-Z": "paciente_nome",
-    "NOME DO PROFISSIONAL RESPONSÁVEL A-Z": "acs_nome",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
     "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
     "IDADE MENOR-MAIOR" : "idade",
     }
