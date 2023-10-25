@@ -92,7 +92,7 @@ const datefiltrosCito = [
   ]
   const rotulosfiltrosCito = [
     "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
     "VENCIMENTO DA COLETA MAIS ANTIGO",
     "IDADE MENOR-MAIOR",
     "PRAZO PARA PRÓXIMA COLETA",
