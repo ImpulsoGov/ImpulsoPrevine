@@ -69,9 +69,9 @@ const Index = ({res}) => {
     ]
   const rotulosfiltrosHipertensao = [
     "NOMES DE A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
     "DATA DA CONSULTA MAIS RECENTE",
     "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z"
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
