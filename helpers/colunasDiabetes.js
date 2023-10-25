@@ -52,7 +52,8 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'NOME',
     renderCell : formatar_nome,
-    width: 240
+    width: 240,
+    sortable : false
   },
   {
     align: 'center',
@@ -60,14 +61,16 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'CPF',
     renderCell : FormatarDataNascimento,
-    width: 130
+    width: 130,
+    sortable : false
   },
   {
     align: 'center',
     field: 'identificacao_condicao_diabetes',
     headerAlign: 'center',
     headerName: 'IDENTIFICAÇÃO DA CONDIÇÃO',
-    width: 150
+    width: 150,
+    sortable : false
   },
   {
     align: 'center',
@@ -75,7 +78,8 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'DATA DA CONSULTA MAIS RECENTE',
     renderCell : FormatarData,
-    width: 120
+    width: 120,
+    sortable : false
   },
   {
     align: 'center',
@@ -83,7 +87,8 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 130
+    width: 130,
+    sortable : false
   },
   {
     align: 'center',
@@ -91,7 +96,8 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE',
     renderCell : FormatarData,
-    width: 180
+    width: 180,
+    sortable : false
   },
   {
     align: 'center',
@@ -99,14 +105,16 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 180
+    width: 180,
+    sortable : false
   },
   {
     align: 'center',
     field: 'acs_nome_cadastro',
     headerAlign: 'center',
     headerName: 'PROFISSIONAL RESPONSÁVEL',
-    width: 250
+    width: 250,
+    sortable : false
   }
 ]
 

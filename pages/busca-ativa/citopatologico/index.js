@@ -566,15 +566,15 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 rotulo: 'Filtrar por status'
             },
             {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
-            {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
+            },
+            {
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
+                filtro: 'equipe_nome',
+                rotulo: 'Filtrar por nome da equipe'
             },
         ]}
         painel="cito"

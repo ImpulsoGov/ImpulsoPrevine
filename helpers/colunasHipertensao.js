@@ -51,7 +51,8 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'NOME',
       renderCell : formatar_nome,
-      width: 240
+      width: 240,
+      sortable : false
     },
     {
       align: 'center',
@@ -59,14 +60,16 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'CPF/DATA DE NASCIMENTO',
       renderCell : FormatarDataNascimento,
-      width: 130
+      width: 130,
+      sortable : false
     },
     {
       align: 'center',
       field: 'identificacao_condicao_hipertensao',
       headerAlign: 'center',
       headerName: 'IDENTIFICAÇÃO DA CONDIÇÃO',
-      width: 150
+      width: 150,
+      sortable : false
     },
     {
       align: 'center',
@@ -74,7 +77,8 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'DATA DA CONSULTA MAIS RECENTE',
       renderCell : FormatarData,
-      width: 120
+      width: 120,
+      sortable : false
     },
     {
       align: 'center',
@@ -82,7 +86,8 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
       renderCell: PrazoProximaConsultaStyle,
-      width: 130
+      width: 130,
+      sortable : false
     },
     {
       align: 'center',
@@ -90,7 +95,8 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'DATA DA AFERIÇÃO DE PA MAIS RECENTE',
       renderCell : FormatarData,
-      width: 130
+      width: 130,
+      sortable : false
     },
     {
       align: 'center',
@@ -98,14 +104,16 @@ const colunasHipertensao = [
       headerAlign: 'center',
       headerName: 'PRAZO PARA PRÓXIMA AFERIÇÃO DE PA',
       renderCell: PrazoProximaConsultaStyle,
-      width: 130
+      width: 130,
+      sortable : false
     },
     {
       align: 'center',
       field: 'acs_nome_cadastro',
       headerAlign: 'center',
       headerName: 'PROFISSIONAL RESPONSÁVEL',
-      width: 250
+      width: 250,
+      sortable : false
     }
   ]
 

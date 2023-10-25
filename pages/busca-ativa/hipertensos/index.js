@@ -70,18 +70,14 @@ const Index = ({res}) => {
   const rotulosfiltrosHipertensao = [
     "NOMES DE A-Z",
     "DATA DA CONSULTA MAIS RECENTE",
-    "PRAZO PARA PRÓXIMA CONSULTA",
     "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
-    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA",
-    "NOME DO PROFISSIONAL RESPONSÁVEL"
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z"
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
     "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
-    "PRAZO PARA PRÓXIMA CONSULTA" : "prazo_proxima_consulta",
     "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
-    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA" : "prazo_proxima_afericao_pa",
-    "NOME DO PROFISSIONAL RESPONSÁVEL" : "acs_nome_cadastro"
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
     }
   if(session){  
     if(session.user.perfis.includes(9)){
