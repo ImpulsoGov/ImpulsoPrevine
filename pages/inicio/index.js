@@ -179,7 +179,7 @@ const Index = ({ res }) => {
                         window.screen.width >= 1024 ?
                             {
                                 display: "grid",
-                                gridTemplateColumns: "auto auto",
+                                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
                                 columnGap: "24px",
                                 gridRowGap: "24px",
                                 marginLeft: "80px",
