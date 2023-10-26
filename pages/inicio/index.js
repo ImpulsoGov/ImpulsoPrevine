@@ -137,7 +137,7 @@ const Index = ({res}) => {
                         window.screen.width >= 1024 ?
                         {
                             display : "grid",
-                            gridTemplateColumns : "auto auto",
+                            gridTemplateColumns : "auto auto auto",
                             columnGap : "24px",
                             gridRowGap : "24px",
                             marginLeft : "80px",
@@ -152,8 +152,7 @@ const Index = ({res}) => {
                         }
                 }>
 
-                    {
-                        data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
+                    {data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
                         data.map((trilha,index)=>{
                             const GerarCertificado = () => {
                                 const carga_horaria = '10';
@@ -171,6 +170,27 @@ const Index = ({res}) => {
                                 />
                         })
                     }
+                    </div>
+
+                    <div 
+                    style={
+                        window.screen.width >= 1024 ?
+                        {
+                            display : "grid",
+                            gridTemplateColumns : "auto auto",
+                            columnGap : "24px",
+                            gridRowGap : "24px",
+                            marginLeft : "80px",
+                            marginRight : "45px",
+                            marginBottom : "20px"
+                        }:
+                        {
+                            display : "flex",
+                            flexDirection : "column",
+                            gap : "15px",
+                            marginLeft : "15px"
+                        }
+                }>
                     {
                         (session?.user.perfis.includes(5) || session?.user.perfis.includes(8) || session?.user.perfis.includes(9)) &&
                         <>
