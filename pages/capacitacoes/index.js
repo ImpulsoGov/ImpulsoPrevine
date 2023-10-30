@@ -53,16 +53,20 @@ const Index = ({res}) => {
                     style={
                         window.screen.width >= 1024 ?
                         {
-                            display : "flex",
-                            gap : "30px",
-                            marginLeft : "80px",
-                            marginRight : "80px",
-                            marginBottom : "30px" 
-                        }:
+                            display: "flex",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+                            columnGap: "24px",
+                            gridRowGap: "24px",
+                            marginLeft: "80px",
+                            marginRight: "80px",
+                            marginBottom: "20px"
+
+                        } :
                         {
-                            display : "flex",
-                            flexDirection : "column",
-                            gap : "15px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "15px",
+                            marginLeft: "15px"
                         }
                 }>
                     {

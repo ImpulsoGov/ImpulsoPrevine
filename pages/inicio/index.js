@@ -137,7 +137,7 @@ const Index = ({ res }) => {
                     style={
                         window.screen.width >= 1024 ?
                             {
-                                display: "grid",
+                                display: "flex",
                                 gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
                                 columnGap: "24px",
                                 gridRowGap: "24px",
