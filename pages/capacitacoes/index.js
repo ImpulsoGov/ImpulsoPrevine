@@ -57,7 +57,7 @@ const Index = ({res}) => {
                             gap : "30px",
                             marginLeft : "80px",
                             marginRight : "80px",
-                            marginBottom : "30px"
+                            marginBottom : "30px" 
                         }:
                         {
                             display : "flex",
