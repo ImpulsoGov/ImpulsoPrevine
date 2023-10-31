@@ -136,23 +136,23 @@ const Index = ({ res }) => {
                 <div
                     style={
                         window.screen.width >= 1024 ?
-                            {
-                                display: "grid",
-                                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-                                columnGap: "24px",
-                                gridRowGap: "24px",
-                                marginLeft: "80px",
-                                marginRight: "45px",
-                                marginBottom: "20px"
+                        {
+                            display: "grid",
+                            gridTemplateColumns: "auto auto auto",
+                            columnGap: "24px",
+                            gridRowGap: "24px",
+                            marginLeft: "80px",
+                            marginRight: "80px",
+                            marginBottom: "20px"
 
-                            } :
-                            {
-                                display: "grid",
-                                flexDirection: "column",
-                                gap: "15px",
-                                marginLeft: "15px"
-                            }
-                    }>
+                        } :
+                        {
+                            display: "grid",
+                            flexDirection: "column",
+                            gap: "15px",
+                            marginLeft: "15px"
+                        }
+                }>
 
                     {data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
                         data.map((trilha, index) => {

@@ -54,7 +54,7 @@ const Index = ({res}) => {
                         window.screen.width >= 1024 ?
                         {
                             display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+                            gridTemplateColumns: "auto auto auto",
                             columnGap: "24px",
                             gridRowGap: "24px",
                             marginLeft: "80px",
