@@ -90,6 +90,15 @@ const Index = ({res}) => {
     "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
     "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
   }
+  const IDFiltrosOrdenacaoDiabetes = {
+    "cidadao_nome" : "asc",
+    "acs_nome_cadastro" : "asc",
+    "dt_consulta_mais_recente" : "asc",
+    "prazo_proxima_consulta" : "asc",
+    "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
+    "prazo_proxima_solicitacao_hemoglobina" : "asc",
+  }
+  
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -193,7 +202,8 @@ const Index = ({res}) => {
                 setData={setTabelaData}
                 datefiltros={datefiltrosDiabetes}
                 IDFiltros={IDFiltrosDiabetes}
-                rotulosfiltros={rotulosfiltrosDiabetes}    
+                rotulosfiltros={rotulosfiltrosDiabetes}   
+                IDFiltrosOrdenacao={IDFiltrosOrdenacaoDiabetes} 
                 atualizacao = {new Date(tabelaDataEquipe.reduce((maisRecente, objeto) => {
                   const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
                   const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -477,6 +487,7 @@ const Index = ({res}) => {
             datefiltros={datefiltrosDiabetes}
             IDFiltros={IDFiltrosDiabetes}
             rotulosfiltros={rotulosfiltrosDiabetes}
+            IDFiltrosOrdenacao={IDFiltrosOrdenacaoDiabetes} 
             atualizacao = {new Date(tabelaDataAPS.reduce((maisRecente, objeto) => {
               const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
               const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -493,8 +504,8 @@ const Index = ({res}) => {
       </>
     )
 }
-if(status === "unauthenticated") signOut()
-  
-  }
+}else{
+  if(status !== "authenticated" && status !== "loading" ) signOut()
+}
 }
 export default Index;

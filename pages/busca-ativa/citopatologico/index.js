@@ -96,12 +96,20 @@ const datefiltrosCito = [
     "VENCIMENTO DA COLETA MAIS ANTIGO",
     "IDADE MENOR-MAIOR",
     ]
-  const IDFiltrosCito = {
-    "NOMES DE A-Z": "paciente_nome",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
-    "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
-    "IDADE MENOR-MAIOR" : "idade",
+    const IDFiltrosCito = {
+        "NOMES DE A-Z": "paciente_nome",
+        "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
+        "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
+        "IDADE MENOR-MAIOR" : "idade",
+    }   
+    const IDFiltrosOrdenacaoCito = {
+        "paciente_nome" : "asc",
+        "acs_nome" : "asc",
+        "idade" : "asc",
+        "vencimento_da_coleta" : "desc",
+        "prazo_proxima_coleta" : "asc",
     }
+      
 if(session){  
     if(session.user.perfis.includes(9)){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
@@ -180,6 +188,7 @@ if(session){
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
         atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -228,6 +237,7 @@ if(session){
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
         atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -585,6 +595,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}   
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
         atualizacao = {new Date(tabelaDataAPSSemExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -635,6 +646,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         datefiltros={datefiltrosCito}
         IDFiltros={IDFiltrosCito}
         rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
         atualizacao = {new Date(tabelaDataAPSComExame.reduce((maisRecente, objeto) => {
             const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
             const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -726,8 +738,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     </>
     )
 }
+}else{
+    if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-if(status === "unauthenticated") signOut()
 
 }
 
