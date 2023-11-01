@@ -34,7 +34,6 @@ const validacao = (setResposta,validarCredencial,entrar,mail,senha, setEsperando
     return msg_campo_vazio
   }else{
     res().then((response)=>{
-      console.log(response)
       if (typeof(response["access_token"]) !== "undefined"){
         entrar('credentials', { redirect: true,username:mail, password: senha })
       }else{

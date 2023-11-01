@@ -55,7 +55,7 @@ useEffect(() => {
     );
   }, [activeTabIndex]);
 
-const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio,session?.user?.access_token)
+const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     CitoTabelaDataAPS().then((response)=>{
@@ -63,7 +63,7 @@ useEffect(()=>{
 })},[session]) 
 
 const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-const CitoTabelaDataEquipe = async()=> await tabelaCitoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+const CitoTabelaDataEquipe = async()=> await tabelaCitoEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
 useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     CitoTabelaDataEquipe().then((response)=>{
@@ -677,9 +677,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
 }
 }
 if(status=="unauthenticated") router.push('/')
-return(
-    <p>{status}</p>
-)
 }
 
 export default Index;

@@ -38,7 +38,7 @@ const Index = ({res}) => {
   const [tokenValido, setTokenValido] = useState();
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
-  const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio,session?.user?.access_token)
+  const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
   useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     DiabetesTabelaDataAPS().then((response)=>{
@@ -46,7 +46,7 @@ const Index = ({res}) => {
   })},[session]) 
 
   const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-  const DiabetesTabelaDataEquipe = async()=> await tabelaDiabetesEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+  const DiabetesTabelaDataEquipe = async()=> await tabelaDiabetesEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
   useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     DiabetesTabelaDataEquipe().then((response)=>{
