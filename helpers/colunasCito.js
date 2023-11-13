@@ -171,14 +171,16 @@ const colunasCito=[
       headerAlign: 'center',
       headerName: 'NOME',
       renderCell : formatar_nome,
-      width: 320
+      width: 320,
+      sortable : false
     },
     {
       align: 'center',
       field: 'cidadao_cpf_dt_nascimento',
       headerAlign: 'center',
       headerName: 'CPF / DATA DE NASCIMENTO',
-      width: 140
+      width: 140,
+      sortable : false
     },
     {
       align: 'center',
@@ -186,14 +188,16 @@ const colunasCito=[
       headerAlign: 'center',
       headerName: 'STATUS DA COLETA',
       renderCell : selecionar_status_usuario_descricao,
-      width: 300
+      width: 300,
+      sortable : false
     },
     {
       align: 'center',
       field: 'vencimento_da_coleta',
       headerAlign: 'center',
       headerName: 'VENCIMENTO DA COLETA',
-      width: 105
+      width: 105,
+      sortable : false
     },
     {
       align: 'center',
@@ -201,21 +205,24 @@ const colunasCito=[
       headerAlign: 'center',
       headerName: 'PRAZO PARA PRÓXIMA COLETA',
       renderCell: prazoStyle,
-      width: 130
+      width: 130,
+      sortable : false
     },
     {
       align: 'center',
       field: 'idade',
       headerAlign: 'center',
       headerName: 'IDADE',
-      width: 80
+      width: 80,
+      sortable : false
     },
     {
       align: 'center',
       field: 'acs_nome',
       headerAlign: 'center',
-      headerName: 'ACS',
-      width: 250
+      headerName: 'PROFISSIONAL RESPONSÁVEL',
+      width: 250,
+      sortable : false
     }
   ]
 

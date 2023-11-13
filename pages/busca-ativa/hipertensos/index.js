@@ -63,6 +63,30 @@ const Index = ({res}) => {
       if(tokenValido!=true && tokenValido!==undefined) signOut()
     }
   },[tokenValido])
+  const datefiltrosHipertensao = [
+    "dt_afericao_pressao_mais_recente",
+    "dt_consulta_mais_recente",
+    ]
+  const rotulosfiltrosHipertensao = [
+    "NOMES DE A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+    "DATA DA CONSULTA MAIS RECENTE",
+    "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
+    ]
+  const IDFiltrosHipertensao = {
+    "NOMES DE A-Z": "cidadao_nome",
+    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
+    "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
+    }
+  const IDFiltrosOrdenacaoHipertensao = {
+    "cidadao_nome" : "asc",
+    "dt_consulta_mais_recente" : "asc",
+    "prazo_proxima_consulta" : "asc",
+    "dt_afericao_pressao_mais_recente" : "asc",
+    "prazo_proxima_afericao_pa" : "asc",
+    "acs_nome_cadastro" : "asc",
+  }
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -142,24 +166,19 @@ const Index = ({res}) => {
               <PainelBuscaAtiva
                 dadosFiltros={[
                   {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_nome_cadastro))],
-                    filtro: 'equipe_nome_cadastro',
-                    rotulo: 'Filtrar por nome da equipe'
-                  },
-                  {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_ine_cadastro))],
-                    filtro: 'equipe_ine_cadastro',
-                    rotulo: 'Filtrar por INE da equipe'
-                  },
-                  {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
                     filtro: 'acs_nome_cadastro',
-                    rotulo: 'Filtrar por nome do ACS'
+                    rotulo: 'Filtrar por nome do Profissional Responsável'
                   },
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.identificacao_condicao_hipertensao))],
                     filtro: 'identificacao_condicao_hipertensao',
                     rotulo: 'Filtrar por tipo de diagnóstico'
+                  },
+                  {
+                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_nome_cadastro))],
+                    filtro: 'equipe_nome_cadastro',
+                    rotulo: 'Filtrar por nome da equipe'
                   },
                 ]}
                 painel="hipertensao"
@@ -169,7 +188,22 @@ const Index = ({res}) => {
                 }}
                 data={tabelaData}
                 setData={setTabelaData}
-              /> : <Spinner/>
+                datefiltros={datefiltrosHipertensao}
+                IDFiltros={IDFiltrosHipertensao}
+                rotulosfiltros={rotulosfiltrosHipertensao} 
+                IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}   
+                atualizacao = {new Date(tabelaDataEquipe.reduce((maisRecente, objeto) => {
+                  const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+                  const dataMaisRecenteAnterior = new Date(maisRecente);
+                  return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+              }, "2000-01-01")).toLocaleString('pt-BR', { 
+                timeZone: 'UTC',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+               })}
+      
+                /> : <Spinner/>
             }
         </>
       )
@@ -417,24 +451,19 @@ const Index = ({res}) => {
           <PainelBuscaAtiva
             dadosFiltros={[
               {
-                data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
-                filtro: 'equipe_nome_cadastro',
-                rotulo: 'Filtrar por nome da equipe'
-              },
-              {
-                data: [...new Set(tabelaDataAPS.map(item => item.equipe_ine_cadastro))],
-                filtro: 'equipe_ine_cadastro',
-                rotulo: 'Filtrar por INE da equipe'
-              },
-              {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
                 filtro: 'acs_nome_cadastro',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
               },
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_hipertensao))],
                 filtro: 'identificacao_condicao_hipertensao',
                 rotulo: 'Filtrar por tipo de diagnóstico'
+              },
+              {
+                data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
+                filtro: 'equipe_nome_cadastro',
+                rotulo: 'Filtrar por nome da equipe'
               },
             ]}
             painel="hipertensao"
@@ -444,15 +473,30 @@ const Index = ({res}) => {
             }}
             data={tabelaData}
             setData={setTabelaData}
+            datefiltros={datefiltrosHipertensao}
+            IDFiltros={IDFiltrosHipertensao}
+            rotulosfiltros={rotulosfiltrosHipertensao}    
+            IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}  
+            atualizacao = {new Date(tabelaDataAPS.reduce((maisRecente, objeto) => {
+              const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+              const dataMaisRecenteAnterior = new Date(maisRecente);
+              return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+          }, "2000-01-01")).toLocaleString('pt-BR', { 
+            timeZone: 'UTC',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+           })}
+  
       /> : <Spinner/>
         }
       </>
     )
 }
+}else{
+  if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-return(
-    <p>{status}</p>
-  )
+
 }
 
 export default Index;
