@@ -87,6 +87,29 @@ useEffect(()=>{
     if(tokenValido!=true && tokenValido!==undefined) signOut()
 }
 },[tokenValido])
+const datefiltrosCito = [
+    "vencimento_da_coleta",
+  ]
+  const rotulosfiltrosCito = [
+    "NOMES DE A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+    "VENCIMENTO DA COLETA MAIS ANTIGO",
+    "IDADE MENOR-MAIOR",
+    ]
+    const IDFiltrosCito = {
+        "NOMES DE A-Z": "paciente_nome",
+        "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
+        "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
+        "IDADE MENOR-MAIOR" : "idade",
+    }   
+    const IDFiltrosOrdenacaoCito = {
+        "paciente_nome" : "asc",
+        "acs_nome" : "asc",
+        "idade" : "asc",
+        "vencimento_da_coleta" : "desc",
+        "prazo_proxima_coleta" : "asc",
+    }
+      
 if(session){  
     if(session.user.perfis.includes(9)){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
@@ -132,32 +155,28 @@ if(session){
     <PainelBuscaAtiva
         dadosFiltros={[
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
             },
             {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria.toString()))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                filtro: 'id_faixa_etaria',
+                rotulo: 'Filtrar por faixa etária'
             },
+            {
+                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_nome))],
+                filtro: 'equipe_nome',
+                rotulo: 'Filtrar por nome da equipe'
+            },
+
         ]}
         painel="cito"
         tabela={{
@@ -166,7 +185,21 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
-    /></> : <Spinner/>
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
+        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
+            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+            const dataMaisRecenteAnterior = new Date(maisRecente);
+            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+          timeZone: 'UTC',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+         })}
+            /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
@@ -177,18 +210,13 @@ if(session){
                 rotulo: 'Filtrar por nome da equipe'
             },
             {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria))],
+                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
             {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
@@ -196,7 +224,7 @@ if(session){
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.acs_nome))],
                 filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
         ]}
         painel="cito"
@@ -206,6 +234,21 @@ if(session){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
+        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
+            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+            const dataMaisRecenteAnterior = new Date(maisRecente);
+            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+          timeZone: 'UTC',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+         })}
+
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
@@ -520,31 +563,26 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
         dadosFiltros={[
             {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
             {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
-            },
-            {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
             },
             {
-                data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria.toString()))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                filtro: 'id_faixa_etaria',
+                rotulo: 'Filtrar por faixa etária'
+            },
+            {
+                data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
+                filtro: 'equipe_nome',
+                rotulo: 'Filtrar por nome da equipe'
             },
         ]}
         painel="cito"
@@ -554,6 +592,21 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}   
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
+        atualizacao = {new Date(tabelaDataAPSSemExame.reduce((maisRecente, objeto) => {
+            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+            const dataMaisRecenteAnterior = new Date(maisRecente);
+            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+          timeZone: 'UTC',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+         })}
+ 
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataAPS ? 
@@ -561,31 +614,26 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     <PainelBuscaAtiva
         dadosFiltros={[
             {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por nome do Profissional Responsável'
             },
             {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_ine))],
-                filtro: 'equipe_ine',
-                rotulo: 'Filtrar por INE da equipe'
-            },
-            {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
-            },
-            {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_status_usuario))],
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_status_usuario.toString()))],
                 labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
                 filtro: 'id_status_usuario',
                 rotulo: 'Filtrar por status'
             },
             {
-                data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do ACS'
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.id_faixa_etaria.toString()))],
+                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                filtro: 'id_faixa_etaria',
+                rotulo: 'Filtrar por faixa etária'
+            },
+            {
+                data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
+                filtro: 'equipe_nome',
+                rotulo: 'Filtrar por nome da equipe'
             },
         ]}
         painel="cito"
@@ -595,6 +643,21 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         }}
         data={tabelaData}
         setData={setTabelaData}
+        datefiltros={datefiltrosCito}
+        IDFiltros={IDFiltrosCito}
+        rotulosfiltros={rotulosfiltrosCito}    
+        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
+        atualizacao = {new Date(tabelaDataAPSComExame.reduce((maisRecente, objeto) => {
+            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+            const dataMaisRecenteAnterior = new Date(maisRecente);
+            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+          timeZone: 'UTC',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+         })}
+
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]
 
@@ -675,11 +738,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     </>
     )
 }
+}else{
+    if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-if(status=="unauthenticated") router.push('/')
-return(
-    <p>{status}</p>
-)
+
 }
 
 export default Index;

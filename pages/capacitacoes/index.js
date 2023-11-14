@@ -40,7 +40,7 @@ const Index = ({res}) => {
         session && 
         TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
     },[session]) 
-    return(
+    if(session) return(
         <>
             <TituloTexto
                 titulo="Trilhas de Capacitação"
@@ -93,6 +93,7 @@ const Index = ({res}) => {
             }
         </>
     )
+    if(status === "authenticated") signOut()
 }
 
 export default Index;

@@ -1,12 +1,11 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
-import { useSession } from "next-auth/react"
+import { useSession,signOut, getSession } from "next-auth/react"
 import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
-import { getSession } from "next-auth/react";
 import { generatePDF } from '../../helpers/generatePDF'
 import { NPSConsulta, NPSAvaliacao } from "../../services/NPS"
 import style from "./ModalAlert.module.css";
@@ -238,7 +237,10 @@ const Index = ({ res }) => {
                 </div>
             </>
         )
+    }else{
+        if(status !== "authenticated" && status !== "loading" ) signOut()
     }
+    
 }
 
 export default Index;
