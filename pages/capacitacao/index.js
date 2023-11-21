@@ -18,7 +18,7 @@ export async function getServerSideProps(ctx) {
       await getData(LAYOUT),
       capacitacaoDataCMS,
       conteudosData,
-      trilhaID
+      trilhaID,
   ]
   return {
       props: {
@@ -60,7 +60,7 @@ return(
               botaoWhatsapp= {{label: "ENTRAR NO GRUPO DO WHATSAPP",url:"https://chat.whatsapp.com/IFHycLwyfwwCLlRrNZ9bsp"}}
               modulos={data}
               modulo={res[2][0]}
-              ultimoModulo = {router.query?.modulo ? router.query?.modulo : res[2][1]}
+              ultimoModulo = {router.query?.modulo ? router.query?.modulo : Number(res[2][1]) }
               mobile= {width < 1023}
               checkSobre={res[2][2]}
               trilhaID={res[3]}
