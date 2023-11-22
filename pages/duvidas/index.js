@@ -16,7 +16,7 @@ const Index = () => {
   return (
     <>
       <div className={style.BotaoVoltar}>
-      <ButtonLight icone={{posicao: 'right',url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} label="VOLTAR" link="/capacitacao?trilhaID=cldxqzjw80okq0bkm2we9n1ce"/>
+      <ButtonLight icone={{posicao: 'right',url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} label="VOLTAR" link="/capacitacoes"/>
       </div>
       <IFrame
         height="2000"
