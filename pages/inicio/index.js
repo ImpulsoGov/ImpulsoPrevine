@@ -216,6 +216,8 @@ const Index = ({res}) => {
                 </div>
             </>
         )
+    }else{
+        if(status !== "authenticated" && status !== "loading" ) signOut()
     }
 }
 
