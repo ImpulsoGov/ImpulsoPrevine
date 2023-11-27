@@ -61,7 +61,7 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param)=>{
   }
   let IG_STYLE
   if(value){
-    IG_STYLE = Number(value)<12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM
+    IG_STYLE = Number(value)<=12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM
   }else{
     IG_STYLE = IG_NULL
   }
@@ -297,17 +297,19 @@ const HIV_STYLE = ({value})=>{
     4 : check,
     5 : STYLE_NULL,
   }
+  const contentNOTNull = {
+    width : "110px",
+    height : "40px",
+    whiteSpace: "pre-wrap",
+    textAlign : "center"
+  }
+  const content = value != 5 ? contentNOTNull : {}
   const descricao = identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.find(item=>item.id_exame_hiv_sifilis==value).exame_hiv_sifilis_descricao
   return <div style={style[value]}>
     {(value == 1 || value == 2) && <span style={atencaoSymbolStyle}>!</span>} 
     {value == 3 && <span style={blockSymbolStyle}>✖</span>} 
     {value == 4 && <span style={checkSymbolStyle}>✔</span>} 
-    <div style={{
-      width : "110px",
-      height : "40px",
-      whiteSpace: "pre-wrap",
-      textAlign : "center"
-    }}>{descricao}</div>
+    <div style={content}>{descricao}</div>
     </div>
 }
 const ATENDIMENTO_ODONTOLOGICO_STYLE = ({value})=>{
@@ -385,6 +387,11 @@ const ATENDIMENTO_ODONTOLOGICO_STYLE = ({value})=>{
       {descricao}
       </div>
 }
+const REGISTRO_STYLE = ({value})=>{
+  if(value.toString()=='1') return "Sim"
+  if(value.toString()=='2') return "Não"
+}
+
 
 const colunasGestantesEquipe=[
     {
@@ -445,7 +452,7 @@ const colunasGestantesEquipe=[
       field: 'consulta_prenatal_ultima_data',
       headerAlign: 'center',
       headerName: 'ÚLTIMA CONSULTA',
-      width: 95,
+      width: 115,
       sortable : false,
       renderCell : FormatarData
     },
@@ -477,5 +484,105 @@ const colunasGestantesEquipe=[
     },
       
   ]
+  const colunasGestantesEncerradasEquipe=[
+    {
+      align: 'left',
+      field: 'cidadao_nome',
+      headerAlign: 'center',
+      headerName: 'NOME',
+      renderCell : formatar_nome,
+      width: 320,
+      sortable : false
+    },
+    {
+      align: 'center',
+      field: 'cidadao_cpf_dt_nascimento',
+      headerName: 'CPF / DATA DE NASCIMENTO',
+      width: 140,
+      sortable : false
+    },
+    {
+      align: 'center',
+      field: 'gestacao_data_dpp',
+      headerAlign: 'center',
+      headerName: 'DPP + 14 DIAS',
+      width: 100,
+      sortable : false,
+      renderCell : DDP_STYLE
+    },
+    {
+      align: 'center',
+      field: 'gestacao_idade_gestacional_primeiro_atendimento',
+      headerAlign: 'center',
+      headerName: 'IG (1ª CONSULTA)',
+      width: 90,
+      sortable : false,
+      renderCell : IG_PRIMEIRA_CONSULTA_STYLE,
 
-export { colunasGestantesEquipe } 
+    },
+    {
+      align: 'center',
+      field: 'gestacao_idade_gestacional_atual',
+      headerAlign: 'center',
+      headerName: 'IG ATUAL',
+      width: 65,
+      sortable : false,
+      renderCell : IG_ATUAL_STYLE
+    },
+    {
+      align: 'center',
+      field: 'consultas_pre_natal_validas',
+      headerAlign: 'center',
+      headerName: 'TOTAL DE CONSULTAS VALIDAS',
+      width: 100,
+      sortable : false,
+      renderCell : TOTAL_CONSULTAS_VALIDAS_STYLE
+    },
+    {
+      align: 'center',
+      field: 'consulta_prenatal_ultima_data',
+      headerAlign: 'center',
+      headerName: 'ÚLTIMA CONSULTA',
+      width: 115,
+      sortable : false,
+      renderCell : FormatarData
+    },
+    {
+        align: 'center',
+        field: 'id_exame_hiv_sifilis',
+        headerAlign: 'center',
+        headerName: 'EXAME DE HIV/SÍFILIS',
+        width: 150,
+        sortable : false,
+        renderCell : HIV_STYLE
+    },
+    {
+        align: 'center',
+        field: 'id_atendimento_odontologico',
+        headerAlign: 'center',
+        headerName: 'ATENDIMENTO ODONTOLÓGICO',
+        width: 120,
+        sortable : false,
+        renderCell : ATENDIMENTO_ODONTOLOGICO_STYLE
+    },
+    {
+      align: 'center',
+      field: 'id_registro_parto',
+      headerAlign: 'center',
+      headerName: 'REGISTRO DE PARTO',
+      width: 120,
+      sortable : false,
+      renderCell : REGISTRO_STYLE
+    },
+    {
+        align: 'center',
+        field: 'acs_nome',
+        headerAlign: 'center',
+        headerName: 'PROFISSIONAL RESPONSÁVEL',
+        width: 300,
+        sortable : false
+    },
+      
+  ]
+
+export { colunasGestantesEquipe, colunasGestantesEncerradasEquipe } 

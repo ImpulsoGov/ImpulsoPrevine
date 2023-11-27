@@ -58,7 +58,7 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param)=>{
   }
   let IG_STYLE
   if(value){
-    IG_STYLE = Number(value)<12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM
+    IG_STYLE = Number(value)<=12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM
   }else{
     IG_STYLE = IG_NULL
   }

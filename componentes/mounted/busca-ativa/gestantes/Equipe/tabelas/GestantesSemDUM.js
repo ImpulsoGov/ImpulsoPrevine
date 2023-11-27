@@ -22,26 +22,6 @@ const TabelaEquipeGestantesSemDUM = ({tabelaDataEquipe,tabelaData,setTabelaData}
             filtro: 'acs_nome',
             rotulo: 'Filtrar por Profissional Responsável'
         },
-        {
-            data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.consultas_pre_natal_validas?.toString()))],
-            filtro: 'consultas_pre_natal_validas',
-            rotulo: 'Filtrar por numero de consultas'
-        },
-        {
-            data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.id_atendimento_odontologico?.toString()))],
-            filtro: 'id_atendimento_odontologico',
-            rotulo: 'Filtrar por atendimento odontológico'
-        },
-        {
-            data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.id_exame_hiv_sifilis?.toString()))],
-            filtro: 'id_exame_hiv_sifilis',
-            rotulo: 'Filtrar por identificação do exame de sífilis e HIV'
-        },
-        {
-            data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.gestacao_quadrimestre))],
-            filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
-        },
         ]}
         painel="gestantes"
         tabela={{

@@ -45,7 +45,7 @@ const IndicadorDoisTabelaGestantesSemDUM = ({
         {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.gestacao_quadrimestre))],
             filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por INE da equipe'
+            rotulo: 'Filtrar por quadrimestre'
         },
         {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_nome))],

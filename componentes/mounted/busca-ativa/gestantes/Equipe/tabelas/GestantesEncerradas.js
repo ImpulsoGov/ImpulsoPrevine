@@ -2,7 +2,8 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
   } from "@impulsogov/design-system"
-  import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes"
+  import { colunasGestantesEncerradasEquipe } from "../../../../../../helpers/colunasGestantes"
+  import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
   import { 
       datefiltrosGestantes,
       IDFiltrosGestantes,
@@ -28,11 +29,13 @@ const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaD
         },
         {
             data: [...new Set(tabelaDataEquipeGestantesEncerradas.map(item => item.id_atendimento_odontologico.toString()))],
+            labels : {1 : "Sim", 2 : "Não"},
             filtro: 'id_atendimento_odontologico',
             rotulo: 'Filtrar por atendimento odontológico'
         },
         {
             data: [...new Set(tabelaDataEquipeGestantesEncerradas.map(item => item.id_exame_hiv_sifilis.toString()))],
+            labels : [...new Set(identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.map(item=> item.exame_hiv_sifilis_descricao))],
             filtro: 'id_exame_hiv_sifilis',
             rotulo: 'Filtrar por identificação do exame de sífilis e HIV'
         },
@@ -44,7 +47,7 @@ const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaD
         ]}
         painel="gestantes"
         tabela={{
-        colunas: colunasGestantesEquipe,
+        colunas: colunasGestantesEncerradasEquipe,
         data:tabelaDataEquipeGestantesEncerradas
         }}
         data={tabelaData}

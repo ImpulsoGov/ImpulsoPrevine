@@ -45,7 +45,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.gestacao_quadrimestre))],
             filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por INE da equipe'
+            rotulo: 'Filtrar por quadrimestre'
         },
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_nome))],

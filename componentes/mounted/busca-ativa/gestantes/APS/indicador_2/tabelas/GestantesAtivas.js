@@ -45,7 +45,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
         {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],
             filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
+            rotulo: 'Filtrar por quadrimestres'
         },
         {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_nome))],

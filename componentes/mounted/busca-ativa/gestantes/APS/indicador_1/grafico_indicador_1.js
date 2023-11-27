@@ -2,14 +2,14 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 const CardsGraficoIndicadorUm = ({tabelaDataAPS}) =>tabelaDataAPS ? <ScoreCardGrid
 valores={[
     {
-        descricao: 'Gestantes com mais de 6 consultas (primeira consulta até a 12a semana)',
+        descricao: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
         valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
         return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) ?
         acumulador + 1 : acumulador;
         },0)
     },
     {
-        descricao: 'Gestantes com menos de 6 consultas (primeira consulta até a 12a semana)',
+        descricao: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
         valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
         return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) ?
         acumulador + 1 : acumulador;
@@ -57,9 +57,9 @@ const GraficoIndicadorUm = ({tabelaDataAPS}) => tabelaDataAPS ?
             },
             legend: {
             data: [
-                'Gestantes com mais de 6 consultas (primeira consulta até a 12a semana)',
-                'Gestantes com menos de 6 consultas (primeira consulta até a 12a semana)',
-                'Gestantes com primeira consulta após a 12ª semana',
+                'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
+                'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
+                'Gestantes com 1ª consulta após a 12ª semana',
             ],
             top: '60',
             left: '80',
@@ -70,7 +70,7 @@ const GraficoIndicadorUm = ({tabelaDataAPS}) => tabelaDataAPS ?
                 if((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento > 12) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                 return acumulador
                 },{})),
-                name: 'Gestantes com primeira consulta após a 12ª semana',
+                name: 'Gestantes com 1ª consulta após a 12ª semana',
                 stack: 'stack',
                 type: 'bar'
             },
@@ -79,7 +79,7 @@ const GraficoIndicadorUm = ({tabelaDataAPS}) => tabelaDataAPS ?
                 if((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                 return acumulador
                 },{})),
-                name: 'Gestantes com menos de 6 consultas (primeira consulta até a 12a semana)',
+                name: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
                 stack: 'stack',
                 type: 'bar'
             },
@@ -88,7 +88,7 @@ const GraficoIndicadorUm = ({tabelaDataAPS}) => tabelaDataAPS ?
                 if((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                 return acumulador
                 },{})),
-                name: 'Gestantes com mais de 6 consultas (primeira consulta até a 12a semana)',
+                name: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
                 stack: 'stack',
                 type: 'bar'
             },
@@ -133,14 +133,14 @@ const GraficoIndicadorUm = ({tabelaDataAPS}) => tabelaDataAPS ?
                     },0)*100)/tabelaDataAPS.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
                 },
                 {
-                    name: 'Gestantes com menos de 6 consultas (primeira consulta até a 12a semana)',
+                    name: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
                     value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) ?
                     acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
                 },
                 {
-                    name: 'Gestantes com mais de 6 consultas (primeira consulta até a 12a semana)',
+                    name: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
                     value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) ? acumulador + 1 : acumulador;
                     },0)*100)/tabelaDataAPS.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)

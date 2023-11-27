@@ -13,7 +13,7 @@ valores={[
         valor: tabelaDataEquipe.filter(item=> item.id_status_usuario == 8).length
     },
     {
-      descricao: 'Total de getantes ativas contabilizando para os três indicadores',
+      descricao: 'Total de getantes ativas contabilizando para os 3 indicadores',
       valor: tabelaDataEquipe.filter(item=>{ 
       return(
         item.id_status_usuario == 8
@@ -24,7 +24,7 @@ valores={[
       )}).length
     },
     {
-      descricao: 'Gestantes ativas, com 6 ou mais consultas, com a primeira consulta realizada até a 12ª semana de gestação',
+      descricao: 'Gestantes ativas, com 6 ou mais consultas, com a 1ª consulta realizada até a 12ª semana de gestação',
       valor: tabelaDataEquipe.filter((item)=>{ 
       return (
         item.id_status_usuario == 8
@@ -41,7 +41,7 @@ valores={[
       }).length
     },
     {
-      descricao: 'Gestantes ativas, com os dois exames realizados e identificados',
+      descricao: 'Gestantes ativas, com os 2 exames realizados e identificados',
       valor: tabelaDataEquipe.filter((item)=>{ 
       return ( 
         item.id_status_usuario == 8
