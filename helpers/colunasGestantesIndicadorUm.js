@@ -187,7 +187,6 @@ const REGISTRO_STYLE = ({value})=>{
   if(value.toString()=='1') return "Sim"
   if(value.toString()=='2') return "Não"
 }
-
 const colunasGestantesIndicadorUm=[
     {
       align: 'left',
