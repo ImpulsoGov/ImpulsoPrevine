@@ -102,7 +102,7 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
-                              { label: "Listas Nominais de Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
+                              { label: "Listas Nominais de Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Listas Nominais de Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominais de Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominais de Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
