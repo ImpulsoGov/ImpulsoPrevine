@@ -43,11 +43,6 @@ const IndicadorDoisTabelaGestantesSemDUM = ({
     key="tabelaDataAPSGestantesSemDUM"
     dadosFiltros={[
         {
-            data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.gestacao_quadrimestre))],
-            filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
-        },
-        {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_nome))],
             filtro: 'equipe_nome',
             rotulo: 'Filtrar por nome da equipe'
