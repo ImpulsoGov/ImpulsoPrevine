@@ -38,7 +38,7 @@ import { IndicadorDoisCardsGestantesAtivas } from "../../../componentes/mounted/
 import { IndicadorDoisCardsGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/cards/cardsGestantesEncerradas";
 import { IndicadorTresCardsGestantesAtivas } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesAtivas";
 import { IndicadorTresCardsGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesEncerradas";
-
+import { TabelaGestantesSemDUM } from "../../../componentes/mounted/busca-ativa/gestantes/APS/GestantesSemDUM/GestantesSemDum";
 
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import identificacao_exame_hiv_sifilis  from "../../../data/identificacao_exame_hiv_sifilis.json" assert { type: 'json' };
@@ -457,13 +457,6 @@ if(session){
                     setTabelaData={setTabelaData}
                 />,
             ],
-            [
-                <IndicadorUmTabelaGestantesSemDUM 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                />,
-            ]
         ],
         [
             [
@@ -486,13 +479,6 @@ if(session){
                 setTabelaData={setTabelaData}
             />,
             ],
-            [
-                <IndicadorDoisTabelaGestantesSemDUM 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                />
-            ]
         ],
         [
             [
@@ -515,14 +501,14 @@ if(session){
                 setTabelaData={setTabelaData}
                 />,
             ],
-            [
-                <IndicadorTresTabelaGestantesSemDUM 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                />
-            ],
         ],
+        [
+          <TabelaGestantesSemDUM 
+            tabelaDataAPS={tabelaDataAPS} 
+            tabelaData={tabelaData} 
+            setTabelaData={setTabelaData}
+          />
+        ]
     ]
 
     return (
@@ -592,9 +578,6 @@ if(session){
                   {
                     label: 'GESTANTES ENCERRADAS'
                   },
-                  {
-                    label: 'GESTANTES SEM DUM'
-                  },
                 ],
                 [
                     {
@@ -605,9 +588,6 @@ if(session){
                     },
                     {
                       label: 'GESTANTES ENCERRADAS'
-                    },
-                    {
-                      label: 'GESTANTES SEM DUM'
                     },
                   ],
                   [
@@ -620,11 +600,12 @@ if(session){
                     {
                       label: 'GESTANTES ENCERRADAS'
                     },
+                  ],
+                  [
                     {
                       label: 'GESTANTES SEM DUM'
                     },
                   ],
-
                   ]}
               titles={[
                 {
@@ -636,6 +617,10 @@ if(session){
                 {
                     label: 'INDICADOR 3 (ATENDIMENTO ODONTO)'
                 },
+                {
+                  label: 'GESTANTES SEM DUM'
+                },
+
             ]}
         />
     </>
