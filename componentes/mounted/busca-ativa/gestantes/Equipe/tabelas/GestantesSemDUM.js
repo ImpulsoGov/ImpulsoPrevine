@@ -3,12 +3,23 @@ import {
     Spinner, 
   } from "@impulsogov/design-system"
   import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes"
-  import { 
-      datefiltrosGestantes,
-      IDFiltrosGestantes,
-      rotulosfiltrosGestantes,
-      IDFiltrosOrdenacaoGestantes
-   } from "../../../../../../helpers/FiltrosOrdenacaoAux"
+
+const datefiltrosGestantes = [
+    "gestacao_data_dpp",
+    "consulta_prenatal_ultima_data",
+]
+const rotulosfiltrosGestantes = [
+    "NOMES DE A-Z",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+]
+const IDFiltrosGestantes = {
+    "NOMES DE A-Z" : "cidadao_nome",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome",
+}   
+const IDFiltrosOrdenacaoGestantes = {
+    "NOMES DE A-Z" : "asc",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
+}
 
 const TabelaEquipeGestantesSemDUM = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
