@@ -18,10 +18,13 @@ import '../styles/globals.css';
 import Context from '../utils/Context';
 import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
+import mixpanel from 'mixpanel-browser';
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
+
+mixpanel.init('69ad5acd24a2da6816ecbec3396fa515');
 
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps } } = props;
@@ -39,6 +42,37 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      mixpanel.track('Page View', {
+        'Page Title': props.pageTitle,
+        'Logged': !!session,
+      });
+    };
+
+    // Quando a rota muda, chama handleRouteChange
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // Limpa o evento de escuta quando o componente é desmontado
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events, props.pageTitle]);
+
+  useEffect(() => {
+    if (props.ses && props.ses.user) {
+      mixpanel.identify(props.ses.user.id);
+      mixpanel.people.set({
+        "$email": props.ses.user.mail,
+        "$name": props.ses.user.nome,
+        "cargo": props.ses.user.cargo,
+        "municipio": props.ses.user.municipio,
+        "equipe": props.ses.user.equipe,
+      });
+    }
+  }, [props.ses]);
+
   return (
     <>
       <Head>
@@ -52,12 +86,12 @@ function MyApp(props) {
           rel="stylesheet"
         />
       </Head>
-      <SessionProvider session={ session } refetchInterval={ 60 * 60 } refetchOnWindowFocus={ true } clientMaxAge={ 8 * 60 * 60 }>
-        <Context.Provider value={ [cidade, setCidade] }>
-          <Auth setStatus={ setStatus }>
-            { isLoading &&
+      <SessionProvider session={session} refetchInterval={60 * 60} refetchOnWindowFocus={true} clientMaxAge={8 * 60 * 60}>
+        <Context.Provider value={[cidade, setCidade]}>
+          <Auth setStatus={setStatus}>
+            {isLoading &&
               <NavBar
-                login={ { titulo: "Faça o login para ver o painel de busca ativa" } }
+                login={{ titulo: "Faça o login para ver o painel de busca ativa" }}
                 user={
                   {
                     nome: nome,
@@ -71,22 +105,22 @@ function MyApp(props) {
                     validacao: validacao
                   }
                 }
-                municipio={ cidade }
-                setMunicipio={ setCidade }
-                data={ data }
-                theme={ {
+                municipio={cidade}
+                setMunicipio={setCidade}
+                data={data}
+                theme={{
                   logoProjeto: width > 1000 ?
                     path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
                   cor: (path == '/' || path == '/apoio' || path == '/analise') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
-                } }
-                showMenuMobile={ {
+                }}
+                showMenuMobile={{
                   states: {
                     active: active,
                     setMode: setMode
                   }
-                } }
+                }}
                 menu={
                   props.ses ?
                     [{ label: "Início", url: "/inicio" }]
@@ -95,18 +129,18 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
-                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
+                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
-                      .concat([{label: "Dados Públicos - Q2/23", url: "/analise" }])
-                    : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
-                NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
-                NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
-                esqueciMinhaSenha={ {
+                      .concat([{ label: "Dados Públicos - Q2/23", url: "/analise" }])
+                    : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" }, { label: "FAQ", url: "/faq" }, { label: "Blog", url: "/blog" }])}
+                NavBarIconBranco={props.res[0].logoMenuMoblies[0].logo.url}
+                NavBarIconDark={props.res[0].logoMenuMoblies[1].logo.url}
+                esqueciMinhaSenha={{
                   reqs: {
                     mail: solicitarNovaSenha,
                     codigo: validarCodigo,
@@ -115,8 +149,8 @@ function MyApp(props) {
                   chamadas: {
                     sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
                   }
-                } }
-                ModalInicio={ {
+                }}
+                ModalInicio={{
                   titulo: "Faça o login para ver os dados restritos.",
                   chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
                   cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
@@ -131,8 +165,8 @@ function MyApp(props) {
                     label: 'ESTOU COM PROBLEMAS NO LOGIN',
                     link: 'https://docs.google.com/forms/d/e/1FAIpQLSe1i7zkVOz-T24xfD3F4XCM2J-hYnoTKYCMHG3EVMLUoBNpMg/viewform?usp=sf_link'
                   },
-                } }
-                primeiroAcesso={ {
+                }}
+                primeiroAcesso={{
                   reqs: {
                     mail: primeiroAcesso,
                     codigo: validarCodigo,
@@ -141,38 +175,38 @@ function MyApp(props) {
                   chamadas: {
                     sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
                   }
-                } }
+                }}
               />
             }
-            <div 
+            <div
               style={{
-                  paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
-                  height: "100%"
+                paddingTop: width > 1000 ? "76px" : path == '/' ? "0px" : path == '/apoio' ? "0px" : "30px",
+                height: "100%"
               }}
             >
-              <Component { ...pageProps } />
+              <Component {...pageProps} />
             </div>
             <Footer
-              theme={ {
+              theme={{
                 logoProjeto: props.res[0].logoIps[0].logo[1].url,
                 logoImpulso: props.res[0].logoImpulsos[0].logo[0].url,
-                cor : "Black"
+                cor: "Black"
               }}
-              logoLink = {props.ses ? '/inicio' : '/'}
+              logoLink={props.ses ? '/inicio' : '/'}
               address={{
-                  first: "",
-                  second: "",
+                first: "",
+                second: "",
               }}
               contactCopyright={{
-                  copyright: "© 2023 Impulso",
-                  email: "contato@impulsogov.org",
+                copyright: "© 2023 Impulso",
+                email: "contato@impulsogov.org",
               }}
-              links={ [props.res[0].menus[0],props.res[0].menus[7]] }
+              links={[props.res[0].menus[0], props.res[0].menus[7]]}
               socialMediaURLs={[
-                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url},
-                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url},
-                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url},
-              ]} 
+                { url: props.res[0].socialMedias[0].url, logo: props.res[0].socialMedias[0].logo[0].url },
+                { url: props.res[0].socialMedias[1].url, logo: props.res[0].socialMedias[1].logo[0].url },
+                { url: props.res[0].socialMedias[2].url, logo: props.res[0].socialMedias[2].logo[0].url },
+              ]}
             />
           </Auth>
         </Context.Provider>
