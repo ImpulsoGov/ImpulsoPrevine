@@ -85,9 +85,9 @@ const Index = ({ res }) => {
         }}
         conteudo = "components"
         components={[[
-          <Indicadores key={uuidv1()} municipio={selectedMunicipio}/>,
-          <Cadastros key={uuidv1()} municipio={selectedMunicipio}/>,
-          <Acoes key={uuidv1()} municipio={selectedMunicipio}/>,
+          <Indicadores key={"DadosPublicosIndicadores"} municipio={selectedMunicipio}/>,
+          <Cadastros key={"DadosPublicosCadastros"} municipio={selectedMunicipio}/>,
+          <Acoes key={"DadosPublicosAcoes"} municipio={selectedMunicipio}/>,
 
         ]]}
         list={[

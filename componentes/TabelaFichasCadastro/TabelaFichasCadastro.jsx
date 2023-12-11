@@ -101,7 +101,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
         Object.keys(validacaoData.aplicacao).forEach((aplicacao) => {
           const quantidade = validacaoData.aplicacao[aplicacao];
           linhasData.push({
-            id: uuidV4(),
+            id: "validacaoFichas",
             periodo_data_inicio,
             validacao: validacao_nome,
             aplicacao,
