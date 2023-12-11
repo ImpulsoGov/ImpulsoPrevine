@@ -207,7 +207,7 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/zuYuMhOMQsGVh2ntyBsY" width={100} />
+                  <ImagensFull2 imagem="https://media.graphassets.com/zuYuMhOMQsGVh2ntyBsY" width={90} />
                   <TituloSmallTexto
                     key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
                     supertitulo="<b>2023"
@@ -248,9 +248,6 @@ const Index = ({ res }) => {
               titulo=""
               texto=""
             />
-
-
-            <div style={{ paddingTop: 75 }}></div>
 
           </>
         }
@@ -296,7 +293,7 @@ const Index = ({ res }) => {
 
         componente={
           <>
-            <div style={{ paddingTop: 75 }}></div>
+            
             <TituloSmallTexto
               key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
               supertitulo="<b>APOIO INSTITUCIONAL"

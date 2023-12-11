@@ -41,7 +41,7 @@ const Cadastros = ({
     <div style={{ margin: "0px 80px" }}>
 
       <TituloSmallTexto
-        key={uuidv1()}
+        key="textofixo"
         imagem={{
           posicao: null,
           url: ''
