@@ -136,15 +136,9 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
-<<<<<<< HEAD
-                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
-                              { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
-                              { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
-=======
                               { label: "Lista Nominal de Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Lista Nominal de Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Lista Nominal de Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Lista Nominal de Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
->>>>>>> f14ab9aec5b993691e3aa7b5b5070917f3a02e54
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])
