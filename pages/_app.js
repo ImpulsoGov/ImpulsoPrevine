@@ -54,7 +54,7 @@ function MyApp(props) {
     const handleRouteChange = (url) => {
       mixpanel.track('Page View', {
         'Page Title': props.pageTitle,
-        'Logged': !!session,
+        'Logged': !!props.ses,
       });
     };
 
