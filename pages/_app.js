@@ -19,10 +19,14 @@ import Context from '../utils/Context';
 import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 import mixpanel from 'mixpanel-browser';
+import Hotjar from '@hotjar/browser';
+
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
+const siteId = 3496492;
+const hotjarVersion = 6;
 
 mixpanel.init('69ad5acd24a2da6816ecbec3396fa515');
 
@@ -38,6 +42,9 @@ function MyApp(props) {
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true);
   useEffect(() => TagManager.initialize(tagManagerArgs), []);
+  useEffect(() => {
+    Hotjar.init(siteId, hotjarVersion);
+  }, []);
   useEffect(() => rotaDinamica(router), [router.events]);
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
@@ -129,9 +136,15 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
+<<<<<<< HEAD
                               { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
+=======
+                              { label: "Lista Nominal de Citopatológico", url: "/busca-ativa/citopatologico" }, { label: "Lista Nominal de Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
+                              { label: "Lista Nominal de Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
+                              { label: "Lista Nominal de Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
+>>>>>>> f14ab9aec5b993691e3aa7b5b5070917f3a02e54
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])

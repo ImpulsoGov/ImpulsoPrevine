@@ -14,7 +14,7 @@ const Cadastros = () => {
           url: ''
         }}
         texto=""
-        titulo="<b>Estamos passando por melhorias. Essa página volta em breve (previsto para o fim de Outubro).</b>"
+        titulo="<b>Estamos passando por melhorias. Essa página volta em breve.</b>"
         botao={{
           label: '',
           url: ''
