@@ -28,7 +28,7 @@ const tagManagerArgs = {
 const siteId = 3496492;
 const hotjarVersion = 6;
 
-mixpanel.init('69ad5acd24a2da6816ecbec3396fa515');
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN);
 
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps } } = props;
@@ -54,7 +54,7 @@ function MyApp(props) {
     const handleRouteChange = (url) => {
       mixpanel.track('Page View', {
         'Page Title': props.pageTitle,
-        'Logged': !!session,
+        'Logged': !!props.ses,
       });
     };
 
