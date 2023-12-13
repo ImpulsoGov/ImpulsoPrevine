@@ -340,12 +340,12 @@ if(session){
             list={[
                 [
                   {
-                    label: 'GRÁFICOS QUADRIMESTRE ATUAL'
+                    label: 'GRÁFICO Q3/23'
                   },
                   {
-                    label: 'GRÁFICOS QUADRIMESTRES FUTUROS'
+                    label: 'GRÁFICO Q1 + Q2/24'
                   },
-                  {
+                {
                     label: 'GESTANTES ATIVAS'
                   },
                   {
@@ -353,13 +353,13 @@ if(session){
                   },
                 ],
                 [
-                    {
-                      label: 'GRÁFICOS QUADRIMESTRE ATUAL'
-                    },
-                    {
-                      label: 'GRÁFICOS QUADRIMESTRES FUTUROS'
-                    },
-                    {
+                  {
+                    label: 'GRÁFICO Q3/23'
+                  },
+                  {
+                    label: 'GRÁFICO Q1 + Q2/24'
+                  },
+                  {
                       label: 'GESTANTES ATIVAS'
                     },
                     {
@@ -368,12 +368,12 @@ if(session){
                   ],
                   [
                     {
-                      label: 'GRÁFICOS QUADRIMESTRE ATUAL'
+                      label: 'GRÁFICO Q3/23'
                     },
                     {
-                      label: 'GRÁFICOS QUADRIMESTRES FUTUROS'
+                      label: 'GRÁFICO Q1 + Q2/24'
                     },
-                    {
+                      {
                       label: 'GESTANTES ATIVAS'
                     },
                     {
