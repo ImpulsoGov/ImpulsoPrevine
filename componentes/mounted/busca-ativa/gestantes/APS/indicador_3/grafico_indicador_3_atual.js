@@ -1,36 +1,29 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
-const CardsGraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) =>{
+const CardsGraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2023.Q3')
-    return tabelaDataAPS ? <ScoreCardGrid
-valores={[
-    {
-        descricao: 'Gestantes com os dois exames realizados e identificados',
-        valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_exame_hiv_sifilis == 4)  ?
-        acumulador + 1 : acumulador;
-        },0)
-    },
-    {
-        descricao: 'Gestantes com apenas um dos exames realizados e identificados',
-        valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && (item.id_exame_hiv_sifilis == 1 || item.id_exame_hiv_sifilis == 2)) ?
-        acumulador + 1 : acumulador;
-        },0)
-    },
-    {
-        descricao: 'Gestantes com nenhum dos exames realizados e identificados',
-        valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) & item.id_exame_hiv_sifilis == 3) ?
-        acumulador + 1 : acumulador;
-        },0)
-    },
-]}
-/> : <Spinner/>}
+    return dataQuadriAtual ? <ScoreCardGrid
+    valores={[
+        {
+            descricao: 'Gestantes com atendimento odontológico realizado',
+            valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1)  ?
+            acumulador + 1 : acumulador;
+            },0)
+        },
+        {
+            descricao: 'Gestantes sem atendimento odontológico realizado',
+            valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) ?
+            acumulador + 1 : acumulador;
+            },0)
+        },
+    ]}
+    /> : <Spinner/>
+}
 
-const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
+const GraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) => {
     const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2023.Q3')
-    console.log(dataQuadriAtual,tabelaDataAPS)
-    return tabelaDataAPS ? 
+    return dataQuadriAtual ? 
     <>
         <h2 style={{
             marginTop : '30px',
@@ -41,7 +34,7 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
+            Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
         <GraficoBuscaAtiva
             dataBarra={{
@@ -53,8 +46,6 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
                 color: [
                     '#2EB280',
                     '#EF565D',
-                    '#E98633',
-                    '#7579EA',
                 ],
                 grid: {
                 containLabel: true,
@@ -62,10 +53,8 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
                 },
                 legend: {
                 data: [
-                    'Os dois exames identificados',
-                    'Nenhum exame identificado',
-                    'Ex. de Sífilis não identificado',
-                    'Ex. de HIV não identificado',
+                    'Gestantes com atendimento odontológico realizado',
+                    'Gestantes sem atendimento odontológico realizado',
                 ],
                 top: '60',
                 left: '80',
@@ -73,37 +62,19 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
                 series: [
                 {
                     data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
-                    if(item.id_exame_hiv_sifilis == 4) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                    if((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
                     },{})),
-                    name: 'Os dois exames identificados',
+                    name: 'Gestantes com atendimento odontológico realizado',
                     stack: 'stack',
                     type: 'bar'
                 },
                 {
                     data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
-                    if(item.id_exame_hiv_sifilis == 3) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+                    if((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
                     },{})),
-                    name: 'Nenhum exame identificado',
-                    stack: 'stack',
-                    type: 'bar'
-                },
-                {
-                    data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
-                    if(item.id_exame_hiv_sifilis == 1) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                    return acumulador
-                    },{})),
-                    name: 'Ex. de Sífilis não identificado',
-                    stack: 'stack',
-                    type: 'bar'
-                },
-                {
-                    data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
-                    if(item.id_exame_hiv_sifilis == 2) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
-                    return acumulador
-                    },{})),
-                    name: 'Ex. de HIV não identificado',
+                    name: 'Gestantes sem atendimento odontológico realizado',
                     stack: 'stack',
                     type: 'bar'
                 },
@@ -133,41 +104,26 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
                     left: '80'
                 },
                 color: [
-                    '#EF565D',
                     '#2EB280',
-                    '#E98633',
-                    '#7579EA',
+                    '#EF565D',
                 ],
                 series: [
                 {
                     avoidLabelOverlap: false,
                     data: [
                     {
-                        name: 'Nenhum exame identificado',
+                        name: 'Gestantes com atendimento odontológico realizado',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
-                        return (item.id_exame_hiv_sifilis == 3) ? acumulador + 1 : acumulador;
+                        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1) ? acumulador + 1 : acumulador;
                         },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
                     },
                     {
-                        name: 'Os dois exames identificados',
+                        name: 'Gestantes sem atendimento odontológico realizado',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
-                        return (item.id_exame_hiv_sifilis == 4) ?
+                        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) ?
                         acumulador + 1 : acumulador;
                         },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
                     },
-                    {
-                        name: 'Ex. de Sífilis não identificado',
-                        value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
-                        return (item.id_exame_hiv_sifilis == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
-                    },
-                    {
-                        name: 'Ex. de HIV não identificado',
-                        value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
-                        return (item.id_exame_hiv_sifilis == 2) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
-                    },
-
                     ],
                     emphasis: {
                     label: {
@@ -204,5 +160,4 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
         />
     </> : <Spinner/>
 }
-
-export { GraficoIndicadorDoisQuadriAtual, CardsGraficoIndicadorDoisQuadriAtual }
+export { GraficoIndicadorTresQuadriAtual, CardsGraficoIndicadorTresQuadriAtual }

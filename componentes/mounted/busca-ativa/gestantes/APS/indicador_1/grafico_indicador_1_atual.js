@@ -30,7 +30,7 @@ const CardsGraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
 }
 
 const GraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{ 
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2023.Q3')
+    const dataQuadriFuturo = tabelaDataAPS?.filter(item => item.gestacao_quadrimestre == '2023.Q3')
     return tabelaDataAPS ? 
     <>
         <h2 style={{

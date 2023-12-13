@@ -37,10 +37,11 @@ import { IndicadorTresCardsGestantesAtivas } from "../../../componentes/mounted/
 import { IndicadorTresCardsGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesEncerradas";
 import { TabelaGestantesSemDUM } from "../../../componentes/mounted/busca-ativa/gestantes/APS/GestantesSemDUM/GestantesSemDum";
 
-import { CardsGraficoIndicadorDoisQuadriAtual, GraficoIndicadorDoisQuadAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_atual";
-import { CardsGraficoIndicadorDoisQuadriFuturo, GraficoIndicadorDoisQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2 _futuro";
-
-import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3";
+import { CardsGraficoIndicadorDoisQuadriAtual, GraficoIndicadorDoisQuadriAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_atual";
+import { CardsGraficoIndicadorDoisQuadriFuturo, GraficoIndicadorDoisQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_futuro";
+import { CardsGraficoIndicadorTresQuadriAtual, GraficoIndicadorTresQuadriAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
+import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_futuro";
+import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
 
@@ -62,7 +63,6 @@ return {
 const Index = ({res}) => {
 const { data: session,status } = useSession()
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
-const [tokenValido, setTokenValido] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 const router = useRouter();
@@ -196,20 +196,20 @@ if(session){
     const Children = [
         [
             [
-                <CardsGraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-                <GraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
+              <CardsGraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
+              <GraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
             ],
             [
               <CardsGraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
               <GraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
             ],
             [
-                <IndicadorUmCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorUmTabelaGestantesAtivas 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                />
+              <IndicadorUmCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
+              <IndicadorUmTabelaGestantesAtivas 
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+              />
             ],
             [
                 <IndicadorUmCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
@@ -223,11 +223,11 @@ if(session){
         [
             [
                 <CardsGraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-                <CardsGraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
+                <GraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
             ],
             [
               <CardsGraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-              <CardsGraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
+              <GraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
             ],
             [
                 <IndicadorDoisCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
@@ -248,8 +248,12 @@ if(session){
         ],
         [
             [
-                <CardsGraficoIndicadorTres tabelaDataAPS={tabelaDataAPS}/>,
-                <GraficoIndicadorTres tabelaDataAPS={tabelaDataAPS}/>,
+              <CardsGraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
+              <GraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
+            ],
+            [
+              <CardsGraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
+              <GraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
             ],
             [
                 <IndicadorTresCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
@@ -257,7 +261,7 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
-            />,
+                />,
             ],
             [
                 <IndicadorTresCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
@@ -353,6 +357,9 @@ if(session){
                       label: 'GRÁFICOS QUADRIMESTRE ATUAL'
                     },
                     {
+                      label: 'GRÁFICOS QUADRIMESTRES FUTUROS'
+                    },
+                    {
                       label: 'GESTANTES ATIVAS'
                     },
                     {
@@ -361,7 +368,10 @@ if(session){
                   ],
                   [
                     {
-                      label: 'GRÁFICOS'
+                      label: 'GRÁFICOS QUADRIMESTRE ATUAL'
+                    },
+                    {
+                      label: 'GRÁFICOS QUADRIMESTRES FUTUROS'
                     },
                     {
                       label: 'GESTANTES ATIVAS'
@@ -397,7 +407,7 @@ if(session){
     )
   }
   }else{
-      if(status !== "authenticated" && status !== "loading" ) signOut()
+    if(status !== "authenticated" && status !== "loading" ) signOut()
   }
 
 }
