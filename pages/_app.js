@@ -30,7 +30,7 @@ function MyApp(props) {
   let path = router.pathname;
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
-  const [cidade, setCidade] = useState("São Paulo - SP");
+  const [cidade, setCidade] = useState("João Pessoa - PB");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true);
