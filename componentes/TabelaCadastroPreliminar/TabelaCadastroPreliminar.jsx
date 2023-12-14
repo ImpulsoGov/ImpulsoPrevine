@@ -147,6 +147,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
 
 const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
 
+
   const [selectedIndicadores, setSelectedIndicadores] = useState(
     [...new Set(TabCadPreliminar
       .filter((item) => item.validacao_nome === "Preliminar>Reprovado(PROF)")
@@ -200,7 +201,7 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
           {params.value}
         </div>
       ),
-      align: 'justify',
+      align: 'center',
       headerAlign: 'center',
       headerClassName: styles.cabecalho,
     },
@@ -257,7 +258,8 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
   return (
     <div>
       {selectedIndicadores.length === 0 ? (
-        <Spinner />
+        <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Não há cadastros reprovados em análise preliminar.</p>
+
       ) : (
         <div>
           <TabelaCadastroPreliminarcomSeletor
@@ -291,7 +293,9 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
               '& .MuiButton-outlined': {
                 borderColor: '#D4DBE7',
               },
+              
             }}
+            
             rows={linhas}
             columns={colunas}
             autoHeight
