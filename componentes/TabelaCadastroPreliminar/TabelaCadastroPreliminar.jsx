@@ -2,7 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import React, { useMemo, useState, useEffect } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styles from './TabelaCadastroPreliminar.module.css';
-import { Spinner } from '@impulsogov/design-system';
+import { Spinner, CardAlert } from '@impulsogov/design-system';
 
 const TabelaCadastroPreliminarcomSeletor = ({
   selectedIndicadores,
@@ -25,7 +25,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
     }
 
     setSelectedIndicadores(updatedSelectedIndicadores);
-    
+
 
     if (updatedSelectedIndicadores.length === 0) {
       // Se sim, marque todos automaticamente
@@ -43,7 +43,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
     const updatedSelectedIndicadores = [value];
 
     setSelectedIndicadores(updatedSelectedIndicadores);
-    
+
   };
 
   const handleNovoCheckboxChange = (value) => {
@@ -55,7 +55,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
     }
 
     setSelectedNovoIndicador(updatedSelectedNovoIndicador);
-    
+
     if (updatedSelectedNovoIndicador.length === 0) {
       setSelectedIndicadores([...new Set(TabCadPreliminar
         .filter((item) => item.validacao_nome === "Preliminar>Reprovado(PROF)")
@@ -166,17 +166,17 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
         equipeNomes.includes(item.equipe_nome) &&
         item.validacao_nome === "Preliminar>Reprovado(PROF)"
       );
-  
+
       const quantidade = filteredData.reduce((acc, item) => {
         return acc + item.validacao_quantidade;
       }, 0);
-  
+
       return quantidade;
     } else {
       return 0; // Retorne um valor padrão ou trate o caso em que equipeNomes não é um array válido.
     }
   };
-  
+
   const colunas = useMemo(() => [
     {
       field: 'validacao_nome',
@@ -257,10 +257,14 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
 
   return (
     <div>
-     {selectedIndicadores.length === 0 && TabCadPreliminar.length ===0 && <Spinner />}
-      {selectedIndicadores.length === 0 && TabCadPreliminar.length !==0 && <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Não há cadastros reprovados em análise preliminar.</p>}
+      {selectedIndicadores.length === 0 && TabCadPreliminar.length === 0 && <Spinner />}
+      {selectedIndicadores.length === 0 && TabCadPreliminar.length !== 0 && <CardAlert
+        destaque=""
+        msg="Não há cadastros reprovados em análise preliminar."
+        background= "#96D8BF"
+      />}
       {
-        selectedIndicadores.length !== 0 && TabCadPreliminar.length !==0 &&
+        selectedIndicadores.length !== 0 && TabCadPreliminar.length !== 0 &&
         <div>
           <TabelaCadastroPreliminarcomSeletor
             selectedIndicadores={selectedIndicadores}

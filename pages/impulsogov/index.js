@@ -6,7 +6,8 @@ import {
   ImagensFull2,
   ImagensFull,
   Margem,
-  CardAlert
+  CardAlert,
+  CardImg
 } from "@impulsogov/design-system";
 import { v1 as uuidv1 } from "uuid";
 
@@ -97,11 +98,11 @@ const Index = ({ res }) => {
                 </>,
                 <>
                   <ImagensFull2 imagem="" />
-                  <CardIP
-                    key={uuidv1()}
-                    titulo=""
-                    indicador={<span style={{ color: 'black' }}>Conteúdos e materiais com dicas</span>}
+
+                  <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
+                    imagemSrc="https://media.graphassets.com/xskZCO5tTBp8MD4XgDmv"
+                    indicador="Conteúdos e materiais com dicas"
                   />
                 </>,
                 <>
@@ -155,7 +156,8 @@ const Index = ({ res }) => {
 
             <CardAlert //Vou ter que criar um componente pra ca 
               destaque=""
-              msg={<span style={{ color: 'white', fontSize: 22, backgroundColor: "#1D856C" }}>Nossa missão é impulsionar o uso inteligente de dados e tecnologia no SUS para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.</span>}
+              msg={<span style={{ color: 'white', fontSize: 22 }}>Nossa missão é impulsionar o uso inteligente de dados e tecnologia no SUS para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.</span>}
+              background="#1D856C"
             />
 
 
@@ -293,7 +295,7 @@ const Index = ({ res }) => {
 
         componente={
           <>
-            
+
             <TituloSmallTexto
               key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
               supertitulo="<b>APOIO INSTITUCIONAL"
