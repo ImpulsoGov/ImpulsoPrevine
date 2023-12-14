@@ -1,52 +1,324 @@
-import { useContext } from "react";
-import { TituloTexto } from "@impulsogov/design-system";
-import { FormConsultoria } from "@impulsogov/design-system";
-import Context from "../../utils/Context"
+import {
+  TituloSmallTexto,
+  Grid12Col,
+  NovoTituloTexto,
+  ImagensFull2,
+  ImagensFull,
+  Margem,
+  CardAlert,
+  CardImg
+} from "@impulsogov/design-system";
+import { v1 as uuidv1 } from "uuid";
+
+
 import { getData } from '../../services/cms'
-import { LAYOUT, IMPULSOGOV } from '../../utils/QUERYS'
+import { LAYOUT, HOME } from '../../utils/QUERYS'
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
   const userIsActiveSecure = ctx.req.cookies['__Secure-next-auth.session-token']
-  let redirect = !userIsActive && !userIsActiveSecure 
-  if(!redirect) {
+  let redirect = !userIsActive && !userIsActiveSecure
+  if (!redirect) {
     return {
       redirect: {
         destination: "/inicio",
-        permanent: false, // make this true if you want the redirect to be cached by the search engines and clients forever
-      }, 
+        permanent: false,
+      },
     }
   }
   const res = [
     await getData(LAYOUT),
-    await getData(IMPULSOGOV),
+    await getData(HOME),
   ]
   return {
     props: {
-      res : res
+      res: res
     }
   }
 }
 
-const Index = ({res}) => {
-  const [cidade, setCidade] = useContext(Context);
+const Parceiros = (res) => {
+  const parceiros = res.map((logo) => {
+    return (
+      {
+        alt: logo.fileName,
+        src: logo.url
+      }
+    )
+  }).reverse()
+  return parceiros
+}
+
+
+
+const Index = ({ res }) => {
   return (
-    <>
-      <TituloTexto
-        imagem = {{
-          posicao: null,
-          url: ''
-        }}
-        titulo = {res[1].tituloTextos[0].titulo}
-        texto = {res[1].tituloTextos[0].texto.html}
-        />
-        <FormConsultoria
-          title={res[1].formConsultorias[0].titulo}
-          mail=""
-          link={res[1].formConsultorias[0].link}
-          button={res[1].formConsultorias[0].button}
-        />      
-    </>
+    <div style={{ backgroundColor: "#E6ECF0" }}>
+      <Margem
+        componente={
+          <>
+            <div style={{ paddingTop: 80 }}></div>
+            <div style={{ textAlign: 'center' }}>
+              <NovoTituloTexto
+                titulo="Ajudamos os profissionais da atenção primária de forma gratuita"
+                texto="O Impulso Previne é um projeto da ImpulsoGov, uma organização sem fins lucrativos e recebemos apoio de entidades filantrópicas, organizações privadas e públicas para oferecer soluções e serviços ao SUS sem nenhum custo para municípios de todo o Brasil."
+              />
+
+              <div style={{ paddingTop: 75 }}></div>
+              <ImagensFull2 imagem="https://media.graphassets.com/Lq3Tp6uTRZe1boQkBkRo" />
+            </div>
+          </>
+        }
+      />
+      <div style={{ paddingTop: 75 }}></div>
+
+
+      <Margem
+        componente={
+          <>
+            <div style={{ paddingTop: 80 }}></div>
+
+            <NovoTituloTexto
+              titulo="Apoio focado no na Atenção Primária à Saúde"
+              texto="No Impulso Previne, damos suporte para profissionais da gestão e da assistência sobre os indicadores da APS, com foco atualmente no Previne Brasil."
+            />
+
+            <Grid12Col //Estou com um problema ao adicionar imagens aqui , acredito que terei que criar um novo componente tbm 
+              proporcao="4-4-4"
+              items={[
+                <>
+                  <CardImg
+                    imagemSrc="https://media.graphassets.com/nKekZTGDTLSlCPjF6X9H"
+                    indicador="Dados do SISAB organizados"
+                    descricao="Criamos painéis didáticos e descomplicados para você visualizar o desempenho nos indicadores de qualquer município do Brasil."
+                  />
+                </>,
+                <>
+
+                  <CardImg
+                    descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
+                    imagemSrc="https://media.graphassets.com/xskZCO5tTBp8MD4XgDmv"
+                    indicador="Conteúdos e materiais com dicas"
+                  />
+                </>,
+                <>
+                  <CardImg
+                    imagemSrc="https://media.graphassets.com/YMNJYob0QLKiA4j5w5tK"
+                    indicador="Capacitações com especialistas"
+                    descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
+                  />
+                </>,
+              ]}
+            />
+          </>
+
+        }
+      />
+
+      <Margem
+        componente={
+          <>
+            <div style={{ textAlign: 'center', paddingTop: 75 }}>
+              <NovoTituloTexto
+                titulo="Apoio especializado para parceiros"
+                texto=""
+              />
+
+              <ImagensFull2 imagem="https://media.graphassets.com/My2tRAhTTS4nCqCy74Wg" />
+
+              <TituloSmallTexto
+                botao={{ label: 'INSCRIÇÃO NA CONSUTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
+                imagem={{}}
+                supertitulo=""
+                titulo=""
+                texto="Selecionamos periodicamente municípios para mentorias personalizadas com nossa equipe com foco em melhorar o desempenho nos componentes do Previne Brasil. Nós oferecemos <b> ferramentas de gestão para busca ativa, treinamentos sobre boas práticas dos indicadores e encontros de dúvidas com especialistas. </b><br><br>"
+              />
+            </div>
+
+          </>
+        }
+      />
+      <Margem
+        componente={
+          <>
+            <div style={{ paddingTop: 75 }}></div>
+
+            <NovoTituloTexto
+              titulo="O Impulso Previne é um dos projetos da ImpulsoGov"
+              texto="A ImpulsoGov é uma organização não governamental sem fins lucrativos que nasceu com o propósito de ajudar a corrigir um gargalo: inúmeros dados são gerados na prestação dos serviços do SUS, mas poucos são transformados em informação útil para retroalimentar e aprimorar as políticas públicas de saúde. <br><br>"
+            />
+
+            <CardAlert //Vou ter que criar um componente pra ca 
+              destaque=""
+              msg={<span style={{ color: 'white', fontSize: 22 }}>Nossa missão é impulsionar o uso inteligente de dados e tecnologia no SUS para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.</span>}
+              background="#1D856C"
+            />
+
+
+            <NovoTituloTexto
+              titulo=""
+              texto="Por isso, trabalhamos para que todos os profissionais de saúde do SUS tenham, em suas mãos, as informações e ferramentas necessárias para agir de maneira preventiva e resolutiva. Nos unimos a eles para criar produtos e soluções digitais baseadas em dados que facilitam a compreensão e a identificação de riscos de saúde da população e facilitam a tomada de decisão baseada em evidências."
+            />
+
+            <div style={{ paddingTop: 75 }}></div>
+
+          </>
+        }
+      />
+
+      <Grid12Col
+        proporcao="4-4-4"
+        items={[
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/vjUs4iswQOv74LlkwlAf" width={90} />
+                  <TituloSmallTexto
+                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
+                    supertitulo="<b>2020"
+                    titulo=""
+                    texto="Estivemos à frente de iniciativas de apoio no combate à Covid-19: o CoronaCidades e o Farol Covid."
+                  />
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/HxVzIrFQ3STa2ZbAcSyQ" width={90} />
+                  <TituloSmallTexto
+                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    supertitulo="<b>2021"
+                    titulo=""
+                    texto="Expandimos nossa atuação para os serviços de Atenção Primária à Saúde e Saúde Mental do SUS."
+                  />
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/zuYuMhOMQsGVh2ntyBsY" width={90} />
+                  <TituloSmallTexto
+                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    supertitulo="<b>2023"
+                    titulo=""
+                    texto="Já apoiamos diretamente 100 municípios onde vivem 6 milhões de pessoas que dependem exclusivamente do SUS para ter acesso a qualquer serviços de saúde."
+                  />
+                </>
+              }
+            />
+          </>,
+        ]}
+      />
+
+      <Margem
+        componente={
+          <>
+            <div style={{ paddingTop: 75 }}></div>
+
+            <NovoTituloTexto
+              titulo="&nbsp;&nbsp;&nbsp;Tudo que criamos para o SUS está disponível sem custos"
+              texto="Contamos com uma rede de apoio institucional e financiadores e por isso podemos oferecer nosso trabalho gratuitamente.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            />
+
+
+            <div style={{ paddingTop: 75 }}></div>
+
+          </>
+        }
+      />
+
+      <Margem
+        componente={
+          <>
+
+            <TituloSmallTexto
+              key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+              supertitulo="<b>APOIO FINANCEIRO"
+              titulo=""
+              texto=""
+            />
+
+          </>
+        }
+      />
+
+      <Grid12Col
+        proporcao="4-4-4"
+        items={[
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/B65VQRc8QkaZXT3uyUiW" width={300} />
+
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/yIZ1viigTYee67p4bMaI" width={300} />
+
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/KVYG5g61R32p5JlWoxlU" width={300} />
+
+                </>
+              }
+            />
+          </>,
+
+        ]}
+      />
+      <Margem
+
+        componente={
+          <>
+
+            <TituloSmallTexto
+              key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+              supertitulo="<b>APOIO INSTITUCIONAL"
+              titulo=""
+              texto=""
+            />
+
+          </>
+        }
+      />
+
+      <Grid12Col
+        proporcao="4-4-4"
+        items={[
+          <>
+            <Margem
+              componente={
+                <>
+                  <ImagensFull2 imagem="https://media.graphassets.com/6vKKZ64yQO5d34YyfbU9" width={300} />
+
+                </>
+              }
+            />
+          </>,
+
+        ]}
+      />
+      <div style={{ paddingTop: 75 }}></div>
+    </div>
   )
 }
 
