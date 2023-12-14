@@ -11,8 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@hotjar/browser": "^1.0.9",
-    "@impulsogov/design-system": "^1.0.145",
+    "@impulsogov/design-system": "^1.0.151",
+    "@impulsogov/designsystem": "^0.0.20",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "axios": "^0.27.2",
@@ -24,7 +24,6 @@
     "graphql-request": "^4.3.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.6.0",
-    "mixpanel-browser": "^2.48.1",
     "next": "^12.2.5",
     "next-auth": "4.15.1",
     "next-transpile-modules": "^9.0.0",
