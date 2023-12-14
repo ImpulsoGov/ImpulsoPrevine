@@ -1,4 +1,3 @@
-import { v1 as uuidv1 } from 'uuid';
 import React, { useState, useEffect, useContext } from 'react';
 import { TituloSmallTexto } from "@impulsogov/design-system"
 import { CadastrosEquipeContagem } from '../../services/capitacao_ponderada_contagem_equipes'
@@ -27,7 +26,8 @@ const Cadastros = ({
   useEffect(() => { ValidacaoProducao(cidade).then((result) => setCapValidacaoProducao(result)) }, [cidade]);
 
   const [CapValidacaoProducaoAplicada, setCapValidacaoProducaoAplicada] = useState([]);
-  useEffect(() => { ValidacaoProducaoAplicada(cidade).then((result) => setCapValidacaoProducaoAplicada(result)) }, [cidade]);
+  useEffect(() => { if (cidade != null) 
+    ValidacaoProducaoAplicada(cidade).then((result) => setCapValidacaoProducaoAplicada(result)) }, [cidade]);
 
   const quantidadeCadastrosPreliminaresInvalidos = CapValidacaoProducao.reduce((total, item) => {
     if (item.validacao_nome === "Preliminar>Reprovado(PROF)") {
