@@ -88,16 +88,13 @@ const Index = ({ res }) => {
               proporcao="4-4-4"
               items={[
                 <>
-                  <ImagensFull2 imagem="" />
-                  <CardIP
-                    key={uuidv1()}
-                    titulo=""
-                    indicador={<span style={{ color: 'black' }}>Dados do SISAB organizados</span>}
+                  <CardImg
+                    imagemSrc="https://media.graphassets.com/nKekZTGDTLSlCPjF6X9H"
+                    indicador="Dados do SISAB organizados"
                     descricao="Criamos painéis didáticos e descomplicados para você visualizar o desempenho nos indicadores de qualquer município do Brasil."
                   />
                 </>,
                 <>
-                  <ImagensFull2 imagem="" />
 
                   <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
@@ -106,11 +103,9 @@ const Index = ({ res }) => {
                   />
                 </>,
                 <>
-                  <ImagensFull2 imagem="" />
-                  <CardIP
-                    key={uuidv1()}
-                    titulo=""
-                    indicador={<span style={{ color: 'black' }}>Capacitações com especialistas</span>}
+                  <CardImg
+                    imagemSrc="https://media.graphassets.com/YMNJYob0QLKiA4j5w5tK"
+                    indicador="Capacitações com especialistas"
                     descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
                   />
                 </>,
