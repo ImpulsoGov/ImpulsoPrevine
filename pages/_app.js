@@ -19,9 +19,16 @@ import Context from '../utils/Context';
 import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 
+import mixpanel from 'mixpanel-browser';
+import Hotjar from '@hotjar/browser';
+
+
+
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
+
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN);
 
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps } } = props;
@@ -39,6 +46,37 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      mixpanel.track('Page View', {
+        'Page Title': props.pageTitle,
+        'Logged': !!props.ses,
+      });
+    };
+
+    // Quando a rota muda, chama handleRouteChange
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // Limpa o evento de escuta quando o componente é desmontado
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events, props.pageTitle]);
+
+  useEffect(() => {
+    if (props.ses && props.ses.user) {
+      mixpanel.identify(props.ses.user.id);
+      mixpanel.people.set({
+        "$email": props.ses.user.mail,
+        "$name": props.ses.user.nome,
+        "cargo": props.ses.user.cargo,
+        "municipio": props.ses.user.municipio,
+        "equipe": props.ses.user.equipe,
+      });
+    }
+  }, [props.ses]);
+
   return (
     <>
       <Head>
