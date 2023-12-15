@@ -1,36 +1,6 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS?.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
-    return tabelaDataAPS ? <ScoreCardGrid
-    valores={[
-        {
-            descricao: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
-            valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-        {
-            descricao: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
-            valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-
-        {
-            descricao: 'Gestantes com primeira consulta após a 12ª semana',
-            valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento > 12) ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-    ]}
-/> : <Spinner/>
-}
-
-const GraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{ 
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -42,8 +12,41 @@ const GraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Gestantes com DUM preenchida por total de consultas e captação
+            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por total de consultas e captação
         </h2>
+        <ScoreCardGrid
+            valores={[
+                {
+                    descricao: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
+                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) ?
+                    acumulador + 1 : acumulador;
+                    },0)
+                },
+                {
+                    descricao: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
+                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) ?
+                    acumulador + 1 : acumulador;
+                    },0)
+                },
+
+                {
+                    descricao: 'Gestantes com primeira consulta após a 12ª semana',
+                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento > 12) ?
+                    acumulador + 1 : acumulador;
+                    },0)
+                },
+            ]}
+        /> 
+    </> : <Spinner/>
+}
+
+const GraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{ 
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
+    return tabelaDataAPS ? 
+    <>
         <GraficoBuscaAtiva
             dataBarra={{
                 title: {

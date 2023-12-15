@@ -1,35 +1,7 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
-    return dataQuadriFuturo ? <ScoreCardGrid
-    valores={[
-        {
-            descricao: 'Gestantes com os dois exames realizados e identificados',
-            valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_exame_hiv_sifilis == 4)  ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-        {
-            descricao: 'Gestantes com apenas um dos exames realizados e identificados',
-            valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && (item.id_exame_hiv_sifilis == 1 || item.id_exame_hiv_sifilis == 2)) ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-        {
-            descricao: 'Gestantes com nenhum dos exames realizados e identificados',
-            valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
-            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) & item.id_exame_hiv_sifilis == 3) ?
-            acumulador + 1 : acumulador;
-            },0)
-        },
-    ]}
-    /> : <Spinner/>}
-
-const GraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) => {
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
-    return tabelaDataAPS ? 
+    return dataQuadriFuturo ? 
     <>
         <h2 style={{
             marginTop : '30px',
@@ -40,8 +12,39 @@ const GraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) => {
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
+            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
         </h2>
+        <ScoreCardGrid
+        valores={[
+            {
+                descricao: 'Gestantes com os dois exames realizados e identificados',
+                valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_exame_hiv_sifilis == 4)  ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+            {
+                descricao: 'Gestantes com apenas um dos exames realizados e identificados',
+                valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && (item.id_exame_hiv_sifilis == 1 || item.id_exame_hiv_sifilis == 2)) ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+            {
+                descricao: 'Gestantes com nenhum dos exames realizados e identificados',
+                valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) & item.id_exame_hiv_sifilis == 3) ?
+                acumulador + 1 : acumulador;
+                },0)
+            },
+        ]}
+        /> 
+    </> : <Spinner/>}
+
+const GraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) => {
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
+    return tabelaDataAPS ? 
+    <>
         <GraficoBuscaAtiva
             dataBarra={{
                 title: {

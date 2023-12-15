@@ -1,27 +1,6 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
-    return dataQuadriFuturo ? <ScoreCardGrid
-valores={[
-    {
-        descricao: 'Gestantes com atendimento odontológico realizado',
-        valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
-        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1)  ?
-        acumulador + 1 : acumulador;
-        },0)
-    },
-    {
-        descricao: 'Gestantes sem atendimento odontológico realizado',
-        valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
-        return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) ?
-        acumulador + 1 : acumulador;
-        },0)
-    },
-]}
-/> : <Spinner/>}
-
-const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{ 
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
     return dataQuadriFuturo ? 
     <>
         <h2 style={{
@@ -33,8 +12,33 @@ const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
+
+        <ScoreCardGrid
+    valores={[
+        {
+            descricao: 'Gestantes com atendimento odontológico realizado',
+            valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
+            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1)  ?
+            acumulador + 1 : acumulador;
+            },0)
+        },
+        {
+            descricao: 'Gestantes sem atendimento odontológico realizado',
+            valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
+            return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) ?
+            acumulador + 1 : acumulador;
+            },0)
+        },
+    ]}
+        />
+    </> : <Spinner/>}
+
+const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{ 
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
+    return dataQuadriFuturo ? 
+    <>
         <GraficoBuscaAtiva
             dataBarra={{
                 title: {
