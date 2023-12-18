@@ -1,6 +1,6 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2' || item.gestacao_quadrimestre == '2024.Q3')
     return dataQuadriFuturo ? 
     <>
         <h2 style={{
@@ -42,7 +42,7 @@ const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
     </> : <Spinner/>}
 
 const GraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) => {
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2' || item.gestacao_quadrimestre == '2024.Q3')
     return tabelaDataAPS ? 
     <>
         <GraficoBuscaAtiva
