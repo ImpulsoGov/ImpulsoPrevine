@@ -343,7 +343,7 @@ if(session){
                     label: 'GRÁFICO Q3/23'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2/24'
+                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
                   },
                 {
                     label: 'GESTANTES ATIVAS'
@@ -357,7 +357,7 @@ if(session){
                     label: 'GRÁFICO Q3/23'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2/24'
+                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
                   },
                   {
                       label: 'GESTANTES ATIVAS'
@@ -371,7 +371,7 @@ if(session){
                       label: 'GRÁFICO Q3/23'
                     },
                     {
-                      label: 'GRÁFICO Q1 + Q2/24'
+                      label: 'GRÁFICO Q1 + Q2 + Q3/24'
                     },
                       {
                       label: 'GESTANTES ATIVAS'
