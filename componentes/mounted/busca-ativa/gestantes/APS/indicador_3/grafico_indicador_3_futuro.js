@@ -36,7 +36,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
     </> : <Spinner/>}
 
 const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{ 
-    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestante_quadrimestre == '2024.Q2')
+    const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2')
     return dataQuadriFuturo ? 
     <>
         <GraficoBuscaAtiva
