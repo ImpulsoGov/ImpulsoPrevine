@@ -32,20 +32,11 @@ const validacao = (setResposta, validarCredencial, entrar, mail, senha, setEsper
     const msg_campo_vazio = "Preencha todos os campos"
     setResposta(msg_campo_vazio)
     return msg_campo_vazio
-<<<<<<< HEAD
   }else{
     res().then((response)=>{
       if (typeof(response["access_token"]) !== "undefined"){
         entrar('credentials', { redirect: true,username:mail, password: senha })
       }else{
-=======
-  } else {
-    res().then((response) => {
-      console.log(response)
-      if (typeof (response["access_token"]) !== "undefined") {
-        entrar('credentials', { redirect: true, username: mail, password: senha })
-      } else {
->>>>>>> 2f1afba7ed2abb463ebf29936a5572b50a903e26
         setResposta(response["detail"])
         setEsperandoResposta(false);
       }

@@ -26,7 +26,7 @@ const TabelaEquipeGestantesAtivas = ({tabelaDataEquipe,tabelaData,setTabelaData}
         {
             data: ['Maior ou igual a 6','Menor que 6'],
             filtro: 'consultas_pre_natal_validas',
-            rotulo: 'Filtrar por numero de consultas'
+            rotulo: 'Filtrar por número de consultas'
         },
         {
             data: [...new Set(tabelaDataEquipeGestantesAtivas.map(item => item.id_atendimento_odontologico.toString()))],
