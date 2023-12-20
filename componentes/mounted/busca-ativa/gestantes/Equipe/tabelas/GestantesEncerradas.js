@@ -8,7 +8,8 @@ import {
       datefiltrosGestantes,
       IDFiltrosGestantes,
       rotulosfiltrosGestantes,
-      IDFiltrosOrdenacaoGestantes
+      IDFiltrosOrdenacaoGestantes,
+      IntFiltrosGestantesEquipe
    } from "../../../../../../helpers/FiltrosOrdenacaoAux"
 const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
     const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)
@@ -54,6 +55,7 @@ const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaD
         setData={setTabelaData}
         rowHeight={65}
         datefiltros={datefiltrosGestantes}
+        IntFiltros={IntFiltrosGestantesEquipe}
         IDFiltros={IDFiltrosGestantes}
         rotulosfiltros={rotulosfiltrosGestantes}    
         IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}

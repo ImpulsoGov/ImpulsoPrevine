@@ -8,7 +8,8 @@ import {
     datefiltrosGestantes,
     IDFiltrosGestantes,
     rotulosfiltrosGestantes,
-    IDFiltrosOrdenacaoGestantes
+    IDFiltrosOrdenacaoGestantes,
+    IntFiltrosGestantesEquipe
  } from "../../../../../../helpers/FiltrosOrdenacaoAux"
 const TabelaEquipeGestantesAtivas = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
     const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)
@@ -20,10 +21,10 @@ const TabelaEquipeGestantesAtivas = ({tabelaDataEquipe,tabelaData,setTabelaData}
         {
             data: [...new Set(tabelaDataEquipeGestantesAtivas.map(item => item.acs_nome))],
             filtro: 'acs_nome',
-            rotulo: 'Filtrar por Profissional Responsável'
+            rotulo: 'Filtrar por profissional responsável'
         },
         {
-            data: [...new Set(tabelaDataEquipeGestantesAtivas.map(item => item.consultas_pre_natal_validas.toString()))],
+            data: ['Maior ou igual a 6','Menor que 6'],
             filtro: 'consultas_pre_natal_validas',
             rotulo: 'Filtrar por numero de consultas'
         },
@@ -53,6 +54,7 @@ const TabelaEquipeGestantesAtivas = ({tabelaDataEquipe,tabelaData,setTabelaData}
         data={tabelaData}
         setData={setTabelaData}
         datefiltros={datefiltrosGestantes}
+        IntFiltros={IntFiltrosGestantesEquipe}
         IDFiltros={IDFiltrosGestantes}
         rotulosfiltros={rotulosfiltrosGestantes}    
         IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}

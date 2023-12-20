@@ -20,7 +20,10 @@ const IDFiltrosOrdenacaoGestantes = {
     "NOMES DE A-Z" : "asc",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
 }
-
+const IntFiltrosGestantesEquipe = [
+    "gestacao_idade_gestacional_atual",
+    "consultas_pre_natal_validas"
+]
 const TabelaEquipeGestantesSemDUM = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
@@ -42,6 +45,7 @@ const TabelaEquipeGestantesSemDUM = ({tabelaDataEquipe,tabelaData,setTabelaData}
         data={tabelaData}
         setData={setTabelaData}
         datefiltros={datefiltrosGestantes}
+        IntFiltros={IntFiltrosGestantesEquipe}
         IDFiltros={IDFiltrosGestantes}
         rotulosfiltros={rotulosfiltrosGestantes}    
         IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}

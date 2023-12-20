@@ -26,10 +26,15 @@ const IDFiltrosOrdenacaoGestantes = {
     "MAIOR Nº TOTAL DE CONSULTAS" : "desc",
     "DATA MAIS RECENTE DA ÚLTIMA CONSULTA" : "desc"
 }
+const IntFiltrosGestantesEquipe = [
+    "gestacao_idade_gestacional_atual",
+    "consultas_pre_natal_validas"
+]
 
 export {
     datefiltrosGestantes,
     rotulosfiltrosGestantes,
     IDFiltrosGestantes,
-    IDFiltrosOrdenacaoGestantes
+    IDFiltrosOrdenacaoGestantes,
+    IntFiltrosGestantesEquipe
 }
