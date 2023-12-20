@@ -24,7 +24,7 @@ const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaD
             rotulo: 'Filtrar por Profissional Responsável'
         },
         {
-            data: [...new Set(tabelaDataEquipeGestantesEncerradas.map(item => item.consultas_pre_natal_validas.toString()))],
+            data: ['Maior ou igual a 6','Menor que 6'],
             filtro: 'consultas_pre_natal_validas',
             rotulo: 'Filtrar por numero de consultas'
         },
