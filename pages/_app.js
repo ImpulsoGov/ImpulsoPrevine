@@ -19,9 +19,16 @@ import Context from '../utils/Context';
 import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 
+import mixpanel from 'mixpanel-browser';
+import Hotjar from '@hotjar/browser';
+
+
+
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
 };
+
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN);
 
 function MyApp(props) {
   const { Component, pageProps: { session, ...pageProps } } = props;
@@ -30,7 +37,7 @@ function MyApp(props) {
   let path = router.pathname;
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
-  const [cidade, setCidade] = useState("São Paulo - SP");
+  const [cidade, setCidade] = useState("João Pessoa - PB");
   const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState();
   const [active, setMode] = useState(true);
@@ -39,6 +46,37 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      mixpanel.track('Page View', {
+        'Page Title': props.pageTitle,
+        'Logged': !!props.ses,
+      });
+    };
+
+    // Quando a rota muda, chama handleRouteChange
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // Limpa o evento de escuta quando o componente é desmontado
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events, props.pageTitle]);
+
+  useEffect(() => {
+    if (props.ses && props.ses.user) {
+      mixpanel.identify(props.ses.user.id);
+      mixpanel.people.set({
+        "$email": props.ses.user.mail,
+        "$name": props.ses.user.nome,
+        "cargo": props.ses.user.cargo,
+        "municipio": props.ses.user.municipio,
+        "equipe": props.ses.user.equipe,
+      });
+    }
+  }, [props.ses]);
+
   return (
     <>
       <Head>
@@ -78,9 +116,10 @@ function MyApp(props) {
                   logoProjeto: width > 1000 ?
                     path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
-                  cor: (path == '/' || path == '/apoio' || path == '/analise') ? "Cinza" : "White",
+                  cor: (path == '/' || path == '/apoio' || path == '/analise' || path == '/impulsogov') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }
+               
                 showMenuMobile={ {
                   states: {
                     active: active,
@@ -102,7 +141,7 @@ function MyApp(props) {
                             ]
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
-                      .concat([{label: "Dados Públicos - Q2/23", url: "/analise" }])
+                      .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }

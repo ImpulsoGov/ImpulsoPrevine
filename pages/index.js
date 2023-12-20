@@ -39,20 +39,6 @@ export async function getServerSideProps(ctx) {
   }
 }
 
-const Parceiros = (res)=>{
-  const parceiros = res.map((logo)=>{
-    return(
-        {
-            alt: logo.fileName,
-            src: logo.url
-        }
-    )
-  }).reverse()
-  return parceiros
-}
-
-
-
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>

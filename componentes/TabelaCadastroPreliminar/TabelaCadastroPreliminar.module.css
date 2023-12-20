@@ -1,0 +1,77 @@
+.cabecalho {
+  background-color: #96D8BF;
+  border-radius: 2px;
+}
+
+.customHeader {
+  height: 70px; 
+}
+
+.selectorBox {
+  margin-bottom: 2px;
+  border: 1.5px solid #95B5B3;
+  border-radius: 8px; 
+  width: 220px; 
+  text-align: center; 
+  padding: 10px;
+  transition: border-color 0.3s;
+  font-size: 13px;
+  position: relative;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.selectorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  cursor: pointer;
+  
+}
+
+.arrowIcon {
+  margin-left: 8px;
+}
+
+.checkboxes {
+  max-height: 350px; /* Defina a altura máxima desejada */
+  overflow-y: auto;
+  top: 100%;
+  border: 1.5px solid #95B5B3;
+  border-radius: 8px; 
+  position: absolute;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #EBECED;
+  transition: border-color 0.3s;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 2;
+}
+
+.selectorBox:hover {
+  background-color: #EBECED; /* Altera a cor da borda no hover */
+}
+.checkboxes:hover {
+  background-color: #EBECED; /* Altera a cor da borda no hover */
+}
+
+.button {
+  margin-right: 3px;
+  padding: 3px;
+}
+
+.equipeSelector,
+.periodoSelector
+ {
+  display: inline-block;
+  margin-right: 30px; 
+ 
+}
