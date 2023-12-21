@@ -1,0 +1,39 @@
+{
+"identificacao_exame_hiv_sifilis": [
+	{
+		"id_exame_hiv_sifilis" : 0,
+		"exame_hiv_sifilis_descricao" : null,
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	},
+	{
+		"id_exame_hiv_sifilis" : 1,
+		"exame_hiv_sifilis_descricao" : "Ex. de Sífilis não identificado",
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	},
+	{
+		"id_exame_hiv_sifilis" : 2,
+		"exame_hiv_sifilis_descricao" : "Ex. de HIV não identificado",
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	},
+	{
+		"id_exame_hiv_sifilis" : 3,
+		"exame_hiv_sifilis_descricao" : "Nenhum exame identificado",
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	},
+	{
+		"id_exame_hiv_sifilis" : 4,
+		"exame_hiv_sifilis_descricao" : "Os dois exames identificados",
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	},
+	{
+		"id_exame_hiv_sifilis" : 5,
+		"exame_hiv_sifilis_descricao" : "-",
+		"atualizacao_data" : "2023-10-18T12:43:21.419Z",
+		"criacao_data" : "2023-10-18T12:43:21.419Z"
+	}
+]}
