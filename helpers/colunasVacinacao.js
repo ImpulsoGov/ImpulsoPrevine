@@ -1,6 +1,14 @@
 import identificacao_atendimento_odontologico from "../data/identificacao_atendimento_odontologico.json" assert { type: 'json' };
 import identificacao_exame_hiv_sifilis from "../data/identificacao_exame_hiv_sifilis.json" assert { type: 'json' };
 
+const esquema_completo = "https://media.graphassets.com/wOzzseVhRriXENS9OhcG"
+const dose_aplicada = "https://media.graphassets.com/QrINNoP2RUy0mgQZnLE6"
+const dose_nao_aplicada = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd"
+const esquema_em_andamento = "https://media.graphassets.com/Psuwuj7pS1agRqB7Is5H"
+const dose_em_atraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363"
+const esquema_nao_iniciado = "https://media.graphassets.com/74tkfciAQXW9auWuAPC8"
+
+
 const formatar_nome = ({value})=>{
   const name = {
     width : '100%',
@@ -24,10 +32,10 @@ const STYLE_DOSES = (value,colorCode)=>{
     padding : "3px 10px"
   }
   const atencao = {
-    backgroundColor: "#FFF0E1",
-    border: "1px solid #F4CCAB",
+    backgroundColor: "#EFF5F9",
+    border: "1px solid #606E78",
     borderRadius: "5px",
-    color: "#E98633",
+    color: "#606E78",
     padding: "2px",
     fontWeight : 550,
     width : "130px",
@@ -52,8 +60,6 @@ const STYLE_DOSES = (value,colorCode)=>{
     padding : "3px 10px"
   }
   const atencaoSymbolStyle = {
-    border: "2px solid #F4CCAB",
-    borderRadius : "100%",
     width : "18px",
     height : "18px",
     fontSize : "8px",
@@ -65,8 +71,6 @@ const STYLE_DOSES = (value,colorCode)=>{
     paddingLeft : "2px"
   }
   const checkSymbolStyle = {
-      border: "2px solid #1D856C",
-      borderRadius : "100%",
       width : "18px",
       height : "18px",
       fontSize : "8px",
@@ -77,8 +81,6 @@ const STYLE_DOSES = (value,colorCode)=>{
       paddingTop : "2px"
   }
   const blockSymbolStyle = {
-    border: "2px solid #EF565D",
-    borderRadius : "100%",
     width : "18px",
     height : "18px",
     fontSize : "8px",
@@ -95,9 +97,9 @@ const STYLE_DOSES = (value,colorCode)=>{
     3 : block,
   }
   return <div style={style[colorCode]}>
-      {colorCode == 1 && <span style={atencaoSymbolStyle}>!</span>} 
-      {(colorCode == 2) && <span style={checkSymbolStyle}>✔</span>} 
-      {colorCode == 3 && <span style={blockSymbolStyle}>✖</span>} 
+      {colorCode == 1 && <span style={atencaoSymbolStyle}><img src={dose_nao_aplicada} width={16} height={16}></img></span>} 
+      {(colorCode == 2) && <span style={checkSymbolStyle}><img src={dose_aplicada} width={16} height={16}></img></span>} 
+      {colorCode == 3 && <span style={blockSymbolStyle}><img src={dose_em_atraso} width={16} height={16}></img></span>} 
       {FormatarData(value)}
       </div>
 }
@@ -134,6 +136,20 @@ const STYLE_STATUS_POLIO = ({value})=>{
     justifyContent : "center",
     flexDirection : "row"
   }
+  const nao_iniciado = {
+    backgroundColor: "#EFF5F9",
+    border: "1px solid #606E78",
+    borderRadius: "5px",
+    color: "#606E78",
+    padding: "4px",
+    fontWeight : 550,
+    width : "150px",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    flexDirection : "row"
+  }
+
   const andamento = {
     backgroundColor: "#FFF0E1",
     border: "1px solid #F4CCAB",
@@ -160,8 +176,6 @@ const STYLE_STATUS_POLIO = ({value})=>{
     justifyContent : "center",
   }
   const andamentoSymbolStyle = {
-    border: "2px solid #F4CCAB",
-    borderRadius : "100%",
     width : "18px",
     height : "18px",
     fontSize : "8px",
@@ -171,8 +185,6 @@ const STYLE_STATUS_POLIO = ({value})=>{
     justifyContent : "center",
   }
   const completoSymbolStyle = {
-    border: "2px solid #1D856C",
-    borderRadius : "100%",
     width : "18px",
     height : "18px",
     fontSize : "8px",
@@ -184,8 +196,6 @@ const STYLE_STATUS_POLIO = ({value})=>{
     marginRight : "4px"
   }
   const atrasoSymbolStyle = {
-    border: "2px solid #EF565D",
-    borderRadius : "100%",
     width : "18px",
     height : "18px",
     fontSize : "8px",
@@ -195,13 +205,24 @@ const STYLE_STATUS_POLIO = ({value})=>{
     justifyContent : "center",
     paddingTop : "2px",
     marginRight : "4px"
-
   }
+  const naoIniciadoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px",
+    marginRight : "4px"
+  }
+
   const style = {
     1 : completo,
     2 : andamento,
     3 : atraso,
-    4 : atraso,
+    4 : nao_iniciado,
   }
   const descricoes = {
     1 : "Completo",
@@ -212,10 +233,10 @@ const STYLE_STATUS_POLIO = ({value})=>{
  
   const descricao = descricoes[value]
   return <div style={style[value]}>
-    {(value == 1) && <span style={completoSymbolStyle}>✔</span>} 
-    {value == 2 && <span style={andamentoSymbolStyle}>!</span>} 
-    {value == 3 && <span style={atrasoSymbolStyle}>✖</span>} 
-    {value == 4 && <span style={atrasoSymbolStyle}>✖</span>} 
+    {(value == 1) && <span style={completoSymbolStyle}><img src={esquema_completo} width={16} height={16}></img></span>} 
+    {value == 2 && <span style={andamentoSymbolStyle}><img src={esquema_em_andamento} width={16} height={16}></img></span>} 
+    {value == 3 && <span style={atrasoSymbolStyle}><img src={dose_em_atraso} width={16} height={16}></img></span>} 
+    {value == 4 && <span style={naoIniciadoSymbolStyle}><img src={esquema_nao_iniciado} width={16} height={16}></img></span>} 
     <div>{descricao}</div>
     </div>
 }
