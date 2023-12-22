@@ -1,7 +1,6 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
-    console.log(tabelaDataAPS)
-    const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 3)
+    const dataQuadriFuturo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 3)
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -19,18 +18,18 @@ const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
             valores={[
                 {
                     descricao: 'Total de Crianças',
-                    valor: dataQuadriAtual.length
+                    valor: dataQuadriFuturo.length
                 },
                 {
                     descricao: 'Crianças com os dois esquemas vacinais completos',
-                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
                     return (item.id_status_polio == 1 && item.id_status_penta == 1) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
                     descricao: 'Crianças com um ou os dois esquemas vacinais em andamento',
-                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
                     return (
                         (item.id_status_polio == 1 && item.id_status_penta == 1) || 
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
@@ -40,14 +39,14 @@ const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                 },
                 {
                     descricao: 'Crianças com pelo menos uma dose em atraso',
-                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
                     return (item.id_status_polio == 3 || item.id_status_penta == 3) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
                     descricao: 'Crianças com os dois esquemas vacinais não iniciados',
-                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    valor: dataQuadriFuturo.reduce((acumulador,item)=>{ 
                     return (item.id_status_polio == 4 && item.id_status_penta == 4) ?
                     acumulador + 1 : acumulador;
                     },0)
@@ -70,8 +69,8 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                 },
                 color: [
                     '#55D499',
-                    '#FF7C81',
                     '#FFA75E',
+                    '#FF7C81',
                     '#57C7DC'
                 ],
                 grid: {
@@ -155,8 +154,8 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                 },
                 color: [
                     '#55D499',
-                    '#FF7C81',
                     '#FFA75E',
+                    '#FF7C81',
                     '#57C7DC'
                 ],
                 series: [

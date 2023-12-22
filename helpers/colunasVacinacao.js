@@ -8,7 +8,7 @@ const formatar_nome = ({value})=>{
   }
   return <div style={name}>{value}</div>
 }
-const DDP_STYLE = (param)=>{
+const STYLE_DOSES = (value,colorCode)=>{
   const block = {
     backgroundColor: "#FFECEC",
     border: "1px solid #EF565D",
@@ -16,98 +16,7 @@ const DDP_STYLE = (param)=>{
     color: "#EF565D",
     padding: "2px",
     fontWeight : 550,
-    width : "fit-content",
-    display : "flex",
-    gap : "5px",
-    alignItems: "center",
-    justifyContent : "center",
-    padding : "3px 10px",
-  }
-  return param.value ? 
-  <div>{FormatarData(param)}</div> :
-  <div style={block}>sem DUM</div>
-}
-const IG_PRIMEIRA_CONSULTA_STYLE = (param)=>{
-  const value = param.row.gestacao_idade_gestacional_primeiro_atendimento
-  const IG_MENOR_12_SEM = {
-    width : '38px',
-    padding : '3px',
-    color : '#1D856C',
-    backgroundColor : '#E7FBF3',
-    border : 'solid 1px #9DEECD',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  const IG_MAIOR_12_SEM = {
-    width : '38px',
-    padding : '3px',
-    color : '#EF565D',
-    backgroundColor : '#FFECEC',
-    border : 'solid 1px #EF565D',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  const IG_NULL = {
-    width : '38px',
-    height : '25px',
-    padding : '3px',
-    color : '#1F1F1F',
-    backgroundColor : '#FFF',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  let IG_STYLE
-  if(value){
-    IG_STYLE = Number(value)<=12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM
-  }else{
-    IG_STYLE = IG_NULL
-  }
-  return <div style={IG_STYLE}>{value ? value : "-"}</div>
-}
-const IG_ATUAL_STYLE = (param)=>{
-  const value = param.row.gestacao_idade_gestacional_primeiro_atendimento
-  const IG_NULL = {
-    width : '38px',
-    height : '25px',
-    padding : '3px',
-    color : '#1F1F1F',
-    backgroundColor : '#FFF',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  return value ? 
-  <div>{value}</div> : 
-  <div style={IG_NULL}>-</div>
-}
-const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
-  let colorCode
-  if(param.row.gestacao_idade_gestacional_primeiro_atendimento <= 12 && param.row.consultas_pre_natal_validas <= 5) colorCode = 1 //Laranja
-  if(param.row.gestacao_idade_gestacional_primeiro_atendimento > 12) colorCode = 2 //Vermelho
-  if(param.row.gestacao_idade_gestacional_primeiro_atendimento <= 12 && param.row.consultas_pre_natal_validas >= 6) colorCode = 3 //verde
-  if(!param.row.consultas_pre_natal_validas) colorCode = 0 //Branco
-  const value = param.row.consultas_pre_natal_validas
-  const STYLE_NULL = {
-    width : '38px',
-    height : '25px',
-    padding : '3px',
-    color : '#1F1F1F',
-    backgroundColor : '#FFF',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  const block = {
-    backgroundColor: "#FFECEC",
-    border: "1px solid #EF565D",
-    borderRadius: "5px",
-    color: "#EF565D",
-    padding: "2px",
-    fontWeight : 550,
-    width : "65px",
+    width : "130px",
     display : "flex",
     gap : "5px",
     alignItems: "center",
@@ -121,7 +30,7 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
     color: "#E98633",
     padding: "2px",
     fontWeight : 550,
-    width : "65px",
+    width : "130px",
     display : "flex",
     gap : "5px",
     alignItems: "center",
@@ -135,7 +44,7 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
     color: "#1D856C",
     padding: "2px",
     fontWeight : 550,
-    width : "65px",
+    width : "130px",
     display : "flex",
     gap : "5px",
     alignItems: "center",
@@ -181,29 +90,27 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
   }
 
   const style = {
-    0 : STYLE_NULL,
     1 : atencao,
-    2 : block,
-    3 : check
+    2 : check,
+    3 : block,
   }
   return <div style={style[colorCode]}>
-      {(colorCode == 0) && <span>-</span>} 
-      {(colorCode == 1) && <span style={atencaoSymbolStyle}>!</span>} 
-      {colorCode == 2 && <span style={blockSymbolStyle}>✖</span>} 
-      {colorCode == 3 && <span style={checkSymbolStyle}>✔</span>} 
-      {value}
+      {colorCode == 1 && <span style={atencaoSymbolStyle}>!</span>} 
+      {(colorCode == 2) && <span style={checkSymbolStyle}>✔</span>} 
+      {colorCode == 3 && <span style={blockSymbolStyle}>✖</span>} 
+      {FormatarData(value)}
       </div>
 }
-const FormatarData = (param)=>{
-  if(!param.value) return null
-  const parts = param.value.split('-');
+const FormatarData = (value)=>{
+  if(!value) return null
+  const parts = value.split('-');
   const dia = parts[2];
   const mes = parts[1];
   const ano = parts[0];
   const date = `${dia}/${mes}/${ano}`
   return date
 }
-const HIV_STYLE = ({value})=>{
+const STYLE_STATUS_POLIO = ({value})=>{
   const STYLE_NULL = {
     width : '38px',
     height : '25px',
@@ -214,46 +121,45 @@ const HIV_STYLE = ({value})=>{
     textAlign : 'center',
     fontWeight: 500
   }
-  const block = {
+  const atraso = {
     backgroundColor: "#FFECEC",
     border: "1px solid #EF565D",
     borderRadius: "5px",
     color: "#EF565D",
-    padding: "8px",
+    padding: "4px",
     fontWeight : 550,
     width : "150px",
-    height : "50px",
     display : "flex",
     alignItems: "center",
     justifyContent : "center",
     flexDirection : "row"
   }
-  const atencao = {
+  const andamento = {
     backgroundColor: "#FFF0E1",
     border: "1px solid #F4CCAB",
     borderRadius: "5px",
     color: "#E98633",
     fontWeight : 550,
     gap : "5px",
-    padding : "8px",
+    padding : "4px",
     width : "150px",
     display : "flex",
     alignItems: "center",
     justifyContent : "center",
   }
-  const check = {
+  const completo = {
     backgroundColor: "#E7FBF3",
     border: "1px solid #9DEECD",
     borderRadius: "5px",
     color: "#1D856C",
     fontWeight : 550,
-    padding : "8px",
+    padding : "4px",
     width : "150px",
     display : "flex",
     alignItems: "center",
     justifyContent : "center",
   }
-  const atencaoSymbolStyle = {
+  const andamentoSymbolStyle = {
     border: "2px solid #F4CCAB",
     borderRadius : "100%",
     width : "18px",
@@ -264,7 +170,7 @@ const HIV_STYLE = ({value})=>{
     alignItems: "center",
     justifyContent : "center",
   }
-  const checkSymbolStyle = {
+  const completoSymbolStyle = {
     border: "2px solid #1D856C",
     borderRadius : "100%",
     width : "18px",
@@ -277,7 +183,7 @@ const HIV_STYLE = ({value})=>{
     paddingTop : "2px",
     marginRight : "4px"
   }
-  const blockSymbolStyle = {
+  const atrasoSymbolStyle = {
     border: "2px solid #EF565D",
     borderRadius : "100%",
     width : "18px",
@@ -289,109 +195,60 @@ const HIV_STYLE = ({value})=>{
     justifyContent : "center",
     paddingTop : "2px",
     marginRight : "4px"
+
   }
   const style = {
-    1 : atencao,
-    2 : atencao,
-    3 : block,
-    4 : check,
-    5 : STYLE_NULL,
+    1 : completo,
+    2 : andamento,
+    3 : atraso,
+    4 : atraso,
   }
-  const contentNOTNull = {
-    width : "110px",
-    height : "40px",
-    whiteSpace: "pre-wrap",
-    textAlign : "center"
+  const descricoes = {
+    1 : "Completo",
+    2 : "Em andamento",
+    3 : "Em atraso",
+    4 : "Não iniciado"
   }
-  const content = value != 5 ? contentNOTNull : {}
-  const descricao = identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.find(item=>item.id_exame_hiv_sifilis==value).exame_hiv_sifilis_descricao
+ 
+  const descricao = descricoes[value]
   return <div style={style[value]}>
-    {(value == 1 || value == 2) && <span style={atencaoSymbolStyle}>!</span>} 
-    {value == 3 && <span style={blockSymbolStyle}>✖</span>} 
-    {value == 4 && <span style={checkSymbolStyle}>✔</span>} 
-    <div style={content}>{descricao}</div>
+    {(value == 1) && <span style={completoSymbolStyle}>✔</span>} 
+    {value == 2 && <span style={andamentoSymbolStyle}>!</span>} 
+    {value == 3 && <span style={atrasoSymbolStyle}>✖</span>} 
+    {value == 4 && <span style={atrasoSymbolStyle}>✖</span>} 
+    <div>{descricao}</div>
     </div>
 }
-const ATENDIMENTO_ODONTOLOGICO_STYLE = ({value})=>{
-  const STYLE_NULL = {
-    width : '38px',
-    height : '25px',
-    padding : '3px',
-    color : '#1F1F1F',
-    backgroundColor : '#FFF',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  const block = {
-    backgroundColor: "#FFECEC",
-    border: "1px solid #EF565D",
-    borderRadius: "5px",
-    color: "#EF565D",
-    padding: "2px",
-    fontWeight : 550,
-    width : "75px",
-    display : "flex",
-    gap : "5px",
-    alignItems: "center",
-    justifyContent : "center",
-    padding : "3px 10px"
-  }
-  const check = {
-    backgroundColor: "#E7FBF3",
-    border: "1px solid #9DEECD",
-    borderRadius: "5px",
-    color: "#1D856C",
-    padding: "2px",
-    fontWeight : 550,
-    width : "75px",
-    display : "flex",
-    gap : "5px",
-    alignItems: "center",
-    justifyContent : "center",
-    padding : "3px 10px"
-  }
-  const checkSymbolStyle = {
-    border: "2px solid #1D856C",
-    borderRadius : "100%",
-    width : "18px",
-    height : "18px",
-    fontSize : "8px",
-    fontWeight : "600",
-    display : "flex",
-    alignItems: "center",
-    justifyContent : "center",
-    paddingTop : "2px"
-  }
-  const blockSymbolStyle = {
-    border: "2px solid #EF565D",
-    borderRadius : "100%",
-    width : "18px",
-    height : "18px",
-    fontSize : "8px",
-    fontWeight : "600",
-    display : "flex",
-    alignItems: "center",
-    justifyContent : "center",
-    paddingTop : "2px"
-  }
-  const style = {
-    1 : check,
-    2 : block,
-    3 : STYLE_NULL,
-  }
-  const descricao = identificacao_atendimento_odontologico.identificacao_atendimento_odontologico.find(item=>item.id_atendimento_odontologico==value).atendimento_odontologico_descricao
-  return <div style={style[value]}>
-      {value == 1 && <span style={checkSymbolStyle}>✔</span>} 
-      {value == 2 && <span style={blockSymbolStyle}>✖</span>} 
-      {descricao}
-      </div>
+const STYLE_1_DOSE_POLIO = (param)=>{
+  const value = param.row.data_ou_prazo_1dose_polio
+  const colorCode = param.row.id_cor_1dose_polio
+  return STYLE_DOSES(value,colorCode)
 }
-const REGISTRO_STYLE = ({value})=>{
-  if(value.toString()=='1') return "Sim"
-  if(value.toString()=='2') return "Não"
+const STYLE_2_DOSE_POLIO = (param)=>{
+  const value = param.row.data_ou_prazo_2dose_polio
+  const colorCode = param.row.id_cor_2dose_polio
+  return STYLE_DOSES(value,colorCode)
 }
-
+const STYLE_3_DOSE_POLIO = (param)=>{
+  const value = param.row.data_ou_prazo_3dose_polio
+  const colorCode = param.row.id_cor_3dose_polio
+  return STYLE_DOSES(value,colorCode)
+}
+const STYLE_1_DOSE_PENTA = (param)=>{
+  const value = param.row.data_ou_prazo_1dose_penta
+  const colorCode = param.row.id_cor_1dose_penta
+  return STYLE_DOSES(value,colorCode)
+}
+const STYLE_2_DOSE_PENTA = (param)=>{
+  const value = param.row.data_ou_prazo_2dose_penta
+  const colorCode = param.row.id_cor_2dose_penta
+  return STYLE_DOSES(value,colorCode)
+}
+const STYLE_3_DOSE_PENTA = (param)=>{
+  const value = param.row.data_ou_prazo_3dose_penta
+  const colorCode = param.row.id_cor_3dose_penta
+  return STYLE_DOSES(value,colorCode)
+}
 
 const colunasVacinacaoAPS=[
     {
@@ -400,7 +257,8 @@ const colunasVacinacaoAPS=[
       headerAlign: 'center',
       headerName: 'NOME OU RN DE RESP.',
       width: 320,
-      sortable : false
+      sortable : false,
+      renderCell : formatar_nome,
     },
     {
       align: 'left',
@@ -430,33 +288,36 @@ const colunasVacinacaoAPS=[
       field: 'id_status_polio',
       headerAlign: 'center',
       headerName: 'STATUS DO ESQUEMA POLIO',
-      width: 90,
+      width: 150,
       sortable : false,
-
+      renderCell : STYLE_STATUS_POLIO
     },
     {
       align: 'center',
       field: 'data_ou_prazo_1dose_polio',
       headerAlign: 'center',
       headerName: '1ª DOSE POLIO',
-      width: 65,
+      width: 150,
       sortable : false,
+      renderCell : STYLE_1_DOSE_POLIO
     },
     {
       align: 'center',
       field: 'data_ou_prazo_2dose_polio',
       headerAlign: 'center',
       headerName: '2ª DOSE POLIO',
-      width: 100,
+      width: 150,
       sortable : false,
+      renderCell : STYLE_2_DOSE_POLIO
     },
     {
       align: 'center',
       field: 'data_ou_prazo_3dose_polio',
       headerAlign: 'center',
       headerName: '3ª DOSE POLIO',
-      width: 115,
+      width: 150,
       sortable : false,
+      renderCell : STYLE_3_DOSE_POLIO
     },
     {
         align: 'center',
@@ -465,30 +326,34 @@ const colunasVacinacaoAPS=[
         headerName: 'STATUS DO ESQUEMA PENTA',
         width: 150,
         sortable : false,
+        renderCell : STYLE_STATUS_POLIO
     },
     {
-        align: 'center',
-        field: 'data_ou_prazo_1dose_penta',
-        headerAlign: 'center',
-        headerName: '1ª DOSE PENTA',
-        width: 120,
-        sortable : false,
+      align: 'center',
+      field: 'data_ou_prazo_1dose_penta',
+      headerAlign: 'center',
+      headerName: '1ª DOSE PENTA',
+      width: 150,
+      sortable : false,
+      renderCell : STYLE_1_DOSE_PENTA
     },
     {
       align: 'center',
       field: 'data_ou_prazo_2dose_penta',
       headerAlign: 'center',
       headerName: '2ª DOSE PENTA',
-      width: 120,
+      width: 150,
       sortable : false,
+      renderCell : STYLE_2_DOSE_PENTA
     },
     {
       align: 'center',
       field: 'data_ou_prazo_3dose_penta',
       headerAlign: 'center',
       headerName: '3ª DOSE PENTA',
-      width: 120,
+      width: 150,
       sortable : false,
+      renderCell : STYLE_3_DOSE_PENTA
     },
     {
       align: 'center',

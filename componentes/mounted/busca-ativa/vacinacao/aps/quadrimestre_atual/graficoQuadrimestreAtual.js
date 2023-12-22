@@ -1,6 +1,5 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
-    console.log(tabelaDataAPS)
     const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
     return tabelaDataAPS ? 
     <>
@@ -30,7 +29,7 @@ const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                 },
                 {
                     descricao: 'Crianças com um ou os dois esquemas vacinais em andamento',
-                    valor: dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    valor: dataQuadriAtual.length - dataQuadriAtual.reduce((acumulador,item)=>{ 
                     return (
                         (item.id_status_polio == 1 && item.id_status_penta == 1) || 
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
@@ -58,7 +57,7 @@ const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
 }
 
 const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{ 
-    const dataQuadriFuturo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
+    const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
     return tabelaDataAPS ? 
     <>
         <GraficoBuscaAtiva
@@ -70,8 +69,8 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                 },
                 color: [
                     '#55D499',
-                    '#FF7C81',
                     '#FFA75E',
+                    '#FF7C81',
                     '#57C7DC'
                 ],
                 grid: {
@@ -90,7 +89,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                 },
                 series: [
                 {
-                    data: Object.entries(dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                    data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
                     if(item.id_status_polio == 1 && item.id_status_penta == 1) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
                     },{})),
@@ -99,7 +98,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: Object.entries(dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                    data: dataQuadriAtual.length - Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
                     if(((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                     (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                     (item.id_status_polio == 4 && item.id_status_penta == 4)) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
@@ -110,7 +109,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: Object.entries(dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                    data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
                     if(item.id_status_polio == 3 || item.id_status_penta == 3) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
                     },{})),
@@ -119,7 +118,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: Object.entries(dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                    data: Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
                     if(item.id_status_polio == 4 && item.id_status_penta == 4) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
                     },{})),
@@ -133,7 +132,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                 trigger: 'axis'
                 },
                 xAxis: {
-                data: [...new Set(dataQuadriFuturo.map(item => item.equipe_nome))],
+                data: [...new Set(dataQuadriAtual.map(item => item.equipe_nome))],
                 type: 'category',
                 axisLabel : {
                     rotate : 45
@@ -155,8 +154,8 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                 },
                 color: [
                     '#55D499',
-                    '#FF7C81',
                     '#FFA75E',
+                    '#FF7C81',
                     '#57C7DC'
                 ],
                 series: [
@@ -165,30 +164,30 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     data: [
                     {
                         name: 'Crianças com os dois esquemas vacinais completos',
-                        value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                        value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 1 && item.id_status_penta == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2)
                     },
                     {
                         name: 'Crianças com um ou os dois esquemas vacinais em andamento',
-                        value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                        value: ((dataQuadriAtual.length - dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                         (item.id_status_polio == 4 && item.id_status_penta == 4)) ?
                         acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2)
                     },
                     {
                         name: 'Crianças com pelo menos uma dose em atraso',
-                        value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                        value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 3 || item.id_status_penta == 3) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2)
                     },
                     {
                         name: 'Crianças com os dois esquemas vacinais não iniciados',
-                        value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
+                        value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 4 && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2)
                     },
                     ],
                     emphasis: {
