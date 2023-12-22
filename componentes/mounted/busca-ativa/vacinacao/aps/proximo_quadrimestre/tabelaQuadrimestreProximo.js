@@ -36,8 +36,8 @@ const TabelaAPSQuadrimestreProximo = ({
             rotulo: 'Filtrar por nome da equipe'
         },
         {
-            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.equipe_ine))],
-            filtro: 'equipe_ine',
+            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.acs_nome))],
+            filtro: 'acs_nome',
             rotulo: 'Filtrar por profissional responsável'
         },
     ]}

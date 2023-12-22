@@ -13,7 +13,7 @@ const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q1/24 - Crianças no período de vacinação
+            Q3/24 + Q1/25 - Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
             valores={[
