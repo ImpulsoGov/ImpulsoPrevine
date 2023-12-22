@@ -137,6 +137,7 @@ function MyApp(props) {
                               { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
                               { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
+                              { label: "Listas Nominal Vacinação", url: "/busca-ativa/vacinacao" },                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])

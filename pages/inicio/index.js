@@ -214,6 +214,10 @@ const Index = ({ res }) => {
                                         label: 'Pré-Natal',
                                         link: '/busca-ativa/gestantes?initialTitle=0&painel=0'
                                     },
+                                    {
+                                        label: 'Vacinação',
+                                        link: '/busca-ativa/vacinacao'
+                                    },
                                 ]}
                                 texto='Oferecemos listas nominais para monitoramento: gestantes, pessoas com hipertensão, pessoas com diabetes e coleta do citopatológico. As listas auxiliam no acompanhamento dos indicadores do Previne Brasil relacionados a esses grupos.'
                                 titulo='Listas Nominais'
