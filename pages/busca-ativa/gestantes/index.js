@@ -155,7 +155,7 @@ if(session){
               lineHeight: "130%",
           }}
       >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q1/24
       </div>
       {
           tabelaData &&
@@ -325,7 +325,7 @@ if(session){
                 lineHeight: "130%",
             }}
         >
-        {session.user.municipio} - Q3/23
+        {session.user.municipio} - Q1/24
         </div>
         <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
         <PanelSelector
@@ -340,10 +340,10 @@ if(session){
             list={[
                 [
                   {
-                    label: 'GRÁFICO Q3/23'
+                    label: 'GRÁFICO Q1/24'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                   },
                 {
                     label: 'GESTANTES ATIVAS'
@@ -354,10 +354,10 @@ if(session){
                 ],
                 [
                   {
-                    label: 'GRÁFICO Q3/23'
+                    label: 'GRÁFICO Q1/24'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                   },
                   {
                       label: 'GESTANTES ATIVAS'
@@ -368,10 +368,10 @@ if(session){
                   ],
                   [
                     {
-                      label: 'GRÁFICO Q3/23'
+                      label: 'GRÁFICO Q1/24'
                     },
                     {
-                      label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                      label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                     },
                       {
                       label: 'GESTANTES ATIVAS'
