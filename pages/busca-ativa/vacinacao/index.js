@@ -261,7 +261,7 @@ import {
                   lineHeight: "130%",
               }}
           >
-          {session.user.municipio} - Q1/24
+          {session.user.municipio}
           </div>
           <PanelSelector
               components={Children}

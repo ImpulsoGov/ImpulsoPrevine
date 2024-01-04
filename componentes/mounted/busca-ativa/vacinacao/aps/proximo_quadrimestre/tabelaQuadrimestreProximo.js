@@ -40,6 +40,17 @@ const TabelaAPSQuadrimestreProximo = ({
             filtro: 'acs_nome',
             rotulo: 'Filtrar por profissional responsável'
         },
+        {
+            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+            filtro: 'id_status_polio',
+            rotulo: 'Filtrar por status polio'
+        },
+        {
+            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+            filtro: 'id_status_penta',
+            rotulo: 'Filtrar por status penta'
+        },
+
     ]}
     painel="vacinacao"
     tabela={{
