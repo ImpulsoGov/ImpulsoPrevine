@@ -12,7 +12,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            (Q2 + Q3)/2024 - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
 
         <ScoreCardGrid

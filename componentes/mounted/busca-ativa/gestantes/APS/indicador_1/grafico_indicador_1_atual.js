@@ -12,7 +12,7 @@ const CardsGraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q3/2023 - Gestantes com DUM preenchida por total de consultas e captação
+            Q1/2024 - Gestantes com DUM preenchida por total de consultas e captação
         </h2>
         <ScoreCardGrid
             valores={[
