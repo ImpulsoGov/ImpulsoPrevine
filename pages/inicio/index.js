@@ -126,11 +126,11 @@ const Index = ({ res }) => {
                     />                    
                 } */}
                 <Greeting
-                    cargo={cargo}
-                    greeting="Bem vindo(a)"
-                    municipio_uf={session?.user.municipio}
-                    nome_usuario={session?.user.nome}
-                    texto=""
+                    cargo = {cargo}
+                    greeting = "Bem-vindo(a)"
+                    municipio_uf = {session?.user.municipio}
+                    nome_usuario = {session?.user.nome}
+                    texto = ""
                 />
                 <div
                     style={

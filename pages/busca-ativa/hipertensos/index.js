@@ -37,7 +37,7 @@ const Index = ({res}) => {
   const [tokenValido, setTokenValido] = useState();
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
-  const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio,session?.user?.access_token)
+  const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
   useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     HipertensaoTabelaDataAPS().then((response)=>{
@@ -45,7 +45,7 @@ const Index = ({res}) => {
   })},[session]) 
 
   const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
   useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     HipertensaoTabelaDataEquipe().then((response)=>{

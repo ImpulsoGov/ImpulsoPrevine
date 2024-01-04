@@ -1,11 +1,11 @@
 import axios from "axios";
 import { API_URL_DADOS_NOMINAIS } from "../../constants/API_URL";
 
-const tabelaHipertensaoEquipe = async(municipio_uf,equipe,token)=>{
+const tabelaHipertensaoEquipe = async(municipio_id_sus,equipe,token)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: API_URL_DADOS_NOMINAIS + `impulsoprevine/busca-ativa/hipertensao-por-equipe?municipio_uf=${municipio_uf}&equipe=${equipe}`,
+        url: API_URL_DADOS_NOMINAIS + `impulsoprevine/busca-ativa/hipertensao-por-equipe?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
         headers: { 
           'Authorization': 'Bearer ' + token
         }
@@ -13,7 +13,6 @@ const tabelaHipertensaoEquipe = async(municipio_uf,equipe,token)=>{
       
       const res = axios.request(config)
       .then((response) => {
-        console.log(response)
         return response.data;
       })
       .catch((error) => {
@@ -22,19 +21,17 @@ const tabelaHipertensaoEquipe = async(municipio_uf,equipe,token)=>{
 
       return res
 }
-const tabelaHipertensaoAPS = async(municipio_uf,token)=>{
+const tabelaHipertensaoAPS = async(municipio_id_sus,token)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: API_URL_DADOS_NOMINAIS + `impulsoprevine/busca-ativa/hipertensao-por-municipio?municipio_uf=${municipio_uf}`,
+        url: API_URL_DADOS_NOMINAIS + `impulsoprevine/busca-ativa/hipertensao-por-municipio?municipio_id_sus=${municipio_id_sus}`,
         headers: { 
           'Authorization': 'Bearer ' + token
         }
       };
-      console.log("requisição realizada")
       const res = axios.request(config)
       .then((response) => {
-        console.log(response)
         return response.data;
       })
       .catch((error) => {
