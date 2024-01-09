@@ -89,26 +89,26 @@ useEffect(()=>{
 },[tokenValido])
 const datefiltrosCito = [
     "vencimento_da_coleta",
-  ]
-  const rotulosfiltrosCito = [
-    "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "VENCIMENTO DA COLETA MAIS ANTIGO",
-    "IDADE MENOR-MAIOR",
-    ]
-    const IDFiltrosCito = {
-        "NOMES DE A-Z": "paciente_nome",
-        "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
-        "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
-        "IDADE MENOR-MAIOR" : "idade",
-    }   
-    const IDFiltrosOrdenacaoCito = {
-        "paciente_nome" : "asc",
-        "acs_nome" : "asc",
-        "idade" : "asc",
-        "vencimento_da_coleta" : "desc",
-        "prazo_proxima_coleta" : "asc",
-    }
+]
+const rotulosfiltrosCito = [
+"NOMES DE A-Z",
+"NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+"VENCIMENTO DA COLETA MAIS ANTIGO",
+"IDADE MENOR-MAIOR",
+]
+const IDFiltrosCito = {
+    "NOMES DE A-Z": "paciente_nome",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
+    "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
+    "IDADE MENOR-MAIOR" : "idade",
+}   
+const IDFiltrosOrdenacaoCito = {
+    "paciente_nome" : "asc",
+    "acs_nome" : "asc",
+    "idade" : "asc",
+    "vencimento_da_coleta" : "asc",
+    "prazo_proxima_coleta" : "asc",
+}
       
 if(session){  
     if(session.user.perfis.includes(9)){
