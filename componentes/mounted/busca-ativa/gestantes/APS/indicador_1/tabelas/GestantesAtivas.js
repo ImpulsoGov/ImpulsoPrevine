@@ -3,7 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorUm } from "../../../../../../../helpers/colunasGestantesIndicadorUm";
-
+const IntFiltros = []
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
     "consulta_prenatal_ultima_data",
@@ -19,9 +19,9 @@ const IDFiltrosGestantes = {
     "DPP MAIS PRÓXIMA" : "gestacao_data_dpp",
 }   
 const IDFiltrosOrdenacaoGestantes = {
-    "NOMES DE A-Z" : "asc",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
-    "DPP MAIS PRÓXIMA" : "asc",
+    "cidadao_nome" : "asc",
+    "acs_nome" : "asc",
+    "gestacao_data_dpp" : "asc",
 }
 
 const IndicadorUmTabelaGestantesAtivas = ({
@@ -57,6 +57,7 @@ const IndicadorUmTabelaGestantesAtivas = ({
     data={tabelaData}
     setData={setTabelaData}
     datefiltros={datefiltrosGestantes}
+    IntFiltros={IntFiltros}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}

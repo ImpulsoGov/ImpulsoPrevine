@@ -2,7 +2,7 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
 } from "@impulsogov/design-system";
-import { colunasGestantesIndicadorUm } from "../../../../../../helpers/colunasGestantesIndicadorUm";
+import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -43,7 +43,7 @@ const TabelaGestantesSemDUM = ({
     ]}
     painel="gestantes"
     tabela={{
-    colunas: colunasGestantesIndicadorUm,
+    colunas: colunasGestantesSemDUMAPS,
     data:tabelaDataAPSGestantesSemDUM
     }}
     data={tabelaData}

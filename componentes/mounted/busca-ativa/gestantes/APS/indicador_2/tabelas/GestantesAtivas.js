@@ -19,9 +19,9 @@ const IDFiltrosGestantes = {
     "DPP MAIS PRÓXIMA" : "gestacao_data_dpp",
 }   
 const IDFiltrosOrdenacaoGestantes = {
-    "NOMES DE A-Z" : "asc",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
-    "DPP MAIS PRÓXIMA" : "asc",
+    "cidadao_nome" : "asc",
+    "acs_nome" : "asc",
+    "gestacao_data_dpp" : "asc",
 }
 
 const IndicadorDoisTabelaGestantesAtivas = ({
