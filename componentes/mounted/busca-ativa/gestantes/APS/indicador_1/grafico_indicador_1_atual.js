@@ -126,8 +126,8 @@ const GraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
                     left: '80'
                 },
                 color: [
-                    '#E98633',
                     '#EF565D',
+                    '#E98633',
                     '#2EB280',
                 ],
                 series: [
