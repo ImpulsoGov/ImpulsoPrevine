@@ -8,6 +8,23 @@ const formatar_nome = ({value})=>{
   }
   return <div style={name}>{value}</div>
 }
+const IG_ATUAL_STYLE = (param)=>{
+  const value = param.row.gestacao_idade_gestacional_primeiro_atendimento
+  const IG_NULL = {
+    width : '38px',
+    height : '25px',
+    padding : '3px',
+    color : '#1F1F1F',
+    backgroundColor : '#FFF',
+    borderRadius: '5px',
+    textAlign : 'center',
+    fontWeight: 500
+  }
+  return value ? 
+  <div>{value}</div> : 
+  <div style={IG_NULL}>-</div>
+}
+
 const DDP_STYLE = (param)=>{
   const block = {
     backgroundColor: "#FFECEC",
@@ -21,7 +38,7 @@ const DDP_STYLE = (param)=>{
     gap : "5px",
     alignItems: "center",
     justifyContent : "center",
-    padding : "3px 10px",
+    padding : "3px 10px"
   }
   return param.value ? 
   <div>{FormatarData(param)}</div> :
@@ -67,22 +84,6 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param)=>{
   }
   return <div style={IG_STYLE}>{value ? value : "-"}</div>
 }
-const IG_ATUAL_STYLE = (param)=>{
-  const value = param.row.gestacao_idade_gestacional_atual
-  const IG_NULL = {
-    width : '38px',
-    height : '25px',
-    padding : '3px',
-    color : '#1F1F1F',
-    backgroundColor : '#FFF',
-    borderRadius: '5px',
-    textAlign : 'center',
-    fontWeight: 500
-  }
-  return value ? 
-  <div>{value}</div> : 
-  <div style={IG_NULL}>-</div>
-}
 const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
   let colorCode
   if(param.row.gestacao_idade_gestacional_primeiro_atendimento <= 12 && param.row.consultas_pre_natal_validas <= 5) colorCode = 1 //Laranja
@@ -105,7 +106,6 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param)=>{
     border: "1px solid #EF565D",
     borderRadius: "5px",
     color: "#EF565D",
-    padding: "2px",
     fontWeight : 550,
     width : "65px",
     display : "flex",
@@ -387,13 +387,12 @@ const ATENDIMENTO_ODONTOLOGICO_STYLE = ({value})=>{
       {descricao}
       </div>
 }
+
 const REGISTRO_STYLE = ({value})=>{
   if(value.toString()=='1') return "Sim"
   if(value.toString()=='2') return "Não"
 }
-
-
-const colunasGestantesEquipe=[
+const colunasGestantesSemDUMAPS=[
     {
       align: 'left',
       field: 'cidadao_nome',
@@ -415,7 +414,7 @@ const colunasGestantesEquipe=[
       field: 'gestacao_data_dpp',
       headerAlign: 'center',
       headerName: 'DPP + 14 DIAS',
-      width: 100,
+      width: 130,
       sortable : false,
       renderCell : DDP_STYLE
     },
@@ -457,132 +456,32 @@ const colunasGestantesEquipe=[
       renderCell : FormatarData
     },
     {
-        align: 'center',
-        field: 'id_exame_hiv_sifilis',
-        headerAlign: 'center',
-        headerName: 'EXAME DE HIV/SÍFILIS',
-        width: 150,
-        sortable : false,
-        renderCell : HIV_STYLE
-    },
-    {
-        align: 'center',
-        field: 'id_atendimento_odontologico',
-        headerAlign: 'center',
-        headerName: 'ATENDIMENTO ODONTOLÓGICO',
-        width: 120,
-        sortable : false,
-        renderCell : ATENDIMENTO_ODONTOLOGICO_STYLE
-    },
-    {
-        align: 'center',
-        field: 'acs_nome',
-        headerAlign: 'center',
-        headerName: 'PROFISSIONAL RESPONSÁVEL',
-        width: 300,
-        sortable : false
-    },
-      
-  ]
-  const colunasGestantesEncerradasEquipe=[
-    {
-      align: 'left',
-      field: 'cidadao_nome',
-      headerAlign: 'center',
-      headerName: 'NOME',
-      renderCell : formatar_nome,
-      width: 320,
-      sortable : false
-    },
-    {
       align: 'center',
-      field: 'cidadao_cpf_dt_nascimento',
-      headerName: 'CPF / DATA DE NASCIMENTO',
-      width: 140,
-      sortable : false
-    },
-    {
-      align: 'center',
-      field: 'gestacao_data_dpp',
+      field: 'id_exame_hiv_sifilis',
       headerAlign: 'center',
-      headerName: 'DPP + 14 DIAS',
-      width: 100,
+      headerName: 'EXAME DE HIV/SÍFILIS',
+      width: 150,
       sortable : false,
-      renderCell : DDP_STYLE
+      renderCell : HIV_STYLE
     },
     {
       align: 'center',
-      field: 'gestacao_idade_gestacional_primeiro_atendimento',
+      field: 'id_atendimento_odontologico',
       headerAlign: 'center',
-      headerName: 'IG (1ª CONSULTA)',
-      width: 90,
-      sortable : false,
-      renderCell : IG_PRIMEIRA_CONSULTA_STYLE,
-
-    },
-    {
-      align: 'center',
-      field: 'gestacao_idade_gestacional_atual',
-      headerAlign: 'center',
-      headerName: 'IG ATUAL',
-      width: 65,
-      sortable : false,
-      renderCell : IG_ATUAL_STYLE
-    },
-    {
-      align: 'center',
-      field: 'consultas_pre_natal_validas',
-      headerAlign: 'center',
-      headerName: 'TOTAL DE CONSULTAS VALIDAS',
-      width: 100,
-      sortable : false,
-      renderCell : TOTAL_CONSULTAS_VALIDAS_STYLE
-    },
-    {
-      align: 'center',
-      field: 'consulta_prenatal_ultima_data',
-      headerAlign: 'center',
-      headerName: 'ÚLTIMA CONSULTA',
-      width: 115,
-      sortable : false,
-      renderCell : FormatarData
-    },
-    {
-        align: 'center',
-        field: 'id_exame_hiv_sifilis',
-        headerAlign: 'center',
-        headerName: 'EXAME DE HIV/SÍFILIS',
-        width: 150,
-        sortable : false,
-        renderCell : HIV_STYLE
-    },
-    {
-        align: 'center',
-        field: 'id_atendimento_odontologico',
-        headerAlign: 'center',
-        headerName: 'ATENDIMENTO ODONTOLÓGICO',
-        width: 120,
-        sortable : false,
-        renderCell : ATENDIMENTO_ODONTOLOGICO_STYLE
-    },
-    {
-      align: 'center',
-      field: 'id_registro_parto',
-      headerAlign: 'center',
-      headerName: 'REGISTRO DE PARTO',
+      headerName: 'ATENDIMENTO ODONTOLÓGICO',
       width: 120,
       sortable : false,
-      renderCell : REGISTRO_STYLE
+      renderCell : ATENDIMENTO_ODONTOLOGICO_STYLE
     },
     {
-        align: 'center',
-        field: 'acs_nome',
-        headerAlign: 'center',
-        headerName: 'PROFISSIONAL RESPONSÁVEL',
-        width: 300,
-        sortable : false
+      align: 'center',
+      field: 'acs_nome',
+      headerAlign: 'center',
+      headerName: 'PROFISSIONAL RESPONSÁVEL',
+      width: 250,
+      sortable : false
     },
       
   ]
 
-export { colunasGestantesEquipe, colunasGestantesEncerradasEquipe } 
+export { colunasGestantesSemDUMAPS } 
