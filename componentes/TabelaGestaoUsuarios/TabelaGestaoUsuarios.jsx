@@ -27,6 +27,7 @@ function TabelaGestaoUsuarios({
   useEffect(() => {
     const linhas = transformarDadosEmLinhas(usuarios);
     setRows(linhas);
+    
   }, [usuarios, transformarDadosEmLinhas]);
 
   const columns = useMemo(() => [
@@ -86,6 +87,21 @@ function TabelaGestaoUsuarios({
       align: 'center',
       editable: true
     },
+    {
+      field: 'perfil_ativo',
+      headerName: 'Perfil Ativo',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        console.log('Valor de perfil_ativo:', params.value);
+        return (
+          <div>
+            {params.value ? 'Ativo' : 'Inativo'}
+          </div>
+        );
+      }
+    },   
     {
       field: 'autorizacoes',
       headerName: 'Autorizações',
@@ -150,6 +166,7 @@ function TabelaGestaoUsuarios({
       cargo: dado.cargo,
       telefone: dado.telefone,
       equipe: dado.equipe,
+      perfil_ativo: dado['perfil_ativo'],
       autorizacoes: dado.autorizacoes,
       editarAutorizacoes: openModalAutorizacoes,
       isNew: false,
@@ -254,6 +271,7 @@ function TabelaGestaoUsuarios({
         cargo: dadosAtualizados.cargo,
         telefone: dadosAtualizados.telefone,
         equipe: dadosAtualizados.equipe,
+        perfil_ativo: dadosAtualizados['perfil_ativo'],
         autorizacoes: newRowData.autorizacoes,
         editarAutorizacoes: newRowData.editarAutorizacoes,
         isNew: false,
