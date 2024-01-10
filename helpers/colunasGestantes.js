@@ -68,7 +68,7 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param)=>{
   return <div style={IG_STYLE}>{value ? value : "-"}</div>
 }
 const IG_ATUAL_STYLE = (param)=>{
-  const value = param.row.gestacao_idade_gestacional_primeiro_atendimento
+  const value = param.row.gestacao_idade_gestacional_atual
   const IG_NULL = {
     width : '38px',
     height : '25px',
