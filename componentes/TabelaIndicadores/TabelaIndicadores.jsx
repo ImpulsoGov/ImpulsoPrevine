@@ -51,7 +51,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       field: 'indicador_score',
       headerName: '',
       flex: 0,
-      width: 0, 
+      width: 0,
       cellClassName: styles.colunaBranca,
       headerClassName: styles.cabecalho,
     },
@@ -78,7 +78,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       headerAlign: 'center',
       description: 'Refere-se ao número de pessoas em dia com os critérios de consultas, procedimentos e exames e que contabilizaram neste quadrimestre.',
       headerClassName: styles.cabecalho,
-      
+
     },
     {
       field: 'indicador_denominador_utilizado_informado',
@@ -101,7 +101,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
       description: 'A partir de dados do SISAB, fazemos um cálculo de quantas pessoas devem ser atendidas dentro de cada indicador, para que o município atinja a meta estabelecida. Se o número indicado for igual a zero, isso significa que o município já atingiu ou ultrapassou a meta estabelecida pelo Previne Brasil.',
       headerClassName: styles.cabecalho,
     },
-    
+
     {
       field: 'indicador_nota',
       headerName: 'Nota',
@@ -114,7 +114,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     },
     {
       field: 'delta_formatado',
-      headerName: 'Variação de desempenho de Q1-23/Q3-22',
+      headerName: 'Variação de desempenho de Q1-23/Q2-23',
       flex: 2,
       align: 'center',
       headerAlign: 'center',
