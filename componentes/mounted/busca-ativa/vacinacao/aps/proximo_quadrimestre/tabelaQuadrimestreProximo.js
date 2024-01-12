@@ -3,8 +3,13 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
+import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
+import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 
 const datefiltrosVacinacao = []
+const IntFiltros = [
+    "cidadao_idade_meses",
+]
 const rotulosfiltrosVacinacao = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
@@ -16,9 +21,9 @@ const IDFiltrosVacinacao = {
     "IDADE DA CRIANÇA - DECRESCENTE" : "cidadao_idade_meses",
 }   
 const IDFiltrosOrdenacaoVacinacao = {
-    "NOMES DE A-Z" : "asc",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
-    "IDADE DA CRIANÇA - DECRESCENTE" : "desc",
+    "cidadao_nome" : "asc",
+    "acs_nome" : "asc",
+    "cidadao_idade_meses" : "desc",
 }
 
 const TabelaAPSQuadrimestreProximo = ({
@@ -41,12 +46,20 @@ const TabelaAPSQuadrimestreProximo = ({
             rotulo: 'Filtrar por profissional responsável'
         },
         {
-            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+            data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio))],
+            labels : vacinacao_status_polio.data.reduce((obj, item) => {
+                obj[item.id_status_polio] = item.status_descricao;
+                return obj;
+            }, {}),
             filtro: 'id_status_polio',
             rotulo: 'Filtrar por status polio'
         },
         {
             data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+            labels : vacinacao_status_penta.data.reduce((obj, item) => {
+                obj[item.id_status_penta] = item.status_descricao;
+                return obj;
+            }, {}),
             filtro: 'id_status_penta',
             rotulo: 'Filtrar por status penta'
         },
@@ -60,6 +73,7 @@ const TabelaAPSQuadrimestreProximo = ({
     data={tabelaData}
     setData={setTabelaData}
     datefiltros={datefiltrosVacinacao}
+    IntFiltros={IntFiltros}
     IDFiltros={IDFiltrosVacinacao}
     rotulosfiltros={rotulosfiltrosVacinacao}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoVacinacao}
