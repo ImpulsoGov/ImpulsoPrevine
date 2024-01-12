@@ -6,7 +6,7 @@ const dose_aplicada = "https://media.graphassets.com/QrINNoP2RUy0mgQZnLE6"
 const dose_nao_aplicada = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd"
 const esquema_em_andamento = "https://media.graphassets.com/Psuwuj7pS1agRqB7Is5H"
 const dose_em_atraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363"
-const esquema_nao_iniciado = "https://media.graphassets.com/74tkfciAQXW9auWuAPC8"
+const esquema_nao_iniciado = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd"
 
 
 const formatar_nome = ({value})=>{
