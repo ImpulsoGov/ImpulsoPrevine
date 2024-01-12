@@ -1,6 +1,5 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 const CardsGraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
-    console.log(tabelaDataAPS)
     const dataQuadriProximo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 2)
     return tabelaDataAPS ? 
     <>
