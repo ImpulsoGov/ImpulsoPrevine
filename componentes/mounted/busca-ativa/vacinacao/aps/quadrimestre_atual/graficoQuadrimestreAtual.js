@@ -170,12 +170,12 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     },
                     {
                         name: 'Crianças com um ou os dois esquemas vacinais em andamento',
-                        value: ((dataQuadriAtual.length - dataQuadriAtual.reduce((acumulador,item)=>{ 
+                        value: (((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                         (item.id_status_polio == 4 && item.id_status_penta == 4)) ?
                         acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.length).toFixed(2)
+                        },0)*-100)/dataQuadriAtual.length)+100).toFixed(2)
                     },
                     {
                         name: 'Crianças com pelo menos uma dose em atraso',
@@ -189,7 +189,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                         return (item.id_status_polio == 4 && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
                         },0)*100)/dataQuadriAtual.length).toFixed(2)
                     },
-                    ],
+                    ].filter(item => item.value != 0),
                     emphasis: {
                     label: {
                         fontSize: '20',
