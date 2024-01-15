@@ -271,44 +271,37 @@ function TabelaGestaoUsuarios({
 
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
-
+    // TODO ajustar validação de município
     validarCamposObrigatorios(newRowData);
-    console.log(newRowData);
 
-    // const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
-    // const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-    //   ? {
-    //     id: newRowData.id,
-    //     usuarioId: dadosAtualizados['id_usuario'],
-    //     mail: dadosAtualizados.mail,
-    //     cpf: dadosAtualizados.cpf,
-    //     nome: dadosAtualizados['nome_usuario'],
-    //     municipio: dadosAtualizados.municipio,
-    //     cargo: dadosAtualizados.cargo,
-    //     telefone: dadosAtualizados.telefone,
-    //     equipe: dadosAtualizados.equipe,
-    //     autorizacoes: newRowData.autorizacoes,
-    //     editarAutorizacoes: newRowData.editarAutorizacoes,
-    //     isNew: false,
-    //   }
-    //   : row
-    // );
-
-    const newRow = {
+    const dadosAtualizados = await atualizarUsuario(usuarioId, {
       ...newRowData,
       municipio: `${newRowData.municipio.nome} - ${newRowData.municipio.uf}`,
+      municipio_id_sus: newRowData.municipio.municipio_id_sus
+    });
+    const linhaAtualizada = {
+      id: newRowData.id,
+      usuarioId: dadosAtualizados['id_usuario'],
+      mail: dadosAtualizados.mail,
+      cpf: dadosAtualizados.cpf,
+      nome: dadosAtualizados['nome_usuario'],
+      municipio: dadosAtualizados.municipio,
+      cargo: dadosAtualizados.cargo,
+      telefone: dadosAtualizados.telefone,
+      equipe: dadosAtualizados.equipe,
+      autorizacoes: newRowData.autorizacoes,
+      editarAutorizacoes: newRowData.editarAutorizacoes,
       isNew: false,
     };
-    console.log('newRow', newRow);
     const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-      ? newRow
+      ? linhaAtualizada
       : row
     );
 
     setRows(linhasAtualizadas);
     showSuccessMessage('Usuário salvo com sucesso');
 
-    return newRow;
+    return linhaAtualizada;
   }, [rows, validarCamposObrigatorios, showSuccessMessage]);
 
   const handleAutorizacoesChange = useCallback((event) => {

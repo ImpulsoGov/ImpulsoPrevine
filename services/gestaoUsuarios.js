@@ -1,9 +1,9 @@
 import axios from "axios";
 import FormData from "form-data";
-import { API_URL } from "../constants/API_URL";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 
 const instance = axios.create({
-  baseURL: `${API_URL}suporte/ger_usuarios`,
+  baseURL: `${API_URL_USUARIOS}suporte/ger_usuarios`,
 });
 
 export const listarPerfis = async () => {
@@ -34,6 +34,7 @@ export const atualizarUsuario = async (id, dados) => {
     requestData.append('mail', dados.mail);
     requestData.append('cpf', dados.cpf);
     requestData.append('municipio', dados.municipio);
+    requestData.append('municipio_id_sus', dados.municipio_id_sus);
     requestData.append('equipe', dados.equipe);
     requestData.append('cargo', dados.cargo);
     requestData.append('telefone', dados.telefone);

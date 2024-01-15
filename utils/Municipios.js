@@ -82,7 +82,7 @@ const data = [
     {
         "nome": "Cerejeiras",
         "uf": "RO",
-        "municipio_id_sus": ""
+        "municipio_id_sus": "110005"
     },
     {
         "nome": "Colorado do Oeste",
@@ -402,7 +402,7 @@ const data = [
     {
         "nome": "Xapuri",
         "uf": "AC",
-        "municipio_id_sus": ""
+        "municipio_id_sus": "120070"
     },
     {
         "nome": "Porto Acre",
