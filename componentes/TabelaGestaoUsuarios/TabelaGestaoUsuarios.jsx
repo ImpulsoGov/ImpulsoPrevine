@@ -1,11 +1,38 @@
 import { Badge, Button } from '@mui/material';
-import { DataGrid, GridRowModes } from '@mui/x-data-grid';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
+import { data } from '../../utils/Municipios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
+
+function AutocompleteMunicipios(props) {
+  const { id, value, field, hasFocus } = props;
+  const apiRef = useGridApiContext();
+  // const ref = React.useRef();
+
+  const handleChange = (_event, newValue) => {
+    apiRef.current.setEditCellValue({ id, field, value: newValue });
+  };
+
+  return (
+    <Autocomplete
+      id="combo-box-demo"
+      options={[
+        ...data,
+        {nome: "Demo - Viçosa", uf: "MG", municipio_id_sus: "111111"}
+      ]}
+      onChange={handleChange}
+      getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
+      sx={{ width: "100%" }}
+      renderInput={(params) => <TextField {...params} />}
+    />
+  )
+}
 
 function TabelaGestaoUsuarios({
   usuarios,
@@ -44,7 +71,12 @@ function TabelaGestaoUsuarios({
       width: 200,
       headerAlign: 'center',
       align: 'center',
-      editable: true
+      editable: true,
+      // type: 'singleSelect',
+      // valueOptions: data.map(({ nome, uf }) => `${nome} - ${uf}`),
+      renderEditCell: (params) => {
+        return <AutocompleteMunicipios {...params} />;
+      }
     },
     {
       field: 'mail',
@@ -241,30 +273,42 @@ function TabelaGestaoUsuarios({
     const { usuarioId } = newRowData;
 
     validarCamposObrigatorios(newRowData);
+    console.log(newRowData);
 
-    const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
+    // const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
+    // const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
+    //   ? {
+    //     id: newRowData.id,
+    //     usuarioId: dadosAtualizados['id_usuario'],
+    //     mail: dadosAtualizados.mail,
+    //     cpf: dadosAtualizados.cpf,
+    //     nome: dadosAtualizados['nome_usuario'],
+    //     municipio: dadosAtualizados.municipio,
+    //     cargo: dadosAtualizados.cargo,
+    //     telefone: dadosAtualizados.telefone,
+    //     equipe: dadosAtualizados.equipe,
+    //     autorizacoes: newRowData.autorizacoes,
+    //     editarAutorizacoes: newRowData.editarAutorizacoes,
+    //     isNew: false,
+    //   }
+    //   : row
+    // );
+
+    const newRow = {
+      ...newRowData,
+      municipio: `${newRowData.municipio.nome} - ${newRowData.municipio.uf}`,
+      isNew: false,
+    };
+    console.log('newRow', newRow);
     const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-      ? {
-        id: newRowData.id,
-        usuarioId: dadosAtualizados['id_usuario'],
-        mail: dadosAtualizados.mail,
-        cpf: dadosAtualizados.cpf,
-        nome: dadosAtualizados['nome_usuario'],
-        municipio: dadosAtualizados.municipio,
-        cargo: dadosAtualizados.cargo,
-        telefone: dadosAtualizados.telefone,
-        equipe: dadosAtualizados.equipe,
-        autorizacoes: newRowData.autorizacoes,
-        editarAutorizacoes: newRowData.editarAutorizacoes,
-        isNew: false,
-      }
+      ? newRow
       : row
     );
 
     setRows(linhasAtualizadas);
     showSuccessMessage('Usuário salvo com sucesso');
 
-    return newRowData;
+    return newRow;
   }, [rows, validarCamposObrigatorios, showSuccessMessage]);
 
   const handleAutorizacoesChange = useCallback((event) => {
