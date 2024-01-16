@@ -58,6 +58,17 @@ const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
 
 const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{ 
     const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
+    if(dataQuadriAtual){ const registros_por_equipe = Object.fromEntries(Object.entries(dataQuadriAtual?.reduce((acumuladorPorEquipe,item)=>{ 
+        acumuladorPorEquipe[item.equipe_nome] = (acumuladorPorEquipe[item.equipe_nome] || 0) + 1
+        return acumuladorPorEquipe
+        },{})))}
+
+    console.log(Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
+        if(((item.id_status_polio == 1 && item.id_status_penta == 1) || 
+        (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
+        (item.id_status_polio == 4 && item.id_status_penta == 4)) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
+        return acumulador
+        },{})).map(item=>[item[0],item[1] - registros_por_equipe[item[0]]]))
     return tabelaDataAPS ? 
     <>
         <GraficoBuscaAtiva
@@ -98,12 +109,12 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: dataQuadriAtual.length - Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    data: (dataQuadriAtual.length - Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
                     if(((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                     (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                     (item.id_status_polio == 4 && item.id_status_penta == 4)) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
-                    },{})),
+                    },{}))),
                     name: 'Crianças com um ou os dois esquemas vacinais em andamento',
                     stack: 'stack',
                     type: 'bar'
