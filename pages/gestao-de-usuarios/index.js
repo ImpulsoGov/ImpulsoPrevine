@@ -121,7 +121,12 @@ const GestaoDeUsuarios = () => {
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
 
       const whatsapp = dados.whatsapp ? '1' : '0';
-      const usuarioCadastrado = await cadastrarUsuario({ ...dados, whatsapp });
+      const usuarioCadastrado = await cadastrarUsuario({
+        ...dados,
+        whatsapp,
+        municipio: `${dados.municipio.nome} - ${dados.municipio.uf}`,
+        municipio_id_sus: dados.municipio.municipio_id_sus
+      });
       const { id_usuario: usuarioId } = usuarioCadastrado;
       const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
       const autorizacoesUsuario = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
