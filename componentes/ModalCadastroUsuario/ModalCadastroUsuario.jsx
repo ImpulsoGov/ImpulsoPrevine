@@ -16,7 +16,7 @@ function ModalCadastroUsuario({
   const [nome, setNome] = useState('');
   const [mail, setMail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [municipio, setMunicipio] = useState(null);
+  const [municipio, setMunicipio] = useState({});
   const [cargo, setCargo] = useState('');
   const [telefone, setTelefone] = useState('');
   const [equipe, setEquipe] = useState('');

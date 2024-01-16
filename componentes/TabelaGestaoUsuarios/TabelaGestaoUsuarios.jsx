@@ -271,7 +271,7 @@ function TabelaGestaoUsuarios({
 
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
-    // TODO ajustar validação de município
+
     validarCamposObrigatorios(newRowData);
 
     const dadosAtualizados = await atualizarUsuario(usuarioId, {

@@ -107,7 +107,7 @@ const GestaoDeUsuarios = () => {
 
   const validarCamposObrigatorios = useCallback((dados) => {
     if (!dados.nome) throw new Error(MENSAGENS_DE_ERRO.nomeVazio);
-    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+    if (!dados.municipio.nome || !dados.municipio.uf) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
     if (!dados.mail) throw new Error(MENSAGENS_DE_ERRO.emailVazio);
     if (!dados.cpf) throw new Error(MENSAGENS_DE_ERRO.cpfVazio);
     if (!dados.cargo) throw new Error(MENSAGENS_DE_ERRO.cargoVazio);
