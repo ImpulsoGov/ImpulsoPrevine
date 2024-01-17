@@ -1,6 +1,7 @@
 import { Badge, Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
 import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
@@ -9,6 +10,33 @@ import { data } from '../../utils/Municipios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
+
+function CheckboxPerfilAtivo(props) {
+  const { id, value, field, hasFocus } = props;
+  const apiRef = useGridApiContext();
+  const estados = {
+    'Sim': true,
+    'Não': false,
+    'Primeiro acesso pendente': null
+  };
+
+  const handleChange = (_event, newValue) => {
+    apiRef.current.setEditCellValue({
+      id,
+      field,
+      value: newValue ? 'Sim' : 'Não'
+      // value: newValue
+    });
+  };
+
+  return (
+    <Checkbox
+      checked={ estados[value] }
+      // checked={ value }
+      onChange={ handleChange }
+    />
+  );
+}
 
 function AutocompleteMunicipios(props) {
   const { id, value, field, hasFocus } = props;
@@ -119,6 +147,40 @@ function TabelaGestaoUsuarios({
       editable: true
     },
     {
+      field: 'perfilAtivo',
+      headerName: 'Perfil ativo',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true,
+      // type: 'singleSelect',
+      // valueOptions: ['Sim', 'Não'],
+      // type: 'boolean',
+      renderEditCell: (params) => {
+        if (params.value !== 'Primeiro acesso pendente') {
+          return <CheckboxPerfilAtivo {...params} />
+        }
+        // if (typeof params.value !== 'object' && params.value !== null) {
+        //   return <CheckboxPerfilAtivo {...params} />
+        // }
+
+        return 'Primeiro acesso pendente';
+      },
+      // valueGetter: (params) => {
+      //   const { value } = params;
+
+      //   if (typeof value === 'boolean' && value === true) {
+      //     return 'Sim';
+      //   }
+
+      //   if (typeof value === 'boolean' && value === false) {
+      //     return 'Não';
+      //   }
+
+      //   return 'Primeiro acesso pendente';
+      // },
+    },
+    {
       field: 'autorizacoes',
       headerName: 'Autorizações',
       width: 300,
@@ -171,6 +233,19 @@ function TabelaGestaoUsuarios({
     }
   ], []);
 
+  const checarPerfilAtivo = (perfilAtivo) => {
+    if (typeof perfilAtivo === 'boolean' && perfilAtivo === true) {
+      return 'Sim';
+    }
+
+    if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
+      return 'Não';
+    }
+    // if (typeof value === 'object' && value === null) {
+    return 'Primeiro acesso pendente';
+    // }
+  }
+
   const transformarDadosEmLinhas = useCallback((dados) => {
     return dados.map((dado) => ({
       id: uuidV4(),
@@ -182,6 +257,8 @@ function TabelaGestaoUsuarios({
       cargo: dado.cargo,
       telefone: dado.telefone,
       equipe: dado.equipe,
+      perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
+      // perfilAtivo: dado.perfil_ativo,
       autorizacoes: dado.autorizacoes,
       editarAutorizacoes: openModalAutorizacoes,
       isNew: false,
