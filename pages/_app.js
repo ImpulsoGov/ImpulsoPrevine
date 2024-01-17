@@ -158,7 +158,7 @@ function MyApp(props) {
                 ModalInicio={ {
                   titulo: "Faça o login para ver os dados restritos.",
                   chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
-                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
+                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
                   botaoPrincipal: {
                     label: "entrar",
                     theme: 'ColorIP'
