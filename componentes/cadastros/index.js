@@ -105,7 +105,7 @@ const Cadastros = ({
       <TabelaDesempenhoEquipes
         TabDesempenhos={CaptacaoEvolucao}
       />
-      
+
       <TituloSmallTexto
         botao={{
           label: '',
