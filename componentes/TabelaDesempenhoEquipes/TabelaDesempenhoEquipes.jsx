@@ -423,7 +423,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
 
     return dadosFiltrados.slice(startIndex, endIndex).map(({ data_inicio, equipe_nome, equipe_id_ine, equipe_status, cadastros_com_pontuacao, cadastro_total }) => {
       
-      const [ano, mes, dia] = data_inicio ? data_inicio.split('-') : "";
+      const [ano, mes, dia] = data_inicio.split('-');
       const mesNome = obterNomeMes(Number(mes));
 
       const dataFormatada = `${ano}-${mesNome}-${dia}`;
