@@ -203,7 +203,7 @@ function MyApp(props) {
                   second: "",
               }}
               contactCopyright={{
-                  copyright: "© 2023 Impulso",
+                  copyright: "© 2024 Impulso",
                   email: "contato@impulsogov.org",
               }}
               links={ [props.res[0].menus[0],props.res[0].menus[7]] }
