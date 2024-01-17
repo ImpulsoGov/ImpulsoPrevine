@@ -8,7 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { CARGOS } from '../../constants/gestaoUsuarios';
 import { Select } from '../Select';
 import styles from './ModalCadastroUsuario.module.css';
-import { data } from '../../utils/Municipios';
+import { MUNICIPIOS } from '../../constants/municipios';
 
 function ModalCadastroUsuario({
   titulo, isOpen, closeModal, handleAddClick, autorizacoes
@@ -90,10 +90,7 @@ function ModalCadastroUsuario({
 
           <Autocomplete
             id="combo-box-demo"
-            options={[
-              ...data,
-              {nome: "Demo - Viçosa", uf: "MG", municipio_id_sus: "111111"}
-            ]}
+            options={MUNICIPIOS}
             onChange={handleAutocompleteChange}
             getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
             sx={{ width: "30%", m: 1 }}

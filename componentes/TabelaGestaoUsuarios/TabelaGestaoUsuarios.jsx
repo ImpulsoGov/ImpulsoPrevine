@@ -6,10 +6,10 @@ import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
-import { data } from '../../utils/Municipios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
+import { MUNICIPIOS } from '../../constants/municipios';
 
 function CheckboxPerfilAtivo(props) {
   const { id, value, field, hasFocus } = props;
@@ -40,7 +40,7 @@ function CheckboxPerfilAtivo(props) {
 
 function AutocompleteMunicipios(props) {
   const { id, value, field, hasFocus } = props;
-  const municipioSelecionado = data.find(({ nome, uf }) => `${nome} - ${uf}` === value)
+  const municipioSelecionado = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === value)
   const apiRef = useGridApiContext();
   const [selectedValue, setSelectedValue] = useState(municipioSelecionado);
   const [inputValue, setInputValue] = useState(value);
@@ -64,10 +64,7 @@ function AutocompleteMunicipios(props) {
       id="combo-box-demo"
       value={selectedValue}
       inputValue={inputValue}
-      options={[
-        ...data,
-        {nome: "Demo - Viçosa", uf: "MG", municipio_id_sus: "111111"}
-      ]}
+      options={MUNICIPIOS}
       onChange={handleChange}
       onInputChange={handleInputChange}
       getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
@@ -361,7 +358,7 @@ function TabelaGestaoUsuarios({
 
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
-
+    console.log(newRowData);
     validarCamposObrigatorios(newRowData);
 
     const dadosAtualizados = await atualizarUsuario(usuarioId, {
