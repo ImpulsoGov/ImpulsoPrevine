@@ -28,16 +28,17 @@ export const listarUsuarios = async () => {
 
 export const atualizarUsuario = async (id, dados) => {
   try {
-    const requestData = new FormData();
-
-    requestData.append('nome_usuario', dados.nome);
-    requestData.append('mail', dados.mail);
-    requestData.append('cpf', dados.cpf);
-    requestData.append('municipio', dados.municipio);
-    requestData.append('municipio_id_sus', dados.municipio_id_sus);
-    requestData.append('equipe', dados.equipe);
-    requestData.append('cargo', dados.cargo);
-    requestData.append('telefone', dados.telefone);
+    const requestData = {
+      nome_usuario: dados.nome,
+      mail: dados.mail,
+      cpf: dados.cpf,
+      municipio: dados.municipio,
+      municipio_id_sus: dados.municipio_id_sus,
+      equipe: dados.equipe,
+      cargo: dados.cargo,
+      telefone: dados.telefone,
+      perfil_ativo: dados.perfilAtivo,
+    };
 
     const response = await instance.put(`/usuarios-ip/${id}`, requestData);
 

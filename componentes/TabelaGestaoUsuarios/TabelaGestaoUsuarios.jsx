@@ -11,14 +11,15 @@ import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
 import { MUNICIPIOS } from '../../constants/municipios';
 
+const ESTADOS_PERFIL_ATIVO = {
+  'Sim': true,
+  'Não': false,
+  'Primeiro acesso pendente': null
+};
+
 function CheckboxPerfilAtivo(props) {
   const { id, value, field, hasFocus } = props;
   const apiRef = useGridApiContext();
-  const estados = {
-    'Sim': true,
-    'Não': false,
-    'Primeiro acesso pendente': null
-  };
 
   const handleChange = (_event, newValue) => {
     apiRef.current.setEditCellValue({
@@ -31,7 +32,7 @@ function CheckboxPerfilAtivo(props) {
 
   return (
     <Checkbox
-      checked={ estados[value] }
+      checked={ ESTADOS_PERFIL_ATIVO[value] }
       // checked={ value }
       onChange={ handleChange }
     />
@@ -364,7 +365,8 @@ function TabelaGestaoUsuarios({
     const dadosAtualizados = await atualizarUsuario(usuarioId, {
       ...newRowData,
       municipio: `${newRowData.municipio.nome} - ${newRowData.municipio.uf}`,
-      municipio_id_sus: newRowData.municipio.municipio_id_sus
+      municipio_id_sus: newRowData.municipio.municipio_id_sus,
+      perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
     });
     const linhaAtualizada = {
       id: newRowData.id,
@@ -376,6 +378,7 @@ function TabelaGestaoUsuarios({
       cargo: dadosAtualizados.cargo,
       telefone: dadosAtualizados.telefone,
       equipe: dadosAtualizados.equipe,
+      perfilAtivo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
       autorizacoes: newRowData.autorizacoes,
       editarAutorizacoes: newRowData.editarAutorizacoes,
       isNew: false,
