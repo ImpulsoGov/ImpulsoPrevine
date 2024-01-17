@@ -1,15 +1,15 @@
 import { Badge, Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
 import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import { MUNICIPIOS } from '../../constants/municipios';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
-import { MUNICIPIOS } from '../../constants/municipios';
 
 const ESTADOS_PERFIL_ATIVO = {
   'Sim': true,
@@ -49,7 +49,9 @@ function AutocompleteMunicipios(props) {
   useEffect(() => {
     // envia o valor do município selecionado no formato { nome, uf, municipio_id_sus } para o DataGrid
     apiRef.current.setEditCellValue({ id, field, value: municipioSelecionado });
-  }, [])
+  }, []);
+  console.log('selectedValue', selectedValue);
+  console.log('inputValue', inputValue);
 
   const handleChange = (_event, newValue) => {
     setSelectedValue(newValue);
@@ -58,6 +60,13 @@ function AutocompleteMunicipios(props) {
 
   const handleInputChange = (_event, newInputValue) => {
     setInputValue(newInputValue);
+
+    if (
+      selectedValue !== null &&
+      newInputValue !== `${selectedValue.nome} - ${selectedValue.uf}`
+    ) {
+      apiRef.current.setEditCellValue({ id, field, value: null });
+    }
   }
 
   return (
