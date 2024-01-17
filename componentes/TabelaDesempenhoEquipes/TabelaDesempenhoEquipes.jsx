@@ -451,7 +451,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
 
   return (
     <div className={styles['tabelaContainer']}>
-      {selectedIndicadores.length == 0 ? (
+      {selectedIndicadores.length === 0 ? (
         <Spinner />
       ) : (
         <div  >

@@ -102,12 +102,9 @@ const Cadastros = ({
         titulo="<b>Desempenho das equipes</b>" tooltip=""
       />
 
-      {     
-        CaptacaoEvolucao && 
-        <TabelaDesempenhoEquipes
-          TabDesempenhos={CaptacaoEvolucao}
-        />
-      }
+      <TabelaDesempenhoEquipes
+        TabDesempenhos={CaptacaoEvolucao}
+      />
       <TituloSmallTexto
         botao={{
           label: '',
