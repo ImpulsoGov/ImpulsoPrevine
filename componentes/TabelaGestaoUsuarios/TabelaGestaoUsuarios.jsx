@@ -40,21 +40,36 @@ function CheckboxPerfilAtivo(props) {
 
 function AutocompleteMunicipios(props) {
   const { id, value, field, hasFocus } = props;
+  const municipioSelecionado = data.find(({ nome, uf }) => `${nome} - ${uf}` === value)
   const apiRef = useGridApiContext();
-  // const ref = React.useRef();
+  const [selectedValue, setSelectedValue] = useState(municipioSelecionado);
+  const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    // envia o valor do município selecionado no formato { nome, uf, municipio_id_sus } para o DataGrid
+    apiRef.current.setEditCellValue({ id, field, value: municipioSelecionado });
+  }, [])
 
   const handleChange = (_event, newValue) => {
+    setSelectedValue(newValue);
     apiRef.current.setEditCellValue({ id, field, value: newValue });
   };
+
+  const handleInputChange = (_event, newInputValue) => {
+    setInputValue(newInputValue);
+  }
 
   return (
     <Autocomplete
       id="combo-box-demo"
+      value={selectedValue}
+      inputValue={inputValue}
       options={[
         ...data,
         {nome: "Demo - Viçosa", uf: "MG", municipio_id_sus: "111111"}
       ]}
       onChange={handleChange}
+      onInputChange={handleInputChange}
       getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
       sx={{ width: "100%" }}
       renderInput={(params) => <TextField {...params} />}
@@ -100,8 +115,6 @@ function TabelaGestaoUsuarios({
       headerAlign: 'center',
       align: 'center',
       editable: true,
-      // type: 'singleSelect',
-      // valueOptions: data.map(({ nome, uf }) => `${nome} - ${uf}`),
       renderEditCell: (params) => {
         return <AutocompleteMunicipios {...params} />;
       }
