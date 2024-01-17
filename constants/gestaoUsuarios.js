@@ -1,6 +1,6 @@
 export const MENSAGENS_DE_ERRO = {
   nomeVazio: 'O campo "Nome" não pode ser vazio',
-  municipioVazio: 'O campo "Municipio" não pode ser vazio',
+  municipioVazio: 'Escolha um dos municípios válidos',
   emailVazio: 'O campo "E-mail" não pode ser vazio',
   cpfVazio: 'O campo "CPF" não pode ser vazio',
   cargoVazio: 'O campo "Cargo" não pode ser vazio',
