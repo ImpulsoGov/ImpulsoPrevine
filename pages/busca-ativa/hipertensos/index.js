@@ -6,14 +6,14 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  ButtonPrint,
+  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
-import { validatetoken} from "../../../services/validateToken"
+import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
@@ -87,6 +87,11 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
+  const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>
+  )   
+
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -98,10 +103,10 @@ const Index = ({res}) => {
           {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
@@ -219,10 +224,10 @@ const Index = ({res}) => {
           {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
