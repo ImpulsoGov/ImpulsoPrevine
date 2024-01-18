@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
 import { MUNICIPIOS } from '../../constants/municipios';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
@@ -40,22 +41,20 @@ function CheckboxPerfilAtivo(props) {
 }
 
 function AutocompleteMunicipios(props) {
-  const { id, value, field, hasFocus } = props;
-  const municipioSelecionado = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === value)
+  const { id, value, field } = props;
+  const municipioSelecionado = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === value);
   const apiRef = useGridApiContext();
   const [selectedValue, setSelectedValue] = useState(municipioSelecionado);
   const [inputValue, setInputValue] = useState(value);
 
-  useEffect(() => {
-    // envia o valor do município selecionado no formato { nome, uf, municipio_id_sus } para o DataGrid
-    apiRef.current.setEditCellValue({ id, field, value: municipioSelecionado });
-  }, []);
-  console.log('selectedValue', selectedValue);
-  console.log('inputValue', inputValue);
-
   const handleChange = (_event, newValue) => {
     setSelectedValue(newValue);
-    apiRef.current.setEditCellValue({ id, field, value: newValue });
+
+    if (newValue !== null) {
+      apiRef.current.setEditCellValue({ id, field, value: `${newValue.nome} - ${newValue.uf}` });
+    } else {
+      apiRef.current.setEditCellValue({ id, field, value: newValue });
+    }
   };
 
   const handleInputChange = (_event, newInputValue) => {
@@ -368,13 +367,16 @@ function TabelaGestaoUsuarios({
 
   const processRowUpdate = useCallback(async (newRowData) => {
     const { usuarioId } = newRowData;
-    console.log(newRowData);
+
     validarCamposObrigatorios(newRowData);
+
+    const {municipio_id_sus} = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio);
+
+    if (!municipio_id_sus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
 
     const dadosAtualizados = await atualizarUsuario(usuarioId, {
       ...newRowData,
-      municipio: `${newRowData.municipio.nome} - ${newRowData.municipio.uf}`,
-      municipio_id_sus: newRowData.municipio.municipio_id_sus,
+      municipio_id_sus,
       perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
     });
     const linhaAtualizada = {

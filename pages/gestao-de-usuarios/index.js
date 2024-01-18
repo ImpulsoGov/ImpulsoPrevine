@@ -112,14 +112,7 @@ const GestaoDeUsuarios = () => {
     if (!dados.cargo) throw new Error(MENSAGENS_DE_ERRO.cargoVazio);
     if (!dados.telefone) throw new Error(MENSAGENS_DE_ERRO.telefoneVazio);
     if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
-    if (
-      !dados.municipio ||
-      !dados.municipio.nome ||
-      !dados.municipio.uf ||
-      !dados.municipio.municipio_id_sus
-    ) {
-      throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
-    }
+    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
   }, []);
 
   const cadastrarNovoUsuario = useCallback(async (dados) => {
