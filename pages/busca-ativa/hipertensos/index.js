@@ -91,8 +91,8 @@ const Index = ({res}) => {
     0.78,
     <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>,
     "hipertensao",
-    activeTitleTabIndex,
-    activeTabIndex,
+    null,
+    null,
   )   
 
   if(session){  
