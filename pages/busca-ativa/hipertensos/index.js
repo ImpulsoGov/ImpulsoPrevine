@@ -89,7 +89,10 @@ const Index = ({res}) => {
   }
   const Impressao = ()=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>,
+    "hipertensao",
+    activeTitleTabIndex,
+    activeTabIndex,
   )   
 
   if(session){  

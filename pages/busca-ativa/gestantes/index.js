@@ -103,7 +103,11 @@ const ImpressaoEquipe = ()=> Imprimir(
 )   
 const ImpressaoAPS = ()=> Imprimir(
   0.78,
-  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>
+  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
+
 )   
 
 console.log(activeTitleTabIndex,activeTabIndex)

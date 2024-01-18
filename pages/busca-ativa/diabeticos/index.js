@@ -100,7 +100,10 @@ const Index = ({res}) => {
   }
   const Impressao = ()=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>,
+    "diabetes",
+    activeTitleTabIndex,
+    activeTabIndex,
 )   
   if(session){  
     if(session.user.perfis.includes(9)){
