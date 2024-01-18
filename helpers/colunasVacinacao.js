@@ -3,19 +3,22 @@ import identificacao_exame_hiv_sifilis from "../data/identificacao_exame_hiv_sif
 
 const esquema_completo = "https://media.graphassets.com/wOzzseVhRriXENS9OhcG"
 const dose_aplicada = "https://media.graphassets.com/QrINNoP2RUy0mgQZnLE6"
-const dose_nao_aplicada = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd"
+const dose_nao_aplicada = "https://media.graphassets.com/Xoe3jutQHm7KJbJ9CeD4"
 const esquema_em_andamento = "https://media.graphassets.com/Psuwuj7pS1agRqB7Is5H"
-const dose_em_atraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363"
+const dose_em_atraso = "https://media.graphassets.com/neGWWuEyTF6RLagu7nIU"
 const esquema_nao_iniciado = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd"
+const esquema_em_atraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363"
 
 
 const formatar_nome = ({value})=>{
   const name = {
     width : '100%',
-    padding : '20px'
+    padding : '20px',
+    textAlign : "center",
   }
   return <div style={name}>{value}</div>
 }
+const idade_style = ({value}) => value+" meses"
 const STYLE_DOSES = (value,colorCode)=>{
   const block = {
     backgroundColor: "#FFECEC",
@@ -235,7 +238,7 @@ const STYLE_STATUS_POLIO = ({value})=>{
   return <div style={style[value]}>
     {(value == 1) && <span style={completoSymbolStyle}><img src={esquema_completo} width={16} height={16}></img></span>} 
     {value == 2 && <span style={andamentoSymbolStyle}><img src={esquema_em_andamento} width={16} height={16}></img></span>} 
-    {value == 3 && <span style={atrasoSymbolStyle}><img src={dose_em_atraso} width={16} height={16}></img></span>} 
+    {value == 3 && <span style={atrasoSymbolStyle}><img src={esquema_em_atraso} width={16} height={16}></img></span>} 
     {value == 4 && <span style={naoIniciadoSymbolStyle}><img src={esquema_nao_iniciado} width={16} height={16}></img></span>} 
     <div>{descricao}</div>
     </div>
@@ -286,6 +289,7 @@ const colunasVacinacaoAPS=[
       field: 'cidadao_nome_responsavel',
       headerAlign: 'center',
       headerName: 'NOME DO RESPONSÁVEL',
+      align : 'center',
       width: 320,
       sortable : false
     },
@@ -293,6 +297,7 @@ const colunasVacinacaoAPS=[
       align: 'center',
       field: 'cidadao_cpf_dt_nascimento',
       headerName: 'CPF / DATA DE NASCIMENTO',
+      align: 'center',
       width: 140,
       sortable : false
     },
@@ -301,6 +306,7 @@ const colunasVacinacaoAPS=[
       field: 'cidadao_idade_meses',
       headerAlign: 'center',
       headerName: 'IDADE (MESES)',
+      renderCell : idade_style,
       width: 100,
       sortable : false,
     },

@@ -235,7 +235,7 @@ import {
               <div style={{marginLeft:"auto"}}>
               <ButtonPrint
                   label="CLIQUE AQUI PARA IMPRIMIR"
-                  escala="0.78"
+                  escala="1"
                   child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>}
               />
               </div>

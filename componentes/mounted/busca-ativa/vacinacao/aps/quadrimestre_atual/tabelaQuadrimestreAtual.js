@@ -35,6 +35,17 @@ const TabelaAPSQuadrimestreAtual = ({
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
     return tabelaDataAPS ? 
     <>
+        <h2 style={{
+            marginTop : '45px',
+            marginLeft : '120px',
+            color: "#1F1F1F",
+            fontSize: "22px",
+            fontFamily: "Inter",
+            fontWeight: 500,
+            lineHeight: "130%",
+        }}>
+            Q1/24 - Crianças no período de vacinação
+        </h2>
         <ScoreCardGrid
             valores={[
                 {

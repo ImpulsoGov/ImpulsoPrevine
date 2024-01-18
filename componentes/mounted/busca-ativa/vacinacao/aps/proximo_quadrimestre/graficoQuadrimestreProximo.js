@@ -98,8 +98,8 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: dataQuadriProximo.length - Object.entries(dataQuadriProximo.reduce((acumulador,item)=>{ 
-                    if(((item.id_status_polio == 1 && item.id_status_penta == 1) || 
+                    data: Object.entries(dataQuadriProximo.reduce((acumulador,item)=>{ 
+                    if(!((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                     (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                     (item.id_status_polio == 4 && item.id_status_penta == 4)) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
@@ -126,8 +126,7 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                     stack: 'stack',
                     type: 'bar'
                 },
-
-                ],
+            ],
                 tooltip: {
                 trigger: 'axis'
                 },
@@ -152,12 +151,6 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                     text: 'Consolidado Municipal',
                     left: '80'
                 },
-                color: [
-                    '#55D499',
-                    '#FFA75E',
-                    '#FF7C81',
-                    '#57C7DC'
-                ],
                 series: [
                 {
                     avoidLabelOverlap: false,
@@ -166,7 +159,10 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                         name: 'Crianças com os dois esquemas vacinais completos',
                         value: ((dataQuadriProximo.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 1 && item.id_status_penta == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriProximo.length).toFixed(2)
+                        },0)*100)/dataQuadriProximo.length).toFixed(2),
+                        itemStyle: {
+                            color: '#55D499' 
+                        }
                     },
                     {
                         name: 'Crianças com um ou os dois esquemas vacinais em andamento',
@@ -175,21 +171,31 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                         (item.id_status_polio == 4 && item.id_status_penta == 4)) ?
                         acumulador + 1 : acumulador;
-                        },0)*-100)/dataQuadriProximo.length)+100).toFixed(2)
+                        },0)*-100)/dataQuadriProximo.length)+100).toFixed(2),
+                        itemStyle: {
+                            color: '#FFA75E' 
+                        }
+
                     },
                     {
                         name: 'Crianças com pelo menos uma dose em atraso',
                         value: ((dataQuadriProximo.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 3 || item.id_status_penta == 3) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriProximo.length).toFixed(2)
+                        },0)*100)/dataQuadriProximo.length).toFixed(2),
+                        itemStyle: {
+                            color: '#FF7C81' 
+                        }
                     },
                     {
                         name: 'Crianças com os dois esquemas vacinais não iniciados',
                         value: ((dataQuadriProximo.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 4 && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriProximo.length).toFixed(2)
+                        },0)*100)/dataQuadriProximo.length).toFixed(2),
+                        itemStyle: {
+                            color: '#57C7DC' 
+                        }
                     },
-                    ].filter(item => item.value != 0),
+                    ].filter(item=>item.value != 0),
                     emphasis: {
                     label: {
                         fontSize: '20',

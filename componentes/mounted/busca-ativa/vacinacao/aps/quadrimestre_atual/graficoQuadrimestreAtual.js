@@ -98,8 +98,8 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     type: 'bar'
                 },
                 {
-                    data: (dataQuadriAtual.length - Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
-                    if(((item.id_status_polio == 1 && item.id_status_penta == 1) || 
+                    data: (Object.entries(dataQuadriAtual.reduce((acumulador,item)=>{ 
+                    if(!((item.id_status_polio == 1 && item.id_status_penta == 1) || 
                     (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                     (item.id_status_polio == 4 && item.id_status_penta == 4)) acumulador[item.equipe_nome] = (acumulador[item.equipe_nome] || 0) + 1
                     return acumulador
@@ -166,7 +166,10 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                         name: 'Crianças com os dois esquemas vacinais completos',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 1 && item.id_status_penta == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2),
+                        itemStyle: {
+                            color: '#55D499' 
+                        }
                     },
                     {
                         name: 'Crianças com um ou os dois esquemas vacinais em andamento',
@@ -175,21 +178,30 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                         (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
                         (item.id_status_polio == 4 && item.id_status_penta == 4)) ?
                         acumulador + 1 : acumulador;
-                        },0)*-100)/dataQuadriAtual.length)+100).toFixed(2)
+                        },0)*-100)/dataQuadriAtual.length)+100).toFixed(2),
+                        itemStyle: {
+                            color: '#FFA75E' 
+                        }
                     },
                     {
                         name: 'Crianças com pelo menos uma dose em atraso',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 3 || item.id_status_penta == 3) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2),
+                        itemStyle: {
+                            color: '#FF7C81' 
+                        }
                     },
                     {
                         name: 'Crianças com os dois esquemas vacinais não iniciados',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_status_polio == 4 && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.length).toFixed(2),
+                        itemStyle: {
+                            color: '#57C7DC' 
+                        }
                     },
-                    ].filter(item => item.value != 0),
+                    ].filter(item=>item.value != 0),
                     emphasis: {
                     label: {
                         fontSize: '20',

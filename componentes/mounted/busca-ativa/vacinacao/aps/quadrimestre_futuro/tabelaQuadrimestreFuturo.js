@@ -35,6 +35,17 @@ const TabelaAPSQuadrimestreFuturo = ({
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
     return tabelaDataAPS ? 
     <>
+        <h2 style={{
+            marginTop : '45px',
+            marginLeft : '120px',
+            color: "#1F1F1F",
+            fontSize: "22px",
+            fontFamily: "Inter",
+            fontWeight: 500,
+            lineHeight: "130%",
+        }}>
+            Q3/24 + Q1/25 - Crianças no período de vacinação
+        </h2>
         <ScoreCardGrid
             valores={[
                 {
