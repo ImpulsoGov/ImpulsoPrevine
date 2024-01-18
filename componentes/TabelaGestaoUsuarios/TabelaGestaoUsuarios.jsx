@@ -341,12 +341,6 @@ function TabelaGestaoUsuarios({
         mode: GridRowModes.View, ignoreModifications: true
       },
     });
-
-    // const selectedRow = rows.find((row) => row.id === selectedRowId);
-
-    // if (selectedRow.isNew) {
-    //   setRows(rows.filter((row) => row.id !== selectedRowId));
-    // }
   }, [rowModesModel, selectedRowId]);
 
   const getSelectedRowNome = useCallback(() => {
@@ -462,17 +456,20 @@ function TabelaGestaoUsuarios({
         } }
       />
 
-      <ModalAutorizacoes
-        titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
-        autorizacoes={ autorizacoes }
-        autorizacoesSelecionadas={ selectedRowAutorizacoes }
-        handleSelectChange={ handleAutorizacoesChange }
-        handleEditClick={ () => handleAutorizacoesEdit({
-          rows, selectedRowId, selectedRowAutorizacoes, setRows
-        }) }
-        isOpen={ showModalAutorizacoes }
-        closeModal={ closeModalAutorizacoes }
-      />
+      {
+        showModalAutorizacoes &&
+        <ModalAutorizacoes
+          titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
+          autorizacoes={ autorizacoes }
+          autorizacoesSelecionadas={ selectedRowAutorizacoes }
+          handleSelectChange={ handleAutorizacoesChange }
+          handleEditClick={ () => handleAutorizacoesEdit({
+            rows, selectedRowId, selectedRowAutorizacoes, setRows
+          }) }
+          isOpen={ showModalAutorizacoes }
+          closeModal={ closeModalAutorizacoes }
+        />
+      }
     </div>
   );
 }
