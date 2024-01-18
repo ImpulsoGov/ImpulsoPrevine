@@ -3,6 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
+import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
@@ -95,6 +96,7 @@ function TabelaGestaoUsuarios({
   handleAutorizacoesEdit,
   validarCamposObrigatorios
 }) {
+  const { data: session } = useSession();
   const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
@@ -374,11 +376,15 @@ function TabelaGestaoUsuarios({
 
     if (!municipio_id_sus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
 
-    const dadosAtualizados = await atualizarUsuario(usuarioId, {
-      ...newRowData,
-      municipio_id_sus,
-      perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
-    });
+    const dadosAtualizados = await atualizarUsuario(
+      usuarioId,
+      {
+        ...newRowData,
+        municipio_id_sus,
+        perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
+      },
+      session?.user?.access_token
+    );
     const linhaAtualizada = {
       id: newRowData.id,
       usuarioId: dadosAtualizados['id_usuario'],

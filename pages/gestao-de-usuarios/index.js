@@ -1,5 +1,5 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ModalCadastroUsuario } from '../../componentes/ModalCadastroUsuario';
 import { SnackBar } from '../../componentes/SnackBar';
@@ -20,6 +20,7 @@ export async function getServerSideProps(ctx) {
 }
 
 const GestaoDeUsuarios = () => {
+  const { data: session } = useSession();
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
   const [snackbar, setSnackbar] = useState(null);
@@ -27,14 +28,16 @@ const GestaoDeUsuarios = () => {
   const [showModalCadastro, setShowModalCadastro] = useState(false);
 
   useEffect(() => {
-    listarPerfis()
-      .then((perfis) => setAutorizacoes(perfis));
+    if (session?.user?.access_token) {
+      listarPerfis(session?.user?.access_token)
+        .then((perfis) => setAutorizacoes(perfis));
 
-    listarUsuarios()
-      .then((usuarios) => {
-        setUsuarios(usuarios);
-      });
-  }, []);
+      listarUsuarios(session?.user?.access_token)
+        .then((usuarios) => {
+          setUsuarios(usuarios);
+        });
+    }
+  }, [session?.user?.access_token]);
 
   const handleSnackbarClose = useCallback(() => setSnackbar(null), []);
 
@@ -85,7 +88,11 @@ const GestaoDeUsuarios = () => {
       validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
 
       const autorizacoesIds = getSelectedAutorizacoesIds(selectedRowAutorizacoes);
-      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const response = await atualizarAutorizacoes(
+        usuarioId,
+        autorizacoesIds,
+        session?.user?.access_token
+      );
       const novasAutorizacoes = getDescricaoAutorizacoes(response);
       const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
         ? { ...row, autorizacoes: novasAutorizacoes }
@@ -123,14 +130,21 @@ const GestaoDeUsuarios = () => {
       if (!dados.municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
 
       const whatsapp = dados.whatsapp ? '1' : '0';
-      const usuarioCadastrado = await cadastrarUsuario({
-        ...dados,
-        whatsapp,
-        municipio_id_sus: dados.municipioIdSus
-      });
+      const usuarioCadastrado = await cadastrarUsuario(
+        {
+          ...dados,
+          whatsapp,
+          municipio_id_sus: dados.municipioIdSus
+        },
+        session?.user?.access_token
+      );
       const { id_usuario: usuarioId } = usuarioCadastrado;
       const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
-      const autorizacoesUsuario = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const autorizacoesUsuario = await atualizarAutorizacoes(
+        usuarioId,
+        autorizacoesIds,
+        session?.user?.access_token
+      );
 
       const novoUsuario = {
         mail: usuarioCadastrado.mail,
