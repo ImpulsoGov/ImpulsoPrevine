@@ -88,7 +88,7 @@ const TabelaAPSQuadrimestreAtual = ({
                     rotulo: 'Filtrar por profissional responsável'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio))],
+                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio.toString()))],
                     labels : vacinacao_status_polio.data.reduce((obj, item) => {
                         obj[item.id_status_polio] = item.status_descricao;
                         return obj;
@@ -97,7 +97,7 @@ const TabelaAPSQuadrimestreAtual = ({
                     rotulo: 'Filtrar por status polio'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta.toString()))],
                     labels : vacinacao_status_penta.data.reduce((obj, item) => {
                         obj[item.id_status_penta] = item.status_descricao;
                         return obj;
