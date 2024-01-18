@@ -120,12 +120,13 @@ const GestaoDeUsuarios = () => {
       validarCamposObrigatorios(dados);
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
 
+      if (!dados.municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+
       const whatsapp = dados.whatsapp ? '1' : '0';
       const usuarioCadastrado = await cadastrarUsuario({
         ...dados,
         whatsapp,
-        municipio: `${dados.municipio.nome} - ${dados.municipio.uf}`,
-        municipio_id_sus: dados.municipio.municipio_id_sus
+        municipio_id_sus: dados.municipioIdSus
       });
       const { id_usuario: usuarioId } = usuarioCadastrado;
       const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
@@ -140,6 +141,7 @@ const GestaoDeUsuarios = () => {
         cargo: usuarioCadastrado.cargo,
         telefone: usuarioCadastrado.telefone,
         equipe: usuarioCadastrado.equipe,
+        perfil_ativo: usuarioCadastrado['perfil_ativo'],
         autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario)
       };
 

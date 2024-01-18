@@ -6,9 +6,9 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import React, { useCallback, useState } from 'react';
 import { CARGOS } from '../../constants/gestaoUsuarios';
+import { MUNICIPIOS } from '../../constants/municipios';
 import { Select } from '../Select';
 import styles from './ModalCadastroUsuario.module.css';
-import { MUNICIPIOS } from '../../constants/municipios';
 
 function ModalCadastroUsuario({
   titulo, isOpen, closeModal, handleAddClick, autorizacoes
@@ -16,7 +16,9 @@ function ModalCadastroUsuario({
   const [nome, setNome] = useState('');
   const [mail, setMail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [municipio, setMunicipio] = useState({});
+  const [municipio, setMunicipio] = useState({
+    nome: '', uf: '', municipio_id_sus: ''
+  });
   const [cargo, setCargo] = useState('');
   const [telefone, setTelefone] = useState('');
   const [equipe, setEquipe] = useState('');
@@ -154,7 +156,8 @@ function ModalCadastroUsuario({
             nome,
             mail,
             cpf,
-            municipio,
+            municipio: municipio !== null ? `${municipio.nome} - ${municipio.uf}` : municipio,
+            municipioIdSus: municipio !== null ? municipio.municipio_id_sus : municipio,
             cargo,
             telefone,
             equipe,
