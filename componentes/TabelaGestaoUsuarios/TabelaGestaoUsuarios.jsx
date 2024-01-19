@@ -6,21 +6,15 @@ import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
+import { ESTADOS_PERFIL_ATIVO, MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
 import { MUNICIPIOS } from '../../constants/municipios';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
 
-const ESTADOS_PERFIL_ATIVO = {
-  'Sim': true,
-  'Não': false,
-  'Primeiro acesso pendente': null
-};
-
 function CheckboxPerfilAtivo(props) {
-  const { id, value, field, hasFocus } = props;
+  const { id, value, field } = props;
   const apiRef = useGridApiContext();
 
   const handleChange = (_event, newValue) => {

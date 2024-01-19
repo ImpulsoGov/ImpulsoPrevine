@@ -31,3 +31,9 @@ export const CARGOS = [
   { id: 'Profissional Administrativo', descricao: 'Profissional Administrativo' },
   { id: 'Chefe de Setor', descricao: 'Chefe de Setor' },
 ];
+
+export const ESTADOS_PERFIL_ATIVO = {
+  'Sim': true,
+  'Não': false,
+  'Primeiro acesso pendente': null
+};
