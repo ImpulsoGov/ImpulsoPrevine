@@ -6,9 +6,9 @@ import {
     ScoreCardGrid , 
     Spinner, 
     GraficoBuscaAtiva,
-    ButtonPrint,
     TabelaCitoImpressao,
-    PanelSelector
+    PanelSelector,
+    ButtonColorSubmitIcon
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -17,6 +17,7 @@ import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasCito } from "../../../helpers/colunasCito";
+import { Imprimir } from "../../../helpers/imprimir"
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
@@ -109,7 +110,13 @@ const IDFiltrosOrdenacaoCito = {
     "vencimento_da_coleta" : "asc",
     "prazo_proxima_coleta" : "asc",
 }
-      
+const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>,
+    "citopatologico",
+    activeTitleTabIndex,
+    activeTabIndex,
+)   
 if(session){  
     if(session.user.perfis.includes(9)){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
@@ -267,12 +274,12 @@ if(session){
         {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
             />
-            </div>
+        </div>
         }
         </div>
         <TituloTexto
@@ -677,10 +684,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
             />
             </div>
         }
