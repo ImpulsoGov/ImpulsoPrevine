@@ -16,9 +16,6 @@ import {
   import { LAYOUT } from '../../../utils/QUERYS'
   import { redirectHome } from "../../../helpers/redirectHome";
   import { colunasGestantesEquipe } from "../../../helpers/colunasGestantes";
-  import { colunasGestantesIndicadorUm } from "../../../helpers/colunasGestantesIndicadorUm";
-  import { colunasGestantesIndicadorDois } from "../../../helpers/colunasGestantesIndicadorDois";
-  import { colunasGestantesIndicadorTres } from "../../../helpers/colunasGestantesIndicadorTres";
   import { tabelaVacinacaoEquipe , tabelaVacinacaoAPS } from "../../../services/busca_ativa/Vacinacao";
   import { TabelaEquipeGestantesAtivas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesAtivas";
   import { TabelaEquipeGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesEncerradas";
