@@ -20,7 +20,7 @@ import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 
 import mixpanel from 'mixpanel-browser';
-import Hotjar from '@hotjar/browser';
+import { hotjar } from 'react-hotjar'
 
 
 
@@ -46,6 +46,10 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
+
+  useEffect(() => {
+    hotjar.initialize(3496492, 6);
+  }, [])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
