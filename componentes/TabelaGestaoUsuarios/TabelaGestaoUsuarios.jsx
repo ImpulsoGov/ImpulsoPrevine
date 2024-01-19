@@ -28,14 +28,12 @@ function CheckboxPerfilAtivo(props) {
       id,
       field,
       value: newValue ? 'Sim' : 'Não'
-      // value: newValue
     });
   };
 
   return (
     <Checkbox
       checked={ ESTADOS_PERFIL_ATIVO[value] }
-      // checked={ value }
       onChange={ handleChange }
     />
   );
@@ -115,7 +113,6 @@ function TabelaGestaoUsuarios({
     if (linhaEncontrada) {
       setSelectedRowNome(linhaEncontrada.nome);
     }
-    // console.log(rows.find(({ id }) => id === selectedRowId));
   }, [rows, selectedRowId]);
 
   const columns = useMemo(() => [
@@ -185,32 +182,13 @@ function TabelaGestaoUsuarios({
       headerAlign: 'center',
       align: 'center',
       editable: true,
-      // type: 'singleSelect',
-      // valueOptions: ['Sim', 'Não'],
-      // type: 'boolean',
       renderEditCell: (params) => {
         if (params.value !== 'Primeiro acesso pendente') {
           return <CheckboxPerfilAtivo {...params} />
         }
-        // if (typeof params.value !== 'object' && params.value !== null) {
-        //   return <CheckboxPerfilAtivo {...params} />
-        // }
 
         return 'Primeiro acesso pendente';
       },
-      // valueGetter: (params) => {
-      //   const { value } = params;
-
-      //   if (typeof value === 'boolean' && value === true) {
-      //     return 'Sim';
-      //   }
-
-      //   if (typeof value === 'boolean' && value === false) {
-      //     return 'Não';
-      //   }
-
-      //   return 'Primeiro acesso pendente';
-      // },
     },
     {
       field: 'autorizacoes',
@@ -273,9 +251,8 @@ function TabelaGestaoUsuarios({
     if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
       return 'Não';
     }
-    // if (typeof value === 'object' && value === null) {
+
     return 'Primeiro acesso pendente';
-    // }
   }
 
   const transformarDadosEmLinhas = useCallback((dados) => {
@@ -290,7 +267,6 @@ function TabelaGestaoUsuarios({
       telefone: dado.telefone,
       equipe: dado.equipe,
       perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
-      // perfilAtivo: dado.perfil_ativo,
       autorizacoes: dado.autorizacoes,
       editarAutorizacoes: openModalAutorizacoes,
       isNew: false,
@@ -354,16 +330,6 @@ function TabelaGestaoUsuarios({
     });
   }, [rowModesModel, selectedRowId]);
 
-  // const getSelectedRowNome = useCallback(() => {
-  //   if (!selectedRowId) {
-  //     return;
-  //   }
-  //   // console.log(rows.find(({ id }) => id === selectedRowId));
-  //   const { nome } = rows.find(({ id }) => id === selectedRowId);
-
-  //   return nome;
-  // }, [rows, selectedRowId]);
-
   const handleRowFocus = useCallback((event) => {
     const rowId = event.currentTarget.dataset.id;
     const { autorizacoes } = rows.find(({ id }) => id === rowId);
@@ -391,7 +357,6 @@ function TabelaGestaoUsuarios({
       session?.user?.access_token
     );
     const usuarioAtualizado = {
-      // id: newRowData.id,
       id_usuario: dadosAtualizados['id_usuario'],
       mail: dadosAtualizados.mail,
       cpf: dadosAtualizados.cpf,
@@ -402,8 +367,6 @@ function TabelaGestaoUsuarios({
       equipe: dadosAtualizados.equipe,
       perfil_ativo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
       autorizacoes: newRowData.autorizacoes,
-      // editarAutorizacoes: newRowData.editarAutorizacoes,
-      // isNew: false,
     };
     const usuariosAtualizados = usuarios.map((usuario) =>
       usuario.id_usuario === newRowData.usuarioId
@@ -448,9 +411,6 @@ function TabelaGestaoUsuarios({
 
   return (
     <div className={ styles.Container }>
-      {/* {console.log('selectedRowId', selectedRowId)}
-      {console.log('getSelectedRowNome', getSelectedRowNome())} */}
-
       <DataGrid
         rows={ rows }
         columns={ columns }
