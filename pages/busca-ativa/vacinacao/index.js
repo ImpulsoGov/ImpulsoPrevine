@@ -4,12 +4,14 @@ import {
     ButtonLight, 
     ButtonPrint,
     TabelaHiperDiaImpressao,
-    PanelSelector
+    PanelSelector,
+    ButtonColorSubmitIcon
   } from "@impulsogov/design-system";
   import React, { useState,useEffect } from 'react';
   import { useSession,signOut, getSession } from "next-auth/react"
   import { useRouter } from 'next/router';
-  
+  import { Imprimir } from "../../../helpers/imprimir"
+
   import { getData } from '../../../services/cms'
   import { LAYOUT } from '../../../utils/QUERYS'
   import { redirectHome } from "../../../helpers/redirectHome";
@@ -28,6 +30,7 @@ import {
   import { TabelaAPSQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/tabelaQuadrimestreProximo";
   import { GraficoAPSQuadrimestreFuturo, CardsGraficoAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/graficoQuadrimestreFuturo";
   import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
@@ -72,12 +75,14 @@ import {
       setTabelaDataEquipe(response.data)
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
-  const colunasImpressao = {
-    0 : colunasGestantesIndicadorUm,
-    1 : colunasGestantesIndicadorDois,
-    3 : colunasGestantesIndicadorTres,
-    4 : colunasGestantesIndicadorUm
-  }
+  const ImpressaoVacinacao = ()=> Imprimir(
+    1,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasVacinacaoAPS}/>,
+    "vacinacao",
+    activeTitleTabIndex,
+    activeTabIndex,
+  )   
+  
   if(session){  
     if(session.user.perfis.includes(9)){
     const Children = [[
@@ -233,11 +238,14 @@ import {
           {
               tabelaDataAPS &&
               <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  escala="1"
-                  child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>}
-              />
+              {
+                  ((activeTabIndex !== 0)) &&
+                  <ButtonColorSubmitIcon
+                    label="CLIQUE AQUI PARA IMPRIMIR"
+                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                    submit={ImpressaoVacinacao}
+                  />
+              }
               </div>
           }
           </div>

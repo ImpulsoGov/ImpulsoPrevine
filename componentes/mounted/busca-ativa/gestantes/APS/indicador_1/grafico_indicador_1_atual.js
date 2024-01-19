@@ -12,7 +12,7 @@ const CardsGraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q3/2023 - Gestantes com DUM preenchida por total de consultas e captação
+            Q1/2024 - Gestantes com DUM preenchida por total de consultas e captação
         </h2>
         <ScoreCardGrid
             valores={[
@@ -55,8 +55,8 @@ const GraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
                     left: '80'
                 },
                 color: [
-                    '#E98633',
                     '#EF565D',
+                    '#E98633',
                     '#2EB280',
                 ],
                 grid: {
@@ -126,8 +126,8 @@ const GraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
                     left: '80'
                 },
                 color: [
-                    '#E98633',
                     '#EF565D',
+                    '#E98633',
                     '#2EB280',
                 ],
                 series: [

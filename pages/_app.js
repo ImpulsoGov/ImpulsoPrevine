@@ -73,6 +73,8 @@ function MyApp(props) {
         "cargo": props.ses.user.cargo,
         "municipio": props.ses.user.municipio,
         "equipe": props.ses.user.equipe,
+        "municipio_id_sus": props.ses.user.municipio_id_sus,
+        "is_test_user": (props.ses.user.cargo == 'Impulser') && !props.ses.user.mail.includes('@impulsogov.org') && !props.ses.user.municipio.includes('Impulsolândia')
       });
     }
   }, [props.ses]);
@@ -142,7 +144,7 @@ function MyApp(props) {
                             ]
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
-                      .concat([{ label: "Dados Públicos - Q1/23", url: "/analise" }])
+                      .concat([{ label: "Dados Públicos - Q2/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
@@ -159,7 +161,7 @@ function MyApp(props) {
                 ModalInicio={ {
                   titulo: "Faça o login para ver os dados restritos.",
                   chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
-                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município, do Q3/22, <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
+                  cardAlert: "<p style='font-size:14px;'>A área logada é de acesso exclusivo para municípios parceiros. Para ver os resultados públicos do seu município <a href='analise' style='text-decoration:underline !important;'>clique aqui.</a></p>",
                   botaoPrincipal: {
                     label: "entrar",
                     theme: 'ColorIP'
@@ -204,7 +206,7 @@ function MyApp(props) {
                   second: "",
               }}
               contactCopyright={{
-                  copyright: "© 2023 Impulso",
+                  copyright: "© 2024 Impulso",
                   email: "contato@impulsogov.org",
               }}
               links={ [props.res[0].menus[0],props.res[0].menus[7]] }

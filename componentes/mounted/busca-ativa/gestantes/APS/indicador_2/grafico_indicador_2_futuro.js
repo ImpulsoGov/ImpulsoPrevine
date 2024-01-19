@@ -12,7 +12,7 @@ const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
+            (Q2 + Q3)/24 e Q1/25  - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
         </h2>
         <ScoreCardGrid
         valores={[

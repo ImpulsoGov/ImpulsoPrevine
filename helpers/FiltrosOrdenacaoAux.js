@@ -19,12 +19,12 @@ const IDFiltrosGestantes = {
     "DATA MAIS RECENTE DA ÚLTIMA CONSULTA" : "consulta_prenatal_ultima_data"
 }   
 const IDFiltrosOrdenacaoGestantes = {
-    "NOMES DE A-Z" : "asc",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "asc",
-    "DPP MAIS PRÓXIMA" : "asc",
-    "IG ATUAL MAIOR" : "desc",
-    "MAIOR Nº TOTAL DE CONSULTAS" : "desc",
-    "DATA MAIS RECENTE DA ÚLTIMA CONSULTA" : "desc"
+    "cidadao_nome" : "asc",
+    "acs_nome" : "asc",
+    "gestacao_data_dpp" : "asc",
+    "gestacao_idade_gestacional_atual" : "desc",
+    "consultas_pre_natal_validas" : "desc",
+    "consulta_prenatal_ultima_data" : "desc"
 }
 const IntFiltrosGestantesEquipe = [
     "gestacao_idade_gestacional_atual",

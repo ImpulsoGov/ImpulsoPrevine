@@ -12,7 +12,7 @@ const CardsGraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q3/2023 - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
+            Q1/2024 - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
         </h2>
         <ScoreCardGrid
         valores={[

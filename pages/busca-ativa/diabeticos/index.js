@@ -6,7 +6,7 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  ButtonPrint,
+  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -15,7 +15,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import style from "../../duvidas/Duvidas.module.css"
+import { Imprimir } from "../../../helpers/imprimir"
 import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
 
@@ -98,7 +98,13 @@ const Index = ({res}) => {
     "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
     "prazo_proxima_solicitacao_hemoglobina" : "asc",
   }
-  
+  const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>,
+    "diabetes",
+    activeTitleTabIndex,
+    activeTabIndex,
+)   
   if(session){  
     if(session.user.perfis.includes(9)){
         return (
@@ -110,11 +116,11 @@ const Index = ({res}) => {
           {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
-              />
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
+            />
             </div>
           }
           </div>
@@ -138,7 +144,7 @@ const Index = ({res}) => {
                 lineHeight: "130%",
               }}
             >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
 
             {
@@ -230,10 +236,10 @@ const Index = ({res}) => {
           {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
@@ -258,7 +264,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
         {
           tabelaDataAPS &&

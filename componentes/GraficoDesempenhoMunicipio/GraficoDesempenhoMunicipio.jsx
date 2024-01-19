@@ -15,9 +15,11 @@ const GraficoComSeletor = ({
       className={styles.customSelect}
     >
       {
-        [...new Set(GrafDesempenho.map(item => item.periodo_codigo))].reverse().map(item => (
-          <option key={item} value={item}>{`Quadrimestre: ${item}`}</option>
-        ))
+        [...new Set(GrafDesempenho.map(item => item.periodo_codigo))]
+          .sort((a, b) => b.localeCompare(a))
+          .map(item => (
+            <option key={item} value={item}>{`Quadrimestre: ${item}`}</option>
+          ))
       }
     </select>
     <ReactEcharts key={Math.random()} option={option} style={{ height: '400px' }} />

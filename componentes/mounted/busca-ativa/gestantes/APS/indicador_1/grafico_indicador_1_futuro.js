@@ -12,7 +12,7 @@ const CardsGraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            (Q1 + Q2)/2024 - Gestantes com DUM preenchida por total de consultas e captação
+            (Q2 + Q3)/24 e Q1/25 - Gestantes com DUM preenchida por total de consultas e captação
         </h2>
         <ScoreCardGrid
             valores={[
@@ -55,8 +55,8 @@ const GraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
                     left: '80'
                 },
                 color: [
-                    '#E98633',
                     '#EF565D',
+                    '#E98633',
                     '#2EB280',
                 ],
                 grid: {
@@ -126,8 +126,8 @@ const GraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
                     left: '80'
                 },
                 color: [
-                    '#E98633',
                     '#EF565D',
+                    '#E98633',
                     '#2EB280',
                 ],
                 series: [

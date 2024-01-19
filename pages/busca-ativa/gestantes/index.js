@@ -2,13 +2,14 @@ import {
   CardAlert,
   TituloTexto, 
   ButtonLight, 
-  ButtonPrint,
+  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao,
   PanelSelector
 } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
 import { useSession,signOut, getSession } from "next-auth/react"
 import { useRouter } from 'next/router';
+import { Imprimir } from "../../../helpers/imprimir"
 
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
@@ -96,6 +97,18 @@ const colunasImpressao = {
   3 : colunasGestantesIndicadorTres,
   4 : colunasGestantesIndicadorUm
 }
+const ImpressaoEquipe = ()=> Imprimir(
+  0.78,
+  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>
+)   
+const ImpressaoAPS = ()=> Imprimir(
+  0.78,
+  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
+)   
+
 if(session){  
   if(session.user.perfis.includes(9)){
   const Children = [[
@@ -112,7 +125,6 @@ if(session){
         <TabelaEquipeGestantesEncerradas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
     ]
 ]]
-
   return (
       <>
       <div 
@@ -127,11 +139,11 @@ if(session){
       {
           tabelaData &&
           <div style={{marginLeft:"auto"}}>
-          <ButtonPrint
-              label="CLIQUE AQUI PARA IMPRIMIR"
-              escala="0.78"
-              child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>}
-          />
+            <ButtonColorSubmitIcon
+                label="CLIQUE AQUI PARA IMPRIMIR"
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={ImpressaoEquipe}
+            />
           </div>
       }
       </div>
@@ -155,7 +167,7 @@ if(session){
               lineHeight: "130%",
           }}
       >
-          {session.user.municipio} - Q2/23
+          {session.user.municipio} - Q1/24
       </div>
       {
           tabelaData &&
@@ -297,11 +309,22 @@ if(session){
         {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>}
-            />
+              {
+                  ((activeTabIndex !== 0 && activeTabIndex !== 1)) &&
+                  <ButtonColorSubmitIcon
+                    label="CLIQUE AQUI PARA IMPRIMIR"
+                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                    submit={ImpressaoAPS}
+                  />
+              }
+              {
+                  activeTitleTabIndex === 3 &&
+                  <ButtonColorSubmitIcon
+                    label="CLIQUE AQUI PARA IMPRIMIR"
+                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                    submit={ImpressaoAPS}
+                  />
+              }
             </div>
         }
         </div>
@@ -325,7 +348,7 @@ if(session){
                 lineHeight: "130%",
             }}
         >
-        {session.user.municipio} - Q3/23
+        {session.user.municipio} - Q1/24
         </div>
         <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
         <PanelSelector
@@ -340,10 +363,10 @@ if(session){
             list={[
                 [
                   {
-                    label: 'GRÁFICO Q3/23'
+                    label: 'GRÁFICO Q1/24'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                   },
                 {
                     label: 'GESTANTES ATIVAS'
@@ -354,10 +377,10 @@ if(session){
                 ],
                 [
                   {
-                    label: 'GRÁFICO Q3/23'
+                    label: 'GRÁFICO Q1/24'
                   },
                   {
-                    label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                   },
                   {
                       label: 'GESTANTES ATIVAS'
@@ -368,10 +391,10 @@ if(session){
                   ],
                   [
                     {
-                      label: 'GRÁFICO Q3/23'
+                      label: 'GRÁFICO Q1/24'
                     },
                     {
-                      label: 'GRÁFICO Q1 + Q2 + Q3/24'
+                      label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
                     },
                       {
                       label: 'GESTANTES ATIVAS'
