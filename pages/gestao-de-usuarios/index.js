@@ -134,7 +134,7 @@ const GestaoDeUsuarios = () => {
         {
           ...dados,
           whatsapp,
-          municipio_id_sus: dados.municipioIdSus
+          municipioIdSus: dados.municipioIdSus
         },
         session?.user?.access_token
       );
