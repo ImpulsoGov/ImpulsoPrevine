@@ -366,15 +366,15 @@ function TabelaGestaoUsuarios({
 
     validarCamposObrigatorios(newRowData);
 
-    const {municipio_id_sus} = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio);
+    const {municipioIdSus} = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio);
 
-    if (!municipio_id_sus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+    if (!municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
 
     const dadosAtualizados = await atualizarUsuario(
       usuarioId,
       {
         ...newRowData,
-        municipio_id_sus,
+        municipioIdSus,
         perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
       },
       session?.user?.access_token

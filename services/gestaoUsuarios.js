@@ -41,7 +41,7 @@ export const atualizarUsuario = async (id, dados, token) => {
       mail: dados.mail,
       cpf: dados.cpf,
       municipio: dados.municipio,
-      municipio_id_sus: dados.municipio_id_sus,
+      municipio_id_sus: dados.municipioIdSus,
       equipe: dados.equipe,
       cargo: dados.cargo,
       telefone: dados.telefone,
@@ -83,7 +83,7 @@ export const cadastrarUsuario = async (dados, token) => {
     requestData.append('mail', dados.mail);
     requestData.append('cpf', dados.cpf);
     requestData.append('municipio', dados.municipio);
-    requestData.append('municipio_id_sus', dados.municipio_id_sus);
+    requestData.append('municipio_id_sus', dados.municipioIdSus);
     requestData.append('equipe', dados.equipe);
     requestData.append('cargo', dados.cargo);
     requestData.append('telefone', dados.telefone);

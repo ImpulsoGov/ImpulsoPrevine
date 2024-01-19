@@ -17,7 +17,7 @@ function ModalCadastroUsuario({
   const [mail, setMail] = useState('');
   const [cpf, setCpf] = useState('');
   const [municipio, setMunicipio] = useState({
-    nome: '', uf: '', municipio_id_sus: ''
+    nome: '', uf: '', municipioIdSus: ''
   });
   const [cargo, setCargo] = useState('');
   const [telefone, setTelefone] = useState('');
@@ -157,7 +157,7 @@ function ModalCadastroUsuario({
             mail,
             cpf,
             municipio: municipio !== null ? `${municipio.nome} - ${municipio.uf}` : municipio,
-            municipioIdSus: municipio !== null ? municipio.municipio_id_sus : municipio,
+            municipioIdSus: municipio !== null ? municipio.municipioIdSus : municipio,
             cargo,
             telefone,
             equipe,
