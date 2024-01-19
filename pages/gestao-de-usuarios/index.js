@@ -80,7 +80,7 @@ const GestaoDeUsuarios = () => {
   }, []);
 
   const editarAutorizacoesUsuario = useCallback(async ({
-    rows, selectedRowId, selectedRowAutorizacoes, setRows
+    rows, selectedRowId, selectedRowAutorizacoes
   }) => {
     try {
       const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
@@ -94,22 +94,25 @@ const GestaoDeUsuarios = () => {
         session?.user?.access_token
       );
       const novasAutorizacoes = getDescricaoAutorizacoes(response);
-      const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
-        ? { ...row, autorizacoes: novasAutorizacoes }
-        : row
+      const usuariosAtualizados = usuarios.map((usuario) =>
+        usuario.id_usuario === usuarioId
+          ? { ...usuario, autorizacoes: novasAutorizacoes }
+          : usuario
       );
 
-      setRows(linhasAtualizadas);
+      setUsuarios(usuariosAtualizados);
       showSuccessMessage('Autorizações atualizadas com sucesso');
     } catch (error) {
       showErrorMessage(error);
     }
   }, [
+    usuarios,
     getSelectedAutorizacoesIds,
     showErrorMessage,
     validarAutorizacoesSelecionadas,
     showSuccessMessage,
-    getDescricaoAutorizacoes
+    getDescricaoAutorizacoes,
+    session?.user?.access_token
   ]);
 
   const validarCamposObrigatorios = useCallback((dados) => {
@@ -171,7 +174,8 @@ const GestaoDeUsuarios = () => {
     getSelectedAutorizacoesIds,
     validarAutorizacoesSelecionadas,
     getDescricaoAutorizacoes,
-    validarCamposObrigatorios
+    validarCamposObrigatorios,
+    session?.user?.access_token
   ]);
 
   return (
@@ -189,6 +193,7 @@ const GestaoDeUsuarios = () => {
         ? (
           <TabelaGestaoUsuarios
             usuarios={ usuarios }
+            setUsuarios={ setUsuarios }
             autorizacoes={ autorizacoes }
             showSuccessMessage={ showSuccessMessage }
             showErrorMessage={ showErrorMessage }

@@ -86,6 +86,7 @@ function AutocompleteMunicipios(props) {
 
 function TabelaGestaoUsuarios({
   usuarios,
+  setUsuarios,
   autorizacoes,
   showSuccessMessage,
   showErrorMessage,
@@ -101,11 +102,21 @@ function TabelaGestaoUsuarios({
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
   const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
+  const [selectedRowNome, setSelectedRowNome] = useState('');
 
   useEffect(() => {
     const linhas = transformarDadosEmLinhas(usuarios);
     setRows(linhas);
   }, [usuarios, transformarDadosEmLinhas]);
+
+  useEffect(() => {
+    const linhaEncontrada = rows.find(({ id }) => id === selectedRowId);
+
+    if (linhaEncontrada) {
+      setSelectedRowNome(linhaEncontrada.nome);
+    }
+    // console.log(rows.find(({ id }) => id === selectedRowId));
+  }, [rows, selectedRowId]);
 
   const columns = useMemo(() => [
     {
@@ -343,15 +354,15 @@ function TabelaGestaoUsuarios({
     });
   }, [rowModesModel, selectedRowId]);
 
-  const getSelectedRowNome = useCallback(() => {
-    if (!selectedRowId) {
-      return;
-    }
+  // const getSelectedRowNome = useCallback(() => {
+  //   if (!selectedRowId) {
+  //     return;
+  //   }
+  //   // console.log(rows.find(({ id }) => id === selectedRowId));
+  //   const { nome } = rows.find(({ id }) => id === selectedRowId);
 
-    const { nome } = rows.find(({ id }) => id === selectedRowId);
-
-    return nome;
-  }, [rows, selectedRowId]);
+  //   return nome;
+  // }, [rows, selectedRowId]);
 
   const handleRowFocus = useCallback((event) => {
     const rowId = event.currentTarget.dataset.id;
@@ -379,7 +390,31 @@ function TabelaGestaoUsuarios({
       },
       session?.user?.access_token
     );
-    const linhaAtualizada = {
+    const usuarioAtualizado = {
+      // id: newRowData.id,
+      id_usuario: dadosAtualizados['id_usuario'],
+      mail: dadosAtualizados.mail,
+      cpf: dadosAtualizados.cpf,
+      nome_usuario: dadosAtualizados['nome_usuario'],
+      municipio: dadosAtualizados.municipio,
+      cargo: dadosAtualizados.cargo,
+      telefone: dadosAtualizados.telefone,
+      equipe: dadosAtualizados.equipe,
+      perfil_ativo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
+      autorizacoes: newRowData.autorizacoes,
+      // editarAutorizacoes: newRowData.editarAutorizacoes,
+      // isNew: false,
+    };
+    const usuariosAtualizados = usuarios.map((usuario) =>
+      usuario.id_usuario === newRowData.usuarioId
+        ? usuarioAtualizado
+        : usuario
+    );
+
+    setUsuarios(usuariosAtualizados);
+    showSuccessMessage('Usuário salvo com sucesso');
+
+    return {
       id: newRowData.id,
       usuarioId: dadosAtualizados['id_usuario'],
       mail: dadosAtualizados.mail,
@@ -394,17 +429,9 @@ function TabelaGestaoUsuarios({
       editarAutorizacoes: newRowData.editarAutorizacoes,
       isNew: false,
     };
-    const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-      ? linhaAtualizada
-      : row
-    );
-
-    setRows(linhasAtualizadas);
-    showSuccessMessage('Usuário salvo com sucesso');
-
-    return linhaAtualizada;
   }, [
-    rows,
+    usuarios,
+    setUsuarios,
     validarCamposObrigatorios,
     showSuccessMessage,
     session?.user?.access_token
@@ -421,6 +448,9 @@ function TabelaGestaoUsuarios({
 
   return (
     <div className={ styles.Container }>
+      {/* {console.log('selectedRowId', selectedRowId)}
+      {console.log('getSelectedRowNome', getSelectedRowNome())} */}
+
       <DataGrid
         rows={ rows }
         columns={ columns }
@@ -462,14 +492,14 @@ function TabelaGestaoUsuarios({
       />
 
       {
-        showModalAutorizacoes &&
+        showModalAutorizacoes && selectedRowId &&
         <ModalAutorizacoes
-          titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
+          titulo={ `Autorizações de <strong>${selectedRowNome}</strong>` }
           autorizacoes={ autorizacoes }
           autorizacoesSelecionadas={ selectedRowAutorizacoes }
           handleSelectChange={ handleAutorizacoesChange }
           handleEditClick={ () => handleAutorizacoesEdit({
-            rows, selectedRowId, selectedRowAutorizacoes, setRows
+            rows, selectedRowId, selectedRowAutorizacoes
           }) }
           isOpen={ showModalAutorizacoes }
           closeModal={ closeModalAutorizacoes }
