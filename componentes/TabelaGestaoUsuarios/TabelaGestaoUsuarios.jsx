@@ -403,7 +403,12 @@ function TabelaGestaoUsuarios({
     showSuccessMessage('Usuário salvo com sucesso');
 
     return linhaAtualizada;
-  }, [rows, validarCamposObrigatorios, showSuccessMessage]);
+  }, [
+    rows,
+    validarCamposObrigatorios,
+    showSuccessMessage,
+    session?.user?.access_token
+  ]);
 
   const handleAutorizacoesChange = useCallback((event) => {
     const { target: { value } } = event;
