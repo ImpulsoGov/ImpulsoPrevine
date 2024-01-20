@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
 import { ESTADOS_PERFIL_ATIVO, MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
 import { MUNICIPIOS } from '../../constants/municipios';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
@@ -77,29 +76,30 @@ function AutocompleteMunicipios(props) {
 }
 
 function TabelaGestaoUsuarios({
-  usuarios,
-  setUsuarios,
+  rows,
+  setRows,
   autorizacoes,
   showSuccessMessage,
   showErrorMessage,
   handleAddClick,
-  openModalAutorizacoes,
+  checarPerfilAtivo,
   closeModalAutorizacoes,
   showModalAutorizacoes,
   handleAutorizacoesEdit,
-  validarCamposObrigatorios
+  validarCamposObrigatorios,
+  isLoading
 }) {
   const { data: session } = useSession();
-  const [rows, setRows] = useState([]);
+  // const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
   const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
   const [selectedRowNome, setSelectedRowNome] = useState('');
 
-  useEffect(() => {
-    const linhas = transformarDadosEmLinhas(usuarios);
-    setRows(linhas);
-  }, [usuarios, transformarDadosEmLinhas]);
+  // useEffect(() => {
+  //   const linhas = transformarDadosEmLinhas(usuarios);
+  //   setRows(linhas);
+  // }, [usuarios, transformarDadosEmLinhas]);
 
   useEffect(() => {
     const linhaEncontrada = rows.find(({ id }) => id === selectedRowId);
@@ -237,35 +237,35 @@ function TabelaGestaoUsuarios({
     }
   ], []);
 
-  const checarPerfilAtivo = (perfilAtivo) => {
-    if (typeof perfilAtivo === 'boolean' && perfilAtivo === true) {
-      return 'Sim';
-    }
+  // const checarPerfilAtivo = (perfilAtivo) => {
+  //   if (typeof perfilAtivo === 'boolean' && perfilAtivo === true) {
+  //     return 'Sim';
+  //   }
 
-    if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
-      return 'Não';
-    }
+  //   if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
+  //     return 'Não';
+  //   }
 
-    return 'Primeiro acesso pendente';
-  }
+  //   return 'Primeiro acesso pendente';
+  // }
 
-  const transformarDadosEmLinhas = useCallback((dados) => {
-    return dados.map((dado) => ({
-      id: uuidV4(),
-      usuarioId: dado['id_usuario'],
-      mail: dado.mail,
-      cpf: dado.cpf,
-      nome: dado['nome_usuario'],
-      municipio: dado.municipio,
-      cargo: dado.cargo,
-      telefone: dado.telefone,
-      equipe: dado.equipe,
-      perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
-      autorizacoes: dado.autorizacoes,
-      editarAutorizacoes: openModalAutorizacoes,
-      isNew: false,
-    }));
-  }, [openModalAutorizacoes]);
+  // const transformarDadosEmLinhas = useCallback((dados) => {
+  //   return dados.map((dado) => ({
+  //     id: uuidV4(),
+  //     usuarioId: dado['id_usuario'],
+  //     mail: dado.mail,
+  //     cpf: dado.cpf,
+  //     nome: dado['nome_usuario'],
+  //     municipio: dado.municipio,
+  //     cargo: dado.cargo,
+  //     telefone: dado.telefone,
+  //     equipe: dado.equipe,
+  //     perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
+  //     autorizacoes: dado.autorizacoes,
+  //     editarAutorizacoes: openModalAutorizacoes,
+  //     isNew: false,
+  //   }));
+  // }, [openModalAutorizacoes]);
 
   const rowMode = useMemo(() => {
     if (!selectedRowId) {
@@ -350,28 +350,19 @@ function TabelaGestaoUsuarios({
       },
       session?.user?.access_token
     );
-    const usuarioAtualizado = {
-      id_usuario: dadosAtualizados['id_usuario'],
-      mail: dadosAtualizados.mail,
-      cpf: dadosAtualizados.cpf,
-      nome_usuario: dadosAtualizados['nome_usuario'],
-      municipio: dadosAtualizados.municipio,
-      cargo: dadosAtualizados.cargo,
-      telefone: dadosAtualizados.telefone,
-      equipe: dadosAtualizados.equipe,
-      perfil_ativo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
-      autorizacoes: newRowData.autorizacoes,
-    };
-    const usuariosAtualizados = usuarios.map((usuario) =>
-      usuario.id_usuario === newRowData.usuarioId
-        ? usuarioAtualizado
-        : usuario
-    );
-
-    setUsuarios(usuariosAtualizados);
-    showSuccessMessage('Usuário salvo com sucesso');
-
-    return {
+    // const usuarioAtualizado = {
+    //   id_usuario: dadosAtualizados['id_usuario'],
+    //   mail: dadosAtualizados.mail,
+    //   cpf: dadosAtualizados.cpf,
+    //   nome_usuario: dadosAtualizados['nome_usuario'],
+    //   municipio: dadosAtualizados.municipio,
+    //   cargo: dadosAtualizados.cargo,
+    //   telefone: dadosAtualizados.telefone,
+    //   equipe: dadosAtualizados.equipe,
+    //   perfil_ativo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
+    //   autorizacoes: newRowData.autorizacoes,
+    // };
+    const linhaAtualizada = {
       id: newRowData.id,
       usuarioId: dadosAtualizados['id_usuario'],
       mail: dadosAtualizados.mail,
@@ -386,12 +377,22 @@ function TabelaGestaoUsuarios({
       editarAutorizacoes: newRowData.editarAutorizacoes,
       isNew: false,
     };
+    const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
+      ? linhaAtualizada
+      : row
+    );
+
+    setRows(linhasAtualizadas);
+    showSuccessMessage('Usuário salvo com sucesso');
+
+    return linhaAtualizada;
   }, [
-    usuarios,
-    setUsuarios,
+    rows,
+    setRows,
     validarCamposObrigatorios,
     showSuccessMessage,
-    session?.user?.access_token
+    session?.user?.access_token,
+    checarPerfilAtivo
   ]);
 
   const handleAutorizacoesChange = useCallback((event) => {
@@ -453,10 +454,11 @@ function TabelaGestaoUsuarios({
           autorizacoesSelecionadas={ selectedRowAutorizacoes }
           handleSelectChange={ handleAutorizacoesChange }
           handleEditClick={ () => handleAutorizacoesEdit({
-            rows, selectedRowId, selectedRowAutorizacoes
+            selectedRowId, selectedRowAutorizacoes
           }) }
           isOpen={ showModalAutorizacoes }
           closeModal={ closeModalAutorizacoes }
+          isLoading={ isLoading }
         />
       }
     </div>
