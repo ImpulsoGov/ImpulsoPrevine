@@ -206,7 +206,7 @@ const GestaoDeUsuarios = () => {
         cargo: usuarioCadastrado.cargo,
         telefone: usuarioCadastrado.telefone,
         equipe: usuarioCadastrado.equipe,
-        perfilAtivo: usuarioCadastrado['perfil_ativo'],
+        perfilAtivo: checarPerfilAtivo(usuarioCadastrado['perfil_ativo']),
         autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario),
         editarAutorizacoes: openModalAutorizacoes,
         isNew: false,
