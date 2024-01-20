@@ -10,26 +10,16 @@ export const MENSAGENS_DE_ERRO = {
 };
 
 export const CARGOS = [
-  { id: 'Coordenação de Equipe', descricao: 'Coordenação de Equipe' },
   { id: 'Coordenação APS', descricao: 'Coordenação APS' },
-  { id: 'Impulser', descricao: 'Impulser' },
-  { id: 'Médica (o)', descricao: 'Médica (o)' },
-  { id: 'Técnica (o) de Enfermagem', descricao: 'Técnica (o) de Enfermagem' },
+  { id: 'Coordenação de Equipe', descricao: 'Coordenação de Equipe' },
+  { id: 'Secretária (o) de Saúde', descricao: 'Secretária (o) de Saúde' },
+  { id: 'Agente Comunitário de Saúde', descricao: 'Agente Comunitário de Saúde' },
   { id: 'Enfermeira (o)', descricao: 'Enfermeira (o)' },
-  { id: 'Gestão APS', descricao: 'Gestão APS' },
-  { id: 'Gestor(a) de RAPS', descricao: 'Gestor(a) de RAPS' },
-  { id: 'Apoiador(a) Institucional ou Referência Técnica', descricao: 'Apoiador(a) Institucional ou Referência Técnica' },
-  { id: 'Gerente', descricao: 'Gerente' },
-  { id: 'Diretor(a)', descricao: 'Diretor(a)' },
-  { id: 'Secretário Municipal de Saúde.', descricao: 'Secretário Municipal de Saúde.' },
-  { id: 'Supervisor(a)', descricao: 'Supervisor(a)' },
-  { id: 'Especialista', descricao: 'Especialista' },
-  { id: 'Coordenador(a)', descricao: 'Coordenador(a)' },
-  { id: 'Assessor(a)', descricao: 'Assessor(a)' },
-  { id: 'Chefe de Serviço', descricao: 'Chefe de Serviço' },
-  { id: 'Gestor(a) de Serviço', descricao: 'Gestor(a) de Serviço' },
-  { id: 'Profissional Administrativo', descricao: 'Profissional Administrativo' },
-  { id: 'Chefe de Setor', descricao: 'Chefe de Setor' },
+  { id: 'Técnica (o) de Enfermagem', descricao: 'Técnica (o) de Enfermagem' },
+  { id: 'Médica (o)', descricao: 'Médica (o)' },
+  { id: 'Profissional de TI', descricao: 'Profissional de TI' },
+  { id: 'Impulser', descricao: 'Impulser' },
+  { id: 'Apoiador (a)', descricao: 'Apoiador (a)' },
 ];
 
 export const ESTADOS_PERFIL_ATIVO = {
