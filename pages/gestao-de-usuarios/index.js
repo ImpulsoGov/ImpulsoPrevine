@@ -91,10 +91,6 @@ const GestaoDeUsuarios = () => {
     setSnackbar({ children: message, severity: 'success' });
   }, []);
 
-  // const openModalAutorizacoes = useCallback(() => {
-  //   setShowModalAutorizacoes(true);
-  // }, []);
-
   const closeModalAutorizacoes = useCallback(() => setShowModalAutorizacoes(false), []);
 
   const closeModalCadastro = useCallback(() => setShowModalCadastro(false), []);

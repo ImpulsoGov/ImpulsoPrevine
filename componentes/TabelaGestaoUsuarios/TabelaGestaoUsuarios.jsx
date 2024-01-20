@@ -90,16 +90,10 @@ function TabelaGestaoUsuarios({
   isLoading
 }) {
   const { data: session } = useSession();
-  // const [rows, setRows] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
   const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
   const [selectedRowNome, setSelectedRowNome] = useState('');
-
-  // useEffect(() => {
-  //   const linhas = transformarDadosEmLinhas(usuarios);
-  //   setRows(linhas);
-  // }, [usuarios, transformarDadosEmLinhas]);
 
   useEffect(() => {
     const linhaEncontrada = rows.find(({ id }) => id === selectedRowId);
@@ -237,36 +231,6 @@ function TabelaGestaoUsuarios({
     }
   ], []);
 
-  // const checarPerfilAtivo = (perfilAtivo) => {
-  //   if (typeof perfilAtivo === 'boolean' && perfilAtivo === true) {
-  //     return 'Sim';
-  //   }
-
-  //   if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
-  //     return 'Não';
-  //   }
-
-  //   return 'Primeiro acesso pendente';
-  // }
-
-  // const transformarDadosEmLinhas = useCallback((dados) => {
-  //   return dados.map((dado) => ({
-  //     id: uuidV4(),
-  //     usuarioId: dado['id_usuario'],
-  //     mail: dado.mail,
-  //     cpf: dado.cpf,
-  //     nome: dado['nome_usuario'],
-  //     municipio: dado.municipio,
-  //     cargo: dado.cargo,
-  //     telefone: dado.telefone,
-  //     equipe: dado.equipe,
-  //     perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
-  //     autorizacoes: dado.autorizacoes,
-  //     editarAutorizacoes: openModalAutorizacoes,
-  //     isNew: false,
-  //   }));
-  // }, [openModalAutorizacoes]);
-
   const rowMode = useMemo(() => {
     if (!selectedRowId) {
       return 'view';
@@ -350,18 +314,6 @@ function TabelaGestaoUsuarios({
       },
       session?.user?.access_token
     );
-    // const usuarioAtualizado = {
-    //   id_usuario: dadosAtualizados['id_usuario'],
-    //   mail: dadosAtualizados.mail,
-    //   cpf: dadosAtualizados.cpf,
-    //   nome_usuario: dadosAtualizados['nome_usuario'],
-    //   municipio: dadosAtualizados.municipio,
-    //   cargo: dadosAtualizados.cargo,
-    //   telefone: dadosAtualizados.telefone,
-    //   equipe: dadosAtualizados.equipe,
-    //   perfil_ativo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
-    //   autorizacoes: newRowData.autorizacoes,
-    // };
     const linhaAtualizada = {
       id: newRowData.id,
       usuarioId: dadosAtualizados['id_usuario'],
