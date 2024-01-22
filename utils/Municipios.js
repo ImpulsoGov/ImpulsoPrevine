@@ -1,22283 +1,22283 @@
 const data = [
     {
         "nome": "Maraã",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Uruará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Icó",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Mãe d'Água",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lapão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cândido Mota",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Terra Roxa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Castanheiras",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Chupinguaia",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Cujubim",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Bragança",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Brasil Novo",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Alta Floresta D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Ariquemes",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Cabixi",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Cacoal",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Cerejeiras",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Colorado do Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Corumbiara",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Costa Marques",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Espigão D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Guajará-Mirim",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Jaru",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Ji-Paraná",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Machadinho D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Nova Brasilândia D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Ouro Preto do Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Pimenta Bueno",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Presidente Médici",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Rio Crespo",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Rolim de Moura",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Santa Luzia D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Vilhena",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "São Miguel do Guaporé",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Bagre",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Nova Mamoré",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Alvorada D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Alto Alegre dos Parecis",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Alto Paraíso",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Buritis",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Novo Horizonte do Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Cacaulândia",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Campo Novo de Rondônia",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Candeias do Jamari",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Governador Jorge Teixeira",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Itapuã do Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Ministro Andreazza",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Mirante da Serra",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Monte Negro",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Nova União",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Parecis",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Pimenteiras do Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Primavera de Rondônia",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "São Felipe D'Oeste",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "São Francisco do Guaporé",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Seringueiras",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Teixeirópolis",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Theobroma",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Urupá",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Vale do Anari",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Vale do Paraíso",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Acrelândia",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Assis Brasil",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Brasiléia",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Bujari",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Capixaba",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Cruzeiro do Sul",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Epitaciolândia",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Feijó",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Jordão",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Mâncio Lima",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Manoel Urbano",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Marechal Thaumaturgo",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Plácido de Castro",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Porto Walter",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Rodrigues Alves",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Santa Rosa do Purus",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Senador Guiomard",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Sena Madureira",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Tarauacá",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Xapuri",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Porto Acre",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Alvarães",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Amaturá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Anamã",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Anori",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Apuí",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Atalaia do Norte",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Autazes",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Barcelos",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Barreirinha",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Benjamin Constant",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Beruri",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Boa Vista do Ramos",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Boca do Acre",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Borba",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Caapiranga",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Canutama",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Carauari",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Careiro",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Careiro da Várzea",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Coari",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Codajás",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Eirunepé",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Envira",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Fonte Boa",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Guajará",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Humaitá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Ipixuna",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Iranduba",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Itacoatiara",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Itamarati",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Itapiranga",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Japurá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Juruá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Jutaí",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Lábrea",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Manacapuru",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Manaquiri",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Manicoré",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Maués",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Nhamundá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Nova Olinda do Norte",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Novo Airão",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Novo Aripuanã",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Parintins",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Pauini",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Presidente Figueiredo",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Rio Preto da Eva",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Santa Isabel do Rio Negro",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Santo Antônio do Içá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "São Gabriel da Cachoeira",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "São Paulo de Olivença",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "São Sebastião do Uatumã",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Silves",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Tabatinga",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Tapauá",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Tefé",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Tonantins",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Uarini",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Urucará",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Urucurituba",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Amajari",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Alto Alegre",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Bonfim",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Cantá",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Caracaraí",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Caroebe",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Iracema",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Mucajaí",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Normandia",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Pacaraima",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Rorainópolis",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "São João da Baliza",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "São Luiz",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Uiramutã",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Abaetetuba",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Abel Figueiredo",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Acará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Afuá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Água Azul do Norte",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Alenquer",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Almeirim",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Altamira",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Anajás",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ananindeua",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Anapu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Augusto Corrêa",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Aurora do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Aveiro",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Baião",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Bannach",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Barcarena",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Belterra",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Benevides",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Bom Jesus do Tocantins",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Bonito",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Brejo Grande do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Breu Branco",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Breves",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Bujaru",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Cachoeira do Piriá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Cachoeira do Arari",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Cametá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Canaã dos Carajás",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Capanema",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Capitão Poço",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Castanhal",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Chaves",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Colares",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Conceição do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Concórdia do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Cumaru do Norte",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Curionópolis",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Curralinho",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Curuá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Curuçá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Dom Eliseu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Eldorado do Carajás",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Faro",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Floresta do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Garrafão do Norte",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Goianésia do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Gurupá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Igarapé-Açu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Igarapé-Miri",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Inhangapi",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ipixuna do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Irituia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Itaituba",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Itupiranga",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Jacareacanga",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Jacundá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Juruti",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Limoeiro do Ajuru",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Mãe do Rio",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Magalhães Barata",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Marabá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Maracanã",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Marapanim",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Marituba",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Medicilândia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Melgaço",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Mocajuba",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Moju",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Mojuí dos Campos",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Monte Alegre",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Muaná",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Nova Esperança do Piriá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Nova Ipixuna",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Nova Timboteua",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Novo Progresso",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Novo Repartimento",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Óbidos",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Oeiras do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Oriximiná",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ourém",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ourilândia do Norte",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Pacajá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Palestina do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Paragominas",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Parauapebas",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Pau D'Arco",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Peixe-Boi",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Piçarra",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Placas",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ponta de Pedras",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Portel",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Porto de Moz",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Prainha",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Primavera",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Quatipuru",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Redenção",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Rio Maria",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Rondon do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Rurópolis",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Salinópolis",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Salvaterra",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Bárbara do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Cruz do Arari",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Isabel do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Luzia do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Maria das Barreiras",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santa Maria do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santana do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santarém",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santarém Novo",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Santo Antônio do Tauá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Caetano de Odivelas",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Domingos do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Domingos do Capim",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Félix do Xingu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Francisco do Pará",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Geraldo do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São João da Ponta",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São João de Pirabas",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São João do Araguaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Miguel do Guamá",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "São Sebastião da Boa Vista",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Sapucaia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Senador José Porfírio",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Soure",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Tailândia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Terra Alta",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Terra Santa",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Tomé-Açu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Tracuateua",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Trairão",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Tucumã",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Tucuruí",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Ulianópolis",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Vigia",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Viseu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Vitória do Xingu",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Xinguara",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Serra do Navio",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Amapá",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Pedra Branca do Amapari",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Calçoene",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Cutias",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Ferreira Gomes",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Itaubal",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Laranjal do Jari",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Mazagão",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Oiapoque",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Porto Grande",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Pracuúba",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Santana",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Tartarugalzinho",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Vitória do Jari",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Abreulândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Aguiarnópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Aliança do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Almas",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Alvorada",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Ananás",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Angico",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Aparecida do Rio Negro",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Aragominas",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Araguacema",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Araguaçu",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Araguaína",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Araguanã",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Araguatins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Arapoema",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Arraias",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Augustinópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Aurora do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Axixá do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Babaçulândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Bandeirantes do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Barra do Ouro",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Barrolândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Bernardo Sayão",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Bom Jesus do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Brasilândia do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Brejinho de Nazaré",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Buriti do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Cachoeirinha",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Campos Lindos",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Cariri do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Carmolândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Carrasco Bonito",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Caseara",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Centenário",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Chapada de Areia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Chapada da Natividade",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Colinas do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Combinado",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Conceição do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Couto Magalhães",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Cristalândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Crixás do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Darcinópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Dianópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Divinópolis do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Dois Irmãos do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Dueré",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Esperantina",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Fátima",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Figueirópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Filadélfia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Formoso do Araguaia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Fortaleza do Tabocão",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Goianorte",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Goiatins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Guaraí",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Gurupi",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Ipueiras",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Itacajá",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Itaguatins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Itapiratins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Itaporã do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Jaú do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Juarina",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Lagoa da Confusão",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Lagoa do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Lajeado",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Lavandeira",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Lizarda",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Luzinópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Marianópolis do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Mateiros",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Maurilândia do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Miracema do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Miranorte",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Monte do Carmo",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Monte Santo do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Palmeiras do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Muricilândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Natividade",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Nazaré",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Nova Olinda",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Nova Rosalândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Novo Acordo",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Novo Alegre",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Novo Jardim",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Oliveira de Fátima",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Palmeirante",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Palmeirópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Paraíso do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Paranã",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pau D'Arco",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pedro Afonso",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Peixe",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pequizeiro",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Colméia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pindorama do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Piraquê",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pium",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Ponte Alta do Bom Jesus",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Ponte Alta do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Porto Alegre do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Porto Nacional",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Praia Norte",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Presidente Kennedy",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Pugmil",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Recursolândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Riachinho",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Rio da Conceição",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Rio dos Bois",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Rio Sono",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Sampaio",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Sandolândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Fé do Araguaia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Maria do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Rita do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Rosa do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Tereza do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Santa Terezinha do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Bento do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Félix do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Miguel do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Salvador do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Sebastião do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Valério",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Silvanópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Sítio Novo do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Sucupira",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Taguatinga",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Taipas do Tocantins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Talismã",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Tocantínia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Tocantinópolis",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Tupirama",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Tupiratins",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Wanderlândia",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Xambioá",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "Açailândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Afonso Cunha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Água Doce do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Alcântara",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Aldeias Altas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Altamira do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Alto Alegre do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Alto Alegre do Pindaré",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Alto Parnaíba",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Amapá do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Amarante do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Anajatuba",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Anapurus",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Apicum-Açu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Araguanã",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Araioses",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Arame",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Arari",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Axixá",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bacabal",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bacabeira",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bacuri",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bacurituba",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Balsas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Barão de Grajaú",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Barra do Corda",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Barreirinhas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Belágua",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bela Vista do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Benedito Leite",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bequimão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bernardo do Mearim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Boa Vista do Gurupi",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bom Jardim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bom Jesus das Selvas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Bom Lugar",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Brejo",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Brejo de Areia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Buriti",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Buriti Bravo",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Buriticupu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Buritirana",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cachoeira Grande",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cajapió",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cajari",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Campestre do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cândido Mendes",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cantanhede",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Capinzal do Norte",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Carolina",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Carutapera",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Caxias",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cedral",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Central do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Centro do Guilherme",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Centro Novo do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Chapadinha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cidelândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Codó",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Coelho Neto",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Colinas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Conceição do Lago-Açu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Coroatá",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cururupu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Davinópolis",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Dom Pedro",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Duque Bacelar",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Esperantinópolis",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Estreito",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Feira Nova do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Fernando Falcão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Formosa da Serra Negra",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Fortaleza dos Nogueiras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Fortuna",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Godofredo Viana",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Gonçalves Dias",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Archer",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Edison Lobão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Eugênio Barros",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Luiz Rocha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Newton Bello",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Governador Nunes Freire",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Graça Aranha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Grajaú",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Guimarães",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Humberto de Campos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Icatu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Igarapé do Meio",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Igarapé Grande",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Imperatriz",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Itaipava do Grajaú",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Itapecuru Mirim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Itinga do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Jatobá",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Jenipapo dos Vieiras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "João Lisboa",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Joselândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Junco do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lago da Pedra",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lago do Junco",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lago Verde",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lagoa do Mato",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lago dos Rodrigues",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lagoa Grande do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lajeado Novo",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Lima Campos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Loreto",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Luís Domingues",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Magalhães de Almeida",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Maracaçumé",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Marajá do Sena",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Maranhãozinho",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Mata Roma",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Matinha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Matões",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Matões do Norte",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Milagres do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Mirador",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Miranda do Norte",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Mirinzal",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Monção",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Montes Altos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Morros",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Nina Rodrigues",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Nova Colinas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Nova Iorque",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Nova Olinda do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Cariré",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Olho d'Água das Cunhãs",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Olinda Nova do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Paço do Lumiar",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Palmeirândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Paraibano",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Parnarama",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Passagem Franca",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pastos Bons",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Paulino Neves",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Paulo Ramos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pedreiras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pedro do Rosário",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Penalva",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Peri Mirim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Peritoró",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pindaré-Mirim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pinheiro",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pio XII",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Pirapemas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Poção de Pedras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Porto Franco",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Porto Rico do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Presidente Dutra",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Presidente Juscelino",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Presidente Médici",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Presidente Sarney",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Presidente Vargas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Primeira Cruz",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Raposa",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Riachão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Ribamar Fiquene",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Rosário",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Sambaíba",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Filomena do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Helena",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Inês",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Luzia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Luzia do Paruá",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Quitéria do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santa Rita",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santana do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santo Amaro do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Santo Antônio dos Lopes",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Benedito do Rio Preto",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Bento",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Bernardo",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Domingos do Azeitão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Domingos do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Félix de Balsas",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Francisco do Brejão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Francisco do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São João Batista",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São João do Carú",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São João do Paraíso",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São João do Soter",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São João dos Patos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São José de Ribamar",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São José dos Basílios",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Luís Gonzaga do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Mateus do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Pedro da Água Branca",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Pedro dos Crentes",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Raimundo das Mangabeiras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Raimundo do Doca Bezerra",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Roberto",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "São Vicente Ferrer",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Satubinha",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Senador Alexandre Costa",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Senador La Rocque",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Serrano do Maranhão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Sítio Novo",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Sucupira do Norte",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Sucupira do Riachão",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Tasso Fragoso",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Timbiras",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Timon",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Trizidela do Vale",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Tufilândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Tuntum",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Turiaçu",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Turilândia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Tutóia",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Urbano Santos",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Vargem Grande",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Viana",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Vila Nova dos Martírios",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Vitória do Mearim",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Vitorino Freire",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Zé Doca",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Acauã",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Agricolândia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Água Branca",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Alagoinha do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Alegrete do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Alto Longá",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Altos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Alvorada do Gurguéia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Amarante",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Angical do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Anísio de Abreu",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Antônio Almeida",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Aroazes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Aroeiras do Itaim",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Arraial",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Assunção do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Avelino Lopes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Baixa Grande do Ribeiro",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Barra D'Alcântara",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Barras",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Barreiras do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Barro Duro",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Batalha",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bela Vista do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Belém do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Beneditinos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bertolínia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Betânia do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Boa Hora",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bocaina",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bom Jesus",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bom Princípio do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Bonfim do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Boqueirão do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Brasileira",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Brejo do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Buriti dos Lopes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Buriti dos Montes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cabeceiras do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cajazeiras do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cajueiro da Praia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Caldeirão Grande do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Campinas do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Campo Alegre do Fidalgo",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Campo Grande do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Campo Largo do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Campo Maior",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Canavieira",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Canto do Buriti",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Capitão de Campos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Capitão Gervásio Oliveira",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Caracol",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Caraúbas do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Caridade do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Castelo do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Caxingó",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cocal",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cocal de Telha",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cocal dos Alves",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Coivaras",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Colônia do Gurguéia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Colônia do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Conceição do Canindé",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Coronel José Dias",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Corrente",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cristalândia do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Cristino Castro",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Curimatá",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Currais",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Curralinhos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Curral Novo do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Demerval Lobão",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Dirceu Arcoverde",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Dom Expedito Lopes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Domingos Mourão",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Dom Inocêncio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Elesbão Veloso",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Eliseu Martins",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Esperantina",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Fartura do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Flores do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Floresta do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Floriano",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Francinópolis",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Francisco Ayres",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Francisco Macedo",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Francisco Santos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Fronteiras",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Geminiano",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Gilbués",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Guadalupe",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Guaribas",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Hugo Napoleão",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Ilha Grande",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Inhuma",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Ipiranga do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Isaías Coelho",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Itainópolis",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Itaueira",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jacobina do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jaicós",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jardim do Mulato",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jatobá do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jerumenha",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "João Costa",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Joaquim Pires",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Joca Marques",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "José de Freitas",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Juazeiro do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Júlio Borges",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Jurema",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoinha do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoa Alegre",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoa do Barro do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoa de São Francisco",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoa do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Lagoa do Sítio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Landri Sales",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Luís Correia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Luzilândia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Madeiro",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Manoel Emídio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Marcolândia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Marcos Parente",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Massapê do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Matias Olímpio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Miguel Alves",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Miguel Leão",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Milton Brandão",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Monsenhor Gil",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Monsenhor Hipólito",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Monte Alegre do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Morro Cabeça no Tempo",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Morro do Chapéu do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Murici dos Portelas",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Nazaré do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Nazária",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Nossa Senhora de Nazaré",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Nossa Senhora dos Remédios",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Novo Oriente do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Novo Santo Antônio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Oeiras",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Olho D'Água do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Padre Marcos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Paes Landim",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pajeú do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Palmeira do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Palmeirais",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Paquetá",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Parnaguá",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Parnaíba",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Passagem Franca do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Patos do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pau D'Arco do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Paulistana",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pavussu",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pedro II",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pedro Laurentino",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Nova Santa Rita",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Picos",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pimenteiras",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Pio IX",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Piracuruca",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Piripiri",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Porto",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Porto Alegre do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Prata do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Queimada Nova",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Redenção do Gurguéia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Regeneração",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Riacho Frio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Ribeira do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Ribeiro Gonçalves",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Rio Grande do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santa Cruz do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santa Cruz dos Milagres",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santa Filomena",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santa Luz",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santana do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santa Rosa do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santo Antônio de Lisboa",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santo Antônio dos Milagres",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Santo Inácio do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Braz do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Félix do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Francisco de Assis do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Francisco do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Gonçalo do Gurguéia",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Gonçalo do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João da Canabrava",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João da Fronteira",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João da Serra",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João da Varjota",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João do Arraial",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São João do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São José do Divino",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São José do Peixe",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São José do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Julião",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Lourenço do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Luis do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Miguel da Baixa Grande",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Miguel do Fidalgo",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Miguel do Tapuio",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Pedro do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "São Raimundo Nonato",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Sebastião Barros",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Sebastião Leal",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Sigefredo Pacheco",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Simões",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Simplício Mendes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Socorro do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Sussuapara",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Tamboril do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Tanque do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "União",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Uruçuí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Valença do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Várzea Branca",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Várzea Grande",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Vera Mendes",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Vila Nova do Piauí",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Wall Ferraz",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Abaiara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Acarape",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Acaraú",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Acopiara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aiuaba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Alcântaras",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Altaneira",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Alto Santo",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Amontada",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Antonina do Norte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Apuiarés",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aquiraz",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aracati",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aracoiaba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ararendá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Araripe",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aratuba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Arneiroz",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Assaré",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Aurora",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Baixio",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Banabuiú",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Barbalha",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Barreira",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Barro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Barroquinha",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Baturité",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Beberibe",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Bela Cruz",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Boa Viagem",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Brejo Santo",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Camocim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Campos Sales",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Canindé",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Capistrano",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Caridade",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Caririaçu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Cariús",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Carnaubal",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Cascavel",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Catarina",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Catunda",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Caucaia",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Cedro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Chaval",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Choró",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Chorozinho",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Coreaú",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Crateús",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Crato",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Croatá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Cruz",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Deputado Irapuan Pinheiro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ererê",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Eusébio",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Farias Brito",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Forquilha",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "São Domingos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Fortim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Frecheirinha",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "General Sampaio",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Graça",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Granja",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Granjeiro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Groaíras",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Guaiúba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Guaraciaba do Norte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Guaramiranga",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Hidrolândia",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Horizonte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ibaretama",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ibiapina",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ibicuitinga",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Icapuí",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Iguatu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Independência",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ipaporanga",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ipaumirim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ipu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ipueiras",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Iracema",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Irauçuba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itaiçaba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itaitinga",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itapagé",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itapipoca",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itapiúna",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itarema",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Itatira",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Santa Rosa de Lima",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Jaguaretama",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jaguaribara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jaguaribe",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jaguaruana",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jardim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jati",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jijoca de Jericoacoara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Juazeiro do Norte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Jucás",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Lavras da Mangabeira",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Limoeiro do Norte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Madalena",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Maracanaú",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Maranguape",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Marco",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Martinópole",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Massapê",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Mauriti",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Meruoca",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Milagres",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Milhã",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Miraíma",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Missão Velha",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Mombaça",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Monsenhor Tabosa",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Morada Nova",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Moraújo",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Morrinhos",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Mucambo",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Mulungu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Nova Olinda",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Nova Russas",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Novo Oriente",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ocara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Orós",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pacajus",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pacatuba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pacoti",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pacujá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Palhano",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Palmácia",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Paracuru",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Paraipaba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Parambu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Paramoti",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pedra Branca",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Penaforte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pentecoste",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pereiro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pindoretama",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Piquet Carneiro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Pires Ferreira",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Poranga",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Porteiras",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Potengi",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Potiretama",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Quiterianópolis",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Quixadá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Quixelô",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Quixeramobim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Quixeré",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Redenção",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Reriutaba",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Russas",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Saboeiro",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Salitre",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Santana do Acaraú",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Santana do Cariri",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Santa Quitéria",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "São Benedito",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "São Gonçalo do Amarante",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "São João do Jaguaribe",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "São Luís do Curu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Senador Pompeu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Senador Sá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Sobral",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Solonópole",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tabuleiro do Norte",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tamboril",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tarrafas",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tauá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tejuçuoca",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tianguá",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Trairi",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Tururu",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Ubajara",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Umari",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Umirim",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Uruburetama",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Uruoca",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Varjota",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Várzea Alegre",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Viçosa do Ceará",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Acari",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Açu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Afonso Bezerra",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Água Nova",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Alexandria",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Almino Afonso",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Alto do Rodrigues",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Angicos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Antônio Martins",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Apodi",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Areia Branca",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Arês",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Campo Grande",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Baía Formosa",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Baraúna",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Barcelona",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Bento Fernandes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Bodó",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Bom Jesus",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Brejinho",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Caiçara do Norte",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Caiçara do Rio do Vento",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Caicó",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Campo Redondo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Canguaretama",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Caraúbas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Carnaúba dos Dantas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Carnaubais",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ceará-Mirim",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Cerro Corá",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Coronel Ezequiel",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Coronel João Pessoa",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Cruzeta",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Currais Novos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Doutor Severiano",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Parnamirim",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Encanto",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Equador",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Espírito Santo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Extremoz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Felipe Guerra",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Fernando Pedroza",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Florânia",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Francisco Dantas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Frutuoso Gomes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Galinhos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Goianinha",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Governador Dix-Sept Rosado",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Grossos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Guamaré",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ielmo Marinho",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ipanguaçu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ipueira",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Itajá",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Itaú",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jaçanã",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jandaíra",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Janduís",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Januário Cicco",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Japi",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jardim de Angicos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jardim de Piranhas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jardim do Seridó",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "João Câmara",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "João Dias",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "José da Penha",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jucurutu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Jundiá",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lagoa d'Anta",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lagoa de Pedras",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lagoa de Velhos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lagoa Nova",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lagoa Salgada",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lajedo",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lajes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lajes Pintadas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Lucrécia",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Luís Gomes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Macaíba",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Macau",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Major Sales",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Marcelino Vieira",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Martins",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Maxaranguape",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Messias Targino",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Montanhas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Monte Alegre",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Monte das Gameleiras",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Mossoró",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Nísia Floresta",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Nova Cruz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Olho-d'Água do Borges",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ouro Branco",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Paraná",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Paraú",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Parazinho",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Parelhas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Rio do Fogo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Passa e Fica",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Passagem",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Patu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Santa Maria",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pau dos Ferros",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pedra Grande",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pedra Preta",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pedro Avelino",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pedro Velho",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pendências",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pilões",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Poço Branco",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Portalegre",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Porto do Mangue",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serra Caiada",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Pureza",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Rafael Fernandes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Rafael Godeiro",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Riacho da Cruz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Riacho de Santana",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Riachuelo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Rodolfo Fernandes",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Tibau",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Ruy Barbosa",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Santa Cruz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Santana do Matos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Santana do Seridó",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Santo Antônio",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Bento do Norte",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Bento do Trairí",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Fernando",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Francisco do Oeste",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Gonçalo do Amarante",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São João do Sabugi",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São José de Mipibu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São José do Campestre",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São José do Seridó",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Miguel",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Miguel do Gostoso",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Paulo do Potengi",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Pedro",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Rafael",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Tomé",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "São Vicente",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Senador Elói de Souza",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Senador Georgino Avelino",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serra de São Bento",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serra do Mel",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serra Negra do Norte",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serrinha",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Serrinha dos Pintos",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Itamari",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Severiano Melo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Sítio Novo",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Taboleiro Grande",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Taipu",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Tangará",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Tenente Ananias",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Tenente Laurentino Cruz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Tibau do Sul",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Timbaúba dos Batistas",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Touros",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Triunfo Potiguar",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Umarizal",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Upanema",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Várzea",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Venha-Ver",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Vera Cruz",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Viçosa",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Vila Flor",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "Água Branca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Aguiar",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Alagoa Grande",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Alagoa Nova",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Alagoinha",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Alcantil",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Algodão de Jandaíra",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Alhandra",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São João do Rio do Peixe",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Amparo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Aparecida",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Araçagi",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Arara",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Araruna",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Areia",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Areia de Baraúnas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Areial",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Aroeiras",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Assunção",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Baía da Traição",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bananeiras",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Baraúna",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Barra de Santana",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Barra de Santa Rosa",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Barra de São Miguel",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bayeux",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Belém",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Belém do Brejo do Cruz",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bernardino Batista",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Boa Ventura",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Boa Vista",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bom Jesus",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bom Sucesso",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Bonito de Santa Fé",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Boqueirão",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Igaracy",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Borborema",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Brejo do Cruz",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Brejo dos Santos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Caaporã",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cabaceiras",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cabedelo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cachoeira dos Índios",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cacimba de Areia",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cacimba de Dentro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cacimbas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Caiçara",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cajazeiras",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cajazeirinhas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Caldas Brandão",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Camalaú",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Campina Grande",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Capim",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Caraúbas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Carrapateira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Casserengue",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Catingueira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Catolé do Rocha",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Caturité",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Conceição",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Condado",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Conde",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Congo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Coremas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Coxixola",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cruz do Espírito Santo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cubati",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cuité",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cuitegi",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Cuité de Mamanguape",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Curral de Cima",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Curral Velho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Damião",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Desterro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Vista Serrana",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Diamante",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Dona Inês",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Duas Estradas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Emas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Esperança",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Fagundes",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Frei Martinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Gado Bravo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Guarabira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Gurinhém",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Gurjão",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Ibiara",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Imaculada",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Ingá",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Itabaiana",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Itaporanga",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Itapororoca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Itatuba",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Jacaraú",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Jericó",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Juarez Távora",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Juazeirinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Junco do Seridó",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Juripiranga",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Juru",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lagoa",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lagoa de Dentro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lagoa Seca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lastro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Livramento",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Logradouro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Lucena",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Malta",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mamanguape",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Manaíra",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Marcação",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mari",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Marizópolis",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Massaranduba",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mataraca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Matinhas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mato Grosso",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Maturéia",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mogeiro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Montadas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Monte Horebe",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Monteiro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Mulungu",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Natuba",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Nazarezinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Nova Floresta",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Nova Olinda",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Nova Palmeira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Olho d'Água",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Olivedos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Ouro Velho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Parari",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Passagem",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Patos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Paulista",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pedra Branca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pedra Lavrada",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pedras de Fogo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Piancó",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Picuí",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pilar",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pilões",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pilõezinhos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pirpirituba",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pitimbu",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pocinhos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Poço Dantas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Poço de José de Moura",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pombal",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Prata",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Princesa Isabel",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Puxinanã",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Queimadas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Quixabá",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Remígio",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Pedro Régis",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Riachão",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Barra dos Coqueiros",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Riachão do Bacamarte",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Riachão do Poço",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Riacho de Santo Antônio",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Riacho dos Cavalos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Rio Tinto",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Salgadinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Salgado de São Félix",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Cecília",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Cruz",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Helena",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Inês",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Luzia",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santana de Mangueira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santana dos Garrotes",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Joca Claudino",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Rita",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santa Teresinha",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Santo André",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Bento",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Bentinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Domingos do Cariri",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Francisco",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São João do Cariri",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São João do Tigre",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José da Lagoa Tapada",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José de Caiana",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José de Espinharas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José dos Ramos",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José de Piranhas",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José de Princesa",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José do Bonfim",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José do Brejo do Cruz",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José do Sabugi",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São José dos Cordeiros",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Mamede",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Miguel de Taipu",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Sebastião de Lagoa de Roça",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Sebastião do Umbuzeiro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sapé",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "São Vicente do Seridó",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Serra Branca",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Serra da Raiz",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Serra Grande",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Serra Redonda",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Serraria",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sertãozinho",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sobrado",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Solânea",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Soledade",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sossêgo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sousa",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Sumé",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Tacima",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Taperoá",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Tavares",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Teixeira",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Tenório",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Triunfo",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Uiraúna",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Umbuzeiro",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Várzea",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Vieirópolis",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Zabelê",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Abreu e Lima",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Afogados da Ingazeira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Afrânio",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Agrestina",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Água Preta",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Águas Belas",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Alagoinha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Aliança",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Altinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Amaraji",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Angelim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Araçoiaba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Araripina",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Arcoverde",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Barra de Guabiraba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Barreiros",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Belém de Maria",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Belém do São Francisco",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Belo Jardim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Betânia",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Bezerros",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Bodocó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Bom Conselho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Bom Jardim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Bonito",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Brejão",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Brejinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Brejo da Madre de Deus",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Buenos Aires",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Buíque",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cabo de Santo Agostinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cabrobó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cachoeirinha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Caetés",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Calçado",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Calumbi",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Camaragibe",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Camocim de São Félix",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Camutanga",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Canhotinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Capoeiras",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Carnaíba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Carnaubeira da Penha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Carpina",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Caruaru",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Casinhas",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Catende",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cedro",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Chã de Alegria",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Chã Grande",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Condado",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Correntes",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cortês",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cumaru",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Cupira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Custódia",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Dormentes",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Escada",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Exu",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Feira Nova",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Fernando de Noronha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ferreiros",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Flores",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Floresta",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Frei Miguelinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Gameleira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Garanhuns",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Glória do Goitá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Goiana",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Granito",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Gravatá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Iati",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ibimirim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ibirajuba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Igarassu",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Iguaraci",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Inajá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ingazeira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ipojuca",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ipubi",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itacuruba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itaíba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ilha de Itamaracá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itambé",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itapetim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itapissuma",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Itaquitinga",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jaboatão dos Guararapes",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jaqueira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jataúba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jatobá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "João Alfredo",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Joaquim Nabuco",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jucati",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jupi",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Jurema",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lagoa do Carro",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lagoa de Itaenga",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lagoa do Ouro",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lagoa dos Gatos",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Lagoa Grande",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Limoeiro",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Macaparana",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Machados",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Manari",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Maraial",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Mirandiba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Moreno",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Nazaré da Mata",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Olinda",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Orobó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Orocó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ouricuri",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Palmares",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Palmeirina",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Panelas",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Paranatama",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Parnamirim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Passira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Paudalho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Paulista",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Pedra",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Pesqueira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Petrolândia",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Petrolina",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Poção",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Pombos",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Primavera",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Quipapá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Quixaba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Riacho das Almas",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Ribeirão",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Rio Formoso",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Sairé",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Salgadinho",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Salgueiro",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Saloá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Sanharó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Cruz",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Cruz da Baixa Verde",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Cruz do Capibaribe",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Filomena",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Maria da Boa Vista",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Maria do Cambucá",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Santa Terezinha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Benedito do Sul",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Bento do Una",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Caitano",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São João",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Joaquim do Monte",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São José da Coroa Grande",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São José do Belmonte",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São José do Egito",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Lourenço da Mata",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "São Vicente Ferrer",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Serra Talhada",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Serrita",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Sertânia",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Sirinhaém",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Moreilândia",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Solidão",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Surubim",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tabira",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tacaimbó",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tacaratu",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tamandaré",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Taquaritinga do Norte",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Terezinha",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Terra Nova",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Timbaúba",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Toritama",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tracunhaém",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Trindade",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Triunfo",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tupanatinga",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Tuparetama",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Venturosa",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Verdejante",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Vertente do Lério",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Vertentes",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Vicência",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Vitória de Santo Antão",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Xexéu",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Água Branca",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Anadia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Arapiraca",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Atalaia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jussiape",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra de Santo Antônio",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Barra de São Miguel",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Batalha",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Belém",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Belo Monte",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Boca da Mata",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Branquinha",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Cacimbinhas",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Cajueiro",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Campestre",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Campo Alegre",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Campo Grande",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Canapi",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Capela",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Carneiros",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Chã Preta",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Coité do Nóia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Colônia Leopoldina",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Coqueiro Seco",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Coruripe",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Craíbas",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Delmiro Gouveia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Dois Riachos",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Riachuelo",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Estrela de Alagoas",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Feira Grande",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Feliz Deserto",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Flexeiras",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Girau do Ponciano",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Ibateguara",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Igaci",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Igreja Nova",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Inhapi",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jacaré dos Homens",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jacuípe",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Japaratinga",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jaramataia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jequiá da Praia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Joaquim Gomes",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Jundiá",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Junqueiro",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Lagoa da Canoa",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Limoeiro de Anadia",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Major Isidoro",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Maragogi",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Maravilha",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Marechal Deodoro",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Maribondo",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Mar Vermelho",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Mata Grande",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Matriz de Camaragibe",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Messias",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Minador do Negrão",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Monteirópolis",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Murici",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Ribeirópolis",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Novo Lino",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Olho d'Água das Flores",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Olho d'Água do Casado",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Olho d'Água Grande",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Olivença",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Ouro Branco",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Palestina",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Palmeira dos Índios",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Pão de Açúcar",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Pariconha",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Paripueira",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Passo de Camaragibe",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Paulo Jacinto",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Penedo",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Piaçabuçu",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Pilar",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Pindoba",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Piranhas",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Poço das Trincheiras",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Porto Calvo",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Porto de Pedras",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Porto Real do Colégio",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Quebrangulo",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Rio Largo",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Roteiro",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Santa Luzia do Norte",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Santana do Ipanema",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Santana do Mundaú",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São Brás",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São José da Laje",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São José da Tapera",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São Luís do Quitunde",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São Miguel dos Campos",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São Miguel dos Milagres",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "São Sebastião",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Satuba",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Senador Rui Palmeira",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Tanque d'Arca",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Taquarana",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Teotônio Vilela",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Traipu",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "União dos Palmares",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Viçosa",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Amparo de São Francisco",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Aquidabã",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Arauá",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Areia Branca",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Boquim",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Brejo Grande",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Campo do Brito",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Canhoba",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Canindé de São Francisco",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Capela",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Carira",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Carmópolis",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Cedro de São João",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Cristinápolis",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Cumbe",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Divina Pastora",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Estância",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Feira Nova",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Frei Paulo",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Gararu",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "General Maynard",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Gracho Cardoso",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Ilha das Flores",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Indiaroba",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Itabaiana",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Itabaianinha",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Itabi",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Itaporanga d'Ajuda",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Japaratuba",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Japoatã",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Lagarto",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Laranjeiras",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Macambira",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Malhada dos Bois",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Malhador",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Maruim",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Moita Bonita",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Monte Alegre de Sergipe",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Muribeca",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Neópolis",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Nossa Senhora Aparecida",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Nossa Senhora da Glória",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Nossa Senhora das Dores",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Nossa Senhora de Lourdes",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Nossa Senhora do Socorro",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Pacatuba",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Pedra Mole",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Pedrinhas",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Pinhão",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Pirambu",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Poço Redondo",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Poço Verde",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Porto da Folha",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Propriá",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Riachão do Dantas",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Rosário do Catete",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Salgado",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Santa Luzia do Itanhy",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Santana do São Francisco",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Santo Amaro das Brotas",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "São Cristóvão",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "São Domingos",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "São Francisco",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "São Miguel do Aleixo",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Simão Dias",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Siriri",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Telha",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Tobias Barreto",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Tomar do Geru",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Umbaúba",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Abaíra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Abaré",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Acajutiba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Adustina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Água Fria",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Érico Cardoso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aiquara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Alagoinhas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Alcobaça",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Almadina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Amargosa",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Amélia Rodrigues",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "América Dourada",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Anagé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Andaraí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Andorinha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Angical",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Anguera",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Antas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Antônio Cardoso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Antônio Gonçalves",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aporá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Apuarema",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aracatu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Araças",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Araci",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aramari",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Arataca",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aratuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Aurelino Leal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Baianópolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Baixa Grande",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Banzaê",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra da Estiva",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra do Choça",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra do Mendes",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barra do Rocha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barreiras",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barro Alto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barrocas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Barro Preto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Belmonte",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Belo Campo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Biritinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Boa Nova",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Boa Vista do Tupim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Bom Jesus da Lapa",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Bom Jesus da Serra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Boninal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Bonito",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Boquira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Botuporã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Brejões",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Brejolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Brotas de Macaúbas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Brumado",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Buerarema",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Buritirama",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caatiba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cabaceiras do Paraguaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cachoeira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caculé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caém",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caetanos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caetité",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cafarnaum",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cairu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caldeirão Grande",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Camacan",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Camaçari",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Camamu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Campo Alegre de Lourdes",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Campo Formoso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Canápolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Canarana",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Canavieiras",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Candeal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Candeias",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Candiba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cândido Sales",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cansanção",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Canudos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Capela do Alto Alegre",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Capim Grosso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caraíbas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caravelas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cardeal da Silva",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Carinhanha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Casa Nova",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Castro Alves",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Catolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Catu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Caturama",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Central",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Chorrochó",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cícero Dantas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cipó",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Coaraci",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cocos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Conceição da Feira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Conceição do Almeida",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Conceição do Coité",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Conceição do Jacuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Conde",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Condeúba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Contendas do Sincorá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Coração de Maria",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cordeiros",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Coribe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Coronel João Sá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Correntina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cotegipe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cravolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Crisópolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cristópolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cruz das Almas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Curaçá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Dário Meira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Dias d'Ávila",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Dom Basílio",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Dom Macedo Costa",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Elísio Medrado",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Encruzilhada",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Entre Rios",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Esplanada",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Euclides da Cunha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Eunápolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Fátima",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Feira da Mata",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Feira de Santana",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Filadélfia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Firmino Alves",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Floresta Azul",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Formosa do Rio Preto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Gandu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Gavião",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Gentio do Ouro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Glória",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Gongogi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Governador Mangabeira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Guajeru",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Guanambi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Guaratinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Heliópolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Iaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibiassucê",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibicaraí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibicoara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibicuí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibipeba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibipitanga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibiquera",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibirapitanga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibirapuã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibirataia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibitiara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibititá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ibotirama",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ichu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Igaporã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Igrapiúna",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Iguaí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaquara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ilhéus",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Inhambupe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ipecaetá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ipiaú",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ipirá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ipupiara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Irajuba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Iramaia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Iraquara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Irará",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Irecê",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itabela",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaberaba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itabuna",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itacaré",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaeté",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itagi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itagibá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itagimirim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaguaçu da Bahia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaju do Colônia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itajuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itamaraju",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itambé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itanagra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itanhém",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itaparica",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itapé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itapebi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itapetinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itapicuru",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itapitanga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itarantim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itatim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itiruçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itiúba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Itororó",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ituaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ituberá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Iuiú",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jaborandi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jacaraci",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jacobina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jaguaquara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jaguarari",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jaguaripe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jandaíra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jequié",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jeremoabo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jiquiriçá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jitaúna",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "João Dourado",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Juazeiro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jucuruçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jussara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Jussari",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lafaiete Coutinho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lagoa Real",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Laje",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lajedão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lajedinho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lajedo do Tabocal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lamarão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lauro de Freitas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Lençóis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Licínio de Almeida",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Livramento de Nossa Senhora",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Luís Eduardo Magalhães",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Macajuba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Macarani",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Macaúbas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Macururé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Madre de Deus",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Maetinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Maiquinique",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mairi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Malhada",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Malhada de Pedras",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Manoel Vitorino",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mansidão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Maracás",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Maragogipe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Maraú",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Marcionílio Souza",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mascote",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mata de São João",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Matina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Medeiros Neto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Miguel Calmon",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Milagres",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mirangaba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mirante",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Monte Santo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Morpará",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Morro do Chapéu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mortugaba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mucugê",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mucuri",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mulungu do Morro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mundo Novo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Muniz Ferreira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Muquém de São Francisco",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Muritiba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Mutuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nazaré",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nilo Peçanha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nordestina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Canaã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Fátima",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Ibiá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Itarana",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Redenção",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Soure",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Nova Viçosa",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Novo Horizonte",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Novo Triunfo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Olindina",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Oliveira dos Brejinhos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ouriçangas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ourolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Palmas de Monte Alto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Palmeiras",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Paramirim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Paratinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Cajuri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paripiranga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pau Brasil",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Paulo Afonso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pé de Serra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pedrão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pedro Alexandre",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Piatã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pilão Arcado",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pindaí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pindobaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pintadas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Piraí do Norte",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Piripá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Piritiba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Planaltino",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Planalto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Poções",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Pojuca",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ponto Novo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Porto Seguro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Potiraguá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Prado",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Presidente Dutra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Presidente Jânio Quadros",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Presidente Tancredo Neves",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Queimadas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Quijingue",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Quixabeira",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rafael Jambeiro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Remanso",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Retirolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Riachão das Neves",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Riachão do Jacuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Riacho de Santana",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ribeira do Amparo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ribeira do Pombal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ribeirão do Largo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rio de Contas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rio do Antônio",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rio do Pires",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rio Real",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Rodelas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ruy Barbosa",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Salinas da Margarida",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Bárbara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Brígida",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Cruz Cabrália",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Cruz da Vitória",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Inês",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santaluz",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Luzia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Maria da Vitória",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santana",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santanópolis",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Rita de Cássia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santa Teresinha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santo Amaro",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santo Antônio de Jesus",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Santo Estêvão",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Desidério",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Domingos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Félix",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Félix do Coribe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Felipe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Francisco do Conde",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Gabriel",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Gonçalo dos Campos",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São José da Vitória",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São José do Jacuípe",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Miguel das Matas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "São Sebastião do Passé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sapeaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sátiro Dias",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Saubara",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Saúde",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Seabra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sebastião Laranjeiras",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Senhor do Bonfim",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Serra do Ramalho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sento Sé",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Serra Dourada",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Serra Preta",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Serrinha",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Serrolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Simões Filho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sítio do Mato",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sítio do Quinto",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Sobradinho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Souto Soares",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tabocas do Brejo Velho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tanhaçu",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tanque Novo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tanquinho",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Taperoá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tapiramutá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Teixeira de Freitas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Teodoro Sampaio",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Teofilândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Teolândia",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Terra Nova",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tremedal",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Tucano",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Uauá",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ubaíra",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ubaitaba",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Ubatã",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Uibaí",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Umburanas",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Una",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Urandi",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Uruçuca",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Utinga",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Valença",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Valente",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Várzea da Roça",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Várzea do Poço",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Várzea Nova",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Varzedo",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Vera Cruz",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Vereda",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Vitória da Conquista",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Wagner",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Wanderley",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Wenceslau Guimarães",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Xique-Xique",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Abadia dos Dourados",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Abaeté",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Abre Campo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Acaiaca",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Açucena",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Água Boa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Água Comprida",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Aguanil",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Águas Formosas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Águas Vermelhas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Aimorés",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Aiuruoca",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alagoa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Albertina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Além Paraíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alfenas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alfredo Vasconcelos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Almenara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alpercata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alpinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alterosa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alto Caparaó",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alto Rio Doce",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alvarenga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alvinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alvorada de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Amparo do Serra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Andradas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cachoeira de Pajeú",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Andrelândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Angelândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Antônio Carlos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Antônio Dias",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Antônio Prado de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araçaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Aracitaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araçuaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araguari",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Arantina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araponga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araporã",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Arapuá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caratinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araújos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Araxá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Arceburgo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Arcos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Areado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Argirita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Aricanduva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Arinos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Astolfo Dutra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ataléia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Augusto de Lima",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Baependi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Baldim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bambuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bandeira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bandeira do Sul",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Barão de Cocais",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Barão de Monte Alto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Barbacena",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Barra Longa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Barroso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bela Vista de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Belmiro Braga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Belo Oriente",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Belo Vale",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Berilo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bertópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Berizal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Betim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bias Fortes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bicas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Biquinhas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Boa Esperança",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bocaina de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bocaiúva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Despacho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Jardim de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Jesus da Penha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Jesus do Amparo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Jesus do Galho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Repouso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bom Sucesso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bonfim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bonfinópolis de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bonito de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Borda da Mata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Botelhos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Botumirim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Brasilândia de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Brasília de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Brás Pires",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Braúnas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Brazópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Brumadinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bueno Brandão",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Buenópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bugre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Buritis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Buritizeiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cabeceira Grande",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cabo Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cachoeira da Prata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cachoeira de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cachoeira Dourada",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caetanópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caeté",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caiana",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caldas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Camacho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Camanducaia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cambuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cambuquira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campanário",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campanha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campestre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campina Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campo Azul",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campo Belo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campo do Meio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campo Florido",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campos Altos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Campos Gerais",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Canaã",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Canápolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cana Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Candeias",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cássia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cantagalo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caparaó",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capela Nova",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capelinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capetinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capim Branco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capitão Andrade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capitão Enéas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Capitólio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caputira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caraí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caranaíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carandaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carangola",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carbonita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Careaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carlos Chagas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmésia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo da Cachoeira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo da Mata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo do Cajuru",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo do Paranaíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmo do Rio Claro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carmópolis de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carneirinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carrancas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carvalhópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Carvalhos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Casa Grande",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cascalho Rico",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição da Barra de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cataguases",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Catas Altas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Catas Altas da Noruega",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Catuji",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Catuti",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Caxambu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cedro do Abaeté",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Central de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Centralina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Chácara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Chalé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Chapada do Norte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Chapada Gaúcha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Chiador",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cipotânea",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Claraval",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Claro dos Poções",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cláudio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coimbra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coluna",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Comendador Gomes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Comercinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição da Aparecida",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição das Pedras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição das Alagoas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição de Ipanema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição do Mato Dentro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição do Pará",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição do Rio Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conceição dos Ouros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cônego Marinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Confins",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Congonhal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Congonhas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Congonhas do Norte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conquista",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conselheiro Lafaiete",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Conselheiro Pena",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Consolação",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Contagem",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coqueiral",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coração de Jesus",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cordisburgo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cordislândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Corinto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coroaci",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coromandel",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coronel Fabriciano",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coronel Murta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coronel Pacheco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Coronel Xavier Chaves",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Córrego Danta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Córrego do Bom Jesus",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Córrego Fundo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Córrego Novo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Couto de Magalhães de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Crisólita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cristais",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cristália",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cristiano Otoni",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cristina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Crucilândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Doresópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cruzeiro da Fortaleza",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cruzília",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Cuparaque",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Curral de Dentro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Curvelo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Datas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Delfim Moreira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Delfinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Delta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Descoberto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Desterro de Entre Rios",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Desterro do Melo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Diamantina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Diogo de Vasconcelos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dionísio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divinésia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divino das Laranjeiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divinolândia de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divisa Alegre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divisa Nova",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Divisópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dom Bosco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dom Cavati",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dom Joaquim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dom Silvério",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dom Viçoso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dona Eusébia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dores de Campos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dores de Guanhães",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dores do Indaiá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Dores do Turvo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Douradoquara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Durandé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Elói Mendes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Engenheiro Caldas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Engenheiro Navarro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Entre Folhas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Entre Rios de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ervália",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibiaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Esmeraldas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Espera Feliz",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Espinosa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Espírito Santo do Dourado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Estiva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Estrela Dalva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Estrela do Indaiá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Estrela do Sul",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Eugenópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ewbank da Câmara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Extrema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Faria Lemos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Felício dos Santos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gonçalo do Rio Preto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Felisburgo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Felixlândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fernandes Tourinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ferros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fervedouro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Florestal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Formiga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Formoso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fortaleza de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fortuna de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Francisco Badaró",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Francisco Dumont",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Francisco Sá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Franciscópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Frei Gaspar",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Frei Inocêncio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Frei Lagonegro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fronteira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fronteira dos Vales",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Fruta de Leite",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Frutal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Funilândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Galiléia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Gameleiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Glaucilândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Goiabeira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Goianá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Gonçalves",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Gonzaga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Gouveia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Governador Valadares",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Grão Mogol",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Grupiara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guanhães",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guapé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guaraciaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guaraciama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guaranésia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guarani",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guarará",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guarda-Mor",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guaxupé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guidoval",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guimarânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Guiricema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Gurinhatã",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Heliodora",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Iapu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibertioga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibiá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibiracatu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibiraci",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibirité",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibitiúra de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ibituruna",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Icaraí de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Igarapé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Igaratinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Iguatama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ijaci",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ilicínea",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Imbé de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Inconfidentes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Indaiabira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Indianópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ingaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Inhapim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Inhaúma",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Inimutaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ipaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ipanema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ipatinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ipiaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ipuiúna",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Iraí de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itabira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itabirinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itabirito",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itacambira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itacarambi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaguara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaipé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itajubá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itamarandiba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itamarati de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itambacuri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itambé do Mato Dentro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itamogi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itamonte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itanhandu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itanhomi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaobim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itapagipe",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itapecerica",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itapeva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itatiaiuçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaú de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaúna",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itaverava",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itueta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ituiutaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itumirim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Iturama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Itutinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jaboticatubas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jacinto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jacuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jacutinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jaguaraçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jaíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jampruca",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Janaúba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Januária",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Japaraíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Japonvar",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jeceaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jenipapo de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jequeri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jequitaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jequitibá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jequitinhonha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jesuânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Joaíma",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Joanésia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "João Monlevade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "João Pinheiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Joaquim Felício",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Jordânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "José Gonçalves de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "José Raydan",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Josenópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova União",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Juatuba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Juiz de Fora",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Juramento",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Juruaia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Juvenília",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ladainha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagamar",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa da Prata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa dos Patos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa Dourada",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa Formosa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa Grande",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lagoa Santa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lajinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lambari",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lamim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Laranjal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lassance",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lavras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Leandro Ferreira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Leme do Prado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Leopoldina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Liberdade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lima Duarte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Limeira do Oeste",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Lontra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Luisburgo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Luislândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Luminárias",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Luz",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Machacalis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Machado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Madre de Deus de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Malacacheta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mamonas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Manga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Manhuaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Manhumirim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mantena",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Maravilhas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mar de Espanha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Maria da Fé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mariana",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Marilac",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mário Campos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Maripá de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Marliéria",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Marmelópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Martinho Campos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Martins Soares",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mata Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Materlândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mateus Leme",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Matias Barbosa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Matias Cardoso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Matipó",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mato Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Matozinhos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Matutina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Medeiros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Medina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mendes Pimentel",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mercês",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mesquita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Minas Novas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Minduri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mirabela",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Miradouro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Miraí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Miravânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Moeda",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Moema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monjolos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monsenhor Paulo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Montalvânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Alegre de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Azul",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Belo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Carmelo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Formoso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Santo de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Montes Claros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Monte Sião",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Montezuma",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Morada Nova de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Morro da Garça",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Morro do Pilar",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Munhoz",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Muriaé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mutum",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Muzambinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nacip Raydan",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nanuque",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Naque",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Natalândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Natércia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nazareno",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nepomuceno",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ninheira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Belém",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Era",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Lima",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Módica",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Ponte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Porteirinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Resende",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Nova Serrana",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Novo Cruzeiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Novo Oriente de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Novorizonte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Olaria",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Agudos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Olhos-d'Água",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Olímpio Noronha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Oliveira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Oliveira Fortes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Onça de Pitangui",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Oratórios",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Orizânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ouro Branco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ouro Fino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ouro Preto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ouro Verde de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Padre Carvalho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Padre Paraíso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paineiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pains",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pai Pedro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paiva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Palma",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Palmópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Papagaios",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paracatu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pará de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paraguaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paraisópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paraopeba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Passabém",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Passa Quatro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Passa Tempo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Passa-Vinte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Passos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Patis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Patos de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Patrocínio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Patrocínio do Muriaé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paula Cândido",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Paulistas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pavão",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Peçanha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedra Azul",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedra Bonita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedra do Anta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedra do Indaiá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedra Dourada",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedralva",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedras de Maria da Cruz",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedrinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedro Leopoldo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pedro Teixeira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pequeri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pequi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Perdigão",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Perdizes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Perdões",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Periquito",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pescador",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piau",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piedade de Caratinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piedade de Ponte Nova",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piedade do Rio Grande",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piedade dos Gerais",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pimenta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pingo-d'Água",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pintópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piracema",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pirajuba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piranga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piranguçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piranguinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pirapetinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pirapora",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piraúba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pitangui",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Piumhi",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Planura",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Poço Fundo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Poços de Caldas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pocrane",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pompéu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ponte Nova",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ponto Chique",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ponto dos Volantes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Porteirinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Porto Firme",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Poté",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pouso Alegre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pouso Alto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Prados",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Prata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pratápolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Pratinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Presidente Bernardes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Presidente Juscelino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Presidente Kubitschek",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Presidente Olegário",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Alto Jequitibá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Prudente de Morais",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Quartel Geral",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Queluzito",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Raposos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Raul Soares",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Recreio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Reduto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Resende Costa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Resplendor",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ressaquinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Riachinho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Riacho dos Machados",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ribeirão das Neves",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ribeirão Vermelho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Acima",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Casca",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Doce",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio do Prado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Espera",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Manso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Novo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Paranaíba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Pardo de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Piracicaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Pomba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Preto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rio Vermelho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ritápolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rochedo de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rodeiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Romaria",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rosário da Limeira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rubelita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Rubim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sabará",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sabinópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sacramento",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Salinas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Salto da Divisa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Bárbara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Bárbara do Leste",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Bárbara do Monte Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Bárbara do Tugúrio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Cruz de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Cruz de Salinas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Cruz do Escalvado",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Efigênia de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Fé de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Helena de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Juliana",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Luzia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Margarida",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Maria de Itabira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Maria do Salto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Maria do Suaçuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana da Vargem",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana de Cataguases",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana de Pirapama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Deserto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Garambéu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Jacaré",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Manhuaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Paraíso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana do Riacho",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santana dos Montes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rita de Caldas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Bocaina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Rita de Jacutinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rita de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rita de Ibitipoca",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rita do Itueto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rita do Sapucaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Rosa da Serra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santa Vitória",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Amparo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Aventureiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Grama",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Itambé",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Jacinto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Monte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Retiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Antônio do Rio Abaixo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santo Hipólito",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Santos Dumont",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Bento Abade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Brás do Suaçuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Domingos das Dores",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Domingos do Prata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Félix de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Francisco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Francisco de Paula",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Francisco de Sales",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Francisco do Glória",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Geraldo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Geraldo da Piedade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Geraldo do Baixio",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gonçalo do Abaeté",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gonçalo do Pará",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gonçalo do Rio Abaixo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gonçalo do Sapucaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Gotardo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João Batista do Glória",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João da Lagoa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João da Mata",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João da Ponte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João das Missões",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João del Rei",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João do Manhuaçu",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João do Manteninha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João do Oriente",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João do Pacuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João do Paraíso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João Evangelista",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São João Nepomuceno",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Joaquim de Bicas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José da Barra",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José da Lapa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José da Safira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José da Varginha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José do Alegre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José do Divino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José do Goiabal",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José do Jacuri",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São José do Mantimento",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Lourenço",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Miguel do Anta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Pedro da União",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Pedro dos Ferros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Pedro do Suaçuí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Romão",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Roque de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião da Bela Vista",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião da Vargem Alegre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Anta",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Maranhão",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Oeste",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Paraíso",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Rio Preto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Sebastião do Rio Verde",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Tiago",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Tomás de Aquino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Thomé das Letras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "São Vicente de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sapucaí-Mirim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sardoá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sarzedo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Setubinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sem-Peixe",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senador Amaral",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senador Cortes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senador Firmino",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senador José Bento",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senador Modestino Gonçalves",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senhora de Oliveira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senhora do Porto",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Senhora dos Remédios",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sericita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Seritinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serra Azul de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serra da Saudade",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serra dos Aimorés",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serra do Salitre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serrania",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serranópolis de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serranos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Serro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sete Lagoas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Silveirânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Silvianópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Simão Pereira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Simonésia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Sobrália",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Soledade de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tabuleiro",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Taiobeiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Taparuba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tapira",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tapiraí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Taquaraçu de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tarumirim",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Teixeiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Teófilo Otoni",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Timóteo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tiradentes",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tiros",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tocantins",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tocos do Moji",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Toledo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tombos",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Três Corações",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Três Marias",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Três Pontas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tumiritinga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Tupaciguara",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Turmalina",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Turvolândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ubá",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ubaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Ubaporanga",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Uberaba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Uberlândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Umburatiba",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Unaí",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "União de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Uruana de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Urucânia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Urucuia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vargem Alegre",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vargem Bonita",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vargem Grande do Rio Pardo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Varginha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Varjão de Minas",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Várzea da Palma",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Varzelândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vazante",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Verdelândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Veredinha",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Veríssimo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vermelho Novo",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vespasiano",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Viçosa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vieiras",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Mathias Lobato",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Virgem da Lapa",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Virgínia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Virginópolis",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Virgolândia",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Visconde do Rio Branco",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Volta Grande",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Wenceslau Braz",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Afonso Cláudio",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Águia Branca",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Água Doce do Norte",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Alegre",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Alfredo Chaves",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Alto Rio Novo",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Anchieta",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Apiacá",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Aracruz",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Atilio Vivacqua",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Baixo Guandu",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Barra de São Francisco",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Boa Esperança",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Bom Jesus do Norte",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Brejetuba",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Vila Valério",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Cachoeiro de Itapemirim",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Cariacica",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Castelo",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Colatina",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Conceição da Barra",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Conceição do Castelo",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Divino de São Lourenço",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Domingos Martins",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Dores do Rio Preto",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Ecoporanga",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Fundão",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Governador Lindenberg",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Guaçuí",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Guarapari",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Ibatiba",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Ibiraçu",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Ibitirama",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Iconha",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Irupi",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Itaguaçu",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Itapemirim",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Itarana",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Iúna",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Jaguaré",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Jerônimo Monteiro",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "João Neiva",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Laranja da Terra",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Linhares",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Mantenópolis",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Marataízes",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Apiaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Marechal Floriano",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Marilândia",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Mimoso do Sul",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Montanha",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Mucurici",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Muniz Freire",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Muqui",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Nova Venécia",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Pancas",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Pedro Canário",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Pinheiros",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Piúma",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Ponto Belo",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Presidente Kennedy",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Rio Bananal",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Rio Novo do Sul",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Santa Leopoldina",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Santa Maria de Jetibá",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Santa Teresa",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "São Domingos do Norte",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "São Gabriel da Palha",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "São José do Calçado",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "São Mateus",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "São Roque do Canaã",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Serra",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Sooretama",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Vargem Alta",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Venda Nova do Imigrante",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Viana",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Vila Pavão",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Vila Velha",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Angra dos Reis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Aperibé",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Araruama",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Areal",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Armação dos Búzios",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Arraial do Cabo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Alambari",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barra do Piraí",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Barra Mansa",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Belford Roxo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Bom Jardim",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Bom Jesus do Itabapoana",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cabo Frio",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cachoeiras de Macacu",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cambuci",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Carapebus",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Comendador Levy Gasparian",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Campos dos Goytacazes",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cantagalo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cardoso Moreira",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Carmo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Casimiro de Abreu",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Conceição de Macabu",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Cordeiro",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Duas Barras",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Duque de Caxias",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Engenheiro Paulo de Frontin",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Guapimirim",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Iguaba Grande",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Itaboraí",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Itaguaí",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Italva",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Itaocara",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Itaperuna",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Itatiaia",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Japeri",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Laje do Muriaé",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Macaé",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Macuco",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Magé",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Mangaratiba",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Maricá",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Mendes",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Mesquita",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Miguel Pereira",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Miracema",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Natividade",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Nilópolis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Niterói",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Nova Friburgo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Nova Iguaçu",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Paracambi",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Paraíba do Sul",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Paraty",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Paty do Alferes",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Petrópolis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Pinheiral",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Piraí",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Porciúncula",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Porto Real",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Quatis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Queimados",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Quissamã",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Resende",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Rio Bonito",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Rio Claro",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Rio das Flores",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Rio das Ostras",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Santa Maria Madalena",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Santo Antônio de Pádua",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Francisco de Itabapoana",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Fidélis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Gonçalo",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São João da Barra",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São João de Meriti",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São José de Ubá",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São José do Vale do Rio Preto",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Pedro da Aldeia",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Sebastião do Alto",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Sapucaia",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Saquarema",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Seropédica",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Silva Jardim",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Sumidouro",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Tanguá",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Teresópolis",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Trajano de Moraes",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Três Rios",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Valença",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Varre-Sai",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Vassouras",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Volta Redonda",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "Adamantina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Adolfo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Aguaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Águas da Prata",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Águas de Lindóia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Águas de Santa Bárbara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Águas de São Pedro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Alfredo Marcondes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Altair",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Altinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Alto Alegre",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Alumínio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Álvares Florence",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Álvares Machado",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Álvaro de Carvalho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Alvinlândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Americana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Américo Brasiliense",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Américo de Campos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Amparo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Analândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Andradina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Angatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Anhembi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Anhumas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Aparecida",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Aparecida d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Araçariguama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Araçatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Araçoiaba da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Aramina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Arandu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Arapeí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Araraquara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Araras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Arco-Íris",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Arealva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Areias",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Areiópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ariranha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Artur Nogueira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Arujá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Aspásia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Assis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Atibaia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Auriflama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Avaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Avanhandava",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Avaré",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bady Bassitt",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Balbinos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bálsamo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bananal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barão de Antonina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barbosa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bariri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barra Bonita",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barra do Chapéu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barra do Turvo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barretos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barrinha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Barueri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bastos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Batatais",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bauru",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bebedouro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bento de Abreu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bernardino de Campos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bertioga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bilac",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Birigui",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Biritiba-Mirim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Boa Esperança do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bofete",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Boituva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bom Jesus dos Perdões",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bom Sucesso de Itararé",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Borá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Boracéia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Borborema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Borebi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Botucatu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Bragança Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Braúna",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Brejo Alegre",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Brodowski",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Brotas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Buri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Buritama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Buritizal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cabrália Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cabreúva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caçapava",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cachoeira Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caconde",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cafelândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caiabu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caieiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caiuá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cajamar",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cajati",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cajobi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cajuru",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Campina do Monte Alegre",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Campinas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Campo Limpo Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lucianópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Campos do Jordão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Campos Novos Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cananéia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Canas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cândido Rodrigues",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Canitar",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Capão Bonito",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Capela do Alto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Capivari",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Caraguatatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Carapicuíba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cardoso",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Casa Branca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cássia dos Coqueiros",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Castilho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Catanduva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Catiguá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cedral",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cerqueira César",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cerquilho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cesário Lange",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Charqueada",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Clementina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Colina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Colômbia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Conchal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Conchas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cordeirópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Coroados",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Coronel Macedo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Corumbataí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cosmópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cosmorama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cotia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cravinhos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cristais Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cruzália",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cruzeiro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cubatão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Cunha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Descalvado",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Diadema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dirce Reis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Divinolândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dobrada",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dois Córregos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dolcinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dourado",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dracena",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Duartina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Dumont",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Echaporã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Eldorado",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Elias Fausto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Elisiário",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Embaúba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Embu das Artes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Embu-Guaçu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Emilianópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Engenheiro Coelho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Espírito Santo do Pinhal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Espírito Santo do Turvo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Estrela d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Estrela do Norte",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Euclides da Cunha Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Fartura",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Fernandópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Fernando Prestes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Fernão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ferraz de Vasconcelos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Flora Rica",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Floreal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Flórida Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Florínia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Franca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Francisco Morato",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Franco da Rocha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Gabriel Monteiro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Gália",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Garça",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Gastão Vidigal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Gavião Peixoto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "General Salgado",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Getulina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Glicério",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaiçara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaimbê",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaíra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guapiaçu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guapiara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guará",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaraçaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaraci",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guarani d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guarantã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guararapes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guararema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guaratinguetá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guareí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guariba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guarujá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guarulhos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guatapará",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Guzolândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Herculândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Holambra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Hortolândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iacanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iacri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iaras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibaté",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibirá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibirarema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibitinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibiúna",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Icém",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iepê",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Igaraçu do Tietê",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Igarapava",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Igaratá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iguape",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ilhabela",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ilha Comprida",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ilha Solteira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Indaiatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Indiana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Indiaporã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Inúbia Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ipaussu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iperó",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ipeúna",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ipiguá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iporanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ipuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Iracemápolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Irapuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Irapuru",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaberá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itajobi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaju",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itanhaém",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaóca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapecerica da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapetininga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapeva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapevi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapirapuã Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itápolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaporanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapuí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itapura",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itaquaquecetuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itararé",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itariri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itatiba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itatinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itirapina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itirapuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itobi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Itupeva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ituverava",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jaborandi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jaboticabal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jacareí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jaci",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jacupiranga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jaguariúna",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jales",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jambeiro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jandira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jardinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jarinu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jaú",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jeriquara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Joanópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "João Ramalho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "José Bonifácio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Júlio Mesquita",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jumirim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Jundiaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Junqueirópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Juquiá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Juquitiba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lagoinha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Laranjal Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lavínia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lavrinhas",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Leme",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lençóis Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Limeira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lindóia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lins",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lorena",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lourdes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Louveira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lucélia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Luís Antônio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Luiziânia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lupércio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Lutécia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Macatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Macaubal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Macedônia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Magda",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mairinque",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mairiporã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Manduri",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Marabá Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Maracaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Marapoama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mariápolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Marília",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Marinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Martinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Matão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mauá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mendonça",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Meridiano",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mesópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Miguelópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mineiros do Tietê",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Miracatu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mira Estrela",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mirandópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mirante do Paranapanema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mirassol",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mirassolândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mococa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mogi das Cruzes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mogi Guaçu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mogi Mirim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mombuca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monções",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Mongaguá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Alegre do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Alto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Aprazível",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Azul Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Castelo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monteiro Lobato",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Monte Mor",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Morro Agudo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Morungaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Motuca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Murutinga do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nantes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Narandiba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Natividade da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rio Claro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nazaré Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Neves Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nhandeara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nipoã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Aliança",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Campina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Canaã Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Castilho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Europa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Granada",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Guataporanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Independência",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Novais",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Luzitânia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nova Odessa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Novo Horizonte",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Nuporanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ocauçu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Óleo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Olímpia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Onda Verde",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Oriente",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Orindiúva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Orlândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Osasco",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Oscar Bressane",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Osvaldo Cruz",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ourinhos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ouroeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ouro Verde",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pacaembu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Palestina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Palmares Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Palmeira d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Palmital",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Panorama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paraguaçu Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paraibuna",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paraíso",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paranapanema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paranapuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Parapuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pardinho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pariquera-Açu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Parisi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Patrocínio Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paulicéia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paulínia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paulistânia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Paulo de Faria",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pederneiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedra Bela",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedranópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedregulho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedreira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedrinhas Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pedro de Toledo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Penápolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pereira Barreto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pereiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Peruíbe",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piacatu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piedade",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pilar do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rio das Pedras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pindamonhangaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pindorama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pinhalzinho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piquerobi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piquete",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piracaia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piracicaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piraju",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pirajuí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pirangi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pirapora do Bom Jesus",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pirapozinho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pirassununga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Piratininga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pitangueiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Planalto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Platina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Poá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Poloni",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pompéia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pongaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pontal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pontalinda",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pontes Gestal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Populina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Porangaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Porto Feliz",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Porto Ferreira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Potim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Potirendaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pracinha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pradópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Praia Grande",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Pratânia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Presidente Alves",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Presidente Bernardes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Presidente Epitácio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Presidente Prudente",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Presidente Venceslau",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Promissão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Quadra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Quatá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Queiroz",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Queluz",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Quintana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rafard",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rancharia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Redenção da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Regente Feijó",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Reginópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Registro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Restinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Bonito",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Branco",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Corrente",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão dos Índios",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Grande",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Pires",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ribeirão Preto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Riversul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rifaina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rincão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rinópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rio Grande da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Riolândia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rosana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Roseira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rubiácea",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Rubinéia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sabino",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sagres",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sales",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sales Oliveira",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Salesópolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taquarituba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Salmourão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Saltinho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Salto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Salto de Pirapora",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Salto Grande",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sandovalina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Adélia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Albertina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Bárbara d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Branca",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Clara d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Cruz da Conceição",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Cruz da Esperança",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sud Mennucci",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Cruz das Palmeiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Cruz do Rio Pardo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Ernestina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Fé do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Gertrudes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Isabel",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Lúcia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Maria da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Mercedes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santana da Ponte Pensa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santana de Parnaíba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Rita d'Oeste",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Rita do Passa Quatro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Rosa de Viterbo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santa Salete",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Anastácio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo André",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Antônio da Alegria",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Antônio de Posse",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Antônio do Aracanguá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Antônio do Jardim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Antônio do Pinhal",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santo Expedito",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santópolis do Aguapeí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Santos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Bento do Sapucaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Bernardo do Campo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Caetano do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Carlos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Francisco",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São João da Boa Vista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São João das Duas Pontes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São João de Iracema",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São João do Pau d'Alho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Joaquim da Barra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São José da Bela Vista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tabapuã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São José do Barreiro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São José do Rio Pardo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São José do Rio Preto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São José dos Campos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Lourenço da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Luís do Paraitinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Manuel",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Miguel Arcanjo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Pedro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Pedro do Turvo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Roque",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Sebastião",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Sebastião da Grama",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Simão",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "São Vicente",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sarapuí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sarutaiá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sebastianópolis do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Serra Azul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Serrana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Serra Negra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sertãozinho",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sete Barras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Severínia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Silveiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Socorro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sorocaba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Sumaré",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Suzano",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Suzanápolis",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ibema",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tabatinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taboão da Serra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taciba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taguaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taiaçu",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taiúva",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tambaú",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tanabi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tapiraí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tapiratiba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taquaral",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taquaritinga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taquarivaí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tarabai",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tarumã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tatuí",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Taubaté",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tejupá",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Teodoro Sampaio",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Terra Roxa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tietê",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Timburi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Torre de Pedra",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Torrinha",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Trabiju",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tremembé",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Três Fronteiras",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tuiuti",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tupã",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Tupi Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Turiúba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Turmalina",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ubarana",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ubatuba",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Ubirajara",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Uchoa",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "União Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Urânia",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Uru",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Urupês",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Valentim Gentil",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Valinhos",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Valparaíso",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vargem",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vargem Grande do Sul",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vargem Grande Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Várzea Paulista",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vera Cruz",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vinhedo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Viradouro",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vista Alegre do Alto",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Vitória Brasil",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Votorantim",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Votuporanga",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Zacarias",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Chavantes",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Estiva Gerbi",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Abatiá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Adrianópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Agudos do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Almirante Tamandaré",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Altamira do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Altônia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Alto Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Alto Piquiri",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Xambrê",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Alvorada do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Amaporã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ampére",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Anahy",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Andirá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ângulo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Antonina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Antônio Olinto",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Apucarana",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Arapongas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Arapoti",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Arapuã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Araruna",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Araucária",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ariranha do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Assaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Assis Chateaubriand",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Astorga",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Atalaia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Balsa Nova",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bandeirantes",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Barbosa Ferraz",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Barracão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Barra do Jacaré",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bela Vista da Caroba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bela Vista do Paraíso",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bituruna",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Boa Esperança",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Boa Esperança do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Boa Ventura de São Roque",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Boa Vista da Aparecida",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bocaiúva do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Treviso",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bom Jesus do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bom Sucesso",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Bom Sucesso do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Borrazópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Braganey",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Brasilândia do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cafeara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cafelândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cafezal do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Califórnia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cambará",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cambé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cambira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campina da Lagoa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campina do Simão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campina Grande do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo Bonito",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo do Tenente",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo Largo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo Magro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo Mourão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cândido de Abreu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Candói",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cantagalo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Capanema",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Capitão Leônidas Marques",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Carambeí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Carlópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cascavel",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Castro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Catanduvas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Centenário do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cerro Azul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Céu Azul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Chopinzinho",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cianorte",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cidade Gaúcha",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Clevelândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Colombo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Colorado",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Congonhinhas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Conselheiro Mairinck",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Contenda",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Corbélia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cornélio Procópio",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Coronel Domingos Soares",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Coronel Vivida",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Corumbataí do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cruzeiro do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cruzeiro do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cruzeiro do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cruz Machado",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Cruzmaltina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Curiúva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Diamante do Norte",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Diamante do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Diamante D'Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Dois Vizinhos",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Douradina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Doutor Camargo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Enéas Marques",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Engenheiro Beltrão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Esperança Nova",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Entre Rios do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Espigão Alto do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Farol",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Faxinal",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Fazenda Rio Grande",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Fênix",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Fernandes Pinheiro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Figueira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Floraí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Flor da Serra do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Floresta",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Florestópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Flórida",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Formosa do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Foz do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Francisco Alves",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Francisco Beltrão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Foz do Jordão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "General Carneiro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Godoy Moreira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Goioerê",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Goioxim",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Grandes Rios",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaíra",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guairaçá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guamiranga",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guapirama",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaporema",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaraci",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaraniaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guarapuava",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaraqueçaba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Guaratuba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Honório Serpa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ibaiti",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ibiporã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Icaraíma",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Iguaraçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Iguatu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Imbaú",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Imbituva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Inácio Martins",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Inajá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Indianópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ipiranga",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Iporã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Iracema do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Irati",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Iretama",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itaguajé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itaipulândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itambaracá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itambé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itapejara d'Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itaperuçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Itaúna do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ivaiporã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ivaté",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ivatuba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jaboti",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jacarezinho",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jaguapitã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jaguariaíva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jandaia do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Janiópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Japira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Japurá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Treze de Maio",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jardim Alegre",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jardim Olinda",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jataizinho",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jesuítas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Joaquim Távora",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jundiaí do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Juranda",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Jussara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Kaloré",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lapa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Laranjal",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Laranjeiras do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Leópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lidianópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lindoeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Loanda",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lobato",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Londrina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Luiziana",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lunardelli",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Lupionópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mallet",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mamborê",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mandaguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mandaguari",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mandirituba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Manfrinópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mangueirinha",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Manoel Ribas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marechal Cândido Rondon",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Maria Helena",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marialva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marilândia do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marilena",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mariluz",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Maringá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mariópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Maripá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marmeleiro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marquinho",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Marumbi",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Matelândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Matinhos",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mato Rico",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mauá da Serra",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Medianeira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mercedes",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Mirador",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Miraselva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Missal",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Moreira Sales",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Morretes",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Munhoz de Melo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nossa Senhora das Graças",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Aliança do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova América da Colina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Aurora",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Cantu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Esperança",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Esperança do Sudoeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Fátima",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Laranjeiras",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Londrina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Olímpia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Santa Bárbara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Santa Rosa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Prata do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Nova Tebas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Novo Itacolomi",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ortigueira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ourizona",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ouro Verde do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paiçandu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Palmas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Palmeira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Palmital",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Palotina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paraíso do Norte",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paranacity",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paranaguá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paranapoema",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paranavaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pato Bragado",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pato Branco",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paula Freitas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Paulo Frontin",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Peabiru",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Perobal",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pérola",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pérola d'Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Piên",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pinhais",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pinhalão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pinhal de São Bento",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pinhão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Piraí do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Piraquara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pitanga",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pitangueiras",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Planaltina do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Planalto",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ponta Grossa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pontal do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Porecatu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Porto Amazonas",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Porto Barreiro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Porto Rico",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Porto Vitória",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Prado Ferreira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Pranchita",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Presidente Castelo Branco",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Primeiro de Maio",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Prudentópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quarto Centenário",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quatiguá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quatro Barras",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quatro Pontes",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quedas do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Querência do Norte",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quinta do Sol",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Quitandinha",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ramilândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rancho Alegre",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rancho Alegre D'Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Realeza",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rebouças",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Renascença",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Reserva",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Reserva do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ribeirão Claro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ribeirão do Pinhal",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Azul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Bom",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Bonito do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Branco do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Branco do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rio Negro",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rolândia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Roncador",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rondon",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Rosário do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sabáudia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Salgado Filho",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Salto do Itararé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Salto do Lontra",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Amélia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Cecília do Pavão",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Cruz de Monte Castelo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Fé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Helena",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Inês",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Isabel do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Izabel do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Lúcia",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Maria do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Mariana",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Mônica",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santana do Itararé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Tereza do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santa Terezinha de Itaipu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santo Antônio da Platina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santo Antônio do Caiuá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santo Antônio do Paraíso",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santo Antônio do Sudoeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Santo Inácio",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Carlos do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Jerônimo da Serra",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São João",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São João do Caiuá",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São João do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Martinho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São João do Triunfo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Jorge d'Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Jorge do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Jorge do Patrocínio",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São José da Boa Vista",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Caibi",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São José das Palmeiras",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São José dos Pinhais",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Manoel do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Mateus do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Miguel do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Pedro do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Pedro do Ivaí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Pedro do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Sebastião da Amoreira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "São Tomé",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sapopema",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sarandi",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Saudade do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sengés",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Serranópolis do Iguaçu",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sertaneja",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sertanópolis",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Siqueira Campos",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Sulina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tamarana",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tamboara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tapejara",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tapira",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Teixeira Soares",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Telêmaco Borba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Terra Boa",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Terra Rica",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tibagi",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tijucas do Sul",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Toledo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tomazina",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Três Barras do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ipuaçu",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tunas do Paraná",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tuneiras do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Tupãssi",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Turvo",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ubiratã",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Umuarama",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "União da Vitória",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Uniflor",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Uraí",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Wenceslau Braz",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Ventania",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Vera Cruz do Oeste",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Verê",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Alto Paraíso",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Doutor Ulysses",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Virmond",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Vitorino",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Abdon Batista",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Abelardo Luz",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Agrolândia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Agronômica",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Água Doce",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Águas de Chapecó",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Águas Frias",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Águas Mornas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Alfredo Wagner",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Alto Bela Vista",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Anchieta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Angelina",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Anita Garibaldi",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Anitápolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Antônio Carlos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Apiúna",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Arabutã",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Araquari",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Araranguá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Armazém",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Arroio Trinta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Arvoredo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ascurra",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Atalanta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Aurora",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Arroio do Silva",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Camboriú",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Barra do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Gaivota",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bandeirante",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Barra Bonita",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Barra Velha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bela Vista do Toldo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Belmonte",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Benedito Novo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Biguaçu",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Blumenau",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bocaina do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bombinhas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bom Jardim da Serra",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bom Jesus",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bom Jesus do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Bom Retiro",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Botuverá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Braço do Norte",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Braço do Trombudo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Brunópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Brusque",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Caçador",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Calmon",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Camboriú",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Capão Alto",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Campo Alegre",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Campo Belo do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Campo Erê",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Campos Novos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Canelinha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Canoinhas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Capinzal",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Capivari de Baixo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Catanduvas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Caxambu do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Celso Ramos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Cerro Negro",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Chapadão do Lageado",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Chapecó",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Cocal do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Concórdia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Cordilheira Alta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Coronel Freitas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Coronel Martins",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Corupá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Correia Pinto",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Criciúma",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Cunha Porã",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Cunhataí",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Curitibanos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Descanso",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Dionísio Cerqueira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Dona Emma",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Doutor Pedrinho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Entre Rios",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ermo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Erval Velho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Faxinal dos Guedes",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Flor do Sertão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Formosa do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Forquilhinha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Fraiburgo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Frei Rogério",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Galvão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Garopaba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Garuva",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Gaspar",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Governador Celso Ramos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Grão Pará",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Gravatal",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Guabiruba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Guaraciaba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Guaramirim",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Guarujá do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Guatambú",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Herval d'Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ibiam",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ibicaré",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ibirama",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Içara",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ilhota",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Imaruí",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Imbituba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Imbuia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Indaial",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Iomerê",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ipira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Iporã do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ipumirim",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Iraceminha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Irani",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Irati",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Irineópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itaiópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itajaí",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itapema",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itapiranga",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Itapoá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ituporanga",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jaborá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jacinto Machado",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jaguaruna",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jaraguá do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jardinópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Joaçaba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Joinville",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "José Boiteux",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Jupiá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lacerdópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lages",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Laguna",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lajeado Grande",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Laurentino",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lauro Muller",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lebon Régis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Leoberto Leal",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lindóia do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Lontras",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Luiz Alves",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Luzerna",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Macieira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Mafra",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Major Gercino",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Major Vieira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Maracajá",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Maravilha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Marema",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Massaranduba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Matos Costa",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Meleiro",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Mirim Doce",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Modelo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Mondaí",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Monte Carlo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Monte Castelo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Morro da Fumaça",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Morro Grande",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Navegantes",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Nova Erechim",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Nova Itaberaba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Nova Trento",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Nova Veneza",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Novo Horizonte",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Orleans",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Otacílio Costa",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ouro",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ouro Verde",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Paial",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Painel",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Palhoça",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Palma Sola",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Palmeira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Palmitos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Papanduva",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Paraíso",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Passo de Torres",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Passos Maia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Paulo Lopes",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pedras Grandes",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Penha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Peritiba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pescaria Brava",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Petrolândia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Piçarras",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pinhalzinho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pinheiro Preto",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Piratuba",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Planalto Alegre",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pomerode",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ponte Alta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ponte Alta do Norte",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Ponte Serrada",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Porto Belo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Porto União",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Pouso Redondo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Praia Grande",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Presidente Castello Branco",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Presidente Getúlio",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Presidente Nereu",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Princesa",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Quilombo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rancho Queimado",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio das Antas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio do Campo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio dos Cedros",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio Fortuna",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio Negrinho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rio Rufino",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Riqueza",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Rodeio",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Romelândia",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Salete",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Saltinho",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Salto Veloso",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Sangão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Cecília",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Helena",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Rosa de Lima",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Rosa do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Terezinha",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santa Terezinha do Progresso",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santiago do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Santo Amaro da Imperatriz",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Bernardino",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Bento do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Bonifácio",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Carlos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Cristovão do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Domingos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Francisco do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São João do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São João Batista",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São João do Itaperiú",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São João do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Joaquim",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São José",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São José do Cedro",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São José do Cerrito",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Lourenço do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Ludgero",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Miguel da Boa Vista",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Miguel do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "São Pedro de Alcântara",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Saudades",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Schroeder",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Seara",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Serra Alta",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Siderópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Sombrio",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Sul Brasil",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Taió",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tangará",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tigrinhos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tijucas",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Timbé do Sul",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Timbó",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Timbó Grande",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Três Barras",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Treze Tílias",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Trombudo Central",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tubarão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Tunápolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Turvo",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "União do Oeste",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Urubici",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Urupema",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Urussanga",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Vargeão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Vargem",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Vargem Bonita",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Vidal Ramos",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Videira",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Vitor Meireles",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Witmarsum",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Xanxerê",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Xavantina",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Xaxim",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Zortéa",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Balneário Rincão",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Aceguá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Água Santa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Agudo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ajuricaba",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alecrim",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alegrete",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alegria",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Almirante Tamandaré do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alpestre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alto Alegre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Alto Feliz",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Buriti Alegre",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Alvorada",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Amaral Ferrador",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ametista do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "André da Rocha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Anta Gorda",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Antônio Prado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arambaré",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Araricá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Aratiba",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio do Meio",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio do Sal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio do Padre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio dos Ratos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio do Tigre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arroio Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Arvorezinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Augusto Pestana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Áurea",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bagé",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Balneário Pinhal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barão de Cotegipe",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barão do Triunfo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barracão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barra do Guarita",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barra do Quaraí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barra do Ribeiro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barra do Rio Azul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barra Funda",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Barros Cassal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Benjamin Constant do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bento Gonçalves",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boa Vista das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boa Vista do Buricá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boa Vista do Cadeado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boa Vista do Incra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boa Vista do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bom Jesus",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bom Princípio",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bom Progresso",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bom Retiro do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Boqueirão do Leão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bossoroca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Bozano",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Braga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ipameri",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Brochier",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Butiá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caçapava do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cacequi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cachoeira do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cachoeirinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cacique Doble",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caibaté",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caiçara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Camaquã",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Camargo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cambará do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campestre da Serra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campina das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campinas do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campo Bom",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campo Novo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Campos Borges",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Candelária",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cândido Godói",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Candiota",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Canela",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Canguçu",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Canoas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Fontoura Xavier",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Canudos do Vale",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capão Bonito do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capão da Canoa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capão do Cipó",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capão do Leão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capivari do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capela de Santana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Capitão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Carazinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caraá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Carlos Barbosa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Carlos Gomes",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Casca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caseiros",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Catuípe",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Caxias do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Centenário",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cerrito",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cerro Branco",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cerro Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cerro Grande do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cerro Largo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Chapada",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Charqueadas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Charrua",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Chiapetta",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Chuí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Chuvisca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cidreira",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ciríaco",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Colinas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Colorado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Condor",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Constantina",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coqueiro Baixo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coqueiros do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coronel Barros",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coronel Bicaco",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coronel Pilar",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cotiporã",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Coxilha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Crissiumal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cristal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cristal do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cruz Alta",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cruzaltense",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Cruzeiro do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "David Canabarro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Derrubadas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dezesseis de Novembro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dilermando de Aguiar",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dois Irmãos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dois Irmãos das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dois Lajeados",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dom Feliciano",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dom Pedro de Alcântara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dom Pedrito",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Dona Francisca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Doutor Maurício Cardoso",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Doutor Ricardo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Eldorado do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Encantado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Encruzilhada do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Engenho Velho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Entre-Ijuís",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Entre Rios do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Erebango",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Erechim",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ernestina",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Herval",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Erval Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Erval Seco",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Esmeralda",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Esperança do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Espumoso",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Estação",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Estância Velha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Esteio",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Estrela",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Estrela Velha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Eugênio de Castro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Fagundes Varela",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Farroupilha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Faxinal do Soturno",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Faxinalzinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Fazenda Vilanova",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Feliz",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Flores da Cunha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Floriano Peixoto",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Formigueiro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Forquetinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Fortaleza dos Valos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Frederico Westphalen",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Garibaldi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Garruchos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gaurama",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "General Câmara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gentil",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Getúlio Vargas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Giruá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Glorinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gramado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gramado dos Loureiros",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gramado Xavier",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Gravataí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Guabiju",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Guaíba",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Guaporé",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Guarani das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Harmonia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Herveiras",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Horizontina",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Hulha Negra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Humaitá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ibarama",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ibiaçá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ibiraiaras",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ibirapuitã",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ibirubá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Igrejinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ijuí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ilópolis",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Imbé",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Imigrante",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Independência",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Inhacorá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ipê",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ipiranga do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Iraí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itaara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itacurubi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itapuca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itaqui",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itati",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Itatiba do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ivorá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ivoti",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jaboticaba",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jacuizinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jacutinga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jaguarão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jaguari",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jaquirana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jari",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Jóia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Júlio de Castilhos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lagoa Bonita do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lagoão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lagoa dos Três Cantos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lagoa Vermelha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lajeado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lajeado do Bugre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lavras do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Liberato Salzano",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Lindolfo Collor",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Linha Nova",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Antônio de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Machadinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Maçambará",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mampituba",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Manoel Viana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Maquiné",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Maratá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Marau",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Marcelino Ramos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mariana Pimentel",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mariano Moro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Marques de Souza",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mata",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mato Castelhano",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mato Leitão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mato Queimado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Maximiliano de Almeida",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Minas do Leão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Miraguaí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Montauri",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Monte Alegre dos Campos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Monte Belo do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Montenegro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mormaço",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Morrinhos do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Morro Redondo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Morro Reuter",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Mostardas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Muçum",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Muitos Capões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Muliterno",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Não-Me-Toque",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nicolau Vergueiro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nonoai",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Alvorada",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Araçá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Bassano",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Boa Vista",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Bréscia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Trombas",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Candelária",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Esperança do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Hartz",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Pádua",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Palma",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Petrópolis",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Prata",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Ramada",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Roma do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Nova Santa Rita",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Cabrais",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santiago",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Hamburgo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Machado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Tiradentes",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Xingu",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Novo Barreiro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Osório",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Paim Filho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Palmares do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Palmeira das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Palmitinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Panambi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pantano Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Paraí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Paraíso do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pareci Novo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Parobé",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Passa Sete",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Passo do Sobrado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Passo Fundo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Paulo Bento",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Paverama",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pedras Altas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pedro Osório",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pejuçara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pelotas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Picada Café",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinhal",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinhal da Serra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinhal Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinheirinho do Vale",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinheiro Machado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pinto Bandeira",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pirapó",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Piratini",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Planalto",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Poço das Antas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pontão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ponte Preta",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Portão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Porto Lucena",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Porto Mauá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Porto Vera Cruz",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Porto Xavier",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Pouso Novo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Presidente Lucena",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Progresso",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Protásio Alves",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Putinga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Quaraí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Quatro Irmãos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Quevedos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Quinze de Novembro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Redentora",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Relvado",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Restinga Seca",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rio dos Índios",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rio Grande",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rio Pardo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Riozinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Roca Sales",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rodeio Bonito",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rolador",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rolante",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ronda Alta",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rondinha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Roque Gonzales",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Rosário do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sagrada Família",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Saldanha Marinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Salto do Jacuí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Salvador das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Salvador do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sananduva",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Bárbara do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Cecília do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Clara do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Cruz do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Maria",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Maria do Herval",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Margarida do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santana da Boa Vista",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sant'Ana do Livramento",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Rosa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Tereza",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santa Vitória do Palmar",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Ângelo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Antônio do Palma",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Antônio da Patrulha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Antônio das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Antônio do Planalto",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Augusto",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Cristo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Santo Expedito do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Borja",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Domingos do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Francisco de Assis",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Francisco de Paula",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Gabriel",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Jerônimo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São João da Urtiga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São João do Polêsine",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Jorge",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Herval",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Hortêncio",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Inhacorá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Norte",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Ouro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São José dos Ausentes",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Leopoldo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Lourenço do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Luiz Gonzaga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Marcos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Martinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Martinho da Serra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Miguel das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Nicolau",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Paulo das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Pedro da Serra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Pedro das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Pedro do Butiá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Pedro do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Sebastião do Caí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Sepé",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Valentim",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Valentim do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Valério do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Vendelino",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "São Vicente do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sapiranga",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sapucaia do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sarandi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Seberi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sede Nova",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Segredo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Selbach",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Senador Salgado Filho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sentinela do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Serafina Corrêa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sério",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sertão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sertão Santana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sete de Setembro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Severiano de Almeida",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Silveira Martins",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sinimbu",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Sobradinho",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Soledade",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tabaí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tapejara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tapera",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tapes",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Taquara",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Taquari",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Taquaruçu do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tavares",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tenente Portela",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Terra de Areia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Teutônia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tio Hugo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tiradentes do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Toropi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Torres",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tramandaí",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Travesseiro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Arroios",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Cachoeiras",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Coroas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três de Maio",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Forquilhas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Palmeiras",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Três Passos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Trindade do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Triunfo",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tucunduva",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tunas",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tupanci do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tupanciretã",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tupandi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Tuparendi",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Turuçu",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Ubiretama",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "União da Serra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Unistalda",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Uruguaiana",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vacaria",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vale Verde",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vale do Sol",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vale Real",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vanini",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Venâncio Aires",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vera Cruz",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Veranópolis",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vespasiano Correa",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Viadutos",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Viamão",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vicente Dutra",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Victor Graeff",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vila Flores",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vila Lângaro",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vila Maria",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vila Nova do Sul",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vista Alegre",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vista Alegre do Prata",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vista Gaúcha",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Vitória das Missões",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Westfalia",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Xangri-lá",
-        "uf": "RS",
+        "uf": "RS"
     },
     {
         "nome": "Água Clara",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Alcinópolis",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Amambai",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Anastácio",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Anaurilândia",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Angélica",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Antônio João",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Aparecida do Taboado",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Aquidauana",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Aral Moreira",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Bandeirantes",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Bataguassu",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Batayporã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Bela Vista",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Bodoquena",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Bonito",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Brasilândia",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Caarapó",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Camapuã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Caracol",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Cassilândia",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Chapadão do Sul",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Corguinho",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Coronel Sapucaia",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Corumbá",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Costa Rica",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Coxim",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Deodápolis",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Dois Irmãos do Buriti",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Douradina",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Dourados",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Eldorado",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Fátima do Sul",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Figueirão",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Glória de Dourados",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Guia Lopes da Laguna",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Iguatemi",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Inocência",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Itaporã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Itaquiraí",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Ivinhema",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Japorã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Jaraguari",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Jardim",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Jateí",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Juti",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Ladário",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Laguna Carapã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Maracaju",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Miranda",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Mundo Novo",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Naviraí",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Nioaque",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Nova Alvorada do Sul",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Nova Andradina",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Novo Horizonte do Sul",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Paraíso das Águas",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Paranaíba",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Paranhos",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Pedro Gomes",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Ponta Porã",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Porto Murtinho",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Ribas do Rio Pardo",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Rio Brilhante",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Rio Negro",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Rio Verde de Mato Grosso",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Rochedo",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Santa Rita do Pardo",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "São Gabriel do Oeste",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Sete Quedas",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Selvíria",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Sidrolândia",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Sonora",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Tacuru",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Taquarussu",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Terenos",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Três Lagoas",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Vicentina",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Acorizal",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Água Boa",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alta Floresta",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alto Araguaia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alto Boa Vista",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alto Garças",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alto Paraguai",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Alto Taquari",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Apiacás",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Araguaiana",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Araguainha",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Araputanga",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Arenápolis",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Aripuanã",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Barão de Melgaço",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Barra do Bugres",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Barra do Garças",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Bom Jesus do Araguaia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Brasnorte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Cáceres",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Campinápolis",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Campo Novo do Parecis",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Campo Verde",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Campos de Júlio",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Canabrava do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Canarana",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Carlinda",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Castanheira",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Chapada dos Guimarães",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Cláudia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Cocalinho",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Colíder",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Colniza",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Comodoro",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Confresa",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Conquista D'Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Cotriguaçu",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Curvelândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Denise",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Diamantino",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Dom Aquino",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Feliz Natal",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Figueirópolis D'Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Gaúcha do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "General Carneiro",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Glória D'Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Guarantã do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Guiratinga",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Indiavaí",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Ipiranga do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Itanhangá",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Itaúba",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Itiquira",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Jaciara",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Jangada",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Jauru",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Juara",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Juína",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Juruena",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Juscimeira",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Lambari D'Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Lucas do Rio Verde",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Luciara",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Vila Bela da Santíssima Trindade",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Marcelândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Matupá",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Mirassol d'Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nobres",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nortelândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nossa Senhora do Livramento",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Bandeirantes",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Nazaré",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Lacerda",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Santa Helena",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Brasilândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Canaã do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Mutum",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Olímpia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Ubiratã",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Xavantina",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Novo Mundo",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Novo Horizonte do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Novo São Joaquim",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Paranaíta",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Paranatinga",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Novo Santo Antônio",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Pedra Preta",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Peixoto de Azevedo",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Planalto da Serra",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Poconé",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Pontal do Araguaia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Ponte Branca",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Pontes e Lacerda",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Porto Alegre do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Porto dos Gaúchos",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Porto Esperidião",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Porto Estrela",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Poxoréo",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Primavera do Leste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Querência",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São José dos Quatro Marcos",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Reserva do Cabaçal",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Ribeirão Cascalheira",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Ribeirãozinho",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Rio Branco",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santa Carmem",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santo Afonso",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São José do Povo",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São José do Rio Claro",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São José do Xingu",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São Pedro da Cipa",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Rondolândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Rondonópolis",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Rosário Oeste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santa Cruz do Xingu",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Salto do Céu",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santa Rita do Trivelato",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santa Terezinha",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santo Antônio do Leste",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Santo Antônio do Leverger",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "São Félix do Araguaia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Sapezal",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Serra Nova Dourada",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Sinop",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Sorriso",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Tabaporã",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Tangará da Serra",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Tapurah",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Terra Nova do Norte",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Tesouro",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Torixoréu",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "União do Sul",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Vale de São Domingos",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Várzea Grande",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Vera",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Vila Rica",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Guarita",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Marilândia",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Maringá",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Nova Monte Verde",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Abadia de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Abadiânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Acreúna",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Adelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Água Fria de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Água Limpa",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Águas Lindas de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Alexânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aloândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Alto Horizonte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Alto Paraíso de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Alvorada do Norte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Amaralina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Americano do Brasil",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Amorinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Anápolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Anhanguera",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Anicuns",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aparecida de Goiânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aparecida do Rio Doce",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aporé",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Araçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aragarças",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aragoiânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Araguapaz",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Arenópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aruanã",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Aurilândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Avelinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Baliza",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Barro Alto",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Bela Vista de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Bom Jardim de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Bom Jesus de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Bonfinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Bonópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Brazabrantes",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Britânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Buriti de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Buritinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cabeceiras",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cachoeira Alta",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cachoeira de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cachoeira Dourada",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Caçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Caiapônia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Caldas Novas",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Caldazinha",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campestre de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campinaçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campinorte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campo Alegre de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campo Limpo de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campos Belos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Campos Verdes",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Carmo do Rio Verde",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Castelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Catalão",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Caturaí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cavalcante",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Ceres",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cezarina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Chapadão do Céu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cidade Ocidental",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cocalzinho de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Colinas do Sul",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Córrego do Ouro",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Corumbá de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Corumbaíba",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cristalina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cristianópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Crixás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cromínia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Cumari",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Damianópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Damolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Davinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Diorama",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Doverlândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Edealina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Edéia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Estrela do Norte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Faina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Fazenda Nova",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Firminópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Flores de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Formosa",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Formoso",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Gameleira de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Divinópolis de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goianápolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goiandira",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goianésia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goianira",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Goiatuba",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Gouvelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Guapó",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Guaraíta",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Guarani de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Guarinos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Heitoraí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Hidrolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Hidrolina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Iaciara",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Inaciolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Indiara",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Inhumas",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Ipiranga de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Iporá",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Israelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itaberaí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itaguari",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itaguaru",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itajá",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itapaci",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itapirapuã",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itapuranga",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itarumã",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itauçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Itumbiara",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Ivolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jandaia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jaraguá",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jataí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jaupaci",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jesúpolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Joviânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Jussara",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Lagoa Santa",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Leopoldo de Bulhões",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Luziânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mairipotaba",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mambaí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mara Rosa",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Marzagão",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Matrinchã",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Maurilândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mimoso de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Minaçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mineiros",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Moiporá",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Monte Alegre de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Montes Claros de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Montividiu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Montividiu do Norte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Morrinhos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Morro Agudo de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mossâmedes",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mozarlândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mundo Novo",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Mutunópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nazário",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nerópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Niquelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova América",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Aurora",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Crixás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Glória",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Iguaçu de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Roma",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Nova Veneza",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Novo Brasil",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Novo Gama",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Novo Planalto",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Orizona",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Ouro Verde de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Ouvidor",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Padre Bernardo",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Palestina de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Palmeiras de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Palmelo",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Palminópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Panamá",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Paranaiguara",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Paraúna",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Perolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Petrolina de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Pilar de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Piracanjuba",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Piranhas",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Pirenópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Pires do Rio",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Planaltina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Pontalina",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Porangatu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Porteirão",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Portelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Posse",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Professor Jamil",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Quirinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Rialma",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Rianápolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Rio Quente",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Rio Verde",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Rubiataba",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Sanclerlândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Bárbara de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Cruz de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Fé de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Helena de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Isabel",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Rita do Araguaia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Rita do Novo Destino",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Rosa de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Tereza de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santa Terezinha de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santo Antônio da Barra",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Santo Antônio do Descoberto",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Domingos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Francisco de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São João d'Aliança",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São João da Paraúna",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Luís de Montes Belos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Luíz do Norte",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Miguel do Araguaia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Miguel do Passa Quatro",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Patrício",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "São Simão",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Senador Canedo",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Serranópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Silvânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Simolândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Sítio d'Abadia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Taquaral de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Teresina de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Terezópolis de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Três Ranchos",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Trindade",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Turvânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Turvelândia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Uirapuru",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Uruaçu",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Uruana",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Urutaí",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Valparaíso de Goiás",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Varjão",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Vianópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Vicentinópolis",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Vila Boa",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Vila Propício",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Porto Velho",
-        "uf": "RO",
+        "uf": "RO"
     },
     {
         "nome": "Rio Branco",
-        "uf": "AC",
+        "uf": "AC"
     },
     {
         "nome": "Manaus",
-        "uf": "AM",
+        "uf": "AM"
     },
     {
         "nome": "Belém",
-        "uf": "PA",
+        "uf": "PA"
     },
     {
         "nome": "Macapá",
-        "uf": "AP",
+        "uf": "AP"
     },
     {
         "nome": "Palmas",
-        "uf": "TO",
+        "uf": "TO"
     },
     {
         "nome": "São Luís",
-        "uf": "MA",
+        "uf": "MA"
     },
     {
         "nome": "Teresina",
-        "uf": "PI",
+        "uf": "PI"
     },
     {
         "nome": "Fortaleza",
-        "uf": "CE",
+        "uf": "CE"
     },
     {
         "nome": "Natal",
-        "uf": "RN",
+        "uf": "RN"
     },
     {
         "nome": "João Pessoa",
-        "uf": "PB",
+        "uf": "PB"
     },
     {
         "nome": "Recife",
-        "uf": "PE",
+        "uf": "PE"
     },
     {
         "nome": "Maceió",
-        "uf": "AL",
+        "uf": "AL"
     },
     {
         "nome": "Aracaju",
-        "uf": "SE",
+        "uf": "SE"
     },
     {
         "nome": "Salvador",
-        "uf": "BA",
+        "uf": "BA"
     },
     {
         "nome": "Belo Horizonte",
-        "uf": "MG",
+        "uf": "MG"
     },
     {
         "nome": "Vitória",
-        "uf": "ES",
+        "uf": "ES"
     },
     {
         "nome": "Rio de Janeiro",
-        "uf": "RJ",
+        "uf": "RJ"
     },
     {
         "nome": "São Paulo",
-        "uf": "SP",
+        "uf": "SP"
     },
     {
         "nome": "Curitiba",
-        "uf": "PR",
+        "uf": "PR"
     },
     {
         "nome": "Campo Grande",
-        "uf": "MS",
+        "uf": "MS"
     },
     {
         "nome": "Cuiabá",
-        "uf": "MT",
+        "uf": "MT"
     },
     {
         "nome": "Goiânia",
-        "uf": "GO",
+        "uf": "GO"
     },
     {
         "nome": "Brasília",
-        "uf": "DF",
+        "uf": "DF"
     },
     {
         "nome": "Boa Vista",
-        "uf": "RR",
+        "uf": "RR"
     },
     {
         "nome": "Florianópolis",
-        "uf": "SC",
+        "uf": "SC"
     },
     {
         "nome": "Porto Alegre",
-        "uf": "RS",
+        "uf": "RS"
     }
 ];
 
