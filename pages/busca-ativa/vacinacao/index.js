@@ -3,7 +3,7 @@ import {
     TituloTexto, 
     ButtonLight, 
     ButtonPrint,
-    TabelaHiperDiaImpressao,
+    TabelaVacinacaoImpressao,
     PanelSelector,
     ButtonColorSubmitIcon
   } from "@impulsogov/design-system";
@@ -74,7 +74,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const [tabelaData, setTabelaData] = useState([]);
   const ImpressaoVacinacao = ()=> Imprimir(
     1,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasVacinacaoAPS}/>,
+    <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS}/>,
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
