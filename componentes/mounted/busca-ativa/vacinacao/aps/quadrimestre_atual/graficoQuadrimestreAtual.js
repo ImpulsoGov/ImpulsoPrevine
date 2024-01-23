@@ -72,7 +72,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     '#55D499',
                     '#FFA75E',
                     '#FF7C81',
-                    '#57C7DC'
+                    '#A6B5BE'
                 ],
                 grid: {
                 containLabel: true,
@@ -153,12 +153,6 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                     text: 'Consolidado Municipal',
                     left: '80'
                 },
-                color: [
-                    '#55D499',
-                    '#FFA75E',
-                    '#FF7C81',
-                    '#57C7DC'
-                ],
                 series: [
                 {
                     avoidLabelOverlap: false,
@@ -199,7 +193,7 @@ const GraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
                         return ((item.id_status_polio == 4 || item.id_status_polio == 40) && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
                         },0)*100)/dataQuadriAtual.length).toFixed(2),
                         itemStyle: {
-                            color: '#57C7DC' 
+                            color: '#EFF5F9' 
                         }
                     },
                     ].filter(item=>item.value != 0),

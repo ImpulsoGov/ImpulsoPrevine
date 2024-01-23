@@ -71,7 +71,7 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                     '#55D499',
                     '#FFA75E',
                     '#FF7C81',
-                    '#57C7DC'
+                    '#A6B5BE'
                 ],
                 grid: {
                 containLabel: true,
@@ -192,7 +192,7 @@ const GraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
                         return ((item.id_status_polio == 4 || item.id_status_polio == 40) && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
                         },0)*100)/dataQuadriProximo.length).toFixed(2),
                         itemStyle: {
-                            color: '#57C7DC' 
+                            color: '#A6B5BE' 
                         }
                     },
                     ].filter(item=>item.value != 0),
