@@ -42,11 +42,8 @@ function AutocompleteMunicipios(props) {
   const handleChange = (_event, newValue) => {
     setSelectedValue(newValue);
 
-    if (newValue !== null) {
-      apiRef.current.setEditCellValue({ id, field, value: `${newValue.nome} - ${newValue.uf}` });
-    } else {
-      apiRef.current.setEditCellValue({ id, field, value: newValue });
-    }
+    const value = newValue !== null ? `${newValue.nome} - ${newValue.uf}` : newValue;
+    apiRef.current.setEditCellValue({ id, field, value });
   };
 
   const handleInputChange = (_event, newInputValue) => {
