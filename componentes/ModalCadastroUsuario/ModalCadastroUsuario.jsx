@@ -36,6 +36,18 @@ function ModalCadastroUsuario({
     setMunicipio(newValue);
   };
 
+  const limparInputs = useCallback(() => {
+    setNome('');
+    setMail('');
+    setCpf('');
+    setMunicipio(null);
+    setCargo('');
+    setTelefone('');
+    setEquipe('');
+    setWhatsapp(false);
+    setAutorizacoesSelecionadas([]);
+  }, []);
+
   return (
     <Modal
       open={ isOpen }
@@ -162,7 +174,7 @@ function ModalCadastroUsuario({
             equipe,
             whatsapp,
             autorizacoesSelecionadas
-          }) }
+          }, limparInputs) }
         />
       </div>
     </Modal>

@@ -163,7 +163,7 @@ const GestaoDeUsuarios = () => {
     if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
   }, []);
 
-  const cadastrarNovoUsuario = useCallback(async (dados) => {
+  const cadastrarNovoUsuario = useCallback(async (dados, callbackLimparInputs) => {
     try {
       validarCamposObrigatorios(dados);
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
@@ -204,6 +204,7 @@ const GestaoDeUsuarios = () => {
       };
 
       setRows([...rows, novaLinha]);
+      callbackLimparInputs();
       showSuccessMessage('Usuário cadastrado com sucesso');
     } catch (error) {
       showErrorMessage(error);
