@@ -52,7 +52,10 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { aba: activeTabIndex }
+      query: { 
+        sub_aba: activeTabIndex,
+        aba : activeTitleTabIndex
+      }
     },
       undefined, { shallow: true }
     );
@@ -82,99 +85,147 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   
   if(session){  
     if(session.user.perfis.includes(9)){
-    const Children = [[
-      [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesAtivas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-      ],
-      [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesSemDUM tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-      ],
-      [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesEncerradas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-      ]
-  ]]
-  
-    return (
-        <>
-        <div 
-            style={
-                window.screen.width > 1024 ?
-                {padding: "30px 80px 30px 80px",display: "flex"} :
-                {padding: "0",display: "flex"} 
-            }>
-            <ButtonLight icone={{posicao: 'right',
-            url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-            label="VOLTAR" link="/inicio"/>
-        {
-            tabelaData &&
-            <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>}
-            />
-            </div>
-        }
-        </div>
-        <TituloTexto
-                titulo="Lista Nominal de Gestantes"
-                texto=""
-                imagem = {{posicao: null,url: ''}}
-        />
-        <CardAlert
-                destaque="IMPORTANTE: "
-                msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-        />  
-        <div 
-            style={{
-                marginLeft : "80px",
-                marginTop : "30px",
-                color: "#1F1F1F",
-                fontSize: "22px",
-                fontFamily: "Inter",
-                fontWeight: 500,
-                lineHeight: "130%",
-            }}
-        >
-            {session.user.municipio} - Q2/23
-        </div>
-        {
-            tabelaData &&
-            <PanelSelector
-            components={Children}
-            conteudo = "components"
-            states={{
-                activeTabIndex: Number(activeTabIndex),
-                setActiveTabIndex: setActiveTabIndex,
-                activeTitleTabIndex: activeTitleTabIndex,
-                setActiveTitleTabIndex: setActiveTitleTabIndex
-            }}
-  
-            list={[
-                [
-                    {
-                        label: 'GESTANTES ATIVAS'
-                    },
-                    {
-                        label: 'GESTANTES SEM DUM'
-                    },
-                    {
-                      label: 'GESTANTES ENCERRADAS'
-                    }
+      const Children = [
+          [
+              [
+                <CardsGraficoAPSQuadrimestreAtual tabelaDataAPS={tabelaDataAPS}/>,
+                <GraficoAPSQuadrimestreAtual tabelaDataAPS={tabelaDataAPS}/>,
               ],
-                ]}
-            titles={[
-                    {
-                        label: ''
-                    },
-                ]}
+              [
+                <TabelaAPSQuadrimestreAtual
+                    tabelaDataAPS={tabelaDataAPS} 
+                    tabelaData={tabelaData} 
+                    setTabelaData={setTabelaData}
+                />
+              ],
+          ],
+          [
+            [
+              <CardsGraficoAPSQuadrimestreProximo tabelaDataAPS={tabelaDataAPS}/>,
+              <GraficoAPSQuadrimestreProximo tabelaDataAPS={tabelaDataAPS}/>,
+            ],
+            [
+              <TabelaAPSQuadrimestreProximo
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+              />
+            ],
+        ],
+        [
+          [
+            <CardsGraficoAPSQuadrimestreFuturo tabelaDataAPS={tabelaDataAPS}/>,
+            <GraficoAPSQuadrimestreFuturo tabelaDataAPS={tabelaDataAPS}/>,
+          ],
+          [
+            <TabelaAPSQuadrimestreFuturo
+                tabelaDataAPS={tabelaDataAPS} 
+                tabelaData={tabelaData} 
+                setTabelaData={setTabelaData}
             />
-    }
-    </>
-    )
+          ],
+      ],
+]
+  
+      return (
+      <>
+          <div 
+              style={
+                  window.screen.width > 1024 ?
+                  {padding: "30px 80px 30px 80px",display: "flex"} :
+                  {padding: "30px 0 0 5px",display: "flex"} 
+              }
+          >
+              <ButtonLight icone={{posicao: 'right',
+                  url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
+                  label="VOLTAR" link="/inicio"
+              />
+          {
+              tabelaDataAPS &&
+              <div style={{marginLeft:"auto"}}>
+              {
+                  ((activeTabIndex !== 0)) &&
+                  <ButtonColorSubmitIcon
+                    label="CLIQUE AQUI PARA IMPRIMIR"
+                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                    submit={ImpressaoVacinacao}
+                  />
+              }
+              </div>
+          }
+          </div>
+          <TituloTexto
+                  titulo="Lista Nominal de Vacinação"
+                  texto=""
+                  imagem = {{posicao: null,url: ''}}
+          />
+          <CardAlert
+              destaque="IMPORTANTE: "
+              msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
+          />  
+          <div 
+              style={{
+                  marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
+                  marginTop : "30px",
+                  color: "#1F1F1F",
+                  fontSize: "22px",
+                  fontFamily: "Inter",
+                  fontWeight: 500,
+                  lineHeight: "130%",
+              }}
+          >
+          {session.user.municipio}
+          </div>
+          <PanelSelector
+              components={Children}
+              conteudo = "components"
+              states={ {
+                  activeTabIndex: Number(activeTabIndex),
+                  setActiveTabIndex: setActiveTabIndex,
+                  activeTitleTabIndex: activeTitleTabIndex,
+                  setActiveTitleTabIndex: setActiveTitleTabIndex
+                } }
+              list={[
+                  [
+                    {
+                      label: 'GRÁFICO'
+                    },
+                    {
+                      label: 'LISTA NOMINAL'
+                    },
+                  ],  
+                  [
+                    {
+                      label: 'GRÁFICO'
+                    },
+                    {
+                      label: 'LISTA NOMINAL'
+                    },
+                  ],  
+                  [
+                    {
+                      label: 'GRÁFICO'
+                    },
+                    {
+                      label: 'LISTA NOMINAL'
+                    },
+                  ],  
+                    ]}
+                titles={[
+                  {
+                      label: 'QUADRIMESTRE ATUAL'
+                  },
+                  {
+                      label: 'PRÓXIMO QUADRIMESTRE'
+                  },
+                  {
+                      label: 'QUADRIMESTRES FUTUROS'
+                  },
+  
+              ]}
+          />
+      </>
+      )
     }
     if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
       const Children = [
