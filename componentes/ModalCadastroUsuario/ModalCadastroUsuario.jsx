@@ -1,4 +1,4 @@
-import { ButtonColorSubmit, Spinner, TituloSmallTexto } from '@impulsogov/design-system';
+import { ButtonColorSubmit, TituloSmallTexto } from '@impulsogov/design-system';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,7 +11,7 @@ import { Select } from '../Select';
 import styles from './ModalCadastroUsuario.module.css';
 
 function ModalCadastroUsuario({
-  titulo, isOpen, closeModal, handleAddClick, autorizacoes, isLoading
+  titulo, isOpen, closeModal, handleAddClick, autorizacoes
 }) {
   const [nome, setNome] = useState('');
   const [mail, setMail] = useState('');
@@ -36,18 +36,6 @@ function ModalCadastroUsuario({
     setMunicipio(newValue);
   };
 
-  const limparInputs = useCallback(() => {
-    setNome('');
-    setMail('');
-    setCpf('');
-    setMunicipio(null);
-    setCargo('');
-    setTelefone('');
-    setEquipe('');
-    setWhatsapp(false);
-    setAutorizacoesSelecionadas([]);
-  }, []);
-
   return (
     <Modal
       open={ isOpen }
@@ -56,131 +44,126 @@ function ModalCadastroUsuario({
       aria-describedby='modal-modal-description'
     >
       <div className={ styles.Container }>
-        { isLoading
-          ? <Spinner />
-          : <>
-            <TituloSmallTexto
-              imagem={ {
-                posicao: null,
-                url: ''
-              } }
-              texto=''
-              titulo={ titulo }
-              botao={{
-                label: '',
-                url: ''
-              }}
-            />
+        <TituloSmallTexto
+          imagem={ {
+            posicao: null,
+            url: ''
+          } }
+          texto=''
+          titulo={ titulo }
+          botao={{
+            label: '',
+            url: ''
+          }}
+        />
 
-            <form className={ styles.Formulario }>
-              <TextField
-                sx={ { width: '30%', m: 1 } }
-                id='outlined-controlled'
-                label='Nome'
-                value={ nome }
-                onChange={ (event) => {
-                  setNome(event.target.value);
-                } }
+        <form className={ styles.Formulario }>
+          <TextField
+            sx={ { width: '30%', m: 1 } }
+            id='outlined-controlled'
+            label='Nome'
+            value={ nome }
+            onChange={ (event) => {
+              setNome(event.target.value);
+            } }
+          />
+
+          <TextField
+            sx={ { width: '30%', m: 1 } }
+            id='outlined-controlled'
+            label='E-mail'
+            value={ mail }
+            onChange={ (event) => {
+              setMail(event.target.value);
+            } }
+          />
+
+          <TextField
+            sx={ { width: '30%', m: 1 } }
+            id='outlined-controlled'
+            label='CPF'
+            value={ cpf }
+            onChange={ (event) => {
+              setCpf(event.target.value);
+            } }
+          />
+
+          <Autocomplete
+            id="combo-box-demo"
+            options={MUNICIPIOS}
+            value={municipio}
+            onChange={handleAutocompleteChange}
+            getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
+            sx={{ width: "30%", m: 1 }}
+            renderInput={(params) => <TextField {...params} label='Município' />}
+          />
+
+          <Select
+            label='Cargo'
+            options={ CARGOS }
+            selectedOptions={ cargo }
+            handleChange={ (event) => {
+              setCargo(event.target.value);
+            } }
+            width='30%'
+          />
+
+          <TextField
+            sx={ { width: '30%', m: 1 } }
+            id='outlined-controlled'
+            label='Telefone'
+            value={ telefone }
+            onChange={ (event) => {
+              setTelefone(event.target.value);
+            } }
+          />
+
+          <TextField
+            sx={ { width: '30%', m: 1 } }
+            id='outlined-controlled'
+            label='Equipe'
+            value={ equipe }
+            onChange={ (event) => {
+              setEquipe(event.target.value);
+            } }
+          />
+
+          <Select
+            label='Autorizações'
+            options={ autorizacoes }
+            selectedOptions={ autorizacoesSelecionadas }
+            handleChange={ handleAutorizacoesChange }
+            width='30%'
+            isMulti
+          />
+
+          <FormControlLabel
+            sx={ { m: 1 } }
+            control={
+              <Checkbox
+                checked={ whatsapp }
+                onChange={ (event) => setWhatsapp(event.target.checked) }
               />
+            }
+            label='Whatsapp'
+          />
+        </form>
 
-              <TextField
-                sx={ { width: '30%', m: 1 } }
-                id='outlined-controlled'
-                label='E-mail'
-                value={ mail }
-                onChange={ (event) => {
-                  setMail(event.target.value);
-                } }
-              />
-
-              <TextField
-                sx={ { width: '30%', m: 1 } }
-                id='outlined-controlled'
-                label='CPF'
-                value={ cpf }
-                onChange={ (event) => {
-                  setCpf(event.target.value);
-                } }
-              />
-
-              <Autocomplete
-                id="combo-box-demo"
-                options={MUNICIPIOS}
-                value={municipio}
-                onChange={handleAutocompleteChange}
-                getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
-                sx={{ width: "30%", m: 1 }}
-                renderInput={(params) => <TextField {...params} label='Município' />}
-              />
-
-              <Select
-                label='Cargo'
-                options={ CARGOS }
-                selectedOptions={ cargo }
-                handleChange={ (event) => {
-                  setCargo(event.target.value);
-                } }
-                width='30%'
-              />
-
-              <TextField
-                sx={ { width: '30%', m: 1 } }
-                id='outlined-controlled'
-                label='Telefone'
-                value={ telefone }
-                onChange={ (event) => {
-                  setTelefone(event.target.value);
-                } }
-              />
-
-              <TextField
-                sx={ { width: '30%', m: 1 } }
-                id='outlined-controlled'
-                label='Equipe'
-                value={ equipe }
-                onChange={ (event) => {
-                  setEquipe(event.target.value);
-                } }
-              />
-
-              <Select
-                label='Autorizações'
-                options={ autorizacoes }
-                selectedOptions={ autorizacoesSelecionadas }
-                handleChange={ handleAutorizacoesChange }
-                width='30%'
-                isMulti
-              />
-
-              <FormControlLabel
-                sx={ { m: 1 } }
-                control={
-                  <Checkbox
-                    checked={ whatsapp }
-                    onChange={ (event) => setWhatsapp(event.target.checked) }
-                  />
-                }
-                label='Whatsapp'
-              />
-            </form>
-
-            <ButtonColorSubmit
-              label='ADICIONAR'
-              submit={ () => handleAddClick({
-                nome,
-                mail,
-                cpf,
-                municipio: municipio !== null ? `${municipio.nome} - ${municipio.uf}` : municipio,
-                municipioIdSus: municipio !== null ? municipio.municipioIdSus : municipio,
-                cargo,
-                telefone,
-                equipe,
-                whatsapp,
-                autorizacoesSelecionadas
-              }, limparInputs) }
-            />
-          </>
-        }
+        <ButtonColorSubmit
+          label='ADICIONAR'
+          submit={ () => handleAddClick({
+            nome,
+            mail,
+            cpf,
+            municipio: municipio !== null ? `${municipio.nome} - ${municipio.uf}` : municipio,
+            municipioIdSus: municipio !== null ? municipio.municipioIdSus : municipio,
+            cargo,
+            telefone,
+            equipe,
+            whatsapp,
+            autorizacoesSelecionadas
+          }) }
+        />
       </div>
     </Modal>
   );

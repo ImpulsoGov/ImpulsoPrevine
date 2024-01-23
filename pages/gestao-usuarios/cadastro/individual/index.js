@@ -28,7 +28,6 @@ const GestaoDeUsuarios = () => {
   const [snackbar, setSnackbar] = useState(null);
   const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
   const [showModalCadastro, setShowModalCadastro] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (session?.user?.access_token) {
@@ -124,7 +123,6 @@ const GestaoDeUsuarios = () => {
       const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
 
       validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
-      setLoading(true);
 
       const autorizacoesIds = getSelectedAutorizacoesIds(selectedRowAutorizacoes);
       const response = await atualizarAutorizacoes(
@@ -139,11 +137,9 @@ const GestaoDeUsuarios = () => {
       );
 
       setRows(linhasAtualizadas);
-      setLoading(false);
       showSuccessMessage('Autorizações atualizadas com sucesso');
       closeModalAutorizacoes();
     } catch (error) {
-      setLoading(false);
       showErrorMessage(error);
     }
   }, [
@@ -167,11 +163,10 @@ const GestaoDeUsuarios = () => {
     if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
   }, []);
 
-  const cadastrarNovoUsuario = useCallback(async (dados, limparInputs) => {
+  const cadastrarNovoUsuario = useCallback(async (dados) => {
     try {
       validarCamposObrigatorios(dados);
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
-      setLoading(true);
 
       if (!dados.municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
 
@@ -209,11 +204,8 @@ const GestaoDeUsuarios = () => {
       };
 
       setRows([...rows, novaLinha]);
-      setLoading(false);
-      limparInputs();
       showSuccessMessage('Usuário cadastrado com sucesso');
     } catch (error) {
-      setLoading(false);
       showErrorMessage(error);
     }
   }, [
@@ -253,7 +245,6 @@ const GestaoDeUsuarios = () => {
             handleAutorizacoesEdit={ editarAutorizacoesUsuario }
             validarCamposObrigatorios={ validarCamposObrigatorios }
             checarPerfilAtivo={ checarPerfilAtivo }
-            isLoading={ loading }
           />
         )
         : <Spinner height='50vh' />
@@ -265,7 +256,6 @@ const GestaoDeUsuarios = () => {
         closeModal={ closeModalCadastro }
         handleAddClick={ cadastrarNovoUsuario }
         autorizacoes={ autorizacoes }
-        isLoading={ loading }
       />
 
       <SnackBar
