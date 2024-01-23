@@ -19,10 +19,10 @@ const formatar_nome = ({value})=>{
   return <div style={name}>{value}</div>
 }
 const idade_style = ({value}) => value+" meses"
-const STYLE_DOSES = (value,colorCode)=>{
+const STYLE_DOSES_POLIO = (value,colorCode)=>{
   const block = {
     backgroundColor: "#FFECEC",
-    border: "1px solid #EF565D",
+    border: "1px solid #F8BBAE",
     borderRadius: "5px",
     color: "#EF565D",
     padding: "2px",
@@ -36,7 +36,7 @@ const STYLE_DOSES = (value,colorCode)=>{
   }
   const atencao = {
     backgroundColor: "#EFF5F9",
-    border: "1px solid #606E78",
+    border: "1px solid #A6B5BE",
     borderRadius: "5px",
     color: "#606E78",
     padding: "2px",
@@ -106,6 +106,94 @@ const STYLE_DOSES = (value,colorCode)=>{
       {FormatarData(value)}
       </div>
 }
+const STYLE_DOSES_PENTA = (value,colorCode)=>{
+  const block = {
+    backgroundColor: "#FFECEC",
+    border: "1px solid #F8BBAE",
+    borderRadius: "5px",
+    color: "#EF565D",
+    padding: "2px",
+    fontWeight : 550,
+    width : "130px",
+    display : "flex",
+    gap : "5px",
+    alignItems: "center",
+    justifyContent : "space-between",
+    padding : "3px 10px"
+  }
+  const atencao = {
+    backgroundColor: "#EFF5F9",
+    border: "1px solid #A6B5BE",
+    borderRadius: "5px",
+    color: "#606E78",
+    padding: "2px",
+    fontWeight : 550,
+    width : "130px",
+    display : "flex",
+    gap : "5px",
+    alignItems: "center",
+    justifyContent : "space-between",
+    padding : "3px 10px"
+  }
+  const check = {
+    backgroundColor: "#E7FBF3",
+    border: "1px solid #9DEECD",
+    borderRadius: "5px",
+    color: "#1D856C",
+    padding: "2px",
+    fontWeight : 550,
+    width : "130px",
+    display : "flex",
+    gap : "5px",
+    alignItems: "center",
+    justifyContent : "space-between",
+    padding : "3px 10px"
+  }
+  const atencaoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px",
+    paddingLeft : "2px"
+  }
+  const checkSymbolStyle = {
+      width : "18px",
+      height : "18px",
+      fontSize : "8px",
+      fontWeight : "600",
+      display : "flex",
+      alignItems: "center",
+      justifyContent : "center",
+      paddingTop : "2px"
+  }
+  const blockSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px"
+  }
+
+  const style = {
+    1 : atencao,
+    2 : check,
+    3 : block,
+  }
+  return <div style={style[colorCode]}>
+      {colorCode == 1 && <span style={atencaoSymbolStyle}><img src={dose_nao_aplicada} width={16} height={16}></img></span>} 
+      {(colorCode == 2) && <span style={checkSymbolStyle}><img src={dose_aplicada} width={16} height={16}></img></span>} 
+      {colorCode == 3 && <span style={blockSymbolStyle}><img src={dose_em_atraso} width={16} height={16}></img></span>} 
+      {FormatarData(value)}
+      </div>
+}
+
 const FormatarData = (value)=>{
   if(!value) return null
   const parts = value.split('-');
@@ -128,7 +216,7 @@ const STYLE_STATUS_POLIO = ({value})=>{
   }
   const atraso = {
     backgroundColor: "#FFECEC",
-    border: "1px solid #EF565D",
+    border: "1px solid #F8BBAE",
     borderRadius: "5px",
     color: "#EF565D",
     padding: "4px",
@@ -141,7 +229,135 @@ const STYLE_STATUS_POLIO = ({value})=>{
   }
   const nao_iniciado = {
     backgroundColor: "#EFF5F9",
-    border: "1px solid #606E78",
+    border: "1px solid #A6B5BE",
+    borderRadius: "5px",
+    color: "#606E78",
+    padding: "4px",
+    fontWeight : 550,
+    width : "230px",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    flexDirection : "row"
+  }
+
+  const andamento = {
+    backgroundColor: "#FFF0E1",
+    border: "1px solid #F4CCAB",
+    borderRadius: "5px",
+    color: "#E98633",
+    fontWeight : 550,
+    gap : "5px",
+    padding : "4px",
+    width : "230px",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+  }
+  const completo = {
+    backgroundColor: "#E7FBF3",
+    border: "1px solid #9DEECD",
+    borderRadius: "5px",
+    color: "#1D856C",
+    fontWeight : 550,
+    padding : "4px",
+    width : "230px",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+  }
+  const andamentoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+  }
+  const completoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px",
+    marginRight : "4px"
+  }
+  const atrasoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px",
+    marginRight : "4px"
+  }
+  const naoIniciadoSymbolStyle = {
+    width : "18px",
+    height : "18px",
+    fontSize : "8px",
+    fontWeight : "600",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    paddingTop : "2px",
+    marginRight : "4px"
+  }
+
+  const style = {
+    10 : completo,
+    20 : andamento,
+    30 : atraso,
+    40 : nao_iniciado,
+  }
+  const descricoes = {
+    10 : "Completo",
+    20 : "Em andamento",
+    30 : "Em atraso",
+    40 : "Não iniciado"
+  }
+ 
+  const descricao = descricoes[value]
+  return <div style={style[value]}>
+    {(value == 10) && <span style={completoSymbolStyle}><img src={esquema_completo} width={16} height={16}></img></span>} 
+    {value == 20 && <span style={andamentoSymbolStyle}><img src={esquema_em_andamento} width={16} height={16}></img></span>} 
+    {value == 30 && <span style={atrasoSymbolStyle}><img src={esquema_em_atraso} width={16} height={16}></img></span>} 
+    {value == 40 && <span style={naoIniciadoSymbolStyle}><img src={esquema_nao_iniciado} width={16} height={16}></img></span>} 
+    <div>{descricao}</div>
+    </div>
+}
+const STYLE_STATUS_PENTA = ({value})=>{
+  const STYLE_NULL = {
+    width : '38px',
+    height : '25px',
+    padding : '3px',
+    color : '#1F1F1F',
+    backgroundColor : '#FFF',
+    borderRadius: '5px',
+    textAlign : 'center',
+    fontWeight: 500
+  }
+  const atraso = {
+    backgroundColor: "#FFECEC",
+    border: "1px solid #F8BBAE",
+    borderRadius: "5px",
+    color: "#EF565D",
+    padding: "4px",
+    fontWeight : 550,
+    width : "230px",
+    display : "flex",
+    alignItems: "center",
+    justifyContent : "center",
+    flexDirection : "row"
+  }
+  const nao_iniciado = {
+    backgroundColor: "#EFF5F9",
+    border: "1px solid #A6B5BE",
     borderRadius: "5px",
     color: "#606E78",
     padding: "4px",
@@ -243,35 +459,36 @@ const STYLE_STATUS_POLIO = ({value})=>{
     <div>{descricao}</div>
     </div>
 }
+
 const STYLE_1_DOSE_POLIO = (param)=>{
   const value = param.row.data_ou_prazo_1dose_polio
   const colorCode = param.row.id_cor_1dose_polio
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_POLIO(value,colorCode)
 }
 const STYLE_2_DOSE_POLIO = (param)=>{
   const value = param.row.data_ou_prazo_2dose_polio
   const colorCode = param.row.id_cor_2dose_polio
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_POLIO(value,colorCode)
 }
 const STYLE_3_DOSE_POLIO = (param)=>{
   const value = param.row.data_ou_prazo_3dose_polio
   const colorCode = param.row.id_cor_3dose_polio
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_POLIO(value,colorCode)
 }
 const STYLE_1_DOSE_PENTA = (param)=>{
   const value = param.row.data_ou_prazo_1dose_penta
   const colorCode = param.row.id_cor_1dose_penta
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_PENTA(value,colorCode)
 }
 const STYLE_2_DOSE_PENTA = (param)=>{
   const value = param.row.data_ou_prazo_2dose_penta
   const colorCode = param.row.id_cor_2dose_penta
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_PENTA(value,colorCode)
 }
 const STYLE_3_DOSE_PENTA = (param)=>{
   const value = param.row.data_ou_prazo_3dose_penta
   const colorCode = param.row.id_cor_3dose_penta
-  return STYLE_DOSES(value,colorCode)
+  return STYLE_DOSES_PENTA(value,colorCode)
 }
 
 const colunasVacinacaoAPS=[
@@ -279,7 +496,7 @@ const colunasVacinacaoAPS=[
       align: 'left',
       field: 'cidadao_nome',
       headerAlign: 'center',
-      headerName: 'NOME OU RN DE RESP.',
+      headerName: 'NOME OU RN DE RESPONSÁVEL',
       width: 320,
       sortable : false,
       renderCell : formatar_nome,
@@ -353,7 +570,7 @@ const colunasVacinacaoAPS=[
         headerName: 'STATUS DO ESQUEMA PENTA',
         width: 250,
         sortable : false,
-        renderCell : STYLE_STATUS_POLIO
+        renderCell : STYLE_STATUS_PENTA
     },
     {
       align: 'center',

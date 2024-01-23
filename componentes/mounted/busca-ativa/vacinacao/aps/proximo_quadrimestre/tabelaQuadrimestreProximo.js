@@ -33,6 +33,8 @@ const TabelaAPSQuadrimestreProximo = ({
     setTabelaData
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 2)
+    const codigosPolio = [10,20,30,40]
+    if(tabelaDataAPSVacinacao[0].id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -49,13 +51,13 @@ const TabelaAPSQuadrimestreProximo = ({
         <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de Crianças',
+                descricao: 'Total de crianças',
                 valor: tabelaDataAPSVacinacao.length
             },
             {
                 descricao: 'Crianças com os dois esquemas vacinais completos',
                 valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                return (item.id_status_polio == 1 && item.id_status_penta == 1) ?
+                return (item.id_status_polio == 10 && item.id_status_penta == 1) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
@@ -63,23 +65,23 @@ const TabelaAPSQuadrimestreProximo = ({
                 descricao: 'Crianças com um ou os dois esquemas vacinais em andamento',
                 valor: tabelaDataAPSVacinacao.length - tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
                 return (
-                    (item.id_status_polio == 1 && item.id_status_penta == 1) || 
-                    (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
-                    (item.id_status_polio == 4 && item.id_status_penta == 4) ?
+                    (item.id_status_polio == 10 && item.id_status_penta == 1) || 
+                    (item.id_status_polio == 30 || item.id_status_penta == 3)) || 
+                    (item.id_status_polio == 40 && item.id_status_penta == 4) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
             {
                 descricao: 'Crianças com pelo menos uma dose em atraso',
                 valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                return (item.id_status_polio == 3 || item.id_status_penta == 3) ?
+                return (item.id_status_polio == 30 || item.id_status_penta == 3) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
             {
                 descricao: 'Crianças com os dois esquemas vacinais não iniciados',
                 valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                return (item.id_status_polio == 4 && item.id_status_penta == 4) ?
+                return (item.id_status_polio == 40 && item.id_status_penta == 4) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
@@ -99,8 +101,8 @@ const TabelaAPSQuadrimestreProximo = ({
                 rotulo: 'Filtrar por profissional responsável'
             },
             {
-                data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio))],
-                labels : vacinacao_status_polio.data.reduce((obj, item) => {
+                data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio.toString()))],
+                labels : vacinacao_status_polio.dataTabela.reduce((obj, item) => {
                     obj[item.id_status_polio] = item.status_descricao;
                     return obj;
                 }, {}),
@@ -108,7 +110,7 @@ const TabelaAPSQuadrimestreProximo = ({
                 rotulo: 'Filtrar por status polio'
             },
             {
-                data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta))],
+                data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_penta.toString()))],
                 labels : vacinacao_status_penta.data.reduce((obj, item) => {
                     obj[item.id_status_penta] = item.status_descricao;
                     return obj;

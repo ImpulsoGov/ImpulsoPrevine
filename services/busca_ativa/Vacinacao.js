@@ -35,7 +35,7 @@ const tabelaVacinacaoAPS = async(municipio_id_sus,token)=>{
         return response.data;
       })
       .catch((error) => {
-        return error.response.data;
+        return error.response?.data;
       });      
 
       return res

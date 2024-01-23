@@ -6,6 +6,7 @@ import {
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
+import { useEffect } from "react";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -33,6 +34,8 @@ const TabelaAPSQuadrimestreAtual = ({
     setTabelaData
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
+    const codigosPolio = [10,20,30,40]
+    if(tabelaDataAPSVacinacao[0].id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -47,15 +50,16 @@ const TabelaAPSQuadrimestreAtual = ({
             Q1/24 - Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
+            key="vacinacaoCardsQuadriAtualTabela"
             valores={[
                 {
-                    descricao: 'Total de Crianças',
+                    descricao: 'Total de crianças',
                     valor: tabelaDataAPSVacinacao.length
                 },
                 {
                     descricao: 'Crianças com os dois esquemas vacinais completos',
                     valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                    return (item.id_status_polio == 1 && item.id_status_penta == 1) ?
+                    return (item.id_status_polio == 10 && item.id_status_penta == 1) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
@@ -63,23 +67,23 @@ const TabelaAPSQuadrimestreAtual = ({
                     descricao: 'Crianças com um ou os dois esquemas vacinais em andamento',
                     valor: tabelaDataAPSVacinacao.length - tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
                     return (
-                        (item.id_status_polio == 1 && item.id_status_penta == 1) || 
-                        (item.id_status_polio == 3 || item.id_status_penta == 3)) || 
-                        (item.id_status_polio == 4 && item.id_status_penta == 4) ?
+                        (item.id_status_polio == 10 && item.id_status_penta == 1) || 
+                        (item.id_status_polio == 30 || item.id_status_penta == 3)) || 
+                        (item.id_status_polio == 40 && item.id_status_penta == 4) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
                     descricao: 'Crianças com pelo menos uma dose em atraso',
                     valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                    return (item.id_status_polio == 3 || item.id_status_penta == 3) ?
+                    return (item.id_status_polio == 30 || item.id_status_penta == 3) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
                     descricao: 'Crianças com os dois esquemas vacinais não iniciados',
                     valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
-                    return (item.id_status_polio == 4 && item.id_status_penta == 4) ?
+                    return (item.id_status_polio == 40 && item.id_status_penta == 4) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
@@ -100,7 +104,7 @@ const TabelaAPSQuadrimestreAtual = ({
                 },
                 {
                     data: [...new Set(tabelaDataAPSVacinacao.map(item => item.id_status_polio.toString()))],
-                    labels : vacinacao_status_polio.data.reduce((obj, item) => {
+                    labels : vacinacao_status_polio.dataTabela.reduce((obj, item) => {
                         obj[item.id_status_polio] = item.status_descricao;
                         return obj;
                     }, {}),
