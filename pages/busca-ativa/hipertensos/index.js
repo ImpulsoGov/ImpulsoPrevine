@@ -17,6 +17,7 @@ import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
+import mixpanel from "mixpanel-browser";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -210,6 +211,10 @@ const Index = ({res}) => {
                 month: '2-digit',
                 day: '2-digit'
                })}
+              trackObject={mixpanel}
+              lista="hipertensao"
+              aba={null}
+              sub_aba={null}
       
                 /> : <Spinner/>
             }
@@ -495,6 +500,10 @@ const Index = ({res}) => {
             month: '2-digit',
             day: '2-digit'
            })}
+          trackObject={mixpanel}
+          lista="hipertensao"
+          aba={null}
+          sub_aba={null}
   
       /> : <Spinner/>
         }
