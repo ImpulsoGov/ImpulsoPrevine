@@ -74,6 +74,11 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
       setTabelaDataEquipe(response)
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
+  useEffect(()=>{
+    tabelaDataEquipe && session && activeTabIndex == 0 && activeTitleTabIndex == 0 &&
+    setTabelaData(tabelaDataEquipe.filter(item=>item.id_status_quadrimestre== 1))
+  },[session,tabelaDataEquipe])
+
   const ImpressaoVacinacao = ()=> Imprimir(
     1,
     <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS}/>,
@@ -83,35 +88,36 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   )   
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){
-      const Children = [
+    const Children =  
+    [
+      [
           [
-              [
-                <TabelaEquipeQuadrimestreAtual
-                    tabelaDataAPS={tabelaDataEquipe} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                />
-              ],
-          ],
-          [
-            [
-              <TabelaEquipeQuadrimestreProximo
-                  tabelaDataAPS={tabelaDataEquipe} 
-                  tabelaData={tabelaData} 
-                  setTabelaData={setTabelaData}
-              />
-            ],
-        ],
-        [
-          [
-            <TabelaEquipeQuadrimestreFuturo
+            <TabelaEquipeQuadrimestreAtual
                 tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
             />
           ],
       ],
-]
+      [
+        [
+          <TabelaEquipeQuadrimestreProximo
+              tabelaDataAPS={tabelaDataEquipe} 
+              tabelaData={tabelaData} 
+              setTabelaData={setTabelaData}
+          />
+        ],
+    ],
+    [
+      [
+        <TabelaEquipeQuadrimestreFuturo
+            tabelaDataAPS={tabelaDataEquipe} 
+            tabelaData={tabelaData} 
+            setTabelaData={setTabelaData}
+        />
+      ],
+  ],
+    ]
       return (
       <>
           <div 
