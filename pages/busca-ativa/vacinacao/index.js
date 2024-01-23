@@ -2,31 +2,31 @@ import {
     CardAlert,
     TituloTexto, 
     ButtonLight, 
-    ButtonPrint,
     TabelaVacinacaoImpressao,
     PanelSelector,
     ButtonColorSubmitIcon
   } from "@impulsogov/design-system";
-  import React, { useState,useEffect } from 'react';
-  import { useSession,signOut, getSession } from "next-auth/react"
-  import { useRouter } from 'next/router';
-  import { Imprimir } from "../../../helpers/imprimir"
+import React, { useState,useEffect } from 'react';
+import { useSession,signOut, getSession } from "next-auth/react"
+import { useRouter } from 'next/router';
+import { Imprimir } from "../../../helpers/imprimir"
 
-  import { getData } from '../../../services/cms'
-  import { LAYOUT } from '../../../utils/QUERYS'
-  import { redirectHome } from "../../../helpers/redirectHome";
-  import { colunasGestantesEquipe } from "../../../helpers/colunasGestantes";
-  import { tabelaVacinacaoEquipe , tabelaVacinacaoAPS } from "../../../services/busca_ativa/Vacinacao";
-  import { TabelaEquipeGestantesAtivas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesAtivas";
-  import { TabelaEquipeGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesEncerradas";
-  import { TabelaEquipeGestantesSemDUM } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesSemDUM";
-  import { CardsEquipe } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/cardsEquipe";
-  import { GraficoAPSQuadrimestreAtual, CardsGraficoAPSQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/graficoQuadrimestreAtual";
-  import { TabelaAPSQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/tabelaQuadrimestreAtual";
-  import { GraficoAPSQuadrimestreProximo, CardsGraficoAPSQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/graficoQuadrimestreProximo";
-  import { TabelaAPSQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/tabelaQuadrimestreProximo";
-  import { GraficoAPSQuadrimestreFuturo, CardsGraficoAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/graficoQuadrimestreFuturo";
-  import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+import { getData } from '../../../services/cms'
+import { LAYOUT } from '../../../utils/QUERYS'
+import { redirectHome } from "../../../helpers/redirectHome";
+import { tabelaVacinacaoEquipe , tabelaVacinacaoAPS } from "../../../services/busca_ativa/Vacinacao";
+import { GraficoAPSQuadrimestreAtual, CardsGraficoAPSQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/graficoQuadrimestreAtual";
+import { TabelaAPSQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/tabelaQuadrimestreAtual";
+import { GraficoAPSQuadrimestreProximo, CardsGraficoAPSQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/graficoQuadrimestreProximo";
+import { TabelaAPSQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/tabelaQuadrimestreProximo";
+import { GraficoAPSQuadrimestreFuturo, CardsGraficoAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/graficoQuadrimestreFuturo";
+import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+
+import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
+import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
+import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+
+
 import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -48,7 +48,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const router = useRouter();
-  
   useEffect(() => {
     router.push({
       pathname: router.pathname,
@@ -72,7 +71,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     VacinacaoTabelaDataEquipe().then((response)=>{
-      setTabelaDataEquipe(response.data)
+      setTabelaDataEquipe(response)
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
   const ImpressaoVacinacao = ()=> Imprimir(
@@ -82,18 +81,13 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     activeTitleTabIndex,
     activeTabIndex,
   )   
-  
   if(session){  
-    if(session.user.perfis.includes(9)){
+    if(session.user.perfis.includes(9) && tabelaDataEquipe){
       const Children = [
           [
               [
-                <CardsGraficoAPSQuadrimestreAtual tabelaDataAPS={tabelaDataAPS}/>,
-                <GraficoAPSQuadrimestreAtual tabelaDataAPS={tabelaDataAPS}/>,
-              ],
-              [
-                <TabelaAPSQuadrimestreAtual
-                    tabelaDataAPS={tabelaDataAPS} 
+                <TabelaEquipeQuadrimestreAtual
+                    tabelaDataAPS={tabelaDataEquipe} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
                 />
@@ -101,12 +95,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
           ],
           [
             [
-              <CardsGraficoAPSQuadrimestreProximo tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoAPSQuadrimestreProximo tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-              <TabelaAPSQuadrimestreProximo
-                  tabelaDataAPS={tabelaDataAPS} 
+              <TabelaEquipeQuadrimestreProximo
+                  tabelaDataAPS={tabelaDataEquipe} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
               />
@@ -114,19 +104,14 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
         ],
         [
           [
-            <CardsGraficoAPSQuadrimestreFuturo tabelaDataAPS={tabelaDataAPS}/>,
-            <GraficoAPSQuadrimestreFuturo tabelaDataAPS={tabelaDataAPS}/>,
-          ],
-          [
-            <TabelaAPSQuadrimestreFuturo
-                tabelaDataAPS={tabelaDataAPS} 
+            <TabelaEquipeQuadrimestreFuturo
+                tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
             />
           ],
       ],
 ]
-  
       return (
       <>
           <div 
@@ -141,7 +126,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   label="VOLTAR" link="/inicio"
               />
           {
-              tabelaDataAPS &&
+              tabelaDataEquipe &&
               <div style={{marginLeft:"auto"}}>
               {
                   ((activeTabIndex !== 0)) &&
@@ -155,7 +140,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
           }
           </div>
           <TituloTexto
-                  titulo="Lista Nominal de Vacinação"
+                  titulo="Lista Nominal de Vacinação - Equipe"
                   texto=""
                   imagem = {{posicao: null,url: ''}}
           />
@@ -188,24 +173,15 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               list={[
                   [
                     {
-                      label: 'GRÁFICO'
-                    },
-                    {
                       label: 'LISTA NOMINAL'
                     },
                   ],  
                   [
                     {
-                      label: 'GRÁFICO'
-                    },
-                    {
                       label: 'LISTA NOMINAL'
                     },
                   ],  
                   [
-                    {
-                      label: 'GRÁFICO'
-                    },
                     {
                       label: 'LISTA NOMINAL'
                     },

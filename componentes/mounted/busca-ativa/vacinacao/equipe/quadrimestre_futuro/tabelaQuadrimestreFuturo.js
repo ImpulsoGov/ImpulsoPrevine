@@ -6,7 +6,6 @@ import {
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
-import { useEffect } from "react";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -28,12 +27,12 @@ const IDFiltrosOrdenacaoVacinacao = {
     "cidadao_idade_meses" : "desc",
 }
 
-const TabelaAPSQuadrimestreAtual = ({
+const TabelaAPSQuadrimestreFuturo = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData
 }) => {
-    const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
+    const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
     return tabelaDataAPS ? 
@@ -47,10 +46,9 @@ const TabelaAPSQuadrimestreAtual = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q1/24 - Crianças no período de vacinação
+            Q3/24 + Q1/25 - Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
-            key="vacinacaoCardsQuadriAtualTabela"
             valores={[
                 {
                     descricao: 'Total de crianças',
@@ -72,7 +70,7 @@ const TabelaAPSQuadrimestreAtual = ({
                         (item.id_status_polio == 40 && item.id_status_penta == 4) ?
                     acumulador + 1 : acumulador;
                     },0)
-                },
+                    },
                 {
                     descricao: 'Crianças com pelo menos uma dose em atraso',
                     valor: tabelaDataAPSVacinacao.reduce((acumulador,item)=>{ 
@@ -92,11 +90,6 @@ const TabelaAPSQuadrimestreAtual = ({
         <PainelBuscaAtiva
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
-                {
-                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
-                },
                 {
                     data: [...new Set(tabelaDataAPSVacinacao.map(item => item.acs_nome))],
                     filtro: 'acs_nome',
@@ -120,7 +113,7 @@ const TabelaAPSQuadrimestreAtual = ({
                     filtro: 'id_status_penta',
                     rotulo: 'Filtrar por status penta'
                 },
-            ]}
+                ]}
             painel="vacinacao"
             tabela={{
             colunas: colunasVacinacaoAPS,
@@ -144,6 +137,6 @@ const TabelaAPSQuadrimestreAtual = ({
             day: '2-digit'
             })}
         />
-    </>: <Spinner/>
+    </> : <Spinner/>
 }
-export { TabelaAPSQuadrimestreAtual }
+export { TabelaAPSQuadrimestreFuturo }

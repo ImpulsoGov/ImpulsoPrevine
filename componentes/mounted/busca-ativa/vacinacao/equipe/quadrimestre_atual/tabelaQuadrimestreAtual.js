@@ -6,7 +6,6 @@ import {
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
-import { useEffect } from "react";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -92,11 +91,6 @@ const TabelaAPSQuadrimestreAtual = ({
         <PainelBuscaAtiva
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
-                {
-                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
-                },
                 {
                     data: [...new Set(tabelaDataAPSVacinacao.map(item => item.acs_nome))],
                     filtro: 'acs_nome',
