@@ -6,8 +6,7 @@ import { CadastrarUsuarioLotes } from '../../../../helpers/RequisicoesConcorrent
 import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValidacaoDadosCadastro';
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
-import { Tratamento } from '../../../../utils/tratamentoDadosCadastrais';
-import { Validacao } from '../../../../utils/validacaoDadosCadastrais';
+import { Validacao, Tratamento } from '../../../../utils/cadastroUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
