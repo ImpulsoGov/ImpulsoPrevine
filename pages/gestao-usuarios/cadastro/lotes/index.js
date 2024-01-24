@@ -1,14 +1,13 @@
 import { ButtonLightSubmit, Spinner, TabelaHiperDia, TituloSmallTexto } from '@impulsogov/design-system';
-import { cpf } from 'cpf-cnpj-validator';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import { parse } from 'papaparse';
 import React, { useEffect, useState } from 'react';
-import validator from 'validator';
 import { CadastrarUsuarioLotes } from '../../../../helpers/RequisicoesConcorrentes';
 import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValidacaoDadosCadastro';
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
 import { Tratamento } from '../../../../utils/tratamentoDadosCadastrais';
+import { Validacao } from '../../../../utils/validacaoDadosCadastrais';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -35,51 +34,6 @@ const colunas = [
 const validarColunas = linha => Object.keys(linha).every(chave => colunas.includes(chave));
 
 const validarColunaLinhas = data => data.every(linha => validarColunas(linha));
-
-const Validacao = async data => {
-  const ValidarExistencia = input => input !== null || input !== undefined;
-  const ValidarNome = nome => /^[A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*( [A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*)*$/.test(nome) && ValidarExistencia(nome);
-  const ValidarINE = INE => /^\d{10}$/.test(INE) && ValidarExistencia(INE);
-  const ValidarMail = mail => validator.isEmail(mail) && ValidarExistencia(mail);
-  const ValidarCPF = CPF => cpf.isValid(CPF) && ValidarExistencia(CPF);
-  const ValidarTelefone = numero => /^\d{11}$/.test(numero) && ValidarExistencia(numero);
-  const ValidarWP = wp => (wp == '1' || wp == '0') && ValidarExistencia(wp);
-  const validacoes = [];
-  const validacao = true;
-  data.forEach(usuario => {
-    const usuario_validacoes = {
-      usuario: usuario.nome,
-      nome: true,
-      equipe: true,
-      mail: true,
-      cpf: true,
-      telefone: true,
-      municipio_uf: true,
-      cargo: true,
-      whatsapp: true,
-      perfil: true
-    };
-    const validadores = {
-      nome: ValidarNome,
-      equipe: ValidarINE,
-      mail: ValidarMail,
-      cpf: ValidarCPF,
-      telefone: ValidarTelefone,
-      cargo: ValidarExistencia,
-      municipio_uf: ValidarExistencia,
-      whatsapp: ValidarWP,
-      perfil: ValidarExistencia,
-    };
-    Object.keys(usuario).forEach(chave => {
-      if (!validadores[chave](usuario[chave])) {
-        usuario_validacoes[chave] = false;
-        validacao = false;
-      }
-    });
-    validacoes.push(usuario_validacoes);
-  });
-  return { 'validacao': validacao, data: validacoes };
-};
 
 const TratamentoValidacao = async (setDadosValidados, setValidacaoRealizada, JSONDATA, setDadosReq) => {
   const dados_tratados = await Tratamento(JSONDATA, setDadosReq);
