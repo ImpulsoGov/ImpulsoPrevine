@@ -16,12 +16,6 @@ const CadastrarUsuarioLotes = async (data, setRes, SET_ERRO_PROCESSAMENTO, token
   let erros = 0;
   results.forEach((result, index) => {
     if (!result.success) erros++;
-    // if (result.success) {
-    //   console.log(`Solicitação ${index + 1} concluída com sucesso:`, result.usuario);
-    // } else {
-    //   erros++
-    //   console.error(`Erro na solicitação ${index + 1}:`, result.usuario);
-    // }
   });
   SET_ERRO_PROCESSAMENTO(erros > 0);
   setRes(results);
