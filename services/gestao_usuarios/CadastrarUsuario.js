@@ -4,7 +4,6 @@ import { API_URL } from "../../constants/API_URL";
 const CadastrarUsuario = async (formData, token) => {
   let config = {
     method: 'post',
-    maxBodyLength: Infinity,
     url: API_URL + 'suporte/usuarios/cadastro-lote-sem-ativacao',
     headers: {
       'Authorization': 'Bearer ' + token
