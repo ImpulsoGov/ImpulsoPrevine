@@ -48,12 +48,14 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
   const router = useRouter();
+  let visao
   useEffect(() => {
     router.push({
       pathname: router.pathname,
       query: { 
         sub_aba: activeTabIndex,
-        aba : activeTitleTabIndex
+        aba : activeTitleTabIndex,
+        visao : visao
       }
     },
       undefined, { shallow: true }
@@ -88,6 +90,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   )   
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){
+    visao = "equipe"
     const Children =  
     [
       [
@@ -209,6 +212,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
       )
     }
     if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+      visao = "aps"
       const Children = [
           [
               [
