@@ -18,6 +18,7 @@ import { redirectHome } from "../../../helpers/redirectHome";
 import { Imprimir } from "../../../helpers/imprimir"
 import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -104,9 +105,23 @@ const Index = ({res}) => {
     "diabetes",
     activeTitleTabIndex,
     activeTabIndex,
-)   
+  )   
+  const router = useRouter();
+  let visao = null
+  useEffect(() => {
+      router.push({
+        pathname: router.pathname,
+        query: { 
+          visao : visao
+      }
+      },
+        undefined, { shallow: true }
+      );
+    }, [visao]);
+
   if(session){  
     if(session.user.perfis.includes(9)){
+      visao = "equipe"
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -227,6 +242,7 @@ const Index = ({res}) => {
       )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     return (
       <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
