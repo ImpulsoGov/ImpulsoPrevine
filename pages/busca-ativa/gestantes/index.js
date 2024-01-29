@@ -56,7 +56,7 @@ const res = [
 ]
 return {
   props: {
-  res : res
+    res : res
   }
 }
 }
@@ -71,7 +71,10 @@ const router = useRouter();
 useEffect(() => {
   router.push({
     pathname: router.pathname,
-    query: { aba: activeTabIndex }
+    query: { 
+      aba: activeTitleTabIndex,
+      sub_aba : activeTabIndex
+    }
   },
     undefined, { shallow: true }
   );
