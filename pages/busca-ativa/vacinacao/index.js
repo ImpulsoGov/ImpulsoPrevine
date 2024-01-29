@@ -135,7 +135,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaDataEquipe &&
               <div style={{marginLeft:"auto"}}>
               {
-                  ((activeTabIndex !== 0)) &&
                   <ButtonColorSubmitIcon
                     label="CLIQUE AQUI PARA IMPRIMIR"
                     icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
