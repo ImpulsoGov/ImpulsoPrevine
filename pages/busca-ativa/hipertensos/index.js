@@ -17,6 +17,7 @@ import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -94,9 +95,22 @@ const Index = ({res}) => {
     null,
     null,
   )   
+  const router = useRouter();
+  let visao = null
+  useEffect(() => {
+      router.push({
+        pathname: router.pathname,
+        query: { 
+          visao : visao
+      }
+      },
+        undefined, { shallow: true }
+      );
+    }, [visao]);
 
   if(session){  
     if(session.user.perfis.includes(9)){
+      visao = "equipe"
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -217,6 +231,7 @@ const Index = ({res}) => {
       )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     return (
       <>
         <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
