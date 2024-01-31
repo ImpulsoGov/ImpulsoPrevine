@@ -30,12 +30,14 @@ export const Tratamento = async (data, setDadosReq) => {
 
 export const Validacao = async data => {
   const ValidarExistencia = input => input !== null || input !== undefined;
+  const ValidarMunicipioExistente = municipio => MUNICIPIOS.some(({ nome, uf }) => `${nome} - ${uf}` === municipio);
   const ValidarNome = nome => /^[A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*( [A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*)*$/.test(nome) && ValidarExistencia(nome);
   const ValidarINE = INE => /^\d{10}$/.test(INE) && ValidarExistencia(INE);
   const ValidarMail = mail => validator.isEmail(mail) && ValidarExistencia(mail);
   const ValidarCPF = CPF => cpf.isValid(CPF) && ValidarExistencia(CPF);
   const ValidarTelefone = numero => /^\d{11}$/.test(numero) && ValidarExistencia(numero);
   const ValidarWP = wp => (wp == '1' || wp == '0') && ValidarExistencia(wp);
+  const ValidarMunicipio = municipio => ValidarExistencia(municipio) && ValidarMunicipioExistente(municipio);
   const validacoes = [];
   const validacao = true;
   data.forEach(usuario => {
@@ -58,7 +60,7 @@ export const Validacao = async data => {
       cpf: ValidarCPF,
       telefone: ValidarTelefone,
       cargo: ValidarExistencia,
-      municipio_uf: ValidarExistencia,
+      municipio_uf: ValidarMunicipio,
       whatsapp: ValidarWP,
       perfil: ValidarExistencia,
     };
