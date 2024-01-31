@@ -6,7 +6,7 @@ import { CadastrarUsuarioLotes } from '../../../../helpers/RequisicoesConcorrent
 import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValidacaoDadosCadastro';
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
-import { Validacao, Tratamento } from '../../../../utils/cadastroUsuarios';
+import { BuscarIdSusPorNome, Tratamento, Validacao } from '../../../../utils/cadastroUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -37,7 +37,17 @@ const validarColunaLinhas = data => data.every(linha => validarColunas(linha));
 const TratamentoValidacao = async (setDadosValidados, setValidacaoRealizada, JSONDATA, setDadosReq) => {
   const dados_tratados = await Tratamento(JSONDATA, setDadosReq);
   const dados_validados = await Validacao(dados_tratados);
-  dados_validados.validacao && setValidacaoRealizada(true);
+
+  if (dados_validados.validacao) {
+    setValidacaoRealizada(true);
+
+    const dadosTratadosComIdSus = dados_tratados.map((dado) => {
+      return { ...dado, municipio_id_sus: BuscarIdSusPorNome(dado.municipio_uf) };
+    });
+
+    setDadosReq(dadosTratadosComIdSus);
+  }
+
   setDadosValidados(dados_validados);
 };
 const GestaoDeUsuarios = () => {
