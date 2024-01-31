@@ -67,9 +67,6 @@ const GestaoDeUsuarios = () => {
     etapa == 2 && CadastrarUsuarioLotes(dadosReq, setRes, SET_ERRO_PROCESSAMENTO, session.user.access_token);
     etapa == 0 && setJSONDATA() && setDadosReq();
   }, [etapa]);
-  useEffect(() => {
-    console.log(res);
-  }, [res]);
   const handleSubmit = () => {
     const fileReader = new FileReader();
     if (file) {
