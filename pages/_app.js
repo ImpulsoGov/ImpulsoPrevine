@@ -136,11 +136,11 @@ function MyApp(props) {
                           [{
                             label: "Dados Restritos", url: "",
                             sub: [
-                              { label: "Listas Nominal Citopatológico", url: "/busca-ativa/citopatologico" },                              
-                              { label: "Listas Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
-                              { label: "Listas Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
-                              { label: "Listas Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
-                              { label: "Listas Nominal Vacinação", url: "/busca-ativa/vacinacao" },
+                              { label: "Lista Nominal Citopatológico", url: "/busca-ativa/citopatologico" },                              
+                              { label: "Lista Nominal Diabetes", url: "/busca-ativa/diabeticos?initialTitle=0&painel=0" },
+                              { label: "Lista Nominal Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
+                              { label: "Lista Nominal Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
+                              { label: "Lista Nominal Vacinação", url: "/busca-ativa/vacinacao" },
                               { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
                             ]
                           }] : [])
