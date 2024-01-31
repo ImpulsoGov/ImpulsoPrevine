@@ -60,7 +60,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex]);
   
   const VacinacaoTabelaDataAPS = async()=> await tabelaVacinacaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
   useEffect(()=>{
