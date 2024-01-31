@@ -1,5 +1,6 @@
 import { cpf } from 'cpf-cnpj-validator';
 import validator from 'validator';
+import { MUNICIPIOS } from '../constants/municipios';
 
 export const Tratamento = async (data, setDadosReq) => {
   if (data) {
@@ -70,4 +71,8 @@ export const Validacao = async data => {
     validacoes.push(usuario_validacoes);
   });
   return { 'validacao': validacao, data: validacoes };
+};
+
+export const BuscarIdSusPorNome = (nome) => {
+  return MUNICIPIOS.find(municipio => `${municipio.nome} - ${municipio.uf}` === nome).municipioIdSus;
 };
