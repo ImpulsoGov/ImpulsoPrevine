@@ -35,7 +35,7 @@ const validarColunas = linha => Object.keys(linha).every(chave => colunas.includ
 const validarColunaLinhas = data => data.every(linha => validarColunas(linha));
 
 const TratamentoValidacao = async (setDadosValidados, setValidacaoRealizada, JSONDATA, setDadosReq) => {
-  const dados_tratados = await Tratamento(JSONDATA, setDadosReq);
+  const dados_tratados = await Tratamento(JSONDATA);
   const dados_validados = await Validacao(dados_tratados);
 
   if (dados_validados.validacao) {

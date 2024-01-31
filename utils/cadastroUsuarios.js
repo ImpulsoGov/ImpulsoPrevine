@@ -2,7 +2,7 @@ import { cpf } from 'cpf-cnpj-validator';
 import validator from 'validator';
 import { MUNICIPIOS } from '../constants/municipios';
 
-export const Tratamento = async (data, setDadosReq) => {
+export const Tratamento = async (data) => {
   if (data) {
     const TratarNome = nome => nome.split(' ').map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ').trim();
     const TratarINE = equipe => equipe.toString().replace(/[^0-9]/g, '').padStart(10, '0');
@@ -22,7 +22,7 @@ export const Tratamento = async (data, setDadosReq) => {
         'whatsapp': usuario.whatsapp
       };
     });
-    setDadosReq(dadosTratados);
+
     return dadosTratados;
   }
 
