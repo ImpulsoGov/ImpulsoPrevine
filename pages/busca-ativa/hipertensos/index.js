@@ -101,6 +101,8 @@ const Index = ({res}) => {
       router.push({
         pathname: router.pathname,
         query: { 
+          aba : null,
+          sub_aba : null,
           visao : visao
       }
       },
@@ -519,7 +521,6 @@ const Index = ({res}) => {
 }else{
   if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-
+if(status=="unauthenticated") router.push('/')
 }
-
 export default Index;

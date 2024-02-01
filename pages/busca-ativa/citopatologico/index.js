@@ -51,7 +51,8 @@ useEffect(() => {
     router.push({
       pathname: router.pathname,
       query: { 
-        aba: activeTabIndex,
+        aba: null,
+        sub_aba : activeTabIndex,
         visao : visao
     }
     },

@@ -435,10 +435,10 @@ if(session){
     </>
     )
   }
-  }else{
-    if(status !== "authenticated" && status !== "loading" ) signOut()
-  }
-
+}else{
+  if(status !== "authenticated" && status !== "loading" ) signOut()
+}
+if(status=="unauthenticated") router.push('/')
 }
 
 export default Index;
