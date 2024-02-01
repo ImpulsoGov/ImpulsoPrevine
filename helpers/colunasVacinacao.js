@@ -18,7 +18,18 @@ const formatar_nome = ({value})=>{
   }
   return <div style={name}>{value}</div>
 }
-const idade_style = ({value}) => value+" meses"
+const idade_style = ({value}) => {
+  return <div style={{
+    width : "100%",
+    textAlign : "right"
+  }}>{value+" meses"}</div>
+}
+const cpf_style = ({value}) => {
+  return <div style={{
+    width : "100%",
+    textAlign : "right"
+  }}>{value}</div>
+}
 const STYLE_DOSES_POLIO = (value,colorCode)=>{
   const block = {
     backgroundColor: "#FFECEC",
@@ -221,11 +232,11 @@ const STYLE_STATUS_POLIO = ({value})=>{
     color: "#EF565D",
     padding: "4px",
     fontWeight : 550,
-    width : "230px",
+    width : "100%",
     display : "flex",
     alignItems: "center",
     justifyContent : "center",
-    flexDirection : "row"
+    flexDirection : "row",
   }
   const nao_iniciado = {
     backgroundColor: "#EFF5F9",
@@ -496,19 +507,10 @@ const colunasVacinacaoAPS=[
       align: 'left',
       field: 'cidadao_nome',
       headerAlign: 'center',
-      headerName: 'NOME OU RN DE RESPONSÁVEL',
+      headerName: 'NOME DA CRIANÇA',
       width: 320,
       sortable : false,
       renderCell : formatar_nome,
-    },
-    {
-      align: 'left',
-      field: 'cidadao_nome_responsavel',
-      headerAlign: 'center',
-      headerName: 'NOME DO RESPONSÁVEL',
-      align : 'center',
-      width: 320,
-      sortable : false
     },
     {
       align: 'center',
@@ -516,7 +518,8 @@ const colunasVacinacaoAPS=[
       headerName: 'CPF / DATA DE NASCIMENTO',
       align: 'center',
       width: 140,
-      sortable : false
+      sortable : false,
+      renderCell : cpf_style,
     },
     {
       align: 'center',
@@ -531,7 +534,7 @@ const colunasVacinacaoAPS=[
       align: 'center',
       field: 'id_status_polio',
       headerAlign: 'center',
-      headerName: 'STATUS DO ESQUEMA POLIO',
+      headerName: 'STATUS DO ESQUEMA POLIOMIELITE',
       width: 250,
       sortable : false,
       renderCell : STYLE_STATUS_POLIO
@@ -567,7 +570,7 @@ const colunasVacinacaoAPS=[
         align: 'center',
         field: 'id_status_penta',
         headerAlign: 'center',
-        headerName: 'STATUS DO ESQUEMA PENTA',
+        headerName: 'STATUS DO ESQUEMA PENTAVALENTE',
         width: 250,
         sortable : false,
         renderCell : STYLE_STATUS_PENTA
@@ -600,14 +603,22 @@ const colunasVacinacaoAPS=[
       renderCell : STYLE_3_DOSE_PENTA
     },
     {
+      align: 'left',
+      field: 'cidadao_nome_responsavel',
+      headerAlign: 'center',
+      headerName: 'NOME DO RESPONSÁVEL FAMILIAR',
+      align : 'center',
+      width: 320,
+      sortable : false,
+    },      
+    {
       align: 'center',
       field: 'acs_nome',
       headerAlign: 'center',
       headerName: 'PROFISSIONAL RESPONSÁVEL',
       width: 300,
-      sortable : false
+      sortable : false,
     },
-      
   ]
 
 export { colunasVacinacaoAPS } 

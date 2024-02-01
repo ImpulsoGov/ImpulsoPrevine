@@ -6,6 +6,7 @@ import {
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
+import mixpanel from 'mixpanel-browser';
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -127,6 +128,7 @@ const TabelaAPSQuadrimestreProximo = ({
         IDFiltros={IDFiltrosVacinacao}
         rotulosfiltros={rotulosfiltrosVacinacao}    
         IDFiltrosOrdenacao={IDFiltrosOrdenacaoVacinacao}
+        trackObject={mixpanel}
         atualizacao = {new Date(tabelaDataAPSVacinacao.reduce((maisRecente, objeto) => {
         const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
         const dataMaisRecenteAnterior = new Date(maisRecente);
