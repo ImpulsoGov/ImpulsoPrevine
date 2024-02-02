@@ -120,15 +120,36 @@ if(session){
   const Children = [[
     [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesAtivas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <TabelaEquipeGestantesAtivas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTabIndex}
+          sub_aba={null}
+        />
     ],
     [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesSemDUM tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <TabelaEquipeGestantesSemDUM
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTabIndex}
+          sub_aba={null}
+        />
     ],
     [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesEncerradas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <TabelaEquipeGestantesEncerradas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTabIndex}
+          sub_aba={null}
+        />
     ]
 ]]
   return (
