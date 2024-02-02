@@ -102,8 +102,8 @@ const Index = ({res}) => {
     0.78,
     <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>,
     "diabetes",
-    activeTitleTabIndex,
-    activeTabIndex,
+    null,
+    null,
 )   
   if(session){  
     if(session.user.perfis.includes(9)){

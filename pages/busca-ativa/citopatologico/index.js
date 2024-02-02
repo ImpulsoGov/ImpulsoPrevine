@@ -682,7 +682,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 label="VOLTAR" link="/inicio"
             />
         {
-            tabelaDataAPS &&
+            tabelaDataAPS && activeTabIndex != 0 &&
             <div style={{marginLeft:"auto"}}>
             <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
