@@ -79,7 +79,7 @@ useEffect(() => {
   },
     undefined, { shallow: true }
   );
-}, [activeTabIndex]);
+}, [activeTabIndex,activeTitleTabIndex]);
 
 const GestantesTabelaDataAPS = async()=> await tabelaGestantesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{

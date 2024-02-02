@@ -58,7 +58,7 @@ useEffect(() => {
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex]);
 
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
