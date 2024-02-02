@@ -45,6 +45,7 @@ import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo
 import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
+import mixpanel from "mixpanel-browser";
 
 
 export async function getServerSideProps(ctx) {
@@ -226,6 +227,9 @@ if(session){
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
               />
             ],
             [
@@ -234,6 +238,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -252,6 +259,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -260,6 +270,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
             />,
             ],
         ],
@@ -278,6 +291,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -286,6 +302,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -294,6 +313,9 @@ if(session){
             tabelaDataAPS={tabelaDataAPS} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
           />
         ]
     ]
