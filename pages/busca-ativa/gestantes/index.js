@@ -125,8 +125,8 @@ if(session){
           tabelaData={tabelaData}
           setTabelaData={setTabelaData}
           trackObject={mixpanel}
-          aba={activeTabIndex}
-          sub_aba={null}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
         />
     ],
     [
@@ -136,8 +136,8 @@ if(session){
           tabelaData={tabelaData}
           setTabelaData={setTabelaData}
           trackObject={mixpanel}
-          aba={activeTabIndex}
-          sub_aba={null}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
         />
     ],
     [
@@ -147,8 +147,8 @@ if(session){
           tabelaData={tabelaData}
           setTabelaData={setTabelaData}
           trackObject={mixpanel}
-          aba={activeTabIndex}
-          sub_aba={null}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
         />
     ]
 ]]
