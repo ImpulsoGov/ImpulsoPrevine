@@ -11,12 +11,23 @@ import {
       IDFiltrosOrdenacaoGestantes,
       IntFiltrosGestantesEquipe
    } from "../../../../../../helpers/FiltrosOrdenacaoAux"
-const TabelaEquipeGestantesEncerradas = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
+const TabelaEquipeGestantesEncerradas = ({
+    tabelaDataEquipe,
+    tabelaData,
+    setTabelaData,
+    trackObject,
+    aba,
+    sub_aba,
+})=>{
     const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipeGestantesEncerradas.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
         key="TabelaChildGestantesEncerradas"
+        trackObject={trackObject}
+        lista="gestantes"
+        aba={aba}
+        sub_aba={sub_aba}
         dadosFiltros={[
         {
             data: [...new Set(tabelaDataEquipeGestantesEncerradas.map(item => item.acs_nome))],

@@ -18,6 +18,7 @@ import { redirectHome } from "../../../helpers/redirectHome";
 import { Imprimir } from "../../../helpers/imprimir"
 import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
+import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
@@ -103,9 +104,9 @@ const Index = ({res}) => {
     0.78,
     <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>,
     "diabetes",
-    activeTitleTabIndex,
-    activeTabIndex,
-  )   
+    null,
+    null,
+  )
   const router = useRouter();
   let visao = null
   useEffect(() => {
@@ -237,6 +238,10 @@ const Index = ({res}) => {
                 month: '2-digit',
                 day: '2-digit'
                })}
+              trackObject={mixpanel}
+              lista="diabetes"
+              aba={null}
+              sub_aba={null}
 
               /> : <Spinner/>
             }
@@ -522,6 +527,10 @@ const Index = ({res}) => {
             month: '2-digit',
             day: '2-digit'
            })}
+           trackObject={mixpanel}
+           lista="diabetes"
+           aba={null}
+           sub_aba={null}
 
           /> : <Spinner/>
         }

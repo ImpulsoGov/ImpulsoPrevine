@@ -22,6 +22,7 @@ import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
 import { useRouter } from 'next/router';
+import mixpanel from 'mixpanel-browser';
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -211,6 +212,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
             /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
@@ -260,6 +265,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
@@ -619,6 +628,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
  
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
@@ -670,6 +683,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]

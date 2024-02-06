@@ -45,6 +45,7 @@ import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo
 import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
+import mixpanel from "mixpanel-browser";
 
 
 export async function getServerSideProps(ctx) {
@@ -103,7 +104,10 @@ const colunasImpressao = {
 }
 const ImpressaoEquipe = ()=> Imprimir(
   0.78,
-  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>
+  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
 )   
 const ImpressaoAPS = ()=> Imprimir(
   0.78,
@@ -118,16 +122,37 @@ if(session){
     visao = "equipe"
     const Children = [[
       [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesAtivas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesAtivas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
       ],
       [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesSemDUM tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesSemDUM
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
       ],
       [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-          <TabelaEquipeGestantesEncerradas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesEncerradas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
       ]
     ]]
   return (
@@ -227,6 +252,9 @@ if(session){
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
               />
             ],
             [
@@ -235,6 +263,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -253,6 +284,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -261,6 +295,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
             />,
             ],
         ],
@@ -279,6 +316,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -287,6 +327,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -295,6 +338,9 @@ if(session){
             tabelaDataAPS={tabelaDataAPS} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
           />
         ]
     ]
