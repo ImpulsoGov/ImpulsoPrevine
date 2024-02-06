@@ -44,27 +44,27 @@ const GraficoHistoricoAcaoEstrategica = ({ GrafAcaoEstrategica }) => {
       case 'M1':
         return 'Jan';
       case 'M2':
-        return 'Feb';
+        return 'Fev';
       case 'M3':
         return 'Mar';
       case 'M4':
-        return 'Apr';
+        return 'Abr';
       case 'M5':
-        return 'May';
+        return 'Mai';
       case 'M6':
         return 'Jun';
       case 'M7':
         return 'Jul';
       case 'M8':
-        return 'Aug';
+        return 'Ago';
       case 'M9':
-        return 'Sep';
+        return 'Set';
       case 'M10':
-        return 'Oct';
+        return 'Out';
       case 'M11':
         return 'Nov';
       case 'M12':
-        return 'Dec';
+        return 'Dez';
       default:
         return mes;
     }

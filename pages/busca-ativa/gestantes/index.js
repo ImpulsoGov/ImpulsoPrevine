@@ -57,7 +57,7 @@ const res = [
 ]
 return {
   props: {
-  res : res
+    res : res
   }
 }
 }
@@ -68,15 +68,19 @@ const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 const router = useRouter();
-
+let visao = null
 useEffect(() => {
   router.push({
     pathname: router.pathname,
-    query: { aba: activeTabIndex }
+    query: { 
+      aba: activeTitleTabIndex,
+      sub_aba : activeTabIndex,
+      visao : visao
+    }
   },
     undefined, { shallow: true }
   );
-}, [activeTabIndex]);
+}, [activeTabIndex,activeTitleTabIndex]);
 
 const GestantesTabelaDataAPS = async()=> await tabelaGestantesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
@@ -113,12 +117,11 @@ const ImpressaoAPS = ()=> Imprimir(
   activeTabIndex,
 
 )   
-
-console.log(activeTitleTabIndex,activeTabIndex)
 if(session){  
   if(session.user.perfis.includes(9)){
-  const Children = [[
-    [
+    visao = "equipe"
+    const Children = [[
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
         <TabelaEquipeGestantesAtivas
           tabelaDataEquipe={tabelaDataEquipe}
@@ -128,8 +131,8 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
         />
-    ],
-    [
+      ],
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
         <TabelaEquipeGestantesSemDUM
           tabelaDataEquipe={tabelaDataEquipe}
@@ -139,8 +142,8 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
         />
-    ],
-    [
+      ],
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
         <TabelaEquipeGestantesEncerradas
           tabelaDataEquipe={tabelaDataEquipe}
@@ -150,8 +153,8 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
         />
-    ]
-]]
+      ]
+    ]]
   return (
       <>
       <div 
@@ -232,6 +235,7 @@ if(session){
   )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     const Children = [
         [
             [
@@ -477,10 +481,10 @@ if(session){
     </>
     )
   }
-  }else{
-    if(status !== "authenticated" && status !== "loading" ) signOut()
-  }
-
+}else{
+  if(status !== "authenticated" && status !== "loading" ) signOut()
+}
+if(status=="unauthenticated") router.push('/')
 }
 
 export default Index;
