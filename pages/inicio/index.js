@@ -239,8 +239,8 @@ const Index = ({ res }) => {
         )
     }else{
         if(status !== "authenticated" && status !== "loading" ) signOut()
-    }
-    
+      }
+      if(status=="unauthenticated") router.push('/')
 }
-
+      
 export default Index;

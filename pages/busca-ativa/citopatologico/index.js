@@ -46,15 +46,19 @@ const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 
 const router = useRouter();
-
+let visao = null
 useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { aba: activeTabIndex }
+      query: { 
+        aba: null,
+        sub_aba : activeTabIndex,
+        visao : visao
+    }
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex]);
 
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
@@ -119,6 +123,7 @@ const Impressao = ()=> Imprimir(
 )   
 if(session){  
     if(session.user.perfis.includes(9)){
+        visao = "equipe"
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
@@ -337,6 +342,7 @@ if(session){
     )
 }
 if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     const CardsChild = tabelaDataAPS ? <ScoreCardGrid
         valores={[
             {
