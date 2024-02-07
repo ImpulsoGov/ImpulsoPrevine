@@ -218,6 +218,12 @@ const GestaoDeUsuarios = () => {
                     label='VOLTAR'
                     submit={ () => {
                       setEtapa(0);
+                      SET_ERRO_PROCESSAMENTO(false);
+                      setRes();
+                      setDadosReq();
+                      setDadosValidados();
+                      setValidacaoRealizada(false);
+                      setJSONDATA();
                     } }
                   />
                 </div>
