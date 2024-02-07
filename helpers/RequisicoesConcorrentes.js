@@ -14,7 +14,7 @@ const CadastrarUsuarioLotes = async (data, setRes, SET_ERRO_PROCESSAMENTO, token
     return CadastrarUsuario(formData, token);
   })); // Aguarda todas as solicitações simultaneamente
   let erros = 0;
-  results.forEach((result, index) => {
+  results.forEach((result) => {
     if (!result.success) erros++;
   });
   SET_ERRO_PROCESSAMENTO(erros > 0);
