@@ -1,10 +1,10 @@
 import axios from "axios";
-import { API_URL } from "../../constants/API_URL";
+import { API_URL_USUARIOS } from "../../constants/API_URL";
 
 const CadastrarUsuario = async (formData, token) => {
   let config = {
     method: 'post',
-    url: API_URL + 'suporte/usuarios/cadastro-lote-sem-ativacao',
+    url: API_URL_USUARIOS + 'suporte/usuarios/cadastro-lote-sem-ativacao',
     headers: {
       'Authorization': 'Bearer ' + token
     },
