@@ -1,7 +1,7 @@
 import { ButtonLightSubmit, Spinner, TabelaHiperDia, TituloSmallTexto } from '@impulsogov/design-system';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import { parse } from 'papaparse';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CadastrarUsuarioLotes } from '../../../../helpers/RequisicoesConcorrentes';
 import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValidacaoDadosCadastro';
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
@@ -99,6 +99,19 @@ const GestaoDeUsuarios = () => {
       setJSONDATA(jsonData.data);
     };
   }
+
+  const formatarRespostasDeErro = useCallback(() => {
+    if (ERRO_PROCESSAMENTO && res) {
+      return res.map(({ error, usuario, success }) => ({
+        usuario,
+        requisicao: success,
+        erro: error.detail ? JSON.stringify(error.detail) : JSON.stringify(error)
+      }));
+    }
+
+    return [];
+  }, [ERRO_PROCESSAMENTO, res]);
+
   const Etapa_zero = () => {
     return (
       <>
@@ -197,7 +210,7 @@ const GestaoDeUsuarios = () => {
             ERRO_PROCESSAMENTO ?
               <>
                 <TabelaHiperDia
-                  data={ res }
+                  data={ formatarRespostasDeErro() }
                   colunas={ colunasValidacaoRequsicoes }
                 />
                 <div style={ { width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' } }>
