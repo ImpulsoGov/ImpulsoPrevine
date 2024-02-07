@@ -12,10 +12,18 @@ const CadastrarUsuario = async (formData, token) => {
   };
   const res = axios.request(config)
     .then((response) => {
-      return { usuario: formData.get('nome'), success: response?.data?.error, erro: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso" };
+      return {
+        usuario: formData.get('nome'),
+        success: true,
+        erro: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso"
+      };
     })
     .catch((error) => {
-      return { success: false, error: error.response.data };
+      return {
+        usuario: formData.get('nome'),
+        success: false,
+        error: error.response.data
+      };
     });
 
   return res;
