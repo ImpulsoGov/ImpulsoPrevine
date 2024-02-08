@@ -38,6 +38,7 @@ export const Validacao = async data => {
   const ValidarTelefone = numero => /^\d{11}$/.test(numero) && ValidarExistencia(numero);
   const ValidarWP = wp => (wp == '1' || wp == '0') && ValidarExistencia(wp);
   const ValidarMunicipio = municipio => ValidarExistencia(municipio) && ValidarMunicipioExistente(municipio);
+
   const validacoes = [];
   const validacao = true;
   data.forEach(usuario => {
