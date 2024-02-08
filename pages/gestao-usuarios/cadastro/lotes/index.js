@@ -100,14 +100,6 @@ const GestaoDeUsuarios = () => {
     };
   }
 
-  const formatarRespostasDeErro = useCallback(() => {
-    return res.map(({ error, usuario, success }) => ({
-      usuario,
-      requisicao: success,
-      erro: error.detail ? JSON.stringify(error.detail) : JSON.stringify(error)
-    }));
-  }, [res]);
-
   const Etapa_zero = () => {
     return (
       <>
@@ -206,7 +198,7 @@ const GestaoDeUsuarios = () => {
             ERRO_PROCESSAMENTO ?
               <>
                 <TabelaHiperDia
-                  data={ formatarRespostasDeErro() }
+                  data={ res }
                   colunas={ colunasValidacaoRequsicoes }
                 />
                 <div style={ { width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' } }>

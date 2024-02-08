@@ -15,14 +15,16 @@ const CadastrarUsuario = async (formData, token) => {
       return {
         usuario: formData.get('nome'),
         success: true,
-        erro: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso"
+        mensagem: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso"
       };
     })
     .catch((error) => {
       return {
         usuario: formData.get('nome'),
         success: false,
-        error: error.response.data
+        mensagem: error.response.data.detail
+          ? JSON.stringify(error.response.data.detail)
+          : JSON.stringify(error.response.data)
       };
     });
 

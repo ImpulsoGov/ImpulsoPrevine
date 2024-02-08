@@ -23,7 +23,7 @@ const colunasValidacaoRequsicoes = [
   },
   {
     align: 'center',
-    field: 'requisicao',
+    field: 'success',
     headerAlign: 'center',
     headerName: 'Requisição',
     flex: 90,
@@ -31,9 +31,9 @@ const colunasValidacaoRequsicoes = [
   },
   {
     align: 'center',
-    field: 'erro',
+    field: 'mensagem',
     headerAlign: 'center',
-    headerName: 'Erro',
+    headerName: 'Mensagem',
     flex: 250,
   },
 ];
