@@ -24,11 +24,18 @@ const IDFiltrosOrdenacaoGestantes = {
 const TabelaGestantesSemDUM = ({
     tabelaDataAPS,
     tabelaData,
-    setTabelaData
+    setTabelaData,
+    trackObject,
+    aba,
+    sub_aba,
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
     key="tabelaDataAPSGestantesSemDUM"
+    trackObject={trackObject}
+    lista="gestantes"
+    aba={aba}
+    sub_aba={sub_aba}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_nome))],

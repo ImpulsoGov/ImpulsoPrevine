@@ -45,6 +45,7 @@ import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo
 import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
+import mixpanel from "mixpanel-browser";
 
 
 export async function getServerSideProps(ctx) {
@@ -56,7 +57,7 @@ const res = [
 ]
 return {
   props: {
-  res : res
+    res : res
   }
 }
 }
@@ -67,15 +68,19 @@ const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 const router = useRouter();
-
+let visao = null
 useEffect(() => {
   router.push({
     pathname: router.pathname,
-    query: { aba: activeTabIndex }
+    query: { 
+      aba: activeTitleTabIndex,
+      sub_aba : activeTabIndex,
+      visao : visao
+    }
   },
     undefined, { shallow: true }
   );
-}, [activeTabIndex]);
+}, [activeTabIndex,activeTitleTabIndex]);
 
 const GestantesTabelaDataAPS = async()=> await tabelaGestantesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
@@ -99,7 +104,10 @@ const colunasImpressao = {
 }
 const ImpressaoEquipe = ()=> Imprimir(
   0.78,
-  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>
+  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
 )   
 const ImpressaoAPS = ()=> Imprimir(
   0.78,
@@ -109,24 +117,44 @@ const ImpressaoAPS = ()=> Imprimir(
   activeTabIndex,
 
 )   
-
-console.log(activeTitleTabIndex,activeTabIndex)
 if(session){  
   if(session.user.perfis.includes(9)){
-  const Children = [[
-    [
+    visao = "equipe"
+    const Children = [[
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesAtivas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-    ],
-    [
+        <TabelaEquipeGestantesAtivas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
+      ],
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesSemDUM tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-    ],
-    [
+        <TabelaEquipeGestantesSemDUM
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
+      ],
+      [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesEncerradas tabelaDataEquipe={tabelaDataEquipe} tabelaData={tabelaData} setTabelaData={setTabelaData}/>
-    ]
-]]
+        <TabelaEquipeGestantesEncerradas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+        />
+      ]
+    ]]
   return (
       <>
       <div 
@@ -207,6 +235,7 @@ if(session){
   )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     const Children = [
         [
             [
@@ -223,6 +252,9 @@ if(session){
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
               />
             ],
             [
@@ -231,6 +263,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -249,6 +284,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -257,6 +295,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
             />,
             ],
         ],
@@ -275,6 +316,9 @@ if(session){
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    trackObject={mixpanel}
+                    aba={activeTitleTabIndex}
+                    sub_aba={activeTabIndex}
                 />,
             ],
             [
@@ -283,6 +327,9 @@ if(session){
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                trackObject={mixpanel}
+                aba={activeTitleTabIndex}
+                sub_aba={activeTabIndex}
                 />,
             ],
         ],
@@ -291,6 +338,9 @@ if(session){
             tabelaDataAPS={tabelaDataAPS} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
           />
         ]
     ]
@@ -431,10 +481,10 @@ if(session){
     </>
     )
   }
-  }else{
-    if(status !== "authenticated" && status !== "loading" ) signOut()
-  }
-
+}else{
+  if(status !== "authenticated" && status !== "loading" ) signOut()
+}
+if(status=="unauthenticated") router.push('/')
 }
 
 export default Index;
