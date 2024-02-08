@@ -24,12 +24,23 @@ const IntFiltrosGestantesEquipe = [
     "gestacao_idade_gestacional_atual",
     "consultas_pre_natal_validas"
 ]
-const TabelaEquipeGestantesSemDUM = ({tabelaDataEquipe,tabelaData,setTabelaData})=>{
+const TabelaEquipeGestantesSemDUM = ({
+    tabelaDataEquipe,
+    tabelaData,
+    setTabelaData,
+    trackObject,
+    aba,
+    sub_aba,
+})=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
         key="TabelaChildGestantesSemDUM"
+        trackObject={trackObject}
+        lista="gestantes"
+        aba={aba}
+        sub_aba={sub_aba}
         dadosFiltros={[
         {
             data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.acs_nome))],
