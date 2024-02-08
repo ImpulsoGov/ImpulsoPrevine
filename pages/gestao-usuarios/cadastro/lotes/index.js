@@ -101,16 +101,12 @@ const GestaoDeUsuarios = () => {
   }
 
   const formatarRespostasDeErro = useCallback(() => {
-    if (ERRO_PROCESSAMENTO && res) {
-      return res.map(({ error, usuario, success }) => ({
-        usuario,
-        requisicao: success,
-        erro: error.detail ? JSON.stringify(error.detail) : JSON.stringify(error)
-      }));
-    }
-
-    return [];
-  }, [ERRO_PROCESSAMENTO, res]);
+    return res.map(({ error, usuario, success }) => ({
+      usuario,
+      requisicao: success,
+      erro: error.detail ? JSON.stringify(error.detail) : JSON.stringify(error)
+    }));
+  }, [res]);
 
   const Etapa_zero = () => {
     return (
