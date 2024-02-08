@@ -148,6 +148,7 @@ function MyApp(props) {
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
                       .concat([{ label: "Dados Públicos - Q3/23", url: "/analise" }])
+                      .concat(props.ses?.user.perfis.includes(2) ? [{ label: "Gestão de usuários", url: "/gestao-usuarios" }] : [])
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
