@@ -1,33 +1,103 @@
 import { Badge, Button } from '@mui/material';
-import { DataGrid, GridRowModes } from '@mui/x-data-grid';
+import Autocomplete from '@mui/material/Autocomplete';
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import { DataGrid, GridRowModes, useGridApiContext } from '@mui/x-data-grid';
+import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
+import { ESTADOS_PERFIL_ATIVO, MENSAGENS_DE_ERRO } from '../../constants/gestaoUsuarios';
+import { MUNICIPIOS } from '../../constants/municipios';
 import { atualizarUsuario } from '../../services/gestaoUsuarios';
 import { ModalAutorizacoes } from '../ModalAutorizacoes';
 import { Toolbar } from '../Toolbar';
 import styles from './TabelaGestaoUsuarios.module.css';
 
+function CheckboxPerfilAtivo(props) {
+  const { id, value, field } = props;
+  const apiRef = useGridApiContext();
+
+  const handleChange = (_event, newValue) => {
+    apiRef.current.setEditCellValue({
+      id,
+      field,
+      value: newValue ? 'Sim' : 'Não'
+    });
+  };
+
+  return (
+    <Checkbox
+      checked={ ESTADOS_PERFIL_ATIVO[value] }
+      onChange={ handleChange }
+    />
+  );
+}
+
+function AutocompleteMunicipios(props) {
+  const { id, value, field } = props;
+  const municipioSelecionado = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === value);
+  const apiRef = useGridApiContext();
+  const [selectedValue, setSelectedValue] = useState(municipioSelecionado);
+  const [inputValue, setInputValue] = useState(value);
+
+  const handleChange = (_event, newValue) => {
+    setSelectedValue(newValue);
+
+    const value = newValue !== null ? `${newValue.nome} - ${newValue.uf}` : newValue;
+    apiRef.current.setEditCellValue({ id, field, value });
+  };
+
+  const handleInputChange = (_event, newInputValue) => {
+    setInputValue(newInputValue);
+
+    if (
+      selectedValue !== null &&
+      newInputValue !== `${selectedValue.nome} - ${selectedValue.uf}`
+    ) {
+      apiRef.current.setEditCellValue({ id, field, value: null });
+    }
+  }
+
+  return (
+    <Autocomplete
+      id="combo-box-demo"
+      value={selectedValue}
+      inputValue={inputValue}
+      options={MUNICIPIOS}
+      onChange={handleChange}
+      onInputChange={handleInputChange}
+      getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
+      sx={{ width: "100%" }}
+      renderInput={(params) => <TextField {...params} />}
+    />
+  )
+}
+
 function TabelaGestaoUsuarios({
-  usuarios,
+  rows,
+  setRows,
   autorizacoes,
   showSuccessMessage,
   showErrorMessage,
   handleAddClick,
-  openModalAutorizacoes,
+  checarPerfilAtivo,
   closeModalAutorizacoes,
   showModalAutorizacoes,
   handleAutorizacoesEdit,
   validarCamposObrigatorios
 }) {
-  const [rows, setRows] = useState([]);
+  const { data: session } = useSession();
   const [selectedRowId, setSelectedRowId] = useState('');
   const [rowModesModel, setRowModesModel] = useState({});
   const [selectedRowAutorizacoes, setSelectedRowAutorizacoes] = useState([]);
+  const [selectedRowNome, setSelectedRowNome] = useState('');
 
   useEffect(() => {
-    const linhas = transformarDadosEmLinhas(usuarios);
-    setRows(linhas);
-  }, [usuarios, transformarDadosEmLinhas]);
+    const linhaEncontrada = rows.find(({ id }) => id === selectedRowId);
+
+    if (linhaEncontrada) {
+      setSelectedRowNome(linhaEncontrada.nome);
+    }
+  }, [rows, selectedRowId]);
 
   const columns = useMemo(() => [
     {
@@ -44,7 +114,10 @@ function TabelaGestaoUsuarios({
       width: 200,
       headerAlign: 'center',
       align: 'center',
-      editable: true
+      editable: true,
+      renderEditCell: (params) => {
+        return <AutocompleteMunicipios {...params} />;
+      }
     },
     {
       field: 'mail',
@@ -85,6 +158,21 @@ function TabelaGestaoUsuarios({
       headerAlign: 'center',
       align: 'center',
       editable: true
+    },
+    {
+      field: 'perfilAtivo',
+      headerName: 'Perfil ativo',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      editable: true,
+      renderEditCell: (params) => {
+        if (params.value !== 'Primeiro acesso pendente') {
+          return <CheckboxPerfilAtivo {...params} />
+        }
+
+        return 'Primeiro acesso pendente';
+      },
     },
     {
       field: 'autorizacoes',
@@ -138,23 +226,6 @@ function TabelaGestaoUsuarios({
       }
     }
   ], []);
-
-  const transformarDadosEmLinhas = useCallback((dados) => {
-    return dados.map((dado) => ({
-      id: uuidV4(),
-      usuarioId: dado['id_usuario'],
-      mail: dado.mail,
-      cpf: dado.cpf,
-      nome: dado['nome_usuario'],
-      municipio: dado.municipio,
-      cargo: dado.cargo,
-      telefone: dado.telefone,
-      equipe: dado.equipe,
-      autorizacoes: dado.autorizacoes,
-      editarAutorizacoes: openModalAutorizacoes,
-      isNew: false,
-    }));
-  }, [openModalAutorizacoes]);
 
   const rowMode = useMemo(() => {
     if (!selectedRowId) {
@@ -211,23 +282,7 @@ function TabelaGestaoUsuarios({
         mode: GridRowModes.View, ignoreModifications: true
       },
     });
-
-    // const selectedRow = rows.find((row) => row.id === selectedRowId);
-
-    // if (selectedRow.isNew) {
-    //   setRows(rows.filter((row) => row.id !== selectedRowId));
-    // }
   }, [rowModesModel, selectedRowId]);
-
-  const getSelectedRowNome = useCallback(() => {
-    if (!selectedRowId) {
-      return;
-    }
-
-    const { nome } = rows.find(({ id }) => id === selectedRowId);
-
-    return nome;
-  }, [rows, selectedRowId]);
 
   const handleRowFocus = useCallback((event) => {
     const rowId = event.currentTarget.dataset.id;
@@ -242,30 +297,51 @@ function TabelaGestaoUsuarios({
 
     validarCamposObrigatorios(newRowData);
 
-    const dadosAtualizados = await atualizarUsuario(usuarioId, newRowData);
+    const {municipioIdSus} = MUNICIPIOS.find(({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio);
+
+    if (!municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+
+    const dadosAtualizados = await atualizarUsuario(
+      usuarioId,
+      {
+        ...newRowData,
+        municipioIdSus,
+        perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo]
+      },
+      session?.user?.access_token
+    );
+    const linhaAtualizada = {
+      id: newRowData.id,
+      usuarioId: dadosAtualizados['id_usuario'],
+      mail: dadosAtualizados.mail,
+      cpf: dadosAtualizados.cpf,
+      nome: dadosAtualizados['nome_usuario'],
+      municipio: dadosAtualizados.municipio,
+      cargo: dadosAtualizados.cargo,
+      telefone: dadosAtualizados.telefone,
+      equipe: dadosAtualizados.equipe,
+      perfilAtivo: checarPerfilAtivo(dadosAtualizados['perfil_ativo']),
+      autorizacoes: newRowData.autorizacoes,
+      editarAutorizacoes: newRowData.editarAutorizacoes,
+      isNew: false,
+    };
     const linhasAtualizadas = rows.map((row) => row.id === newRowData.id
-      ? {
-        id: newRowData.id,
-        usuarioId: dadosAtualizados['id_usuario'],
-        mail: dadosAtualizados.mail,
-        cpf: dadosAtualizados.cpf,
-        nome: dadosAtualizados['nome_usuario'],
-        municipio: dadosAtualizados.municipio,
-        cargo: dadosAtualizados.cargo,
-        telefone: dadosAtualizados.telefone,
-        equipe: dadosAtualizados.equipe,
-        autorizacoes: newRowData.autorizacoes,
-        editarAutorizacoes: newRowData.editarAutorizacoes,
-        isNew: false,
-      }
+      ? linhaAtualizada
       : row
     );
 
     setRows(linhasAtualizadas);
     showSuccessMessage('Usuário salvo com sucesso');
 
-    return newRowData;
-  }, [rows, validarCamposObrigatorios, showSuccessMessage]);
+    return linhaAtualizada;
+  }, [
+    rows,
+    setRows,
+    validarCamposObrigatorios,
+    showSuccessMessage,
+    session?.user?.access_token,
+    checarPerfilAtivo
+  ]);
 
   const handleAutorizacoesChange = useCallback((event) => {
     const { target: { value } } = event;
@@ -318,17 +394,20 @@ function TabelaGestaoUsuarios({
         } }
       />
 
-      <ModalAutorizacoes
-        titulo={ `Autorizações de <strong>${getSelectedRowNome()}</strong>` }
-        autorizacoes={ autorizacoes }
-        autorizacoesSelecionadas={ selectedRowAutorizacoes }
-        handleSelectChange={ handleAutorizacoesChange }
-        handleEditClick={ () => handleAutorizacoesEdit({
-          rows, selectedRowId, selectedRowAutorizacoes, setRows
-        }) }
-        isOpen={ showModalAutorizacoes }
-        closeModal={ closeModalAutorizacoes }
-      />
+      {
+        showModalAutorizacoes && selectedRowId &&
+        <ModalAutorizacoes
+          titulo={ `Autorizações de <strong>${selectedRowNome}</strong>` }
+          autorizacoes={ autorizacoes }
+          autorizacoesSelecionadas={ selectedRowAutorizacoes }
+          handleSelectChange={ handleAutorizacoesChange }
+          handleEditClick={ () => handleAutorizacoesEdit({
+            selectedRowId, selectedRowAutorizacoes
+          }) }
+          isOpen={ showModalAutorizacoes }
+          closeModal={ closeModalAutorizacoes }
+        />
+      }
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
+import { v4 as uuidV4 } from 'uuid';
+import { TabelaGestaoUsuarios } from '../../../../componentes/TabelaGestaoUsuarios';
 import { ModalCadastroUsuario } from '../../../../componentes/ModalCadastroUsuario';
 import { SnackBar } from '../../../../componentes/SnackBar';
-import { TabelaGestaoUsuarios } from '../../../../componentes/TabelaGestaoUsuarios';
 import { MENSAGENS_DE_ERRO } from '../../../../constants/gestaoUsuarios';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
 import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '../../../../services/gestaoUsuarios';
@@ -20,21 +21,64 @@ export async function getServerSideProps(ctx) {
 }
 
 const GestaoDeUsuarios = () => {
+  const { data: session } = useSession();
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
+  const [rows, setRows] = useState([]);
   const [snackbar, setSnackbar] = useState(null);
   const [showModalAutorizacoes, setShowModalAutorizacoes] = useState(false);
   const [showModalCadastro, setShowModalCadastro] = useState(false);
 
   useEffect(() => {
-    listarPerfis()
-      .then((perfis) => setAutorizacoes(perfis));
+    if (session?.user?.access_token) {
+      listarPerfis(session?.user?.access_token)
+        .then((perfis) => setAutorizacoes(perfis));
 
-    listarUsuarios()
-      .then((usuarios) => {
-        setUsuarios(usuarios);
-      });
+      listarUsuarios(session?.user?.access_token)
+        .then((usuarios) => {
+          setUsuarios(usuarios);
+        });
+    }
+  }, [session?.user?.access_token]);
+
+  const openModalAutorizacoes = useCallback(() => {
+    setShowModalAutorizacoes(true);
   }, []);
+
+  const checarPerfilAtivo = (perfilAtivo) => {
+    if (typeof perfilAtivo === 'boolean' && perfilAtivo === true) {
+      return 'Sim';
+    }
+
+    if (typeof perfilAtivo === 'boolean' && perfilAtivo === false) {
+      return 'Não';
+    }
+
+    return 'Primeiro acesso pendente';
+  };
+
+  useEffect(() => {
+    const transformarDadosEmLinhas = (dados) => {
+      return dados.map((dado) => ({
+        id: uuidV4(),
+        usuarioId: dado['id_usuario'],
+        mail: dado.mail,
+        cpf: dado.cpf,
+        nome: dado['nome_usuario'],
+        municipio: dado.municipio,
+        cargo: dado.cargo,
+        telefone: dado.telefone,
+        equipe: dado.equipe,
+        perfilAtivo: checarPerfilAtivo(dado.perfil_ativo),
+        autorizacoes: dado.autorizacoes,
+        editarAutorizacoes: openModalAutorizacoes,
+        isNew: false,
+      }));
+    };
+
+    const linhas = transformarDadosEmLinhas(usuarios);
+    setRows(linhas);
+  }, [usuarios, openModalAutorizacoes]);
 
   const handleSnackbarClose = useCallback(() => setSnackbar(null), []);
 
@@ -44,10 +88,6 @@ const GestaoDeUsuarios = () => {
 
   const showSuccessMessage = useCallback((message) => {
     setSnackbar({ children: message, severity: 'success' });
-  }, []);
-
-  const openModalAutorizacoes = useCallback(() => {
-    setShowModalAutorizacoes(true);
   }, []);
 
   const closeModalAutorizacoes = useCallback(() => setShowModalAutorizacoes(false), []);
@@ -77,7 +117,7 @@ const GestaoDeUsuarios = () => {
   }, []);
 
   const editarAutorizacoesUsuario = useCallback(async ({
-    rows, selectedRowId, selectedRowAutorizacoes, setRows
+    selectedRowId, selectedRowAutorizacoes
   }) => {
     try {
       const { usuarioId } = rows.find(({ id }) => id === selectedRowId);
@@ -85,7 +125,11 @@ const GestaoDeUsuarios = () => {
       validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
 
       const autorizacoesIds = getSelectedAutorizacoesIds(selectedRowAutorizacoes);
-      const response = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const response = await atualizarAutorizacoes(
+        usuarioId,
+        autorizacoesIds,
+        session?.user?.access_token
+      );
       const novasAutorizacoes = getDescricaoAutorizacoes(response);
       const linhasAtualizadas = rows.map((row) => row.id === selectedRowId
         ? { ...row, autorizacoes: novasAutorizacoes }
@@ -94,63 +138,87 @@ const GestaoDeUsuarios = () => {
 
       setRows(linhasAtualizadas);
       showSuccessMessage('Autorizações atualizadas com sucesso');
+      closeModalAutorizacoes();
     } catch (error) {
       showErrorMessage(error);
     }
   }, [
+    rows,
     getSelectedAutorizacoesIds,
     showErrorMessage,
     validarAutorizacoesSelecionadas,
     showSuccessMessage,
-    getDescricaoAutorizacoes
+    getDescricaoAutorizacoes,
+    session?.user?.access_token,
+    closeModalAutorizacoes
   ]);
 
   const validarCamposObrigatorios = useCallback((dados) => {
     if (!dados.nome) throw new Error(MENSAGENS_DE_ERRO.nomeVazio);
-    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
     if (!dados.mail) throw new Error(MENSAGENS_DE_ERRO.emailVazio);
     if (!dados.cpf) throw new Error(MENSAGENS_DE_ERRO.cpfVazio);
     if (!dados.cargo) throw new Error(MENSAGENS_DE_ERRO.cargoVazio);
     if (!dados.telefone) throw new Error(MENSAGENS_DE_ERRO.telefoneVazio);
     if (!dados.equipe) throw new Error(MENSAGENS_DE_ERRO.equipeVazio);
+    if (!dados.municipio) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
   }, []);
 
-  const cadastrarNovoUsuario = useCallback(async (dados) => {
+  const cadastrarNovoUsuario = useCallback(async (dados, callbackLimparInputs) => {
     try {
       validarCamposObrigatorios(dados);
       validarAutorizacoesSelecionadas(dados.autorizacoesSelecionadas);
 
+      if (!dados.municipioIdSus) throw new Error(MENSAGENS_DE_ERRO.municipioVazio);
+
       const whatsapp = dados.whatsapp ? '1' : '0';
-      const usuarioCadastrado = await cadastrarUsuario({ ...dados, whatsapp });
+      const usuarioCadastrado = await cadastrarUsuario(
+        {
+          ...dados,
+          whatsapp,
+          municipioIdSus: dados.municipioIdSus
+        },
+        session?.user?.access_token
+      );
       const { id_usuario: usuarioId } = usuarioCadastrado;
       const autorizacoesIds = getSelectedAutorizacoesIds(dados.autorizacoesSelecionadas);
-      const autorizacoesUsuario = await atualizarAutorizacoes(usuarioId, autorizacoesIds);
+      const autorizacoesUsuario = await atualizarAutorizacoes(
+        usuarioId,
+        autorizacoesIds,
+        session?.user?.access_token
+      );
 
-      const novoUsuario = {
+      const novaLinha = {
+        id: uuidV4(),
         mail: usuarioCadastrado.mail,
         cpf: usuarioCadastrado.cpf,
-        nome_usuario: usuarioCadastrado['nome_usuario'],
-        id_usuario: usuarioCadastrado['id_usuario'],
+        nome: usuarioCadastrado['nome_usuario'],
+        usuarioId: usuarioCadastrado['id_usuario'],
         municipio: usuarioCadastrado.municipio,
         cargo: usuarioCadastrado.cargo,
         telefone: usuarioCadastrado.telefone,
         equipe: usuarioCadastrado.equipe,
-        autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario)
+        perfilAtivo: checarPerfilAtivo(usuarioCadastrado['perfil_ativo']),
+        autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario),
+        editarAutorizacoes: openModalAutorizacoes,
+        isNew: false,
       };
 
-      setUsuarios([...usuarios, novoUsuario]);
+      setRows([...rows, novaLinha]);
+      callbackLimparInputs();
       showSuccessMessage('Usuário cadastrado com sucesso');
     } catch (error) {
       showErrorMessage(error);
     }
   }, [
-    usuarios,
+    rows,
+    openModalAutorizacoes,
     showErrorMessage,
     showSuccessMessage,
     getSelectedAutorizacoesIds,
     validarAutorizacoesSelecionadas,
     getDescricaoAutorizacoes,
-    validarCamposObrigatorios
+    validarCamposObrigatorios,
+    session?.user?.access_token
   ]);
 
   return (
@@ -164,19 +232,20 @@ const GestaoDeUsuarios = () => {
         texto=''
       />
 
-      { usuarios.length !== 0
+      { rows.length !== 0
         ? (
           <TabelaGestaoUsuarios
-            usuarios={ usuarios }
+            rows={ rows }
+            setRows={ setRows }
             autorizacoes={ autorizacoes }
             showSuccessMessage={ showSuccessMessage }
             showErrorMessage={ showErrorMessage }
             handleAddClick={ openModalCadastro }
-            openModalAutorizacoes={ openModalAutorizacoes }
             closeModalAutorizacoes={ closeModalAutorizacoes }
             showModalAutorizacoes={ showModalAutorizacoes }
             handleAutorizacoesEdit={ editarAutorizacoesUsuario }
             validarCamposObrigatorios={ validarCamposObrigatorios }
+            checarPerfilAtivo={ checarPerfilAtivo }
           />
         )
         : <Spinner height='50vh' />
