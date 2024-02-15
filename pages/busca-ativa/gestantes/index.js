@@ -47,6 +47,7 @@ import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
 import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import { obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 
 
 export async function getServerSideProps(ctx) {
@@ -225,6 +226,14 @@ if(session){
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
+    const dataAtualizacaoDados = tabelaDataAPS ? tabelaDataAPS[0].atualizacao_data : "";
+    const dadosQuadriAtual = dataAtualizacaoDados ? obterDadosQuadrimestre(dataAtualizacaoDados) : null;
+    const quadriAtual = dadosQuadriAtual ? `Q${dadosQuadriAtual.quadrimestre}/${dadosQuadriAtual.ano.slice(-2)}` : "";
+    const quadrisFuturos = dataAtualizacaoDados
+      ? obterDadosProximosQuadrimestres(dataAtualizacaoDados, 3).reduce((frase, { quadrimestre, ano }, index) => {
+        return index === 0 ? `Q${quadrimestre}` : `${frase} + Q${quadrimestre}/${ano.slice(-2)}`;
+      }, "")
+      : "";
     const Children = [
         [
             [
@@ -392,10 +401,10 @@ if(session){
             list={[
                 [
                   {
-                    label: 'GRÁFICO Q1/24'
+                    label: `GRÁFICO ${quadriAtual}`
                   },
                   {
-                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
+                    label: `GRÁFICO ${quadrisFuturos}`
                   },
                 {
                     label: 'GESTANTES ATIVAS'
@@ -406,10 +415,10 @@ if(session){
                 ],
                 [
                   {
-                    label: 'GRÁFICO Q1/24'
+                    label: `GRÁFICO ${quadriAtual}`
                   },
                   {
-                    label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
+                    label: `GRÁFICO ${quadrisFuturos}`
                   },
                   {
                       label: 'GESTANTES ATIVAS'
@@ -420,10 +429,10 @@ if(session){
                   ],
                   [
                     {
-                      label: 'GRÁFICO Q1/24'
+                      label: `GRÁFICO ${quadriAtual}`
                     },
                     {
-                      label: 'GRÁFICO Q2 + Q3/24 + Q1/25'
+                      label: `GRÁFICO ${quadrisFuturos}`
                     },
                       {
                       label: 'GESTANTES ATIVAS'
