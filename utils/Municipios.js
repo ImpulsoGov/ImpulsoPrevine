@@ -22279,8 +22279,7 @@ const data = [
             "nome" : "Porto Alegre",
             "uf" : "RS"
         }
-    ]
-    
+]
+
 
 export {data}
-  

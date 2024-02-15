@@ -12,7 +12,7 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@hotjar/browser": "^1.0.9",
-    "@impulsogov/design-system": "^1.0.168",
+    "@impulsogov/design-system": "^1.0.169",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "@sentry/nextjs": "^7.92.0",
@@ -33,7 +33,8 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "18.2.0",
     "react-ga": "^3.3.1",
-    "react-gtm-module": "^2.0.11"
+    "react-gtm-module": "^2.0.11",
+    "react-hotjar": "^6.2.0"
   },
   "devDependencies": {
     "eslint": "8.18.0",

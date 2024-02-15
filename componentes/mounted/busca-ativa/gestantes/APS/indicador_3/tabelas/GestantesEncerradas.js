@@ -28,11 +28,18 @@ const IDFiltrosOrdenacaoGestantes = {
 const IndicadorTresTabelaGestantesEncerradas = ({
     tabelaDataAPS,
     tabelaData,
-    setTabelaData
+    setTabelaData,
+    trackObject,
+    aba,
+    sub_aba,
 }) => {
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataAPS ? <PainelBuscaAtiva
     key="tabelaDataAPSGestantesEncerradas"
+    trackObject={trackObject}
+    lista="gestantes"
+    aba={aba}
+    sub_aba={sub_aba}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.gestacao_quadrimestre))],

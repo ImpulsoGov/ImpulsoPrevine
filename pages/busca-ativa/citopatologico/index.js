@@ -22,6 +22,7 @@ import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
 import { useRouter } from 'next/router';
+import mixpanel from 'mixpanel-browser';
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -46,15 +47,19 @@ const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 
 const router = useRouter();
-
+let visao = null
 useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { aba: activeTabIndex }
+      query: { 
+        aba: null,
+        sub_aba : activeTabIndex,
+        visao : visao
+    }
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex]);
 
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
@@ -119,6 +124,7 @@ const Impressao = ()=> Imprimir(
 )   
 if(session){  
     if(session.user.perfis.includes(9)){
+        visao = "equipe"
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
@@ -206,6 +212,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
             /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
@@ -255,6 +265,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
@@ -337,6 +351,7 @@ if(session){
     )
 }
 if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     const CardsChild = tabelaDataAPS ? <ScoreCardGrid
         valores={[
             {
@@ -613,6 +628,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
  
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
@@ -664,6 +683,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]

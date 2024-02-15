@@ -20,7 +20,7 @@ import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 
 import mixpanel from 'mixpanel-browser';
-import Hotjar from '@hotjar/browser';
+import { hotjar } from 'react-hotjar'
 
 
 
@@ -46,6 +46,10 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
+
+  useEffect(() => {
+    hotjar.initialize(3496492, 6);
+  }, [])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -145,7 +149,7 @@ function MyApp(props) {
                             ]
                           }] : [])
                       .concat(props.ses?.user.perfis.includes(7) ? [{ label: "Trilhas", url: "/capacitacoes" }] : [])
-                      .concat([{ label: "Dados Públicos - Q2/23", url: "/analise" }])
+                      .concat([{ label: "Dados Públicos - Q3/23", url: "/analise" }])
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }

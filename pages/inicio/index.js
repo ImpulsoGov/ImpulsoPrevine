@@ -1,7 +1,7 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession,signOut, getSession } from "next-auth/react"
-import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge, ModalAlert, Alert_v2 } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
@@ -92,12 +92,12 @@ const Index = ({ res }) => {
     const [TrilhasLiberadas, setTrilhasLiberadas] = useState([])
     const ProgressoClient = async () => await progresso(res[1].trilhas, session?.user?.id, session?.user?.access_token)
     const TrilhasLiberadasClient = async () => await acessoTrilhasClient(session?.user?.id, session?.user?.access_token)
-    const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
-    useEffect(()=>{
-        session &&  
-        NPSDataClient().then((response)=>{
-        setDataNPS(response)
-    })},[session]) 
+    // const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
+    // useEffect(()=>{
+    //     session &&  
+    //     NPSDataClient().then((response)=>{
+    //     setDataNPS(response)
+    // })},[session]) 
     useEffect(() => {
         session && res &&
             ProgressoClient().then((response) => {
@@ -117,14 +117,48 @@ const Index = ({ res }) => {
     if (session) {
         return (
             <>
-                 {
+                 {/* {
                     !dataNPS &&
                     <NPS 
                         user = {session?.user?.id}
                         token = {session?.user?.access_token}
                         submit = {NPSAvaliacao}
                     />                    
-                } 
+                }  */}
+                      <ModalAlert
+                        Child = {Alert_v2}
+                        childProps ={ {
+                            titulos : {
+                                Titulo : "Impulso Previne:",
+                                SubTitulo : "Uso das listas nominais na rotina das equipes"
+                            },
+                            Info : [
+                                {
+                                    icon : "https://media.graphassets.com/mK0XWA2qSyK3tSPER5SM",
+                                    info : "22 de feverreiro"
+                                },
+                                {
+                                    icon : "https://media.graphassets.com/Bsq3OasQQxWNFuN0Ldhs",
+                                    info : "14h"
+                                },
+                                {
+                                    icon : "https://media.graphassets.com/Ui2qHF9IR9WyqEQv8H1v",
+                                    info : "Certificado para os participantes"
+                                },
+                            ],
+                            cardProfissional : {
+                                profissional : "https://media.graphassets.com/CL8x2D45RxKZCGJZSXLa",
+                                logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
+                                nome : "Isabela Santos",
+                                cargo : "Especialista em Saúde Coletiva"
+                            },
+                            botao : {
+                                label : "ACESSAR EVENTO",
+                                url : "https://bit.ly/encontro-listas-nominais"
+                            }
+                        }}
+                    />
+
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem-vindo(a)"
@@ -243,8 +277,8 @@ const Index = ({ res }) => {
         )
     }else{
         if(status !== "authenticated" && status !== "loading" ) signOut()
-    }
-    
+      }
+      if(status=="unauthenticated") router.push('/')
 }
-
+      
 export default Index;
