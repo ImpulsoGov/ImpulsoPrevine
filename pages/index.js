@@ -8,7 +8,7 @@ import {
   ImagensFull2,
   Margem,
   ModalAlert,
-  Alert,
+  Alert_v2,
 } from "@impulsogov/design-system";
 import { v1 as uuidv1 } from "uuid";
 
