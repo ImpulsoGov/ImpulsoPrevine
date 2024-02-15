@@ -46,6 +46,7 @@ import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../compon
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
 import mixpanel from "mixpanel-browser";
+import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 
 
 export async function getServerSideProps(ctx) {
@@ -186,19 +187,7 @@ if(session){
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
       />  
-      <div 
-          style={{
-              marginLeft : "80px",
-              marginTop : "30px",
-              color: "#1F1F1F",
-              fontSize: "22px",
-              fontFamily: "Inter",
-              fontWeight: 500,
-              lineHeight: "130%",
-          }}
-      >
-          {session.user.municipio} - Q1/24
-      </div>
+      <MunicipioQuadrimestre data={tabelaDataEquipe && tabelaDataEquipe[0].atualizacao_data} />
       {
           tabelaData &&
           <PanelSelector
@@ -389,19 +378,7 @@ if(session){
             destaque="IMPORTANTE: "
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <div 
-            style={{
-                marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
-                marginTop : "30px",
-                color: "#1F1F1F",
-                fontSize: "22px",
-                fontFamily: "Inter",
-                fontWeight: 500,
-                lineHeight: "130%",
-            }}
-        >
-        {session.user.municipio} - Q1/24
-        </div>
+        <MunicipioQuadrimestre data={tabelaDataAPS && tabelaDataAPS[0].atualizacao_data} />
         <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
         <PanelSelector
             components={Children}

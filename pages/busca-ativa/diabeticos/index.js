@@ -20,6 +20,7 @@ import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
+import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -151,19 +152,7 @@ const Index = ({res}) => {
                 destaque="IMPORTANTE: "
                 msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
             />  
-            <div 
-              style={{
-                marginLeft : "80px",
-                marginTop : "30px",
-                color: "#1F1F1F",
-                fontSize: "22px",
-                fontFamily: "Inter",
-                fontWeight: 500,
-                lineHeight: "130%",
-              }}
-            >
-          {session.user.municipio} - Q1/24
-        </div>
+            <MunicipioQuadrimestre data={tabelaDataEquipe && tabelaDataEquipe[0].atualizacao_data} />
 
             {
               tabelaDataEquipe &&
@@ -276,19 +265,7 @@ const Index = ({res}) => {
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <div 
-          style={{
-            marginLeft : "80px",
-            marginTop : "30px",
-            color: "#1F1F1F",
-            fontSize: "22px",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            lineHeight: "130%",
-          }}
-        >
-          {session.user.municipio} - Q1/24
-        </div>
+        <MunicipioQuadrimestre data={tabelaDataAPS && tabelaDataAPS[0].atualizacao_data} />
         {
           tabelaDataAPS &&
           <ScoreCardGrid
