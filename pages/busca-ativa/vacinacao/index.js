@@ -76,10 +76,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
       setTabelaDataEquipe(response)
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
-  useEffect(()=>{
-    tabelaDataEquipe && session && activeTabIndex == 0 && activeTitleTabIndex == 0 &&
-    setTabelaData(tabelaDataEquipe.filter(item=>item.id_status_quadrimestre== 1))
-  },[session,tabelaDataEquipe])
 
   const ImpressaoVacinacao = ()=> Imprimir(
     1,
@@ -169,45 +165,48 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
           >
           {session.user.municipio}
           </div>
-          <PanelSelector
-              components={Children}
-              conteudo = "components"
-              states={ {
-                  activeTabIndex: Number(activeTabIndex),
-                  setActiveTabIndex: setActiveTabIndex,
-                  activeTitleTabIndex: activeTitleTabIndex,
-                  setActiveTitleTabIndex: setActiveTitleTabIndex
-                } }
-              list={[
-                  [
+          {
+            session?.user && tabelaDataEquipe.length > 0 &&
+            <PanelSelector
+                components={Children}
+                conteudo = "components"
+                states={ {
+                    activeTabIndex: Number(activeTabIndex),
+                    setActiveTabIndex: setActiveTabIndex,
+                    activeTitleTabIndex: activeTitleTabIndex,
+                    setActiveTitleTabIndex: setActiveTitleTabIndex
+                  } }
+                list={[
+                    [
+                      {
+                        label: 'LISTA NOMINAL'
+                      },
+                    ],  
+                    [
+                      {
+                        label: 'LISTA NOMINAL'
+                      },
+                    ],  
+                    [
+                      {
+                        label: 'LISTA NOMINAL'
+                      },
+                    ],  
+                      ]}
+                  titles={[
                     {
-                      label: 'LISTA NOMINAL'
+                        label: 'QUADRIMESTRE ATUAL'
                     },
-                  ],  
-                  [
                     {
-                      label: 'LISTA NOMINAL'
+                        label: 'PRÓXIMO QUADRIMESTRE'
                     },
-                  ],  
-                  [
                     {
-                      label: 'LISTA NOMINAL'
+                        label: 'QUADRIMESTRES FUTUROS'
                     },
-                  ],  
-                    ]}
-                titles={[
-                  {
-                      label: 'QUADRIMESTRE ATUAL'
-                  },
-                  {
-                      label: 'PRÓXIMO QUADRIMESTRE'
-                  },
-                  {
-                      label: 'QUADRIMESTRES FUTUROS'
-                  },
-  
-              ]}
-          />
+    
+                ]}
+            />
+          }
       </>
       )
     }
