@@ -3,7 +3,7 @@ import {
   TituloTexto, 
   ButtonLight, 
   ButtonColorSubmitIcon,
-  TabelaHiperDiaImpressao,
+  TabelaGestantesImpressao,
   PanelSelector
 } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
@@ -14,7 +14,7 @@ import { Imprimir } from "../../../helpers/imprimir"
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasGestantesEquipe } from "../../../helpers/colunasGestantes";
+import { colunasGestantesEncerradasEquipe, colunasGestantesEquipe } from "../../../helpers/colunasGestantes";
 import { colunasGestantesIndicadorUm } from "../../../helpers/colunasGestantesIndicadorUm";
 import { colunasGestantesIndicadorDois } from "../../../helpers/colunasGestantesIndicadorDois";
 import { colunasGestantesIndicadorTres } from "../../../helpers/colunasGestantesIndicadorTres";
@@ -101,24 +101,30 @@ const [tabelaData, setTabelaData] = useState([]);
 const colunasImpressao = {
   0 : colunasGestantesIndicadorUm,
   1 : colunasGestantesIndicadorDois,
-  3 : colunasGestantesIndicadorTres,
-  4 : colunasGestantesIndicadorUm
+  2 : colunasGestantesIndicadorTres,
+  3 : colunasGestantesIndicadorUm
 }
+const colunasImpressaoEquipe = {
+  0 : colunasGestantesEquipe,
+  1 : colunasGestantesEquipe,
+  2 : colunasGestantesEncerradasEquipe,
+}
+
 const ImpressaoEquipe = ()=> Imprimir(
   0.78,
-  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasGestantesEquipe}/>,
+  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressaoEquipe[activeTabIndex]}/>,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
 )   
 const ImpressaoAPS = ()=> Imprimir(
   0.78,
-  <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>,
+  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
-
 )   
+
 if(session){  
   if(session.user.perfis.includes(9)){
     visao = "equipe"
