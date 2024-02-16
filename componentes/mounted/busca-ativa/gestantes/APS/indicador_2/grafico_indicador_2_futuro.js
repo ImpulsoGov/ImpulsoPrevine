@@ -1,6 +1,12 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
+import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2' || item.gestacao_quadrimestre == '2024.Q3')
+    const quadrisFuturos = tabelaDataAPS
+        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].atualizacao_data)
+        : [];
+    const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, ' e ');
+
     return dataQuadriFuturo ? 
     <>
         <h2 style={{
@@ -12,7 +18,7 @@ const CardsGraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            (Q2 + Q3)/24 e Q1/25  - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
+            {quadrisFuturosFormatados}  - Gestantes com DUM preenchida por exames de Sífilis e HIV identificados por equipe de saúde
         </h2>
         <ScoreCardGrid
         valores={[
@@ -206,4 +212,5 @@ const GraficoIndicadorDoisQuadriFuturo = ({tabelaDataAPS}) => {
         />
     </> : <Spinner/>
 }
-export { GraficoIndicadorDoisQuadriFuturo, CardsGraficoIndicadorDoisQuadriFuturo }
+export { CardsGraficoIndicadorDoisQuadriFuturo, GraficoIndicadorDoisQuadriFuturo };
+
