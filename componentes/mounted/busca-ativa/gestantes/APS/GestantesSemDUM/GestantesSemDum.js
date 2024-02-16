@@ -3,6 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
+import mixpanel from 'mixpanel-browser';
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -59,6 +60,7 @@ const TabelaGestantesSemDUM = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);

@@ -3,6 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorDois } from "../../../../../../../helpers/colunasGestantesIndicadorDois";
+import mixpanel from 'mixpanel-browser';
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -48,7 +49,7 @@ const IndicadorDoisTabelaGestantesSemDUM = ({
             rotulo: 'Filtrar por nome da equipe'
         },
         {
-            data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_ine))],
+            data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_ine.toString()))],
             filtro: 'equipe_ine',
             rotulo: 'Filtrar por INE da equipe'
         },
@@ -64,6 +65,7 @@ const IndicadorDoisTabelaGestantesSemDUM = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
