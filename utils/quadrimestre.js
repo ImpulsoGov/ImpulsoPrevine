@@ -43,3 +43,23 @@ export const obterDadosProximosQuadrimestres = (dataBase, quantidade) => {
 
   return proximosQuadrimestres;
 };
+
+export const formatarQuadrimestres = (quadrimestres, separador = '') => {
+  const quadrisPorAno = quadrimestres.reduce((acc, { quadrimestre, ano }) => {
+    const quadri = `Q${quadrimestre}`;
+
+    acc[ano]
+      ? acc[ano] = `${acc[ano]} + ${quadri}`
+      : acc[ano] = quadri
+
+    return acc;
+  }, {});
+
+  const quadrisFormatadosComAno = [];
+
+  for (const ano in quadrisPorAno) {
+    quadrisFormatadosComAno.push(`${quadrisPorAno[ano]}/${ano.slice(-2)}`)
+  }
+
+  return quadrisFormatadosComAno.join(separador);
+};
