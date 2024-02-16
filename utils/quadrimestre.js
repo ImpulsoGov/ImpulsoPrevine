@@ -1,5 +1,6 @@
 const PRIMEIRO_QUADRIMESTRE_DO_ANO = 1;
 const ULTIMO_QUADRIMESTRE_DO_ANO = 3;
+const QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES = 3;
 
 export const obterDadosQuadrimestre = (data) => {
   const objetoDeData = new Date(data);
@@ -12,7 +13,7 @@ export const obterDadosQuadrimestre = (data) => {
   };
 };
 
-export const obterDadosProximosQuadrimestres = (dataBase, quantidade) => {
+export const obterDadosProximosQuadrimestres = (dataBase, quantidade = QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES) => {
   let iteracao = quantidade;
   const proximosQuadrimestres = [];
 
