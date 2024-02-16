@@ -99,8 +99,8 @@ const [tabelaData, setTabelaData] = useState([]);
 const colunasImpressao = {
   0 : colunasGestantesIndicadorUm,
   1 : colunasGestantesIndicadorDois,
-  3 : colunasGestantesIndicadorTres,
-  4 : colunasGestantesIndicadorUm
+  2 : colunasGestantesIndicadorTres,
+  3 : colunasGestantesIndicadorUm
 }
 const ImpressaoEquipe = ()=> Imprimir(
   0.78,
@@ -115,8 +115,8 @@ const ImpressaoAPS = ()=> Imprimir(
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
-
 )   
+
 if(session){  
   if(session.user.perfis.includes(9)){
     visao = "equipe"

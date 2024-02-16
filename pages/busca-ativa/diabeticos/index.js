@@ -55,11 +55,7 @@ const Index = ({res}) => {
       setTabelaDataEquipe(response)
   })},[session]) 
 
-  const [tabelaData, setTabelaData] = useState();
-  useEffect(()=>{
-    (tabelaDataAPS || tabelaDataEquipe) && session &&
-    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
-  },[session,tabelaDataAPS,tabelaDataEquipe])
+  const [tabelaData, setTabelaData] = useState([]);
 
   useEffect(()=>{
     if(session){
