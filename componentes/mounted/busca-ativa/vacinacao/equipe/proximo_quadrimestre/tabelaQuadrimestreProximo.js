@@ -7,6 +7,7 @@ import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao"
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
+import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -36,6 +37,12 @@ const TabelaAPSQuadrimestreProximo = ({
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 2)
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
+
+    const dadosProximoQuadri = tabelaDataAPS
+        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].atualizacao_data, 1)
+        : [];
+    const proximoQuadriFormatado = formatarQuadrimestres(dadosProximoQuadri);
+
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -47,7 +54,7 @@ const TabelaAPSQuadrimestreProximo = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q2/24 - Crianças no período de vacinação
+            {proximoQuadriFormatado} - Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
         valores={[
