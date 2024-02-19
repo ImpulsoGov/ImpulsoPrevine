@@ -13,11 +13,13 @@ export const obterDadosQuadrimestre = (data) => {
   };
 };
 
-export const obterDadosProximosQuadrimestres = (dataBase, quantidade = QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES) => {
-  let iteracao = quantidade;
+export const obterDadosProximosQuadrimestres = (
+  dataBase,
+  quantidade = QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES
+) => {
   const proximosQuadrimestres = [];
 
-  while (iteracao > 0) {
+  for (let iteracao = quantidade; iteracao > 0; iteracao--) {
     const dadosUltimoQuadrimestre = proximosQuadrimestres.length === 0
       ? obterDadosQuadrimestre(dataBase)
       : proximosQuadrimestres.at(-1);
@@ -38,8 +40,6 @@ export const obterDadosProximosQuadrimestres = (dataBase, quantidade = QUANTIDAD
       ),
       ano: anoDoProximoQuadrimestre,
     });
-
-    iteracao -= 1;
   }
 
   return proximosQuadrimestres;
