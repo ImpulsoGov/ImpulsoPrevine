@@ -1,10 +1,10 @@
 import axios from "axios";
-import { API_URL } from "../../constants/API_URL";
+import { API_URL_USUARIOS } from "../../constants/API_URL";
 
 const CadastrarUsuario = async (formData, token) => {
   let config = {
     method: 'post',
-    url: API_URL + 'suporte/usuarios/cadastro-lote-sem-ativacao',
+    url: API_URL_USUARIOS + 'suporte/usuarios/cadastro-lote-sem-ativacao',
     headers: {
       'Authorization': 'Bearer ' + token
     },
@@ -12,10 +12,20 @@ const CadastrarUsuario = async (formData, token) => {
   };
   const res = axios.request(config)
     .then((response) => {
-      return { usuario: formData.get('nome'), success: response?.data?.error, erro: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso" };
+      return {
+        usuario: formData.get('nome'),
+        success: !response?.data?.error,
+        mensagem: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso"
+      };
     })
     .catch((error) => {
-      return { success: false, error: error.response.data };
+      return {
+        usuario: formData.get('nome'),
+        success: false,
+        mensagem: error.response.data.detail
+          ? JSON.stringify(error.response.data.detail)
+          : JSON.stringify(error.response.data)
+      };
     });
 
   return res;

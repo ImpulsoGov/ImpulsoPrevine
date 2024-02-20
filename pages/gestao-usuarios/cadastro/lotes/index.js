@@ -1,12 +1,12 @@
 import { ButtonLightSubmit, Spinner, TabelaHiperDia, TituloSmallTexto } from '@impulsogov/design-system';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import { parse } from 'papaparse';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CadastrarUsuarioLotes } from '../../../../helpers/RequisicoesConcorrentes';
 import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValidacaoDadosCadastro';
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
-import { Validacao, Tratamento } from '../../../../utils/cadastroUsuarios';
+import { BuscarIdSusPorNome, Tratamento, Validacao } from '../../../../utils/cadastroUsuarios';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -35,9 +35,19 @@ const validarColunas = linha => Object.keys(linha).every(chave => colunas.includ
 const validarColunaLinhas = data => data.every(linha => validarColunas(linha));
 
 const TratamentoValidacao = async (setDadosValidados, setValidacaoRealizada, JSONDATA, setDadosReq) => {
-  const dados_tratados = await Tratamento(JSONDATA, setDadosReq);
+  const dados_tratados = await Tratamento(JSONDATA);
   const dados_validados = await Validacao(dados_tratados);
-  dados_validados.validacao && setValidacaoRealizada(true);
+
+  if (dados_validados.validacao) {
+    setValidacaoRealizada(true);
+
+    const dadosTratadosComIdSus = dados_tratados.map((dado) => {
+      return { ...dado, municipio_id_sus: BuscarIdSusPorNome(dado.municipio_uf) };
+    });
+
+    setDadosReq(dadosTratadosComIdSus);
+  }
+
   setDadosValidados(dados_validados);
 };
 const GestaoDeUsuarios = () => {
@@ -57,9 +67,6 @@ const GestaoDeUsuarios = () => {
     etapa == 2 && CadastrarUsuarioLotes(dadosReq, setRes, SET_ERRO_PROCESSAMENTO, session.user.access_token);
     etapa == 0 && setJSONDATA() && setDadosReq();
   }, [etapa]);
-  useEffect(() => {
-    console.log(res);
-  }, [res]);
   const handleSubmit = () => {
     const fileReader = new FileReader();
     if (file) {
@@ -92,6 +99,7 @@ const GestaoDeUsuarios = () => {
       setJSONDATA(jsonData.data);
     };
   }
+
   const Etapa_zero = () => {
     return (
       <>
@@ -129,6 +137,7 @@ const GestaoDeUsuarios = () => {
       if (!validarColunaLinhas(JSONDATA)) {
         alert('Colunas inválidas');
         setEtapa(0);
+        setJSONDATA();
       }
     }
     return (
@@ -198,6 +207,12 @@ const GestaoDeUsuarios = () => {
                     label='VOLTAR'
                     submit={ () => {
                       setEtapa(0);
+                      SET_ERRO_PROCESSAMENTO(false);
+                      setRes();
+                      setDadosReq();
+                      setDadosValidados();
+                      setValidacaoRealizada(false);
+                      setJSONDATA();
                     } }
                   />
                 </div>
@@ -220,7 +235,13 @@ const GestaoDeUsuarios = () => {
     1: Etapa_um(),
     2: Etapa_dois()
   };
-  return session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut();
+
+  if(session) {
+    session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut()
+  } else {
+    if(status !== "authenticated" && status !== "loading" ) signOut()
+  }
+  if(status=="unauthenticated") router.push('/')
 };
 
 export default GestaoDeUsuarios;

@@ -104,7 +104,11 @@ const GestaoDeUsuarios = () => {
         </div>
       </>
     );
+  } else {
+    if(status !== "authenticated" && status !== "loading" ) signOut()
   }
+  if(status=="unauthenticated") router.push('/')
+
 };
 
 export default GestaoDeUsuarios;

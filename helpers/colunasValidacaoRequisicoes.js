@@ -19,22 +19,22 @@ const colunasValidacaoRequsicoes = [
     headerAlign: 'center',
     headerName: 'Usuário',
     renderCell: formatar_nome,
-    width: 300
+    flex: 150
   },
   {
     align: 'center',
-    field: 'requisicao',
+    field: 'success',
     headerAlign: 'center',
     headerName: 'Requisição',
-    width: 90,
+    flex: 90,
     renderCell: formatar_validacao
   },
   {
     align: 'center',
-    field: 'erro',
+    field: 'mensagem',
     headerAlign: 'center',
-    headerName: 'Erro',
-    width: 250,
+    headerName: 'Mensagem',
+    flex: 250,
   },
 ];
 
