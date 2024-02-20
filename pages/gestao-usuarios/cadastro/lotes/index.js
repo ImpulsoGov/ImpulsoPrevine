@@ -235,7 +235,13 @@ const GestaoDeUsuarios = () => {
     1: Etapa_um(),
     2: Etapa_dois()
   };
-  return session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut();
+
+  if(session) {
+    session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut()
+  } else {
+    if(status !== "authenticated" && status !== "loading" ) signOut()
+  }
+  if(status=="unauthenticated") router.push('/')
 };
 
 export default GestaoDeUsuarios;
