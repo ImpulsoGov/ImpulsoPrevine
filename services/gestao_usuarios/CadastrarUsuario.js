@@ -14,7 +14,7 @@ const CadastrarUsuario = async (formData, token) => {
     .then((response) => {
       return {
         usuario: formData.get('nome'),
-        success: response?.data?.error,
+        success: !response?.data?.error,
         mensagem: response?.data?.mensagem ? response?.data?.mensagem : "Cadastro realizado com sucesso"
       };
     })
