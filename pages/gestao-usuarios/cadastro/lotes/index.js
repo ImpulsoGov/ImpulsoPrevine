@@ -137,6 +137,7 @@ const GestaoDeUsuarios = () => {
       if (!validarColunaLinhas(JSONDATA)) {
         alert('Colunas inválidas');
         setEtapa(0);
+        setJSONDATA();
       }
     }
     return (
