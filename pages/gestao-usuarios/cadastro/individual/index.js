@@ -1,5 +1,5 @@
 import { Spinner, TituloTexto } from '@impulsogov/design-system';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession, signOut, useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { TabelaGestaoUsuarios } from '../../../../componentes/TabelaGestaoUsuarios';
@@ -8,6 +8,7 @@ import { SnackBar } from '../../../../componentes/SnackBar';
 import { MENSAGENS_DE_ERRO } from '../../../../constants/gestaoUsuarios';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
 import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '../../../../services/gestaoUsuarios';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -21,6 +22,7 @@ export async function getServerSideProps(ctx) {
 }
 
 const GestaoDeUsuarios = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);

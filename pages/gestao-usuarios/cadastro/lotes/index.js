@@ -7,6 +7,7 @@ import { colunasValidacaoDadosCadastro } from '../../../../helpers/colunasValida
 import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacaoRequisicoes';
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
 import { BuscarIdSusPorNome, Tratamento, Validacao } from '../../../../utils/cadastroUsuarios';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -51,6 +52,7 @@ const TratamentoValidacao = async (setDadosValidados, setValidacaoRealizada, JSO
   setDadosValidados(dados_validados);
 };
 const GestaoDeUsuarios = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
   const [file, setFile] = useState();
   const [etapa, setEtapa] = useState(0);
