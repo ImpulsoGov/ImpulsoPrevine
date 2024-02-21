@@ -132,7 +132,9 @@ const Index = ({res}) => {
                 destaque="IMPORTANTE: "
                 msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
             />  
-            <MunicipioQuadrimestre data={tabelaDataEquipe && tabelaDataEquipe[0].dt_registro_producao_mais_recente} />
+            <MunicipioQuadrimestre
+              data={(tabelaDataEquipe && tabelaDataEquipe.length > 0) && tabelaDataEquipe[0].dt_registro_producao_mais_recente}
+            />
 
             {
               tabelaDataEquipe &&
@@ -247,7 +249,9 @@ const Index = ({res}) => {
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <MunicipioQuadrimestre data={tabelaDataAPS && tabelaDataAPS[0].dt_registro_producao_mais_recente} />
+        <MunicipioQuadrimestre
+          data={(tabelaDataAPS && tabelaDataAPS.length > 0) && tabelaDataAPS[0].dt_registro_producao_mais_recente}
+        />
         {
           tabelaDataAPS &&
           <ScoreCardGrid

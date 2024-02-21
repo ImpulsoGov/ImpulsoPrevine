@@ -2,7 +2,7 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 import { formatarQuadrimestres, obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
 const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
-    const dadosQuadriAtual = tabelaDataAPS
+    const dadosQuadriAtual = (tabelaDataAPS && tabelaDataAPS.length > 0)
         ? obterDadosQuadrimestre(tabelaDataAPS[0].dt_registro_producao_mais_recente)
         : null;
     const quadriAtualFormatado = dadosQuadriAtual
