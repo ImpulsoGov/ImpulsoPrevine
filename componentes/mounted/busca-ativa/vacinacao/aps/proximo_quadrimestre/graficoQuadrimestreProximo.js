@@ -3,7 +3,7 @@ import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../..
 const CardsGraficoAPSQuadrimestreProximo = ({tabelaDataAPS}) =>{
     const dataQuadriProximo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 2)
     const dadosProximoQuadri = tabelaDataAPS
-        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].atualizacao_data, 1)
+        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].dt_registro_producao_mais_recente, 1)
         : [];
     const proximoQuadriFormatado = formatarQuadrimestres(dadosProximoQuadri);
 

@@ -39,7 +39,7 @@ const TabelaAPSQuadrimestreFuturo = ({
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
     const dadosProximosQuadris = tabelaDataAPS
-        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].atualizacao_data)
+        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].dt_registro_producao_mais_recente)
         : [];
     const proximosQuadrisFormatados = formatarQuadrimestres(dadosProximosQuadris.slice(-2), ' + ');
 

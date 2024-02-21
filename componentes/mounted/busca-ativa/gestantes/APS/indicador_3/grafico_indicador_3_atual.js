@@ -3,7 +3,7 @@ import { obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
 const CardsGraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2023.Q3')
     const dadosQuadriAtual = tabelaDataAPS
-        ? obterDadosQuadrimestre(tabelaDataAPS[0].atualizacao_data)
+        ? obterDadosQuadrimestre(tabelaDataAPS[0].dt_registro_producao_mais_recente)
         : null;
     const quadriAtualFormatado = dadosQuadriAtual
         ? `Q${Object.values(dadosQuadriAtual).join("/")}`
