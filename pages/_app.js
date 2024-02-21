@@ -78,7 +78,10 @@ function MyApp(props) {
         "municipio": props.ses.user.municipio,
         "equipe": props.ses.user.equipe,
         "municipio_id_sus": props.ses.user.municipio_id_sus,
-        "is_test_user": (props.ses.user.cargo == 'Impulser') && !props.ses.user.mail.includes('@impulsogov.org') && !props.ses.user.municipio.includes('Impulsolândia')
+        "is_test_user": (props.ses.user.cargo == 'Impulser')
+          || props.ses.user.mail.includes('@impulsogov.org')
+          || props.ses.user.municipio.includes('Impulsolândia')
+          || props.ses.user.municipio.includes('Demo - Viçosa')
       });
     }
   }, [props.ses]);
