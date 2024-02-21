@@ -237,7 +237,7 @@ const GestaoDeUsuarios = () => {
   };
 
   if(session) {
-    session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut()
+    return session?.user.perfis.includes(2) ? etapas[etapa] || null : signOut()
   } else {
     if(status !== "authenticated" && status !== "loading" ) signOut()
   }
