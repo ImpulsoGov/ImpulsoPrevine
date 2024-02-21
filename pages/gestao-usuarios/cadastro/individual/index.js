@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
 }
 
 const GestaoDeUsuarios = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [usuarios, setUsuarios] = useState([]);
   const [autorizacoes, setAutorizacoes] = useState([]);
   const [rows, setRows] = useState([]);
@@ -221,50 +221,55 @@ const GestaoDeUsuarios = () => {
     session?.user?.access_token
   ]);
 
-  return (
-    <>
-      <TituloTexto
-        imagem={ {
-          posicao: null,
-          url: ''
-        } }
-        titulo='Boas-vindas à área de gestão de usuários'
-        texto=''
-      />
+  if(session) {
+    return (
+      <>
+        <TituloTexto
+          imagem={ {
+            posicao: null,
+            url: ''
+          } }
+          titulo='Boas-vindas à área de gestão de usuários'
+          texto=''
+        />
 
-      { rows.length !== 0
-        ? (
-          <TabelaGestaoUsuarios
-            rows={ rows }
-            setRows={ setRows }
-            autorizacoes={ autorizacoes }
-            showSuccessMessage={ showSuccessMessage }
-            showErrorMessage={ showErrorMessage }
-            handleAddClick={ openModalCadastro }
-            closeModalAutorizacoes={ closeModalAutorizacoes }
-            showModalAutorizacoes={ showModalAutorizacoes }
-            handleAutorizacoesEdit={ editarAutorizacoesUsuario }
-            validarCamposObrigatorios={ validarCamposObrigatorios }
-            checarPerfilAtivo={ checarPerfilAtivo }
-          />
-        )
-        : <Spinner height='50vh' />
-      }
+        { rows.length !== 0
+          ? (
+            <TabelaGestaoUsuarios
+              rows={ rows }
+              setRows={ setRows }
+              autorizacoes={ autorizacoes }
+              showSuccessMessage={ showSuccessMessage }
+              showErrorMessage={ showErrorMessage }
+              handleAddClick={ openModalCadastro }
+              closeModalAutorizacoes={ closeModalAutorizacoes }
+              showModalAutorizacoes={ showModalAutorizacoes }
+              handleAutorizacoesEdit={ editarAutorizacoesUsuario }
+              validarCamposObrigatorios={ validarCamposObrigatorios }
+              checarPerfilAtivo={ checarPerfilAtivo }
+            />
+          )
+          : <Spinner height='50vh' />
+        }
 
-      <ModalCadastroUsuario
-        titulo='Adicionar usuário'
-        isOpen={ showModalCadastro }
-        closeModal={ closeModalCadastro }
-        handleAddClick={ cadastrarNovoUsuario }
-        autorizacoes={ autorizacoes }
-      />
+        <ModalCadastroUsuario
+          titulo='Adicionar usuário'
+          isOpen={ showModalCadastro }
+          closeModal={ closeModalCadastro }
+          handleAddClick={ cadastrarNovoUsuario }
+          autorizacoes={ autorizacoes }
+        />
 
-      <SnackBar
-        config={ snackbar }
-        handleSnackbarClose={ handleSnackbarClose }
-      />
-    </>
-  );
+        <SnackBar
+          config={ snackbar }
+          handleSnackbarClose={ handleSnackbarClose }
+        />
+      </>
+    );
+  } else {
+    if(status !== "authenticated" && status !== "loading" ) signOut()
+  }
+  if(status=="unauthenticated") router.push('/')
 };
 
 export default GestaoDeUsuarios;

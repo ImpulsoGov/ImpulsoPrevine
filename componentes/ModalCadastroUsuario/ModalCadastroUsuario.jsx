@@ -145,12 +145,12 @@ function ModalCadastroUsuario({
             options={ autorizacoes }
             selectedOptions={ autorizacoesSelecionadas }
             handleChange={ handleAutorizacoesChange }
-            width='30%'
+            width='60%'
             isMulti
           />
 
           <FormControlLabel
-            sx={ { m: 1 } }
+            sx={ { m: 1, width: '30%' } }
             control={
               <Checkbox
                 checked={ whatsapp }

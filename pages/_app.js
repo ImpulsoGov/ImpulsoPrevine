@@ -112,7 +112,13 @@ function MyApp(props) {
                     login: signIn,
                     logout: signOut,
                     validarCredencial: validateCredentials,
-                    validacao: validacao
+                    validacao: validacao,
+                    botaoAuxiliar: props.ses?.user.perfis.includes(2)
+                      ? {
+                        label: "GESTÃO DE USUÁRIOS",
+                        handelClick : () => router.push("/gestao-usuarios")
+                      }
+                      : null
                   }
                 }
                 municipio={ cidade }
