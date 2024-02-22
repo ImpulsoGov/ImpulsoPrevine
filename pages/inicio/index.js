@@ -125,7 +125,7 @@ const Index = ({ res }) => {
                         submit = {NPSAvaliacao}
                     />                    
                 }  */}
-                      <ModalAlert
+                      {/* <ModalAlert
                         Child = {Alert_v2}
                         childProps ={ {
                             titulos : {
@@ -158,7 +158,7 @@ const Index = ({ res }) => {
                             }
                         }}
                     />
-
+ */}
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem-vindo(a)"
