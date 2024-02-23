@@ -99,7 +99,7 @@ const Index = ({res}) => {
   }
   const Impressao = ()=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,

@@ -112,14 +112,14 @@ const colunasImpressaoEquipe = {
 
 const ImpressaoEquipe = ()=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressaoEquipe[activeTabIndex]}/>,
+  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
 )   
 const ImpressaoAPS = ()=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]}/>,
+  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
