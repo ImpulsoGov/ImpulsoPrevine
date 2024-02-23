@@ -117,7 +117,7 @@ const IDFiltrosOrdenacaoCito = {
 }
 const Impressao = ()=> Imprimir(
     0.78,
-    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>,
+    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
