@@ -79,7 +79,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
 
   const ImpressaoVacinacao = ()=> Imprimir(
     1,
-    <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS}/>,
+    <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
