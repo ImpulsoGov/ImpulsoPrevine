@@ -3,12 +3,10 @@ import {
   Grid12Col,
   NovoTituloTexto,
   ImagensFull2,
-  ImagensFull,
   Margem,
   CardAlert,
   CardImg
 } from "@impulsogov/design-system";
-import { v1 as uuidv1 } from "uuid";
 
 
 import { getData } from '../../services/cms'
@@ -37,16 +35,15 @@ export async function getServerSideProps(ctx) {
   }
 }
 
-const Parceiros = (res) => {
-  const parceiros = res.map((logo) => {
+const Parceiros = (parceiros) => {
+  return parceiros.map((logo) => {
     return (
       {
         alt: logo.fileName,
         src: logo.url
       }
     )
-  }).reverse()
-  return parceiros
+  }).map(parceiro=><Margem componente={<ImagensFull2 imagem={parceiro.src} alt={parceiro.alt} width={300} />}/>)
 }
 
 
@@ -175,7 +172,7 @@ const Index = ({ res }) => {
                 <>
                   <ImagensFull2 imagem="https://media.graphassets.com/vjUs4iswQOv74LlkwlAf" width={90} />
                   <TituloSmallTexto
-                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
+                    key={"2020"} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
                     supertitulo="<b>2020"
                     titulo=""
                     texto="Estivemos à frente de iniciativas de apoio no combate à Covid-19: o CoronaCidades e o Farol Covid."
@@ -190,7 +187,7 @@ const Index = ({ res }) => {
                 <>
                   <ImagensFull2 imagem="https://media.graphassets.com/HxVzIrFQ3STa2ZbAcSyQ" width={90} />
                   <TituloSmallTexto
-                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    key={"2021"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
                     supertitulo="<b>2021"
                     titulo=""
                     texto="Expandimos nossa atuação para os serviços de Atenção Primária à Saúde e Saúde Mental do SUS."
@@ -205,7 +202,7 @@ const Index = ({ res }) => {
                 <>
                   <ImagensFull2 imagem="https://media.graphassets.com/zuYuMhOMQsGVh2ntyBsY" width={90} />
                   <TituloSmallTexto
-                    key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    key={"2023"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
                     supertitulo="<b>2023"
                     titulo=""
                     texto="Já apoiamos diretamente 100 municípios onde vivem 6 milhões de pessoas que dependem exclusivamente do SUS para ter acesso a qualquer serviços de saúde."
@@ -239,7 +236,7 @@ const Index = ({ res }) => {
           <>
 
             <TituloSmallTexto
-              key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+              key={"apoio_financeiro"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
               supertitulo="<b>APOIO FINANCEIRO"
               titulo=""
               texto=""
@@ -251,47 +248,14 @@ const Index = ({ res }) => {
 
       <Grid12Col
         proporcao="4-4-4"
-        items={[
-          <>
-            <Margem
-              componente={
-                <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/B65VQRc8QkaZXT3uyUiW" width={300} />
-
-                </>
-              }
-            />
-          </>,
-          <>
-            <Margem
-              componente={
-                <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/yIZ1viigTYee67p4bMaI" width={300} />
-
-                </>
-              }
-            />
-          </>,
-          <>
-            <Margem
-              componente={
-                <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/KVYG5g61R32p5JlWoxlU" width={300} />
-
-                </>
-              }
-            />
-          </>,
-
-        ]}
+        items={Parceiros(res[1].logoParceiros[0].logoparceiro)}
       />
       <Margem
-
         componente={
           <>
 
             <TituloSmallTexto
-              key={uuidv1()} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+              key="apoio" botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
               supertitulo="<b>APOIO INSTITUCIONAL"
               titulo=""
               texto=""
