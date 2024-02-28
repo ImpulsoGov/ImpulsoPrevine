@@ -6,9 +6,9 @@ import {
     ScoreCardGrid , 
     Spinner, 
     GraficoBuscaAtiva,
-    ButtonPrint,
     TabelaCitoImpressao,
-    PanelSelector
+    PanelSelector,
+    ButtonColorSubmitIcon
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -17,10 +17,12 @@ import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasCito } from "../../../helpers/colunasCito";
+import { Imprimir } from "../../../helpers/imprimir"
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
 import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'json' };
 import { useRouter } from 'next/router';
+import mixpanel from 'mixpanel-browser';
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -45,17 +47,21 @@ const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 
 const router = useRouter();
-
+let visao = null
 useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { aba: activeTabIndex }
+      query: { 
+        aba: null,
+        sub_aba : activeTabIndex,
+        visao : visao
+    }
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex]);
 
-const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio,session?.user?.access_token)
+const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     CitoTabelaDataAPS().then((response)=>{
@@ -63,7 +69,7 @@ useEffect(()=>{
 })},[session]) 
 
 const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-const CitoTabelaDataEquipe = async()=> await tabelaCitoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+const CitoTabelaDataEquipe = async()=> await tabelaCitoEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
 useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     CitoTabelaDataEquipe().then((response)=>{
@@ -89,29 +95,36 @@ useEffect(()=>{
 },[tokenValido])
 const datefiltrosCito = [
     "vencimento_da_coleta",
-  ]
-  const rotulosfiltrosCito = [
-    "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "VENCIMENTO DA COLETA MAIS ANTIGO",
-    "IDADE MENOR-MAIOR",
-    ]
-    const IDFiltrosCito = {
-        "NOMES DE A-Z": "paciente_nome",
-        "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
-        "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
-        "IDADE MENOR-MAIOR" : "idade",
-    }   
-    const IDFiltrosOrdenacaoCito = {
-        "paciente_nome" : "asc",
-        "acs_nome" : "asc",
-        "idade" : "asc",
-        "vencimento_da_coleta" : "desc",
-        "prazo_proxima_coleta" : "asc",
-    }
-      
+]
+const rotulosfiltrosCito = [
+"NOMES DE A-Z",
+"NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+"VENCIMENTO DA COLETA MAIS ANTIGO",
+"IDADE MENOR-MAIOR",
+]
+const IDFiltrosCito = {
+    "NOMES DE A-Z": "paciente_nome",
+    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
+    "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
+    "IDADE MENOR-MAIOR" : "idade",
+}   
+const IDFiltrosOrdenacaoCito = {
+    "paciente_nome" : "asc",
+    "acs_nome" : "asc",
+    "idade" : "asc",
+    "vencimento_da_coleta" : "asc",
+    "prazo_proxima_coleta" : "asc",
+}
+const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    "citopatologico",
+    activeTitleTabIndex,
+    activeTabIndex,
+)   
 if(session){  
     if(session.user.perfis.includes(9)){
+        visao = "equipe"
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
@@ -199,6 +212,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
             /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
@@ -248,6 +265,10 @@ if(session){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
@@ -267,12 +288,12 @@ if(session){
         {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
             />
-            </div>
+        </div>
         }
         </div>
         <TituloTexto
@@ -295,7 +316,7 @@ if(session){
                 lineHeight: "130%",
             }}
         >
-            {session.user.municipio} - Q2/23
+            {session.user.municipio} - Q1/24
         </div>
         {
             tabelaData &&
@@ -330,6 +351,7 @@ if(session){
     )
 }
 if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     const CardsChild = tabelaDataAPS ? <ScoreCardGrid
         valores={[
             {
@@ -606,6 +628,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
  
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
@@ -657,6 +683,10 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
           month: '2-digit',
           day: '2-digit'
          })}
+        trackObject={mixpanel}
+        lista="citopatologico"
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
 
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]
@@ -675,12 +705,12 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 label="VOLTAR" link="/inicio"
             />
         {
-            tabelaDataAPS &&
+            tabelaDataAPS && activeTabIndex != 0 &&
             <div style={{marginLeft:"auto"}}>
-            <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao}/>}
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
             />
             </div>
         }
@@ -705,7 +735,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 lineHeight: "130%",
             }}
         >
-        {session.user.municipio} - Q3/23
+        {session.user.municipio} - Q1/24
         </div>
         <PanelSelector
             components={[Children]}
@@ -741,7 +771,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
 }else{
     if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-
+if(status=="unauthenticated") router.push('/')
 }
 
 export default Index;

@@ -6,7 +6,7 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  ButtonPrint,
+  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -15,9 +15,11 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import style from "../../duvidas/Duvidas.module.css"
+import { Imprimir } from "../../../helpers/imprimir"
 import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
+import mixpanel from "mixpanel-browser";
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -38,7 +40,7 @@ const Index = ({res}) => {
   const [tokenValido, setTokenValido] = useState();
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
-  const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio,session?.user?.access_token)
+  const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
   useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     DiabetesTabelaDataAPS().then((response)=>{
@@ -46,18 +48,14 @@ const Index = ({res}) => {
   })},[session]) 
 
   const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-  const DiabetesTabelaDataEquipe = async()=> await tabelaDiabetesEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+  const DiabetesTabelaDataEquipe = async()=> await tabelaDiabetesEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
   useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     DiabetesTabelaDataEquipe().then((response)=>{
       setTabelaDataEquipe(response)
   })},[session]) 
 
-  const [tabelaData, setTabelaData] = useState();
-  useEffect(()=>{
-    (tabelaDataAPS || tabelaDataEquipe) && session &&
-    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
-  },[session,tabelaDataAPS,tabelaDataEquipe])
+  const [tabelaData, setTabelaData] = useState([]);
 
   useEffect(()=>{
     if(session){
@@ -98,9 +96,31 @@ const Index = ({res}) => {
     "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
     "prazo_proxima_solicitacao_hemoglobina" : "asc",
   }
-  
+  const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    "diabetes",
+    null,
+    null,
+  )
+  const router = useRouter();
+  let visao = null
+  useEffect(() => {
+      router.push({
+        pathname: router.pathname,
+        query: { 
+          aba : null,
+          sub_aba : null,
+          visao : visao
+      }
+      },
+        undefined, { shallow: true }
+      );
+    }, [visao]);
+
   if(session){  
     if(session.user.perfis.includes(9)){
+      visao = "equipe"
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -110,11 +130,11 @@ const Index = ({res}) => {
           {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
+            <ButtonColorSubmitIcon
                 label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
-              />
+                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                submit={Impressao}
+            />
             </div>
           }
           </div>
@@ -138,7 +158,7 @@ const Index = ({res}) => {
                 lineHeight: "130%",
               }}
             >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
 
             {
@@ -214,6 +234,10 @@ const Index = ({res}) => {
                 month: '2-digit',
                 day: '2-digit'
                })}
+              trackObject={mixpanel}
+              lista="diabetes"
+              aba={null}
+              sub_aba={null}
 
               /> : <Spinner/>
             }
@@ -221,6 +245,7 @@ const Index = ({res}) => {
       )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     return (
       <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -230,10 +255,10 @@ const Index = ({res}) => {
           {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
@@ -258,7 +283,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
         {
           tabelaDataAPS &&
@@ -498,6 +523,10 @@ const Index = ({res}) => {
             month: '2-digit',
             day: '2-digit'
            })}
+           trackObject={mixpanel}
+           lista="diabetes"
+           aba={null}
+           sub_aba={null}
 
           /> : <Spinner/>
         }
@@ -507,5 +536,6 @@ const Index = ({res}) => {
 }else{
   if(status !== "authenticated" && status !== "loading" ) signOut()
 }
+if(status=="unauthenticated") router.push('/')
 }
 export default Index;

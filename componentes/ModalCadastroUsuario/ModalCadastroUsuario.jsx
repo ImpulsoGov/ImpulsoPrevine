@@ -1,10 +1,12 @@
 import { ButtonColorSubmit, TituloSmallTexto } from '@impulsogov/design-system';
+import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import React, { useCallback, useState } from 'react';
 import { CARGOS } from '../../constants/gestaoUsuarios';
+import { MUNICIPIOS } from '../../constants/municipios';
 import { Select } from '../Select';
 import styles from './ModalCadastroUsuario.module.css';
 
@@ -14,7 +16,7 @@ function ModalCadastroUsuario({
   const [nome, setNome] = useState('');
   const [mail, setMail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [municipio, setMunicipio] = useState('');
+  const [municipio, setMunicipio] = useState(null);
   const [cargo, setCargo] = useState('');
   const [telefone, setTelefone] = useState('');
   const [equipe, setEquipe] = useState('');
@@ -28,6 +30,22 @@ function ModalCadastroUsuario({
     setAutorizacoesSelecionadas(
       typeof value === 'string' ? value.split(', ') : value,
     );
+  }, []);
+
+  const handleAutocompleteChange = (_event, newValue) => {
+    setMunicipio(newValue);
+  };
+
+  const limparInputs = useCallback(() => {
+    setNome('');
+    setMail('');
+    setCpf('');
+    setMunicipio(null);
+    setCargo('');
+    setTelefone('');
+    setEquipe('');
+    setWhatsapp(false);
+    setAutorizacoesSelecionadas([]);
   }, []);
 
   return (
@@ -82,14 +100,14 @@ function ModalCadastroUsuario({
             } }
           />
 
-          <TextField
-            sx={ { width: '30%', m: 1 } }
-            id='outlined-controlled'
-            label='Município'
-            value={ municipio }
-            onChange={ (event) => {
-              setMunicipio(event.target.value);
-            } }
+          <Autocomplete
+            id="combo-box-demo"
+            options={MUNICIPIOS}
+            value={municipio}
+            onChange={handleAutocompleteChange}
+            getOptionLabel={(({ nome, uf }) => `${nome} - ${uf}`)}
+            sx={{ width: "30%", m: 1 }}
+            renderInput={(params) => <TextField {...params} label='Município' />}
           />
 
           <Select
@@ -127,12 +145,12 @@ function ModalCadastroUsuario({
             options={ autorizacoes }
             selectedOptions={ autorizacoesSelecionadas }
             handleChange={ handleAutorizacoesChange }
-            width='30%'
+            width='60%'
             isMulti
           />
 
           <FormControlLabel
-            sx={ { m: 1 } }
+            sx={ { m: 1, width: '30%' } }
             control={
               <Checkbox
                 checked={ whatsapp }
@@ -149,13 +167,14 @@ function ModalCadastroUsuario({
             nome,
             mail,
             cpf,
-            municipio,
+            municipio: municipio !== null ? `${municipio.nome} - ${municipio.uf}` : municipio,
+            municipioIdSus: municipio !== null ? municipio.municipioIdSus : municipio,
             cargo,
             telefone,
             equipe,
             whatsapp,
             autorizacoesSelecionadas
-          }) }
+          }, limparInputs) }
         />
       </div>
     </Modal>

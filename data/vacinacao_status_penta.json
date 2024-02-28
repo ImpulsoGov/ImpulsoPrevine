@@ -1,0 +1,23 @@
+{
+"data": [
+	{
+		"id_status_penta" : 1,
+		"status_descricao" : "Esquema completo",
+		"criacao_data" : "2023-11-17"
+	},
+	{
+		"id_status_penta" : 2,
+		"status_descricao" : "Em andamento",
+		"criacao_data" : "2023-11-17"
+	},
+	{
+		"id_status_penta" : 3,
+		"status_descricao" : "Em atraso",
+		"criacao_data" : "2023-11-17"
+	},
+	{
+		"id_status_penta" : 4,
+		"status_descricao" : "Não iniciado",
+		"criacao_data" : "2023-11-17"
+	}
+]}

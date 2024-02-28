@@ -44,5 +44,20 @@
 		"id_faixa_etaria" : 8,
 		"faixa_etaria_descricao" : "50 a 64 anos",
 		"atualizacao_data" : "2023-07-03T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 9,
+		"faixa_etaria_descricao" : "Até 2 meses",
+		"atualizacao_data" : "2023-11-17T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 10,
+		"faixa_etaria_descricao" : "Entre 2 e 12 meses",
+		"atualizacao_data" : "2023-11-17T03:00:00.000Z"
+	},
+	{
+		"id_faixa_etaria" : 11,
+		"faixa_etaria_descricao" : "Maior que 12 meses",
+		"atualizacao_data" : "2023-11-17T03:00:00.000Z"
 	}
 ]}

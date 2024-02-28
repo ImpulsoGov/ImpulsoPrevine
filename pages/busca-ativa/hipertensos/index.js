@@ -6,17 +6,19 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  ButtonPrint,
+  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
-import { validatetoken} from "../../../services/validateToken"
+import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
+import mixpanel from "mixpanel-browser";
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -37,7 +39,7 @@ const Index = ({res}) => {
   const [tokenValido, setTokenValido] = useState();
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
-  const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio,session?.user?.access_token)
+  const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
   useEffect(()=>{
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
     HipertensaoTabelaDataAPS().then((response)=>{
@@ -45,24 +47,15 @@ const Index = ({res}) => {
   })},[session]) 
 
   const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio,session?.user?.equipe,session?.user?.access_token)
+  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
   useEffect(()=>{
     session &&  session.user.perfis.includes(9) &&
     HipertensaoTabelaDataEquipe().then((response)=>{
       setTabelaDataEquipe(response)
   })},[session]) 
 
-  const [tabelaData, setTabelaData] = useState();
-  useEffect(()=>{
-    (tabelaDataAPS || tabelaDataEquipe) && session &&
-    setTabelaData(session?.user.perfis.includes(8) || session?.user.perfis.includes(5) ? tabelaDataAPS :  tabelaDataEquipe)
-  },[session,tabelaDataAPS,tabelaDataEquipe])
+  const [tabelaData, setTabelaData] = useState([]);
 
-  useEffect(()=>{
-    if(session && session?.user?.access_token){
-      if(tokenValido!=true && tokenValido!==undefined) signOut()
-    }
-  },[tokenValido])
   const datefiltrosHipertensao = [
     "dt_afericao_pressao_mais_recente",
     "dt_consulta_mais_recente",
@@ -87,8 +80,31 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
+  const Impressao = ()=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    "hipertensao",
+    null,
+    null,
+  )   
+  const router = useRouter();
+  let visao = null
+  useEffect(() => {
+      router.push({
+        pathname: router.pathname,
+        query: { 
+          aba : null,
+          sub_aba : null,
+          visao : visao
+      }
+      },
+        undefined, { shallow: true }
+      );
+    }, [visao]);
+
   if(session){  
     if(session.user.perfis.includes(9)){
+      visao = "equipe"
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -98,10 +114,10 @@ const Index = ({res}) => {
           {
             tabelaDataEquipe &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
@@ -126,7 +142,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
 
             {
@@ -202,6 +218,10 @@ const Index = ({res}) => {
                 month: '2-digit',
                 day: '2-digit'
                })}
+              trackObject={mixpanel}
+              lista="hipertensao"
+              aba={null}
+              sub_aba={null}
       
                 /> : <Spinner/>
             }
@@ -209,6 +229,7 @@ const Index = ({res}) => {
       )
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
+    visao = "aps"
     return (
       <>
         <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -219,10 +240,10 @@ const Index = ({res}) => {
           {
             tabelaDataAPS &&
             <div style={{marginLeft:"auto"}}>
-              <ButtonPrint
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                escala="0.78"
-                child={<TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao}/>}
+              <ButtonColorSubmitIcon
+                  label="CLIQUE AQUI PARA IMPRIMIR"
+                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
+                  submit={Impressao}
               />
             </div>
           }
@@ -248,7 +269,7 @@ const Index = ({res}) => {
             lineHeight: "130%",
           }}
         >
-          {session.user.municipio} - Q3/23
+          {session.user.municipio} - Q1/24
         </div>
         {
           tabelaDataAPS &&
@@ -487,6 +508,10 @@ const Index = ({res}) => {
             month: '2-digit',
             day: '2-digit'
            })}
+          trackObject={mixpanel}
+          lista="hipertensao"
+          aba={null}
+          sub_aba={null}
   
       /> : <Spinner/>
         }
@@ -496,7 +521,6 @@ const Index = ({res}) => {
 }else{
   if(status !== "authenticated" && status !== "loading" ) signOut()
 }
-
+if(status=="unauthenticated") router.push('/')
 }
-
 export default Index;
