@@ -35,16 +35,10 @@ export async function getServerSideProps(ctx) {
   }
 }
 
-const Parceiros = (parceiros) => {
-  return parceiros.map((logo) => {
-    return (
-      {
-        alt: logo.fileName,
-        src: logo.url
-      }
-    )
-  }).map(parceiro=><Margem componente={<ImagensFull2 imagem={parceiro.src} alt={parceiro.alt} width={300} />}/>)
-}
+const Parceiros = (parceiros) => parceiros.map((logo) => ({
+    alt: logo.fileName,
+    src: logo.url
+})).map(parceiro=><Margem componente={<ImagensFull2 imagem={parceiro.src} alt={parceiro.alt} width={300} />}/>)
 
 
 
