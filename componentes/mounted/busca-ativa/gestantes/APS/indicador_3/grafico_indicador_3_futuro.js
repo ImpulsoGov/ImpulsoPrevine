@@ -1,6 +1,12 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
+import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2' || item.gestacao_quadrimestre == '2024.Q3')
+    const quadrisFuturos = (tabelaDataAPS && tabelaDataAPS.length > 0)
+        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].dt_registro_producao_mais_recente)
+        : [];
+    const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, ' e ');
+
     return dataQuadriFuturo ? 
     <>
         <h2 style={{
@@ -12,7 +18,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            (Q2 + Q3)/24 e Q1/25  - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            {quadrisFuturosFormatados}  - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
 
         <ScoreCardGrid
@@ -163,4 +169,5 @@ const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
         />
     </> : <Spinner/>}
 
-export { GraficoIndicadorTresQuadriFuturo, CardsGraficoIndicadorTresQuadriFuturo }
+export { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo };
+
