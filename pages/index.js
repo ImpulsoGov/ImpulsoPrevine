@@ -8,9 +8,8 @@ import {
   ImagensFull2,
   Margem,
   ModalAlert,
-  Alert_v2,
+  AtualizacaoCadastral
 } from "@impulsogov/design-system";
-import { v1 as uuidv1 } from "uuid";
 
 
 import { getData } from '../services/cms'
@@ -42,6 +41,22 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
+      <ModalAlert
+        Child = {AtualizacaoCadastral}
+        childProps ={ {
+            titulos : {
+                Titulo : "Atenção",
+                SubTitulo : "Para garantir o seu acesso na área logada, atualize seu cadastro"
+            },
+            Info : "Em breve vamos alterar os dados necessários para acessar o site do Impulso Previne. Clique no botão abaixo e atualize sua ficha de cadastro!",
+            imagem : "https://media.graphassets.com/fnBPBSsuS2aUWu0pjQV9",
+            botao : {
+                label : "ATUALIZAR CADASTRO",
+                url : "https://bit.ly/cadasto-banner"
+            }
+        }}
+      />
+
       <Margem 
         componente={
           <>
@@ -81,10 +96,10 @@ const Index = ({res}) => {
             <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/55Ovc152SoahfSNlqFIZ" />,
+              <ImagensFull2 key="desempenho_imagem" imagem="https://media.graphassets.com/55Ovc152SoahfSNlqFIZ" />,
               <><div style={{alignContent:"center"}}>
                   <TituloSmallTexto
-                    key={ uuidv1() }
+                    key="desempenho"
                     botao={{label: 'VER DESEMPENHO DOS MUNICÍPIOS',url: '/analise'}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo="<b>Análises do Previne</b>"
@@ -98,22 +113,22 @@ const Index = ({res}) => {
             proporcao="5-7"
             items={ [
               <TituloSmallTexto
-                key={ uuidv1() }
+                key="municipio_parceiro"
                 botao={{label: 'SER MUNICÍPIO PARCEIRO',url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Mentorias exclusivas</b>"
                 titulo=""
                 texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
               />,
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
+              <ImagensFull2 key="municipio_parceiro_imagem" imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
             ] }
           />
           <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/kuiOKdlR5iR2nFrnAjsk" />,
+              <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/kuiOKdlR5iR2nFrnAjsk" />,
               <TituloSmallTexto
-                key={ uuidv1() }
+                key="materiais"
                 botao={{label: 'VER MATERIAIS',url: '/blog'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Conteúdos gratuitos</b>"
@@ -135,9 +150,9 @@ const Index = ({res}) => {
               proporcao="3-3-3-3"
               items={ [
                 <>
-                  <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/0SldadgShetVZtLRwCpE" />
+                  <ImagensFull2 key="rede_imagem" imagem="https://media.graphassets.com/0SldadgShetVZtLRwCpE" />
                   <TituloSmallTexto
-                    key={ uuidv1() }
+                    key="rede"
                     botao={{label: '',url: ''}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo=""
@@ -146,19 +161,19 @@ const Index = ({res}) => {
                   />
                 </>,
                 <CardIP
-                  key={ uuidv1() }
+                  key="card_1"
                   titulo=""
                   indicador="+12 mil profissionais do SUS"
                   descricao="recebem dicas semanais sobre APS"
                 />,
                 <CardIP
-                  key={ uuidv1() }
+                  key="card_2"
                   titulo=""
                   indicador="+300 gestores"
                   descricao="usam diariamente nossas ferramentas"
                 />,
                 <CardIP
-                  key={ uuidv1() }
+                  key="card_3"
                   titulo=""
                   indicador="+70 municípios"
                   descricao="são apoiados diretamente por especialistas"
@@ -170,7 +185,7 @@ const Index = ({res}) => {
                 proporcao="6-6"
                 items={ [
                   <TituloSmallTexto
-                    key={ uuidv1() }
+                    key="card_4"
                     botao={{label: '',url: ''}}
                     imagem={{posicao: null,url: ''}}
                     supertitulo=""
@@ -179,13 +194,13 @@ const Index = ({res}) => {
                   />,
                   <></>,
                   <CardIP
-                    key={ uuidv1() }
+                    key="card_5"
                     titulo="PARCEIRO DESDE 2022"
                     indicador="Brejo de Areia/MA"
                     descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e gerou  um resultado 35% melhor que seus 4 municípios vizinhos no 1º quadrimestre de 2023."
                   />,
                   <CardIP
-                    key={ uuidv1() }
+                    key="card_6"
                     titulo="PARCEIRO DESDE 2022"
                     indicador="Minaçu/GO"
                     descricao="Com apoio da nossa equipe de especialistas em saúde, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil no 3º quadrimestre de 2022!"
@@ -203,9 +218,9 @@ const Index = ({res}) => {
             <Grid12Col
               proporcao="6-6"
               items={ [
-                <ImagensFull2 key={ uuidv1() } imagem="https://media.graphassets.com/TxOWmwUSBOO1fnpZfRlu" />,
+                <ImagensFull2 key="conhecer_impulso_imagem" imagem="https://media.graphassets.com/TxOWmwUSBOO1fnpZfRlu" />,
                 <TituloSmallTexto
-                  key={ uuidv1() }
+                  key="conhecer_impulso"
                   botao={{label: 'CONHECER MAIS DA IMPULSOGOV',url: 'https://impulsogov.org/'}}
                   imagem={{posicao: null,url: ''}}
                   supertitulo=""
