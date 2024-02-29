@@ -45,7 +45,7 @@ const Index = ({res}) => {
         Child = {AtualizacaoCadastral}
         childProps ={ {
             titulos : {
-                Titulo : "Atenção",
+                Titulo : "ATENÇÃO",
                 SubTitulo : "Para garantir o seu acesso na área logada, atualize seu cadastro"
             },
             Info : "Em breve vamos alterar os dados necessários para acessar o site do Impulso Previne. Clique no botão abaixo e atualize sua ficha de cadastro!",
