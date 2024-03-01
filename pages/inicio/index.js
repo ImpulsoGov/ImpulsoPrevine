@@ -1,7 +1,7 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession,signOut, getSession } from "next-auth/react"
-import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge, ModalAlert, Alert_v2 } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge, ModalAlert, Alert_v2, AtualizacaoCadastral } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
@@ -159,6 +159,21 @@ const Index = ({ res }) => {
                         }}
                     />
  */}
+                <ModalAlert
+                    Child = {AtualizacaoCadastral}
+                    childProps ={ {
+                        titulos : {
+                            Titulo : "ATENÇÃO",
+                            SubTitulo : "Para garantir o seu acesso na área logada, atualize seu cadastro"
+                        },
+                        Info : "Em breve vamos alterar os dados necessários para acessar o site do Impulso Previne. Clique no botão abaixo e atualize sua ficha de cadastro!",
+                        imagem : "https://media.graphassets.com/fnBPBSsuS2aUWu0pjQV9",
+                        botao : {
+                            label : "ATUALIZAR CADASTRO",
+                            url : "https://bit.ly/cadasto-banner"
+                        }
+                    }}
+                />
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem-vindo(a)"

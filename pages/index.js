@@ -7,8 +7,6 @@ import {
   NovoTituloTexto,
   ImagensFull2,
   Margem,
-  ModalAlert,
-  AtualizacaoCadastral
 } from "@impulsogov/design-system";
 
 
@@ -41,22 +39,6 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
-      <ModalAlert
-        Child = {AtualizacaoCadastral}
-        childProps ={ {
-            titulos : {
-                Titulo : "ATENÇÃO",
-                SubTitulo : "Para garantir o seu acesso na área logada, atualize seu cadastro"
-            },
-            Info : "Em breve vamos alterar os dados necessários para acessar o site do Impulso Previne. Clique no botão abaixo e atualize sua ficha de cadastro!",
-            imagem : "https://media.graphassets.com/fnBPBSsuS2aUWu0pjQV9",
-            botao : {
-                label : "ATUALIZAR CADASTRO",
-                url : "https://bit.ly/cadasto-banner"
-            }
-        }}
-      />
-
       <Margem 
         componente={
           <>
