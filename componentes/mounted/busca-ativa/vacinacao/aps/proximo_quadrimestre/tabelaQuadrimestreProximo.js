@@ -38,7 +38,7 @@ const TabelaAPSQuadrimestreProximo = ({
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0].id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
-    const dataAtual = new Date().now();
+    const dataAtual = Date.now();
     const dadosProximoQuadri = dataAtual
         ? obterDadosProximosQuadrimestres(dataAtual, 1)
         : [];

@@ -128,7 +128,7 @@ const ImpressaoAPS = ()=> Imprimir(
 if(session){  
   if(session.user.perfis.includes(9)){
     visao = "equipe"
-    const dataAtual = new Date().now();
+    const dataAtual = Date.now();
     const Children = [[
       [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
@@ -233,7 +233,7 @@ if(session){
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
-    const dataAtual = new Date().now();
+    const dataAtual = Date.now();
     const quadriAtualFormatado = dataAtual
       ? `${formatarQuadrimestres([obterDadosQuadrimestre(dataAtual)])}`
       : "";

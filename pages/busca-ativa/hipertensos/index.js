@@ -106,7 +106,7 @@ const Index = ({res}) => {
   if(session){  
     if(session.user.perfis.includes(9)){
       visao = "equipe"
-      const dataAtual = new Date().now();
+      const dataAtual = Date.now();
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -220,7 +220,7 @@ const Index = ({res}) => {
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
-    const dataAtual = new Date().now();
+    const dataAtual = Date.now();
     return (
       <>
         <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>

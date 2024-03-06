@@ -2,7 +2,7 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 3)
-    const dataAtual = new Date().now();
+    const dataAtual = Date.now();
     const dadosProximosQuadris = dataAtual
         ? obterDadosProximosQuadrimestres(dataAtual)
         : [];
