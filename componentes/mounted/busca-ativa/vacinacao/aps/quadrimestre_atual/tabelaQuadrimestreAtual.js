@@ -38,8 +38,11 @@ const TabelaAPSQuadrimestreAtual = ({
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
-    const dadosQuadriAtual = (tabelaDataAPS && tabelaDataAPS.length > 0)
-        ? obterDadosQuadrimestre(tabelaDataAPS[0].dt_registro_producao_mais_recente)
+    const [{dt_registro_producao_mais_recente: dataMaisRecente = ""}] = (tabelaDataAPS && tabelaDataAPS.length > 0)
+        ? tabelaDataAPS.sort((a, b) => new Date(b.dt_registro_producao_mais_recente) - new Date(a.dt_registro_producao_mais_recente))
+        : [{}];
+    const dadosQuadriAtual = dataMaisRecente
+        ? obterDadosQuadrimestre(dataMaisRecente)
         : null;
     const quadriAtualFormatado = dadosQuadriAtual
         ? formatarQuadrimestres([dadosQuadriAtual])
