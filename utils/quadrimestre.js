@@ -4,8 +4,8 @@ const QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES = 3;
 
 export const obterDadosQuadrimestre = (data) => {
   const objetoDeData = new Date(data);
-  const mes = objetoDeData.getUTCMonth() + 1; // ? +1 pra ficar de 1 a 12
-  const ano = String(objetoDeData.getUTCFullYear());
+  const mes = objetoDeData.getMonth() + 1; // ? +1 pra ficar de 1 a 12
+  const ano = String(objetoDeData.getFullYear());
   const quadrimestre = String(Math.ceil(mes / 4));
   return {
     quadrimestre,
