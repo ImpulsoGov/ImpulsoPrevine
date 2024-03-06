@@ -57,7 +57,7 @@ const TabelaAPSQuadrimestreProximo = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {proximoQuadriFormatado} - Crianças no período de vacinação
+            {proximoQuadriFormatado && `${proximoQuadriFormatado} -`} Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
         valores={[

@@ -21,7 +21,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadrisFuturosFormatados} - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            {quadrisFuturosFormatados && `${quadrisFuturosFormatados} -`} Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
 
         <ScoreCardGrid

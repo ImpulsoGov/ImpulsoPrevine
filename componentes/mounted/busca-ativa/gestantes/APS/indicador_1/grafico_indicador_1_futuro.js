@@ -21,7 +21,7 @@ const CardsGraficoIndicadorUmQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadrisFuturosFormatados} - Gestantes com DUM preenchida por total de consultas e captação
+            {quadrisFuturosFormatados && `${quadrisFuturosFormatados} -`} Gestantes com DUM preenchida por total de consultas e captação
         </h2>
         <ScoreCardGrid
             valores={[

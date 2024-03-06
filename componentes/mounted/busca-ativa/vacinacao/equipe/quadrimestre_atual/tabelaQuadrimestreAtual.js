@@ -59,7 +59,7 @@ const TabelaAPSQuadrimestreAtual = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadriAtualFormatado} - Crianças no período de vacinação
+            {quadriAtualFormatado && `${quadriAtualFormatado} -`} Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
             key="vacinacaoCardsQuadriAtualTabela"

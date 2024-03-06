@@ -23,7 +23,7 @@ const CardsGraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadriAtualFormatado} - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            {quadriAtualFormatado && `${quadriAtualFormatado} -`} Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
         <ScoreCardGrid
         valores={[
