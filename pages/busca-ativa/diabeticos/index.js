@@ -122,9 +122,7 @@ const Index = ({res}) => {
   if(session){  
     if(session.user.perfis.includes(9)){
       visao = "equipe"
-      const [{dt_registro_producao_mais_recente: dataMaisRecente = ""}] = (tabelaDataEquipe && tabelaDataEquipe.length > 0)
-        ? tabelaDataEquipe.sort((a, b) => new Date(b.dt_registro_producao_mais_recente) - new Date(a.dt_registro_producao_mais_recente))
-        : [{}];
+      const dataAtual = new Date().now();
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -151,7 +149,7 @@ const Index = ({res}) => {
                 destaque="IMPORTANTE: "
                 msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
             />  
-            <MunicipioQuadrimestre data={dataMaisRecente} />
+            <MunicipioQuadrimestre data={dataAtual} />
 
             {
               tabelaDataEquipe &&
@@ -238,9 +236,7 @@ const Index = ({res}) => {
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
-    const [{dt_registro_producao_mais_recente: dataMaisRecente = ""}] = (tabelaDataAPS && tabelaDataAPS.length > 0)
-      ? tabelaDataAPS.sort((a, b) => new Date(b.dt_registro_producao_mais_recente) - new Date(a.dt_registro_producao_mais_recente))
-      : [{}];
+    const dataAtual = new Date().now();
     return (
       <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -267,7 +263,7 @@ const Index = ({res}) => {
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <MunicipioQuadrimestre data={dataMaisRecente} />
+        <MunicipioQuadrimestre data={dataAtual} />
         {
           tabelaDataAPS &&
           <ScoreCardGrid
