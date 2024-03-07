@@ -158,7 +158,7 @@ export const FAQ =
 
 export const POSTS = `
 {
-  blogArtigos {
+  blogArtigos (last: 100){
     autor
     avatar {
       url
