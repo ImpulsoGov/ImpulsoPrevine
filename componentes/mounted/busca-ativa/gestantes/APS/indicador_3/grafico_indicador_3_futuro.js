@@ -2,8 +2,9 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
     const dataQuadriFuturo = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q1' || item.gestacao_quadrimestre == '2024.Q2' || item.gestacao_quadrimestre == '2024.Q3')
-    const quadrisFuturos = (tabelaDataAPS && tabelaDataAPS.length > 0)
-        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].dt_registro_producao_mais_recente)
+    const dataAtual = Date.now();
+    const quadrisFuturos = dataAtual
+        ? obterDadosProximosQuadrimestres(dataAtual)
         : [];
     const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, ' e ');
 
@@ -18,7 +19,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadrisFuturosFormatados}  - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            {quadrisFuturosFormatados && `${quadrisFuturosFormatados} -`} Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
 
         <ScoreCardGrid

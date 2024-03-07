@@ -2,8 +2,9 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 import { obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
 const CardsGraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2023.Q3')
-    const dadosQuadriAtual = (tabelaDataAPS && tabelaDataAPS.length > 0)
-        ? obterDadosQuadrimestre(tabelaDataAPS[0].dt_registro_producao_mais_recente)
+    const dataAtual = Date.now();
+    const dadosQuadriAtual = dataAtual
+        ? obterDadosQuadrimestre(dataAtual)
         : null;
     const quadriAtualFormatado = dadosQuadriAtual
         ? `Q${Object.values(dadosQuadriAtual).join("/")}`
@@ -20,7 +21,7 @@ const CardsGraficoIndicadorTresQuadriAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadriAtualFormatado} - Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
+            {quadriAtualFormatado && `${quadriAtualFormatado} -`} Gestantes com DUM preenchida por atendimento odontológico identificado por equipe de saúde
         </h2>
         <ScoreCardGrid
         valores={[

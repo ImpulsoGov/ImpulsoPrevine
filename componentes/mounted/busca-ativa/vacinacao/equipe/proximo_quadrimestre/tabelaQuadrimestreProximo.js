@@ -38,8 +38,9 @@ const TabelaAPSQuadrimestreProximo = ({
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
-    const dadosProximoQuadri = (tabelaDataAPS && tabelaDataAPS.length > 0)
-        ? obterDadosProximosQuadrimestres(tabelaDataAPS[0].dt_registro_producao_mais_recente, 1)
+    const dataAtual = Date.now();
+    const dadosProximoQuadri = dataAtual
+        ? obterDadosProximosQuadrimestres(dataAtual, 1)
         : [];
     const proximoQuadriFormatado = formatarQuadrimestres(dadosProximoQuadri);
 
@@ -54,7 +55,7 @@ const TabelaAPSQuadrimestreProximo = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {proximoQuadriFormatado} - Crianças no período de vacinação
+            {proximoQuadriFormatado && `${proximoQuadriFormatado} -`} Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
         valores={[

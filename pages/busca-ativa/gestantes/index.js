@@ -128,6 +128,7 @@ const ImpressaoAPS = ()=> Imprimir(
 if(session){  
   if(session.user.perfis.includes(9)){
     visao = "equipe"
+    const dataAtual = Date.now();
     const Children = [[
       [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
@@ -194,9 +195,7 @@ if(session){
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
       />  
-      <MunicipioQuadrimestre
-        data={(tabelaDataEquipe && tabelaDataEquipe.length > 0) && tabelaDataEquipe[0].dt_registro_producao_mais_recente}
-      />
+      <MunicipioQuadrimestre data={dataAtual} />
       {
           tabelaData &&
           <PanelSelector
@@ -234,14 +233,12 @@ if(session){
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
-    const dataAtualizacaoDados = (tabelaDataAPS && tabelaDataAPS.length > 0)
-      ? tabelaDataAPS[0].dt_registro_producao_mais_recente
+    const dataAtual = Date.now();
+    const quadriAtualFormatado = dataAtual
+      ? `${formatarQuadrimestres([obterDadosQuadrimestre(dataAtual)])}`
       : "";
-    const quadriAtualFormatado = dataAtualizacaoDados
-      ? `${formatarQuadrimestres([obterDadosQuadrimestre(dataAtualizacaoDados)])}`
-      : "";
-    const quadrisFuturosFormatados = dataAtualizacaoDados
-      ? formatarQuadrimestres(obterDadosProximosQuadrimestres(dataAtualizacaoDados), ' + ')
+    const quadrisFuturosFormatados = dataAtual
+      ? formatarQuadrimestres(obterDadosProximosQuadrimestres(dataAtual), ' + ')
       : "";
     const Children = [
         [
@@ -396,9 +393,7 @@ if(session){
             destaque="IMPORTANTE: "
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <MunicipioQuadrimestre
-          data={(tabelaDataAPS && tabelaDataAPS.length > 0) && tabelaDataAPS[0].dt_registro_producao_mais_recente}
-        />
+        <MunicipioQuadrimestre data={dataAtual} />
         <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
         <PanelSelector
             components={Children}

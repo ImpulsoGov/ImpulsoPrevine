@@ -2,8 +2,9 @@ import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-sy
 import { formatarQuadrimestres, obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
 const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
     const dataQuadriAtual = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 1)
-    const dadosQuadriAtual = (tabelaDataAPS && tabelaDataAPS.length > 0)
-        ? obterDadosQuadrimestre(tabelaDataAPS[0].dt_registro_producao_mais_recente)
+    const dataAtual = Date.now();
+    const dadosQuadriAtual = dataAtual
+        ? obterDadosQuadrimestre(dataAtual)
         : null;
     const quadriAtualFormatado = dadosQuadriAtual
         ? formatarQuadrimestres([dadosQuadriAtual])
@@ -20,7 +21,7 @@ const CardsGraficoAPSQuadrimestreAtual = ({tabelaDataAPS}) =>{
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            {quadriAtualFormatado} - Crianças no período de vacinação
+            {quadriAtualFormatado && `${quadriAtualFormatado} -`} Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
             key="vacinacaoCardsQuadriAtualGrafico"
