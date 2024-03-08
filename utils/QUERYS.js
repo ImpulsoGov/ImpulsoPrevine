@@ -206,7 +206,7 @@ export const POST =(id)=>{
 
 export const POSTID = `
 {
-  blogArtigos {
+  blogArtigos(last: 100) {
     id
   }
 }
