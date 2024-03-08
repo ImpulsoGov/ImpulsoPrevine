@@ -15,7 +15,6 @@ export async function getStaticProps({ params }) {
     const res = [
       await getData(POST(params.post)),
     ]
-    console.log(res)
     return {
     props: {
         res : res
@@ -24,7 +23,6 @@ export async function getStaticProps({ params }) {
 }
 
 const Index = ({res}) => {
-  console.log(res)
     return (<>
       <ConteudoBlog
           titulo = {res[0].blogArtigo.titulo}
