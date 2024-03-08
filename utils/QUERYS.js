@@ -158,7 +158,7 @@ export const FAQ =
 
 export const POSTS = `
 {
-  blogArtigos {
+  blogArtigos (last: 100){
     autor
     avatar {
       url
@@ -206,7 +206,7 @@ export const POST =(id)=>{
 
 export const POSTID = `
 {
-  blogArtigos {
+  blogArtigos(last: 100) {
     id
   }
 }

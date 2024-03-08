@@ -63,7 +63,7 @@ const Index = ({res}) => {
         texto = ''
         />
         <ListaArtigos
-            resumo = {true}
+            resumo = {false}
             artigos = {artigos}
             titulo = {res[2].listaArtigos[0].titulo}
             btn = {{label : res[2].listaArtigos[0].buttonLabel , link: res[2].listaArtigos[0].buttonLink}}
