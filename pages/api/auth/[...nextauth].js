@@ -4,10 +4,10 @@ import axios from "axios"
 import FormData from "form-data"
 import { API_URL_USUARIOS } from "../../../constants/API_URL";
 
-export const cargo_nome = async (token,mail)=>{
+export const cargo_nome = async (token,cpf)=>{
   let config = {
     method: 'get',
-    url: API_URL_USUARIOS+'suporte/ger_usuarios/cargo-nome?id='+mail+'&id_cod=1',
+    url: API_URL_USUARIOS+'suporte/ger_usuarios/cargo-nome?id='+cpf+'&id_cod=2',
     headers: { 
       'Authorization': 'Bearer '+token
     }
@@ -35,7 +35,7 @@ const getToken = async(credentials)=>{
   };
   return await axios(config)
   .then(async(response)=> {
-    let cargonome = await cargo_nome(response.data.access_token,credentials.username)
+    let cargonome = await cargo_nome(response.data.access_token,credentials.username.replace(/\D/g, ''))
     return {...response.data,mail:credentials.username,...cargonome}
   })
   .catch(function (error) {
