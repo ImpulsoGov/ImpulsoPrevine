@@ -209,7 +209,7 @@ const Index = ({res}) => {
         title="Inscreva-se e melhore o desempenho do seu município na atenção primária"
         mail=""
         link="https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true"
-        button="Preencher inscrição"
+        button="Preencher inscrição" 
         theme="IPVerde"
     />
       
