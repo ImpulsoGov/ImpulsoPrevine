@@ -17,13 +17,19 @@ const verificarCPFPrimeiroAcesso = async(cpf)=>{
     url: API_URL_USUARIOS + 'suporte/ger_usuarios/validar-cpf-primeiro-acesso',
     data : data
   };
-  
+
   const res = await axios(config)
   .then(function (response) {
-      return response.data;
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_inseriu_cpf",
+      'error_message': response.data.mensagem,
+      'login_flow' : "primeiro_acesso",
+    });
+    return response.data;
   })
-  .catch(function (error) {
-      return error.response.data
+  .catch(function (error) {  
+    return error.response.data
   });
   return res
 }    
@@ -45,7 +51,13 @@ const primeiroAcesso = async(cpf)=>{
     
     const res = await axios(config)
     .then(function (response) {
-        return response.data;
+      !response.data.success &&
+      mixpanel.track('validation_error', {
+        'button_action': "proximo_inseriu_codigo_telefone",
+        'error_message': response.data.mensagem,
+        'login_flow' : "primeiro_acesso",
+      });
+      return response.data;
     })
     .catch(function (error) {
         return error.response.data
@@ -72,6 +84,12 @@ const primeiroAcesso = async(cpf)=>{
   
     const res = await axios(config)
     .then(function (response) {
+      !response.data.success &&
+      mixpanel.track('validation_error', {
+        'button_action': "proximo_criou_senha",
+        'error_message': response.data.mensagem,
+        'login_flow' : "primeiro_acesso",
+      });
       return response.data;
     })
     .catch(function (error) {
