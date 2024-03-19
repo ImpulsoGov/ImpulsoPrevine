@@ -117,7 +117,7 @@ function ModalCadastroUsuario({
             handleChange={ (event) => {
               setCargo(event.target.value);
             } }
-            width='30%'
+            width='60%'
           />
 
           <TextField
@@ -130,6 +130,15 @@ function ModalCadastroUsuario({
             } }
           />
 
+          <Select
+            label='Autorizações'
+            options={ autorizacoes }
+            selectedOptions={ autorizacoesSelecionadas }
+            handleChange={ handleAutorizacoesChange }
+            width='60%'
+            isMulti
+          />
+
           <TextField
             sx={ { width: '30%', m: 1 } }
             id='outlined-controlled'
@@ -138,15 +147,6 @@ function ModalCadastroUsuario({
             onChange={ (event) => {
               setEquipe(event.target.value);
             } }
-          />
-
-          <Select
-            label='Autorizações'
-            options={ autorizacoes }
-            selectedOptions={ autorizacoesSelecionadas }
-            handleChange={ handleAutorizacoesChange }
-            width='60%'
-            isMulti
           />
 
           <FormControlLabel
