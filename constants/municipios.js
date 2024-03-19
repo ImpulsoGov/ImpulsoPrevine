@@ -9760,8 +9760,8 @@ export const MUNICIPIOS = [
     "municipioIdSus": "291077"
   },
   {
-    "nome": "Demo - Viçosa",
-    "uf": "MG",
+    "nome": "Demo - Bonfim",
+    "uf": "RR",
     "municipioIdSus": "111111"
   },
   {

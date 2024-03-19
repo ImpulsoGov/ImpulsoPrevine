@@ -20,6 +20,7 @@ export const CARGOS = [
   { id: 'Profissional de TI', descricao: 'Profissional de TI' },
   { id: 'Impulser', descricao: 'Impulser' },
   { id: 'Apoiador (a)', descricao: 'Apoiador (a)' },
+  { id: 'Coordenador (a) de Vigilância Epidemiológica', descricao: 'Coordenador (a) de Vigilância Epidemiológica' },
 ];
 
 export const ESTADOS_PERFIL_ATIVO = {
