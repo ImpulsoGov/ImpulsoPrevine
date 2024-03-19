@@ -99,12 +99,6 @@ const validarCodigo = async(cpf,codigo)=>{
     };
   const res = await axios(config)
   .then(function (response) {
-    !response.data.success &&
-    mixpanel.track('validation_error', {
-      'button_action': "proximo_inseriu_codigo_telefone",
-      'error_message': response.data.mensagem,
-      'login_flow' : "esqueceu_senha",
-    });
     return response.data;
   })
   .catch(function (error) {

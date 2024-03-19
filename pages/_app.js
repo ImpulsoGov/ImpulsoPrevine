@@ -208,7 +208,16 @@ function MyApp(props) {
                   reqs: {
                     verificacao : verificarCPFPrimeiroAcesso,
                     mail: primeiroAcesso,
-                    codigo: validarCodigo,
+                    codigo: async(cpf,codigo)=>{
+                      const response = await validarCodigo(cpf,codigo)
+                      !response.success &&
+                      mixpanel.track('validation_error', {
+                        'button_action': "proximo_inseriu_codigo_telefone",
+                        'error_message': response.mensagem,
+                        'login_flow' : "primeiro_acesso",
+                      });
+                      return response
+                    },
                     alterarSenha: criarSenha,
                   },
                   titulos : {
