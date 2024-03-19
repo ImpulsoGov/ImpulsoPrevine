@@ -1,13 +1,14 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession,signOut, getSession } from "next-auth/react"
-import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge, ModalAlert, Alert_v2, AtualizacaoCadastral } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { generatePDF } from '../../helpers/generatePDF'
 import { NPSConsulta, NPSAvaliacao } from "../../services/NPS"
+import { ModalAlert , AtualizacaoCadastral } from "../../componentes/ModalAlert/ModalAlert"
 import style from "./ModalAlert.module.css";
 
 export async function getServerSideProps(ctx) {
