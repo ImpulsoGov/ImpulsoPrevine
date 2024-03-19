@@ -78,7 +78,7 @@ const Index = ({ res }) => {
               items={[
                 <>
                   <CardImg
-                    imagemSrc="https://media.graphassets.com/nKekZTGDTLSlCPjF6X9H"
+                    imagemSrc="https://media.graphassets.com/ZFonMyxQRLafcMm3Gk4J"
                     indicador="Dados do SISAB organizados"
                     descricao="Criamos painéis didáticos e descomplicados para você visualizar o desempenho nos indicadores de qualquer município do Brasil."
                   />
@@ -87,13 +87,13 @@ const Index = ({ res }) => {
 
                   <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
-                    imagemSrc="https://media.graphassets.com/xskZCO5tTBp8MD4XgDmv"
+                    imagemSrc="https://media.graphassets.com/7KgUfR5QK24Tgxw79bIQ"
                     indicador="Conteúdos e materiais com dicas"
                   />
                 </>,
                 <>
                   <CardImg
-                    imagemSrc="https://media.graphassets.com/YMNJYob0QLKiA4j5w5tK"
+                    imagemSrc="https://media.graphassets.com/RDN83YVAR6yBEpg8DOLE"
                     indicador="Capacitações com especialistas"
                     descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
                   />
@@ -114,7 +114,7 @@ const Index = ({ res }) => {
                 texto=""
               />
 
-              <ImagensFull2 imagem="https://media.graphassets.com/My2tRAhTTS4nCqCy74Wg" />
+              <ImagensFull2 imagem="https://media.graphassets.com/Xe2vRkK1QUKzhlVmngCt" />
 
               <TituloSmallTexto
                 botao={{ label: 'INSCRIÇÃO NA CONSUTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
@@ -163,7 +163,7 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/vjUs4iswQOv74LlkwlAf" width={90} />
+                  <ImagensFull2 imagem="https://media.graphassets.com/7DmsKN6lQexti5JY4MPD" width={90} />
                   <TituloSmallTexto
                     key={"2020"} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
                     supertitulo="<b>2020"
@@ -178,7 +178,7 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/HxVzIrFQ3STa2ZbAcSyQ" width={90} />
+                  <ImagensFull2 imagem="https://media.graphassets.com/P2PbOfc1S7ybOwn1jQ8y" width={90} />
                   <TituloSmallTexto
                     key={"2021"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
                     supertitulo="<b>2021"
@@ -193,7 +193,7 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  <ImagensFull2 imagem="https://media.graphassets.com/zuYuMhOMQsGVh2ntyBsY" width={90} />
+                  <ImagensFull2 imagem="https://media.graphassets.com/k89fnJTSqGcGlsGCndy6" width={90} />
                   <TituloSmallTexto
                     key={"2023"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
                     supertitulo="<b>2023"
