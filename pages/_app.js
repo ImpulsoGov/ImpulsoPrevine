@@ -168,7 +168,13 @@ function MyApp(props) {
                   reqs: {
                     verificacao : verificarCPF,
                     mail: solicitarNovaSenha,
-                    codigo: validarCodigo,
+                    codigo: async (cpf, codigo) => {
+                      mixpanel.track('button_click', {
+                        'button_action': 'proximo_inseriu_codigo_telefone',
+                        'login_flow': 'esqueceu_senha'
+                      });
+                      return validarCodigo(cpf, codigo)
+                    },
                     alterarSenha: alterarSenha
                   },
                   titulos : {
