@@ -106,6 +106,7 @@ function MyApp(props) {
             { isLoading &&
               <NavBar
                 projeto = "IP"
+                trackObject = {mixpanel}
                 login={ { titulo: "Faça o login para ver o painel de busca ativa" } }
                 user={
                   {
