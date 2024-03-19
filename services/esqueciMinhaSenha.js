@@ -13,6 +13,12 @@ const verificarCPF = async(cpf)=>{
     };
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_inseriu_cpf",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
@@ -34,6 +40,12 @@ const solicitarNovaSenha = async(cpf)=>{
     };
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_enviar_codigo_telefone",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
@@ -58,6 +70,12 @@ const alterarSenha = async(cpf,codigo,nova_senha)=>{
 
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_criou_senha",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
@@ -80,6 +98,12 @@ const validarCodigo = async(cpf,codigo)=>{
     };
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_inseriu_codigo_telefone",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
