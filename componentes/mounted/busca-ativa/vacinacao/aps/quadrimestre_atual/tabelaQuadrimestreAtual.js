@@ -7,6 +7,7 @@ import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao"
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
+import { formatarQuadrimestres, obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -36,6 +37,15 @@ const TabelaAPSQuadrimestreAtual = ({
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
+
+    const dataAtual = Date.now();
+    const dadosQuadriAtual = dataAtual
+        ? obterDadosQuadrimestre(dataAtual)
+        : null;
+    const quadriAtualFormatado = dadosQuadriAtual
+        ? formatarQuadrimestres([dadosQuadriAtual])
+        : "";
+
     return tabelaDataAPS ? 
     <>
         <h2 style={{
@@ -47,7 +57,7 @@ const TabelaAPSQuadrimestreAtual = ({
             fontWeight: 500,
             lineHeight: "130%",
         }}>
-            Q1/24 - Crianças no período de vacinação
+            {quadriAtualFormatado && `${quadriAtualFormatado} -`} Crianças no período de vacinação
         </h2>
         <ScoreCardGrid
             key="vacinacaoCardsQuadriAtualTabela"

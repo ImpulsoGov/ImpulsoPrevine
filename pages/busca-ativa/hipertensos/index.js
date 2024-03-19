@@ -19,6 +19,7 @@ import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
+import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -105,6 +106,7 @@ const Index = ({res}) => {
   if(session){  
     if(session.user.perfis.includes(9)){
       visao = "equipe"
+      const dataAtual = Date.now();
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -131,19 +133,7 @@ const Index = ({res}) => {
                 destaque="IMPORTANTE: "
                 msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
             />  
-                  <div 
-          style={{
-            marginLeft : "80px",
-            marginTop : "30px",
-            color: "#1F1F1F",
-            fontSize: "22px",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            lineHeight: "130%",
-          }}
-        >
-          {session.user.municipio} - Q1/24
-        </div>
+            <MunicipioQuadrimestre data={dataAtual} />
 
             {
               tabelaDataEquipe &&
@@ -230,6 +220,7 @@ const Index = ({res}) => {
   }
   if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     visao = "aps"
+    const dataAtual = Date.now();
     return (
       <>
         <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
@@ -258,19 +249,7 @@ const Index = ({res}) => {
               destaque="IMPORTANTE: "
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
         />  
-        <div 
-          style={{
-            marginLeft : "80px",
-            marginTop : "30px",
-            color: "#1F1F1F",
-            fontSize: "22px",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            lineHeight: "130%",
-          }}
-        >
-          {session.user.municipio} - Q1/24
-        </div>
+        <MunicipioQuadrimestre data={dataAtual} />
         {
           tabelaDataAPS &&
           <ScoreCardGrid

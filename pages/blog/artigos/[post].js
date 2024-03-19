@@ -13,8 +13,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const res = [
-    await getData(LAYOUT),
-    await getData(POST(params.post)),
+      await getData(POST(params.post)),
     ]
     return {
     props: {
@@ -26,10 +25,10 @@ export async function getStaticProps({ params }) {
 const Index = ({res}) => {
     return (<>
       <ConteudoBlog
-          titulo = {res[1].blogArtigo.titulo}
-          texto = {res[1].blogArtigo.texto.html}
-          capa = {res[1].blogArtigo?.capa?.url}
-          autor = {{avatar: res[1].blogArtigo?.avatar?.url, nome: res[1].blogArtigo.autor, data:res[1].blogArtigo.createdAt}}
+          titulo = {res[0].blogArtigo.titulo}
+          texto = {res[0].blogArtigo.texto.html}
+          capa = {res[0].blogArtigo?.capa?.url}
+          autor = {{avatar: res[0].blogArtigo?.avatar?.url, nome: res[0].blogArtigo.autor, data:res[0].blogArtigo.createdAt}}
       />
     </>
   )
