@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_URL_USUARIOS } from "../constants/API_URL";
 import FormData from "form-data";
+import mixpanel from 'mixpanel-browser';
 
 const verificarCPF = async(cpf)=>{
   let data = new FormData();

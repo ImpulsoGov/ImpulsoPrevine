@@ -1,6 +1,7 @@
 import axios from "axios";
 import FormData from "form-data";
 import { API_URL_USUARIOS } from "../constants/API_URL";
+import mixpanel from 'mixpanel-browser';
 
 
 const validateCredentials = async (mail, senha) => {
