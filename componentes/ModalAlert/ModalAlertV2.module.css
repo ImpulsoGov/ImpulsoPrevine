@@ -1,0 +1,303 @@
+.ModalAlert{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 9000;
+}
+.Alert{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 130px;
+    border-radius: 20px;
+    width: 900px;
+    height: 550px;
+    background-color: #fff;
+}
+.Container{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+}
+.ContainerTitulo{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 100%;
+    gap: 25px;
+}
+
+.SubTitulo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 130%;
+    color: #2EB380;
+}
+.Titulo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 120%;
+    color: #145C56;
+}
+.CardProfissional{
+    background-color: #2EB380;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.CardProfissionalContainer{
+    display: flex;
+    flex-direction: row;
+}
+.ProfissionalInfoNome{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 120%;
+    color: #FFF;
+    margin: 0;
+}
+.ProfissionalInfoCargo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 120%;
+    color: #FFF;
+    margin: 0;
+    text-align: left;
+}
+.Profissional{
+    height: 200px;
+    width: 200px;
+}
+.ContainerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.2162px;
+    line-height: 120%;
+    color: #1F1F1F;
+}
+.Info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #145C56;
+}
+.close{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #2EB380;
+    border-radius: 0 20px 20px 0px;
+    padding: 32px;
+}
+.ModalExit{
+    color:#fff;
+    background-color: black;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:24px;
+    margin-top: 20px;
+    margin-left: auto;
+    text-decoration: none;
+}
+.ModalExit:before{
+    content: "✖";
+    cursor: pointer;
+    padding:0.5em;
+}
+.botaoMobile{
+    display: none;
+}
+.botaoDesktop{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #145C56;
+}
+
+@media screen and (max-width: 1366px) {
+    .Alert{
+        top: 60px;
+        width: 800px;
+        height: 450px;
+    }
+    .SubTitulo{
+        font-size: 28px;
+        width: 90%;
+    }
+    .Titulo{
+        font-size: 28px;
+    }
+    .ProfissionalInfoNome{
+        font-size: 28px;
+    }
+    .ProfissionalInfoCargo{
+        font-size: 18px;
+        width: 50%;
+    }
+
+    .ContainerInfo{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .Alert{
+        gap: 15px;
+        top: 15px;
+        width: 90%;
+        height: 600px;
+    }
+    .Container{
+        flex-direction: column;
+    }
+    .SubTitulo{
+        font-size: 24px;
+    }
+    .Titulo{
+        font-size: 24px;
+    }
+    .ProfissionalInfoNome{
+        font-size: 14px;
+    }
+    .ProfissionalInfoCargo{
+        font-size: 14px;
+    }
+    .close{
+        display:  none;
+    }
+    .ContainerInfo{
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
+    }
+    .botaoDesktop{
+        display: none;
+    }
+    .botaoMobile{
+        display: block;
+    }
+    .tituloNPS{
+        width: 100% !important;
+    }
+    .NPSAvaliacao{
+        gap: 10px !important;
+    }
+    .escala{
+        width: 100% !important;
+    }
+}
+.NPS{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    color: #1F1F1F;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+.tituloNPS{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    color: #1F1F1F;
+    width: 70%;
+    text-align: center;
+}
+.NPSAvaliacao{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.avaliacao{
+    border: solid 1px rgba(166, 181, 190, 1);
+    background-color: none;
+    color: #1F1F1F;
+    border-radius: 100%;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.avaliacaoColor{
+    background-color: #2EB380;
+    color: #fff;
+    border-radius: 100%;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avaliacao:hover{
+    cursor: pointer;
+    background-color: #2EB380;
+    color: #fff;
+    border-radius: 100%;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.avaliacaoColor:hover{
+    cursor: pointer;
+}
+
+.escala{
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    width: 40%;
+}
