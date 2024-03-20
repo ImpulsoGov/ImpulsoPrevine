@@ -111,7 +111,7 @@ const Index = ({res}) => {
               <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/kuiOKdlR5iR2nFrnAjsk" />,
               <TituloSmallTexto
                 key="materiais"
-                botao={{label: 'VER MATERIAIS',url: '/blog'}}
+                botao={{label: 'RECEBER MATERIAIS',url: 'https://docs.google.com/forms/d/e/1FAIpQLSdMuW8LG3MB8RsR2B9GrjsPez4WPp7SqOaLiXb1kmMOuspmkw/viewform'}}
                 imagem={{posicao: null,url: ''}}
                 supertitulo="<b>Conteúdos gratuitos</b>"
                 titulo=""
@@ -220,7 +220,7 @@ const Index = ({res}) => {
       <FormConsultoria
           title="Faça parte da nossa lista de transmissão e receba toda semana em seu e-mail dicas e atualizações sobre indicadores, portarias, registro e boas práticas na APS."
           mail=""
-          link="https://www.impulsoprevine.org/manual-impulso-previne"
+          link="https://docs.google.com/forms/d/e/1FAIpQLSdMuW8LG3MB8RsR2B9GrjsPez4WPp7SqOaLiXb1kmMOuspmkw/viewform"
           button="Fazer inscrição na lista"
           theme="IPVerde"
       />
