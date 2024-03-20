@@ -81,7 +81,7 @@ function MyApp(props) {
         "is_test_user": (props.ses.user.cargo == 'Impulser')
           || props.ses.user.mail.includes('@impulsogov.org')
           || props.ses.user.municipio.includes('Impulsolândia')
-          || props.ses.user.municipio.includes('Demo - Viçosa')
+          || (props.ses.user.municipio_id_sus === '111111')
       });
     }
   }, [props.ses]);
