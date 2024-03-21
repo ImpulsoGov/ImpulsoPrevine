@@ -107,7 +107,7 @@ function MyApp(props) {
               <NavBar
                 projeto = "IP"
                 trackObject = {mixpanel}
-                login={ { titulo: "Faça o login para ver o painel de busca ativa" } }
+                login={ { titulo: "Faça o login para ver os dados restritos." } }
                 user={
                   {
                     nome: nome,
@@ -186,10 +186,10 @@ function MyApp(props) {
                     alterarSenha: alterarSenha
                   },
                   titulos : {
-                    mail : "Recuperação de senha",
-                    verificacao : "Recuperação de senha",
-                    senha : "Recuperação de senha",
-                    codigo : "Recuperação de senha",
+                    mail : "Verificação de telefone",
+                    verificacao : "Verificação de telefone",
+                    senha : "Verificação de telefone",
+                    codigo : "Verificação de telefone",
                     sucesso : "Nova senha criada com sucesso!"
                   },
                   chamadas: {
