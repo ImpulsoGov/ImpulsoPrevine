@@ -69,7 +69,7 @@ export const HOME = `
   }
 }
 `;
-export const IMPULSOGOV = `
+export const QUEMSOMOS = `
 {
   tituloTextos {
     titulo

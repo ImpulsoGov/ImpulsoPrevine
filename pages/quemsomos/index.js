@@ -138,7 +138,7 @@ const Index = ({ res }) => {
               texto="A ImpulsoGov é uma organização não governamental sem fins lucrativos que nasceu com o propósito de ajudar a corrigir um gargalo: inúmeros dados são gerados na prestação dos serviços do SUS, mas poucos são transformados em informação útil para retroalimentar e aprimorar as políticas públicas de saúde. <br><br>"
             />
 
-            <CardAlert //Vou ter que criar um componente pra ca 
+            <CardAlert 
               destaque=""
               msg={<span style={{ color: 'white', fontSize: 22 }}>Nossa missão é impulsionar o uso inteligente de dados e tecnologia no SUS para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.</span>}
               background="#1D856C"
