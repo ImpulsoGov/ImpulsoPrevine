@@ -117,7 +117,7 @@ const Index = ({ res }) => {
               <ImagensFull2 imagem="https://media.graphassets.com/Xe2vRkK1QUKzhlVmngCt" />
 
               <TituloSmallTexto
-                botao={{ label: 'INSCRIÇÃO NA CONSUTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
+                botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
                 imagem={{}}
                 supertitulo=""
                 titulo=""
