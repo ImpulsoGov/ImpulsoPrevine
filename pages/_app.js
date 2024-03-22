@@ -186,10 +186,10 @@ function MyApp(props) {
                     alterarSenha: alterarSenha
                   },
                   titulos : {
-                    mail : "Verificação de telefone",
-                    verificacao : "Verificação de telefone",
-                    senha : "Verificação de telefone",
-                    codigo : "Verificação de telefone",
+                    mail : "Recuperação de senha",
+                    verificacao : "Recuperação de senha",
+                    senha : "Recuperação de senha",
+                    codigo : "Recuperação de senha",
                     sucesso : "Nova senha criada com sucesso!"
                   },
                   chamadas: {
