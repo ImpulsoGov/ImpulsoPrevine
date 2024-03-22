@@ -25,7 +25,7 @@ const validateCredentials = async (mail, senha) => {
     })
     .catch(function (error) {
       mixpanel.track('validation_error', {
-        'button_action': "entrar_area_restitra",
+        'button_action': "entrar_area_restitra_apos_senha",
         'error_message': error.response.data,
         'login_flow' : "login",
       });
