@@ -160,7 +160,7 @@ const Index = ({ res }) => {
                         }}
                     />
  */}
-                <ModalAlert
+                {/* <ModalAlert
                     Child = {AtualizacaoCadastral}
                     childProps ={ {
                         titulos : {
@@ -174,7 +174,7 @@ const Index = ({ res }) => {
                             url : "https://bit.ly/cadasto-banner"
                         }
                     }}
-                />
+                /> */}
                 <Greeting
                     cargo = {cargo}
                     greeting = "Bem-vindo(a)"
