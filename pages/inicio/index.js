@@ -182,46 +182,6 @@ const Index = ({ res }) => {
                     nome_usuario = {session?.user.nome}
                     texto = ""
                 />
-                <div
-                    style={
-                        window.screen.width >= 1024 ?
-                        {
-                            display: "grid",
-                            gridTemplateColumns: "auto auto auto",
-                            columnGap: "24px",
-                            gridRowGap: "24px",
-                            marginLeft: "80px",
-                            marginRight: "80px",
-                            marginBottom: "20px"
-
-                        } :
-                        {
-                            display: "grid",
-                            flexDirection: "column",
-                            gap: "15px",
-                            marginLeft: "15px"
-                        }
-                }>
-
-                    {data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
-                        data.map((trilha, index) => {
-                            const GerarCertificado = () => {
-                                const carga_horaria = '10';
-                                generatePDF(trilha.titulo, session?.user?.nome, carga_horaria);
-                            }
-
-                            return TrilhasLiberadas?.some(trilhaLiberada => trilhaLiberada.trilha_id == trilha.TrilhaID) &&
-                                <CardTrilha
-                                    titulo={trilha?.titulo}
-                                    progressao={trilha.progresso}
-                                    linkTrilha={trilha.progresso > 0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
-                                    Certificado={GerarCertificado}
-                                    certificadoLiberado={trilha.progresso > 50}
-                                    key={index}
-                                />
-                        })
-                    }
-                </div>
 
                 <div
                     style={
@@ -287,6 +247,47 @@ const Index = ({ res }) => {
                                 theme="ColorIP"
                             />
                         </>
+                    }
+                </div>
+
+                <div
+                    style={
+                        window.screen.width >= 1024 ?
+                        {
+                            display: "grid",
+                            gridTemplateColumns: "auto auto auto",
+                            columnGap: "24px",
+                            gridRowGap: "24px",
+                            marginLeft: "80px",
+                            marginRight: "80px",
+                            marginBottom: "20px"
+
+                        } :
+                        {
+                            display: "grid",
+                            flexDirection: "column",
+                            gap: "15px",
+                            marginLeft: "15px"
+                        }
+                }>
+
+                    {data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
+                        data.map((trilha, index) => {
+                            const GerarCertificado = () => {
+                                const carga_horaria = '10';
+                                generatePDF(trilha.titulo, session?.user?.nome, carga_horaria);
+                            }
+
+                            return TrilhasLiberadas?.some(trilhaLiberada => trilhaLiberada.trilha_id == trilha.TrilhaID) &&
+                                <CardTrilha
+                                    titulo={trilha?.titulo}
+                                    progressao={trilha.progresso}
+                                    linkTrilha={trilha.progresso > 0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
+                                    Certificado={GerarCertificado}
+                                    certificadoLiberado={trilha.progresso > 50}
+                                    key={index}
+                                />
+                        })
                     }
                 </div>
             </>
