@@ -48,6 +48,11 @@ import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } f
 import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
+import styled from 'styled-components';
+
+const PanelTitle = styled.div`
+font-size: 16px;
+`;
 
 
 export async function getServerSideProps(ctx) {
@@ -407,65 +412,65 @@ if(session){
             list={[
                 [
                   {
-                    label: `GRÁFICO ${quadriAtualFormatado}`
+                    label:  <PanelTitle>GRÁFICO ${quadriAtualFormatado}</PanelTitle>
                   },
                   {
-                    label: `GRÁFICO ${quadrisFuturosFormatados}`
+                    label:  <PanelTitle> GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
                   },
                 {
-                    label: 'GESTANTES ATIVAS'
+                    label:  <PanelTitle>GESTANTES ATIVAS</PanelTitle>
                   },
                   {
-                    label: 'GESTANTES ENCERRADAS'
+                    label:  <PanelTitle>GESTANTES ENCERRADAS</PanelTitle>
                   },
                 ],
                 [
                   {
-                    label: `GRÁFICO ${quadriAtualFormatado}`
+                    label: <PanelTitle> GRÁFICO ${quadriAtualFormatado}</PanelTitle>
                   },
                   {
-                    label: `GRÁFICO ${quadrisFuturosFormatados}`
+                    label: <PanelTitle> GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
                   },
                   {
-                      label: 'GESTANTES ATIVAS'
+                      label: <PanelTitle> GESTANTES ATIVAS </PanelTitle>
                     },
                     {
-                      label: 'GESTANTES ENCERRADAS'
+                      label: <PanelTitle> GESTANTES ENCERRADAS </PanelTitle>
                     },
                   ],
                   [
                     {
-                      label: `GRÁFICO ${quadriAtualFormatado}`
+                      label: <PanelTitle>GRÁFICO ${quadriAtualFormatado}</PanelTitle>
                     },
                     {
-                      label: `GRÁFICO ${quadrisFuturosFormatados}`
+                      label: <PanelTitle>GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
                     },
                       {
-                      label: 'GESTANTES ATIVAS'
+                      label: <PanelTitle> GESTANTES ATIVAS</PanelTitle> 
                     },
                     {
-                      label: 'GESTANTES ENCERRADAS'
+                      label: <PanelTitle> GESTANTES ENCERRADAS</PanelTitle> 
                     },
                   ],
                   [
                     {
-                      label: 'GESTANTES SEM DUM'
+                      label: <PanelTitle> GESTANTES SEM DUM </PanelTitle>
                     },    
                   ]
 
                   ]}
               titles={[
                 {
-                    label: 'INDICADOR 1 (6 CONSULTAS)'
+                    label: <PanelTitle>INDICADOR 1 (6 CONSULTAS)</PanelTitle>
                 },
                 {
-                    label: 'INDICADOR 2 (EXAME DE HIV E SÍFILIS)'
+                    label: <PanelTitle>INDICADOR 2 (EXAME DE HIV E SÍFILIS)</PanelTitle>
                 },
                 {
-                    label: 'INDICADOR 3 (ATENDIMENTO ODONTO)'
+                    label: <PanelTitle>INDICADOR 3 (ATENDIMENTO ODONTO)</PanelTitle>
                 },
                 {
-                  label: 'GESTANTES SEM DUM'
+                  label: <PanelTitle> GESTANTES SEM DUM </PanelTitle>
                 },
 
             ]}
