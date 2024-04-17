@@ -192,7 +192,7 @@ if(session){
       }
       </div>
       <TituloTexto
-              titulo="Lista Nominal de Gestantes"
+              titulo="Lista de Pré-Natal"
               texto=""
               imagem = {{posicao: null,url: ''}}
       />
@@ -390,7 +390,7 @@ if(session){
         }
         </div>
         <TituloTexto
-                titulo="Lista Nominal de Gestantes"
+                titulo="Lista de Pré-Natal"
                 texto=""
                 imagem = {{posicao: null,url: ''}}
         />

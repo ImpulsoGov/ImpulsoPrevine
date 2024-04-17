@@ -64,13 +64,13 @@ const Index = ({res}) => {
   const rotulosfiltrosHipertensao = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA CONSULTA MAIS RECENTE",
-    "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
+    "DATA DA ÚLTIMA CONSULTA",
+    "DATA DA ÚLTIMA AFERIÇÃO DE PA",
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
-    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
-    "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
+    "DATA DA ÚLTIMA CONSULTA" : "dt_consulta_mais_recente",
+    "DATA DA ÚLTIMA AFERIÇÃO DE PA": "dt_afericao_pressao_mais_recente",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
     }
   const IDFiltrosOrdenacaoHipertensao = {

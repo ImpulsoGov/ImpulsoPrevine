@@ -80,14 +80,14 @@ const Index = ({res}) => {
   const rotulosfiltrosDiabetes = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA CONSULTA MAIS RECENTE",
-    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE",
+    "DATA DA ÚLTIMA CONSULTA",
+    "DATA DA ÚLTIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA",
   ]
   const IDFiltrosDiabetes = {
     "NOMES DE A-Z": "cidadao_nome",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome_cadastro",
-    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
-    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "DATA DA ÚLTIMA CONSULTA" : "dt_consulta_mais_recente",
+    "DATA DA ÚLTIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
   }
   const IDFiltrosOrdenacaoDiabetes = {
     "cidadao_nome" : "asc",
