@@ -25,11 +25,6 @@ import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-
 import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
 import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
-import styled from 'styled-components';
-
-const PanelTitle = styled.div`
-font-size: 16px;
-`;
 
 import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
@@ -183,29 +178,29 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 list={[
                     [
                       {
-                        label: <PanelTitle>LISTA NOMINAL</PanelTitle>
+                        label: 'LISTA NOMINAL'
                       },
                     ],  
                     [
                       {
-                        label: <PanelTitle>LISTA NOMINAL</PanelTitle>
+                        label: 'LISTA NOMINAL'
                       },
                     ],  
                     [
                       {
-                        label: <PanelTitle>LISTA NOMINAL</PanelTitle>
+                        label: 'LISTA NOMINAL'
                       },
                     ],  
                       ]}
                   titles={[
                     {
-                        label: <PanelTitle>QUADRIMESTRE ATUAL</PanelTitle>
+                        label: 'QUADRIMESTRE ATUAL'
                     },
                     {
-                        label: <PanelTitle>PRÓXIMO QUADRIMESTRE</PanelTitle>
+                        label: 'PRÓXIMO QUADRIMESTRE'
                     },
                     {
-                        label: <PanelTitle>QUADRIMESTRES FUTUROS</PanelTitle>
+                        label: 'QUADRIMESTRES FUTUROS'
                     },
     
                 ]}
@@ -319,38 +314,38 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               list={[
                   [
                     {
-                      label:  <PanelTitle>GRÁFICO </PanelTitle>
+                      label:  'GRÁFICO '
                     },
                     {
-                      label:  <PanelTitle>LISTA NOMINAL </PanelTitle>
-                    },
-                  ],  
-                  [
-                    {
-                      label:  <PanelTitle>GRÁFICO </PanelTitle>
-                    },
-                    {
-                      label:  <PanelTitle>LISTA NOMINAL </PanelTitle>
+                      label:  'LISTA NOMINAL '
                     },
                   ],  
                   [
                     {
-                      label:  <PanelTitle>GRÁFICO </PanelTitle>
+                      label:  'GRÁFICO '
                     },
                     {
-                      label:  <PanelTitle>LISTA NOMINAL </PanelTitle>
+                      label:  'LISTA NOMINAL '
+                    },
+                  ],  
+                  [
+                    {
+                      label:  'GRÁFICO '
+                    },
+                    {
+                      label:  'LISTA NOMINAL '
                     },
                   ],  
                     ]}
                 titles={[
                   {
-                      label:  <PanelTitle>QUADRIMESTRE ATUAL </PanelTitle>
+                      label:  'QUADRIMESTRE ATUAL '
                   },
                   {
-                      label:  <PanelTitle>PRÓXIMO QUADRIMESTRE </PanelTitle>
+                      label:  'PRÓXIMO QUADRIMESTRE '
                   },
                   {
-                      label:  <PanelTitle>QUADRIMESTRES FUTUROS </PanelTitle>
+                      label:  'QUADRIMESTRES FUTUROS '
                   },
   
               ]}

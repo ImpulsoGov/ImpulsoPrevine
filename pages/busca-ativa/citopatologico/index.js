@@ -24,11 +24,6 @@ import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'jso
 import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import styled from 'styled-components';
-
-const PanelTitle = styled.div`
-font-size: 16px;
-`;
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -333,10 +328,10 @@ const Index = ({ res }) => {
                             list={[
                                 [
                                     {
-                                        label: <PanelTitle>MULHERES COM EXAME A SER REALIZADO</PanelTitle>,
+                                        label: 'MULHERES COM EXAME A SER REALIZADO',
                                     },
                                     {
-                                        label: <PanelTitle>MULHERES EM DIA COM EXAME</PanelTitle>,
+                                        label: 'MULHERES EM DIA COM EXAME',
                                     }
                                 ],
                             ]}
@@ -740,13 +735,13 @@ const Index = ({ res }) => {
                         list={[
                             [
                                 {
-                                    label: <PanelTitle>GRÁFICOS</PanelTitle>,
+                                    label: 'GRÁFICOS',
                                 },
                                 {
-                                    label: <PanelTitle>MULHERES COM EXAME A SER REALIZADO</PanelTitle>,
+                                    label: 'MULHERES COM EXAME A SER REALIZADO',
                                 },
                                 {
-                                    label: <PanelTitle>MULHERES EM DIA COM EXAME</PanelTitle>,
+                                    label: ' MULHERES EM DIA COM EXAME',
                                 }
                             ],
                         ]}

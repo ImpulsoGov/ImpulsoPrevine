@@ -8,11 +8,6 @@ import { DATA_STUDIO_URL_CADASTROS_EQUIPE, DATA_STUDIO_URL_CADASTROS_COORDENACAO
 import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../helpers/redirectHome";
-import styled from 'styled-components';
-
-const PanelTitle = styled.div`
-font-size: 16px;
-`;
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -93,14 +88,14 @@ const Index = ({res}) => {
   },[tokenValido])
   const titlesBuscaAtiva = [
     {
-      label:  <PanelTitle>Cadastros Gestantes</PanelTitle>
+      label: 'Cadastros Gestantes'
     },
   ]
 
   if(session){
     const labelsBuscaAtiva = [[],[]]
-    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: <PanelTitle>Duplicados por Município</PanelTitle>})
-    if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: <PanelTitle>Duplicados por Equipe</PanelTitle>})
+    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label:'Duplicados por Município'})
+    if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label:'Duplicados por Equipe'})
     const links = [[],[]]
     if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_CADASTROS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
