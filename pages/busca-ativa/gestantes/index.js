@@ -412,7 +412,8 @@ if(session){
             list={[
                 [
                   {
-                    label:  <PanelTitle>GRÁFICO ${quadriAtualFormatado}</PanelTitle>
+                    label:  <PanelTitle>GRÁFICO {quadriAtualFormatado}</PanelTitle>
+
                   },
                   {
                     label:  <PanelTitle> GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
