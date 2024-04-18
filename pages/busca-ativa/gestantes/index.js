@@ -416,7 +416,7 @@ if(session){
 
                   },
                   {
-                    label:  <PanelTitle> GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
+                    label:  <PanelTitle> GRÁFICO {quadrisFuturosFormatados}</PanelTitle>
                   },
                 {
                     label:  <PanelTitle>GESTANTES ATIVAS</PanelTitle>
@@ -427,10 +427,10 @@ if(session){
                 ],
                 [
                   {
-                    label: <PanelTitle> GRÁFICO ${quadriAtualFormatado}</PanelTitle>
+                    label: <PanelTitle> GRÁFICO {quadriAtualFormatado}</PanelTitle>
                   },
                   {
-                    label: <PanelTitle> GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
+                    label: <PanelTitle> GRÁFICO {quadrisFuturosFormatados}</PanelTitle>
                   },
                   {
                       label: <PanelTitle> GESTANTES ATIVAS </PanelTitle>
@@ -441,10 +441,10 @@ if(session){
                   ],
                   [
                     {
-                      label: <PanelTitle>GRÁFICO ${quadriAtualFormatado}</PanelTitle>
+                      label: <PanelTitle>GRÁFICO {quadriAtualFormatado}</PanelTitle>
                     },
                     {
-                      label: <PanelTitle>GRÁFICO ${quadrisFuturosFormatados}</PanelTitle>
+                      label: <PanelTitle>GRÁFICO {quadrisFuturosFormatados}</PanelTitle>
                     },
                       {
                       label: <PanelTitle> GESTANTES ATIVAS</PanelTitle> 
