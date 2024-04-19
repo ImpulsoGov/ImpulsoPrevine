@@ -314,38 +314,38 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               list={[
                   [
                     {
-                      label:  'GRÁFICO '
+                      label: 'GRÁFICO'
                     },
                     {
-                      label:  'LISTA NOMINAL '
-                    },
-                  ],  
-                  [
-                    {
-                      label:  'GRÁFICO '
-                    },
-                    {
-                      label:  'LISTA NOMINAL '
+                      label: 'LISTA NOMINAL'
                     },
                   ],  
                   [
                     {
-                      label:  'GRÁFICO '
+                      label: 'GRÁFICO'
                     },
                     {
-                      label:  'LISTA NOMINAL '
+                      label: 'LISTA NOMINAL'
+                    },
+                  ],  
+                  [
+                    {
+                      label: 'GRÁFICO'
+                    },
+                    {
+                      label: 'LISTA NOMINAL'
                     },
                   ],  
                     ]}
                 titles={[
                   {
-                      label:  'QUADRIMESTRE ATUAL '
+                      label: 'QUADRIMESTRE ATUAL'
                   },
                   {
-                      label:  'PRÓXIMO QUADRIMESTRE '
+                      label: 'PRÓXIMO QUADRIMESTRE'
                   },
                   {
-                      label:  'QUADRIMESTRES FUTUROS '
+                      label: 'QUADRIMESTRES FUTUROS'
                   },
   
               ]}

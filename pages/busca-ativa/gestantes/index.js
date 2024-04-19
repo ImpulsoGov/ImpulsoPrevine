@@ -406,17 +406,17 @@ if(session){
             list={[
                 [
                   {
-                    label:  `GRÁFICO ${quadriAtualFormatado}`
+                    label: `GRÁFICO ${quadriAtualFormatado}`
 
                   },
                   {
-                    label:  ` GRÁFICO ${quadrisFuturosFormatados}`
+                    label: `GRÁFICO ${quadrisFuturosFormatados}`
                   },
                 {
-                    label:  ` GESTANTES ATIVAS `
+                    label: 'GESTANTES ATIVAS'
                   },
                   {
-                    label:  `GESTANTES ENCERRADAS `
+                    label: 'GESTANTES ENCERRADAS'
                   },
                 ],
                 [
@@ -424,13 +424,13 @@ if(session){
                     label: `GRÁFICO ${quadriAtualFormatado}`
                   },
                   {
-                    label: ` GRÁFICO ${quadrisFuturosFormatados}`
+                    label: `GRÁFICO ${quadrisFuturosFormatados}`
                   },
                   {
-                      label: ` GESTANTES ATIVAS `
+                      label: 'GESTANTES ATIVAS'
                     },
                     {
-                      label: ` GESTANTES ENCERRADAS `
+                      label: 'GESTANTES ENCERRADAS'
                     },
                   ],
                   [
@@ -441,31 +441,31 @@ if(session){
                       label: `GRÁFICO ${quadrisFuturosFormatados}`
                     },
                       {
-                      label: ` GESTANTES ATIVAS` 
+                      label: 'GESTANTES ATIVAS'
                     },
                     {
-                      label: ` GESTANTES ENCERRADAS` 
+                      label: 'GESTANTES ENCERRADAS' 
                     },
                   ],
                   [
                     {
-                      label: ` GESTANTES SEM DUM `
+                      label: 'GESTANTES SEM DUM'
                     },    
                   ]
 
                   ]}
               titles={[
                 {
-                    label: `INDICADOR 1 (6 CONSULTAS)`
+                    label: 'INDICADOR 1 (6 CONSULTAS)'
                 },
                 {
-                    label: `INDICADOR 2 (EXAME DE HIV E SÍFILIS)`
+                    label: 'INDICADOR 2 (EXAME DE HIV E SÍFILIS)'
                 },
                 {
-                    label: `INDICADOR 3 (ATENDIMENTO ODONTO)`
+                    label: 'INDICADOR 3 (ATENDIMENTO ODONTO)'
                 },
                 {
-                  label: ` GESTANTES SEM DUM `
+                  label: 'GESTANTES SEM DUM'
                 },
 
             ]}
