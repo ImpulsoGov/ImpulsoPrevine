@@ -110,16 +110,16 @@ const colunasImpressaoEquipe = {
   2 : colunasGestantesEncerradasEquipe,
 }
 
-const ImpressaoEquipe = ()=> Imprimir(
+const ImpressaoEquipe = (data)=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
 )   
-const ImpressaoAPS = ()=> Imprimir(
+const ImpressaoAPS = (data)=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,

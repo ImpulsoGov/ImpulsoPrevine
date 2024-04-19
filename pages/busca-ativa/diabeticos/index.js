@@ -97,9 +97,9 @@ const Index = ({res}) => {
     "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
     "prazo_proxima_solicitacao_hemoglobina" : "asc",
   }
-  const Impressao = ()=> Imprimir(
+  const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,

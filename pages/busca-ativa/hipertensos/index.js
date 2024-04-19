@@ -81,9 +81,9 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
-  const Impressao = ()=> Imprimir(
+  const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,

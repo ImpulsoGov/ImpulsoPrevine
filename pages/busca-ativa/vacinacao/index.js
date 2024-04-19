@@ -77,9 +77,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacao = ()=> Imprimir(
+  const ImpressaoVacinacao = (data)=> Imprimir(
     1,
-    <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
+    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,

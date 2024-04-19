@@ -116,9 +116,9 @@ const IDFiltrosOrdenacaoCito = {
     "vencimento_da_coleta" : "asc",
     "prazo_proxima_coleta" : "asc",
 }
-const Impressao = ()=> Imprimir(
+const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    <TabelaCitoImpressao data={data} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
