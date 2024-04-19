@@ -178,16 +178,6 @@ if(session){
           <ButtonLight icone={{posicao: 'right',
           url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
           label="VOLTAR" link="/inicio"/>
-      {
-          tabelaData &&
-          <div style={{marginLeft:"auto"}}>
-            <ButtonColorSubmitIcon
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                submit={ImpressaoEquipe}
-            />
-          </div>
-      }
       </div>
       <TituloTexto
               titulo="Lista Nominal de Gestantes"
@@ -372,27 +362,6 @@ if(session){
                 url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                 label="VOLTAR" link="/inicio"
             />
-        {
-            tabelaDataAPS &&
-            <div style={{marginLeft:"auto"}}>
-              {
-                  ((activeTabIndex !== 0 && activeTabIndex !== 1)) &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoAPS}
-                  />
-              }
-              {
-                  activeTitleTabIndex === 3 &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoAPS}
-                  />
-              }
-            </div>
-        }
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Gestantes"

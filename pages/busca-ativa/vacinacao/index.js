@@ -133,18 +133,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                   label="VOLTAR" link="/inicio"
               />
-          {
-              tabelaDataEquipe &&
-              <div style={{marginLeft:"auto"}}>
-              {
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoVacinacao}
-                  />
-              }
-              </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação - Equipe"
@@ -273,19 +261,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                   label="VOLTAR" link="/inicio"
               />
-          {
-              tabelaDataAPS &&
-              <div style={{marginLeft:"auto"}}>
-              {
-                  ((activeTabIndex !== 0)) &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoVacinacao}
-                  />
-              }
-              </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação"
