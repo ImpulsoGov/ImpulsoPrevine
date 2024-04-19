@@ -186,6 +186,7 @@ const Index = ({res}) => {
             {
               tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
+                onPrintClick={Impressao}
                 dadosFiltros={[
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],

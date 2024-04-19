@@ -95,6 +95,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                onPrintClick={ImpressaoVacinacao}
             />
           ],
       ],
@@ -104,6 +105,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaDataAPS={tabelaDataEquipe} 
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
+              onPrintClick={ImpressaoVacinacao}
           />
         ],
     ],
@@ -113,6 +115,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
             tabelaDataAPS={tabelaDataEquipe} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
+            onPrintClick={ImpressaoVacinacao}
         />
       ],
   ],
@@ -223,6 +226,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    onPrintClick={ImpressaoVacinacao}
                 />
               ],
           ],
@@ -236,6 +240,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
+                  onPrintClick={ImpressaoVacinacao}
               />
             ],
         ],
@@ -249,6 +254,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                onPrintClick={ImpressaoVacinacao}
             />
           ],
       ],

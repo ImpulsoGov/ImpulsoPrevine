@@ -33,9 +33,11 @@ const IndicadorUmTabelaGestantesAtivas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesAtivas"
     trackObject={trackObject}
     lista="gestantes"
@@ -70,7 +72,7 @@ const IndicadorUmTabelaGestantesAtivas = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
+    // trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesAtivas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);

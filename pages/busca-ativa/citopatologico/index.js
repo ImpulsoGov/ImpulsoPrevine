@@ -168,6 +168,7 @@ if(session){
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
@@ -222,6 +223,7 @@ if(session){
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
@@ -574,6 +576,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         </>
     const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
     const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -629,6 +632,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     const TabelaChildComExame = tabelaDataAPS ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],

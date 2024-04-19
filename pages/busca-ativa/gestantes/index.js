@@ -139,6 +139,7 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
         />
       ],
       [
@@ -150,6 +151,7 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
         />
       ],
       [
@@ -161,6 +163,7 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
         />
       ]
     ]]
@@ -259,6 +262,7 @@ if(session){
                   trackObject={mixpanel}
                   aba={activeTitleTabIndex}
                   sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
               />
             ],
             [
@@ -270,6 +274,7 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
                 />,
             ],
         ],
@@ -291,18 +296,20 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
                 />,
             ],
             [
                 <IndicadorDoisCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
                 <IndicadorDoisTabelaGestantesEncerradas 
-                tabelaDataAPS={tabelaDataAPS} 
-                tabelaData={tabelaData} 
-                setTabelaData={setTabelaData}
-                trackObject={mixpanel}
-                aba={activeTitleTabIndex}
-                sub_aba={activeTabIndex}
-            />,
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
+                />,
             ],
         ],
         [
@@ -323,17 +330,19 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
                 />,
             ],
             [
                 <IndicadorTresCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
                 <IndicadorTresTabelaGestantesEncerradas 
-                tabelaDataAPS={tabelaDataAPS} 
-                tabelaData={tabelaData} 
-                setTabelaData={setTabelaData}
-                trackObject={mixpanel}
-                aba={activeTitleTabIndex}
-                sub_aba={activeTabIndex}
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
                 />,
             ],
         ],
@@ -345,6 +354,7 @@ if(session){
             trackObject={mixpanel}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
+            onPrintClick={ImpressaoAPS}
           />
         ]
     ]
