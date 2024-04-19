@@ -70,7 +70,6 @@ const IndicadorTresTabelaGestantesAtivas = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    // trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesAtivas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
