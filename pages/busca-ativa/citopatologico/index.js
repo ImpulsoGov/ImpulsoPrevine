@@ -43,7 +43,8 @@ const Index = ({res}) => {
 const { data: session,status } = useSession()
 const [tokenValido, setTokenValido] = useState();
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
-
+const [showSnackBar,setShowSnackBar] = useState(false)
+const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 
@@ -122,6 +123,8 @@ const Impressao = (data)=> Imprimir(
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
 )   
 if(session){  
     if(session.user.perfis.includes(9)){
@@ -216,6 +219,7 @@ if(session){
           day: '2-digit'
          })}
         trackObject={mixpanel}
+        setFiltros_aplicados={setFiltros_aplicados}
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
@@ -273,7 +277,6 @@ if(session){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
-
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
@@ -311,7 +314,7 @@ if(session){
                 activeTitleTabIndex: activeTitleTabIndex,
                 setActiveTitleTabIndex: setActiveTitleTabIndex
             }}
-
+            
             list={[
                 [
                     {

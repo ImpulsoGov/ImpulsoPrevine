@@ -11,8 +11,8 @@ import { addUserDataLayer } from '../hooks/addUserDataLayer';
 import { getCity } from '../hooks/getCity';
 import { rotaDinamica } from '../hooks/rotaDinamica';
 import { getData } from '../services/cms';
-import { alterarSenha, solicitarNovaSenha, validarCodigo } from '../services/esqueciMinhaSenha';
-import { criarSenha, primeiroAcesso } from '../services/primeiroAcesso';
+import { alterarSenha, solicitarNovaSenha, validarCodigo, verificarCPF } from '../services/esqueciMinhaSenha';
+import { criarSenha, primeiroAcesso, verificarCPFPrimeiroAcesso } from '../services/primeiroAcesso';
 import { validacao, validateCredentials } from "../services/validateCredentials";
 import '../styles/globals.css';
 import Context from '../utils/Context';
@@ -35,6 +35,7 @@ function MyApp(props) {
   const router = useRouter();
   const dynamicRoute = router.asPath;
   let path = router.pathname;
+  console.log(props.ses)
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
   const [cidade, setCidade] = useState("João Pessoa - PB");
@@ -104,7 +105,9 @@ function MyApp(props) {
           <Auth setStatus={ setStatus }>
             { isLoading &&
               <NavBar
-                login={ { titulo: "Faça o login para ver o painel de busca ativa" } }
+                projeto = "IP"
+                trackObject = {mixpanel}
+                login={ { titulo: "Faça o login para ver os dados restritos." } }
                 user={
                   {
                     nome: nome,
@@ -162,16 +165,43 @@ function MyApp(props) {
                     : [props.res[0].menus[0], props.res[0].menus[1]].concat([{ label: "Apoio aos Municípios", url: "/apoio" },{ label: "FAQ", url: "/faq" } , { label: "Blog", url: "/blog" }]) }
                 NavBarIconBranco={ props.res[0].logoMenuMoblies[0].logo.url }
                 NavBarIconDark={ props.res[0].logoMenuMoblies[1].logo.url }
-                esqueciMinhaSenha={ {
+                esqueciMinhaSenha={{
                   reqs: {
+                    verificacao : verificarCPF,
                     mail: solicitarNovaSenha,
-                    codigo: validarCodigo,
+                    codigo: async (cpf, codigo) => {
+                      const response = await validarCodigo(cpf,codigo)
+                      mixpanel.track('button_click', {
+                        'button_action': 'proximo_inseriu_codigo_telefone',
+                        'login_flow': 'esqueceu_senha'
+                      });
+                      !response.success &&
+                      mixpanel.track('validation_error', {
+                        'button_action': "proximo_inseriu_codigo_telefone",
+                        'error_message': response.mensagem,
+                        'login_flow' : "esqueceu_senha",
+                      });
+                      return response
+                    },
                     alterarSenha: alterarSenha
                   },
+                  titulos : {
+                    mail : "Recuperação de senha",
+                    verificacao : "Recuperação de senha",
+                    senha : "Recuperação de senha",
+                    codigo : "Recuperação de senha",
+                    sucesso : "Nova senha criada com sucesso!"
+                  },
                   chamadas: {
-                    sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                      mail : "Digite o seu CPF para receber um código de autorização de recuperação da senha.",
+                      aviso : " ",
+                      verificacao : "É necessário que um código de verificação seja enviado por mensagem de SMS para o telefone cadastrado ",
+                      trocar_telefone : { texto : "Quero atualizar meu número de telefone cadastrado.", link : "https://bit.ly/login-alterar-telefone"},
+                      codigo : "Digite abaixo o código recebido por mensagem de SMS no número de telefone cadastrado: ",
+                      senha : "Escolha uma nova senha",
+                      sucesso: "Agora é só entrar na área restrita com seu CPF e a senha criada."
                   }
-                } }
+                }}
                 ModalInicio={ {
                   titulo: "Faça o login para ver os dados restritos.",
                   chamada: "Se esse é o seu primeiro acesso e sua senha ainda não foi criada, clique abaixo em ‘primeiro acesso’. Se você já possui uma senha, clique em ‘entrar’.",
@@ -190,14 +220,41 @@ function MyApp(props) {
                 } }
                 primeiroAcesso={ {
                   reqs: {
+                    verificacao : verificarCPFPrimeiroAcesso,
                     mail: primeiroAcesso,
-                    codigo: validarCodigo,
+                    codigo: async(cpf,codigo)=>{
+                      mixpanel.track('button_click', {
+                        'button_action': 'proximo_inseriu_codigo_telefone',
+                        'login_flow': 'primeiro_acesso'
+                      });
+                      const response = await validarCodigo(cpf,codigo)
+                      !response.success &&
+                      mixpanel.track('validation_error', {
+                        'button_action': "proximo_inseriu_codigo_telefone",
+                        'error_message': response.mensagem,
+                        'login_flow' : "primeiro_acesso",
+                      });
+                      return response
+                    },
                     alterarSenha: criarSenha,
                   },
+                  titulos : {
+                    mail : "Bem-vindo(a)! Precisamos que você crie uma senha para acessar os dados restritos.",
+                    verificacao : "Verificação do telefone",
+                    codigo : "Verificação do telefone",
+                    senha: "Crie sua senha de acesso",
+                    sucesso : "Senha criada com sucesso!"
+                  },
                   chamadas: {
-                    sucesso: "Agora é só entrar na área restrita com seu e-mail e a senha criada."
+                      mail : "Se você é de um município parceiro e ainda não tem senha cadastrada, siga os próximos passos.",
+                      aviso : " ",
+                      codigo : "Digite abaixo o código recebido por mensagem de SMS no número de telefone cadastrado: ",
+                      verificacao : "É necessário que um código de verificação seja enviado por mensagem de SMS para o telefone ",
+                      trocar_telefone : { texto : "Quero atualizar meu número de telefone cadastrado.", link : "https://bit.ly/login-alterar-telefone"},
+                      senha : "Escolha uma senha",
+                      sucesso : "Agora é só entrar na área restrita com seu CPF e a senha criada."
                   }
-                } }
+              }}
               />
             }
             <div 
