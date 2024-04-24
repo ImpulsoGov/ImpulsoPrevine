@@ -4,7 +4,7 @@ import {
     ButtonLight, 
     TabelaVacinacaoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon
+    Toast
   } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -44,9 +44,16 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   
   const Index = ({res}) => {
   const { data: session,status } = useSession()
-  const [tabelaDataAPS, setTabelaDataAPS] = useState();
+  const [tabelaDataAPS, setTabelaDataAPS] = useState([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false,
+    message : "",
+    color : "",
+    background : "",
+  })
   const router = useRouter();
   let visao
   useEffect(() => {
@@ -83,7 +90,17 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
   )   
+
+  const closeToast = () => {
+    setShowSnackBar((prevState) => ({
+      ...prevState,
+      open: false,
+    }))
+  }
+
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){
     visao = "equipe"
@@ -96,6 +113,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
                 onPrintClick={ImpressaoVacinacao}
+                setShowSnackBar={setShowSnackBar}
+                setFiltros_aplicados={setFiltros_aplicados}
             />
           ],
       ],
@@ -106,6 +125,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
               onPrintClick={ImpressaoVacinacao}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
           />
         ],
     ],
@@ -116,6 +137,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
             onPrintClick={ImpressaoVacinacao}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
         />
       ],
   ],
@@ -198,6 +221,18 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 ]}
             />
           }
+        <Toast
+          open={showSnackBar.open}
+          autoHideDuration={4000}
+          onClose={closeToast}
+        >
+          <CardAlert
+            msg={showSnackBar.message}
+            color={showSnackBar.color}
+            background={showSnackBar.background}
+            margin="0px"
+          />
+        </Toast>
       </>
       )
     }
@@ -215,6 +250,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
                     onPrintClick={ImpressaoVacinacao}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}    
                 />
               ],
           ],
@@ -229,6 +266,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
                   onPrintClick={ImpressaoVacinacao}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}  
               />
             ],
         ],
@@ -243,6 +282,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
                 onPrintClick={ImpressaoVacinacao}
+                setShowSnackBar={setShowSnackBar}
+                setFiltros_aplicados={setFiltros_aplicados}
             />
           ],
       ],
@@ -332,6 +373,18 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   
               ]}
           />
+        <Toast
+          open={showSnackBar.open}
+          autoHideDuration={4000}
+          onClose={closeToast}
+        >
+          <CardAlert
+            msg={showSnackBar.message}
+            color={showSnackBar.color}
+            background={showSnackBar.background}
+            margin="0px"
+          />
+        </Toast>
       </>
       )
     }

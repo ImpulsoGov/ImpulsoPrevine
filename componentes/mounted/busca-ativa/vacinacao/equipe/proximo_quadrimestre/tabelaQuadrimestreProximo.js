@@ -34,7 +34,6 @@ const TabelaAPSQuadrimestreProximo = ({
     tabelaData,
     setTabelaData,
     onPrintClick,
-    showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
 }) => {
@@ -152,7 +151,6 @@ const TabelaAPSQuadrimestreProximo = ({
         month: '2-digit',
         day: '2-digit'
         })}
-        showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
         /> 
