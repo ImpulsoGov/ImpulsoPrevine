@@ -43,7 +43,9 @@ const Index = ({res}) => {
 const { data: session,status } = useSession()
 const [tokenValido, setTokenValido] = useState();
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
-const [showSnackBar,setShowSnackBar] = useState(false)
+const [showSnackBar,setShowSnackBar] = useState({
+    open : false
+})
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
@@ -222,7 +224,9 @@ if(session){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
-            /></> : <Spinner/>
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar} 
+        /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
