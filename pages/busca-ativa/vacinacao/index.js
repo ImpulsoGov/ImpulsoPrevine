@@ -77,9 +77,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacao = ()=> Imprimir(
+  const ImpressaoVacinacao = (data)=> Imprimir(
     1,
-    <TabelaVacinacaoImpressao data={tabelaData} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
+    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
@@ -95,6 +95,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                onPrintClick={ImpressaoVacinacao}
             />
           ],
       ],
@@ -104,6 +105,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaDataAPS={tabelaDataEquipe} 
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
+              onPrintClick={ImpressaoVacinacao}
           />
         ],
     ],
@@ -113,6 +115,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
             tabelaDataAPS={tabelaDataEquipe} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
+            onPrintClick={ImpressaoVacinacao}
         />
       ],
   ],
@@ -130,18 +133,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                   label="VOLTAR" link="/inicio"
               />
-          {
-              tabelaDataEquipe &&
-              <div style={{marginLeft:"auto"}}>
-              {
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoVacinacao}
-                  />
-              }
-              </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação - Equipe"
@@ -223,6 +214,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
+                    onPrintClick={ImpressaoVacinacao}
                 />
               ],
           ],
@@ -236,6 +228,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
+                  onPrintClick={ImpressaoVacinacao}
               />
             ],
         ],
@@ -249,6 +242,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
+                onPrintClick={ImpressaoVacinacao}
             />
           ],
       ],
@@ -267,19 +261,6 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                   label="VOLTAR" link="/inicio"
               />
-          {
-              tabelaDataAPS &&
-              <div style={{marginLeft:"auto"}}>
-              {
-                  ((activeTabIndex !== 0)) &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoVacinacao}
-                  />
-              }
-              </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação"

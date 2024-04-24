@@ -18,11 +18,13 @@ const TabelaEquipeGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
 })=>{
     const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipeGestantesEncerradas.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={onPrintClick}
         key="TabelaChildGestantesEncerradas"
         trackObject={trackObject}
         lista="gestantes"

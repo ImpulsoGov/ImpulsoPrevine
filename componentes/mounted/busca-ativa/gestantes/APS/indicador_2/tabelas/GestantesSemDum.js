@@ -37,10 +37,12 @@ const IDFiltrosOrdenacaoGestantes = {
 const IndicadorDoisTabelaGestantesSemDUM = ({
     tabelaDataAPS,
     tabelaData,
-    setTabelaData
+    setTabelaData,
+    onPrintClick,
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesSemDUM"
     dadosFiltros={[
         {
