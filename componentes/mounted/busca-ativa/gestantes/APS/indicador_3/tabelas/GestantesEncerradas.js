@@ -32,9 +32,11 @@ const IndicadorTresTabelaGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
 }) => {
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesEncerradas"
     trackObject={trackObject}
     lista="gestantes"
@@ -68,7 +70,6 @@ const IndicadorTresTabelaGestantesEncerradas = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesEncerradas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);

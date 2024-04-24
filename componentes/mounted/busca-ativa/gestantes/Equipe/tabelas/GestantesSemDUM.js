@@ -31,11 +31,13 @@ const TabelaEquipeGestantesSemDUM = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={onPrintClick}
         key="TabelaChildGestantesSemDUM"
         trackObject={trackObject}
         lista="gestantes"

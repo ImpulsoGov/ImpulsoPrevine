@@ -117,9 +117,9 @@ const IDFiltrosOrdenacaoCito = {
     "vencimento_da_coleta" : "asc",
     "prazo_proxima_coleta" : "asc",
 }
-const Impressao = ()=> Imprimir(
+const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaCitoImpressao data={tabelaData} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    <TabelaCitoImpressao data={data} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
@@ -171,6 +171,7 @@ if(session){
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
@@ -226,6 +227,7 @@ if(session){
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
@@ -290,16 +292,6 @@ if(session){
             <ButtonLight icone={{posicao: 'right',
             url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
             label="VOLTAR" link="/inicio"/>
-        {
-            tabelaDataEquipe &&
-            <div style={{marginLeft:"auto"}}>
-            <ButtonColorSubmitIcon
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                submit={Impressao}
-            />
-        </div>
-        }
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"
@@ -577,6 +569,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         </>
     const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
     const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -632,6 +625,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
     const TabelaChildComExame = tabelaDataAPS ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={Impressao}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
@@ -698,16 +692,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                 label="VOLTAR" link="/inicio"
             />
-        {
-            tabelaDataAPS && activeTabIndex != 0 &&
-            <div style={{marginLeft:"auto"}}>
-            <ButtonColorSubmitIcon
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                submit={Impressao}
-            />
-            </div>
-        }
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"

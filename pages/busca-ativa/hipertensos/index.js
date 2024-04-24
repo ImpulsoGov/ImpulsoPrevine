@@ -81,9 +81,9 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
-  const Impressao = ()=> Imprimir(
+  const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,
@@ -113,16 +113,6 @@ const Index = ({res}) => {
             <ButtonLight icone={{posicao: 'right',
               url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
               label="VOLTAR" link="/inicio"/>
-          {
-            tabelaDataEquipe &&
-            <div style={{marginLeft:"auto"}}>
-              <ButtonColorSubmitIcon
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                  submit={Impressao}
-              />
-            </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Hipertensão"
@@ -170,6 +160,7 @@ const Index = ({res}) => {
             {
               tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
+                onPrintClick={Impressao}
                 dadosFiltros={[
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
@@ -228,17 +219,6 @@ const Index = ({res}) => {
             url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
             label="VOLTAR" link="/inicio"
           />
-          {
-            tabelaDataAPS &&
-            <div style={{marginLeft:"auto"}}>
-              <ButtonColorSubmitIcon
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                  submit={Impressao}
-              />
-            </div>
-          }
-
         </div>
         <TituloTexto
                 titulo="Lista Nominal Hipertensão"
@@ -449,6 +429,7 @@ const Index = ({res}) => {
         {
           tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
+            onPrintClick={Impressao}
             dadosFiltros={[
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
