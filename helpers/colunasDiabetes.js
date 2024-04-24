@@ -76,7 +76,7 @@ const colunasDiabetes = [
     align: 'center',
     field: 'dt_consulta_mais_recente',
     headerAlign: 'center',
-    headerName: 'DATA DA CONSULTA MAIS RECENTE',
+    headerName: 'DATA DA ÚLTIMA CONSULTA',
     renderCell : FormatarData,
     width: 120,
     sortable : false
@@ -94,7 +94,7 @@ const colunasDiabetes = [
     align: 'center',
     field: 'dt_solicitacao_hemoglobina_glicada_mais_recente',
     headerAlign: 'center',
-    headerName: 'DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE',
+    headerName: 'DATA DA ÚLTIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA',
     renderCell : FormatarData,
     width: 180,
     sortable : false

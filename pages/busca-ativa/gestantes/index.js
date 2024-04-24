@@ -49,7 +49,6 @@ import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 
-
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
 const redirect = redirectHome(ctx,session)
@@ -207,7 +206,7 @@ if(session){
           label="VOLTAR" link="/inicio"/>
       </div>
       <TituloTexto
-              titulo="Lista Nominal de Gestantes"
+              titulo="Lista de Pré-Natal"
               texto=""
               imagem = {{posicao: null,url: ''}}
       />
@@ -424,7 +423,7 @@ if(session){
             />
         </div>
         <TituloTexto
-                titulo="Lista Nominal de Gestantes"
+                titulo="Lista de Pré-Natal"
                 texto=""
                 imagem = {{posicao: null,url: ''}}
         />
@@ -447,6 +446,7 @@ if(session){
                 [
                   {
                     label: `GRÁFICO ${quadriAtualFormatado}`
+
                   },
                   {
                     label: `GRÁFICO ${quadrisFuturosFormatados}`
@@ -483,7 +483,7 @@ if(session){
                       label: 'GESTANTES ATIVAS'
                     },
                     {
-                      label: 'GESTANTES ENCERRADAS'
+                      label: 'GESTANTES ENCERRADAS' 
                     },
                   ],
                   [
