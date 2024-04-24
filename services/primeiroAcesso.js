@@ -1,10 +1,47 @@
 import axios from "axios";
 import { API_URL_USUARIOS } from "../constants/API_URL";
 import FormData from "form-data";
+import mixpanel from "mixpanel-browser";
 
-const primeiroAcessoClient = async(mail)=>{
+const verificarCPFPrimeiroAcesso = async(cpf)=>{
+  mixpanel.track('button_click', {
+    'button_action': 'proximo_inseriu_cpf',
+    'login_flow': 'primeiro_acesso'
+  });
+
+  const data = new FormData();
+  data.append('cpf', cpf.replace(/\D/g, ''));
+  
+  let config = {
+    method: 'post',
+    url: API_URL_USUARIOS + 'suporte/ger_usuarios/validar-cpf-primeiro-acesso',
+    data : data
+  };
+
+  const res = await axios(config)
+  .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_inseriu_cpf",
+      'error_message': response.data.mensagem,
+      'login_flow' : "primeiro_acesso",
+    });
+    return response.data;
+  })
+  .catch(function (error) {  
+    return error.response.data
+  });
+  return res
+}    
+
+const primeiroAcesso = async(cpf)=>{
+  mixpanel.track('button_click', {
+    'button_action': 'enviar_codigo_telefone',
+    'login_flow': 'primeiro_acesso'
+  });
+
     const data = new FormData();
-    data.append('mail', mail);
+    data.append('cpf', cpf.replace(/\D/g, ''));
     
     let config = {
       method: 'post',
@@ -14,23 +51,28 @@ const primeiroAcessoClient = async(mail)=>{
     
     const res = await axios(config)
     .then(function (response) {
-        return response.data;
+      !response.data.success &&
+      mixpanel.track('validation_error', {
+        'button_action': "proximo_inseriu_codigo_telefone",
+        'error_message': response.data.mensagem,
+        'login_flow' : "primeiro_acesso",
+      });
+      return response.data;
     })
     .catch(function (error) {
         return error.response.data
     });
     return res
 }    
-
-const primeiroAcesso = async(mail)=>{
-    const res = await primeiroAcessoClient(mail)
-      if (res?.success == true) return true
-      return false
-  }
   
-  const criarSenhaClient = async(mail,codigo,nova_senha)=>{
+  const criarSenha = async(cpf,codigo,nova_senha)=>{
+    mixpanel.track('button_click', {
+      'button_action': 'proximo_criou_senha',
+      'login_flow': 'primeiro_acesso'
+    });
+
     let data = new FormData();
-    data.append('mail', mail);
+    data.append('cpf', cpf);
     data.append('codigo', codigo);
     data.append('nova_senha', nova_senha);
   
@@ -42,6 +84,12 @@ const primeiroAcesso = async(mail)=>{
   
     const res = await axios(config)
     .then(function (response) {
+      !response.data.success &&
+      mixpanel.track('validation_error', {
+        'button_action': "proximo_criou_senha",
+        'error_message': response.data.mensagem,
+        'login_flow' : "primeiro_acesso",
+      });
       return response.data;
     })
     .catch(function (error) {
@@ -51,10 +99,5 @@ const primeiroAcesso = async(mail)=>{
     return res
   
   }
-  const criarSenha = async(mail,codigo,nova_senha)=>{
-    const res = await criarSenhaClient(mail,codigo,nova_senha)
-      if (res?.success == true) return true
-      return false
-  }
   
-export {primeiroAcesso,criarSenha}
+export { verificarCPFPrimeiroAcesso,primeiroAcesso,criarSenha}
