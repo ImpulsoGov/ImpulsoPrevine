@@ -34,6 +34,9 @@ const TabelaAPSQuadrimestreAtual = ({
     tabelaData,
     setTabelaData,
     onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
     const codigosPolio = [10,20,30,40]
@@ -150,6 +153,9 @@ const TabelaAPSQuadrimestreAtual = ({
             month: '2-digit',
             day: '2-digit'
             })}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados} 
         />
     </>: <Spinner/>
 }

@@ -32,6 +32,9 @@ const TabelaEquipeGestantesSemDUM = ({
     aba,
     sub_aba,
     onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 

@@ -30,6 +30,9 @@ const TabelaGestantesSemDUM = ({
     aba,
     sub_aba,
     onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
@@ -72,6 +75,10 @@ const TabelaGestantesSemDUM = ({
       month: '2-digit',
       day: '2-digit'
       })}
+      showSnackBar={showSnackBar}
+      setShowSnackBar={setShowSnackBar}
+      setFiltros_aplicados={setFiltros_aplicados}
+
 /> : <Spinner/>
 }
 export { TabelaGestantesSemDUM }

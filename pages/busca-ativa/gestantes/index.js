@@ -140,6 +140,9 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
           onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ],
       [
@@ -152,6 +155,9 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
           onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ],
       [
@@ -164,6 +170,9 @@ if(session){
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
           onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ]
     ]]
@@ -253,6 +262,9 @@ if(session){
                   aba={activeTitleTabIndex}
                   sub_aba={activeTabIndex}
                   onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
               />
             ],
             [
@@ -265,6 +277,9 @@ if(session){
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
                     onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
         ],
@@ -287,6 +302,9 @@ if(session){
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
                     onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
             [
@@ -299,6 +317,9 @@ if(session){
                   aba={activeTitleTabIndex}
                   sub_aba={activeTabIndex}
                   onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
                 />,
             ],
         ],
@@ -321,6 +342,9 @@ if(session){
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
                     onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
             [
@@ -333,6 +357,9 @@ if(session){
                   aba={activeTitleTabIndex}
                   sub_aba={activeTabIndex}
                   onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
                 />,
             ],
         ],
@@ -345,6 +372,9 @@ if(session){
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
             onPrintClick={ImpressaoAPS}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados} 
           />
         ]
     ]

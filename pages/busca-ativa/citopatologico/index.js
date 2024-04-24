@@ -49,7 +49,6 @@ const [showSnackBar,setShowSnackBar] = useState({
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-console.log(showSnackBar)
 const router = useRouter();
 let visao = null
 useEffect(() => {

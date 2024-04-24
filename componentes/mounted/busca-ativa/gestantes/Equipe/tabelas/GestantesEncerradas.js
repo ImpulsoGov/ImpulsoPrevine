@@ -19,6 +19,9 @@ const TabelaEquipeGestantesEncerradas = ({
     aba,
     sub_aba,
     onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 })=>{
     const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipeGestantesEncerradas.length>0 && tabelaDataEquipe && tabelaData ? 
@@ -82,7 +85,9 @@ const TabelaEquipeGestantesEncerradas = ({
         month: '2-digit',
         day: '2-digit'
         })}
-
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesEncerradas }

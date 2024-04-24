@@ -39,6 +39,10 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false
+  })
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -103,6 +107,8 @@ const Index = ({res}) => {
     "diabetes",
     null,
     null,
+    filtros_aplicados,
+    setShowSnackBar
   )
   const router = useRouter();
   let visao = null
@@ -219,7 +225,9 @@ const Index = ({res}) => {
               lista="diabetes"
               aba={null}
               sub_aba={null}
-
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               /> : <Spinner/>
             }
         </>
@@ -488,7 +496,9 @@ const Index = ({res}) => {
            lista="diabetes"
            aba={null}
            sub_aba={null}
-
+           showSnackBar={showSnackBar}
+           setShowSnackBar={setShowSnackBar}
+           setFiltros_aplicados={setFiltros_aplicados}
           /> : <Spinner/>
         }
       </>

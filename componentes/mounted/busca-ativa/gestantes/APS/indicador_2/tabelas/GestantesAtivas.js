@@ -33,6 +33,9 @@ const IndicadorDoisTabelaGestantesAtivas = ({
     aba,
     sub_aba,
     onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
     return tabelaDataAPS ? <PainelBuscaAtiva
@@ -80,7 +83,9 @@ const IndicadorDoisTabelaGestantesAtivas = ({
       month: '2-digit',
       day: '2-digit'
       })}
-
+      showSnackBar={showSnackBar}
+      setShowSnackBar={setShowSnackBar}
+      setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }
 export { IndicadorDoisTabelaGestantesAtivas }
