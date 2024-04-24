@@ -15,8 +15,17 @@ export const Imprimir = (
         'aba_lista_nominal' : aba,
         'sub_aba_lista_nominal' : sub_aba
       });
-    if(typeof window !== 'undefined' && filtros_aplicados) {
-        console.log(escala,child)
+    const toastBar = ()=>{
+    if(!filtros_aplicados){
+        setShowSnackBar(() => ({
+            open: true,
+            message : "O número de pacientes é muito grande, filtre e ordene a lista para facilitar o carregamento da impressão",
+            background: "#FFF0E1",
+            color: "black",
+        }))    
+    }}
+    const showImpressao = ()=>{
+    if(typeof window !== 'undefined') {
         const largura = window.innerWidth;
         const altura = window.innerHeight;
         const janelaImpressao = window.open('', '', `width=${largura},height=${altura}`);
@@ -41,11 +50,7 @@ export const Imprimir = (
         `);
         janelaImpressao.document.close();
         janelaImpressao.print();
-    }
-    if(!filtros_aplicados){
-        setShowSnackBar((prevState) => ({
-            ...prevState,
-            open: true,
-        }))    
-    }
+    }}
+    toastBar()
+    setTimeout(showImpressao, 5000)
 }

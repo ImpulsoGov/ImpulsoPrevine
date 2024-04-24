@@ -49,7 +49,7 @@ const [showSnackBar,setShowSnackBar] = useState({
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-
+console.log(showSnackBar)
 const router = useRouter();
 let visao = null
 useEffect(() => {
@@ -281,6 +281,9 @@ if(session){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
     const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
@@ -623,7 +626,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
- 
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
     const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataAPS ? 
@@ -679,7 +684,9 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
-
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /> </>: <Spinner/>
     const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]
 
