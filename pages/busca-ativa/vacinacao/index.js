@@ -26,7 +26,6 @@ import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "../
 import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
 
-
 import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
