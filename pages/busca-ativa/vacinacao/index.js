@@ -46,6 +46,13 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false,
+    message : "",
+    color : "",
+    background : "",
+  })
   const router = useRouter();
   let visao
   useEffect(() => {
@@ -82,6 +89,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
   )   
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){
@@ -95,6 +104,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
                 onPrintClick={ImpressaoVacinacao}
+                showSnackBar={showSnackBar}
+                setFiltros_aplicados={setFiltros_aplicados}
+                setShowSnackBar={setShowSnackBar}      
             />
           ],
       ],
@@ -105,6 +117,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
               onPrintClick={ImpressaoVacinacao}
+              showSnackBar={showSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+              setShowSnackBar={setShowSnackBar}    
           />
         ],
     ],
@@ -115,6 +130,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
             onPrintClick={ImpressaoVacinacao}
+            showSnackBar={showSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
+            setShowSnackBar={setShowSnackBar}  
         />
       ],
   ],
@@ -214,6 +232,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
                     onPrintClick={ImpressaoVacinacao}
+                    showSnackBar={showSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}
+                    setShowSnackBar={setShowSnackBar}          
                 />
               ],
           ],
@@ -228,6 +249,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
                   onPrintClick={ImpressaoVacinacao}
+                  showSnackBar={showSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}
+                  setShowSnackBar={setShowSnackBar}        
               />
             ],
         ],
@@ -242,6 +266,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
                 onPrintClick={ImpressaoVacinacao}
+                showSnackBar={showSnackBar}
+                setFiltros_aplicados={setFiltros_aplicados}
+                setShowSnackBar={setShowSnackBar}      
             />
           ],
       ],

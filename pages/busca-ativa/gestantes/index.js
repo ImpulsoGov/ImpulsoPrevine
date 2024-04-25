@@ -68,6 +68,13 @@ const { data: session,status } = useSession()
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+const [showSnackBar,setShowSnackBar] = useState({
+  open : false,
+  message : "",
+  color : "",
+  background : "",
+})
 const router = useRouter();
 let visao = null
 useEffect(() => {
@@ -115,6 +122,8 @@ const ImpressaoEquipe = (data)=> Imprimir(
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
 )   
 const ImpressaoAPS = (data)=> Imprimir(
   0.78,
@@ -122,6 +131,8 @@ const ImpressaoAPS = (data)=> Imprimir(
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
 )   
 
 if(session){  

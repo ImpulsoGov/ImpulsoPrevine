@@ -38,6 +38,13 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false,
+    message : "",
+    color : "",
+    background : "",
+  })
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -87,6 +94,8 @@ const Index = ({res}) => {
     "hipertensao",
     null,
     null,
+    filtros_aplicados,
+    setShowSnackBar
   )   
   const router = useRouter();
   let visao = null
@@ -203,7 +212,9 @@ const Index = ({res}) => {
               lista="hipertensao"
               aba={null}
               sub_aba={null}
-      
+              showSnackBar={showSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+              setShowSnackBar={setShowSnackBar}
                 /> : <Spinner/>
             }
         </>
@@ -472,7 +483,9 @@ const Index = ({res}) => {
           lista="hipertensao"
           aba={null}
           sub_aba={null}
-  
+          showSnackBar={showSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
+          setShowSnackBar={setShowSnackBar}
       /> : <Spinner/>
         }
       </>

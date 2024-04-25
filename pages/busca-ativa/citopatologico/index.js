@@ -44,7 +44,10 @@ const { data: session,status } = useSession()
 const [tokenValido, setTokenValido] = useState();
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [showSnackBar,setShowSnackBar] = useState({
-    open : false
+    open : false,
+    message : "",
+    color : "",
+    background : "",
 })
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
