@@ -83,6 +83,8 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     "vacinacao",
     activeTitleTabIndex,
     activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
   )   
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){

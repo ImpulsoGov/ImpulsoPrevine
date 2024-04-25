@@ -121,6 +121,8 @@ const ImpressaoEquipe = (data)=> Imprimir(
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
 )   
 const ImpressaoAPS = (data)=> Imprimir(
   0.78,
