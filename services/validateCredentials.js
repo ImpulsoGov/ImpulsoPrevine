@@ -44,7 +44,7 @@ const validacao = (setResposta, validarCredencial, entrar, mail, senha, setEsper
   }else{
     res().then((response)=>{
       if (typeof(response["access_token"]) !== "undefined"){
-        entrar('credentials', { redirect: true,username:mail, password: senha })
+        entrar('credentials', { redirect: true,username:mail, password: senha, callbackUrl: '/inicio'})
       }else{
         setResposta(response["detail"])
         setEsperandoResposta(false);
