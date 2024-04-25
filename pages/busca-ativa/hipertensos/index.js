@@ -6,8 +6,8 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao,
-  Toast
+  ButtonColorSubmitIcon,
+  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -38,13 +38,6 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
-  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
-  const [showSnackBar,setShowSnackBar] = useState({
-    open : false,
-    message : "",
-    color : "",
-    background : "",
-  })
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -94,8 +87,6 @@ const Index = ({res}) => {
     "hipertensao",
     null,
     null,
-    filtros_aplicados,
-    setShowSnackBar
   )   
   const router = useRouter();
   let visao = null
@@ -111,13 +102,6 @@ const Index = ({res}) => {
         undefined, { shallow: true }
       );
     }, [visao]);
-
-  const closeToast = () => {
-    setShowSnackBar((prevState) => ({
-      ...prevState,
-      open: false,
-    }))
-  }
 
   if(session){  
     if(session.user.perfis.includes(9)){
@@ -219,22 +203,9 @@ const Index = ({res}) => {
               lista="hipertensao"
               aba={null}
               sub_aba={null}
-              setFiltros_aplicados={setFiltros_aplicados}
-              setShowSnackBar={setShowSnackBar}
+      
                 /> : <Spinner/>
             }
-          <Toast
-            open={showSnackBar.open}
-            autoHideDuration={4000}
-            onClose={closeToast}
-          >
-            <CardAlert
-              msg={showSnackBar.message}
-              color={showSnackBar.color}
-              background={showSnackBar.background}
-              margin="0px"
-            />
-          </Toast>
         </>
       )
   }
@@ -501,22 +472,9 @@ const Index = ({res}) => {
           lista="hipertensao"
           aba={null}
           sub_aba={null}
-          setFiltros_aplicados={setFiltros_aplicados}
-          setShowSnackBar={setShowSnackBar}
+  
       /> : <Spinner/>
         }
-        <Toast
-          open={showSnackBar.open}
-          autoHideDuration={4000}
-          onClose={closeToast}
-        >
-          <CardAlert
-            msg={showSnackBar.message}
-            color={showSnackBar.color}
-            background={showSnackBar.background}
-            margin="0px"
-          />
-        </Toast>
       </>
     )
 }

@@ -8,7 +8,7 @@ import {
     GraficoBuscaAtiva,
     TabelaCitoImpressao,
     PanelSelector,
-    Toast,
+    ButtonColorSubmitIcon
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -44,10 +44,7 @@ const { data: session,status } = useSession()
 const [tokenValido, setTokenValido] = useState();
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [showSnackBar,setShowSnackBar] = useState({
-    open : false,
-    message : "",
-    color : "",
-    background : "",
+    open : false
 })
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -130,14 +127,6 @@ const Impressao = (data)=> Imprimir(
     filtros_aplicados,
     setShowSnackBar
 )   
-
-const closeToast = () => {
-    setShowSnackBar((prevState) => ({
-        ...prevState,
-        open: false,
-    }))
-}
-
 if(session){  
     if(session.user.perfis.includes(9)){
         visao = "equipe"
@@ -235,6 +224,7 @@ if(session){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar} 
         /></> : <Spinner/>
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
@@ -290,6 +280,7 @@ if(session){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
@@ -347,18 +338,6 @@ if(session){
                 ]}
             />
     }
-        <Toast
-            open={showSnackBar.open}
-            autoHideDuration={4000}
-            onClose={closeToast}
-        >
-            <CardAlert
-                msg={showSnackBar.message}
-                color={showSnackBar.color}
-                background={showSnackBar.background}
-                margin="0px"
-            />
-        </Toast>
     </>
     )
 }
@@ -646,6 +625,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
@@ -703,6 +683,7 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         lista="citopatologico"
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
     /> </>: <Spinner/>
@@ -760,18 +741,6 @@ if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
                 },
                 ]}
         />
-        <Toast
-            open={showSnackBar.open}
-            autoHideDuration={4000}
-            onClose={closeToast}
-        >
-            <CardAlert
-                msg={showSnackBar.message}
-                color={showSnackBar.color}
-                background={showSnackBar.background}
-                margin="0px"
-            />
-        </Toast>
     </>
     )
 }

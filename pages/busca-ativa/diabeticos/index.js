@@ -6,8 +6,8 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao,
-  Toast
+  ButtonColorSubmitIcon,
+  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -40,10 +40,7 @@ const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
   const [showSnackBar,setShowSnackBar] = useState({
-    open : false,
-    message : "",
-    color : "",
-    background : "",
+    open : false
   })
   const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 
@@ -127,13 +124,6 @@ const Index = ({res}) => {
         undefined, { shallow: true }
       );
     }, [visao]);
-
-  const closeToast = () => {
-    setShowSnackBar((prevState) => ({
-      ...prevState,
-      open: false,
-    }))
-  }
 
   if(session){  
     if(session.user.perfis.includes(9)){
@@ -235,22 +225,11 @@ const Index = ({res}) => {
               lista="diabetes"
               aba={null}
               sub_aba={null}
+              showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
               /> : <Spinner/>
             }
-          <Toast
-            open={showSnackBar.open}
-            autoHideDuration={4000}
-            onClose={closeToast}
-          >
-            <CardAlert
-              msg={showSnackBar.message}
-              color={showSnackBar.color}
-              background={showSnackBar.background}
-              margin="0px"
-            />
-          </Toast>
         </>
       )
   }
@@ -517,22 +496,11 @@ const Index = ({res}) => {
            lista="diabetes"
            aba={null}
            sub_aba={null}
+           showSnackBar={showSnackBar}
            setShowSnackBar={setShowSnackBar}
            setFiltros_aplicados={setFiltros_aplicados}
           /> : <Spinner/>
         }
-        <Toast
-          open={showSnackBar.open}
-          autoHideDuration={4000}
-          onClose={closeToast}
-        >
-          <CardAlert
-            msg={showSnackBar.message}
-            color={showSnackBar.color}
-            background={showSnackBar.background}
-            margin="0px"
-          />
-        </Toast>
       </>
     )
 }

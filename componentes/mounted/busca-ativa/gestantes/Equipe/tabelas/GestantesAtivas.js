@@ -19,6 +19,7 @@ const TabelaEquipeGestantesAtivas = ({
     aba,
     sub_aba,
     onPrintClick,
+    showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
 })=>{
@@ -84,8 +85,6 @@ const TabelaEquipeGestantesAtivas = ({
         month: '2-digit',
         day: '2-digit'
         })}
-        setShowSnackBar={setShowSnackBar}
-        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner />
 }
 
