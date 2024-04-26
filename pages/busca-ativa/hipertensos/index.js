@@ -68,13 +68,13 @@ const Index = ({res}) => {
   const rotulosfiltrosHipertensao = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA ÚLTIMA CONSULTA (da mais antiga para a mais recente)",
-    "DATA DA ÚLTIMA AFERIÇÃO DE PA (da mais antiga para a mais recente)",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
-    "DATA DA ÚLTIMA CONSULTA (da mais antiga para a mais recente)" : "dt_consulta_mais_recente",
-    "DATA DA ÚLTIMA AFERIÇÃO DE PA (da mais antiga para a mais recente)": "dt_afericao_pressao_mais_recente",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)": "dt_afericao_pressao_mais_recente",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
     }
   const IDFiltrosOrdenacaoHipertensao = {
