@@ -29,9 +29,14 @@ const TabelaGestantesSemDUM = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesSemDUM"
     trackObject={trackObject}
     lista="gestantes"
@@ -60,7 +65,6 @@ const TabelaGestantesSemDUM = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -71,6 +75,10 @@ const TabelaGestantesSemDUM = ({
       month: '2-digit',
       day: '2-digit'
       })}
+      showSnackBar={showSnackBar}
+      setShowSnackBar={setShowSnackBar}
+      setFiltros_aplicados={setFiltros_aplicados}
+
 /> : <Spinner/>
 }
 export { TabelaGestantesSemDUM }

@@ -18,11 +18,16 @@ const TabelaEquipeGestantesAtivas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 })=>{
     const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)
     return tabelaDataEquipeGestantesAtivas && tabelaDataEquipeGestantesAtivas?.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={onPrintClick}
         key="TabelaChildGestantesAtivas"
         trackObject={trackObject}
         lista="gestantes"
@@ -80,6 +85,9 @@ const TabelaEquipeGestantesAtivas = ({
         month: '2-digit',
         day: '2-digit'
         })}
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner />
 }
 

@@ -39,6 +39,10 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false
+  })
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -80,14 +84,14 @@ const Index = ({res}) => {
   const rotulosfiltrosDiabetes = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA CONSULTA MAIS RECENTE",
-    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA GLICADA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
   ]
   const IDFiltrosDiabetes = {
     "NOMES DE A-Z": "cidadao_nome",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome_cadastro",
-    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
-    "DATA DE SOLICITAÇÃO DE HEMOGLOBINA GLICADA MAIS RECENTE" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
+    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA GLICADA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
   }
   const IDFiltrosOrdenacaoDiabetes = {
     "cidadao_nome" : "asc",
@@ -97,12 +101,14 @@ const Index = ({res}) => {
     "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
     "prazo_proxima_solicitacao_hemoglobina" : "asc",
   }
-  const Impressao = ()=> Imprimir(
+  const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,
+    filtros_aplicados,
+    setShowSnackBar
   )
   const router = useRouter();
   let visao = null
@@ -129,16 +135,6 @@ const Index = ({res}) => {
             <ButtonLight icone={{posicao: 'right',
               url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
               label="VOLTAR" link="/inicio"/>
-          {
-            tabelaDataEquipe &&
-            <div style={{marginLeft:"auto"}}>
-            <ButtonColorSubmitIcon
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                submit={Impressao}
-            />
-            </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Diabetes"
@@ -186,6 +182,7 @@ const Index = ({res}) => {
             {
               tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
+                onPrintClick={Impressao}
                 dadosFiltros={[
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
@@ -228,7 +225,9 @@ const Index = ({res}) => {
               lista="diabetes"
               aba={null}
               sub_aba={null}
-
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               /> : <Spinner/>
             }
         </>
@@ -243,16 +242,6 @@ const Index = ({res}) => {
             <ButtonLight icone={{posicao: 'right',
               url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
               label="VOLTAR" link="/inicio"/>
-          {
-            tabelaDataAPS &&
-            <div style={{marginLeft:"auto"}}>
-              <ButtonColorSubmitIcon
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                  submit={Impressao}
-              />
-            </div>
-          }
           </div>
         <TituloTexto
                 titulo="Lista Nominal Diabetes"
@@ -464,6 +453,7 @@ const Index = ({res}) => {
         {
           tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
+            onPrintClick={Impressao}
             dadosFiltros={[
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
@@ -506,7 +496,9 @@ const Index = ({res}) => {
            lista="diabetes"
            aba={null}
            sub_aba={null}
-
+           showSnackBar={showSnackBar}
+           setShowSnackBar={setShowSnackBar}
+           setFiltros_aplicados={setFiltros_aplicados}
           /> : <Spinner/>
         }
       </>

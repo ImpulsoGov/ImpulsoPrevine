@@ -38,6 +38,10 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   const { data: session,status } = useSession()
   const [tokenValido, setTokenValido] = useState();
+  const [showSnackBar,setShowSnackBar] = useState({
+    open : false
+  })
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -64,13 +68,13 @@ const Index = ({res}) => {
   const rotulosfiltrosHipertensao = [
     "NOMES DE A-Z",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA CONSULTA MAIS RECENTE",
-    "DATA DA AFERIÇÃO DE PA MAIS RECENTE",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
     ]
   const IDFiltrosHipertensao = {
     "NOMES DE A-Z": "cidadao_nome",
-    "DATA DA CONSULTA MAIS RECENTE" : "dt_consulta_mais_recente",
-    "DATA DA AFERIÇÃO DE PA MAIS RECENTE": "dt_afericao_pressao_mais_recente",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)": "dt_afericao_pressao_mais_recente",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
     }
   const IDFiltrosOrdenacaoHipertensao = {
@@ -81,12 +85,14 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
-  const Impressao = ()=> Imprimir(
+  const Impressao = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={tabelaData} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,
+    filtros_aplicados,
+    setShowSnackBar
   )   
   const router = useRouter();
   let visao = null
@@ -113,16 +119,6 @@ const Index = ({res}) => {
             <ButtonLight icone={{posicao: 'right',
               url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
               label="VOLTAR" link="/inicio"/>
-          {
-            tabelaDataEquipe &&
-            <div style={{marginLeft:"auto"}}>
-              <ButtonColorSubmitIcon
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                  submit={Impressao}
-              />
-            </div>
-          }
           </div>
           <TituloTexto
                   titulo="Lista Nominal Hipertensão"
@@ -170,6 +166,7 @@ const Index = ({res}) => {
             {
               tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
+                onPrintClick={Impressao}
                 dadosFiltros={[
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
@@ -212,8 +209,10 @@ const Index = ({res}) => {
               lista="hipertensao"
               aba={null}
               sub_aba={null}
-      
-                /> : <Spinner/>
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            /> : <Spinner/>
             }
         </>
       )
@@ -228,17 +227,6 @@ const Index = ({res}) => {
             url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
             label="VOLTAR" link="/inicio"
           />
-          {
-            tabelaDataAPS &&
-            <div style={{marginLeft:"auto"}}>
-              <ButtonColorSubmitIcon
-                  label="CLIQUE AQUI PARA IMPRIMIR"
-                  icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                  submit={Impressao}
-              />
-            </div>
-          }
-
         </div>
         <TituloTexto
                 titulo="Lista Nominal Hipertensão"
@@ -449,6 +437,7 @@ const Index = ({res}) => {
         {
           tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
+            onPrintClick={Impressao}
             dadosFiltros={[
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
@@ -491,7 +480,9 @@ const Index = ({res}) => {
           lista="hipertensao"
           aba={null}
           sub_aba={null}
-  
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}  
       /> : <Spinner/>
         }
       </>

@@ -31,11 +31,16 @@ const TabelaEquipeGestantesSemDUM = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        onPrintClick={onPrintClick}
         key="TabelaChildGestantesSemDUM"
         trackObject={trackObject}
         lista="gestantes"
@@ -70,6 +75,9 @@ const TabelaEquipeGestantesSemDUM = ({
         month: '2-digit',
         day: '2-digit'
         })}
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesSemDUM }

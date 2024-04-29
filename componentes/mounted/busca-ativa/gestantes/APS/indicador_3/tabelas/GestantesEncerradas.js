@@ -32,9 +32,14 @@ const IndicadorTresTabelaGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesEncerradas"
     trackObject={trackObject}
     lista="gestantes"
@@ -68,7 +73,6 @@ const IndicadorTresTabelaGestantesEncerradas = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesEncerradas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -79,6 +83,9 @@ const IndicadorTresTabelaGestantesEncerradas = ({
       month: '2-digit',
       day: '2-digit'
       })}
+    showSnackBar={showSnackBar}
+    setShowSnackBar={setShowSnackBar}
+    setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }
 export { IndicadorTresTabelaGestantesEncerradas }

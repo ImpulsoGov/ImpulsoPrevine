@@ -75,7 +75,7 @@ const colunasHipertensao = [
       align: 'center',
       field: 'dt_consulta_mais_recente',
       headerAlign: 'center',
-      headerName: 'DATA DA CONSULTA MAIS RECENTE',
+      headerName: 'DATA DA ÚLTIMA CONSULTA',
       renderCell : FormatarData,
       width: 120,
       sortable : false
@@ -93,7 +93,7 @@ const colunasHipertensao = [
       align: 'center',
       field: 'dt_afericao_pressao_mais_recente',
       headerAlign: 'center',
-      headerName: 'DATA DA AFERIÇÃO DE PA MAIS RECENTE',
+      headerName: 'DATA DA ÚLTIMA AFERIÇÃO DE PA',
       renderCell : FormatarData,
       width: 130,
       sortable : false

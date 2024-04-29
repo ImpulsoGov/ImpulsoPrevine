@@ -49,7 +49,6 @@ import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 
-
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
 const redirect = redirectHome(ctx,session)
@@ -69,6 +68,11 @@ const { data: session,status } = useSession()
 const [tabelaDataAPS, setTabelaDataAPS] = useState();
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+const [showSnackBar,setShowSnackBar] = useState({
+  open : false
+})
+const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+
 const router = useRouter();
 let visao = null
 useEffect(() => {
@@ -110,19 +114,23 @@ const colunasImpressaoEquipe = {
   2 : colunasGestantesEncerradasEquipe,
 }
 
-const ImpressaoEquipe = ()=> Imprimir(
+const ImpressaoEquipe = (data)=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
 )   
-const ImpressaoAPS = ()=> Imprimir(
+const ImpressaoAPS = (data)=> Imprimir(
   0.78,
-  <TabelaGestantesImpressao data={tabelaData} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
   "gestantes",
   activeTitleTabIndex,
   activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
 )   
 
 if(session){  
@@ -139,6 +147,10 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ],
       [
@@ -150,6 +162,10 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ],
       [
@@ -161,6 +177,10 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
         />
       ]
     ]]
@@ -175,19 +195,9 @@ if(session){
           <ButtonLight icone={{posicao: 'right',
           url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
           label="VOLTAR" link="/inicio"/>
-      {
-          tabelaData &&
-          <div style={{marginLeft:"auto"}}>
-            <ButtonColorSubmitIcon
-                label="CLIQUE AQUI PARA IMPRIMIR"
-                icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                submit={ImpressaoEquipe}
-            />
-          </div>
-      }
       </div>
       <TituloTexto
-              titulo="Lista Nominal de Gestantes"
+              titulo="Lista de Pré-Natal"
               texto=""
               imagem = {{posicao: null,url: ''}}
       />
@@ -259,6 +269,10 @@ if(session){
                   trackObject={mixpanel}
                   aba={activeTitleTabIndex}
                   sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
               />
             ],
             [
@@ -270,6 +284,10 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
         ],
@@ -291,18 +309,26 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
             [
                 <IndicadorDoisCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
                 <IndicadorDoisTabelaGestantesEncerradas 
-                tabelaDataAPS={tabelaDataAPS} 
-                tabelaData={tabelaData} 
-                setTabelaData={setTabelaData}
-                trackObject={mixpanel}
-                aba={activeTitleTabIndex}
-                sub_aba={activeTabIndex}
-            />,
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
+                />,
             ],
         ],
         [
@@ -323,17 +349,25 @@ if(session){
                     trackObject={mixpanel}
                     aba={activeTitleTabIndex}
                     sub_aba={activeTabIndex}
+                    onPrintClick={ImpressaoAPS}
+                    showSnackBar={showSnackBar}
+                    setShowSnackBar={setShowSnackBar}
+                    setFiltros_aplicados={setFiltros_aplicados}         
                 />,
             ],
             [
                 <IndicadorTresCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
                 <IndicadorTresTabelaGestantesEncerradas 
-                tabelaDataAPS={tabelaDataAPS} 
-                tabelaData={tabelaData} 
-                setTabelaData={setTabelaData}
-                trackObject={mixpanel}
-                aba={activeTitleTabIndex}
-                sub_aba={activeTabIndex}
+                  tabelaDataAPS={tabelaDataAPS} 
+                  tabelaData={tabelaData} 
+                  setTabelaData={setTabelaData}
+                  trackObject={mixpanel}
+                  aba={activeTitleTabIndex}
+                  sub_aba={activeTabIndex}
+                  onPrintClick={ImpressaoAPS}
+                  showSnackBar={showSnackBar}
+                  setShowSnackBar={setShowSnackBar}
+                  setFiltros_aplicados={setFiltros_aplicados}       
                 />,
             ],
         ],
@@ -345,6 +379,10 @@ if(session){
             trackObject={mixpanel}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
+            onPrintClick={ImpressaoAPS}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados} 
           />
         ]
     ]
@@ -362,30 +400,9 @@ if(session){
                 url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
                 label="VOLTAR" link="/inicio"
             />
-        {
-            tabelaDataAPS &&
-            <div style={{marginLeft:"auto"}}>
-              {
-                  ((activeTabIndex !== 0 && activeTabIndex !== 1)) &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoAPS}
-                  />
-              }
-              {
-                  activeTitleTabIndex === 3 &&
-                  <ButtonColorSubmitIcon
-                    label="CLIQUE AQUI PARA IMPRIMIR"
-                    icon="https://media.graphassets.com/3vsKrZXYT9CdxSSyhjhk"
-                    submit={ImpressaoAPS}
-                  />
-              }
-            </div>
-        }
         </div>
         <TituloTexto
-                titulo="Lista Nominal de Gestantes"
+                titulo="Lista de Pré-Natal"
                 texto=""
                 imagem = {{posicao: null,url: ''}}
         />
@@ -408,6 +425,7 @@ if(session){
                 [
                   {
                     label: `GRÁFICO ${quadriAtualFormatado}`
+
                   },
                   {
                     label: `GRÁFICO ${quadrisFuturosFormatados}`
@@ -444,7 +462,7 @@ if(session){
                       label: 'GESTANTES ATIVAS'
                     },
                     {
-                      label: 'GESTANTES ENCERRADAS'
+                      label: 'GESTANTES ENCERRADAS' 
                     },
                   ],
                   [

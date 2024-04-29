@@ -1,18 +1,30 @@
 import axios from "axios";
 import { API_URL_USUARIOS } from "../constants/API_URL";
 import FormData from "form-data";
+import mixpanel from "mixpanel-browser";
 
-const solicitarNovaSenhaClient = async(mail)=>{
+const verificarCPF = async(cpf)=>{
+  mixpanel.track('button_click', {
+    'button_action': 'proximo_inseriu_cpf',
+    'login_flow': 'esqueceu_senha'
+  });
+
   let data = new FormData();
-  data.append('mail', mail);
+  data.append('cpf', cpf.replace(/\D/g, ''));
 
   let config = {
       method: 'post',
-      url: API_URL_USUARIOS + 'suporte/ger_usuarios/solicitar-nova-senha',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/validar-cpf',
       data : data
     };
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_inseriu_cpf",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
@@ -23,9 +35,46 @@ const solicitarNovaSenhaClient = async(mail)=>{
 
 }
 
-const alterarSenhaClient = async(mail,codigo,nova_senha)=>{
+const solicitarNovaSenha = async(cpf)=>{
+  mixpanel.track('button_click', {
+    'button_action': 'enviar_codigo_telefone',
+    'login_flow': 'esqueceu_senha'
+  });
+
   let data = new FormData();
-  data.append('mail', mail);
+  data.append('cpf', cpf);
+
+  let config = {
+      method: 'post',
+      url: API_URL_USUARIOS + 'suporte/ger_usuarios/solicitar-nova-senha',
+      data : data
+    };
+  const res = await axios(config)
+  .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_enviar_codigo_telefone",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
+    return response.data;
+  })
+  .catch(function (error) {
+    return error.response.data
+  });
+
+  return res
+
+}
+
+const alterarSenha = async(cpf,codigo,nova_senha)=>{
+  mixpanel.track('button_click', {
+    'button_action': 'proximo_criou_senha',
+    'login_flow': 'esqueceu_senha'
+  });
+
+  let data = new FormData();
+  data.append('cpf', cpf);
   data.append('codigo', codigo);
   data.append('nova_senha', nova_senha);
 
@@ -37,6 +86,12 @@ const alterarSenhaClient = async(mail,codigo,nova_senha)=>{
 
   const res = await axios(config)
   .then(function (response) {
+    !response.data.success &&
+    mixpanel.track('validation_error', {
+      'button_action': "proximo_criou_senha",
+      'error_message': response.data.mensagem,
+      'login_flow' : "esqueceu_senha",
+    });
     return response.data;
   })
   .catch(function (error) {
@@ -47,9 +102,9 @@ const alterarSenhaClient = async(mail,codigo,nova_senha)=>{
 
 }
 
-const validarCodigoClient = async(mail,codigo)=>{
+const validarCodigo = async(cpf,codigo)=>{
   let data = new FormData();
-  data.append('mail', mail);
+  data.append('cpf', cpf);
   data.append('codigo', codigo);
 
   let config = {
@@ -70,22 +125,4 @@ const validarCodigoClient = async(mail,codigo)=>{
 }
 
 
-const solicitarNovaSenha = async(mail)=>{
-  const res = await solicitarNovaSenhaClient(mail)
-    if (res?.success == true) return true
-    return false
-}
-
-const validarCodigo = async(mail,codigo)=>{
-  const res = await validarCodigoClient(mail,codigo)
-    if (res == true) return true
-    return false
-}
-
-const alterarSenha = async(mail,codigo,nova_senha)=>{
-  const res = await alterarSenhaClient(mail,codigo,nova_senha)
-    if (res?.success == true) return true
-    return false
-}
-
-export {solicitarNovaSenha,alterarSenha,validarCodigo}
+export {solicitarNovaSenha,alterarSenha,validarCodigo, verificarCPF}

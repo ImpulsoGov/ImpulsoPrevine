@@ -32,9 +32,14 @@ const IndicadorTresTabelaGestantesAtivas = ({
     trackObject,
     aba,
     sub_aba,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesAtivas"
     trackObject={trackObject}
     lista="gestantes"
@@ -68,7 +73,6 @@ const IndicadorTresTabelaGestantesAtivas = ({
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
     atualizacao = {new Date(tabelaDataAPSGestantesAtivas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -79,7 +83,9 @@ const IndicadorTresTabelaGestantesAtivas = ({
       month: '2-digit',
       day: '2-digit'
       })}
-
+      showSnackBar={showSnackBar}
+      setShowSnackBar={setShowSnackBar}
+      setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }
 export { IndicadorTresTabelaGestantesAtivas }

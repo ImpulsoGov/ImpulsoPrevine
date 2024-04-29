@@ -32,7 +32,11 @@ const IDFiltrosOrdenacaoVacinacao = {
 const TabelaAPSQuadrimestreFuturo = ({
     tabelaDataAPS,
     tabelaData,
-    setTabelaData
+    setTabelaData,
+    onPrintClick,
+    showSnackBar,
+    setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
     const codigosPolio = [10,20,30,40]
@@ -97,6 +101,7 @@ const TabelaAPSQuadrimestreFuturo = ({
             ]}
         />
         <PainelBuscaAtiva
+            onPrintClick={onPrintClick}
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
                 {
@@ -151,6 +156,9 @@ const TabelaAPSQuadrimestreFuturo = ({
             month: '2-digit',
             day: '2-digit'
             })}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados} 
         />
     </> : <Spinner/>
 }

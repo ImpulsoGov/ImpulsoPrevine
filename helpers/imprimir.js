@@ -1,14 +1,19 @@
 import mixpanel from 'mixpanel-browser';
 import * as ReactDOMServer from 'react-dom/server';
-export const Imprimir = (escala,child,lista,aba,sub_aba="")=>{
+export const Imprimir = (
+    escala,
+    child,
+    lista,
+    aba,
+    sub_aba="",
+)=>{
     mixpanel.track('button_click', {
         'button_action': "imprimir_lista",
         'nome_lista_nominal': lista,
         'aba_lista_nominal' : aba,
         'sub_aba_lista_nominal' : sub_aba
       });
-    if (typeof window !== 'undefined') {
-        console.log(escala,child)
+    if(typeof window !== 'undefined') {
         const largura = window.innerWidth;
         const altura = window.innerHeight;
         const janelaImpressao = window.open('', '', `width=${largura},height=${altura}`);
@@ -33,4 +38,5 @@ export const Imprimir = (escala,child,lista,aba,sub_aba="")=>{
         `);
         janelaImpressao.document.close();
         janelaImpressao.print();
-    }}
+    }
+}

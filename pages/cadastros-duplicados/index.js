@@ -88,14 +88,14 @@ const Index = ({res}) => {
   },[tokenValido])
   const titlesBuscaAtiva = [
     {
-      label: "Cadastros Gestantes"
+      label: 'Cadastros Gestantes'
     },
   ]
 
   if(session){
     const labelsBuscaAtiva = [[],[]]
-    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Duplicados por Município"})
-    if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label: "Duplicados por Equipe"})
+    if(session.user.perfis.includes(8) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label:'Duplicados por Município'})
+    if(session.user.perfis.includes(9) || session.user.perfis.includes(5))  labelsBuscaAtiva[0].push({label:'Duplicados por Equipe'})
     const links = [[],[]]
     if (session.user.perfis.includes(8) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaCoordenacaoAPS(DATA_STUDIO_URL_CADASTROS_COORDENACAO_APS,session?.user?.access_token,session?.user?.municipio,session?.user?.cargo))
     if (session.user.perfis.includes(9) || session.user.perfis.includes(5)) links[0].push(urlGenBuscaAtivaEquipe(DATA_STUDIO_URL_CADASTROS_EQUIPE,session?.user?.access_token,session?.user?.municipio,session?.user?.equipe,session?.user?.cargo))
