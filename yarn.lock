@@ -1228,10 +1228,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@impulsogov/design-system@^1.0.207":
-  version "1.0.207"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.207.tgz#8df18da4351a20afee18f1492b71aa9cfc56ea4d"
-  integrity sha512-K2N32b3qgfZpaRutxopKGGSBAU7CcT96rxpd0cKVctYj9WvSz3jX3yCjdaJSZH2bOcFZN10gEfpHEinvPeGL5g==
+"@impulsogov/design-system@^1.0.208":
+  version "1.0.208"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.208.tgz#bb21af9ca65f784c7136cf1cb441b4f243e8177d"
+  integrity sha512-I9bos+cVT1vN4oElZVcjHwZdYj1qvTpLMnGoV3/5hkP2tz1mq43qCXUukNtv/WkbBHKSb4A0skZoIaPtkVVzsg==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
