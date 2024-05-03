@@ -413,6 +413,7 @@ if(session){
         <MunicipioQuadrimestre data={dataAtual} />
         <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
         <PanelSelector
+            breakLines
             components={Children}
             conteudo = "components"
             states={ {
