@@ -190,7 +190,7 @@ if(session){
           style={
               window.screen.width > 1024 ?
               {padding: "30px 80px 30px 80px",display: "flex"} :
-              {padding: "0",display: "flex"} 
+              {padding: "30px 0 0 5px",display: "flex"} 
           }>
           <ButtonLight icone={{posicao: 'right',
           url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
@@ -206,8 +206,21 @@ if(session){
               msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
       />  
       <MunicipioQuadrimestre data={dataAtual} />
+      <div 
+              style={{
+                  marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
+                  marginTop : "30px",
+                  color: "#1F1F1F",
+                  fontSize: "22px",
+                  fontFamily: "Inter",
+                  fontWeight: 500,
+                  lineHeight: "130%",
+              }}
+          >
+          {session.user.municipio}
+          </div>
       {
-          tabelaData &&
+          session?.user && tabelaData.length > 0 &&
           <PanelSelector
           components={Children}
           conteudo = "components"
