@@ -1,7 +1,7 @@
 import { 
     CardAlert,
     TituloTexto, 
-    ButtonLight, 
+    ButtonLightSubmit, 
     TabelaVacinacaoImpressao,
     PanelSelector,
     ButtonColorSubmitIcon
@@ -46,7 +46,9 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+  const [filtros_aplicados,setFiltros_aplicados] = useState(false);
+  const [voltarGatilho,setVoltarGatilho] = useState(0);
+
   const [showSnackBar,setShowSnackBar] = useState({
     open : false,
     message : "",
@@ -91,7 +93,14 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     activeTabIndex,
     filtros_aplicados,
     setShowSnackBar
-  )   
+  ) 
+  const Voltar = ()=>{
+    window.history.go(voltarGatilho*(-1))
+  }
+
+  useEffect(()=>{
+      setVoltarGatilho(voltarGatilho+1)
+  },[router.asPath])
   if(session){  
     if(session.user.perfis.includes(9) && tabelaDataEquipe){
     visao = "equipe"
@@ -146,10 +155,11 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   {padding: "30px 0 0 5px",display: "flex"} 
               }
           >
-              <ButtonLight icone={{posicao: 'right',
-                  url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-                  label="VOLTAR" link="/inicio"
-              />
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação - Equipe"
@@ -283,10 +293,11 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   {padding: "30px 0 0 5px",display: "flex"} 
               }
           >
-              <ButtonLight icone={{posicao: 'right',
-                  url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-                  label="VOLTAR" link="/inicio"
-              />
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
           </div>
           <TituloTexto
                   titulo="Lista Nominal de Vacinação"

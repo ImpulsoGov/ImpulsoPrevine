@@ -8,7 +8,8 @@ import {
     GraficoBuscaAtiva,
     TabelaCitoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon
+    ButtonColorSubmitIcon,
+    ButtonLightSubmit
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
 import React, { useState,useEffect } from 'react';
@@ -49,6 +50,7 @@ const [showSnackBar,setShowSnackBar] = useState({
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+const [voltarGatilho,setVoltarGatilho] = useState(0);
 const router = useRouter();
 let visao = null
 useEffect(() => {
@@ -127,6 +129,11 @@ const Impressao = (data)=> Imprimir(
     filtros_aplicados,
     setShowSnackBar
 )   
+const Voltar = ()=> window.history.go(voltarGatilho*(-1))
+
+useEffect(()=>{
+    setVoltarGatilho(voltarGatilho+1)
+},[router.asPath])
 if(session){  
     if(session.user.perfis.includes(9)){
         visao = "equipe"
@@ -295,9 +302,11 @@ if(session){
                 {padding: "30px 80px 30px 80px",display: "flex"} :
                 {padding: "0",display: "flex"} 
             }>
-            <ButtonLight icone={{posicao: 'right',
-            url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-            label="VOLTAR" link="/inicio"/>
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
         </div>
         <TituloTexto
                 titulo="Lista Nominal de Citopatológico"
@@ -698,9 +707,10 @@ if(session){
                     {padding: "30px 0 0 5px",display: "flex"} 
                 }
             >
-                <ButtonLight icone={{posicao: 'right',
-                    url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-                    label="VOLTAR" link="/inicio"
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
                 />
             </div>
             <TituloTexto
