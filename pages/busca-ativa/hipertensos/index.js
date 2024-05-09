@@ -140,21 +140,8 @@ const Index = ({ res }) => {
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
           />
           <MunicipioQuadrimestre data={dataAtual} />
-          <div 
-              style={{
-                  marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
-                  marginTop : "30px",
-                  color: "#1F1F1F",
-                  fontSize: "22px",
-                  fontFamily: "Inter",
-                  fontWeight: 500,
-                  lineHeight: "130%",
-              }}
-          >
-          {session.user.municipio}
-          </div>
           {
-           session?.user && tabelaDataEquipe.length > 0 &&
+           tabelaDataEquipe &&
             <ScoreCardGrid
               valores={[
                 {
