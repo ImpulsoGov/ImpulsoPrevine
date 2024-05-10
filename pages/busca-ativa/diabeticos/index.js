@@ -1,7 +1,7 @@
 import { 
   CardAlert,
   TituloTexto, 
-  ButtonLight, 
+  ButtonLightSubmit, 
   PainelBuscaAtiva , 
   ScoreCardGrid , 
   Spinner, 
@@ -43,6 +43,7 @@ const Index = ({res}) => {
     open : false
   })
   const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+  const [voltarGatilho,setVoltarGatilho] = useState(0);
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
   const DiabetesTabelaDataAPS = async()=> await tabelaDiabetesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -124,17 +125,25 @@ const Index = ({res}) => {
         undefined, { shallow: true }
       );
     }, [visao]);
-
-  if(session){  
+    const Voltar = ()=>{
+        window.history.go(voltarGatilho*(-1))
+    }
+    
+    useEffect(()=>{
+        setVoltarGatilho(voltarGatilho+1)
+    },[router.asPath])
+    if(session){  
     if(session.user.perfis.includes(9)){
       visao = "equipe"
       const dataAtual = Date.now();
         return (
         <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
-            <ButtonLight icone={{posicao: 'right',
-              url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-              label="VOLTAR" link="/inicio"/>
+          <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
           </div>
           <TituloTexto
                   titulo="Lista Nominal Diabetes"
@@ -239,9 +248,11 @@ const Index = ({res}) => {
     return (
       <>
           <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
-            <ButtonLight icone={{posicao: 'right',
-              url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-              label="VOLTAR" link="/inicio"/>
+          <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
           </div>
         <TituloTexto
                 titulo="Lista Nominal Diabetes"

@@ -1,7 +1,7 @@
 import { 
   CardAlert,
   TituloTexto, 
-  ButtonLight, 
+  ButtonLightSubmit, 
   ButtonColorSubmitIcon,
   TabelaGestantesImpressao,
   PanelSelector
@@ -72,6 +72,7 @@ const [showSnackBar,setShowSnackBar] = useState({
   open : false
 })
 const [filtros_aplicados,setFiltros_aplicados] = useState(false)
+const [voltarGatilho,setVoltarGatilho] = useState(0);
 
 const router = useRouter();
 let visao = null
@@ -132,7 +133,13 @@ const ImpressaoAPS = (data)=> Imprimir(
   filtros_aplicados,
   setShowSnackBar
 )   
+const Voltar = ()=>{
+  window.history.go(voltarGatilho*(-1))
+}
 
+useEffect(()=>{
+  setVoltarGatilho(voltarGatilho+1)
+},[router.asPath])
 if(session){  
   if(session.user.perfis.includes(9)){
     visao = "equipe"
@@ -192,9 +199,11 @@ if(session){
               {padding: "30px 80px 30px 80px",display: "flex"} :
               {padding: "0",display: "flex"} 
           }>
-          <ButtonLight icone={{posicao: 'right',
-          url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-          label="VOLTAR" link="/inicio"/>
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
       </div>
       <TituloTexto
               titulo="Lista de Pré-Natal"
@@ -396,10 +405,11 @@ if(session){
                 {padding: "30px 0 0 5px",display: "flex"} 
             }
         >
-            <ButtonLight icone={{posicao: 'right',
-                url: 'https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'}} 
-                label="VOLTAR" link="/inicio"
-            />
+                <ButtonLightSubmit 
+                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                    label="VOLTAR" 
+                    submit={Voltar}
+                />
         </div>
         <TituloTexto
                 titulo="Lista de Pré-Natal"
