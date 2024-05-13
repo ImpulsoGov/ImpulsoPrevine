@@ -93,12 +93,12 @@ const Index = ({ res }) => {
     const [TrilhasLiberadas, setTrilhasLiberadas] = useState([])
     const ProgressoClient = async () => await progresso(res[1].trilhas, session?.user?.id, session?.user?.access_token)
     const TrilhasLiberadasClient = async () => await acessoTrilhasClient(session?.user?.id, session?.user?.access_token)
-    // const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
-    // useEffect(()=>{
-    //     session &&  
-    //     NPSDataClient().then((response)=>{
-    //     setDataNPS(response)
-    // })},[session]) 
+    const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
+    useEffect(()=>{
+        session &&  
+        NPSDataClient().then((response)=>{
+        setDataNPS(response)
+    })},[session]) 
     useEffect(() => {
         session && res &&
             ProgressoClient().then((response) => {
@@ -118,14 +118,14 @@ const Index = ({ res }) => {
     if (session) {
         return (
             <>
-                 {/* {
+                 {
                     !dataNPS &&
                     <NPS 
                         user = {session?.user?.id}
                         token = {session?.user?.access_token}
                         submit = {NPSAvaliacao}
                     />                    
-                }  */}
+                } 
                       {/* <ModalAlert
                         Child = {Alert_v2}
                         childProps ={ {
