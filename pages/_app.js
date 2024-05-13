@@ -35,7 +35,6 @@ function MyApp(props) {
   const router = useRouter();
   const dynamicRoute = router.asPath;
   let path = router.pathname;
-  console.log(props.ses)
   const nome = props.ses == null || typeof (props.ses) == undefined ? "" : props.ses.user.nome;
   let width = useWindowWidth();
   const [cidade, setCidade] = useState("João Pessoa - PB");
