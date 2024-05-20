@@ -298,8 +298,8 @@ const Index = ({ res }) => {
                   top: 'top'
                 },
                 color: [
-                  '#F8D76B',
                   '#55D499',
+                  '#F8D76B',
                   '#FFA75E',
                   '#FF7C81',
                 ],
