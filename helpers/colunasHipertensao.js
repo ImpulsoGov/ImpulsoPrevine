@@ -13,7 +13,7 @@ const PrazoProximaConsultaStyle = ({value}) => {
         justifyContent: "center",
         gap: "5px",
         width: "150px",
-    };
+    }
     const prazo = {
         backgroundColor: "#FFF0E1",
         border: "1px solid #F4CCAB",
@@ -26,16 +26,16 @@ const PrazoProximaConsultaStyle = ({value}) => {
         justifyContent: "center",
         gap: "5px",
         width: "150px",
-    };
-  const style = (value=="Em dia") ? emDia : prazo
-  const icone = (value == "Em dia") ? icones.VERIFICADO : icones.ATENCAO
+    }
+    const style = (value=="Em dia") ? emDia : prazo
+    const icone = (value == "Em dia") ? icones.VERIFICADO : icones.ATENCAO
 
-  return (
-    <div style={ style }>
-      <img src={ icone } width={ 16 } height={ 16 } />
-      <div>{ value }</div>
-    </div>
-  )
+    return (
+      <div style={ style }>
+        <img src={ icone } width={ 16 } height={ 16 } />
+        <div>{ value }</div>
+      </div>
+    )
 }
 
 const FormatarData = (str) => {
@@ -62,7 +62,7 @@ const formatar_nome = ({value}) => {
     padding: '20px'
   }
   return <div style={name}>{value}</div>
-};
+}
 
 const exibirTagDataAusente = (texto) => {
   const estiloTag = {
