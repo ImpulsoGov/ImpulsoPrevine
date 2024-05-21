@@ -2,32 +2,32 @@ import * as icones from "../constants/icones";
 
 const PrazoProximaConsultaStyle = ({value})=> {
   const emDia = {
-    backgroundColor: "#E7FBF3",
-    border: "1px solid #9DEECD",
-    borderRadius: "5px",
-    color: "#1D856C",
-    padding: "3px 10px",
-    fontWeight: "600",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "5px",
-    width: "150px",
+      backgroundColor: "#E7FBF3",
+      border: "1px solid #9DEECD",
+      borderRadius: "5px",
+      color: "#1D856C",
+      padding: "3px 10px",
+      fontWeight: "600",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "5px",
+      width: "150px",
   }
   const prazo = {
-    backgroundColor: "#FFF0E1",
-    border: "1px solid #F4CCAB",
-    borderRadius: "5px",
-    color: "#E98633",
-    padding: "3px 10px",
-    fontWeight: "600",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "5px",
-    width: "150px",
+      backgroundColor: "#FFF0E1",
+      border: "1px solid #F4CCAB",
+      borderRadius: "5px",
+      color: "#E98633",
+      padding: "3px 10px",
+      fontWeight: "600",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "5px",
+      width: "150px",
   }
-  const style = (value == "Em dia") ? emDia : prazo
+  const style = (value=="Em dia") ? emDia : prazo
   const icone = (value == "Em dia") ? icones.VERIFICADO : icones.ATENCAO
 
   return (
