@@ -66,17 +66,26 @@ const Index = ({res}) => {
     "dt_afericao_pressao_mais_recente",
     "dt_consulta_mais_recente",
     ]
+  const propriedadesNumericasOrdenacao = [
+    "cidadao_idade",
+  ]
   const rotulosfiltrosHipertensao = [
-    "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+    "NOME (A - Z)",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)",
     "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
     "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "IDADE (CRESCENTE)",
     ]
   const IDFiltrosHipertensao = {
-    "NOMES DE A-Z": "cidadao_nome",
+    "NOME (A - Z)": "cidadao_nome",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)": "acs_nome_cadastro",
     "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
     "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)": "dt_afericao_pressao_mais_recente",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_consulta",
+    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_afericao_pa",
+    "IDADE (CRESCENTE)": "cidadao_idade",
     }
   const IDFiltrosOrdenacaoHipertensao = {
     "cidadao_nome" : "asc",
@@ -85,6 +94,7 @@ const Index = ({res}) => {
     "dt_afericao_pressao_mais_recente" : "asc",
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
+    "cidadao_idade": "asc",
   }
   const Impressao = (data)=> Imprimir(
     0.78,
@@ -201,6 +211,7 @@ const Index = ({res}) => {
                 data={tabelaData}
                 setData={setTabelaData}
                 datefiltros={datefiltrosHipertensao}
+                IntFiltros={propriedadesNumericasOrdenacao}
                 IDFiltros={IDFiltrosHipertensao}
                 rotulosfiltros={rotulosfiltrosHipertensao} 
                 IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}   
@@ -473,6 +484,7 @@ const Index = ({res}) => {
             data={tabelaData}
             setData={setTabelaData}
             datefiltros={datefiltrosHipertensao}
+            IntFiltros={propriedadesNumericasOrdenacao}
             IDFiltros={IDFiltrosHipertensao}
             rotulosfiltros={rotulosfiltrosHipertensao}    
             IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}  
