@@ -40,7 +40,7 @@ export const TabelaAPS = ({
     setShowSnackBar,
     setFiltros_aplicados,
 })=>{ 
-    const TabelaAPSTratada = tabelaDataAPS.map(item=>({
+    const TabelaAPSTratada = tabelaDataAPS?.map(item=>({
         ...item,
         cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria
     }))

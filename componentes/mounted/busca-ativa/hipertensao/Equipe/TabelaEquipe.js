@@ -41,27 +41,33 @@ export const TabelaEquipe = ({
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados,
-})=> tabelaDataEquipe && tabelaData ?
+})=>{ 
+    const TabelaDataEquipeTratada = tabelaDataEquipe?.map(item=>({
+        ...item,
+        cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria
+    }))
+
+    return tabelaDataEquipe && tabelaData ?
     <PainelBuscaAtiva
     onPrintClick={Impressao}
     dadosFiltros={[
         {
-            data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
+            data: [...new Set(TabelaDataEquipeTratada.map(item => item.acs_nome_cadastro))],
             filtro: 'acs_nome_cadastro',
             rotulo: 'Filtrar por nome do Profissional Responsável'
         },
         {
-            data: [...new Set(tabelaDataEquipe.map(item => item.identificacao_condicao_hipertensao))],
+            data: [...new Set(TabelaDataEquipeTratada.map(item => item.identificacao_condicao_hipertensao))],
             filtro: 'identificacao_condicao_hipertensao',
             rotulo: 'Filtrar por tipo de diagnóstico'
         },
         {
-            data: [...new Set(tabelaDataEquipe.map(item => item.status_usuario))],
+            data: [...new Set(TabelaDataEquipeTratada.map(item => item.status_usuario))],
             filtro: 'status_usuario',
             rotulo: 'Filtrar por status'
         },
         {
-            data: [...new Set(tabelaDataEquipe.map(item => item.cidadao_faixa_etaria))],
+            data: [...new Set(TabelaDataEquipeTratada.map(item => item.cidadao_faixa_etaria))],
             filtro: 'cidadao_faixa_etaria',
             rotulo: 'Filtrar por faixa etária'
         },
@@ -70,7 +76,7 @@ export const TabelaEquipe = ({
     painel="hipertensao"
     tabela={{
         colunas: colunasHipertensao,
-        data:tabelaDataEquipe
+        data:TabelaDataEquipeTratada
     }}
     data={tabelaData}
     setData={setTabelaData}
@@ -96,3 +102,4 @@ export const TabelaEquipe = ({
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
+}

@@ -40,36 +40,42 @@ export const TabelaAPS = ({
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados,
-})=> tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
+})=> {
+    const TabelaAPSTratada = tabelaDataAPS?.map(item=>({
+        ...item,
+        cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria
+    }))
+
+    return tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
     onPrintClick={Impressao}
     dadosFiltros={[
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.equipe_ine_cadastro))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.equipe_ine_cadastro))],
             filtro: 'equipe_ine_cadastro',
             rotulo: 'Filtrar por INE da equipe'
         },
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_cadastro))],
             filtro: 'equipe_nome_cadastro',
             rotulo: 'Filtrar por nome da equipe'
         },
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.acs_nome_cadastro))],
             filtro: 'acs_nome_cadastro',
             rotulo: 'Filtrar por nome do Profissional Responsável'
         },
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_hipertensao))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.identificacao_condicao_hipertensao))],
             filtro: 'identificacao_condicao_hipertensao',
             rotulo: 'Filtrar por tipo de diagnóstico'
         },
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.status_usuario))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.status_usuario))],
             filtro: 'status_usuario',
             rotulo: 'Filtrar por status'
         },
         {
-            data: [...new Set(tabelaDataAPS.map(item => item.cidadao_faixa_etaria))],
+            data: [...new Set(TabelaAPSTratada.map(item => item.cidadao_faixa_etaria))],
             filtro: 'cidadao_faixa_etaria',
             rotulo: 'Filtrar por faixa etária'
         },
@@ -77,7 +83,7 @@ export const TabelaAPS = ({
     painel="hipertensao"
     tabela={{
     colunas: colunasHipertensao,
-    data:tabelaDataAPS
+    data:TabelaAPSTratada
     }}
     data={tabelaData}
     setData={setTabelaData}
@@ -103,3 +109,4 @@ export const TabelaAPS = ({
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}  
     /> : <Spinner/>
+}
