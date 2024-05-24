@@ -1,13 +1,13 @@
-import { 
+import {
   CardAlert,
-  TituloTexto, 
-  ButtonLightSubmit, 
+  TituloTexto,
+  ButtonLightSubmit,
   ButtonColorSubmitIcon,
   TabelaGestantesImpressao,
   PanelSelector
 } from "@impulsogov/design-system";
-import React, { useState,useEffect } from 'react';
-import { useSession,signOut, getSession } from "next-auth/react"
+import React, { useState, useEffect } from 'react';
+import { useSession, signOut, getSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { Imprimir } from "../../../helpers/imprimir"
 
@@ -19,7 +19,7 @@ import { colunasGestantesIndicadorUm } from "../../../helpers/colunasGestantesIn
 import { colunasGestantesIndicadorDois } from "../../../helpers/colunasGestantesIndicadorDois";
 import { colunasGestantesIndicadorTres } from "../../../helpers/colunasGestantesIndicadorTres";
 import { GraficoIndicadorUmQuadriAtual, CardsGraficoIndicadorUmQuadriAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_atual";
-import { tabelaGestantesEquipe , tabelaGestantesAPS } from "../../../services/busca_ativa/Gestantes";
+import { tabelaGestantesEquipe, tabelaGestantesAPS } from "../../../services/busca_ativa/Gestantes";
 import { TabelaEquipeGestantesAtivas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesAtivas";
 import { TabelaEquipeGestantesEncerradas } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesEncerradas";
 import { TabelaEquipeGestantesSemDUM } from "../../../componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesSemDUM";
@@ -50,340 +50,401 @@ import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadr
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 
 export async function getServerSideProps(ctx) {
-const session = await getSession(ctx)
-const redirect = redirectHome(ctx,session)
-if(redirect) return redirect
-const res = [
-  await getData(LAYOUT),
-]
-return {
-  props: {
-    res : res
+  const session = await getSession(ctx)
+  const redirect = redirectHome(ctx, session)
+  if (redirect) return redirect
+  const res = [
+    await getData(LAYOUT),
+  ]
+  return {
+    props: {
+      res: res
+    }
   }
 }
-}
 
-const Index = ({res}) => {
-const { data: session,status } = useSession()
-const [tabelaDataAPS, setTabelaDataAPS] = useState();
-const [activeTabIndex, setActiveTabIndex] = useState(0);
-const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-const [showSnackBar,setShowSnackBar] = useState({
-  open : false
-})
-const [filtros_aplicados,setFiltros_aplicados] = useState(false)
-const [voltarGatilho,setVoltarGatilho] = useState(0);
+const Index = ({ res }) => {
+  const { data: session, status } = useSession()
+  const [tabelaDataAPS, setTabelaDataAPS] = useState();
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+  const [showSnackBar, setShowSnackBar] = useState({
+    open: false
+  })
+  const [filtros_aplicados, setFiltros_aplicados] = useState(false)
+  const [voltarGatilho, setVoltarGatilho] = useState(0);
+  const PainelComLegenda = ({ children }) => {
+    return (
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0" }}>
+        {children}
+        <div style={{ marginTop: "20px" }}>
+          <strong style={{ paddingLeft: "10px" }}>Legenda:</strong>
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>IG: </b>Idade gestacional em semanas
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>DPP: </b>Data provável do parto
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>DUM: </b>Data da última menstruação informada pela paciente ou pela ultrassonografia.
 
-const router = useRouter();
-let visao = null
-useEffect(() => {
-  router.push({
-    pathname: router.pathname,
-    query: { 
-      aba: activeTitleTabIndex,
-      sub_aba : activeTabIndex,
-      visao : visao
-    }
-  },
-    undefined, { shallow: true }
-  );
-}, [activeTabIndex,activeTitleTabIndex]);
-
-const GestantesTabelaDataAPS = async()=> await tabelaGestantesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
-useEffect(()=>{
-  session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
-  GestantesTabelaDataAPS().then((response)=>{
-  setTabelaDataAPS(response)
-})},[session]) 
-const [tabelaDataEquipe, setTabelaDataEquipe] = useState([]);
-const GestantesTabelaDataEquipe = async()=> await tabelaGestantesEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
-useEffect(()=>{
-  session &&  session.user.perfis.includes(9) &&
-  GestantesTabelaDataEquipe().then((response)=>{
-    setTabelaDataEquipe(response.data)
-})},[session]) 
-const [tabelaData, setTabelaData] = useState([]);
-const colunasImpressao = {
-  0 : colunasGestantesIndicadorUm,
-  1 : colunasGestantesIndicadorDois,
-  2 : colunasGestantesIndicadorTres,
-  3 : colunasGestantesIndicadorUm
-}
-const colunasImpressaoEquipe = {
-  0 : colunasGestantesEquipe,
-  1 : colunasGestantesEquipe,
-  2 : colunasGestantesEncerradasEquipe,
-}
-
-const ImpressaoEquipe = (data)=> Imprimir(
-  0.78,
-  <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
-  "gestantes",
-  activeTitleTabIndex,
-  activeTabIndex,
-  filtros_aplicados,
-  setShowSnackBar
-)   
-const ImpressaoAPS = (data)=> Imprimir(
-  0.78,
-  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
-  "gestantes",
-  activeTitleTabIndex,
-  activeTabIndex,
-  filtros_aplicados,
-  setShowSnackBar
-)   
-const Voltar = ()=>{
-  window.history.go(voltarGatilho*(-1))
-}
-
-useEffect(()=>{
-  setVoltarGatilho(voltarGatilho+1)
-},[router.asPath])
-if(session){  
-  if(session.user.perfis.includes(9)){
-    visao = "equipe"
-    const dataAtual = Date.now();
-    const Children = [[
-      [
-        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesAtivas
-          tabelaDataEquipe={tabelaDataEquipe}
-          tabelaData={tabelaData}
-          setTabelaData={setTabelaData}
-          trackObject={mixpanel}
-          aba={activeTitleTabIndex}
-          sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
-          showSnackBar={showSnackBar}
-          setShowSnackBar={setShowSnackBar}
-          setFiltros_aplicados={setFiltros_aplicados}
-        />
-      ],
-      [
-        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesSemDUM
-          tabelaDataEquipe={tabelaDataEquipe}
-          tabelaData={tabelaData}
-          setTabelaData={setTabelaData}
-          trackObject={mixpanel}
-          aba={activeTitleTabIndex}
-          sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
-          showSnackBar={showSnackBar}
-          setShowSnackBar={setShowSnackBar}
-          setFiltros_aplicados={setFiltros_aplicados}
-        />
-      ],
-      [
-        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
-        <TabelaEquipeGestantesEncerradas
-          tabelaDataEquipe={tabelaDataEquipe}
-          tabelaData={tabelaData}
-          setTabelaData={setTabelaData}
-          trackObject={mixpanel}
-          aba={activeTitleTabIndex}
-          sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
-          showSnackBar={showSnackBar}
-          setShowSnackBar={setShowSnackBar}
-          setFiltros_aplicados={setFiltros_aplicados}
-        />
-      ]
-    ]]
-  return (
-      <>
-      <div 
-          style={
-              window.screen.width > 1024 ?
-              {padding: "30px 80px 30px 80px",display: "flex"} :
-              {padding: "0",display: "flex"} 
-          }>
-                <ButtonLightSubmit 
-                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
-                    label="VOLTAR" 
-                    submit={Voltar}
-                />
+        </div>
       </div>
-      <TituloTexto
-              titulo="Lista de Pré-Natal"
-              texto=""
-              imagem = {{posicao: null,url: ''}}
-      />
-      <CardAlert
-              destaque="IMPORTANTE: "
-              msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-      />  
-      <MunicipioQuadrimestre data={dataAtual} />
-      {
-          tabelaData &&
-          <PanelSelector
-          components={Children}
-          conteudo = "components"
-          states={{
-              activeTabIndex: Number(activeTabIndex),
-              setActiveTabIndex: setActiveTabIndex,
-              activeTitleTabIndex: activeTitleTabIndex,
-              setActiveTitleTabIndex: setActiveTitleTabIndex
-          }}
+    );
+  };
+  const PainelComLegendaIndUm = ({ children }) => {
+    return (
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0" }}>
+        {children}
+        <div style={{ marginTop: "20px" }}>
+          <strong style={{ paddingLeft: "10px" }}>Legenda:</strong>
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>IG: </b>Idade gestacional em semanas
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>DPP: </b>Data provável do parto
+        </div>
+      </div>
+    );
+  };
+  const PainelComLegendaInd2e3 = ({ children }) => {
+    return (
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0" }}>
+        {children}
+        <div style={{ marginTop: "20px" }}>
+          <strong style={{ paddingLeft: "10px" }}>Legenda:</strong>
+          <br />
+          <br />
+          <b style={{ paddingLeft: "10px" }}>DPP: </b>Data provável do parto
+        </div>
+      </div>
+    );
+  };
 
-          list={[
-              [
+  const router = useRouter();
+  let visao = null
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: {
+        aba: activeTitleTabIndex,
+        sub_aba: activeTabIndex,
+        visao: visao
+      }
+    },
+      undefined, { shallow: true }
+    );
+  }, [activeTabIndex, activeTitleTabIndex]);
+
+  const GestantesTabelaDataAPS = async () => await tabelaGestantesAPS(session?.user?.municipio_id_sus, session?.user?.access_token)
+  useEffect(() => {
+    session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
+      GestantesTabelaDataAPS().then((response) => {
+        setTabelaDataAPS(response)
+      })
+  }, [session])
+  const [tabelaDataEquipe, setTabelaDataEquipe] = useState([]);
+  const GestantesTabelaDataEquipe = async () => await tabelaGestantesEquipe(session?.user?.municipio_id_sus, session?.user?.equipe, session?.user?.access_token)
+  useEffect(() => {
+    session && session.user.perfis.includes(9) &&
+      GestantesTabelaDataEquipe().then((response) => {
+        setTabelaDataEquipe(response.data)
+      })
+  }, [session])
+  const [tabelaData, setTabelaData] = useState([]);
+  const colunasImpressao = {
+    0: colunasGestantesIndicadorUm,
+    1: colunasGestantesIndicadorDois,
+    2: colunasGestantesIndicadorTres,
+    3: colunasGestantesIndicadorUm
+  }
+  const colunasImpressaoEquipe = {
+    0: colunasGestantesEquipe,
+    1: colunasGestantesEquipe,
+    2: colunasGestantesEncerradasEquipe,
+  }
+
+  const ImpressaoEquipe = (data) => Imprimir(
+    0.78,
+    <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
+    "gestantes",
+    activeTitleTabIndex,
+    activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const ImpressaoAPS = (data) => Imprimir(
+    0.78,
+    <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
+    "gestantes",
+    activeTitleTabIndex,
+    activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const Voltar = () => {
+    window.history.go(voltarGatilho * (-1))
+  }
+
+  useEffect(() => {
+    setVoltarGatilho(voltarGatilho + 1)
+  }, [router.asPath])
+  if (session) {
+    if (session.user.perfis.includes(9)) {
+      visao = "equipe"
+      const dataAtual = Date.now();
+      const Children = [[
+        [
+          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
+          <TabelaEquipeGestantesAtivas
+            tabelaDataEquipe={tabelaDataEquipe}
+            tabelaData={tabelaData}
+            setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
+            onPrintClick={ImpressaoEquipe}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
+          />,
+          <PainelComLegenda />
+        ],
+        [
+          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
+          <TabelaEquipeGestantesSemDUM
+            tabelaDataEquipe={tabelaDataEquipe}
+            tabelaData={tabelaData}
+            setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
+            onPrintClick={ImpressaoEquipe}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
+          />,
+          <PainelComLegenda />
+        ],
+        [
+          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
+          <TabelaEquipeGestantesEncerradas
+            tabelaDataEquipe={tabelaDataEquipe}
+            tabelaData={tabelaData}
+            setTabelaData={setTabelaData}
+            trackObject={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
+            onPrintClick={ImpressaoEquipe}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
+          />,
+          <PainelComLegenda />
+        ]
+      ]]
+      return (
+        <>
+          <div
+            style={
+              window.screen.width > 1024 ?
+                { padding: "30px 80px 30px 80px", display: "flex" } :
+                { padding: "0", display: "flex" }
+            }>
+            <ButtonLightSubmit
+              icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+              label="VOLTAR"
+              submit={Voltar}
+            />
+          </div>
+          <TituloTexto
+            titulo="Lista de Pré-Natal"
+            texto=""
+            imagem={{ posicao: null, url: '' }}
+          />
+          <CardAlert
+            destaque="IMPORTANTE: "
+            msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
+          />
+          <MunicipioQuadrimestre data={dataAtual} />
+          {
+            tabelaData &&
+            <PanelSelector
+              components={Children}
+              conteudo="components"
+              states={{
+                activeTabIndex: Number(activeTabIndex),
+                setActiveTabIndex: setActiveTabIndex,
+                activeTitleTabIndex: activeTitleTabIndex,
+                setActiveTitleTabIndex: setActiveTitleTabIndex
+              }}
+
+              list={[
+                [
                   {
-                      label: 'GESTANTES ATIVAS'
+                    label: 'GESTANTES ATIVAS'
                   },
                   {
-                      label: 'GESTANTES SEM DUM'
+                    label: 'GESTANTES SEM DUM'
                   },
                   {
                     label: 'GESTANTES ENCERRADAS'
                   }
-            ],
+                ],
               ]}
-          titles={[
-                  {
-                      label: ''
-                  },
+              titles={[
+                {
+                  label: ''
+                },
               ]}
-          />
-  }
-  </>
-  )
-  }
-  if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
-    visao = "aps"
-    const dataAtual = Date.now();
-    const quadriAtualFormatado = dataAtual
-      ? `${formatarQuadrimestres([obterDadosQuadrimestre(dataAtual)])}`
-      : "";
-    const quadrisFuturosFormatados = dataAtual
-      ? formatarQuadrimestres(obterDadosProximosQuadrimestres(dataAtual), ' + ')
-      : "";
-    const Children = [
+            />
+          }
+        </>
+      )
+    }
+    if (session.user.perfis.includes(5) || session.user.perfis.includes(8)) {
+      visao = "aps"
+      const dataAtual = Date.now();
+      const quadriAtualFormatado = dataAtual
+        ? `${formatarQuadrimestres([obterDadosQuadrimestre(dataAtual)])}`
+        : "";
+      const quadrisFuturosFormatados = dataAtual
+        ? formatarQuadrimestres(obterDadosProximosQuadrimestres(dataAtual), ' + ')
+        : "";
+      const Children = [
         [
-            [
-              <CardsGraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-              <CardsGraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-              <IndicadorUmCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
-              <IndicadorUmTabelaGestantesAtivas 
-                  tabelaDataAPS={tabelaDataAPS} 
-                  tabelaData={tabelaData} 
-                  setTabelaData={setTabelaData}
-                  trackObject={mixpanel}
-                  aba={activeTitleTabIndex}
-                  sub_aba={activeTabIndex}
-                  onPrintClick={ImpressaoAPS}
-                  showSnackBar={showSnackBar}
-                  setShowSnackBar={setShowSnackBar}
-                  setFiltros_aplicados={setFiltros_aplicados}       
-              />
-            ],
-            [
-                <IndicadorUmCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorUmTabelaGestantesEncerradas 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                    trackObject={mixpanel}
-                    aba={activeTitleTabIndex}
-                    sub_aba={activeTabIndex}
-                    onPrintClick={ImpressaoAPS}
-                    showSnackBar={showSnackBar}
-                    setShowSnackBar={setShowSnackBar}
-                    setFiltros_aplicados={setFiltros_aplicados}         
-                />,
-            ],
+          [
+            <CardsGraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorUmQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <CardsGraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorUmQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <IndicadorUmCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorUmTabelaGestantesAtivas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaIndUm />
+          ],
+          [
+            <IndicadorUmCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorUmTabelaGestantesEncerradas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaIndUm />
+          ],
         ],
         [
-            [
-                <CardsGraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-                <GraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-              <CardsGraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-                <IndicadorDoisCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorDoisTabelaGestantesAtivas 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                    trackObject={mixpanel}
-                    aba={activeTitleTabIndex}
-                    sub_aba={activeTabIndex}
-                    onPrintClick={ImpressaoAPS}
-                    showSnackBar={showSnackBar}
-                    setShowSnackBar={setShowSnackBar}
-                    setFiltros_aplicados={setFiltros_aplicados}         
-                />,
-            ],
-            [
-                <IndicadorDoisCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorDoisTabelaGestantesEncerradas 
-                  tabelaDataAPS={tabelaDataAPS} 
-                  tabelaData={tabelaData} 
-                  setTabelaData={setTabelaData}
-                  trackObject={mixpanel}
-                  aba={activeTitleTabIndex}
-                  sub_aba={activeTabIndex}
-                  onPrintClick={ImpressaoAPS}
-                  showSnackBar={showSnackBar}
-                  setShowSnackBar={setShowSnackBar}
-                  setFiltros_aplicados={setFiltros_aplicados}       
-                />,
-            ],
+          [
+            <CardsGraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorDoisQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <CardsGraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorDoisQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <IndicadorDoisCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorDoisTabelaGestantesAtivas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaInd2e3 />
+          ],
+          [
+            <IndicadorDoisCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorDoisTabelaGestantesEncerradas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaInd2e3 />
+          ],
         ],
         [
-            [
-              <CardsGraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-              <CardsGraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-              <GraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS}/>,
-            ],
-            [
-                <IndicadorTresCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorTresTabelaGestantesAtivas 
-                    tabelaDataAPS={tabelaDataAPS} 
-                    tabelaData={tabelaData} 
-                    setTabelaData={setTabelaData}
-                    trackObject={mixpanel}
-                    aba={activeTitleTabIndex}
-                    sub_aba={activeTabIndex}
-                    onPrintClick={ImpressaoAPS}
-                    showSnackBar={showSnackBar}
-                    setShowSnackBar={setShowSnackBar}
-                    setFiltros_aplicados={setFiltros_aplicados}         
-                />,
-            ],
-            [
-                <IndicadorTresCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS}/>,
-                <IndicadorTresTabelaGestantesEncerradas 
-                  tabelaDataAPS={tabelaDataAPS} 
-                  tabelaData={tabelaData} 
-                  setTabelaData={setTabelaData}
-                  trackObject={mixpanel}
-                  aba={activeTitleTabIndex}
-                  sub_aba={activeTabIndex}
-                  onPrintClick={ImpressaoAPS}
-                  showSnackBar={showSnackBar}
-                  setShowSnackBar={setShowSnackBar}
-                  setFiltros_aplicados={setFiltros_aplicados}       
-                />,
-            ],
+          [
+            <CardsGraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorTresQuadriAtual tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <CardsGraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+            <GraficoIndicadorTresQuadriFuturo tabelaDataAPS={tabelaDataAPS} />,
+          ],
+          [
+            <IndicadorTresCardsGestantesAtivas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorTresTabelaGestantesAtivas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaInd2e3 />
+          ],
+          [
+            <IndicadorTresCardsGestantesEncerradas tabelaDataAPS={tabelaDataAPS} />,
+            <IndicadorTresTabelaGestantesEncerradas
+              tabelaDataAPS={tabelaDataAPS}
+              tabelaData={tabelaData}
+              setTabelaData={setTabelaData}
+              trackObject={mixpanel}
+              aba={activeTitleTabIndex}
+              sub_aba={activeTabIndex}
+              onPrintClick={ImpressaoAPS}
+              showSnackBar={showSnackBar}
+              setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
+            />,
+            <PainelComLegendaInd2e3 />
+          ],
         ],
         [
-          <TabelaGestantesSemDUM 
-            tabelaDataAPS={tabelaDataAPS} 
-            tabelaData={tabelaData} 
+          <>
+          <TabelaGestantesSemDUM
+            tabelaDataAPS={tabelaDataAPS}
+            tabelaData={tabelaData}
             setTabelaData={setTabelaData}
             trackObject={mixpanel}
             aba={activeTitleTabIndex}
@@ -391,121 +452,123 @@ if(session){
             onPrintClick={ImpressaoAPS}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
-            setFiltros_aplicados={setFiltros_aplicados} 
+            setFiltros_aplicados={setFiltros_aplicados}
           />
-        ]
-    ]
+          <PainelComLegenda />
+        </>
+        ],
+      ]
 
-    return (
-    <>
-        <div 
+      return (
+        <>
+          <div
             style={
-                window.screen.width > 1024 ?
-                {padding: "30px 80px 30px 80px",display: "flex"} :
-                {padding: "30px 0 0 5px",display: "flex"} 
+              window.screen.width > 1024 ?
+                { padding: "30px 80px 30px 80px", display: "flex" } :
+                { padding: "30px 0 0 5px", display: "flex" }
             }
-        >
-                <ButtonLightSubmit 
-                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
-                    label="VOLTAR" 
-                    submit={Voltar}
-                />
-        </div>
-        <TituloTexto
-                titulo="Lista de Pré-Natal"
-                texto=""
-                imagem = {{posicao: null,url: ''}}
-        />
-        <CardAlert
+          >
+            <ButtonLightSubmit
+              icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+              label="VOLTAR"
+              submit={Voltar}
+            />
+          </div>
+          <TituloTexto
+            titulo="Lista de Pré-Natal"
+            texto=""
+            imagem={{ posicao: null, url: '' }}
+          />
+          <CardAlert
             destaque="IMPORTANTE: "
             msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-        />  
-        <MunicipioQuadrimestre data={dataAtual} />
-        <CardsAPS tabelaDataAPS={tabelaDataAPS}/>
-        <PanelSelector
+          />
+          <MunicipioQuadrimestre data={dataAtual} />
+          <CardsAPS tabelaDataAPS={tabelaDataAPS} />
+          <PanelSelector
             breakLines
             components={Children}
-            conteudo = "components"
-            states={ {
-                activeTabIndex: Number(activeTabIndex),
-                setActiveTabIndex: setActiveTabIndex,
-                activeTitleTabIndex: activeTitleTabIndex,
-                setActiveTitleTabIndex: setActiveTitleTabIndex
-              } }
+            conteudo="components"
+            states={{
+              activeTabIndex: Number(activeTabIndex),
+              setActiveTabIndex: setActiveTabIndex,
+              activeTitleTabIndex: activeTitleTabIndex,
+              setActiveTitleTabIndex: setActiveTitleTabIndex
+            }}
             list={[
-                [
-                  {
-                    label: `GRÁFICO ${quadriAtualFormatado}`
+              [
+                {
+                  label: `GRÁFICO ${quadriAtualFormatado}`
 
-                  },
-                  {
-                    label: `GRÁFICO ${quadrisFuturosFormatados}`
-                  },
-                {
-                    label: 'GESTANTES ATIVAS'
-                  },
-                  {
-                    label: 'GESTANTES ENCERRADAS'
-                  },
-                ],
-                [
-                  {
-                    label: `GRÁFICO ${quadriAtualFormatado}`
-                  },
-                  {
-                    label: `GRÁFICO ${quadrisFuturosFormatados}`
-                  },
-                  {
-                      label: 'GESTANTES ATIVAS'
-                    },
-                    {
-                      label: 'GESTANTES ENCERRADAS'
-                    },
-                  ],
-                  [
-                    {
-                      label: `GRÁFICO ${quadriAtualFormatado}`
-                    },
-                    {
-                      label: `GRÁFICO ${quadrisFuturosFormatados}`
-                    },
-                      {
-                      label: 'GESTANTES ATIVAS'
-                    },
-                    {
-                      label: 'GESTANTES ENCERRADAS' 
-                    },
-                  ],
-                  [
-                    {
-                      label: 'GESTANTES SEM DUM'
-                    },    
-                  ]
-
-                  ]}
-              titles={[
-                {
-                    label: 'INDICADOR 1 (6 CONSULTAS)'
                 },
                 {
-                    label: 'INDICADOR 2 (EXAME DE HIV E SÍFILIS)'
+                  label: `GRÁFICO ${quadrisFuturosFormatados}`
                 },
                 {
-                    label: 'INDICADOR 3 (ATENDIMENTO ODONTO)'
+                  label: 'GESTANTES ATIVAS'
                 },
+                {
+                  label: 'GESTANTES ENCERRADAS'
+                },
+              ],
+              [
+                {
+                  label: `GRÁFICO ${quadriAtualFormatado}`
+                },
+                {
+                  label: `GRÁFICO ${quadrisFuturosFormatados}`
+                },
+                {
+                  label: 'GESTANTES ATIVAS'
+                },
+                {
+                  label: 'GESTANTES ENCERRADAS'
+                },
+              ],
+              [
+                {
+                  label: `GRÁFICO ${quadriAtualFormatado}`
+                },
+                {
+                  label: `GRÁFICO ${quadrisFuturosFormatados}`
+                },
+                {
+                  label: 'GESTANTES ATIVAS'
+                },
+                {
+                  label: 'GESTANTES ENCERRADAS'
+                },
+              ],
+              [
                 {
                   label: 'GESTANTES SEM DUM'
                 },
+              ]
 
             ]}
-        />
-    </>
-    )
+            titles={[
+              {
+                label: 'INDICADOR 1 (6 CONSULTAS)'
+              },
+              {
+                label: 'INDICADOR 2 (EXAME DE HIV E SÍFILIS)'
+              },
+              {
+                label: 'INDICADOR 3 (ATENDIMENTO ODONTO)'
+              },
+              {
+                label: 'GESTANTES SEM DUM'
+              },
+
+            ]}
+          />
+        </>
+      )
+    }
+  } else {
+    if (status !== "authenticated" && status !== "loading") signOut()
   }
-}else{
-  if(status !== "authenticated" && status !== "loading" ) signOut()
-}
-if(status=="unauthenticated") router.push('/')
+  if (status == "unauthenticated") router.push('/')
 }
 
 export default Index;
