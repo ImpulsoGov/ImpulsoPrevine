@@ -6,7 +6,6 @@ import {
   ScoreCardGrid , 
   Spinner, 
   GraficoBuscaAtiva,
-  ButtonColorSubmitIcon,
   TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -21,6 +20,8 @@ import { tabelaDiabetesEquipe , tabelaDiabetesAPS } from "../../../services/busc
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
+import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -188,57 +189,15 @@ const Index = ({res}) => {
                 ]}
              />
             }
-            {
-              tabelaDataEquipe && tabelaData ?
-              <PainelBuscaAtiva
-                onPrintClick={Impressao}
-                dadosFiltros={[
-                  {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
-                    filtro: 'acs_nome_cadastro',
-                    rotulo: 'Filtrar por nome do Profissional Responsável'
-                  },
-                  {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.identificacao_condicao_diabetes))],
-                    filtro: 'identificacao_condicao_diabetes',
-                    rotulo: 'Filtrar por tipo de diagnóstico'
-                  },
-                  {
-                    data: [...new Set(tabelaDataEquipe.map(item => item.equipe_nome_cadastro))],
-                    filtro: 'equipe_nome_cadastro',
-                    rotulo: 'Filtrar por nome da equipe'
-                  },
-                ]}
-                painel="diabetes"
-                tabela={{
-                  colunas: colunasDiabetes,
-                  data:tabelaDataEquipe
-                }}
-                data={tabelaData}
-                setData={setTabelaData}
-                datefiltros={datefiltrosDiabetes}
-                IDFiltros={IDFiltrosDiabetes}
-                rotulosfiltros={rotulosfiltrosDiabetes}   
-                IDFiltrosOrdenacao={IDFiltrosOrdenacaoDiabetes} 
-                atualizacao = {new Date(tabelaDataEquipe.reduce((maisRecente, objeto) => {
-                  const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-                  const dataMaisRecenteAnterior = new Date(maisRecente);
-                  return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-              }, "2000-01-01")).toLocaleString('pt-BR', { 
-                timeZone: 'UTC',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-               })}
-              trackObject={mixpanel}
-              lista="diabetes"
-              aba={null}
-              sub_aba={null}
+            <TabelaEquipe
+              tabelaData={tabelaData}
+              tabelaDataEquipe={tabelaDataEquipe}
+              Impressao={Impressao}
+              setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
-              /> : <Spinner/>
-            }
+            />
         </>
       )
   }
@@ -461,57 +420,15 @@ const Index = ({res}) => {
           }}
           />
         }
-        {
-          tabelaDataAPS && tabelaData ?
-          <PainelBuscaAtiva
-            onPrintClick={Impressao}
-            dadosFiltros={[
-              {
-                data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
-                filtro: 'acs_nome_cadastro',
-                rotulo: 'Filtrar por nome do Profissional Responsável'
-              },
-              {
-                data: [...new Set(tabelaDataAPS.map(item => item.identificacao_condicao_diabetes))],
-                filtro: 'identificacao_condicao_diabetes',
-                rotulo: 'Filtrar por tipo de diagnóstico'
-              },
-              {
-                data: [...new Set(tabelaDataAPS.map(item => item.equipe_nome_cadastro))],
-                filtro: 'equipe_nome_cadastro',
-                rotulo: 'Filtrar por nome da equipe'
-              },
-            ]}
-            painel="diabetes"
-            tabela={{
-              colunas: colunasDiabetes,
-              data:tabelaDataAPS
-            }}
-            data={tabelaData}
-            setData={setTabelaData}
-            datefiltros={datefiltrosDiabetes}
-            IDFiltros={IDFiltrosDiabetes}
-            rotulosfiltros={rotulosfiltrosDiabetes}
-            IDFiltrosOrdenacao={IDFiltrosOrdenacaoDiabetes} 
-            atualizacao = {new Date(tabelaDataAPS.reduce((maisRecente, objeto) => {
-              const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-              const dataMaisRecenteAnterior = new Date(maisRecente);
-              return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-          }, "2000-01-01")).toLocaleString('pt-BR', { 
-            timeZone: 'UTC',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-           })}
-           trackObject={mixpanel}
-           lista="diabetes"
-           aba={null}
-           sub_aba={null}
-           showSnackBar={showSnackBar}
-           setShowSnackBar={setShowSnackBar}
-           setFiltros_aplicados={setFiltros_aplicados}
-          /> : <Spinner/>
-        }
+        <TabelaAPS
+          tabelaData={tabelaData}
+          tabelaDataAPS={tabelaDataAPS}
+          Impressao={Impressao}
+          setTabelaData={setTabelaData}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
+        />
       </>
     )
 }
