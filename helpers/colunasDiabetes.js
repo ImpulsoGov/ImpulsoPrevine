@@ -59,7 +59,7 @@ const colunasDiabetes = [
     align: 'center',
     field: 'cidadao_cpf_dt_nascimento',
     headerAlign: 'center',
-    headerName: 'CPF',
+    headerName: 'CPF/DATA DE NASCIMENTO',
     renderCell : FormatarDataNascimento,
     width: 130,
     sortable : false
