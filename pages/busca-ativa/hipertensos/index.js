@@ -117,17 +117,17 @@ const Index = ({ res }) => {
 
   const PainelComLegenda = ({ children }) => {
     return (
-      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0" }}>
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px"  }}>
         {children}
-        <div style={{ marginTop: "20px" }}>
-          <strong style={{ paddingLeft: "10px" }}>Legenda:</strong>
+        <div>
+          <strong style={{ paddingLeft: "30px" }}>Legenda:</strong>
           <br />
           <br />
-          <b style={{ paddingLeft: "10px" }}>Tipo de diagnóstico: </b>
+          <b style={{ paddingLeft: "30px" }}>Tipo de diagnóstico: </b>
           <br />
-          <p style={{ paddingLeft: "10px" }}>Autorreferido - a condição foi identificada como “autorreferida” quando é relatada pelo usuário na realização do Cadastro Individual.</p>
-          <p style={{ paddingLeft: "10px" }}>Diagnóstico Clínico - a condição foi identificada como “autorreferida” quando é relatada pelo usuário na realização do Cadastro Individual.</p>
-          <b style={{ paddingLeft: "10px" }}>PA: </b> Pressão arterial.
+          <p style={{ paddingLeft: "30px" }}>Autorreferido - a condição foi identificada como “autorreferida” quando é relatada pelo usuário na realização do Cadastro Individual.</p>
+          <p style={{ paddingLeft: "30px" }}>Diagnóstico Clínico - a condição foi identificada como “autorreferida” quando é relatada pelo usuário na realização do Cadastro Individual.</p>
+          <b style={{ paddingLeft: "30px" }}>PA: </b> Pressão arterial.
         
         </div>
       </div>
