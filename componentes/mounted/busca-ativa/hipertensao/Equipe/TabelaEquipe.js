@@ -44,7 +44,8 @@ export const TabelaEquipe = ({
 })=>{ 
     const TabelaDataEquipeTratada = tabelaDataEquipe?.map(item=>({
         ...item,
-        cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria
+        cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria,
+        status_usuario : item.status_usuario == "Consulta e solicitação de hemoglobina em dia" ? " Consulta e solicitação de hemoglobina em dia" : item.status_usuario
     }))
 
     return tabelaDataEquipe && tabelaData ?
