@@ -147,7 +147,7 @@ const Index = ({res}) => {
               }
               <TabelaEquipe
                 tabelaData={tabelaData}
-                tabelaDataAPS={tabelaDataEquipe}
+                tabelaDataEquipe={tabelaDataEquipe}
                 Impressao={Impressao}
                 setTabelaData={setTabelaData}
                 showSnackBar={showSnackBar}
