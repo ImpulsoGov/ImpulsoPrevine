@@ -125,14 +125,14 @@ const GraficoIndicadorTresQuadriFuturo = ({tabelaDataAPS}) =>{
                         name: 'Gestantes com atendimento odontológico realizado',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
                     {
                         name: 'Gestantes sem atendimento odontológico realizado',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.id_atendimento_odontologico == 2) ?
                         acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
                     ],
                     emphasis: {

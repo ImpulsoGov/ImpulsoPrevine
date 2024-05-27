@@ -518,34 +518,34 @@ if(session){
                                 name: 'Coleta em dia',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 12) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(0)
                             },
                             {
                                 name: 'Nunca realizou coleta',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 13) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(0)
                             },
                             {
                                 name: 'Coleta com menos de 25 anos',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 14) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(0)
                             },
                             {
                                 name: 'Vence no final do quadrimestre',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 15) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(0)
                             },
                             {
                                 name: 'Coleta vencida',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 16) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(0)
                             }
                             ],
                             emphasis: {

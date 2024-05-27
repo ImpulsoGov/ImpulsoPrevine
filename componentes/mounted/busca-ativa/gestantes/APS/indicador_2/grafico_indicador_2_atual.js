@@ -157,26 +157,26 @@ const GraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) => {
                         name: 'Nenhum exame identificado',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_exame_hiv_sifilis == 3) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
                     {
                         name: 'Os dois exames identificados',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_exame_hiv_sifilis == 4) ?
                         acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
                     {
                         name: 'Ex. de Sífilis não identificado',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_exame_hiv_sifilis == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
                     {
                         name: 'Ex. de HIV não identificado',
                         value: ((dataQuadriAtual.reduce((acumulador,item)=>{ 
                         return (item.id_exame_hiv_sifilis == 2) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriAtual.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(0)
                     },
 
                     ],

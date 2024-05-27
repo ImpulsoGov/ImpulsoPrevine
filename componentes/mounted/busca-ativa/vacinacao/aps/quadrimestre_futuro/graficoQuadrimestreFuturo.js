@@ -168,7 +168,7 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                         name: 'Crianças com os dois esquemas vacinais completos',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_polio == 1 || item.id_status_polio == 10) && item.id_status_penta == 1) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2),
+                        },0)*100)/dataQuadriFuturo.length).toFixed(0),
                         itemStyle: {
                             color: '#55D499' 
                         }
@@ -180,7 +180,7 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                         ((item.id_status_polio == 3 || item.id_status_polio == 30) || item.id_status_penta == 3)) || 
                         ((item.id_status_polio == 4 || item.id_status_polio == 40) && item.id_status_penta == 4)) ?
                         acumulador + 1 : acumulador;
-                        },0)*-100)/dataQuadriFuturo.length)+100).toFixed(2),
+                        },0)*-100)/dataQuadriFuturo.length)+100).toFixed(0),
                         itemStyle: {
                             color: '#FFA75E' 
                         }
@@ -189,7 +189,7 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                         name: 'Crianças com pelo menos uma dose em atraso',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_polio == 3 || item.id_status_polio == 30) || item.id_status_penta == 3) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2),
+                        },0)*100)/dataQuadriFuturo.length).toFixed(0),
                         itemStyle: {
                             color: '#FF7C81' 
                         }
@@ -198,7 +198,7 @@ const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
                         name: 'Crianças com os dois esquemas vacinais não iniciados',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_polio == 4 || item.id_status_polio == 40) && item.id_status_penta == 4) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.length).toFixed(2),
+                        },0)*100)/dataQuadriFuturo.length).toFixed(0),
                         itemStyle: {
                             color: '#A6B5BE' 
                         }
