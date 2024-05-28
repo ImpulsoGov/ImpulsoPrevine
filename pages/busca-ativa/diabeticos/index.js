@@ -149,7 +149,12 @@ const Index = ({res}) => {
       const dataAtual = Date.now();
         return (
         <>
-          <div style={{padding: "30px 80px 30px 80px",display: "flex"}}>
+          <div 
+            style={
+              window.screen.width > 1024 ?
+              {padding: "30px 80px 30px 80px",display: "flex"} :
+              {padding: "30px 0 0 5px",display: "flex"} 
+            }>
           <ButtonLightSubmit 
                     icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
                     label="VOLTAR" 
