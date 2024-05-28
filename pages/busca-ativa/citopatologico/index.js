@@ -141,18 +141,18 @@ if(session){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de mulheres',
+                descricao: 'Total de pessoas',
                 valor: tabelaDataEquipe.length
             },
             {
-                descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
+                descricao: 'Total de pessoas que nunca relizaram a coleta de citopatológico',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 13) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
             {
-                descricao: 'Total de mulheres com a coleta vencida ou a vencer até o fim do quadrimestre',
+                descricao: 'Total de pessoas com a coleta vencida ou a vencer até o fim do quadrimestre',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
                 acumulador + 1 : acumulador;
@@ -163,11 +163,11 @@ if(session){
         const CardsChildComExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de mulheres',
+                descricao: 'Total de pessoas',
                 valor: tabelaDataEquipe.length
             },
             {
-                descricao: 'Total de mulheres com a coleta de citopatológico em dia',
+                descricao: 'Total de pessoas com a coleta de citopatológico em dia',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 12) ?
                 acumulador + 1 : acumulador;
@@ -333,10 +333,10 @@ if(session){
             list={[
                 [
                     {
-                        label: 'MULHERES COM EXAME A SER REALIZADO'
+                        label: 'PESSOAS COM EXAME A SER REALIZADO'
                     },
                     {
-                        label: 'MULHERES EM DIA COM EXAME'
+                        label: 'PESSOAS EM DIA COM EXAME'
                     }
                 ],
                 ]}
@@ -356,25 +356,25 @@ if(session){
         const CardsChild = tabelaDataAPS ? <ScoreCardGrid
             valores={[
                 {
-                    descricao: 'Total de mulheres de 25 a 64 anos',
+                    descricao: 'Total de pessoas de 25 a 64 anos',
                     valor: tabelaDataAPS.length
                 },
                 {
-                    descricao: 'Total de mulheres com a coleta de citopatológico em dia',
+                    descricao: 'Total de pessoas com a coleta de citopatológico em dia',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 12) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
-                    descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
+                    descricao: 'Total de pessoas que nunca relizaram a coleta de citopatológico',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 13) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
-                    descricao: 'Total de mulheres com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
+                    descricao: 'Total de pessoas com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
                     acumulador + 1 : acumulador;
@@ -400,7 +400,7 @@ if(session){
                     fontWeight: 500,
                     lineHeight: "130%",
                 }}>
-                    Mulheres dentro da faixa etaria de 25 a 64 anos 
+                    Pessoas dentro da faixa etaria de 25 a 64 anos 
                 </h2>
                 <GraficoBuscaAtiva
                     dataBarra={{
@@ -738,10 +738,10 @@ if(session){
                         label: 'GRÁFICOS'
                     },
                     {
-                        label: 'MULHERES COM EXAME A SER REALIZADO'
+                        label: 'PESSOAS COM EXAME A SER REALIZADO'
                     },
                     {
-                        label: 'MULHERES EM DIA COM EXAME'
+                        label: 'PESSOAS EM DIA COM EXAME'
                     }
                     ],
                     ]}
