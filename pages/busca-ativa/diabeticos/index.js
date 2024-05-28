@@ -79,40 +79,7 @@ const Index = ({res}) => {
       if(tokenValido!=true && tokenValido!==undefined) signOut()
     }
   },[tokenValido])
-  const datefiltrosDiabetes = [
-    "dt_consulta_mais_recente",
-    "dt_solicitacao_hemoglobina_glicada_mais_recente"
-  ]
-  const propriedadesNumericasOrdenacao = [
-    "cidadao_idade",
-  ]
-  const rotulosfiltrosDiabetes = [
-    "NOME (A - Z)",
-    "PROFISSIONAL RESPONSÁVEL (A - Z)",
-    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
-    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
-    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
-    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
-    "IDADE (CRESCENTE)",
-  ]
-  const IDFiltrosDiabetes = {
-    "NOME (A - Z)": "cidadao_nome",
-    "PROFISSIONAL RESPONSÁVEL (A - Z)": "acs_nome_cadastro",
-    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
-    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
-    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_consulta",
-    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_solicitacao_hemoglobina",
-    "IDADE (CRESCENTE)": "cidadao_idade",
-  }
-  const IDFiltrosOrdenacaoDiabetes = {
-    "cidadao_nome" : "asc",
-    "acs_nome_cadastro" : "asc",
-    "dt_consulta_mais_recente" : "asc",
-    "prazo_proxima_consulta" : "asc",
-    "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
-    "prazo_proxima_solicitacao_hemoglobina" : "asc",
-    "cidadao_idade": "asc",
-  }
+
   const Impressao = (data)=> Imprimir(
     0.78,
     <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,

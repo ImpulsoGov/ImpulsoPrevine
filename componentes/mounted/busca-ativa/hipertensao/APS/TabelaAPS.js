@@ -5,6 +5,41 @@ import {
 import { colunasHipertensao } from "../../../../../helpers/colunasHipertensao";
 import mixpanel from 'mixpanel-browser';
 
+const datefiltrosHipertensao = [
+    "dt_afericao_pressao_mais_recente",
+    "dt_consulta_mais_recente",
+]
+const propriedadesNumericasOrdenacao = [
+    "cidadao_idade",
+]
+const rotulosfiltrosHipertensao = [
+    "NOME (A - Z)",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "IDADE (CRESCENTE)",
+]
+const IDFiltrosHipertensao = {
+    "NOME (A - Z)": "cidadao_nome",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)": "acs_nome_cadastro",
+    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
+    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)": "dt_afericao_pressao_mais_recente",
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_consulta",
+    "PRAZO PARA PRÓXIMA AFERIÇÃO DE PA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_afericao_pa",
+    "IDADE (CRESCENTE)": "cidadao_idade",
+}
+const IDFiltrosOrdenacaoHipertensao = {
+    "cidadao_nome" : "asc",
+    "dt_consulta_mais_recente" : "asc",
+    "prazo_proxima_consulta" : "asc",
+    "dt_afericao_pressao_mais_recente" : "asc",
+    "prazo_proxima_afericao_pa" : "asc",
+    "acs_nome_cadastro" : "asc",
+    "cidadao_idade": "asc",
+}
+
 export const TabelaAPS = ({
     tabelaData,
     tabelaDataAPS,
@@ -62,6 +97,7 @@ export const TabelaAPS = ({
     data={tabelaData}
     setData={setTabelaData}
     datefiltros={datefiltrosHipertensao}
+    IntFiltros={propriedadesNumericasOrdenacao}
     IDFiltros={IDFiltrosHipertensao}
     rotulosfiltros={rotulosfiltrosHipertensao}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}  

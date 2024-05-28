@@ -91,6 +91,7 @@ export const TabelaEquipe = ({
     data={tabelaData}
     setData={setTabelaData}
     datefiltros={datefiltrosHipertensao}
+    IntFiltros={propriedadesNumericasOrdenacao}
     IDFiltros={IDFiltrosHipertensao}
     rotulosfiltros={rotulosfiltrosHipertensao} 
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoHipertensao}   
