@@ -1,31 +1,51 @@
+import * as icones from "../constants/icones";
+
 const PrazoProximaConsultaStyle = ({value})=> {
   const emDia = {
       backgroundColor: "#E7FBF3",
       border: "1px solid #9DEECD",
       borderRadius: "5px",
       color: "#1D856C",
-      padding: "2px",
-      fontWeight : 550,
+      padding: "3px 10px",
+      fontWeight: "600",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "5px",
+      width: "150px",
   }
   const prazo = {
       backgroundColor: "#FFF0E1",
       border: "1px solid #F4CCAB",
       borderRadius: "5px",
       color: "#E98633",
-      padding: "2px",
-      fontWeight : 550,
+      padding: "3px 10px",
+      fontWeight: "600",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "5px",
+      width: "150px",
   }
   const style = (value=="Em dia") ? emDia : prazo
-  return <div style={style}>{value}</div>
+  const icone = (value == "Em dia") ? icones.VERIFICADO : icones.ATENCAO
+
+  return (
+    <div style={ style }>
+      <img src={ icone } width={ 16 } height={ 16 } />
+      <div>{ value }</div>
+    </div>
+  )
 }
 
 const FormatarData = (str)=>{
-  if(!str.value) return null
-  const parts = str.value.split('-');
+  if(!str) return null
+  const parts = str.split('-');
   const dia = parts[2];
   const mes = parts[1];
   const ano = parts[0];
-  const date = `${dia}/${mes}/${ano}`
+  const ano2Digitos = ano.slice(-2);
+  const date = `${dia}/${mes}/${ano2Digitos}`
   return date
 }
 const FormatarDataNascimento = (str)=>{ 
@@ -44,6 +64,29 @@ const formatar_nome = ({value})=>{
   return <div style={name}>{value}</div>
 }
 
+const exibirTagDataAusente = (texto) => {
+  const estiloTag = {
+    borderRadius: "5px",
+    border: "1px solid #A6B5BE",
+    color: "#606E78",
+    fontWeight: "600",
+    display: "flex",
+    padding: "3px 10px",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "5px",
+    width: "150px"
+  };
+
+  return (
+    <div style={ estiloTag }>
+      <img src={ icones.AMPULHETA } width={ 16 } height={ 16 } />
+      <div>{ texto }</div>
+    </div>
+  );
+};
+
+const tratarData = ({ value: data }) => data ? FormatarData(data) : exibirTagDataAusente("Não realizada");
 
 const colunasDiabetes = [
   {
@@ -68,17 +111,25 @@ const colunasDiabetes = [
     align: 'center',
     field: 'identificacao_condicao_diabetes',
     headerAlign: 'center',
-    headerName: 'IDENTIFICAÇÃO DA CONDIÇÃO',
+    headerName: 'TIPO DE DIAGNÓSTICO',
     width: 150,
     sortable : false
+  },
+  {
+    align: 'center',
+    field: 'cidadao_idade',
+    headerAlign: 'center',
+    headerName: 'IDADE (ANOS)',
+    width: 70,
+    sortable: false
   },
   {
     align: 'center',
     field: 'dt_consulta_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA CONSULTA',
-    renderCell : FormatarData,
-    width: 120,
+    renderCell : tratarData,
+    width: 180,
     sortable : false
   },
   {
@@ -87,7 +138,7 @@ const colunasDiabetes = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 130,
+    width: 180,
     sortable : false
   },
   {
@@ -95,7 +146,7 @@ const colunasDiabetes = [
     field: 'dt_solicitacao_hemoglobina_glicada_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA',
-    renderCell : FormatarData,
+    renderCell : tratarData,
     width: 180,
     sortable : false
   },

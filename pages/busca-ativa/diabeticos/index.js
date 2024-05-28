@@ -83,17 +83,26 @@ const Index = ({res}) => {
     "dt_consulta_mais_recente",
     "dt_solicitacao_hemoglobina_glicada_mais_recente"
   ]
+  const propriedadesNumericasOrdenacao = [
+    "cidadao_idade",
+  ]
   const rotulosfiltrosDiabetes = [
-    "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
+    "NOME (A - Z)",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)",
     "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
-    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA GLICADA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA (DO MAIS PRÓXIMO AO MAIS DISTANTE)",
+    "IDADE (CRESCENTE)",
   ]
   const IDFiltrosDiabetes = {
-    "NOMES DE A-Z": "cidadao_nome",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome_cadastro",
+    "NOME (A - Z)": "cidadao_nome",
+    "PROFISSIONAL RESPONSÁVEL (A - Z)": "acs_nome_cadastro",
     "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
-    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA GLICADA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "DATA DA SOLICITAÇÃO DE HEMOGLOBINA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    "PRAZO PARA PRÓXIMA CONSULTA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_consulta",
+    "PRAZO PARA PRÓXIMA SOLICITAÇÃO DE HEMOGLOBINA (DO MAIS PRÓXIMO AO MAIS DISTANTE)": "prazo_proxima_solicitacao_hemoglobina",
+    "IDADE (CRESCENTE)": "cidadao_idade",
   }
   const IDFiltrosOrdenacaoDiabetes = {
     "cidadao_nome" : "asc",
@@ -102,6 +111,7 @@ const Index = ({res}) => {
     "prazo_proxima_consulta" : "asc",
     "dt_solicitacao_hemoglobina_glicada_mais_recente" : "asc",
     "prazo_proxima_solicitacao_hemoglobina" : "asc",
+    "cidadao_idade": "asc",
   }
   const Impressao = (data)=> Imprimir(
     0.78,

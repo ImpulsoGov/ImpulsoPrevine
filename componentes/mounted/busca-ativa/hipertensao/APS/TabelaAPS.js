@@ -5,33 +5,6 @@ import {
 import { colunasHipertensao } from "../../../../../helpers/colunasHipertensao";
 import mixpanel from 'mixpanel-browser';
 
-
-const datefiltrosHipertensao = [
-    "dt_afericao_pressao_mais_recente",
-    "dt_consulta_mais_recente",
-    ]
-  const rotulosfiltrosHipertensao = [
-    "NOMES DE A-Z",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",
-    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
-    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)",
-    ]
-  const IDFiltrosHipertensao = {
-    "NOMES DE A-Z": "cidadao_nome",
-    "DATA DA CONSULTA (DA MAIS ANTIGA PARA A MAIS RECENTE)" : "dt_consulta_mais_recente",
-    "DATA DA AFERIÇÃO DE PA (DA MAIS ANTIGA PARA A MAIS RECENTE)": "dt_afericao_pressao_mais_recente",
-    "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z" : "acs_nome_cadastro"
-    }
-  const IDFiltrosOrdenacaoHipertensao = {
-    "cidadao_nome" : "asc",
-    "dt_consulta_mais_recente" : "asc",
-    "prazo_proxima_consulta" : "asc",
-    "dt_afericao_pressao_mais_recente" : "asc",
-    "prazo_proxima_afericao_pa" : "asc",
-    "acs_nome_cadastro" : "asc",
-  }
-
-
 export const TabelaAPS = ({
     tabelaData,
     tabelaDataAPS,
