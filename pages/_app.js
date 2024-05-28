@@ -21,6 +21,7 @@ import { LAYOUT } from '../utils/QUERYS';
 
 import mixpanel from 'mixpanel-browser';
 import { hotjar } from 'react-hotjar'
+import { log_out } from '../hooks/log_out';
 
 
 
@@ -44,9 +45,7 @@ function MyApp(props) {
   useEffect(() => TagManager.initialize(tagManagerArgs), []);
   useEffect(() => rotaDinamica(router), [router.events]);
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
-  //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
-
   useEffect(() => {
     hotjar.initialize(3496492, 6);
   }, [])

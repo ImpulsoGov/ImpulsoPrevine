@@ -1,6 +1,7 @@
 import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession,signOut, getSession } from "next-auth/react"
+import { useRouter } from 'next/router'
 import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
@@ -10,6 +11,7 @@ import { generatePDF } from '../../helpers/generatePDF'
 import { NPSConsulta, NPSAvaliacao } from "../../services/NPS"
 import { ModalAlert , AtualizacaoCadastral } from "../../componentes/ModalAlert/ModalAlert"
 import style from "./ModalAlert.module.css";
+import { log_out } from '../../hooks/log_out'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -94,6 +96,7 @@ const Index = ({ res }) => {
     const ProgressoClient = async () => await progresso(res[1].trilhas, session?.user?.id, session?.user?.access_token)
     const TrilhasLiberadasClient = async () => await acessoTrilhasClient(session?.user?.id, session?.user?.access_token)
     const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
+    const router = useRouter()
     useEffect(()=>{
         session &&  
         NPSDataClient().then((response)=>{
@@ -115,6 +118,7 @@ const Index = ({ res }) => {
         if (cargo == "Impulser") return cargo
     }
     const cargo = cargo_transform(session?.user?.cargo)
+    useEffect(()=>{log_out(session)},[session])
     if (session) {
         return (
             <>
