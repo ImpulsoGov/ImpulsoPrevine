@@ -76,19 +76,19 @@ const Index = ({ res }) => {
   
   const PainelComLegenda = ({ children }) => {
     return (
-    <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px" }}>
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
         {children}
         <div>
-          <strong style={{ paddingLeft: "30px" }}>Legenda:</strong>
+          <strong style={{fontSize: "16px"}}>Legenda</strong>
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>IG: </b>Idade gestacional em semanas
+          <b>IG: </b>Idade gestacional em semanas.
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>DPP: </b>Data provável do parto
+          <b>DPP: </b>Data provável do parto.
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>DUM: </b>Data da última menstruação informada pela paciente ou pela ultrassonografia.
+          <b>DUM: </b>Data da última menstruação informada pela paciente ou pela ultrassonografia.
 
         </div>
       </div>
@@ -96,29 +96,29 @@ const Index = ({ res }) => {
   };
   const PainelComLegendaIndUm = ({ children }) => {
     return (
-      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px" }}>
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
         {children}
         <div >
-          <strong style={{ paddingLeft: "30px" }}>Legenda:</strong>
+          <strong style={{fontSize: "16px"}}>Legenda</strong>
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>IG: </b>Idade gestacional em semanas
+          <b>IG: </b>Idade gestacional em semanas.
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>DPP: </b>Data provável do parto
+          <b>DPP: </b>Data provável do parto.
         </div>
       </div>
     );
   };
   const PainelComLegendaInd2e3 = ({ children }) => {
     return (
-      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px" }}>
+      <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
         {children}
         <div>
-          <strong style={{ paddingLeft: "30px" }}>Legenda:</strong>
+          <strong style={{fontSize: "16px"}}>Legenda</strong>
           <br />
           <br />
-          <b style={{ paddingLeft: "30px" }}>DPP: </b>Data provável do parto
+          <b>DPP: </b>Data provável do parto.
         </div>
       </div>
     );
