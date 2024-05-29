@@ -15,7 +15,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
+import { colunasHipertensao, colunasHipertensaoAPS } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
@@ -86,7 +86,7 @@ const Index = ({res}) => {
     "prazo_proxima_afericao_pa" : "asc",
     "acs_nome_cadastro" : "asc",
   }
-  const Impressao = (data)=> Imprimir(
+  const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
     <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
     "hipertensao",
@@ -94,7 +94,16 @@ const Index = ({res}) => {
     null,
     filtros_aplicados,
     setShowSnackBar
-  )   
+  )
+  const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoAPS} fontFamily="sans-serif" />,
+    "hipertensao",
+    null,
+    null,
+    filtros_aplicados,
+    setShowSnackBar
+  )
   const router = useRouter();
   let visao = null
   useEffect(() => {
@@ -175,7 +184,7 @@ const Index = ({res}) => {
             {
               tabelaDataEquipe && tabelaData ?
               <PainelBuscaAtiva
-                onPrintClick={Impressao}
+                onPrintClick={ImpressaoEquipe}
                 dadosFiltros={[
                   {
                     data: [...new Set(tabelaDataEquipe.map(item => item.acs_nome_cadastro))],
@@ -447,7 +456,7 @@ const Index = ({res}) => {
         {
           tabelaDataAPS && tabelaData ?
           <PainelBuscaAtiva
-            onPrintClick={Impressao}
+            onPrintClick={ImpressaoAPS}
             dadosFiltros={[
               {
                 data: [...new Set(tabelaDataAPS.map(item => item.acs_nome_cadastro))],
@@ -467,7 +476,7 @@ const Index = ({res}) => {
             ]}
             painel="hipertensao"
             tabela={{
-              colunas: colunasHipertensao,
+              colunas: colunasHipertensaoAPS,
               data:tabelaDataAPS
             }}
             data={tabelaData}
