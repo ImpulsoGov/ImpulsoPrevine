@@ -17,7 +17,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasCito } from "../../../helpers/colunasCito";
+import { colunasCito, colunasCitoAPS } from "../../../helpers/colunasCito";
 import { Imprimir } from "../../../helpers/imprimir"
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
@@ -120,7 +120,7 @@ const IDFiltrosOrdenacaoCito = {
     "vencimento_da_coleta" : "asc",
     "prazo_proxima_coleta" : "asc",
 }
-const Impressao = (data)=> Imprimir(
+const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
     <TabelaCitoImpressao data={data} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
@@ -128,7 +128,16 @@ const Impressao = (data)=> Imprimir(
     activeTabIndex,
     filtros_aplicados,
     setShowSnackBar
-)   
+)
+const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    "citopatologico",
+    activeTitleTabIndex,
+    activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
+)
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
 
 useEffect(()=>{
@@ -179,7 +188,7 @@ if(session){
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
-        onPrintClick={Impressao}
+        onPrintClick={ImpressaoEquipe}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
@@ -237,7 +246,7 @@ if(session){
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
-        onPrintClick={Impressao}
+        onPrintClick={ImpressaoEquipe}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
@@ -584,7 +593,7 @@ if(session){
             </>
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
-            onPrintClick={Impressao}
+            onPrintClick={ImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -611,7 +620,7 @@ if(session){
             ]}
             painel="cito"
             tabela={{
-            colunas: colunasCito,
+            colunas: colunasCitoAPS,
             data:tabelaDataAPSSemExame
             }}
             data={tabelaData}
@@ -642,7 +651,7 @@ if(session){
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
-            onPrintClick={Impressao}
+            onPrintClick={ImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
@@ -669,7 +678,7 @@ if(session){
             ]}
             painel="cito"
             tabela={{
-            colunas: colunasCito,
+            colunas: colunasCitoAPS,
             data:tabelaDataAPSComExame
             }}
             data={tabelaData}
