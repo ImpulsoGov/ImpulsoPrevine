@@ -435,6 +435,11 @@ const Index = ({ res }) => {
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
         />
+          {
+            tabelaDataEquipe ?
+              <PainelComLegenda /> : <Spinner />
+          }
+
       </>
     )
 }
