@@ -272,10 +272,10 @@ const Index = ({ res }) => {
                   top: 'top'
                 },
                 color: [
-                  '#EABF2E',
-                  '#57C7DC',
-                  '#7579EA',
-                  '#E95F3A',
+                  '#55D499',
+                  '#F8D76B',
+                  '#FFA75E',
+                  '#FF7C81',
                 ],
                 grid: {
                   containLabel: true,
@@ -283,10 +283,10 @@ const Index = ({ res }) => {
                 },
                 legend: {
                   data: [
-                    'Apenas consulta em dia',
-                    'Consulta e solicitação de hemoglobina glicada em dia',
-                    'Apenas solicitação de hemoglobina glicada em dia',
-                    'Nada em dia'
+                    'Consulta e solicitação de hemoglobina em dia',
+                    'Apenas a consulta a fazer',
+                    'Apenas a solicitação de hemoglobina a fazer',
+                    'Os dois a fazer'
                   ],
                   top: '50',
                   left: '80'
@@ -294,19 +294,19 @@ const Index = ({ res }) => {
                 series: [
                   {
                     data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                      if (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                       return acumulador
                     }, {})),
-                    name: 'Apenas consulta em dia',
+                    name: 'Consulta e solicitação de hemoglobina em dia',
                     stack: 'stack',
                     type: 'bar'
                   },
                   {
                     data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                      if (item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                       return acumulador
                     }, {})),
-                    name: 'Consulta e solicitação de hemoglobina glicada em dia',
+                    name: 'Apenas a consulta a fazer',
                     stack: 'stack',
                     type: 'bar'
                   },
@@ -315,7 +315,7 @@ const Index = ({ res }) => {
                       if (item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                       return acumulador
                     }, {})),
-                    name: 'Apenas solicitação de hemoglobina glicada em dia',
+                    name: 'Apenas a solicitação de hemoglobina a fazer',
                     stack: 'stack',
                     type: 'bar'
                   },
@@ -324,7 +324,7 @@ const Index = ({ res }) => {
                       if (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                       return acumulador
                     }, {})),
-                    name: 'Nada em dia',
+                    name: 'Os dois a fazer',
                     stack: 'stack',
                     type: 'bar'
                   }
@@ -352,44 +352,44 @@ const Index = ({ res }) => {
                 title: {
                   text: 'Consolidado Municipal',
                   left: '80'
-                },            
+                },
                 color: [
-                  '#EABF2E',
-                  '#57C7DC',
-                  '#7579EA',
-                  '#E95F3A',
+                  '#55D499',
+                  '#F8D76B',
+                  '#FFA75E',
+                  '#FF7C81',
                 ],
                 series: [
                   {
                     avoidLabelOverlap: false,
                     data: [
                       {
-                        name: 'Apenas consulta em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
-                          return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
-                          acumulador + 1 : acumulador;
-                        },0)*100)/tabelaDataAPS.length)
-                      },
-                      {
-                        name: 'Consulta e Solicitação de Hemoglobina Glicada em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        name: 'Consulta e solicitação de hemoglobina em dia',
+                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
-                          acumulador + 1 : acumulador;
-                        },0)*100)/tabelaDataAPS.length)
+                            acumulador + 1 : acumulador;
+                        }, 0) * 100) / tabelaDataAPS.length)
                       },
                       {
-                        name: 'Apenas Solicitação de Hemoglobina Glicada em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        name: 'Apenas a consulta a fazer',
+                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                          return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
+                            acumulador + 1 : acumulador;
+                        }, 0) * 100) / tabelaDataAPS.length)
+                      },
+                      {
+                        name: 'Apenas a solicitação de hemoglobina a fazer',
+                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
-                          acumulador + 1 : acumulador;
-                        },0)*100)/tabelaDataAPS.length)
+                            acumulador + 1 : acumulador;
+                        }, 0) * 100) / tabelaDataAPS.length)
                       },
                       {
-                        name: 'Nada em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                        name: 'Os dois a fazer',
+                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
-                          acumulador + 1 : acumulador;
-                        },0)*100)/tabelaDataAPS.length)
+                            acumulador + 1 : acumulador;
+                        }, 0) * 100) / tabelaDataAPS.length)
                       }
                     ],
                     emphasis: {
