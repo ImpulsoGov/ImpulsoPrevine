@@ -53,11 +53,6 @@ const IndicadorUmTabelaGestantesAtivas = ({
             rotulo: 'Filtrar por número de consultas'
         },
         {
-            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],
-            filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
-        },
-        {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_nome))],
             filtro: 'equipe_nome',
             rotulo: 'Filtrar por nome da equipe'
@@ -66,6 +61,11 @@ const IndicadorUmTabelaGestantesAtivas = ({
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_ine.toString()))],
             filtro: 'equipe_ine',
             rotulo: 'Filtrar por INE da equipe'
+        },
+        {
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],
+            filtro: 'gestacao_quadrimestre',
+            rotulo: 'Filtrar por quadrimestre'
         },
     ]}
     painel="gestantes"

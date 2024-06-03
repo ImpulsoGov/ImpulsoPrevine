@@ -47,9 +47,10 @@ const IndicadorTresTabelaGestantesAtivas = ({
     sub_aba={sub_aba}
     dadosFiltros={[
         {
-            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],
-            filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.id_atendimento_odontologico.toString()))],
+            labels : {1 : "Sim", 2 : "Não"},
+            filtro: 'id_atendimento_odontologico',
+            rotulo: 'Filtrar por atendimento odontológico'
         },
         {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_nome))],
@@ -62,10 +63,9 @@ const IndicadorTresTabelaGestantesAtivas = ({
             rotulo: 'Filtrar por INE da equipe'
         },
         {
-            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.id_atendimento_odontologico.toString()))],
-            labels : {1 : "Sim", 2 : "Não"},
-            filtro: 'id_atendimento_odontologico',
-            rotulo: 'Filtrar por atendimento odontológico'
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],
+            filtro: 'gestacao_quadrimestre',
+            rotulo: 'Filtrar por quadrimestre'
         },
     ]}
     painel="gestantes"
