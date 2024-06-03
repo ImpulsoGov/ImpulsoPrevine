@@ -61,6 +61,12 @@ const IndicadorTresTabelaGestantesAtivas = ({
             filtro: 'equipe_ine',
             rotulo: 'Filtrar por INE da equipe'
         },
+        {
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.id_atendimento_odontologico.toString()))],
+            labels : {1 : "Sim", 2 : "Não"},
+            filtro: 'id_atendimento_odontologico',
+            rotulo: 'Filtrar por atendimento odontológico'
+        },
     ]}
     painel="gestantes"
     tabela={{

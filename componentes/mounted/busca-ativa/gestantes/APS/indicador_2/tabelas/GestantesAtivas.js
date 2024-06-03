@@ -4,6 +4,7 @@ import {
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorDois } from "../../../../../../../helpers/colunasGestantesIndicadorDois";
 import mixpanel from 'mixpanel-browser';
+import identificacao_exame_hiv_sifilis from "../../../../../../../data/identificacao_exame_hiv_sifilis.json"
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -60,6 +61,12 @@ const IndicadorDoisTabelaGestantesAtivas = ({
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_ine.toString()))],
             filtro: 'equipe_ine',
             rotulo: 'Filtrar por INE da equipe'
+        },
+        {
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.id_exame_hiv_sifilis.toString()))],
+            labels : [...new Set(identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.map(item=> item.exame_hiv_sifilis_descricao))],
+            filtro: 'id_exame_hiv_sifilis',
+            rotulo: 'Filtrar por identificação do exame de sífilis e HIV'
         },
     ]}
     painel="gestantes"
