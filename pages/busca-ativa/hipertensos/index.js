@@ -1,13 +1,14 @@
-import { 
+import {
   CardAlert,
   TituloTexto, 
   ButtonLightSubmit, 
   ScoreCardGrid , 
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao
+  TabelaHiperDiaImpressao,
+  Spinner
 } from "@impulsogov/design-system";
-import { useSession,signOut, getSession } from "next-auth/react"
-import React, { useState,useEffect } from 'react';
+import { useSession, signOut, getSession } from "next-auth/react"
+import React, { useState, useEffect } from 'react';
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { Imprimir } from "../../../helpers/imprimir"
@@ -21,14 +22,14 @@ import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertens
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
-  const redirect = redirectHome(ctx,session)
-  if(redirect) return redirect
+  const redirect = redirectHome(ctx, session)
+  if (redirect) return redirect
   const res = [
     await getData(LAYOUT),
   ]
   return {
     props: {
-      res : res
+      res: res
     }
   }
 }
@@ -38,24 +39,26 @@ const Index = ({res}) => {
   const [showSnackBar,setShowSnackBar] = useState({
     open : false
   })
-  const [filtros_aplicados,setFiltros_aplicados] = useState(false)
-  const [voltarGatilho,setVoltarGatilho] = useState(0);
+  const [filtros_aplicados, setFiltros_aplicados] = useState(false)
+  const [voltarGatilho, setVoltarGatilho] = useState(0);
 
   const [tabelaDataAPS, setTabelaDataAPS] = useState();
-  const HipertensaoTabelaDataAPS = async()=> await tabelaHipertensaoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
-  useEffect(()=>{
+  const HipertensaoTabelaDataAPS = async () => await tabelaHipertensaoAPS(session?.user?.municipio_id_sus, session?.user?.access_token)
+  useEffect(() => {
     session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
-    HipertensaoTabelaDataAPS().then((response)=>{
-      setTabelaDataAPS(response)
-  })},[session]) 
+      HipertensaoTabelaDataAPS().then((response) => {
+        setTabelaDataAPS(response)
+      })
+  }, [session])
 
   const [tabelaDataEquipe, setTabelaDataEquipe] = useState();
-  const HipertensaoTabelaDataEquipe = async()=> await tabelaHipertensaoEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
-  useEffect(()=>{
-    session &&  session.user.perfis.includes(9) &&
-    HipertensaoTabelaDataEquipe().then((response)=>{
-      setTabelaDataEquipe(response)
-  })},[session]) 
+  const HipertensaoTabelaDataEquipe = async () => await tabelaHipertensaoEquipe(session?.user?.municipio_id_sus, session?.user?.equipe, session?.user?.access_token)
+  useEffect(() => {
+    session && session.user.perfis.includes(9) &&
+      HipertensaoTabelaDataEquipe().then((response) => {
+        setTabelaDataEquipe(response)
+      })
+  }, [session])
 
   const [tabelaData, setTabelaData] = useState([]);
 
@@ -67,16 +70,16 @@ const Index = ({res}) => {
     null,
     filtros_aplicados,
     setShowSnackBar
-  )   
+  )
   const router = useRouter();
   let visao = null
   useEffect(() => {
-      router.push({
-        pathname: router.pathname,
-        query: { 
-          aba : null,
-          sub_aba : null,
-          visao : visao
+    router.push({
+      pathname: router.pathname,
+      query: {
+        aba: null,
+        sub_aba: null,
+        visao: visao
       }
       },
         undefined, { shallow: true }
@@ -85,7 +88,24 @@ const Index = ({res}) => {
     const Voltar = ()=>{
       window.history.go(voltarGatilho*(-1))
     }
-  
+    const PainelComLegenda = ({ children }) => {
+      return (
+        <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
+          {children}
+          <div>
+            <strong style={{fontSize: "16px"}}>Legenda</strong>
+            <br />
+            <br />
+            <b>Tipo de diagnóstico:</b>
+            <br />
+            <p>Autorreferido - a condição foi identificada como “autorreferida” quando é relatada pelo usuário na realização do Cadastro Individual.</p>
+            <p>Diagnóstico Clínico - a condição foi identificada como “diagnóstico clínico” por haver atendimento individual confirmando o diagnóstico.</p>
+            <b>PA: </b> Pressão arterial.
+          
+          </div>
+        </div>
+      );
+    };
     useEffect(()=>{
         setVoltarGatilho(voltarGatilho+1)
     },[router.asPath])
@@ -159,6 +179,10 @@ const Index = ({res}) => {
                 setShowSnackBar={setShowSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
               />
+              {
+                tabelaDataEquipe ?
+                <PainelComLegenda /> : <Spinner />
+              }
           </>
         )
     }
@@ -389,7 +413,12 @@ const Index = ({res}) => {
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
             />
+            {
+              tabelaDataAPS ?
+              <PainelComLegenda /> : <Spinner />
+            }
           </>
+          
         )
     }
 }else{
