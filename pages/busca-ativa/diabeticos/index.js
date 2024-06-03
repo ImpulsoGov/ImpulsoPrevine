@@ -436,7 +436,7 @@ const Index = ({ res }) => {
           setFiltros_aplicados={setFiltros_aplicados}
         />
           {
-            tabelaDataEquipe ?
+            tabelaDataAPS ?
               <PainelComLegenda /> : <Spinner />
           }
 
