@@ -47,9 +47,9 @@ const IndicadorUmTabelaGestantesEncerradas = ({
     sub_aba={sub_aba}
     dadosFiltros={[
         {
-            data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.gestacao_quadrimestre))],
-            filtro: 'gestacao_quadrimestre',
-            rotulo: 'Filtrar por quadrimestre'
+            data: ['Maior ou igual a 6','Menor que 6'],
+            filtro: 'consultas_pre_natal_validas',
+            rotulo: 'Filtrar por número de consultas'
         },
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_nome))],
@@ -60,6 +60,11 @@ const IndicadorUmTabelaGestantesEncerradas = ({
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_ine.toString()))],
             filtro: 'equipe_ine',
             rotulo: 'Filtrar por INE da equipe'
+        },
+        {
+            data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.gestacao_quadrimestre))],
+            filtro: 'gestacao_quadrimestre',
+            rotulo: 'Filtrar por quadrimestre'
         },
     ]}
     painel="gestantes"
