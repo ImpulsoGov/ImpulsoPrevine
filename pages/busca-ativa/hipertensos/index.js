@@ -13,7 +13,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
+import { colunasHipertensao, colunasHipertensaoAPS } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
@@ -62,9 +62,18 @@ const Index = ({res}) => {
 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const Impressao = (data)=> Imprimir(
+  const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
     <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    "hipertensao",
+    null,
+    null,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoAPS} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,
@@ -173,7 +182,7 @@ const Index = ({res}) => {
               <TabelaEquipe
                 tabelaData={tabelaData}
                 tabelaDataEquipe={tabelaDataEquipe}
-                Impressao={Impressao}
+                Impressao={ImpressaoEquipe}
                 setTabelaData={setTabelaData}
                 showSnackBar={showSnackBar}
                 setShowSnackBar={setShowSnackBar}
@@ -407,7 +416,7 @@ const Index = ({res}) => {
             <TabelaAPS 
               tabelaData={tabelaData}
               tabelaDataAPS={tabelaDataAPS}
-              Impressao={Impressao}
+              Impressao={ImpressaoAPS}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}

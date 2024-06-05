@@ -2,7 +2,6 @@ import {
   CardAlert,
   TituloTexto,
   ButtonLightSubmit,
-  PainelBuscaAtiva,
   ScoreCardGrid,
   Spinner,
   GraficoBuscaAtiva,
@@ -15,7 +14,7 @@ import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken } from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { Imprimir } from "../../../helpers/imprimir"
-import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
+import { colunasDiabetes, colunasDiabetesAPS } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
@@ -100,9 +99,18 @@ const Index = ({ res }) => {
     }
   },[tokenValido])
 
-  const Impressao = (data)=> Imprimir(
+  const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
     <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    "diabetes",
+    null,
+    null,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesAPS} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,
@@ -194,7 +202,7 @@ const Index = ({ res }) => {
             <TabelaEquipe
               tabelaData={tabelaData}
               tabelaDataEquipe={tabelaDataEquipe}
-              Impressao={Impressao}
+              Impressao={ImpressaoEquipe}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
@@ -429,7 +437,7 @@ const Index = ({ res }) => {
         <TabelaAPS
           tabelaData={tabelaData}
           tabelaDataAPS={tabelaDataAPS}
-          Impressao={Impressao}
+          Impressao={ImpressaoAPS}
           setTabelaData={setTabelaData}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
