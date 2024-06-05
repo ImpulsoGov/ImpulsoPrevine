@@ -4,11 +4,11 @@ import { MUNICIPIOS } from '../constants/municipios';
 
 export const Tratamento = async (data) => {
   if (data) {
-    const TratarNome = nome => nome.split(' ').map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ').trim();
-    const TratarINE = equipe => equipe.toString().replace(/[^0-9]/g, '').padStart(10, '0');
-    const TratarMail = mail => mail.replaceAll(' ', '');
-    const TratarCPF = cpf => cpf.toString().replace(/[^0-9]/g, '');
-    const TratarTelefone = num => num.toString().replace(/[^0-9]/g, '');
+    const TratarNome = nome => nome?.split(' ').map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ').trim();
+    const TratarINE = equipe => equipe?.toString().replace(/[^0-9]/g, '').padStart(10, '0');
+    const TratarMail = mail => mail?.replaceAll(' ', '');
+    const TratarCPF = cpf => cpf?.toString().replace(/[^0-9]/g, '');
+    const TratarTelefone = num => num?.toString().replace(/[^0-9]/g, '');
     const dadosTratados = data.map(usuario => {
       return {
         'nome': TratarNome(usuario.nome),
