@@ -273,7 +273,7 @@ if(session){
         ]}
         painel="cito"
         tabela={{
-        colunas: colunasCito,
+        colunas: colunasCitoEquipe,
         data:tabelaDataEquipeComExame
         }}
         data={tabelaData}
