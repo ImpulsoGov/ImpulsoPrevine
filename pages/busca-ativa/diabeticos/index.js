@@ -14,7 +14,7 @@ import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken } from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { Imprimir } from "../../../helpers/imprimir"
-import { colunasDiabetes, colunasDiabetesAPS } from "../../../helpers/colunasDiabetes";
+import { colunasDiabetesEquipe, colunasDiabetesAPS } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
@@ -101,7 +101,7 @@ const Index = ({ res }) => {
 
   const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesEquipe} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,

@@ -13,7 +13,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasHipertensao, colunasHipertensaoAPS } from "../../../helpers/colunasHipertensao";
+import { colunasHipertensaoEquipe, colunasHipertensaoAPS } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
@@ -64,7 +64,7 @@ const Index = ({res}) => {
 
   const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoEquipe} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,
