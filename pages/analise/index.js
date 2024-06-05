@@ -70,9 +70,8 @@ const Index = ({ res }) => {
           padding="20px 30px"
           margin="0 40px"
           color="#1F1F1F"
-          fontSize="16px"
-          destaque="AVISO: "
-          msg="Os dados exibidos nessa página são referentes aos critérios do antigo Previne Brasil. As informações permanecem disponíveis para consulta, mas é importante ressaltar que, com o encerramento do programa, os resultados apresentados não devem ser considerados para o cofinanciamento da Atenção Primária à Saúde."
+          destaque={<span style={{fontSize: "16px"}}>AVISO: </span>}
+          msg={<span style={{fontSize: "16px"}}>Os dados exibidos nessa página são referentes aos critérios do antigo Previne Brasil. As informações permanecem disponíveis para consulta, mas é importante ressaltar que, com o encerramento do programa, os resultados apresentados não devem ser considerados para o cofinanciamento da Atenção Primária à Saúde.</span>}
         />
       </div>
 
