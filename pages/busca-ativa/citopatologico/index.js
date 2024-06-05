@@ -17,7 +17,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasCito, colunasCitoAPS } from "../../../helpers/colunasCito";
+import { colunasCitoEquipe, colunasCitoAPS } from "../../../helpers/colunasCito";
 import { Imprimir } from "../../../helpers/imprimir"
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
@@ -122,7 +122,7 @@ const IDFiltrosOrdenacaoCito = {
 }
 const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaCitoImpressao data={data} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    <TabelaCitoImpressao data={data} colunas={colunasCitoEquipe} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
@@ -216,7 +216,7 @@ if(session){
         ]}
         painel="cito"
         tabela={{
-        colunas: colunasCito,
+        colunas: colunasCitoEquipe,
         data:tabelaDataEquipeSemExame
         }}
         data={tabelaData}

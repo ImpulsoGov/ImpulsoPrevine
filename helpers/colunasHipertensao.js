@@ -88,7 +88,7 @@ const exibirTagDataAusente = (texto) => {
 
 const tratarData = ({ value: data }) => data ? FormatarData(data) : exibirTagDataAusente("Não realizada");
 
-const colunasHipertensao = [
+const colunasHipertensaoEquipe = [
     {
       align: 'left',
       field: 'cidadao_nome',
@@ -175,18 +175,18 @@ const colunasHipertensaoAPS = [
     field: 'cidadao_nome',
     headerAlign: 'center',
     headerName: 'NOME',
-    renderCell : formatar_nome,
+    renderCell: formatar_nome,
     width: 240,
-    sortable : false
+    sortable: false
   },
   {
     align: 'center',
     field: 'cidadao_cpf_dt_nascimento',
     headerAlign: 'center',
     headerName: 'CPF/DATA DE NASCIMENTO',
-    renderCell : FormatarDataNascimento,
+    renderCell: FormatarDataNascimento,
     width: 130,
-    sortable : false
+    sortable: false
   },
   {
     align: 'center',
@@ -194,16 +194,24 @@ const colunasHipertensaoAPS = [
     headerAlign: 'center',
     headerName: 'TIPO DE DIAGNÓSTICO',
     width: 150,
-    sortable : false
+    sortable: false
+  },
+  {
+    align: 'center',
+    field: 'cidadao_idade',
+    headerAlign: 'center',
+    headerName: 'IDADE (ANOS)',
+    width: 70,
+    sortable: false
   },
   {
     align: 'center',
     field: 'dt_consulta_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA CONSULTA',
-    renderCell : FormatarData,
-    width: 120,
-    sortable : false
+    renderCell: tratarData,
+    width: 150,
+    sortable: false
   },
   {
     align: 'center',
@@ -211,17 +219,17 @@ const colunasHipertensaoAPS = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 130,
-    sortable : false
+    width: 160,
+    sortable: false
   },
   {
     align: 'center',
     field: 'dt_afericao_pressao_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA AFERIÇÃO DE PA',
-    renderCell : FormatarData,
-    width: 130,
-    sortable : false
+    renderCell: tratarData,
+    width: 150,
+    sortable: false
   },
   {
     align: 'center',
@@ -229,8 +237,8 @@ const colunasHipertensaoAPS = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA AFERIÇÃO DE PA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 130,
-    sortable : false
+    width: 160,
+    sortable: false
   },
   {
     align: 'center',
@@ -246,8 +254,8 @@ const colunasHipertensaoAPS = [
     headerAlign: 'center',
     headerName: 'PROFISSIONAL RESPONSÁVEL',
     width: 250,
-    sortable : false
+    sortable: false
   }
 ]
 
-export { colunasHipertensao, colunasHipertensaoAPS }
+export { colunasHipertensaoEquipe, colunasHipertensaoAPS }

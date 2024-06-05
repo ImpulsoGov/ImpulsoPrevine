@@ -88,7 +88,7 @@ const exibirTagDataAusente = (texto) => {
 
 const tratarData = ({ value: data }) => data ? FormatarData(data) : exibirTagDataAusente("Não realizada");
 
-const colunasDiabetes = [
+const colunasDiabetesEquipe = [
   {
     align: 'left',
     field: 'cidadao_nome',
@@ -198,11 +198,19 @@ const colunasDiabetesAPS = [
   },
   {
     align: 'center',
+    field: 'cidadao_idade',
+    headerAlign: 'center',
+    headerName: 'IDADE (ANOS)',
+    width: 70,
+    sortable: false
+  },
+  {
+    align: 'center',
     field: 'dt_consulta_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA CONSULTA',
-    renderCell : FormatarData,
-    width: 120,
+    renderCell : tratarData,
+    width: 180,
     sortable : false
   },
   {
@@ -211,7 +219,7 @@ const colunasDiabetesAPS = [
     headerAlign: 'center',
     headerName: 'PRAZO PARA PRÓXIMA CONSULTA',
     renderCell: PrazoProximaConsultaStyle,
-    width: 130,
+    width: 180,
     sortable : false
   },
   {
@@ -219,7 +227,7 @@ const colunasDiabetesAPS = [
     field: 'dt_solicitacao_hemoglobina_glicada_mais_recente',
     headerAlign: 'center',
     headerName: 'DATA DA ÚLTIMA SOLICITAÇÃO DE HEMOGLOBINA GLICADA',
-    renderCell : FormatarData,
+    renderCell : tratarData,
     width: 180,
     sortable : false
   },
@@ -250,4 +258,4 @@ const colunasDiabetesAPS = [
   }
 ]
 
-export { colunasDiabetes, colunasDiabetesAPS }
+export { colunasDiabetesEquipe, colunasDiabetesAPS }

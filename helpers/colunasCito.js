@@ -164,7 +164,7 @@ const formatar_nome = ({value})=>{
 }
   
 
-const colunasCito=[
+const colunasCitoEquipe=[
     {
       align: 'left',
       field: 'paciente_nome',
@@ -296,4 +296,4 @@ const colunasCitoAPS = [
   }
 ]
 
-export { colunasCito, colunasCitoAPS } 
+export { colunasCitoEquipe, colunasCitoAPS } 

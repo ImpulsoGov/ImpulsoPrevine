@@ -2,7 +2,7 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
 } from "@impulsogov/design-system";
-import { colunasHipertensao } from "../../../../../helpers/colunasHipertensao";
+import { colunasHipertensaoAPS } from "../../../../../helpers/colunasHipertensao";
 import mixpanel from 'mixpanel-browser';
 
 const datefiltrosHipertensao = [
@@ -91,7 +91,7 @@ export const TabelaAPS = ({
     ]}
     painel="hipertensao"
     tabela={{
-    colunas: colunasHipertensao,
+    colunas: colunasHipertensaoAPS,
     data:TabelaAPSTratada
     }}
     data={tabelaData}
