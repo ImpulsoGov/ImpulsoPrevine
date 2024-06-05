@@ -192,7 +192,7 @@ const colunasHipertensaoAPS = [
     align: 'center',
     field: 'identificacao_condicao_hipertensao',
     headerAlign: 'center',
-    headerName: 'IDENTIFICAÇÃO DA CONDIÇÃO',
+    headerName: 'TIPO DE DIAGNÓSTICO',
     width: 150,
     sortable : false
   },

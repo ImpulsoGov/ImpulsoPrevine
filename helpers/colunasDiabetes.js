@@ -183,7 +183,7 @@ const colunasDiabetesAPS = [
     align: 'center',
     field: 'cidadao_cpf_dt_nascimento',
     headerAlign: 'center',
-    headerName: 'CPF',
+    headerName: 'CPF/DATA DE NASCIMENTO',
     renderCell : FormatarDataNascimento,
     width: 130,
     sortable : false
@@ -192,7 +192,7 @@ const colunasDiabetesAPS = [
     align: 'center',
     field: 'identificacao_condicao_diabetes',
     headerAlign: 'center',
-    headerName: 'IDENTIFICAÇÃO DA CONDIÇÃO',
+    headerName: 'TIPO DE DIAGNÓSTICO',
     width: 150,
     sortable : false
   },
