@@ -35,7 +35,7 @@ export async function getServerSideProps(ctx) {
   }
 }
 
-const Parceiros = (parceiros) => parceiros.map((logo) => 
+const Parceiros = (parceiros) => parceiros.map((logo) =>
   <Margem componente={<ImagensFull2 imagem={logo.url} alt={logo.fileName} width={300} />} />
 )
 
@@ -69,22 +69,14 @@ const Index = ({ res }) => {
             <div style={{ paddingTop: 80 }}></div>
 
             <NovoTituloTexto
-              titulo="Apoio focado no na Atenção Primária à Saúde"
-              texto="No Impulso Previne, damos suporte para profissionais da gestão e da assistência sobre os indicadores da APS, com foco atualmente no Previne Brasil."
+              titulo="Apoio focado na Atenção Primária à Saúde"
+              texto="Damos suporte para profissionais da gestão e da assistência sobre os indicadores da atenção básica"
             />
 
             <Grid12Col //Estou com um problema ao adicionar imagens aqui , acredito que terei que criar um novo componente tbm 
-              proporcao="4-4-4"
+              proporcao="6-6"
               items={[
                 <>
-                  <CardImg
-                    imagemSrc="https://media.graphassets.com/ZFonMyxQRLafcMm3Gk4J"
-                    indicador="Dados do SISAB organizados"
-                    descricao="Criamos painéis didáticos e descomplicados para você visualizar o desempenho nos indicadores de qualquer município do Brasil."
-                  />
-                </>,
-                <>
-
                   <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
                     imagemSrc="https://media.graphassets.com/7KgUfR5QK24Tgxw79bIQ"
@@ -108,7 +100,7 @@ const Index = ({ res }) => {
       <Margem
         componente={
           <>
-            <div style={{ textAlign: 'center', paddingTop: 75 }}>
+            <div style={{ textAlign: 'center'}}>
               <NovoTituloTexto
                 titulo="Apoio especializado para parceiros"
                 texto=""
@@ -117,17 +109,86 @@ const Index = ({ res }) => {
               <ImagensFull2 imagem="https://media.graphassets.com/Xe2vRkK1QUKzhlVmngCt" />
 
               <TituloSmallTexto
-                botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
+                botao={{ label: '', url: '' }}
                 imagem={{}}
                 supertitulo=""
                 titulo=""
-                texto="Selecionamos periodicamente municípios para mentorias personalizadas com nossa equipe com foco em melhorar o desempenho nos componentes do Previne Brasil. Nós oferecemos <b> ferramentas de gestão para busca ativa, treinamentos sobre boas práticas dos indicadores e encontros de dúvidas com especialistas. </b><br><br>"
+                texto="Periodicamente, selecionamos municípios para se tornarem parceiros e receberem mentorias personalizadas da nossa equipe de especialistas em saúde."
               />
             </div>
 
           </>
         }
       />
+
+<Grid12Col
+        proporcao="4-4-4"
+        items={[
+          <>
+            <Margem
+              componente={
+                <>
+                  
+                  <TituloSmallTexto
+                    key={"1"} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
+                    supertitulo="<b>🕛 Nós oferecemos: <br></br>"
+                    titulo=""
+                    texto="Ferramentas de gestão para busca ativa"
+                  />
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  
+                  <TituloSmallTexto
+                    key={"2"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    supertitulo="<br></br>"
+                    titulo=""
+                    texto="Treinamentos sobre boas práticas dos indicadores"
+                  />
+                </>
+              }
+            />
+          </>,
+          <>
+            <Margem
+              componente={
+                <>
+                  
+                  <TituloSmallTexto
+                    key={"3"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
+                    supertitulo="<br></br>"
+                    titulo=""
+                    texto="Encontros de dúvidas com especialistas"
+                  />
+                </>
+              }
+            />
+          </>,
+        ]}
+      />
+
+      <Margem
+        componente={
+          <>
+            <div style={{ textAlign: 'center' }}>
+              <TituloSmallTexto
+                botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
+                imagem={{}}
+                supertitulo=""
+                titulo=""
+                texto=""
+              />
+            </div>
+
+          </>
+        }
+      />
+
       <Margem
         componente={
           <>
@@ -138,7 +199,7 @@ const Index = ({ res }) => {
               texto="A ImpulsoGov é uma organização não governamental sem fins lucrativos que nasceu com o propósito de ajudar a corrigir um gargalo: inúmeros dados são gerados na prestação dos serviços do SUS, mas poucos são transformados em informação útil para retroalimentar e aprimorar as políticas públicas de saúde. <br><br>"
             />
 
-            <CardAlert 
+            <CardAlert
               destaque=""
               msg={<span style={{ color: 'white', fontSize: 22 }}>Nossa missão é impulsionar o uso inteligente de dados e tecnologia no SUS para que todas as pessoas no Brasil tenham acesso a serviços de saúde de qualidade.</span>}
               background="#1D856C"
