@@ -52,21 +52,17 @@ export const TabelaAPS = ({
     const TabelaAPSTratada = tabelaDataAPS?.map(item=>({
         ...item,
         cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria,
-        status_usuario : item.status_usuario == "Consulta e aferição de PA a fazer" ? " Consulta e aferição de PA a fazer" : item.status_usuario
+        status_usuario : item.status_usuario == "Consulta e aferição de PA a fazer" ? " Consulta e aferição de PA a fazer" : item.status_usuario,
+        equipe_nome_e_ine: `${item.equipe_nome_cadastro} - ${item.equipe_ine_cadastro}`
     }))
 
     return tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
     onPrintClick={Impressao}
     dadosFiltros={[
         {
-            data: [...new Set(TabelaAPSTratada.map(item => item.equipe_ine_cadastro))],
-            filtro: 'equipe_ine_cadastro',
-            rotulo: 'Filtrar por INE da equipe'
-        },
-        {
-            data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_cadastro))],
-            filtro: 'equipe_nome_cadastro',
-            rotulo: 'Filtrar por nome da equipe'
+            data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_e_ine))],
+            filtro: 'equipe_nome_e_ine',
+            rotulo: 'Filtrar por nome e INE da equipe',
         },
         {
             data: [...new Set(TabelaAPSTratada.map(item => item.acs_nome_cadastro))],
