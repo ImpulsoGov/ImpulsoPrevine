@@ -39,6 +39,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
     onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesEncerradas"
@@ -54,14 +55,9 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
             rotulo: 'Filtrar por identificação do exame de sífilis e HIV'
         },
         {
-            data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_nome))],
-            filtro: 'equipe_nome',
-            rotulo: 'Filtrar por nome da equipe'
-        },
-        {
-            data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_ine.toString()))],
-            filtro: 'equipe_ine',
-            rotulo: 'Filtrar por INE da equipe'
+            data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.equipe_nome_e_ine))],
+            filtro: 'equipe_nome_e_ine',
+            rotulo: 'Filtrar por nome e INE da equipe',
         },
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.gestacao_quadrimestre))],
