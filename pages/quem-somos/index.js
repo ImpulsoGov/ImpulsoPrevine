@@ -81,6 +81,7 @@ const Index = ({ res }) => {
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
                     imagemSrc="https://media.graphassets.com/7KgUfR5QK24Tgxw79bIQ"
                     indicador="Conteúdos e materiais com dicas"
+                    imagemStyle={{ width: "65%" }}
                   />
                 </>,
                 <>
@@ -88,6 +89,7 @@ const Index = ({ res }) => {
                     imagemSrc="https://media.graphassets.com/RDN83YVAR6yBEpg8DOLE"
                     indicador="Capacitações com especialistas"
                     descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
+                    imagemStyle={{ width: "65%" }}
                   />
                 </>,
               ]}
