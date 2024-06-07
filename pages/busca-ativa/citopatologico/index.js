@@ -207,11 +207,6 @@ if(session){
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
 
         ]}
         painel="cito"
@@ -248,11 +243,6 @@ if(session){
     <PainelBuscaAtiva
         onPrintClick={ImpressaoEquipe}
         dadosFiltros={[
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
@@ -592,6 +582,7 @@ if(session){
                 />
             </>
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
             onPrintClick={ImpressaoAPS}
             dadosFiltros={[
@@ -613,9 +604,9 @@ if(session){
                     rotulo: 'Filtrar por faixa etária'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
+                    data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome_e_ine))],
+                    filtro: 'equipe_nome_e_ine',
+                    rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
             painel="cito"
@@ -648,6 +639,7 @@ if(session){
             setFiltros_aplicados={setFiltros_aplicados}
         /> : <Spinner/>
         const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
@@ -671,9 +663,9 @@ if(session){
                     rotulo: 'Filtrar por faixa etária'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
+                    data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome_e_ine))],
+                    filtro: 'equipe_nome_e_ine',
+                    rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
             painel="cito"
