@@ -1,13 +1,7 @@
 import {
   CardAlert,
-<<<<<<< HEAD
-  TituloTexto,
-  ButtonLightSubmit,
-  ButtonColorSubmitIcon,
-=======
   TituloTexto, 
   ButtonLightSubmit, 
->>>>>>> f8dec2cc61fd35cf34c6035bc6a059e7103e48d1
   TabelaGestantesImpressao,
   PanelSelector
 } from "@impulsogov/design-system";

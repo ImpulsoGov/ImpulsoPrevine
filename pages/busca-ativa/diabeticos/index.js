@@ -19,12 +19,9 @@ import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-<<<<<<< HEAD
 import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
-=======
 import {log_out} from "../../../hooks/log_out"
->>>>>>> f8dec2cc61fd35cf34c6035bc6a059e7103e48d1
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
