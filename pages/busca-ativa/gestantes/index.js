@@ -3,7 +3,8 @@ import {
   TituloTexto, 
   ButtonLightSubmit, 
   TabelaGestantesImpressao,
-  PanelSelector
+  PanelSelector,
+  Spinner
 } from "@impulsogov/design-system";
 import React, { useState, useEffect } from 'react';
 import { useSession, signOut, getSession } from "next-auth/react"
