@@ -295,13 +295,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
   
       return (
       <>
-          <div 
-              style={
-                  window.screen.width > 1024 ?
-                  {padding: "30px 80px 30px 80px",display: "flex"} :
-                  {padding: "30px 0 0 5px",display: "flex"} 
-              }
-          >
+          <div style={{ padding: "30px 80px 30px 80px", display: "flex" }}>
                 <ButtonLightSubmit 
                     icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
                     label="VOLTAR" 
