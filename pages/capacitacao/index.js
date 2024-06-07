@@ -6,6 +6,7 @@ import { ModulosTrilha } from '@impulsogov/design-system'
 import { conteudosDataTransform, modulosDataTransform } from '../../helpers/modulosDataTransform'
 import { useRouter } from 'next/router';
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
+import {log_out} from "../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -50,6 +51,7 @@ const Index = ({res}) => {
   const [data,setData] = useState(false)
   const modulos = async()=> session && await modulosDataTransform(res[1].trilhas,res[3],session?.user?.id,session?.user?.access_token)
   useEffect(()=>{modulos().then((res)=>setData(res))},[session]) 
+  useEffect(()=>{log_out(session)},[session])
 return(
       <>
         {

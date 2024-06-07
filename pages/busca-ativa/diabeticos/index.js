@@ -19,8 +19,12 @@ import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+<<<<<<< HEAD
 import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
+=======
+import {log_out} from "../../../hooks/log_out"
+>>>>>>> f8dec2cc61fd35cf34c6035bc6a059e7103e48d1
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -301,40 +305,32 @@ const Index = ({ res }) => {
                 },
                 series: [
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Consulta e solicitação de hemoglobina em dia',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Apenas consulta em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Apenas a consulta a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Consulta e Solicitação de Hemoglobina Glicada em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Apenas a solicitação de hemoglobina a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Apenas Solicitação de Hemoglobina Glicada em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Os dois a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Nada em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   }
                 ],
                 tooltip: {

@@ -4,8 +4,7 @@ import {
   ButtonLightSubmit, 
   ScoreCardGrid , 
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao,
-  Spinner
+  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession, signOut, getSession } from "next-auth/react"
 import React, { useState, useEffect } from 'react';
@@ -17,8 +16,7 @@ import { colunasHipertensaoEquipe, colunasHipertensaoAPS } from "../../../helper
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS";
-import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -115,6 +113,7 @@ const Index = ({res}) => {
         </div>
       );
     };
+    useEffect(()=>{log_out(session)},[session])
     useEffect(()=>{
         setVoltarGatilho(voltarGatilho+1)
     },[router.asPath])
@@ -280,40 +279,32 @@ const Index = ({res}) => {
                 },
                 series: [
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Consulta e aferição de PA em dia',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Apenas consulta em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Apenas a consulta a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Consulta e Aferição em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Apenas a aferição de PA a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Apenas Aferição de PA em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia" ) ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
-                    data: Object.entries(tabelaDataAPS.reduce((acumulador, item) => {
-                      if (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
-                      return acumulador
-                    }, {})),
-                    name: 'Os dois a fazer',
-                    stack: 'stack',
-                    type: 'bar'
+                    name: 'Nada em dia',
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                      return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
+                      acumulador + 1 : acumulador;
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   }
                 ],
                 tooltip: {

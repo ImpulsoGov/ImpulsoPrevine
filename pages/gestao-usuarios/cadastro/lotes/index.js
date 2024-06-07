@@ -8,6 +8,7 @@ import { colunasValidacaoRequsicoes } from '../../../../helpers/colunasValidacao
 import { redirectHomeGestaoUsuarios } from '../../../../helpers/redirectHome';
 import { BuscarIdSusPorNome, Tratamento, Validacao } from '../../../../utils/cadastroUsuarios';
 import { useRouter } from 'next/router';
+import {log_out} from "../../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -80,6 +81,8 @@ const GestaoDeUsuarios = () => {
       setEtapa(1);
     }
   };
+  useEffect(()=>{log_out(session)},[session])
+
   const handleOnChange = (e) => {
     const file_selected = e.target.files[0];
     if (file_selected) {

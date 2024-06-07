@@ -1,14 +1,12 @@
 import { 
     CardAlert,
     TituloTexto, 
-    ButtonLight, 
     PainelBuscaAtiva , 
     ScoreCardGrid , 
     Spinner, 
     GraficoBuscaAtiva,
     TabelaCitoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon,
     ButtonLightSubmit
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -25,6 +23,7 @@ import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'jso
 import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -139,7 +138,7 @@ const ImpressaoAPS = (data)=> Imprimir(
     setShowSnackBar
 )
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
-
+useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{
     setVoltarGatilho(voltarGatilho+1)
 },[router.asPath])
@@ -517,34 +516,34 @@ if(session){
                                 name: 'Coleta em dia',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 12) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Nunca realizou coleta',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 13) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Coleta com menos de 25 anos',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 14) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Vence no final do quadrimestre',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 15) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Coleta vencida',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 16) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             }
                             ],
                             emphasis: {

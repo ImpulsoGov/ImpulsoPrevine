@@ -1,8 +1,13 @@
 import {
   CardAlert,
+<<<<<<< HEAD
   TituloTexto,
   ButtonLightSubmit,
   ButtonColorSubmitIcon,
+=======
+  TituloTexto, 
+  ButtonLightSubmit, 
+>>>>>>> f8dec2cc61fd35cf34c6035bc6a059e7103e48d1
   TabelaGestantesImpressao,
   PanelSelector
 } from "@impulsogov/design-system";
@@ -42,12 +47,12 @@ import { CardsGraficoIndicadorDoisQuadriAtual, GraficoIndicadorDoisQuadriAtual }
 import { CardsGraficoIndicadorDoisQuadriFuturo, GraficoIndicadorDoisQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_futuro";
 import { CardsGraficoIndicadorTresQuadriAtual, GraficoIndicadorTresQuadriAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_futuro";
-import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
 import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -139,117 +144,86 @@ const Index = ({ res }) => {
     );
   }, [activeTabIndex, activeTitleTabIndex]);
 
-  const GestantesTabelaDataAPS = async () => await tabelaGestantesAPS(session?.user?.municipio_id_sus, session?.user?.access_token)
-  useEffect(() => {
-    session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
-      GestantesTabelaDataAPS().then((response) => {
-        setTabelaDataAPS(response)
-      })
-  }, [session])
-  const [tabelaDataEquipe, setTabelaDataEquipe] = useState([]);
-  const GestantesTabelaDataEquipe = async () => await tabelaGestantesEquipe(session?.user?.municipio_id_sus, session?.user?.equipe, session?.user?.access_token)
-  useEffect(() => {
-    session && session.user.perfis.includes(9) &&
-      GestantesTabelaDataEquipe().then((response) => {
-        setTabelaDataEquipe(response.data)
-      })
-  }, [session])
-  const [tabelaData, setTabelaData] = useState([]);
-  const colunasImpressao = {
-    0: colunasGestantesIndicadorUm,
-    1: colunasGestantesIndicadorDois,
-    2: colunasGestantesIndicadorTres,
-    3: colunasGestantesIndicadorUm
-  }
-  const colunasImpressaoEquipe = {
-    0: colunasGestantesEquipe,
-    1: colunasGestantesEquipe,
-    2: colunasGestantesEncerradasEquipe,
-  }
-
-  const ImpressaoEquipe = (data) => Imprimir(
-    0.78,
-    <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
-    "gestantes",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-  )
-  const ImpressaoAPS = (data) => Imprimir(
-    0.78,
-    <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
-    "gestantes",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-  )
-  const Voltar = () => {
-    window.history.go(voltarGatilho * (-1))
-  }
-
-  useEffect(() => {
-    setVoltarGatilho(voltarGatilho + 1)
-  }, [router.asPath])
-  if (session) {
-    if (session.user.perfis.includes(9)) {
-      visao = "equipe"
-      const dataAtual = Date.now();
-      const Children = [[
-        [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
-          <TabelaEquipeGestantesAtivas
-            tabelaDataEquipe={tabelaDataEquipe}
-            tabelaData={tabelaData}
-            setTabelaData={setTabelaData}
-            trackObject={mixpanel}
-            aba={activeTitleTabIndex}
-            sub_aba={activeTabIndex}
-            onPrintClick={ImpressaoEquipe}
-            showSnackBar={showSnackBar}
-            setShowSnackBar={setShowSnackBar}
-            setFiltros_aplicados={setFiltros_aplicados}
-          />,
-          <PainelComLegenda />
-        ],
-        [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
-          <TabelaEquipeGestantesSemDUM
-            tabelaDataEquipe={tabelaDataEquipe}
-            tabelaData={tabelaData}
-            setTabelaData={setTabelaData}
-            trackObject={mixpanel}
-            aba={activeTitleTabIndex}
-            sub_aba={activeTabIndex}
-            onPrintClick={ImpressaoEquipe}
-            showSnackBar={showSnackBar}
-            setShowSnackBar={setShowSnackBar}
-            setFiltros_aplicados={setFiltros_aplicados}
-          />,
-          <PainelComLegenda />
-        ],
-        [
-          <CardsEquipe tabelaDataEquipe={tabelaDataEquipe} />,
-          <TabelaEquipeGestantesEncerradas
-            tabelaDataEquipe={tabelaDataEquipe}
-            tabelaData={tabelaData}
-            setTabelaData={setTabelaData}
-            trackObject={mixpanel}
-            aba={activeTitleTabIndex}
-            sub_aba={activeTabIndex}
-            onPrintClick={ImpressaoEquipe}
-            showSnackBar={showSnackBar}
-            setShowSnackBar={setShowSnackBar}
-            setFiltros_aplicados={setFiltros_aplicados}
-          />,
-          <PainelComLegenda />
-        ]
-      ]]
-      return (
-        <>
-          <div
-            style={
+const ImpressaoEquipe = (data)=> Imprimir(
+  0.78,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
+)   
+const ImpressaoAPS = (data)=> Imprimir(
+  0.78,
+  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
+  "gestantes",
+  activeTitleTabIndex,
+  activeTabIndex,
+  filtros_aplicados,
+  setShowSnackBar
+)   
+const Voltar = ()=>{
+  window.history.go(voltarGatilho*(-1))
+}
+useEffect(()=>{log_out(session)},[session])
+useEffect(()=>{
+  setVoltarGatilho(voltarGatilho+1)
+},[router.asPath])
+if(session){  
+  if(session.user.perfis.includes(9)){
+    visao = "equipe"
+    const dataAtual = Date.now();
+    const Children = [[
+      [
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesAtivas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
+        />
+      ],
+      [
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesSemDUM
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
+        />
+      ],
+      [
+        <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
+        <TabelaEquipeGestantesEncerradas
+          tabelaDataEquipe={tabelaDataEquipe}
+          tabelaData={tabelaData}
+          setTabelaData={setTabelaData}
+          trackObject={mixpanel}
+          aba={activeTitleTabIndex}
+          sub_aba={activeTabIndex}
+          onPrintClick={ImpressaoEquipe}
+          showSnackBar={showSnackBar}
+          setShowSnackBar={setShowSnackBar}
+          setFiltros_aplicados={setFiltros_aplicados}
+        />
+      ]
+    ]]
+  return (
+      <>
+      <div 
+          style={
               window.screen.width > 1024 ?
               {padding: "30px 80px 30px 80px",display: "flex"} :
               {padding: "30px 0 0 5px",display: "flex"} 
