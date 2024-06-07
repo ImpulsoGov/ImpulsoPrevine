@@ -73,7 +73,6 @@ const Index = ({ res }) => {
   })
   const [filtros_aplicados, setFiltros_aplicados] = useState(false)
   const [voltarGatilho, setVoltarGatilho] = useState(0);
-  const [tabelaData,setTabelaData] = useState(0)
   const PainelComLegenda = ({ children }) => {
     return (
       <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
@@ -138,7 +137,32 @@ const Index = ({ res }) => {
       undefined, { shallow: true }
     );
   }, [activeTabIndex, activeTitleTabIndex]);
-
+  const GestantesTabelaDataAPS = async()=> await tabelaGestantesAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
+  useEffect(()=>{
+    session && (session.user.perfis.includes(8) || session.user.perfis.includes(5)) &&
+    GestantesTabelaDataAPS().then((response)=>{
+    setTabelaDataAPS(response)
+  })},[session]) 
+  const [tabelaDataEquipe, setTabelaDataEquipe] = useState([]);
+  const GestantesTabelaDataEquipe = async()=> await tabelaGestantesEquipe(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
+  useEffect(()=>{
+    session &&  session.user.perfis.includes(9) &&
+    GestantesTabelaDataEquipe().then((response)=>{
+      setTabelaDataEquipe(response.data)
+  })},[session]) 
+  const [tabelaData, setTabelaData] = useState([]);
+  const colunasImpressao = {
+    0 : colunasGestantesIndicadorUm,
+    1 : colunasGestantesIndicadorDois,
+    2 : colunasGestantesIndicadorTres,
+    3 : colunasGestantesIndicadorUm
+  }
+  const colunasImpressaoEquipe = {
+    0 : colunasGestantesEquipe,
+    1 : colunasGestantesEquipe,
+    2 : colunasGestantesEncerradasEquipe,
+  }
+  
 const ImpressaoEquipe = (data)=> Imprimir(
   0.78,
   <TabelaGestantesImpressao data={data} colunas={colunasImpressaoEquipe[activeTabIndex]} fontFamily="sans-serif" />,
