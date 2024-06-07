@@ -400,31 +400,31 @@ const Index = ({res}) => {
                 data: [
                   {
                     name: 'Apenas consulta em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Consulta e Solicitação de Hemoglobina Glicada em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Apenas Solicitação de Hemoglobina Glicada em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Nada em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   }
                 ],
                 emphasis: {

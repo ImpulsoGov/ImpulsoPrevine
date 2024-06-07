@@ -72,8 +72,8 @@ providers: [
 ],
 session: {
   strategy: "jwt",
-  maxAge: 15,
-  updateAge: 15
+  maxAge: 8 * 60 * 60,
+  updateAge: 8 * 60 * 60
 },
 refetchInterval: 1,
 jwt: {

@@ -383,31 +383,31 @@ const Index = ({res}) => {
                 data: [
                   {
                     name: 'Apenas consulta em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Consulta e Aferição em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Apenas Aferição de PA em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia" ) ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   },
                   {
                     name: 'Nada em dia',
-                    value: Math.round((tabelaDataAPS.reduce((acumulador,item)=>{ 
+                    value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                       return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
                       acumulador + 1 : acumulador;
-                    },0)*100)/tabelaDataAPS.length)
+                    },0)*100)/tabelaDataAPS.length).toFixed(1)
                   }
                 ],
                 emphasis: {
