@@ -39,6 +39,7 @@ const TabelaAPSQuadrimestreFuturo = ({
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
+    .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0].id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
@@ -105,9 +106,9 @@ const TabelaAPSQuadrimestreFuturo = ({
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
                 {
-                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
+                    data: [...new Set(tabelaDataAPSVacinacao.map(item => item.equipe_nome_e_ine))],
+                    filtro: 'equipe_nome_e_ine',
+                    rotulo: 'Filtrar por nome e INE da equipe'
                 },
                 {
                     data: [...new Set(tabelaDataAPSVacinacao.map(item => item.acs_nome))],
