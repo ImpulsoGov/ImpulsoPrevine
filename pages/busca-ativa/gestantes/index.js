@@ -206,7 +206,8 @@ if(session){
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
-        />
+        />,
+        <PainelComLegenda />
       ],
       [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
@@ -221,7 +222,8 @@ if(session){
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
-        />
+        />,
+        <PainelComLegenda />
       ],
       [
         <CardsEquipe tabelaDataEquipe={tabelaDataEquipe}/>,
@@ -236,7 +238,8 @@ if(session){
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
-        />
+        />,
+        <PainelComLegenda />
       ]
     ]]
   return (
