@@ -2,7 +2,6 @@ import {
   CardAlert,
   TituloTexto, 
   ButtonLightSubmit, 
-  ButtonColorSubmitIcon,
   TabelaGestantesImpressao,
   PanelSelector
 } from "@impulsogov/design-system";
@@ -42,12 +41,12 @@ import { CardsGraficoIndicadorDoisQuadriAtual, GraficoIndicadorDoisQuadriAtual }
 import { CardsGraficoIndicadorDoisQuadriFuturo, GraficoIndicadorDoisQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_futuro";
 import { CardsGraficoIndicadorTresQuadriAtual, GraficoIndicadorTresQuadriAtual } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsGraficoIndicadorTresQuadriFuturo, GraficoIndicadorTresQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_futuro";
-import { CardsGraficoIndicadorTres, GraficoIndicadorTres } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_atual";
 import { CardsAPS } from "../../../componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { CardsGraficoIndicadorUmQuadriFuturo, GraficoIndicadorUmQuadriFuturo } from "../../../componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
 import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -136,7 +135,7 @@ const ImpressaoAPS = (data)=> Imprimir(
 const Voltar = ()=>{
   window.history.go(voltarGatilho*(-1))
 }
-
+useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{
   setVoltarGatilho(voltarGatilho+1)
 },[router.asPath])

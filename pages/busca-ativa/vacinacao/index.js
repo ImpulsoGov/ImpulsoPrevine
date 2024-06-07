@@ -4,7 +4,6 @@ import {
     ButtonLightSubmit, 
     TabelaVacinacaoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon
   } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -25,6 +24,7 @@ import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-
 import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
 import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+import {log_out} from "../../../hooks/log_out"
 
 import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
@@ -97,7 +97,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   const Voltar = ()=>{
     window.history.go(voltarGatilho*(-1))
   }
-
+  useEffect(()=>{log_out(session)},[session])
   useEffect(()=>{
       setVoltarGatilho(voltarGatilho+1)
   },[router.asPath])

@@ -1,14 +1,12 @@
 import { 
     CardAlert,
     TituloTexto, 
-    ButtonLight, 
     PainelBuscaAtiva , 
     ScoreCardGrid , 
     Spinner, 
     GraficoBuscaAtiva,
     TabelaCitoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon,
     ButtonLightSubmit
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -25,6 +23,7 @@ import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'jso
 import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -130,7 +129,7 @@ const Impressao = (data)=> Imprimir(
     setShowSnackBar
 )   
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
-
+useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{
     setVoltarGatilho(voltarGatilho+1)
 },[router.asPath])
