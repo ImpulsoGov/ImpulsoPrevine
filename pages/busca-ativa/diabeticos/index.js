@@ -375,31 +375,31 @@ const Index = ({ res }) => {
                     data: [
                       {
                         name: 'Consulta e solicitação de hemoglobina em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas a consulta a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas a solicitação de hemoglobina a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Os dois a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       }
                     ],
                     emphasis: {
