@@ -4,7 +4,8 @@ import {
   ButtonLightSubmit, 
   ScoreCardGrid , 
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao
+  TabelaHiperDiaImpressao,
+  Spinner
 } from "@impulsogov/design-system";
 import { useSession, signOut, getSession } from "next-auth/react"
 import React, { useState, useEffect } from 'react';
