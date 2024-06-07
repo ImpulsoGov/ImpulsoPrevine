@@ -73,7 +73,7 @@ const Index = ({ res }) => {
   })
   const [filtros_aplicados, setFiltros_aplicados] = useState(false)
   const [voltarGatilho, setVoltarGatilho] = useState(0);
-  
+  const [tabelaData,setTabelaData] = useState(0)
   const PainelComLegenda = ({ children }) => {
     return (
       <div style={{ margin: "0 80px 40px", backgroundColor: '#D7F2F6', padding: "30px 0", borderRadius:"10px", fontSize: "13px", paddingLeft: "30px"}}>
