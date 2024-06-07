@@ -16,6 +16,9 @@ import { colunasHipertensaoEquipe, colunasHipertensaoAPS } from "../../../helper
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS"
+import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe"
+
 import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
