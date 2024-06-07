@@ -217,7 +217,6 @@ const Index = ({ res }) => {
       )
     }
     if (session.user.perfis.includes(5) || session.user.perfis.includes(8)) {
-      console.log("tabelaDataAPS", tabelaDataAPS);
       visao = "aps"
       const dataAtual = Date.now();
       return(
