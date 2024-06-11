@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { PanelSelector, TituloTexto, ScoreCardGrid, Margem } from "@impulsogov/design-system"
+import { PanelSelector, TituloTexto, ScoreCardGrid, Margem, CardAlert } from "@impulsogov/design-system"
 import Indicadores from "../../componentes/indicadores"
 import Cadastros from "../../componentes/cadastros"
 import Acoes from "../../componentes/acoes_estrategicas"
@@ -54,9 +54,31 @@ const Index = ({ res }) => {
           url: ''
         }}
         titulo="Resultados do Previne Brasil"
-        texto="Aqui você vai encontrar os resultados e informações do seu município, referentes a cada pilar do Previne Brasil: Indicadores de Desempenho, Capitação Ponderada e Ações Estratégicas. </br><br><b> DIGITE O SEU MUNICIPIO ABAIXO<b>"
+        texto=""
       />
-      
+
+      <div style={{
+        lineHeight: "24px"
+      }}>
+        <CardAlert
+          background="#91D3DB"
+          padding="20px 30px"
+          margin="0 80px"
+          color="#1F1F1F"
+          destaque={<span style={{fontSize: "16px"}}>AVISO: </span>}
+          msg={<span style={{fontSize: "16px"}}>Os dados exibidos nessa página são referentes aos critérios do antigo Previne Brasil. As informações permanecem disponíveis para consulta, mas é importante ressaltar que, com o encerramento do programa, os resultados apresentados não devem ser considerados para o cofinanciamento da Atenção Primária à Saúde.</span>}
+        />
+      </div>
+
+      <TituloTexto
+        imagem={{
+          posicao: null,
+          url: ''
+        }}
+        titulo=""
+        texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
+      />
+
       <MunicipioSelector
         municipios={data}
         municipio={selectedMunicipio}

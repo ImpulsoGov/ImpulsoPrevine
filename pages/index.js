@@ -75,22 +75,6 @@ const Index = ({res}) => {
                 titulo="<b>Suporte para coordenação e assistência da APS</b>"
                 texto="Melhore a atuação da sua unidade de saúde e do seu município com:"
               />
-            <Grid12Col
-            proporcao="7-5"
-            items={ [
-              <ImagensFull2 key="desempenho_imagem" imagem="https://media.graphassets.com/55Ovc152SoahfSNlqFIZ" />,
-              <><div style={{alignContent:"center"}}>
-                  <TituloSmallTexto
-                    key="desempenho"
-                    botao={{label: 'VER DESEMPENHO DOS MUNICÍPIOS',url: '/analise'}}
-                    imagem={{posicao: null,url: ''}}
-                    supertitulo="<b>Análises do Previne</b>"
-                    titulo=""
-                    texto="Veja o desempenho de qualquer município nos componentes do Previne Brasil e sugestões para alcançar as metas definidas.<br><br>"
-                  />
-                </div></>,
-            ] }
-          />
           <Grid12Col
             proporcao="5-7"
             items={ [

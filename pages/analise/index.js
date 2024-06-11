@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
-import { Margem, NovoTituloTexto, CardIP, ButtonColor } from "@impulsogov/design-system"
+import { Margem, NovoTituloTexto, CardIP, ButtonColor , CardAlert } from "@impulsogov/design-system"
 
 const Index = ({ res }) => {
   const router = useRouter();
@@ -61,7 +61,20 @@ const Index = ({ res }) => {
           </>
         }
       />
-      
+
+      <div style={{
+        lineHeight: "24px"
+      }}>
+        <CardAlert
+          background="#91D3DB"
+          padding="20px 30px"
+          margin="0 40px"
+          color="#1F1F1F"
+          destaque={<span style={{fontSize: "16px"}}>AVISO: </span>}
+          msg={<span style={{fontSize: "16px"}}>Os dados exibidos nessa página são referentes aos critérios do antigo Previne Brasil. As informações permanecem disponíveis para consulta, mas é importante ressaltar que, com o encerramento do programa, os resultados apresentados não devem ser considerados para o cofinanciamento da Atenção Primária à Saúde.</span>}
+        />
+      </div>
+
       <div className="cardGrid">
         {cardsData.map((card, index) => (
           <div key={uuidv1()} className="cardContainer">

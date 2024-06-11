@@ -73,22 +73,15 @@ const Index = ({ res }) => {
               texto="No Impulso Previne, damos suporte para profissionais da gestão e da assistência sobre os indicadores da APS, com foco atualmente no Previne Brasil."
             />
 
-            <Grid12Col //Estou com um problema ao adicionar imagens aqui , acredito que terei que criar um novo componente tbm 
-              proporcao="4-4-4"
+            <Grid12Col
+              proporcao="6-6"
               items={[
                 <>
-                  <CardImg
-                    imagemSrc="https://media.graphassets.com/ZFonMyxQRLafcMm3Gk4J"
-                    indicador="Dados do SISAB organizados"
-                    descricao="Criamos painéis didáticos e descomplicados para você visualizar o desempenho nos indicadores de qualquer município do Brasil."
-                  />
-                </>,
-                <>
-
                   <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
                     imagemSrc="https://media.graphassets.com/7KgUfR5QK24Tgxw79bIQ"
                     indicador="Conteúdos e materiais com dicas"
+                    imagemStyle={{ width: "65%", margin: "auto" }}
                   />
                 </>,
                 <>
@@ -96,6 +89,7 @@ const Index = ({ res }) => {
                     imagemSrc="https://media.graphassets.com/RDN83YVAR6yBEpg8DOLE"
                     indicador="Capacitações com especialistas"
                     descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
+                    imagemStyle={{ width: "65%", margin: "auto" }}
                   />
                 </>,
               ]}
