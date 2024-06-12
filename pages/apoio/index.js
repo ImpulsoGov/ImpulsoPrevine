@@ -111,7 +111,7 @@ const Index = ({res}) => {
               </>
               ,
               <>
-                <ImagensFull2 imagem="https://media.graphassets.com/1gYRflqoTCyVTz2pBTNy" />
+                <ImagensFull2 imagem="https://media.graphassets.com/aZ5H3ZMjSD88BUdxvMBq" />
               </>
             ] }
           />

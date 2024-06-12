@@ -51,7 +51,7 @@ const Index = ({res}) => {
                     texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
                   />
                   <div style={{paddingTop:75}}></div>
-                  <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
+                  <ImagensFull2 imagem="https://media.graphassets.com/FSgx9FUSP2wHnXGolx0D" />
               </>
               } 
             />
@@ -86,13 +86,13 @@ const Index = ({res}) => {
                 titulo=""
                 texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
               />,
-              <ImagensFull2 key="municipio_parceiro_imagem" imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
+              <ImagensFull2 key="municipio_parceiro_imagem" imagem="https://media.graphassets.com/cFi4nN5ROqfp8tmESY37" />
             ] }
           />
           <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/kuiOKdlR5iR2nFrnAjsk" />,
+              <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/ZK6SrsUoQZutmM4bJOpX" />,
               <TituloSmallTexto
                 key="materiais"
                 botao={{label: 'RECEBER MATERIAIS',url: 'https://docs.google.com/forms/d/e/1FAIpQLSdMuW8LG3MB8RsR2B9GrjsPez4WPp7SqOaLiXb1kmMOuspmkw/viewform'}}

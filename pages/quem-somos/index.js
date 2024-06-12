@@ -79,7 +79,7 @@ const Index = ({ res }) => {
                 <>
                   <CardImg
                     descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
-                    imagemSrc="https://media.graphassets.com/7KgUfR5QK24Tgxw79bIQ"
+                    imagemSrc="https://media.graphassets.com/7G4x3fHQBSAiOz1eHpyG"
                     indicador="Conteúdos e materiais com dicas"
                     imagemStyle={{ width: "65%", margin: "auto" }}
                   />
@@ -108,7 +108,7 @@ const Index = ({ res }) => {
                 texto=""
               />
 
-              <ImagensFull2 imagem="https://media.graphassets.com/Xe2vRkK1QUKzhlVmngCt" />
+              <ImagensFull2 imagem="https://media.graphassets.com/QZVVznaoQ6est0kbxLQO" />
 
               <TituloSmallTexto
                 botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
