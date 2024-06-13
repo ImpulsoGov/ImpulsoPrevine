@@ -70,7 +70,7 @@ const Index = ({ res }) => {
 
             <NovoTituloTexto
               titulo="Apoio focado na Atenção Primária à Saúde"
-              texto="Damos suporte para profissionais da gestão e da assistência sobre os indicadores da atenção básica"
+              texto="Damos suporte para profissionais da gestão e da assistência sobre os indicadores da atenção básica."
             />
 
             <Grid12Col
@@ -102,7 +102,7 @@ const Index = ({ res }) => {
       <Margem
         componente={
           <>
-            <div style={{ textAlign: 'center'}}>
+            <div style={{ textAlign: 'center', paddingTop: 75 }}>
               <NovoTituloTexto
                 titulo="Apoio especializado para parceiros"
                 texto=""
@@ -130,7 +130,6 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  
                   <TituloSmallTexto
                     key={"1"} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
                     supertitulo="<br></br>"
@@ -145,10 +144,10 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                   <div style={{ fontSize : "24px"}}>
+                   <div style={{ fontSize : "24px", textAlign: "center"}}>
                   <TituloSmallTexto
                     key={"2"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
-                    supertitulo="<b>Nós oferecemos: <br></br>"
+                    supertitulo="<b>Nós oferecemos:</b><br></br>"
                     titulo=""
                     texto="Treinamentos sobre boas práticas dos indicadores"
                   />
