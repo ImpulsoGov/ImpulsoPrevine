@@ -42,11 +42,11 @@ const Index = () => {
           title="Geral"
           list={[
             {
-              title: 'Os produtos do Impulso Previne são gratuitos?',
+              title: 'Nossos produtos são gratuitos?',
               blocks: [
                 {
                   subTitle: '',
-                  description: 'Sim, todos os produtos do Impulso Previne são gratuitos. Na nossa área pública você encontra dados quadrimestralmente atualizados sobre os resultados dos indicadores de desempenho de todos os municípios no Previne Brasil, além dos dados de Capitação Ponderada e Incentivos a Ações Estratégicas. Atualizamos essa área do nosso site através dos dados públicos do SISAB (Sistema de Informação em Saúde para a Atenção Primária). Basta clicar no menu superior DADOS PÚBLICOS - Q3/22 e selecionar seu município. Na nossa área logada (acesso restrito), oferecemos produtos de monitoramento nominal para os municípios parceiros.',
+                  description: 'Sim, todos os produtos e serviços oferecidos pela ImpulsoGov são 100% gratuitos. Hoje nós temos em nosso site dados públicos de qualquer município do Brasil com informações sobre os indicadores do antigo Previne Brasil. Já para os nossos municípios parceiros, criamos uma ferramenta de monitoramento nominal automática para que os gestores possam acompanhar seus pacientes com consultas, exames e procedimentos em atraso.',
                   source: '',
                 },
               ],
@@ -71,7 +71,7 @@ const Index = () => {
               blocks: [
                 {
                   subTitle: '',
-                  description: 'A Impulso Gov oferece, através do Impulso Previne, um serviço de consultoria gratuita. Qualquer município pode se inscrever e entrar na lista de espera para participar. A cada novo ciclo, fazemos uma seleção, de acordo com alguns critérios, dos municípios que receberão esse serviço. Os municípios selecionados se tornam parceiros da Impulso Gov e ganham acesso à área logada do Impulso Previne.',
+                  description: 'A ImpulsoGov oferece, através do Impulso Previne, um serviço de mentorias gratuita. O(A) Coordenador(a) de Atenção Primária à Saúde (APS) ou Secretário(a) de Saúde de qualquer município pode se inscrever e entrar na lista de espera para participar. A cada novo ciclo, fazemos uma seleção de novos municípios parceiros que participam de mentorias especializadas com nossa equipe e ganham acesso às ferramentas de monitoramento nominal na área logada do nosso site.',
                   source: '',
                 },
               ],

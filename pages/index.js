@@ -60,7 +60,7 @@ const Index = ({res}) => {
         } 
       />
       <ParceriasTexto
-          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
+          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, o antigo Previne Brasil, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
           parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/gjPxnSNWTY6tbtK0UXk5"}]}
       />
       
@@ -161,15 +161,17 @@ const Index = ({res}) => {
                   <></>,
                   <CardIP
                     key="card_5"
-                    titulo="PARCEIRO DESDE 2022"
-                    indicador="Brejo de Areia/MA"
-                    descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e gerou  um resultado 35% melhor que seus 4 municípios vizinhos no 1º quadrimestre de 2023."
+                    titulo="PARCEIRO DESDE 2023"
+                    indicador="Jandaíra/BA"
+                    descricao="“Depois que começa a usar não vai querer parar mais. É maravilhoso porque a gente consegue seguir no trabalho da forma como tem que seguir porque a gente já tem tudo pronto. O Impulso Previne tá dando pra gente tudo mastigado... Coisa que a gente poderia sentar pra digitar, pra escrever, e já vem pra gente prontinho.”
+                    Luana de Jesus, Coordenadora de Equipe"
                   />,
                   <CardIP
                     key="card_6"
-                    titulo="PARCEIRO DESDE 2022"
-                    indicador="Minaçu/GO"
-                    descricao="Com apoio da nossa equipe de especialistas em saúde, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil no 3º quadrimestre de 2022!"
+                    titulo="PARCEIRO DESDE 2023"
+                    indicador="Jandaíra/BA"
+                    descricao="“Eu trabalho com meu território, mas tem muitos pacientes que não vem pra unidade e são cadastrados como hipertensos e diabéticos só que eu não sei se são mesmo. Então com a lista eu consigo ir fazer a busca e capturar esse paciente pra gente aqui.”
+                    Ananda Larissa, Coordenadora de Equipe"
                   />
                 ] }
               />
@@ -191,8 +193,7 @@ const Index = ({res}) => {
                   imagem={{posicao: null,url: ''}}
                   supertitulo=""
                   titulo="<b>Impulsionamos o SUS com dados e tecnologia</b>"
-                  texto="Na ImpulsoGov, acreditamos que os dados são necessários para facilitar a tomada de decisões e a tecnologia deve facilitar o dia a dia da profissional do SUS e permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>
-                  O Impulso Previne é um projeto da ImpulsoGov focado em promover o uso de dados e indicadores na gestão da atenção primária, com destaque para o Previne Brasil, atual modelo de financiamento federal da APS no Brasil <br/><br/>"
+                  texto="Na ImpulsoGov, acreditamos que os dados são necessários para facilitar a tomada de decisões e a tecnologia deve facilitar o dia a dia da profissional do SUS para permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>O Impulso Previne é um projeto da ImpulsoGov focado em promover o uso de dados relacionados aos indicadores da Atenção Primária à Saúde. <br/><br/>"
                 />
               ] }
             />
