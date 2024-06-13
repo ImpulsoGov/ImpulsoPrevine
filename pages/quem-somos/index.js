@@ -73,7 +73,7 @@ const Index = ({ res }) => {
               texto="Damos suporte para profissionais da gestão e da assistência sobre os indicadores da atenção básica"
             />
 
-            <Grid12Col //Estou com um problema ao adicionar imagens aqui , acredito que terei que criar um novo componente tbm 
+            <Grid12Col 
               proporcao="6-6"
               items={[
                 <>
@@ -131,7 +131,7 @@ const Index = ({ res }) => {
                   
                   <TituloSmallTexto
                     key={"1"} botao={{ label: '', url: '' }} imagem={{ posicao: true, url: '' }}
-                    supertitulo="<b>🕛 Nós oferecemos: <br></br>"
+                    supertitulo="<br></br>"
                     titulo=""
                     texto="Ferramentas de gestão para busca ativa"
                   />
@@ -143,13 +143,14 @@ const Index = ({ res }) => {
             <Margem
               componente={
                 <>
-                  
+                   <div style={{ fontSize : "24px"}}>
                   <TituloSmallTexto
                     key={"2"} botao={{ label: '', url: '' }} imagem={{ posicao: null, url: '' }}
-                    supertitulo="<br></br>"
+                    supertitulo="<b>Nós oferecemos: <br></br>"
                     titulo=""
                     texto="Treinamentos sobre boas práticas dos indicadores"
                   />
+                  </div>
                 </>
               }
             />
@@ -165,6 +166,7 @@ const Index = ({ res }) => {
                     titulo=""
                     texto="Encontros de dúvidas com especialistas"
                   />
+                  
                 </>
               }
             />
