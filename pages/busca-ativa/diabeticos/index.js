@@ -2,7 +2,6 @@ import {
   CardAlert,
   TituloTexto,
   ButtonLightSubmit,
-  PainelBuscaAtiva,
   ScoreCardGrid,
   Spinner,
   GraficoBuscaAtiva,
@@ -15,13 +14,14 @@ import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken } from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
 import { Imprimir } from "../../../helpers/imprimir"
-import { colunasDiabetes } from "../../../helpers/colunasDiabetes";
+import { colunasDiabetesEquipe, colunasDiabetesAPS } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -100,9 +100,18 @@ const Index = ({ res }) => {
     }
   },[tokenValido])
 
-  const Impressao = (data)=> Imprimir(
+  const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetes} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesEquipe} fontFamily="sans-serif" />,
+    "diabetes",
+    null,
+    null,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesAPS} fontFamily="sans-serif" />,
     "diabetes",
     null,
     null,
@@ -194,7 +203,7 @@ const Index = ({ res }) => {
             <TabelaEquipe
               tabelaData={tabelaData}
               tabelaDataEquipe={tabelaDataEquipe}
-              Impressao={Impressao}
+              Impressao={ImpressaoEquipe}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
@@ -365,31 +374,31 @@ const Index = ({ res }) => {
                     data: [
                       {
                         name: 'Consulta e solicitação de hemoglobina em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas a consulta a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas a solicitação de hemoglobina a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_solicitacao_hemoglobina == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Os dois a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       }
                     ],
                     emphasis: {
@@ -429,7 +438,7 @@ const Index = ({ res }) => {
         <TabelaAPS
           tabelaData={tabelaData}
           tabelaDataAPS={tabelaDataAPS}
-          Impressao={Impressao}
+          Impressao={ImpressaoAPS}
           setTabelaData={setTabelaData}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}

@@ -39,6 +39,7 @@ const IndicadorUmTabelaGestantesAtivas = ({
     setFiltros_aplicados,
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
     onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesAtivas"
@@ -53,14 +54,9 @@ const IndicadorUmTabelaGestantesAtivas = ({
             rotulo: 'Filtrar por número de consultas'
         },
         {
-            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_nome))],
-            filtro: 'equipe_nome',
-            rotulo: 'Filtrar por nome da equipe'
-        },
-        {
-            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_ine.toString()))],
-            filtro: 'equipe_ine',
-            rotulo: 'Filtrar por INE da equipe'
+            data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.equipe_nome_e_ine))],
+            filtro: 'equipe_nome_e_ine',
+            rotulo: 'Filtrar por nome e INE da equipe',
         },
         {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.gestacao_quadrimestre))],

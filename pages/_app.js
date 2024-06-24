@@ -21,6 +21,7 @@ import { LAYOUT } from '../utils/QUERYS';
 
 import mixpanel from 'mixpanel-browser';
 import { hotjar } from 'react-hotjar'
+import { log_out } from '../hooks/log_out';
 
 
 
@@ -44,9 +45,7 @@ function MyApp(props) {
   useEffect(() => TagManager.initialize(tagManagerArgs), []);
   useEffect(() => rotaDinamica(router), [router.events]);
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
-  //useEffect(() => getCity(cidade, setCidade, setLoading), [cidade]);
   useEffect(() => setMode(true), [dynamicRoute]);
-
   useEffect(() => {
     hotjar.initialize(3496492, 6);
   }, [])
@@ -130,7 +129,7 @@ function MyApp(props) {
                 setMunicipio={ setCidade }
                 data={ data }
                 theme={ {
-                  logoProjeto: width > 1000 ?
+                  logoProjeto: width > 900 ?
                     path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
                     props.res[0].logoIps[1].logo[0].url,
                   cor: (path == '/' || path == '/apoio' || path == '/analise' || path == '/quem-somos') ? "Cinza" : "White",

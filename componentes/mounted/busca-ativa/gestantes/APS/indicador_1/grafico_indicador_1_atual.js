@@ -147,20 +147,20 @@ const GraficoIndicadorUmQuadriAtual = ({tabelaDataAPS}) =>{
                         name: 'Gestantes com primeira consulta após a 12ª semana',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_usuario == 8 || item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento > 12) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(1)
                     },
                     {
                         name: 'Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas < 6) ?
                         acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(1)
                     },
                     {
                         name: 'Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)',
                         value: ((dataQuadriFuturo.reduce((acumulador,item)=>{ 
                         return ((item.id_status_usuario == 8 ||item.id_status_usuario == 9) && item.gestacao_idade_gestacional_primeiro_atendimento <= 12 && item.consultas_pre_natal_validas >= 6) ? acumulador + 1 : acumulador;
-                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(2)
+                        },0)*100)/dataQuadriFuturo.filter(item=>item.id_status_usuario == 8 || item.id_status_usuario == 9).length).toFixed(1)
                     },
                     ],
                     emphasis: {
