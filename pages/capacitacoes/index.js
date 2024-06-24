@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { redirectHomeTrilha } from '../../helpers/redirectHome'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { generatePDF } from '../../helpers/generatePDF'
+import { log_out } from "../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -40,6 +41,8 @@ const Index = ({res}) => {
         session && 
         TrilhasLiberadasClient().then((res)=>setTrilhasLiberadas(res))
     },[session]) 
+    useEffect(()=>{log_out(session)},[session])
+
     if(session) return(
         <>
             <TituloTexto

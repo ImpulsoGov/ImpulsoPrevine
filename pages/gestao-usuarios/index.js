@@ -1,8 +1,9 @@
 import { CardLarge, Greeting } from '@impulsogov/design-system';
 import { getSession, signOut, useSession } from 'next-auth/react';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { redirectHomeGestaoUsuarios } from '../../helpers/redirectHome';
 import { useRouter } from 'next/router';
+import {log_out} from "../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -18,6 +19,7 @@ export async function getServerSideProps(ctx) {
 const GestaoDeUsuarios = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
+  useEffect(()=>{log_out(session)},[session])
   if (session) {
     return (
       session?.user.perfis.includes(2) &&

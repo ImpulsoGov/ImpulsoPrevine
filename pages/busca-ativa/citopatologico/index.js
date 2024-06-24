@@ -1,14 +1,12 @@
 import { 
     CardAlert,
     TituloTexto, 
-    ButtonLight, 
     PainelBuscaAtiva , 
     ScoreCardGrid , 
     Spinner, 
     GraficoBuscaAtiva,
     TabelaCitoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon,
     ButtonLightSubmit
 } from "@impulsogov/design-system";
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -17,7 +15,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken} from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasCito } from "../../../helpers/colunasCito";
+import { colunasCitoEquipe, colunasCitoAPS } from "../../../helpers/colunasCito";
 import { Imprimir } from "../../../helpers/imprimir"
 import { tabelaCitoEquipe , tabelaCitoAPS } from "../../../services/busca_ativa/Cito";
 import status_usuario_descricao  from "../../../data/StatusAcompanhamento.json" assert { type: 'json' };
@@ -25,6 +23,7 @@ import faixa_etarias from '../../../data/faixa_etarias.json' assert { type: 'jso
 import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -120,17 +119,26 @@ const IDFiltrosOrdenacaoCito = {
     "vencimento_da_coleta" : "asc",
     "prazo_proxima_coleta" : "asc",
 }
-const Impressao = (data)=> Imprimir(
+const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaCitoImpressao data={data} colunas={colunasCito} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    <TabelaCitoImpressao data={data} colunas={colunasCitoEquipe} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
     filtros_aplicados,
     setShowSnackBar
-)   
+)
+const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    "citopatologico",
+    activeTitleTabIndex,
+    activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
+)
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
-
+useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{
     setVoltarGatilho(voltarGatilho+1)
 },[router.asPath])
@@ -141,18 +149,18 @@ if(session){
         const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de mulheres',
+                descricao: 'Total de pessoas',
                 valor: tabelaDataEquipe.length
             },
             {
-                descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
+                descricao: 'Total de pessoas que nunca relizaram a coleta de citopatológico',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 13) ?
                 acumulador + 1 : acumulador;
                 },0)
             },
             {
-                descricao: 'Total de mulheres com a coleta vencida ou a vencer até o fim do quadrimestre',
+                descricao: 'Total de pessoas com a coleta vencida ou a vencer até o fim do quadrimestre',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
                 acumulador + 1 : acumulador;
@@ -163,11 +171,11 @@ if(session){
         const CardsChildComExame = tabelaDataEquipe ? <ScoreCardGrid
         valores={[
             {
-                descricao: 'Total de mulheres',
+                descricao: 'Total de pessoas',
                 valor: tabelaDataEquipe.length
             },
             {
-                descricao: 'Total de mulheres com a coleta de citopatológico em dia',
+                descricao: 'Total de pessoas com a coleta de citopatológico em dia',
                 valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
                 return (item.id_status_usuario == 12) ?
                 acumulador + 1 : acumulador;
@@ -179,7 +187,7 @@ if(session){
     const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
-        onPrintClick={Impressao}
+        onPrintClick={ImpressaoEquipe}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
@@ -198,16 +206,11 @@ if(session){
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
 
         ]}
         painel="cito"
         tabela={{
-        colunas: colunasCito,
+        colunas: colunasCitoEquipe,
         data:tabelaDataEquipeSemExame
         }}
         data={tabelaData}
@@ -237,13 +240,8 @@ if(session){
     const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
-        onPrintClick={Impressao}
+        onPrintClick={ImpressaoEquipe}
         dadosFiltros={[
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.equipe_nome))],
-                filtro: 'equipe_nome',
-                rotulo: 'Filtrar por nome da equipe'
-            },
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],
                 labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
@@ -264,7 +262,7 @@ if(session){
         ]}
         painel="cito"
         tabela={{
-        colunas: colunasCito,
+        colunas: colunasCitoEquipe,
         data:tabelaDataEquipeComExame
         }}
         data={tabelaData}
@@ -333,10 +331,10 @@ if(session){
             list={[
                 [
                     {
-                        label: 'MULHERES COM EXAME A SER REALIZADO'
+                        label: 'PESSOAS COM EXAME A SER REALIZADO'
                     },
                     {
-                        label: 'MULHERES EM DIA COM EXAME'
+                        label: 'PESSOAS EM DIA COM EXAME'
                     }
                 ],
                 ]}
@@ -356,25 +354,25 @@ if(session){
         const CardsChild = tabelaDataAPS ? <ScoreCardGrid
             valores={[
                 {
-                    descricao: 'Total de mulheres de 25 a 64 anos',
+                    descricao: 'Total de pessoas de 25 a 64 anos',
                     valor: tabelaDataAPS.length
                 },
                 {
-                    descricao: 'Total de mulheres com a coleta de citopatológico em dia',
+                    descricao: 'Total de pessoas com a coleta de citopatológico em dia',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 12) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
-                    descricao: 'Total de mulheres que nunca relizaram a coleta de citopatológico',
+                    descricao: 'Total de pessoas que nunca relizaram a coleta de citopatológico',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 13) ?
                     acumulador + 1 : acumulador;
                     },0)
                 },
                 {
-                    descricao: 'Total de mulheres com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
+                    descricao: 'Total de pessoas com a coleta de citopatológico vencida (ou a vencer até o fim do quadrimestre)',
                     valor: tabelaDataAPS.reduce((acumulador,item)=>{ 
                     return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
                     acumulador + 1 : acumulador;
@@ -400,7 +398,7 @@ if(session){
                     fontWeight: 500,
                     lineHeight: "130%",
                 }}>
-                    Mulheres dentro da faixa etaria de 25 a 64 anos 
+                    Pessoas dentro da faixa etaria de 25 a 64 anos 
                 </h2>
                 <GraficoBuscaAtiva
                     dataBarra={{
@@ -518,34 +516,34 @@ if(session){
                                 name: 'Coleta em dia',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 12) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Nunca realizou coleta',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 13) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Coleta com menos de 25 anos',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 14) ? acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Vence no final do quadrimestre',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 15) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             },
                             {
                                 name: 'Coleta vencida',
                                 value: ((tabelaDataAPS.reduce((acumulador,item)=>{ 
                                 return (item.id_status_usuario == 16) ?
                                 acumulador + 1 : acumulador;
-                                },0)*100)/tabelaDataAPS.length).toFixed(2)
+                                },0)*100)/tabelaDataAPS.length).toFixed(1)
                             }
                             ],
                             emphasis: {
@@ -583,8 +581,9 @@ if(session){
                 />
             </>
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
-            onPrintClick={Impressao}
+            onPrintClick={ImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -604,14 +603,14 @@ if(session){
                     rotulo: 'Filtrar por faixa etária'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
+                    data: [...new Set(tabelaDataAPSSemExame.map(item => item.equipe_nome_e_ine))],
+                    filtro: 'equipe_nome_e_ine',
+                    rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
             painel="cito"
             tabela={{
-            colunas: colunasCito,
+            colunas: colunasCitoAPS,
             data:tabelaDataAPSSemExame
             }}
             data={tabelaData}
@@ -639,10 +638,11 @@ if(session){
             setFiltros_aplicados={setFiltros_aplicados}
         /> : <Spinner/>
         const tabelaDataAPSComExame = [...new Set(tabelaDataAPS?.filter(item=>item.id_status_usuario == 12))]
+        .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
-            onPrintClick={Impressao}
+            onPrintClick={ImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
@@ -662,14 +662,14 @@ if(session){
                     rotulo: 'Filtrar por faixa etária'
                 },
                 {
-                    data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome))],
-                    filtro: 'equipe_nome',
-                    rotulo: 'Filtrar por nome da equipe'
+                    data: [...new Set(tabelaDataAPSComExame.map(item => item.equipe_nome_e_ine))],
+                    filtro: 'equipe_nome_e_ine',
+                    rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
             painel="cito"
             tabela={{
-            colunas: colunasCito,
+            colunas: colunasCitoAPS,
             data:tabelaDataAPSComExame
             }}
             data={tabelaData}
@@ -700,13 +700,7 @@ if(session){
 
         return (
         <>
-            <div 
-                style={
-                    window.screen.width > 1024 ?
-                    {padding: "30px 80px 30px 80px",display: "flex"} :
-                    {padding: "30px 0 0 5px",display: "flex"} 
-                }
-            >
+            <div style={{ padding: "30px 80px 30px 80px", display: "flex" }}>
                 <ButtonLightSubmit 
                     icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
                     label="VOLTAR" 
@@ -738,10 +732,10 @@ if(session){
                         label: 'GRÁFICOS'
                     },
                     {
-                        label: 'MULHERES COM EXAME A SER REALIZADO'
+                        label: 'PESSOAS COM EXAME A SER REALIZADO'
                     },
                     {
-                        label: 'MULHERES EM DIA COM EXAME'
+                        label: 'PESSOAS EM DIA COM EXAME'
                     }
                     ],
                     ]}

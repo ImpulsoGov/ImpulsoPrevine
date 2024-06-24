@@ -3,7 +3,7 @@ import {
     Spinner, 
     ScoreCardGrid,
 } from "@impulsogov/design-system";
-import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
+import { colunasVacinacaoEquipe } from "../../../../../../helpers/colunasVacinacao";
 import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_penta.json" assert { type: 'json' };
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
@@ -130,7 +130,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                 ]}
             painel="vacinacao"
             tabela={{
-            colunas: colunasVacinacaoAPS,
+            colunas: colunasVacinacaoEquipe,
             data:tabelaDataAPSVacinacao
             }}
             data={tabelaData}

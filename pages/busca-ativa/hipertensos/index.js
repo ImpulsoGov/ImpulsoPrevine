@@ -13,12 +13,14 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { Imprimir } from "../../../helpers/imprimir"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { colunasHipertensao } from "../../../helpers/colunasHipertensao";
+import { colunasHipertensaoEquipe, colunasHipertensaoAPS } from "../../../helpers/colunasHipertensao";
 import { tabelaHipertensaoEquipe , tabelaHipertensaoAPS } from "../../../services/busca_ativa/Hipertensao";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS";
-import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe";
+import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS"
+import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe"
+
+import {log_out} from "../../../hooks/log_out"
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -62,9 +64,18 @@ const Index = ({res}) => {
 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const Impressao = (data)=> Imprimir(
+  const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensao} fontFamily="sans-serif" />,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoEquipe} fontFamily="sans-serif" />,
+    "hipertensao",
+    null,
+    null,
+    filtros_aplicados,
+    setShowSnackBar
+  )
+  const ImpressaoAPS = (data)=> Imprimir(
+    0.78,
+    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoAPS} fontFamily="sans-serif" />,
     "hipertensao",
     null,
     null,
@@ -106,6 +117,7 @@ const Index = ({res}) => {
         </div>
       );
     };
+    useEffect(()=>{log_out(session)},[session])
     useEffect(()=>{
         setVoltarGatilho(voltarGatilho+1)
     },[router.asPath])
@@ -173,7 +185,7 @@ const Index = ({res}) => {
               <TabelaEquipe
                 tabelaData={tabelaData}
                 tabelaDataEquipe={tabelaDataEquipe}
-                Impressao={Impressao}
+                Impressao={ImpressaoEquipe}
                 setTabelaData={setTabelaData}
                 showSnackBar={showSnackBar}
                 setShowSnackBar={setShowSnackBar}
@@ -343,31 +355,31 @@ const Index = ({res}) => {
                     data: [ 
                       {
                         name: 'Consulta e Aferição de PA em dia',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa == "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas a consulta a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta == "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Apenas Aferição de PA a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_afericao_pa == "Em dia" && item.prazo_proxima_consulta != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       },
                       {
                         name: 'Os dois a fazer',
-                        value: Math.round((tabelaDataAPS.reduce((acumulador, item) => {
+                        value: ((tabelaDataAPS.reduce((acumulador, item) => {
                           return (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_afericao_pa != "Em dia") ?
                             acumulador + 1 : acumulador;
-                        }, 0) * 100) / tabelaDataAPS.length)
+                        }, 0) * 100) / tabelaDataAPS.length).toFixed(1)
                       }
                     ],
                     emphasis: {
@@ -407,7 +419,7 @@ const Index = ({res}) => {
             <TabelaAPS 
               tabelaData={tabelaData}
               tabelaDataAPS={tabelaDataAPS}
-              Impressao={Impressao}
+              Impressao={ImpressaoAPS}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { concluirConteudo } from '../../services/capacitacao';
 import trilhas from '../../data/trilhas.json' assert { type: 'json' };
 import { useEffect } from 'react'
+import {log_out} from "../../hooks/log_out"
 
 
 export async function getServerSideProps(ctx) {
@@ -33,6 +34,7 @@ const Index = ({res}) => {
     useEffect(()=>{
         session && router.query.inicio=='1' && concluirConteudo(session?.user?.id,`${siglaTrilha}-MOD0-C0`,session?.user?.access_token)
     },[session])
+    useEffect(()=>{log_out(session)},[session])
     return(
         <>
             {

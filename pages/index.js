@@ -51,7 +51,7 @@ const Index = ({res}) => {
                     texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
                   />
                   <div style={{paddingTop:75}}></div>
-                  <ImagensFull2 imagem="https://media.graphassets.com/xGxFkzz9Q5eTik6An7uJ" />
+                  <ImagensFull2 imagem="https://media.graphassets.com/FSgx9FUSP2wHnXGolx0D" />
               </>
               } 
             />
@@ -60,7 +60,7 @@ const Index = ({res}) => {
         } 
       />
       <ParceriasTexto
-          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
+          text = "“O Impulso Previne é uma solução digital que centraliza em uma plataforma dados, análises e recomendações sobre o programa de financiamento federal da Atenção Primária, o antigo Previne Brasil, para apresentá-los de forma rápida e descomplicada aos gestores de saúde.”"
           parceiros = {[{"alt": "folha","src": "https://media.graphassets.com/gjPxnSNWTY6tbtK0UXk5"}]}
       />
       
@@ -75,22 +75,6 @@ const Index = ({res}) => {
                 titulo="<b>Suporte para coordenação e assistência da APS</b>"
                 texto="Melhore a atuação da sua unidade de saúde e do seu município com:"
               />
-            <Grid12Col
-            proporcao="7-5"
-            items={ [
-              <ImagensFull2 key="desempenho_imagem" imagem="https://media.graphassets.com/55Ovc152SoahfSNlqFIZ" />,
-              <><div style={{alignContent:"center"}}>
-                  <TituloSmallTexto
-                    key="desempenho"
-                    botao={{label: 'VER DESEMPENHO DOS MUNICÍPIOS',url: '/analise'}}
-                    imagem={{posicao: null,url: ''}}
-                    supertitulo="<b>Análises do Previne</b>"
-                    titulo=""
-                    texto="Veja o desempenho de qualquer município nos componentes do Previne Brasil e sugestões para alcançar as metas definidas.<br><br>"
-                  />
-                </div></>,
-            ] }
-          />
           <Grid12Col
             proporcao="5-7"
             items={ [
@@ -102,13 +86,13 @@ const Index = ({res}) => {
                 titulo=""
                 texto="Seja nosso(a) parceiro(a) para receber apoio especializado da nossa equipe e treinamentos focados nos desafios do seu município.<br><br>"
               />,
-              <ImagensFull2 key="municipio_parceiro_imagem" imagem="https://media.graphassets.com/myRTKSALRUChuOhlEnQT" />
+              <ImagensFull2 key="municipio_parceiro_imagem" imagem="https://media.graphassets.com/cFi4nN5ROqfp8tmESY37" />
             ] }
           />
           <Grid12Col
             proporcao="7-5"
             items={ [
-              <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/kuiOKdlR5iR2nFrnAjsk" />,
+              <ImagensFull2 key="materiais_imagem" imagem="https://media.graphassets.com/ZK6SrsUoQZutmM4bJOpX" />,
               <TituloSmallTexto
                 key="materiais"
                 botao={{label: 'RECEBER MATERIAIS',url: 'https://docs.google.com/forms/d/e/1FAIpQLSdMuW8LG3MB8RsR2B9GrjsPez4WPp7SqOaLiXb1kmMOuspmkw/viewform'}}
@@ -177,15 +161,17 @@ const Index = ({res}) => {
                   <></>,
                   <CardIP
                     key="card_5"
-                    titulo="PARCEIRO DESDE 2022"
-                    indicador="Brejo de Areia/MA"
-                    descricao="O uso das ferramentas nas reuniões de gestão ajudou os coordenadores a identificar pendências e gerou  um resultado 35% melhor que seus 4 municípios vizinhos no 1º quadrimestre de 2023."
+                    titulo="PARCEIRO DESDE 2023"
+                    indicador="Jandaíra/BA"
+                    descricao="“Depois que começa a usar não vai querer parar mais. É maravilhoso porque a gente consegue seguir no trabalho da forma como tem que seguir porque a gente já tem tudo pronto. O Impulso Previne tá dando pra gente tudo mastigado... Coisa que a gente poderia sentar pra digitar, pra escrever, e já vem pra gente prontinho.”
+                    Luana de Jesus, Coordenadora de Equipe"
                   />,
                   <CardIP
                     key="card_6"
-                    titulo="PARCEIRO DESDE 2022"
-                    indicador="Minaçu/GO"
-                    descricao="Com apoio da nossa equipe de especialistas em saúde, o município obteve o primeiro lugar na Regional Norte de Goiás no ranking do Previne Brasil no 3º quadrimestre de 2022!"
+                    titulo="PARCEIRO DESDE 2023"
+                    indicador="Jandaíra/BA"
+                    descricao="“Eu trabalho com meu território, mas tem muitos pacientes que não vem pra unidade e são cadastrados como hipertensos e diabéticos só que eu não sei se são mesmo. Então com a lista eu consigo ir fazer a busca e capturar esse paciente pra gente aqui.”
+                    Ananda Larissa, Coordenadora de Equipe"
                   />
                 ] }
               />
@@ -207,8 +193,7 @@ const Index = ({res}) => {
                   imagem={{posicao: null,url: ''}}
                   supertitulo=""
                   titulo="<b>Impulsionamos o SUS com dados e tecnologia</b>"
-                  texto="Na ImpulsoGov, acreditamos que os dados são necessários para facilitar a tomada de decisões e a tecnologia deve facilitar o dia a dia da profissional do SUS e permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>
-                  O Impulso Previne é um projeto da ImpulsoGov focado em promover o uso de dados e indicadores na gestão da atenção primária, com destaque para o Previne Brasil, atual modelo de financiamento federal da APS no Brasil <br/><br/>"
+                  texto="Na ImpulsoGov, acreditamos que os dados são necessários para facilitar a tomada de decisões e a tecnologia deve facilitar o dia a dia da profissional do SUS para permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>O Impulso Previne é um projeto da ImpulsoGov focado em promover o uso de dados relacionados aos indicadores da Atenção Primária à Saúde. <br/><br/>"
                 />
               ] }
             />

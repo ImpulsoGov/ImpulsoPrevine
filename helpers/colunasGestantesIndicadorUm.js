@@ -230,9 +230,17 @@ const colunasGestantesIndicadorUm=[
       field: 'id_registro_parto',
       headerAlign: 'center',
       headerName: 'REGISTRO DE PARTO',
-      width: 250,
+      width: 100,
       sortable : false,
       renderCell : REGISTRO_STYLE
+    },
+    {
+      align: 'center',
+      field: 'equipe_nome',
+      headerAlign: 'center',
+      headerName: 'EQUIPE',
+      width: 250,
+      sortable : false
     },
     {
       align: 'center',

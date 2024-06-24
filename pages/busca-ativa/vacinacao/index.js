@@ -4,7 +4,6 @@ import {
     ButtonLightSubmit, 
     TabelaVacinacaoImpressao,
     PanelSelector,
-    ButtonColorSubmitIcon
   } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
 import { useSession,signOut, getSession } from "next-auth/react"
@@ -25,8 +24,9 @@ import { TabelaAPSQuadrimestreFuturo } from "../../../componentes/mounted/busca-
 import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
 import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+import {log_out} from "../../../hooks/log_out"
 
-import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
+import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/colunasVacinacao";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
@@ -85,7 +85,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacao = (data)=> Imprimir(
+  const ImpressaoVacinacaoAPS = (data)=> Imprimir(
     1,
     <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
     "vacinacao",
@@ -93,11 +93,20 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
     activeTabIndex,
     filtros_aplicados,
     setShowSnackBar
-  ) 
+  )
+  const ImpressaoVacinacaoEquipe = (data)=> Imprimir(
+    1,
+    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoEquipe} fontFamily="sans-serif" />,
+    "vacinacao",
+    activeTitleTabIndex,
+    activeTabIndex,
+    filtros_aplicados,
+    setShowSnackBar
+  )
   const Voltar = ()=>{
     window.history.go(voltarGatilho*(-1))
   }
-
+  useEffect(()=>{log_out(session)},[session])
   useEffect(()=>{
       setVoltarGatilho(voltarGatilho+1)
   },[router.asPath])
@@ -112,7 +121,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={ImpressaoVacinacao}
+                onPrintClick={ImpressaoVacinacaoEquipe}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}
@@ -125,7 +134,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
               tabelaDataAPS={tabelaDataEquipe} 
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
-              onPrintClick={ImpressaoVacinacao}
+              onPrintClick={ImpressaoVacinacaoEquipe}
               showSnackBar={showSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
               setShowSnackBar={setShowSnackBar}
@@ -138,7 +147,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
             tabelaDataAPS={tabelaDataEquipe} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
-            onPrintClick={ImpressaoVacinacao}
+            onPrintClick={ImpressaoVacinacaoEquipe}
             showSnackBar={showSnackBar}
             setFiltros_aplicados={setFiltros_aplicados}
             setShowSnackBar={setShowSnackBar}
@@ -241,7 +250,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
-                    onPrintClick={ImpressaoVacinacao}
+                    onPrintClick={ImpressaoVacinacaoAPS}
                     showSnackBar={showSnackBar}
                     setFiltros_aplicados={setFiltros_aplicados}
                     setShowSnackBar={setShowSnackBar}    
@@ -258,7 +267,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
-                  onPrintClick={ImpressaoVacinacao}
+                  onPrintClick={ImpressaoVacinacaoAPS}
                   showSnackBar={showSnackBar}
                   setFiltros_aplicados={setFiltros_aplicados}
                   setShowSnackBar={setShowSnackBar}  
@@ -275,7 +284,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={ImpressaoVacinacao}
+                onPrintClick={ImpressaoVacinacaoAPS}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}
@@ -286,13 +295,7 @@ import { colunasVacinacaoAPS } from "../../../helpers/colunasVacinacao";
   
       return (
       <>
-          <div 
-              style={
-                  window.screen.width > 1024 ?
-                  {padding: "30px 80px 30px 80px",display: "flex"} :
-                  {padding: "30px 0 0 5px",display: "flex"} 
-              }
-          >
+          <div style={{ padding: "30px 80px 30px 80px", display: "flex" }}>
                 <ButtonLightSubmit 
                     icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
                     label="VOLTAR" 

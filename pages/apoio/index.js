@@ -68,8 +68,8 @@ const Index = ({res}) => {
             componente={
               <>
               <NovoTituloTexto
-                titulo="Melhore o seu desempenho nos componentes do Previne Brasil"
-                texto="Desenvolvemos formas de facilitar as atividades que influenciam nos critérios do modelo de financiamento da atenção primária à saúde."
+                titulo="Melhore o desempenho do seu município na atenção primária"
+                texto="Desenvolvemos formas de facilitar as atividades de rotina dos profissionais da gestão e da assistência que atuam na atenção básica do SUS."
               />
             </>
             } 
@@ -104,14 +104,14 @@ const Index = ({res}) => {
                 key={ uuidv1() }
                 botao={{label: '',url: ''}}
                 imagem={{posicao: null, url: ''}}
-                supertitulo="<b>Treinamentos exclusivos sobre boas práticas nos indicadores e capitação ponderada"
+                supertitulo="<b>Treinamentos sobre as principais linhas de cuidado da atenção primária"
                 titulo=""
-                texto="Veja materiais de apoio sobre os indicadores e tenha à disposição para consultar quantas vezes quiser todas as informações sobre regras, registros e estratégias de cuidado."
+                texto="Veja materiais de apoio sobre gestantes, doenças crônicas, exame citopatológico e cadastro com informações sobre regras, registros e estratégias de cuidado à disposição para consultar quantas vezes quiser."
               />
               </>
               ,
               <>
-                <ImagensFull2 imagem="https://media.graphassets.com/1gYRflqoTCyVTz2pBTNy" />
+                <ImagensFull2 imagem="https://media.graphassets.com/aZ5H3ZMjSD88BUdxvMBq" />
               </>
             ] }
           />
@@ -203,8 +203,6 @@ const Index = ({res}) => {
         </>
       } 
     />
-
-
     <FormConsultoria
         title="Inscreva-se e melhore o desempenho do seu município na atenção primária"
         mail=""
