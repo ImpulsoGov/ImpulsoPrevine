@@ -80,7 +80,7 @@ const Index = ({res}) => {
           },
 
             botao : {
-                label : "QUERO ME INSCREVER",
+                label : "INSCREVA-SE JÁ",
                 url : "https://bit.ly/webinar-monitoramento-APS-10"
             }
         }}
