@@ -122,14 +122,14 @@ const Index = ({ res }) => {
     if (session) {
         return (
             <>
-                 {
+                 {/* {
                     !dataNPS &&
                     <NPS 
                         user = {session?.user?.id}
                         token = {session?.user?.access_token}
                         submit = {NPSAvaliacao}
                     />                    
-                } 
+                }  */}
                       {/* <ModalAlert
                         Child = {Alert_v2}
                         childProps ={ {
