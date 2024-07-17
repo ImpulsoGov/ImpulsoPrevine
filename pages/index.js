@@ -41,6 +41,7 @@ export async function getServerSideProps(ctx) {
 const Index = ({res}) => {
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
+      {/*
       <ModalAlert
           Child = {Alert_v4}
           childProps ={ {
@@ -85,6 +86,7 @@ const Index = ({res}) => {
             }
         }}
       />
+      */}
       <Margem 
         componente={
           <>
