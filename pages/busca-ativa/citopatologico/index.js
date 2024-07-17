@@ -50,20 +50,27 @@ const [filtros_aplicados,setFiltros_aplicados] = useState(false)
 const [activeTabIndex, setActiveTabIndex] = useState(0);
 const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 const [voltarGatilho,setVoltarGatilho] = useState(0);
+const [impressaoFeita,setImpressaoFeita] = useState(false);
 const router = useRouter();
 let visao = null
 useEffect(() => {
-    router.push({
-      pathname: router.pathname,
-      query: { 
+    const queryStrings = {
         aba: null,
         sub_aba : activeTabIndex,
-        visao : visao
+        visao : visao,
+    };
+
+    if (impressaoFeita) {
+        queryStrings.impressao_feita = impressaoFeita;
     }
+
+    router.push({
+      pathname: router.pathname,
+      query: queryStrings
     },
       undefined, { shallow: true }
     );
-  }, [activeTabIndex,activeTitleTabIndex]);
+  }, [activeTabIndex,activeTitleTabIndex,impressaoFeita]);
 
 const CitoTabelaDataAPS = async()=> await tabelaCitoAPS(session?.user?.municipio_id_sus,session?.user?.access_token)
 useEffect(()=>{
@@ -128,15 +135,19 @@ const ImpressaoEquipe = (data)=> Imprimir(
     filtros_aplicados,
     setShowSnackBar
 )
-const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
-    "citopatologico",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-)
+const ImpressaoAPS = (data)=> {
+    // Imprimir(
+    //     0.78,
+    //     <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
+    //     "citopatologico",
+    //     activeTitleTabIndex,
+    //     activeTabIndex,
+    //     filtros_aplicados,
+    //     setShowSnackBar
+    // )
+    window.open("", "_blank");
+    setImpressaoFeita(true);
+}
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
 useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{
