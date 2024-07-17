@@ -47,7 +47,7 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   useEffect(() => setMode(true), [dynamicRoute]);
   useEffect(() => {
-    hotjar.initialize(3496492, 6);
+    hotjar.initialize(5063078, 6);
   }, [])
 
   useEffect(() => {
