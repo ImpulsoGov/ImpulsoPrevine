@@ -47,6 +47,11 @@ function MyApp(props) {
   useEffect(() => addUserDataLayer(props.ses), [props.ses]);
   useEffect(() => setMode(true), [dynamicRoute]);
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Expõe o mixpanel globalmente para permitir integração com o hotjar
+      window.mixpanel = mixpanel;
+    }
+
     hotjar.initialize(3496492, 6);
   }, [])
 
@@ -82,6 +87,18 @@ function MyApp(props) {
           || props.ses.user.municipio.includes('Impulsolândia')
           || (props.ses.user.municipio_id_sus === '111111')
       });
+      hotjar.identify(props.ses.user.id, {
+        "email": props.ses.user.mail,
+        "name": props.ses.user.nome,
+        "cargo": props.ses.user.cargo,
+        "municipio": props.ses.user.municipio,
+        "equipe": props.ses.user.equipe,
+        "municipio_id_sus": props.ses.user.municipio_id_sus,
+        "is_test_user": (props.ses.user.cargo == 'Impulser')
+          || props.ses.user.mail.includes('@impulsogov.org')
+          || props.ses.user.municipio.includes('Impulsolândia')
+          || (props.ses.user.municipio_id_sus === '111111')
+      })
     }
   }, [props.ses]);
 
