@@ -22,6 +22,7 @@ import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadr
 import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
 import {log_out} from "../../../hooks/log_out"
+import { hotjar } from "react-hotjar";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -109,15 +110,18 @@ const Index = ({ res }) => {
     filtros_aplicados,
     setShowSnackBar
   )
-  const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesAPS} fontFamily="sans-serif" />,
-    "diabetes",
-    null,
-    null,
-    filtros_aplicados,
-    setShowSnackBar
-  )
+  const ImpressaoAPS = (data)=> {
+    hotjar.event("impressao_feita");
+    Imprimir(
+      0.78,
+      <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesAPS} fontFamily="sans-serif" />,
+      "diabetes",
+      null,
+      null,
+      filtros_aplicados,
+      setShowSnackBar
+    )
+  }
   const router = useRouter();
   let visao = null
   useEffect(() => {
