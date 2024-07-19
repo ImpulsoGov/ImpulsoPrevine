@@ -83,9 +83,7 @@ const Index = ({res}) => {
       }
   })
   useEffect(()=>{log_out(session)},[session])
-  useEffect(() => {
-    hotjar.event("acesso_cadastros_duplicados");
-  }, [])
+
   useEffect(()=>{
     if(session && session?.user?.access_token){
       if(tokenValido!=true && tokenValido!==undefined) signOut()
