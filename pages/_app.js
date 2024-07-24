@@ -74,31 +74,28 @@ function MyApp(props) {
 
   useEffect(() => {
     if (props.ses && props.ses.user) {
+      const atributos = {
+        "cargo": props.ses.user.cargo,
+        "municipio": props.ses.user.municipio,
+        "equipe": props.ses.user.equipe,
+        "municipio_id_sus": props.ses.user.municipio_id_sus,
+        "is_test_user": (props.ses.user.cargo == 'Impulser')
+          || props.ses.user.mail.includes('@impulsogov.org')
+          || props.ses.user.municipio.includes('Impulsolândia')
+          || (props.ses.user.municipio_id_sus === '111111')
+      };
+
       mixpanel.identify(props.ses.user.id);
       mixpanel.people.set({
         "$email": props.ses.user.mail,
         "$name": props.ses.user.nome,
-        "cargo": props.ses.user.cargo,
-        "municipio": props.ses.user.municipio,
-        "equipe": props.ses.user.equipe,
-        "municipio_id_sus": props.ses.user.municipio_id_sus,
-        "is_test_user": (props.ses.user.cargo == 'Impulser')
-          || props.ses.user.mail.includes('@impulsogov.org')
-          || props.ses.user.municipio.includes('Impulsolândia')
-          || (props.ses.user.municipio_id_sus === '111111')
+        ...atributos
       });
       hotjar.identify(props.ses.user.id, {
         "email": props.ses.user.mail,
         "name": props.ses.user.nome,
-        "cargo": props.ses.user.cargo,
-        "municipio": props.ses.user.municipio,
-        "equipe": props.ses.user.equipe,
-        "municipio_id_sus": props.ses.user.municipio_id_sus,
-        "is_test_user": (props.ses.user.cargo == 'Impulser')
-          || props.ses.user.mail.includes('@impulsogov.org')
-          || props.ses.user.municipio.includes('Impulsolândia')
-          || (props.ses.user.municipio_id_sus === '111111')
-      })
+        ...atributos
+      });
     }
   }, [props.ses]);
 
