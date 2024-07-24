@@ -137,10 +137,7 @@ function MyApp(props) {
                     botaoAuxiliar: props.ses?.user.perfis.includes(2)
                       ? {
                         label: "GESTÃO DE USUÁRIOS",
-                        handelClick : () => {
-                          router.push("/gestao-usuarios");
-                          hotjar.event("click_gestao_usuarios");
-                        }
+                        handelClick: () => router.push("/gestao-usuarios")
                       }
                       : null
                   }
