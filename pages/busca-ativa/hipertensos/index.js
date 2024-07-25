@@ -21,6 +21,7 @@ import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/hipertensao/
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe"
 
 import {log_out} from "../../../hooks/log_out"
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -419,7 +420,7 @@ const Index = ({res}) => {
             <TabelaAPS 
               tabelaData={tabelaData}
               tabelaDataAPS={tabelaDataAPS}
-              Impressao={ImpressaoAPS}
+              onPrintClick={dispararEventoAbrirImpressaoAPS}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}

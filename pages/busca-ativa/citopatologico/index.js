@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {log_out} from "../../../hooks/log_out"
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -583,7 +584,7 @@ if(session){
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
-            onPrintClick={ImpressaoAPS}
+            onPrintClick={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -642,7 +643,7 @@ if(session){
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
-            onPrintClick={ImpressaoAPS}
+            onPrintClick={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],

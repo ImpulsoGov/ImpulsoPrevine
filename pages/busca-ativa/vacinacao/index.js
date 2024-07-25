@@ -27,6 +27,7 @@ import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from ".
 import {log_out} from "../../../hooks/log_out"
 
 import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/colunasVacinacao";
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
@@ -250,7 +251,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
-                    onPrintClick={ImpressaoVacinacaoAPS}
+                    onPrintClick={dispararEventoAbrirImpressaoAPS}
                     showSnackBar={showSnackBar}
                     setFiltros_aplicados={setFiltros_aplicados}
                     setShowSnackBar={setShowSnackBar}    
@@ -267,7 +268,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
-                  onPrintClick={ImpressaoVacinacaoAPS}
+                  onPrintClick={dispararEventoAbrirImpressaoAPS}
                   showSnackBar={showSnackBar}
                   setFiltros_aplicados={setFiltros_aplicados}
                   setShowSnackBar={setShowSnackBar}  
@@ -284,7 +285,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={ImpressaoVacinacaoAPS}
+                onPrintClick={dispararEventoAbrirImpressaoAPS}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}
