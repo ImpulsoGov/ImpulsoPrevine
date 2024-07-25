@@ -129,15 +129,6 @@ const ImpressaoEquipe = (data)=> Imprimir(
     filtros_aplicados,
     setShowSnackBar
 )
-const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
-    "citopatologico",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-)
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
 useEffect(()=>{log_out(session)},[session])
 useEffect(()=>{

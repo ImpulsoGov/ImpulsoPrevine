@@ -74,15 +74,6 @@ const Index = ({res}) => {
     filtros_aplicados,
     setShowSnackBar
   )
-  const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasHipertensaoAPS} fontFamily="sans-serif" />,
-    "hipertensao",
-    null,
-    null,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const router = useRouter();
   let visao = null
   useEffect(() => {

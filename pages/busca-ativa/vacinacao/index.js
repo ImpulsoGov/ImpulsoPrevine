@@ -86,15 +86,6 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacaoAPS = (data)=> Imprimir(
-    1,
-    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
-    "vacinacao",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const ImpressaoVacinacaoEquipe = (data)=> Imprimir(
     1,
     <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoEquipe} fontFamily="sans-serif" />,

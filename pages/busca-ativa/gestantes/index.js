@@ -173,15 +173,6 @@ const ImpressaoEquipe = (data)=> Imprimir(
   filtros_aplicados,
   setShowSnackBar
 )   
-const ImpressaoAPS = (data)=> Imprimir(
-  0.78,
-  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
-  "gestantes",
-  activeTitleTabIndex,
-  activeTabIndex,
-  filtros_aplicados,
-  setShowSnackBar
-)   
 const Voltar = ()=>{
   window.history.go(voltarGatilho*(-1))
 }

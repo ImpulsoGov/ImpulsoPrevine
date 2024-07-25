@@ -110,15 +110,6 @@ const Index = ({ res }) => {
     filtros_aplicados,
     setShowSnackBar
   )
-  const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesAPS} fontFamily="sans-serif" />,
-    "diabetes",
-    null,
-    null,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const router = useRouter();
   let visao = null
   useEffect(() => {
