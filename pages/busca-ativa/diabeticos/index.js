@@ -430,7 +430,7 @@ const Index = ({ res }) => {
         <TabelaAPS
           tabelaData={tabelaData}
           tabelaDataAPS={tabelaDataAPS}
-          onPrintClick={dispararEventoAbrirImpressaoAPS}
+          liberarPesquisa={dispararEventoAbrirImpressaoAPS}
           setTabelaData={setTabelaData}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}

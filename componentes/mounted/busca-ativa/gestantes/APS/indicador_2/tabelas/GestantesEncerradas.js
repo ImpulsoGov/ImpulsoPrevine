@@ -33,7 +33,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
-    onPrintClick,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
@@ -41,7 +41,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
-    onPrintClick={onPrintClick}
+    liberarPesquisa={liberarPesquisa}
     key="tabelaDataAPSGestantesEncerradas"
     trackObject={trackObject}
     lista="gestantes"

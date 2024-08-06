@@ -33,7 +33,7 @@ const TabelaAPSQuadrimestreAtual = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData,
-    onPrintClick,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
@@ -105,7 +105,7 @@ const TabelaAPSQuadrimestreAtual = ({
             ]}
         />
         <PainelBuscaAtiva
-            onPrintClick={onPrintClick}
+            liberarPesquisa={liberarPesquisa}
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
                 {

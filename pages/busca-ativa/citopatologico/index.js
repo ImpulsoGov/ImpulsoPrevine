@@ -575,7 +575,7 @@ if(session){
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
-            onPrintClick={dispararEventoAbrirImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -634,7 +634,7 @@ if(session){
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
-            onPrintClick={dispararEventoAbrirImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],

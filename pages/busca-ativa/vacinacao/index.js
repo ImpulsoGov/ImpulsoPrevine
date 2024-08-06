@@ -242,7 +242,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
-                    onPrintClick={dispararEventoAbrirImpressaoAPS}
+                    liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                     showSnackBar={showSnackBar}
                     setFiltros_aplicados={setFiltros_aplicados}
                     setShowSnackBar={setShowSnackBar}    
@@ -259,7 +259,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
-                  onPrintClick={dispararEventoAbrirImpressaoAPS}
+                  liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                   showSnackBar={showSnackBar}
                   setFiltros_aplicados={setFiltros_aplicados}
                   setShowSnackBar={setShowSnackBar}  
@@ -276,7 +276,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={dispararEventoAbrirImpressaoAPS}
+                liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}

@@ -321,7 +321,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -337,7 +337,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -363,7 +363,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -379,7 +379,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -405,7 +405,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -421,7 +421,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={dispararEventoAbrirImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -438,7 +438,7 @@ if(session){
             trackObject={mixpanel}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
-            onPrintClick={dispararEventoAbrirImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             setFiltros_aplicados={setFiltros_aplicados}

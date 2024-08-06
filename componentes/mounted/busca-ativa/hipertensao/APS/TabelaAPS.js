@@ -43,7 +43,7 @@ const IDFiltrosOrdenacaoHipertensao = {
 export const TabelaAPS = ({
     tabelaData,
     tabelaDataAPS,
-    onPrintClick,
+    liberarPesquisa,
     setTabelaData,
     showSnackBar,
     setShowSnackBar,
@@ -57,7 +57,7 @@ export const TabelaAPS = ({
     }))
 
     return tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
-    onPrintClick={onPrintClick}
+    liberarPesquisa={liberarPesquisa}
     dadosFiltros={[
         {
             data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_e_ine))],

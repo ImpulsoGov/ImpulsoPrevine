@@ -33,7 +33,7 @@ const TabelaAPSQuadrimestreProximo = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData,
-    onPrintClick,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
@@ -102,7 +102,7 @@ const TabelaAPSQuadrimestreProximo = ({
         ]}
         />
         <PainelBuscaAtiva
-        onPrintClick={onPrintClick}
+        liberarPesquisa={liberarPesquisa}
         key="tabelaDataAPSVacinacao"
         dadosFiltros={[
             {
