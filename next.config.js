@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@impulsogov/design-system','echarts','echarts-for-react','react-echarts-wrapper']);
+const withTM = require('next-transpile-modules')(['@impulsogov/design-system','echarts']);
 
 module.exports = withTM({
   reactStrictMode: true,
@@ -23,7 +23,16 @@ module.exports = withTM({
 
 
     ]
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.graphassets.com",
+        pathname: "/**",
+      },
+    ],
+  },
 })
 
 
