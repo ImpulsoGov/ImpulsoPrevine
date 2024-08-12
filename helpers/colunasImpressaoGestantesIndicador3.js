@@ -1,4 +1,4 @@
-export const colunasImpressaoIndicador3 = [
+export const colunasImpressaoGestantesIndicador3 = [
   {
     field: 'cidadao_nome',
     headerName: 'PACIENTE',
