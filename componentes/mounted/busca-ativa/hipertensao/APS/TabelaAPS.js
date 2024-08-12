@@ -124,7 +124,8 @@ export const TabelaAPS = ({
     }}
     colunasImpressao={colunasImpressaoHipertensaoAPS}
     listas_auxiliares={{}}
-    propAgrupamentoImpressao="equipe_nome_e_ine"
+    propAgrupamentoImpressao="equipe_nome_cadastro"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao="acs_nome_cadastro"
     labelsModalImpressao={labelsModalImpressaoAPS}
     aba={null}

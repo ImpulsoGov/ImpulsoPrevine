@@ -160,7 +160,8 @@ const TabelaAPSQuadrimestreProximo = ({
         }}
         listas_auxiliares={{}}
         colunasImpressao={colunasImpressaoVacinacaoAPS}
-        propAgrupamentoImpressao="equipe_nome_e_ine"
+        propAgrupamentoImpressao="equipe_nome"
+        propImpressaoSemPersonalizacao="equipe_nome_e_ine"
         propOrdenacaoImpressao="acs_nome"
         labelsModalImpressao={labelsModalImpressaoAPS}
         tabela={{

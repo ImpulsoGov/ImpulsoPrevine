@@ -635,7 +635,8 @@ if(session){
             listas_auxiliares={{
                 status_usuario_descricao: status_usuario_descricao.data
             }}
-            propAgrupamentoImpressao="equipe_nome_e_ine"
+            propAgrupamentoImpressao="equipe_nome"
+            propImpressaoSemPersonalizacao="equipe_nome_e_ine"
             propOrdenacaoImpressao="acs_nome"
             labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
@@ -706,7 +707,8 @@ if(session){
             listas_auxiliares={{
                 status_usuario_descricao: status_usuario_descricao.data
             }}
-            propAgrupamentoImpressao="equipe_nome_e_ine"
+            propAgrupamentoImpressao="equipe_nome"
+            propImpressaoSemPersonalizacao="equipe_nome_e_ine"
             propOrdenacaoImpressao="acs_nome"
             labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
