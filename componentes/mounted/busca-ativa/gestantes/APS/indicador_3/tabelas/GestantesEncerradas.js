@@ -2,8 +2,11 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
 } from "@impulsogov/design-system";
+import identificacao_atendimento_odontologico from "../../../../../../../data/identificacao_atendimento_odontologico.json";
 import { colunasGestantesIndicadorTres } from "../../../../../../../helpers/colunasGestantesIndicadorTres";
-import mixpanel from 'mixpanel-browser';
+import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador3";
+import { colunasImpressaoGestantesIndicador3 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador3";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -40,12 +43,14 @@ const IndicadorTresTabelaGestantesEncerradas = ({
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
-    liberarPesquisa={liberarPesquisa}
     key="tabelaDataAPSGestantesEncerradas"
-    trackObject={trackObject}
-    lista="gestantes"
-    aba={aba}
-    sub_aba={sub_aba}
+    painel="aps"
+    lista="PRÉ-NATAL - INDICADOR 3 (ATENDIMENTO ODONTOLÓGICO)"
+    divisorVertical = {[0,3]}
+    largura_colunas_impressao={{
+        paisagem : larguraColunasGestantesIndicador3Paisagem,
+        retrato : larguraColunasGestantesIndicador3Retrato
+    }}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.id_atendimento_odontologico.toString()))],
@@ -64,17 +69,19 @@ const IndicadorTresTabelaGestantesEncerradas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
     ]}
-    painel="gestantes"
     tabela={{
-    colunas: colunasGestantesIndicadorTres,
-    data:tabelaDataAPSGestantesEncerradas
+        colunas: colunasGestantesIndicadorTres,
+        data:tabelaDataAPSGestantesEncerradas
     }}
-    data={tabelaData}
-    setData={setTabelaData}
+    listas_auxiliares= {{
+        identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico
+    }}
+    colunasImpressao = {colunasImpressaoGestantesIndicador3}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={trackObject}
     atualizacao = {new Date(tabelaDataAPSGestantesEncerradas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -84,10 +91,19 @@ const IndicadorTresTabelaGestantesEncerradas = ({
       year: 'numeric',
       month: '2-digit',
       day: '2-digit'
-      })}
+    })}
+    aba={aba}
+    sub_aba={sub_aba}
+    data={tabelaData}
+    setData={setTabelaData}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}
+    liberarPesquisa={liberarPesquisa}
+    propAgrupamentoImpressao= "equipe_nome"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+    propOrdenacaoImpressao= "acs_nome"
+    labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
 }
 export { IndicadorTresTabelaGestantesEncerradas }

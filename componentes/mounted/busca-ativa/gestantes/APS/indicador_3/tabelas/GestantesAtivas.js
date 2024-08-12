@@ -2,9 +2,11 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
 } from "@impulsogov/design-system";
+import identificacao_atendimento_odontologico from "../../../../../../../data/identificacao_atendimento_odontologico.json"
 import { colunasGestantesIndicadorTres } from "../../../../../../../helpers/colunasGestantesIndicadorTres";
 import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador3";
 import { colunasImpressaoGestantesIndicador3 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador3";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -71,6 +73,9 @@ const IndicadorTresTabelaGestantesAtivas = ({
         colunas: colunasGestantesIndicadorTres,
         data:tabelaDataAPSGestantesAtivas
     }}
+    listas_auxiliares= {{
+        identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico
+    }}
     colunasImpressao = {colunasImpressaoGestantesIndicador3}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
@@ -96,6 +101,7 @@ const IndicadorTresTabelaGestantesAtivas = ({
     setFiltros_aplicados={setFiltros_aplicados}
     liberarPesquisa={liberarPesquisa}
     propAgrupamentoImpressao= "equipe_nome"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
     labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
