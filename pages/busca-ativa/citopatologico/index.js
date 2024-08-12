@@ -25,6 +25,9 @@ import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {log_out} from "../../../hooks/log_out"
 import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
+import { larguraColunasCitoPaisagem, larguraColunasCitoRetrato } from "../../../helpers/larguraColunasCito";
+import { colunasImpressaoCitoAPS } from "../../../helpers/colunasImpressaoCito";
+import { labelsModalImpressaoAPS } from "../../../helpers/labelsModalImpressaoAPS";
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -600,7 +603,6 @@ if(session){
                     rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
-            painel="cito"
             tabela={{
             colunas: colunasCitoAPS,
             data:tabelaDataAPSSemExame
@@ -622,7 +624,20 @@ if(session){
             day: '2-digit'
             })}
             trackObject={mixpanel}
-            lista="citopatologico"
+            painel="aps"
+            lista="CITOPATOLÓGICO"
+            divisorVertical={[1,4]}
+            largura_colunas_impressao={{
+                paisagem: larguraColunasCitoPaisagem,
+                retrato: larguraColunasCitoRetrato
+            }}
+            colunasImpressao={colunasImpressaoCitoAPS}
+            listas_auxiliares={{
+                status_usuario_descricao: status_usuario_descricao.data
+            }}
+            propAgrupamentoImpressao="equipe_nome_e_ine"
+            propOrdenacaoImpressao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}
@@ -659,7 +674,6 @@ if(session){
                     rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
-            painel="cito"
             tabela={{
             colunas: colunasCitoAPS,
             data:tabelaDataAPSComExame
@@ -681,7 +695,20 @@ if(session){
             day: '2-digit'
             })}
             trackObject={mixpanel}
-            lista="citopatologico"
+            painel="aps"
+            lista="CITOPATOLÓGICO"
+            divisorVertical={[1,4]}
+            largura_colunas_impressao={{
+                paisagem: larguraColunasCitoPaisagem,
+                retrato: larguraColunasCitoRetrato
+            }}
+            colunasImpressao={colunasImpressaoCitoAPS}
+            listas_auxiliares={{
+                status_usuario_descricao: status_usuario_descricao.data
+            }}
+            propAgrupamentoImpressao="equipe_nome_e_ine"
+            propOrdenacaoImpressao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}

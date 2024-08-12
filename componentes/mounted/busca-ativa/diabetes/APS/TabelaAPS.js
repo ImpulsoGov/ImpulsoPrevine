@@ -4,6 +4,9 @@ import {
 } from "@impulsogov/design-system";
 import { colunasDiabetesAPS } from "../../../../../helpers/colunasDiabetes"
 import mixpanel from 'mixpanel-browser';
+import { larguraColunasDiabetesPaisagem, larguraColunasDiabetesRetrato } from "../../../../../helpers/larguraColunasDiabetes";
+import { colunasImpressaoDiabetesAPS } from "../../../../../helpers/colunasImpressaoDiabetes";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosDiabetes = [
     "dt_consulta_mais_recente",
@@ -54,7 +57,11 @@ export const TabelaAPS = ({
         ...item,
         cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria,
         status_usuario : item.status_usuario == "Consulta e solicitação de hemoglobina a fazer" ? " Consulta e solicitação de hemoglobina a fazer" : item.status_usuario,
-        equipe_nome_e_ine: `${item.equipe_nome_cadastro} - ${item.equipe_ine_cadastro}`
+        equipe_nome_e_ine: `${item.equipe_nome_cadastro} - ${item.equipe_ine_cadastro}`,
+        cpf_e_identificacao_condicao: {
+            cpf: item.cidadao_cpf_dt_nascimento,
+            identificacao_condicao: item.identificacao_condicao_diabetes
+        },
     }))
     return TabelaAPSTratada && tabelaData ?
     <PainelBuscaAtiva
@@ -96,7 +103,7 @@ export const TabelaAPS = ({
             rotulo: 'Filtrar por faixa etária'
         },
     ]}
-    painel="diabetes"
+    painel="aps"
     tabela={{
         colunas: colunasDiabetesAPS,
         data:TabelaAPSTratada
@@ -119,7 +126,18 @@ export const TabelaAPS = ({
     day: '2-digit'
     })}
     trackObject={mixpanel}
-    lista="diabetes"
+    lista="DIABETES"
+    legendaImpressao="Solicit. HbA1c = Solicitação de hemoglobina glicada"
+    divisorVertical={[2,4,6]}
+    largura_colunas_impressao={{
+        retrato: larguraColunasDiabetesRetrato,
+        paisagem: larguraColunasDiabetesPaisagem,
+    }}
+    colunasImpressao={colunasImpressaoDiabetesAPS}
+    listas_auxiliares={{}}
+    propAgrupamentoImpressao="equipe_nome_e_ine"
+    propOrdenacaoImpressao="acs_nome_cadastro"
+    labelsModalImpressao={labelsModalImpressaoAPS}
     aba={null}
     sub_aba={null}
     showSnackBar={showSnackBar}

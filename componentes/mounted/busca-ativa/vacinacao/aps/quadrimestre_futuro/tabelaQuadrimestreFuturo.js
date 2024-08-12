@@ -8,6 +8,9 @@ import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_pen
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
+import { larguraColunasVacinacaoPaisagem, larguraColunasVacinacaoRetrato } from "../../../../../../helpers/larguraColunasVacinacao";
+import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -39,7 +42,20 @@ const TabelaAPSQuadrimestreFuturo = ({
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
-    .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
+        .map(item => ({
+            ...item,
+            equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`,
+            datas_doses_polio: [
+                `1ª DOSE: ${item.data_ou_prazo_1dose_polio ?? ""}`,
+                `2ª DOSE: ${item.data_ou_prazo_2dose_polio ?? ""}`,
+                `3ª DOSE: ${item.data_ou_prazo_3dose_polio ?? ""}`,
+            ],
+            datas_doses_penta: [
+                `1ª DOSE: ${item.data_ou_prazo_1dose_penta ?? ""}`,
+                `2ª DOSE: ${item.data_ou_prazo_2dose_penta ?? ""}`,
+                `3ª DOSE: ${item.data_ou_prazo_3dose_penta ?? ""}`,
+            ],
+        }))
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0].id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
@@ -134,7 +150,18 @@ const TabelaAPSQuadrimestreFuturo = ({
                     rotulo: 'Filtrar por status penta'
                 },
                 ]}
-            painel="vacinacao"
+            painel="aps"
+            lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
+            divisorVertical={[2,4,6]}
+            largura_colunas_impressao={{
+                retrato: larguraColunasVacinacaoRetrato,
+                paisagem: larguraColunasVacinacaoPaisagem,
+            }}
+            listas_auxiliares={{}}
+            colunasImpressao={colunasImpressaoVacinacaoAPS}
+            propAgrupamentoImpressao="equipe_nome_e_ine"
+            propOrdenacaoImpressao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoAPS}
             tabela={{
             colunas: colunasVacinacaoAPS,
             data:tabelaDataAPSVacinacao
