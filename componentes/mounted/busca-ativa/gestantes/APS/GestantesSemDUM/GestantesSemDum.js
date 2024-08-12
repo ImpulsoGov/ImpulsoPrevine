@@ -86,7 +86,8 @@ const TabelaGestantesSemDUM = ({
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}
     liberarPesquisa={liberarPesquisa}
-    propAgrupamentoImpressao= "equipe_nome"
+    propAgrupamentoImpressao="equipe_nome"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
     labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
