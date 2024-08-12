@@ -45,7 +45,7 @@ const IndicadorUmTabelaGestantesAtivas = ({
     return tabelaDataAPS ? <PainelBuscaAtiva
     key="tabelaDataAPSGestantesAtivas"
     painel="aps"
-    lista="PRÉ-NATAL INDICADOR 1 (6 CONSULTAS)"
+    lista="PRÉ-NATAL - INDICADOR 1 (6 CONSULTAS)"
     divisorVertical={[1,4]}
     largura_colunas_impressao={{
         paisagem : larguraColunasGestantesIndicador1Paisagem,

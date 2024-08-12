@@ -3,7 +3,8 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorTres } from "../../../../../../../helpers/colunasGestantesIndicadorTres";
-import mixpanel from 'mixpanel-browser';
+import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador3";
+import { colunasImpressaoGestantesIndicador3 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador3";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -40,12 +41,14 @@ const IndicadorTresTabelaGestantesAtivas = ({
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
-    liberarPesquisa={liberarPesquisa}
     key="tabelaDataAPSGestantesAtivas"
-    trackObject={trackObject}
-    lista="gestantes"
-    aba={aba}
-    sub_aba={sub_aba}
+    painel="aps"
+    lista="PRÉ-NATAL - INDICADOR 3 (ATENDIMENTO ODONTOLÓGICO)"
+    divisorVertical = {[0,3]}
+    largura_colunas_impressao={{
+        paisagem : larguraColunasGestantesIndicador3Paisagem,
+        retrato : larguraColunasGestantesIndicador3Retrato
+    }}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesAtivas.map(item => item.id_atendimento_odontologico.toString()))],
@@ -64,17 +67,16 @@ const IndicadorTresTabelaGestantesAtivas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
     ]}
-    painel="gestantes"
     tabela={{
-    colunas: colunasGestantesIndicadorTres,
-    data:tabelaDataAPSGestantesAtivas
+        colunas: colunasGestantesIndicadorTres,
+        data:tabelaDataAPSGestantesAtivas
     }}
-    data={tabelaData}
-    setData={setTabelaData}
+    colunasImpressao = {colunasImpressaoGestantesIndicador3}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={trackObject}
     atualizacao = {new Date(tabelaDataAPSGestantesAtivas.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -85,9 +87,17 @@ const IndicadorTresTabelaGestantesAtivas = ({
       month: '2-digit',
       day: '2-digit'
       })}
-      showSnackBar={showSnackBar}
-      setShowSnackBar={setShowSnackBar}
-      setFiltros_aplicados={setFiltros_aplicados}
+    aba={aba}
+    sub_aba={sub_aba}
+    data={tabelaData}
+    setData={setTabelaData}
+    showSnackBar={showSnackBar}
+    setShowSnackBar={setShowSnackBar}
+    setFiltros_aplicados={setFiltros_aplicados}
+    liberarPesquisa={liberarPesquisa}
+    propAgrupamentoImpressao= "equipe_nome"
+    propOrdenacaoImpressao= "acs_nome"
+    labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
 }
 export { IndicadorTresTabelaGestantesAtivas }
