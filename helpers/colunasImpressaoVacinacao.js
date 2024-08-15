@@ -14,7 +14,7 @@ export const colunasImpressaoVacinacaoAPS = [
   },
   {
     field: 'id_status_polio',
-    headerName: 'STATUS ESQUEMA',
+    headerName: 'STATUS',
     headerComplement: 'ESQUEMA POLIO',
     visibleHeaderComplement: true
   },
@@ -25,7 +25,7 @@ export const colunasImpressaoVacinacaoAPS = [
   },
   {
     field: 'id_status_penta',
-    headerName: 'STATUS ESQUEMA',
+    headerName: 'STATUS',
     headerComplement: 'ESQUEMA PENTA',
     visibleHeaderComplement: true
   },
