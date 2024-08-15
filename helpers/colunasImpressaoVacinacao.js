@@ -20,7 +20,7 @@ export const colunasImpressaoVacinacaoAPS = [
   },
   {
     field: 'datas_doses_polio',
-    headerName: 'DATAS DOSES',
+    headerName: 'DOSES',
     headerComplement: 'DATAS DOSES'
   },
   {
@@ -31,7 +31,7 @@ export const colunasImpressaoVacinacaoAPS = [
   },
   {
     field: 'datas_doses_penta',
-    headerName: 'DATAS DOSES',
+    headerName: 'DOSES',
     headerComplement: 'DATAS DOSES'
   },
   {
