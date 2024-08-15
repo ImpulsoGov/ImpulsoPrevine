@@ -116,7 +116,10 @@ export const TabelaAPS = ({
     })}
     trackObject={mixpanel}
     lista="HIPERTENSÃO"
-    legendaImpressao="Aferição de PA = Aferição de Pressão Arterial"
+    legendaImpressao={{
+        conteudo: "Aferição de PA = Aferição de Pressão Arterial",
+        complemento: "*Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",
+    }}
     divisorVertical={[2,4,6]}
     largura_colunas_impressao={{
         retrato: larguraColunasHipertensaoRetrato,
