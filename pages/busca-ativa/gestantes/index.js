@@ -249,7 +249,7 @@ if(session){
                 />
       </div>
       <TituloTexto
-              titulo="Lista de Pré-Natal"
+              titulo="Lista Nominal de Pré-Natal"
               texto=""
               imagem = {{posicao: null,url: ''}}
       />
@@ -458,7 +458,7 @@ if(session){
             />
           </div>
           <TituloTexto
-            titulo="Lista de Pré-Natal"
+            titulo="Lista Nominal de Pré-Natal"
             texto=""
             imagem={{ posicao: null, url: '' }}
           />
