@@ -10,12 +10,12 @@ export const larguraColunasCitoPaisagem = {
 };
 
 export const larguraColunasCitoRetrato = {
-  "paciente_nome" : "100px",
+  "paciente_nome" : "115px",
   "cidadao_cpf_dt_nascimento" : "80px",
-  "id_status_usuario" : "215px",
+  "id_status_usuario" : "185px",
   "vencimento_da_coleta" : "100px",
   "prazo_proxima_coleta" : "130px",
   "idade" : "60px",
   "equipe_nome" : "83px",
-  "acs_nome" : "100px",
+  "acs_nome" : "115px",
 };
