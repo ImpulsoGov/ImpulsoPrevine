@@ -1,7 +1,7 @@
 export const colunasImpressaoVacinacaoAPS = [
   {
     field: 'cidadao_nome',
-    headerName: 'PACIENTE',
+    headerName: 'NOME DA CRIANÇA',
     wordBreak: true,
   },
   {

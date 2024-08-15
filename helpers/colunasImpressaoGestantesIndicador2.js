@@ -1,7 +1,7 @@
 export const colunasImpressaoGestantesIndicador2 = [
   {
     field: 'cidadao_nome',
-    headerName: 'PACIENTE',
+    headerName: 'NOME',
     wordBreak: true,
   },
   {

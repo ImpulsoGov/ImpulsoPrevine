@@ -1,7 +1,7 @@
 export const colunasImpressaoGestantesIndicador1 =[
     {
         field: 'cidadao_nome',
-        headerName: 'PACIENTE',
+        headerName: 'NOME',
     },
     {
         field: 'gestacao_data_dpp',

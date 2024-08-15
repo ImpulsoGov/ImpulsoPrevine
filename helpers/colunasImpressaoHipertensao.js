@@ -1,12 +1,12 @@
 export const colunasImpressaoHipertensaoAPS = [
   {
     field: 'cidadao_nome',
-    headerName: 'PACIENTE',
+    headerName: 'NOME',
     wordBreak: true,
   },
   {
     field: 'cpf_e_identificacao_condicao',
-    headerName: 'CPF E IDENTIFICAÇÃO DA CONDIÇÃO',
+    headerName: 'CPF* + TIPO DE DIAGNÓSTICO',
   },
   {
     field: 'cidadao_idade',

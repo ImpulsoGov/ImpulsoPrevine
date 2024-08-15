@@ -1,7 +1,7 @@
 export const colunasImpressaoCitoAPS = [
   {
     field: 'paciente_nome',
-    headerName: 'PACIENTE',
+    headerName: 'NOME',
     wordBreak: true,
   },
   {
