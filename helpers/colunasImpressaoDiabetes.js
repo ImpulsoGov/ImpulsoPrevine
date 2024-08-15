@@ -26,7 +26,7 @@ export const colunasImpressaoDiabetesAPS = [
   {
     field: 'dt_solicitacao_hemoglobina_glicada_mais_recente',
     headerName: 'DATA DA ÚLTIMA',
-    headerComplement: 'SOLICIT. HBA1C',
+    headerComplement: 'SOLICIT. HBA1C*',
     visibleHeaderComplement: true
   },
   {
