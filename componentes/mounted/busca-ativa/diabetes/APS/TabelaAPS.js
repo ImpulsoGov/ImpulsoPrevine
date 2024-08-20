@@ -127,10 +127,10 @@ export const TabelaAPS = ({
     })}
     trackObject={mixpanel}
     lista="DIABETES"
-    legendaImpressao={{
-        conteudo: "Solicit. HbA1c = Solicitação de hemoglobina glicada",
-        complemento: "*Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão."
-    }}
+    legendaImpressao={[
+        "<b>*CPF:</b> Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",
+        "<b>**HBA1C:</b> Hemoglobina glicada.",
+    ]}
     divisorVertical={[2,4,6]}
     largura_colunas_impressao={{
         retrato: larguraColunasDiabetesRetrato,
