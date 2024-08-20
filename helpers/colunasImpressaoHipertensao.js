@@ -26,7 +26,7 @@ export const colunasImpressaoHipertensaoAPS = [
   {
     field: 'dt_afericao_pressao_mais_recente',
     headerName: 'DATA DA ÚLTIMA',
-    headerComplement: 'AFERIÇÃO DE PA',
+    headerComplement: 'AFERIÇÃO DE PA**',
     visibleHeaderComplement: true
   },
   {
