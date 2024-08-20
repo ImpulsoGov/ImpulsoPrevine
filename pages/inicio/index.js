@@ -139,7 +139,7 @@ const Index = ({ res }) => {
                                 SubTitulo : "Agora você pode imprimir as listas nominais divididas por equipe em um clique!"
                             },
                             Info : "<div style='color: #606E78;font-size: 17px;font-weight: 400;line-height: 21.78px;'><div>Clicando no botão de <span style='color: #2EB280; font-weight: 600;'>IMPRIMIR LISTA</span>, além de poder dividir as listas por equipes automaticamente você também pode:</div><ul style='margin-top: 0;padding-left: 30px;'><li>separar cada equipe em uma folha</li><li>ordenar por profissional responsável dentro de cada equipe</li></ul><div>Visualize e distribua as listas de forma simples, com apenas um clique.</div></div>",
-                            imagem : "https://media.graphassets.com/DhPEJQUIRACLGab89b5I",
+                            imagem : "https://media.graphassets.com/7bt3S4Q82t8wDRjxjaoQ",
                         }}
                     />
                 }
