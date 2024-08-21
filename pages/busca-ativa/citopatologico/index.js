@@ -579,6 +579,7 @@ if(session){
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
             liberarPesquisa={dispararEventoAbrirImpressaoAPS}
+            lista_mixpanel="citopatologico"
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -651,6 +652,7 @@ if(session){
         <>
         <PainelBuscaAtiva
             liberarPesquisa={dispararEventoAbrirImpressaoAPS}
+            lista_mixpanel="citopatologico"
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
