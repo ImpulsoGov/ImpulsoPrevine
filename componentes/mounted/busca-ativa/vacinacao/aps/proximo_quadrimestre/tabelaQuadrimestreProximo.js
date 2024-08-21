@@ -119,6 +119,7 @@ const TabelaAPSQuadrimestreProximo = ({
         />
         <PainelBuscaAtiva
         liberarPesquisa={liberarPesquisa}
+        lista_mixpanel="vacinacao"
         key="tabelaDataAPSVacinacao"
         dadosFiltros={[
             {

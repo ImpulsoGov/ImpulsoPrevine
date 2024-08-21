@@ -65,6 +65,7 @@ export const TabelaAPS = ({
 
     return tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
     liberarPesquisa={liberarPesquisa}
+    lista_mixpanel="hipertensao"
     dadosFiltros={[
         {
             data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_e_ine))],

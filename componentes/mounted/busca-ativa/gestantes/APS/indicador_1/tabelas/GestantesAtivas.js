@@ -97,6 +97,7 @@ const IndicadorUmTabelaGestantesAtivas = ({
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}
     liberarPesquisa={liberarPesquisa}
+    lista_mixpanel="pre_natal"
     propAgrupamentoImpressao= "equipe_nome"
     propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
