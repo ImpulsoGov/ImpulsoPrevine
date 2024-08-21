@@ -4,6 +4,9 @@ import {
 } from "@impulsogov/design-system";
 import { colunasHipertensaoAPS } from "../../../../../helpers/colunasHipertensao";
 import mixpanel from 'mixpanel-browser';
+import { larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from "../../../../../helpers/larguraColunasHipertensao";
+import { colunasImpressaoHipertensaoAPS } from "../../../../../helpers/colunasImpressaoHipertensao";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosHipertensao = [
     "dt_afericao_pressao_mais_recente",
@@ -43,7 +46,7 @@ const IDFiltrosOrdenacaoHipertensao = {
 export const TabelaAPS = ({
     tabelaData,
     tabelaDataAPS,
-    Impressao,
+    liberarPesquisa,
     setTabelaData,
     showSnackBar,
     setShowSnackBar,
@@ -53,11 +56,15 @@ export const TabelaAPS = ({
         ...item,
         cidadao_faixa_etaria : item.cidadao_faixa_etaria == 'Menos de 17 anos' ? ' Menos de 17 anos' : item.cidadao_faixa_etaria,
         status_usuario : item.status_usuario == "Consulta e aferição de PA a fazer" ? " Consulta e aferição de PA a fazer" : item.status_usuario,
-        equipe_nome_e_ine: `${item.equipe_nome_cadastro} - ${item.equipe_ine_cadastro}`
+        equipe_nome_e_ine: `${item.equipe_nome_cadastro} - ${item.equipe_ine_cadastro}`,
+        cpf_e_identificacao_condicao: {
+            cpf: item.cidadao_cpf_dt_nascimento,
+            identificacao_condicao: item.identificacao_condicao_hipertensao
+        },
     }))
 
     return tabelaDataAPS && tabelaData ? <PainelBuscaAtiva
-    onPrintClick={Impressao}
+    liberarPesquisa={liberarPesquisa}
     dadosFiltros={[
         {
             data: [...new Set(TabelaAPSTratada.map(item => item.equipe_nome_e_ine))],
@@ -85,7 +92,7 @@ export const TabelaAPS = ({
             rotulo: 'Filtrar por faixa etária'
         },
     ]}
-    painel="hipertensao"
+    painel="aps"
     tabela={{
     colunas: colunasHipertensaoAPS,
     data:TabelaAPSTratada
@@ -108,7 +115,22 @@ export const TabelaAPS = ({
     day: '2-digit'
     })}
     trackObject={mixpanel}
-    lista="hipertensao"
+    lista="HIPERTENSÃO"
+    legendaImpressao={[
+        "<b>*CPF:</b> Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",
+        "<b>**PA:</b> Pressão arterial."
+    ]}
+    divisorVertical={[2,4,6]}
+    largura_colunas_impressao={{
+        retrato: larguraColunasHipertensaoRetrato,
+        paisagem: larguraColunasHipertensaoPaisagem
+    }}
+    colunasImpressao={colunasImpressaoHipertensaoAPS}
+    listas_auxiliares={{}}
+    propAgrupamentoImpressao="equipe_nome_cadastro"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+    propOrdenacaoImpressao="acs_nome_cadastro"
+    labelsModalImpressao={labelsModalImpressaoAPS}
     aba={null}
     sub_aba={null}
     showSnackBar={showSnackBar}

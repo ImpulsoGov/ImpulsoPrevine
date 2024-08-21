@@ -27,6 +27,7 @@ import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from ".
 import {log_out} from "../../../hooks/log_out"
 
 import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/colunasVacinacao";
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
@@ -85,15 +86,6 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacaoAPS = (data)=> Imprimir(
-    1,
-    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoAPS} fontFamily="sans-serif" />,
-    "vacinacao",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const ImpressaoVacinacaoEquipe = (data)=> Imprimir(
     1,
     <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoEquipe} fontFamily="sans-serif" />,
@@ -250,7 +242,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                     tabelaDataAPS={tabelaDataAPS} 
                     tabelaData={tabelaData} 
                     setTabelaData={setTabelaData}
-                    onPrintClick={ImpressaoVacinacaoAPS}
+                    liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                     showSnackBar={showSnackBar}
                     setFiltros_aplicados={setFiltros_aplicados}
                     setShowSnackBar={setShowSnackBar}    
@@ -267,7 +259,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                   tabelaDataAPS={tabelaDataAPS} 
                   tabelaData={tabelaData} 
                   setTabelaData={setTabelaData}
-                  onPrintClick={ImpressaoVacinacaoAPS}
+                  liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                   showSnackBar={showSnackBar}
                   setFiltros_aplicados={setFiltros_aplicados}
                   setShowSnackBar={setShowSnackBar}  
@@ -284,7 +276,7 @@ import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/co
                 tabelaDataAPS={tabelaDataAPS} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={ImpressaoVacinacaoAPS}
+                liberarPesquisa={dispararEventoAbrirImpressaoAPS}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}

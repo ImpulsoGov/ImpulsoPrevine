@@ -3,8 +3,10 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorDois } from "../../../../../../../helpers/colunasGestantesIndicadorDois";
-import mixpanel from 'mixpanel-browser';
 import identificacao_exame_hiv_sifilis from "../../../../../../../data/identificacao_exame_hiv_sifilis.json"
+import { larguraColunasGestantesIndicador2Paisagem, larguraColunasGestantesIndicador2Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador2";
+import { colunasImpressaoGestantesIndicador2 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador2";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -33,7 +35,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
-    onPrintClick,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
@@ -41,12 +43,14 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
-    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesEncerradas"
-    trackObject={trackObject}
-    lista="gestantes"
-    aba={aba}
-    sub_aba={sub_aba}
+    painel="aps"
+    lista="PRÉ-NATAL - INDICADOR 2 (EXAME DE HIV E SÍFILIS)"
+    divisorVertical = {[0,3]}
+    largura_colunas_impressao={{
+        paisagem : larguraColunasGestantesIndicador2Paisagem,
+        retrato : larguraColunasGestantesIndicador2Retrato
+    }}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesEncerradas.map(item => item.id_exame_hiv_sifilis.toString()))],
@@ -65,30 +69,41 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
     ]}
-    painel="gestantes"
     tabela={{
-    colunas: colunasGestantesIndicadorDois,
-    data:tabelaDataAPSGestantesEncerradas
+        colunas: colunasGestantesIndicadorDois,
+        data:tabelaDataAPSGestantesEncerradas
     }}
-    data={tabelaData}
-    setData={setTabelaData}
+    listas_auxiliares = {{
+        identificacao_exame_sifilis_hiv : identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis
+    }}    
+    colunasImpressao = {colunasImpressaoGestantesIndicador2}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={trackObject}
     atualizacao = {new Date(tabelaDataAPSGestantesEncerradas.reduce((maisRecente, objeto) => {
-      const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-      const dataMaisRecenteAnterior = new Date(maisRecente);
-      return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-      }, "2000-01-01")).toLocaleString('pt-BR', { 
-      timeZone: 'UTC',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-      })}
+        const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+        const dataMaisRecenteAnterior = new Date(maisRecente);
+        return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+        timeZone: 'UTC',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    })}
+    aba={aba}
+    sub_aba={sub_aba}
+    data={tabelaData}
+    setData={setTabelaData}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
     setFiltros_aplicados={setFiltros_aplicados}
+    liberarPesquisa={liberarPesquisa}
+    propAgrupamentoImpressao= "equipe_nome"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+    propOrdenacaoImpressao= "acs_nome"
+    labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
 }
 export { IndicadorDoisTabelaGestantesEncerradas }

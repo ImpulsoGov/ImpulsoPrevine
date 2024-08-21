@@ -48,6 +48,7 @@ import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 import {log_out} from "../../../hooks/log_out"
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -172,15 +173,6 @@ const ImpressaoEquipe = (data)=> Imprimir(
   filtros_aplicados,
   setShowSnackBar
 )   
-const ImpressaoAPS = (data)=> Imprimir(
-  0.78,
-  <TabelaGestantesImpressao data={data} colunas={colunasImpressao[activeTitleTabIndex]} fontFamily="sans-serif" />,
-  "gestantes",
-  activeTitleTabIndex,
-  activeTabIndex,
-  filtros_aplicados,
-  setShowSnackBar
-)   
 const Voltar = ()=>{
   window.history.go(voltarGatilho*(-1))
 }
@@ -257,7 +249,7 @@ if(session){
                 />
       </div>
       <TituloTexto
-              titulo="Lista de Pré-Natal"
+              titulo="Lista Nominal de Pré-Natal"
               texto=""
               imagem = {{posicao: null,url: ''}}
       />
@@ -329,7 +321,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -345,7 +337,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -371,7 +363,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -387,7 +379,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -413,7 +405,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -429,7 +421,7 @@ if(session){
               trackObject={mixpanel}
               aba={activeTitleTabIndex}
               sub_aba={activeTabIndex}
-              onPrintClick={ImpressaoAPS}
+              liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
@@ -446,7 +438,7 @@ if(session){
             trackObject={mixpanel}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
-            onPrintClick={ImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             setFiltros_aplicados={setFiltros_aplicados}
@@ -466,7 +458,7 @@ if(session){
             />
           </div>
           <TituloTexto
-            titulo="Lista de Pré-Natal"
+            titulo="Lista Nominal de Pré-Natal"
             texto=""
             imagem={{ posicao: null, url: '' }}
           />

@@ -2,14 +2,14 @@ import { getData, getDataCapacitacao } from '../../services/cms'
 import { LAYOUT, CONTEUDOS_TRILHAS } from '../../utils/QUERYS'
 import { useSession,signOut, getSession } from "next-auth/react"
 import { useRouter } from 'next/router'
-import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge } from '@impulsogov/design-system'
+import { Greeting, CardTrilha, ButtonColorSubmit, CardLarge, AtualizacaoCadastral } from '@impulsogov/design-system'
 import { progresso } from '../../helpers/modulosDataTransform'
 import { acessoTrilhasClient } from '../../services/acessoTrilha'
 import { useEffect, useState, useRef } from 'react'
 import { redirectHomeNotLooged } from '../../helpers/redirectHome'
 import { generatePDF } from '../../helpers/generatePDF'
 import { NPSConsulta, NPSAvaliacao } from "../../services/NPS"
-import { ModalAlert , AtualizacaoCadastral } from "../../componentes/ModalAlert/ModalAlert"
+import { ModalAlert } from "../../componentes/ModalAlert/ModalAlert"
 import style from "./ModalAlert.module.css";
 import { log_out } from '../../hooks/log_out'
 
@@ -91,17 +91,17 @@ const NPS = ({ user, token, submit }) => {
 const Index = ({ res }) => {
     const { data: session, status } = useSession()
     const [data, setData] = useState(false)
-    const [dataNPS, setDataNPS] = useState(true)
+    // const [dataNPS, setDataNPS] = useState(true)
     const [TrilhasLiberadas, setTrilhasLiberadas] = useState([])
     const ProgressoClient = async () => await progresso(res[1].trilhas, session?.user?.id, session?.user?.access_token)
     const TrilhasLiberadasClient = async () => await acessoTrilhasClient(session?.user?.id, session?.user?.access_token)
-    const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
+    // const NPSDataClient = async () => await NPSConsulta(session?.user?.id, session?.user?.access_token)
     const router = useRouter()
-    useEffect(()=>{
-        session &&  
-        NPSDataClient().then((response)=>{
-        setDataNPS(response)
-    })},[session]) 
+    // useEffect(()=>{
+    //     session &&  
+    //     NPSDataClient().then((response)=>{
+    //     setDataNPS(response)
+    // })},[session]) 
     useEffect(() => {
         session && res &&
             ProgressoClient().then((response) => {
@@ -130,40 +130,20 @@ const Index = ({ res }) => {
                         submit = {NPSAvaliacao}
                     />                    
                 }  */}
-                      {/* <ModalAlert
-                        Child = {Alert_v2}
+                {(session.user.perfis.includes(5) || session.user.perfis.includes(8)) &&
+                    <ModalAlert
+                        Child = {AtualizacaoCadastral}
                         childProps ={ {
                             titulos : {
-                                Titulo : "Impulso Previne:",
-                                SubTitulo : "Uso das listas nominais na rotina das equipes"
+                                Titulo : "NOVIDADE",
+                                SubTitulo : "Agora você pode imprimir as listas nominais divididas por equipe em um clique!"
                             },
-                            Info : [
-                                {
-                                    icon : "https://media.graphassets.com/mK0XWA2qSyK3tSPER5SM",
-                                    info : "22 de feverreiro"
-                                },
-                                {
-                                    icon : "https://media.graphassets.com/Bsq3OasQQxWNFuN0Ldhs",
-                                    info : "14h"
-                                },
-                                {
-                                    icon : "https://media.graphassets.com/Ui2qHF9IR9WyqEQv8H1v",
-                                    info : "Certificado para os participantes"
-                                },
-                            ],
-                            cardProfissional : {
-                                profissional : "https://media.graphassets.com/CL8x2D45RxKZCGJZSXLa",
-                                logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
-                                nome : "Isabela Santos",
-                                cargo : "Especialista em Saúde Coletiva"
-                            },
-                            botao : {
-                                label : "ACESSAR EVENTO",
-                                url : "https://bit.ly/encontro-listas-nominais"
-                            }
+                            Info : "<div style='color: #606E78;font-size: 17px;font-weight: 400;line-height: 21.78px;'><div>Clicando no botão de <span style='color: #2EB280; font-weight: 600;'>IMPRIMIR LISTA</span>, além de poder dividir as listas por equipes automaticamente você também pode:</div><ul style='margin-top: 0;padding-left: 30px;'><li>separar cada equipe em uma folha</li><li>ordenar por profissional responsável dentro de cada equipe</li></ul><div>Visualize e distribua as listas de forma simples, com apenas um clique.</div></div>",
+                            imagem : "https://media.graphassets.com/7bt3S4Q82t8wDRjxjaoQ",
                         }}
                     />
- */}
+                }
+
                 {/* <ModalAlert
                     Child = {AtualizacaoCadastral}
                     childProps ={ {

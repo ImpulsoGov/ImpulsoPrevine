@@ -3,7 +3,10 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
-import mixpanel from 'mixpanel-browser';
+import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../helpers/larguraColunasGestantesIndicador3";
+import { colunasImpressaoGestantesIndicador3 } from "../../../../../../helpers/colunasImpressaoGestantesIndicador3";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
+import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -29,7 +32,7 @@ const TabelaGestantesSemDUM = ({
     trackObject,
     aba,
     sub_aba,
-    onPrintClick,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
@@ -37,12 +40,14 @@ const TabelaGestantesSemDUM = ({
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
-    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesSemDUM"
-    trackObject={trackObject}
-    lista="gestantes"
-    aba={aba}
-    sub_aba={sub_aba}
+    painel="aps"
+    lista="GESTANTES SEM DUM"
+    divisorVertical = {[0,3]}
+    largura_colunas_impressao={{
+        paisagem : larguraColunasGestantesIndicador3Paisagem,
+        retrato : larguraColunasGestantesIndicador3Retrato
+    }}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_nome_e_ine))],
@@ -50,17 +55,19 @@ const TabelaGestantesSemDUM = ({
             rotulo: 'Filtrar por nome e INE da equipe',
         },
     ]}
-    painel="gestantes"
     tabela={{
-    colunas: colunasGestantesSemDUMAPS,
-    data:tabelaDataAPSGestantesSemDUM
+        colunas: colunasGestantesSemDUMAPS,
+        data:tabelaDataAPSGestantesSemDUM
     }}
-    data={tabelaData}
-    setData={setTabelaData}
+    colunasImpressao = {colunasImpressaoGestantesIndicador3}
+    listas_auxiliares= {{
+        identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico
+    }}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+    trackObject={trackObject}
     atualizacao = {new Date(tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
       const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
       const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -71,10 +78,18 @@ const TabelaGestantesSemDUM = ({
       month: '2-digit',
       day: '2-digit'
       })}
-      showSnackBar={showSnackBar}
-      setShowSnackBar={setShowSnackBar}
-      setFiltros_aplicados={setFiltros_aplicados}
-
+    aba={aba}
+    sub_aba={sub_aba}
+    data={tabelaData}
+    setData={setTabelaData}
+    showSnackBar={showSnackBar}
+    setShowSnackBar={setShowSnackBar}
+    setFiltros_aplicados={setFiltros_aplicados}
+    liberarPesquisa={liberarPesquisa}
+    propAgrupamentoImpressao="equipe_nome"
+    propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+    propOrdenacaoImpressao= "acs_nome"
+    labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
 }
 export { TabelaGestantesSemDUM }

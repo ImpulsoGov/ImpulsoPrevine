@@ -3,7 +3,9 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorUm } from "../../../../../../../helpers/colunasGestantesIndicadorUm";
-import mixpanel from 'mixpanel-browser';
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
+import { larguraColunasGestantesIndicador1Paisagem, larguraColunasGestantesIndicador1Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador1";
+import { colunasImpressaoGestantesIndicador1 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador1";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -38,15 +40,23 @@ const IndicadorUmTabelaGestantesSemDUM = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData,
-    onPrintClick,
+    trackObject,
+    aba,
+    sub_aba,
+    liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
-    onPrintClick={onPrintClick}
     key="tabelaDataAPSGestantesSemDUM"
+    lista="PRÉ-NATAL INDICADOR 1 (6 CONSULTAS)"
+    divisorVertical={[1,4]}
+    largura_colunas_impressao={{
+        paisagem : larguraColunasGestantesIndicador1Paisagem,
+        retrato : larguraColunasGestantesIndicador1Retrato
+    }}
     dadosFiltros={[
         {
             data: [...new Set(tabelaDataAPSGestantesSemDUM.map(item => item.equipe_nome))],
@@ -59,31 +69,37 @@ const IndicadorUmTabelaGestantesSemDUM = ({
             rotulo: 'Filtrar por INE da equipe'
         },
     ]}
-    painel="gestantes"
     tabela={{
-    colunas: colunasGestantesIndicadorUm,
-    data:tabelaDataAPSGestantesSemDUM
+        colunas: colunasGestantesIndicadorUm,
+        data:tabelaDataAPSGestantesSemDUM
     }}
-    data={tabelaData}
-    setData={setTabelaData}
+    colunasImpressao = {colunasImpressaoGestantesIndicador1}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
     rotulosfiltros={rotulosfiltrosGestantes}    
     IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
-    trackObject={mixpanel}
+    trackObject={trackObject}
     atualizacao = {new Date(tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
-      const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-      const dataMaisRecenteAnterior = new Date(maisRecente);
-      return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-      }, "2000-01-01")).toLocaleString('pt-BR', { 
-      timeZone: 'UTC',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-      })}
-      showSnackBar={showSnackBar}
-      setShowSnackBar={setShowSnackBar}
-      setFiltros_aplicados={setFiltros_aplicados}
+        const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
+        const dataMaisRecenteAnterior = new Date(maisRecente);
+        return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
+        }, "2000-01-01")).toLocaleString('pt-BR', { 
+        timeZone: 'UTC',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    })}
+    aba={aba}
+    sub_aba={sub_aba}
+    data={tabelaData}
+    setData={setTabelaData}
+    showSnackBar={showSnackBar}
+    setShowSnackBar={setShowSnackBar}
+    setFiltros_aplicados={setFiltros_aplicados}
+    liberarPesquisa={liberarPesquisa}
+    propAgrupamentoImpressao= "equipe_nome"
+    propOrdenacaoImpressao= "acs_nome"
+    labelsModalImpressao= { labelsModalImpressaoAPS }
 /> : <Spinner/>
 }
 export { IndicadorUmTabelaGestantesSemDUM }

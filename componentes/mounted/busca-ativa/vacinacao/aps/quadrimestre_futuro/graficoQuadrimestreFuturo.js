@@ -65,7 +65,7 @@ const CardsGraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{
 
 const GraficoAPSQuadrimestreFuturo = ({tabelaDataAPS}) =>{ 
     const dataQuadriFuturo = tabelaDataAPS?.filter(item => item.id_status_quadrimestre== 3)
-    console.log(dataQuadriFuturo.filter(item=>item.equipe_nome=="SEM EQUIPE"))
+
     return tabelaDataAPS ? 
     <>
         <GraficoBuscaAtiva

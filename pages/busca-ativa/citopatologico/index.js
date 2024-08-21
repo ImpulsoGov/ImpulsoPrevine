@@ -24,6 +24,10 @@ import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {log_out} from "../../../hooks/log_out"
+import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
+import { larguraColunasCitoPaisagem, larguraColunasCitoRetrato } from "../../../helpers/larguraColunasCito";
+import { colunasImpressaoCitoAPS } from "../../../helpers/colunasImpressaoCito";
+import { labelsModalImpressaoAPS } from "../../../helpers/labelsModalImpressaoAPS";
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -122,15 +126,6 @@ const IDFiltrosOrdenacaoCito = {
 const ImpressaoEquipe = (data)=> Imprimir(
     0.78,
     <TabelaCitoImpressao data={data} colunas={colunasCitoEquipe} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
-    "citopatologico",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-)
-const ImpressaoAPS = (data)=> Imprimir(
-    0.78,
-    <TabelaCitoImpressao data={data} colunas={colunasCitoAPS} status_usuario_descricao={status_usuario_descricao} fontFamily="sans-serif" />,
     "citopatologico",
     activeTitleTabIndex,
     activeTabIndex,
@@ -583,7 +578,7 @@ if(session){
         const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
         const TabelaChildSemExame = tabelaDataAPS ? <PainelBuscaAtiva
-            onPrintClick={ImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSSemExame.map(item => item.acs_nome))],
@@ -608,7 +603,6 @@ if(session){
                     rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
-            painel="cito"
             tabela={{
             colunas: colunasCitoAPS,
             data:tabelaDataAPSSemExame
@@ -630,7 +624,21 @@ if(session){
             day: '2-digit'
             })}
             trackObject={mixpanel}
-            lista="citopatologico"
+            painel="aps"
+            lista="CITOPATOLÓGICO"
+            divisorVertical={[1,4]}
+            largura_colunas_impressao={{
+                paisagem: larguraColunasCitoPaisagem,
+                retrato: larguraColunasCitoRetrato
+            }}
+            colunasImpressao={colunasImpressaoCitoAPS}
+            listas_auxiliares={{
+                status_usuario_descricao: status_usuario_descricao.data
+            }}
+            propAgrupamentoImpressao="equipe_nome"
+            propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+            propOrdenacaoImpressao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}
@@ -642,7 +650,7 @@ if(session){
         const TabelaChildComExame = tabelaDataAPS ? 
         <>
         <PainelBuscaAtiva
-            onPrintClick={ImpressaoAPS}
+            liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSComExame.map(item => item.acs_nome))],
@@ -667,7 +675,6 @@ if(session){
                     rotulo: 'Filtrar por nome e INE da equipe'
                 },
             ]}
-            painel="cito"
             tabela={{
             colunas: colunasCitoAPS,
             data:tabelaDataAPSComExame
@@ -689,7 +696,21 @@ if(session){
             day: '2-digit'
             })}
             trackObject={mixpanel}
-            lista="citopatologico"
+            painel="aps"
+            lista="CITOPATOLÓGICO"
+            divisorVertical={[1,4]}
+            largura_colunas_impressao={{
+                paisagem: larguraColunasCitoPaisagem,
+                retrato: larguraColunasCitoRetrato
+            }}
+            colunasImpressao={colunasImpressaoCitoAPS}
+            listas_auxiliares={{
+                status_usuario_descricao: status_usuario_descricao.data
+            }}
+            propAgrupamentoImpressao="equipe_nome"
+            propImpressaoSemPersonalizacao="equipe_nome_e_ine"
+            propOrdenacaoImpressao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoAPS}
             aba={activeTitleTabIndex}
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}
