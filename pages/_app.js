@@ -20,10 +20,12 @@ import { data } from '../utils/Municipios';
 import { LAYOUT } from '../utils/QUERYS';
 
 import mixpanel from 'mixpanel-browser';
-import { hotjar } from 'react-hotjar'
 import { log_out } from '../hooks/log_out';
+import Hotjar from '@hotjar/browser';
 
+const hotjarVersion = 6;
 
+Hotjar.init(Number(process.env["NEXT_PUBLIC_HOTJAR_SITE_ID"]), hotjarVersion);
 
 const tagManagerArgs = {
   gtmId: "GTM-W8RVZBL",
@@ -51,8 +53,6 @@ function MyApp(props) {
       // Expõe o mixpanel globalmente para permitir integração com o hotjar
       window.mixpanel = mixpanel;
     }
-
-    hotjar.initialize(3496492, 6);
   }, [])
 
   useEffect(() => {
@@ -91,7 +91,7 @@ function MyApp(props) {
         "$name": props.ses.user.nome,
         ...atributos
       });
-      hotjar.identify(props.ses.user.id, {
+      Hotjar.identify(props.ses.user.id, {
         "email": props.ses.user.mail,
         "name": props.ses.user.nome,
         ...atributos

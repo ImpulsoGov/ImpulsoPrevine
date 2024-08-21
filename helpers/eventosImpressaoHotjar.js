@@ -1,5 +1,5 @@
-import { hotjar } from "react-hotjar";
+import Hotjar from '@hotjar/browser';
 
 export function dispararEventoAbrirImpressaoAPS() {
-  hotjar.event("abrir_imprimir_lista_aps");
+  Hotjar.event("abrir_imprimir_lista_aps");
 };
