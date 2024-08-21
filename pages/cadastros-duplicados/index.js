@@ -9,7 +9,6 @@ import { validatetoken} from "../../services/validateToken"
 import style from "../duvidas/Duvidas.module.css"
 import { redirectHome } from "../../helpers/redirectHome";
 import { log_out } from "../../hooks/log_out";
-import { hotjar } from "react-hotjar";
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
