@@ -39,7 +39,9 @@ const TabelaAPSQuadrimestreAtual = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    aba,
+    subAba,
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)
         .map(item => ({
@@ -123,6 +125,8 @@ const TabelaAPSQuadrimestreAtual = ({
         <PainelBuscaAtiva
             liberarPesquisa={liberarPesquisa}
             lista_mixpanel="vacinacao"
+            aba={aba}
+            sub_aba={subAba}
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
                 {
