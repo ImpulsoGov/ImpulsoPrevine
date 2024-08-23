@@ -1,7 +1,7 @@
 export const colunasImpressaoSemDum = [
   {
     field: 'cidadao_nome',
-    headerName: 'PACIENTE',
+    headerName: 'Nome',
     wordBreak: true,
   },
   {
