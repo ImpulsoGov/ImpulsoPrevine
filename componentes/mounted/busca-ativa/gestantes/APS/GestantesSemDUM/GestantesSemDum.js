@@ -45,7 +45,7 @@ const TabelaGestantesSemDUM = ({
     key="tabelaDataAPSGestantesSemDUM"
     painel="aps"
     lista="GESTANTES SEM DUM"
-    divisorVertical = {[0,3]}
+    divisorVertical = {[1,8]}
     largura_colunas_impressao={{
         paisagem : larguraColunasSemDumPaisagem,
         retrato : larguraColunasSemDumRetrato
