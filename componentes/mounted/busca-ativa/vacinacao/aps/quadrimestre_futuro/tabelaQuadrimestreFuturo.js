@@ -10,7 +10,7 @@ import mixpanel from 'mixpanel-browser';
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
 import { larguraColunasVacinacaoPaisagem, larguraColunasVacinacaoRetrato } from "../../../../../../helpers/larguraColunasVacinacao";
 import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
-import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [

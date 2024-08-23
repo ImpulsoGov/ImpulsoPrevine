@@ -5,7 +5,7 @@ import {
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
 import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../helpers/larguraColunasGestantesIndicador3";
 import { colunasImpressaoGestantesIndicador3 } from "../../../../../../helpers/colunasImpressaoGestantesIndicador3";
-import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
 
 const datefiltrosGestantes = [

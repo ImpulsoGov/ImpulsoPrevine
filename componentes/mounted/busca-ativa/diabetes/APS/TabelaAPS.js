@@ -6,7 +6,7 @@ import { colunasDiabetesAPS } from "../../../../../helpers/colunasDiabetes"
 import mixpanel from 'mixpanel-browser';
 import { larguraColunasDiabetesPaisagem, larguraColunasDiabetesRetrato } from "../../../../../helpers/larguraColunasDiabetes";
 import { colunasImpressaoDiabetesAPS } from "../../../../../helpers/colunasImpressaoDiabetes";
-import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosDiabetes = [
     "dt_consulta_mais_recente",

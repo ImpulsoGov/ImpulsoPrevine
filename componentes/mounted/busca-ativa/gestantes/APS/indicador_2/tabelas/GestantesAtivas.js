@@ -6,7 +6,7 @@ import { colunasGestantesIndicadorDois } from "../../../../../../../helpers/colu
 import identificacao_exame_hiv_sifilis from "../../../../../../../data/identificacao_exame_hiv_sifilis.json"
 import { larguraColunasGestantesIndicador2Paisagem, larguraColunasGestantesIndicador2Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador2";
 import { colunasImpressaoGestantesIndicador2 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador2";
-import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",

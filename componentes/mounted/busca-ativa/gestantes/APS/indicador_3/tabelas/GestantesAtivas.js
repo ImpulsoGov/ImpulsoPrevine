@@ -6,7 +6,7 @@ import identificacao_atendimento_odontologico from "../../../../../../../data/id
 import { colunasGestantesIndicadorTres } from "../../../../../../../helpers/colunasGestantesIndicadorTres";
 import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador3";
 import { colunasImpressaoGestantesIndicador3 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador3";
-import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",

@@ -27,7 +27,7 @@ import {log_out} from "../../../hooks/log_out"
 import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
 import { larguraColunasCitoPaisagem, larguraColunasCitoRetrato } from "../../../helpers/larguraColunasCito";
 import { colunasImpressaoCitoAPS } from "../../../helpers/colunasImpressaoCito";
-import { labelsModalImpressaoAPS } from "../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../helpers/labelsModalImpressao";
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)

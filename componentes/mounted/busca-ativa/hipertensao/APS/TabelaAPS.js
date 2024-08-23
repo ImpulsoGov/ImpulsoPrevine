@@ -6,7 +6,7 @@ import { colunasHipertensaoAPS } from "../../../../../helpers/colunasHipertensao
 import mixpanel from 'mixpanel-browser';
 import { larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from "../../../../../helpers/larguraColunasHipertensao";
 import { colunasImpressaoHipertensaoAPS } from "../../../../../helpers/colunasImpressaoHipertensao";
-import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosHipertensao = [
     "dt_afericao_pressao_mais_recente",
