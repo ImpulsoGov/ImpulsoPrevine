@@ -4,9 +4,10 @@ import {
 } from "@impulsogov/design-system";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
 import { larguraColunasSemDumPaisagem, larguraColunasSemDumRetrato } from "../../../../../../helpers/larguraColunasGestantesSemDum";
-import { colunasImpressaoGestantesSemDUM } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
+import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
 import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
 import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
 
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
@@ -37,6 +38,7 @@ const TabelaGestantesSemDUM = ({
     setShowSnackBar,
     setFiltros_aplicados
 }) => {
+    console.log(identificacao_exame_hiv_sifilis)
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
@@ -59,9 +61,10 @@ const TabelaGestantesSemDUM = ({
         colunas: colunasGestantesSemDUMAPS,
         data:tabelaDataAPSGestantesSemDUM
     }}
-    colunasImpressao = {colunasImpressaoGestantesSemDUM}
+    colunasImpressao = {colunasImpressaoSemDum}
     listas_auxiliares= {{
-        identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico
+        identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+        identificacao_exame_sifilis_hiv : identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
     }}
     datefiltros={datefiltrosGestantes}
     IDFiltros={IDFiltrosGestantes}
