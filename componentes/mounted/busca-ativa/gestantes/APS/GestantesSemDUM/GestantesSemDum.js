@@ -3,8 +3,8 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
-import { larguraColunasGestantesIndicador3Paisagem, larguraColunasGestantesIndicador3Retrato } from "../../../../../../helpers/larguraColunasGestantesIndicador3";
-import { colunasImpressaoGestantesIndicador3 } from "../../../../../../helpers/colunasImpressaoGestantesIndicador3";
+import { larguraColunasSemDumPaisagem, larguraColunasSemDumRetrato } from "../../../../../../helpers/larguraColunasGestantesSemDum";
+import { colunasImpressaoGestantesSemDUM } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
 import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressaoAPS";
 import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
 
@@ -45,8 +45,8 @@ const TabelaGestantesSemDUM = ({
     lista="GESTANTES SEM DUM"
     divisorVertical = {[0,3]}
     largura_colunas_impressao={{
-        paisagem : larguraColunasGestantesIndicador3Paisagem,
-        retrato : larguraColunasGestantesIndicador3Retrato
+        paisagem : larguraColunasSemDumPaisagem,
+        retrato : larguraColunasSemDumRetrato
     }}
     dadosFiltros={[
         {
@@ -59,7 +59,7 @@ const TabelaGestantesSemDUM = ({
         colunas: colunasGestantesSemDUMAPS,
         data:tabelaDataAPSGestantesSemDUM
     }}
-    colunasImpressao = {colunasImpressaoGestantesIndicador3}
+    colunasImpressao = {colunasImpressaoGestantesSemDUM}
     listas_auxiliares= {{
         identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico
     }}
