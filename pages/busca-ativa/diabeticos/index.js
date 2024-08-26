@@ -5,7 +5,6 @@ import {
   ScoreCardGrid,
   Spinner,
   GraficoBuscaAtiva,
-  TabelaHiperDiaImpressao
 } from "@impulsogov/design-system";
 import { useSession, signOut, getSession } from "next-auth/react"
 import React, { useState, useEffect } from 'react';
@@ -13,10 +12,7 @@ import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
 import { validatetoken } from "../../../services/validateToken"
 import { redirectHome } from "../../../helpers/redirectHome";
-import { Imprimir } from "../../../helpers/imprimir"
-import { colunasDiabetesEquipe, colunasDiabetesAPS } from "../../../helpers/colunasDiabetes";
 import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "../../../services/busca_ativa/Diabetes";
-import mixpanel from "mixpanel-browser";
 import { useRouter } from 'next/router';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS/TabelaAPS";
@@ -101,15 +97,6 @@ const Index = ({ res }) => {
     }
   },[tokenValido])
 
-  const ImpressaoEquipe = (data)=> Imprimir(
-    0.78,
-    <TabelaHiperDiaImpressao data={data} colunas={colunasDiabetesEquipe} fontFamily="sans-serif" />,
-    "diabetes",
-    null,
-    null,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const router = useRouter();
   let visao = null
   useEffect(() => {
@@ -195,7 +182,6 @@ const Index = ({ res }) => {
             <TabelaEquipe
               tabelaData={tabelaData}
               tabelaDataEquipe={tabelaDataEquipe}
-              Impressao={ImpressaoEquipe}
               setTabelaData={setTabelaData}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
