@@ -38,7 +38,9 @@ const TabelaAPSQuadrimestreFuturo = ({
     setTabelaData,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    aba,
+    subAba,
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)?.map((item) => ({
         ...item,
@@ -116,6 +118,8 @@ const TabelaAPSQuadrimestreFuturo = ({
         />
         <PainelBuscaAtiva
             key="tabelaDataAPSVacinacao"
+            aba={aba}
+            sub_aba={subAba}
             dadosFiltros={[
                 {
                     data: [...new Set(tabelaDataAPSVacinacao.map(item => item.acs_nome))],

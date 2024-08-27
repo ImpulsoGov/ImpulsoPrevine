@@ -104,6 +104,8 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}
+                aba={activeTitleTabIndex}
+                subAba={activeTabIndex}
             />
           ],
       ],
@@ -116,6 +118,8 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
               showSnackBar={showSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
               setShowSnackBar={setShowSnackBar}
+              aba={activeTitleTabIndex}
+              subAba={activeTabIndex}
           />
         ],
     ],
@@ -128,6 +132,8 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
             showSnackBar={showSnackBar}
             setFiltros_aplicados={setFiltros_aplicados}
             setShowSnackBar={setShowSnackBar}
+            aba={activeTitleTabIndex}
+            subAba={activeTabIndex}
         />
       ],
   ],
