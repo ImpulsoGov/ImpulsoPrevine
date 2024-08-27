@@ -114,7 +114,7 @@ export const TabelaEquipe = ({
         "<b>*CPF:</b> Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",
         "<b>**HBA1C:</b> Hemoglobina glicada.",
     ]}
-    divisorVertical={[2,4]}
+    divisorVertical={[2,4,6]}
     largura_colunas_impressao={{
         retrato: larguraColunasDiabetesRetratoEquipe,
         paisagem: larguraColunasDiabetesPaisagemEquipe,
