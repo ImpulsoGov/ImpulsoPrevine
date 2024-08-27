@@ -8,7 +8,7 @@ import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_pen
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
-import { larguraColunasVacinacaoPaisagem, larguraColunasVacinacaoRetrato } from "../../../../../../helpers/larguraColunasVacinacao";
+import { larguraColunasVacinacaoPaisagemAPS, larguraColunasVacinacaoRetratoAPS } from "../../../../../../helpers/larguraColunasVacinacao";
 import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
 import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 
@@ -160,8 +160,8 @@ const TabelaAPSQuadrimestreProximo = ({
         lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
         divisorVertical={[2,4,6]}
         largura_colunas_impressao={{
-            retrato: larguraColunasVacinacaoRetrato,
-            paisagem: larguraColunasVacinacaoPaisagem,
+            retrato: larguraColunasVacinacaoRetratoAPS,
+            paisagem: larguraColunasVacinacaoPaisagemAPS,
         }}
         listas_auxiliares={{}}
         colunasImpressao={colunasImpressaoVacinacaoAPS}

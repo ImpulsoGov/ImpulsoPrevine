@@ -2,13 +2,11 @@ import {
     CardAlert,
     TituloTexto, 
     ButtonLightSubmit, 
-    TabelaVacinacaoImpressao,
     PanelSelector,
   } from "@impulsogov/design-system";
 import React, { useState,useEffect } from 'react';
 import { useSession,signOut, getSession } from "next-auth/react"
 import { useRouter } from 'next/router';
-import { Imprimir } from "../../../helpers/imprimir"
 
 import { getData } from '../../../services/cms'
 import { LAYOUT } from '../../../utils/QUERYS'
@@ -26,7 +24,6 @@ import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from 
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
 import {log_out} from "../../../hooks/log_out"
 
-import { colunasVacinacaoAPS, colunasVacinacaoEquipe } from "../../../helpers/colunasVacinacao";
 import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -86,15 +83,6 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
   })},[session]) 
   const [tabelaData, setTabelaData] = useState([]);
 
-  const ImpressaoVacinacaoEquipe = (data)=> Imprimir(
-    1,
-    <TabelaVacinacaoImpressao data={data} colunas={colunasVacinacaoEquipe} fontFamily="sans-serif" />,
-    "vacinacao",
-    activeTitleTabIndex,
-    activeTabIndex,
-    filtros_aplicados,
-    setShowSnackBar
-  )
   const Voltar = ()=>{
     window.history.go(voltarGatilho*(-1))
   }
@@ -113,7 +101,6 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                 tabelaDataAPS={tabelaDataEquipe} 
                 tabelaData={tabelaData} 
                 setTabelaData={setTabelaData}
-                onPrintClick={ImpressaoVacinacaoEquipe}
                 showSnackBar={showSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
                 setShowSnackBar={setShowSnackBar}
@@ -126,7 +113,6 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
               tabelaDataAPS={tabelaDataEquipe} 
               tabelaData={tabelaData} 
               setTabelaData={setTabelaData}
-              onPrintClick={ImpressaoVacinacaoEquipe}
               showSnackBar={showSnackBar}
               setFiltros_aplicados={setFiltros_aplicados}
               setShowSnackBar={setShowSnackBar}
@@ -139,7 +125,6 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
             tabelaDataAPS={tabelaDataEquipe} 
             tabelaData={tabelaData} 
             setTabelaData={setTabelaData}
-            onPrintClick={ImpressaoVacinacaoEquipe}
             showSnackBar={showSnackBar}
             setFiltros_aplicados={setFiltros_aplicados}
             setShowSnackBar={setShowSnackBar}

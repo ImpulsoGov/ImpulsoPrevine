@@ -8,6 +8,9 @@ import vacinacao_status_penta  from "../../../../../../data/vacinacao_status_pen
 import vacinacao_status_polio  from "../../../../../../data/vacinacao_status_polio.json" assert { type: 'json' };
 import mixpanel from 'mixpanel-browser';
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres } from "../../../../../../utils/quadrimestre";
+import { larguraColunasVacinacaoPaisagemEquipe, larguraColunasVacinacaoRetratoEquipe } from "../../../../../../helpers/larguraColunasVacinacao";
+import { colunasImpressaoVacinacaoEquipe } from "../../../../../../helpers/colunasImpressaoVacinacao";
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosVacinacao = []
 const IntFiltros = [
@@ -33,12 +36,23 @@ const TabelaAPSQuadrimestreFuturo = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData,
-    onPrintClick,
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados
 }) => {
-    const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)
+    const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)?.map((item) => ({
+        ...item,
+        datas_doses_polio: [
+            `1ª DOSE: ${item.data_ou_prazo_1dose_polio ?? ""}`,
+            `2ª DOSE: ${item.data_ou_prazo_2dose_polio ?? ""}`,
+            `3ª DOSE: ${item.data_ou_prazo_3dose_polio ?? ""}`,
+        ],
+        datas_doses_penta: [
+            `1ª DOSE: ${item.data_ou_prazo_1dose_penta ?? ""}`,
+            `2ª DOSE: ${item.data_ou_prazo_2dose_penta ?? ""}`,
+            `3ª DOSE: ${item.data_ou_prazo_3dose_penta ?? ""}`,
+        ],
+    }))
     const codigosPolio = [10,20,30,40]
     if(tabelaDataAPSVacinacao[0]?.id_status_polio) tabelaDataAPSVacinacao.forEach(item => item.id_status_polio = codigosPolio[Number(item.id_status_polio)-1] ? codigosPolio[Number(item.id_status_polio)-1] : item.id_status_polio)
 
@@ -101,7 +115,6 @@ const TabelaAPSQuadrimestreFuturo = ({
             ]}
         />
         <PainelBuscaAtiva
-            onPrintClick={onPrintClick}
             key="tabelaDataAPSVacinacao"
             dadosFiltros={[
                 {
@@ -129,6 +142,18 @@ const TabelaAPSQuadrimestreFuturo = ({
                 },
                 ]}
             painel="vacinacao"
+            lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
+            divisorVertical={[2,4,6]}
+            largura_colunas_impressao={{
+                retrato: larguraColunasVacinacaoRetratoEquipe,
+                paisagem: larguraColunasVacinacaoPaisagemEquipe,
+            }}
+            listas_auxiliares={{}}
+            colunasImpressao={colunasImpressaoVacinacaoEquipe}
+            propAgrupamentoImpressao="acs_nome"
+            propImpressaoSemPersonalizacao="acs_nome"
+            labelsModalImpressao={labelsModalImpressaoEquipe}
+            lista_mixpanel="vacinacao"
             tabela={{
             colunas: colunasVacinacaoEquipe,
             data:tabelaDataAPSVacinacao
