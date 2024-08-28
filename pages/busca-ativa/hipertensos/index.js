@@ -182,6 +182,7 @@ const Index = ({res}) => {
                 showSnackBar={showSnackBar}
                 setShowSnackBar={setShowSnackBar}
                 setFiltros_aplicados={setFiltros_aplicados}
+                liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               />
               {
                 tabelaDataEquipe ?
