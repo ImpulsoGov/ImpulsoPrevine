@@ -143,9 +143,7 @@ function MyApp(props) {
                 setMunicipio={ setCidade }
                 data={ data }
                 theme={ {
-                  logoProjeto: width > 900 ?
-                    path == '/' ? "https://media.graphassets.com/3Vvlszx1RraNWFWyfgaT" : props.res[0].logoIps[0].logo[0].url :
-                    props.res[0].logoIps[1].logo[0].url,
+                  logoProjeto: width > 900 ? props.res[0].logoIps[0].logo[0].url : props.res[0].logoIps[1].logo[0].url,
                   cor: (path == '/' || path == '/apoio' || path == '/analise' || path == '/quem-somos') ? "Cinza" : "White",
                   logoLink: props.ses ? '/inicio' : '/'
                 } }

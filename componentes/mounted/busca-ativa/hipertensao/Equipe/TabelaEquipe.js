@@ -6,6 +6,7 @@ import { colunasHipertensaoEquipe } from "../../../../../helpers/colunasHiperten
 import mixpanel from 'mixpanel-browser';
 import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato } from "../../../../../helpers/larguraColunasHipertensao";
 import { colunasImpressaoHipertensaoEquipe } from "../../../../../helpers/colunasImpressaoHipertensao";
+import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
 
 
 const datefiltrosHipertensao = [
@@ -125,22 +126,7 @@ export const TabelaEquipe = ({
         propAgrupamentoImpressao= "acs_nome_cadastro"
         propOrdenacaoImpressao= "acs_nome_cadastro"
         propImpressaoSemPersonalizacao= "equipe_nome"
-        labelsModalImpressao= {{
-            titulo: "IMPRESSÃO POR EQUIPES",
-            personalizacaoPrincipal: {
-                titulo: "Deseja imprimir as listas divididas por Equipes?",
-                descricao: "Essa impressão agrupa os cidadãos de acordo com as Equipes correspondentes. Qualquer filtro ou ordenação selecionados anteriormente serão mantidos e aplicados dentro desses grupos.",
-                agrupamentoSim: "Sim, dividir listas por equipes.",
-                agrupamentoNao: "Não, imprimir a lista como ela está.",
-            },
-            personalizacaoSecundaria : {
-            titulo: "Outras opções de impressão por equipes:",
-            recomendacao: "Ideal para distribuir listas para coordenadoras de equipe",
-            separacaoGrupoPorFolha: "Também dividir equipes em folhas separadas",
-            ordenacao: "Também ordenar listas por profissional responsável",
-            },
-            botao: "IMPRIMIR LISTA",
-        }}
+        labelsModalImpressao= {labelsModalImpressaoEquipe}
         liberarPesquisa={liberarPesquisa}
         aba={aba}
         sub_aba={sub_aba}
