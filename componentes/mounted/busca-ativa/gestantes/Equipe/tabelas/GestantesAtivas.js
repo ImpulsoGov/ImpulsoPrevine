@@ -13,8 +13,9 @@ import {
     IntFiltrosGestantesEquipe
  } from "../../../../../../helpers/FiltrosOrdenacaoAux"
 import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
-import { larguraColunasGestantesAtivasEquipePaisagem, larguraColunasGestantesAtivasEquipeRetrato } from "../../../../../../helpers/larguraColunasGestantesAtivasEquipe";
-import { colunasImpressaoGestantesAtivasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesAtivasEquipe";
+import { larguraColunasGestantesAtivasEquipePaisagem, larguraColunasGestantesAtivasEquipeRetrato } from "../../../../../../helpers/larguraColunasGestantesEquipe";
+import { colunasImpressaoGestantesAtivasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
+
 const TabelaEquipeGestantesAtivas = ({
     tabelaDataEquipe,
     tabelaData,
@@ -26,7 +27,10 @@ const TabelaEquipeGestantesAtivas = ({
     setShowSnackBar,
     setFiltros_aplicados
 })=>{
-    const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)
+    const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)?.map((item) => ({
+        ...item,
+        idade_gestacional_atual: item.gestacao_idade_gestacional_atual
+    }))
     return tabelaDataEquipeGestantesAtivas && tabelaDataEquipeGestantesAtivas?.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva

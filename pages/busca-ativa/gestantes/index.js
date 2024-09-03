@@ -225,7 +225,6 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
