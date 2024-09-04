@@ -25,7 +25,8 @@ const TabelaEquipeGestantesAtivas = ({
     sub_aba,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    liberarPesquisa
 })=>{
     const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)?.map((item) => ({
         ...item,
@@ -34,6 +35,7 @@ const TabelaEquipeGestantesAtivas = ({
     return tabelaDataEquipeGestantesAtivas && tabelaDataEquipeGestantesAtivas?.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        liberarPesquisa={liberarPesquisa}
         key="TabelaChildGestantesAtivas"
         trackObject={trackObject}
         lista="PRÉ-NATAL GESTANTES ATIVAS"

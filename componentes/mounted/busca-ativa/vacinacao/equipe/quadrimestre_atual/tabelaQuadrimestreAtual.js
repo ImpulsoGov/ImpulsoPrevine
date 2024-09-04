@@ -41,6 +41,7 @@ const TabelaAPSQuadrimestreAtual = ({
     setFiltros_aplicados,
     aba,
     subAba,
+    liberarPesquisa
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)?.map((item) => ({
         ...item,
@@ -119,6 +120,7 @@ const TabelaAPSQuadrimestreAtual = ({
             ]}
         />
         <PainelBuscaAtiva
+            liberarPesquisa={liberarPesquisa}
             key="tabelaDataAPSVacinacao"
             aba={aba}
             sub_aba={subAba}

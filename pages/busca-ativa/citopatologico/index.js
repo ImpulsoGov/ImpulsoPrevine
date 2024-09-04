@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {log_out} from "../../../hooks/log_out"
-import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
+import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "../../../helpers/eventosImpressaoHotjar";
 import { larguraColunasCitoPaisagem, larguraColunasCitoRetrato } from "../../../helpers/larguraColunasCito";
 import { colunasImpressaoCitoAPS } from "../../../helpers/colunasImpressaoCito";
 import { labelsModalImpressaoAPS } from "../../../helpers/labelsModalImpressao";
@@ -183,6 +183,7 @@ if(session){
     <>
     <PainelBuscaAtiva
         onPrintClick={ImpressaoEquipe}
+        liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
@@ -236,6 +237,7 @@ if(session){
     const TabelaChildComExame = tabelaDataEquipe ? 
     <PainelBuscaAtiva
         onPrintClick={ImpressaoEquipe}
+        liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         dadosFiltros={[
             {
                 data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],

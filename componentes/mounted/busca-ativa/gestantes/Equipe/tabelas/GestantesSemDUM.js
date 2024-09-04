@@ -34,12 +34,14 @@ const TabelaEquipeGestantesSemDUM = ({
     onPrintClick,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    liberarPesquisa
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
+        liberarPesquisa={liberarPesquisa}
         onPrintClick={onPrintClick}
         key="TabelaChildGestantesSemDUM"
         trackObject={trackObject}
