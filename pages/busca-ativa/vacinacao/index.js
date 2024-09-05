@@ -154,7 +154,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                 />
           </div>
           <TituloTexto
-                  titulo="Lista Nominal de Vacinação - Equipe"
+                  titulo="Lista Nominal de Vacinação"
                   texto=""
                   imagem = {{posicao: null,url: ''}}
           />
