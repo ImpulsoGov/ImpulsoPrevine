@@ -40,8 +40,6 @@ const TabelaEquipeGestantesSemDUM = ({
     liberarPesquisa
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
-    console.log(tabelaDataEquipe,tabelaData,tabelaDataEquipeGestantesSemDUM)
-
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
