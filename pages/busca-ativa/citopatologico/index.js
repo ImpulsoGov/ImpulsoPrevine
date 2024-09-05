@@ -32,6 +32,10 @@ import { Cards } from "../../../componentes/mounted/busca-ativa/citopatologico/A
 import { Grafico } from "../../../componentes/mounted/busca-ativa/citopatologico/APS/Grafico";
 import { TabelaAPSSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSSemExame";
 import { TabelaAPSComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSComExame";
+import { CardsSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsSemExame";
+import { CardsComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsComExame";
+import { TabelaEquipeSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeSemExame";
+import { TabelaEquipeComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeComExame";
 
 export async function getServerSideProps(ctx) {
 const session = await getSession(ctx)
@@ -138,216 +142,95 @@ const ImpressaoEquipe = (data)=> Imprimir(
 )
 const Voltar = ()=> window.history.go(voltarGatilho*(-1))
 useEffect(()=>{log_out(session)},[session])
-useEffect(()=>{
-    setVoltarGatilho(voltarGatilho+1)
-},[router.asPath])
+useEffect(()=>{setVoltarGatilho(voltarGatilho+1)},[router.asPath])
 if(session){  
     if(session.user.perfis.includes(9)){
         visao = "equipe"
         const dataAtual = Date.now();
-        const CardsChildSemExame = tabelaDataEquipe ? <ScoreCardGrid
-        valores={[
-            {
-                descricao: 'Total de pessoas',
-                valor: tabelaDataEquipe.length
-            },
-            {
-                descricao: 'Total de pessoas que nunca relizaram a coleta de citopatológico',
-                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 13) ?
-                acumulador + 1 : acumulador;
-                },0)
-            },
-            {
-                descricao: 'Total de pessoas com a coleta vencida ou a vencer até o fim do quadrimestre',
-                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 15 || item.id_status_usuario == 16) ?
-                acumulador + 1 : acumulador;
-                },0)
-            },
-        ]}
-        /> : <Spinner/>
-        const CardsChildComExame = tabelaDataEquipe ? <ScoreCardGrid
-        valores={[
-            {
-                descricao: 'Total de pessoas',
-                valor: tabelaDataEquipe.length
-            },
-            {
-                descricao: 'Total de pessoas com a coleta de citopatológico em dia',
-                valor: tabelaDataEquipe.reduce((acumulador,item)=>{ 
-                return (item.id_status_usuario == 12) ?
-                acumulador + 1 : acumulador;
-                },0)
-            },
-        ]}
-        /> : <Spinner/>
-    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
-    const TabelaChildSemExame = tabelaDataEquipeSemExame && tabelaDataEquipe && tabelaData ? 
-    <>
-    <PainelBuscaAtiva
-        onPrintClick={ImpressaoEquipe}
+        const CardsChildSemExame = <CardsSemExame tabelaDataEquipe={tabelaDataEquipe}/>
+        const CardsChildComExame = <CardsComExame tabelaDataEquipe={tabelaDataEquipe}/>
+        const TabelaChildSemExame = <TabelaEquipeSemExame
+            tabelaDataEquipe={tabelaDataEquipe}
+            liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            tabelaData={tabelaData}
+            setTabelaData={setTabelaData}
+            mixpanel={mixpanel}
+            aba={activeTitleTabIndex}
+            sub_aba={activeTabIndex}
+            showSnackBar={showSnackBar}
+            setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
+        />
+        const TabelaChildComExame = <TabelaEquipeComExame
+        tabelaDataEquipe={tabelaDataEquipe}
         liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
-        dadosFiltros={[
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do Profissional Responsável'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_status_usuario.toString()))],
-                labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
-                filtro: 'id_status_usuario',
-                rotulo: 'Filtrar por status'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria.toString()))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
-            },
-
-        ]}
-        painel="cito"
-        tabela={{
-        colunas: colunasCitoEquipe,
-        data:tabelaDataEquipeSemExame
-        }}
-        data={tabelaData}
-        setData={setTabelaData}
-        datefiltros={datefiltrosCito}
-        IDFiltros={IDFiltrosCito}
-        rotulosfiltros={rotulosfiltrosCito}    
-        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
-        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
-            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-            const dataMaisRecenteAnterior = new Date(maisRecente);
-            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-        }, "2000-01-01")).toLocaleString('pt-BR', { 
-          timeZone: 'UTC',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-         })}
-        trackObject={mixpanel}
-        setFiltros_aplicados={setFiltros_aplicados}
-        lista="citopatologico"
-        aba={activeTitleTabIndex}
-        sub_aba={activeTabIndex}
-        showSnackBar={showSnackBar}
-        setShowSnackBar={setShowSnackBar} 
-        /></> : <Spinner/>
-    const tabelaDataEquipeComExame = [...new Set(tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12))]
-    const TabelaChildComExame = tabelaDataEquipe ? 
-    <PainelBuscaAtiva
-        onPrintClick={ImpressaoEquipe}
-        liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
-        dadosFiltros={[
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_faixa_etaria.toString()))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
-                filtro: 'id_faixa_etaria',
-                rotulo: 'Filtrar por faixa etária'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.id_status_usuario.toString()))],
-                labels : [...new Set(status_usuario_descricao.data.map(item=> item.status_usuario_descricao))],
-                filtro: 'id_status_usuario',
-                rotulo: 'Filtrar por status'
-            },
-            {
-                data: [...new Set(tabelaDataEquipeComExame.map(item => item.acs_nome))],
-                filtro: 'acs_nome',
-                rotulo: 'Filtrar por nome do Profissional Responsável'
-            },
-        ]}
-        painel="cito"
-        tabela={{
-        colunas: colunasCitoEquipe,
-        data:tabelaDataEquipeComExame
-        }}
-        data={tabelaData}
-        setData={setTabelaData}
-        datefiltros={datefiltrosCito}
-        IDFiltros={IDFiltrosCito}
-        rotulosfiltros={rotulosfiltrosCito}    
-        IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
-        atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
-            const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
-            const dataMaisRecenteAnterior = new Date(maisRecente);
-            return dataAtual > dataMaisRecenteAnterior ? objeto.dt_registro_producao_mais_recente : maisRecente
-        }, "2000-01-01")).toLocaleString('pt-BR', { 
-          timeZone: 'UTC',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-         })}
-        trackObject={mixpanel}
-        lista="citopatologico"
+        tabelaData={tabelaData}
+        setTabelaData={setTabelaData}
+        mixpanel={mixpanel}
         aba={activeTitleTabIndex}
         sub_aba={activeTabIndex}
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
-    /> : <Spinner/>
-    const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
+    />
+        const Children = [[CardsChildSemExame,TabelaChildSemExame],[CardsChildComExame,TabelaChildComExame]]
 
 
-    return (
-        <>
-        <div 
-            style={
-                window.screen.width > 1024 ?
-                {padding: "30px 80px 30px 80px",display: "flex"} :
-                {padding: "30px 0 0 5px",display: "flex"} 
-            }>
-                <ButtonLightSubmit 
-                    icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
-                    label="VOLTAR" 
-                    submit={Voltar}
-                />
-        </div>
-        <TituloTexto
-                titulo="Lista Nominal de Citopatológico"
-                texto=""
-                imagem = {{posicao: null,url: ''}}
-        />
-        <CardAlert
-                destaque="IMPORTANTE: "
-                msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
-        />  
-        <MunicipioQuadrimestre data={dataAtual} />
-        {
-            tabelaData &&
-            <PanelSelector
-            components={[Children]}
-            conteudo = "components"
-            states={{
-                activeTabIndex: Number(activeTabIndex),
-                setActiveTabIndex: setActiveTabIndex,
-                activeTitleTabIndex: activeTitleTabIndex,
-                setActiveTitleTabIndex: setActiveTitleTabIndex
-            }}
-            
-            list={[
-                [
-                    {
-                        label: 'PESSOAS COM EXAME A SER REALIZADO'
-                    },
-                    {
-                        label: 'PESSOAS EM DIA COM EXAME'
-                    }
-                ],
-                ]}
-            titles={[
-                    {
-                        label: ''
-                    },
-                ]}
+        return (
+            <>
+            <div 
+                style={
+                    window.screen.width > 1024 ?
+                    {padding: "30px 80px 30px 80px",display: "flex"} :
+                    {padding: "30px 0 0 5px",display: "flex"} 
+                }>
+                    <ButtonLightSubmit 
+                        icon='https://media.graphassets.com/8NbkQQkyRSiouNfFpLOG'
+                        label="VOLTAR" 
+                        submit={Voltar}
+                    />
+            </div>
+            <TituloTexto
+                    titulo="Lista Nominal de Citopatológico"
+                    texto=""
+                    imagem = {{posicao: null,url: ''}}
             />
-    }
-    </>
-    )
+            <CardAlert
+                    destaque="IMPORTANTE: "
+                    msg="Os dados exibidos nesta plataforma refletem a base de dados local do município e podem divergir dos divulgados quadrimestralmente pelo SISAB. O Ministério da Saúde aplica regras de vinculação e validações cadastrais do usuário, profissional e estabelecimento que não são replicadas nesta ferramenta."
+            />  
+            <MunicipioQuadrimestre data={dataAtual} />
+            {
+                tabelaData &&
+                <PanelSelector
+                components={[Children]}
+                conteudo = "components"
+                states={{
+                    activeTabIndex: Number(activeTabIndex),
+                    setActiveTabIndex: setActiveTabIndex,
+                    activeTitleTabIndex: activeTitleTabIndex,
+                    setActiveTitleTabIndex: setActiveTitleTabIndex
+                }}
+                
+                list={[
+                    [
+                        {
+                            label: 'PESSOAS COM EXAME A SER REALIZADO'
+                        },
+                        {
+                            label: 'PESSOAS EM DIA COM EXAME'
+                        }
+                    ],
+                    ]}
+                titles={[
+                        {
+                            label: ''
+                        },
+                    ]}
+                />
+        }
+        </>
+        )
     }
     if(session.user.perfis.includes(5) || session.user.perfis.includes(8)){
         visao = "aps"
