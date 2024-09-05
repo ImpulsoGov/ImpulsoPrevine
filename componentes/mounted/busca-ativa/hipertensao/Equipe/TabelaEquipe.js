@@ -125,7 +125,7 @@ export const TabelaEquipe = ({
         })}
         propAgrupamentoImpressao= "acs_nome_cadastro"
         propOrdenacaoImpressao= "acs_nome_cadastro"
-        propImpressaoSemPersonalizacao= "equipe_nome"
+        propImpressaoSemPersonalizacao= "acs_nome_cadastro"
         labelsModalImpressao= {labelsModalImpressaoEquipe}
         liberarPesquisa={liberarPesquisa}
         aba={aba}
