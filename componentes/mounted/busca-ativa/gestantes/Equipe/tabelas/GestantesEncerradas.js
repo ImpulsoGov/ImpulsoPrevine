@@ -32,7 +32,7 @@ const TabelaEquipeGestantesEncerradas = ({
         ...item,
         idade_gestacional_atual: item.gestacao_idade_gestacional_atual
     }))
-    return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipeGestantesEncerradas.length>0 && tabelaDataEquipe && tabelaData ? 
+    return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
         liberarPesquisa={liberarPesquisa}
