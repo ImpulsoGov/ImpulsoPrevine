@@ -144,6 +144,20 @@ const Index = ({ res }) => {
                     />
                 }
 
+                {session.user.perfis.includes(9) &&
+                    <ModalAlert
+                        Child = {AtualizacaoCadastral}
+                        childProps ={ {
+                            titulos : {
+                                Titulo : "NOVIDADE",
+                                SubTitulo : "Agora você pode imprimir as listas nominais divididas por profissional responsável em um clique!"
+                            },
+                            Info : "<div style='color: #606E78;font-size: 17px;font-weight: 400;line-height: 21.78px;'>Clicando no botão de <span style='color: #2EB280; font-weight: 600;'>IMPRIMIR LISTA</span>, além de poder dividir as listas por profissionais automaticamente, você também pode separar cada profissional em uma folha.<div style='margin-top: 17px;'>Visualize e distribua as listas de forma simples, com apenas um clique.</div></div>",
+                            imagem : "https://media.graphassets.com/fNIDuaBST1616xMFxx4X",
+                        }}
+                    />
+                }
+
                 {/* <ModalAlert
                     Child = {AtualizacaoCadastral}
                     childProps ={ {

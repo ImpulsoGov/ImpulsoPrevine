@@ -51,6 +51,7 @@ export const TabelaEquipe = ({
     showSnackBar,
     setShowSnackBar,
     setFiltros_aplicados,
+    liberarPesquisa
 })=>{
     const TabelaDataEquipeTratada = tabelaDataEquipe?.map(item=>({
         ...item,
@@ -64,6 +65,7 @@ export const TabelaEquipe = ({
 
     return tabelaDataEquipe && tabelaData ?
     <PainelBuscaAtiva
+    liberarPesquisa={liberarPesquisa}
     dadosFiltros={[
         {
             data: [...new Set(TabelaDataEquipeTratada.map(item => item.acs_nome_cadastro))],

@@ -24,7 +24,7 @@ import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from 
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "../../../componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
 import {log_out} from "../../../hooks/log_out"
 
-import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
+import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "../../../helpers/eventosImpressaoHotjar";
   export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
   const redirect = redirectHome(ctx,session)
@@ -106,6 +106,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
                 setShowSnackBar={setShowSnackBar}
                 aba={activeTitleTabIndex}
                 subAba={activeTabIndex}
+                liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
             />
           ],
       ],
@@ -120,6 +121,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
               setShowSnackBar={setShowSnackBar}
               aba={activeTitleTabIndex}
               subAba={activeTabIndex}
+              liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
           />
         ],
     ],
@@ -134,6 +136,7 @@ import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpress
             setShowSnackBar={setShowSnackBar}
             aba={activeTitleTabIndex}
             subAba={activeTabIndex}
+            liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         />
       ],
   ],
