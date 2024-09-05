@@ -97,6 +97,7 @@ export const TabelaEquipeSemExame = ({
             }}     
             propAgrupamentoImpressao = "equipe_nome"
             propOrdenacaoImpressao = "acs_nome"
+            propImpressaoSemPersonalizacao= "equipe_nome"
             labelsModalImpressao = {labelsModalImpressaoEquipe}
             trackObject={mixpanel}
             setFiltros_aplicados={setFiltros_aplicados}

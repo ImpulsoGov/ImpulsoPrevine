@@ -207,10 +207,9 @@ if(session){
           tabelaDataEquipe={tabelaDataEquipe}
           tabelaData={tabelaData}
           setTabelaData={setTabelaData}
-          trackObject={mixpanel}
+          mixpanel={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
