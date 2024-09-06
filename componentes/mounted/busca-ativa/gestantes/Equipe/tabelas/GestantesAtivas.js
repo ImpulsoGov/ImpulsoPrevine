@@ -84,7 +84,7 @@ const TabelaEquipeGestantesAtivas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
         ]}
-        painel="gestantes"
+        painel="equipe"
         tabela={{
         colunas: colunasGestantesEquipe,
         data:tabelaDataEquipeGestantesAtivas

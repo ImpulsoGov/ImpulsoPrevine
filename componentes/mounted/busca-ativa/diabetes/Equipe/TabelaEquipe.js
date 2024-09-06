@@ -88,7 +88,7 @@ export const TabelaEquipe = ({
             rotulo: 'Filtrar por faixa etária'
         },
     ]}
-    painel="diabetes"
+    painel="equipe"
     tabela={{
         colunas: colunasDiabetesEquipe,
         data:TabelaDataEquipeTratada

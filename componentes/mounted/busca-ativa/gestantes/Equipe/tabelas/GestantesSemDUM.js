@@ -44,7 +44,7 @@ const TabelaEquipeGestantesSemDUM = ({
     <>
     <PainelBuscaAtiva
         key="TabelaChildGestantesSemDUM"
-        painel = "aps"
+        painel="equipe"
         lista =  "GESTANTES SEM DUM"
         divisorVertical = {[1, 8]}
         largura_colunas_impressao = { {

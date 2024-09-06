@@ -50,6 +50,7 @@ const IndicadorUmTabelaGestantesSemDUM = ({
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    painel="aps"
     key="tabelaDataAPSGestantesSemDUM"
     lista="PRÉ-NATAL INDICADOR 1 (6 CONSULTAS)"
     divisorVertical={[1,4]}

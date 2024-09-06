@@ -68,7 +68,7 @@ export const TabelaEquipe = ({
 
     return tabelaDataEquipe && tabelaData ?
     <PainelBuscaAtiva
-        painel = "aps"
+        painel="equipe"
         lista = "HIPERTENSÃO"
         legendaImpressao = {[
             "<b>*CPF:</b> Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",

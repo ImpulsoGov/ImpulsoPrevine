@@ -149,7 +149,7 @@ const TabelaAPSQuadrimestreAtual = ({
                     rotulo: 'Filtrar por status penta'
                 },
             ]}
-            painel="vacinacao"
+            painel="equipe"
             lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
             divisorVertical={[2,4,6]}
             largura_colunas_impressao={{

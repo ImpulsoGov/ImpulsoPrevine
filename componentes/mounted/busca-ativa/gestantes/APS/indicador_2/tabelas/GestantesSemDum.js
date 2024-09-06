@@ -59,7 +59,7 @@ const IndicadorDoisTabelaGestantesSemDUM = ({
             rotulo: 'Filtrar por INE da equipe'
         },
     ]}
-    painel="gestantes"
+    painel="aps"
     tabela={{
     colunas: colunasGestantesIndicadorDois,
     data:tabelaDataAPSGestantesSemDUM
