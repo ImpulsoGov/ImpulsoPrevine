@@ -3,7 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
-import { larguraColunasSemDumPaisagem, larguraColunasSemDumRetrato } from "../../../../../../helpers/larguraColunasGestantesSemDum";
+import { larguraColunasSemDumPaisagem, larguraColunasSemDumPaisagemAPS, larguraColunasSemDumRetrato, larguraColunasSemDumRetratoAPS } from "../../../../../../helpers/larguraColunasGestantesSemDum";
 import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
 import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
@@ -47,8 +47,8 @@ const TabelaGestantesSemDUM = ({
     lista="GESTANTES SEM DUM"
     divisorVertical = {[1,8]}
     largura_colunas_impressao={{
-        paisagem : larguraColunasSemDumPaisagem,
-        retrato : larguraColunasSemDumRetrato
+        paisagem : larguraColunasSemDumPaisagemAPS,
+        retrato : larguraColunasSemDumRetratoAPS
     }}
     dadosFiltros={[
         {

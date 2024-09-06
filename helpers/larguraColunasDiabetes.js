@@ -23,23 +23,23 @@ export const larguraColunasDiabetesRetratoAPS = {
 };
 
 export const larguraColunasDiabetesPaisagemEquipe = {
-  "cidadao_nome": "253px",
+  "cidadao_nome": "245px",
   "cpf_e_identificacao_condicao": "149px",
   "cidadao_idade": "60px",
-  "dt_consulta_mais_recente": "130px",
-  "prazo_proxima_consulta": "120px",
-  "dt_solicitacao_hemoglobina_glicada_mais_recente": "130px",
-  "prazo_proxima_solicitacao_hemoglobina": "120px",
-  "acs_nome_cadastro": "253px",
+  "dt_consulta_mais_recente": "125px",
+  "prazo_proxima_consulta": "133px",
+  "dt_solicitacao_hemoglobina_glicada_mais_recente": "125px",
+  "prazo_proxima_solicitacao_hemoglobina": "133px",
+  "acs_nome_cadastro": "245px",
 };
 
 export const larguraColunasDiabetesRetratoEquipe = {
-  "cidadao_nome": "134px",
+  "cidadao_nome": "125px",
   "cpf_e_identificacao_condicao": "120px",
   "cidadao_idade": "40px",
   "dt_consulta_mais_recente": "114px",
-  "prazo_proxima_consulta": "105px",
+  "prazo_proxima_consulta": "114px",
   "dt_solicitacao_hemoglobina_glicada_mais_recente": "114px",
-  "prazo_proxima_solicitacao_hemoglobina": "105px",
-  "acs_nome_cadastro": "134px",
+  "prazo_proxima_solicitacao_hemoglobina": "114px",
+  "acs_nome_cadastro": "125px",
 };

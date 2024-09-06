@@ -38,11 +38,6 @@ export const colunasImpressaoSemDum = [
     headerName: 'ATENDIMENTO ODONTOLÓGICO',
   },
   {
-    field: 'equipe_nome',
-    headerName: 'EQUIPE',
-    wordBreak: true,
-  },
-  {
     field: 'acs_nome',
     headerName: 'PROFISSIONAL RESPONSÁVEL',
     wordBreak: true,

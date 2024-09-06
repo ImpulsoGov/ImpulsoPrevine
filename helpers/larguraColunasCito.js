@@ -33,8 +33,8 @@ export const larguraColunasCitoPaisagemEquipe = {
 export const larguraColunasCitoRetratoEquipe = {
   "paciente_nome": "155px",
   "cidadao_cpf_dt_nascimento": "80px",
-  "id_status_usuario": "185px",
-  "vencimento_da_coleta": "100px",
+  "id_status_usuario": "200px",
+  "vencimento_da_coleta": "85px",
   "prazo_proxima_coleta": "130px",
   "idade": "60px",
   "acs_nome": "138px",

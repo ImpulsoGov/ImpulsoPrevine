@@ -95,9 +95,9 @@ export const TabelaEquipeSemExame = ({
             listas_auxiliares = {{
                 status_usuario_descricao
             }}     
-            propAgrupamentoImpressao = "equipe_nome"
+            propAgrupamentoImpressao = "acs_nome"
             propOrdenacaoImpressao = "acs_nome"
-            propImpressaoSemPersonalizacao= "equipe_nome"
+            propImpressaoSemPersonalizacao= "acs_nome"
             labelsModalImpressao = {labelsModalImpressaoEquipe}
             trackObject={mixpanel}
             setFiltros_aplicados={setFiltros_aplicados}

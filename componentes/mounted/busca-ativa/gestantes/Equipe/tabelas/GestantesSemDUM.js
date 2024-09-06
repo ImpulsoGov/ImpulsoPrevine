@@ -3,10 +3,11 @@ import {
     Spinner, 
   } from "@impulsogov/design-system"
   import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes"
-import { larguraColunasSemDumPaisagem, larguraColunasSemDumRetrato } from "../../../../../../helpers/larguraColunasGestantesSemDum"
+import { larguraColunasSemDumPaisagemEquipe, larguraColunasSemDumRetratoEquipe } from "../../../../../../helpers/larguraColunasGestantesSemDum"
 import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json"
 import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
 import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum"
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao"
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
     "consulta_prenatal_ultima_data",
@@ -48,8 +49,8 @@ const TabelaEquipeGestantesSemDUM = ({
         lista =  "GESTANTES SEM DUM"
         divisorVertical = {[1, 8]}
         largura_colunas_impressao = { {
-            paisagem : larguraColunasSemDumPaisagem,
-            retrato : larguraColunasSemDumRetrato
+            paisagem : larguraColunasSemDumPaisagemEquipe,
+            retrato : larguraColunasSemDumRetratoEquipe
         }}
         dadosFiltros={[
             {
@@ -83,18 +84,18 @@ const TabelaEquipeGestantesSemDUM = ({
         day: '2-digit'
         })}
         listas_auxiliares= {{
-            identificacao_atendimento_odontologico: identificacao_atendimento_odontologico,
-            identificacao_exame_sifilis_hiv: identificacao_exame_hiv_sifilis,
+            identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+            identificacao_exame_sifilis_hiv: identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
         }}   
         colunasImpressao= {colunasImpressaoSemDum}     
-        propAgrupamentoImpressao= "equipe_nome"
+        propAgrupamentoImpressao= "acs_nome"
         propOrdenacaoImpressao= "acs_nome"
-        propImpressaoSemPersonalizacao= "equipe_nome"
+        propImpressaoSemPersonalizacao= "acs_nome"
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
         liberarPesquisa={liberarPesquisa}
-
+        labelsModalImpressao= { labelsModalImpressaoEquipe }
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesSemDUM }
