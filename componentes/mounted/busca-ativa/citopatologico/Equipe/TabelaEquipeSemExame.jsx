@@ -46,6 +46,7 @@ export const TabelaEquipeSemExame = ({
         <PainelBuscaAtiva
             painel="equipe"
             lista = "CITOPATOLÓGICO"
+            lista_mixpanel="citopatologico"
             divisorVertical = {[1,4]}
             largura_colunas_impressao = {{
                 paisagem : larguraColunasCitoPaisagemEquipe,

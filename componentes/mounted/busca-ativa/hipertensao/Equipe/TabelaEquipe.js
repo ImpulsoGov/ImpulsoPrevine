@@ -70,6 +70,7 @@ export const TabelaEquipe = ({
     <PainelBuscaAtiva
         painel="equipe"
         lista = "HIPERTENSÃO"
+        lista_mixpanel = "hipertensao"
         legendaImpressao = {[
             "<b>*CPF:</b> Quando o CPF não constar no cadastro, mostraremos a data de nascimento do cidadão.",
             "<b>**PA:</b> Pressão Arterial."

@@ -47,6 +47,7 @@ const TabelaEquipeGestantesSemDUM = ({
         key="TabelaChildGestantesSemDUM"
         painel="equipe"
         lista =  "GESTANTES SEM DUM"
+        lista_mixpanel = "pre_natal"
         divisorVertical = {[1, 8]}
         largura_colunas_impressao = { {
             paisagem : larguraColunasSemDumPaisagemEquipe,
