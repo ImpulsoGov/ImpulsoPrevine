@@ -1,15 +1,15 @@
 import { GraficoBuscaAtiva, ScoreCardGrid, Spinner } from "@impulsogov/design-system";
 import { obterDadosQuadrimestre } from "../../../../../../utils/quadrimestre";
-const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == '2024.Q3')
 const dataAtual = Date.now();
 const dadosQuadriAtual = dataAtual
-    ? obterDadosQuadrimestre(dataAtual)
-    : null;
+? obterDadosQuadrimestre(dataAtual)
+: null;
 const quadriAtualFormatado = dadosQuadriAtual
-    ? `Q${Object.values(dadosQuadriAtual).join("/")}`
-    : "";
+? `Q${Object.values(dadosQuadriAtual).join("/")}`
+: "";
 
 const CardsGraficoIndicadorDoisQuadriAtual = ({tabelaDataAPS}) =>{
+    const dataQuadriAtual = tabelaDataAPS.filter(item => item.gestacao_quadrimestre == `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`)
     return tabelaDataAPS ? 
     <>
         <h2 style={{
