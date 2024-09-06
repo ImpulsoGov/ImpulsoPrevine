@@ -37,3 +37,6 @@ yarn-error.log*
 
 # Sentry Config File
 .sentryclirc
+
+# Mise Config File
+.mise.toml
