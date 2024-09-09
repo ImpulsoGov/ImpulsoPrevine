@@ -25,7 +25,7 @@ const tabelaCitoAPS = async(municipio_id_sus,token)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: API_URL_DADOS_NOMINAIS + `impulsoprevine/busca-ativa/citopatologico-por-municipio?municipio_id_sus=${municipio_id_sus}`,
+        url: API_URL_DADOS_NOMINAIS + `busca_ativa/cito/citoAPS?municipio_id_sus=${municipio_id_sus}`,
         headers: { 
           'Authorization': 'Bearer ' + token
         }

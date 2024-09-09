@@ -768,6 +768,30 @@ model painel_vacinacao_lista_nominal {
   @@schema("impulso_previne_dados_nominais")
 }
 
+model teste_painel_citopatologico_lista_nominal {
+  municipio_id_sus                  String?   @db.VarChar
+  municipio_uf                      String?
+  paciente_nome                     String?
+  cidadao_cpf_dt_nascimento         String?
+  vencimento_da_coleta              String?
+  prazo_proxima_coleta              String?
+  idade                             Int?
+  acs_nome                          String?
+  estabelecimento_cnes              String?   @db.VarChar(30)
+  estabelecimento_nome              String?   @db.VarChar(500)
+  equipe_ine                        String?   @db.VarChar(30)
+  ine_master                        String?
+  equipe_nome                       String?
+  id_status_usuario                 Int?
+  id_faixa_etaria                   Int?
+  criacao_data                      DateTime? @db.Timestamptz(6)
+  atualizacao_data                  DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente DateTime? @db.Date
+  id                                Int       @id(map: "teste_painel_citopatologico_lista_nominal_pk") @default(autoincrement())
+
+  @@schema("impulso_previne_dados_nominais")
+}
+
 model teste_painel_gestantes_lista_nominal {
   chave_id_gestacao                               String    @id(map: "teste_painel_gestantes_lista_nominal_pk") @db.VarChar(500)
   municipio_id_sus                                String?   @db.Char(6)
