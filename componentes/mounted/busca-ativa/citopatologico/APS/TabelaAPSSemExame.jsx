@@ -2,7 +2,7 @@ import {status_usuario_descricao} from '../../../../../data/status_usuario_descr
 import faixa_etarias from '../../../../../data/faixa_etarias.json';
 import { labelsModalImpressaoAPS } from '../../../../../helpers/labelsModalImpressao';
 import { colunasImpressaoCitoAPS } from '../../../../../helpers/colunasImpressaoCito';
-import { larguraColunasCitoPaisagem, larguraColunasCitoRetrato } from '../../../../../helpers/larguraColunasCito';
+import { larguraColunasCitoPaisagemAPS, larguraColunasCitoRetratoAPS } from '../../../../../helpers/larguraColunasCito';
 import { PainelBuscaAtiva, Spinner } from '@impulsogov/design-system';
 import { colunasCitoAPS } from '../../../../../helpers/colunasCito';
 
@@ -95,8 +95,8 @@ export const TabelaAPSSemExame = ({
         lista="CITOPATOLÓGICO"
         divisorVertical={[1,4]}
         largura_colunas_impressao={{
-            paisagem: larguraColunasCitoPaisagem,
-            retrato: larguraColunasCitoRetrato
+            paisagem: larguraColunasCitoPaisagemAPS,
+            retrato: larguraColunasCitoRetratoAPS
         }}
         colunasImpressao={colunasImpressaoCitoAPS}
         listas_auxiliares={{
