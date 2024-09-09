@@ -96,7 +96,7 @@ export const TabelaEquipeComExame = ({
             listas_auxiliares = {{
                 status_usuario_descricao
             }}     
-            propAgrupamentoImpressao = "equipe_nome"
+            propAgrupamentoImpressao = "acs_nome"
             propOrdenacaoImpressao = "acs_nome"
             propImpressaoSemPersonalizacao= "acs_nome"
             labelsModalImpressao = {labelsModalImpressaoEquipe}
