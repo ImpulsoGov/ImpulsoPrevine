@@ -38,7 +38,6 @@ const TabelaGestantesSemDUM = ({
     setShowSnackBar,
     setFiltros_aplicados
 }) => {
-    console.log(identificacao_exame_hiv_sifilis)
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva

@@ -5,7 +5,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 
 export const validarTokenMiddleware = async (req, res) => {
     try {
-        const token = await getToken({ req, secret, raw: true });
+        const token = req.headers.authorization.split(' ')[1];
         if (!token) return res.status(401).json({ message: 'Token não fornecido.' });
         const decodedToken = jwt.verify(token, secret); // Verifica assinatura,validade e decodifica o token
         req.user = decodedToken; // Armazena o token decodificado para uso posterior na requisição
