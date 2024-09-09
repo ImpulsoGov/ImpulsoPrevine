@@ -45,7 +45,7 @@ const getToken = async(credentials)=>{
 }
 
 export const authOptions = {
-secret: 'v5oY81w077SDsgs/2VLSGql/5PJ3vwrWoHJISb2zCZk=',
+secret: process.env.NEXTAUTH_SECRET,
 providers: [
   CredentialsProvider({
     // The name to display on the sign in form (e.g. "Sign in with...")
@@ -77,7 +77,7 @@ session: {
 },
 refetchInterval: 1,
 jwt: {
-  secret: 'v5oY81w077SDsgs/2VLSGql/5PJ3vwrWoHJISb2zCZk=',
+  secret: process.env.NEXTAUTH_SECRET,
   maxAge: 8 * 60 * 60
 },
 callbacks: {
