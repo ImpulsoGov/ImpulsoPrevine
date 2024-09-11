@@ -149,7 +149,7 @@ const TabelaAPSQuadrimestreProximo = ({
 
         ]}
         painel="equipe"
-        lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
+        lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE - PRÓXIMO QUADRIMESTRE"
         divisorVertical={[2,4,6]}
         largura_colunas_impressao={{
             retrato: larguraColunasVacinacaoRetratoEquipe,
