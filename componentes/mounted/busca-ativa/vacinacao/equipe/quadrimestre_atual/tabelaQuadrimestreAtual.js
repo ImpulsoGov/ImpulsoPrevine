@@ -150,7 +150,7 @@ const TabelaAPSQuadrimestreAtual = ({
                 },
             ]}
             painel="equipe"
-            lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE - QUADRIMESTRE ATUAL"
+            lista="<span>VACINAÇÃO: POLIOMIELITE E PENTAVALENTE<span/><span style='display: block;'>QUADRIMESTRE ATUAL<span/>"
             divisorVertical={[2,4,6]}
             largura_colunas_impressao={{
                 retrato: larguraColunasVacinacaoRetratoEquipe,
