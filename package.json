@@ -12,7 +12,7 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@hotjar/browser": "^1.0.9",
-    "@impulsogov/design-system": "^1.0.251",
+    "@impulsogov/design-system": "^1.0.252",
     "@mui/material": "^5.13.0",
     "@mui/x-data-grid": "^6.3.1",
     "@sentry/nextjs": "^7.92.0",
