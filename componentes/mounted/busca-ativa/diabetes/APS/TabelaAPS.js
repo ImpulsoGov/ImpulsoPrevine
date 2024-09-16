@@ -4,9 +4,9 @@ import {
 } from "@impulsogov/design-system";
 import { colunasDiabetesAPS } from "../../../../../helpers/colunasDiabetes"
 import mixpanel from 'mixpanel-browser';
-import { larguraColunasDiabetesPaisagem, larguraColunasDiabetesRetrato } from "../../../../../helpers/larguraColunasDiabetes";
+import { larguraColunasDiabetesPaisagemAPS, larguraColunasDiabetesRetratoAPS } from "../../../../../helpers/larguraColunasDiabetes";
 import { colunasImpressaoDiabetesAPS } from "../../../../../helpers/colunasImpressaoDiabetes";
-import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosDiabetes = [
     "dt_consulta_mais_recente",
@@ -134,8 +134,8 @@ export const TabelaAPS = ({
     ]}
     divisorVertical={[2,4,6]}
     largura_colunas_impressao={{
-        retrato: larguraColunasDiabetesRetrato,
-        paisagem: larguraColunasDiabetesPaisagem,
+        retrato: larguraColunasDiabetesRetratoAPS,
+        paisagem: larguraColunasDiabetesPaisagemAPS,
     }}
     colunasImpressao={colunasImpressaoDiabetesAPS}
     listas_auxiliares={{}}

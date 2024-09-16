@@ -48,7 +48,7 @@ import mixpanel from "mixpanel-browser";
 import MunicipioQuadrimestre from "../../../componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import { formatarQuadrimestres, obterDadosProximosQuadrimestres, obterDadosQuadrimestre } from "../../../utils/quadrimestre";
 import {log_out} from "../../../hooks/log_out"
-import { dispararEventoAbrirImpressaoAPS } from "../../../helpers/eventosImpressaoHotjar";
+import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "../../../helpers/eventosImpressaoHotjar";
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -194,10 +194,10 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
+          liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         />,
         <PainelComLegenda />
       ],
@@ -207,13 +207,13 @@ if(session){
           tabelaDataEquipe={tabelaDataEquipe}
           tabelaData={tabelaData}
           setTabelaData={setTabelaData}
-          trackObject={mixpanel}
+          mixpanel={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
+          liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         />,
         <PainelComLegenda />
       ],
@@ -226,10 +226,10 @@ if(session){
           trackObject={mixpanel}
           aba={activeTitleTabIndex}
           sub_aba={activeTabIndex}
-          onPrintClick={ImpressaoEquipe}
           showSnackBar={showSnackBar}
           setShowSnackBar={setShowSnackBar}
           setFiltros_aplicados={setFiltros_aplicados}
+          liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
         />,
         <PainelComLegenda />
       ]

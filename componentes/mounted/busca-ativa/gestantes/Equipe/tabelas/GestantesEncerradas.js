@@ -2,15 +2,20 @@ import {
     PainelBuscaAtiva , 
     Spinner, 
   } from "@impulsogov/design-system"
-  import { colunasGestantesEncerradasEquipe } from "../../../../../../helpers/colunasGestantes"
-  import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
-  import { 
-      datefiltrosGestantes,
-      IDFiltrosGestantes,
-      rotulosfiltrosGestantes,
-      IDFiltrosOrdenacaoGestantes,
-      IntFiltrosGestantesEquipe
-   } from "../../../../../../helpers/FiltrosOrdenacaoAux"
+import { colunasGestantesEncerradasEquipe } from "../../../../../../helpers/colunasGestantes"
+import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
+import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import { 
+    datefiltrosGestantes,
+    IDFiltrosGestantes,
+    rotulosfiltrosGestantes,
+    IDFiltrosOrdenacaoGestantes,
+    IntFiltrosGestantesEquipe
+} from "../../../../../../helpers/FiltrosOrdenacaoAux"
+import { larguraColunasGestantesEncerradasEquipePaisagem, larguraColunasGestantesEncerradasEquipeRetrato } from "../../../../../../helpers/larguraColunasGestantesEquipe";
+import { colunasImpressaoGestantesEncerradasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
+
 const TabelaEquipeGestantesEncerradas = ({
     tabelaDataEquipe,
     tabelaData,
@@ -18,19 +23,36 @@ const TabelaEquipeGestantesEncerradas = ({
     trackObject,
     aba,
     sub_aba,
-    onPrintClick,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    liberarPesquisa
 })=>{
-    const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)
-    return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipeGestantesEncerradas.length>0 && tabelaDataEquipe && tabelaData ? 
+    const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)?.map((item) => ({
+        ...item,
+        idade_gestacional_atual: item.gestacao_idade_gestacional_atual
+    }))
+    return tabelaDataEquipeGestantesEncerradas && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
-        onPrintClick={onPrintClick}
+        liberarPesquisa={liberarPesquisa}
         key="TabelaChildGestantesEncerradas"
         trackObject={trackObject}
-        lista="gestantes"
+        lista="PRÉ-NATAL GESTANTES ENCERRADAS"
+        divisorVertical = {[1,9]}
+        largura_colunas_impressao={{
+            paisagem : larguraColunasGestantesEncerradasEquipePaisagem,
+            retrato : larguraColunasGestantesEncerradasEquipeRetrato
+        }}
+        colunasImpressao = {colunasImpressaoGestantesEncerradasEquipe}
+        listas_auxiliares= {{
+            identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+            identificacao_exame_sifilis_hiv : identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+        }}
+        lista_mixpanel="pre_natal"
+        propAgrupamentoImpressao="acs_nome"
+        propImpressaoSemPersonalizacao="acs_nome"
+        labelsModalImpressao= { labelsModalImpressaoEquipe }
         aba={aba}
         sub_aba={sub_aba}
         dadosFiltros={[
@@ -62,7 +84,7 @@ const TabelaEquipeGestantesEncerradas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
         ]}
-        painel="gestantes"
+        painel="equipe"
         tabela={{
         colunas: colunasGestantesEncerradasEquipe,
         data:tabelaDataEquipeGestantesEncerradas

@@ -3,7 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorUm } from "../../../../../../../helpers/colunasGestantesIndicadorUm";
-import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 import { larguraColunasGestantesIndicador1Paisagem, larguraColunasGestantesIndicador1Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador1";
 import { colunasImpressaoGestantesIndicador1 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador1";
 
@@ -50,6 +50,7 @@ const IndicadorUmTabelaGestantesSemDUM = ({
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
     return tabelaDataAPS ? <PainelBuscaAtiva
+    painel="aps"
     key="tabelaDataAPSGestantesSemDUM"
     lista="PRÉ-NATAL INDICADOR 1 (6 CONSULTAS)"
     divisorVertical={[1,4]}

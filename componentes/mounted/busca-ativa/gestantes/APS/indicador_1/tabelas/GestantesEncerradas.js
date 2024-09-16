@@ -3,7 +3,7 @@ import {
     Spinner, 
 } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorUm } from "../../../../../../../helpers/colunasGestantesIndicadorUm";
-import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressaoAPS";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 import { larguraColunasGestantesIndicador1Paisagem, larguraColunasGestantesIndicador1Retrato } from "../../../../../../../helpers/larguraColunasGestantesIndicador1";
 import { colunasImpressaoGestantesIndicador1 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador1";
 

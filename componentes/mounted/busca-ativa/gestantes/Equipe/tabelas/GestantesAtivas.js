@@ -3,6 +3,7 @@ import {
     Spinner, 
   } from "@impulsogov/design-system"
 import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
+import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
 import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes"
 import { 
     datefiltrosGestantes,
@@ -11,6 +12,10 @@ import {
     IDFiltrosOrdenacaoGestantes,
     IntFiltrosGestantesEquipe
  } from "../../../../../../helpers/FiltrosOrdenacaoAux"
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
+import { larguraColunasGestantesAtivasEquipePaisagem, larguraColunasGestantesAtivasEquipeRetrato } from "../../../../../../helpers/larguraColunasGestantesEquipe";
+import { colunasImpressaoGestantesAtivasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
+
 const TabelaEquipeGestantesAtivas = ({
     tabelaDataEquipe,
     tabelaData,
@@ -18,19 +23,36 @@ const TabelaEquipeGestantesAtivas = ({
     trackObject,
     aba,
     sub_aba,
-    onPrintClick,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    liberarPesquisa
 })=>{
-    const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)
+    const tabelaDataEquipeGestantesAtivas = tabelaDataEquipe.filter(item=>item.id_status_usuario == 8)?.map((item) => ({
+        ...item,
+        idade_gestacional_atual: item.gestacao_idade_gestacional_atual
+    }))
     return tabelaDataEquipeGestantesAtivas && tabelaDataEquipeGestantesAtivas?.length>0 && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
-        onPrintClick={onPrintClick}
+        liberarPesquisa={liberarPesquisa}
         key="TabelaChildGestantesAtivas"
         trackObject={trackObject}
-        lista="gestantes"
+        lista="PRÉ-NATAL GESTANTES ATIVAS"
+        divisorVertical = {[1,8]}
+        largura_colunas_impressao={{
+            paisagem : larguraColunasGestantesAtivasEquipePaisagem,
+            retrato : larguraColunasGestantesAtivasEquipeRetrato
+        }}
+        colunasImpressao = {colunasImpressaoGestantesAtivasEquipe}
+        listas_auxiliares= {{
+            identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+            identificacao_exame_sifilis_hiv : identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+        }}
+        lista_mixpanel="pre_natal"
+        propAgrupamentoImpressao="acs_nome"
+        propImpressaoSemPersonalizacao="acs_nome"
+        labelsModalImpressao= { labelsModalImpressaoEquipe }
         aba={aba}
         sub_aba={sub_aba}
         dadosFiltros={[
@@ -62,7 +84,7 @@ const TabelaEquipeGestantesAtivas = ({
             rotulo: 'Filtrar por quadrimestre'
         },
         ]}
-        painel="gestantes"
+        painel="equipe"
         tabela={{
         colunas: colunasGestantesEquipe,
         data:tabelaDataEquipeGestantesAtivas

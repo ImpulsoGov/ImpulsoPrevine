@@ -3,7 +3,11 @@ import {
     Spinner, 
   } from "@impulsogov/design-system"
   import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes"
-
+import { larguraColunasSemDumPaisagemEquipe, larguraColunasSemDumRetratoEquipe } from "../../../../../../helpers/larguraColunasGestantesSemDum"
+import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json"
+import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json"
+import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum"
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao"
 const datefiltrosGestantes = [
     "gestacao_data_dpp",
     "consulta_prenatal_ultima_data",
@@ -28,36 +32,40 @@ const TabelaEquipeGestantesSemDUM = ({
     tabelaDataEquipe,
     tabelaData,
     setTabelaData,
-    trackObject,
+    mixpanel,
     aba,
     sub_aba,
-    onPrintClick,
     showSnackBar,
     setShowSnackBar,
-    setFiltros_aplicados
+    setFiltros_aplicados,
+    liberarPesquisa
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
-    return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipeGestantesSemDUM.length>0 && tabelaDataEquipe && tabelaData ? 
+    return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipe && tabelaData ? 
     <>
     <PainelBuscaAtiva
-        onPrintClick={onPrintClick}
         key="TabelaChildGestantesSemDUM"
-        trackObject={trackObject}
-        lista="gestantes"
+        painel="equipe"
+        lista =  "GESTANTES SEM DUM"
+        lista_mixpanel = "pre_natal"
+        divisorVertical = {[1, 8]}
+        largura_colunas_impressao = { {
+            paisagem : larguraColunasSemDumPaisagemEquipe,
+            retrato : larguraColunasSemDumRetratoEquipe
+        }}
+        dadosFiltros={[
+            {
+                data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.acs_nome))],
+                filtro: 'acs_nome',
+                rotulo: 'Filtrar por Profissional Responsável'
+            },
+        ]}
+        tabela={{
+            colunas: colunasGestantesEquipe,
+            data:tabelaDataEquipeGestantesSemDUM
+        }}
         aba={aba}
         sub_aba={sub_aba}
-        dadosFiltros={[
-        {
-            data: [...new Set(tabelaDataEquipeGestantesSemDUM.map(item => item.acs_nome))],
-            filtro: 'acs_nome',
-            rotulo: 'Filtrar por Profissional Responsável'
-        },
-        ]}
-        painel="gestantes"
-        tabela={{
-        colunas: colunasGestantesEquipe,
-        data:tabelaDataEquipeGestantesSemDUM
-        }}
         data={tabelaData}
         setData={setTabelaData}
         datefiltros={datefiltrosGestantes}
@@ -65,6 +73,7 @@ const TabelaEquipeGestantesSemDUM = ({
         IDFiltros={IDFiltrosGestantes}
         rotulosfiltros={rotulosfiltrosGestantes}    
         IDFiltrosOrdenacao={IDFiltrosOrdenacaoGestantes}
+        trackObject={mixpanel}
         atualizacao = {new Date(tabelaDataEquipeGestantesSemDUM.reduce((maisRecente, objeto) => {
         const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
         const dataMaisRecenteAnterior = new Date(maisRecente);
@@ -75,9 +84,19 @@ const TabelaEquipeGestantesSemDUM = ({
         month: '2-digit',
         day: '2-digit'
         })}
+        listas_auxiliares= {{
+            identificacao_atendimento_odontologico: identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+            identificacao_exame_sifilis_hiv: identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+        }}   
+        colunasImpressao= {colunasImpressaoSemDum}     
+        propAgrupamentoImpressao= "acs_nome"
+        propOrdenacaoImpressao= "acs_nome"
+        propImpressaoSemPersonalizacao= "acs_nome"
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
         setFiltros_aplicados={setFiltros_aplicados}
+        liberarPesquisa={liberarPesquisa}
+        labelsModalImpressao= { labelsModalImpressaoEquipe }
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesSemDUM }
