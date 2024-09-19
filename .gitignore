@@ -40,3 +40,6 @@ yarn-error.log*
 
 # Mise Config File
 .mise.toml
+
+# Cypress Env File
+cypress.env.json

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cy:open": "cypress open",
+    "cy": "cypress run"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -39,6 +41,8 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^10.0.2",
+    "cypress": "^13.14.2",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6"
   }
