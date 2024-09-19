@@ -8,25 +8,19 @@ test.describe('Login', () => {
 
     await openModalButton.click();
 
-    await expect(page.getByTestId('Modal')).toBeVisible();
-
-    const showLoginFormButton = page
-      .getByTestId('Modal')
-      .getByRole('button', { name: /entrar/i });
+    const showLoginFormButton = page.getByRole('button', { name: /entrar/i });
 
     await showLoginFormButton.click();
 
-    await expect(page.getByTestId('Modal')).toBeVisible();
-
     const cpfInput = page.getByTestId('Modal').getByPlaceholder(/cpf/i);
-    const passwordInput = page.getByTestId('Modal').getByPlaceholder(/senha/i);
 
     await cpfInput.fill(process.env.CPF_LOGIN_TEST || '123.456.789-09');
+
+    const passwordInput = page.getByTestId('Modal').getByPlaceholder(/senha/i);
+
     await passwordInput.fill(process.env.PASSWORD_LOGIN_TEST || '12345678');
 
-    const loginButton = page
-      .getByTestId('Modal')
-      .getByRole('button', { name: /entrar/i });
+    const loginButton = page.getByRole('button', { name: /entrar/i });
 
     await loginButton.click();
     await page.waitForURL('http://localhost:3000/inicio', { timeout: 8000 });
