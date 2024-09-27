@@ -45,7 +45,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
     return tabelaDataAPS ? <PainelBuscaAtiva
         key="tabelaDataAPSGestantesAtivas"
         painel="aps"
-        lista="PRÉ-NATAL - INDICADOR 2 (EXAME DE HIV E SÍFILIS)"
+        lista="<span>PRÉ-NATAL INDICADOR 2 (EXAMES DE HIV E SÍFILIS)<span/><span style='display: block;'>GESTANTES ATIVAS<span/>"
         divisorVertical={[0,3]}
         largura_colunas_impressao={{
             paisagem : larguraColunasGestantesIndicador2Paisagem,
