@@ -156,7 +156,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                 },
                 ]}
             painel="aps"
-            lista="VACINAÇÃO: POLIOMIELITE E PENTAVALENTE"
+            lista="<span>VACINAÇÃO: POLIOMIELITE E PENTAVALENTE<span/><span style='display: block;'>QUADRIMESTRES FUTUROS<span/>"
             divisorVertical={[2,4,6]}
             largura_colunas_impressao={{
                 retrato: larguraColunasVacinacaoRetratoAPS,
