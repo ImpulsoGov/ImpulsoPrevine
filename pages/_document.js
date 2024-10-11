@@ -10,7 +10,10 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <Script src='../helpers/userGuiding.js' />
+        <script dangerouslySetInnerHTML={{__html: "window.AppcuesSettings = { enableURLDetection: true };"}}>
+        </script>
+        <script src="//fast.appcues.com/215916.js">
+        </script>
       </body>
     </Html>
   )

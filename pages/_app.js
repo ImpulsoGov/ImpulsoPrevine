@@ -96,6 +96,9 @@ function MyApp(props) {
         "name": props.ses.user.nome,
         ...atributos
       });
+      if (typeof window !== "undefined" && window.Appcues) {
+        window.Appcues.identify(props.ses.user.id)
+      }
     }
   }, [props.ses]);
 
