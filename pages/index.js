@@ -14,6 +14,8 @@ import {
 
 import { getData } from '../services/cms'
 import { LAYOUT, HOME } from '../utils/QUERYS'
+import { useEffect } from "react";
+import introJs from 'intro.js';
 
 export async function getServerSideProps(ctx) {
   const userIsActive = ctx.req.cookies['next-auth.session-token']
@@ -39,6 +41,23 @@ export async function getServerSideProps(ctx) {
 }
 
 const Index = ({res}) => {
+  useEffect(() => {
+    introJs().onchange(() => console.log("step change")).setOption("dontShowAgain", true)
+    // .setOptions({
+    //   steps: [
+    //     {
+    //       title: 'Welcome',
+    //       intro: 'Hello World! 👋'
+    //     },
+    //     {
+    //       element: document.querySelector('.paragrafo-intro2'),
+    //       title: 'Hello step two!',
+    //     }
+    //   ]
+    // })
+    .start();
+  }, []);
+
   return (
     <div style={{backgroundColor: "#E6ECF0"}}>
       {/*
@@ -91,6 +110,18 @@ const Index = ({res}) => {
         componente={
           <>
             <div style={{paddingTop:80}}></div>         
+            <div className="paragrafo-intro">
+              <p data-intro='Hello step one1!' data-title="Título">oi</p>
+              <p data-intro='Hello step two1!' data-title="Título 2">hello</p>
+            </div>
+
+            <p data-intro='Hello step two1!' data-title="Título 2">hello</p>
+
+
+            {/* <div className="paragrafo-intro2">
+              <p data-intro='Hello step one222!' data-title="Título" data-step="1">oi</p>
+              <p data-intro='Hello step two222!' data-title="Título 2" data-step="2">hello</p>
+            </div> */}
             <Margem 
               componente={
                 <>

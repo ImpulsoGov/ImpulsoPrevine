@@ -19,6 +19,7 @@ import { TabelaAPS } from "../../../componentes/mounted/busca-ativa/diabetes/APS
 import { TabelaEquipe } from "../../../componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
 import {log_out} from "../../../hooks/log_out"
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "../../../helpers/eventosImpressaoHotjar";
+import introJs from 'intro.js';
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -80,6 +81,10 @@ const Index = ({ res }) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    introJs().start();
+  }, []);
 
   useEffect(() => {
     if (session) {
@@ -207,6 +212,8 @@ const Index = ({ res }) => {
               submit={Voltar}
             />
           </div>
+          <p className="paragrafo-intro" data-intro='Hello step one!' data-title="Título" data-step="1">oi</p>
+
           <TituloTexto
             titulo="Lista Nominal Diabetes"
             texto=""

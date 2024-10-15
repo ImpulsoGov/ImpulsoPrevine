@@ -12,6 +12,7 @@ import { NPSConsulta, NPSAvaliacao } from "../../services/NPS"
 import { ModalAlert } from "../../componentes/ModalAlert/ModalAlert"
 import style from "./ModalAlert.module.css";
 import { log_out } from '../../hooks/log_out'
+import introJs from 'intro.js';
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -119,6 +120,9 @@ const Index = ({ res }) => {
     }
     const cargo = cargo_transform(session?.user?.cargo)
     useEffect(()=>{log_out(session)},[session])
+    useEffect(() => {
+        introJs().start();
+      }, []);
     if (session) {
         return (
             <>
@@ -130,7 +134,7 @@ const Index = ({ res }) => {
                         submit = {NPSAvaliacao}
                     />                    
                 }  */}
-                {(session.user.perfis.includes(5) || session.user.perfis.includes(8)) &&
+                {/* {(session.user.perfis.includes(5) || session.user.perfis.includes(8)) &&
                     <ModalAlert
                         Child = {AtualizacaoCadastral}
                         childProps ={ {
@@ -142,7 +146,7 @@ const Index = ({ res }) => {
                             imagem : "https://media.graphassets.com/7bt3S4Q82t8wDRjxjaoQ",
                         }}
                     />
-                }
+                } */}
 
                 {session.user.perfis.includes(9) &&
                     <ModalAlert
@@ -180,7 +184,7 @@ const Index = ({ res }) => {
                     nome_usuario = {session?.user.nome}
                     texto = ""
                 />
-
+                <p className="paragrafo-intro" data-intro='Hello step one!' data-title="Título" data-step="1">oi</p>
                 <div
                     style={
                         window.screen.width >= 1024 ?

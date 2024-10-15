@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v1 as uuidv1 } from 'uuid';
 import { Margem, NovoTituloTexto, CardIP, ButtonColor , CardAlert } from "@impulsogov/design-system"
+import introJs from 'intro.js';
 
 const Index = ({ res }) => {
   const router = useRouter();
@@ -41,6 +42,10 @@ const Index = ({ res }) => {
     }
   ];
 
+  // useEffect(() => {
+  //   introJs().start();
+  // }, []);
+
   return (
     <div style={{ backgroundColor: "#E6ECF0" }}>
       <Margem
@@ -54,6 +59,7 @@ const Index = ({ res }) => {
                     titulo="Analise os resultados do Previne Brasil nos últimos quadrimestres"
                     texto="Confira gratuitamente uma nova maneira de acompanhar o desempenho de qualquer município no Previne Brasil com informações comparativas a partir dos dados públicos do SISAB.</br>"
                   />
+                {/* <p className="paragrafo-intro" data-intro='Hello step one!' data-title="Título" data-step="1">oi</p> */}
                 </>
               }
             />

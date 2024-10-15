@@ -2,6 +2,7 @@ import { Footer, NavBar, SearchBar } from '@impulsogov/design-system';
 import { SessionProvider, getSession, signIn, signOut, useSession } from "next-auth/react";
 import App from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import TagManager from "react-gtm-module";
@@ -22,6 +23,7 @@ import { LAYOUT } from '../utils/QUERYS';
 import mixpanel from 'mixpanel-browser';
 import { log_out } from '../hooks/log_out';
 import Hotjar from '@hotjar/browser';
+import introJs from 'intro.js';
 
 const hotjarVersion = 6;
 
@@ -52,8 +54,27 @@ function MyApp(props) {
     if (typeof window !== "undefined") {
       // Expõe o mixpanel globalmente para permitir integração com o hotjar
       window.mixpanel = mixpanel;
+
+      // const script = document.createElement('script');
+      // script.src = '../helpers/userGuiding.js';
+      // script.async = true;
+  
+      // document.body.appendChild(script);
     }
   }, [])
+
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.src = 'https://widget.userguiding.com/YOUR_USER_ID.js';
+  //   script.async = true;
+
+  //   document.body.appendChild(script);
+
+  //   // Clean up the script when the component unmounts
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -96,6 +117,11 @@ function MyApp(props) {
         "name": props.ses.user.nome,
         ...atributos
       });
+
+      // if (typeof window !== "undefined") {
+      //   window.userGuiding.identify(props.ses.user.id);
+      // }
+
       if (typeof window !== "undefined" && window.Appcues) {
         window.Appcues.identify(props.ses.user.id)
       }
@@ -114,6 +140,7 @@ function MyApp(props) {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        {/* <script src="../helpers/userGuiding.js" /> */}
       </Head>
       <SessionProvider session={ session } refetchInterval={ 60 * 60 } refetchOnWindowFocus={ true } clientMaxAge={ 8 * 60 * 60 }>
         <Context.Provider value={ [cidade, setCidade] }>
@@ -304,6 +331,7 @@ function MyApp(props) {
         </Context.Provider>
         <Analytics />
       </SessionProvider>
+      {/* <Script src="../helpers/userGuiding.js" /> */}
     </>
   );
 }
