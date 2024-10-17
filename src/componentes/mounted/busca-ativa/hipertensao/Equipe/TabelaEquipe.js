@@ -49,6 +49,7 @@ export const TabelaEquipe = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    setFiltros_aplicados
 })=>{ 
     const TabelaDataEquipeTratada = tabelaDataEquipe?.map(item=>({
         ...item,
@@ -127,5 +128,6 @@ export const TabelaEquipe = ({
         sub_aba={null}
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
 }

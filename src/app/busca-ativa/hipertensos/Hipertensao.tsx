@@ -23,6 +23,7 @@ export const Hipertensao : React.FC<HipertensaoProps> = ({
     const [showSnackBar, setShowSnackBar] = useState({
         open: false
       })
+    const [filtros_aplicados, setFiltros_aplicados] = useState(false)
     const [voltarGatilho, setVoltarGatilho] = useState(0);
     const [tabelaData, setTabelaData] = useState([]);
     const router = useRouter();
@@ -39,6 +40,8 @@ export const Hipertensao : React.FC<HipertensaoProps> = ({
     setTabelaData={setTabelaData}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     dispararEventoAbrirImpressaoEquipe={dispararEventoAbrirImpressaoEquipe}
     Voltar={Voltar}
     />
@@ -46,6 +49,8 @@ export const Hipertensao : React.FC<HipertensaoProps> = ({
     tabelaDataAPS={tabelaDataAPS}
     tabelaData={tabelaData}
     setTabelaData={setTabelaData}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
     dispararEventoAbrirImpressaoAPS={dispararEventoAbrirImpressaoAPS}

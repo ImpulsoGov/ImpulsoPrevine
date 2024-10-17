@@ -18,6 +18,8 @@ interface HipertensaoAPSType {
     setTabelaData: Dispatch<SetStateAction<any>>;
     showSnackBar: any;
     setShowSnackBar: Dispatch<SetStateAction<any>>;
+    filtros_aplicados: any;
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>;
     dispararEventoAbrirImpressaoAPS: () => void;
     Voltar: () => void;
 }
@@ -26,6 +28,8 @@ export const HipertensaoAPS : React.FC<HipertensaoAPSType> = ({
     tabelaDataAPS,
     tabelaData,
     setTabelaData,
+    filtros_aplicados,
+    setFiltros_aplicados,
     showSnackBar,
     setShowSnackBar,
     dispararEventoAbrirImpressaoAPS,
@@ -253,6 +257,7 @@ export const HipertensaoAPS : React.FC<HipertensaoAPSType> = ({
       setTabelaData={setTabelaData}
       showSnackBar={showSnackBar}
       setShowSnackBar={setShowSnackBar}
+      setFiltros_aplicados={setFiltros_aplicados}
     />
     {
       tabelaDataAPS ?

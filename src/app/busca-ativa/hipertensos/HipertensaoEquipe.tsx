@@ -17,6 +17,8 @@ interface HipertensaoEquipeType {
     setTabelaData: Dispatch<SetStateAction<any>>;
     showSnackBar: any;
     setShowSnackBar: Dispatch<SetStateAction<any>>;
+    filtros_aplicados: any;
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>;
     dispararEventoAbrirImpressaoEquipe: () => void;
     Voltar: () => void;
 }
@@ -27,6 +29,8 @@ export const HipertensaoEquipe : React.FC<HipertensaoEquipeType> = ({
     setTabelaData,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
+    setFiltros_aplicados,
     dispararEventoAbrirImpressaoEquipe,
     Voltar
 }) => {
@@ -94,6 +98,7 @@ export const HipertensaoEquipe : React.FC<HipertensaoEquipeType> = ({
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            setFiltros_aplicados={setFiltros_aplicados}
         />
         {
           tabelaDataEquipe ?
