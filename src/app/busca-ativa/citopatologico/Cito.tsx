@@ -25,7 +25,7 @@ export const Cito : React.FC<CitoProps> = ({
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
     const [voltarGatilho,setVoltarGatilho] = useState(0);
-    const [tabelaData, setTabelaData] = useState();
+    const [tabelaData, setTabelaData] = useState([]);
     const router = useRouter();
     const path = usePathname();
     const Voltar = ()=> window.history.go(voltarGatilho*(-2))
