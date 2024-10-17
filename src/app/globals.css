@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
