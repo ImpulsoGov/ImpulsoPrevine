@@ -6,6 +6,6 @@ export const handleRouteChangeMixPanel = (
     session : Session | null
 ) => {
     if(mixpanel?.track) mixpanel.track('Page View', {
-        'Logged': !!session,
+        'Logged': (session?.status == 'authenticated'),
     });
 }

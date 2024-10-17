@@ -18,6 +18,7 @@ declare module "next-auth" {
         municipio_id_sus: string;
         perfis: number[];
         access_token: string;
-      };
+      },
+      status : string;
     }
   }

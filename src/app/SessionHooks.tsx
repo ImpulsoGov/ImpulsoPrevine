@@ -17,7 +17,7 @@ export const SessionHooks : React.FC<SessionHooksProps> = ({
     path
 }) => {
     useEffect(() => addUserDataLayer(session), [session]);
-    useEffect(() => handleRouteChangeMixPanel(mixpanel,session), [path]);
+    useEffect(() => handleRouteChangeMixPanel(mixpanel,session), [path,session]);
     useEffect(() => sessionIdentifyMixPanel(mixpanel,Hotjar,session), [session]);
     return <></>
 }
