@@ -37,6 +37,7 @@ const IndicadorUmTabelaGestantesEncerradas = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesEncerradas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 9)
@@ -99,6 +100,7 @@ const IndicadorUmTabelaGestantesEncerradas = ({
     propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
     labelsModalImpressao= { labelsModalImpressaoAPS }
+    filtros_aplicados={filtros_aplicados}
     setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }

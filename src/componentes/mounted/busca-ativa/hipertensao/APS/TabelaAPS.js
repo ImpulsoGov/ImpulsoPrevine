@@ -50,6 +50,7 @@ export const TabelaAPS = ({
     setTabelaData,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
     setFiltros_aplicados
 })=> {
     const TabelaAPSTratada = tabelaDataAPS?.map(item=>({
@@ -136,6 +137,7 @@ export const TabelaAPS = ({
     sub_aba={null}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
+    filtros_aplicados={filtros_aplicados}
     setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
 }

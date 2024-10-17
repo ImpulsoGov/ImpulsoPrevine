@@ -38,6 +38,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
@@ -104,6 +105,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
         propImpressaoSemPersonalizacao="equipe_nome_e_ine"
         propOrdenacaoImpressao= "acs_nome"
         labelsModalImpressao= { labelsModalImpressaoAPS }
+        filtros_aplicados={filtros_aplicados}
         setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
 }

@@ -98,6 +98,7 @@ export const HipertensaoEquipe : React.FC<HipertensaoEquipeType> = ({
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            filtros_aplicados={filtros_aplicados}
             setFiltros_aplicados={setFiltros_aplicados}
         />
         {

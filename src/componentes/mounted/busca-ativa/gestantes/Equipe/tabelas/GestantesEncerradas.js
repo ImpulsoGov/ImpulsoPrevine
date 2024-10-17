@@ -25,6 +25,8 @@ const TabelaEquipeGestantesEncerradas = ({
     sub_aba,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
+    setFiltros_aplicados,
     liberarPesquisa
 })=>{
     const tabelaDataEquipeGestantesEncerradas = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 9)?.map((item) => ({
@@ -108,6 +110,8 @@ const TabelaEquipeGestantesEncerradas = ({
         })}
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
+        filtros_aplicados={filtros_aplicados}
+        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesEncerradas }

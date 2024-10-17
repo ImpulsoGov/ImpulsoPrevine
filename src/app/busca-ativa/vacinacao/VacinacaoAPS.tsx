@@ -61,6 +61,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
                   setShowSnackBar={setShowSnackBar}
                   aba={activeTitleTabIndex}
                   subAba={activeTabIndex}
+                  filtros_aplicados={filtros_aplicados}
                   setFiltros_aplicados={setFiltros_aplicados}
                   key="TabelaAPSQuadrimestreAtual"
               />
@@ -81,6 +82,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
                 setShowSnackBar={setShowSnackBar}
                 aba={activeTitleTabIndex}
                 subAba={activeTabIndex}
+                filtros_aplicados={filtros_aplicados}
                 setFiltros_aplicados={setFiltros_aplicados}
                 key="TabelaAPSQuadrimestreProximo"
             />
@@ -101,6 +103,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
               setShowSnackBar={setShowSnackBar}
               aba={activeTitleTabIndex}
               subAba={activeTabIndex}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="TabelaAPSQuadrimestreFuturo"
           />

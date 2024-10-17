@@ -80,6 +80,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorUmTabelaGestantesAtivas"	
             />,
@@ -97,6 +98,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorUmTabelaGestantesEncerradas"
             />,
@@ -124,6 +126,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorDoisTabelaGestantesAtivas"
             />,
@@ -141,6 +144,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorDoisTabelaGestantesEncerradas"
             />,
@@ -168,6 +172,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorTresTabelaGestantesAtivas"
             />,
@@ -185,6 +190,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorTresTabelaGestantesEncerradas"
             />,
@@ -203,6 +209,7 @@ export const GestantesAPS = ({
             liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
+            filtros_aplicados={filtros_aplicados}
             setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaGestantesSemDUM"
           />

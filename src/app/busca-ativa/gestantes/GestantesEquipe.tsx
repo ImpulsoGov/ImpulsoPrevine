@@ -56,6 +56,8 @@ export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
+            filtros_aplicados={filtros_aplicados}
+            setFiltros_aplicados={setFiltros_aplicados}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
             key="TabelaEquipeGestantesAtivas"
           />,
@@ -73,6 +75,7 @@ export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            filtros_aplicados={filtros_aplicados}
             setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaEquipeGestantesSemDUM"
           />,
@@ -89,6 +92,8 @@ export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
             sub_aba={activeTabIndex}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
+            filtros_aplicados={filtros_aplicados}
+            setFiltros_aplicados={setFiltros_aplicados}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
             key="TabelaEquipeGestantesEncerradas"
           />,

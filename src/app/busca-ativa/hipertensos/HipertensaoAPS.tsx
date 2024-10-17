@@ -257,6 +257,7 @@ export const HipertensaoAPS : React.FC<HipertensaoAPSType> = ({
       setTabelaData={setTabelaData}
       showSnackBar={showSnackBar}
       setShowSnackBar={setShowSnackBar}
+      filtros_aplicados={filtros_aplicados}
       setFiltros_aplicados={setFiltros_aplicados}
     />
     {

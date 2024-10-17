@@ -36,6 +36,7 @@ const TabelaGestantesSemDUM = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
     setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
@@ -92,6 +93,7 @@ const TabelaGestantesSemDUM = ({
     propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
     labelsModalImpressao= { labelsModalImpressaoAPS }
+    filtros_aplicados={filtros_aplicados}
     setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }

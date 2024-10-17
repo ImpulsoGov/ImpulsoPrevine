@@ -54,6 +54,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
                 aba={activeTitleTabIndex}
                 subAba={activeTabIndex}
                 liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+                filtros_aplicados={filtros_aplicados}
                 setFiltros_aplicados={setFiltros_aplicados}
                 key="TabelaEquipeQuadrimestreAtual"
             />
@@ -70,6 +71,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
               aba={activeTitleTabIndex}
               subAba={activeTabIndex}
               liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+              filtros_aplicados={filtros_aplicados}
               setFiltros_aplicados={setFiltros_aplicados}
               key="TabelaEquipeQuadrimestreAtual"
           />
@@ -86,6 +88,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
             aba={activeTitleTabIndex}
             subAba={activeTabIndex}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            filtros_aplicados={filtros_aplicados} 
             setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaEquipeQuadrimestreAtual"
         />
