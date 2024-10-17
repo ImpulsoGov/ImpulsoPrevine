@@ -44,7 +44,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.set('next-auth.callback-url', '', { maxAge: -1, path: '/' });
     if(url.pathname !== '/') return response;
   }
-  if(token && expiracao && rotasPublicas.includes(url.pathname)) return NextResponse.redirect(new URL('/inicio', request.url));
+  if(token && rotasPublicas.includes(url.pathname)) return NextResponse.redirect(new URL('/inicio', request.url));
   if(url.pathname == '/capacitacao' || url.pathname == '/conteudo' || url.pathname == '/conteudo-programatico' || url.pathname == '/dadosPublicos'){ 
     headers.set('x-current-url', url.href);
     response = NextResponse.next({headers})
