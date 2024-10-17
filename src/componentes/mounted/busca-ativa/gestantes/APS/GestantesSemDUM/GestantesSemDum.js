@@ -43,7 +43,7 @@ const TabelaGestantesSemDUM = ({
     return tabelaDataAPS ? <PainelBuscaAtiva
     key="tabelaDataAPSGestantesSemDUM"
     painel="aps"
-    lista="GESTANTES SEM DUM"
+    lista="<span>PRÉ-NATAL<span/><span style='display: block;'>GESTANTES SEM DUM<span/>"
     divisorVertical = {[1,8]}
     largura_colunas_impressao={{
         paisagem : larguraColunasSemDumPaisagemAPS,
