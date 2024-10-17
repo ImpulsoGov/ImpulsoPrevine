@@ -40,7 +40,8 @@ const TabelaAPSQuadrimestreAtual = ({
     setShowSnackBar,
     aba,
     subAba,
-    liberarPesquisa
+    liberarPesquisa,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 1)?.map((item) => ({
         ...item,

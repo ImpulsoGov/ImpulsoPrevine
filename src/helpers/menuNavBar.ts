@@ -10,7 +10,6 @@ const subMenuListasNominais: Menu[] = [
     { label: "Hipertensão", url: "/busca-ativa/hipertensos?initialTitle=0&painel=0" },
     { label: "Pré-Natal", url: "/busca-ativa/gestantes?initialTitle=0&painel=0" },
     { label: "Vacinação", url: "/busca-ativa/vacinacao" },
-    { label: "Cadastros Duplicados", url: "/cadastros-duplicados?initialTitle=0&painel=0" }
   ]
 const loggedMenu = (session : any)=>{
     const menus : Menu[] = [{ label: "Início", url: "/inicio" }]

@@ -41,6 +41,7 @@ const TabelaAPSQuadrimestreProximo = ({
     setShowSnackBar,
     aba,
     subAba,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 2)
         .map(item => ({
@@ -192,6 +193,7 @@ const TabelaAPSQuadrimestreProximo = ({
         })}
         showSnackBar={showSnackBar}
         setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
         /> 
     </> : <Spinner/>
 }

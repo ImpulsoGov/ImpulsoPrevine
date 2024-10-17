@@ -40,7 +40,8 @@ const TabelaAPSQuadrimestreFuturo = ({
     setShowSnackBar,
     aba,
     subAba,
-    liberarPesquisa
+    liberarPesquisa,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSVacinacao = tabelaDataAPS?.filter(item=>item.id_status_quadrimestre== 3)?.map((item) => ({
         ...item,

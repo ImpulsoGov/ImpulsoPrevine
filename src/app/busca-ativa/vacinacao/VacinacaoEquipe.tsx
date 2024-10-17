@@ -22,6 +22,8 @@ interface VacinacaoEquipeProps {
     setActiveTabIndex: Dispatch<SetStateAction<any>>;
     activeTitleTabIndex: number;
     setActiveTitleTabIndex: Dispatch<SetStateAction<any>>;
+    filtros_aplicados: any;
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>;
 }
 
 export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
@@ -35,7 +37,9 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
     activeTabIndex,
     setActiveTabIndex,
     activeTitleTabIndex,
-    setActiveTitleTabIndex
+    setActiveTitleTabIndex,
+    filtros_aplicados,
+    setFiltros_aplicados
 }) => { 
     const Children =  
     [
@@ -50,6 +54,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
                 aba={activeTitleTabIndex}
                 subAba={activeTabIndex}
                 liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+                setFiltros_aplicados={setFiltros_aplicados}
                 key="TabelaEquipeQuadrimestreAtual"
             />
           ],
@@ -65,6 +70,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
               aba={activeTitleTabIndex}
               subAba={activeTabIndex}
               liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="TabelaEquipeQuadrimestreAtual"
           />
         ],
@@ -80,6 +86,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
             aba={activeTitleTabIndex}
             subAba={activeTabIndex}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaEquipeQuadrimestreAtual"
         />
       ],

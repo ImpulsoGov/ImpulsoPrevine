@@ -38,6 +38,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesAtivas = tabelaDataAPS?.filter(item=>item.id_status_usuario == 8)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
@@ -103,6 +104,7 @@ const IndicadorDoisTabelaGestantesAtivas = ({
         propImpressaoSemPersonalizacao="equipe_nome_e_ine"
         propOrdenacaoImpressao= "acs_nome"
         labelsModalImpressao= { labelsModalImpressaoAPS }
+        setFiltros_aplicados={setFiltros_aplicados}
     /> : <Spinner/>
 }
 export { IndicadorDoisTabelaGestantesAtivas }

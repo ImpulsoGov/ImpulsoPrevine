@@ -26,6 +26,8 @@ interface VacinacaoAPSProps {
     setActiveTabIndex: Dispatch<SetStateAction<any>>;
     activeTitleTabIndex: number;
     setActiveTitleTabIndex: Dispatch<SetStateAction<any>>;
+    filtros_aplicados: any;
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>;
 }
 
 export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
@@ -40,6 +42,8 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
     setActiveTabIndex,
     activeTitleTabIndex,
     setActiveTitleTabIndex,
+    filtros_aplicados,
+    setFiltros_aplicados
 }) => { 
     const Children = [
         [
@@ -57,6 +61,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
                   setShowSnackBar={setShowSnackBar}
                   aba={activeTitleTabIndex}
                   subAba={activeTabIndex}
+                  setFiltros_aplicados={setFiltros_aplicados}
                   key="TabelaAPSQuadrimestreAtual"
               />
             ],
@@ -76,6 +81,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
                 setShowSnackBar={setShowSnackBar}
                 aba={activeTitleTabIndex}
                 subAba={activeTabIndex}
+                setFiltros_aplicados={setFiltros_aplicados}
                 key="TabelaAPSQuadrimestreProximo"
             />
           ],
@@ -95,6 +101,7 @@ export const VacinacaoAPS : React.FC<VacinacaoAPSProps> = ({
               setShowSnackBar={setShowSnackBar}
               aba={activeTitleTabIndex}
               subAba={activeTabIndex}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="TabelaAPSQuadrimestreFuturo"
           />
         ],

@@ -24,7 +24,7 @@ export const Vacinacao : React.FC<VacinacaoProps> = ({
     const [tabelaData, setTabelaData] = useState([]);
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-  
+    const [filtros_aplicados, setFiltros_aplicados] = useState(false);
     const router = useRouter();
     const path = usePathname();
     const visao = session?.user.perfis.includes(5) || session?.user.perfis.includes(8) ? "aps" : "equipe"
@@ -45,6 +45,8 @@ export const Vacinacao : React.FC<VacinacaoProps> = ({
     setActiveTabIndex={setActiveTabIndex}
     activeTitleTabIndex={activeTitleTabIndex}
     setActiveTitleTabIndex={setActiveTitleTabIndex}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     />
     if (session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <VacinacaoAPS
     tabelaDataAPS={tabelaDataAPS}
@@ -58,6 +60,8 @@ export const Vacinacao : React.FC<VacinacaoProps> = ({
     setActiveTabIndex={setActiveTabIndex}
     activeTitleTabIndex={activeTitleTabIndex}
     setActiveTitleTabIndex={setActiveTitleTabIndex}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     />
 }
 

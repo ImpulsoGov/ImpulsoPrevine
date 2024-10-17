@@ -25,6 +25,8 @@ interface GestantesEquipeProps {
     Voltar: () => void;
     showSnackBar: any;
     setShowSnackBar: Dispatch<SetStateAction<any>>;
+    filtros_aplicados: any;
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>;
 }
 
 export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
@@ -38,6 +40,8 @@ export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
     Voltar,
     showSnackBar,
     setShowSnackBar,
+    filtros_aplicados,
+    setFiltros_aplicados
 }) => {
     const dataAtual = Date.now();
     const Children = [[
@@ -69,6 +73,7 @@ export const GestantesEquipe : React.FC<GestantesEquipeProps> = ({
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
             liberarPesquisa={dispararEventoAbrirImpressaoEquipe}
+            setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaEquipeGestantesSemDUM"
           />,
           <PainelComLegenda key="PainelComLegendaGestantesSemDUM"/>

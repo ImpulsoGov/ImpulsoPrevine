@@ -41,7 +41,9 @@ export const GestantesAPS = ({
     activeTabIndex,
     setActiveTabIndex,
     activeTitleTabIndex,
-    setActiveTitleTabIndex
+    setActiveTitleTabIndex,
+    filtros_aplicados,
+    setFiltros_aplicados
 }: {
     tabelaDataAPS: any,
     tabelaData: any,
@@ -53,6 +55,8 @@ export const GestantesAPS = ({
     setActiveTabIndex: Dispatch<SetStateAction<any>>,
     activeTitleTabIndex: any,
     setActiveTitleTabIndex: Dispatch<SetStateAction<any>>
+    filtros_aplicados: any,
+    setFiltros_aplicados: Dispatch<SetStateAction<any>>
 }) => {
     const Children = [
         [
@@ -76,6 +80,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorUmTabelaGestantesAtivas"	
             />,
             <PainelComLegendaIndUm key="PainelComLegendaIndUmGestantesAtivas"/>
@@ -92,6 +97,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorUmTabelaGestantesEncerradas"
             />,
             <PainelComLegendaIndUm key="PainelComLegendaIndUmGestantesEncerradas"/>
@@ -118,6 +124,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorDoisTabelaGestantesAtivas"
             />,
             <PainelComLegendaInd2e3 key="PainelComLegendaInd2GestantesAtivas"/>
@@ -134,6 +141,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorDoisTabelaGestantesEncerradas"
             />,
             <PainelComLegendaInd2e3 key="PainelComLegendaInd2GestantesEncerradas"/>
@@ -160,6 +168,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorTresTabelaGestantesAtivas"
             />,
             <PainelComLegendaInd2e3 key="PainelComLegendaInd3GestantesAtivas"/>
@@ -176,6 +185,7 @@ export const GestantesAPS = ({
               liberarPesquisa={dispararEventoAbrirImpressaoAPS}
               showSnackBar={showSnackBar}
               setShowSnackBar={setShowSnackBar}
+              setFiltros_aplicados={setFiltros_aplicados}
               key="IndicadorTresTabelaGestantesEncerradas"
             />,
             <PainelComLegendaInd2e3 key="PainelComLegendaInd3GestantesEncerradas"/>
@@ -193,6 +203,7 @@ export const GestantesAPS = ({
             liberarPesquisa={dispararEventoAbrirImpressaoAPS}
             showSnackBar={showSnackBar}
             setShowSnackBar={setShowSnackBar}
+            setFiltros_aplicados={setFiltros_aplicados}
             key="TabelaGestantesSemDUM"
           />
           <PainelComLegenda key="PainelComLegendaGestantesSemDUM"/>

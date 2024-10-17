@@ -24,7 +24,7 @@ export const Gestantes : React.FC<GestantesProps> = ({
     const [tabelaData, setTabelaData] = useState([]);
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-  
+    const [filtros_aplicados, setFiltros_aplicados] = useState(false);
     const router = useRouter();
     const path = usePathname();
     const visao = session?.user.perfis.includes(5) || session?.user.perfis.includes(8) ? "aps" : "equipe"
@@ -44,6 +44,8 @@ export const Gestantes : React.FC<GestantesProps> = ({
     Voltar={Voltar}
     showSnackBar={showSnackBar}
     setShowSnackBar={setShowSnackBar}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     />
     if (session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <GestantesAPS
     tabelaDataAPS={tabelaDataAPS}
@@ -56,6 +58,8 @@ export const Gestantes : React.FC<GestantesProps> = ({
     setActiveTabIndex={setActiveTabIndex}
     activeTitleTabIndex={activeTitleTabIndex}
     setActiveTitleTabIndex={setActiveTitleTabIndex}
+    filtros_aplicados={filtros_aplicados}
+    setFiltros_aplicados={setFiltros_aplicados}
     />
 }
 

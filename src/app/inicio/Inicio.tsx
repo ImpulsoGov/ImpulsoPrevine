@@ -115,18 +115,6 @@ export const Inicio : React.FC<InicioProps> = ({
                                 obs="Para sair da área logada, basta ir no seu usuário no menu superior e clicar em ‘SAIR’."
                                 theme="ColorIP"
                             />
-                            <CardLarge
-                                icon='https://media.graphassets.com/6cOfkxeyT7245Fn19kgU'
-                                links={[
-                                    {
-                                        label: 'Gestantes',
-                                        link: '/cadastros-duplicados?initialTitle=0&painel=0'
-                                    },
-                                ]}
-                                texto='Aqui você encontrará uma lista nominal de possíveis cadastros duplicados de gestantes. Com esta lista você poderá rapidamente identificar estes casos de possíveis duplicações e regularizá-los.'
-                                titulo='Cadastros Duplicados'
-                                theme="ColorIP"
-                            />
                         </>
                     }
                 </div>

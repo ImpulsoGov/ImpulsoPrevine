@@ -36,6 +36,7 @@ const TabelaGestantesSemDUM = ({
     liberarPesquisa,
     showSnackBar,
     setShowSnackBar,
+    setFiltros_aplicados
 }) => {
     const tabelaDataAPSGestantesSemDUM = tabelaDataAPS?.filter(item=>item.id_status_usuario == 11)
         .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
@@ -91,6 +92,7 @@ const TabelaGestantesSemDUM = ({
     propImpressaoSemPersonalizacao="equipe_nome_e_ine"
     propOrdenacaoImpressao= "acs_nome"
     labelsModalImpressao= { labelsModalImpressaoAPS }
+    setFiltros_aplicados={setFiltros_aplicados}
 /> : <Spinner/>
 }
 export { TabelaGestantesSemDUM }

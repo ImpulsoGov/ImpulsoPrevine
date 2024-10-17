@@ -37,7 +37,8 @@ const TabelaEquipeGestantesSemDUM = ({
     sub_aba,
     showSnackBar,
     setShowSnackBar,
-    liberarPesquisa
+    liberarPesquisa,
+    setFiltros_aplicados
 })=>{
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(item=>item.id_status_usuario == 11)
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipe && tabelaData ? 
@@ -95,6 +96,7 @@ const TabelaEquipeGestantesSemDUM = ({
         setShowSnackBar={setShowSnackBar}
         liberarPesquisa={liberarPesquisa}
         labelsModalImpressao= { labelsModalImpressaoEquipe }
+        setFiltros_aplicados={setFiltros_aplicados}
     /></> : <Spinner/>
 }
 export { TabelaEquipeGestantesSemDUM }
