@@ -1,3 +1,4 @@
+'use client'
 import {
     CardAlert,
     TituloTexto, 
@@ -26,7 +27,7 @@ interface VacinacaoEquipeProps {
     setFiltros_aplicados: Dispatch<SetStateAction<any>>;
 }
 
-export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
+export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = ({
     tabelaDataEquipe,
     tabelaData,
     setTabelaData,
@@ -95,11 +96,11 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
       ],
   ],
     ]
-
+    const largura = window.screen.width 
     return <>
     <div 
         style={
-            window.screen.width > 1024 ?
+            largura > 1024 ?
             {padding: "30px 80px 30px 80px",display: "flex"} :
             {padding: "30px 0 0 5px",display: "flex"} 
         }
@@ -121,7 +122,7 @@ export const VacinacaoEquipe : React.FC<VacinacaoEquipeProps> = async ({
     />  
     <div 
         style={{
-            marginLeft : window.screen.width > 1024 ?  "80px" : "20px",
+            marginLeft : largura > 1024 ?  "80px" : "20px",
             marginTop : "30px",
             color: "#1F1F1F",
             fontSize: "22px",
