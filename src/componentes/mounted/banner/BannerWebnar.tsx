@@ -1,8 +1,8 @@
-import { ModalAlert, Alert_v4 } from '@impulsogov/design-system'
+import { ModalAlert,Alert_v4 } from '@impulsogov/design-system'
 
 export const BannerWebnarMounted = () => {
     return <ModalAlert
-        child = {Alert_v4}
+        Child = {Alert_v4}
         childProps = {{
             titulos : {
                 Titulo : "Qualificação do cuidado da população",
