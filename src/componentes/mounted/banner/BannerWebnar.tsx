@@ -6,7 +6,6 @@ export const BannerWebnarMounted = () => {
     useEffect(() => {
         if(!display) localStorage.setItem("DisplayBannerWebinar", "false")
         setDisplayBannerWebinar(!!localStorage.getItem("DisplayBannerWebinar"))
-        console.log(DisplayBannerWebinar)
     },[display])
     return !DisplayBannerWebinar && <ModalAlertDisplay
         displayStates = {{display, setDisplay}}
