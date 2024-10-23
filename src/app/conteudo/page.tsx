@@ -9,7 +9,7 @@ import { Conteudo } from './Conteudo';
 
 const ConteudoPage = async() => {
     const session = await getServerSession(nextAuthOptions);
-    const header = headers();
+    const header = await headers();
     const url = header.get('x-current-url')
 
     if(!url) return <></>

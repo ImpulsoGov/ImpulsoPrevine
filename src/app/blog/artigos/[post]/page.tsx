@@ -13,9 +13,9 @@ interface BlogPost {
 }
 
 interface Params {
-  params: {
+  params: Promise<{
     post: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -23,9 +23,10 @@ export async function generateStaticParams() {
   return res.blogArtigos.map((post: { id: string }) => ({ post: post.id }));
 }
 
-const BlogPost = async ({ params }: Params) => {
+const BlogPost = async (props: Params) => {
+  const params = await props.params;
   const res = await getData(POST(params.post)) as { blogArtigo: BlogPost };
-  
+
   return (
     <BlogContent
       titulo={res.blogArtigo.titulo}

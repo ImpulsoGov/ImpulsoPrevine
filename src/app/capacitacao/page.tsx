@@ -8,7 +8,7 @@ import { Capacitacao } from './Capacitacao';
  
 const CapacitacaoPage = async() => {
   const session = await getServerSession(nextAuthOptions);
-  const header = headers();
+  const header = await headers();
   const url = header.get('x-current-url')
   const trilhaID = url?.split('=').length == 1 ? '' : (url?.split('=')[1] || '')
 
