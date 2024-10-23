@@ -96,7 +96,7 @@ export const Indicadores : React.FC<IndicadoresType>  = ({
         }}
         supertitulo=""
         texto="Abaixo você encontrará algumas informações para te ajudar a melhorar o desempenho dos indicadores, como: <b> quão perto de 85% o denominador informado está </b> , o <b> número total de pessoas </b> que devem ser atendidas para bater a meta de cada indicador, dessas pessoas, <b>quantas pessoas ainda precisam ser cadastradas antes do atendimento</b>, a <b>variação percentual de desempenho da competência atual para a anterior</b>,  e <b>recomendações</b> de como bater as metas. <br><br> A disposição dos indicadores na tabela é uma sugestão feita pela nosso time de especialistas de como os municípios podem alocar esforços para a melhoria dos indicadores que ainda não atingiram a meta. Foram levados em consideração: o peso do indicador, tempo de aferição, nota do indicador e quanto falta para alcançar a meta. </br> "
-        titulo="<b>Como melhorar o desempenho dos indicadores - 2024.Q1 </b>" tooltip="" />
+        titulo="<b>Como melhorar o desempenho dos indicadores - 2024.Q2 </b>" tooltip="" />
 
       <TabelaIndicadores
         TabIndicadores={indicadoresData}
