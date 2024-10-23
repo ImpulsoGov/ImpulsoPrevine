@@ -110,7 +110,7 @@ export const NavBarMounted : React.FC<NavBarMountedType>= ({
           mail : "Digite o seu CPF para receber um código de autorização de recuperação da senha.",
           aviso : " ",
           verificacao : "É necessário que um código de verificação seja enviado por mensagem de SMS para o telefone cadastrado ",
-          trocar_telefone : "<div style='margin-top:50px;display : flex;align-items: center;font-size : 14px'><img width='20px' height='20px' src='/mark-question.svg' style='margin-right : 10px'/>Está com um problema? Entre em <a href='https://bit.ly/atendimento-impulso-previne-login' style='color:#2EB280;cursor:pointer;text-decoration: underline;margin-left: 8px;'>contato com o suporte.</a></div>",
+          trocar_telefone : "<div style='margin-top:50px;display : flex;align-items: center;font-size : 14px'><img width='20px' height='20px' src='/mark-question.svg' style='margin-right : 10px'/>Está com um problema? Entre em <a href='https://bit.ly/atendimento-impulso-previne-login' style='color:#2EB280;cursor:pointer;text-decoration: underline;margin-left: 8px;' target='_blank'>contato com o suporte.</a></div>",
           codigo : "Digite abaixo o código recebido por mensagem de SMS no número de telefone cadastrado: ",
           senha : "Escolha uma nova senha",
           sucesso: "Agora é só entrar na área restrita com seu CPF e a senha criada."
@@ -164,7 +164,7 @@ export const NavBarMounted : React.FC<NavBarMountedType>= ({
           aviso : " ",
           codigo : "Digite abaixo o código recebido por mensagem de SMS no número de telefone cadastrado: ",
           verificacao : "É necessário que um código de verificação seja enviado por mensagem de SMS para o telefone ",
-          trocar_telefone : "<div style='margin-top:50px;display : flex;align-items: center;font-size : 14px'><img width='20px' height='20px' src='/mark-question.svg' style='margin-right : 10px'/>Está com um problema? Entre em <a href='https://bit.ly/atendimento-impulso-previne-login' style='color:#2EB280;cursor:pointer;text-decoration: underline;margin-left: 8px;'>contato com o suporte.</a></div>",
+          trocar_telefone : "<div style='margin-top:50px;display : flex;align-items: center;font-size : 14px'><img width='20px' height='20px' src='/mark-question.svg' style='margin-right : 10px'/>Está com um problema? Entre em <a href='https://bit.ly/atendimento-impulso-previne-login' style='color:#2EB280;cursor:pointer;text-decoration: underline;margin-left: 8px;' target='_blank'>contato com o suporte.</a></div>",
           senha : "Escolha uma senha",
           sucesso : "Agora é só entrar na área restrita com seu CPF e a senha criada."
       }
