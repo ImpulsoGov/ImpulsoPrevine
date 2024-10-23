@@ -1,17 +1,22 @@
-import { ModalAlert,Alert_v4 } from '@impulsogov/design-system'
-
+import { ModalAlertDisplay,Alert_v4 } from '@impulsogov/design-system'
+import { useState, useEffect } from 'react'
 export const BannerWebnarMounted = () => {
-    return <ModalAlert
+    const [display, setDisplay] = useState(true)
+    useEffect(() => {
+        if(!display) localStorage.setItem("DisplayBannerWebinar", "false")
+    },[display])
+    return !(localStorage.getItem("DisplayBannerWebinar") || false) && <ModalAlertDisplay
+        displayStates = {{display, setDisplay}}
         Child = {Alert_v4}
         childProps = {{
             titulos : {
-                Titulo : "Qualificação do cuidado da população",
-                SubTitulo : "Capacitação sobre Monitoramento na APS:"
+                Titulo : "Transição de gestão da Saúde Municipal",
+                SubTitulo : "O papel dos profissionais e gestores da APS:"
             },
             Info : [
                 {
                     icon : "https://media.graphassets.com/mK0XWA2qSyK3tSPER5SM",
-                    info : "05/04"
+                    info : "11/12"
                 },
                 {
                     icon : "https://media.graphassets.com/Bsq3OasQQxWNFuN0Ldhs",
@@ -27,20 +32,20 @@ export const BannerWebnarMounted = () => {
                 },
             ],
             cardProfissional_1 : {
-                profissional : "https://media.graphassets.com/2sqDyLFbTJylgJKYorEy",
+                profissional : "https://media.graphassets.com/vp07GR3SD2PyhHcdIBS0",
                 logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
-                nome : "Isabela dos Santos",
-                cargo : "Especialista em Saúde Coletiva"
+                nome : "Verineida Lima",
+                cargo : "Enfermeira e Mestre em Ensino na Saúde"
             },
             cardProfissional_2 : {
-                profissional : "https://media.graphassets.com/2sqDyLFbTJylgJKYorEy",
+                profissional : "https://media.graphassets.com/oqZ1IfJQT9yzzcjEWtL3",
                 logo : "https://media.graphassets.com/et6MBNobT9OA39JxsjNi",
                 nome : "Fernanda Soares",
                 cargo : "Especialista em Saúde Coletiva"
             },
             botao : {
-                label : "QUERO ME INSCREVER",
-                url : "https://bit.ly/inscricao-webinar-9"
+                label : "GARANTA JÁ SUA INSCRIÇÃO",
+                url : "https://bit.ly/webinar-transicao-gestao4"
             }
         }}
     />
