@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const Inicio = async(municipio_id_sus : string,token : string)=>{
+export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
