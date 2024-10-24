@@ -1,5 +1,5 @@
 'use client'
-import { Greeting, CardTrilha, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
+import { Greeting, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
 import React from 'react';
 import { useSession } from "next-auth/react"
 

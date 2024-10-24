@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const InicioEquipeRequest = async(municipio_id_sus : string,equipe : string,token : string)=>{
-    let config = {
+    const config = {
         method: 'get',
         maxBodyLength: Infinity,
         url: `/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
