@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build ",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,6 +13,7 @@
     "@impulsogov/design-system": "^1.0.261",
     "@mui/material": "^6.1.0",
     "@mui/x-data-grid": "^7.17.0",
+    "@prisma/client": "5.21.1",
     "@sentry/nextjs": "^8",
     "axios": "^1.7.7",
     "cpf-cnpj-validator": "^1.0.3",
@@ -28,6 +29,7 @@
     "next-auth": "^4.24.7",
     "next-transpile-modules": "^10.0.1",
     "papaparse": "^5.4.1",
+    "prisma": "^5.21.1",
     "react": "^18",
     "react-dom": "^18",
     "react-gtm-module": "^2.0.11",

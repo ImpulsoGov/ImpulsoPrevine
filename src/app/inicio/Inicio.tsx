@@ -1,24 +1,12 @@
 'use client'
-import { Greeting, CardTrilha, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
+import { Greeting, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
 import React from 'react';
 import { useSession } from "next-auth/react"
 import { Aps } from './Aps';
 
 
-interface Trilha {
-    TrilhaID: number;
-    titulo: string;
-    progresso: number;
-  }
-  
-  interface TrilhaLiberada {
-    trilha_id: number;
-  }
-  
-  interface InicioProps {
+ interface InicioProps {
     cargo: string;
-    data?: Trilha[]; // Array de trilhas, opcional
-    TrilhasLiberadas?: TrilhaLiberada[]; // Trilhas liberadas, opcional
   }
 
 export const Inicio : React.FC<InicioProps> = ({
