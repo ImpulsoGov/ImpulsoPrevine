@@ -1,6 +1,3 @@
-import { getDataCapacitacao } from '@services/cms'
-import {  CONTEUDOS_TRILHAS } from '@utils/QUERYS'
-import { progresso } from '@helpers/modulosDataTransform'
 import { InicioAPSRequest } from '@/services/inicio/inicioAPS'
 import { InicioEquipeRequest } from '@/services/inicio/inicioEquipe'
 import { cargoTransform } from '@helpers/cargoTransform'
@@ -16,7 +13,7 @@ const InicioPage = async() => {
     let InicioEquipe
     if(session?.user?.perfis.includes(9)) InicioEquipe = await InicioEquipeRequest(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
     const cargo = cargoTransform(session.user.cargo)
-    return <h1> Adiconar aqui novos componente da pagina inicial</h1>  
+    return <h1> Adicionar aqui novos componente da pagina inicial</h1>  
 }
       
 export default InicioPage;

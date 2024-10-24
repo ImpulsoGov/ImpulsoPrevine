@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=>{
-    let config = {
+    const config = {
         method: 'get',
         maxBodyLength: Infinity,
         url: `/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}`,
@@ -15,7 +15,8 @@ export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=
     return response.data;
     })
     .catch((error) => {
-    return error.response.data;
+    console.log((error as Error).message)
+    return (error as Error).message;
     });      
 
     return res
