@@ -1,5 +1,4 @@
-"use client"
-
+import React from "react";
 import {
   CardClicavel,
   CardLista,
@@ -7,8 +6,15 @@ import {
   Grid12Col,
   Banner,
 } from "@impulsogov/design-system";
+import { Indicadores, SituacaoPorIndicador } from "@/types/inicio";
 
-export const Aps = () => {
+interface CardsGridProps {
+  situacaoPorIndicador: SituacaoPorIndicador;
+}
+
+export const CardsGrid: React.FC<CardsGridProps> = ({
+  situacaoPorIndicador,
+}) => {
   return (
     <Grid12Col
       proporcao="3-3-3-3"
@@ -29,8 +35,8 @@ export const Aps = () => {
           >
             <DetailedInfo
               descricao="Pessoas com consulta e solicitação de hemoglobina a fazer"
-              destaque="1876"
-              complemento="de 34532"
+              destaque={situacaoPorIndicador[Indicadores.DIABETES].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.DIABETES].total}`}
             />
           </CardLista>
           <CardLista
@@ -48,8 +54,8 @@ export const Aps = () => {
           >
             <DetailedInfo
               descricao="Crianças com pelo menos uma dose em atraso"
-              destaque="20"
-              complemento="de 72*"
+              destaque={situacaoPorIndicador[Indicadores.VACINACAO].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.VACINACAO].total}*`}
             />
           </CardLista>
         </div>,
@@ -69,8 +75,8 @@ export const Aps = () => {
           >
             <DetailedInfo
               descricao="Pessoas com consulta e aferição de pressão a fazer"
-              destaque="1876"
-              complemento="de 34532"
+              destaque={situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.HIPERTENSOS].total}`}
             />
           </CardLista>
           <CardLista
@@ -88,8 +94,8 @@ export const Aps = () => {
           >
             <DetailedInfo
               descricao="Pessoas com coleta de citopatológico a fazer"
-              destaque="20"
-              complemento="de 72"
+              destaque={situacaoPorIndicador[Indicadores.CITOPATOLOGICO].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.CITOPATOLOGICO].total}`}
             />
           </CardLista>
         </div>,
@@ -108,18 +114,18 @@ export const Aps = () => {
           >
             <DetailedInfo
               descricao="Gestantes com menos de 6 consultas de pré-natal"
-              destaque="32"
-              complemento="de 151"
+              destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total}`}
             />
             <DetailedInfo
               descricao="Gestantes sem os exames de Sífilis e HIV identificados"
-              destaque="40"
-              complemento="de 151"
+              destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
             />
             <DetailedInfo
               descricao="Gestantes sem o atendimento odontológico identificado"
-              destaque="56"
-              complemento="de 151"
+              destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].pendente}
+              complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
             />
           </CardLista>
           <CardClicavel
