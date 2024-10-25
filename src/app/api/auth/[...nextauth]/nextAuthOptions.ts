@@ -96,12 +96,12 @@ export const nextAuthOptions : NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
-      user && (token.user = user);
+      if(user) (token.user = user);
 
       return Promise.resolve(token);
     },
     session: async ({ session, token }) => {
-      token.user && (session.user = token.user as User);
+      if(token.user) (session.user = token.user as User);
       if(token?.expires) session.expires = new Date(token.expires as number).toISOString();
       return Promise.resolve(session);
     },

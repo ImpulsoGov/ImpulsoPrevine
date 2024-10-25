@@ -54,8 +54,8 @@ const GestaoDeUsuarios = () => {
     if (JSONDATA && etapa == 1 && !validacaoRealizada) TratamentoValidacao(setDadosValidados, setValidacaoRealizada, JSONDATA, setDadosReq);
   }, [etapa, JSONDATA]);
   useEffect(() => {
-    etapa == 2 && CadastrarUsuarioLotes(dadosReq, setRes, SET_ERRO_PROCESSAMENTO, session.user.access_token);
-    etapa == 0 && setJSONDATA() && setDadosReq();
+    if(etapa == 2) CadastrarUsuarioLotes(dadosReq, setRes, SET_ERRO_PROCESSAMENTO, session.user.access_token);
+    if(etapa == 0) setJSONDATA() && setDadosReq();
   }, [etapa]);
   const handleSubmit = () => {
     const fileReader = new FileReader();

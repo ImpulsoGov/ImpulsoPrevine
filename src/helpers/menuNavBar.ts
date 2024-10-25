@@ -20,7 +20,6 @@ const loggedMenu = (session : any)=>{
             sub: subMenuListasNominais,
         }
     )
-    if(session?.user.perfis.includes(7)) menus.push({ label: "Trilhas", url: "/capacitacoes" })
     menus.push({ label: "Dados Públicos - Q1/24", url: "/analise" })
     return menus
 }

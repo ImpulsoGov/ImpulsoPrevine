@@ -1,29 +1,14 @@
 'use client'
-import { Greeting, CardTrilha, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
+import { Greeting, CardLarge, AtualizacaoCadastral, ModalAlert } from '@impulsogov/design-system'
 import React from 'react';
 import { useSession } from "next-auth/react"
 
-
-interface Trilha {
-    TrilhaID: number;
-    titulo: string;
-    progresso: number;
-  }
-  
-  interface TrilhaLiberada {
-    trilha_id: number;
-  }
-  
-  interface InicioProps {
+interface InicioProps {
     cargo: string;
-    data?: Trilha[]; // Array de trilhas, opcional
-    TrilhasLiberadas?: TrilhaLiberada[]; // Trilhas liberadas, opcional
   }
 
 export const Inicio : React.FC<InicioProps> = ({
     cargo,
-    data,
-    TrilhasLiberadas,
 }) => {
     const { data: session } = useSession()
     if (session) {
@@ -140,25 +125,6 @@ export const Inicio : React.FC<InicioProps> = ({
                         }
                 }>
 
-                    {data && session?.user.perfis.includes(7) && TrilhasLiberadas &&
-                        data.map((trilha : any, index : any) => {
-                            const GerarCertificado = () => {
-                                // const carga_horaria = '10';
-                                // generatePDF(trilha.titulo, session?.user?.nome, carga_horaria);
-                                window.alert('Emissão de novos certificados não esta disponível');
-                            }
-
-                            return TrilhasLiberadas?.some((trilhaLiberada : any )=> trilhaLiberada.trilha_id == trilha.TrilhaID) &&
-                                <CardTrilha
-                                    titulo={trilha?.titulo}
-                                    progressao={trilha.progresso}
-                                    linkTrilha={trilha.progresso > 0 ? `/capacitacao?trilhaID=${trilha.TrilhaID}` : `/conteudo-programatico?trilha=${trilha.TrilhaID}&inicio=1`}
-                                    Certificado={GerarCertificado}
-                                    certificadoLiberado={trilha.progresso > 50}
-                                    key={index}
-                                />
-                        })
-                    }
                 </div>
             </>
         )

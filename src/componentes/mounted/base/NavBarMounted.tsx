@@ -89,12 +89,12 @@ export const NavBarMounted : React.FC<NavBarMountedType>= ({
             'button_action': 'proximo_inseriu_codigo_telefone',
             'login_flow': 'esqueceu_senha'
           });
-          !response.success &&
+          if(!response.success){
           mixpanel.track('validation_error', {
             'button_action': "proximo_inseriu_codigo_telefone",
             'error_message': response.mensagem,
             'login_flow' : "esqueceu_senha",
-          });
+          })};
           return response
         },
         alterarSenha: alterarSenha
@@ -142,12 +142,12 @@ export const NavBarMounted : React.FC<NavBarMountedType>= ({
             'login_flow': 'primeiro_acesso'
           });
           const response = await validarCodigo(cpf,codigo)
-          !response.success &&
+          if(!response.success){
           mixpanel.track('validation_error', {
             'button_action': "proximo_inseriu_codigo_telefone",
             'error_message': response.mensagem,
             'login_flow' : "primeiro_acesso",
-          });
+          })};
           return response
         },
         alterarSenha: criarSenha,

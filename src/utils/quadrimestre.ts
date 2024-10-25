@@ -52,9 +52,11 @@ export const formatarQuadrimestres = (quadrimestres : any, separador = '') => {
   const quadrisPorAno = quadrimestres.reduce((acc : any, { quadrimestre, ano } : any) => {
     const quadri = `Q${quadrimestre}`;
 
-    acc[ano]
-      ? acc[ano] = `${acc[ano]} + ${quadri}`
-      : acc[ano] = quadri
+    if(acc[ano]){
+      acc[ano] = `${acc[ano]} + ${quadri}`
+    }else{ 
+      acc[ano] = quadri 
+    }
 
     return acc;
   }, {});
