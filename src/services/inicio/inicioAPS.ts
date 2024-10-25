@@ -4,7 +4,7 @@ export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}`,
+        url: `/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}`,
         headers: { 
           'Authorization': 'Bearer ' + token
         }
