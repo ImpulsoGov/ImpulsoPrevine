@@ -7,7 +7,6 @@ const baseURL = ()=>{
 }
 
 export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=>{
-  console.log('inicio-aps')
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
