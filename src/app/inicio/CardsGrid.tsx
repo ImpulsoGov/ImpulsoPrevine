@@ -140,9 +140,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             }}
             link={{
               newTab: true,
-              url: 'https://www.google.com'
+              url: 'https://bit.ly/atendimento-impulso-previne-site'
             }}
-            onClick={() => {}}
             titulo="Falar com o suporte"
           />
         </div>,
