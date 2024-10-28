@@ -148,7 +148,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
         <Banner
           key="bannerGuiasEDicas"
           descricao={{
-            content: 'Em breve esse espaço terá uma novidade! Conte pra gente o que você acha que colocaremos aqui?'
+            content: 'Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!'
           }}
           icone={{
             alt: 'Imagem',
@@ -156,12 +156,12 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             width: '21px'
           }}
           link={{
-            label: 'CONTE PRA GENTE',
+            label: 'CONTA PRA GENTE',
             newTab: true,
             url: 'https://www.google.com/'
           }}
           titulo={{
-            content: 'Em breve uma novidade'
+            content: 'O que você gostaria de ver aqui?'
           }}
         />
       ]}

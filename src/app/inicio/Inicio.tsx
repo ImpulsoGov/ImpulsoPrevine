@@ -25,7 +25,7 @@ export const Inicio : React.FC<InicioProps> = ({
                 <div style={{paddingBottom: "35px"}}>
                     <Greeting
                         cargo = {cargo}
-                        greeting = "Bem-vindo(a)"
+                        greeting = "Boas vindas"
                         municipio_uf = {session?.user.municipio}
                         nome_usuario = {session?.user.nome}
                     />
@@ -63,7 +63,7 @@ export const Inicio : React.FC<InicioProps> = ({
                         fontSize="14px"
                         fontWeight="400"
                         lineHeight="18.2px"
-                        margin="0 0 30px 0"
+                        margin="0 0 60px 0"
                     />
                 </div>
             </>
