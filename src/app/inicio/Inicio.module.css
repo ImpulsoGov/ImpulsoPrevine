@@ -1,0 +1,15 @@
+.Container {
+  margin: 0 80px;
+}
+
+@media screen and (max-width: 768px) {
+  .Container {
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .Container {
+    margin: 0 16px;
+  }
+}
