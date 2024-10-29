@@ -1,15 +1,15 @@
 import "./globals.css";
 // import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { Base } from "./Base";
 import { SessionWrapperLayout } from "./SessionWrapperLayout";
 
-const inter = Inter({
-  subsets: ['latin'],
-  style: 'normal',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  display: 'swap',
-});
+// const inter = Inter({
+//   subsets: ['latin'],
+//   style: 'normal',
+//   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+//   display: 'swap',
+// });
 
 // const geistInter = localFont({
 //   src: [
@@ -69,7 +69,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>
+      <body>
         <SessionWrapperLayout>
           <Base>
             {children}
