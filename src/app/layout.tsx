@@ -50,7 +50,8 @@ const geistInter = localFont({
       style: "normal",
       weight: "900"
     },
-  ]
+  ],
+  variable: "--font-geist-inter",
 });
 
 export default function RootLayout({
