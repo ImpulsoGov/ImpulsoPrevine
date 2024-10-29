@@ -6,7 +6,7 @@ import { SessionWrapperLayout } from "./SessionWrapperLayout";
 const geistInter = localFont({
   src: "./fonts/Inter-Regular.woff",
   variable: "--font-geist-inter",
-  weight: "400",
+  // weight: "400",
 });
 
 export default function RootLayout({
