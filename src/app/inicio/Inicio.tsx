@@ -34,7 +34,7 @@ export const Inicio : React.FC<InicioProps> = ({
                     texto="Confira a situação geral dos cidadãos do seu município"
                     color="#1F1F1F"
                     fontSize="24px"
-                    fontWeight="500"
+                    fontWeight="400"
                     lineHeight="31.2px"
                 />
 
