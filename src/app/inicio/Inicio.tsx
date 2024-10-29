@@ -42,7 +42,7 @@ export const Inicio : React.FC<InicioProps> = ({
                     texto="Veja abaixo as listas nominais das áreas de cuidado contempladas no programa de financiamento e o número de pacientes em atraso em cada uma delas."
                     color="#1F1F1F"
                     fontSize="16px"
-                    fontWeight="400"
+                    fontWeight="300"
                     lineHeight="20.8px"
                     margin="15px 0 0 0"
                 />
@@ -57,7 +57,7 @@ export const Inicio : React.FC<InicioProps> = ({
                     texto="*Na lista de vacinação, o número total mostrado no card equivale ao total de crianças que contabilizam nesse quadrimestre."
                     color="#1F1F1F"
                     fontSize="14px"
-                    fontWeight="400"
+                    fontWeight="300"
                     lineHeight="18.2px"
                     margin="0 0 60px 0"
                 />
