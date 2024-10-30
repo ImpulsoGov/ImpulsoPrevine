@@ -20,7 +20,7 @@ export const Inicio : React.FC<InicioProps> = ({
     if (session) {
         return (
             <div className={style.Container}>
-                <div style={{paddingBottom: "35px"}}>
+                <div className={style.GreetingContainer}>
                     <Greeting
                         cargo = {cargo}
                         greeting = "Boas vindas"
@@ -30,13 +30,15 @@ export const Inicio : React.FC<InicioProps> = ({
                     />
                 </div>
 
-                <Texto
-                    texto="Confira a situação geral dos cidadãos do seu município"
-                    color="#1F1F1F"
-                    fontSize="24px"
-                    fontWeight="400"
-                    lineHeight="31.2px"
-                />
+                <div className={style.ChamadaContainer}>
+                    <Texto
+                        texto="Confira a situação geral dos cidadãos do seu município"
+                        color="#1F1F1F"
+                        fontSize="inherit"
+                        fontWeight="400"
+                        lineHeight="31.2px"
+                    />
+                </div>
 
                 <Texto
                     texto="Veja abaixo as listas nominais das áreas de cuidado contempladas no programa de financiamento e o número de pacientes em atraso em cada uma delas."

@@ -2,6 +2,14 @@
   margin: 0 80px;
 }
 
+.GreetingContainer {
+  padding-bottom: 35px;
+}
+
+.ChamadaContainer {
+  font-size: 24px;
+}
+
 @media screen and (max-width: 768px) {
   .Container {
     margin: 0 40px;
@@ -11,5 +19,13 @@
 @media screen and (max-width: 430px) {
   .Container {
     margin: 0 16px;
+  }
+
+  .GreetingContainer {
+    padding-bottom: 15px;
+  }
+
+  .ChamadaContainer {
+    font-size: 20px;
   }
 }
