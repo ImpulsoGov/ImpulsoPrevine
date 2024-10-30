@@ -5,7 +5,7 @@ export const InicioEquipeRequest = async(municipio_id_sus : string,equipe : stri
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `${baseURL()}/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
+        url: `${baseURL()}/api/inicio/inicio-equipe?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
         headers: { 
           'Authorization': 'Bearer ' + token
         }
