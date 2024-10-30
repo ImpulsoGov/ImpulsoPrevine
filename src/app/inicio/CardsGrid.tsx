@@ -156,9 +156,11 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             width: '21px'
           }}
           link={{
-            label: 'CONTA PRA GENTE',
             newTab: true,
             url: 'https://bit.ly/pg-inicial-pesquisa-interesse'
+          }}
+          botao={{
+            label: 'CONTA PRA GENTE',
           }}
           titulo={{
             content: 'O que você gostaria de ver aqui?'
