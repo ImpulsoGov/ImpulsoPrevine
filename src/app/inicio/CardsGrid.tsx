@@ -22,7 +22,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
         <div key="cardsDiabetesEVacinacao" style={{display: "flex", flexDirection: "column", gap: "24px", height: "100%"}}>
           <CardLista
             icone={{
-              src: "https://media.graphassets.com/1dk4kcYISZWzG5WH5Qx8",
+              src: "https://media.graphassets.com/wKizPRr0T2eZhDSOxZ4n",
               alt: "Ícone de um estômago",
             }}
             titulo="Diabetes"
@@ -41,7 +41,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           </CardLista>
           <CardLista
             icone={{
-              src: "https://media.graphassets.com/OUt6xxu4RAOOtHH9DPc0",
+              src: "https://media.graphassets.com/hXdEtm9qRDm47poV0Udr",
               alt: "Ícone de uma seringa",
             }}
             titulo="Vacinação"
@@ -62,7 +62,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
         <div key="cardsHipertensaoECito" style={{display: "flex", flexDirection: "column", gap: "24px", height: "100%"}}>
           <CardLista
             icone={{
-              src: "https://media.graphassets.com/roJdddcySQek6S7PL6vG",
+              src: "https://media.graphassets.com/d2BJhIM2TVy2gTMqM4BC",
               alt: "Ícone de um estetoscópio",
             }}
             titulo="Hipertensão"
@@ -81,7 +81,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           </CardLista>
           <CardLista
             icone={{
-              src: "https://media.graphassets.com/6D1X2PR2Q1StbSSp7a0I",
+              src: "https://media.graphassets.com/6H2CeiquR0KEiDAee4iz",
               alt: "Ícone de um tubo de ensaio meio cheio",
             }}
             titulo="Citopatológico"
@@ -102,7 +102,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
         <div key="cardsPreNatalESuporte" style={{display: "flex", flexDirection: "column", gap: "24px", height: "100%"}}>
           <CardLista
             icone={{
-              src: "https://media.graphassets.com/ERTNxs5Styfp8q9Q6VwR",
+              src: "https://media.graphassets.com/YQYyv3URTiNRGv6kWsfg",
               alt: "Ícone de um carrinho de bebê",
             }}
             titulo="Pré-Natal"
