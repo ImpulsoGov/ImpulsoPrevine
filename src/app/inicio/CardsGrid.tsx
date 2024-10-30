@@ -7,6 +7,7 @@ import {
   Banner,
 } from "@impulsogov/design-system";
 import { Indicadores, SituacaoPorIndicador } from "@/types/inicio";
+import mixpanel from "mixpanel-browser";
 
 interface CardsGridProps {
   situacaoPorIndicador: SituacaoPorIndicador;
@@ -32,6 +33,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: "/busca-ativa/diabeticos",
               newTab: false
             }}
+            onHeaderClick={() => mixpanel.track("card_click", {
+              "card_action": "acessar_lista_diabetes",
+              "card_page": "pg_inicio",
+            })}
           >
             <DetailedInfo
               descricao="Pessoas com consulta e solicitação de hemoglobina a fazer"
@@ -51,6 +56,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: "/busca-ativa/vacinacao",
               newTab: false
             }}
+            onHeaderClick={() => mixpanel.track("card_click", {
+              "card_action": "acessar_lista_vacinacao",
+              "card_page": "pg_inicio",
+            })}
           >
             <DetailedInfo
               descricao="Crianças com pelo menos uma dose em atraso"
@@ -72,6 +81,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: "/busca-ativa/hipertensos",
               newTab: false
             }}
+            onHeaderClick={() => mixpanel.track("card_click", {
+              "card_action": "acessar_lista_hipertensao",
+              "card_page": "pg_inicio",
+            })}
           >
             <DetailedInfo
               descricao="Pessoas com consulta e aferição de pressão a fazer"
@@ -91,6 +104,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: "/busca-ativa/citopatologico",
               newTab: false
             }}
+            onHeaderClick={() => mixpanel.track("card_click", {
+              "card_action": "acessar_lista_citopatologico",
+              "card_page": "pg_inicio",
+            })}
           >
             <DetailedInfo
               descricao="Pessoas com coleta de citopatológico a fazer"
@@ -111,6 +128,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: "/busca-ativa/gestantes",
               newTab: false
             }}
+            onHeaderClick={() => mixpanel.track("card_click", {
+              "card_action": "acessar_lista_pre_natal",
+              "card_page": "pg_inicio",
+            })}
           >
             <DetailedInfo
               descricao="Gestantes com menos de 6 consultas de pré-natal"
@@ -143,6 +164,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               url: 'https://bit.ly/atendimento-impulso-previne-site'
             }}
             titulo="Falar com o suporte"
+            onClick={() => mixpanel.track("card_click", {
+              "card_action": "solicitar_suporte_wpp",
+              "card_page": "pg_inicio",
+            })}
           />
         </div>,
         <Banner
@@ -165,6 +190,10 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           titulo={{
             content: 'O que você gostaria de ver aqui?'
           }}
+          onClick={() => mixpanel.track("card_click", {
+            "card_action": "enviar_feedback_novidade",
+            "card_page": "pg_inicio",
+          })}
         />
       ]}
     />
