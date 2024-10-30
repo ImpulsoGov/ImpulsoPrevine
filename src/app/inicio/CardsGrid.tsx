@@ -23,7 +23,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           <CardLista
             icone={{
               src: "https://media.graphassets.com/1dk4kcYISZWzG5WH5Qx8",
-              alt: "Ícone",
+              alt: "Ícone de um estômago",
             }}
             titulo="Diabetes"
             descricao="Cidadãos que possuem a condição e o status de consulta e solicitação de hemoblogina."
@@ -42,7 +42,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           <CardLista
             icone={{
               src: "https://media.graphassets.com/OUt6xxu4RAOOtHH9DPc0",
-              alt: "Ícone",
+              alt: "Ícone de uma seringa",
             }}
             titulo="Vacinação"
             descricao="Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio."
@@ -63,7 +63,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           <CardLista
             icone={{
               src: "https://media.graphassets.com/roJdddcySQek6S7PL6vG",
-              alt: "Ícone",
+              alt: "Ícone de um estetoscópio",
             }}
             titulo="Hipertensão"
             descricao="Cidadãos que possuem a condição e o status de consulta e aferição de pressão."
@@ -82,7 +82,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           <CardLista
             icone={{
               src: "https://media.graphassets.com/6D1X2PR2Q1StbSSp7a0I",
-              alt: "Ícone",
+              alt: "Ícone de um tubo de ensaio meio cheio",
             }}
             titulo="Citopatológico"
             descricao="Mostra o status todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram."
@@ -103,7 +103,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
           <CardLista
             icone={{
               src: "https://media.graphassets.com/ERTNxs5Styfp8q9Q6VwR",
-              alt: "Ícone",
+              alt: "Ícone de um carrinho de bebê",
             }}
             titulo="Pré-Natal"
             descricao="Considera o status dos exames de sífilis e HIV, atendimento odontológico e número de consultas das getantes."
@@ -134,7 +134,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               contentOnHover: '<u>Clique aqui</u> para falar com o suporte'
             }}
             icone={{
-              alt: 'Ícone',
+              alt: 'Ícone do whatsapp',
               src: 'https://media.graphassets.com/eyhtI9x1RIiXOyUgnD8K',
               srcOnHover: 'https://media.graphassets.com/GBWxV5tTQjK8RKcvee3z'
             }}
@@ -151,7 +151,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             content: 'Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!'
           }}
           icone={{
-            alt: 'Imagem',
+            alt: 'Ícone de uma lâmpada',
             src: 'https://media.graphassets.com/NuB8Kdi2ThW19WzQg52z',
             width: '21px'
           }}
