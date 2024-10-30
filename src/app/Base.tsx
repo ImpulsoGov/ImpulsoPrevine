@@ -16,7 +16,6 @@ import { useWindowWidth } from '@helpers/useWindowWidth';
 
 import { rotaDinamica } from '@hooks/rotaDinamica';
 
-import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
 
 
@@ -44,7 +43,6 @@ export const Base : React.FC<BaseProps> = ({
     useEffect(() => TagManager.initialize(tagManagerArgs), []);
     useEffect(() => rotaDinamica(path.toString()), [path]);
     useEffect(() => setMode(true), [dynamicRoute]);
-    useEffect(() =>{ getLayoutDataHook(setRes) }, []);
 
     return <>
             <SessionWrapper>

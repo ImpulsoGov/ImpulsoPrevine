@@ -21,9 +21,6 @@ import { rotaDinamica } from '@hooks/rotaDinamica';
 import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 
-import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
-
-
 const tagManagerArgs = {
     gtmId: process.env.GTM_ID || 'default-gtm-id',
 };
@@ -56,11 +53,10 @@ export const Base : React.FC<BaseProps> = ({
     useEffect(() =>{ if(typeof window !== "undefined") window.mixpanel = mixpanel}, [])
     useEffect(() => handleRouteChangeMixPanel(mixpanel,session), [path]);
     useEffect(() => sessionIdentifyMixPanel(mixpanel,Hotjar,session), [session]);
-    useEffect(() =>{ getLayoutDataHook(setRes) }, []);
     return <>
         <SessionProvider refetchInterval={ 60 * 60 } refetchOnWindowFocus={ true }>
             <Auth setStatus={ setStatus } session={session}>
-                { isLoading && res &&
+                {/* { isLoading && res &&
                     <NavBarMounted
                         mixpanel={mixpanel}
                         session={session}
@@ -73,7 +69,7 @@ export const Base : React.FC<BaseProps> = ({
                         active={active}
                         setMode={setMode}
                     />
-                }
+                } */}
                 <div 
                 style={{
                     paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
@@ -82,7 +78,7 @@ export const Base : React.FC<BaseProps> = ({
                 >
                 {children}
                 </div>
-                {res && <FooterMounted res={res} session={session}/>}
+                {/* {res && <FooterMounted res={res} session={session}/>} */}
             </Auth>
             <Analytics />
         </SessionProvider>
