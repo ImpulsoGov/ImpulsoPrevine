@@ -1,4 +1,5 @@
 'use client'
+import React from 'react';
 import { 
     FormConsultoria, 
     TituloSmallTexto, 
@@ -9,10 +10,11 @@ import {
     ImagensFull2,
     Margem,
   } from "@impulsogov/design-system";
-  
+import { BannerWebnarMounted } from '@/componentes/mounted/banner/BannerWebnar';  
 export const Home = () => {
     return(
         <div style={{backgroundColor: "#E6ECF0"}}>
+        <BannerWebnarMounted />
         <Margem 
           componente={
             <>
