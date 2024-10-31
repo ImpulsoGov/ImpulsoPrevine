@@ -67,7 +67,8 @@ export const NavBarMounted : React.FC<NavBarMountedType>= ({
     theme={ {
       logoProjeto: width > 900 ? res.logoIps[0].logo[0].url : res.logoIps[1].logo[0].url,
       cor: (path == '/' || path == '/apoio' || path == '/analise' || path == '/quem-somos') ? "Cinza" : "White",
-      logoLink: session ? '/inicio' : '/'
+      logoLink: session ? '/inicio' : '/',
+      logoOnClick: session ? () => mixpanel.track('menu_click', { 'menu_action': 'acessar_pg_inicio_logo' }) : () => {},
     } }
   
     showMenuMobile={ {
