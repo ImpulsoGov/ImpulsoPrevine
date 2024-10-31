@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
-    "@impulsogov/design-system": "^1.0.256",
+    "@impulsogov/design-system": "^1.0.258",
     "@mui/material": "^6.1.0",
     "@mui/x-data-grid": "^7.17.0",
     "@sentry/nextjs": "^8",
@@ -25,7 +25,7 @@
     "jspdf-autotable": "^3.8.3",
     "mixpanel-browser": "^2.55.1",
     "next": "14.2.11",
-    "next-auth": "^4.24.7",
+    "next-auth": "^4.24.10",
     "next-transpile-modules": "^10.0.1",
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
