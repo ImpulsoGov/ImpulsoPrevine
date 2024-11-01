@@ -39,7 +39,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             })}
           >
             <DetailedInfo
-              descricao="Pessoas com consulta e solicitação de hemoglobina a fazer"
+              descricao="Pessoas com consulta ou solicitação de hemoglobina a fazer"
               destaque={situacaoPorIndicador[Indicadores.DIABETES].pendente}
               complemento={`de ${situacaoPorIndicador[Indicadores.DIABETES].total}`}
             />
@@ -87,7 +87,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             })}
           >
             <DetailedInfo
-              descricao="Pessoas com consulta e aferição de pressão a fazer"
+              descricao="Pessoas com consulta ou aferição de pressão a fazer"
               destaque={situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente}
               complemento={`de ${situacaoPorIndicador[Indicadores.HIPERTENSOS].total}`}
             />
@@ -134,12 +134,12 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             })}
           >
             <DetailedInfo
-              descricao="Gestantes com menos de 6 consultas de pré-natal"
+              descricao="Gestantes com menos de 6 consultas de pré-natal**"
               destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].pendente}
               complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total}`}
             />
             <DetailedInfo
-              descricao="Gestantes sem os exames de Sífilis e HIV identificados"
+              descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
               destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].pendente}
               complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
             />

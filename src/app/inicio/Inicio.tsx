@@ -61,6 +61,15 @@ export const Inicio : React.FC<InicioProps> = ({
                     fontSize="14px"
                     fontWeight="300"
                     lineHeight="18.2px"
+                    margin="0 0 8px 0"
+                />
+
+                <Texto
+                    texto="**Este valor considera gestantes que tiveram a 1ª consulta de pré-natal até a 12ª semana."
+                    color="#1F1F1F"
+                    fontSize="14px"
+                    fontWeight="300"
+                    lineHeight="18.2px"
                     margin="0 0 60px 0"
                 />
             </div>
