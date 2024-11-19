@@ -1,24 +1,25 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted"
-import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
 import Analytics from "@/componentes/Analytics/Analytics";
+import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
+import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
 
-import TagManager from "react-gtm-module";
-import mixpanel from 'mixpanel-browser';
-import Hotjar from '@hotjar/browser';
 import { hotjarVersion } from '@constants/hotjarVersion';
+import Hotjar from '@hotjar/browser';
+import mixpanel from 'mixpanel-browser';
+import TagManager from "react-gtm-module";
 
 import { useWindowWidth } from '@helpers/useWindowWidth';
 
 import { rotaDinamica } from '@hooks/rotaDinamica';
 
+import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
-import { UserGuiding } from "@/componentes/UserGuiding";
+import { getUserProfileName } from "@/utils/identifyUserProfile";
 
 
 const tagManagerArgs = {
@@ -80,6 +81,20 @@ export const Base : React.FC<BaseProps> = ({
 const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const session = useSession();
     const path = usePathname();
+
+    useEffect(() => {
+        if (session && session.data && session.data.user && typeof window !== "undefined") {
+            window.userGuiding.identify(session.data.user.id, {
+                municipio: session.data.user.municipio,
+                cargo: session.data.user.cargo,
+                equipe: session.data.user.equipe,
+                municipio_id_sus: session.data.user.municipio_id_sus,
+                is_test_user: session.data.user.cargo === 'Impulser' || session.data.user.mail.includes('@impulsogov.org') || session.data.user.municipio.includes('Impulsolândia') || session.data.user.municipio_id_sus === '111111',
+                perfil: getUserProfileName(session.data.user.perfis),
+            })
+          }
+    }, [session]);
+
     return (
         <>
             {session.status === "authenticated" && <UserGuiding />}
