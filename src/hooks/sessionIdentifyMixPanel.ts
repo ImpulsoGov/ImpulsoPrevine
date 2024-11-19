@@ -31,7 +31,7 @@ export const sessionIdentifyMixPanel = (
         ...atributos
       });
 
-      if (typeof window !== "undefined" && session.status === "authenticated") {
+      if (typeof window !== "undefined") {
         window.userGuiding.identify(session.user.id, {
           ...atributos,
           perfil: getUserProfileName(session.user.perfis),
