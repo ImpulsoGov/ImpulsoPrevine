@@ -18,6 +18,7 @@ import { rotaDinamica } from '@hooks/rotaDinamica';
 
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
+import { UserGuiding } from "@/componentes/UserGuiding";
 
 
 const tagManagerArgs = {
@@ -73,6 +74,7 @@ export const Base : React.FC<BaseProps> = ({
                 {res && <FooterMounted res={res} session={session}/>}
             </SessionWrapper>
             <Analytics />
+            <UserGuiding />
     </>
 }
 
