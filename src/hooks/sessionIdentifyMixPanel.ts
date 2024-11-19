@@ -1,6 +1,6 @@
 import { Session } from 'next-auth';
 import { Mixpanel } from 'mixpanel-browser';
-import { getUserProfileName } from '@/utils/identifyUserProfile';
+// import { getUserProfileName } from '@/utils/identifyUserProfile';
 
 export const sessionIdentifyMixPanel = (
     mixpanel : Mixpanel, 
