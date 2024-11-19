@@ -82,7 +82,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const path = usePathname();
     return (
         <>
-            {session.status === "authenticated" && <UserGuiding />}
+            {session && <UserGuiding />}
             { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
             {children}
         </>
