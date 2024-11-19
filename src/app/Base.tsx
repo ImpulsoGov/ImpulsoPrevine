@@ -74,7 +74,6 @@ export const Base : React.FC<BaseProps> = ({
                 {res && <FooterMounted res={res} session={session}/>}
             </SessionWrapper>
             <Analytics />
-            <UserGuiding />
     </>
 }
 
@@ -83,7 +82,8 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const path = usePathname();
     return (
         <>
-           { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
+            { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
+            {session.status === "authenticated" && <UserGuiding />}
             {children}
         </>
     );
