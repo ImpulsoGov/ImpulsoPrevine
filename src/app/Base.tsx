@@ -20,6 +20,7 @@ import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
 import { getUserProfileName } from "@/utils/identifyUserProfile";
+import { isTestUser } from "@/utils/isTestUser";
 
 
 const tagManagerArgs = {
@@ -85,11 +86,10 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (session && session.data && session.data.user && typeof window !== "undefined") {
             window.userGuiding.identify(session.data.user.id, {
-                municipio: session.data.user.municipio,
                 cargo: session.data.user.cargo,
                 equipe: session.data.user.equipe,
                 municipio_id_sus: session.data.user.municipio_id_sus,
-                is_test_user: session.data.user.cargo === 'Impulser' || session.data.user.mail.includes('@impulsogov.org') || session.data.user.municipio.includes('Impulsolândia') || session.data.user.municipio_id_sus === '111111',
+                is_test_user: isTestUser(session.data.user),
                 perfil: getUserProfileName(session.data.user.perfis),
             })
           }
