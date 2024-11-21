@@ -1,6 +1,5 @@
 import { Session } from 'next-auth';
 import { Mixpanel } from 'mixpanel-browser';
-// import { getUserProfileName } from '@/utils/identifyUserProfile';
 
 export const sessionIdentifyMixPanel = (
     mixpanel : Mixpanel, 
@@ -30,12 +29,5 @@ export const sessionIdentifyMixPanel = (
         "name": session.user.nome,
         ...atributos
       });
-
-      // if (typeof window !== "undefined") {
-      //   window.userGuiding.identify(session.user.id, {
-      //     ...atributos,
-      //     perfil: getUserProfileName(session.user.perfis),
-      //   })
-      // }
     }
 }
