@@ -20,6 +20,7 @@ import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
 import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
+import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 
 
 const tagManagerArgs = {
@@ -83,11 +84,16 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const path = usePathname();
 
     useEffect(() => {identifyUserGuiding(session.data)}, [session]);
+    useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
 
     return (
         <>
             {session.status === "authenticated" && <UserGuiding />}
-            { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
+            { mixpanel && <SessionHooks
+                session={session}
+                mixpanel={mixpanel}
+                // Hotjar={Hotjar}
+                path={path} />}
             {children}
         </>
     );
