@@ -88,6 +88,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
             window.userGuiding.identify(session.data.user.id, {
                 cargo: session.data.user.cargo,
                 equipe: session.data.user.equipe,
+                municipio: session.data.user.municipio,
                 municipio_id_sus: session.data.user.municipio_id_sus,
                 is_test_user: isTestUser(session.data.user),
                 perfil: getUserProfileName(session.data.user.perfis),
