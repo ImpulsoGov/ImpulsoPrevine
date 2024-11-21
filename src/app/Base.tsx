@@ -21,6 +21,7 @@ import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
 import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
+import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 
 
 const tagManagerArgs = {
@@ -85,6 +86,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {identifyUserGuiding(session.data)}, [session]);
     useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
+    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.data)}, [session, path]);
 
     return (
         <>

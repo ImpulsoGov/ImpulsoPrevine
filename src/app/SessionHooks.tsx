@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { addUserDataLayer } from '@hooks/addUserDataLayer';
-import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
+// import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 // import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { Mixpanel } from "mixpanel-browser";
 
@@ -12,12 +12,12 @@ interface SessionHooksProps {
   }
 export const SessionHooks : React.FC<SessionHooksProps> = ({
     session,
-    mixpanel,
+    // mixpanel,
     // Hotjar,
-    path
+    // path
 }) => {
     useEffect(() => addUserDataLayer(session), [session]);
-    useEffect(() => handleRouteChangeMixPanel(mixpanel,session), [path, session, mixpanel]);
+    // useEffect(() => handleRouteChangeMixPanel(mixpanel,session), [path, session, mixpanel]);
     // useEffect(() => sessionIdentifyMixPanel(mixpanel,Hotjar,session), [session, mixpanel, Hotjar]);
     return <></>
 }
