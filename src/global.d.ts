@@ -1,8 +1,22 @@
 import { Mixpanel } from "mixpanel-browser";
 
+type UserGuidingData = {
+  cargo: string;
+  equipe: string;
+  municipio: string;
+  municipio_id_sus: string;
+  is_test_user: boolean;
+  perfil: string;
+}
+
+interface UserGuiding {
+  identify: (id: string, data: UserGuidingData) => void;
+}
+
 declare global {
   interface Window {
-    mixpanel: Mixpanel; 
+    mixpanel: Mixpanel;
+    userGuiding: UserGuiding;
   }
 }
 

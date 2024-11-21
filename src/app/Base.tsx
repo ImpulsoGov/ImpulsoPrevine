@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted"
+import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
 import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
 import Analytics from "@/componentes/Analytics/Analytics";
 
@@ -16,8 +16,10 @@ import { useWindowWidth } from '@helpers/useWindowWidth';
 
 import { rotaDinamica } from '@hooks/rotaDinamica';
 
+import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
+import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 
 
 const tagManagerArgs = {
@@ -79,9 +81,13 @@ export const Base : React.FC<BaseProps> = ({
 const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const session = useSession();
     const path = usePathname();
+
+    useEffect(() => {identifyUserGuiding(session.data)}, [session]);
+
     return (
         <>
-           { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
+            {session.status === "authenticated" && <UserGuiding />}
+            { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
             {children}
         </>
     );
