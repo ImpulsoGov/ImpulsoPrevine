@@ -19,8 +19,7 @@ import { rotaDinamica } from '@hooks/rotaDinamica';
 import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
 import { SessionHooks } from "./SessionHooks";
-import { getUserProfileName } from "@/utils/identifyUserProfile";
-import { isTestUser } from "@/utils/isTestUser";
+import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 
 
 const tagManagerArgs = {
@@ -83,18 +82,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const session = useSession();
     const path = usePathname();
 
-    useEffect(() => {
-        if (session && session.data && session.data.user && typeof window !== "undefined") {
-            window.userGuiding.identify(session.data.user.id, {
-                cargo: session.data.user.cargo,
-                equipe: session.data.user.equipe,
-                municipio: session.data.user.municipio,
-                municipio_id_sus: session.data.user.municipio_id_sus,
-                is_test_user: isTestUser(session.data.user),
-                perfil: getUserProfileName(session.data.user.perfis),
-            })
-          }
-    }, [session]);
+    useEffect(() => {identifyUserGuiding(session.data)}, [session]);
 
     return (
         <>
