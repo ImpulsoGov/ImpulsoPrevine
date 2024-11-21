@@ -1,16 +1,16 @@
 'use client'
-import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import Analytics from "@/componentes/Analytics/Analytics";
-import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
 import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
+import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
+import Analytics from "@/componentes/Analytics/Analytics";
 
-import { hotjarVersion } from '@constants/hotjarVersion';
-import Hotjar from '@hotjar/browser';
-import mixpanel from 'mixpanel-browser';
 import TagManager from "react-gtm-module";
+import mixpanel from 'mixpanel-browser';
+import Hotjar from '@hotjar/browser';
+import { hotjarVersion } from '@constants/hotjarVersion';
 
 import { useWindowWidth } from '@helpers/useWindowWidth';
 
