@@ -86,7 +86,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {identifyUserGuiding(session.data)}, [session]);
     useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
-    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session?.status)}, [session, path]);
+    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, path]);
 
     return (
         <>
