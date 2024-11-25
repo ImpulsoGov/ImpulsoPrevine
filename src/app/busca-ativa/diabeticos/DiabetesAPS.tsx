@@ -128,7 +128,7 @@ export const DiabetesAPS : React.FC<DiabetesAPSType> = ({
                 },
                 {
                   data: Object.entries(tabelaDataAPS.reduce((acumulador : any, item : any) => {
-                    if (item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                    if (item.prazo_proxima_consulta != "Em dia" && item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                     return acumulador
                   }, {})),
                   name: 'Apenas a consulta a fazer',
@@ -137,7 +137,7 @@ export const DiabetesAPS : React.FC<DiabetesAPSType> = ({
                 },
                 {
                   data: Object.entries(tabelaDataAPS.reduce((acumulador : any, item : any) => {
-                    if (item.prazo_proxima_solicitacao_hemoglobina == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
+                    if (item.prazo_proxima_solicitacao_hemoglobina != "Em dia" && item.prazo_proxima_consulta == "Em dia") acumulador[item.equipe_nome_cadastro] = (acumulador[item.equipe_nome_cadastro] || 0) + 1
                     return acumulador
                   }, {})),
                   name: 'Apenas a solicitação de hemoglobina a fazer',
