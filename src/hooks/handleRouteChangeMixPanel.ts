@@ -1,11 +1,10 @@
 import { Mixpanel } from 'mixpanel-browser';
-import { Session } from 'next-auth';
 
 export const handleRouteChangeMixPanel = (
     mixpanel : Mixpanel, 
-    session : Session | null
+    sessionStatus : string
 ) => {
-    if(mixpanel?.track) mixpanel.track('Page View', {
-        'Logged': (session?.status == 'authenticated'),
+    if(mixpanel?.track && sessionStatus !== 'loading') mixpanel.track('Page View', {
+        'Logged': (sessionStatus == 'authenticated'),
     });
 }
