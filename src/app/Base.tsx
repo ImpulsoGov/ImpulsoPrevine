@@ -18,8 +18,10 @@ import { rotaDinamica } from '@hooks/rotaDinamica';
 
 import { UserGuiding } from "@/componentes/UserGuiding";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
-import { SessionHooks } from "./SessionHooks";
 import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
+import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
+import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
+import { addUserDataLayer } from "@/hooks/addUserDataLayer";
 
 
 const tagManagerArgs = {
@@ -83,11 +85,13 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const path = usePathname();
 
     useEffect(() => {identifyUserGuiding(session.data)}, [session]);
+    useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
+    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, path]);
+    useEffect(() => {addUserDataLayer(session.data)}, [session]);
 
     return (
         <>
             {session.status === "authenticated" && <UserGuiding />}
-            { mixpanel && <SessionHooks session={session} mixpanel={mixpanel} Hotjar={Hotjar} path={path} />}
             {children}
         </>
     );
