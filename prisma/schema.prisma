@@ -1,0 +1,1012 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_cadastros_gestantes_duplicadas {
+  municipio_id_sus            String?   @db.VarChar
+  municipio_uf                String?
+  gestante_nome               String?   @db.VarChar
+  gestante_data_de_nascimento DateTime? @db.Date
+  gestante_documento_cpf      String?   @db.VarChar
+  gestante_documento_cns      String?   @db.VarChar
+  periodo_data_transmissao    DateTime? @db.Date
+  gestante_dum                DateTime? @db.Date
+  gestante_dpp                DateTime? @db.Date
+  duplicacao_motivo           String?
+  atualizacao_data            DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Timestamptz(6)
+  equipe_ine                  String?
+  equipe_nome                 String?
+  estabelecimento_cnes        String?
+  estabelecimento_nome        String?
+  acs_nome                    String?
+
+  @@index([municipio_id_sus, gestante_nome, gestante_data_de_nascimento], map: "painel_cadastros_gestantes_duplicadas_municipio_id_sus_idx")
+  @@map("__painel_cadastros_gestantes_duplicadas")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_citopatologico_lista_nominal {
+  municipio_id_sus              String?                        @db.Char(6)
+  municipio_uf                  String?                        @db.VarChar(500)
+  paciente_nome                 String?                        @db.VarChar(500)
+  cidadao_cpf_dt_nascimento     String?                        @db.VarChar(20)
+  vencimento_da_coleta          String?                        @db.VarChar(20)
+  prazo_proxima_coleta          String?                        @db.VarChar(20)
+  idade                         Int?
+  acs_nome                      String?                        @db.VarChar(500)
+  estabelecimento_cnes          String?                        @db.VarChar(20)
+  estabelecimento_nome          String?                        @db.VarChar(500)
+  equipe_ine                    String?                        @db.VarChar(20)
+  ine_master                    String?                        @db.VarChar(20)
+  equipe_nome                   String?                        @db.VarChar(500)
+  id_status_usuario             Int?
+  id_faixa_etaria               Int?
+  criacao_data                  DateTime?                      @db.Date
+  atualizacao_data              DateTime?                      @default(now()) @db.Timestamptz(6)
+  municipios                    municipios?                    @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_citopatologico_lista_nominal_fk")
+  faixa_etarias                 faixa_etarias?                 @relation(fields: [id_faixa_etaria], references: [id_faixa_etaria], onDelete: NoAction, onUpdate: NoAction, map: "painel_citopatologico_lista_nominal_fk_1")
+  status_acompanhamento_usuario status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_citopatologico_lista_nominal_fk_2")
+
+  @@index([municipio_uf], map: "painel_citopatologico_lista_nominal_municipio_id_sus_idx_01", type: Hash)
+  @@index([municipio_uf, ine_master], map: "painel_citopatologico_lista_nominal_municipio_uf_idx_02")
+  @@map("__painel_citopatologico_lista_nominal")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_coordenadores_lista_nominal_gestantes {
+  municipio_id_sus                                 String?   @db.VarChar(6)
+  municipio_uf                                     String?
+  estabelecimento_cnes                             String?
+  estabelecimento_nome                             String?
+  equipe_ine                                       String?
+  equipe_nome                                      String?
+  acs_nome                                         String?
+  acs_data_ultima_visita                           DateTime? @db.Date
+  gestante_documento_cpf                           String?   @db.VarChar(11)
+  gestante_documento_cns                           String?   @db.VarChar(15)
+  gestante_nome                                    String?   @db.VarChar(500)
+  gestante_data_de_nascimento                      DateTime? @db.Date
+  gestante_telefone                                String?   @db.VarChar(100)
+  gestante_endereco                                String?
+  gestante_dum                                     DateTime? @db.Date
+  gestante_idade_gestacional_atual                 Int?
+  gestante_idade_gestacional_primeiro_atendimento  Int?
+  gestante_dpp                                     DateTime? @db.Date
+  gestante_quadrimestre                            String?
+  gestante_consulta_prenatal_data_limite           DateTime? @db.Date
+  gestante_dpp_dias_para                           Int?
+  gestante_consulta_prenatal_total                 BigInt?
+  gestantes_com_6_consultas                        String?
+  gestante_consulta_prenatal_ultima_data           DateTime? @db.Date
+  gestante_consulta_prenatal_ultima_dias_desde     Int?
+  atendimento_odontologico_realizado               Boolean?
+  atendimento_odontologico_realizado_identificacao String?
+  exame_hiv_realizado                              Boolean?
+  exame_sifilis_realizado                          Boolean?
+  exame_sifilis_hiv_realizado                      Boolean?
+  exame_sifilis_hiv_realizado_identificacao        String?
+  possui_registro_aborto                           String?
+  possui_registro_parto                            String?
+  atualizacao_data                                 DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  criacao_data                                     DateTime? @db.Date
+
+  @@index([municipio_uf], map: "gestantes_municipio_uf_idx1", type: Hash)
+  @@index([gestante_quadrimestre, equipe_nome], map: "painel_coordenadores_lista_nominal_gestantes_gestante_quadrimes")
+  @@index([municipio_uf], map: "painel_coordenadores_lista_nominal_gestantes_municipio_uf_idx")
+  @@map("__painel_coordenadores_lista_nominal_gestantes")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos {
+  municipio_id_sus                                 String?   @db.VarChar(6)
+  municipio_uf                                     String?
+  quadrimestre_atual                               String?
+  realizou_solicitacao_hemoglobina_ultimos_6_meses Boolean?
+  dt_solicitacao_hemoglobina_glicada_mais_recente  String?   @db.VarChar(11)
+  realizou_consulta_ultimos_6_meses                Boolean?
+  dt_consulta_mais_recente                         DateTime? @db.Date
+  prazo_proxima_solicitacao_hemoglobina            String?
+  prazo_proxima_consulta                           String?
+  consulta_e_afericao_em_dia                       Int?
+  status_em_dia                                    String?
+  status_usuario                                   String?
+  identificacao_condicao_diabetes                  String?
+  cidadao_cpf                                      String?
+  cidadao_cpf_dt_nascimento                        String?
+  cidadao_cns                                      String?
+  cidadao_nome                                     String?
+  cidadao_nome_social                              String?   @db.VarChar(500)
+  cidadao_sexo                                     String?
+  dt_nascimento                                    DateTime? @db.Date
+  cidadao_idade                                    Int?
+  cidadao_faixa_etaria                             String?   @db.VarChar(50)
+  estabelecimento_cnes_atendimento                 String?
+  estabelecimento_cnes_cadastro                    String?
+  estabelecimento_nome_atendimento                 String?
+  estabelecimento_nome_cadastro                    String?
+  equipe_ine_atendimento                           String?
+  equipe_ine_cadastro                              String?
+  equipe_nome_atendimento                          String?
+  equipe_nome_cadastro                             String?
+  acs_nome_cadastro                                String?
+  acs_nome_visita                                  String?
+  possui_diabetes_autorreferida                    Boolean?
+  possui_diabetes_diagnosticada                    Boolean?
+  apenas_autorreferida                             Int?
+  diagnostico_clinico                              Int?
+  data_ultimo_cadastro                             DateTime? @db.Date
+  dt_ultima_consulta                               DateTime? @db.Date
+  se_faleceu                                       Int?
+  se_mudou                                         Int?
+  criacao_data                                     DateTime? @db.Date
+  atualizacao_data                                 DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@index([municipio_uf, equipe_ine_cadastro, cidadao_faixa_etaria], map: "painel_enfermeiras_lista_nominal_diabeticos_municipio_uf_idx1")
+  @@index([municipio_uf], map: "painel_enfermeiras_lista_nominal_diabeticos_municipio_uf_idx2")
+  @@map("__painel_enfermeiras_lista_nominal_diabeticos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_gestantes {
+  municipio_id_sus                                 String?   @db.VarChar(6)
+  municipio_uf                                     String?
+  estabelecimento_cnes                             String?
+  estabelecimento_nome                             String?
+  equipe_ine                                       String?
+  equipe_nome                                      String?
+  acs_nome                                         String?
+  acs_data_ultima_visita                           DateTime? @db.Date
+  gestante_documento_cpf                           String?   @db.VarChar(11)
+  gestante_documento_cns                           String?   @db.VarChar(15)
+  gestante_nome                                    String?   @db.VarChar(500)
+  gestante_data_de_nascimento                      DateTime? @db.Date
+  gestante_telefone                                String?   @db.VarChar(100)
+  gestante_endereco                                String?
+  gestante_dum                                     DateTime? @db.Date
+  gestante_idade_gestacional_atual                 Int?
+  gestante_idade_gestacional_primeiro_atendimento  Int?
+  gestante_dpp                                     DateTime? @db.Date
+  gestante_quadrimestre                            String?
+  gestante_consulta_prenatal_data_limite           DateTime? @db.Date
+  gestante_dpp_dias_para                           Int?
+  gestante_consulta_prenatal_total                 BigInt?
+  gestantes_com_6_consultas                        String?
+  gestante_consulta_prenatal_ultima_data           DateTime? @db.Date
+  gestante_consulta_prenatal_ultima_dias_desde     Int?
+  atendimento_odontologico_realizado               Boolean?
+  atendimento_odontologico_realizado_identificacao String?
+  exame_hiv_realizado                              Boolean?
+  exame_sifilis_realizado                          Boolean?
+  exame_sifilis_hiv_realizado                      Boolean?
+  exame_sifilis_hiv_realizado_identificacao        String?
+  possui_registro_aborto                           String?
+  possui_registro_parto                            String?
+  atualizacao_data                                 DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  criacao_data                                     DateTime? @db.Date
+
+  @@index([estabelecimento_cnes, equipe_nome, acs_nome, gestante_nome], map: "gestantes_busca_ativa_coordenadoras_idx")
+  @@index([estabelecimento_cnes, equipe_nome, acs_nome, gestante_nome], map: "gestantes_busca_ativa_estabelecimento_cnes_idx")
+  @@index([municipio_uf], map: "painel_enfermeiras_lista_nominal_gestantes_municipio_uf_idx")
+  @@map("__painel_enfermeiras_lista_nominal_gestantes")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_hipertensos {
+  municipio_id_sus                   String?   @db.VarChar(6)
+  municipio_uf                       String?
+  quadrimestre_atual                 String?
+  realizou_afericao_ultimos_6_meses  Boolean?
+  dt_afericao_pressao_mais_recente   String?   @db.VarChar(11)
+  realizou_consulta_ultimos_6_meses  Boolean?
+  dt_consulta_mais_recente           DateTime? @db.Date
+  prazo_proxima_afericao_pa          String?
+  prazo_proxima_consulta             String?
+  consulta_e_afericao_em_dia         Int?
+  status_em_dia                      String?
+  status_usuario                     String?
+  identificacao_condicao_hipertensao String?
+  cidadao_cpf                        String?
+  cidadao_cpf_dt_nascimento          String?
+  cidadao_cns                        String?
+  cidadao_nome                       String?
+  cidadao_nome_social                String?   @db.VarChar(500)
+  cidadao_sexo                       String?
+  dt_nascimento                      DateTime? @db.Date
+  cidadao_idade                      Int?
+  cidadao_faixa_etaria               String?   @db.VarChar(50)
+  estabelecimento_cnes_atendimento   String?
+  estabelecimento_cnes_cadastro      String?
+  estabelecimento_nome_atendimento   String?
+  estabelecimento_nome_cadastro      String?
+  equipe_ine_atendimento             String?
+  equipe_ine_cadastro                String?
+  equipe_nome_atendimento            String?
+  equipe_nome_cadastro               String?
+  acs_nome_cadastro                  String?
+  acs_nome_visita                    String?
+  possui_hipertensao_autorreferida   Boolean?
+  possui_hipertensao_diagnosticada   Boolean?
+  apenas_autorreferida               Int?
+  diagnostico_clinico                Int?
+  data_ultimo_cadastro               DateTime? @db.Date
+  dt_ultima_consulta                 DateTime? @db.Date
+  se_faleceu                         Int?
+  se_mudou                           Int?
+  criacao_data                       DateTime? @db.Date
+  atualizacao_data                   DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@index([municipio_uf, equipe_ine_cadastro, cidadao_faixa_etaria], map: "_painel_enfermeiras_lista_nominal_hipertensos_municipio_uf_IDX1")
+  @@index([municipio_uf], map: "_painel_enfermeiras_lista_nominal_hipertensos_municipio_uf_IDX2")
+  @@map("__painel_enfermeiras_lista_nominal_hipertensos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais__painel_gestantes_historico_atendimentos {
+  municipio_id_sus     String?   @db.VarChar
+  chave_gestante       String?   @db.VarChar
+  ordem_gestacao       String?
+  id_registro          String?   @db.VarChar
+  tipo_registro        String?
+  data_registro        DateTime? @db.Date
+  data_dum             DateTime? @db.Date
+  obs_titulo_registro  String?
+  sinalizacao_registro String?
+  obs_aviso_registro   String?
+
+  @@map("_painel_gestantes_historico_atendimentos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+model dados_agregados_area_logada {
+  municipio_id_sus    String    @db.Char(6)
+  equipe_ine          String
+  indicador           String
+  parametro_descricao String
+  parametro_valor     Int
+  atualizacao_data    DateTime? @db.Timestamp(6)
+
+  @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_cadastros_gestantes_duplicadas {
+  municipio_id_sus            String?   @db.VarChar
+  municipio_uf                String?
+  gestante_nome               String?   @db.VarChar
+  gestante_data_de_nascimento DateTime? @db.Date
+  gestante_documento_cpf      String?   @db.VarChar
+  gestante_documento_cns      String?   @db.VarChar
+  periodo_data_transmissao    DateTime? @db.Date
+  gestante_dum                DateTime? @db.Date
+  gestante_dpp                DateTime? @db.Date
+  duplicacao_motivo           String?
+  atualizacao_data            DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Timestamptz(6)
+  equipe_ine                  String?
+  equipe_nome                 String?
+  estabelecimento_cnes        String?
+  estabelecimento_nome        String?
+  acs_nome                    String?
+
+  @@index([municipio_id_sus], map: "_painel_cadastros_gestantes_duplicadas_municipio_id_sus_idx")
+  @@index([municipio_uf], map: "_painel_cadastros_gestantes_duplicadas_municipio_uf_idx")
+  @@map("painel_cadastros_gestantes_duplicadas")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_citopatologico_lista_nominal {
+  municipio_id_sus                  String?   @db.VarChar
+  municipio_uf                      String?
+  paciente_nome                     String?
+  cidadao_cpf_dt_nascimento         String?
+  vencimento_da_coleta              String?
+  prazo_proxima_coleta              String?
+  idade                             BigInt?
+  acs_nome                          String?
+  estabelecimento_cnes              String?   @db.VarChar(30)
+  estabelecimento_nome              String?   @db.VarChar(500)
+  equipe_ine                        String?   @db.VarChar(30)
+  ine_master                        String?
+  equipe_nome                       String?
+  id_status_usuario                 Int?
+  id_faixa_etaria                   Int?
+  criacao_data                      DateTime? @db.Timestamptz(6)
+  atualizacao_data                  DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente DateTime? @db.Date
+
+  @@map("painel_citopatologico_lista_nominal")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_coordenadores_lista_nominal_gestantes {
+  municipio_id_sus                                 String?   @db.VarChar
+  municipio_uf                                     String?
+  estabelecimento_cnes                             String?   @db.VarChar(10)
+  estabelecimento_nome                             String?   @db.VarChar(500)
+  equipe_ine                                       String?   @db.VarChar
+  equipe_nome                                      String?   @db.VarChar(500)
+  acs_nome                                         String?
+  acs_data_ultima_visita                           DateTime? @db.Date
+  gestante_documento_cpf                           String?
+  gestante_documento_cns                           String?
+  gestante_nome                                    String?
+  gestante_data_de_nascimento                      DateTime? @db.Date
+  gestante_telefone                                String?   @db.VarChar(100)
+  gestante_endereco                                String?
+  gestante_dum                                     DateTime? @db.Date
+  gestante_idade_gestacional_atual                 Int?
+  gestante_idade_gestacional_primeiro_atendimento  Int?
+  gestante_dpp                                     DateTime? @db.Date
+  gestante_quadrimestre                            String?
+  gestante_consulta_prenatal_data_limite           DateTime? @db.Date
+  gestacao_dpp_dias_para                           Int?
+  gestante_consulta_prenatal_total                 Int?
+  gestantes_com_6_consultas                        String?
+  gestante_consulta_prenatal_ultima_data           DateTime? @db.Date
+  gestante_consulta_prenatal_ultima_dias_desde     Int?
+  atendimento_odontologico_realizado               Boolean?
+  atendimento_odontologico_realizado_identificacao String?
+  exame_hiv_realizado                              Boolean?
+  exame_sifilis_realizado                          Boolean?
+  exame_sifilis_hiv_realizado                      Boolean?
+  exame_sifilis_hiv_realizado_identificacao        String?
+  possui_registro_aborto                           String?   @db.VarChar(6)
+  possui_registro_parto                            String?   @db.VarChar(6)
+  atualizacao_data                                 DateTime? @db.Timestamptz(6)
+  criacao_data                                     DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente                DateTime? @db.Date
+
+  @@map("painel_coordenadores_lista_nominal_gestantes")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_diabeticos {
+  municipio_id_sus                          String?                        @db.Char(6)
+  equipe_ine                                String?                        @db.VarChar(20)
+  equipe_nome                               String?                        @db.VarChar(500)
+  id_faixa_etaria                           Int?
+  id_tipo_de_diagnostico                    Int?
+  acs_nome                                  String?                        @db.VarChar(500)
+  id_status_usuario                         Int?
+  total_usuarios_com_diabeticos             BigInt?
+  total_com_consulta_solicitacao_hbg_em_dia BigInt?
+  total_com_diagnostico_autorreferido       BigInt?
+  total_com_diagnostico_clinico             BigInt?
+  criacao_data                              DateTime?                      @db.Timestamptz(6)
+  atualizacao_data                          DateTime?                      @default(now()) @db.Timestamptz(6)
+  municipios                                municipios?                    @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_fk")
+  diagnosticos                              diagnosticos?                  @relation(fields: [id_tipo_de_diagnostico], references: [id_tipo_de_diagnostico], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_fk_1")
+  faixa_etarias                             faixa_etarias?                 @relation(fields: [id_faixa_etaria], references: [id_faixa_etaria], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_fk_2")
+  status_acompanhamento_usuario             status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_fk_3")
+
+  @@index([municipio_id_sus, equipe_ine, equipe_nome, id_faixa_etaria, id_tipo_de_diagnostico, acs_nome, id_status_usuario], map: "painel_diabeticos_idx1")
+  @@index([municipio_id_sus], map: "painel_diabeticos_idx2")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_diabeticos_lista_nominal {
+  municipio_id_sus                                String?                        @db.Char(6)
+  cidadao_nome                                    String?                        @db.VarChar(500)
+  dt_nascimento                                   DateTime?                      @db.Date
+  status_em_dia                                   String?
+  cidadao_cpf_dt_nascimento                       String?                        @db.VarChar(20)
+  dt_consulta_mais_recente                        DateTime?                      @db.Date
+  prazo_proxima_consulta                          String?                        @db.VarChar(20)
+  dt_solicitacao_hemoglobina_glicada_mais_recente DateTime?                      @db.Date
+  prazo_proxima_solicitacao_hemoglobina           String?                        @db.VarChar(20)
+  acs_nome                                        String?                        @db.VarChar(500)
+  estabelecimento_cnes                            String?                        @db.VarChar(20)
+  estabelecimento_nome                            String?                        @db.VarChar(500)
+  equipe_ine                                      String?                        @db.VarChar(20)
+  equipe_nome                                     String?                        @db.VarChar(500)
+  id_tipo_de_diagnostico                          Int?
+  id_faixa_etaria                                 Int?
+  id_status_usuario                               Int?
+  criacao_data                                    DateTime?                      @db.Date
+  atualizacao_data                                DateTime?                      @default(now()) @db.Timestamptz(6)
+  municipios                                      municipios?                    @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_lista_nominal_fk")
+  faixa_etarias                                   faixa_etarias?                 @relation(fields: [id_faixa_etaria], references: [id_faixa_etaria], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_lista_nominal_fk_1")
+  diagnosticos                                    diagnosticos?                  @relation(fields: [id_tipo_de_diagnostico], references: [id_tipo_de_diagnostico], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_lista_nominal_fk_2")
+  status_acompanhamento_usuario                   status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_diabeticos_lista_nominal_fk_3")
+
+  @@index([municipio_id_sus], map: "painel_diabeticos_lista_nominal_idx1")
+  @@index([municipio_id_sus, cidadao_nome], map: "painel_diabeticos_lista_nominal_idx2")
+  @@index([municipio_id_sus, equipe_nome, equipe_ine, acs_nome, id_tipo_de_diagnostico, id_faixa_etaria, id_status_usuario], map: "painel_diabeticos_lista_nominal_idx3")
+  @@index([municipio_id_sus, equipe_ine], map: "painel_diabeticos_lista_nominal_municipio_id_sus_idx")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_enfermeiras_lista_nominal_diabeticos {
+  municipio_id_sus                                 String?   @db.VarChar
+  municipio_uf                                     String?
+  quadrimestre_atual                               String?
+  realizou_solicitacao_hemoglobina_ultimos_6_meses Boolean?
+  dt_solicitacao_hemoglobina_glicada_mais_recente  String?   @db.VarChar(11)
+  realizou_consulta_ultimos_6_meses                Boolean?
+  dt_consulta_mais_recente                         DateTime? @db.Date
+  prazo_proxima_solicitacao_hemoglobina            String?
+  prazo_proxima_consulta                           String?
+  consulta_e_solicitacao_hemoglobina_em_dia        Int?
+  status_em_dia                                    String?
+  status_usuario                                   String?
+  identificacao_condicao_diabetes                  String?
+  cidadao_cpf                                      String?
+  cidadao_cpf_dt_nascimento                        String?
+  cidadao_cns                                      String?
+  cidadao_nome                                     String?
+  cidadao_nome_social                              String?   @db.VarChar(500)
+  cidadao_sexo                                     String?   @db.VarChar
+  dt_nascimento                                    DateTime? @db.Date
+  cidadao_idade                                    Int?
+  cidadao_faixa_etaria                             String?
+  estabelecimento_cnes_atendimento                 String?
+  estabelecimento_cnes_cadastro                    String?
+  estabelecimento_nome_atendimento                 String?
+  estabelecimento_nome_cadastro                    String?
+  equipe_ine_atendimento                           String?
+  equipe_ine_cadastro                              String?
+  equipe_nome_atendimento                          String?
+  equipe_nome_cadastro                             String?
+  acs_nome_cadastro                                String?
+  acs_nome_visita                                  String?
+  possui_diabetes_autorreferida                    Boolean?
+  possui_diabetes_diagnosticada                    Boolean?
+  apenas_autorreferida                             Int?
+  diagnostico_clinico                              Int?
+  data_ultimo_cadastro                             DateTime? @db.Date
+  dt_ultima_consulta                               DateTime? @db.Date
+  se_faleceu                                       Int?
+  se_mudou                                         Int?
+  criacao_data                                     DateTime? @db.Timestamptz(6)
+  atualizacao_data                                 DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente                DateTime? @db.Date
+
+  @@index([municipio_uf], map: "_painel_enfermeiras_lista_nominal_diabeticos_idx")
+  @@index([municipio_uf, equipe_ine_cadastro], map: "_painel_enfermeiras_lista_nominal_diabeticos_municipio_uf_idx")
+  @@map("painel_enfermeiras_lista_nominal_diabeticos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_enfermeiras_lista_nominal_gestantes {
+  municipio_id_sus                                 String?   @db.VarChar
+  municipio_uf                                     String?
+  estabelecimento_cnes                             String?   @db.VarChar(10)
+  estabelecimento_nome                             String?   @db.VarChar(500)
+  equipe_ine                                       String?   @db.VarChar
+  equipe_nome                                      String?   @db.VarChar(500)
+  acs_nome                                         String?
+  acs_data_ultima_visita                           DateTime? @db.Date
+  gestante_documento_cpf                           String?
+  gestante_documento_cns                           String?
+  gestante_nome                                    String?
+  gestante_data_de_nascimento                      DateTime? @db.Date
+  gestante_telefone                                String?   @db.VarChar(100)
+  gestante_endereco                                String?
+  gestante_dum                                     DateTime? @db.Date
+  gestante_idade_gestacional_atual                 Int?
+  gestante_idade_gestacional_primeiro_atendimento  Int?
+  gestante_dpp                                     DateTime? @db.Date
+  gestante_quadrimestre                            String?
+  gestante_consulta_prenatal_data_limite           DateTime? @db.Date
+  gestacao_dpp_dias_para                           Int?
+  gestante_consulta_prenatal_total                 Int?
+  gestantes_com_6_consultas                        String?
+  gestante_consulta_prenatal_ultima_data           DateTime? @db.Date
+  gestante_consulta_prenatal_ultima_dias_desde     Int?
+  atendimento_odontologico_realizado               Boolean?
+  atendimento_odontologico_realizado_identificacao String?
+  exame_hiv_realizado                              Boolean?
+  exame_sifilis_realizado                          Boolean?
+  exame_sifilis_hiv_realizado                      Boolean?
+  exame_sifilis_hiv_realizado_identificacao        String?
+  possui_registro_aborto                           String?   @db.VarChar(6)
+  possui_registro_parto                            String?   @db.VarChar(6)
+  atualizacao_data                                 DateTime? @db.Timestamptz(6)
+  criacao_data                                     DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente                DateTime? @db.Date
+
+  @@map("painel_enfermeiras_lista_nominal_gestantes")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_enfermeiras_lista_nominal_hipertensos {
+  municipio_id_sus                   String?   @db.VarChar
+  municipio_uf                       String?
+  quadrimestre_atual                 String?
+  realizou_afericao_ultimos_6_meses  Boolean?
+  dt_afericao_pressao_mais_recente   String?   @db.VarChar(11)
+  realizou_consulta_ultimos_6_meses  Boolean?
+  dt_consulta_mais_recente           DateTime? @db.Date
+  prazo_proxima_afericao_pa          String?
+  prazo_proxima_consulta             String?
+  consulta_e_afericao_em_dia         Int?
+  status_em_dia                      String?
+  status_usuario                     String?
+  identificacao_condicao_hipertensao String?
+  cidadao_cpf                        String?
+  cidadao_cpf_dt_nascimento          String?
+  cidadao_cns                        String?
+  cidadao_nome                       String?
+  cidadao_nome_social                String?   @db.VarChar(500)
+  cidadao_sexo                       String?   @db.VarChar
+  dt_nascimento                      DateTime? @db.Date
+  cidadao_idade                      Int?
+  cidadao_faixa_etaria               String?
+  estabelecimento_cnes_atendimento   String?
+  estabelecimento_cnes               String?
+  estabelecimento_nome_atendimento   String?
+  estabelecimento_nome               String?
+  equipe_ine_atendimento             String?
+  equipe_ine_cadastro                String?
+  equipe_nome_atendimento            String?
+  equipe_nome_cadastro               String?
+  acs_nome_cadastro                  String?
+  acs_nome_visita                    String?
+  possui_hipertensao_autorreferida   Boolean?
+  possui_hipertensao_diagnosticada   Boolean?
+  apenas_autorreferida               Int?
+  diagnostico_clinico                Int?
+  data_ultimo_cadastro               DateTime? @db.Date
+  dt_ultima_consulta                 DateTime? @db.Date
+  se_faleceu                         Int?
+  se_mudou                           Int?
+  criacao_data                       DateTime? @db.Timestamptz(6)
+  atualizacao_data                   DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente  DateTime? @db.Date
+
+  @@index([municipio_uf, equipe_ine_cadastro], map: "_painel_enfermeiras_lista_nominal_hipertensos_municipio_uf_equi")
+  @@index([municipio_uf], map: "_painel_enfermeiras_lista_nominal_hipertensos_municipio_uf_idx")
+  @@map("painel_enfermeiras_lista_nominal_hipertensos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_gestantes {
+  municipio_id_sus                                             String?                        @db.Char(6)
+  id_quadrimestre_atual                                        String?                        @db.Uuid
+  equipe_ine                                                   String?                        @db.VarChar(20)
+  equipe_nome                                                  String?                        @db.VarChar(500)
+  id_status_usuario                                            Int?
+  total_gestantes                                              BigInt?
+  total_gestantes_ativas                                       BigInt?
+  total_gestantes_menos_6_consultas                            BigInt?
+  total_gestantes_menos_6_consultas_primeira_consulta_12semana BigInt?
+  total_gestantes_com_erro_registro                            BigInt?
+  total_gestantes_sem_exame_sifilis_hiv                        BigInt?
+  total_gestantes_com_apenas_1_exame                           BigInt?
+  total_gestantes_sem_atendimento_odontologico                 BigInt?
+  criacao_data                                                 DateTime?                      @default(now()) @db.Timestamptz(6)
+  atualizacao_data                                             DateTime?                      @default(now()) @db.Timestamptz(6)
+  periodos                                                     periodos?                      @relation(fields: [id_quadrimestre_atual], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "painel_gestantes_fk")
+  status_acompanhamento_usuario                                status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_gestantes_fk_1")
+
+  @@index([id_quadrimestre_atual, equipe_nome, equipe_ine, id_status_usuario], map: "painel_gestantes_id_quadrimestre_atual_idx")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impulso_previne_dados_nominais_painel_gestantes_historico_atendimentos {
+  municipio_id_sus     String?   @db.Char(6)
+  chave_gestante       String?   @db.VarChar(500)
+  ordem_gestacao       String?
+  id_registro          String?   @db.VarChar(20)
+  tipo_registro        String?   @db.VarChar(50)
+  data_registro        DateTime? @db.Date
+  data_dum             DateTime? @db.Date
+  obs_titulo_registro  String?
+  sinalizacao_registro String?
+  obs_aviso_registro   String?
+  criacao_data         DateTime? @default(now()) @db.Timestamptz(6)
+  atualizacao_data     DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@map("painel_gestantes_historico_atendimentos")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_gestantes_lista_nominal {
+  chave_id_gestacao                               String                                  @db.VarChar(500)
+  municipio_id_sus                                String?                                 @db.Char(6)
+  equipe_ine                                      String?                                 @db.VarChar(20)
+  equipe_nome                                     String?                                 @db.VarChar(500)
+  cidadao_nome                                    String?                                 @db.VarChar(500)
+  cidadao_cpf_dt_nascimento                       String?                                 @db.VarChar(50)
+  gestacao_data_dpp                               String?                                 @db.VarChar(30)
+  gestacao_quadrimestre                           String?                                 @db.VarChar(30)
+  gestacao_idade_gestacional_atual                String?                                 @db.VarChar(10)
+  gestacao_idade_gestacional_primeiro_atendimento String?                                 @db.VarChar(10)
+  consulta_prenatal_ultima_data                   DateTime?                               @db.Date
+  consultas_pre_natal_validas                     String?                                 @db.VarChar(10)
+  id_atendimento_odontologico                     Int?
+  id_exame_hiv_sifilis                            Int?
+  id_status_usuario                               Int?
+  id_registro_parto                               Int?
+  id_registro_aborto                              Int?
+  acs_nome                                        String?                                 @db.VarChar(500)
+  atualizacao_data                                DateTime?                               @db.Date
+  criacao_data                                    DateTime?                               @db.Date
+  municipio_uf                                    String?                                 @db.VarChar(100)
+  dt_registro_producao_mais_recente               DateTime?                               @db.Date
+  municipios                                      municipios?                             @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk")
+  status_acompanhamento_usuario                   status_acompanhamento_usuario?          @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk_1")
+  identificacao_atendimento_odontologico          identificacao_atendimento_odontologico? @relation(fields: [id_atendimento_odontologico], references: [id_atendimento_odontologico], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk_2")
+  identificacao_exame_hiv_sifilis                 identificacao_exame_hiv_sifilis?        @relation(fields: [id_exame_hiv_sifilis], references: [id_exame_hiv_sifilis], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk_3")
+  registro_parto                                  registro_parto?                         @relation(fields: [id_registro_parto], references: [id_registro_parto], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk_4")
+  registro_aborto                                 registro_aborto?                        @relation(fields: [id_registro_aborto], references: [id_registro_aborto], onDelete: NoAction, onUpdate: NoAction, map: "_painel_gestantes_lista_nominal_fk_5")
+
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_hipertensos {
+  municipio_id_sus                      String?                        @db.Char(6)
+  equipe_ine                            String?                        @db.VarChar(20)
+  equipe_nome                           String?                        @db.VarChar(500)
+  id_faixa_etaria                       Int?
+  id_tipo_de_diagnostico                Int?
+  acs_nome                              String?                        @db.VarChar(500)
+  id_status_usuario                     Int?
+  total_usuarios_com_hipertensao        BigInt?
+  total_com_consulta_afericao_pa_em_dia BigInt?
+  total_com_diagnostico_autorreferido   BigInt?
+  total_com_diagnostico_clinico         BigInt?
+  criacao_data                          DateTime?                      @db.Timestamptz(6)
+  atualizacao_data                      DateTime?                      @default(now()) @db.Timestamptz(6)
+  municipios                            municipios?                    @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_fk")
+  diagnosticos                          diagnosticos?                  @relation(fields: [id_tipo_de_diagnostico], references: [id_tipo_de_diagnostico], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_fk_1")
+  faixa_etarias                         faixa_etarias?                 @relation(fields: [id_faixa_etaria], references: [id_faixa_etaria], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_fk_2")
+  status_acompanhamento_usuario         status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_fk_3")
+
+  @@index([municipio_id_sus, equipe_ine, equipe_nome, id_faixa_etaria, id_tipo_de_diagnostico, acs_nome, id_status_usuario], map: "painel_hipertensos_idx1")
+  @@index([municipio_id_sus], map: "painel_hipertensos_idx2")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_hipertensos_lista_nominal {
+  municipio_id_sus                 String?                        @db.Char(6)
+  cidadao_nome                     String?                        @db.VarChar(500)
+  dt_nascimento                    DateTime?                      @db.Date
+  status_em_dia                    String?
+  cidadao_cpf_dt_nascimento        String?                        @db.VarChar(20)
+  dt_consulta_mais_recente         DateTime?                      @db.Date
+  prazo_proxima_consulta           String?                        @db.VarChar(20)
+  dt_afericao_pressao_mais_recente DateTime?                      @db.Date
+  prazo_proxima_afericao_pa        String?                        @db.VarChar(20)
+  acs_nome                         String?                        @db.VarChar(500)
+  estabelecimento_cnes             String?                        @db.VarChar(20)
+  estabelecimento_nome             String?                        @db.VarChar(500)
+  equipe_ine                       String?                        @db.VarChar(20)
+  equipe_nome                      String?                        @db.VarChar(500)
+  id_tipo_de_diagnostico           Int?
+  id_faixa_etaria                  Int?
+  id_status_usuario                Int?
+  criacao_data                     DateTime?                      @db.Date
+  atualizacao_data                 DateTime?                      @default(now()) @db.Timestamptz(6)
+  municipios                       municipios?                    @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_lista_nominal_fk")
+  faixa_etarias                    faixa_etarias?                 @relation(fields: [id_faixa_etaria], references: [id_faixa_etaria], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_lista_nominal_fk_1")
+  diagnosticos                     diagnosticos?                  @relation(fields: [id_tipo_de_diagnostico], references: [id_tipo_de_diagnostico], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_lista_nominal_fk_2")
+  status_acompanhamento_usuario    status_acompanhamento_usuario? @relation(fields: [id_status_usuario], references: [id_status_usuario], onDelete: NoAction, onUpdate: NoAction, map: "painel_hipertensos_lista_nominal_fk_3")
+
+  @@index([municipio_id_sus], map: "painel_hipertensos_lista_nominal_idx1")
+  @@index([municipio_id_sus, cidadao_nome], map: "painel_hipertensos_lista_nominal_idx2")
+  @@index([municipio_id_sus, equipe_nome, equipe_ine, acs_nome, id_tipo_de_diagnostico, id_faixa_etaria, id_status_usuario], map: "painel_hipertensos_lista_nominal_idx3")
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model painel_vacinacao_lista_nominal {
+  municipio_id_sus                                                                               String?                 @db.VarChar(6)
+  municipio_uf                                                                                   String?                 @db.VarChar(100)
+  cidadao_nome                                                                                   String?                 @db.VarChar(500)
+  cidadao_nome_responsavel                                                                       String?                 @db.VarChar(500)
+  cidadao_cpf_dt_nascimento                                                                      String?                 @db.VarChar(30)
+  cidadao_idade_meses                                                                            Int?
+  quadrimestre_completa_1_ano                                                                    String?                 @db.VarChar(30)
+  id_status_quadrimestre                                                                         Int?
+  data_ou_prazo_1dose_polio                                                                      DateTime?               @db.Date
+  data_ou_prazo_2dose_polio                                                                      DateTime?               @db.Date
+  data_ou_prazo_3dose_polio                                                                      DateTime?               @db.Date
+  id_status_polio                                                                                Int?
+  id_cor_1dose_polio                                                                             Int?
+  id_cor_2dose_polio                                                                             Int?
+  id_cor_3dose_polio                                                                             Int?
+  data_ou_prazo_1dose_penta                                                                      DateTime?               @db.Date
+  data_ou_prazo_2dose_penta                                                                      DateTime?               @db.Date
+  data_ou_prazo_3dose_penta                                                                      DateTime?               @db.Date
+  id_status_penta                                                                                Int?
+  id_cor_1dose_penta                                                                             Int?
+  id_cor_2dose_penta                                                                             Int?
+  id_cor_3dose_penta                                                                             Int?
+  acs_nome                                                                                       String?                 @db.VarChar(500)
+  equipe_ine                                                                                     String?                 @db.VarChar(20)
+  equipe_nome                                                                                    String?                 @db.VarChar(500)
+  criacao_data                                                                                   DateTime?               @db.Date
+  atualizacao_data                                                                               DateTime?               @db.Date
+  dt_registro_producao_mais_recente                                                              DateTime?               @db.Date
+  municipios                                                                                     municipios?             @relation(fields: [municipio_id_sus], references: [id_sus], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk")
+  quadrimestre_status                                                                            quadrimestre_status?    @relation(fields: [id_status_quadrimestre], references: [id_status_quadrimestre], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_01")
+  vacinacao_status_polio                                                                         vacinacao_status_polio? @relation(fields: [id_status_polio], references: [id_status_polio], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_02")
+  vacinacao_status_penta                                                                         vacinacao_status_penta? @relation(fields: [id_status_penta], references: [id_status_penta], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_03")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_1dose_polioTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_1dose_polioTocores_datas_vacinacao", fields: [id_cor_1dose_polio], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_04")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_2dose_polioTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_2dose_polioTocores_datas_vacinacao", fields: [id_cor_2dose_polio], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_05")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_3dose_polioTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_3dose_polioTocores_datas_vacinacao", fields: [id_cor_3dose_polio], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_06")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_1dose_pentaTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_1dose_pentaTocores_datas_vacinacao", fields: [id_cor_1dose_penta], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_07")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_2dose_pentaTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_2dose_pentaTocores_datas_vacinacao", fields: [id_cor_2dose_penta], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_08")
+  cores_datas_vacinacao_painel_vacinacao_lista_nominal_id_cor_3dose_pentaTocores_datas_vacinacao cores_datas_vacinacao?  @relation("painel_vacinacao_lista_nominal_id_cor_3dose_pentaTocores_datas_vacinacao", fields: [id_cor_3dose_penta], references: [id_cor_dose], onDelete: NoAction, onUpdate: NoAction, map: "painel_vacinacao_lista_nominal_fk_09")
+
+  @@ignore
+  @@schema("impulso_previne_dados_nominais")
+}
+
+model teste_painel_citopatologico_lista_nominal {
+  municipio_id_sus                  String?   @db.VarChar
+  municipio_uf                      String?
+  paciente_nome                     String?
+  cidadao_cpf_dt_nascimento         String?
+  vencimento_da_coleta              String?
+  prazo_proxima_coleta              String?
+  idade                             Int?
+  acs_nome                          String?
+  estabelecimento_cnes              String?   @db.VarChar(30)
+  estabelecimento_nome              String?   @db.VarChar(500)
+  equipe_ine                        String?   @db.VarChar(30)
+  ine_master                        String?
+  equipe_nome                       String?
+  id_status_usuario                 Int?
+  id_faixa_etaria                   Int?
+  criacao_data                      DateTime? @db.Timestamptz(6)
+  atualizacao_data                  DateTime? @db.Timestamptz(6)
+  dt_registro_producao_mais_recente DateTime? @db.Date
+  id                                Int       @id(map: "teste_painel_citopatologico_lista_nominal_pk") @default(autoincrement())
+
+  @@schema("impulso_previne_dados_nominais")
+}
+
+model teste_painel_gestantes_lista_nominal {
+  chave_id_gestacao                               String    @id(map: "teste_painel_gestantes_lista_nominal_pk") @db.VarChar(500)
+  municipio_id_sus                                String?   @db.Char(6)
+  equipe_ine                                      String?   @db.VarChar(20)
+  equipe_nome                                     String?   @db.VarChar(500)
+  cidadao_nome                                    String?   @db.VarChar(500)
+  cidadao_cpf_dt_nascimento                       String?   @db.VarChar(50)
+  gestacao_data_dpp                               String?   @db.VarChar(30)
+  gestacao_quadrimestre                           String?   @db.VarChar(30)
+  gestacao_idade_gestacional_atual                String?   @db.VarChar(10)
+  gestacao_idade_gestacional_primeiro_atendimento String?   @db.VarChar(10)
+  consulta_prenatal_ultima_data                   DateTime? @db.Date
+  consultas_pre_natal_validas                     String?   @db.VarChar(10)
+  id_atendimento_odontologico                     Int?
+  id_exame_hiv_sifilis                            Int?
+  id_status_usuario                               Int?
+  id_registro_parto                               Int?
+  id_registro_aborto                              Int?
+  acs_nome                                        String?   @db.VarChar(500)
+  atualizacao_data                                DateTime? @db.Date
+  criacao_data                                    DateTime? @db.Date
+  municipio_uf                                    String?   @db.VarChar(100)
+  dt_registro_producao_mais_recente               DateTime? @db.Date
+
+  @@schema("impulso_previne_dados_nominais")
+}
+
+model cores_datas_vacinacao {
+  id_cor_dose                                                                                             Int                              @id(map: "cores_datas_vacinacao_pk")
+  cor_descricao                                                                                           String?                          @db.VarChar(50)
+  criacao_data                                                                                            DateTime?                        @db.Date
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_1dose_polioTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_1dose_polioTocores_datas_vacinacao") @ignore
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_2dose_polioTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_2dose_polioTocores_datas_vacinacao") @ignore
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_3dose_polioTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_3dose_polioTocores_datas_vacinacao") @ignore
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_1dose_pentaTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_1dose_pentaTocores_datas_vacinacao") @ignore
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_2dose_pentaTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_2dose_pentaTocores_datas_vacinacao") @ignore
+  painel_vacinacao_lista_nominal_painel_vacinacao_lista_nominal_id_cor_3dose_pentaTocores_datas_vacinacao painel_vacinacao_lista_nominal[] @relation("painel_vacinacao_lista_nominal_id_cor_3dose_pentaTocores_datas_vacinacao") @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model diagnosticos {
+  id_tipo_de_diagnostico           Int                                @id(map: "diagnosticos_pk") @default(autoincrement())
+  tipo_de_diagnostico_descricao    String?                            @db.VarChar(20)
+  atualizacao_data                 DateTime?                          @default(dbgenerated("CURRENT_DATE")) @db.Timestamptz(6)
+  painel_diabeticos                painel_diabeticos[]                @ignore
+  painel_diabeticos_lista_nominal  painel_diabeticos_lista_nominal[]  @ignore
+  painel_hipertensos               painel_hipertensos[]               @ignore
+  painel_hipertensos_lista_nominal painel_hipertensos_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model faixa_etarias {
+  id_faixa_etaria                     Int                                                                    @id(map: "faixa_etaria_pk") @default(autoincrement())
+  faixa_etaria_descricao              String?                                                                @db.VarChar(20)
+  atualizacao_data                    DateTime?                                                              @default(dbgenerated("CURRENT_DATE")) @db.Timestamptz(6)
+  painel_citopatologico_lista_nominal impulso_previne_dados_nominais___painel_citopatologico_lista_nominal[] @ignore
+  painel_diabeticos                   painel_diabeticos[]                                                    @ignore
+  painel_diabeticos_lista_nominal     painel_diabeticos_lista_nominal[]                                      @ignore
+  painel_hipertensos                  painel_hipertensos[]                                                   @ignore
+  painel_hipertensos_lista_nominal    painel_hipertensos_lista_nominal[]                                     @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model identificacao_atendimento_odontologico {
+  id_atendimento_odontologico        Int                              @id(map: "id_atendimento_odontologico_pk") @default(autoincrement())
+  atendimento_odontologico_descricao String?                          @db.VarChar(3)
+  atualizacao_data                   DateTime?                        @default(now()) @db.Timestamptz(6)
+  criacao_data                       DateTime?                        @default(now()) @db.Timestamptz(6)
+  painel_gestantes_lista_nominal     painel_gestantes_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model identificacao_exame_hiv_sifilis {
+  id_exame_hiv_sifilis           Int                              @id(map: "id_exame_hiv_sifilis_pk") @default(autoincrement())
+  exame_hiv_sifilis_descricao    String?                          @db.VarChar(50)
+  atualizacao_data               DateTime?                        @default(now()) @db.Timestamptz(6)
+  criacao_data                   DateTime?                        @default(now()) @db.Timestamptz(6)
+  painel_gestantes_lista_nominal painel_gestantes_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model municipios {
+  id_ibge                             String?                                                                @unique(map: "municipios_id_ibge_un") @db.Char(7)
+  id_sus                              String?                                                                @unique(map: "municipios_id_sus_un") @db.Char(6)
+  id_tse                              String?                                                                @db.VarChar(5)
+  id_rfb                              String?                                                                @db.VarChar(5)
+  id_bacen                            String?                                                                @db.VarChar(5)
+  nome                                String?
+  eh_capital_uf                       Boolean?
+  comarca_id_judiciario               String?                                                                @db.Char(7)
+  regiao_saude_id                     String?                                                                @db.Char(5)
+  regiao_saude_nome                   String?
+  regiao_imediata_id_ibge             String?                                                                @db.Char(6)
+  regiao_imediata_nome                String?
+  regiao_intermediaria_id_ibge        String?                                                                @db.Char(4)
+  regiao_intermediaria_nome           String?
+  microrregiao_id_ibge                String?                                                                @db.Char(5)
+  microrregiao_nome                   String?
+  mesorregiao_id_ibge                 String?                                                                @db.Char(4)
+  mesorregiao_nome                    String?
+  ddd                                 String?                                                                @db.Char(2)
+  uf_id_ibge                          String?                                                                @db.Char(2)
+  uf_sigla                            String?                                                                @db.Char(2)
+  uf_nome                             String?
+  macrorregiao_nome                   String?
+  macrorregiao_id_ibge                String?                                                                @db.Char(1)
+  id                                  String                                                                 @id(map: "municipios_pk") @db.Uuid
+  uf_id                               String                                                                 @db.Uuid
+  painel_citopatologico_lista_nominal impulso_previne_dados_nominais___painel_citopatologico_lista_nominal[] @ignore
+  painel_diabeticos                   painel_diabeticos[]                                                    @ignore
+  painel_diabeticos_lista_nominal     painel_diabeticos_lista_nominal[]                                      @ignore
+  painel_gestantes_lista_nominal      painel_gestantes_lista_nominal[]                                       @ignore
+  painel_hipertensos                  painel_hipertensos[]                                                   @ignore
+  painel_hipertensos_lista_nominal    painel_hipertensos_lista_nominal[]                                     @ignore
+  painel_vacinacao_lista_nominal      painel_vacinacao_lista_nominal[]                                       @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model periodos {
+  id               String             @id(map: "periodos_pk") @db.Uuid
+  data_inicio      DateTime           @db.Date
+  data_fim         DateTime           @db.Date
+  codigo           String             @unique(map: "periodos_un") @db.VarChar(15)
+  tipo             String             @db.VarChar(25)
+  painel_gestantes painel_gestantes[] @ignore
+
+  @@index([data_inicio, data_fim, tipo], map: "periodos_data_inicio_idx")
+  @@schema("listas_de_codigos")
+}
+
+model quadrimestre_status {
+  id_status_quadrimestre         Int                              @id(map: "quadrimestre_status_pk")
+  status_descricao               String                           @db.VarChar(50)
+  criacao_data                   DateTime                         @db.Date
+  painel_vacinacao_lista_nominal painel_vacinacao_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model registro_aborto {
+  id_registro_aborto             Int                              @id(map: "id_registro_aborto_pk") @default(autoincrement())
+  registro_aborto_descricao      String?                          @db.Char(3)
+  atualizacao_data               DateTime?                        @default(now()) @db.Timestamptz(6)
+  criacao_data                   DateTime?                        @default(now()) @db.Timestamptz(6)
+  painel_gestantes_lista_nominal painel_gestantes_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model registro_parto {
+  id_registro_parto              Int                              @id(map: "id_registro_parto_pk") @default(autoincrement())
+  registro_parto_descricao       String?                          @db.Char(3)
+  atualizacao_data               DateTime?                        @default(now()) @db.Timestamptz(6)
+  criacao_data                   DateTime?                        @default(now()) @db.Timestamptz(6)
+  painel_gestantes_lista_nominal painel_gestantes_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model sinalizacao_erro_registro {
+  id_erro_registro        Int       @id(map: "id_erro_registro_pk") @default(autoincrement())
+  erro_registro_descricao String?   @db.VarChar(50)
+  atualizacao_data        DateTime? @default(now()) @db.Timestamptz(6)
+  criacao_data            DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@schema("listas_de_codigos")
+}
+
+model status_acompanhamento_usuario {
+  id_status_usuario                   Int                                                                    @id(map: "status_acompanhamento_usuario_pk") @default(autoincrement())
+  status_usuario_descricao            String?                                                                @db.VarChar(50)
+  atualizacao_data                    DateTime?                                                              @default(dbgenerated("CURRENT_DATE")) @db.Timestamptz(6)
+  painel_citopatologico_lista_nominal impulso_previne_dados_nominais___painel_citopatologico_lista_nominal[] @ignore
+  painel_diabeticos                   painel_diabeticos[]                                                    @ignore
+  painel_diabeticos_lista_nominal     painel_diabeticos_lista_nominal[]                                      @ignore
+  painel_gestantes                    painel_gestantes[]                                                     @ignore
+  painel_gestantes_lista_nominal      painel_gestantes_lista_nominal[]                                       @ignore
+  painel_hipertensos                  painel_hipertensos[]                                                   @ignore
+  painel_hipertensos_lista_nominal    painel_hipertensos_lista_nominal[]                                     @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model vacinacao_status_penta {
+  id_status_penta                Int                              @id(map: "vacinacao_status_penta_pk")
+  status_descricao               String                           @db.VarChar(50)
+  criacao_data                   DateTime                         @db.Date
+  painel_vacinacao_lista_nominal painel_vacinacao_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}
+
+model vacinacao_status_polio {
+  id_status_polio                Int                              @id(map: "vacinacao_status_polio_pk")
+  status_descricao               String                           @db.VarChar(50)
+  criacao_data                   DateTime                         @db.Date
+  painel_vacinacao_lista_nominal painel_vacinacao_lista_nominal[] @ignore
+
+  @@schema("listas_de_codigos")
+}

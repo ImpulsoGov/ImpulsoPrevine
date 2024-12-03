@@ -25,6 +25,9 @@
       "@helpers/*": ["./src/helpers/*"],
       "@utils/*": ["./src/utils/*"],
       "@constants/*": ["./src/constants/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@prisma/*": ["./prisma/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/global.d.ts"],

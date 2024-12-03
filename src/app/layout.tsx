@@ -1,13 +1,6 @@
 import "./globals.css";
-import localFont from "next/font/local";
 import { Base } from "./Base";
 import { SessionWrapperLayout } from "./SessionWrapperLayout";
-
-const geistInter = localFont({
-  src: "./fonts/Inter-Regular.woff",
-  variable: "--font-geist-inter",
-  weight: "400",
-});
 
 export default function RootLayout({
   children,
@@ -16,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${geistInter.variable}`}>
+      <body>
         <SessionWrapperLayout>
           <Base>
             {children}
