@@ -194,6 +194,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             "card_action": "enviar_feedback_novidade",
             "card_page": "pg_inicio",
           })}
+          backgroundColor='#8F9BA3'
         />
       ]}
     />
