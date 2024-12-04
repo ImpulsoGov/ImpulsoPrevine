@@ -27,7 +27,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               alt: "Ícone de um estômago",
             }}
             titulo="Diabetes"
-            descricao="Cidadãos que possuem a condição e o status de consulta e solicitação de hemoblogina."
+            descricao="Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina."
             height="50%"
             link={{
               url: "/busca-ativa/diabeticos",
@@ -123,7 +123,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
               alt: "Ícone de um carrinho de bebê",
             }}
             titulo="Pré-Natal"
-            descricao="Considera o status dos exames de sífilis e HIV, atendimento odontológico e número de consultas das getantes."
+            descricao="Considera o status dos exames de sífilis e HIV, atendimento odontológico e número de consultas das gestantes."
             link={{
               url: "/busca-ativa/gestantes",
               newTab: false
