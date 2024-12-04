@@ -36,6 +36,7 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.0",
     "@types/dompurify": "^3.0.5",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/mixpanel-browser": "^2.50.0",
