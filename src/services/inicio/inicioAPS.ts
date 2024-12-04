@@ -2,8 +2,6 @@ import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
 export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=>{
-    console.log("&&&&&&&", baseURL());
-    
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
@@ -15,8 +13,7 @@ export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=
       
     const res = axios.request(config)
     .then((response) => {
-      // console.log("&&&&&&&&", response);
-    return response;
+    return response.data;
     })
     .catch((error) => {
     console.log((error as Error).message)
