@@ -13,11 +13,11 @@ import style from './Inicio.module.css';
 
 export const Inicio : React.FC<InicioProps> = ({
     cargo,
-    situacaoPorIndicador,
+    situacaoPorIndicador = null,
 }) => {
     const { data: session } = useSession()
 
-    if (session) {
+    if (session && situacaoPorIndicador) {
         return (
             <div className={style.Container}>
                 <div className={style.GreetingContainer}>

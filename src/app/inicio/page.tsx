@@ -5,10 +5,12 @@ import { Inicio } from './Inicio'
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituacaoPorIndicadores';
+import { SituacaoPorIndicador } from '@/types/inicio';
+import Link from 'next/link';
 
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
-    let situacaoIndicadores;
+    let situacaoIndicadores = [];
 
     if (!session || !session.user) return <p>Usuário não autenticado</p>;
 
@@ -21,9 +23,11 @@ const InicioPage = async() => {
     }
 
     const cargo = cargoTransform(session.user.cargo);
-    const situacaoPorIndicador = unificarSituacaoPorIndicadores(situacaoIndicadores);
+    const situacaoPorIndicador: SituacaoPorIndicador = await unificarSituacaoPorIndicadores(situacaoIndicadores);
 
-    return <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} />
+    return situacaoIndicadores.length > 0 ?
+    <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} /> :
+    <p style={{margin: "120px", display: "flex", justifyContent: "center", alignItems: "center" }}>Erro ao buscar dados, entre em contato com o <Link href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente" style={{ color: '#1E8E76', marginLeft: "5px", textDecoration: "underline"}}>suporte</Link> </p>
 }
 
 export default InicioPage;

@@ -4,7 +4,7 @@ import {
   SituacaoPorIndicador,
 } from "@/types/inicio";
 
-export const unificarSituacaoPorIndicadores = (situacaoIndicadores: SituacaoIndicador[]) => {
+export const unificarSituacaoPorIndicadores = async (situacaoIndicadores: SituacaoIndicador[]) => {
   return situacaoIndicadores.reduce<SituacaoPorIndicador>((acc, situacao) => {
     if (!acc[situacao.indicador]) {
       acc[situacao.indicador] = {
