@@ -4,12 +4,10 @@ import { ListConteiner } from "./ListConteiner";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
 
 export type ListaNominalProps = {
-    session: Session | null;
     data: Record<string, string | number | Date>[];
 }
 
 export const ListaNominal = ({ 
-    session,
     data 
 }: ListaNominalProps) => {
     const selectorProps = {

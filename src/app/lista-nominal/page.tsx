@@ -46,6 +46,6 @@ const ListaNominalPage = async() => {
             acs_nome_cadastro: 'ACS 3'
         }
     ] }
-    return <ListaNominal session={session} data={data.data as Record<string, string | number | Date>[]}/>
+    return <ListaNominal data={data.data as Record<string, string | number | Date>[]}/>
 }
 export default ListaNominalPage;
