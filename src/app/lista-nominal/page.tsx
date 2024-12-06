@@ -1,4 +1,4 @@
-import { getListData } from "@services/lista-nominal/ListaNominal";
+// import { getListData } from "@services/lista-nominal/ListaNominal";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
