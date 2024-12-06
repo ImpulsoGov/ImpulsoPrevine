@@ -1,12 +1,10 @@
 import { withSentryConfig } from '@sentry/nextjs';
-import transpileModules from 'next-transpile-modules';
-
-const withTM = transpileModules(['@impulsogov/design-system', 'echarts']);
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withTM({
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ['@impulsogov/design-system', 'echarts'],
   redirects: async () => {
     return [
       {
@@ -27,6 +25,7 @@ const nextConfig = withTM({
     ];
   },
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -35,7 +34,7 @@ const nextConfig = withTM({
       },
     ],
   },
-});
+};
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:

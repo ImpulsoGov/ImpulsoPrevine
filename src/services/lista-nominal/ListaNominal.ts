@@ -1,50 +1,50 @@
 import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
-export type Ordenacao = {
+export type Sorting = {
     campo: string;
     ordem: string;
 }[];
 
-export type Filtros = {
+export type Filters = {
     campo: string;
     valor: string[];
 }[];
 
-const addParams = (url: string, ordenacao?: Ordenacao, filtros?: Filtros) => {
+const addParams = (url: string, sorting?: Sorting, filters?: Filters) => {
     // Adiciona parâmetros de ordenação à URL
-    if (ordenacao && ordenacao.length > 0) {
-        const ordenacaoParams = ordenacao.map(o => `ordenacao[${o.campo}]=${o.ordem}`).join('&');
-        url += `?${ordenacaoParams}`;
+    if (sorting && sorting.length > 0) {
+        const sortingParams = sorting.map(o => `ordenacao[${o.campo}]=${o.ordem}`).join('&');
+        url += `?${sortingParams}`;
     }
     // Adiciona parâmetros de filtros à URL
-    if (filtros && filtros.length > 0) {
-        const filtrosParams = filtros.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
-        url += ordenacao && ordenacao.length > 0 ? `&${filtrosParams}` : `?${filtrosParams}`;
+    if (filters && filters.length > 0) {
+        const filtersParams = filters.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
+        url += sorting && sorting.length > 0 ? `&${filtersParams}` : `?${filtersParams}`;
     }
     return url;
 };
 
-type DadosProps = {
+export type getListDataProps = {
     municipio_id_sus: string;
     token: string;
-    lista: string;
-    ordenacao?: Ordenacao;
-    filtros?: Filtros;
-    equipe?: string;
+    list: string;
+    sorting?: Sorting;
+    filters?: Filters;
+    ine?: string;
 };
 
-export const buscarDadosLista = async ({
+export const getListData = async ({
     municipio_id_sus,
     token,
-    lista,
-    ordenacao,
-    filtros,
-    equipe
-}: DadosProps) => {
-    let url = `${baseURL()}/lista-nominal/${lista}/${municipio_id_sus}`;
-    if (equipe) url += `/${equipe}`;
-    const urlWithParams = addParams(url, ordenacao, filtros);
+    list,
+    sorting,
+    filters,
+    ine
+}: getListDataProps) => {
+    let url = `${baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
+    if (ine) url += `/${ine}`;
+    const urlWithParams = addParams(url, sorting, filters);
     const config = {
         method: 'get',
         maxBodyLength: Infinity,

@@ -1,8 +1,9 @@
+'use client'
 import type { Session } from "next-auth";
 import { ListConteiner } from "./ListConteiner";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
 
-type ListaNominalProps = {
+export type ListaNominalProps = {
     session: Session | null;
     data: Record<string, string | number | Date>[];
 }
@@ -100,12 +101,13 @@ export const ListaNominal = ({
         },
         children: [
           [
-            <div>Gráficos</div>,
+            <div style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
+            <div style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
           ],
           [
-            <div>content 2.1</div>,
-            <div>content 2.2</div>,
-            <div>content 2.3</div>,
+            <ListConteiner data={data}/>,
+            <ListConteiner data={data}/>,
+            <ListConteiner data={data}/>,
           ],
     
       ]
