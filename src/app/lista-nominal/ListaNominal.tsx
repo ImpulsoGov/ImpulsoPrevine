@@ -103,9 +103,9 @@ export const ListaNominal = ({
             <div style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
           ],
           [
-            <ListConteiner data={data}/>,
-            <ListConteiner data={data}/>,
-            <ListConteiner data={data}/>,
+            <ListConteiner key={1} data={data}/>,
+            <ListConteiner key={2} data={data}/>,
+            <ListConteiner key={3} data={data}/>,
           ],
     
       ]

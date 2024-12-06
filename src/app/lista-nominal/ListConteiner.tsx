@@ -1,9 +1,6 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
 import { useState } from 'react';
-import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
-import { Tag, type TagTheme } from '@impulsogov/design-system/dist/molecules/Tag';
-import { Icon, Text } from '@impulsogov/design-system';
-import { IconDetailsMap } from '@impulsogov/design-system';
+import type { GridColDef } from '@mui/x-data-grid';
 
 //dados mockados essa parte do código será substituída por uma chamada a API
 const ManyFiltersData = [
@@ -67,39 +64,6 @@ const cards = [
     },
 
 ]
-
-interface TagCellParams extends GridRenderCellParams {
-    value: {
-        theme?: TagTheme;
-        text: string;
-    };
-}
-
-function TableTagWithIconAndText({
-    theme,
-    text,
-    icon: { src, alt }
-}: {
-    theme: TagTheme;
-    text: string;
-    icon: {
-        src: string;
-        alt: string;
-    };
-}) {
-    return (
-        <Tag theme={theme}>
-            <Icon
-                width={12}
-                height={12}
-                src={src}
-                alt={alt}
-            />
-            <Text>{text}</Text>
-        </Tag>
-    );
-}
-
 export const columns = [
     {
         field: 'nome',
