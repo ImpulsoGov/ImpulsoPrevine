@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@chromatic-com/playwright";
 
 test.describe('Home', () => {
   test('deve exibir o modal de divulgação do webnar', async ({ page }) => {
