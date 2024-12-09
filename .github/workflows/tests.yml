@@ -6,8 +6,8 @@ jobs:
   playwright:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.49.0-jammy
+    # container:
+    #   image: mcr.microsoft.com/playwright:v1.49.0-jammy
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm install -g yarn && yarn install --frozen-lockfile
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: yarn playwright install --with-deps
       - name: Run Playwright tests
         run: DEBUG=pw:webserver yarn playwright test
         env:
