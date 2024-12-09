@@ -9,7 +9,7 @@ export type ListaNominalProps = {
 export const ListaNominal = ({ 
     data 
 }: ListaNominalProps) => {
-    //esses dados vao vir da API do CMS, com exceção do data que é passado por props
+    //esses dados vao vir da API do CMS, com exceção do data e children que é passado por props
     const selectorProps = {
         breadcrumb: [
           {
