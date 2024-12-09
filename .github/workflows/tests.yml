@@ -4,6 +4,7 @@ on: push
 
 jobs:
   playwright:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.49.0-jammy
@@ -16,8 +17,6 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm install -g yarn && yarn install --frozen-lockfile
-      - name: Start application
-        run: yarn build && yarn start
       - name: Run Playwright tests
         run: yarn playwright test
         env:
