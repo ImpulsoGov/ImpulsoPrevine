@@ -41,6 +41,7 @@ const ManyFiltersData = [
         width: '240px',
     },
 ]
+//dados mockados essa parte do código será substituída por uma chamada a API
 const cards = [
     {
         value: '100',
@@ -64,6 +65,7 @@ const cards = [
     },
 
 ]
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns = [
     {
         field: 'nome',
