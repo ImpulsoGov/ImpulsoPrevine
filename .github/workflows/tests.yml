@@ -20,7 +20,8 @@ jobs:
       - name: Run Playwright tests
         run: yarn playwright test
         env:
-          HOME: /root
+          ENV: dev
+          # HOME: /root
       - uses: actions/upload-artifact@v4
         if: always()
         with:
