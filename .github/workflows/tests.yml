@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm install -g yarn && yarn install --frozen-lockfile
       - name: Run Playwright tests
-        run: yarn playwright test
+        run: DEBUG=pw:webserver yarn playwright test
         env:
           ENV: dev
           # HOME: /root

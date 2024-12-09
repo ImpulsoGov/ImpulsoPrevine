@@ -75,6 +75,6 @@ export default defineConfig({
     command: 'yarn build && yarn start',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 15 * 60 * 1000,
+    timeout: 10 * 60 * 1000,
   },
 });
