@@ -19,8 +19,22 @@ jobs:
         run: npm install -g yarn && yarn install --frozen-lockfile
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
+      - name: Get Vercel Preview URL
+        id: get-vercel-url
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}
+
+          DEPLOY_URL=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$BRANCH_NAME" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" | jq -r '.deployments[] | select(.state == "READY") | .url' | head -n 1)
+
+          if [ -z "$DEPLOY_URL" ]; then
+            echo "Error: No Vercel deployment found for branch '$BRANCH_NAME'."
+            exit 1
+          fi
+
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       - name: Run Playwright tests
-        run: DEBUG=pw:webserver yarn playwright test
+        run: DEBUG=pw:webserver yarn playwright test --base-url=https://$DEPLOY_URL
         env:
           ENV: dev
           # HOME: /root
