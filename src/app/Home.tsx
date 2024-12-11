@@ -54,7 +54,7 @@ export const Home = () => {
               items={ [
                 <TituloSmallTexto
                   key="municipio_parceiro"
-                  botao={{label: 'SER MUNICÍPIO PARCEIRO',url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true'}}
+                  botao={{label: 'SER MUNICÍPIO PARCEIRO',url: 'https://bit.ly/interesse-apoio-IP'}}
                   imagem={{posicao: null,url: ''}}
                   supertitulo="<b>Mentorias exclusivas</b>"
                   titulo=""
