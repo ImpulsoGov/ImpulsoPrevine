@@ -169,7 +169,7 @@ export const QuemSomos : React.FC<QuemSomosProps>= ({
               <>
                 <div style={{ textAlign: 'center' }}>
                   <TituloSmallTexto
-                    botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://docs.google.com/forms/d/e/1FAIpQLSce3dYZO3tdRmNq-Oy8Z_0IFu5RXtwDDsSw6BXLaWx7BBfv_Q/viewform?embedded=true' }}
+                    botao={{ label: 'INSCRIÇÃO NA CONSULTORIA', url: 'https://bit.ly/interesse-apoio-IP' }}
                     imagem={{}}
                     supertitulo=""
                     titulo=""
