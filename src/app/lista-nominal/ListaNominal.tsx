@@ -3,11 +3,15 @@ import { ListConteiner } from "./ListConteiner";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
 
 export type ListaNominalProps = {
-    data: Record<string, string | number | Date>[];
+  data?: {
+    data?: Record<string, string | number | Date | Record<string, string | null>>[];
+    totalRows?: number;
+  };
 }
 
 export const ListaNominal = ({ 
-    data 
+    data,
+    // totalRows,
 }: ListaNominalProps) => {
     //esses dados vao vir da API do CMS, com exceção do data e children que é passado por props
     const selectorProps = {
@@ -103,9 +107,9 @@ export const ListaNominal = ({
             <div key="1b" style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
           ],
           [
-            <ListConteiner key={1} data={data}/>,
-            <ListConteiner key={2} data={data}/>,
-            <ListConteiner key={3} data={data}/>,
+            <ListConteiner key={1} data={data} />,
+            <ListConteiner key={2} data={data} />,
+            <ListConteiner key={3} data={data} />,
           ],
     
       ]

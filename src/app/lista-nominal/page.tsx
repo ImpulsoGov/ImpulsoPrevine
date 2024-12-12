@@ -19,33 +19,195 @@ const ListaNominalPage = async() => {
             nome: 'Nome 1',
             cpf: '123.456.789-00',
             identificacao_condicao: 'Condição 1',
-            dt_consulta_mais_recente: '2023-01-01',
-            prazo_proxima_consulta: '2023-06-01',
-            dt_afericao_pressao_mais_recente: '2023-02-01',
-            prazo_proxima_afericao_pa: '2023-07-01',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Em dia",
+                theme: "success"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Em dia",
+                theme: "success"
+            },
             acs_nome_cadastro: 'ACS 1'
         },
         {
             nome: 'Nome 2',
             cpf: '123.456.789-01',
             identificacao_condicao: 'Condição 2',
-            dt_consulta_mais_recente: '2023-01-02',
-            prazo_proxima_consulta: '2023-06-02',
-            dt_afericao_pressao_mais_recente: '2023-02-02',
-            prazo_proxima_afericao_pa: '2023-07-02',
+            dt_consulta_mais_recente: {
+                text: "22/09/21",
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
             acs_nome_cadastro: 'ACS 2'
         },
         {
             nome: 'Nome 3',
             cpf: '123.456.789-02',
             identificacao_condicao: 'Condição 3',
-            dt_consulta_mais_recente: '2023-01-03',
-            prazo_proxima_consulta: '2023-06-03',
-            dt_afericao_pressao_mais_recente: '2023-02-03',
-            prazo_proxima_afericao_pa: '2023-07-03',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 3'
+        },
+        {
+            nome: 'Nome 4',
+            cpf: '123.456.789-00',
+            identificacao_condicao: 'Condição 1',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 1'
+        },
+        {
+            nome: 'Nome 5',
+            cpf: '123.456.789-01',
+            identificacao_condicao: 'Condição 2',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 2'
+        },
+        {
+            nome: 'Nome 6',
+            cpf: '123.456.789-02',
+            identificacao_condicao: 'Condição 3',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 3'
+        },
+        {
+            nome: 'Nome 7',
+            cpf: '123.456.789-00',
+            identificacao_condicao: 'Condição 1',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 1'
+        },
+        {
+            nome: 'Nome 8',
+            cpf: '123.456.789-01',
+            identificacao_condicao: 'Condição 2',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
+            acs_nome_cadastro: 'ACS 2'
+        },
+        {
+            nome: 'Nome 9',
+            cpf: '123.456.789-02',
+            identificacao_condicao: 'Condição 3',
+            dt_consulta_mais_recente: {
+                text: null,
+                theme: "pending"
+            },
+            prazo_proxima_consulta: {
+                text: "Até 30/04/23",
+                theme: "warning"
+            },
+            dt_afericao_pressao_mais_recente: {
+                text: "22/02/21",
+            },
+            prazo_proxima_afericao_pa: {
+                text: "Até 30/04/23",
+                theme: "success"
+            },
             acs_nome_cadastro: 'ACS 3'
         }
-    ] }
-    return <ListaNominal data={data.data as Record<string, string | number | Date>[]}/>
+    ], totalRows: 9}
+    return <ListaNominal
+        data={data as {data: Record<string, string | number | Date | Record<string, string | null>>[], totalRows: number}}
+        // totalRows={data.totalRows}
+    />
 }
 export default ListaNominalPage;

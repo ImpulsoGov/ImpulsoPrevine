@@ -1,6 +1,8 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
-import { useState } from 'react';
-import type { GridColDef } from '@mui/x-data-grid';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
+import { useEffect, useState } from 'react';
+import type { GridColDef, GridRenderCellParams, GridPaginationModel } from '@mui/x-data-grid';
+import { TableTag, type TagTheme } from '@componentes/mounted/TableTag';
+import { paginateArray } from '@/utils/paginacao';
 
 //dados mockados essa parte do código será substituída por uma chamada a API
 const ManyFiltersData = [
@@ -65,6 +67,39 @@ const cards = [
     },
 
 ]
+
+type IconDetails = {
+    src: string;
+    alt: string;
+};
+
+// Informações quedevem vir do CMS
+const IconDetailsMap: Record<string, IconDetails> = {
+    danger: {
+        src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
+        alt: 'Ícone com símbolo da letra x',
+    },
+    warning: {
+        src: 'https://media.graphassets.com/o0OkjNboRCqy2bYrRNnb',
+        alt: 'Ícone de uma exclamação',
+    },
+    success: {
+        src: 'https://media.graphassets.com/4qKuRCxHSySL23zxLd9b',
+        alt: 'Ícone de uma marca de verificação',
+    },
+    pending: {
+        src: 'https://media.graphassets.com/IdqIxy4LQAeIZfe9hWZK',
+        alt: 'Ícone de uma ampulheta',
+    },
+};
+
+interface RenderCellParamsTagColumn extends GridRenderCellParams {
+    value: {
+        theme?: TagTheme;
+        text: string;
+    };
+}
+
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns = [
     {
@@ -94,6 +129,26 @@ export const columns = [
         width: 180,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }: RenderCellParamsTagColumn) {
+            const { theme, text } = value;
+            return(
+                <>
+                    {!text && theme
+                        ? (
+                            <TableTag
+                                theme={theme}
+                                text="Não realizada"
+                                icon={{
+                                    src: IconDetailsMap[theme].src,
+                                    alt: IconDetailsMap[theme].alt
+                                }}
+                            />
+                        )
+                        : text
+                    }
+                </>
+            )
+        },
     },
     {
         field: 'prazo_proxima_consulta',
@@ -101,6 +156,19 @@ export const columns = [
         width: 180 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }: RenderCellParamsTagColumn) {
+            const { theme = "danger", text } = value;
+            return(
+                <TableTag
+                    theme={theme}
+                    text={text}
+                    icon={{
+                        src: IconDetailsMap[theme].src,
+                        alt: IconDetailsMap[theme].alt
+                    }}
+                />
+            )
+        },
     },
     {
         field: 'dt_afericao_pressao_mais_recente',
@@ -108,6 +176,26 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }: RenderCellParamsTagColumn) {
+            const { theme, text } = value;
+            return(
+                <>
+                    {!text && theme
+                        ? (
+                            <TableTag
+                                theme={theme}
+                                text="Não realizada"
+                                icon={{
+                                    src: IconDetailsMap[theme].src,
+                                    alt: IconDetailsMap[theme].alt
+                                }}
+                            />
+                        )
+                        : text
+                    }
+                </>
+            )
+        },
     },
     {
         field: 'prazo_proxima_afericao_pa',
@@ -115,6 +203,19 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }: RenderCellParamsTagColumn) {
+            const { theme = "danger", text } = value;
+            return(
+                <TableTag
+                    theme={theme}
+                    text={text}
+                    icon={{
+                        src: IconDetailsMap[theme].src,
+                        alt: IconDetailsMap[theme].alt
+                    }}
+                />
+            )
+        },
     },
     {
         field: 'acs_nome_cadastro',
@@ -133,12 +234,61 @@ interface Filter {
     width: string;
 }
 
-export const ListConteiner = ({data} : any) => {
+type ListDataRows = Record<string, string | number | Date | Record<string, string | null | undefined>>[];
+type ListDataTotalRows = number;
+type ListData = {
+    data: ListDataRows;
+    totalRows: ListDataTotalRows;
+  };
+
+interface ListConteinerProps {
+    data?: ListData;
+}
+
+export const ListConteiner = ({data}: ListConteinerProps) => {
     const [value, setValue] = useState<Record<string, string | string[]>>({
         filter1 : [],
         filter2 : [],
         filter3 : "",
     });
+    const [tableData, setTableData] = useState<ListData>(data ?? {
+        data: [],
+        totalRows: 0,
+    });
+    // const [rowCount, setRowCount] = useState<ListDataTotalRows>(data?.totalRows ?? 0);
+    const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
+        page: 0,
+        pageSize: 8,
+    });
+    // const [sortModel, setSortModel] = useState<GridSortModel>({
+    //     field: 'nome',
+    //     sort: 'asc'
+    // });
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            const requestData = await paginateArray(paginationModel.page, paginationModel.pageSize);
+            setTableData({
+                data: requestData.data,
+                totalRows: requestData.totalRows,
+            });
+            setIsLoading(false);
+        };
+        // Aqui seria feita a chamada a API para buscar os dados da tabela
+        // e atualizar o estado tableData
+        fetchData();
+    }, [paginationModel.page, paginationModel.pageSize]);
+
+    // useEffect(() => {
+    //     setRowCount((prevRowCount) =>
+    //         tableData?.totalRows !== undefined
+    //         ? tableData?.totalRows
+    //         : prevRowCount,
+    //     );
+    // }, [tableData?.totalRows, setRowCount]);
+
     const clearFiltersArgs = {
         iconActive : "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
         iconInactive : "https://media.graphassets.com/x37RkcUrTH6G50ganj9d",
@@ -162,10 +312,22 @@ export const ListConteiner = ({data} : any) => {
         <p style={{fontSize: "26px"}}>Titulo do Painel</p>
         <CardGrid cards={cards}/>
         <FilterBar filters={filters} clearButton={clearButton}/>
-        <Table     
-            columns={columns}
-            data={data}
-            rowHeight={60}
-        />
+        {isLoading
+            ? <Spinner />
+            : (
+                <Table
+                    columns={columns}
+                    data={tableData.data}
+                    rowHeight={60}
+                    paginationMode="server"
+                    sortingMode="server"
+                    rowCount={tableData.totalRows}
+                    paginationModel={paginationModel}
+                    onPaginationModelChange={setPaginationModel}
+                    // onSortModelChange={handleSortModelChange}
+                    isLoading={isLoading}
+                />
+            )
+        }
     </div>;
 }
