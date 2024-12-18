@@ -1,114 +1,61 @@
 'use client'
-import { ListConteiner } from "./ListConteiner";
+import { ListConteiner } from "./ListContainer";
+import { ChartsContainer } from "./ChartsContainer";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
+import type { PanelSelectorWithCardsProps, subTabsWithChildrenProps } from '@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards';
+import { subTabChildrenSelector } from '@utils/subTabChildrenSelector';
 
-export type ListaNominalProps = {
-    data: Record<string, string | number | Date>[];
+export type ExtendedsubTabsWithChildrenAndChildrenDataProps = subTabsWithChildrenProps & {
+  child?: React.ReactNode; // Tornando child opcional
+  title: string;
 }
 
+export type ExtendedPanelSelectorWithCardsProps = Omit<PanelSelectorWithCardsProps, 'tabs'> & {
+  tabs: Record<string, {
+    title: string;
+    tabID: string;
+    subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
+  }>;
+};
+
+export type ListaNominalProps = {
+  selectorProps: ExtendedPanelSelectorWithCardsProps;
+}
+
+const SubTabChildrenID: Record<string, React.ComponentType<{ subTabID: string, title: string }>> = {
+  'ChartChildID1': ChartsContainer,
+  'ListChildID1': ListConteiner,
+};
+
+//Essa informação vai vir do CMS
+const SubTabChildren: Record<string, string> = {
+  'ChartSubTabID1': 'ChartChildID1',
+  'ChartSubTabID2': 'ChartChildID1',
+  'subTabID1': 'ListChildID1',
+  'subTabID2': 'ListChildID1',
+  'subTabID3': 'ListChildID1',
+};
+
 export const ListaNominal = ({ 
-    data 
+  selectorProps,
 }: ListaNominalProps) => {
-    //esses dados vao vir da API do CMS, com exceção do data e children que é passado por props
-    const selectorProps = {
-        breadcrumb: [
+  const childrenComponents = subTabChildrenSelector(selectorProps, SubTabChildrenID, SubTabChildren);
+  console.log(childrenComponents)
+  return (
+    <PanelSelectorWithCards 
+      {...selectorProps} 
+      tabs={Object.fromEntries(
+        Object.entries(selectorProps.tabs).map(([key, tab]) => [
+          key,
           {
-            label: 'Inicio',
-            link: '/inicio'
-          },
-          {
-            label: 'Pré-natal (indicadores 1, 2 e 3)',
-            link: '/lista=pre-natal'
+            ...tab,
+            subTabs: tab.subTabs.map(subTab => ({
+              ...subTab,
+              child: childrenComponents[subTab.subTabID]
+            }))
           }
-        ],
-        municipio: 'São Paulo - SP',
-        titulo: 'Pré-natal (indicadores 1, 2 e 3)',
-        texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id.',
-        cards : [
-          {
-            value: '100',
-            title: 'Card Title',
-            titlePosition: 'top',
-            customStyles: {
-              width: "180px",
-              backgroundColor: "#FFF",
-            }
-          },
-          {
-            value: '100',
-            title: 'Card Title',
-            titlePosition: 'top',
-            customStyles: {
-              width: "180px",
-              backgroundColor: "#FFF",
-            }
-          },
-          {
-            value: '100',
-            title: 'Card Title',
-            titlePosition: 'top',
-            customStyles: {
-              width: "180px",
-              backgroundColor: "#FFF",
-            }
-          },
-        ],
-        tabs: {
-          titles: ['Gráficos', 'Listas Nominais'],
-          subTabs: [
-            [
-              { 
-                icon: {
-                  active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
-                  inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr'
-                }, 
-                text: 'Sub-Aba 1' 
-              },
-              { 
-                icon: {
-                  active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
-                  inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
-                }, 
-                text: 'Sub-Aba 2' 
-              },
-            ],
-            [
-              { 
-                icon: {
-                  active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
-                  inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr'
-                }, 
-                text: 'text1' 
-              },
-              { 
-                icon: {
-                  active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
-                  inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
-                }, 
-                text: 'text2' 
-              },
-              { 
-                icon: {
-                  active: 'https://media.graphassets.com/EQSROnFQRm20pX1CVbT2',
-                  inactive: 'https://media.graphassets.com/8sikQD27QLO3IkoxkQ9D'
-                }, 
-                text: 'text3' 
-              },
-            ],
-          ]
-        },
-        children: [
-          [
-            <div key="1a" style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
-            <div key="1b" style={{padding:"250px",textAlign: "center", fontSize: "28px"}}>Gráficos em breve</div>,
-          ],
-          [
-            <ListConteiner key={1} data={data}/>,
-            <ListConteiner key={2} data={data}/>,
-            <ListConteiner key={3} data={data}/>,
-          ],
-    
-      ]
-    }
-    return <PanelSelectorWithCards {...selectorProps}/>
+        ])
+      )}
+    />
+  )
 }
