@@ -342,7 +342,7 @@ export type ListConteinerProps = {
     title: string;
 }
 export const ListConteiner = ({
-    subTabID,
+    // subTabID,
     title
 } : ListConteinerProps) => {
     const initialFilters = filters.reduce((acc, filter: Filter) => {
