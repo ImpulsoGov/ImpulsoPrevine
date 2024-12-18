@@ -337,14 +337,14 @@ interface Filter {
     multiSelect: boolean;
     width: string;
 }
-export type ListConteinerProps = {
+export type ListContainerProps = {
     subTabID: string;
     title: string;
 }
-export const ListConteiner = ({
+export const ListContainer = ({
     // subTabID,
     title
-} : ListConteinerProps) => {
+} : ListContainerProps) => {
     const initialFilters = filters.reduce((acc, filter: Filter) => {
         acc[filter.id] = filter.multiSelect ? [] : "";
         return acc;
@@ -352,8 +352,6 @@ export const ListConteiner = ({
     const [tableData, setTableData] = useState<DataItem[]>(data);
     const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
     useEffect(() => {
-        console.log(value);
-        console.log(filterData(data, value));
         setTableData(filterData(data, value));
     }, [value]);
     //dados mockados essa parte do código será substituída por uma chamada a API do CMS

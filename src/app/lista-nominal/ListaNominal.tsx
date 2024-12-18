@@ -1,5 +1,5 @@
 'use client'
-import { ListConteiner } from "./ListContainer";
+import { ListContainer } from "./ListContainer";
 import { ChartsContainer } from "./ChartsContainer";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
 import type { PanelSelectorWithCardsProps, subTabsWithChildrenProps } from '@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards';
@@ -24,7 +24,7 @@ export type ListaNominalProps = {
 
 const SubTabChildrenID: Record<string, React.ComponentType<{ subTabID: string, title: string }>> = {
   'ChartChildID1': ChartsContainer,
-  'ListChildID1': ListConteiner,
+  'ListChildID1': ListContainer,
 };
 
 //Essa informação vai vir do CMS
