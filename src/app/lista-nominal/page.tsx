@@ -51,7 +51,7 @@ const ListaNominalPage = async() => {
         },
     ]
 
-    const selectorProps = {
+    const props = {
         breadcrumb: [
             {
                 label: 'Inicio',
@@ -136,6 +136,6 @@ const ListaNominalPage = async() => {
         }    
     } as ExtendedPanelSelectorWithCardsProps;
     
-    return <ListaNominal selectorProps={selectorProps}/>
+    return <ListaNominal selectorProps={props}/>
 }
 export default ListaNominalPage;
