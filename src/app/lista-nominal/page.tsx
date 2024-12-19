@@ -136,6 +136,6 @@ const ListaNominalPage = async() => {
         }    
     } as ExtendedPanelSelectorWithCardsProps;
     
-    return <ListaNominal selectorProps={props}/>
+    return <ListaNominal props={props}/>
 }
 export default ListaNominalPage;

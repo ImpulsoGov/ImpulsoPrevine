@@ -19,7 +19,7 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<PanelSelectorWithCardsPro
 };
 
 export type ListaNominalProps = {
-  selectorProps: ExtendedPanelSelectorWithCardsProps;
+  props: ExtendedPanelSelectorWithCardsProps;
 }
 
 const SubTabChildrenID: Record<string, React.ComponentType<{ subTabID: string, title: string }>> = {
@@ -37,15 +37,15 @@ const SubTabChildren: Record<string, string> = {
 };
 
 export const ListaNominal = ({ 
-  selectorProps,
+  props,
 }: ListaNominalProps) => {
-  const childrenComponents = subTabChildrenSelector(selectorProps, SubTabChildrenID, SubTabChildren);
+  const childrenComponents = subTabChildrenSelector(props, SubTabChildrenID, SubTabChildren);
   console.log(childrenComponents)
   return (
     <PanelSelectorWithCards 
-      {...selectorProps} 
+      {...props} 
       tabs={Object.fromEntries(
-        Object.entries(selectorProps.tabs).map(([key, tab]) => [
+        Object.entries(props.tabs).map(([key, tab]) => [
           key,
           {
             ...tab,
