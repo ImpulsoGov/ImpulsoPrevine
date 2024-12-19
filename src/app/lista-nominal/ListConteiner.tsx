@@ -1,5 +1,6 @@
 import { TableTag } from '@componentes/mounted/TableTag';
 import { CardGrid, ClearFilters, FilterBar, SelectDropdown, Table } from '@impulsogov/design-system';
+import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -44,14 +45,8 @@ const ManyFiltersData: Filter[] = [
     },
 ]
 
-type Card = {
-    value: string;
-    title: string;
-    titlePosition: 'top' | 'bottom';
-}
-
 //dados mockados essa parte do código será substituída por uma chamada a API
-const cards: Card[] = [
+const cards: CardProps[] = [
     {
         value: '100',
         title: 'Card Title',
