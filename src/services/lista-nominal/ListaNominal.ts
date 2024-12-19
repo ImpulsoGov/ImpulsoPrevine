@@ -7,8 +7,8 @@ export interface SortingItem {
   }
 
 export interface FilterItem {
-    campo: string;
-    valor: string[];
+    fieldName: string;
+    fieldValue: string[];
 }
 
 const buildSortingParams = (sorting: SortingItem[]): string => {
@@ -19,8 +19,8 @@ const buildSortingParams = (sorting: SortingItem[]): string => {
 const buildFilterParams = (filters: FilterItem[]): string => {
     return filters
       .map(filter => 
-        filter.valor
-          .map(value => `filters[${filter.campo}]=${value}`)
+        filter.fieldValue
+          .map(value => `filters[${filter.fieldName}]=${value}`)
           .join('&')
       )
       .join('&');
