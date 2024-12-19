@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 //dados mockados essa parte do código será substituída por uma chamada a API
-const ManyFiltersData = [
+const ManyFiltersData: Filter[] = [
     {
         options: [
             { value: '10', label: 'Ten' },
@@ -43,8 +43,15 @@ const ManyFiltersData = [
         width: '240px',
     },
 ]
+
+type Card = {
+    value: string;
+    title: string;
+    titlePosition: 'top' | 'bottom';
+}
+
 //dados mockados essa parte do código será substituída por uma chamada a API
-const cards = [
+const cards: Card[] = [
     {
         value: '100',
         title: 'Card Title',
@@ -94,7 +101,7 @@ const IconDetailsMap: Record<string, IconDetails> = {
 };
 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-export const columns = [
+export const columns: GridColDef[] = [
     {
         field: 'nome',
         headerName: 'Nome',
@@ -209,7 +216,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left'
     },
-] as GridColDef[];
+];
 
 interface Filter {
     id: string;
