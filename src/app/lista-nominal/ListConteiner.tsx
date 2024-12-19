@@ -220,7 +220,6 @@ interface Filter {
     width: string;
 }
 
-type ListDataRows = Record<string, string | number | Date | Record<string, string | null | undefined>>[];
 type ListDataTotalRows = number;
 type ListData = {
     data: Record<string, string | number | Date>[];
@@ -232,6 +231,7 @@ interface ListConteinerProps {
 }
 
 export const ListConteiner = ({ list }: ListConteinerProps) => {
+    const { data: session } = useSession();
     const [value, setValue] = useState<Record<string, string | string[]>>({
         filter1 : [],
         filter2 : [],
@@ -245,34 +245,44 @@ export const ListConteiner = ({ list }: ListConteinerProps) => {
         page: 0,
         pageSize: 8,
     });
-    // const [sortModel, setSortModel] = useState<GridSortModel>({
-    //     field: 'nome',
-    //     sort: 'asc'
-    // });
+    const [sorting, setSorting] = useState<GridSortModel>([{
+        field: 'nome',
+        sort: 'asc'
+    }]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const requestData = await paginateArray(paginationModel.page, paginationModel.pageSize);
-            setTableData({
-                data: requestData.data,
-                totalRows: requestData.totalRows,
-            });
+            try {
+                const { data: responseData } = await getListData({
+                    municipio_id_sus: session?.user?.municipio_id_sus as string,
+                    token: session?.user?.access_token as string,
+                    ine: session?.user?.perfis.includes(9)
+                        ? session?.user?.equipe
+                        : undefined,
+                    list,
+                    sorting: sorting,
+                    pagination: pagination,
+                });
+
+                setTableData({
+                    data: responseData.data,
+                    totalRows: responseData.totalRows,
+                });
+            } catch (error) {
+                // Alterar para tratamento de erro correto
+                console.error(error);
+            }
             setIsLoading(false);
         };
-        // Aqui seria feita a chamada a API para buscar os dados da tabela
-        // e atualizar o estado tableData
-        fetchData();
-    }, [paginationModel.page, paginationModel.pageSize]);
 
-    // useEffect(() => {
-    //     setRowCount((prevRowCount) =>
-    //         tableData?.totalRows !== undefined
-    //         ? tableData?.totalRows
-    //         : prevRowCount,
-    //     );
-    // }, [tableData?.totalRows, setRowCount]);
+        if (session && session.user) fetchData();
+    }, [pagination, sorting, session, list]);
+
+    function handleSortModelChange(newSortModel: GridSortModel) {
+        setSorting([...newSortModel]);
+    }
 
     const clearFiltersArgs = {
         iconActive : "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
@@ -297,22 +307,17 @@ export const ListConteiner = ({ list }: ListConteinerProps) => {
         <p style={{fontSize: "26px"}}>Titulo do Painel</p>
         <CardGrid cards={cards}/>
         <FilterBar filters={filters} clearButton={clearButton}/>
-        {isLoading
-            ? <Spinner />
-            : (
-                <Table
-                    columns={columns}
-                    data={tableData.data}
-                    rowHeight={60}
-                    paginationMode="server"
-                    sortingMode="server"
-                    rowCount={tableData.totalRows}
-                    paginationModel={paginationModel}
-                    onPaginationModelChange={setPaginationModel}
-                    // onSortModelChange={handleSortModelChange}
-                    isLoading={isLoading}
-                />
-            )
-        }
+        <Table
+            columns={columns}
+            data={tableData.data}
+            rowHeight={60}
+            paginationMode="server"
+            sortingMode="server"
+            rowCount={tableData.totalRows}
+            paginationModel={pagination}
+            onPaginationModelChange={setPagination}
+            onSortModelChange={handleSortModelChange}
+            isLoading={isLoading}
+        />
     </div>;
 }
