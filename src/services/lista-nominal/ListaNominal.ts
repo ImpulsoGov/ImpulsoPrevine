@@ -1,3 +1,4 @@
+import { getParamPrefix } from "@/utils/urlParams";
 import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
@@ -11,18 +12,18 @@ export type Filters = {
     valor: string[];
 }[];
 
-const addParams = (url: string, sorting?: Sorting, filters?: Filters) => {
+    let finalUrl = url;
     // Adiciona parâmetros de ordenação à URL
     if (sorting && sorting.length > 0) {
         const sortingParams = sorting.map(o => `ordenacao=${o.field}:${o.sort}`).join('&');
-        url += `?${sortingParams}`;
+        finalUrl += `${getParamPrefix(finalUrl)}${sortingParams}`;
     }
     // Adiciona parâmetros de filtros à URL
     if (filters && filters.length > 0) {
         const filtersParams = filters.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
-        url += sorting && sorting.length > 0 ? `&${filtersParams}` : `?${filtersParams}`;
+        finalUrl += `${getParamPrefix(finalUrl)}${filtersParams}`;
     }
-    return url;
+    return finalUrl;
 };
 
 export type getListDataProps = {
