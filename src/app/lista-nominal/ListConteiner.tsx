@@ -241,7 +241,7 @@ export const ListConteiner = ({ list }: ListConteinerProps) => {
         data: [],
         totalRows: 0,
     });
-    const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
+    const [pagination, setPagination] = useState<GridPaginationModel>({
         page: 0,
         pageSize: 8,
     });
