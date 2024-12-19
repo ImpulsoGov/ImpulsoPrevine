@@ -2,8 +2,8 @@ import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
 export type Sorting = {
-    campo: string;
-    ordem: string;
+    field?: string;
+    sort?: 'asc' | 'desc' | null;
 }[];
 
 export type Filters = {
@@ -14,7 +14,7 @@ export type Filters = {
 const addParams = (url: string, sorting?: Sorting, filters?: Filters) => {
     // Adiciona parâmetros de ordenação à URL
     if (sorting && sorting.length > 0) {
-        const sortingParams = sorting.map(o => `ordenacao[${o.campo}]=${o.ordem}`).join('&');
+        const sortingParams = sorting.map(o => `ordenacao=${o.field}:${o.sort}`).join('&');
         url += `?${sortingParams}`;
     }
     // Adiciona parâmetros de filtros à URL
