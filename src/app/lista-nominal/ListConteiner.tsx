@@ -223,9 +223,9 @@ interface Filter {
 type ListDataRows = Record<string, string | number | Date | Record<string, string | null | undefined>>[];
 type ListDataTotalRows = number;
 type ListData = {
-    data: ListDataRows;
+    data: Record<string, string | number | Date>[];
     totalRows: ListDataTotalRows;
-  };
+};
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListConteinerProps {
     list: string;
