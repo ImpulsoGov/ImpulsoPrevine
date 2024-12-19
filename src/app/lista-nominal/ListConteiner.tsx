@@ -1,8 +1,9 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
+import { getListData } from '@/services/lista-nominal/ListaNominal';
+import { TableTag } from '@componentes/mounted/TableTag';
+import { CardGrid, ClearFilters, FilterBar, SelectDropdown, Table } from '@impulsogov/design-system';
+import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
+import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import type { GridColDef, GridRenderCellParams, GridPaginationModel } from '@mui/x-data-grid';
-import { TableTag, type TagTheme } from '@componentes/mounted/TableTag';
-import { paginateArray } from '@/utils/paginacao';
 
 //dados mockados essa parte do código será substituída por uma chamada a API
 const ManyFiltersData = [
@@ -73,7 +74,7 @@ type IconDetails = {
     alt: string;
 };
 
-// Informações quedevem vir do CMS
+// Informações que devem vir do CMS
 const IconDetailsMap: Record<string, IconDetails> = {
     danger: {
         src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
@@ -92,13 +93,6 @@ const IconDetailsMap: Record<string, IconDetails> = {
         alt: 'Ícone de uma ampulheta',
     },
 };
-
-interface RenderCellParamsTagColumn extends GridRenderCellParams {
-    value: {
-        theme?: TagTheme;
-        text: string;
-    };
-}
 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns = [
@@ -129,23 +123,19 @@ export const columns = [
         width: 180,
         headerAlign: 'left',
         align: 'left',
-        renderCell({ value }: RenderCellParamsTagColumn) {
-            const { theme, text } = value;
+        renderCell({ value }) {
             return(
                 <>
-                    {!text && theme
-                        ? (
-                            <TableTag
-                                theme={theme}
-                                text="Não realizada"
-                                icon={{
-                                    src: IconDetailsMap[theme].src,
-                                    alt: IconDetailsMap[theme].alt
-                                }}
-                            />
-                        )
-                        : text
-                    }
+                    {value ?? (
+                        <TableTag
+                            theme="pending"
+                            text="Não realizada"
+                            icon={{
+                                src: IconDetailsMap["pending"].src,
+                                alt: IconDetailsMap["pending"].alt
+                            }}
+                        />
+                    )}
                 </>
             )
         },
@@ -156,12 +146,12 @@ export const columns = [
         width: 180 ,
         headerAlign: 'left',
         align: 'left',
-        renderCell({ value }: RenderCellParamsTagColumn) {
-            const { theme = "danger", text } = value;
+        renderCell({ value }) {
+            const theme = value === "Em dia" ? "success" : "warning";
             return(
                 <TableTag
                     theme={theme}
-                    text={text}
+                    text={value}
                     icon={{
                         src: IconDetailsMap[theme].src,
                         alt: IconDetailsMap[theme].alt
@@ -176,23 +166,19 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
-        renderCell({ value }: RenderCellParamsTagColumn) {
-            const { theme, text } = value;
+        renderCell({ value }) {
             return(
                 <>
-                    {!text && theme
-                        ? (
-                            <TableTag
-                                theme={theme}
-                                text="Não realizada"
-                                icon={{
-                                    src: IconDetailsMap[theme].src,
-                                    alt: IconDetailsMap[theme].alt
-                                }}
-                            />
-                        )
-                        : text
-                    }
+                    {value ?? (
+                        <TableTag
+                            theme="pending"
+                            text="Não realizada"
+                            icon={{
+                                src: IconDetailsMap["pending"].src,
+                                alt: IconDetailsMap["pending"].alt
+                            }}
+                        />
+                    )}
                 </>
             )
         },
@@ -203,12 +189,12 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
-        renderCell({ value }: RenderCellParamsTagColumn) {
-            const { theme = "danger", text } = value;
+        renderCell({ value }) {
+            const theme = value === "Em dia" ? "success" : "warning";
             return(
                 <TableTag
                     theme={theme}
-                    text={text}
+                    text={value}
                     icon={{
                         src: IconDetailsMap[theme].src,
                         alt: IconDetailsMap[theme].alt
