@@ -12,6 +12,17 @@ export type Filters = {
     valor: string[];
 }[];
 
+export type Pagination = {
+    page: number;
+    pageSize: number;
+}
+
+const addParams = (
+    url: string,
+    sorting?: Sorting,
+    filters?: Filters,
+    pagination?: Pagination,
+) => {
     let finalUrl = url;
     // Adiciona parâmetros de ordenação à URL
     if (sorting && sorting.length > 0) {
@@ -23,6 +34,11 @@ export type Filters = {
         const filtersParams = filters.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
         finalUrl += `${getParamPrefix(finalUrl)}${filtersParams}`;
     }
+
+    if (pagination && pagination.page !== undefined && pagination.pageSize!== undefined) {
+        finalUrl += `${getParamPrefix(finalUrl)}paginacao[pagina]=${pagination.page}&paginacao[tamanho]=${pagination.pageSize}`;
+    }
+
     return finalUrl;
 };
 
@@ -33,6 +49,7 @@ export type getListDataProps = {
     sorting?: Sorting;
     filters?: Filters;
     ine?: string;
+    pagination?: Pagination;
 };
 
 export const getListData = async ({
@@ -41,11 +58,10 @@ export const getListData = async ({
     list,
     sorting,
     filters,
-    ine
-}: getListDataProps) => {
-    let url = `${baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
+    ine,
+    pagination,
     if (ine) url += `/${ine}`;
-    const urlWithParams = addParams(url, sorting, filters);
+    const urlWithParams = addParams(url, sorting, filters, pagination);
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
