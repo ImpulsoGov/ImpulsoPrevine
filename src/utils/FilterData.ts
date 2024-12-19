@@ -13,13 +13,13 @@ const normalizeValue = (value: ValidValue): string =>
     String(value);
 
 export const filterData = (dataArray: readonly DataItem[], filters: Filters): DataItem[] => {
-    const filterEntries = Object.entries(filters).filter(([_, value]) => 
+    const filterEntries = Object.entries(filters).filter(([, value]) => 
         isArrayFilter(value) ? value.length > 0 : Boolean(value)
     );
     if (!filterEntries.length) return [...dataArray];
     const filterSets = new Map(
         filterEntries
-            .filter(([_, value]) => isArrayFilter(value))
+            .filter(([, value]) => isArrayFilter(value))
             .map(([key, value]) => [key, new Set(value)])
     );
     return dataArray.filter(item => 
