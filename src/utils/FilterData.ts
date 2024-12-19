@@ -1,21 +1,34 @@
-interface Filters {
-    [key: string]: string | string[];
-}
+export type ValidValue = string | number | boolean | Date;
 
-export interface DataItem {
-    [key: string]: string | number | boolean | Date;
-}
+export type FilterValue = string | readonly string[];
 
-export const filterData = (dataArray: DataItem[], filters: Filters): DataItem[] => {
-    return dataArray.filter(item => {
-        return Object.keys(filters).every(key => {
-            const filterValue = filters[key];
-            if (Array.isArray(filterValue) && filterValue.length > 0) {
-                return filterValue.includes(String(item[key]));
-            } else if (typeof filterValue === "string" && filterValue !== "") {
-                return item[key] === filterValue;
-            }
-            return true;
-        });
-    });
-}
+export interface Filters extends Record<string, FilterValue> {}
+
+export interface DataItem extends Record<string, ValidValue> {}
+
+const isArrayFilter = (value: FilterValue): value is readonly string[] => 
+    Array.isArray(value);
+
+const normalizeValue = (value: ValidValue): string => 
+    String(value);
+
+export const filterData = (dataArray: readonly DataItem[], filters: Filters): DataItem[] => {
+    const filterEntries = Object.entries(filters).filter(([_, value]) => 
+        isArrayFilter(value) ? value.length > 0 : Boolean(value)
+    );
+    if (!filterEntries.length) return [...dataArray];
+    const filterSets = new Map(
+        filterEntries
+            .filter(([_, value]) => isArrayFilter(value))
+            .map(([key, value]) => [key, new Set(value)])
+    );
+    return dataArray.filter(item => 
+        filterEntries.every(([key, value]) => {
+            const normalizedItem = normalizeValue(item[key]);
+            
+            return isArrayFilter(value)
+                ? filterSets.get(key)?.has(normalizedItem) ?? false
+                : normalizedItem === value;
+        })
+    );
+};
