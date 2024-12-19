@@ -226,12 +226,12 @@ type ListData = {
     data: ListDataRows;
     totalRows: ListDataTotalRows;
   };
-
+// Adicionar união de valores quando soubermos as listas que teremos
 interface ListConteinerProps {
-    data?: ListData;
+    list: string;
 }
 
-export const ListConteiner = ({data}: ListConteinerProps) => {
+export const ListConteiner = ({ list }: ListConteinerProps) => {
     const [value, setValue] = useState<Record<string, string | string[]>>({
         filter1 : [],
         filter2 : [],
