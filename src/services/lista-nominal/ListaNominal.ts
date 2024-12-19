@@ -6,20 +6,17 @@ export type Sorting = {
     ordem: string;
 }[];
 
-export type Filters = {
-    campo: string;
-    valor: string[];
-}[];
-
-const addParams = (url: string, sorting?: Sorting, filters?: Filters) => {
+const addParams = (url: string, sorting?: Sorting, filters?: Record<string, string | string[]>) => {
     // Adiciona parâmetros de ordenação à URL
     if (sorting && sorting.length > 0) {
-        const sortingParams = sorting.map(o => `ordenacao[${o.campo}]=${o.ordem}`).join('&');
+        const sortingParams = sorting.map(o => `sorting[${o.campo}]=${o.ordem}`).join('&');
         url += `?${sortingParams}`;
     }
     // Adiciona parâmetros de filtros à URL
-    if (filters && filters.length > 0) {
-        const filtersParams = filters.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
+    if (filters && Object.keys(filters).length > 0) {
+        const filtersParams = Object.entries(filters).map(([campo, valor]) => 
+            Array.isArray(valor) ? valor.map(v => `filters[${campo}]=${v}`).join('&') : `filters[${campo}]=${valor}`
+        ).join('&');
         url += sorting && sorting.length > 0 ? `&${filtersParams}` : `?${filtersParams}`;
     }
     return url;
@@ -30,7 +27,7 @@ export type getListDataProps = {
     token: string;
     list: string;
     sorting?: Sorting;
-    filters?: Filters;
+    filters?:  Record<string, string | string[]>;
     ine?: string;
 };
 
@@ -42,9 +39,11 @@ export const getListData = async ({
     filters,
     ine
 }: getListDataProps) => {
-    let url = `${baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
+    let url = `${process.env.ENV == 'dev' ? '' : baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
+    console.log("baseURL: ", baseURL())
     if (ine) url += `/${ine}`;
     const urlWithParams = addParams(url, sorting, filters);
+    console.log("urlWithParams: ", urlWithParams)
     const config = {
         method: 'get',
         maxBodyLength: Infinity,

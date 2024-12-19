@@ -1,4 +1,4 @@
-interface Filters {
+export interface Filters {
     [key: string]: string | string[];
 }
 

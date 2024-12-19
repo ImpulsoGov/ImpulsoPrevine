@@ -16,13 +16,14 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<PanelSelectorWithCardsPro
     tabID: string;
     subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
   }>;
+  listaNominalID: string;
 };
 
 export type ListaNominalProps = {
   selectorProps: ExtendedPanelSelectorWithCardsProps;
 }
 
-const SubTabChildrenID: Record<string, React.ComponentType<{ subTabID: string, title: string }>> = {
+const SubTabChildrenID: Record<string, React.ComponentType<{ subTabID: string, title: string, list: string }>> = {
   'ChartChildID1': ChartsContainer,
   'ListChildID1': ListContainer,
 };
@@ -40,7 +41,6 @@ export const ListaNominal = ({
   selectorProps,
 }: ListaNominalProps) => {
   const childrenComponents = subTabChildrenSelector(selectorProps, SubTabChildrenID, SubTabChildren);
-  console.log(childrenComponents)
   return (
     <PanelSelectorWithCards 
       {...selectorProps} 
