@@ -13,7 +13,7 @@ const filters = [
         ],
         label: 'Identificação da Condição',
         id : 'identificacao_condicao',
-        multiSelect: true,
+        isMultiSelect: true,
         width: '240px',
     },
     {
@@ -25,7 +25,7 @@ const filters = [
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
-        multiSelect: true,
+        isMultiSelect: true,
         width: '240px',
     },
     {
@@ -35,7 +35,7 @@ const filters = [
         ],
         label: 'Status',
         id : 'status',
-        multiSelect: false,
+        isMultiSelect: false,
         width: '240px',
     },
 ]
@@ -330,11 +330,16 @@ const data = [
         status: 'atrasado'
     }
 ]  as DataItem[];
+
+export type optionsType = { 
+    value: string; 
+    label: string 
+}
 interface Filter {
     id: string;
     label: string;
-    options: { value: string; label: string }[];
-    multiSelect: boolean;
+    options: optionsType[];
+    isMultiSelect: boolean;
     width: string;
 }
 export type ListContainerProps = {
@@ -346,7 +351,7 @@ export const ListContainer = ({
     title
 } : ListContainerProps) => {
     const initialFilters = filters.reduce((acc, filter: Filter) => {
-        acc[filter.id] = filter.multiSelect ? [] : "";
+        acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
     }, {} as Record<string, string | string[]>);
     const [tableData, setTableData] = useState<DataItem[]>(data);
@@ -369,7 +374,7 @@ export const ListContainer = ({
             setValue={setValue} 
             options={filter.options} 
             label={filter.label} 
-            multiSelect={filter.multiSelect} 
+            multiSelect={filter.isMultiSelect} 
             width={filter.width} 
         />
     ));
