@@ -1,6 +1,6 @@
 import { getParamPrefix } from "@/utils/urlParams";
 import axios from "axios";
-import { baseURL } from "@/utils/baseURL";
+import type { AxiosResponse } from "axios";
 
 export type Sorting = {
     field?: string;
@@ -52,6 +52,11 @@ export type getListDataProps = {
     pagination?: Pagination;
 };
 
+export type ListDataResponse = {
+    data: Record<string, string | number | Date>[];
+    totalRows: number;
+};
+
 export const getListData = async ({
     municipio_id_sus,
     token,
@@ -60,6 +65,7 @@ export const getListData = async ({
     filters,
     ine,
     pagination,
+}: getListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
     if (ine) url += `/${ine}`;
     const urlWithParams = addParams(url, sorting, filters, pagination);
     const config = {
