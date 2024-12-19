@@ -12,6 +12,7 @@ const isArrayFilter = (value: FilterValue): value is readonly string[] =>
 const normalizeValue = (value: ValidValue): string => 
     String(value);
 
+//organizacao e legibilidade esta muito ruim
 export const filterData = (dataArray: readonly DataItem[], filters: Filters): DataItem[] => {
     const filterEntries = Object.entries(filters).filter(([, value]) => 
         isArrayFilter(value) ? value.length > 0 : Boolean(value)
