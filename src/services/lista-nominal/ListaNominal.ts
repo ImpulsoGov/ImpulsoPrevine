@@ -42,6 +42,10 @@ export const getListData = async ({
     filters,
     ine
 }: getListDataProps) => {
+    if (!token) throw new Error('Token de autenticação é obrigatório');
+    if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
+    if (!list) throw new Error('Tipo de lista é obrigatório');
+
     let url = `${baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
     if (ine) url += `/${ine}`;
     const urlWithParams = addParams(url, sorting, filters);
