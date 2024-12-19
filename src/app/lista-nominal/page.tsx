@@ -1,19 +1,20 @@
 // import { getListData } from "@services/lista-nominal/ListaNominal";
-import { getServerSession } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
 import type { getListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from './ListaNominal';
 
 const ListaNominalPage = async() => {
-    const session = await getServerSession(nextAuthOptions);
-    if (!session || !session.user) return <p>Usuário não autenticado</p>;
+    const session = await getServerSession(nextAuthOptions) as Session;
+    const user = session?.user as Session['user'];
+    if (!session || !user) return <p>Usuário não autenticado</p>;
     const params: getListDataProps = {
-        municipio_id_sus: session.user.municipio_id_sus,
-        token: session.user.access_token,
+        municipio_id_sus: user.municipio_id_sus,
+        token: user.access_token,
         listName: "lista-nominal", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
-    if(session.user.perfis.includes(9)) params.ine = session.user.equipe
+    if(user.perfis.includes(9)) params.ine = user.equipe
     // const data = await getListData(params) // comentei aqui porque a api ainda não está pronta
     // const externalCardsData = await getExternalCardsData(externalCardsParams) // escrever requisicao para cards externos
     // const internalCardsData = await getInternalCardsData(internalCardsParams) // escrever requisicao para cards internos
