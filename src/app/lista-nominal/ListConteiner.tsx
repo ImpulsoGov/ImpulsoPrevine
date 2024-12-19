@@ -1,4 +1,3 @@
-import { getListData } from '@/services/lista-nominal/ListaNominal';
 import { TableTag } from '@componentes/mounted/TableTag';
 import { CardGrid, ClearFilters, FilterBar, SelectDropdown, Table } from '@impulsogov/design-system';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -254,26 +253,10 @@ export const ListConteiner = ({ list }: ListConteinerProps) => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            try {
-                const { data: responseData } = await getListData({
-                    municipio_id_sus: session?.user?.municipio_id_sus as string,
-                    token: session?.user?.access_token as string,
-                    ine: session?.user?.perfis.includes(9)
-                        ? session?.user?.equipe
-                        : undefined,
-                    list,
-                    sorting: sorting,
-                    pagination: pagination,
-                });
-
-                setTableData({
-                    data: responseData.data,
-                    totalRows: responseData.totalRows,
-                });
-            } catch (error) {
-                // Alterar para tratamento de erro correto
-                console.error(error);
-            }
+            setTableData({
+                data: [],
+                totalRows: 0,
+            });
             setIsLoading(false);
         };
 
