@@ -1,6 +1,5 @@
 import { Tag, Icon, Text } from '@impulsogov/design-system';
-
-export type TagTheme = 'danger' | 'warning' | 'success' | 'pending';
+import { TagTheme } from '@impulsogov/design-system/dist/molecules/Tag/Tag';
 
 export interface TableTagProps {
   theme?: TagTheme;
