@@ -219,10 +219,9 @@ interface Filter {
     width: string;
 }
 
-type ListDataTotalRows = number;
 type ListData = {
     data: Record<string, string | number | Date>[];
-    totalRows: ListDataTotalRows;
+    totalRows: number;
 };
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListConteinerProps {
