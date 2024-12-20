@@ -34,7 +34,7 @@ export async function GET(
       page: searchParams.get('paginacao[pagina]'),
       pageSize: searchParams.get('paginacao[tamanho]')
     };
-    const sorting = searchParams.get('ordenacao');
+    const sorting = searchParams.get('sortBy');
     const baseData = searchBaseData({
       data: [...data],
       municipio_id_sus: requestParams.municipio_id_sus,
