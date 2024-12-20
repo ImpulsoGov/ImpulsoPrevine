@@ -2,8 +2,8 @@ import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
 export interface SortingItem {
-    campo: string;
-    ordem: 'asc' | 'desc';
+    sortField: string;
+    sortOrder: 'asc' | 'desc';
   }
 
 export interface FilterItem {
@@ -13,7 +13,7 @@ export interface FilterItem {
 
 const buildSortingParams = (sorting: SortingItem[]): string => {
     return sorting
-      .map(item => `sortBy[${item.campo}]=${item.ordem}`)
+      .map(item => `sortBy[${item.sortField}]=${item.sortOrder}`)
       .join('&');
 };
 const buildFilterParams = (filters: FilterItem[]): string => {
