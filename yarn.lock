@@ -1395,10 +1395,17 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
+<<<<<<< HEAD
 "@impulsogov/design-system@^1.0.312":
   version "1.0.312"
   resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.312.tgz#30adf1cfce056abc44fad80dd406e9ec61e4b451"
   integrity sha512-Hyu9cKh2hAm60CXIE0Q5TDFVAi/e7lQWUp7IFHKgRHwt737L8z6mhHVH8WExhWxTEXppjeHs0t1ItzE+S27sXQ==
+=======
+"@impulsogov/design-system@^1.0.290":
+  version "1.0.290"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.290.tgz#1dfb508f8ab20e50906e1b293ba27b79d014c90f"
+  integrity sha512-fvjtXK4EvlIEvG+kviZhnASUVbrEfGsM6LlUxRGznHGXKLqCAO0he3FVREmQ4X/du0cMwsxPIrZbr3pIvXBhDQ==
+>>>>>>> a531c54 (Feature/alog 228 implementar gatilhos de paginacao e ordenacao da tabela (#283))
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
