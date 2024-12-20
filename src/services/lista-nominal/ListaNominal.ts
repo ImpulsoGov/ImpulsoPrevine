@@ -1,5 +1,4 @@
 import axios from "axios";
-import { baseURL } from "@/utils/baseURL";
 
 export interface SortingItem {
     sortField: string;
@@ -80,7 +79,7 @@ export const getListData = async ({
     if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
     if (!listName) throw new Error('Tipo de lista é obrigatório');
     const currentURL = new URL(window.location.href);
-    let url = `${currentURL.origin}/api/lista-nominal`;
+    const url = `${currentURL.origin}/api/lista-nominal`;
     const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus });
     return axios.request({
       method: 'get',
