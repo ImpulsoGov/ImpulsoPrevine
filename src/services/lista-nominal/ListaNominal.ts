@@ -1,5 +1,4 @@
 import axios from "axios";
-import { baseURL } from "@/utils/baseURL";
 import type { AxiosResponse } from "axios";
 import type { GridSortDirection } from '@mui/x-data-grid';
 
@@ -107,7 +106,8 @@ export const getListData = async ({
   if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
   if (!listName) throw new Error('Tipo de lista é obrigatório');
 
-  const url = `${baseURL()}/lista-nominal`;
+  const currentURL = new URL(window.location.href);
+  const url = `${currentURL.origin}/api/lista-nominal`;
   const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus, pagination });
   return axios.request({
     method: 'get',
