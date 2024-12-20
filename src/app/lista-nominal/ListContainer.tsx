@@ -102,7 +102,7 @@ export const columns: GridColDef[] = [
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 130 ,
+        width: 180 ,
         headerAlign: 'left',
         align: 'left'
     },
