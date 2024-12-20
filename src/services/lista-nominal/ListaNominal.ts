@@ -80,6 +80,10 @@ export const getListData = async ({
     filters,
     ine
 }: getListDataProps) => {
+    if (!token) throw new Error('Token de autenticação é obrigatório');
+    if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
+    if (!listName) throw new Error('Tipo de lista é obrigatório');
+
     const url = `${baseURL()}/lista-nominal`;
     const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus });
     return axios.request({
