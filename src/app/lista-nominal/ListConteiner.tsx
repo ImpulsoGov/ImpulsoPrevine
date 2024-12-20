@@ -1,4 +1,4 @@
-import { TableTag } from '@componentes/mounted/TableTag';
+import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
 import { CardGrid, ClearFilters, FilterBar, SelectDropdown, Table } from '@impulsogov/design-system';
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -70,13 +70,8 @@ const cards: CardProps[] = [
 
 ]
 
-type IconDetails = {
-    src: string;
-    alt: string;
-};
-
 // Informações que devem vir do CMS
-const IconDetailsMap: Record<string, IconDetails> = {
+const IconDetailsMap: TagIconDetailsMap = {
     danger: {
         src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
         alt: 'Ícone com símbolo da letra x',
@@ -125,20 +120,7 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            return(
-                <>
-                    {value ?? (
-                        <TableTag
-                            theme="pending"
-                            text="Não realizada"
-                            icon={{
-                                src: IconDetailsMap["pending"].src,
-                                alt: IconDetailsMap["pending"].alt
-                            }}
-                        />
-                    )}
-                </>
-            )
+            return renderDateTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -148,17 +130,7 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            const theme = value === "Em dia" ? "success" : "warning";
-            return(
-                <TableTag
-                    theme={theme}
-                    text={value}
-                    icon={{
-                        src: IconDetailsMap[theme].src,
-                        alt: IconDetailsMap[theme].alt
-                    }}
-                />
-            )
+            return renderStatusTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -168,20 +140,7 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            return(
-                <>
-                    {value ?? (
-                        <TableTag
-                            theme="pending"
-                            text="Não realizada"
-                            icon={{
-                                src: IconDetailsMap["pending"].src,
-                                alt: IconDetailsMap["pending"].alt
-                            }}
-                        />
-                    )}
-                </>
-            )
+            return renderDateTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -191,17 +150,7 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            const theme = value === "Em dia" ? "success" : "warning";
-            return(
-                <TableTag
-                    theme={theme}
-                    text={value}
-                    icon={{
-                        src: IconDetailsMap[theme].src,
-                        alt: IconDetailsMap[theme].alt
-                    }}
-                />
-            )
+            return renderStatusTagCell(value, IconDetailsMap);
         },
     },
     {
