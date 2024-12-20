@@ -1,4 +1,3 @@
-// import { getListData } from "@services/lista-nominal/ListaNominal";
 import { getServerSession, Session } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
@@ -15,11 +14,8 @@ const ListaNominalPage = async() => {
         listName: "lista-nominal", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     if(user.perfis.includes(9)) params.ine = user.equipe
-    // const data = await getListData(params) // comentei aqui porque a api ainda não está pronta
     // const externalCardsData = await getExternalCardsData(externalCardsParams) // escrever requisicao para cards externos
-    // const internalCardsData = await getInternalCardsData(internalCardsParams) // escrever requisicao para cards internos
     // const columns = await getColumnsData() // escrever requisicao para colunas
-    // const filters = await getFiltersData() // escrever requisicao para filtros
     //mock data
     const externalCardsData =  [
         {
@@ -66,6 +62,7 @@ const ListaNominalPage = async() => {
         title: 'Pré-natal (indicadores 1, 2 e 3)',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id.',
         cards : externalCardsData,
+        listaNominalID: 'hipertensao',
         tabs: {
             charts: {
                 title: 'Gráficos',
@@ -133,7 +130,7 @@ const ListaNominalPage = async() => {
         inicialContent: {
             tabID: "charts",
             subTabID: "ChartSubTabID1"
-        }    
+        },
     } as ExtendedPanelSelectorWithCardsProps;
     
     return <ListaNominal props={props}/>
