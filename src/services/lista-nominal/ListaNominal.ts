@@ -1,10 +1,11 @@
 import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 import type { AxiosResponse } from "axios";
+import type { GridSortDirection } from '@mui/x-data-grid';
 
 export interface SortingItem {
   sortField: string;
-  sortOrder: 'asc' | 'desc' | null;
+  sortOrder: GridSortDirection;
 }
 
 export interface FilterItem {
