@@ -224,9 +224,12 @@ export const ListContainer = ({
                     ine: session?.user?.perfis.includes(9)
                         ? session?.user?.equipe
                         : undefined,
-                    list,
-                    sorting: sorting,
-                    pagination: pagination,
+                    listName: list,
+                    sorting: [{
+                        sortField: sorting[0].field,
+                        sortOrder: sorting[0].sort,
+                    }],
+                    pagination,
                 });
 
                 setTableData({
