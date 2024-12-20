@@ -1,7 +1,10 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
-import type { GridColDef } from '@mui/x-data-grid';
+import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 import { DataItem, filterData } from '@/utils/FilterData';
+import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
+import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import { useSession } from 'next-auth/react';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -40,7 +43,7 @@ const filters = [
     },
 ]
 //dados mockados essa parte do código será substituída por uma chamada a API
-const cards = [
+const cards: CardProps[] = [
     {
         value: '78',
         title: 'Card Title 1',
@@ -63,8 +66,29 @@ const cards = [
     },
 
 ]
+
+// Informações que devem vir do CMS
+const IconDetailsMap: TagIconDetailsMap = {
+    danger: {
+        src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
+        alt: 'Ícone com símbolo da letra x',
+    },
+    warning: {
+        src: 'https://media.graphassets.com/o0OkjNboRCqy2bYrRNnb',
+        alt: 'Ícone de uma exclamação',
+    },
+    success: {
+        src: 'https://media.graphassets.com/4qKuRCxHSySL23zxLd9b',
+        alt: 'Ícone de uma marca de verificação',
+    },
+    pending: {
+        src: 'https://media.graphassets.com/IdqIxy4LQAeIZfe9hWZK',
+        alt: 'Ícone de uma ampulheta',
+    },
+};
+
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-export const columns = [
+export const columns: GridColDef[] = [
     {
         field: 'nome',
         headerName: 'Nome',
@@ -92,6 +116,9 @@ export const columns = [
         width: 180,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderDateTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'prazo_proxima_consulta',
@@ -99,6 +126,9 @@ export const columns = [
         width: 180 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderStatusTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'dt_afericao_pressao_mais_recente',
@@ -106,6 +136,9 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderDateTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'prazo_proxima_afericao_pa',
@@ -113,6 +146,9 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderStatusTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'acs_nome_cadastro',
@@ -121,215 +157,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left'
     },
-    {
-        field: 'status',
-        headerName: 'Status',
-        width: 150,
-        headerAlign: 'left',
-        align: 'left'
-    },
-] as GridColDef[];
-//mock data
-const data = [
-    {
-        nome: 'Nome 1',
-        cpf: '123.456.789-00',
-        identificacao_condicao: 'Condição 1',
-        dt_consulta_mais_recente: '2023-01-01',
-        prazo_proxima_consulta: '2023-06-01',
-        dt_afericao_pressao_mais_recente: '2023-02-01',
-        prazo_proxima_afericao_pa: '2023-07-01',
-        acs_nome_cadastro: 'ACS 1',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 2',
-        cpf: '123.456.789-01',
-        identificacao_condicao: 'Condição 2',
-        dt_consulta_mais_recente: '2023-01-02',
-        prazo_proxima_consulta: '2023-06-02',
-        dt_afericao_pressao_mais_recente: '2023-02-02',
-        prazo_proxima_afericao_pa: '2023-07-02',
-        acs_nome_cadastro: 'ACS 2',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 3',
-        cpf: '123.456.789-02',
-        identificacao_condicao: 'Condição 3',
-        dt_consulta_mais_recente: '2023-01-03',
-        prazo_proxima_consulta: '2023-06-03',
-        dt_afericao_pressao_mais_recente: '2023-02-03',
-        prazo_proxima_afericao_pa: '2023-07-03',
-        acs_nome_cadastro: 'ACS 3',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 4',
-        cpf: '123.456.789-03',
-        identificacao_condicao: 'Condição 4',
-        dt_consulta_mais_recente: '2023-01-04',
-        prazo_proxima_consulta: '2023-06-04',
-        dt_afericao_pressao_mais_recente: '2023-02-04',
-        prazo_proxima_afericao_pa: '2023-07-04',
-        acs_nome_cadastro: 'ACS 4',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 5',
-        cpf: '123.456.789-04',
-        identificacao_condicao: 'Condição 1',
-        dt_consulta_mais_recente: '2023-01-05',
-        prazo_proxima_consulta: '2023-06-05',
-        dt_afericao_pressao_mais_recente: '2023-02-05',
-        prazo_proxima_afericao_pa: '2023-07-05',
-        acs_nome_cadastro: 'ACS 1',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 6',
-        cpf: '123.456.789-05',
-        identificacao_condicao: 'Condição 2',
-        dt_consulta_mais_recente: '2023-01-06',
-        prazo_proxima_consulta: '2023-06-06',
-        dt_afericao_pressao_mais_recente: '2023-02-06',
-        prazo_proxima_afericao_pa: '2023-07-06',
-        acs_nome_cadastro: 'ACS 2',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 7',
-        cpf: '123.456.789-06',
-        identificacao_condicao: 'Condição 3',
-        dt_consulta_mais_recente: '2023-01-07',
-        prazo_proxima_consulta: '2023-06-07',
-        dt_afericao_pressao_mais_recente: '2023-02-07',
-        prazo_proxima_afericao_pa: '2023-07-07',
-        acs_nome_cadastro: 'ACS 3',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 8',
-        cpf: '123.456.789-07',
-        identificacao_condicao: 'Condição 4',
-        dt_consulta_mais_recente: '2023-01-08',
-        prazo_proxima_consulta: '2023-06-08',
-        dt_afericao_pressao_mais_recente: '2023-02-08',
-        prazo_proxima_afericao_pa: '2023-07-08',
-        acs_nome_cadastro: 'ACS 4',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 9',
-        cpf: '123.456.789-08',
-        identificacao_condicao: 'Condição 1',
-        dt_consulta_mais_recente: '2023-01-09',
-        prazo_proxima_consulta: '2023-06-09',
-        dt_afericao_pressao_mais_recente: '2023-02-09',
-        prazo_proxima_afericao_pa: '2023-07-09',
-        acs_nome_cadastro: 'ACS 1',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 10',
-        cpf: '123.456.789-10',
-        identificacao_condicao: 'Condição 2',
-        dt_consulta_mais_recente: '2023-01-10',
-        prazo_proxima_consulta: '2023-06-10',
-        dt_afericao_pressao_mais_recente: '2023-02-10',
-        prazo_proxima_afericao_pa: '2023-07-10',
-        acs_nome_cadastro: 'ACS 2',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 11',
-        cpf: '123.456.789-11',
-        identificacao_condicao: 'Condição 3',
-        dt_consulta_mais_recente: '2023-01-11',
-        prazo_proxima_consulta: '2023-06-11',
-        dt_afericao_pressao_mais_recente: '2023-02-11',
-        prazo_proxima_afericao_pa: '2023-07-11',
-        acs_nome_cadastro: 'ACS 3',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 12',
-        cpf: '123.456.789-12',
-        identificacao_condicao: 'Condição 4',
-        dt_consulta_mais_recente: '2023-01-12',
-        prazo_proxima_consulta: '2023-06-12',
-        dt_afericao_pressao_mais_recente: '2023-02-12',
-        prazo_proxima_afericao_pa: '2023-07-12',
-        acs_nome_cadastro: 'ACS 4',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 13',
-        cpf: '123.456.789-13',
-        identificacao_condicao: 'Condição 1',
-        dt_consulta_mais_recente: '2023-01-13',
-        prazo_proxima_consulta: '2023-06-13',
-        dt_afericao_pressao_mais_recente: '2023-02-13',
-        prazo_proxima_afericao_pa: '2023-07-13',
-        acs_nome_cadastro: 'ACS 1',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 14',
-        cpf: '123.456.789-14',
-        identificacao_condicao: 'Condição 2',
-        dt_consulta_mais_recente: '2023-01-14',
-        prazo_proxima_consulta: '2023-06-14',
-        dt_afericao_pressao_mais_recente: '2023-02-14',
-        prazo_proxima_afericao_pa: '2023-07-14',
-        acs_nome_cadastro: 'ACS 2',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 15',
-        cpf: '123.456.789-15',
-        identificacao_condicao: 'Condição 3',
-        dt_consulta_mais_recente: '2023-01-15',
-        prazo_proxima_consulta: '2023-06-15',
-        dt_afericao_pressao_mais_recente: '2023-02-15',
-        prazo_proxima_afericao_pa: '2023-07-15',
-        acs_nome_cadastro: 'ACS 3',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 16',
-        cpf: '123.456.789-16',
-        identificacao_condicao: 'Condição 4',
-        dt_consulta_mais_recente: '2023-01-16',
-        prazo_proxima_consulta: '2023-06-16',
-        dt_afericao_pressao_mais_recente: '2023-02-16',
-        prazo_proxima_afericao_pa: '2023-07-16',
-        acs_nome_cadastro: 'ACS 4',
-        status: 'atrasado'
-    },
-    {
-        nome: 'Nome 17',
-        cpf: '123.456.789-17',
-        identificacao_condicao: 'Condição 1',
-        dt_consulta_mais_recente: '2023-01-17',
-        prazo_proxima_consulta: '2023-06-17',
-        dt_afericao_pressao_mais_recente: '2023-02-17',
-        prazo_proxima_afericao_pa: '2023-07-17',
-        acs_nome_cadastro: 'ACS 1',
-        status: 'em dia'
-    },
-    {
-        nome: 'Nome 18',
-        cpf: '123.456.789-18',
-        identificacao_condicao: 'Condição 2',
-        dt_consulta_mais_recente: '2023-01-18',
-        prazo_proxima_consulta: '2023-06-18',
-        dt_afericao_pressao_mais_recente: '2023-02-18',
-        prazo_proxima_afericao_pa: '2023-07-18',
-        acs_nome_cadastro: 'ACS 2',
-        status: 'atrasado'
-    }
-]  as DataItem[];
+];
 
 export type optionsType = { 
     value: string; 
@@ -342,24 +170,66 @@ interface Filter {
     isMultiSelect: boolean;
     width: string;
 }
-export type ListContainerProps = {
+type ListData = {
+    data: DataItem[];
+    totalRows: number;
+};
+// Adicionar união de valores quando soubermos as listas que teremos
+interface ListConteinerProps {
+    list: string;
     subTabID: string;
     title: string;
 }
+
 export const ListContainer = ({
+    list,
     // subTabID,
     title
-} : ListContainerProps) => {
+}: ListConteinerProps) => {
     const initialFilters = filters.reduce((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
     }, {} as Record<string, string | string[]>);
-    const [tableData, setTableData] = useState<DataItem[]>(data);
+    const { data: session } = useSession();
     const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
+    const [tableData, setTableData] = useState<ListData>({
+        data: [],
+        totalRows: 0,
+    });
+    const [pagination, setPagination] = useState<GridPaginationModel>({
+        page: 0,
+        pageSize: 8,
+    });
+    const [sorting, setSorting] = useState<GridSortModel>([{
+        field: 'nome',
+        sort: 'asc'
+    }]);
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
-        setTableData(filterData(data, value));
+        setTableData({
+            data: filterData([], value),
+            totalRows: 0,
+        });
     }, [value]);
-    //dados mockados essa parte do código será substituída por uma chamada a API do CMS
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            setTableData({
+                data: [],
+                totalRows: 0,
+            });
+            setIsLoading(false);
+        };
+
+        if (session && session.user) fetchData();
+    }, [pagination, sorting, session, list]);
+
+    function handleSortModelChange(newSortModel: GridSortModel) {
+        setSorting([...newSortModel]);
+    }
+
     const clearFiltersArgs = {
         iconActive : "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
         iconInactive : "https://media.graphassets.com/x37RkcUrTH6G50ganj9d",
@@ -383,13 +253,17 @@ export const ListContainer = ({
         <p style={{fontSize: "26px"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
-        {
-            tableData &&
-            <Table     
-                columns={columns}
-                data={tableData}
-                rowHeight={60}
-            />
-        }
+        <Table
+            columns={columns}
+            data={tableData.data}
+            rowHeight={60}
+            paginationMode="server"
+            sortingMode="server"
+            rowCount={tableData.totalRows}
+            paginationModel={pagination}
+            onPaginationModelChange={setPagination}
+            onSortModelChange={handleSortModelChange}
+            isLoading={isLoading}
+        />
     </div>;
 }
