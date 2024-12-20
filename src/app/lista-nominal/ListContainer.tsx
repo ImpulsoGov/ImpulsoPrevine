@@ -230,7 +230,7 @@ interface ListConteinerProps {
     list: string;
 }
 
-export const ListConteiner = ({ list }: ListConteinerProps) => {
+export const ListContainer = ({ list }: ListConteinerProps) => {
     const { data: session } = useSession();
     const [value, setValue] = useState<Record<string, string | string[]>>({
         filter1 : [],
