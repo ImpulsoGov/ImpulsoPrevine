@@ -1,10 +1,13 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
-import type { GridColDef } from '@mui/x-data-grid';
-import { DataItem, filterData } from '@/utils/FilterData';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
-import { getSession } from 'next-auth/react';
+import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import { Session } from 'next-auth';
+import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
+import { DataItem, filterData } from '@/utils/FilterData';
+import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
+import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import { useSession } from 'next-auth/react';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -16,7 +19,7 @@ const filters = [
         ],
         label: 'Identificação da Condição',
         id : 'identificacao_condicao',
-        multiSelect: true,
+        isMultiSelect: true,
         width: '240px',
     },
     {
@@ -28,7 +31,7 @@ const filters = [
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
-        multiSelect: true,
+        isMultiSelect: true,
         width: '240px',
     },
     {
@@ -38,12 +41,12 @@ const filters = [
         ],
         label: 'Status',
         id : 'status',
-        multiSelect: false,
+        isMultiSelect: false,
         width: '240px',
     },
 ]
 //dados mockados essa parte do código será substituída por uma chamada a API
-const cards = [
+const cards: CardProps[] = [
     {
         value: '78',
         title: 'Card Title 1',
@@ -66,8 +69,29 @@ const cards = [
     },
 
 ]
+
+// Informações que devem vir do CMS
+const IconDetailsMap: TagIconDetailsMap = {
+    danger: {
+        src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
+        alt: 'Ícone com símbolo da letra x',
+    },
+    warning: {
+        src: 'https://media.graphassets.com/o0OkjNboRCqy2bYrRNnb',
+        alt: 'Ícone de uma exclamação',
+    },
+    success: {
+        src: 'https://media.graphassets.com/4qKuRCxHSySL23zxLd9b',
+        alt: 'Ícone de uma marca de verificação',
+    },
+    pending: {
+        src: 'https://media.graphassets.com/IdqIxy4LQAeIZfe9hWZK',
+        alt: 'Ícone de uma ampulheta',
+    },
+};
+
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-export const columns = [
+export const columns: GridColDef[] = [
     {
         field: 'nome',
         headerName: 'Nome',
@@ -95,6 +119,9 @@ export const columns = [
         width: 180,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderDateTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'prazo_proxima_consulta',
@@ -102,6 +129,9 @@ export const columns = [
         width: 180 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderStatusTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'dt_afericao_pressao_mais_recente',
@@ -109,6 +139,9 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderDateTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'prazo_proxima_afericao_pa',
@@ -116,6 +149,9 @@ export const columns = [
         width: 200 ,
         headerAlign: 'left',
         align: 'left',
+        renderCell({ value }) {
+            return renderStatusTagCell(value, IconDetailsMap);
+        },
     },
     {
         field: 'acs_nome_cadastro',
@@ -132,35 +168,56 @@ export const columns = [
         align: 'left'
     },
 ] as GridColDef[];
+export type optionsType = { 
+    value: string; 
+    label: string 
+}
 interface Filter {
     id: string;
     label: string;
-    options: { value: string; label: string }[];
-    multiSelect: boolean;
+    options: optionsType[];
+    isMultiSelect: boolean;
     width: string;
 }
-export type ListContainerProps = {
+type ListData = {
+    data: DataItem[];
+    totalRows: number;
+};
+// Adicionar união de valores quando soubermos as listas que teremos
+interface ListContainerProps {
+    list: string;
     subTabID: string;
     title: string;
-    list: string;
 }
 export const ListContainer = ({
     // subTabID,
     title,
     list
 } : ListContainerProps) => {
+    const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
     const initialFilters = filters.reduce((acc, filter: Filter) => {
-        acc[filter.id] = filter.multiSelect ? [] : "";
+        acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
-    }, {} as Record<string, string | string[]>);
-    const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
+    }, {} as FilterItem);
+    const [value, setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<DataItem[]>([]);
-    const [tableData, setTableData] = useState<DataItem[]>([]);
+    const [tableData, setTableData] = useState<ListData>({
+        data: [],
+        totalRows: 0,
+    });
+    const [pagination, setPagination] = useState<GridPaginationModel>({
+        page: 0,
+        pageSize: 8,
+    });
+    const [sorting, setSorting] = useState<GridSortModel>([{
+        field: 'nome',
+        sort: 'asc'
+    }]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const sessionAsync = async() => {
-            const session = await getSession() as Session;
             setUser(session?.user);
         };
         sessionAsync();
@@ -172,7 +229,7 @@ export const ListContainer = ({
                 const res = await getListData({
                     municipio_id_sus: user.municipio_id_sus, 
                     token: user.access_token, 
-                    list: list,
+                    listName: list,
                     sorting: undefined, //substituir pelo estado definido na funcionalidade de ordenação
                     filters: value,
                     ine: user.equipe.includes('9') ? user.equipe : undefined    
@@ -184,8 +241,28 @@ export const ListContainer = ({
     }, [user, value]);
 
     useEffect(() => {
-        setTableData(filterData(response, value));
+        setTableData({
+            data: filterData(response, value),
+            totalRows: 0,
+        });
     }, [response, value]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            setTableData({
+                data: [],
+                totalRows: 0,
+            });
+            setIsLoading(false);
+        };
+
+        if (session && session.user) fetchData();
+    }, [pagination, sorting, session, list]);
+
+    function handleSortModelChange(newSortModel: GridSortModel) {
+        setSorting([...newSortModel]);
+    }
 
     if (!user) return <p>Usuário não autenticado</p>;
     if (response.length === 0) return <Spinner/>;
@@ -205,22 +282,26 @@ export const ListContainer = ({
             setValue={setValue} 
             options={filter.options} 
             label={filter.label} 
-            multiSelect={filter.multiSelect} 
+            multiSelect={filter.isMultiSelect} 
             width={filter.width} 
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return user && response && <div style={{display: "flex", flexDirection: "column", gap: "30px", padding: "25px"}}>
+    return <div style={{display: "flex", flexDirection: "column", gap: "30px", padding: "25px"}}>
         <p style={{fontSize: "26px"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
-        {
-            tableData &&
-            <Table     
-                columns={columns}
-                data={tableData}
-                rowHeight={60}
-            />
-        }
+        <Table
+            columns={columns}
+            data={tableData.data}
+            rowHeight={60}
+            paginationMode="server"
+            sortingMode="server"
+            rowCount={tableData.totalRows}
+            paginationModel={pagination}
+            onPaginationModelChange={setPagination}
+            onSortModelChange={handleSortModelChange}
+            isLoading={isLoading}
+        />
     </div>;
 }
