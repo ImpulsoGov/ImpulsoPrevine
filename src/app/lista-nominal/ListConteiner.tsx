@@ -281,7 +281,9 @@ export const ListConteiner = ({ list }: ListConteinerProps) => {
     }, [pagination, sorting, session, list]);
 
     function handleSortModelChange(newSortModel: GridSortModel) {
-        setSorting([...newSortModel]);
+        newSortModel.length > 0
+            ? setSorting([...newSortModel])
+            : setSorting([{field: 'nome', sort: 'asc'}]);
     }
 
     const clearFiltersArgs = {
