@@ -1,6 +1,7 @@
 import { getParamPrefix } from "@/utils/urlParams";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
+import { baseURL } from "@/utils/baseURL";
 
 export type Sorting = {
     field?: string;
@@ -66,6 +67,7 @@ export const getListData = async ({
     ine,
     pagination,
 }: getListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
+    let url = `${baseURL()}/api/lista-nominal/${list}/${municipio_id_sus}`;
     if (ine) url += `/${ine}`;
     const urlWithParams = addParams(url, sorting, filters, pagination);
     const config = {
