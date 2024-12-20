@@ -44,10 +44,6 @@ const filters = [
             { value: 'ACS 13', label: 'ACS 13' },
             { value: 'ACS 14', label: 'ACS 14' },
             { value: 'ACS 15', label: 'ACS 15' },
-<<<<<<< HEAD
-=======
-
->>>>>>> cd86e82 (fix: fix conflit)
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
