@@ -72,7 +72,7 @@ export const buildUrlWithParams = (
     const prefix = url.includes('?') ? '&' : '?';
     url += `${prefix}${buildFilterParams(filters)}`;
   }
-  if (pagination?.page && pagination?.pageSize) {
+  if (pagination?.page !== undefined && pagination?.pageSize !== undefined) {
     const prefix = url.includes('?') ? '&' : '?';
     url += `${prefix}${buildPaginationParam(pagination)}`;
   }
