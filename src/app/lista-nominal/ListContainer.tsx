@@ -1,81 +1,75 @@
-import { getListData } from '@/services/lista-nominal/ListaNominal';
-import { TableTag } from '@componentes/mounted/TableTag';
-import { CardGrid, ClearFilters, FilterBar, SelectDropdown, Table } from '@impulsogov/design-system';
-import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
-import { useSession } from 'next-auth/react';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
-
+import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
+import { DataItem, filterData } from '@/utils/FilterData';
+import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
+import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import { useSession } from 'next-auth/react';
+import { getListData } from '@/services/lista-nominal/ListaNominal';
 //dados mockados essa parte do código será substituída por uma chamada a API
-const ManyFiltersData = [
+const filters = [
     {
         options: [
-            { value: '10', label: 'Ten' },
-            { value: '20', label: 'Twenty' },
-            { value: '30', label: 'Thirty' },
-            { value: '42', label: 'Forty two' },
+            { value: 'Condição 1', label: 'Condição 1' },
+            { value: 'Condição 2', label: 'Condição 2' },
+            { value: 'Condição 3', label: 'Condição 3' },
+            { value: 'Condição 4', label: 'Condição 4' },
         ],
-        label: 'Filtro1',
-        id : 'filter1',
-        multiSelect: true,
+        label: 'Identificação da Condição',
+        id : 'identificacao_condicao',
+        isMultiSelect: true,
         width: '240px',
     },
     {
         options: [
-            { value: '10', label: 'Ten' },
-            { value: '20', label: 'Twenty' },
-            { value: '30', label: 'Thirty' },
-            { value: '42', label: 'Forty two' },
+            { value: 'ACS 1', label: 'ACS 1' },
+            { value: 'ACS 2', label: 'ACS 2' },
+            { value: 'ACS 3', label: 'ACS 3' },
+            { value: 'ACS 4', label: 'ACS 4' },
         ],
-        label: 'Filtro2',
-        id : 'filter2',
-        multiSelect: true,
+        label: 'ACS Responsável',
+        id : 'acs_nome_cadastro',
+        isMultiSelect: true,
         width: '240px',
     },
     {
         options: [
-            { value: '10', label: 'Ten' },
-            { value: '20', label: 'Twenty' },
-            { value: '30', label: 'Thirty' },
-            { value: '42', label: 'Forty two' },
+            { value: 'em dia', label: 'Em dia' },
+            { value: 'atrasado', label: 'Atrasado' },
         ],
-        label: 'Filtro3',
-        id : 'filter3',
-        multiSelect: false,
+        label: 'Status',
+        id : 'status',
+        isMultiSelect: false,
         width: '240px',
     },
 ]
 //dados mockados essa parte do código será substituída por uma chamada a API
-const cards = [
+const cards: CardProps[] = [
     {
-        value: '100',
-        title: 'Card Title',
+        value: '78',
+        title: 'Card Title 1',
         titlePosition: 'top'
     },
     {
-        value: '100',
-        title: 'Card Title',
+        value: '234',
+        title: 'Card Title 2',
         titlePosition: 'top'
     },
     {
-        value: '100',
-        title: 'Card Title',
+        value: '678',
+        title: 'Card Title 3',
         titlePosition: 'top'
     },
     {
-        value: '100',
-        title: 'Card Title',
+        value: '131',
+        title: 'Card Title 4',
         titlePosition: 'top'
     },
 
 ]
-
-type IconDetails = {
-    src: string;
-    alt: string;
-};
 
 // Informações que devem vir do CMS
-const IconDetailsMap: Record<string, IconDetails> = {
+const IconDetailsMap: TagIconDetailsMap = {
     danger: {
         src: 'https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK',
         alt: 'Ícone com símbolo da letra x',
@@ -95,7 +89,7 @@ const IconDetailsMap: Record<string, IconDetails> = {
 };
 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-export const columns = [
+export const columns: GridColDef[] = [
     {
         field: 'nome',
         headerName: 'Nome',
@@ -124,20 +118,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            return(
-                <>
-                    {value ?? (
-                        <TableTag
-                            theme="pending"
-                            text="Não realizada"
-                            icon={{
-                                src: IconDetailsMap["pending"].src,
-                                alt: IconDetailsMap["pending"].alt
-                            }}
-                        />
-                    )}
-                </>
-            )
+            return renderDateTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -147,17 +128,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            const theme = value === "Em dia" ? "success" : "warning";
-            return(
-                <TableTag
-                    theme={theme}
-                    text={value}
-                    icon={{
-                        src: IconDetailsMap[theme].src,
-                        alt: IconDetailsMap[theme].alt
-                    }}
-                />
-            )
+            return renderStatusTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -167,20 +138,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            return(
-                <>
-                    {value ?? (
-                        <TableTag
-                            theme="pending"
-                            text="Não realizada"
-                            icon={{
-                                src: IconDetailsMap["pending"].src,
-                                alt: IconDetailsMap["pending"].alt
-                            }}
-                        />
-                    )}
-                </>
-            )
+            return renderDateTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -190,17 +148,7 @@ export const columns = [
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
-            const theme = value === "Em dia" ? "success" : "warning";
-            return(
-                <TableTag
-                    theme={theme}
-                    text={value}
-                    icon={{
-                        src: IconDetailsMap[theme].src,
-                        alt: IconDetailsMap[theme].alt
-                    }}
-                />
-            )
+            return renderStatusTagCell(value, IconDetailsMap);
         },
     },
     {
@@ -210,33 +158,41 @@ export const columns = [
         headerAlign: 'left',
         align: 'left'
     },
-] as GridColDef[];
+];
 
+export type optionsType = { 
+    value: string; 
+    label: string 
+}
 interface Filter {
     id: string;
     label: string;
-    options: { value: string; label: string }[];
-    multiSelect: boolean;
+    options: optionsType[];
+    isMultiSelect: boolean;
     width: string;
 }
-
-type ListDataTotalRows = number;
 type ListData = {
-    data: Record<string, string | number | Date>[];
-    totalRows: ListDataTotalRows;
+    data: DataItem[];
+    totalRows: number;
 };
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListConteinerProps {
     list: string;
+    subTabID: string;
+    title: string;
 }
 
-export const ListContainer = ({ list }: ListConteinerProps) => {
+export const ListContainer = ({
+    list,
+    // subTabID,
+    title
+}: ListConteinerProps) => {
+    const initialFilters = filters.reduce((acc, filter: Filter) => {
+        acc[filter.id] = filter.isMultiSelect ? [] : "";
+        return acc;
+    }, {} as Record<string, string | string[]>);
     const { data: session } = useSession();
-    const [value, setValue] = useState<Record<string, string | string[]>>({
-        filter1 : [],
-        filter2 : [],
-        filter3 : "",
-    });
+    const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -250,6 +206,13 @@ export const ListContainer = ({ list }: ListConteinerProps) => {
         sort: 'asc'
     }]);
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setTableData({
+            data: filterData([], value),
+            totalRows: 0,
+        });
+    }, [value]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -292,7 +255,7 @@ export const ListContainer = ({ list }: ListConteinerProps) => {
         label: 'Limpar todos os filtros',
     }
 
-    const filters = ManyFiltersData.map((filter: Filter) => (
+    const filtersSelect = filters.map((filter: Filter) => (
         <SelectDropdown 
             key={filter.id} 
             {...filter} 
@@ -300,15 +263,15 @@ export const ListContainer = ({ list }: ListConteinerProps) => {
             setValue={setValue} 
             options={filter.options} 
             label={filter.label} 
-            multiSelect={filter.multiSelect} 
+            multiSelect={filter.isMultiSelect} 
             width={filter.width} 
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
     return <div style={{display: "flex", flexDirection: "column", gap: "30px", padding: "25px"}}>
-        <p style={{fontSize: "26px"}}>Titulo do Painel</p>
-        <CardGrid cards={cards}/>
-        <FilterBar filters={filters} clearButton={clearButton}/>
+        <p style={{fontSize: "26px"}}>{title}</p>
+        {cards && <CardGrid cards={cards}/>}
+        <FilterBar filters={filtersSelect} clearButton={clearButton}/>
         <Table
             columns={columns}
             data={tableData.data}
