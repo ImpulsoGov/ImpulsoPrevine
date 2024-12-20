@@ -1,5 +1,4 @@
 import axios from "axios";
-import { baseURL } from "@/utils/baseURL";
 
 export type Sorting = {
     campo: string;

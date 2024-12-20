@@ -214,7 +214,8 @@ const data = [
     }
 ]  as DataItem[];
 
-export async function GET(req : NextRequest, { params }: { params: { [key: string]: string } }) {
+// export async function GET(req : NextRequest, { params }: { params: { [key: string]: string } }) {
+export async function GET(req : NextRequest) {
     try {
         // const { list, municipio_id_sus } = params;
         const searchParams = req.nextUrl.searchParams;
