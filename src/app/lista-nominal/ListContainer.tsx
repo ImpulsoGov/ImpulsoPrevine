@@ -140,7 +140,9 @@ export const columns: GridColDef[] = [
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
+        }
     },
+    {
         headerName: 'Data de aferição de PA mais recente',
         width: 200 ,
         headerAlign: 'left',
@@ -200,9 +202,9 @@ interface ListContainerProps {
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
 export const ListContainer = ({
+    list,
     // subTabID,
     title,
-    list
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
