@@ -13,7 +13,7 @@ const addParams = (url: string, sorting?: Sorting, filters?: Record<string, stri
         url += `?${sortingParams}`;
     }
     // Adiciona parâmetros de filtros à URL
-    if (filters && Object.keys(filters).length > 0) {
+    if (filters && Object.values(filters).reduce((acc, curr) => acc + curr.length, 0) !== 0) {
         const filtersParams = Object.entries(filters).map(([campo, valor]) => 
             Array.isArray(valor) ? valor.map(v => `filters[${campo}]=${v}`).join('&') : `filters[${campo}]=${valor}`
         ).join('&');
@@ -39,11 +39,10 @@ export const getListData = async ({
     filters,
     ine
 }: getListDataProps) => {
-    let url = `${process.env.ENV == 'dev' ? '' : baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
-    console.log("baseURL: ", baseURL())
+    const currentURL = new URL(window.location.href);
+    let url = `${currentURL.origin}/api/lista-nominal/${list}/${municipio_id_sus}`;
     if (ine) url += `/${ine}`;
     const urlWithParams = addParams(url, sorting, filters);
-    console.log("urlWithParams: ", urlWithParams)
     const config = {
         method: 'get',
         maxBodyLength: Infinity,

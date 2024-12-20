@@ -11,7 +11,7 @@ const ListaNominalPage = async() => {
     const params: getListDataProps = {
         municipio_id_sus: session.user.municipio_id_sus,
         token: session.user.access_token,
-        list: "lista-nominal", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
+        list: "gestantes", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     if(session.user.perfis.includes(9)) params.ine = session.user.equipe
     // const data = await getListData(params) // comentei aqui porque a api ainda não está pronta
