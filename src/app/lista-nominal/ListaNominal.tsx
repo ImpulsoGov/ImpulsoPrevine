@@ -1,6 +1,6 @@
 'use client'
-import { ListConteiner } from "./ListConteiner";
 import { PanelSelectorWithCards } from '@impulsogov/design-system';
+import { ListContainer } from "./ListContainer";
 
 export const ListaNominal = () => {
   //esses dados vao vir da API do CMS, com exceção do data e children que é passado por props
@@ -78,7 +78,7 @@ export const ListaNominal = () => {
         subTabs: [
           {
             // A prop list virá da URL com nome da lista acessada
-            child: <ListConteiner key={1} list="hipertensao" />,
+            child: <ListContainer key={1} list="hipertensao" />,
             icon: {
               active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
               inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr'
@@ -87,7 +87,7 @@ export const ListaNominal = () => {
             text: 'text1'
           },
           {
-            child: <ListConteiner key={2} list="hipertensao" />,
+            child: <ListContainer key={2} list="hipertensao" />,
             icon: {
               active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
               inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
@@ -96,7 +96,7 @@ export const ListaNominal = () => {
             text: 'text2'
           },
           {
-            child: <ListConteiner key={3} list="hipertensao" />,
+            child: <ListContainer key={3} list="hipertensao" />,
             icon: {
               active: 'https://media.graphassets.com/EQSROnFQRm20pX1CVbT2',
               inactive: 'https://media.graphassets.com/8sikQD27QLO3IkoxkQ9D'
