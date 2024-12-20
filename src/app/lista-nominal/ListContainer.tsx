@@ -39,6 +39,8 @@ const filters = [
             { value: 'ACS 11', label: 'ACS 11' },
             { value: 'ACS 12', label: 'ACS 12' },
             { value: 'ACS 13', label: 'ACS 13' },
+            { value: 'ACS 14', label: 'ACS 14' },
+            { value: 'ACS 15', label: 'ACS 15' },
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
@@ -138,10 +140,7 @@ export const columns: GridColDef[] = [
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
-        },
     },
-    {
-        field: 'dt_afericao_pressao_mais_recente',
         headerName: 'Data de aferição de PA mais recente',
         width: 200 ,
         headerAlign: 'left',
@@ -266,7 +265,6 @@ export const ListContainer = ({
                 setIsLoading(false);
             };
             getListDataResponse();
-            console.log(search)
         }
     }, [user, value, list, pagination, sorting, search]);
 
