@@ -1,5 +1,8 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
+import { getListData } from '@/services/lista-nominal/ListaNominal';
+import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
+import { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 import { DataItem, filterData } from '@/utils/FilterData';
 import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
@@ -99,7 +102,7 @@ export const columns: GridColDef[] = [
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 130 ,
+        width: 180 ,
         headerAlign: 'left',
         align: 'left'
     },
@@ -157,8 +160,14 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left'
     },
-];
-
+    {
+        field: 'status',
+        headerName: 'Status',
+        width: 150,
+        headerAlign: 'left',
+        align: 'left'
+    },
+] as GridColDef[];
 export type optionsType = { 
     value: string; 
     label: string 
@@ -175,23 +184,24 @@ type ListData = {
     totalRows: number;
 };
 // Adicionar união de valores quando soubermos as listas que teremos
-interface ListConteinerProps {
+interface ListContainerProps {
     list: string;
     subTabID: string;
     title: string;
 }
-
 export const ListContainer = ({
-    list,
     // subTabID,
-    title
-}: ListConteinerProps) => {
+    title,
+    list
+} : ListContainerProps) => {
+    const { data: session } = useSession();
+    const [user, setUser] = useState<Session['user']>();
     const initialFilters = filters.reduce((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
-    }, {} as Record<string, string | string[]>);
-    const { data: session } = useSession();
-    const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
+    }, {} as FilterItem);
+    const [value, setValue] = useState<FilterItem>(initialFilters);
+    const [response, setResponse] = useState<DataItem[]>([]);
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -207,11 +217,35 @@ export const ListContainer = ({
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        const sessionAsync = async() => {
+            setUser(session?.user);
+        };
+        sessionAsync();
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            const getListDataResponse = async () => {
+                const res = await getListData({
+                    municipio_id_sus: user.municipio_id_sus, 
+                    token: user.access_token, 
+                    listName: list,
+                    sorting: undefined, //substituir pelo estado definido na funcionalidade de ordenação
+                    filters: value,
+                    ine: user.equipe.includes('9') ? user.equipe : undefined    
+                });
+                setResponse(res.data);
+            };
+            getListDataResponse();
+        }
+    }, [user, value]);
+
+    useEffect(() => {
         setTableData({
-            data: filterData([], value),
+            data: filterData(response, value),
             totalRows: 0,
         });
-    }, [value]);
+    }, [response, value]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -230,6 +264,10 @@ export const ListContainer = ({
         setSorting([...newSortModel]);
     }
 
+    if (!user) return <p>Usuário não autenticado</p>;
+    if (response.length === 0) return <Spinner/>;
+
+    //dados mockados essa parte do código será substituída por uma chamada a API do CMS
     const clearFiltersArgs = {
         iconActive : "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
         iconInactive : "https://media.graphassets.com/x37RkcUrTH6G50ganj9d",

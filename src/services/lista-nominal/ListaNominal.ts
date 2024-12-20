@@ -1,30 +1,25 @@
 import axios from "axios";
-import { baseURL } from "@/utils/baseURL";
 
 export interface SortingItem {
     sortField: string;
     sortOrder: 'asc' | 'desc';
   }
 
-export interface FilterItem {
-    fieldName: string;
-    fieldValue: string[];
-}
+export type FilterItem = Record<string, string | string[]>;
 
 const buildSortingParams = (sorting: SortingItem[]): string => {
     return sorting
       .map(item => `sortBy[${item.sortField}]=${item.sortOrder}`)
       .join('&');
 };
-const buildFilterParams = (filters: FilterItem[]): string => {
-    return filters
-      .map(filter => 
-        filter.fieldValue
-          .map(value => `filters[${filter.fieldName}]=${value}`)
-          .join('&')
-      )
-      .join('&');
-  };
+const buildFilterParams = (filters: FilterItem): string => {
+    return Object.entries(filters)
+        .flatMap(([fieldName, fieldValue]) => 
+            (Array.isArray(fieldValue) ? fieldValue : [fieldValue])
+                .map(value => `filters[${fieldName}]=${value}`)
+        )
+        .join('&');
+};
 
 /**
  * Adds sorting and filtering parameters to a URL
@@ -36,7 +31,7 @@ export const buildUrlWithParams = (
     baseUrl: string, 
     params?: {
       sorting?: SortingItem[],
-      filters?: FilterItem[],
+      filters?: FilterItem,
       listName: string,
       ine?: string,
       municipio_id_sus: string
@@ -68,7 +63,7 @@ export type getListDataProps = {
     token: string;
     listName: string;
     sorting?: SortingItem[];
-    filters?: FilterItem[];
+    filters?: FilterItem;
     ine?: string;
 };
 
@@ -83,8 +78,8 @@ export const getListData = async ({
     if (!token) throw new Error('Token de autenticação é obrigatório');
     if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
     if (!listName) throw new Error('Tipo de lista é obrigatório');
-
-    const url = `${baseURL()}/lista-nominal`;
+    const currentURL = new URL(window.location.href);
+    const url = `${currentURL.origin}/api/lista-nominal`;
     const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus });
     return axios.request({
       method: 'get',
