@@ -201,6 +201,7 @@ interface ListContainerProps {
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
 export const ListContainer = ({
+    list,
     // subTabID,
     title,
     list
