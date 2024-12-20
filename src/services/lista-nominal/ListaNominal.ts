@@ -1,61 +1,97 @@
 import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
 
-export type Sorting = {
-    campo: string;
-    ordem: string;
-}[];
+export interface SortingItem {
+    sortField: string;
+    sortOrder: 'asc' | 'desc';
+  }
 
-export type Filters = {
-    campo: string;
-    valor: string[];
-}[];
+export interface FilterItem {
+    fieldName: string;
+    fieldValue: string[];
+}
 
-const addParams = (url: string, sorting?: Sorting, filters?: Filters) => {
-    // Adiciona parâmetros de ordenação à URL
-    if (sorting && sorting.length > 0) {
-        const sortingParams = sorting.map(o => `ordenacao[${o.campo}]=${o.ordem}`).join('&');
-        url += `?${sortingParams}`;
+const buildSortingParams = (sorting: SortingItem[]): string => {
+    return sorting
+      .map(item => `sortBy[${item.sortField}]=${item.sortOrder}`)
+      .join('&');
+};
+const buildFilterParams = (filters: FilterItem[]): string => {
+    return filters
+      .map(filter => 
+        filter.fieldValue
+          .map(value => `filters[${filter.fieldName}]=${value}`)
+          .join('&')
+      )
+      .join('&');
+  };
+
+/**
+ * Adds sorting and filtering parameters to a URL
+ * @param baseUrl - Base URL to add parameters to
+ * @param params - Object containing sorting, filter parameters, listName, ine, and municipio_id_sus
+ * @returns URL with added query parameters
+ */
+export const buildUrlWithParams = (
+    baseUrl: string, 
+    params?: {
+      sorting?: SortingItem[],
+      filters?: FilterItem[],
+      listName: string,
+      ine?: string,
+      municipio_id_sus: string
     }
-    // Adiciona parâmetros de filtros à URL
-    if (filters && filters.length > 0) {
-        const filtersParams = filters.map(f => f.valor.map(v => `filtros[${f.campo}]=${v}`).join('&')).join('&');
-        url += sorting && sorting.length > 0 ? `&${filtersParams}` : `?${filtersParams}`;
+  ): string => {
+    let url = baseUrl;
+    const { sorting, filters, listName, ine, municipio_id_sus } = params || {};
+    if (listName) {
+      url += `/${listName}`;
+    }
+    if (municipio_id_sus) {
+      url += `/${municipio_id_sus}`;
+    }
+    if (ine) {
+      url += `/${ine}`;
+    }
+    if (sorting?.length) {
+      url += `?${buildSortingParams(sorting)}`;
+    }
+    if (filters?.length) {
+      const prefix = url.includes('?') ? '&' : '?';
+      url += `${prefix}${buildFilterParams(filters)}`;
     }
     return url;
-};
+  };  
 
 export type getListDataProps = {
     municipio_id_sus: string;
     token: string;
-    list: string;
-    sorting?: Sorting;
-    filters?: Filters;
+    listName: string;
+    sorting?: SortingItem[];
+    filters?: FilterItem[];
     ine?: string;
 };
 
 export const getListData = async ({
     municipio_id_sus,
     token,
-    list,
+    listName,
     sorting,
     filters,
     ine
 }: getListDataProps) => {
     if (!token) throw new Error('Token de autenticação é obrigatório');
     if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
-    if (!list) throw new Error('Tipo de lista é obrigatório');
+    if (!listName) throw new Error('Tipo de lista é obrigatório');
 
-    let url = `${baseURL()}/lista-nominal/${list}/${municipio_id_sus}`;
-    if (ine) url += `/${ine}`;
-    const urlWithParams = addParams(url, sorting, filters);
-    const config = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: urlWithParams,
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    };
-    return axios.request(config);
+    const url = `${baseURL()}/lista-nominal`;
+    const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus });
+    return axios.request({
+      method: 'get',
+      maxBodyLength: Number.POSITIVE_INFINITY,
+      url: urlWithParams,
+      headers: {
+          'Authorization': `Bearer ${token}`
+      }
+  });
 };
