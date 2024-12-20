@@ -176,7 +176,7 @@ type ListData = {
 };
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListConteinerProps {
-    list: string;
+    list: 'hipertensao';
 }
 
 export const ListConteiner = ({ list }: ListConteinerProps) => {
