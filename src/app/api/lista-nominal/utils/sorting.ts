@@ -11,7 +11,7 @@ interface SortConfig {
   sortOrder: SortOrder;
 }
 
-export function validateSortOrder(sortOrder: string): Response | void {
+export function validateSortOrder(sortOrder: string): void {
   const isValidSort = VALID_SORT_ORDER.includes(sortOrder);
 
   if (!isValidSort) {
