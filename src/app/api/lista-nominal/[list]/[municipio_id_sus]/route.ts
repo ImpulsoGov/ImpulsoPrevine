@@ -31,8 +31,8 @@ export async function GET(
     const requestParams = await params;
     const searchParams = req.nextUrl.searchParams;
     const pagination = {
-      page: searchParams.get('paginacao[pagina]'),
-      pageSize: searchParams.get('paginacao[tamanho]')
+      page: searchParams.get('pagination[page]'),
+      pageSize: searchParams.get('pagination[pageSize]')
     };
     const sorting = searchParams.get('sortBy');
     const baseData = searchBaseData({

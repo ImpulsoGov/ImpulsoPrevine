@@ -32,8 +32,9 @@ const buildFilterParams = (filters: FilterItem[]): string => {
     .join('&');
 };
 
-const buildPaginationParam = (pagination: Pagination): string => {
-  return `paginacao[pagina]=${pagination.page}&paginacao[tamanho]=${pagination.pageSize}`;
+const buildPaginationParams = (pagination: Pagination): string => {
+  const { page, pageSize } = pagination;
+  return `pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
 }
 
 /**
@@ -73,7 +74,7 @@ export const buildUrlWithParams = (
   }
   if (pagination?.page !== undefined && pagination?.pageSize !== undefined) {
     const prefix = url.includes('?') ? '&' : '?';
-    url += `${prefix}${buildPaginationParam(pagination)}`;
+    url += `${prefix}${buildPaginationParams(pagination)}`;
   }
   return url;
 };  
