@@ -1,6 +1,6 @@
 import { type NextRequest } from 'next/server';
 import data from '../../data.json';
-import { sortData, validateSortOrder } from '../../utils/sorting';
+import { sortData, SortOrder, validateSortOrder } from '../../utils/sorting';
 import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 
@@ -55,7 +55,7 @@ export async function GET(
       responseData = [...sortData({
         data: responseData,
         field,
-        sortOrder: sortOrder as 'asc' | 'desc',
+        sortOrder: sortOrder as SortOrder,
       })];
     }
 

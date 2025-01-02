@@ -2,8 +2,8 @@ import { BadRequestError } from "./errors";
 
 const VALID_SORT_ORDER = ['asc', 'desc'];
 
-type SortableRecord = Record<string, string | null>;
-type SortOrder = 'asc' | 'desc';
+export type SortableRecord = Record<string, string | null>;
+export type SortOrder = 'asc' | 'desc';
 
 interface SortConfig {
   data: SortableRecord[];
