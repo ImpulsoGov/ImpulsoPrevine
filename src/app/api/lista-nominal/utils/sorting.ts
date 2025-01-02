@@ -36,7 +36,9 @@ const compareValues = (
   b: string | null,
   sortOrder: SortOrder
 ): number => {
+  // Se os valores forem iguais, não é necessário ordenar
   if (a === b) return 0;
+  // Se um valor for nulo, ele deve ir para o final da lista
   if (!a) return 1;
   if (!b) return -1;
 
