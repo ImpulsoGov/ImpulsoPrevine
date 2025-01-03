@@ -1,6 +1,5 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
-import { getListData } from '@/services/lista-nominal/ListaNominal';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -202,7 +201,10 @@ export const ListContainer = ({
         return acc;
     }, {} as FilterItem);
     const [value, setValue] = useState<FilterItem>(initialFilters);
-    const [response, setResponse] = useState<DataItem[]>([]);
+    const [response, setResponse] = useState<ListData>({
+        data: [],
+        totalRows: 0,
+    });
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -216,69 +218,49 @@ export const ListContainer = ({
         sort: 'asc'
     }]);
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
         };
         sessionAsync();
-    }, []);
+    }, [session?.user]);
 
     useEffect(() => {
         if (user) {
             const getListDataResponse = async () => {
-                const res = await getListData({
-                    municipio_id_sus: user.municipio_id_sus, 
-                    token: user.access_token, 
-                    listName: list,
-                    sorting: undefined, //substituir pelo estado definido na funcionalidade de ordenação
-                    filters: value,
-                    ine: user.equipe.includes('9') ? user.equipe : undefined    
-                });
-                setResponse(res.data);
+                setIsLoading(true);
+                try {
+                    const res = await getListData({
+                        municipio_id_sus: user.municipio_id_sus,
+                        token: user.access_token,
+                        listName: list,
+                        sorting: [{
+                            sortField: sorting[0].field,
+                            sortOrder: sorting[0].sort,
+                        }],
+                        filters: value,
+                        ine: user.equipe.includes('9') ? user.equipe : undefined,
+                        pagination,
+                    });
+                    setResponse(res.data);
+                    setErrorMessage('');
+                } catch (error) {
+                    setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
+                }
+                setIsLoading(false);
             };
             getListDataResponse();
         }
-    }, [user, value]);
+    }, [user, value, list, pagination, sorting]);
 
     useEffect(() => {
         setTableData({
-            data: filterData(response, value),
-            totalRows: 0,
+            data: filterData(response.data, value),
+            totalRows: response.totalRows,
         });
     }, [response, value]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const { data: responseData } = await getListData({
-                    municipio_id_sus: session?.user?.municipio_id_sus as string,
-                    token: session?.user?.access_token as string,
-                    ine: session?.user?.perfis.includes(9)
-                        ? session?.user?.equipe
-                        : undefined,
-                    listName: list,
-                    sorting: [{
-                        sortField: sorting[0].field,
-                        sortOrder: sorting[0].sort,
-                    }],
-                    pagination,
-                });
-
-                setTableData({
-                    data: responseData.data,
-                    totalRows: responseData.totalRows,
-                });
-            } catch (error) {
-                // Alterar para tratamento de erro correto
-                console.error(error);
-            }
-            setIsLoading(false);
-        };
-
-        if (session && session.user) fetchData();
-    }, [pagination, sorting, session, list]);
 
     function handleSortModelChange(newSortModel: GridSortModel) {
         newSortModel.length > 0
@@ -287,7 +269,8 @@ export const ListContainer = ({
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
-    if (response.length === 0) return <Spinner/>;
+    if (errorMessage) return <p>{errorMessage}</p>;
+    if (response.data.length === 0) return <Spinner/>;
 
     //dados mockados essa parte do código será substituída por uma chamada a API do CMS
     const clearFiltersArgs = {
