@@ -241,7 +241,7 @@ export const ListContainer = ({
                             sortOrder: sorting[0].sort,
                         }],
                         filters: value,
-                        ine: user.equipe.includes('9') ? user.equipe : undefined,
+                        ine: user.perfis.includes(9) ? user.equipe : undefined,
                         pagination,
                     });
                     setResponse(res.data);
