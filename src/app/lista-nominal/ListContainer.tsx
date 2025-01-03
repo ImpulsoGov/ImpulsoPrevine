@@ -8,6 +8,7 @@ import { DataItem, filterData } from '@/utils/FilterData';
 import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
+import { getListData } from '@/services/lista-nominal/ListaNominal';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -250,10 +251,29 @@ export const ListContainer = ({
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            setTableData({
-                data: [],
-                totalRows: 0,
-            });
+            try {
+                const { data: responseData } = await getListData({
+                    municipio_id_sus: session?.user?.municipio_id_sus as string,
+                    token: session?.user?.access_token as string,
+                    ine: session?.user?.perfis.includes(9)
+                        ? session?.user?.equipe
+                        : undefined,
+                    listName: list,
+                    sorting: [{
+                        sortField: sorting[0].field,
+                        sortOrder: sorting[0].sort,
+                    }],
+                    pagination,
+                });
+
+                setTableData({
+                    data: responseData.data,
+                    totalRows: responseData.totalRows,
+                });
+            } catch (error) {
+                // Alterar para tratamento de erro correto
+                console.error(error);
+            }
             setIsLoading(false);
         };
 
@@ -261,7 +281,9 @@ export const ListContainer = ({
     }, [pagination, sorting, session, list]);
 
     function handleSortModelChange(newSortModel: GridSortModel) {
-        setSorting([...newSortModel]);
+        newSortModel.length > 0
+            ? setSorting([...newSortModel])
+            : setSorting([{field: 'nome', sort: 'asc'}]);
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
