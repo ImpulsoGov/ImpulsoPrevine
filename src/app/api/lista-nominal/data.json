@@ -10,7 +10,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 2",
-    "equipe_ine": "1111111111"
+    "equipe_ine": "1111111111",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -23,7 +24,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 3",
-    "equipe_ine": "1111111112"
+    "equipe_ine": "1111111112",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -36,7 +38,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 4",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -49,7 +52,8 @@
     "dt_afericao_pressao_mais_recente": null,
     "prazo_proxima_afericao_pa": "Em dia",
     "acs_nome_cadastro": "ACS 1",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "em dia"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -62,7 +66,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 5",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -75,7 +80,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 6",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -88,7 +94,8 @@
     "dt_afericao_pressao_mais_recente": null,
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 7",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -101,7 +108,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 8",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -114,7 +122,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 9",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -127,7 +136,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 10",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -140,7 +150,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 11",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -153,7 +164,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 12",
-    "equipe_ine": "1111111114"
+    "equipe_ine": "1111111114",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -166,7 +178,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 13",
-    "equipe_ine": "1111111114"
+    "equipe_ine": "1111111114",
+    "status": "atrasado"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -179,7 +192,8 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 14",
-    "equipe_ine": "1111111114"
+    "equipe_ine": "1111111114",
+    "status": "atrasado"
   },
   {
     "mail": "outro@email.com",
@@ -192,6 +206,7 @@
     "dt_afericao_pressao_mais_recente": "10/03/2023",
     "prazo_proxima_afericao_pa": "Em dia",
     "acs_nome_cadastro": "ACS 15",
-    "equipe_ine": "1111111113"
+    "equipe_ine": "1111111113",
+    "status": "em dia"
   }
 ]
