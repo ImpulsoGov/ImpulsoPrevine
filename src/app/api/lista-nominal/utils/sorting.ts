@@ -1,12 +1,12 @@
+import { DataItem, ValidValue } from "@/utils/FilterData";
 import { BadRequestError } from "./errors";
 
 const VALID_SORT_ORDER = ['asc', 'desc'];
 
-export type SortableRecord = Record<string, string | null>;
 export type SortOrder = 'asc' | 'desc';
 
 interface SortConfig {
-  data: SortableRecord[];
+  data: DataItem[];
   field: string;
   sortOrder: SortOrder;
 }
@@ -32,18 +32,22 @@ const parseDate = (dateStr: string): Date => {
 };
 
 const compareValues = (
-  a: string | null,
-  b: string | null,
+  a: ValidValue,
+  b: ValidValue,
   sortOrder: SortOrder
 ): number => {
   // Se os valores forem iguais, não é necessário ordenar
   if (a === b) return 0;
   // Se um valor for nulo, ele deve ir para o final da lista
-  if (!a) return 1;
-  if (!b) return -1;
+  if (a === null) return 1;
+  if (b === null) return -1;
 
-  const dateA = isDateField(a) ? parseDate(a) : null;
-  const dateB = isDateField(b) ? parseDate(b) : null;
+  if (typeof a === 'number' && typeof b === 'number') {
+    return sortOrder === 'asc' ? a - b : b - a;
+  }
+
+  const dateA = typeof a === 'string' && isDateField(a) ? parseDate(a) : null;
+  const dateB = typeof b === 'string' && isDateField(b) ? parseDate(b) : null;
 
   if (dateA && dateB) {
     return sortOrder === 'asc' 
@@ -51,16 +55,18 @@ const compareValues = (
       : dateB.getTime() - dateA.getTime();
   }
 
+  const strA = String(a);
+  const strB = String(b);
   return sortOrder === 'asc'
-    ? a.localeCompare(b)
-    : b.localeCompare(a);
+    ? strA.localeCompare(strB)
+    : strB.localeCompare(strA);
 };
 
 export function sortData({
   data,
   field,
   sortOrder
-}: SortConfig): SortableRecord[] {
+}: SortConfig): DataItem[] {
   return [...data].sort((a, b) =>
     compareValues(a[field], b[field], sortOrder)
   );

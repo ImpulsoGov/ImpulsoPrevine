@@ -1,3 +1,4 @@
+import { DataItem } from "@/utils/FilterData";
 import { BadRequestError } from "./errors";
 
 export function validatePaginationParams({
@@ -30,7 +31,7 @@ export function paginateData({
   page,
   pageSize
 }: {
-  data: Record<string, string | null>[];
+  data: DataItem[];
   page: number;
   pageSize: number;
 }) {
