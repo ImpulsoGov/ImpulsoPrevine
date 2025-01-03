@@ -16,8 +16,6 @@ const getParams = async(searchParams: URLSearchParams) => {
     return filters as Filters
 }
 
-const VALID_LIST_NAMES = ['hipertensao'];
-
 type Data = DataItem[];
 type Params = {
   list: string;
@@ -52,10 +50,6 @@ export async function GET(
       municipio_id_sus: params.municipio_id_sus,
     });
     let responseData: Data = [...baseData];
-
-    if (!VALID_LIST_NAMES.includes(params.list)) {
-      return Response.json({ message: 'Lista não encontrada' }, { status: 404 });
-    }
 
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
 
