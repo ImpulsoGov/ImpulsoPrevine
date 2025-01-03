@@ -106,7 +106,7 @@ export const getListData = async ({
   const currentURL = new URL(window.location.href);
   const url = `${currentURL.origin}/api/lista-nominal`;
   const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus, pagination });
-  console.log('token', token);
+
   return axios.request({
     method: 'get',
     maxBodyLength: Number.POSITIVE_INFINITY,
