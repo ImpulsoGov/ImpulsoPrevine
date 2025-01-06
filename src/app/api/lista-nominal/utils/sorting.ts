@@ -36,6 +36,7 @@ const compareValues = (
   b: ValidValue,
   sortOrder: SortOrder
 ): number => {
+  const isSortOrderAsc = sortOrder === 'asc';
   // Se os valores forem iguais, não é necessário ordenar
   if (a === b) return 0;
   // Se um valor for nulo, ele deve ir para o final da lista
@@ -43,21 +44,21 @@ const compareValues = (
   if (b === null) return -1;
 
   if (typeof a === 'number' && typeof b === 'number') {
-    return sortOrder === 'asc' ? a - b : b - a;
+    return isSortOrderAsc ? a - b : b - a;
   }
 
   const dateA = typeof a === 'string' && isDateField(a) ? parseDate(a) : null;
   const dateB = typeof b === 'string' && isDateField(b) ? parseDate(b) : null;
 
   if (dateA && dateB) {
-    return sortOrder === 'asc' 
+    return isSortOrderAsc 
       ? dateA.getTime() - dateB.getTime()
       : dateB.getTime() - dateA.getTime();
   }
 
   const strA = String(a);
   const strB = String(b);
-  return sortOrder === 'asc'
+  return isSortOrderAsc
     ? strA.localeCompare(strB)
     : strB.localeCompare(strA);
 };
