@@ -17,7 +17,7 @@ const getParams = async(searchParams: URLSearchParams) => {
 }
 
 type Data = DataItem[];
-type Params = {
+type RequestParams = {
   list: string;
   municipio_id_sus: string;
 }
@@ -35,7 +35,7 @@ function searchBaseData({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Params }
+  { params }: { params: RequestParams }
 ) {
   try {
     const searchParams = req.nextUrl.searchParams;
