@@ -196,10 +196,10 @@ export const ListContainer = ({
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
-    const initialFilters = filters.reduce((acc, filter: Filter) => {
+    const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
-    }, {} as FilterItem);
+    }, {});
     const [value, setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<ListData>({
         data: [],

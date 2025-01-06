@@ -7,13 +7,13 @@ import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
 
 const getParams = async(searchParams: URLSearchParams) => {
-    const filters: { [key: string]: string | string[] } = {};
+    const filters: Filters = {};
     searchParams.get('filters')?.split(';').forEach((filter) => {
         const [key, valueString] = filter.split(':');
         const valueArray = valueString.split(',');
         filters[key] = valueArray.length !== 1 ? valueArray : valueArray[0];
     });
-    return filters as Filters
+    return filters
 }
 
 type Data = DataItem[];
