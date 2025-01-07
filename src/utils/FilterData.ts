@@ -1,4 +1,4 @@
-export type ValidValue = string | number | boolean | Date;
+export type ValidValue = string | number | boolean | Date | null;
 
 export type FilterValue = string | readonly string[];
 
