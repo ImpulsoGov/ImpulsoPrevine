@@ -1,8 +1,13 @@
 [
   {
     "mail": "aangelicasouza24@gmail.com",
+<<<<<<< HEAD
     "cpf": "06385172616",
     "municipio_id_sus": "111111",
+=======
+    "cpf": "06385172614",
+    "municipio_id_sus": "111112",
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
     "nome": "Nome B",
     "identificacao_condicao": "Diagnostico clínico",
     "dt_consulta_mais_recente": "22/09/2021",
@@ -10,6 +15,7 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 2",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
@@ -18,6 +24,15 @@
     "mail": "aangelicasouza24@gmail.com",
     "cpf": "06385582613",
     "municipio_id_sus": "111111",
+=======
+    "equipe_ine": "1111111111",
+    "status": "atrasado"
+  },
+  {
+    "mail": "aangelicasouza24@gmail.com",
+    "cpf": "06385582614",
+    "municipio_id_sus": "111112",
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
     "nome": "Nome C",
     "identificacao_condicao": "Diagnostico clínico",
     "dt_consulta_mais_recente": "22/09/2021",
@@ -25,9 +40,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 3",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111112",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -40,9 +60,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 4",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -55,9 +80,14 @@
     "dt_afericao_pressao_mais_recente": null,
     "prazo_proxima_afericao_pa": "Em dia",
     "acs_nome_cadastro": "ACS 1",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "em dia",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "em dia"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -70,9 +100,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 5",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -85,9 +120,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 6",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -100,9 +140,14 @@
     "dt_afericao_pressao_mais_recente": null,
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 7",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -115,9 +160,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 8",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -130,9 +180,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 9",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -145,9 +200,14 @@
     "dt_afericao_pressao_mais_recente": "22/02/2021",
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 10",
+<<<<<<< HEAD
     "ine": "0001590324",
     "status": "atrasado",
     "atualizacao_data": "2023-10-01T00:00:00.000Z"
+=======
+    "equipe_ine": "1111111113",
+    "status": "atrasado"
+>>>>>>> a7723c1 (Feature alog endpoint de dados com filtro, ordenação e paginação (#286))
   },
   {
     "mail": "aangelicasouza24@gmail.com",
