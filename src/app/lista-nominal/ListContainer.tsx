@@ -1,10 +1,13 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
+import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
+import { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 import { DataItem, filterData } from '@/utils/FilterData';
 import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
+import { getListData } from '@/services/lista-nominal/ListaNominal';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -99,7 +102,7 @@ export const columns: GridColDef[] = [
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 130 ,
+        width: 180 ,
         headerAlign: 'left',
         align: 'left'
     },
@@ -157,8 +160,14 @@ export const columns: GridColDef[] = [
         headerAlign: 'left',
         align: 'left'
     },
-];
-
+    {
+        field: 'status',
+        headerName: 'Status',
+        width: 150,
+        headerAlign: 'left',
+        align: 'left'
+    },
+] as GridColDef[];
 export type optionsType = { 
     value: string; 
     label: string 
@@ -175,23 +184,27 @@ type ListData = {
     totalRows: number;
 };
 // Adicionar união de valores quando soubermos as listas que teremos
-interface ListConteinerProps {
+interface ListContainerProps {
     list: string;
     subTabID: string;
     title: string;
 }
-
 export const ListContainer = ({
-    list,
     // subTabID,
-    title
-}: ListConteinerProps) => {
-    const initialFilters = filters.reduce((acc, filter: Filter) => {
+    title,
+    list
+} : ListContainerProps) => {
+    const { data: session } = useSession();
+    const [user, setUser] = useState<Session['user']>();
+    const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
-    }, {} as Record<string, string | string[]>);
-    const { data: session } = useSession();
-    const [value, setValue] = useState<Record<string, string | string[]>>(initialFilters);
+    }, {});
+    const [value, setValue] = useState<FilterItem>(initialFilters);
+    const [response, setResponse] = useState<ListData>({
+        data: [],
+        totalRows: 0,
+    });
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -205,31 +218,61 @@ export const ListContainer = ({
         sort: 'asc'
     }]);
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
+    useEffect(() => {
+        const sessionAsync = async() => {
+            setUser(session?.user);
+        };
+        sessionAsync();
+    }, [session?.user]);
+
+    useEffect(() => {
+        if (user) {
+            const getListDataResponse = async () => {
+                setIsLoading(true);
+                try {
+                    const res = await getListData({
+                        municipio_id_sus: user.municipio_id_sus,
+                        token: user.access_token,
+                        listName: list,
+                        sorting: [{
+                            sortField: sorting[0].field,
+                            sortOrder: sorting[0].sort,
+                        }],
+                        filters: value,
+                        ine: user.perfis.includes(9) ? user.equipe : undefined,
+                        pagination,
+                    });
+                    setResponse(res.data);
+                    setErrorMessage('');
+                } catch (error) {
+                    setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
+                }
+                setIsLoading(false);
+            };
+            getListDataResponse();
+        }
+    }, [user, value, list, pagination, sorting]);
 
     useEffect(() => {
         setTableData({
-            data: filterData([], value),
-            totalRows: 0,
+            data: filterData(response.data, value),
+            totalRows: response.totalRows,
         });
-    }, [value]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            setTableData({
-                data: [],
-                totalRows: 0,
-            });
-            setIsLoading(false);
-        };
-
-        if (session && session.user) fetchData();
-    }, [pagination, sorting, session, list]);
+    }, [response, value]);
 
     function handleSortModelChange(newSortModel: GridSortModel) {
-        setSorting([...newSortModel]);
+        newSortModel.length > 0
+            ? setSorting([...newSortModel])
+            : setSorting([{field: 'nome', sort: 'asc'}]);
     }
 
+    if (!user) return <p>Usuário não autenticado</p>;
+    if (errorMessage) return <p>{errorMessage}</p>;
+    if (response.data.length === 0) return <Spinner/>;
+
+    //dados mockados essa parte do código será substituída por uma chamada a API do CMS
     const clearFiltersArgs = {
         iconActive : "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
         iconInactive : "https://media.graphassets.com/x37RkcUrTH6G50ganj9d",
