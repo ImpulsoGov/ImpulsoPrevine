@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import { Session } from 'next-auth';
@@ -175,7 +175,6 @@ export const columns: GridColDef[] = [
         align: 'left'
     },
 ] as GridColDef[];
-
 export type optionsType = { 
     value: string; 
     label: string 
@@ -201,7 +200,6 @@ interface ListContainerProps {
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
 export const ListContainer = ({
-    list,
     // subTabID,
     title,
     list
