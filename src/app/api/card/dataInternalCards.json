@@ -1,0 +1,44 @@
+[
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278092",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_1",
+    "valor": 37
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278092",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_2",
+    "valor": 45
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278092",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_3",
+    "valor": 52
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278093",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_1",
+    "valor": 40
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278093",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_2",
+    "valor": 50
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278093",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_3",
+    "valor": 60
+  }
+]
