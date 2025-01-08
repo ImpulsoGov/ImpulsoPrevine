@@ -3,10 +3,64 @@ import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
 import type { getListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from './ListaNominal';
+import { CardsDataResponse, getCardsData } from "@/services/lista-nominal/cards";
+import { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+
+type CardDetails = Omit<CardProps, 'value'>;
+type CardDetailsMap = Record<string, CardDetails>;
+
+function getCardsProps(
+    details: CardDetailsMap,
+    data: CardsDataResponse[]
+) {
+    return data.map<CardProps>((card) => {
+        const cardDetails = details[card.descricao];
+        return {
+            ...cardDetails,
+            value: card.valor.toString(),
+        }
+    })
+}
 
 const ListaNominalPage = async() => {
+    // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
+    const cardsDetails: CardDetailsMap = {
+        "TOTAL": {
+            title: "Total de pessoas com hipertensão",
+            titlePosition: "top",
+            customStyles: {
+                width: "180px",
+                backgroundColor: "#FFF",
+            }
+        },
+        "COM_CONSULTA_AFERICAO_PRESSAO": {
+            title: "Total de pessoas com consulta e aferição de PA em dia",
+            titlePosition: "top",
+            customStyles: {
+                width: "180px",
+                backgroundColor: "#FFF",
+            }
+        },
+        "DIAGNOSTICO_AUTORREFERIDO": {
+            title: "Total de pessoas com diagnóstico autorreferido",
+            titlePosition: "top",
+            customStyles: {
+                width: "180px",
+                backgroundColor: "#FFF",
+            }
+        },
+        "DIAGNOSTICO_CLINICO": {
+            title: "Total de pessoas com diagnóstico clínico",
+            titlePosition: "top",
+            customStyles: {
+                width: "180px",
+                backgroundColor: "#FFF",
+            }
+        },
+    }
     const session = await getServerSession(nextAuthOptions) as Session;
     const user = session?.user as Session['user'];
+    let externalCardsProps: CardProps[] = [];
     if (!session || !user) return <p>Usuário não autenticado</p>;
     const params: getListDataProps = {
         municipio_id_sus: user.municipio_id_sus,
@@ -14,40 +68,22 @@ const ListaNominalPage = async() => {
         listName: "gestantes", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     if(user.perfis.includes(9)) params.ine = user.equipe
-    // const externalCardsData = await getExternalCardsData(externalCardsParams) // escrever requisicao para cards externos
-    // const columns = await getColumnsData() // escrever requisicao para colunas
-    //mock data
-    const externalCardsData =  [
-        {
-        value: '100',
-        title: 'Card Title 1',
-        titlePosition: 'top',
-        customStyles: {
-            width: "180px",
-            backgroundColor: "#FFF",
-        }
-        },
-        {
-        value: '100',
-        title: 'Card Title 2',
-        titlePosition: 'top',
-        customStyles: {
-            width: "180px",
-            backgroundColor: "#FFF",
-        }
-        },
-        {
-        value: '100',
-        title: 'Card Title 3',
-        titlePosition: 'top',
-        customStyles: {
-            width: "180px",
-            backgroundColor: "#FFF",
-        }
-        },
-    ]
 
-    const props = {
+    try {
+        const { data } = await getCardsData({
+            municipio_id_sus: params.municipio_id_sus,
+            token: params.token,
+            listName: params.listName,
+            cardType: "external",
+            ine: params.ine
+        })
+
+        externalCardsProps = getCardsProps(cardsDetails, data);
+    } catch (error) {
+    }
+    // const columns = await getColumnsData() // escrever requisicao para colunas
+
+    const props: ExtendedPanelSelectorWithCardsProps = {
         breadcrumb: [
             {
                 label: 'Inicio',
@@ -61,7 +97,7 @@ const ListaNominalPage = async() => {
         municipality: 'São Paulo - SP',
         title: 'Pré-natal (indicadores 1, 2 e 3)',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id.',
-        cards : externalCardsData,
+        cards : externalCardsProps,
         listaNominalID: params.listName,
         tabs: {
             charts: {
@@ -131,8 +167,8 @@ const ListaNominalPage = async() => {
             tabID: "charts",
             subTabID: "ChartSubTabID1"
         },
-    } as ExtendedPanelSelectorWithCardsProps;
-    
+    };
+
     return <ListaNominal props={props}/>
 }
 export default ListaNominalPage;
