@@ -39,6 +39,7 @@ export type getCardsDataProps = {
   token: string;
   listName: string;
   cardType: CardType;
+  baseUrl: string;
   ine?: string;
 };
 
@@ -56,14 +57,14 @@ export const getCardsData = async ({
   listName,
   cardType,
   ine,
+  baseUrl,
 }: getCardsDataProps): Promise<AxiosResponse<CardsDataResponse[]>> => {
   if (!token) throw new Error('Token de autenticação é obrigatório');
   if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
   if (!listName) throw new Error('Tipo de lista é obrigatório');
   if (!cardType) throw new Error('Tipo de card é obrigatório');
 
-  const currentURL = new URL(window.location.href);
-  const url = `${currentURL.origin}/api/lista-nominal`;
+  const url = `${baseUrl}/api/card`;
   const urlWithParams = buildUrlWithParams(url, { listName, ine, municipio_id_sus, cardType });
 
   return axios.request({
