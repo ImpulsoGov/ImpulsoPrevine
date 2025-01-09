@@ -10,6 +10,8 @@ import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
 import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
+import { captureException } from "@sentry/react";
+
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -49,20 +51,20 @@ const filters = [
 ]
 
 // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
-    const cardsDetails: CardDetailsMap = {
-        "INDICADOR_1": {
-            title: "Indicador 1",
-            titlePosition: "top",
-        },
-        "INDICADOR_2": {
-            title: "Indicador 2",
-            titlePosition: "top",
-        },
-        "INDICADOR_3": {
-            title: "Indicador 3",
-            titlePosition: "top",
-        },
-    }
+const cardsDetails: CardDetailsMap = {
+    "INDICADOR_1": {
+        title: "Indicador 1",
+        titlePosition: "top",
+    },
+    "INDICADOR_2": {
+        title: "Indicador 2",
+        titlePosition: "top",
+    },
+    "INDICADOR_3": {
+        title: "Indicador 3",
+        titlePosition: "top",
+    },
+}
 
 // Informações que devem vir do CMS
 const IconDetailsMap: TagIconDetailsMap = {
@@ -274,6 +276,7 @@ export const ListContainer = ({
                     setCards([...getCardsProps(cardsDetails, res.data)]);
                     setErrorMessage('');
                 } catch (error) {
+                    captureException(error);
                     setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
                 }
             }
@@ -289,7 +292,7 @@ export const ListContainer = ({
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
-    if (errorMessage) return <p>{errorMessage}</p>;
+    if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     if (response.data.length === 0) return <Spinner/>;
 
     //dados mockados essa parte do código será substituída por uma chamada a API do CMS

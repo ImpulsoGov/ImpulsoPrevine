@@ -7,6 +7,7 @@ import { getCardsData } from "@/services/lista-nominal/cards";
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { baseURL } from '@/utils/baseURL';
 import { CardDetailsMap, getCardsProps } from "@/helpers/cardsList";
+import { captureException } from "@sentry/react";
 
 const ListaNominalPage = async() => {
     // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
@@ -67,6 +68,8 @@ const ListaNominalPage = async() => {
 
         externalCardsProps = getCardsProps(cardsDetails, data);
     } catch (error) {
+        captureException(error);
+        return <p>Erro ao buscar dados</p>;
     }
     // const columns = await getColumnsData() // escrever requisicao para colunas
 
