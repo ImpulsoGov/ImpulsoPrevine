@@ -8,6 +8,8 @@ import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/hel
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
+import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
+import { getCardsData } from '@/services/lista-nominal/cards';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -45,30 +47,22 @@ const filters = [
         width: '240px',
     },
 ]
-//dados mockados essa parte do código será substituída por uma chamada a API
-const cards: CardProps[] = [
-    {
-        value: '78',
-        title: 'Card Title 1',
-        titlePosition: 'top'
-    },
-    {
-        value: '234',
-        title: 'Card Title 2',
-        titlePosition: 'top'
-    },
-    {
-        value: '678',
-        title: 'Card Title 3',
-        titlePosition: 'top'
-    },
-    {
-        value: '131',
-        title: 'Card Title 4',
-        titlePosition: 'top'
-    },
 
-]
+// Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
+    const cardsDetails: CardDetailsMap = {
+        "INDICADOR_1": {
+            title: "Indicador 1",
+            titlePosition: "top",
+        },
+        "INDICADOR_2": {
+            title: "Indicador 2",
+            titlePosition: "top",
+        },
+        "INDICADOR_3": {
+            title: "Indicador 3",
+            titlePosition: "top",
+        },
+    }
 
 // Informações que devem vir do CMS
 const IconDetailsMap: TagIconDetailsMap = {
@@ -219,6 +213,7 @@ export const ListContainer = ({
     }]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [cards, setCards] = useState<CardProps[]>([]);
 
     useEffect(() => {
         const sessionAsync = async() => {
@@ -261,6 +256,31 @@ export const ListContainer = ({
             totalRows: response.totalRows,
         });
     }, [response, value]);
+
+    useEffect(() => {
+        const getCardsDataResponse = async () => {
+            if (user) {
+                try {
+                    const currentURL = new URL(window.location.href).origin;
+                    const res = await getCardsData({
+                        municipio_id_sus: user.municipio_id_sus,
+                        token: user.access_token,
+                        listName: list,
+                        cardType: 'internal',
+                        ine: user.perfis.includes(9) ? user.equipe : undefined,
+                        baseUrl: currentURL ?? 'http://localhost:3000',
+                    });
+
+                    setCards([...getCardsProps(cardsDetails, res.data)]);
+                    setErrorMessage('');
+                } catch (error) {
+                    setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
+                }
+            }
+        };
+
+        getCardsDataResponse();
+    }, [list, user]);
 
     function handleSortModelChange(newSortModel: GridSortModel) {
         newSortModel.length > 0
