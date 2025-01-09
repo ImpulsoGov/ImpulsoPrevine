@@ -1,6 +1,6 @@
-import { BadRequestError } from '../../errorHandler';
 import externalCards from '../dataExternalCards.json';
 import internalCards from '../dataInternalCards.json';
+import { InvalidCardTypeError } from './errors';
 
 export type CardType = 'external' | 'internal';
 
@@ -21,7 +21,7 @@ export const DATA_BY_TYPE: Record<string, CardsData[]> = {
 
 export function validateCardType(type: CardType): void {
   if (!VALID_CARD_TYPES.includes(type)) {
-    throw new BadRequestError('Tipo de card deve ser "external" ou "internal"');
+    throw new InvalidCardTypeError('Tipo de card deve ser `external` ou `internal`');
   }
 }
 
