@@ -1,5 +1,5 @@
 import { DataItem } from "@/utils/FilterData";
-import { BadRequestError } from "../../errorHandler";
+import { BadRequestError } from "./errors";
 
 export function validatePaginationParams({
   page,
