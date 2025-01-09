@@ -2,9 +2,9 @@ import { type NextRequest } from 'next/server';
 import data from '../../data.json';
 import { sortData, SortOrder, validateSortOrder } from '../../utils/sorting';
 import { paginateData, validatePaginationParams } from '../../utils/pagination';
+import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
-import { handleError } from '@/app/api/errorHandler';
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
@@ -82,6 +82,10 @@ export async function GET(
       totalRows: baseData.length,
     }, { status: 200 });
   } catch (error) {
-    handleError(error as Error);
+    if (error instanceof BadRequestError) {
+      return Response.json({ message: error.message }, { status: 400 });
+    }
+
+    return Response.json({ message: 'Erro ao consultar dados' , detail : (error as Error).message },{ status: 500 });
   }
 }

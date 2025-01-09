@@ -1,5 +1,5 @@
 import { DataItem, ValidValue } from "@/utils/FilterData";
-import { BadRequestError } from "../../errorHandler";
+import { BadRequestError } from "./errors";
 
 const VALID_SORT_ORDER = ['asc', 'desc'];
 
