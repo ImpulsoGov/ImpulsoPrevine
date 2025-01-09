@@ -19,5 +19,12 @@
     "lista": "hipertensao",
     "descricao": "INDICADOR_3",
     "valor": 52
+  },
+  {
+    "municipio_id_sus": "111111",
+    "equipe_ine": "0000278092",
+    "lista": "hipertensao",
+    "descricao": "INDICADOR_4",
+    "valor": 52
   }
 ]

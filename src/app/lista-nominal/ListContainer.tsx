@@ -64,6 +64,10 @@ const cardsDetails: CardDetailsMap = {
         title: "Indicador 3",
         titlePosition: "top",
     },
+    "INDICADOR_4": {
+        title: "Indicador 4",
+        titlePosition: "top",
+    },
 }
 
 // Informações que devem vir do CMS
