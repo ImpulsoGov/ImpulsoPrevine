@@ -21,6 +21,7 @@ export async function GET(
 
     // Será substituído por consulta no banco de dados.
     // Quando conectar com o banco de dados, agrupar os dados por descrição
+    // para somar os valores de todas equipe do município por descrição (card).
     const filteredData = data.filter(card =>
       card.municipio_id_sus === municipio_id_sus
       && card.lista === list
