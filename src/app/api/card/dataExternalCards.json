@@ -3,13 +3,6 @@
     "municipio_id_sus": "111111",
     "equipe_ine": "0000278092",
     "lista": "hipertensao",
-    "valor": 37,
-    "descricao": "TOTAL"
-  },
-  {
-    "municipio_id_sus": "111111",
-    "equipe_ine": "0000278092",
-    "lista": "hipertensao",
     "valor": 45,
     "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
   },

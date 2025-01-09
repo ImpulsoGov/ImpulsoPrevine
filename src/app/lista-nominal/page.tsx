@@ -12,14 +12,6 @@ import { captureException } from "@sentry/react";
 const ListaNominalPage = async() => {
     // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
     const cardsDetails: CardDetailsMap = {
-        "TOTAL": {
-            title: "Total de pessoas com hipertensão",
-            titlePosition: "top",
-            customStyles: {
-                width: "180px",
-                backgroundColor: "#FFF",
-            }
-        },
         "COM_CONSULTA_AFERICAO_PRESSAO": {
             title: "Total de pessoas com consulta e aferição de PA em dia",
             titlePosition: "top",
