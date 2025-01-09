@@ -65,7 +65,7 @@ const ListaNominalPage = async() => {
     const params: getListDataProps = {
         municipio_id_sus: user.municipio_id_sus,
         token: user.access_token,
-        listName: "gestantes", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
+        listName: "hipertensao", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     if(user.perfis.includes(9)) params.ine = user.equipe
 
