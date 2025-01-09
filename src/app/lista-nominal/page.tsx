@@ -4,6 +4,7 @@ import { ListaNominal } from "./ListaNominal";
 import type { getListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from './ListaNominal';
 import { CardsDataResponse, getCardsData } from "@/services/lista-nominal/cards";
+import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { baseURL } from '@/utils/baseURL';
 
 type CardDetails = Omit<CardProps, 'value'>;
