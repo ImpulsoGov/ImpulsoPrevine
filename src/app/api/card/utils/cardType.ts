@@ -26,5 +26,11 @@ export function validateCardType(type: CardType): void {
 }
 
 export function getDataByType(type: CardType): CardsData[] {
-  return DATA_BY_TYPE[type];
+  const data = DATA_BY_TYPE[type];
+
+  if (!data) {
+    throw new InvalidCardTypeError(`Dados não encontrados para o tipo de card: ${type}`);
+  }
+
+  return data;
 }
