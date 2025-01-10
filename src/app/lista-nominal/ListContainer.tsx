@@ -305,6 +305,7 @@ export const ListContainer = ({
             rowCount={tableData.totalRows}
             paginationModel={pagination}
             onPaginationModelChange={setPagination}
+            sortModel={sorting}
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
         />
