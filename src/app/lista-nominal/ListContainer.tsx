@@ -303,7 +303,6 @@ export const ListContainer = ({
         {cards && <CardGrid cards={cards}/>}
         <ToolBarMounted
             updateDate={String(tableData.data[0]?.atualizacao_data)}
-            search={() => {}}
             print={() => {}}
             inputProps={{value: inputValue, onChange: setInputValue}}
             handleSearchClick={handleSearchClick}
