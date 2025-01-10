@@ -189,6 +189,9 @@ interface ListContainerProps {
     subTabID: string;
     title: string;
 }
+
+const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
+
 export const ListContainer = ({
     // subTabID,
     title,
@@ -213,10 +216,7 @@ export const ListContainer = ({
         page: 0,
         pageSize: 8,
     });
-    const [sorting, setSorting] = useState<GridSortModel>([{
-        field: 'nome',
-        sort: 'asc'
-    }]);
+    const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -265,7 +265,7 @@ export const ListContainer = ({
     function handleSortModelChange(newSortModel: GridSortModel) {
         newSortModel.length > 0
             ? setSorting([...newSortModel])
-            : setSorting([{field: 'nome', sort: 'asc'}]);
+            : setSorting([...DEFAULT_SORTING]);
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
