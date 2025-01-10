@@ -14,7 +14,7 @@ export type CardsData = {
 
 export const VALID_CARD_TYPES = ['external', 'internal'];
 
-export const DATA_BY_TYPE: Record<string, CardsData[]> = {
+export const DATA_BY_TYPE: Record<CardType, CardsData[]> = {
   external: externalCards,
   internal: internalCards,
 }
