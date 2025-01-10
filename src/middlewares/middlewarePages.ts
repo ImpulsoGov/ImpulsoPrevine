@@ -24,6 +24,7 @@ const rotasProtegidas = [
   '/busca-ativa/gestantes',
   '/busca-ativa/vacinacao',
   '/cadastros-duplicados',
+  '/lista-nominal'
 ]
 
 const ExibirURL = [

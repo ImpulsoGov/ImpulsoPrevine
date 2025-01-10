@@ -11,7 +11,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 2",
     "equipe_ine": "1111111111",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -25,7 +26,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 3",
     "equipe_ine": "1111111112",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -39,7 +41,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 4",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -53,7 +56,8 @@
     "prazo_proxima_afericao_pa": "Em dia",
     "acs_nome_cadastro": "ACS 1",
     "equipe_ine": "1111111113",
-    "status": "em dia"
+    "status": "em dia",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -67,7 +71,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 5",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -81,7 +86,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 6",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -95,7 +101,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 7",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -109,7 +116,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 8",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -123,7 +131,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 9",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -137,7 +146,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 10",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -151,7 +161,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 11",
     "equipe_ine": "1111111113",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -165,7 +176,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 12",
     "equipe_ine": "1111111114",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -179,7 +191,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 13",
     "equipe_ine": "1111111114",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "aangelicasouza24@gmail.com",
@@ -193,7 +206,8 @@
     "prazo_proxima_afericao_pa": "Até 30/Abril",
     "acs_nome_cadastro": "ACS 14",
     "equipe_ine": "1111111114",
-    "status": "atrasado"
+    "status": "atrasado",
+    "atualizacao_data": "07/01/2025"
   },
   {
     "mail": "outro@email.com",
@@ -207,6 +221,7 @@
     "prazo_proxima_afericao_pa": "Em dia",
     "acs_nome_cadastro": "ACS 15",
     "equipe_ine": "1111111113",
-    "status": "em dia"
+    "status": "em dia",
+    "atualizacao_data": "07/01/2025"
   }
 ]
