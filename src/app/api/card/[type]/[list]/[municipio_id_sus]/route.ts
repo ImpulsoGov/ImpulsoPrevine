@@ -8,6 +8,22 @@ export type RequestParams = {
   municipio_id_sus: string;
 }
 
+/**
+ * Handles GET requests for retrieving card data based on specific parameters.
+ *
+ * @remarks
+ * This route function filters card data by card type, municipality ID, and list.
+ * Currently uses in-memory data filtering, with plans to replace with database query.
+ *
+ * @param _req - The incoming Next.js request (unused in current implementation)
+ * @param params - Request parameters containing card type, list, and municipality ID
+ * @returns A JSON response with filtered card data or an error message
+ *
+ * @throws {InvalidCardTypeError} If the provided card type is invalid
+ * @throws {Error} For any other data query errors
+ *
+ * @beta
+ */
 export async function GET(
   _req: NextRequest,
   { params }: { params: RequestParams }
