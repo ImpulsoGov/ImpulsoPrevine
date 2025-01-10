@@ -23,11 +23,9 @@ const InicioPage = async() => {
     }
 
     const cargo = cargoTransform(session.user.cargo);
-    const situacaoPorIndicador: SituacaoPorIndicador = await unificarSituacaoPorIndicadores(situacaoIndicadores);
-
-    return situacaoIndicadores.length > 0 ?
-    <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} /> :
-    <p style={{margin: "120px", display: "flex", justifyContent: "center", alignItems: "center" }}>Erro ao buscar dados, entre em contato com o <Link href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente" style={{ color: '#1E8E76', marginLeft: "5px", textDecoration: "underline"}}>suporte</Link> </p>
+    const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
+    if(!situacaoPorIndicador || situacaoIndicadores.length > 0) return <p style={{margin: "120px", display: "flex", justifyContent: "center", alignItems: "center" }}>Erro ao buscar dados, entre em contato com o <Link href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente" style={{ color: '#1E8E76', marginLeft: "5px", textDecoration: "underline"}}>suporte</Link> </p>
+    return <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} /> 
 }
 
 export default InicioPage;
