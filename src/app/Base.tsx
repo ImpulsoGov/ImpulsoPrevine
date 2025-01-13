@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams} from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
@@ -22,6 +22,7 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 import { addUserDataLayer } from "@/hooks/addUserDataLayer";
+import { useRouter } from "next/router";
 
 
 const tagManagerArgs = {
@@ -82,11 +83,10 @@ export const Base : React.FC<BaseProps> = ({
 
 const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     const session = useSession();
-    const path = usePathname();
-
+    const params = useSearchParams();
     useEffect(() => {identifyUserGuiding(session.data)}, [session]);
     useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
-    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, path]);
+    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, params]);
     useEffect(() => {addUserDataLayer(session.data)}, [session]);
 
     return (

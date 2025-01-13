@@ -7,33 +7,33 @@ type Menu = {
   onClick?: () => void;
 };
 
-const subMenuListasNominais: Menu[] = [
+const subMenuListasNominais = (visao : string) : Menu[]=> [
     {
         label: "Citopatológico",
-        url: "/busca-ativa/citopatologico",
+        url: `/busca-ativa/citopatologico?visao=${visao}&aba=0&sub_aba=0`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_citopatologico"})
     },
     {
         label: "Diabetes",
-        url: "/busca-ativa/diabeticos?initialTitle=0&painel=0",
+        url: `/busca-ativa/diabeticos?visao=${visao}&aba=${''}&sub_aba=${''}`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_diabetes"})
     },
     {
         label: "Hipertensão",
-        url: "/busca-ativa/hipertensos?initialTitle=0&painel=0",
+        url: `/busca-ativa/hipertensos?visao=${visao}&aba=${''}&sub_aba=${''}`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_hipertensao"})
     },
     {
         label: "Pré-Natal",
-        url: "/busca-ativa/gestantes?initialTitle=0&painel=0",
+        url: `/busca-ativa/gestantes?visao=${visao}&aba=0&sub_aba=0`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_pre_natal"})
     },
     {
         label: "Vacinação",
-        url: "/busca-ativa/vacinacao",
+        url: `/busca-ativa/vacinacao?visao=${visao}&aba=0&sub_aba=0`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_vacinacao"})
     },
-]
+] 
 
 const loggedMenu = (session : any)=>{
     const menus : Menu[] = [{
@@ -45,7 +45,7 @@ const loggedMenu = (session : any)=>{
         {
             label: "Listas Nominais", 
             url: "",
-            sub: subMenuListasNominais,
+            sub: subMenuListasNominais(session.user.perfis.includes(5) || session.user.perfis.includes(8) ? "aps" : "equipe"),
         }
     )
     menus.push({
