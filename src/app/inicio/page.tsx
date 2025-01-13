@@ -8,6 +8,8 @@ import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituaca
 import { SituacaoPorIndicador } from '@/types/inicio';
 import Link from 'next/link';
 
+const ErrorMessage = () => <p style={{margin: "120px", display: "flex", justifyContent: "center", alignItems: "center" }}>Erro ao buscar dados, entre em contato com o <Link href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente" style={{ color: '#1E8E76', marginLeft: "5px", textDecoration: "underline"}}>suporte</Link> </p>
+
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
     let situacaoIndicadores = [];
@@ -24,7 +26,9 @@ const InicioPage = async() => {
 
     const cargo = cargoTransform(session.user.cargo);
     const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
-    if(!situacaoPorIndicador || situacaoIndicadores.length > 0) return <p style={{margin: "120px", display: "flex", justifyContent: "center", alignItems: "center" }}>Erro ao buscar dados, entre em contato com o <Link href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente" style={{ color: '#1E8E76', marginLeft: "5px", textDecoration: "underline"}}>suporte</Link> </p>
+    if(!situacaoPorIndicador) return <ErrorMessage />
+    if(situacaoIndicadores.length > 0) return <ErrorMessage />
+
     return <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} /> 
 }
 
