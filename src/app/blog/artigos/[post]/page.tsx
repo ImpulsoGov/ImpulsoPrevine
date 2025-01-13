@@ -28,13 +28,13 @@ const BlogPost = async ({ params }: Params) => {
   
   return (
     <BlogContent
-      titulo={res.blogArtigo.titulo}
-      texto={res.blogArtigo.texto.html}
+      titulo={res.blogArtigo?.titulo}
+      texto={res.blogArtigo?.texto.html}
       capa={res.blogArtigo?.capa?.url}
       autor={{
         avatar: res.blogArtigo?.avatar?.url,
-        nome: res.blogArtigo.autor,
-        data: res.blogArtigo.createdAt,
+        nome: res.blogArtigo?.autor,
+        data: res.blogArtigo?.createdAt,
       }}
     />
   );
