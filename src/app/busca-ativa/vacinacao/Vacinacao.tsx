@@ -28,7 +28,7 @@ export const Vacinacao : React.FC<VacinacaoProps> = ({
     const router = useRouter();
     const path = usePathname();
     const visao = session?.user.perfis.includes(5) || session?.user.perfis.includes(8) ? "aps" : "equipe"
-    useEffect(() => {router.push(`${path}?visao=${visao}&aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}`)}, [visao, activeTabIndex, activeTitleTabIndex]);
+    useEffect(() => {router.push(`${path}?aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}&visao=${visao}`)}, [visao, activeTabIndex, activeTitleTabIndex]);
     const Voltar = () => window.history.go(voltarGatilho * (-1))
     useEffect(() => {setVoltarGatilho(voltarGatilho + 1)}, [path])
     if (!session) return <Spinner/>

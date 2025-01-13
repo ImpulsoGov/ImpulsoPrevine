@@ -32,7 +32,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             descricao="Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina."
             height="50%"
             link={{
-              url: `/busca-ativa/diabeticos?visao=${visao}&aba=${''}&sub_aba=${''}`,
+              url: `/busca-ativa/diabeticos?aba=${''}&sub_aba=${''}&visao=${visao}`,
               newTab: false
             }}
             onHeaderClick={() => mixpanel.track("card_click", {
@@ -55,7 +55,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             descricao="Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio."
             height="50%"
             link={{
-              url: `/busca-ativa/vacinacao?visao=${visao}&aba=0&sub_aba=0`,
+              url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
               newTab: false
             }}
             onHeaderClick={() => mixpanel.track("card_click", {
@@ -80,7 +80,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             descricao="Cidadãos que possuem a condição e o status de consulta e aferição de pressão."
             height="50%"
             link={{
-              url: `/busca-ativa/hipertensos?visao=${visao}&aba=${''}&sub_aba=${''}`,
+              url: `/busca-ativa/hipertensos?aba=${''}&sub_aba=${''}&visao=${visao}`,
               newTab: false
             }}
             onHeaderClick={() => mixpanel.track("card_click", {
@@ -103,7 +103,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             descricao="Mostra o status todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram."
             height="50%"
             link={{
-              url: `/busca-ativa/citopatologico?visao=${visao}&aba=0&sub_aba=0`,
+              url: `/busca-ativa/citopatologico?aba=${''}&sub_aba=0&visao=${visao}`,
               newTab: false
             }}
             onHeaderClick={() => mixpanel.track("card_click", {
@@ -127,7 +127,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
             titulo="Pré-Natal"
             descricao="Considera o status dos exames de sífilis e HIV, atendimento odontológico e número de consultas das gestantes."
             link={{
-              url: `/busca-ativa/gestantes?visao=${visao}&aba=0&sub_aba=0`,
+              url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
               newTab: false
             }}
             onHeaderClick={() => mixpanel.track("card_click", {
