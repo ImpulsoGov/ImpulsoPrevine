@@ -1,10 +1,11 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { usePathname, useSearchParams} from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
 import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
+import { Spinner } from "@impulsogov/design-system";
 import Analytics from "@/componentes/Analytics/Analytics";
 
 import TagManager from "react-gtm-module";
@@ -22,7 +23,6 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 import { addUserDataLayer } from "@/hooks/addUserDataLayer";
-import { useRouter } from "next/router";
 
 
 const tagManagerArgs = {
@@ -52,31 +52,33 @@ export const Base : React.FC<BaseProps> = ({
     useEffect(() =>{ getLayoutDataHook(setRes) }, []);
 
     return <>
-            <SessionWrapper>
-                { isLoading && res &&
-                    <NavBarMounted
-                        mixpanel={mixpanel}
-                        session={session}
-                        nome={session?.user?.nome || ""}
-                        path={path}
-                        cidade={cidade}
-                        setCidade={setCidade}
-                        width={width}
-                        res={res}
-                        active={active}
-                        setMode={setMode}
-                    />
-                }
-                <div 
-                style={{
-                    paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
-                    height: "100%"
-                }}
-                >
-                {children}
-                </div>
-                {res && <FooterMounted res={res} session={session}/>}
-            </SessionWrapper>
+            <Suspense fallback={<div><Spinner/></div>}>
+                <SessionWrapper>
+                    { isLoading && res &&
+                        <NavBarMounted
+                            mixpanel={mixpanel}
+                            session={session}
+                            nome={session?.user?.nome || ""}
+                            path={path}
+                            cidade={cidade}
+                            setCidade={setCidade}
+                            width={width}
+                            res={res}
+                            active={active}
+                            setMode={setMode}
+                        />
+                    }
+                    <div 
+                    style={{
+                        paddingTop: width > 1000  ? "76px" :  path == '/' ? "0px" : path == '/apoio' ? "0px" :"30px",
+                        height: "100%"
+                    }}
+                    >
+                    {children}
+                    </div>
+                    {res && <FooterMounted res={res} session={session}/>}
+                </SessionWrapper>
+            </Suspense>
             <Analytics />
     </>
 }
