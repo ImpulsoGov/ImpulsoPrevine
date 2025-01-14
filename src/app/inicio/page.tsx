@@ -27,7 +27,7 @@ const InicioPage = async() => {
     const cargo = cargoTransform(session.user.cargo);
     const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
     if(!situacaoPorIndicador) return <ErrorMessage />
-    if(situacaoIndicadores.length > 0) return <ErrorMessage />
+    if(situacaoIndicadores.length === 0) return <ErrorMessage />
 
     return <Inicio cargo={cargo} situacaoPorIndicador={situacaoPorIndicador} /> 
 }
