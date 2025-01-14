@@ -19,8 +19,8 @@ export const DATA_BY_TYPE: Record<CardType, CardsData[]> = {
   internal: internalCards,
 }
 
-export function validateCardType(type: CardType): void {
-  if (!VALID_CARD_TYPES.includes(type)) {
+export function validateCardType(type: string): asserts type is CardType {
+  if (!VALID_CARD_TYPES.includes(type as CardType)) {
     throw new InvalidCardTypeError('Tipo de card deve ser `external` ou `internal`');
   }
 }

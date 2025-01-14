@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server';
-import { CardType, getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
+import { getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
 import { InvalidCardTypeError } from '@/app/api/card/utils/errors';
 
 export type RequestParams = {
-  type: CardType;
+  type: string;
   list: string;
   municipio_id_sus: string;
 }
