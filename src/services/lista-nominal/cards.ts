@@ -63,6 +63,7 @@ export const getCardsData = async ({
   if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
   if (!listName) throw new Error('Tipo de lista é obrigatório');
   if (!cardType) throw new Error('Tipo de card é obrigatório');
+  if (!baseUrl) throw new Error('URL base é obrigatória');
 
   const url = `${baseUrl}/api/card`;
   const urlWithParams = buildUrlWithParams(url, { listName, ine, municipio_id_sus, cardType });
