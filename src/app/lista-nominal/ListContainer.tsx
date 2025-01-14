@@ -265,24 +265,24 @@ export const ListContainer = ({
 
     useEffect(() => {
         const getCardsDataResponse = async () => {
-            if (user) {
-                try {
-                    const currentURL = new URL(window.location.href).origin;
-                    const res = await getCardsData({
-                        municipio_id_sus: user.municipio_id_sus,
-                        token: user.access_token,
-                        listName: list,
-                        cardType: 'internal',
-                        ine: user.perfis.includes(9) ? user.equipe : undefined,
-                        baseUrl: currentURL ?? 'http://localhost:3000',
-                    });
+            if (!user) return;
 
-                    setCards([...getCardsProps(cardsDetails, res.data)]);
-                    setErrorMessage('');
-                } catch (error) {
-                    captureException(error);
-                    setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
-                }
+            try {
+            const currentURL = new URL(window.location.href).origin;
+            const res = await getCardsData({
+                municipio_id_sus: user.municipio_id_sus,
+                token: user.access_token,
+                listName: list,
+                cardType: 'internal',
+                ine: user.perfis.includes(9) ? user.equipe : undefined,
+                baseUrl: currentURL ?? 'http://localhost:3000',
+            });
+
+            setCards([...getCardsProps(cardsDetails, res.data)]);
+            setErrorMessage('');
+            } catch (error) {
+            captureException(error);
+            setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
             }
         };
 
