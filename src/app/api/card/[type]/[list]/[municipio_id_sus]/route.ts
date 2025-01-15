@@ -3,6 +3,9 @@ import { getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
 import { InvalidCardTypeError } from '@/app/api/card/utils/errors';
 import { captureException } from '@sentry/nextjs';
 
+// TODO rever nomenclatura do endpoint para que a API seja orientada à informação e não à interface
+// vide: https://github.com/ImpulsoGov/ImpulsoPrevine/pull/289#issuecomment-2593257565
+
 export type RequestParams = {
   type: string;
   list: string;
