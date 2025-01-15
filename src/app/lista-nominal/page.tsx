@@ -7,7 +7,7 @@ import { getCardsData } from "@/services/lista-nominal/cards";
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { baseURL } from '@/utils/baseURL';
 import { CardDetailsMap, getCardsProps } from "@/helpers/cardsList";
-import { captureException } from "@sentry/react";
+import { captureException } from "@sentry/nextjs";
 
 const ListaNominalPage = async() => {
     // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.

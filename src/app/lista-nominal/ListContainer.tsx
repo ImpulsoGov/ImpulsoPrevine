@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
 import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
-import { captureException } from "@sentry/react";
+import { captureException } from "@sentry/nextjs";
 
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
