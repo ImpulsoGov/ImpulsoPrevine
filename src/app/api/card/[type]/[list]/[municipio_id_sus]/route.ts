@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
 import { InvalidCardTypeError } from '@/app/api/card/utils/errors';
+import { captureException } from '@sentry/nextjs';
 
 export type RequestParams = {
   type: string;
@@ -33,6 +34,7 @@ export async function GET(
       return Response.json({ message: error.message }, { status: 400 });
     }
 
+    captureException(error);
     return Response.json({ message: 'Erro ao consultar dados' },{ status: 500 });
   }
 }
