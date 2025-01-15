@@ -26,7 +26,9 @@ export async function generateStaticParams() {
 const BlogPost = async ({ params }: Params) => {
   const res = await getData(POST(params?.post)) as { blogArtigo: BlogPost };
 
-  if(res?.blogArtigo) return (
+  if(res?.blogArtigo){ 
+    console.error('Erro ao carregar post: Post não encontrado');
+    return (
     <BlogContent
       titulo={res?.blogArtigo?.titulo}
       texto={res?.blogArtigo?.texto.html}
@@ -37,7 +39,7 @@ const BlogPost = async ({ params }: Params) => {
         data: res?.blogArtigo?.createdAt,
       }}
     />
-  );
+  )};
   return <p style={{padding: "60px", width: "100%", textAlign: "center"}}>Erro no carregamento de dados</p>
 };
 
