@@ -8,24 +8,38 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig = {
     redirects: async () => {
-        return [
-          {
-            source: '/social-medias/linkedin',
-            destination: 'https://www.linkedin.com/company/impulsogov/',
-            permanent: true,
-          },
-          {
-            source: '/social-medias/instagram',
-            destination: 'https://www.instagram.com/impulsogov/',
-            permanent: true,
-          },
-          {
-            source: '/social-medias/twitter',
-            destination: 'https://twitter.com/impulsogov',
-            permanent: true,
-          },
-        ];
-      },
+      return [
+        {
+          source: '/social-medias/linkedin',
+          destination: 'https://www.linkedin.com/company/impulsogov/',
+          permanent: true,
+        },
+        {
+          source: '/social-medias/instagram',
+          destination: 'https://www.instagram.com/impulsogov/',
+          permanent: true,
+        },
+        {
+          source: '/social-medias/twitter',
+          destination: 'https://twitter.com/impulsogov',
+          permanent: true,
+        },
+      ];
+    },
+    experimental: {
+      turbo: {
+        resolveExtensions: [
+          '.mdx',
+          '.tsx',
+          '.ts',
+          '.jsx',
+          '.js',
+          '.mjs',
+          '.json',
+        ],
+      }
+    },
+    swcMinify: true,
 };
 
 export default withBundleAnalyzer(withSentryConfig(nextConfig, {
