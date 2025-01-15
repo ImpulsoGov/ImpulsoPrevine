@@ -24,7 +24,7 @@ export function getCardsProps(
 
     return {
       ...cardDetails,
-      value: card.valor?.toString() ?? '0',
+      value: card.valor?.toString() ?? '-',
     };
   });
 }
