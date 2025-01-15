@@ -75,7 +75,7 @@ export const buildUrlWithParams = (
   }
   if (search && search.length > 0) {
     const prefix = url.includes('?') ? '&' : '?';
-    url += `${prefix}search=${search}`;
+    url += `${prefix}search=${encodeURIComponent(search)}`;
   }
   return url;
 };  
