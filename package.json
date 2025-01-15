@@ -13,6 +13,7 @@
     "@impulsogov/design-system": "^1.0.274",
     "@mui/material": "^6.1.0",
     "@mui/x-data-grid": "^7.17.0",
+    "@next/bundle-analyzer": "^15.1.4",
     "@prisma/client": "5.21.1",
     "@sentry/nextjs": "^8",
     "axios": "^1.7.7",
