@@ -275,7 +275,7 @@ export const ListContainer = ({
                 listName: list,
                 cardType: 'internal',
                 ine: user.perfis.includes(9) ? user.equipe : undefined,
-                baseUrl: currentURL ?? 'http://localhost:3000',
+                baseUrl: currentURL,
             });
 
             setCards([...getCardsProps(cardsDetails, res.data)]);

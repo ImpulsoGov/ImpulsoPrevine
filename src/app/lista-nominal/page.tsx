@@ -55,7 +55,7 @@ const ListaNominalPage = async() => {
             listName: params.listName,
             cardType: "external",
             ine: params.ine,
-            baseUrl: baseURL() ?? 'http://localhost:3000',
+            baseUrl: baseURL(),
         });
 
         externalCardsProps = getCardsProps(cardsDetails, data);
