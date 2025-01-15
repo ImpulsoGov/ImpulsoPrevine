@@ -49,6 +49,8 @@ export const ToolBarMounted = ({
                     shape="rounded-left"
                     value={inputProps.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputProps.onChange(e.target.value)}
+                    aria-label="Campo de busca por nome"
+                    role="searchbox"
                 />
                 <Button
                     border="full"
