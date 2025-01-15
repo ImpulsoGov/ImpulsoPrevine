@@ -302,7 +302,7 @@ export const ListContainer = ({
         <p style={{fontSize: "26px"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <ToolBarMounted
-            updateDate={String(tableData.data[0]?.atualizacao_data)}
+            updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
             print={() => {}}
             inputProps={{value: inputValue, onChange: setInputValue}}
             handleSearchClick={handleSearchClick}

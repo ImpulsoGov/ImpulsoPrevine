@@ -7,7 +7,7 @@ interface InputProps {
 }
 
 interface ToolBarMountedProps {
-    updateDate: string | null;
+    updateDate?: Date;
     print: () => void;
     inputProps: InputProps;
     handleSearchClick: () => void;
