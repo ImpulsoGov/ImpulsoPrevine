@@ -29,11 +29,11 @@ export const Cito : React.FC<CitoProps> = ({
     const router = useRouter();
     const path = usePathname();
     const Voltar = ()=> window.history.go(voltarGatilho*(-2))
-    useEffect(() => {router.push(`${path}?aba=${''}&sub_aba=${activeTabIndex}&visao=${visao}`)}, [activeTabIndex,activeTitleTabIndex]);
-    useEffect(()=>{setVoltarGatilho(voltarGatilho+1)},[path])
     if(!session) return <Spinner/>
     const visao = session.user.perfis.includes(5) || session.user.perfis.includes(8) ? "aps" : "equipe"
-
+    useEffect(() => {router.push(`${path}?aba=${''}&sub_aba=${activeTabIndex}&visao=${visao}`)}, [activeTabIndex,activeTitleTabIndex]);
+    useEffect(()=>{setVoltarGatilho(voltarGatilho+1)},[path])
+    
     if(session.user.perfis.includes(9)) return <CitoEquipe
     tabelaDataEquipe={tabelaDataEquipe}
     tabelaData={tabelaData}
