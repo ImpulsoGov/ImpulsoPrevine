@@ -67,6 +67,11 @@ export async function GET(
       responseData = responseData.filter((item) => item.ine === payload.ine);
     }
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
+    if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
+    if(responseData.length === 0) return Response.json({
+      data: responseData,
+      totalRows: 0,
+    }, { status: 200 });
 
     if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
     if(responseData.length === 0) return Response.json({
