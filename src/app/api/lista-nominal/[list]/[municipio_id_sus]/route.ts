@@ -45,6 +45,7 @@ export async function GET(
       pageSize: searchParams.get('pagination[pageSize]')
     };
     const sorting = searchParams.get('sortBy');
+    const searchName = searchParams.get('search')
     const baseData = searchBaseData({
       data: [...data],
       municipio_id_sus: params.municipio_id_sus,
@@ -52,6 +53,11 @@ export async function GET(
     let responseData: Data = [...baseData];
 
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
+    if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
+    if(responseData.length === 0) return Response.json({
+      data: responseData,
+      totalRows: 0,
+    }, { status: 200 });
 
     if (sorting) {
       const [field, sortOrder] = sorting.includes(':')
@@ -85,7 +91,6 @@ export async function GET(
     if (error instanceof BadRequestError) {
       return Response.json({ message: error.message }, { status: 400 });
     }
-
     return Response.json({ message: 'Erro ao consultar dados' , detail : (error as Error).message },{ status: 500 });
   }
 }
