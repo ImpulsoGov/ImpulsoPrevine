@@ -4,21 +4,22 @@ import { type NextRequest, NextResponse } from "next/server";
 const rotasPublicas = ["/", "/quem-somos", "/apoio", "/faq", "/blog"];
 
 const rotasProtegidas = [
-	"/inicio",
-	"/capacitacao",
-	"/capacitacoes",
-	"/conteudo",
-	"/conteudo-programatico",
-	"/duvidas",
-	"/gestao-usuarios",
-	"/busca-ativa",
-	"/busca-ativa/citopatologico",
-	"/busca-ativa/diabeticos",
-	"/busca-ativa/hipertensos",
-	"/busca-ativa/gestantes",
-	"/busca-ativa/vacinacao",
-	"/cadastros-duplicados",
-];
+  '/inicio',
+  '/capacitacao',
+  '/capacitacoes',
+  '/conteudo',
+  '/conteudo-programatico',
+  '/duvidas',
+  '/gestao-usuarios',
+  '/busca-ativa',
+  '/busca-ativa/citopatologico',
+  '/busca-ativa/diabeticos',
+  '/busca-ativa/hipertensos',
+  '/busca-ativa/gestantes',
+  '/busca-ativa/vacinacao',
+  '/cadastros-duplicados',
+  '/lista-nominal'
+]
 
 const ExibirURL = [
 	"/capacitacao",
