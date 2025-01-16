@@ -1,10 +1,10 @@
-export type ValidValue = string | number | boolean | Date | null;
+export type ValidValue = string | number | boolean | Date | null | undefined;
 
 export type FilterValue = string | readonly string[];
 
-export interface Filters extends Record<string, FilterValue> {}
+export interface Filters extends Record<string, FilterValue> {};
 
-export interface DataItem extends Record<string, ValidValue> {}
+export interface DataItem extends Record<string, ValidValue> {};
 
 const isArrayFilter = (value: FilterValue): value is readonly string[] => 
     Array.isArray(value);
