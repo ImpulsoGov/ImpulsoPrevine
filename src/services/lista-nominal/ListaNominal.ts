@@ -15,9 +15,9 @@ export type Pagination = {
 }
 
 const buildSortingParams = (sorting: SortingItem[]): string => {
-  return sorting
-    .map(item => `sortBy=${item.sortField}:${item.sortOrder}`)
-    .join('&');
+  return `sortBy=${sorting
+    .map(item => `${item.sortField}:${item.sortOrder}`)
+    .join(',')}`;
 };
 const buildFilterParams = (filters: FilterItem): string => {
     return Object.entries(filters)

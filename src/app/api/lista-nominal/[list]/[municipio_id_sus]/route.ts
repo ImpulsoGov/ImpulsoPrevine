@@ -70,18 +70,19 @@ export async function GET(
     }, { status: 200 });
 
     if (sorting) {
-      const [field, sortOrder] = sorting.includes(':')
-        ? sorting.split(':')
-        : [sorting, 'asc'];
+      const sortingOptions = sorting.split(',');
 
-      validateSortOrder(sortOrder);
-
-      // será substituido por consulta no banco de dados
-      responseData = [...sortData({
-        data: responseData,
-        field,
-        sortOrder: sortOrder as SortOrder,
-      })];
+      sortingOptions.forEach((option) => {
+          const [field, order] = option.split(':');
+          validateSortOrder(order);
+          // será substituido por consulta no banco de dados
+          responseData = [...sortData({
+            data: responseData,
+            field,
+            sortOrder: order as SortOrder,
+          })];
+          console.log(responseData);
+        });
     }
 
     if (pagination.page || pagination.pageSize) {
