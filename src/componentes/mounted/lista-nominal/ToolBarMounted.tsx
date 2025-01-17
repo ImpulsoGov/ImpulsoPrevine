@@ -37,7 +37,7 @@ export const ToolBarMounted = ({
                     width={16}
                     />
                     <Text>
-                    LISTA ATUALIZADA EM: {updateDate}
+                        LISTA ATUALIZADA EM: {updateDate?.toLocaleDateString() ?? '-'}
                     </Text>
                 </Tag>
                 </Tooltip>
