@@ -8,6 +8,9 @@ import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/hel
 import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
+import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
+import { getCardsData } from '@/services/lista-nominal/cards';
+import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
@@ -46,30 +49,26 @@ const filters = [
         width: '240px',
     },
 ]
-//dados mockados essa parte do código será substituída por uma chamada a API
-const cards: CardProps[] = [
-    {
-        value: '78',
-        title: 'Card Title 1',
-        titlePosition: 'top'
-    },
-    {
-        value: '234',
-        title: 'Card Title 2',
-        titlePosition: 'top'
-    },
-    {
-        value: '678',
-        title: 'Card Title 3',
-        titlePosition: 'top'
-    },
-    {
-        value: '131',
-        title: 'Card Title 4',
-        titlePosition: 'top'
-    },
 
-]
+// Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
+const cardsDetails: CardDetailsMap = {
+    "INDICADOR_1": {
+        title: "Indicador 1",
+        titlePosition: "top",
+    },
+    "INDICADOR_2": {
+        title: "Indicador 2",
+        titlePosition: "top",
+    },
+    "INDICADOR_3": {
+        title: "Indicador 3",
+        titlePosition: "top",
+    },
+    "INDICADOR_4": {
+        title: "Indicador 4",
+        titlePosition: "top",
+    },
+}
 
 // Informações que devem vir do CMS
 const IconDetailsMap: TagIconDetailsMap = {
@@ -221,9 +220,12 @@ export const ListContainer = ({
     const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [cards, setCards] = useState<CardProps[]>([]);
+
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
+
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
@@ -268,6 +270,32 @@ export const ListContainer = ({
         });
     }, [response, value]);
 
+    useEffect(() => {
+        const getCardsDataResponse = async () => {
+            if (!user) return;
+
+            try {
+            const currentURL = new URL(window.location.href).origin;
+            const res = await getCardsData({
+                municipio_id_sus: user.municipio_id_sus,
+                token: user.access_token,
+                listName: list,
+                cardType: 'internal',
+                ine: user.perfis.includes(9) ? user.equipe : undefined,
+                baseUrl: currentURL,
+            });
+
+            setCards([...getCardsProps(cardsDetails, res.data)]);
+            setErrorMessage('');
+            } catch (error) {
+            captureException(error);
+            setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
+            }
+        };
+
+        getCardsDataResponse();
+    }, [list, user]);
+
     function handleSortModelChange(newSortModel: GridSortModel) {
         newSortModel.length > 0
             ? setSorting([...newSortModel])
@@ -275,7 +303,7 @@ export const ListContainer = ({
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
-    if (errorMessage) return <p>{errorMessage}</p>;
+    if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
 
     //dados mockados essa parte do código será substituída por uma chamada a API do CMS
