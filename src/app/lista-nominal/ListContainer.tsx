@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, Spinner } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import { Session } from 'next-auth';
@@ -11,7 +11,7 @@ import { getListData } from '@/services/lista-nominal/ListaNominal';
 import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
-
+import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -168,6 +168,7 @@ export const columns: GridColDef[] = [
         align: 'left'
     },
 ] as GridColDef[];
+
 export type optionsType = { 
     value: string; 
     label: string 
@@ -189,6 +190,9 @@ interface ListContainerProps {
     subTabID: string;
     title: string;
 }
+
+const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
+
 export const ListContainer = ({
     // subTabID,
     title,
@@ -213,13 +217,14 @@ export const ListContainer = ({
         page: 0,
         pageSize: 8,
     });
-    const [sorting, setSorting] = useState<GridSortModel>([{
-        field: 'nome',
-        sort: 'asc'
-    }]);
+    const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [cards, setCards] = useState<CardProps[]>([]);
+
+    const [inputValue, setInputValue] = useState<string>('');
+    const [search, setSearch] = useState<string>('');
+    const handleSearchClick = () => setSearch(inputValue);
 
     useEffect(() => {
         const sessionAsync = async() => {
@@ -244,6 +249,7 @@ export const ListContainer = ({
                         filters: value,
                         ine: user.perfis.includes(9) ? user.equipe : undefined,
                         pagination,
+                        search: search,
                     });
                     setResponse(res.data);
                     setErrorMessage('');
@@ -253,8 +259,9 @@ export const ListContainer = ({
                 setIsLoading(false);
             };
             getListDataResponse();
+            console.log(search)
         }
-    }, [user, value, list, pagination, sorting]);
+    }, [user, value, list, pagination, sorting, search]);
 
     useEffect(() => {
         setTableData({
@@ -292,12 +299,12 @@ export const ListContainer = ({
     function handleSortModelChange(newSortModel: GridSortModel) {
         newSortModel.length > 0
             ? setSorting([...newSortModel])
-            : setSorting([{field: 'nome', sort: 'asc'}]);
+            : setSorting([...DEFAULT_SORTING]);
     }
 
     if (!user) return <p>Usuário não autenticado</p>;
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
-    if (response.data.length === 0) return <Spinner/>;
+    // if (response.data.length === 0) return <Spinner/>;
 
     //dados mockados essa parte do código será substituída por uma chamada a API do CMS
     const clearFiltersArgs = {
@@ -322,6 +329,13 @@ export const ListContainer = ({
     return <div style={{display: "flex", flexDirection: "column", gap: "30px", padding: "25px"}}>
         <p style={{fontSize: "26px"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
+        <ToolBarMounted
+            updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
+            print={() => {}}
+            inputProps={{value: inputValue, onChange: setInputValue}}
+            handleSearchClick={handleSearchClick}
+        />
+        <hr style={{border: "1px solid #A6B5BE", margin: "15px 0"}}/>
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
         <Table
             columns={columns}
@@ -332,6 +346,7 @@ export const ListContainer = ({
             rowCount={tableData.totalRows}
             paginationModel={pagination}
             onPaginationModelChange={setPagination}
+            sortModel={sorting}
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
         />
