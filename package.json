@@ -7,7 +7,14 @@
     "dev": "next dev",
     "build": "prisma generate && next build ",
     "start": "next start",
-    "lint": "next lint"
+    "lint:report": "biome lint",
+    "lint": "biome lint --write",
+    "format:report": "biome format",
+    "format": "biome format --write",
+    "check": "biome check --write",
+    "commitlint": "commitlint --edit",
+    "commit": "cz",
+    "postinstall": "husky"
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
