@@ -81,7 +81,6 @@ export async function GET(
             field,
             sortOrder: order as SortOrder,
           })];
-          console.log(responseData);
         });
     }
 
