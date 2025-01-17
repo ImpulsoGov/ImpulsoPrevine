@@ -5,6 +5,7 @@ import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
+import { AuthenticationError, decodeToken, getToken, JWTToken, SECRET } from '@/utils/token';
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
@@ -50,7 +51,16 @@ export async function GET(
       data: [...data],
       municipio_id_sus: params.municipio_id_sus,
     });
+    const token = getToken(req.headers);
+    const { payload } = await decodeToken(token, SECRET) as JWTToken;
+
+    // será substituido por consulta no banco de dados
     let responseData: Data = [...baseData];
+
+    if (payload?.perfis?.includes(9) && payload?.ine) {
+      // será substituido por consulta no banco de dados
+      responseData = responseData.filter((item) => item.ine === payload.ine);
+    }
 
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
     if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
@@ -66,6 +76,7 @@ export async function GET(
 
       validateSortOrder(sortOrder);
 
+      // será substituido por consulta no banco de dados
       responseData = [...sortData({
         data: responseData,
         field,
@@ -76,6 +87,7 @@ export async function GET(
     if (pagination.page || pagination.pageSize) {
       validatePaginationParams(pagination);
 
+      // será substituido por consulta no banco de dados
       responseData = [...paginateData({
         data: responseData,
         page: Number(pagination.page),
@@ -91,6 +103,11 @@ export async function GET(
     if (error instanceof BadRequestError) {
       return Response.json({ message: error.message }, { status: 400 });
     }
+
+    if (error instanceof AuthenticationError) {
+      return Response.json({ message: error.message }, { status: 401 });
+    }
+
     return Response.json({ message: 'Erro ao consultar dados' , detail : (error as Error).message },{ status: 500 });
   }
 }
