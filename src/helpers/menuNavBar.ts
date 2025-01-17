@@ -10,7 +10,7 @@ type Menu = {
 const subMenuListasNominais = (visao : string) : Menu[]=> [
     {
         label: "Citopatológico",
-        url: `/busca-ativa/citopatologico?visao=aba=${''}0&sub_aba=0&${visao}`,
+        url: `/busca-ativa/citopatologico?aba=${''}0&sub_aba=0&visao=${visao}`,
         onClick: () => mixpanel.track("menu_click", {"menu_action": "acessar_lista_citopatologico"})
     },
     {
