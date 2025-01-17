@@ -1,2 +1,0 @@
-# Executa o comando yarn check e exibe no terminal as mudanças que precisam ser feitas
-yarn biome check --staged
