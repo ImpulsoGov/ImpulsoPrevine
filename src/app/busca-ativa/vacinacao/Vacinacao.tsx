@@ -55,7 +55,6 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 	}, [activeTitleTabIndex,activeTabIndex, path, session, router.replace]);
 	const Voltar = () => window.history.go(-1);
 	if (!session) return <Spinner />;
-
 	if (session.user.perfis.includes(9))
 		return (
 			<VacinacaoEquipe
