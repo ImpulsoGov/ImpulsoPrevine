@@ -27,4 +27,4 @@ Sentry.init({
   debug: false,
 });
 
-console.log("SENTRY_SAMPLE_RATE:", process.env.SENTRY_REPLAY_SAMPLE_RATE);
+console.log("SENTRY_SAMPLE_RATE:", sampleRate);
