@@ -52,6 +52,7 @@ export const Inicio : React.FC<InicioProps> = ({
                 <div style={{paddingTop: "20px"}}>
                     <CardsGrid
                         situacaoPorIndicador={situacaoPorIndicador}
+                        visao={session.user.perfis.includes(5) || session.user.perfis.includes(8) ? "aps" : "equipe"}
                     />
                 </div>
 

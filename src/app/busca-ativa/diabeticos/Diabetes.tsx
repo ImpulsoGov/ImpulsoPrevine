@@ -34,7 +34,7 @@ export const Diabetes : React.FC<DiabetesProps> = ({
     const router = useRouter();
     const path = usePathname();
     const visao = session?.user.perfis.includes(5) || session?.user.perfis.includes(8) ? "aps" : "equipe"
-    useEffect(() => {router.push(`${path}?visao=${visao}`)}, [visao]);
+    useEffect(() => {router.push(`${path}?aba=${''}&sub_aba=${''}&visao=${visao}`)}, [visao]);
     const Voltar = () => window.history.go(voltarGatilho * (-2))
     useEffect(() => {setVoltarGatilho(voltarGatilho + 1)}, [path])
 
