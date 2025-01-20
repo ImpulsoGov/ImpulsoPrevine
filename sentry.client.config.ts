@@ -26,7 +26,3 @@ Sentry.init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 });
-
-console.log("SENTRY_REPLAY_SAMPLE_RATE:", process.env.SENTRY_REPLAY_SAMPLE_RATE);
-console.log("NEXT_PUBLIC_SENTRY_REPLAY_SAMPLE_RATE:", process.env.NEXT_PUBLIC_SENTRY_REPLAY_SAMPLE_RATE);
-console.log("VERCEL_ENV:", process.env.VERCEL_ENV);
