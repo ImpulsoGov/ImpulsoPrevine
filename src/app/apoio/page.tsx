@@ -1,6 +1,7 @@
 import { getData } from '@/services/cms';
 import { CONSULTORIA} from '@utils/QUERYS'
-import { Apoio } from './Apoio';
+import dynamic from 'next/dynamic';
+const Apoio = dynamic(() => import('./Apoio').then(mod => mod.Apoio), { ssr: false });
 
 interface SliderData {
   titulo: string;

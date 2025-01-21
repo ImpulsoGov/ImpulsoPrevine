@@ -1,11 +1,12 @@
 'use client'
-import { DiabetesAPS } from "./DiabetesAPS";
 import React, { useEffect, useState } from 'react';
 import { useRouter,usePathname } from 'next/navigation';
-import { DiabetesEquipe } from "./DiabetesEquipe";
 import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system"
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
+import dynamic from 'next/dynamic';
+const DiabetesAPS = dynamic(() => import('./DiabetesAPS').then(mod => mod.DiabetesAPS), { ssr: false });
+const DiabetesEquipe = dynamic(() => import('./DiabetesEquipe').then(mod => mod.DiabetesEquipe), { ssr: false });
 
 interface DiabetesProps {
     session: Session | null;
