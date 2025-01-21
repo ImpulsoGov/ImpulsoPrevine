@@ -1,4 +1,7 @@
-import { Analise } from "./Analise";
+import dynamic from 'next/dynamic';
+const Analise = dynamic(() => import('./Analise').then(mod => mod.Analise), { ssr: false });
+
+
 const DadosPublicos = () => {
   const cardsData = [
     {
