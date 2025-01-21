@@ -1,7 +1,9 @@
 import { tabelaCitoEquipe , tabelaCitoAPS } from "@services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { Cito } from "./Cito";
+// import { Cito } from "./Cito";
+import dynamic from 'next/dynamic';
+const Cito = dynamic(() => import('./Cito').then(mod => mod.Cito), { ssr: false });
 
 const CitoPage = async() => {
     const session = await getServerSession(nextAuthOptions);

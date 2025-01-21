@@ -10,6 +10,7 @@ import {
     ImagensFull2,
     Margem,
   } from "@impulsogov/design-system";
+  
 export const Home = () => {
     return(
         <div style={{backgroundColor: "#E6ECF0"}}>
