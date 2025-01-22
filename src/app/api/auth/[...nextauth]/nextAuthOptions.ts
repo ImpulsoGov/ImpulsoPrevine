@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios"
 import FormData from "form-data"
 import { API_URL_USUARIOS } from "@constants/API_URL";
-
+import * as Sentry from "@sentry/nextjs";
 interface Credentials {
   username: string;
   password: string;
@@ -109,6 +109,14 @@ export const nextAuthOptions : NextAuthOptions = {
   pages: {
     signIn: '/inicio',
     signOut: '/auth/signout',
+  },
+  events: {
+   signIn:({user}) => {
+      Sentry.setUser({id:user.id})
+      console.log('signIn',user)
+   },
+    signOut:() => {
+        Sentry.setUser(null)
+    },
   }
 }
-
