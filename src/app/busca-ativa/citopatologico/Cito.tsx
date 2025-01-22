@@ -6,8 +6,14 @@ import { useRouter, usePathname } from "next/navigation";
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
 import { Session } from "next-auth";
 import dynamic from 'next/dynamic';
-const CitoAPS = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { ssr: false });
-const CitoEquipe = dynamic(() => import('./CitoEquipe').then(mod => mod.CitoEquipe), { ssr: false });
+const CitoAPS = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+ });
+const CitoEquipe = dynamic(() => import('./CitoEquipe').then(mod => mod.CitoEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+ });
 
 
 

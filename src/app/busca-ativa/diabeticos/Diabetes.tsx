@@ -5,8 +5,14 @@ import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system"
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
 import dynamic from 'next/dynamic';
-const DiabetesAPS = dynamic(() => import('./DiabetesAPS').then(mod => mod.DiabetesAPS), { ssr: false });
-const DiabetesEquipe = dynamic(() => import('./DiabetesEquipe').then(mod => mod.DiabetesEquipe), { ssr: false });
+const DiabetesAPS = dynamic(() => import('./DiabetesAPS').then(mod => mod.DiabetesAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+const DiabetesEquipe = dynamic(() => import('./DiabetesEquipe').then(mod => mod.DiabetesEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
 
 interface DiabetesProps {
     session: Session | null;
