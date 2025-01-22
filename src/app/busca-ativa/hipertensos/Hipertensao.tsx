@@ -1,13 +1,21 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 
-import { HipertensaoAPS } from "./HipertensaoAPS";
-import { HipertensaoEquipe } from "./HipertensaoEquipe";
-
 import { useRouter,usePathname } from 'next/navigation';
 import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system"
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
+
+import dynamic from 'next/dynamic';
+const HipertensaoAPS = dynamic(() => import('./HipertensaoAPS').then(mod => mod.HipertensaoAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+const HipertensaoEquipe = dynamic(() => import('./HipertensaoEquipe').then(mod => mod.HipertensaoEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+
 
 interface HipertensaoProps {
     session: Session | null;

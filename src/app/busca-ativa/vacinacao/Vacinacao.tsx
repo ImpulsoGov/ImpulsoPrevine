@@ -1,10 +1,19 @@
 'use client'
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect } from 'react';
 import { useRouter,usePathname } from 'next/navigation';
-import { VacinacaoEquipe } from "./VacinacaoEquipe";
-import { VacinacaoAPS } from "./VacinacaoAPS";
 import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system";    
+
+import dynamic from 'next/dynamic';
+const VacinacaoAPS = dynamic(() => import('./VacinacaoAPS').then(mod => mod.VacinacaoAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+const VacinacaoEquipe = dynamic(() => import('./VacinacaoEquipe').then(mod => mod.VacinacaoEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+
 
 interface VacinacaoProps {
     session: Session | null;
