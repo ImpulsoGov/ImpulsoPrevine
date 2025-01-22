@@ -16,7 +16,7 @@ export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=
     return response.data;
     })
     .catch((error) => {
-    console.log((error as Error).message)
+    console.error((error as Error).message)
     return (error as Error).message;
     });      
 
