@@ -113,7 +113,6 @@ export const nextAuthOptions : NextAuthOptions = {
   events: {
    signIn:({user}) => {
       Sentry.setUser({id:user.id})
-      console.log('signIn',user)
    },
     signOut:() => {
         Sentry.setUser(null)
