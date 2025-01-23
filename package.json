@@ -2,11 +2,19 @@
   "name": "impulso-previne",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build ",
     "start": "next start",
-    "lint": "next lint"
+    "biome:check": "biome check --write",  
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "format": "biome format",
+    "format:fix": "biome format --write",
+    "commitlint": "commitlint --edit",
+    "commit": "cz",
+    "postinstall": "husky"
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
@@ -36,6 +44,9 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@types/dompurify": "^3.0.5",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/mixpanel-browser": "^2.50.0",
@@ -44,8 +55,14 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18",
     "@types/react-gtm-module": "^2.0.3",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.11",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
     "typescript": "^5"
-  }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+	}
 }
