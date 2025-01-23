@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
 import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
@@ -10,9 +10,6 @@ import type { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
-
-
-import dynamic from "next/dynamic";
 const HipertensaoAPS = dynamic(
 	() => import("./HipertensaoAPS").then((mod) => mod.HipertensaoAPS),
 	{
@@ -27,6 +24,16 @@ const HipertensaoEquipe = dynamic(
 		loading: () => <Spinner />,
 	},
 );
+
+const HipertensaoAPS = dynamic(() => import('./HipertensaoAPS').then(mod => mod.HipertensaoAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+const HipertensaoEquipe = dynamic(() => import('./HipertensaoEquipe').then(mod => mod.HipertensaoEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+
 
 interface HipertensaoProps {
 	session: Session | null;
