@@ -21,7 +21,9 @@
 		"rules": {
 			"recommended": true,
 			"suspicious": {
-				"noConsoleLog": "error"
+				"noConsoleLog": "error",
+				"noExplicitAny": "error",
+				"noPrototypeBuiltins": "error"
 			},
 			"style": {
 				"useNamingConvention": "error",
@@ -35,7 +37,8 @@
 			},
 			"complexity": {
 				"useSimplifiedLogicExpression": "error",
-				"noExcessiveCognitiveComplexity": "error"
+				"noExcessiveCognitiveComplexity": "error",
+				"noForEach":"error"
 			}
 		}
 	},

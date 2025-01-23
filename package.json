@@ -7,11 +7,11 @@
     "dev": "next dev",
     "build": "prisma generate && next build ",
     "start": "next start",
-    "lint:report": "biome lint",
-    "lint": "biome lint --write",
-    "format:report": "biome format",
-    "format": "biome format --write",
-    "check": "biome check --write",
+    "biome:check": "biome check --write",  
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "format": "biome format",
+    "format:fix": "biome format --write",
     "commitlint": "commitlint --edit",
     "commit": "cz",
     "postinstall": "husky"
@@ -64,5 +64,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+	}
 }
