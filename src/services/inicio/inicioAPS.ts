@@ -13,6 +13,7 @@ export const InicioAPSRequest = async(municipio_id_sus : string,token : string)=
       
     const res = axios.request(config)
     .then((response) => {
+      console.log(response.data)
     return response.data;
     })
     .catch((error) => {
