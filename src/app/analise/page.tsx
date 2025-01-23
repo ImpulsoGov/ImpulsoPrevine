@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client'
 import { Spinner } from '@impulsogov/design-system'
 import dynamic from 'next/dynamic';
@@ -5,6 +6,10 @@ const Analise = dynamic(() => import('./Analise').then(mod => mod.Analise), {
   ssr: false,
   loading: () => <Spinner/>
  });
+=======
+import dynamic from 'next/dynamic';
+const Analise = dynamic(() => import('./Analise').then(mod => mod.Analise), { ssr: false });
+>>>>>>> bc9148f (feat: adiciona importes dinamicos)
 
 
 const DadosPublicos = () => {
