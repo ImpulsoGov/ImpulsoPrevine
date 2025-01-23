@@ -16,10 +16,8 @@ import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMount
 const filters = [
     {
         options: [
-            { value: 'Condição 1', label: 'Condição 1' },
-            { value: 'Condição 2', label: 'Condição 2' },
-            { value: 'Condição 3', label: 'Condição 3' },
-            { value: 'Condição 4', label: 'Condição 4' },
+            { value: 'Autorreferido', label: 'Autorreferido' },
+            { value: 'Diagnostico clínico', label: 'Diagnostico clínico' },
         ],
         label: 'Identificação da Condição',
         id : 'identificacao_condicao',
@@ -32,6 +30,15 @@ const filters = [
             { value: 'ACS 2', label: 'ACS 2' },
             { value: 'ACS 3', label: 'ACS 3' },
             { value: 'ACS 4', label: 'ACS 4' },
+            { value: 'ACS 5', label: 'ACS 5' },
+            { value: 'ACS 6', label: 'ACS 6' },
+            { value: 'ACS 7', label: 'ACS 7' },
+            { value: 'ACS 8', label: 'ACS 8' },
+            { value: 'ACS 9', label: 'ACS 9' },
+            { value: 'ACS 10', label: 'ACS 10' },
+            { value: 'ACS 11', label: 'ACS 11' },
+            { value: 'ACS 12', label: 'ACS 12' },
+            { value: 'ACS 13', label: 'ACS 13' },
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
