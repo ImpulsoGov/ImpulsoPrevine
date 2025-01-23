@@ -8,6 +8,7 @@
 		"build": "prisma generate && next build ",
 		"start": "next start",
 		"biome:check": "biome check --write",
+		"biome:summary": "biome check --reporter=summary",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
 		"format": "biome format",
