@@ -3,7 +3,7 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from "@sentry/nextjs";
-
+const sampleRate = parseFloat(process.env["NEXT_PUBLIC_SENTRY_REPLAY_SAMPLE_RATE"] || "0.1");
 Sentry.init({
   dsn: process.env["NEXT_PUBLIC_SENTRY_DSN"],
 
@@ -18,7 +18,7 @@ Sentry.init({
   // Define how likely Replay events are sampled.
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
+  replaysSessionSampleRate: sampleRate,
 
   // Define how likely Replay events are sampled when an error occurs.
   replaysOnErrorSampleRate: 1.0,
