@@ -1,10 +1,17 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter,usePathname } from 'next/navigation';
-import { GestantesEquipe } from "./GestantesEquipe";
-import { GestantesAPS } from "./GestantesAPS";
 import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system";    
+import dynamic from 'next/dynamic';
+const GestantesAPS = dynamic(() => import('./GestantesAPS').then(mod => mod.GestantesAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
+const GestantesEquipe = dynamic(() => import('./GestantesEquipe').then(mod => mod.GestantesEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+});
 
 interface GestantesProps {
     session: Session | null;

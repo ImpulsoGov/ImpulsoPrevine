@@ -1,4 +1,12 @@
-import { Analise } from "./Analise";
+'use client'
+import { Spinner } from '@impulsogov/design-system'
+import dynamic from 'next/dynamic';
+const Analise = dynamic(() => import('./Analise').then(mod => mod.Analise), { 
+  ssr: false,
+  loading: () => <Spinner/>
+ });
+
+
 const DadosPublicos = () => {
   const cardsData = [
     {
