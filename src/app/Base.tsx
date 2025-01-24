@@ -107,27 +107,17 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 };
 
 const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
-	const session = useSession();
-	const params = useSearchParams();
-	useEffect(() => {
-		identifyUserGuiding(session.data);
-	}, [session]);
-	useEffect(() => {
-		sessionIdentifyMixPanel(mixpanel, Hotjar, session.data);
-	}, [session]);
-	useEffect(() => {
-		handleRouteChangeMixPanel(mixpanel, session.status);
-	}, [session, params]);
-	useEffect(() => {
-		addUserDataLayer(session.data);
-	}, [session]);
-	useEffect(() => {
-		userSetterSentry(session.data);
-	}, [session]);
-	return (
-		<>
-			{session.status === "authenticated" && <UserGuiding />}
-			{children}
-		</>
-	);
+    const session = useSession();
+    const params = useSearchParams();
+    useEffect(() => {identifyUserGuiding(session.data)}, [session]);
+    useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
+    useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, params]);
+    useEffect(() => {addUserDataLayer(session.data)}, [session]);
+    useEffect(() => {userSetterSentry(session.data)}, [session]);
+    return (
+        <>
+            {session.status === "authenticated" && <UserGuiding />}
+            {children}
+        </>
+    );
 };
