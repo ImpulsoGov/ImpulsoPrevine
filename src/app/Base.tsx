@@ -23,7 +23,7 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 import { addUserDataLayer } from "@/hooks/addUserDataLayer";
-
+import { userSetterSentry } from "@/hooks/userSetterSentry";
 
 const tagManagerArgs = {
     gtmId: process.env.GTM_ID || 'default-gtm-id',
@@ -90,7 +90,7 @@ const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {sessionIdentifyMixPanel(mixpanel, Hotjar, session.data)}, [session]);
     useEffect(() => {handleRouteChangeMixPanel(mixpanel, session.status)}, [session, params]);
     useEffect(() => {addUserDataLayer(session.data)}, [session]);
-
+    useEffect(() => {userSetterSentry(session.data)}, [session]);
     return (
         <>
             {session.status === "authenticated" && <UserGuiding />}
