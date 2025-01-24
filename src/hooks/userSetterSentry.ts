@@ -9,5 +9,7 @@ export const userSetterSentry = (
       id: session.user.id,
       username: session.user.nome,
     });
+  } else {
+    Sentry.setUser(null);
   }
 };
