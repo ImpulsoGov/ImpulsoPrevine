@@ -1,4 +1,4 @@
-import { Session } from 'next-auth';
+import type { Session } from 'next-auth';
 import * as Sentry from "@sentry/nextjs";
 
 export const userSetterSentry = (
@@ -9,5 +9,7 @@ export const userSetterSentry = (
       id: session.user.id,
       username: session.user.nome,
     });
+  } else {
+    Sentry.setUser(null);
   }
 };
