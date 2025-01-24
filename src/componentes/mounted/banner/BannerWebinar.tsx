@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 
 export const BannerWebinarMounted = () => {
     const [display, setDisplay] = useState(true);
-    const [DisplayBannerWebinar, setDisplayBannerWebinar] = useState(true);
+    const [displayBannerWebinar, setDisplayBannerWebinar] = useState(true);
     useEffect(() => {
         if(!display) localStorage.setItem("DisplayBannerWebinar", "false")
         setDisplayBannerWebinar(!!localStorage.getItem("DisplayBannerWebinar"))
     },[display]);
     
-    return !DisplayBannerWebinar && <ModalAlertDisplay
+    return !displayBannerWebinar && <ModalAlertDisplay
         displayStates = {{display, setDisplay}}
         Child = {Alert_v4}
         childProps = {{
