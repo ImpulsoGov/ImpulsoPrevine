@@ -1,5 +1,4 @@
 'use client'
-import React from 'react';
 import { 
     FormConsultoria, 
     TituloSmallTexto, 
@@ -10,15 +9,15 @@ import {
     ImagensFull2,
     Margem,
   } from "@impulsogov/design-system";
-import { BannerWebnarMounted } from '@/componentes/mounted/banner/BannerWebnar';  
+import { BannerWebinarMounted } from '@/componentes/mounted/banner/BannerWebnar';  
 export const Home = () => {
     return(
         <div style={{backgroundColor: "#E6ECF0"}}>
-        {true && <BannerWebnarMounted />}
+        <BannerWebinarMounted />
         <Margem 
           componente={
             <>
-              <div style={{paddingTop:80}}></div>         
+              <div style={{paddingTop:80}}> </div>         
               <Margem 
                 componente={
                   <>
@@ -26,12 +25,12 @@ export const Home = () => {
                       titulo="Ajudamos profissionais do SUS na gestão da atenção primária"
                       texto="O Impulso Previne é uma iniciativa realizada pela ImpulsoGov, uma organização não governamental sem fins lucrativos que apoia municípios na gestão da saúde pública <b>de forma totalmente gratuita.</b>"
                     />
-                    <div style={{paddingTop:75}}></div>
+                    <div style={{paddingTop:75}}> </div>
                     <ImagensFull2 imagem="https://media.graphassets.com/FSgx9FUSP2wHnXGolx0D" />
                 </>
                 } 
               />
-              <div style={{paddingTop:75}}></div>
+              <div style={{paddingTop:75}}> </div>
             </>
           } 
         />
@@ -43,7 +42,7 @@ export const Home = () => {
         <Margem 
           componente={
             <>
-              <div style={{paddingTop:75}}></div>
+              <div style={{paddingTop:75}}> </div>
                 <TituloSmallTexto
                   botao={{label: '',url: ''}}
                   imagem={{posicao: null,url: ''}}
@@ -80,7 +79,7 @@ export const Home = () => {
               ] }
             />
             
-            <div id="espaco150"></div>
+            <div id="espaco150"> </div>
             </>
           } 
         />
@@ -122,7 +121,7 @@ export const Home = () => {
                   />
                 ] }
               />
-              <div style={{paddingTop:75}}></div>
+              <div style={{paddingTop:75}}> </div>
               <Grid12Col
                   proporcao="6-6"
                   items={ [
@@ -134,7 +133,7 @@ export const Home = () => {
                       titulo="<b>Estamos fazendo a diferença nos municípios</b>"
                       texto=""
                     />,
-                    <></>,
+                    null,
                     <CardIP
                       key="card_5"
                       titulo="PARCEIRO DESDE 2023"
@@ -151,7 +150,7 @@ export const Home = () => {
                     />
                   ] }
                 />
-              <div id="espaco150" ></div>
+              <div id="espaco150" > </div>
             </>
           } 
         />
@@ -173,7 +172,7 @@ export const Home = () => {
                   />
                 ] }
               />
-              <div style={{paddingTop:75}}></div>
+              <div style={{paddingTop:75}}> </div>
             </>
           } 
         />

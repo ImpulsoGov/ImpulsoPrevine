@@ -1,7 +1,7 @@
 import { ModalAlertDisplay,Alert_v4 } from '@impulsogov/design-system';
 import { useState, useEffect } from 'react';
 
-export const BannerWebnarMounted = () => {
+export const BannerWebinarMounted = () => {
     const [display, setDisplay] = useState(true);
     const [DisplayBannerWebinar, setDisplayBannerWebinar] = useState(true);
     useEffect(() => {
