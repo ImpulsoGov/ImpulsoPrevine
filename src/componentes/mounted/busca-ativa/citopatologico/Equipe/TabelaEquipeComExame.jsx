@@ -1,10 +1,11 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
 import { status_usuario_descricao } from "../../../../../data/status_usuario_descricao";
-import faixa_etarias from "../../../../../data/faixa_etarias";
+import faixaEtaria from "@data/faixaEtaria.json";
 import { colunasCitoEquipe } from "../../../../../helpers/colunasCito";
 import { colunasImpressaoCitoEquipe } from "../../../../../helpers/colunasImpressaoCito";
 import { larguraColunasCitoPaisagemEquipe, larguraColunasCitoRetratoEquipe } from "../../../../../helpers/larguraColunasCito";
 import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
+
 const datefiltrosCito = [
     "vencimento_da_coleta",
 ]
@@ -14,17 +15,23 @@ const rotulosfiltrosCito = [
     "VENCIMENTO DA COLETA MAIS ANTIGO",
     "IDADE MENOR-MAIOR",
 ]
-const IDFiltrosCito = {
+const IdFiltrosCito = {
     "NOMES DE A-Z": "paciente_nome",
     "NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z": "acs_nome",
     "VENCIMENTO DA COLETA MAIS ANTIGO" : "vencimento_da_coleta",
     "IDADE MENOR-MAIOR" : "idade",
 }   
-const IDFiltrosOrdenacaoCito = {
+
+//TODO alterar o formato dos nomes das variáveis para camelCase
+const IdFiltrosOrdenacaoCito = {
+    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     "paciente_nome" : "asc",
+    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     "acs_nome" : "asc",
     "idade" : "asc",
+    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     "vencimento_da_coleta" : "asc",
+    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     "prazo_proxima_coleta" : "asc",
 }
 
@@ -40,7 +47,7 @@ export const TabelaEquipeComExame = ({
     setShowSnackBar,
     setFiltros_aplicados,
 })=>{
-    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario == 12)
+    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario === 12)
     return tabelaDataEquipe ? 
     <>
         <PainelBuscaAtiva
@@ -66,7 +73,7 @@ export const TabelaEquipeComExame = ({
                 },
                 {
                     data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria.toString()))],
-                    labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                    labels : [...new Set(faixaEtaria.data.map(item=> item.faixa_etaria_descricao))],
                     filtro: 'id_faixa_etaria',
                     rotulo: 'Filtrar por faixa etária'
                 },
@@ -80,9 +87,9 @@ export const TabelaEquipeComExame = ({
             data={tabelaData}
             setData={setTabelaData}
             datefiltros={datefiltrosCito}
-            IDFiltros={IDFiltrosCito}
+            IDFiltros={IdFiltrosCito}
             rotulosfiltros={rotulosfiltrosCito}    
-            IDFiltrosOrdenacao={IDFiltrosOrdenacaoCito}
+            IDFiltrosOrdenacao={IdFiltrosOrdenacaoCito}
             atualizacao = {new Date(tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
                 const dataAtual = new Date(objeto.dt_registro_producao_mais_recente);
                 const dataMaisRecenteAnterior = new Date(maisRecente);
