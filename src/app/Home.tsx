@@ -249,7 +249,7 @@ export const Home = () => {
                     />
                   ] }
                 />
-              <div id="espaco150" ></div>
+              <div id="espaco150" > </div>
             </>
           } 
         />
@@ -271,7 +271,7 @@ export const Home = () => {
                   />
                 ] }
               />
-              <div style={{paddingTop:75}}></div>
+              <div style={{paddingTop:75}}> </div>
             </>
           } 
         />
