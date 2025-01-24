@@ -9,7 +9,7 @@ import {
     ImagensFull2,
     Margem,
   } from "@impulsogov/design-system";
-import { BannerWebinarMounted } from '@/componentes/mounted/banner/BannerWebnar';  
+import { BannerWebinarMounted } from '@/componentes/mounted/banner/BannerWebinar';  
 export const Home = () => {
     return(
         <div style={{backgroundColor: "#E6ECF0"}}>
