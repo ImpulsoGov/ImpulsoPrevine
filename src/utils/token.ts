@@ -1,4 +1,4 @@
-import { jwtVerify, type JWTPayload, type JWTVerifyResult } from 'jose';
+import { errors, jwtVerify, type JWTPayload, type JWTVerifyResult } from 'jose';
 
 export const getEncodedSecret = () => {
   if (!process.env.NEXTAUTH_SECRET) {
@@ -35,7 +35,16 @@ export const getToken = (headers: Headers) => {
   return token;
 };
 
-export const decodeToken = (token: string, encodedSecrect: Uint8Array) => {
-  const decodedToken = jwtVerify(token, encodedSecrect);
-  return decodedToken;
+export const decodeToken = async (token: string, encodedSecrect: Uint8Array) => {
+  try {
+    return await jwtVerify(token, encodedSecrect);
+  } catch (error) {
+    if (error instanceof errors.JWSSignatureVerificationFailed) {
+      throw new AuthenticationError('Assinatura do token inválida');
+    }
+    if (error instanceof errors.JWTExpired) {
+      throw new AuthenticationError('Token expirado');
+    }
+    throw new AuthenticationError('Erro ao decodificar token');
+  }
 };

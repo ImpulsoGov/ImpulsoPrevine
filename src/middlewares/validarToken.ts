@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken } from "@/utils/token";
+import { captureException } from "@sentry/nextjs";
 
 interface ExtendedNextRequest extends NextRequest {
     user?: any;
@@ -15,14 +16,11 @@ export const validarTokenMiddleware = async (req : ExtendedNextRequest) => {
         req.user = decodedToken; // Armazena o token decodificado para uso posterior na requisição
         return NextResponse.next();
     } catch (error) {
-        if ((error as Error).name === 'JWTExpired') {
-            return Response.json({ message: 'Token expirado.' }, { status: 401 });
-        } else if ((error as Error).name === 'JWSSignatureVerificationFailed') {
-            return Response.json({ message: 'Token inválido.' }, { status: 400 });
-        } else if (error instanceof AuthenticationError) {
+        if (error instanceof AuthenticationError) {
             return Response.json({ message: error.message }, { status: 401 });
-        } else {
-            return Response.json({ message: 'Erro ao verificar token.', detail: (error as Error).message }, { status: 500 });
         }
+
+        captureException(error);
+        return Response.json({ message: 'Erro ao verificar token.', detail: (error as Error).message }, { status: 500 });
     }
 };
