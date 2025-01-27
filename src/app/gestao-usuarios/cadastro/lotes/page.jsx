@@ -1,10 +1,15 @@
 'use client'
 import dynamic from 'next/dynamic';
-
-const ButtonLightSubmit = dynamic(() => import('@impulsogov/design-system').then(mod => mod.ButtonLightSubmit));
 const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
-const TabelaHiperDia = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TabelaHiperDia));
-const TituloSmallTexto = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto));
+const ButtonLightSubmit = dynamic(() => import('@impulsogov/design-system').then(mod => mod.ButtonLightSubmit),{
+  loading: () => <Spinner />,
+});
+const TabelaHiperDia = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TabelaHiperDia),{
+  loading: () => <Spinner />,
+});
+const TituloSmallTexto = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto),{
+  loading: () => <Spinner />,
+});
 
 import { signOut, useSession } from 'next-auth/react';
 import { parse } from 'papaparse';
