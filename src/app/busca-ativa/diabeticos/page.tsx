@@ -2,7 +2,7 @@ import { tabelaDiabetesEquipe, tabelaDiabetesAPS } from "@services/busca_ativa/D
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import dynamic from 'next/dynamic';
-const Diabetes = dynamic(() => import('./Diabetes').then(mod => mod.Diabetes), { ssr: false });
+const Diabetes = dynamic(() => import('./Diabetes').then(mod => mod.Diabetes));
 
 const DiabetesPage = async() => {
   const session = await getServerSession(nextAuthOptions);

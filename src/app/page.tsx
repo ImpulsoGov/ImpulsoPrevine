@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-const Home = dynamic(() => import('./Home').then(mod => mod.Home), { ssr: false });
+const Home = dynamic(() => import('./Home').then(mod => mod.Home));
 
 const HomePage = () => <Home/>
 
