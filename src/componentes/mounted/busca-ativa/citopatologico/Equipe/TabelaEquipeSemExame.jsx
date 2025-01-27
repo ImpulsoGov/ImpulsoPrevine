@@ -1,6 +1,6 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
 import { status_usuario_descricao } from "../../../../../data/status_usuario_descricao";
-import faixa_etarias from "../../../../../data/faixa_etarias";
+import faixaEtaria from "@data/faixaEtaria.json";
 import { colunasCitoEquipe } from "../../../../../helpers/colunasCito";
 import { colunasImpressaoCitoEquipe } from "../../../../../helpers/colunasImpressaoCito";
 import { larguraColunasCitoPaisagemEquipe, larguraColunasCitoRetratoEquipe } from "../../../../../helpers/larguraColunasCito";
@@ -66,7 +66,7 @@ export const TabelaEquipeSemExame = ({
                 },
                 {
                     data: [...new Set(tabelaDataEquipeSemExame.map(item => item.id_faixa_etaria.toString()))],
-                    labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                    labels : [...new Set(faixaEtaria.data.map(item=> item.faixa_etaria_descricao))],
                     filtro: 'id_faixa_etaria',
                     rotulo: 'Filtrar por faixa etária'
                 },

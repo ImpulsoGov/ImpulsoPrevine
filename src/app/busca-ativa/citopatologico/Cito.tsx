@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import mixpanel from "mixpanel-browser";
 import { useRouter, usePathname } from "next/navigation";
 import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 import dynamic from 'next/dynamic';
-const CitoAPS = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { 
+const CitoAps = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { 
     ssr: false,
     loading: () => <Spinner/>
  });
@@ -59,7 +59,7 @@ export const Cito : React.FC<CitoProps> = ({
     setActiveTabIndex={setActiveTabIndex}
     setActiveTitleTabIndex={setActiveTitleTabIndex}
     />
-    if(session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <CitoAPS
+    if(session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <CitoAps
     tabelaDataAPS={tabelaDataAPS}
     tabelaData={tabelaData}
     setTabelaData={setTabelaData}

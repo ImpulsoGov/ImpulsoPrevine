@@ -1,5 +1,5 @@
 import {status_usuario_descricao} from '../../../../../data/status_usuario_descricao';
-import faixa_etarias from '../../../../../data/faixa_etarias.json';
+import faixaEtaria from "@data/faixaEtaria.json";
 import { labelsModalImpressaoAPS } from '../../../../../helpers/labelsModalImpressao';
 import { colunasImpressaoCitoAPS } from '../../../../../helpers/colunasImpressaoCito';
 import { larguraColunasCitoPaisagemAPS, larguraColunasCitoRetratoAPS } from '../../../../../helpers/larguraColunasCito';
@@ -41,7 +41,7 @@ export const TabelaAPSSemExame = ({
     setFiltros_aplicados,
     liberarPesquisa
 })=>{
-    const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario != 12)
+    const tabelaDataAPSSemExame = tabelaDataAPS?.filter(item=>item.id_status_usuario !== 12)
     .map(item => ({...item, equipe_nome_e_ine: `${item.equipe_nome} - ${item.equipe_ine}`}))
     return tabelaDataAPS ? <PainelBuscaAtiva
         liberarPesquisa={liberarPesquisa}
@@ -60,7 +60,7 @@ export const TabelaAPSSemExame = ({
             },
             {
                 data: [...new Set(tabelaDataAPSSemExame.map(item => item.id_faixa_etaria.toString()))],
-                labels : [...new Set(faixa_etarias.data.map(item=> item.faixa_etaria_descricao))],
+                labels : [...new Set(faixaEtaria.data.map(item=> item.faixa_etaria_descricao))],
                 filtro: 'id_faixa_etaria',
                 rotulo: 'Filtrar por faixa etária'
             },
