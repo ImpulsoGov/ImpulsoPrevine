@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AuthenticationError, decodeToken, getToken } from "@/utils/token";
+import { AuthenticationError, decodeToken, getEncodedSecret, getToken } from "@/utils/token";
 
 interface ExtendedNextRequest extends NextRequest {
     user?: any;
 }
 
-const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
-
 export const validarTokenMiddleware = async (req : ExtendedNextRequest) => {
     try {
+        const secret = getEncodedSecret();
         if(!secret) return Response.json({ message: 'Erro ao verificar token.', detail: 'Secret não fornecido.' }), { status: 500 };
         const token = getToken(req.headers);
         const decodedToken = await decodeToken(token, secret);

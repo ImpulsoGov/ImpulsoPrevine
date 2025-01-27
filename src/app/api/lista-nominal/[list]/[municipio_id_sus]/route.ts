@@ -5,7 +5,7 @@ import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
-import { AuthenticationError, decodeToken, getToken, JWTToken, SECRET } from '@/utils/token';
+import { AuthenticationError, decodeToken, getToken, JWTToken, getEncodedSecret } from '@/utils/token';
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
@@ -52,7 +52,8 @@ export async function GET(
       municipio_id_sus: params.municipio_id_sus,
     });
     const token = getToken(req.headers);
-    const { payload } = await decodeToken(token, SECRET) as JWTToken;
+    const secret = getEncodedSecret();
+    const { payload } = await decodeToken(token, secret) as JWTToken;
 
     // será substituido por consulta no banco de dados
     let responseData: Data = [...baseData];

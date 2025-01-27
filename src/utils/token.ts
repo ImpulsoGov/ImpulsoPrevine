@@ -1,6 +1,12 @@
 import { jwtVerify, type JWTPayload, type JWTVerifyResult } from 'jose';
 
-export const SECRET = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+export const getEncodedSecret = () => {
+  if (!process.env.NEXTAUTH_SECRET) {
+    throw new Error('NEXTAUTH_SECRET não está configurado no ambiente');
+  }
+
+  return new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+};
 
 export class AuthenticationError extends Error {};
 

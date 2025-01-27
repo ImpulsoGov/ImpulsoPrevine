@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
 import { InvalidCardTypeError } from '@/app/api/card/utils/errors';
 import { captureException } from '@sentry/nextjs';
-import { AuthenticationError, decodeToken, getToken, JWTToken, SECRET } from '@/utils/token';
+import { AuthenticationError, decodeToken, getToken, JWTToken, getEncodedSecret } from '@/utils/token';
 
 // TODO rever nomenclatura do endpoint para que a API seja orientada à informação e não à interface
 // vide: https://github.com/ImpulsoGov/ImpulsoPrevine/pull/289#issuecomment-2593257565
@@ -20,7 +20,8 @@ export async function GET(
   try {
     const { type, list, municipio_id_sus } = params;
     const token = getToken(req.headers);
-    const { payload } = await decodeToken(token, SECRET) as JWTToken;
+    const secret = getEncodedSecret();
+    const { payload } = await decodeToken(token, secret) as JWTToken;
 
     validateCardType(type);
 
