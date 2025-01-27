@@ -26,7 +26,12 @@
 				"noPrototypeBuiltins": "error"
 			},
 			"style": {
-				"useNamingConvention": "error",
+				"useNamingConvention": {
+					"level": "error",
+					"options": {
+						"strictCase": false
+					}
+				},
 				"useConsistentArrayType": "error"
 			},
 			"correctness": {
@@ -38,7 +43,7 @@
 			"complexity": {
 				"useSimplifiedLogicExpression": "error",
 				"noExcessiveCognitiveComplexity": "error",
-				"noForEach":"error"
+				"noForEach": "error"
 			}
 		}
 	},

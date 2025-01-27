@@ -1,3 +1,3 @@
-import MunicipioSelector  from './MunicipioSelector ';
+import MunicipioSelector from "./MunicipioSelector ";
 
-export { MunicipioSelector  };
+export { MunicipioSelector };

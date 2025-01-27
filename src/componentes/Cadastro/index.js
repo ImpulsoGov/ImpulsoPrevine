@@ -1,1 +1,1 @@
-export { Cadastro,FormCadastro } from "./Cadastro"
+export { Cadastro, FormCadastro } from "./Cadastro";
