@@ -36,7 +36,7 @@ export async function GET(
 
     if (payload?.perfis?.includes(9) && payload?.ine) {
       // será substituido por consulta no banco de dados
-      filteredData = filteredData.filter((card) => card.equipe_ine === payload.ine);
+      filteredData = filteredData.filter((card) => card.ine === payload.ine);
     }
 
     return Response.json(filteredData, { status: 200 });
