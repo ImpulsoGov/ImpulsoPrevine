@@ -2,9 +2,7 @@
 import { useEffect, useState } from 'react';
 import type { JSX } from 'react';
 import dynamic from 'next/dynamic';
-const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner), { 
-  loading: () => <Spinner/>
-});
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
 const PanelSelector = dynamic<{
   panel:number;
   states: {
