@@ -24,6 +24,10 @@ export const getToken = (headers: Headers) => {
 
   if (!authHeader) throw new AuthenticationError('Autorização não fornecida.');
 
+  if (!authHeader.startsWith('Bearer ')) {
+    throw new AuthenticationError('Formato de autorização inválido. Use: Bearer <token>');
+  }
+
   const token = authHeader.split(' ')[1];
 
   if (!token) throw new AuthenticationError('Token não fornecido.');
