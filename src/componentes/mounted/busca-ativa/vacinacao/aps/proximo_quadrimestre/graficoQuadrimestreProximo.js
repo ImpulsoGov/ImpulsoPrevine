@@ -58,7 +58,8 @@ const CardsGraficoAPSQuadrimestreProximo = ({ tabelaDataAPS }) => {
 								return ((item.id_status_polio == 1 ||
 									item.id_status_polio == 10) &&
 									item.id_status_penta == 1) ||
-									item.id_status_polio == 3 || item.id_status_polio == 30 ||
+									item.id_status_polio == 3 ||
+									item.id_status_polio == 30 ||
 									item.id_status_penta == 3 ||
 									((item.id_status_polio == 4 || item.id_status_polio == 30) &&
 										item.id_status_penta == 4)
@@ -147,7 +148,8 @@ const GraficoAPSQuadrimestreProximo = ({ tabelaDataAPS }) => {
 											((item.id_status_polio == 1 ||
 												item.id_status_polio == 10) &&
 												item.id_status_penta == 1) ||
-											item.id_status_polio == 3 || item.id_status_polio == 10 ||
+											item.id_status_polio == 3 ||
+											item.id_status_polio == 10 ||
 											item.id_status_penta == 3
 										) ||
 										((item.id_status_polio == 4 ||
@@ -212,9 +214,7 @@ const GraficoAPSQuadrimestreProximo = ({ tabelaDataAPS }) => {
 					yAxis: {
 						type: "value",
 						axisLabel: {
-							formatter: function (value) {
-								return value.toLocaleString("pt-BR");
-							},
+							formatter: (value) => value.toLocaleString("pt-BR"),
 						},
 					},
 				}}
@@ -252,7 +252,7 @@ const GraficoAPSQuadrimestreProximo = ({ tabelaDataAPS }) => {
 												item.id_status_polio == 10) &&
 												item.id_status_penta == 1) ||
 												item.id_status_polio == 3 ||
-													item.id_status_polio == 30 ||
+												item.id_status_polio == 30 ||
 												item.id_status_penta == 3 ||
 												((item.id_status_polio == 4 ||
 													item.id_status_polio == 40) &&

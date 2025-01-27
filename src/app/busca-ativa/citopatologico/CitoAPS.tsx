@@ -1,16 +1,17 @@
-import {
-	CardAlert,
-	TituloTexto,
-	PanelSelector,
-	ButtonLightSubmit,
-} from "@impulsogov/design-system";
-import { Grafico } from "@componentes/mounted/busca-ativa/citopatologico/APS/Grafico";
-import { TabelaAPSSemExame } from "@componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSSemExame";
-import { TabelaAPSComExame } from "@componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSComExame";
 import { Cards } from "@componentes/mounted/busca-ativa/citopatologico/APS/Cards";
+import { Grafico } from "@componentes/mounted/busca-ativa/citopatologico/APS/Grafico";
+import { TabelaAPSComExame } from "@componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSComExame";
+import { TabelaAPSSemExame } from "@componentes/mounted/busca-ativa/citopatologico/APS/TabelaAPSSemExame";
 import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import React, { Dispatch, SetStateAction } from "react";
-import { Mixpanel } from "mixpanel-browser";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
+import type { Mixpanel } from "mixpanel-browser";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 interface CitoAPSProps {
 	tabelaDataAPS: any;

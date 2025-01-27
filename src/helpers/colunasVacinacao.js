@@ -1,14 +1,12 @@
-const esquema_completo = "https://media.graphassets.com/wOzzseVhRriXENS9OhcG";
-const dose_aplicada = "https://media.graphassets.com/QrINNoP2RUy0mgQZnLE6";
-const dose_nao_aplicada = "https://media.graphassets.com/Xoe3jutQHm7KJbJ9CeD4";
-const esquema_em_andamento =
-	"https://media.graphassets.com/Psuwuj7pS1agRqB7Is5H";
-const dose_em_atraso = "https://media.graphassets.com/neGWWuEyTF6RLagu7nIU";
-const esquema_nao_iniciado =
-	"https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd";
-const esquema_em_atraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363";
+const esquemaCompleto = "https://media.graphassets.com/wOzzseVhRriXENS9OhcG";
+const doseAplicada = "https://media.graphassets.com/QrINNoP2RUy0mgQZnLE6";
+const doseNaoAplicada = "https://media.graphassets.com/Xoe3jutQHm7KJbJ9CeD4";
+const esquemaEmAndamento = "https://media.graphassets.com/Psuwuj7pS1agRqB7Is5H";
+const doseEmAtraso = "https://media.graphassets.com/neGWWuEyTF6RLagu7nIU";
+const esquemaNaoIniciado = "https://media.graphassets.com/OEg0Ik1ITqO9yqRT4fnd";
+const esquemaEmAtraso = "https://media.graphassets.com/bEpC7MYaTwmBj5A7V363";
 
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -16,7 +14,7 @@ const formatar_nome = ({ value }) => {
 	};
 	return <div style={name}>{value}</div>;
 };
-const idade_style = ({ value }) => {
+const idadeStyle = ({ value }) => {
 	return (
 		<div
 			style={{
@@ -28,7 +26,7 @@ const idade_style = ({ value }) => {
 		</div>
 	);
 };
-const cpf_style = ({ value }) => {
+const cpfStyle = ({ value }) => {
 	return (
 		<div
 			style={{
@@ -124,17 +122,17 @@ const STYLE_DOSES_POLIO = (value, colorCode) => {
 		<div style={style[colorCode]}>
 			{colorCode == 1 && (
 				<span style={atencaoSymbolStyle}>
-					<img src={dose_nao_aplicada} width={16} height={16}></img>
+					<img src={doseNaoAplicada} width={16} height={16}></img>
 				</span>
 			)}
 			{colorCode == 2 && (
 				<span style={checkSymbolStyle}>
-					<img src={dose_aplicada} width={16} height={16}></img>
+					<img src={doseAplicada} width={16} height={16}></img>
 				</span>
 			)}
 			{colorCode == 3 && (
 				<span style={blockSymbolStyle}>
-					<img src={dose_em_atraso} width={16} height={16}></img>
+					<img src={doseEmAtraso} width={16} height={16}></img>
 				</span>
 			)}
 			{FormatarData(value)}
@@ -225,17 +223,17 @@ const STYLE_DOSES_PENTA = (value, colorCode) => {
 		<div style={style[colorCode]}>
 			{colorCode == 1 && (
 				<span style={atencaoSymbolStyle}>
-					<img src={dose_nao_aplicada} width={16} height={16}></img>
+					<img src={doseNaoAplicada} width={16} height={16}></img>
 				</span>
 			)}
 			{colorCode == 2 && (
 				<span style={checkSymbolStyle}>
-					<img src={dose_aplicada} width={16} height={16}></img>
+					<img src={doseAplicada} width={16} height={16}></img>
 				</span>
 			)}
 			{colorCode == 3 && (
 				<span style={blockSymbolStyle}>
-					<img src={dose_em_atraso} width={16} height={16}></img>
+					<img src={doseEmAtraso} width={16} height={16}></img>
 				</span>
 			)}
 			{FormatarData(value)}
@@ -266,7 +264,7 @@ const STYLE_STATUS_POLIO = ({ value }) => {
 		justifyContent: "center",
 		flexDirection: "row",
 	};
-	const nao_iniciado = {
+	const naoIniciado = {
 		backgroundColor: "#EFF5F9",
 		border: "1px solid #A6B5BE",
 		borderRadius: "5px",
@@ -352,7 +350,7 @@ const STYLE_STATUS_POLIO = ({ value }) => {
 		10: completo,
 		20: andamento,
 		30: atraso,
-		40: nao_iniciado,
+		40: naoIniciado,
 	};
 	const descricoes = {
 		10: "Completo",
@@ -366,22 +364,22 @@ const STYLE_STATUS_POLIO = ({ value }) => {
 		<div style={style[value]}>
 			{value == 10 && (
 				<span style={completoSymbolStyle}>
-					<img src={esquema_completo} width={16} height={16}></img>
+					<img src={esquemaCompleto} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 20 && (
 				<span style={andamentoSymbolStyle}>
-					<img src={esquema_em_andamento} width={16} height={16}></img>
+					<img src={esquemaEmAndamento} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 30 && (
 				<span style={atrasoSymbolStyle}>
-					<img src={esquema_em_atraso} width={16} height={16}></img>
+					<img src={esquemaEmAtraso} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 40 && (
 				<span style={naoIniciadoSymbolStyle}>
-					<img src={esquema_nao_iniciado} width={16} height={16}></img>
+					<img src={esquemaNaoIniciado} width={16} height={16}></img>
 				</span>
 			)}
 			<div>{descricao}</div>
@@ -402,7 +400,7 @@ const STYLE_STATUS_PENTA = ({ value }) => {
 		justifyContent: "center",
 		flexDirection: "row",
 	};
-	const nao_iniciado = {
+	const naoIniciado = {
 		backgroundColor: "#EFF5F9",
 		border: "1px solid #A6B5BE",
 		borderRadius: "5px",
@@ -488,7 +486,7 @@ const STYLE_STATUS_PENTA = ({ value }) => {
 		1: completo,
 		2: andamento,
 		3: atraso,
-		4: nao_iniciado,
+		4: naoIniciado,
 	};
 	const descricoes = {
 		1: "Completo",
@@ -502,22 +500,22 @@ const STYLE_STATUS_PENTA = ({ value }) => {
 		<div style={style[value]}>
 			{value == 1 && (
 				<span style={completoSymbolStyle}>
-					<img src={esquema_completo} width={16} height={16}></img>
+					<img src={esquemaCompleto} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 2 && (
 				<span style={andamentoSymbolStyle}>
-					<img src={esquema_em_andamento} width={16} height={16}></img>
+					<img src={esquemaEmAndamento} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 3 && (
 				<span style={atrasoSymbolStyle}>
-					<img src={esquema_em_atraso} width={16} height={16}></img>
+					<img src={esquemaEmAtraso} width={16} height={16}></img>
 				</span>
 			)}
 			{value == 4 && (
 				<span style={naoIniciadoSymbolStyle}>
-					<img src={esquema_nao_iniciado} width={16} height={16}></img>
+					<img src={esquemaNaoIniciado} width={16} height={16}></img>
 				</span>
 			)}
 			<div>{descricao}</div>
@@ -564,7 +562,7 @@ const colunasVacinacaoEquipe = [
 		headerName: "NOME DA CRIANÇA",
 		width: 320,
 		sortable: false,
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 	},
 	{
 		align: "center",
@@ -573,14 +571,14 @@ const colunasVacinacaoEquipe = [
 		align: "center",
 		width: 140,
 		sortable: false,
-		renderCell: cpf_style,
+		renderCell: cpfStyle,
 	},
 	{
 		align: "center",
 		field: "cidadao_idade_meses",
 		headerAlign: "center",
 		headerName: "IDADE (MESES)",
-		renderCell: idade_style,
+		renderCell: idadeStyle,
 		width: 100,
 		sortable: false,
 	},
@@ -683,7 +681,7 @@ const colunasVacinacaoAPS = [
 		headerName: "NOME DA CRIANÇA",
 		width: 320,
 		sortable: false,
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 	},
 	{
 		align: "center",
@@ -692,14 +690,14 @@ const colunasVacinacaoAPS = [
 		align: "center",
 		width: 140,
 		sortable: false,
-		renderCell: cpf_style,
+		renderCell: cpfStyle,
 	},
 	{
 		align: "center",
 		field: "cidadao_idade_meses",
 		headerAlign: "center",
 		headerName: "IDADE (MESES)",
-		renderCell: idade_style,
+		renderCell: idadeStyle,
 		width: 100,
 		sortable: false,
 	},

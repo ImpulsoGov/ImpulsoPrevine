@@ -1,9 +1,10 @@
-import { useSession } from "next-auth/react";
-import React, { useMemo } from "react";
 import {
 	formatarQuadrimestres,
 	obterDadosQuadrimestre,
 } from "@utils/quadrimestre";
+import { useSession } from "next-auth/react";
+import type React from "react";
+import { useMemo } from "react";
 import styles from "./MunicipioQuadrimestre.module.css";
 
 interface MunicipioQuadrimestreProps {

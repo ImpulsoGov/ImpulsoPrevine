@@ -1,9 +1,9 @@
-import { DataGrid } from "@mui/x-data-grid";
-import React, { useMemo, useState, useEffect } from "react";
-import { v4 as uuidV4 } from "uuid";
-import Pagination from "@mui/material/Pagination";
-import styles from "./TabelaDesempenhoEquipes.module.css";
 import { Spinner } from "@impulsogov/design-system";
+import Pagination from "@mui/material/Pagination";
+import { DataGrid } from "@mui/x-data-grid";
+import { useEffect, useMemo, useState } from "react";
+import { v4 as uuidV4 } from "uuid";
+import styles from "./TabelaDesempenhoEquipes.module.css";
 
 const TabelaDesempenhoEquipesComSeletor = ({
 	selectedIndicadores,

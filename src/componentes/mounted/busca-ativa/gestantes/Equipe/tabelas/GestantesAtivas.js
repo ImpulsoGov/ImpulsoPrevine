@@ -1,20 +1,20 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
-import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
-import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
-import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes";
+import identificacaoAtendimentoOdontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import identificacaoExameHivSifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
 import {
-	datefiltrosGestantes,
 	IDFiltrosGestantes,
-	rotulosfiltrosGestantes,
 	IDFiltrosOrdenacaoGestantes,
 	IntFiltrosGestantesEquipe,
+	datefiltrosGestantes,
+	rotulosfiltrosGestantes,
 } from "../../../../../../helpers/FiltrosOrdenacaoAux";
+import { colunasGestantesEquipe } from "../../../../../../helpers/colunasGestantes";
+import { colunasImpressaoGestantesAtivasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
 import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasGestantesAtivasEquipePaisagem,
 	larguraColunasGestantesAtivasEquipeRetrato,
 } from "../../../../../../helpers/larguraColunasGestantesEquipe";
-import { colunasImpressaoGestantesAtivasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
 
 const TabelaEquipeGestantesAtivas = ({
 	tabelaDataEquipe,
@@ -53,9 +53,9 @@ const TabelaEquipeGestantesAtivas = ({
 				colunasImpressao={colunasImpressaoGestantesAtivasEquipe}
 				listas_auxiliares={{
 					identificacao_atendimento_odontologico:
-						identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+						identificacaoAtendimentoOdontologico.identificacao_atendimento_odontologico,
 					identificacao_exame_sifilis_hiv:
-						identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+						identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis,
 				}}
 				lista_mixpanel="pre_natal"
 				propAgrupamentoImpressao="acs_nome"
@@ -100,7 +100,7 @@ const TabelaEquipeGestantesAtivas = ({
 						],
 						labels: [
 							...new Set(
-								identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.map(
+								identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.map(
 									(item) => item.exame_hiv_sifilis_descricao,
 								),
 							),

@@ -1,6 +1,6 @@
+import { MUNICIPIOS } from "@constants/municipios";
 import { cpf } from "cpf-cnpj-validator";
 import validator from "validator";
-import { MUNICIPIOS } from "@constants/municipios";
 
 export const Tratamento = async (data) => {
 	if (data) {
@@ -45,7 +45,7 @@ export const Validacao = async (data) => {
 	const ValidarNome = (nome) =>
 		/^[A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*( [A-ZÀ-ÿ'][a-zÀ-ÿ´^~']*)*$/.test(nome) &&
 		ValidarExistencia(nome);
-	const ValidarINE = (INE) => /^\d{10}$/.test(INE) && ValidarExistencia(INE);
+	const ValidarINE = (ine) => /^\d{10}$/.test(ine) && ValidarExistencia(ine);
 	const ValidarMail = (mail) =>
 		validator.isEmail(mail) && ValidarExistencia(mail);
 	const ValidarCPF = (CPF) => cpf.isValid(CPF) && ValidarExistencia(CPF);
@@ -58,7 +58,7 @@ export const Validacao = async (data) => {
 	const validacoes = [];
 	let validacao = true;
 	data.forEach((usuario) => {
-		const usuario_validacoes = {
+		const usuarioValidacoes = {
 			usuario: usuario.nome,
 			nome: true,
 			equipe: true,
@@ -83,11 +83,11 @@ export const Validacao = async (data) => {
 		};
 		Object.keys(usuario).forEach((chave) => {
 			if (!validadores[chave](usuario[chave])) {
-				usuario_validacoes[chave] = false;
+				usuarioValidacoes[chave] = false;
 				validacao = false;
 			}
 		});
-		validacoes.push(usuario_validacoes);
+		validacoes.push(usuarioValidacoes);
 	});
 	return { validacao: validacao, data: validacoes };
 };

@@ -1,14 +1,15 @@
 "use client";
-import { Spinner } from "@impulsogov/design-system";
-import React, { useEffect, useState } from "react";
-import mixpanel from "mixpanel-browser";
-import { useRouter, usePathname } from "next/navigation";
 import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
+import { Spinner } from "@impulsogov/design-system";
+import mixpanel from "mixpanel-browser";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
 const CitoAps = dynamic(() => import("./CitoAPS").then((mod) => mod.CitoAPS), {
 	ssr: false,
 	loading: () => <Spinner />,
@@ -34,7 +35,7 @@ export const Cito: React.FC<CitoProps> = ({
 	const [showSnackBar, setShowSnackBar] = useState({
 		open: false,
 	});
-	const [filtros_aplicados, setFiltros_aplicados] = useState(false);
+	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 	const [voltarGatilho, setVoltarGatilho] = useState(0);
@@ -64,7 +65,7 @@ export const Cito: React.FC<CitoProps> = ({
 				mixpanel={mixpanel}
 				showSnackBar={showSnackBar}
 				setShowSnackBar={setShowSnackBar}
-				setFiltros_aplicados={setFiltros_aplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 				dispararEventoAbrirImpressaoEquipe={dispararEventoAbrirImpressaoEquipe}
 				Voltar={Voltar}
 				activeTitleTabIndex={activeTitleTabIndex}
@@ -82,8 +83,8 @@ export const Cito: React.FC<CitoProps> = ({
 				mixpanel={mixpanel}
 				showSnackBar={showSnackBar}
 				setShowSnackBar={setShowSnackBar}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 				dispararEventoAbrirImpressaoAPS={dispararEventoAbrirImpressaoAPS}
 				Voltar={Voltar}
 				activeTitleTabIndex={activeTitleTabIndex}

@@ -1,11 +1,11 @@
 import { prisma } from "@prisma/prismaClient";
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
-		const municipio_id_sus = searchParams.get("municipio_id_sus");
-		if (!municipio_id_sus)
+		const municipioIdSus = searchParams.get("municipio_id_sus");
+		if (!municipioIdSus)
 			return Response.json(
 				{ message: "Parâmetro municipio_id_sus é obrigatório" },
 				{ status: 400 },
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 		const getData = await prisma.dados_agregados_area_logada.groupBy({
 			by: ["municipio_id_sus", "indicador", "parametro_descricao"],
 			where: {
-				municipio_id_sus: municipio_id_sus,
+				municipio_id_sus: municipioIdSus,
 				OR: [
 					{ parametro_descricao: "TOTAL" },
 					{ parametro_descricao: "FORA_DO_INDICADOR" },

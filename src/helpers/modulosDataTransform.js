@@ -1,15 +1,15 @@
-import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
-import { acessoModulosTrilhasClient } from "../services/acessoTrilha";
 import trilhasIDSigla from "../data/trilhas.json" assert { type: "json" };
+import { acessoModulosTrilhasClient } from "../services/acessoTrilha";
+import { consultarAvaliacaoConclusaoPorUsuario } from "../services/capacitacao";
 
 const modulosDataTransform = async (ConteudosCMS, TrilhaID, userID, token) => {
 	const modulos = [];
-	const modulos_liberados_res = await acessoModulosTrilhasClient(
+	const modulosLiberadosRes = await acessoModulosTrilhasClient(
 		userID,
 		TrilhaID,
 		token,
 	);
-	const modulos_liberados = modulos_liberados_res
+	const modulosLiberados = modulosLiberadosRes
 		.map((item) => item.modulos[0])
 		.sort();
 	return progresso(ConteudosCMS, userID, token).then((res) => {
@@ -20,7 +20,7 @@ const modulosDataTransform = async (ConteudosCMS, TrilhaID, userID, token) => {
 			modulos.push({
 				titulo: element.titulo,
 				id: element.moduloId,
-				liberado: modulos_liberados.includes(element.moduloId),
+				liberado: modulosLiberados.includes(element.moduloId),
 				concluido: res[0].qtd[index].finalizado,
 			});
 		});
@@ -35,37 +35,37 @@ const conteudosDataTransform = async (
 	token,
 ) => {
 	const conteudos = [];
-	const avaliacoes_usuario = await consultarAvaliacaoConclusaoPorUsuario(
+	const avaliacoesUsuario = await consultarAvaliacaoConclusaoPorUsuario(
 		userID,
 		token,
 	);
 	const checkSobre =
-		avaliacoes_usuario.filter(
+		avaliacoesUsuario.filter(
 			(item) => item.codigo_conteudo.slice(3, 10) == "MOD0-C0",
 		).length > 0;
 	for (let i = 0; i < conteudosCMS.length; i++) {
-		let moduloID = conteudosCMS[i].moduloId;
-		let modulo = conteudosCMS[i];
+		const moduloID = conteudosCMS[i].moduloId;
+		const modulo = conteudosCMS[i];
 		for (let index = 0; index < modulo.conteudos.length; index++) {
 			const proximo = () => {
-				let url_base = `/conteudo?codigo_conteudo=${modulo.conteudos[index].codigo}&trilhaID=${trilhaID}&proximo=`;
+				let urlBase = `/conteudo?codigo_conteudo=${modulo.conteudos[index].codigo}&trilhaID=${trilhaID}&proximo=`;
 				for (let i = index; i < modulo.conteudos.length; i++) {
 					if (i + 1 < modulo.conteudos.length) {
-						let url_param = `${encodeURIComponent(`/conteudo?codigo_conteudo=${modulo.conteudos[i + 1].codigo}&trilhaID=${trilhaID}&proximo=`)}`;
-						url_base = url_base + url_param;
+						const urlParam = `${encodeURIComponent(`/conteudo?codigo_conteudo=${modulo.conteudos[i + 1].codigo}&trilhaID=${trilhaID}&proximo=`)}`;
+						urlBase = urlBase + urlParam;
 					} else {
-						let url_param = `${encodeURIComponent(`/capacitacao?trilhaID=${trilhaID}`)}`;
-						url_base = url_base + url_param;
+						const urlParam = `${encodeURIComponent(`/capacitacao?trilhaID=${trilhaID}`)}`;
+						urlBase = urlBase + urlParam;
 					}
 				}
-				return url_base;
+				return urlBase;
 			};
-			const Concluido = avaliacoes_usuario
-				? avaliacoes_usuario?.filter(
+			const Concluido = avaliacoesUsuario
+				? avaliacoesUsuario?.filter(
 						(item) => item.codigo_conteudo == modulo.conteudos[index].codigo,
 					)
 				: false;
-			let item = {
+			const item = {
 				id: index + 1,
 				titulo: modulo.conteudos[index].titulo,
 				moduloID: moduloID,
@@ -79,13 +79,13 @@ const conteudosDataTransform = async (
 	const siglaTrilha = trilhasIDSigla.trilhas.filter(
 		(item) => item.ID == trilhaID,
 	)[0]?.sigla;
-	const ultimoModulo = avaliacoes_usuario.filter(
+	const ultimoModulo = avaliacoesUsuario.filter(
 		(item) => item?.codigo_conteudo.slice(3, 10) == "MOD0-C0",
 	)[0]
 		? Math.max(
 				...[
 					...new Set(
-						avaliacoes_usuario
+						avaliacoesUsuario
 							.filter((item) => item.codigo_conteudo.slice(0, 2) == siglaTrilha)
 							.map((item) => Number(item.codigo_conteudo[6])),
 					),
@@ -97,7 +97,7 @@ const conteudosDataTransform = async (
 
 const progresso = async (ConteudosCMS, userID, token) => {
 	//Modulos Concluidos pelo usuario
-	const modulos_usuario = await consultarAvaliacaoConclusaoPorUsuario(
+	const modulosUsuario = await consultarAvaliacaoConclusaoPorUsuario(
 		userID,
 		token,
 	);
@@ -116,7 +116,7 @@ const progresso = async (ConteudosCMS, userID, token) => {
 		});
 	};
 	//Modulos no CMS
-	const conteudos_por_modulo = ConteudosCMS.map((trilha) => {
+	const conteudosPorModulo = ConteudosCMS.map((trilha) => {
 		return {
 			TrilhaID: trilha.id,
 			titulo: trilha.titulo,
@@ -127,8 +127,8 @@ const progresso = async (ConteudosCMS, userID, token) => {
 		};
 	});
 
-	conteudos_por_modulo.forEach((item) => {
-		const conclusoes = UsuarioConclusoes(item.codigoTrilha, modulos_usuario, [
+	conteudosPorModulo.forEach((item) => {
+		const conclusoes = UsuarioConclusoes(item.codigoTrilha, modulosUsuario, [
 			...Array(item.qtd.length).keys(),
 		]);
 		item.qtd.forEach((element) => {
@@ -153,6 +153,6 @@ const progresso = async (ConteudosCMS, userID, token) => {
 			}, 0),
 		);
 	});
-	return conteudos_por_modulo;
+	return conteudosPorModulo;
 };
 export { modulosDataTransform, conteudosDataTransform, progresso };

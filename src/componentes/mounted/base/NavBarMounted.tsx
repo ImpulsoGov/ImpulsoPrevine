@@ -1,25 +1,25 @@
 "use client";
+import { menuNavBar } from "@helpers/menuNavBar";
 import { NavBar } from "@impulsogov/design-system";
-import { signIn, signOut } from "next-auth/react";
-import { validacao, validateCredentials } from "@services/validateCredentials";
-import {
-	criarSenha,
-	primeiroAcesso,
-	verificarCPFPrimeiroAcesso,
-} from "@services/primeiroAcesso";
 import {
 	alterarSenha,
 	solicitarNovaSenha,
 	validarCodigo,
 	verificarCPF,
 } from "@services/esqueciMinhaSenha";
+import {
+	criarSenha,
+	primeiroAcesso,
+	verificarCPFPrimeiroAcesso,
+} from "@services/primeiroAcesso";
+import { validacao, validateCredentials } from "@services/validateCredentials";
 import { data } from "@utils/Municipios";
-import { menuNavBar } from "@helpers/menuNavBar";
+import { signIn, signOut } from "next-auth/react";
 
-import { Dispatch, SetStateAction } from "react";
-import { Session } from "next-auth";
-import { Mixpanel } from "mixpanel-browser";
+import type { Mixpanel } from "mixpanel-browser";
+import type { Session } from "next-auth";
 import { useRouter } from "next/navigation";
+import type { Dispatch, SetStateAction } from "react";
 
 interface NavBarMountedType {
 	mixpanel: Mixpanel;

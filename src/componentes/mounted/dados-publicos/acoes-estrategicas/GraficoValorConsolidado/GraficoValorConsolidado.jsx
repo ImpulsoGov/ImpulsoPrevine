@@ -1,6 +1,5 @@
-import React from "react";
-import ReactEcharts from "echarts-for-react";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
 
 function formatar(value) {
 	if (value >= 1000000) {
@@ -15,7 +14,7 @@ const GraficoValorConsolidado = ({ GrafValorConsolidado }) => {
 	// Filtra dados a partir de setembro de 2021
 	const filteredData = GrafValorConsolidado.filter((repasses) => {
 		const [ano, mes] = repasses.codigo.split(".");
-		const mesNumerico = parseInt(mes.substring(1)); // Converte o mês em número
+		const mesNumerico = Number.parseInt(mes.substring(1)); // Converte o mês em número
 		return Number(ano) > 2021 || (Number(ano) === 2021 && mesNumerico >= 9); // Compara o mês como número
 	});
 

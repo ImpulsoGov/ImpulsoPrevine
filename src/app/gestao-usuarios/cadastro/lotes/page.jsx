@@ -1,21 +1,21 @@
 "use client";
+import { CadastrarUsuarioLotes } from "@helpers/RequisicoesConcorrentes";
+import { colunasValidacaoDadosCadastro } from "@helpers/colunasValidacaoDadosCadastro";
+import { colunasValidacaoRequsicoes } from "@helpers/colunasValidacaoRequisicoes";
 import {
 	ButtonLightSubmit,
 	Spinner,
 	TabelaHiperDia,
 	TituloSmallTexto,
 } from "@impulsogov/design-system";
-import { signOut, useSession } from "next-auth/react";
-import { parse } from "papaparse";
-import React, { useEffect, useState } from "react";
-import { CadastrarUsuarioLotes } from "@helpers/RequisicoesConcorrentes";
-import { colunasValidacaoDadosCadastro } from "@helpers/colunasValidacaoDadosCadastro";
-import { colunasValidacaoRequsicoes } from "@helpers/colunasValidacaoRequisicoes";
 import {
 	BuscarIdSusPorNome,
 	Tratamento,
 	Validacao,
 } from "@utils/cadastroUsuarios";
+import { signOut, useSession } from "next-auth/react";
+import { parse } from "papaparse";
+import { useEffect, useState } from "react";
 
 const colunas = [
 	"nome",
@@ -38,16 +38,16 @@ const validarColunaLinhas = (data) =>
 const TratamentoValidacao = async (
 	setDadosValidados,
 	setValidacaoRealizada,
-	JSONDATA,
+	jsondata,
 	setDadosReq,
 ) => {
-	const dados_tratados = await Tratamento(JSONDATA);
-	const dados_validados = await Validacao(dados_tratados);
+	const dadosTratados = await Tratamento(jsondata);
+	const dadosValidados = await Validacao(dadosTratados);
 
-	if (dados_validados.validacao) {
+	if (dadosValidados.validacao) {
 		setValidacaoRealizada(true);
 
-		const dadosTratadosComIdSus = dados_tratados.map((dado) => {
+		const dadosTratadosComIdSus = dadosTratados.map((dado) => {
 			return {
 				...dado,
 				municipio_id_sus: BuscarIdSusPorNome(dado.municipio_uf),
@@ -57,33 +57,33 @@ const TratamentoValidacao = async (
 		setDadosReq(dadosTratadosComIdSus);
 	}
 
-	setDadosValidados(dados_validados);
+	setDadosValidados(dadosValidados);
 };
 const GestaoDeUsuarios = () => {
 	const { data: session } = useSession();
 	const [file, setFile] = useState();
 	const [etapa, setEtapa] = useState(0);
-	const [JSONDATA, setJSONDATA] = useState();
+	const [jsondata, setJSONDATA] = useState();
 	const [dadosReq, setDadosReq] = useState();
 	const [dadosValidados, setDadosValidados] = useState();
 	const [res, setRes] = useState();
 	const [validacaoRealizada, setValidacaoRealizada] = useState(false);
-	const [ERRO_PROCESSAMENTO, SET_ERRO_PROCESSAMENTO] = useState(true);
+	const [erroProcessamento, setErroProcessamento] = useState(true);
 	useEffect(() => {
-		if (JSONDATA && etapa == 1 && !validacaoRealizada)
+		if (jsondata && etapa == 1 && !validacaoRealizada)
 			TratamentoValidacao(
 				setDadosValidados,
 				setValidacaoRealizada,
-				JSONDATA,
+				jsondata,
 				setDadosReq,
 			);
-	}, [etapa, JSONDATA]);
+	}, [etapa, jsondata]);
 	useEffect(() => {
 		etapa == 2 &&
 			CadastrarUsuarioLotes(
 				dadosReq,
 				setRes,
-				SET_ERRO_PROCESSAMENTO,
+				setErroProcessamento,
 				session.user.access_token,
 			);
 		etapa == 0 && setJSONDATA() && setDadosReq();
@@ -101,17 +101,17 @@ const GestaoDeUsuarios = () => {
 	};
 
 	const handleOnChange = (e) => {
-		const file_selected = e.target.files[0];
-		if (file_selected) {
-			if (file_selected.name.split(".").pop().toLowerCase() !== "csv") {
+		const fileSelected = e.target.files[0];
+		if (fileSelected) {
+			if (fileSelected.name.split(".").pop().toLowerCase() !== "csv") {
 				alert("Por favor, selecione um arquivo .csv");
 				e.target.value = ""; // Limpar a seleção do arquivo
 			}
 		}
-		setFile(file_selected);
+		setFile(fileSelected);
 	};
 	async function CSVtoJSON(fileReader) {
-		fileReader.onload = function (event) {
+		fileReader.onload = (event) => {
 			const csvOutput = event.target.result;
 			const jsonData = parse(csvOutput, {
 				header: true, // Se o CSV tem cabeçalho
@@ -122,7 +122,7 @@ const GestaoDeUsuarios = () => {
 		};
 	}
 
-	const Etapa_zero = () => {
+	const etapaZero = () => {
 		return (
 			<>
 				<div
@@ -149,9 +149,9 @@ const GestaoDeUsuarios = () => {
 			</>
 		);
 	};
-	const Etapa_um = () => {
-		if (JSONDATA) {
-			if (!validarColunaLinhas(JSONDATA)) {
+	const etapaUm = () => {
+		if (jsondata) {
+			if (!validarColunaLinhas(jsondata)) {
 				alert("Colunas inválidas");
 				setEtapa(0);
 				setJSONDATA();
@@ -199,7 +199,7 @@ const GestaoDeUsuarios = () => {
 			)
 		);
 	};
-	const Etapa_dois = () => {
+	const etapaDois = () => {
 		return (
 			<>
 				{!res ? (
@@ -222,7 +222,7 @@ const GestaoDeUsuarios = () => {
 						</div>
 						<Spinner />
 					</>
-				) : ERRO_PROCESSAMENTO ? (
+				) : erroProcessamento ? (
 					<>
 						<TabelaHiperDia data={res} colunas={colunasValidacaoRequsicoes} />
 						<div
@@ -238,7 +238,7 @@ const GestaoDeUsuarios = () => {
 								label="VOLTAR"
 								submit={() => {
 									setEtapa(0);
-									SET_ERRO_PROCESSAMENTO(false);
+									setErroProcessamento(false);
 									setRes();
 									setDadosReq();
 									setDadosValidados();
@@ -263,9 +263,9 @@ const GestaoDeUsuarios = () => {
 		);
 	};
 	const etapas = {
-		0: Etapa_zero(),
-		1: Etapa_um(),
-		2: Etapa_dois(),
+		0: etapaZero(),
+		1: etapaUm(),
+		2: etapaDois(),
 	};
 
 	if (session) {

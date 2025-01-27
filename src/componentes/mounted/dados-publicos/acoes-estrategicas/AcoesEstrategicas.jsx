@@ -1,11 +1,11 @@
-import { v1 as uuidv1 } from "uuid";
-import React, { useState, useEffect } from "react";
-import { TituloSmallTexto } from "@impulsogov/design-system";
-import TabelaAcoesEstrategicas from "@componentes/mounted/dados-publicos/acoes-estrategicas/TabelaAcoesEstrategicas/TabelaAcoesEstrategicas";
-import GraficoValorConsolidado from "@componentes/mounted/dados-publicos/acoes-estrategicas/GraficoValorConsolidado/GraficoValorConsolidado";
 import GraficoHistoricoAcaoEstrategica from "@componentes/mounted/dados-publicos/acoes-estrategicas/GraficoHistoricoAcaoEstrategica/GraficoHistoricoAcaoEstrategica";
-import { AcoesEstrategicasVigenteAgrupada } from "@services/acoes_estrategicas_vigente_agrupada";
+import GraficoValorConsolidado from "@componentes/mounted/dados-publicos/acoes-estrategicas/GraficoValorConsolidado/GraficoValorConsolidado";
+import TabelaAcoesEstrategicas from "@componentes/mounted/dados-publicos/acoes-estrategicas/TabelaAcoesEstrategicas/TabelaAcoesEstrategicas";
+import { TituloSmallTexto } from "@impulsogov/design-system";
 import { AcoesEstrategicasRepasses } from "@services/acoes_estrategicas_repasses";
+import { AcoesEstrategicasVigenteAgrupada } from "@services/acoes_estrategicas_vigente_agrupada";
+import { useEffect, useState } from "react";
+import { v1 as uuidv1 } from "uuid";
 
 export const AcoesEstrategicas = ({ cidade }) => {
 	const [indicadoresData, setIndicadoresData] = useState([]);

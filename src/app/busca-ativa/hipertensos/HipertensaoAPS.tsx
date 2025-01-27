@@ -1,16 +1,17 @@
 "use client";
+import { TabelaAPS } from "@componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS";
+import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {
-	CardAlert,
-	TituloTexto,
 	ButtonLightSubmit,
+	CardAlert,
+	GraficoBuscaAtiva,
 	ScoreCardGrid,
 	Spinner,
-	GraficoBuscaAtiva,
+	TituloTexto,
 } from "@impulsogov/design-system";
-import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import { TabelaAPS } from "@componentes/mounted/busca-ativa/hipertensao/APS/TabelaAPS";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { PainelComLegenda } from "../diabeticos/PainelComLegenda";
-import React, { Dispatch, SetStateAction } from "react";
 
 interface HipertensaoAPSType {
 	tabelaDataAPS: any;
@@ -199,9 +200,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						yAxis: {
 							type: "value",
 							axisLabel: {
-								formatter: function (value: any) {
-									return value.toLocaleString("pt-BR");
-								},
+								formatter: (value: any) => value.toLocaleString("pt-BR"),
 							},
 						},
 					}}

@@ -234,10 +234,10 @@ export const CONTEUDOS_TRILHAS = `
       }
     }
     `;
-export const CAPACITACAO = (TRILHA_ID: string) => {
+export const CAPACITACAO = (trilhaId: string) => {
 	return `
   {
-    trilhas(where: {id: "${TRILHA_ID}"}) {
+    trilhas(where: {id: "${trilhaId}"}) {
       conteudo {
         ... on Modulo {
           titulo
@@ -273,12 +273,12 @@ export const CAPACITACAO = (TRILHA_ID: string) => {
 };
 
 export const CONTEUDO_CAPACITACAO = (
-	CODIGO_CONTEUDO: string,
-	TRILHA_ID: string,
+	codigoConteudo: string,
+	trilhaId: string,
 ) => {
 	return `
   {
-    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
+    conteudos(where: {codigo: "${codigoConteudo}"}, orderBy: codigo_ASC) {
       codigo
       materialComplementar {
         ... on Link {
@@ -297,7 +297,7 @@ export const CONTEUDO_CAPACITACAO = (
       }
       url
     }
-    trilhas(where: {id: "${TRILHA_ID}"}) {
+    trilhas(where: {id: "${trilhaId}"}) {
       conteudo {
         ... on Modulo {
           moduloId
@@ -309,9 +309,9 @@ export const CONTEUDO_CAPACITACAO = (
   `;
 };
 
-export const CONTEUDO_PROGRAMATICO = (TRILHA_ID: string) => {
+export const CONTEUDO_PROGRAMATICO = (trilhaId: string) => {
 	return `{
-      trilhas(where: {id: "${TRILHA_ID}"}) {
+      trilhas(where: {id: "${trilhaId}"}) {
         titulo
         sobre {
           ... on Sobre {

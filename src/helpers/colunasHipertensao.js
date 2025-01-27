@@ -56,7 +56,7 @@ const FormatarDataNascimento = (str) => {
 	const date = `${dia}/${mes}/${ano}`;
 	return str.value.includes("-") ? date : str.value;
 };
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -95,7 +95,7 @@ const colunasHipertensaoEquipe = [
 		field: "cidadao_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 240,
 		sortable: false,
 	},
@@ -176,7 +176,7 @@ const colunasHipertensaoAPS = [
 		field: "cidadao_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 240,
 		sortable: false,
 	},

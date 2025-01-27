@@ -1,9 +1,9 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import {
 	tabelaGestantesAPS,
 	tabelaGestantesEquipe,
 } from "@services/busca_ativa/Gestantes";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { Gestantes } from "./Gestantes";
 
 const GestantesPage = async () => {

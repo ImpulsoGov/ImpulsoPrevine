@@ -1,5 +1,4 @@
 import { Alert, Snackbar } from "@mui/material";
-import React from "react";
 
 const TEMPO_EXIBICAO_MILISEGUNDOS = 6000;
 

@@ -4,12 +4,12 @@ import axios from "axios";
 
 const setCidadeCarregamento = (response, setCidade, setLoading) => {
 	if (response.data.address["ISO3166-2-lvl4"].slice(-2) == "DF") {
-		let res =
+		const res =
 			"Brasília" + " - " + response.data.address["ISO3166-2-lvl4"].slice(-2);
 		setCidade(res);
 		setLoading(true);
 	} else {
-		let res =
+		const res =
 			response.data.address.city +
 			" - " +
 			response.data.address["ISO3166-2-lvl4"].slice(-2);

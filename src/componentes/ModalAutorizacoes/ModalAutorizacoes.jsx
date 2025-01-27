@@ -1,6 +1,5 @@
 import { ButtonColorSubmit, TituloSmallTexto } from "@impulsogov/design-system";
 import Modal from "@mui/material/Modal";
-import React from "react";
 import { Select } from "../Select";
 import styles from "./ModalAutorizacoes.module.css";
 

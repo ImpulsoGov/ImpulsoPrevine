@@ -1,14 +1,14 @@
 import axios from "axios";
 import FormData from "form-data";
-import { API_URL_USUARIOS } from "../constants/API_URL";
 import mixpanel from "mixpanel-browser";
+import { API_URL_USUARIOS } from "../constants/API_URL";
 
 const validateCredentials = async (mail, senha) => {
 	mixpanel.track("button_click", {
 		button_action: "entrar_area_restitra_apos_senha",
 	});
 
-	let data = new FormData();
+	const data = new FormData();
 	data.append("username", mail);
 	data.append("password", senha);
 
@@ -19,10 +19,8 @@ const validateCredentials = async (mail, senha) => {
 	};
 
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
+		.then((response) => response.data)
+		.catch((error) => {
 			mixpanel.track("validation_error", {
 				button_action: "entrar_area_restitra_apos_senha",
 				error_message: error.response.data,
@@ -44,9 +42,9 @@ const validacao = (
 ) => {
 	const res = async () => await validarCredencial(mail, senha);
 	if (mail.length < 1 || senha.length < 1) {
-		const msg_campo_vazio = "Preencha todos os campos";
-		setResposta(msg_campo_vazio);
-		return msg_campo_vazio;
+		const msgCampoVazio = "Preencha todos os campos";
+		setResposta(msgCampoVazio);
+		return msgCampoVazio;
 	} else {
 		res().then((response) => {
 			if (typeof response["access_token"] !== "undefined") {

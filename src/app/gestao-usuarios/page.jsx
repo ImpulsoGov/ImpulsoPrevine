@@ -1,7 +1,6 @@
 "use client";
 import { CardLarge, Greeting } from "@impulsogov/design-system";
 import { useSession } from "next-auth/react";
-import React from "react";
 
 const GestaoDeUsuarios = () => {
 	const { data: session } = useSession();

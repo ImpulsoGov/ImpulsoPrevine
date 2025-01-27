@@ -1,5 +1,5 @@
 const sliderCardsDataTransform = (CMSdata) => {
-	let data = [];
+	const data = [];
 	CMSdata.forEach((card) => {
 		data.push({
 			titulo: card.nome,

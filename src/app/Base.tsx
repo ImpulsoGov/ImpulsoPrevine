@@ -1,28 +1,29 @@
 "use client";
-import React, { useEffect, useState, Suspense } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { usePathname, useSearchParams } from "next/navigation";
+import type React from "react";
+import { Suspense, useEffect, useState } from "react";
 
-import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
-import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
-import { Spinner } from "@impulsogov/design-system";
 import Analytics from "@/componentes/Analytics/Analytics";
+import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
+import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
+import { Spinner } from "@impulsogov/design-system";
 
-import TagManager from "react-gtm-module";
-import mixpanel from "mixpanel-browser";
-import Hotjar from "@hotjar/browser";
 import { hotjarVersion } from "@constants/hotjarVersion";
+import Hotjar from "@hotjar/browser";
+import mixpanel from "mixpanel-browser";
+import TagManager from "react-gtm-module";
 
 import { useWindowWidth } from "@helpers/useWindowWidth";
 
 import { rotaDinamica } from "@hooks/rotaDinamica";
 
 import { UserGuiding } from "@/componentes/UserGuiding";
+import { addUserDataLayer } from "@/hooks/addUserDataLayer";
 import { getLayoutDataHook } from "@/hooks/getLayoutDataHook";
+import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
 import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
-import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
-import { addUserDataLayer } from "@/hooks/addUserDataLayer";
 import { userSetterSentry } from "@/hooks/userSetterSentry";
 
 const tagManagerArgs = {

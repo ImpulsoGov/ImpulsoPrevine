@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import ReactEcharts from "echarts-for-react";
 import { filtrarPorPeriodoCodigo } from "@helpers/filtroQuadrimestreIndicadores";
-import styles from "./GraficoDesempenhoMunicipio.module.css";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
+import styles from "./GraficoDesempenhoMunicipio.module.css";
 
 const GraficoComSeletor = ({ setSelectedPeriodo, GrafDesempenho, option }) => (
 	<>
@@ -83,9 +83,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
 				label: {
 					show: true,
 					position: "top",
-					formatter: function (params) {
-						return params.value !== 0 ? params.value + "%" : "";
-					},
+					formatter: (params) => (params.value !== 0 ? params.value + "%" : ""),
 				},
 			},
 			{
@@ -99,9 +97,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
 				label: {
 					show: true,
 					position: "insideTop",
-					formatter: function (params) {
-						return params.value !== 0 ? params.value + "%" : "";
-					},
+					formatter: (params) => (params.value !== 0 ? params.value + "%" : ""),
 				},
 			},
 			{

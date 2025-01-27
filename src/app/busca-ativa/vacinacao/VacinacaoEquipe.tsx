@@ -1,15 +1,16 @@
 "use client";
-import {
-	CardAlert,
-	TituloTexto,
-	ButtonLightSubmit,
-	PanelSelector,
-} from "@impulsogov/design-system";
-import { dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
-import React, { Dispatch, SetStateAction } from "react";
-import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "@componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
 import { TabelaAPSQuadrimestreProximo as TabelaEquipeQuadrimestreProximo } from "@componentes/mounted/busca-ativa/vacinacao/equipe/proximo_quadrimestre/tabelaQuadrimestreProximo";
+import { TabelaAPSQuadrimestreAtual as TabelaEquipeQuadrimestreAtual } from "@componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_atual/tabelaQuadrimestreAtual";
 import { TabelaAPSQuadrimestreFuturo as TabelaEquipeQuadrimestreFuturo } from "@componentes/mounted/busca-ativa/vacinacao/equipe/quadrimestre_futuro/tabelaQuadrimestreFuturo";
+import { dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 interface VacinacaoEquipeProps {
 	tabelaDataEquipe: any;

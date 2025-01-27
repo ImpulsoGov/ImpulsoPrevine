@@ -1,19 +1,18 @@
-import React from "react";
 import { useState } from "react";
-import style from "./Cadastro.module.css";
 import { ButtonColorSubmit } from "../ButtonColor/ButtonColor";
 import { CriarSenha } from "../CriarSenha";
+import style from "./Cadastro.module.css";
 
-const check_campos = (data) => {
-	let values = Object.values(data);
-	let values_bool = values.map((item) => {
-		let validated =
+const checkCampos = (data) => {
+	const values = Object.values(data);
+	const valuesBool = values.map((item) => {
+		const validated =
 			typeof item != undefined && item != null && item.length > 0
 				? true
 				: false;
 		return validated;
 	});
-	return values_bool.reduce((a) => {
+	return valuesBool.reduce((a) => {
 		return a == true ? true : false;
 	});
 };
@@ -42,7 +41,7 @@ const FormCadastro = ({
 	whatsapp,
 }) => {
 	const submit = (data) => {
-		if (check_campos(data)) {
+		if (checkCampos(data)) {
 			setEtapa(2);
 		} else {
 			setMessage("Preencha todos os campos");

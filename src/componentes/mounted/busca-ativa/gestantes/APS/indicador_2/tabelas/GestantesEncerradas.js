@@ -1,12 +1,12 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
+import identificacaoExameHivSifilis from "../../../../../../../data/identificacao_exame_hiv_sifilis.json";
 import { colunasGestantesIndicadorDois } from "../../../../../../../helpers/colunasGestantesIndicadorDois";
-import identificacao_exame_hiv_sifilis from "../../../../../../../data/identificacao_exame_hiv_sifilis.json";
+import { colunasImpressaoGestantesIndicador2 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador2";
+import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasGestantesIndicador2Paisagem,
 	larguraColunasGestantesIndicador2Retrato,
 } from "../../../../../../../helpers/larguraColunasGestantesIndicador2";
-import { colunasImpressaoGestantesIndicador2 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador2";
-import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosGestantes = [
 	"gestacao_data_dpp",
@@ -68,7 +68,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
 					],
 					labels: [
 						...new Set(
-							identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.map(
+							identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.map(
 								(item) => item.exame_hiv_sifilis_descricao,
 							),
 						),
@@ -105,7 +105,7 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
 			}}
 			listas_auxiliares={{
 				identificacao_exame_sifilis_hiv:
-					identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+					identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis,
 			}}
 			colunasImpressao={colunasImpressaoGestantesIndicador2}
 			datefiltros={datefiltrosGestantes}

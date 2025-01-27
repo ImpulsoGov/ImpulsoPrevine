@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import ReactEcharts from "echarts-for-react";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
 
 const GraficoSuasEquipes = ({ GrafCapitacao }) => {
 	const [data, setData] = useState([]);

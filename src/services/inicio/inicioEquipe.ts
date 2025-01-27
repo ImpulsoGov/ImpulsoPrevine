@@ -1,15 +1,15 @@
-import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
+import axios from "axios";
 
 export const InicioEquipeRequest = async (
-	municipio_id_sus: string,
+	municipioIdSus: string,
 	equipe: string,
 	token: string,
 ) => {
 	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
-		url: `${baseURL()}/api/inicio/inicio-equipe?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
+		maxBodyLength: Number.POSITIVE_INFINITY,
+		url: `${baseURL()}/api/inicio/inicio-equipe?municipio_id_sus=${municipioIdSus}&equipe=${equipe}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},

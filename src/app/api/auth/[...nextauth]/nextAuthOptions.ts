@@ -1,9 +1,9 @@
-import { Awaitable, NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "axios";
-import FormData from "form-data";
 import { API_URL_USUARIOS } from "@constants/API_URL";
 import * as Sentry from "@sentry/nextjs";
+import axios from "axios";
+import FormData from "form-data";
+import type { Awaitable, NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 interface Credentials {
 	username: string;
 	password: string;
@@ -21,7 +21,7 @@ interface User {
 	access_token: string;
 	token_type: string;
 }
-const cargo_nome = async (
+const cargoNome = async (
 	token: string,
 	cpf: string,
 ): Promise<{ cargo: string; nome: string }> => {
@@ -37,10 +37,8 @@ const cargo_nome = async (
 		},
 	};
 	return await axios(config)
-		.then(function (response) {
-			return response.data.cadastro[0];
-		})
-		.catch(function (error) {
+		.then((response) => response.data.cadastro[0])
+		.catch((error) => {
 			console.error(error);
 			throw new Error("Erro ao buscar cargo e nome");
 		});
@@ -62,13 +60,13 @@ const getToken = async (
 	};
 	return await axios(config)
 		.then(async (response) => {
-			const cargonome = await cargo_nome(
+			const cargonome = await cargoNome(
 				response.data.access_token,
 				credentials.username.replace(/\D/g, ""),
 			);
 			return { ...response.data, mail: credentials.username, ...cargonome };
 		})
-		.catch(function (error) {
+		.catch((error) => {
 			console.error(error);
 			return null;
 		});

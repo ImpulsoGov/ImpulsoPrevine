@@ -1,8 +1,8 @@
-import { DataGrid } from "@mui/x-data-grid";
-import React, { useMemo } from "react";
-import styles from "./TabelaFichasCadastro.module.css";
-import { v4 as uuidV4 } from "uuid";
 import { Spinner } from "@impulsogov/design-system";
+import { DataGrid } from "@mui/x-data-grid";
+import { useMemo } from "react";
+import { v4 as uuidV4 } from "uuid";
+import styles from "./TabelaFichasCadastro.module.css";
 
 const TabelaFichasCadastro = ({ TabFichas }) => {
 	const obterNomeMes = (numeroMes) => {
@@ -121,14 +121,14 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
 
 		dadosAgrupados.forEach((agrupado) => {
 			const { periodo_data_inicio, validacao } = agrupado;
-			Object.keys(validacao).forEach((validacao_nome) => {
-				const validacaoData = validacao[validacao_nome];
+			Object.keys(validacao).forEach((validacaoNome) => {
+				const validacaoData = validacao[validacaoNome];
 				Object.keys(validacaoData.aplicacao).forEach((aplicacao) => {
 					const quantidade = validacaoData.aplicacao[aplicacao];
 					linhasData.push({
 						id: uuidV4(),
 						periodo_data_inicio,
-						validacao: validacao_nome,
+						validacao: validacaoNome,
 						aplicacao,
 						quantidade,
 					});

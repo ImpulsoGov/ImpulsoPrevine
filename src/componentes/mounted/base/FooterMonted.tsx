@@ -1,6 +1,6 @@
 "use client";
 import { Footer } from "@impulsogov/design-system";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 
 interface FooterMountedType {
 	session: Session | null;

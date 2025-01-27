@@ -1,26 +1,26 @@
 import {
 	PainelBuscaAtiva,
-	Spinner,
 	ScoreCardGrid,
+	Spinner,
 } from "@impulsogov/design-system";
-import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
-import vacinacao_status_penta from "../../../../../../data/vacinacao_status_penta.json" assert {
-	type: "json",
-};
-import vacinacao_status_polio from "../../../../../../data/vacinacao_status_polio.json" assert {
-	type: "json",
-};
 import mixpanel from "mixpanel-browser";
-import {
-	formatarQuadrimestres,
-	obterDadosProximosQuadrimestres,
-} from "../../../../../../utils/quadrimestre";
+import vacinacaoStatusPenta from "../../../../../../data/vacinacao_status_penta.json" assert {
+	type: "json",
+};
+import vacinacaoStatusPolio from "../../../../../../data/vacinacao_status_polio.json" assert {
+	type: "json",
+};
+import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
+import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasVacinacaoPaisagemAPS,
 	larguraColunasVacinacaoRetratoAPS,
 } from "../../../../../../helpers/larguraColunasVacinacao";
-import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
-import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
+import {
+	formatarQuadrimestres,
+	obterDadosProximosQuadrimestres,
+} from "../../../../../../utils/quadrimestre";
 
 const datefiltrosVacinacao = [];
 const IntFiltros = ["cidadao_idade_meses"];
@@ -177,7 +177,7 @@ const TabelaAPSQuadrimestreProximo = ({
 								),
 							),
 						],
-						labels: vacinacao_status_polio.dataTabela.reduce((obj, item) => {
+						labels: vacinacaoStatusPolio.dataTabela.reduce((obj, item) => {
 							obj[item.id_status_polio] = item.status_descricao;
 							return obj;
 						}, {}),
@@ -192,7 +192,7 @@ const TabelaAPSQuadrimestreProximo = ({
 								),
 							),
 						],
-						labels: vacinacao_status_penta.data.reduce((obj, item) => {
+						labels: vacinacaoStatusPenta.data.reduce((obj, item) => {
 							obj[item.id_status_penta] = item.status_descricao;
 							return obj;
 						}, {}),

@@ -1,13 +1,13 @@
+import faixaEtaria from "@data/faixaEtaria.json";
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
 import { status_usuario_descricao } from "../../../../../data/status_usuario_descricao";
-import faixaEtaria from "@data/faixaEtaria.json";
 import { colunasCitoEquipe } from "../../../../../helpers/colunasCito";
 import { colunasImpressaoCitoEquipe } from "../../../../../helpers/colunasImpressaoCito";
+import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasCitoPaisagemEquipe,
 	larguraColunasCitoRetratoEquipe,
 } from "../../../../../helpers/larguraColunasCito";
-import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosCito = ["vencimento_da_coleta"];
 const rotulosfiltrosCito = [

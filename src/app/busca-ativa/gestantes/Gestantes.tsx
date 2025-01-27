@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system";
+import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
 const GestantesAPS = dynamic(
 	() => import("./GestantesAPS").then((mod) => mod.GestantesAPS),
 	{
@@ -37,7 +38,7 @@ export const Gestantes: React.FC<GestantesProps> = ({
 	const [tabelaData, setTabelaData] = useState([]);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-	const [filtros_aplicados, setFiltros_aplicados] = useState(false);
+	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const router = useRouter();
 	const path = usePathname();
 	const visao =
@@ -68,8 +69,8 @@ export const Gestantes: React.FC<GestantesProps> = ({
 				Voltar={Voltar}
 				showSnackBar={showSnackBar}
 				setShowSnackBar={setShowSnackBar}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
 	if (session.user.perfis.includes(5) || session.user.perfis.includes(8))
@@ -85,8 +86,8 @@ export const Gestantes: React.FC<GestantesProps> = ({
 				setActiveTabIndex={setActiveTabIndex}
 				activeTitleTabIndex={activeTitleTabIndex}
 				setActiveTitleTabIndex={setActiveTitleTabIndex}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
 };

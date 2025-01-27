@@ -1,4 +1,4 @@
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -28,7 +28,7 @@ const DDP_STYLE = (param) => {
 };
 const IG_PRIMEIRA_CONSULTA_STYLE = (param) => {
 	const value = param.row.gestacao_idade_gestacional_primeiro_atendimento;
-	const IG_MENOR_12_SEM = {
+	const igMenor12Sem = {
 		width: "38px",
 		padding: "3px",
 		color: "#1D856C",
@@ -38,7 +38,7 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param) => {
 		textAlign: "center",
 		fontWeight: 500,
 	};
-	const IG_MAIOR_12_SEM = {
+	const igMaior12Sem = {
 		width: "38px",
 		padding: "3px",
 		color: "#EF565D",
@@ -48,7 +48,7 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param) => {
 		textAlign: "center",
 		fontWeight: 500,
 	};
-	const IG_NULL = {
+	const igNull = {
 		width: "38px",
 		height: "25px",
 		padding: "3px",
@@ -58,13 +58,13 @@ const IG_PRIMEIRA_CONSULTA_STYLE = (param) => {
 		textAlign: "center",
 		fontWeight: 500,
 	};
-	let IG_STYLE;
+	let igStyle;
 	if (value) {
-		IG_STYLE = Number(value) <= 12 ? IG_MENOR_12_SEM : IG_MAIOR_12_SEM;
+		igStyle = Number(value) <= 12 ? igMenor12Sem : igMaior12Sem;
 	} else {
-		IG_STYLE = IG_NULL;
+		igStyle = igNull;
 	}
-	return <div style={IG_STYLE}>{value ? value : "-"}</div>;
+	return <div style={igStyle}>{value ? value : "-"}</div>;
 };
 const TOTAL_CONSULTAS_VALIDAS_STYLE = (param) => {
 	let colorCode;
@@ -82,7 +82,7 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param) => {
 		colorCode = 3; //verde
 	if (!param.row.consultas_pre_natal_validas) colorCode = 0; //Branco
 	const value = param.row.consultas_pre_natal_validas;
-	const STYLE_NULL = {
+	const styleNull = {
 		width: "38px",
 		height: "25px",
 		padding: "3px",
@@ -172,7 +172,7 @@ const TOTAL_CONSULTAS_VALIDAS_STYLE = (param) => {
 	};
 
 	const style = {
-		0: STYLE_NULL,
+		0: styleNull,
 		1: atencao,
 		2: block,
 		3: check,
@@ -206,7 +206,7 @@ const colunasGestantesIndicadorUm = [
 		field: "cidadao_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 320,
 		sortable: false,
 	},

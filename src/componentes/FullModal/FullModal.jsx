@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./FullModal.module.css";
 
 const FullModal = ({ logo, children, back, backLink }) => {

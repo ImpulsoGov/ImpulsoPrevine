@@ -1,17 +1,17 @@
 import { prisma } from "@prisma/prismaClient";
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
-		const municipio_id_sus = searchParams.get("municipio_id_sus");
-		const equipe_ine = searchParams.get("equipe");
-		if (!municipio_id_sus)
+		const municipioIdSus = searchParams.get("municipio_id_sus");
+		const equipeIne = searchParams.get("equipe");
+		if (!municipioIdSus)
 			return Response.json(
 				{ message: "Parâmetro municipio_id_sus é obrigatório" },
 				{ status: 400 },
 			);
-		if (!equipe_ine)
+		if (!equipeIne)
 			return Response.json(
 				{ message: "Parâmetro equipe é obrigatório" },
 				{ status: 400 },
@@ -24,8 +24,8 @@ export async function GET(req: NextRequest) {
 				"equipe_ine",
 			],
 			where: {
-				municipio_id_sus: municipio_id_sus,
-				equipe_ine: equipe_ine,
+				municipio_id_sus: municipioIdSus,
+				equipe_ine: equipeIne,
 				OR: [
 					{ parametro_descricao: "TOTAL" },
 					{ parametro_descricao: "FORA_DO_INDICADOR" },

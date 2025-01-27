@@ -11,7 +11,7 @@ const createFormData = (params) => {
 const CadastrarUsuarioLotes = async (
 	data,
 	setRes,
-	SET_ERRO_PROCESSAMENTO,
+	setErroProcessamento,
 	token,
 ) => {
 	const formDataArray = data.map((item) => createFormData(item));
@@ -24,7 +24,7 @@ const CadastrarUsuarioLotes = async (
 	results.forEach((result) => {
 		if (!result.success) erros++;
 	});
-	SET_ERRO_PROCESSAMENTO(erros > 0);
+	setErroProcessamento(erros > 0);
 	setRes(results);
 };
 

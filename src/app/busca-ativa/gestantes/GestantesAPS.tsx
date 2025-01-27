@@ -1,16 +1,19 @@
-import { IndicadorUmTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/tabelas/GestantesAtivas";
-import { IndicadorUmTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/tabelas/GestantesEncerradas";
-import { IndicadorDoisTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/tabelas/GestantesAtivas";
-import { IndicadorDoisTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/tabelas/GestantesEncerradas";
-import { IndicadorTresTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/tabelas/GestantesAtivas";
-import { IndicadorTresTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/tabelas/GestantesEncerradas";
+import { TabelaGestantesSemDUM } from "@componentes/mounted/busca-ativa/gestantes/APS/GestantesSemDUM/GestantesSemDum";
+import { CardsAPS } from "@componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
 import { IndicadorUmCardsGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/cards/cardsGestantesAtivas";
 import { IndicadorUmCardsGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/cards/cardsGestantesEncerradas";
+import {
+	CardsGraficoIndicadorUmQuadriAtual,
+	GraficoIndicadorUmQuadriAtual,
+} from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_atual";
+import {
+	CardsGraficoIndicadorUmQuadriFuturo,
+	GraficoIndicadorUmQuadriFuturo,
+} from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
+import { IndicadorUmTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/tabelas/GestantesAtivas";
+import { IndicadorUmTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/tabelas/GestantesEncerradas";
 import { IndicadorDoisCardsGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/cards/cardsGestantesAtivas";
 import { IndicadorDoisCardsGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/cards/cardsGestantesEncerradas";
-import { IndicadorTresCardsGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesAtivas";
-import { IndicadorTresCardsGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesEncerradas";
-import { TabelaGestantesSemDUM } from "@componentes/mounted/busca-ativa/gestantes/APS/GestantesSemDUM/GestantesSemDum";
 import {
 	CardsGraficoIndicadorDoisQuadriAtual,
 	GraficoIndicadorDoisQuadriAtual,
@@ -19,6 +22,10 @@ import {
 	CardsGraficoIndicadorDoisQuadriFuturo,
 	GraficoIndicadorDoisQuadriFuturo,
 } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/grafico_indicador_2_futuro";
+import { IndicadorDoisTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/tabelas/GestantesAtivas";
+import { IndicadorDoisTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_2/tabelas/GestantesEncerradas";
+import { IndicadorTresCardsGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesAtivas";
+import { IndicadorTresCardsGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/cards/cardsGestantesEncerradas";
 import {
 	CardsGraficoIndicadorTresQuadriAtual,
 	GraficoIndicadorTresQuadriAtual,
@@ -27,35 +34,28 @@ import {
 	CardsGraficoIndicadorTresQuadriFuturo,
 	GraficoIndicadorTresQuadriFuturo,
 } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/grafico_indicador_3_futuro";
-import { CardsAPS } from "@componentes/mounted/busca-ativa/gestantes/APS/cardsAPS";
-import {
-	CardsGraficoIndicadorUmQuadriFuturo,
-	GraficoIndicadorUmQuadriFuturo,
-} from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_futuro";
-import {
-	GraficoIndicadorUmQuadriAtual,
-	CardsGraficoIndicadorUmQuadriAtual,
-} from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_1/grafico_indicador_1_atual";
-import {
-	PainelComLegendaIndUm,
-	PainelComLegendaInd2e3,
-	PainelComLegenda,
-} from "./PainelComLegenda";
-import mixpanel from "mixpanel-browser";
+import { IndicadorTresTabelaGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/tabelas/GestantesAtivas";
+import { IndicadorTresTabelaGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/APS/indicador_3/tabelas/GestantesEncerradas";
 import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import { dispararEventoAbrirImpressaoAPS } from "@helpers/eventosImpressaoHotjar";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
 import {
 	formatarQuadrimestres,
 	obterDadosProximosQuadrimestres,
 	obterDadosQuadrimestre,
 } from "@utils/quadrimestre";
-import { dispararEventoAbrirImpressaoAPS } from "@helpers/eventosImpressaoHotjar";
+import mixpanel from "mixpanel-browser";
+import type { Dispatch, SetStateAction } from "react";
 import {
-	CardAlert,
-	TituloTexto,
-	ButtonLightSubmit,
-	PanelSelector,
-} from "@impulsogov/design-system";
-import { Dispatch, SetStateAction } from "react";
+	PainelComLegenda,
+	PainelComLegendaInd2e3,
+	PainelComLegendaIndUm,
+} from "./PainelComLegenda";
 
 export const GestantesAPS = ({
 	tabelaDataAPS,

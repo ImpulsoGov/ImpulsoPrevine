@@ -1,4 +1,4 @@
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -12,7 +12,7 @@ const colunasPainelTrilha = [
 		field: "municipio",
 		headerAlign: "center",
 		headerName: "Municipio",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 300,
 	},
 	{

@@ -1,6 +1,6 @@
-import { Session } from "next-auth";
 import { getUserProfileName } from "@/utils/identifyUserProfile";
 import { isTestUser } from "@/utils/isTestUser";
+import type { Session } from "next-auth";
 
 export function identifyUserGuiding(session: Session | null) {
 	if (session && session.user && typeof window !== "undefined") {

@@ -1,12 +1,12 @@
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { v4 as uuidV4 } from "uuid";
-import styles from "./Tabelas.module.css";
 import { filtrarPorPeriodoCodigo } from "../../../../../helpers/filtroQuadrimestreIndicadores";
+import styles from "./Tabelas.module.css";
 
 const TabelaIndicadores = ({ TabIndicadores }) => {
 	const getCellClassName = (params) => {
-		const value = parseFloat(params.value);
+		const value = Number.parseFloat(params.value);
 
 		if (value > 0) {
 			return styles.TextoVerde;
@@ -18,7 +18,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
 	};
 
 	const getNotaCellClassName = (params) => {
-		const nota = parseFloat(params.value);
+		const nota = Number.parseFloat(params.value);
 
 		if (nota > 0 && nota <= 5) {
 			return styles.NotaRosa;

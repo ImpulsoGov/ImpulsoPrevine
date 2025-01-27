@@ -1,4 +1,4 @@
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -7,7 +7,7 @@ const formatar_nome = ({ value }) => {
 	return <div style={name}>{value}</div>;
 };
 
-const formatar_validacao = ({ value }) => {
+const formatarValidacao = ({ value }) => {
 	return value ? (
 		<div style={{ color: "green" }}>✔</div>
 	) : (
@@ -21,7 +21,7 @@ const colunasValidacaoDadosCadastro = [
 		field: "usuario",
 		headerAlign: "center",
 		headerName: "Usuário",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 300,
 	},
 	{
@@ -30,7 +30,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Nome",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -38,7 +38,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "CPF",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -46,7 +46,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "E-mail",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -54,7 +54,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Equipe",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -62,7 +62,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Municipio - UF",
 		width: 120,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -70,7 +70,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Cargo",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -78,7 +78,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Telefone",
 		width: 100,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -86,7 +86,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Whatsapp",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",
@@ -94,7 +94,7 @@ const colunasValidacaoDadosCadastro = [
 		headerAlign: "center",
 		headerName: "Perfil",
 		width: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 ];
 

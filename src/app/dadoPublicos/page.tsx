@@ -1,5 +1,5 @@
-import { DadosPublicos } from "./DadosPublicos";
 import { Suspense } from "react";
+import { DadosPublicos } from "./DadosPublicos";
 const DadosPublicosPage = () => {
 	return (
 		<Suspense>

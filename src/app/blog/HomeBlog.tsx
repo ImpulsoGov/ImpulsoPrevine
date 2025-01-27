@@ -1,9 +1,9 @@
 "use client";
 import {
-	PreviewArtigoDestaque,
 	ListaArtigos,
-	TituloTexto,
+	PreviewArtigoDestaque,
 	Spinner,
+	TituloTexto,
 } from "@impulsogov/design-system";
 
 interface Artigo {

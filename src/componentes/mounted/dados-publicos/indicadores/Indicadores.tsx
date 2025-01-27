@@ -1,10 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system";
-import TabelaIndicadores from "@componentes/mounted/dados-publicos/indicadores/TabelaIndicadores/TabelaIndicadores";
-import { AcessoindicadoresDesempenho } from "@services/indicadoresDesempenho";
 import GraficoDesempenhoMunicipio from "@componentes/mounted/dados-publicos/indicadores/GraficoDesempenhoMunicipio/GraficoDesempenhoMunicipio";
 import GraficoHistoricoDesempenho from "@componentes/mounted/dados-publicos/indicadores/GraficoHistoricoDesempenho/GraficoHistoricoDesempenho";
+import TabelaIndicadores from "@componentes/mounted/dados-publicos/indicadores/TabelaIndicadores/TabelaIndicadores";
+import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system";
+import { AcessoindicadoresDesempenho } from "@services/indicadoresDesempenho";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 interface IndicadoresType {
 	cidade: string;

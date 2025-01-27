@@ -1,19 +1,19 @@
 import axios from "axios";
-import { API_URL } from "../constants/API_URL";
 import FormData from "form-data";
+import { API_URL } from "../constants/API_URL";
 
 const consultarAvaliacaoConclusaoClient = async (
-	usuario_id,
-	codigo_conteudo,
+	usuarioId,
+	codigoConteudo,
 	token,
 ) => {
 	try {
-		let data = new FormData();
-		data.append("usuario_id", usuario_id);
-		data.append("codigo_conteudo", codigo_conteudo);
-		let config = {
+		const data = new FormData();
+		data.append("usuario_id", usuarioId);
+		data.append("codigo_conteudo", codigoConteudo);
+		const config = {
 			method: "post",
-			maxBodyLength: Infinity,
+			maxBodyLength: Number.POSITIVE_INFINITY,
 			url: API_URL + "impulsoprevine/capacitacao/consulta-avaliacao-conclusao",
 			headers: {
 				Authorization: "Bearer " + token,
@@ -21,12 +21,8 @@ const consultarAvaliacaoConclusaoClient = async (
 			data: data,
 		};
 		const res = await axios(config)
-			.then(function (response) {
-				return response.data;
-			})
-			.catch(function (error) {
-				return error.response.data;
-			});
+			.then((response) => response.data)
+			.catch((error) => error.response.data);
 		return res;
 	} catch (error) {
 		return error;
@@ -34,13 +30,13 @@ const consultarAvaliacaoConclusaoClient = async (
 };
 
 const consultarAvaliacaoConclusao = async (
-	usuario_id,
-	codigo_conteudo,
+	usuarioId,
+	codigoConteudo,
 	token,
 ) => {
 	const res = await consultarAvaliacaoConclusaoClient(
-		usuario_id,
-		codigo_conteudo,
+		usuarioId,
+		codigoConteudo,
 		token,
 	);
 	if (res?.error == null) {
@@ -49,15 +45,15 @@ const consultarAvaliacaoConclusao = async (
 	return false;
 };
 const consultarAvaliacaoConclusaoPorUsuarioClient = async (
-	usuario_id,
+	usuarioId,
 	token,
 ) => {
 	try {
-		let data = new FormData();
-		data.append("usuario_id", usuario_id);
-		let config = {
+		const data = new FormData();
+		data.append("usuario_id", usuarioId);
+		const config = {
 			method: "post",
-			maxBodyLength: Infinity,
+			maxBodyLength: Number.POSITIVE_INFINITY,
 			url:
 				API_URL +
 				"impulsoprevine/capacitacao/consulta-avaliacao-conclusao-por-usuario",
@@ -67,21 +63,17 @@ const consultarAvaliacaoConclusaoPorUsuarioClient = async (
 			data: data,
 		};
 		const res = await axios(config)
-			.then(function (response) {
-				return response.data;
-			})
-			.catch(function (error) {
-				return error.response.data;
-			});
+			.then((response) => response.data)
+			.catch((error) => error.response.data);
 		return res;
 	} catch (error) {
 		return error;
 	}
 };
 
-const consultarAvaliacaoConclusaoPorUsuario = async (usuario_id, token) => {
+const consultarAvaliacaoConclusaoPorUsuario = async (usuarioId, token) => {
 	const res = await consultarAvaliacaoConclusaoPorUsuarioClient(
-		usuario_id,
+		usuarioId,
 		token,
 	);
 	if (res?.error == null) {
@@ -92,19 +84,19 @@ const consultarAvaliacaoConclusaoPorUsuario = async (usuario_id, token) => {
 };
 
 async function avaliarConteudoClient(
-	usuario_id,
-	codigo_conteudo,
+	usuarioId,
+	codigoConteudo,
 	avaliacao,
 	token,
 ) {
-	let data = new FormData();
-	data.append("usuario_id", usuario_id);
-	data.append("codigo_conteudo", codigo_conteudo);
+	const data = new FormData();
+	data.append("usuario_id", usuarioId);
+	data.append("codigo_conteudo", codigoConteudo);
 	data.append("avaliacao", avaliacao);
 
-	let config = {
+	const config = {
 		method: "post",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url: API_URL + "impulsoprevine/capacitacao/avaliacao-conteudo",
 		headers: {
 			Authorization: "Bearer " + token,
@@ -113,33 +105,29 @@ async function avaliarConteudoClient(
 	};
 
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 }
-async function avaliarConteudo(usuario_id, codigo_conteudo, avaliacao, token) {
+async function avaliarConteudo(usuarioId, codigoConteudo, avaliacao, token) {
 	const res = await avaliarConteudoClient(
-		usuario_id,
-		codigo_conteudo,
+		usuarioId,
+		codigoConteudo,
 		avaliacao,
 		token,
 	);
 	if (res?.error == null) return res;
 	return false;
 }
-async function concluirConteudoClient(usuario_id, codigo_conteudo, token) {
-	let data = new FormData();
-	data.append("usuario_id", usuario_id);
-	data.append("codigo_conteudo", codigo_conteudo);
+async function concluirConteudoClient(usuarioId, codigoConteudo, token) {
+	const data = new FormData();
+	data.append("usuario_id", usuarioId);
+	data.append("codigo_conteudo", codigoConteudo);
 	data.append("conclusao", "True");
 
-	let config = {
+	const config = {
 		method: "post",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url: API_URL + "impulsoprevine/capacitacao/conclusao-conteudo",
 		headers: {
 			Authorization: "Bearer " + token,
@@ -148,16 +136,12 @@ async function concluirConteudoClient(usuario_id, codigo_conteudo, token) {
 	};
 
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 }
-async function concluirConteudo(usuario_id, codigo_conteudo, token) {
-	const res = await concluirConteudoClient(usuario_id, codigo_conteudo, token);
+async function concluirConteudo(usuarioId, codigoConteudo, token) {
+	const res = await concluirConteudoClient(usuarioId, codigoConteudo, token);
 	if (res?.error == null) return res;
 	return false;
 }

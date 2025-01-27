@@ -1,22 +1,18 @@
 import axios from "axios";
 import { API_URL } from "../constants/API_URL";
 
-const AcessoindicadoresEquipesHomologadas = async (municipio_uf) => {
-	let config = {
+const AcessoindicadoresEquipesHomologadas = async (municipioUf) => {
+	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL +
-			`impulsoprevine/indicadores/municipios_equipes_homologadas?municipio_uf=${municipio_uf}`,
+			`impulsoprevine/indicadores/municipios_equipes_homologadas?municipio_uf=${municipioUf}`,
 		headers: {},
 	};
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 };
 

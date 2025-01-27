@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { CARGOS } from "../../constants/gestaoUsuarios";
 import { MUNICIPIOS } from "../../constants/municipios";
 import { Select } from "../Select";

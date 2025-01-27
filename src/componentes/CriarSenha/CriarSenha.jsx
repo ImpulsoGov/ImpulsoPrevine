@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import style from "./CriarSenha.module.css";
+import { useState } from "react";
 import { ButtonColorSubmit } from "../ButtonColor";
+import style from "./CriarSenha.module.css";
 
 const CriarSenha = ({
 	titulo,
@@ -15,7 +15,7 @@ const CriarSenha = ({
 	const [senha, setSenha] = useState("");
 	const [confirmarSenha, setConfirmarSenha] = useState("");
 	const [message, setMessage] = useState("");
-	let match = (e) => {
+	const match = (e) => {
 		if (senha == e || e == confirmarSenha) {
 			setMessage("");
 		} else {

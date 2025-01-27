@@ -1,6 +1,6 @@
-import BlogContent from "./BlogContent";
 import { getData } from "@/services/cms";
 import { POST, POSTID } from "@/utils/QUERYS";
+import BlogContent from "./BlogContent";
 
 interface BlogPost {
 	id: string;

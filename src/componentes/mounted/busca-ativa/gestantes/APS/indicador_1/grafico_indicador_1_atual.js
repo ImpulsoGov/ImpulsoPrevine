@@ -179,9 +179,7 @@ const GraficoIndicadorUmQuadriAtual = ({ tabelaDataAPS }) => {
 					yAxis: {
 						type: "value",
 						axisLabel: {
-							formatter: function (value) {
-								return value.toLocaleString("pt-BR");
-							},
+							formatter: (value) => value.toLocaleString("pt-BR"),
 						},
 					},
 				}}

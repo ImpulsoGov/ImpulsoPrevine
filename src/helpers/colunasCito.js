@@ -1,8 +1,8 @@
-import status_usuario_descricao from "../data/StatusAcompanhamento.json" assert {
+import statusUsuarioDescricao from "../data/StatusAcompanhamento.json" assert {
 	type: "json",
 };
 
-const selecionar_status_usuario_descricao = ({ value }) => {
+const selecionarStatusUsuarioDescricao = ({ value }) => {
 	const alert = {
 		backgroundColor: "#FFECEC",
 		border: "1px solid #F8BBAE",
@@ -87,7 +87,7 @@ const selecionar_status_usuario_descricao = ({ value }) => {
 		justifyContent: "center",
 	};
 
-	const descricao = status_usuario_descricao.data.find(
+	const descricao = statusUsuarioDescricao.data.find(
 		(item) => item?.id_status_usuario == value,
 	)?.status_usuario_descricao;
 	return (
@@ -162,7 +162,7 @@ const prazoStyle = ({ value }) => {
 	);
 };
 
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -176,7 +176,7 @@ const colunasCitoEquipe = [
 		field: "paciente_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 320,
 		sortable: false,
 	},
@@ -193,7 +193,7 @@ const colunasCitoEquipe = [
 		field: "id_status_usuario",
 		headerAlign: "center",
 		headerName: "STATUS DA COLETA",
-		renderCell: selecionar_status_usuario_descricao,
+		renderCell: selecionarStatusUsuarioDescricao,
 		width: 300,
 		sortable: false,
 	},
@@ -238,7 +238,7 @@ const colunasCitoAPS = [
 		field: "paciente_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 320,
 		sortable: false,
 	},
@@ -255,7 +255,7 @@ const colunasCitoAPS = [
 		field: "id_status_usuario",
 		headerAlign: "center",
 		headerName: "STATUS DA COLETA",
-		renderCell: selecionar_status_usuario_descricao,
+		renderCell: selecionarStatusUsuarioDescricao,
 		width: 300,
 		sortable: false,
 	},

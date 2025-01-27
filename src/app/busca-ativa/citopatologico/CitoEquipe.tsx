@@ -1,17 +1,18 @@
 "use client";
-import { CardsSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsSemExame";
-import { CardsComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsComExame";
-import { TabelaEquipeSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeSemExame";
-import { TabelaEquipeComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeComExame";
-import {
-	CardAlert,
-	TituloTexto,
-	PanelSelector,
-	ButtonLightSubmit,
-} from "@impulsogov/design-system";
 import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import React, { Dispatch, SetStateAction } from "react";
-import { Mixpanel } from "mixpanel-browser";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
+import type { Mixpanel } from "mixpanel-browser";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { CardsComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsComExame";
+import { CardsSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/CardsSemExame";
+import { TabelaEquipeComExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeComExame";
+import { TabelaEquipeSemExame } from "../../../componentes/mounted/busca-ativa/citopatologico/Equipe/TabelaEquipeSemExame";
 
 interface CitoEquipeProps {
 	tabelaDataEquipe: any;

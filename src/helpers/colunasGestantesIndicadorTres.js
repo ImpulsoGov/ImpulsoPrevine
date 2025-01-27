@@ -1,8 +1,8 @@
-import identificacao_atendimento_odontologico from "../data/identificacao_atendimento_odontologico.json" assert {
+import identificacaoAtendimentoOdontologico from "../data/identificacao_atendimento_odontologico.json" assert {
 	type: "json",
 };
 
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -40,7 +40,7 @@ const FormatarData = (param) => {
 	return date;
 };
 const ATENDIMENTO_ODONTOLOGICO_STYLE = ({ value }) => {
-	const STYLE_NULL = {
+	const styleNull = {
 		width: "38px",
 		height: "25px",
 		padding: "3px",
@@ -105,10 +105,10 @@ const ATENDIMENTO_ODONTOLOGICO_STYLE = ({ value }) => {
 	const style = {
 		1: check,
 		2: block,
-		3: STYLE_NULL,
+		3: styleNull,
 	};
 	const descricao =
-		identificacao_atendimento_odontologico.identificacao_atendimento_odontologico.find(
+		identificacaoAtendimentoOdontologico.identificacao_atendimento_odontologico.find(
 			(item) => item.id_atendimento_odontologico == value,
 		).atendimento_odontologico_descricao;
 	return (
@@ -130,7 +130,7 @@ const colunasGestantesIndicadorTres = [
 		field: "cidadao_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 320,
 		sortable: false,
 	},

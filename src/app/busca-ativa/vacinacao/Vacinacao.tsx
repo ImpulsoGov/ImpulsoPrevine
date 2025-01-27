@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Session } from "next-auth";
 import { Spinner } from "@impulsogov/design-system";
+import type { Session } from "next-auth";
+import { usePathname, useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 const VacinacaoAPS = dynamic(
@@ -38,7 +39,7 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 	const [tabelaData, setTabelaData] = useState([]);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-	const [filtros_aplicados, setFiltros_aplicados] = useState(false);
+	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const router = useRouter();
 	const path = usePathname();
 	const visao =
@@ -70,8 +71,8 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 				setActiveTabIndex={setActiveTabIndex}
 				activeTitleTabIndex={activeTitleTabIndex}
 				setActiveTitleTabIndex={setActiveTitleTabIndex}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
 	if (session.user.perfis.includes(5) || session.user.perfis.includes(8))
@@ -88,8 +89,8 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 				setActiveTabIndex={setActiveTabIndex}
 				activeTitleTabIndex={activeTitleTabIndex}
 				setActiveTitleTabIndex={setActiveTitleTabIndex}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
 };

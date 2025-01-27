@@ -1,12 +1,12 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
-import { colunasDiabetesEquipe } from "../../../../../helpers/colunasDiabetes";
 import mixpanel from "mixpanel-browser";
+import { colunasDiabetesEquipe } from "../../../../../helpers/colunasDiabetes";
+import { colunasImpressaoDiabetesEquipe } from "../../../../../helpers/colunasImpressaoDiabetes";
+import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasDiabetesPaisagemEquipe,
 	larguraColunasDiabetesRetratoEquipe,
 } from "../../../../../helpers/larguraColunasDiabetes";
-import { colunasImpressaoDiabetesEquipe } from "../../../../../helpers/colunasImpressaoDiabetes";
-import { labelsModalImpressaoEquipe } from "../../../../../helpers/labelsModalImpressao";
 
 const datefiltrosDiabetes = [
 	"dt_consulta_mais_recente",

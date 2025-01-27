@@ -3,7 +3,7 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from "@sentry/nextjs";
-const sampleRate = parseFloat(
+const sampleRate = Number.parseFloat(
 	process.env["NEXT_PUBLIC_SENTRY_REPLAY_SAMPLE_RATE"] || "0.1",
 );
 Sentry.init({

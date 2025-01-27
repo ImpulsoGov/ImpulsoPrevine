@@ -1,19 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
-import {
-	PanelSelector,
-	TituloTexto,
-	ScoreCardGrid,
-	Margem,
-	CardAlert,
-} from "@impulsogov/design-system";
-import { Indicadores } from "@componentes/mounted/dados-publicos/indicadores/Indicadores";
-import { CapitacaoPonderada } from "@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada";
-import { AcoesEstrategicas } from "@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas";
 import { MunicipioSelector } from "@componentes/MunicipioSelector";
-import { data } from "@utils/Municipios";
+import { AcoesEstrategicas } from "@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas";
+import { CapitacaoPonderada } from "@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada";
+import { Indicadores } from "@componentes/mounted/dados-publicos/indicadores/Indicadores";
+import {
+	CardAlert,
+	Margem,
+	PanelSelector,
+	ScoreCardGrid,
+	TituloTexto,
+} from "@impulsogov/design-system";
 import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { data } from "@utils/Municipios";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const DadosPublicos = () => {
 	const router = useRouter();

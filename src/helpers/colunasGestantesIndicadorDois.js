@@ -1,8 +1,8 @@
-import identificacao_exame_hiv_sifilis from "../data/identificacao_exame_hiv_sifilis.json" assert {
+import identificacaoExameHivSifilis from "../data/identificacao_exame_hiv_sifilis.json" assert {
 	type: "json",
 };
 
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
@@ -40,7 +40,7 @@ const FormatarData = (param) => {
 	return date;
 };
 const HIV_STYLE = ({ value }) => {
-	const STYLE_NULL = {
+	const styleNull = {
 		width: "38px",
 		height: "25px",
 		padding: "3px",
@@ -134,10 +134,10 @@ const HIV_STYLE = ({ value }) => {
 		2: atencao,
 		3: block,
 		4: check,
-		5: STYLE_NULL,
+		5: styleNull,
 	};
 	const descricao =
-		identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.find(
+		identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.find(
 			(item) => item.id_exame_hiv_sifilis == value,
 		).exame_hiv_sifilis_descricao;
 	return (
@@ -160,7 +160,7 @@ const colunasGestantesIndicadorDois = [
 		field: "cidadao_nome",
 		headerAlign: "center",
 		headerName: "NOME",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		width: 320,
 		sortable: false,
 	},

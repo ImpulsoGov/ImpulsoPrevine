@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactEcharts from "echarts-for-react";
-import styles from "./GraficoHistoricoDesempenho.module.css";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
+import styles from "./GraficoHistoricoDesempenho.module.css";
 
 const GraficoHistoricoComSeletor = ({
 	selectedIndicadores,

@@ -1,27 +1,28 @@
 "use client";
 import {
-	CardAlert,
-	TituloTexto,
-	ButtonLightSubmit,
-	PanelSelector,
-} from "@impulsogov/design-system";
-import {
-	GraficoAPSQuadrimestreAtual,
-	CardsGraficoAPSQuadrimestreAtual,
-} from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/graficoQuadrimestreAtual";
-import { TabelaAPSQuadrimestreAtual } from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/tabelaQuadrimestreAtual";
-import {
-	GraficoAPSQuadrimestreProximo,
 	CardsGraficoAPSQuadrimestreProximo,
+	GraficoAPSQuadrimestreProximo,
 } from "@componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/graficoQuadrimestreProximo";
 import { TabelaAPSQuadrimestreProximo } from "@componentes/mounted/busca-ativa/vacinacao/aps/proximo_quadrimestre/tabelaQuadrimestreProximo";
 import {
-	GraficoAPSQuadrimestreFuturo,
+	CardsGraficoAPSQuadrimestreAtual,
+	GraficoAPSQuadrimestreAtual,
+} from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/graficoQuadrimestreAtual";
+import { TabelaAPSQuadrimestreAtual } from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_atual/tabelaQuadrimestreAtual";
+import {
 	CardsGraficoAPSQuadrimestreFuturo,
+	GraficoAPSQuadrimestreFuturo,
 } from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/graficoQuadrimestreFuturo";
 import { TabelaAPSQuadrimestreFuturo } from "@componentes/mounted/busca-ativa/vacinacao/aps/quadrimestre_futuro/tabelaQuadrimestreFuturo";
 import { dispararEventoAbrirImpressaoAPS } from "@helpers/eventosImpressaoHotjar";
-import React, { Dispatch, SetStateAction } from "react";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 interface VacinacaoAPSProps {
 	tabelaDataAPS: any;

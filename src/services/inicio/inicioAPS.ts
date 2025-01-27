@@ -1,14 +1,14 @@
-import axios from "axios";
 import { baseURL } from "@/utils/baseURL";
+import axios from "axios";
 
 export const InicioAPSRequest = async (
-	municipio_id_sus: string,
+	municipioIdSus: string,
 	token: string,
 ) => {
 	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
-		url: `${baseURL()}/api/inicio/inicio-aps?municipio_id_sus=${municipio_id_sus}`,
+		maxBodyLength: Number.POSITIVE_INFINITY,
+		url: `${baseURL()}/api/inicio/inicio-aps?municipio_id_sus=${municipioIdSus}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},

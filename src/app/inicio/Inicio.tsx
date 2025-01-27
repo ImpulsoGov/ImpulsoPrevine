@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
-import { useSession } from "next-auth/react";
-import { SituacaoPorIndicador } from "@/types/inicio";
-import { CardsGrid } from "./CardsGrid";
+import type { SituacaoPorIndicador } from "@/types/inicio";
 import { Greeting, Texto } from "@impulsogov/design-system";
+import { useSession } from "next-auth/react";
+import type React from "react";
+import { CardsGrid } from "./CardsGrid";
 import style from "./Inicio.module.css";
 
 interface InicioProps {

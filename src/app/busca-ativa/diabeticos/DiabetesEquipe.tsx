@@ -1,15 +1,15 @@
 "use client";
+import { TabelaEquipe } from "@componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
+import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {
-	CardAlert,
-	TituloTexto,
 	ButtonLightSubmit,
+	CardAlert,
 	ScoreCardGrid,
 	Spinner,
+	TituloTexto,
 } from "@impulsogov/design-system";
-import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import { TabelaEquipe } from "@componentes/mounted/busca-ativa/diabetes/Equipe/TabelaEquipe";
+import type { Dispatch, SetStateAction } from "react";
 import { PainelComLegenda } from "./PainelComLegenda";
-import React, { Dispatch, SetStateAction } from "react";
 
 export const DiabetesEquipe = ({
 	tabelaData,

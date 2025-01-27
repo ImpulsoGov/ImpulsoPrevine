@@ -1,18 +1,19 @@
-import {
-	CardAlert,
-	TituloTexto,
-	ButtonLightSubmit,
-	PanelSelector,
-} from "@impulsogov/design-system";
-import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import React, { Dispatch, SetStateAction } from "react";
+import { dispararEventoAbrirImpressaoEquipe } from "@/helpers/eventosImpressaoHotjar";
+import { CardsEquipe } from "@componentes/mounted/busca-ativa/gestantes/Equipe/cardsEquipe";
 import { TabelaEquipeGestantesAtivas } from "@componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesAtivas";
 import { TabelaEquipeGestantesEncerradas } from "@componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesEncerradas";
 import { TabelaEquipeGestantesSemDUM } from "@componentes/mounted/busca-ativa/gestantes/Equipe/tabelas/GestantesSemDUM";
-import { CardsEquipe } from "@componentes/mounted/busca-ativa/gestantes/Equipe/cardsEquipe";
-import { PainelComLegenda } from "./PainelComLegenda";
+import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
+import {
+	ButtonLightSubmit,
+	CardAlert,
+	PanelSelector,
+	TituloTexto,
+} from "@impulsogov/design-system";
 import mixpanel from "mixpanel-browser";
-import { dispararEventoAbrirImpressaoEquipe } from "@/helpers/eventosImpressaoHotjar";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { PainelComLegenda } from "./PainelComLegenda";
 
 interface GestantesEquipeProps {
 	tabelaDataEquipe: any;

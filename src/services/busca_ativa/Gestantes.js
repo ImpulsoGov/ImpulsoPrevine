@@ -1,13 +1,13 @@
 import axios from "axios";
 import { API_URL_DADOS_NOMINAIS } from "../../constants/API_URL";
 
-const tabelaGestantesEquipe = async (municipio_id_sus, equipe, token) => {
-	let config = {
+const tabelaGestantesEquipe = async (municipioIdSus, equipe, token) => {
+	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL_DADOS_NOMINAIS +
-			`impulsoprevine/busca-ativa/gestantes?municipio_id_sus=${municipio_id_sus}&equipe=${equipe}`,
+			`impulsoprevine/busca-ativa/gestantes?municipio_id_sus=${municipioIdSus}&equipe=${equipe}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},
@@ -24,13 +24,13 @@ const tabelaGestantesEquipe = async (municipio_id_sus, equipe, token) => {
 
 	return res;
 };
-const tabelaGestantesAPS = async (municipio_id_sus, token) => {
-	let config = {
+const tabelaGestantesAPS = async (municipioIdSus, token) => {
+	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL_DADOS_NOMINAIS +
-			`impulsoprevine/busca-ativa/gestantes-coordenacao?municipio_id_sus=${municipio_id_sus}`,
+			`impulsoprevine/busca-ativa/gestantes-coordenacao?municipio_id_sus=${municipioIdSus}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},

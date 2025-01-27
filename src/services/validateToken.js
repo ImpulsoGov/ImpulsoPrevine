@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL_USUARIOS } from "../constants/API_URL";
 
 const validatetoken = async (token) => {
-	let config = {
+	const config = {
 		method: "get",
 		url: API_URL_USUARIOS + "suporte/validate-token",
 		headers: {

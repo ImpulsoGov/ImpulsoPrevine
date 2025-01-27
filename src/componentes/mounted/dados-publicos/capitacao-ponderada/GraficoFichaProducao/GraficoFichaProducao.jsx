@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactEcharts from "echarts-for-react";
-import styles from "./GraficoFichaProducao.module.css";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
+import styles from "./GraficoFichaProducao.module.css";
 
 function formatar(value) {
 	if (value >= 1000000) {
@@ -29,7 +29,7 @@ const formatarData = (data) => {
 	];
 
 	const [ano, mes] = data.split("-");
-	return `${meses[parseInt(mes) - 1]} ${ano}`;
+	return `${meses[Number.parseInt(mes) - 1]} ${ano}`;
 };
 
 const GraficoFichaProducaocomSeletor = ({

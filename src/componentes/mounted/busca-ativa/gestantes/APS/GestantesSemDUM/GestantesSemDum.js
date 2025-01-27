@@ -1,13 +1,13 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
+import identificacaoAtendimentoOdontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import identificacaoExameHivSifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
 import { colunasGestantesSemDUMAPS } from "../../../../../../helpers/colunasGestantesSemDUMAPS";
+import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
+import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasSemDumPaisagemAPS,
 	larguraColunasSemDumRetratoAPS,
 } from "../../../../../../helpers/larguraColunasGestantesSemDum";
-import { colunasImpressaoSemDum } from "../../../../../../helpers/colunasImpressaoGestantesSemDum";
-import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
-import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
-import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
 
 const datefiltrosGestantes = [
 	"gestacao_data_dpp",
@@ -75,9 +75,9 @@ const TabelaGestantesSemDUM = ({
 			colunasImpressao={colunasImpressaoSemDum}
 			listas_auxiliares={{
 				identificacao_atendimento_odontologico:
-					identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+					identificacaoAtendimentoOdontologico.identificacao_atendimento_odontologico,
 				identificacao_exame_sifilis_hiv:
-					identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+					identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis,
 			}}
 			datefiltros={datefiltrosGestantes}
 			IDFiltros={IDFiltrosGestantes}

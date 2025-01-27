@@ -1,15 +1,16 @@
 "use client";
+import { TabelaEquipe } from "@componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe";
+import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
 import {
-	CardAlert,
-	TituloTexto,
 	ButtonLightSubmit,
+	CardAlert,
 	ScoreCardGrid,
 	Spinner,
+	TituloTexto,
 } from "@impulsogov/design-system";
-import MunicipioQuadrimestre from "@componentes/unmounted/MunicipioQuadrimestre/MunicipioQuadrimestre";
-import { TabelaEquipe } from "@componentes/mounted/busca-ativa/hipertensao/Equipe/TabelaEquipe";
+import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { PainelComLegenda } from "../diabeticos/PainelComLegenda";
-import React, { Dispatch, SetStateAction } from "react";
 
 interface HipertensaoEquipeType {
 	tabelaDataEquipe: any;

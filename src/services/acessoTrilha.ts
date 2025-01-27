@@ -1,50 +1,42 @@
 import axios from "axios";
 import { API_URL } from "../constants/API_URL";
 
-const acessoTrilhasClient = async (usuario_id: string, token: string) => {
+const acessoTrilhasClient = async (usuarioId: string, token: string) => {
 	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL +
-			`impulsoprevine/capacitacao/acesso-trilhas?usuario_id=${usuario_id}`,
+			`impulsoprevine/capacitacao/acesso-trilhas?usuario_id=${usuarioId}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},
 	};
 
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 };
 
 const acessoModulosTrilhasClient = async (
-	usuario_id: string,
-	trilha_id: string,
+	usuarioId: string,
+	trilhaId: string,
 	token: string,
 ) => {
 	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL +
-			`impulsoprevine/capacitacao/acesso-modulos-trilha?usuario_id=${usuario_id}&trilha_id=${trilha_id}`,
+			`impulsoprevine/capacitacao/acesso-modulos-trilha?usuario_id=${usuarioId}&trilha_id=${trilhaId}`,
 		headers: {
 			Authorization: "Bearer " + token,
 		},
 	};
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 };
 

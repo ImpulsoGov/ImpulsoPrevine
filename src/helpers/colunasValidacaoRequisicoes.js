@@ -1,11 +1,11 @@
-const formatar_nome = ({ value }) => {
+const formatarNome = ({ value }) => {
 	const name = {
 		width: "100%",
 		padding: "20px",
 	};
 	return <div style={name}>{value}</div>;
 };
-const formatar_validacao = ({ value }) => {
+const formatarValidacao = ({ value }) => {
 	return value ? (
 		<div style={{ color: "green" }}>✔</div>
 	) : (
@@ -19,7 +19,7 @@ const colunasValidacaoRequsicoes = [
 		field: "usuario",
 		headerAlign: "center",
 		headerName: "Usuário",
-		renderCell: formatar_nome,
+		renderCell: formatarNome,
 		flex: 150,
 	},
 	{
@@ -28,7 +28,7 @@ const colunasValidacaoRequsicoes = [
 		headerAlign: "center",
 		headerName: "Requisição",
 		flex: 90,
-		renderCell: formatar_validacao,
+		renderCell: formatarValidacao,
 	},
 	{
 		align: "center",

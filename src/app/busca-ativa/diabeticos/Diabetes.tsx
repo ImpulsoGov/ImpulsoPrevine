@@ -1,13 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Session } from "next-auth";
-import { Spinner } from "@impulsogov/design-system";
 import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
+import { Spinner } from "@impulsogov/design-system";
+import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
 const DiabetesAPS = dynamic(
 	() => import("./DiabetesAPS").then((mod) => mod.DiabetesAPS),
 	{
@@ -37,7 +38,7 @@ export const Diabetes: React.FC<DiabetesProps> = ({
 	const [showSnackBar, setShowSnackBar] = useState({
 		open: false,
 	});
-	const [filtros_aplicados, setFiltros_aplicados] = useState(false);
+	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const [voltarGatilho, setVoltarGatilho] = useState(0);
 	const [tabelaData, setTabelaData] = useState([]);
 	const router = useRouter();
@@ -64,7 +65,7 @@ export const Diabetes: React.FC<DiabetesProps> = ({
 				setTabelaData={setTabelaData}
 				showSnackBar={showSnackBar}
 				setShowSnackBar={setShowSnackBar}
-				setFiltros_aplicados={setFiltros_aplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 				dispararEventoAbrirImpressaoEquipe={dispararEventoAbrirImpressaoEquipe}
 				Voltar={Voltar}
 			/>
@@ -77,8 +78,8 @@ export const Diabetes: React.FC<DiabetesProps> = ({
 				setTabelaData={setTabelaData}
 				showSnackBar={showSnackBar}
 				setShowSnackBar={setShowSnackBar}
-				filtros_aplicados={filtros_aplicados}
-				setFiltros_aplicados={setFiltros_aplicados}
+				filtros_aplicados={filtrosAplicados}
+				setFiltros_aplicados={setFiltrosAplicados}
 				dispararEventoAbrirImpressaoAPS={dispararEventoAbrirImpressaoAPS}
 				Voltar={Voltar}
 			/>

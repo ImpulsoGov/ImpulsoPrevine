@@ -1,20 +1,20 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
-import { colunasGestantesEncerradasEquipe } from "../../../../../../helpers/colunasGestantes";
-import identificacao_exame_hiv_sifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
-import identificacao_atendimento_odontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import identificacaoAtendimentoOdontologico from "../../../../../../data/identificacao_atendimento_odontologico.json";
+import identificacaoExameHivSifilis from "../../../../../../data/identificacao_exame_hiv_sifilis.json";
 import {
-	datefiltrosGestantes,
 	IDFiltrosGestantes,
-	rotulosfiltrosGestantes,
 	IDFiltrosOrdenacaoGestantes,
 	IntFiltrosGestantesEquipe,
+	datefiltrosGestantes,
+	rotulosfiltrosGestantes,
 } from "../../../../../../helpers/FiltrosOrdenacaoAux";
+import { colunasGestantesEncerradasEquipe } from "../../../../../../helpers/colunasGestantes";
+import { colunasImpressaoGestantesEncerradasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
+import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasGestantesEncerradasEquipePaisagem,
 	larguraColunasGestantesEncerradasEquipeRetrato,
 } from "../../../../../../helpers/larguraColunasGestantesEquipe";
-import { colunasImpressaoGestantesEncerradasEquipe } from "../../../../../../helpers/colunasImpressaoGestantesEquipe";
-import { labelsModalImpressaoEquipe } from "../../../../../../helpers/labelsModalImpressao";
 
 const TabelaEquipeGestantesEncerradas = ({
 	tabelaDataEquipe,
@@ -52,9 +52,9 @@ const TabelaEquipeGestantesEncerradas = ({
 				colunasImpressao={colunasImpressaoGestantesEncerradasEquipe}
 				listas_auxiliares={{
 					identificacao_atendimento_odontologico:
-						identificacao_atendimento_odontologico.identificacao_atendimento_odontologico,
+						identificacaoAtendimentoOdontologico.identificacao_atendimento_odontologico,
 					identificacao_exame_sifilis_hiv:
-						identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis,
+						identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis,
 				}}
 				lista_mixpanel="pre_natal"
 				propAgrupamentoImpressao="acs_nome"
@@ -101,7 +101,7 @@ const TabelaEquipeGestantesEncerradas = ({
 						],
 						labels: [
 							...new Set(
-								identificacao_exame_hiv_sifilis.identificacao_exame_hiv_sifilis.map(
+								identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.map(
 									(item) => item.exame_hiv_sifilis_descricao,
 								),
 							),

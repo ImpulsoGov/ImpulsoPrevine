@@ -1,4 +1,3 @@
-import React from "react";
 import { CriarSenha } from "./index";
 
 export default {
@@ -8,8 +7,8 @@ export default {
 import axios from "axios";
 import FormData from "form-data";
 
-const submit_cadastro = async (nome, mail, senha, cpf) => {
-	let data = new FormData();
+const submitCadastro = async (nome, mail, senha, cpf) => {
+	const data = new FormData();
 	data.append("nome", nome);
 	data.append("mail", mail);
 	data.append("senha", senha);
@@ -24,21 +23,13 @@ const submit_cadastro = async (nome, mail, senha, cpf) => {
 	};
 
 	return await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
+		.then((response) => response.data)
+		.catch((error) => {
 			console.log(error);
 		});
 };
 
-const submit_cadastro_ip = async (
-	municipio,
-	cargo,
-	telefone,
-	whatsapp,
-	mail,
-) => {
+const submitCadastroIp = async (municipio, cargo, telefone, whatsapp, mail) => {
 	var data = new FormData();
 	data.append("municipio", municipio);
 	data.append("cargo", cargo);
@@ -56,10 +47,8 @@ const submit_cadastro_ip = async (
 	};
 
 	return await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
+		.then((response) => response.data)
+		.catch((error) => {
 			console.log(error);
 		});
 };
@@ -73,8 +62,8 @@ export const Default = () => {
 				ConfirmarSenha: "Digite sua senha novamente",
 			}}
 			button={{ label: "ENVIAR", link: "" }}
-			submitCadastro={submit_cadastro}
-			submitCadastroIP={submit_cadastro_ip}
+			submitCadastro={submitCadastro}
+			submitCadastroIP={submitCadastroIp}
 		/>
 	);
 };

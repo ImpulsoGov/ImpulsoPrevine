@@ -1,12 +1,12 @@
-import { InicioAPSRequest } from "@/services/inicio/inicioAPS";
-import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
-import { cargoTransform } from "@helpers/cargoTransform";
-import { Inicio } from "./Inicio";
-import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
-import { SituacaoPorIndicador } from "@/types/inicio";
+import { InicioAPSRequest } from "@/services/inicio/inicioAPS";
+import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
+import type { SituacaoPorIndicador } from "@/types/inicio";
+import { cargoTransform } from "@helpers/cargoTransform";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { Inicio } from "./Inicio";
 
 const ErrorMessage = () => (
 	<p

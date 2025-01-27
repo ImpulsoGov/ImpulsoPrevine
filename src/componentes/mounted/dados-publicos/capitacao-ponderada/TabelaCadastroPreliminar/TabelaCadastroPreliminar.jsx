@@ -1,8 +1,8 @@
+import { CardAlert, Spinner } from "@impulsogov/design-system";
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 import styles from "./TabelaCadastroPreliminar.module.css";
-import { Spinner, CardAlert } from "@impulsogov/design-system";
 
 const TabelaCadastroPreliminarcomSeletor = ({
 	selectedIndicadores,

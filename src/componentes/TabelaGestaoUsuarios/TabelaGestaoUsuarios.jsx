@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { DataGrid, GridRowModes, useGridApiContext } from "@mui/x-data-grid";
 import { useSession } from "next-auth/react";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
 	ESTADOS_PERFIL_ATIVO,
 	MENSAGENS_DE_ERRO,

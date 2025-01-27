@@ -1,9 +1,9 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import {
-	tabelaDiabetesEquipe,
 	tabelaDiabetesAPS,
+	tabelaDiabetesEquipe,
 } from "@services/busca_ativa/Diabetes";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import dynamic from "next/dynamic";
 const Diabetes = dynamic(() =>
 	import("./Diabetes").then((mod) => mod.Diabetes),

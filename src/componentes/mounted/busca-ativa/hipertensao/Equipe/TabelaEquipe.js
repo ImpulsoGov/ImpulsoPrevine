@@ -1,12 +1,12 @@
-import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
 import { colunasHipertensaoEquipe } from "@helpers/colunasHipertensao";
-import mixpanel from "mixpanel-browser";
+import { colunasImpressaoHipertensaoEquipe } from "@helpers/colunasImpressaoHipertensao";
+import { labelsModalImpressaoEquipe } from "@helpers/labelsModalImpressao";
 import {
 	larguraColunasHipertensaoEquipePaisagem,
 	larguraColunasHipertensaoEquipeRetrato,
 } from "@helpers/larguraColunasHipertensao";
-import { colunasImpressaoHipertensaoEquipe } from "@helpers/colunasImpressaoHipertensao";
-import { labelsModalImpressaoEquipe } from "@helpers/labelsModalImpressao";
+import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
+import mixpanel from "mixpanel-browser";
 
 const datefiltrosHipertensao = [
 	"dt_afericao_pressao_mais_recente",

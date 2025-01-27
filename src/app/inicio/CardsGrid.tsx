@@ -1,13 +1,13 @@
-import React from "react";
+import { Indicadores, type SituacaoPorIndicador } from "@/types/inicio";
 import {
+	Banner,
 	CardClicavel,
 	CardLista,
 	DetailedInfo,
 	Grid12Col,
-	Banner,
 } from "@impulsogov/design-system";
-import { Indicadores, SituacaoPorIndicador } from "@/types/inicio";
 import mixpanel from "mixpanel-browser";
+import type React from "react";
 
 interface CardsGridProps {
 	situacaoPorIndicador: SituacaoPorIndicador;

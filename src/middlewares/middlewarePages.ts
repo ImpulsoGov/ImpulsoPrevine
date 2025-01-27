@@ -1,5 +1,5 @@
-import { NextResponse, NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { type NextRequest, NextResponse } from "next/server";
 
 const rotasPublicas = ["/", "/quem-somos", "/apoio", "/faq", "/blog"];
 

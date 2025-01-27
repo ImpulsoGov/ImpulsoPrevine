@@ -1,4 +1,3 @@
-import React from "react";
 import { SearchBar } from "@impulsogov/design-system/dist/SearchBar/SearchBar";
 const MunicipioSelector = (props) => {
 	return (

@@ -1,21 +1,17 @@
 import axios from "axios";
 import { API_URL_DADOS_PUBLICOS } from "../constants/API_URL";
 
-const AcessoindicadoresDesempenho = async (municipio_uf) => {
-	let config = {
+const AcessoindicadoresDesempenho = async (municipioUf) => {
+	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL_DADOS_PUBLICOS +
-			`impulsoprevine/indicadores/desempenho_score_equipes_validas?municipio_uf=${municipio_uf}`,
+			`impulsoprevine/indicadores/desempenho_score_equipes_validas?municipio_uf=${municipioUf}`,
 	};
 	const res = await axios(config)
-		.then(function (response) {
-			return response.data;
-		})
-		.catch(function (error) {
-			return error.response.data;
-		});
+		.then((response) => response.data)
+		.catch((error) => error.response.data);
 	return res;
 };
 

@@ -1,15 +1,15 @@
 "use client";
+import { BannerWebinarMounted } from "@/componentes/mounted/banner/BannerWebinar";
 import {
-	FormConsultoria,
-	TituloSmallTexto,
-	ParceriasTexto,
 	CardIP,
+	FormConsultoria,
 	Grid12Col,
-	NovoTituloTexto,
 	ImagensFull2,
 	Margem,
+	NovoTituloTexto,
+	ParceriasTexto,
+	TituloSmallTexto,
 } from "@impulsogov/design-system";
-import { BannerWebinarMounted } from "@/componentes/mounted/banner/BannerWebinar";
 export const Home = () => {
 	return (
 		<div style={{ backgroundColor: "#E6ECF0" }}>

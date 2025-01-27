@@ -1,11 +1,11 @@
 import { request } from "graphql-request";
-import { CMS_PLATAFORMA, CMS_CAPACITACAO } from "../constants/CMS_URL";
-const getData = async (QUERY: string) => {
-	const res = await request(CMS_PLATAFORMA, QUERY);
+import { CMS_CAPACITACAO, CMS_PLATAFORMA } from "../constants/CMS_URL";
+const getData = async (query: string) => {
+	const res = await request(CMS_PLATAFORMA, query);
 	return res != undefined ? res : null;
 };
-const getDataCapacitacao = async (QUERY: string) => {
-	const res = await request(CMS_CAPACITACAO, QUERY);
+const getDataCapacitacao = async (query: string) => {
+	const res = await request(CMS_CAPACITACAO, query);
 	return res != undefined ? res : null;
 };
 

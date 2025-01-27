@@ -1,11 +1,11 @@
 import mixpanel from "mixpanel-browser";
 import * as ReactDOMServer from "react-dom/server";
-export const Imprimir = (escala, child, lista, aba, sub_aba = "") => {
+export const Imprimir = (escala, child, lista, aba, subAba = "") => {
 	mixpanel.track("button_click", {
 		button_action: "imprimir_lista",
 		nome_lista_nominal: lista,
 		aba_lista_nominal: aba,
-		sub_aba_lista_nominal: sub_aba,
+		sub_aba_lista_nominal: subAba,
 	});
 	if (typeof window !== "undefined") {
 		const largura = window.innerWidth;

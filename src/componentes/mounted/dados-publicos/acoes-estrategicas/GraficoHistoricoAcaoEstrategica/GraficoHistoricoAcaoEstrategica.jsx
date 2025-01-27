@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import ReactEcharts from "echarts-for-react";
 import { Spinner } from "@impulsogov/design-system";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
 import styles from "./GraficoHistoricoAcaoEstrategica.module.css";
 
 function formatar(value) {
@@ -18,8 +18,8 @@ const GraficoHistoricoAcaoEstrategica = ({ GrafAcaoEstrategica }) => {
 	useEffect(() => {
 		const filteredData = GrafAcaoEstrategica.filter((repasses) => {
 			const [ano, mes] = repasses.codigo.split(".");
-			const anoNumerico = parseInt(ano);
-			const mesNumerico = parseInt(mes.substring(1)); // Converte o mês em número
+			const anoNumerico = Number.parseInt(ano);
+			const mesNumerico = Number.parseInt(mes.substring(1)); // Converte o mês em número
 			return (
 				(anoNumerico > 2021 || (anoNumerico === 2021 && mesNumerico >= 9)) &&
 				(!selectedPeriodo || repasses.acao_nome === selectedPeriodo)

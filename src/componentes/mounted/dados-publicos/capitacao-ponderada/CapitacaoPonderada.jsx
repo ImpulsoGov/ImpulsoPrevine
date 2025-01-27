@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { TituloSmallTexto } from "@impulsogov/design-system";
-import { CadastrosEquipeContagem } from "@services/capitacao_ponderada_contagem_equipes";
-import { CadastrosEquipes } from "@services/capitacao_ponderada_cadastros_por_equipe";
-import { ValidacaoProducao } from "@services/capitacao_ponderada_validacao_producao";
-import { ValidacaoProducaoAplicada } from "@services/capitacao_ponderada_validacao_producao_aplicada";
-import GraficoSuasEquipes from "@componentes/mounted/dados-publicos/capitacao-ponderada/GraficoSuasEquipes/GraficoSuasEquipes";
 import GraficoEvolucaoEquipe from "@componentes/mounted/dados-publicos/capitacao-ponderada/GraficoEvolucaoEquipe/GraficoEvolucaoEquipe";
 import GraficoFichaProducao from "@componentes/mounted/dados-publicos/capitacao-ponderada/GraficoFichaProducao/GraficoFichaProducao";
-import TabelaDesempenhoEquipes from "@componentes/mounted/dados-publicos/capitacao-ponderada/TabelaDesempenhoEquipes/TabelaDesempenhoEquipes";
+import GraficoSuasEquipes from "@componentes/mounted/dados-publicos/capitacao-ponderada/GraficoSuasEquipes/GraficoSuasEquipes";
 import TabelaCadastroPreliminar from "@componentes/mounted/dados-publicos/capitacao-ponderada/TabelaCadastroPreliminar/TabelaCadastroPreliminar";
+import TabelaDesempenhoEquipes from "@componentes/mounted/dados-publicos/capitacao-ponderada/TabelaDesempenhoEquipes/TabelaDesempenhoEquipes";
 import TabelaFichasCadastro from "@componentes/mounted/dados-publicos/capitacao-ponderada/TabelaFichasCadastro/TabelaFichasCadastro";
+import { TituloSmallTexto } from "@impulsogov/design-system";
+import { CadastrosEquipes } from "@services/capitacao_ponderada_cadastros_por_equipe";
+import { CadastrosEquipeContagem } from "@services/capitacao_ponderada_contagem_equipes";
+import { ValidacaoProducao } from "@services/capitacao_ponderada_validacao_producao";
+import { ValidacaoProducaoAplicada } from "@services/capitacao_ponderada_validacao_producao_aplicada";
+import { useEffect, useState } from "react";
 
 export const CapitacaoPonderada = ({ cidade }) => {
 	const [indicadoresData, setIndicadoresData] = useState([]);

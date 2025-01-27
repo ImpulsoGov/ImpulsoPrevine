@@ -1,6 +1,6 @@
 import { getData } from "@services/cms";
 import { LAYOUT } from "@utils/QUERYS";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 export const getLayoutDataHook = (setRes: Dispatch<SetStateAction<any>>) => {
 	const fetchData = async () => {

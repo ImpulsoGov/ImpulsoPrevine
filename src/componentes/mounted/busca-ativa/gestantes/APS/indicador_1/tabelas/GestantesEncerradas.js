@@ -1,11 +1,11 @@
 import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
 import { colunasGestantesIndicadorUm } from "../../../../../../../helpers/colunasGestantesIndicadorUm";
+import { colunasImpressaoGestantesIndicador1 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador1";
 import { labelsModalImpressaoAPS } from "../../../../../../../helpers/labelsModalImpressao";
 import {
 	larguraColunasGestantesIndicador1Paisagem,
 	larguraColunasGestantesIndicador1Retrato,
 } from "../../../../../../../helpers/larguraColunasGestantesIndicador1";
-import { colunasImpressaoGestantesIndicador1 } from "../../../../../../../helpers/colunasImpressaoGestantesIndicador1";
 
 const datefiltrosGestantes = [
 	"gestacao_data_dpp",

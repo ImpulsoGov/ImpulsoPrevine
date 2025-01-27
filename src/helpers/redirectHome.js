@@ -3,7 +3,7 @@ const redirectHome = (ctx, session) => {
 	const userIsActive = ctx.req.cookies["next-auth.session-token"];
 	const userIsActiveSecure =
 		ctx.req.cookies["__Secure-next-auth.session-token"];
-	let redirect =
+	const redirect =
 		(!userIsActive || !userIsActiveSecure) &&
 		!(
 			session?.user.perfis.includes(5) ||
@@ -24,7 +24,7 @@ const redirectHomeNotLooged = (ctx) => {
 	const userIsActive = ctx.req.cookies["next-auth.session-token"];
 	const userIsActiveSecure =
 		ctx.req.cookies["__Secure-next-auth.session-token"];
-	let redirect = !userIsActive && !userIsActiveSecure;
+	const redirect = !userIsActive && !userIsActiveSecure;
 	if (redirect) {
 		return {
 			redirect: {
@@ -40,7 +40,7 @@ const redirectHomeTrilha = (ctx, session) => {
 	const userIsActive = ctx.req.cookies["next-auth.session-token"];
 	const userIsActiveSecure =
 		ctx.req.cookies["__Secure-next-auth.session-token"];
-	let redirect =
+	const redirect =
 		(!userIsActive || !userIsActiveSecure) && !session?.user.perfis.includes(7);
 	if (redirect) {
 		return {
@@ -57,7 +57,7 @@ const redirectHomeGestaoUsuarios = (ctx, session) => {
 	const userIsActive = ctx.req.cookies["next-auth.session-token"];
 	const userIsActiveSecure =
 		ctx.req.cookies["__Secure-next-auth.session-token"];
-	let redirect =
+	const redirect =
 		(!userIsActive || !userIsActiveSecure) && !session?.user.perfis.includes(2);
 	if (redirect) {
 		return {

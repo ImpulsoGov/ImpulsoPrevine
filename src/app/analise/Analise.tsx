@@ -1,12 +1,12 @@
 "use client";
 import {
-	Margem,
-	NovoTituloTexto,
-	CardIP,
 	ButtonColor,
 	CardAlert,
+	CardIP,
+	Margem,
+	NovoTituloTexto,
 } from "@impulsogov/design-system";
-import React from "react";
+import type React from "react";
 
 interface CardData {
 	title: string;

@@ -1,9 +1,9 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import {
 	tabelaHipertensaoAPS,
 	tabelaHipertensaoEquipe,
 } from "@services/busca_ativa/Hipertensao";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { Hipertensao } from "./Hipertensao";
 
 const DiabetesPage = async () => {

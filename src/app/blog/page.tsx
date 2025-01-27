@@ -1,8 +1,8 @@
-import { LISTA_ARTIGOS, POSTS } from "@utils/QUERYS";
 import { getData } from "@services/cms";
+import { LISTA_ARTIGOS, POSTS } from "@utils/QUERYS";
 import { HomeBlog } from "./HomeBlog";
 
-interface artigo {
+interface Artigo {
 	id: string;
 	tag: string;
 	titulo: string;
@@ -21,7 +21,7 @@ interface ArtigosListaData {
 }
 
 const HomeBlogPage = async () => {
-	const artigosData = (await getData(POSTS)) as { blogArtigos: artigo[] };
+	const artigosData = (await getData(POSTS)) as { blogArtigos: Artigo[] };
 	const artigos = artigosData
 		? artigosData.blogArtigos.map((artigo: any) => {
 				return {

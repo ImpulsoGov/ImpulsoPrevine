@@ -1,7 +1,7 @@
-import { tabelaCitoEquipe, tabelaCitoAps } from "@services/busca_ativa/Cito";
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
+import { tabelaCitoAps, tabelaCitoEquipe } from "@services/busca_ativa/Cito";
 import type { TabelaCitoResponse } from "@services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import dynamic from "next/dynamic";
 const Cito = dynamic(() => import("./Cito").then((mod) => mod.Cito));
 

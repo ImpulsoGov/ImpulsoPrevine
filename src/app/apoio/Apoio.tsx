@@ -1,14 +1,14 @@
 "use client";
-import {
-	Margem,
-	FormConsultoria,
-	TituloSmallTexto,
-	Slider,
-	Grid12Col,
-	NovoTituloTexto,
-	ImagensFull2,
-} from "@impulsogov/design-system";
 import { sliderCardsDataTransform } from "@helpers/slidersDataTransform";
+import {
+	FormConsultoria,
+	Grid12Col,
+	ImagensFull2,
+	Margem,
+	NovoTituloTexto,
+	Slider,
+	TituloSmallTexto,
+} from "@impulsogov/design-system";
 
 interface SliderData {
 	titulo: string;

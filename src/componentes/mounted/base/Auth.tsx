@@ -1,5 +1,5 @@
 "use client";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 
 export const Auth = ({
 	children,

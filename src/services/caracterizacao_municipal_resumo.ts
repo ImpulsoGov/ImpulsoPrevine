@@ -1,7 +1,7 @@
-import axios from "axios";
 import { API_URL_DADOS_PUBLICOS } from "@constants/API_URL";
+import axios from "axios";
 
-interface descricoesType {
+interface DescricoesType {
 	municipio_tipologia: string;
 	municipio_populacao_2020: string;
 	equipe_total: string;
@@ -10,16 +10,16 @@ interface descricoesType {
 	cadastros_equipes_validas_com_ponderacao: string;
 }
 
-const CaracterizacaoMunicipalResumo = async (municipio_uf: string) => {
+const CaracterizacaoMunicipalResumo = async (municipioUf: string) => {
 	const config = {
 		method: "get",
-		maxBodyLength: Infinity,
+		maxBodyLength: Number.POSITIVE_INFINITY,
 		url:
 			API_URL_DADOS_PUBLICOS +
-			`impulsoprevine/caracterizacao_municipal/resumo?municipio_uf=${municipio_uf}`,
+			`impulsoprevine/caracterizacao_municipal/resumo?municipio_uf=${municipioUf}`,
 	};
 	const res = await axios(config)
-		.then(function (response) {
+		.then((response) => {
 			const responseCard = [] as any[];
 			if (response?.data)
 				Object?.keys(response.data[0]).forEach((chave) => {
@@ -39,7 +39,7 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf: string) => {
 						cadastros_equipes_validas: "Nº de cadastros das equipes válidas",
 						cadastros_equipes_validas_com_ponderacao:
 							"Nº de cadastros vulneráveis das equipes válidas",
-					} as descricoesType;
+					} as DescricoesType;
 					if (chave === "municipio_tipologia") {
 						const valor = response.data[0][chave];
 						if (valor.startsWith("Intermediario")) {
@@ -53,16 +53,14 @@ const CaracterizacaoMunicipalResumo = async (municipio_uf: string) => {
 						}
 					} else if (chaves.includes(chave)) {
 						responseCard.push({
-							descricao: descricoes[chave as keyof descricoesType],
+							descricao: descricoes[chave as keyof DescricoesType],
 							valor: response.data[0][chave].toLocaleString("pt-BR"),
 						});
 					}
 				});
 			return responseCard;
 		})
-		.catch(function (error) {
-			return error.response;
-		});
+		.catch((error) => error.response);
 	return res;
 };
 

@@ -1,12 +1,12 @@
 "use client";
 import {
-	TituloSmallTexto,
-	Grid12Col,
-	NovoTituloTexto,
-	ImagensFull2,
-	Margem,
 	CardAlert,
 	CardImg,
+	Grid12Col,
+	ImagensFull2,
+	Margem,
+	NovoTituloTexto,
+	TituloSmallTexto,
 } from "@impulsogov/design-system";
 
 const Parceiros = (parceiros: any) =>

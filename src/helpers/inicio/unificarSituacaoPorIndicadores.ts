@@ -1,7 +1,7 @@
 import {
 	ParametrosDescricao,
-	SituacaoIndicador,
-	SituacaoPorIndicador,
+	type SituacaoIndicador,
+	type SituacaoPorIndicador,
 } from "@/types/inicio";
 
 export const unificarSituacaoPorIndicadores = async (

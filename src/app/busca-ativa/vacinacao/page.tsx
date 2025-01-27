@@ -1,9 +1,9 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import {
 	tabelaVacinacaoAPS,
 	tabelaVacinacaoEquipe,
 } from "@services/busca_ativa/Vacinacao";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { Vacinacao } from "./Vacinacao";
 
 const VacinacaoPage = async () => {

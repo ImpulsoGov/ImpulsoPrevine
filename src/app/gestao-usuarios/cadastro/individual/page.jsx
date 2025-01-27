@@ -1,18 +1,18 @@
 "use client";
-import { Spinner, TituloTexto } from "@impulsogov/design-system";
-import { useSession } from "next-auth/react";
-import React, { useCallback, useEffect, useState } from "react";
-import { v4 as uuidV4 } from "uuid";
-import { TabelaGestaoUsuarios } from "@componentes/TabelaGestaoUsuarios";
 import { ModalCadastroUsuario } from "@componentes/ModalCadastroUsuario";
 import { SnackBar } from "@componentes/SnackBar";
+import { TabelaGestaoUsuarios } from "@componentes/TabelaGestaoUsuarios";
 import { MENSAGENS_DE_ERRO } from "@constants/gestaoUsuarios";
+import { Spinner, TituloTexto } from "@impulsogov/design-system";
 import {
 	atualizarAutorizacoes,
 	cadastrarUsuario,
 	listarPerfis,
 	listarUsuarios,
 } from "@services/gestaoUsuarios";
+import { useSession } from "next-auth/react";
+import { useCallback, useEffect, useState } from "react";
+import { v4 as uuidV4 } from "uuid";
 import { log_out } from "../../../../hooks/log_out";
 
 const GestaoDeUsuarios = () => {

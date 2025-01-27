@@ -1,5 +1,5 @@
-import { Session } from "next-auth";
-import { Mixpanel } from "mixpanel-browser";
+import type { Mixpanel } from "mixpanel-browser";
+import type { Session } from "next-auth";
 
 export const sessionIdentifyMixPanel = (
 	mixpanel: Mixpanel,
