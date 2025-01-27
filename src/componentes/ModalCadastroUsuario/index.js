@@ -1,3 +1,3 @@
-import ModalCadastroUsuario from './ModalCadastroUsuario';
+import ModalCadastroUsuario from "./ModalCadastroUsuario";
 
 export { ModalCadastroUsuario };

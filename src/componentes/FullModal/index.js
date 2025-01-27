@@ -1,1 +1,1 @@
-export { FullModal } from "./FullModal"
+export { FullModal } from "./FullModal";

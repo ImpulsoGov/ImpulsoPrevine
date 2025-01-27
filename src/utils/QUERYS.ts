@@ -139,10 +139,9 @@ export const ANALISE = `
     titulo
   }
 }
-`
+`;
 
-export const FAQ =
-`
+export const FAQ = `
 {
   faqs() {
     titulo
@@ -154,7 +153,7 @@ export const FAQ =
     }
   }
 }
-`
+`;
 
 export const POSTS = `
 {
@@ -178,10 +177,10 @@ export const POSTS = `
 
   }
 }
-`
+`;
 
-export const POST =(id : string)=>{
-  return(`
+export const POST = (id: string) => {
+	return `
     {
       blogArtigo(where: {id: "${id}"}) {
         id
@@ -200,9 +199,8 @@ export const POST =(id : string)=>{
         }
       }
     }
-    `
-  )
-}
+    `;
+};
 
 export const POSTID = `
 {
@@ -210,7 +208,7 @@ export const POSTID = `
     id
   }
 }
-`
+`;
 export const LISTA_ARTIGOS = `
 {
   listaArtigos {
@@ -218,11 +216,9 @@ export const LISTA_ARTIGOS = `
     buttonLabel
     buttonLink
   }
-}`
+}`;
 
-
-export const CONTEUDOS_TRILHAS =
-    `
+export const CONTEUDOS_TRILHAS = `
     {
       trilhas {
         conteudo {
@@ -237,10 +233,9 @@ export const CONTEUDOS_TRILHAS =
         titulo
       }
     }
-    `
-export const CAPACITACAO = (TRILHA_ID : string)=>{
-  return(
-  `
+    `;
+export const CAPACITACAO = (TRILHA_ID: string) => {
+	return `
   {
     trilhas(where: {id: "${TRILHA_ID}"}) {
       conteudo {
@@ -274,13 +269,14 @@ export const CAPACITACAO = (TRILHA_ID : string)=>{
       id
     }
   }
-  `
-  );
+  `;
 };
 
-export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO : string, TRILHA_ID : string) => {
-  return (
-    `
+export const CONTEUDO_CAPACITACAO = (
+	CODIGO_CONTEUDO: string,
+	TRILHA_ID: string,
+) => {
+	return `
   {
     conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
       codigo
@@ -310,13 +306,11 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO : string, TRILHA_ID : strin
       }
       titulo
     }  }
-  `
-  );
+  `;
 };
 
-export const CONTEUDO_PROGRAMATICO = (TRILHA_ID : string) => {
-  return (
-    `{
+export const CONTEUDO_PROGRAMATICO = (TRILHA_ID: string) => {
+	return `{
       trilhas(where: {id: "${TRILHA_ID}"}) {
         titulo
         sobre {
@@ -353,6 +347,5 @@ export const CONTEUDO_PROGRAMATICO = (TRILHA_ID : string) => {
           }
         }
       }
-    }`
-  )
-}
+    }`;
+};

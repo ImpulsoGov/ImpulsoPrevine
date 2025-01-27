@@ -1,3 +1,3 @@
-import TabelaAcoesEstrategicas from './TabelaAcoesEstrategicas';
+import TabelaAcoesEstrategicas from "./TabelaAcoesEstrategicas";
 
-export { TabelaAcoesEstrategicas};
+export { TabelaAcoesEstrategicas };

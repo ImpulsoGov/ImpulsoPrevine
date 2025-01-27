@@ -38,7 +38,7 @@
 			"complexity": {
 				"useSimplifiedLogicExpression": "error",
 				"noExcessiveCognitiveComplexity": "error",
-				"noForEach":"error"
+				"noForEach": "error"
 			}
 		}
 	},

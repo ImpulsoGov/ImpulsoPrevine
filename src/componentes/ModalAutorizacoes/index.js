@@ -1,4 +1,3 @@
-import ModalAutorizacoes from './ModalAutorizacoes';
+import ModalAutorizacoes from "./ModalAutorizacoes";
 
 export { ModalAutorizacoes };
-

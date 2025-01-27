@@ -1,3 +1,3 @@
-import TabelaCadastroPreliminar from './TabelaCadastroPreliminar';
+import TabelaCadastroPreliminar from "./TabelaCadastroPreliminar";
 
-export { TabelaCadastroPreliminar};
+export { TabelaCadastroPreliminar };
