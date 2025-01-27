@@ -197,9 +197,7 @@ export const Home = () => {
 									titulo="PARCEIRO DESDE 2023"
 									indicador="Jandaíra/BA"
 									descricao="“Eu trabalho com meu território, mas tem muitos pacientes que não vem pra unidade e são cadastrados como hipertensos e diabéticos só que eu não sei se são mesmo. Então com a lista eu consigo ir fazer a busca e capturar esse paciente pra gente aqui.”
-                      Ananda Larissa, Coordenadora de Equipe"
-<<<<<<< HEAD
-								/>,
+                      Ananda Larissa, Coordenadora de Equipe"/>,
 							]}
 						/>
 						<div id="espaco150"> </div>
@@ -245,45 +243,3 @@ export const Home = () => {
 		</div>
 	);
 };
-=======
-                    />
-                  ] }
-                />
-              <div id="espaco150" > </div>
-            </>
-          } 
-        />
-  
-        <Margem 
-          componente={
-            <>
-              <Grid12Col
-                proporcao="6-6"
-                items={ [
-                  <ImagensFull2 key="conhecer_impulso_imagem" imagem="https://media.graphassets.com/TxOWmwUSBOO1fnpZfRlu" />,
-                  <TituloSmallTexto
-                    key="conhecer_impulso"
-                    botao={{label: 'CONHECER MAIS DA IMPULSOGOV',url: 'https://impulsogov.org/'}}
-                    imagem={{posicao: null,url: ''}}
-                    supertitulo=""
-                    titulo="<b>Impulsionamos o SUS com dados e tecnologia</b>"
-                    texto="Na ImpulsoGov, acreditamos que os dados são necessários para facilitar a tomada de decisões e a tecnologia deve facilitar o dia a dia da profissional do SUS para permitir que ela foque naquilo que importa: o cuidado oferecido às pessoas.<br/><br/>O Impulso Previne é um projeto da ImpulsoGov focado em promover o uso de dados relacionados aos indicadores da Atenção Primária à Saúde. <br/><br/>"
-                  />
-                ] }
-              />
-              <div style={{paddingTop:75}}> </div>
-            </>
-          } 
-        />
-        
-        <FormConsultoria
-            title="Faça parte da nossa lista de transmissão e receba toda semana em seu e-mail dicas e atualizações sobre indicadores, portarias, registro e boas práticas na APS."
-            mail=""
-            link="https://docs.google.com/forms/d/e/1FAIpQLSdMuW8LG3MB8RsR2B9GrjsPez4WPp7SqOaLiXb1kmMOuspmkw/viewform"
-            button="Fazer inscrição na lista"
-            theme="IPVerde"
-        />
-      </div>
-      )
-}
->>>>>>> 0192979 (Feature/alog 229 atualizar link formulario de interesse (#279))

@@ -1,13 +1,14 @@
-import {status_usuario_descricao} from '../../../../../data/status_usuario_descricao';
 import faixaEtaria from "@data/faixaEtaria.json";
-import { labelsModalImpressaoAPS } from '../../../../../helpers/labelsModalImpressao';
-import { colunasImpressaoCitoAPS } from '../../../../../helpers/colunasImpressaoCito';
-import { larguraColunasCitoPaisagemAPS, larguraColunasCitoRetratoAPS } from '../../../../../helpers/larguraColunasCito';
-import { colunasCitoAPS } from '../../../../../helpers/colunasCito';
-import { PainelBuscaAtiva,Spinner } from '@impulsogov/design-system';
-const datefiltrosCito = [
-    "vencimento_da_coleta",
-]
+import { PainelBuscaAtiva, Spinner } from "@impulsogov/design-system";
+import { status_usuario_descricao } from "../../../../../data/status_usuario_descricao";
+import { colunasCitoAPS } from "../../../../../helpers/colunasCito";
+import { colunasImpressaoCitoAPS } from "../../../../../helpers/colunasImpressaoCito";
+import { labelsModalImpressaoAPS } from "../../../../../helpers/labelsModalImpressao";
+import {
+	larguraColunasCitoPaisagemAPS,
+	larguraColunasCitoRetratoAPS,
+} from "../../../../../helpers/larguraColunasCito";
+const datefiltrosCito = ["vencimento_da_coleta"];
 const rotulosfiltrosCito = [
 	"NOMES DE A-Z",
 	"NOME DO PROFISSIONAL RESPONSÁVEL DE A-Z",

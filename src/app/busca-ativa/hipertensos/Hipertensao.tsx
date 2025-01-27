@@ -34,6 +34,21 @@ const HipertensaoEquipe = dynamic(() => import('./HipertensaoEquipe').then(mod =
     loading: () => <Spinner/>
 });
 
+import dynamic from "next/dynamic";
+const HipertensaoAPS = dynamic(
+	() => import("./HipertensaoAPS").then((mod) => mod.HipertensaoAPS),
+	{
+		ssr: false,
+		loading: () => <Spinner />,
+	},
+);
+const HipertensaoEquipe = dynamic(
+	() => import("./HipertensaoEquipe").then((mod) => mod.HipertensaoEquipe),
+	{
+		ssr: false,
+		loading: () => <Spinner />,
+	},
+);
 
 interface HipertensaoProps {
 	session: Session | null;

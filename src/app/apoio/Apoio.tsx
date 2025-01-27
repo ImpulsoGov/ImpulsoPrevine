@@ -355,18 +355,13 @@ export const Apoio: React.FC<ApoioProps> = ({ res }) => {
 															/>
 														</>
 													}
-												/>,											
+
+												/>
+											<>
 												<Margem
-													key="passo2"
 													componente={
 														<>
 															<ImagensFull2 imagem="https://media.graphassets.com/CCWgGFBEQYugyOYPzPz3" />
-															<TituloSmallTexto
-																key="passo2"
-																botao={{ label: "", url: "" }}
-																imagem={{ posicao: null, url: "" }}
-																supertitulo="<b>2. Convite para municípios"
-																titulo=""
 																texto="No próximo ciclo de mentorias, a equipe do Impulso Previne entra em contato com os municípios selecionados por e-mail."
 															/>
 														</>

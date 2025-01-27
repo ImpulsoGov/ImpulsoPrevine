@@ -1,5 +1,5 @@
-import type { Session } from 'next-auth';
 import * as Sentry from "@sentry/nextjs";
+import type { Session } from "next-auth";
 
 export const userSetterSentry = (
   session: Session | null
