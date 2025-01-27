@@ -4,12 +4,19 @@ import {
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
 import mixpanel from "mixpanel-browser";
+import { useRouter, usePathname } from "next/navigation";
+import { dispararEventoAbrirImpressaoAPS, dispararEventoAbrirImpressaoEquipe } from "@helpers/eventosImpressaoHotjar";
 import type { Session } from "next-auth";
-import dynamic from "next/dynamic";
-import { usePathname, useRouter } from "next/navigation";
-import type React from "react";
-import type { TabelaResponse } from "@services/busca_ativa/Cito";
-import { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
+const CitoAps = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { 
+    ssr: false,
+    loading: () => <Spinner/>
+ });
+const CitoEquipe = dynamic(() => import('./CitoEquipe').then(mod => mod.CitoEquipe), { 
+    ssr: false,
+    loading: () => <Spinner/>
+ });
+
 
 const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
 const CitoAps = dynamic(() => import("./CitoAPS").then((mod) => mod.CitoAPS), {
@@ -66,7 +73,7 @@ export const Cito: React.FC<CitoProps> = ({
     setActiveTabIndex={setActiveTabIndex}
     setActiveTitleTabIndex={setActiveTitleTabIndex}
     />
-    if(session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <CitoAPS
+    if(session.user.perfis.includes(5) || session.user.perfis.includes(8)) return <CitoAps
     tabelaDataAPS={tabelaDataAPS}
     tabelaData={tabelaData}
     setTabelaData={setTabelaData}

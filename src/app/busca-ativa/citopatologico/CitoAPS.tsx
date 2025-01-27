@@ -45,46 +45,36 @@ export const CitoAPS: React.FC<CitoAPSProps> = ({
 	setActiveTabIndex,
 	setActiveTitleTabIndex,
 }) => {
-	const dataAtual = Date.now();
-	const CardsChild = <Cards tabelaDataAPS={tabelaDataAPS} key="CardsChild" />;
-	const GraficoChild = (
-		<Grafico tabelaDataAPS={tabelaDataAPS} key="GraficoChild" />
-	);
-	const TabelaChildSemExame = (
-		<TabelaAPSSemExame
-			tabelaDataAPS={tabelaDataAPS}
-			tabelaData={tabelaData}
-			setTabelaData={setTabelaData}
-			mixpanel={mixpanel}
-			aba={activeTitleTabIndex}
-			sub_aba={activeTabIndex}
-			showSnackBar={showSnackBar}
-			setShowSnackBar={setShowSnackBar}
-			setFiltros_aplicados={setFiltros_aplicados}
-			liberarPesquisa={dispararEventoAbrirImpressaoAPS}
-			key="TabelaAPSSemExame"
-		/>
-	);
-	const TabelaChildComExame = (
-		<TabelaAPSComExame
-			tabelaDataAPS={tabelaDataAPS}
-			tabelaData={tabelaData}
-			setTabelaData={setTabelaData}
-			mixpanel={mixpanel}
-			aba={activeTitleTabIndex}
-			sub_aba={activeTabIndex}
-			showSnackBar={showSnackBar}
-			setShowSnackBar={setShowSnackBar}
-			setFiltros_aplicados={setFiltros_aplicados}
-			liberarPesquisa={dispararEventoAbrirImpressaoAPS}
-			key="TabelaAPSComExame"
-		/>
-	);
-	const Children = [
-		[CardsChild, GraficoChild],
-		[TabelaChildSemExame],
-		[TabelaChildComExame],
-	];
+    const dataAtual = Date.now();
+    const CardsChild = <Cards tabelaDataAPS={tabelaDataAPS} key="CardsChild"/>
+    const GraficoChild = <Grafico tabelaDataAPS={tabelaDataAPS} key="GraficoChild"/>
+    const TabelaChildSemExame = <TabelaAPSSemExame 
+        tabelaDataAPS={tabelaDataAPS} 
+        tabelaData={tabelaData}
+        setTabelaData={setTabelaData}
+        mixpanel={mixpanel}
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
+        liberarPesquisa={dispararEventoAbrirImpressaoAPS}
+        key="TabelaAPSSemExame"
+    />
+    const TabelaChildComExame = <TabelaAPSComExame
+        tabelaDataAPS={tabelaDataAPS}
+        tabelaData={tabelaData}
+        setTabelaData={setTabelaData}
+        mixpanel={mixpanel}
+        aba={activeTitleTabIndex}
+        sub_aba={activeTabIndex}
+        showSnackBar={showSnackBar}
+        setShowSnackBar={setShowSnackBar}
+        setFiltros_aplicados={setFiltros_aplicados}
+        liberarPesquisa={dispararEventoAbrirImpressaoAPS}
+        key="TabelaAPSComExame"
+    />
+    const Children = [[CardsChild,GraficoChild],[TabelaChildSemExame],[TabelaChildComExame]]
 
 	return (
 		<>
