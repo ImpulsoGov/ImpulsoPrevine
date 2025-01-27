@@ -1,65 +1,86 @@
-const genParamEquipe = (token,municipio_uf,equipe,faixa_etaria)=>{
-    let params = {
-      "token": token,
-      "municipio_uf": municipio_uf,
-      "equipe": equipe,
-      "faixa_etaria" : faixa_etaria
-    }
-    var encodedParams = encodeURIComponent(JSON.stringify(params))
-    return encodedParams
-}
-  
-const urlGenBuscaAtivaEquipe = (data_studio,token,municipio_uf,equipe,cargo,faixa_etaria)=>{
-    if (cargo == "Coordenação de Equipe" || cargo == "Impulser"){
-        let baseURL = data_studio
-        let param = genParamEquipe(token,municipio_uf,equipe,faixa_etaria)
-        const link = baseURL  + param 
-        return link
-    }else{
-        return ""
-    }
-}
-  
-const genParamCoordenacaoAPS = (token,municipio_uf,faixa_etaria)=>{
-    let params = {
-        "token": token,
-        "municipio_uf": municipio_uf,
-        "faixa_etaria": faixa_etaria
-    }
-    var encodedParams = encodeURIComponent(JSON.stringify(params))
-    return encodedParams
-}
-  
-const urlGenBuscaAtivaCoordenacaoAPS = (data_studio,token,municipio_uf,cargo,faixa_etaria)=>{
-    if (cargo == "Coordenação APS" || cargo == "Impulser"){
-        let baseURL = data_studio
-        let param = genParamCoordenacaoAPS(token,municipio_uf,faixa_etaria)
-        const link = baseURL  + param 
-        return link
-    }else{
-        return ""
-    }
-}
+const genParamEquipe = (token, municipioUf, equipe, faixaEtaria) => {
+	const params = {
+		token: token,
+		municipio_uf: municipioUf,
+		equipe: equipe,
+		faixa_etaria: faixaEtaria,
+	};
+	var encodedParams = encodeURIComponent(JSON.stringify(params));
+	return encodedParams;
+};
 
-const genParamCoordenacaoAPSGraficos = (token,municipio_uf)=>{
-    let params = {
-        "token": token,
-        "municipio_uf": municipio_uf,
-    }
-    var encodedParams = encodeURIComponent(JSON.stringify(params))
-    return encodedParams
-}
-  
-const urlGenBuscaAtivaCoordenacaoAPSGraficos = (data_studio,token,municipio_uf,cargo)=>{
-    if (cargo == "Coordenação APS" || cargo == "Impulser"){
-        let baseURL = data_studio
-        let param = genParamCoordenacaoAPSGraficos(token,municipio_uf)
-        const link = baseURL  + param 
-        return link
-    }else{
-        return ""
-    }
-}
+const urlGenBuscaAtivaEquipe = (
+	dataStudio,
+	token,
+	municipioUf,
+	equipe,
+	cargo,
+	faixaEtaria,
+) => {
+	if (cargo == "Coordenação de Equipe" || cargo == "Impulser") {
+		const baseURL = dataStudio;
+		const param = genParamEquipe(token, municipioUf, equipe, faixaEtaria);
+		const link = baseURL + param;
+		return link;
+	} else {
+		return "";
+	}
+};
 
+const genParamCoordenacaoAPS = (token, municipioUf, faixaEtaria) => {
+	const params = {
+		token: token,
+		municipio_uf: municipioUf,
+		faixa_etaria: faixaEtaria,
+	};
+	var encodedParams = encodeURIComponent(JSON.stringify(params));
+	return encodedParams;
+};
 
-export {urlGenBuscaAtivaCoordenacaoAPS,urlGenBuscaAtivaEquipe,urlGenBuscaAtivaCoordenacaoAPSGraficos}
+const urlGenBuscaAtivaCoordenacaoAPS = (
+	dataStudio,
+	token,
+	municipioUf,
+	cargo,
+	faixaEtaria,
+) => {
+	if (cargo == "Coordenação APS" || cargo == "Impulser") {
+		const baseURL = dataStudio;
+		const param = genParamCoordenacaoAPS(token, municipioUf, faixaEtaria);
+		const link = baseURL + param;
+		return link;
+	} else {
+		return "";
+	}
+};
+
+const genParamCoordenacaoAPSGraficos = (token, municipioUf) => {
+	const params = {
+		token: token,
+		municipio_uf: municipioUf,
+	};
+	var encodedParams = encodeURIComponent(JSON.stringify(params));
+	return encodedParams;
+};
+
+const urlGenBuscaAtivaCoordenacaoAPSGraficos = (
+	dataStudio,
+	token,
+	municipioUf,
+	cargo,
+) => {
+	if (cargo == "Coordenação APS" || cargo == "Impulser") {
+		const baseURL = dataStudio;
+		const param = genParamCoordenacaoAPSGraficos(token, municipioUf);
+		const link = baseURL + param;
+		return link;
+	} else {
+		return "";
+	}
+};
+
+export {
+	urlGenBuscaAtivaCoordenacaoAPS,
+	urlGenBuscaAtivaEquipe,
+	urlGenBuscaAtivaCoordenacaoAPSGraficos,
+};

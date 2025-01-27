@@ -1,2 +1,2 @@
-export {Analytics} from "./Analytics"
-export { gtag } from "./lib/gtag"
+export { Analytics } from "./Analytics";
+export { gtag } from "./lib/gtag";

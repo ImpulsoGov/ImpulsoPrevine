@@ -1,20 +1,20 @@
 .Container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 70vh;
-  background-color: white;
-  border-radius: 15px;
-  padding: 0 40px 30px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70%;
+	height: 70vh;
+	background-color: white;
+	border-radius: 15px;
+	padding: 0 40px 30px 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .Formulario {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 40px;
 }

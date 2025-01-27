@@ -1,53 +1,53 @@
 .TextoVermelho {
-  color: #cf6868;
+	color: #cf6868;
 }
 
 .TextoVerde {
-  color: #7ab37d;
+	color: #7ab37d;
 }
 
 .TextoCinza {
-  color: #9ba4a5;
+	color: #9ba4a5;
 }
 
 .cabecalho {
-  background-color: #D4DBE7;
-  border-radius: 2px;
+	background-color: #d4dbe7;
+	border-radius: 2px;
 }
 
 .customHeader {
-  height: 70px; /* Altura desejada para o cabeçalho da coluna */
+	height: 70px; /* Altura desejada para o cabeçalho da coluna */
 }
 
-.NotaRosa{
-  background-color: #FF8C8C;
+.NotaRosa {
+	background-color: #ff8c8c;
 }
 
-.NotaLaranja{
-  background-color: #FFB45D;
+.NotaLaranja {
+	background-color: #ffb45d;
 }
 
-.NotaAmarela{
-  background-color: #FFF065;
+.NotaAmarela {
+	background-color: #fff065;
 }
 
-.NotaVerde{
-  background-color: #5CDAAC;
+.NotaVerde {
+	background-color: #5cdaac;
 }
 
-.CelulaVermelha{
-  background-color: #F8BBAE
+.CelulaVermelha {
+	background-color: #f8bbae;
 }
 
 .quadradoTooltip {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 6px;
-  vertical-align: middle;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 6px;
+	vertical-align: middle;
 }
 
 .colunaBranca {
-  color: transparent;
-  text-shadow: none;
+	color: transparent;
+	text-shadow: none;
 }
