@@ -1,21 +1,18 @@
-"use client";
-import { CadastrarUsuarioLotes } from "@helpers/RequisicoesConcorrentes";
-import { colunasValidacaoDadosCadastro } from "@helpers/colunasValidacaoDadosCadastro";
-import { colunasValidacaoRequsicoes } from "@helpers/colunasValidacaoRequisicoes";
-import {
-	ButtonLightSubmit,
-	Spinner,
-	TabelaHiperDia,
-	TituloSmallTexto,
-} from "@impulsogov/design-system";
-import {
-	BuscarIdSusPorNome,
-	Tratamento,
-	Validacao,
-} from "@utils/cadastroUsuarios";
-import { signOut, useSession } from "next-auth/react";
-import { parse } from "papaparse";
-import { useEffect, useState } from "react";
+'use client'
+import dynamic from 'next/dynamic';
+
+const ButtonLightSubmit = dynamic(() => import('@impulsogov/design-system').then(mod => mod.ButtonLightSubmit));
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
+const TabelaHiperDia = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TabelaHiperDia));
+const TituloSmallTexto = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto));
+
+import { signOut, useSession } from 'next-auth/react';
+import { parse } from 'papaparse';
+import { useEffect, useState } from 'react';
+import { CadastrarUsuarioLotes } from '@helpers/RequisicoesConcorrentes';
+import { colunasValidacaoDadosCadastro } from '@helpers/colunasValidacaoDadosCadastro';
+import { colunasValidacaoRequsicoes } from '@helpers/colunasValidacaoRequisicoes';
+import { BuscarIdSusPorNome, Tratamento, Validacao } from '@utils/cadastroUsuarios';
 
 const colunas = [
 	"nome",
@@ -70,7 +67,7 @@ const GestaoDeUsuarios = () => {
 	const [validacaoRealizada, setValidacaoRealizada] = useState(false);
 	const [erroProcessamento, setErroProcessamento] = useState(true);
 	useEffect(() => {
-		if (jsondata && etapa == 1 && !validacaoRealizada)
+		if (jsondata && etapa === 1 && !validacaoRealizada)
 			TratamentoValidacao(
 				setDadosValidados,
 				setValidacaoRealizada,
@@ -79,14 +76,14 @@ const GestaoDeUsuarios = () => {
 			);
 	}, [etapa, jsondata]);
 	useEffect(() => {
-		etapa == 2 &&
+		etapa === 2 &&
 			CadastrarUsuarioLotes(
 				dadosReq,
 				setRes,
 				setErroProcessamento,
 				session.user.access_token,
 			);
-		etapa == 0 && setJSONDATA() && setDadosReq();
+		etapa === 0 && setJSONDATA() && setDadosReq();
 	}, [etapa]);
 	const handleSubmit = () => {
 		const fileReader = new FileReader();

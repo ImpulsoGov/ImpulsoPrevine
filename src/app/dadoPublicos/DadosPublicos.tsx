@@ -1,43 +1,79 @@
-"use client";
-import { MunicipioSelector } from "@componentes/MunicipioSelector";
-import { AcoesEstrategicas } from "@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas";
-import { CapitacaoPonderada } from "@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada";
-import { Indicadores } from "@componentes/mounted/dados-publicos/indicadores/Indicadores";
-import {
-	CardAlert,
-	Margem,
-	PanelSelector,
-	ScoreCardGrid,
-	TituloTexto,
-} from "@impulsogov/design-system";
+'use client'
+import { useEffect, useState } from 'react';
+import type { JSX } from 'react';
+import dynamic from 'next/dynamic';
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner), { 
+  loading: () => <Spinner/>
+});
+const PanelSelector = dynamic<{
+  panel:number;
+  states: {
+    activeTabIndex: number;
+    setActiveTabIndex: (index: number) => void;
+    activeTitleTabIndex: number;
+    setActiveTitleTabIndex: (index: number) => void;
+  };
+  conteudo: string;
+  components: JSX.Element[][];
+  list: {label: string}[][];
+  titles: {label: string}[];
+}>(() => import('@impulsogov/design-system').then(mod => mod.PanelSelector), { 
+    loading: () => <Spinner/>
+ });
+const TituloTexto = dynamic<{ 
+  titulo: string; 
+  texto: string; 
+  imagem?: { 
+    posicao: string | null; 
+    url: string; 
+  };
+}>(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto), { 
+  loading: () => <Spinner/>
+});
+const ScoreCardGrid = dynamic<{ valores: { id: number; value: string }[] }>(() => import('@impulsogov/design-system').then(mod => mod.ScoreCardGrid), { 
+  loading: () => <Spinner/>
+});
+const CardAlert = dynamic<{
+  background: string;
+  padding: string;
+  margin: string;
+  color: string;
+  destaque: JSX.Element;
+  msg: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardAlert), { 
+  loading: () => <Spinner/>
+});
+const Indicadores = dynamic(() => import('@componentes/mounted/dados-publicos/indicadores/Indicadores').then(mod => mod.Indicadores), { 
+  loading: () => <Spinner/>
+});
+const CapitacaoPonderada = dynamic(() => import('@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada').then(mod => mod.CapitacaoPonderada), { 
+  loading: () => <Spinner/>
+});
+const AcoesEstrategicas = dynamic(() => import('@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas').then(mod => mod.AcoesEstrategicas), { 
+  loading: () => <Spinner/>
+});
+const MunicipioSelector = dynamic(() => import('@componentes/MunicipioSelector').then(mod => mod.MunicipioSelector), { 
+  loading: () => <Spinner/>
+});
+
 import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo";
-import { data } from "@utils/Municipios";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 export const DadosPublicos = () => {
-	const router = useRouter();
-	const path = usePathname();
-	const searchParams = useSearchParams();
-	const painel = Number(searchParams.get("painel"));
-	const [activeTabIndex, setActiveTabIndex] = useState(painel || 0);
-	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-	const [scoreCardData, setScoreCardData] = useState([]);
-	const [selectedMunicipio, setSelectedMunicipio] =
-		useState("João Pessoa - PB");
-	useEffect(() => {
-		setActiveTabIndex(painel || 0);
-	}, [path]);
-	useEffect(
-		() => router.push(`${path}?painel=${activeTabIndex}`),
-		[activeTabIndex],
-	);
-	useEffect(() => {
-		CaracterizacaoMunicipalResumo(selectedMunicipio).then((res) =>
-			setScoreCardData(res),
-		);
-	}, [selectedMunicipio]);
-
+    const router = useRouter();
+    const path = usePathname();
+    const searchParams = useSearchParams(); 
+    const painel = Number(searchParams.get('painel'));
+    const [activeTabIndex, setActiveTabIndex] = useState(painel || 0);
+    const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
+    const [scoreCardData, setScoreCardData] = useState([]);
+    const [selectedMunicipio, setSelectedMunicipio] = useState("João Pessoa - PB"); 
+    useEffect(() =>{ setActiveTabIndex(painel || 0)}, [path]);
+    useEffect(() => router.push(`${path}?painel=${activeTabIndex}`), [activeTabIndex]);
+    useEffect(() => {
+      CaracterizacaoMunicipalResumo(selectedMunicipio).then((res)=>setScoreCardData(res))
+    }, [selectedMunicipio]);
+  
 	return (
 		<>
 			<TituloTexto
@@ -80,21 +116,22 @@ export const DadosPublicos = () => {
 				titulo=""
 				texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
 			/>
+	<TituloTexto
+	  titulo=""
+	  texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
+	/>
 
-			<MunicipioSelector
-				municipios={data}
-				municipio={selectedMunicipio}
-				setMunicipio={setSelectedMunicipio}
-			/>
-			<Margem
-				componente={
-					<>
-						{scoreCardData?.length > 0 && (
-							<ScoreCardGrid valores={scoreCardData} />
-						)}
-					</>
-				}
-			/>
+	<MunicipioSelector
+	  municipio={selectedMunicipio}
+	  setMunicipio={setSelectedMunicipio}
+	/>
+	{scoreCardData.length > 0 && (
+	  <div>
+		<ScoreCardGrid
+		  valores={scoreCardData}
+		/>
+	  </div>
+	)}
 
 			<PanelSelector
 				panel={Number(useSearchParams().get("painel") || 0)}
