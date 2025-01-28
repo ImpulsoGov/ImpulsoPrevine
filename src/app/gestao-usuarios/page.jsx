@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-"use client";
-import { CardLarge, Greeting } from "@impulsogov/design-system";
-import { useSession } from "next-auth/react";
-=======
 'use client'
 import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 
 const CardLarge = dynamic(() => import('@impulsogov/design-system').then(mod => mod.CardLarge));
 const Greeting = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Greeting));
->>>>>>> abed210 (fix: fix conflit)
 
 const GestaoDeUsuarios = () => {
 	const { data: session } = useSession();
