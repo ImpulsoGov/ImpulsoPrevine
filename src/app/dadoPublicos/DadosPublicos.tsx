@@ -106,14 +106,6 @@ export const DadosPublicos = () => {
 				/>
 			</div>
 
-			<TituloTexto
-				imagem={{
-					posicao: null,
-					url: "",
-				}}
-				titulo=""
-				texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
-			/>
 	<TituloTexto
 	  titulo=""
 	  texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
