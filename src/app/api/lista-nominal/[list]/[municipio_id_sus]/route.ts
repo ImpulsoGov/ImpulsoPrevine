@@ -1,22 +1,14 @@
-<<<<<<< HEAD
 import type { NextRequest } from 'next/server';
 import data from '../../data.json';
 import { sortData, validateSortOrder } from '../../utils/sorting';
 import type { SortOrder } from '../../utils/sorting';
-=======
-import { type NextRequest } from 'next/server';
-import data from '../../data.json';
-import { sortData, SortOrder, validateSortOrder } from '../../utils/sorting';
->>>>>>> 74bec38 (fix: fix conflit)
 import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
-<<<<<<< HEAD
 import { AuthenticationError, decodeToken, getToken, getEncodedSecret } from '@/utils/token';
 import type { JWTToken } from '@/utils/token';
-=======
->>>>>>> 74bec38 (fix: fix conflit)
+
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
@@ -50,7 +42,7 @@ export async function GET(
       type: string
   }>}) {
   try {
-    const { type, list, municipio_id_sus } = await params;
+    const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
     const filters = await getParams(searchParams);
     const pagination = {

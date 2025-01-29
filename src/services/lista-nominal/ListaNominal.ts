@@ -15,15 +15,9 @@ export type Pagination = {
 }
 
 const buildSortingParams = (sorting: SortingItem[]): string => {
-<<<<<<< HEAD
   return `sortBy=${sorting
     .map(item => `${item.sortField}:${item.sortOrder}`)
     .join(',')}`;
-=======
-  return sorting
-    .map(item => `sortBy=${item.sortField}:${item.sortOrder}`)
-    .join('&');
->>>>>>> 74bec38 (fix: fix conflit)
 };
 const buildFilterParams = (filters: FilterItem): string => {
     return Object.entries(filters)
@@ -53,20 +47,12 @@ export const buildUrlWithParams = (
     pagination?: Pagination;
     listName: string,
     ine?: string,
-<<<<<<< HEAD
     municipio_id_sus: string,
     search?: string;
   }
 ): string => {
   let url = baseUrl;
   const { sorting, filters, listName, ine, municipio_id_sus, pagination, search } = params || {};
-=======
-    municipio_id_sus: string
-  }
-): string => {
-  let url = baseUrl;
-  const { sorting, filters, listName, ine, municipio_id_sus, pagination } = params || {};
->>>>>>> 74bec38 (fix: fix conflit)
   if (listName) {
     url += `/${listName}`;
   }
@@ -87,13 +73,10 @@ export const buildUrlWithParams = (
     const prefix = url.includes('?') ? '&' : '?';
     url += `${prefix}${buildPaginationParams(pagination)}`;
   }
-<<<<<<< HEAD
   if (search && search.length > 0) {
     const prefix = url.includes('?') ? '&' : '?';
     url += `${prefix}search=${encodeURIComponent(search)}`;
   }
-=======
->>>>>>> 74bec38 (fix: fix conflit)
   return url;
 };  
 
@@ -105,10 +88,7 @@ export type getListDataProps = {
   filters?: FilterItem;
   ine?: string;
   pagination?: Pagination;
-<<<<<<< HEAD
   search?: string;
-=======
->>>>>>> 74bec38 (fix: fix conflit)
 };
 
 export type ListDataResponse = {
