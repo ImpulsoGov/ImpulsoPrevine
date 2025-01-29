@@ -66,8 +66,8 @@ export const DadosPublicos = () => {
     const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
     const [scoreCardData, setScoreCardData] = useState([]);
     const [selectedMunicipio, setSelectedMunicipio] = useState("João Pessoa - PB"); 
-    useEffect(() =>{ setActiveTabIndex(painel || 0)}, [path]);
-    useEffect(() => router.push(`${path}?painel=${activeTabIndex}`), [activeTabIndex]);
+	useEffect(() =>{ setActiveTabIndex(painel || 0)}, [painel]);
+	useEffect(() => router.push(`${path}?painel=${activeTabIndex}`), [activeTabIndex, path, router]);
     useEffect(() => {
       CaracterizacaoMunicipalResumo(selectedMunicipio).then((res)=>setScoreCardData(res))
     }, [selectedMunicipio]);
