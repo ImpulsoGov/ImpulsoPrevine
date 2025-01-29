@@ -6,7 +6,7 @@ export type CardType = 'external' | 'internal';
 
 export type CardsData = {
   municipio_id_sus: string;
-  equipe_ine: string;
+  ine: string;
   lista: string;
   descricao: string;
   valor: number;
