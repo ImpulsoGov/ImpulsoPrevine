@@ -1,10 +1,29 @@
-"use client";
-import type { SituacaoPorIndicador } from "@/types/inicio";
-import { Greeting, Texto } from "@impulsogov/design-system";
+'use client'
 import { useSession } from "next-auth/react";
-import type React from "react";
-import { CardsGrid } from "./CardsGrid";
-import style from "./Inicio.module.css";
+import type { SituacaoPorIndicador } from '@/types/inicio';
+import dynamic from 'next/dynamic';
+
+const CardsGrid = dynamic<{
+    situacaoPorIndicador: SituacaoPorIndicador;
+    visao: string;
+}>(() => import('./CardsGrid').then(mod => mod.CardsGrid));
+const Greeting = dynamic<{
+    cargo: string;
+    greeting: string;
+    municipio_uf: string;
+    nome_usuario: string;
+    margin: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Greeting));
+const Texto = dynamic<{
+    texto: string;
+    color: string;
+    fontSize: string;
+    fontWeight: string;
+    lineHeight: string;
+    margin?: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Texto));
+
+import style from './Inicio.module.css';
 
 interface InicioProps {
 	cargo: string;
