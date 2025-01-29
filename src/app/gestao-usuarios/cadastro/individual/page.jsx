@@ -1,19 +1,17 @@
-"use client";
-import { ModalCadastroUsuario } from "@componentes/ModalCadastroUsuario";
-import { SnackBar } from "@componentes/SnackBar";
-import { TabelaGestaoUsuarios } from "@componentes/TabelaGestaoUsuarios";
-import { MENSAGENS_DE_ERRO } from "@constants/gestaoUsuarios";
-import { Spinner, TituloTexto } from "@impulsogov/design-system";
-import {
-	atualizarAutorizacoes,
-	cadastrarUsuario,
-	listarPerfis,
-	listarUsuarios,
-} from "@services/gestaoUsuarios";
-import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
-import { v4 as uuidV4 } from "uuid";
-import { log_out } from "../../../../hooks/log_out";
+'use client'
+import { useSession } from 'next-auth/react';
+import { useCallback, useEffect, useState } from 'react';
+import { v4 as uuidV4 } from 'uuid';
+import { MENSAGENS_DE_ERRO } from '@constants/gestaoUsuarios';
+import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '@services/gestaoUsuarios';
+import {log_out} from "../../../../hooks/log_out"
+import dynamic from 'next/dynamic';
+
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
+const TituloTexto = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto));
+const TabelaGestaoUsuarios = dynamic(() => import('@componentes/TabelaGestaoUsuarios').then(mod => mod.TabelaGestaoUsuarios));
+const ModalCadastroUsuario = dynamic(() => import('@componentes/ModalCadastroUsuario').then(mod => mod.ModalCadastroUsuario));
+const SnackBar = dynamic(() => import('@componentes/SnackBar').then(mod => mod.SnackBar));
 
 const GestaoDeUsuarios = () => {
 	const { data: session } = useSession();

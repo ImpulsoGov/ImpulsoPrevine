@@ -1,15 +1,46 @@
-"use client";
-import { BannerWebinarMounted } from "@/componentes/mounted/banner/BannerWebinar";
-import {
-	CardIP,
-	FormConsultoria,
-	Grid12Col,
-	ImagensFull2,
-	Margem,
-	NovoTituloTexto,
-	ParceriasTexto,
-	TituloSmallTexto,
-} from "@impulsogov/design-system";
+'use client'
+import dynamic from 'next/dynamic';
+import type { JSX } from 'react';
+
+const FormConsultoria = dynamic<{
+  title: string;
+  mail: string;
+  link: string;
+  button: string;
+  theme: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.FormConsultoria));
+const TituloSmallTexto = dynamic<{
+  supertitulo: string;
+  titulo: string;
+  texto: string;
+  botao: {label: string; url: string;};
+  imagem: {posicao: string | null; url: string;};
+}>(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto));
+const ParceriasTexto = dynamic<{
+  text: string;
+  parceiros: { alt: string; src: string; }[];
+}>(() => import('@impulsogov/design-system').then(mod => mod.ParceriasTexto));
+const CardIP = dynamic<{
+  titulo: string;
+  indicador: string;
+  descricao: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardIP));
+const Grid12Col = dynamic<{
+  items: (JSX.Element | null)[];
+  proporcao: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Grid12Col));
+const NovoTituloTexto = dynamic<{
+  titulo: string;
+  texto: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.NovoTituloTexto));
+const ImagensFull2 = dynamic<{
+  imagem: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.ImagensFull2));
+const Margem = dynamic<{
+  componente: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Margem));
+const BannerWebinarMounted = dynamic(() => import('@componentes/mounted/banner/BannerWebinar').then(mod => mod.BannerWebinarMounted));
+
 export const Home = () => {
 	return (
 		<div style={{ backgroundColor: "#E6ECF0" }}>
