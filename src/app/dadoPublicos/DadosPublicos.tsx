@@ -107,15 +107,19 @@ export const DadosPublicos = () => {
 			</div>
 
 	<TituloTexto
-	  titulo=""
-	  texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
+		imagem={{
+			posicao: null,
+			url: "",
+		}}
+		titulo=""
+		texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
 	/>
 
 	<MunicipioSelector
 	  municipio={selectedMunicipio}
 	  setMunicipio={setSelectedMunicipio}
 	/>
-	{scoreCardData.length > 0 && (
+	{scoreCardData?.length > 0 && (
 	  <div>
 		<ScoreCardGrid
 		  valores={scoreCardData}
@@ -123,7 +127,7 @@ export const DadosPublicos = () => {
 	  </div>
 	)}
 
-			<PanelSelector
+			{/* <PanelSelector
 				panel={Number(useSearchParams().get("painel") || 0)}
 				states={{
 					activeTabIndex: Number(activeTabIndex),
@@ -166,7 +170,7 @@ export const DadosPublicos = () => {
 						label: "",
 					},
 				]}
-			/>
+			/> */}
 		</>
 	);
 };
