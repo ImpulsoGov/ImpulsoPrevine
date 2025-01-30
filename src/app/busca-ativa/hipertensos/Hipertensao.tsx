@@ -6,9 +6,11 @@ import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
-import { Spinner } from "@impulsogov/design-system";
 import type { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
+import type { TabelaResponse } from "@/services/busca_ativa/Cito";
+const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
+
 
 import dynamic from "next/dynamic";
 const HipertensaoAPS = dynamic(
@@ -28,8 +30,8 @@ const HipertensaoEquipe = dynamic(
 
 interface HipertensaoProps {
 	session: Session | null;
-	tabelaDataAPS: any;
-	tabelaDataEquipe: any;
+	tabelaDataAPS: TabelaResponse | null;
+	tabelaDataEquipe: TabelaResponse | null;
 }
 
 export const Hipertensao: React.FC<HipertensaoProps> = ({
@@ -41,7 +43,6 @@ export const Hipertensao: React.FC<HipertensaoProps> = ({
 		open: false,
 	});
 	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
-	const [voltarGatilho, setVoltarGatilho] = useState(0);
 	const [tabelaData, setTabelaData] = useState([]);
 	const router = useRouter();
 	const path = usePathname();
@@ -51,11 +52,8 @@ export const Hipertensao: React.FC<HipertensaoProps> = ({
 			: "equipe";
 	useEffect(() => {
 		router.push(`${path}?aba=${""}&sub_aba=${""}&visao=${visao}`);
-	}, [visao]);
-	const Voltar = () => window.history.go(voltarGatilho * -1);
-	useEffect(() => {
-		setVoltarGatilho(voltarGatilho + 1);
-	}, [path]);
+	}, [visao, router, path]);
+	const Voltar = () => window.history.go(-1);
 	if (!session) return <Spinner />;
 
 	if (session.user.perfis.includes(9))

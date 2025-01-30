@@ -41,21 +41,15 @@ const CardAlert = dynamic<{
 }>(() => import('@impulsogov/design-system').then(mod => mod.CardAlert), { 
   loading: () => <Spinner/>
 });
-const Indicadores = dynamic(() => import('@componentes/mounted/dados-publicos/indicadores/Indicadores').then(mod => mod.Indicadores), { 
-  loading: () => <Spinner/>
-});
-const CapitacaoPonderada = dynamic(() => import('@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada').then(mod => mod.CapitacaoPonderada), { 
-  loading: () => <Spinner/>
-});
-const AcoesEstrategicas = dynamic(() => import('@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas').then(mod => mod.AcoesEstrategicas), { 
-  loading: () => <Spinner/>
-});
 const MunicipioSelector = dynamic(() => import('@componentes/MunicipioSelector').then(mod => mod.MunicipioSelector), { 
   loading: () => <Spinner/>
 });
 
 import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo";
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { Indicadores } from '@componentes/mounted/dados-publicos/indicadores/Indicadores';
+import { CapitacaoPonderada } from '@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada';
+import { AcoesEstrategicas } from '@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas';
 
 export const DadosPublicos = () => {
     const router = useRouter();
@@ -126,7 +120,6 @@ export const DadosPublicos = () => {
 		/>
 	  </div>
 	)}
-
 			<PanelSelector
 				panel={Number(useSearchParams().get("painel") || 0)}
 				states={{

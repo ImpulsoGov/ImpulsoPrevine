@@ -1,10 +1,45 @@
 "use client";
-import {
-	ListaArtigos,
-	PreviewArtigoDestaque,
-	Spinner,
-	TituloTexto,
-} from "@impulsogov/design-system";
+import dynamic from 'next/dynamic';
+
+const ListaArtigos = dynamic<{
+	resumo: boolean;
+	artigos: {
+		id: string;
+		tag: string;
+		titulo: string;
+		texto: string;
+		autor: string;
+		avatar?: string;
+		data: string;
+		imagem?: string;
+	}[];
+	titulo: string;
+	btn: {
+		label: string;
+		link: string;
+	};
+}>(() => import('@impulsogov/design-system').then(mod => mod.ListaArtigos));
+const PreviewArtigoDestaque = dynamic<{
+	id: string;
+	tag: string;
+	titulo: string;
+	texto: string;
+	autor: {
+		avatar?: string;
+		nome: string;
+		data: string;
+	};
+	imagem?: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.PreviewArtigoDestaque));
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
+const TituloTexto = dynamic<{
+	imagem: {
+		posicao: boolean | null;
+		url: string;
+	};
+	titulo: string;
+	texto: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto));
 
 interface Artigo {
 	id: string;
