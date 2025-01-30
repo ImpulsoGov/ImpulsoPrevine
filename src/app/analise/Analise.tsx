@@ -1,12 +1,33 @@
 "use client";
-import {
-	ButtonColor,
-	CardAlert,
-	CardIP,
-	Margem,
-	NovoTituloTexto,
-} from "@impulsogov/design-system";
+import dynamic from 'next/dynamic';
 import type React from "react";
+import type { JSX } from "react";
+
+const ButtonColor = dynamic<{
+	label: string;
+	link: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.ButtonColor));
+const CardAlert = dynamic<{
+	background: string;
+	padding: string;
+	margin: string;
+	color: string;
+	destaque: JSX.Element;
+	msg: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardAlert));
+const CardIP = dynamic<{
+	titulo: string;
+	indicador: JSX.Element;
+	descricao: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardIP));
+const Margem = dynamic<{
+	componente: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Margem));
+const NovoTituloTexto = dynamic<{
+	titulo: string;
+	texto: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.NovoTituloTexto));
+
 
 interface CardData {
 	title: string;
@@ -16,7 +37,7 @@ interface CardData {
 }
 
 interface AnaliseProps {
-	DadosPublicos?: any;
+	dadosPublicos?: Record<string, unknown>;
 	cardsData: CardData[];
 }
 export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
@@ -25,18 +46,16 @@ export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
 			<Margem
 				componente={
 					<>
-						<div style={{ paddingTop: 80 }}></div>
+						<div style={{ paddingTop: 80 }}> </div>
 						<Margem
 							componente={
-								<>
 									<NovoTituloTexto
 										titulo="Analise os resultados do Previne Brasil nos últimos quadrimestres"
 										texto="Confira gratuitamente uma nova maneira de acompanhar o desempenho de qualquer município no Previne Brasil com informações comparativas a partir dos dados públicos do SISAB.</br>"
 									/>
-								</>
 							}
 						/>
-						<div style={{ paddingTop: 75 }}></div>
+						<div style={{ paddingTop: 75 }}> </div>
 					</>
 				}
 			/>
@@ -65,28 +84,28 @@ export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
 			</div>
 
 			<div className="cardGrid">
-				{cardsData.map((card, index) => (
-					<div key={index} className="cardContainer">
+				{cardsData.map((card) => (
+					<div key={card.title} className="cardContainer">
 						<CardIP
 							titulo=""
 							indicador={
 								<span style={{ color: "#1F1F1F", fontSize: "32px" }}>
 									{" "}
-									<br></br>
+									<br/>
 									{card.title}{" "}
 								</span>
 							}
 							descricao={
 								<span style={{ fontSize: "18px" }}>
 									{card.description}
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
 								</span>
 							}
 						/>
@@ -131,7 +150,7 @@ export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
               }
             }
           `}</style>
-			<div style={{ paddingBottom: "105px" }}></div>
+			<div style={{ paddingBottom: "105px" }}> </div>
 		</div>
 	);
 };

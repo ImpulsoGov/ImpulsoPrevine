@@ -1,6 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV === "dev";
+const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig = {
 	redirects: async () => {
