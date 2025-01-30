@@ -21,7 +21,7 @@ const PanelSelector = dynamic<{
 const TituloTexto = dynamic<{ 
   titulo: string; 
   texto: string; 
-  imagem?: { 
+  imagem: { 
     posicao: string | null; 
     url: string; 
   };
@@ -107,15 +107,19 @@ export const DadosPublicos = () => {
 			</div>
 
 	<TituloTexto
-	  titulo=""
-	  texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
+		imagem={{
+			posicao: null,
+			url: "",
+		}}
+		titulo=""
+		texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
 	/>
 
 	<MunicipioSelector
 	  municipio={selectedMunicipio}
 	  setMunicipio={setSelectedMunicipio}
 	/>
-	{scoreCardData.length > 0 && (
+	{scoreCardData?.length > 0 && (
 	  <div>
 		<ScoreCardGrid
 		  valores={scoreCardData}
