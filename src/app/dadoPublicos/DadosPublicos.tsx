@@ -21,7 +21,7 @@ const PanelSelector = dynamic<{
 const TituloTexto = dynamic<{ 
   titulo: string; 
   texto: string; 
-  imagem?: { 
+  imagem: { 
     posicao: string | null; 
     url: string; 
   };
