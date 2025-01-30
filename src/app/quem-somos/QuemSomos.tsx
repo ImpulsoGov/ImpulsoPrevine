@@ -40,7 +40,7 @@ const TituloSmallTexto = dynamic<{
 const Parceiros = (parceiros: Parceiro[]) =>
 	parceiros.map((logo: Parceiro) => (
         <Margem
-			key="logo.url"
+			key={logo.url}
             componente={
                 <ImagensFull2 imagem={logo.url} alt={logo.fileName} width={300} />
             }
