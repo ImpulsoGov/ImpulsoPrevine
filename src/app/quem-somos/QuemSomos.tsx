@@ -307,12 +307,12 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 				componente={
 					<>
 						<div style={{ paddingTop: 75 }}> </div>
-
-						<NovoTituloTexto
-							titulo="&nbsp;&nbsp;&nbsp;Tudo que criamos para o SUS está disponível sem custos"
-							texto="Contamos com uma rede de apoio institucional e financiadores e por isso podemos oferecer nosso trabalho gratuitamente.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-						/>
-
+						<div style={{ padding: "0 20px" }}>
+							<NovoTituloTexto
+								titulo="Tudo que criamos para o SUS está disponível sem custos"
+								texto="Contamos com uma rede de apoio institucional e financiadores e por isso podemos oferecer nosso trabalho gratuitamente.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							/>
+						</div>
 						<div style={{ paddingTop: 75 }}> </div>
 					</>
 				}
