@@ -47,16 +47,17 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 	if (process.env.ENV !== "development") {
 		Hotjar.init(Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID), hotjarVersion);
 		mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
-		useEffect(() => {
-			if (typeof window !== "undefined") window.mixpanel = mixpanel;
-		}, []);
-		useEffect(() => TagManager.initialize(tagManagerArgs), []);
-		useEffect(() => rotaDinamica(path.toString()), [path]);
-		useEffect(() => setMode(true), [dynamicRoute]);
-		useEffect(() => {
-			getLayoutDataHook(setRes);
-		}, []);
 	}
+	useEffect(() => {
+		if (typeof window !== "undefined") window.mixpanel = mixpanel;
+	}, []);
+	useEffect(() => TagManager.initialize(tagManagerArgs), []);
+	useEffect(() => rotaDinamica(path.toString()), [path]);
+	useEffect(() => setMode(true), [dynamicRoute]);
+	useEffect(() => {
+		getLayoutDataHook(setRes);
+	}, []);
+
 
 	return (
 		<>
