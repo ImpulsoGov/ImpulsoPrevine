@@ -98,14 +98,7 @@ export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
 							descricao={
 								<span style={{ fontSize: "18px" }}>
 									{card.description}
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
+									<div style={{ marginBottom: '8em' }}> </div>
 								</span>
 							}
 						/>
