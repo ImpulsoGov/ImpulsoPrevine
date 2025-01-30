@@ -44,7 +44,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 	const [cidade, setCidade] = useState("João Pessoa - PB");
 	const [isLoading] = useState(true);
 	const [active, setMode] = useState(true);
-	if (process.env.ENV !== "dev")
+	if (process.env.ENV !== "development") {
 		Hotjar.init(Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID), hotjarVersion);
 	mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
 	useEffect(() => {
