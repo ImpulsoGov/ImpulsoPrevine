@@ -50,7 +50,7 @@ export async function GET(
       pageSize: searchParams.get('pagination[pageSize]')
     };
     const sorting = searchParams.get('sortBy');
-    const searchName = searchParams.get('search')
+    const searchName = searchParams.get('search');
     const baseData = searchBaseData({
       data: [...data],
       municipio_id_sus: municipio_id_sus,
@@ -66,8 +66,8 @@ export async function GET(
       // será substituido por consulta no banco de dados
       responseData = responseData.filter((item) => item.ine === payload.ine);
     }
-
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
+
     if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
     if(responseData.length === 0) return Response.json({
       data: responseData,
@@ -99,7 +99,6 @@ export async function GET(
         pageSize: Number(pagination.pageSize),
       })];
     }
-
     return Response.json({
       data: responseData,
       totalRows: baseData.length,
