@@ -1,4 +1,4 @@
-import { CardType } from "@/app/api/card/utils/cardType";
+import type { CardType } from "@/app/api/card/utils/cardType";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 
@@ -70,7 +70,6 @@ export const getCardsData = async ({
 
   return axios.request({
     method: 'get',
-    maxBodyLength: Number.POSITIVE_INFINITY,
     url: urlWithParams,
     headers: {
       'authorization': `Bearer ${token}`
