@@ -18,13 +18,6 @@ const getParams = async(searchParams: URLSearchParams) => {
 }
 
 type Data = DataItem[];
-type RequestParams = {
-  params: {
-    municipio_id_sus: string;
-    list: string;
-
-  };
-}
 
 function searchBaseData({
   data,
@@ -39,10 +32,13 @@ function searchBaseData({
 
 export async function GET(
   req: NextRequest,
-  params: RequestParams 
+  { params }: { params: 
+    Promise<{ 
+      municipio_id_sus: string 
+    }>} 
 ) {
   try {
-    const { municipio_id_sus } = await params.params;
+    const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
     const filters = await getParams(searchParams);
     const pagination = {
