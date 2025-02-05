@@ -333,16 +333,18 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "30px", padding: "25px"}}>
-        <p style={{fontSize: "26px"}}>{title}</p>
+    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "25px 1px 100px 1px"}}>
+        <p style={{fontSize: "26px", marginTop: "75px"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
-        <ToolBarMounted
-            updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
-            print={() => {}}
-            inputProps={{value: inputValue, onChange: setInputValue}}
-            handleSearchClick={handleSearchClick}
-        />
-        <hr style={{border: "1px solid #A6B5BE", margin: "15px 0"}}/>
+        <div style={{marginTop: "25px"}}>
+            <ToolBarMounted
+                updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
+                print={() => {}}
+                inputProps={{value: inputValue, onChange: setInputValue}}
+                handleSearchClick={handleSearchClick}
+            />
+        </div>
+        <hr style={{border: "1px solid #A6B5BE", margin: "0"}}/>
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
         <Table
             columns={columns}
