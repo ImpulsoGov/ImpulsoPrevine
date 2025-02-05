@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+
 import { getDataByType, validateCardType } from '@/app/api/card/utils/cardType';
 import { InvalidCardTypeError } from '@/app/api/card/utils/errors';
 import { captureException } from '@sentry/nextjs';
@@ -7,7 +8,6 @@ import type { JWTToken } from '@/utils/token';
 
 // TODO rever nomenclatura do endpoint para que a API seja orientada à informação e não à interface
 // vide: https://github.com/ImpulsoGov/ImpulsoPrevine/pull/289#issuecomment-2593257565
-
 export async function GET(
   req: NextRequest,
   { params }: { 

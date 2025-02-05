@@ -5,7 +5,7 @@ import { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 import { DataItem, filterData } from '@/utils/FilterData';
 import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
-import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
 import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
