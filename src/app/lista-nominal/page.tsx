@@ -60,7 +60,6 @@ const ListaNominalPage = async() => {
         externalCardsProps = getCardsProps(cardsDetails, data);
     } catch (error) {
         captureException(error);
-        console.log(error)
         return <p>Erro ao buscar dados cards</p>;
     }
     // const columns = await getColumnsData() // escrever requisicao para colunas
