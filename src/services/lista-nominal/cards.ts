@@ -20,16 +20,16 @@ export const buildUrlWithParams = (
   let url = baseUrl;
   const { listName, ine, municipio_id_sus, cardType } = params || {};
   if (cardType) {
-    url += `/${cardType}`;
+    url += `/${encodeURIComponent(cardType)}`;
   }
   if (listName) {
-    url += `/${listName}`;
+    url += `/${encodeURIComponent(listName)}`;
   }
   if (municipio_id_sus) {
-    url += `/${municipio_id_sus}`;
+    url += `/${encodeURIComponent(municipio_id_sus)}`;
   }
   if (ine) {
-    url += `/${ine}`;
+    url += `/${encodeURIComponent(ine)}`;
   }
   return url;
 };
