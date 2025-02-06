@@ -12,7 +12,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@hotjar/browser": "^1.0.9",
-    "@impulsogov/design-system": "^1.0.318",
+    "@impulsogov/design-system": "^1.0.319",
     "@mui/material": "6.1.0",
     "@mui/x-data-grid": "6.20.4",
     "@prisma/client": "5.21.1",
