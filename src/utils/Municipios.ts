@@ -1,4 +1,4 @@
-const data = [
+export const data = [
         {
             "nome" : "Maraã",
             "uf" : "AM"
@@ -22279,7 +22279,4 @@ const data = [
             "nome" : "Porto Alegre",
             "uf" : "RS"
         }
-]
-
-
-export {data}
+];

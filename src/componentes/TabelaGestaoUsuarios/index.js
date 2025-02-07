@@ -1,3 +1,3 @@
-import TabelaGestaoUsuarios from './TabelaGestaoUsuarios';
+import TabelaGestaoUsuarios from "./TabelaGestaoUsuarios";
 
 export { TabelaGestaoUsuarios };

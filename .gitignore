@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/analyze
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -43,7 +44,7 @@ next-env.d.ts
 .sentryclirc
 
 # Mise Config File
-.mise.toml
+*mise.toml
 
 # Sentry Config File
 .env.sentry-build-plugin
