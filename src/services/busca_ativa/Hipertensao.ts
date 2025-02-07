@@ -9,7 +9,6 @@ const tabelaHipertensaoEquipe = async (
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",
-        maxBodyLength: Number.POSITIVE_INFINITY,
         url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/hipertensao-por-equipe?municipio_id_sus=${municipioIdSus}&equipe=${equipe}`,
         headers: {
             authorization: `Bearer ${token}`,
@@ -34,8 +33,7 @@ const tabelaHipertensaoAPS = async (
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",
-        maxBodyLength: Number.POSITIVE_INFINITY,
-        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/hipertensao-coordenacao?municipio_id_sus=${municipioIdSus}`,
+        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/hipertensao-por-municipio?municipio_id_sus=${municipioIdSus}`,
         headers: {
             authorization: `Bearer ${token}`,
         },

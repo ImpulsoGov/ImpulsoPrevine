@@ -74,7 +74,7 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
-	if (session.user.perfis.includes(5) || session.user.perfis.includes(8))
+	if ((session.user.perfis.includes(5) || session.user.perfis.includes(8)))
 		return (
 			<VacinacaoAPS
 				tabelaDataAPS={tabelaDataAPS}
