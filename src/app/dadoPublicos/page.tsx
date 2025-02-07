@@ -1,5 +1,8 @@
 import { Suspense } from "react";
-import { DadosPublicos } from "./DadosPublicos";
+import dynamic from 'next/dynamic';
+
+const DadosPublicos = dynamic(() => import('./DadosPublicos').then(mod => mod.DadosPublicos));
+
 const DadosPublicosPage = () => {
 	return (
 		<Suspense>
