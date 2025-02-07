@@ -3,7 +3,7 @@ import { AuthenticationError, decodeToken, getEncodedSecret, getToken } from "@/
 import { captureException } from "@sentry/nextjs";
 
 interface ExtendedNextRequest extends NextRequest {
-    user?: any;
+	user?: any;
 }
 
 export const validarTokenMiddleware = async (req : ExtendedNextRequest) => {

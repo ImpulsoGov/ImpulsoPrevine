@@ -1,3 +1,3 @@
-import GraficoDesempenhoMunicipio from './GraficoDesempenhoMunicipio';
+import GraficoDesempenhoMunicipio from "./GraficoDesempenhoMunicipio";
 
 export { GraficoDesempenhoMunicipio };

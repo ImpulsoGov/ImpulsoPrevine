@@ -1,1 +1,1 @@
-declare module '@impulsogov/design-system';
+declare module "@impulsogov/design-system";

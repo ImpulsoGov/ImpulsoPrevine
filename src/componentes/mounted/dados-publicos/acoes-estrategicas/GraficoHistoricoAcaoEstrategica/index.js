@@ -1,3 +1,3 @@
-import GraficoHistoricoAcaoEstrategica from './GraficoHistoricoAcaoEstrategica';
+import GraficoHistoricoAcaoEstrategica from "./GraficoHistoricoAcaoEstrategica";
 
 export { GraficoHistoricoAcaoEstrategica };
