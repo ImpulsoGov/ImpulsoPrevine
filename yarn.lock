@@ -1395,10 +1395,43 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@impulsogov/design-system@^1.0.312", "@impulsogov/design-system@^1.0.318":
+"@impulsogov/design-system@^1.0.318":
   version "1.0.319"
   resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.319.tgz#bb3f0718c0a9f80201b747958628a95ed700f742"
   integrity sha512-5DIZAP4MdKeMl4cAvpcr4CP8mapmKbubg7EyQcIaMDniOa/qhTMs6eWhLl1mjLzxuzFOZe8D8YQHeQbNLDSGKA==
+  dependencies:
+    "@babel/cli" "^7.18.9"
+    "@babel/core" "^7.18.9"
+    "@babel/preset-env" "^7.18.9"
+    "@babel/preset-react" "^7.18.6"
+    "@babel/preset-typescript" "^7.26.0"
+    "@emotion/react" "^11.10.8"
+    "@emotion/styled" "^11.10.8"
+    "@impulsogov/design-system" "^1.0.318"
+    "@mdx-js/react" "^2.3.0"
+    "@mui/material" "^5.12.3"
+    "@mui/x-data-grid" "^6.6.0"
+    "@tippyjs/react" "^4.2.6"
+    "@types/react-dom" "19.0.3"
+    axios "^1.1.3"
+    classnames "^2.3.1"
+    cpf-cnpj-validator "^1.0.3"
+    dompurify "^2.3.10"
+    echarts "^5.4.1"
+    echarts-for-react "^3.0.2"
+    eslint-config-next "15.1.6"
+    form-data "^4.0.0"
+    next "15.1.6"
+    react "19.0.0"
+    react-dom "19.0.0"
+    react-echarts-wrapper "^1.0.3"
+    react-to-print "^2.14.13"
+    styled-components "^6.0.1"
+
+"@impulsogov/design-system@^1.0.320":
+  version "1.0.320"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.320.tgz#4e35f7e68b800278f0a3e3939970856abe6fc855"
+  integrity sha512-qZq+edaMUP56IqlMjcOqKafsrQNsdD51CLOdJkuJmc+knf1/dyNoa3t9/H/+vLjpIqLnb6JjWt8BjoOdLbpdDw==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
