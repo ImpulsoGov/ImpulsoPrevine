@@ -1,3 +1,3 @@
-import TabelaIndicadores from './TabelaIndicadores';
+import TabelaIndicadores from "./TabelaIndicadores";
 
 export { TabelaIndicadores };

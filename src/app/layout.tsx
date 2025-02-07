@@ -3,19 +3,17 @@ import { Base } from "./Base";
 import { SessionWrapperLayout } from "./SessionWrapperLayout";
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="pt-BR">
-      <body>
-        <SessionWrapperLayout>
-          <Base>
-            {children}
-          </Base>
-        </SessionWrapperLayout>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="pt-BR">
+			<body>
+				<SessionWrapperLayout>
+					<Base>{children}</Base>
+				</SessionWrapperLayout>
+			</body>
+		</html>
+	);
 }
