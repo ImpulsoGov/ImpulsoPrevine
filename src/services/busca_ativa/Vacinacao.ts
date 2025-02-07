@@ -10,7 +10,7 @@ const tabelaVacinacaoEquipe = async (
     const config = {
         method: "get",
         maxBodyLength: Number.POSITIVE_INFINITY,
-        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/vacinacao?municipio_id_sus=${municipioIdSus}&equipe=${equipe}`,
+        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/vacinacao-por-equipe?municipio_id_sus=${municipioIdSus}&equipe=${equipe}`,
         headers: {
             authorization: `Bearer ${token}`,
         },
@@ -34,8 +34,7 @@ const tabelaVacinacaoAPS = async (
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",
-        maxBodyLength: Number.POSITIVE_INFINITY,
-        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/vacinacao-coordenacao?municipio_id_sus=${municipioIdSus}`,
+        url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/vacinacao-por-municipio?municipio_id_sus=${municipioIdSus}`,
         headers: {
             authorization: `Bearer ${token}`,
         },

@@ -54,6 +54,7 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 				}
 	}, [activeTitleTabIndex,activeTabIndex, path, session, router.replace]);
 	const Voltar = () => window.history.go(-1);
+	console.log(tabelaDataAPS)
 	if (!session) return <Spinner />;
 
 	if (session.user.perfis.includes(9))
@@ -74,7 +75,7 @@ export const Vacinacao: React.FC<VacinacaoProps> = ({
 				setFiltros_aplicados={setFiltrosAplicados}
 			/>
 		);
-	if (session.user.perfis.includes(5) || session.user.perfis.includes(8))
+	if ((session.user.perfis.includes(5) || session.user.perfis.includes(8)))
 		return (
 			<VacinacaoAPS
 				tabelaDataAPS={tabelaDataAPS}
