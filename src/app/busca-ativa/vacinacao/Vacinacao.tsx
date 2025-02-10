@@ -22,32 +22,6 @@ const VacinacaoEquipe = dynamic(
 	},
 );
 
-import dynamic from 'next/dynamic';
-const VacinacaoAPS = dynamic(() => import('./VacinacaoAPS').then(mod => mod.VacinacaoAPS), { 
-    ssr: false,
-    loading: () => <Spinner/>
-});
-const VacinacaoEquipe = dynamic(() => import('./VacinacaoEquipe').then(mod => mod.VacinacaoEquipe), { 
-    ssr: false,
-    loading: () => <Spinner/>
-});
-
-import dynamic from "next/dynamic";
-const VacinacaoAPS = dynamic(
-	() => import("./VacinacaoAPS").then((mod) => mod.VacinacaoAPS),
-	{
-		ssr: false,
-		loading: () => <Spinner />,
-	},
-);
-const VacinacaoEquipe = dynamic(
-	() => import("./VacinacaoEquipe").then((mod) => mod.VacinacaoEquipe),
-	{
-		ssr: false,
-		loading: () => <Spinner />,
-	},
-);
-
 interface VacinacaoProps {
 	session: Session | null;
 	tabelaDataAPS: TabelaResponse | null;

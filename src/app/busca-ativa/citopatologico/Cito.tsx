@@ -6,17 +6,11 @@ import {
 import mixpanel from "mixpanel-browser";
 import type { Session } from "next-auth";
 import dynamic from 'next/dynamic';
-const CitoAps = dynamic(() => import('./CitoAPS').then(mod => mod.CitoAPS), { 
-    ssr: false,
-    loading: () => <Spinner/>
- });
-const CitoEquipe = dynamic(() => import('./CitoEquipe').then(mod => mod.CitoEquipe), { 
-    ssr: false,
-    loading: () => <Spinner/>
- });
-
-
 const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
+import { usePathname, useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
+import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 const CitoAps = dynamic(() => import("./CitoAPS").then((mod) => mod.CitoAPS), {
 	ssr: false,
 	loading: () => <Spinner />,
@@ -42,7 +36,7 @@ export const Cito: React.FC<CitoProps> = ({
 	const [showSnackBar, setShowSnackBar] = useState({
 		open: false,
 	});
-	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
+	const [filtros_aplicados, setFiltros_aplicados] = useState(false);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 	const [voltarGatilho, setVoltarGatilho] = useState(0);

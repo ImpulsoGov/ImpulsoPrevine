@@ -25,12 +25,12 @@ const tabelaCitoEquipe = async(
       return res
 }
 
-export type TabelaCitoResponse = Record<string, string | number | boolean | Date | null | undefined>[];
+export type TabelaResponse = Record<string, string | number | boolean | Date | null | undefined>[];
 
 const tabelaCitoAps = async(
   municipioIdSus: string ,
   token: string
-): Promise<TabelaCitoResponse> =>{
+): Promise<TabelaResponse> =>{
     const config = {
         method: 'get',
         url: `${API_URL_DADOS_NOMINAIS}impulsoprevine/busca-ativa/citopatologico-por-municipio?municipio_id_sus=${municipioIdSus}`,
