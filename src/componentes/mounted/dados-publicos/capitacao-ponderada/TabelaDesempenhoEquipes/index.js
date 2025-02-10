@@ -1,3 +1,3 @@
-import TabelaDesempenhoEquipes from './TabelaDesempenhoEquipes';
+import TabelaDesempenhoEquipes from "./TabelaDesempenhoEquipes";
 
-export { TabelaDesempenhoEquipes};
+export { TabelaDesempenhoEquipes };

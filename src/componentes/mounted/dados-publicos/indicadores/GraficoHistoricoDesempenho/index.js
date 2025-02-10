@@ -1,3 +1,3 @@
-import GraficoHistoricoDesempenho from './GraficoHistoricoDesempenho';
+import GraficoHistoricoDesempenho from "./GraficoHistoricoDesempenho";
 
 export { GraficoHistoricoDesempenho };

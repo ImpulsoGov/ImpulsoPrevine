@@ -139,10 +139,9 @@ export const ANALISE = `
     titulo
   }
 }
-`
+`;
 
-export const FAQ =
-`
+export const FAQ = `
 {
   faqs() {
     titulo
@@ -154,7 +153,7 @@ export const FAQ =
     }
   }
 }
-`
+`;
 
 export const POSTS = `
 {
@@ -178,10 +177,10 @@ export const POSTS = `
 
   }
 }
-`
+`;
 
-export const POST =(id : string)=>{
-  return(`
+export const POST = (id: string) => {
+	return `
     {
       blogArtigo(where: {id: "${id}"}) {
         id
@@ -200,9 +199,8 @@ export const POST =(id : string)=>{
         }
       }
     }
-    `
-  )
-}
+    `;
+};
 
 export const POSTID = `
 {
@@ -210,7 +208,7 @@ export const POSTID = `
     id
   }
 }
-`
+`;
 export const LISTA_ARTIGOS = `
 {
   listaArtigos {
@@ -218,11 +216,9 @@ export const LISTA_ARTIGOS = `
     buttonLabel
     buttonLink
   }
-}`
+}`;
 
-
-export const CONTEUDOS_TRILHAS =
-    `
+export const CONTEUDOS_TRILHAS = `
     {
       trilhas {
         conteudo {
@@ -237,12 +233,11 @@ export const CONTEUDOS_TRILHAS =
         titulo
       }
     }
-    `
-export const CAPACITACAO = (TRILHA_ID : string)=>{
-  return(
-  `
+    `;
+export const CAPACITACAO = (trilhaId: string) => {
+	return `
   {
-    trilhas(where: {id: "${TRILHA_ID}"}) {
+    trilhas(where: {id: "${trilhaId}"}) {
       conteudo {
         ... on Modulo {
           titulo
@@ -274,15 +269,16 @@ export const CAPACITACAO = (TRILHA_ID : string)=>{
       id
     }
   }
-  `
-  );
+  `;
 };
 
-export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO : string, TRILHA_ID : string) => {
-  return (
-    `
+export const CONTEUDO_CAPACITACAO = (
+	codigoConteudo: string,
+	trilhaId: string,
+) => {
+	return `
   {
-    conteudos(where: {codigo: "${CODIGO_CONTEUDO}"}, orderBy: codigo_ASC) {
+    conteudos(where: {codigo: "${codigoConteudo}"}, orderBy: codigo_ASC) {
       codigo
       materialComplementar {
         ... on Link {
@@ -301,7 +297,7 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO : string, TRILHA_ID : strin
       }
       url
     }
-    trilhas(where: {id: "${TRILHA_ID}"}) {
+    trilhas(where: {id: "${trilhaId}"}) {
       conteudo {
         ... on Modulo {
           moduloId
@@ -310,14 +306,12 @@ export const CONTEUDO_CAPACITACAO = (CODIGO_CONTEUDO : string, TRILHA_ID : strin
       }
       titulo
     }  }
-  `
-  );
+  `;
 };
 
-export const CONTEUDO_PROGRAMATICO = (TRILHA_ID : string) => {
-  return (
-    `{
-      trilhas(where: {id: "${TRILHA_ID}"}) {
+export const CONTEUDO_PROGRAMATICO = (trilhaId: string) => {
+	return `{
+      trilhas(where: {id: "${trilhaId}"}) {
         titulo
         sobre {
           ... on Sobre {
@@ -353,6 +347,5 @@ export const CONTEUDO_PROGRAMATICO = (TRILHA_ID : string) => {
           }
         }
       }
-    }`
-  )
-}
+    }`;
+};

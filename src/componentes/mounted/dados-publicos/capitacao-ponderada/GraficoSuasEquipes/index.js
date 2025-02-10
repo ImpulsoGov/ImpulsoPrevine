@@ -1,3 +1,3 @@
-import GraficoSuasEquipes from './GraficoSuasEquipes';
+import GraficoSuasEquipes from "./GraficoSuasEquipes";
 
 export { GraficoSuasEquipes };

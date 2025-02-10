@@ -47,7 +47,6 @@ const ListaNominalPage = async() => {
         listName: "hipertensao", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     if(user.perfis.includes(9)) params.ine = user.equipe
-
     try {
         const { data } = await getCardsData({
             municipio_id_sus: params.municipio_id_sus,
@@ -55,13 +54,13 @@ const ListaNominalPage = async() => {
             listName: params.listName,
             cardType: "external",
             ine: params.ine,
-            baseUrl: baseURL(),
+            baseUrl: baseURL() ,
         });
 
         externalCardsProps = getCardsProps(cardsDetails, data);
     } catch (error) {
         captureException(error);
-        return <p>Erro ao buscar dados</p>;
+        return <p>Erro ao buscar dados dos cards</p>;
     }
     // const columns = await getColumnsData() // escrever requisicao para colunas
 

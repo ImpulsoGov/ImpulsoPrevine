@@ -1,13 +1,55 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { PanelSelector, TituloTexto, ScoreCardGrid, Margem, CardAlert } from "@impulsogov/design-system"
-import { Indicadores } from "@componentes/mounted/dados-publicos/indicadores/Indicadores"
-import { CapitacaoPonderada } from "@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada"
-import { AcoesEstrategicas } from "@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas"
-import { MunicipioSelector } from "@componentes/MunicipioSelector";
-import { data } from "@utils/Municipios"
-import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo"
+import type { JSX } from 'react';
+import dynamic from 'next/dynamic';
+const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
+const PanelSelector = dynamic<{
+  panel:number;
+  states: {
+    activeTabIndex: number;
+    setActiveTabIndex: (index: number) => void;
+    activeTitleTabIndex: number;
+    setActiveTitleTabIndex: (index: number) => void;
+  };
+  conteudo: string;
+  components: JSX.Element[][];
+  list: {label: string}[][];
+  titles: {label: string}[];
+}>(() => import('@impulsogov/design-system').then(mod => mod.PanelSelector), { 
+    loading: () => <Spinner/>
+ });
+const TituloTexto = dynamic<{ 
+  titulo: string; 
+  texto: string; 
+  imagem: { 
+    posicao: string | null; 
+    url: string; 
+  };
+}>(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto), { 
+  loading: () => <Spinner/>
+});
+const ScoreCardGrid = dynamic<{ valores: { id: number; value: string }[] }>(() => import('@impulsogov/design-system').then(mod => mod.ScoreCardGrid), { 
+  loading: () => <Spinner/>
+});
+const CardAlert = dynamic<{
+  background: string;
+  padding: string;
+  margin: string;
+  color: string;
+  destaque: JSX.Element;
+  msg: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardAlert), { 
+  loading: () => <Spinner/>
+});
+const MunicipioSelector = dynamic(() => import('@componentes/MunicipioSelector').then(mod => mod.MunicipioSelector), { 
+  loading: () => <Spinner/>
+});
+
+import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo";
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { Indicadores } from '@componentes/mounted/dados-publicos/indicadores/Indicadores';
+import { CapitacaoPonderada } from '@componentes/mounted/dados-publicos/capitacao-ponderada/CapitacaoPonderada';
+import { AcoesEstrategicas } from '@componentes/mounted/dados-publicos/acoes-estrategicas/AcoesEstrategicas';
 
 export const DadosPublicos = () => {
     const router = useRouter();
@@ -18,96 +60,110 @@ export const DadosPublicos = () => {
     const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
     const [scoreCardData, setScoreCardData] = useState([]);
     const [selectedMunicipio, setSelectedMunicipio] = useState("João Pessoa - PB"); 
-    useEffect(() =>{ setActiveTabIndex(painel || 0)}, [path]);
-    useEffect(() => router.push(`${path}?painel=${activeTabIndex}`), [activeTabIndex]);
+	useEffect(() =>{ setActiveTabIndex(painel || 0)}, [painel]);
+	useEffect(() => router.push(`${path}?painel=${activeTabIndex}`), [activeTabIndex, path, router]);
     useEffect(() => {
       CaracterizacaoMunicipalResumo(selectedMunicipio).then((res)=>setScoreCardData(res))
     }, [selectedMunicipio]);
   
-    return <>
-    <TituloTexto
-      imagem={{
-        posicao: null,
-        url: ''
-      }}
-      titulo="Resultados do Previne Brasil"
-      texto=""
-    />
+	return (
+		<>
+			<TituloTexto
+				imagem={{
+					posicao: null,
+					url: "",
+				}}
+				titulo="Resultados do Previne Brasil"
+				texto=""
+			/>
 
-    <div style={{
-      lineHeight: "24px"
-    }}>
-      <CardAlert
-        background="#91D3DB"
-        padding="20px 30px"
-        margin="0 80px"
-        color="#1F1F1F"
-        destaque={<span style={{fontSize: "16px"}}>AVISO: </span>}
-        msg={<span style={{fontSize: "16px"}}>Os dados exibidos nessa página são referentes aos critérios do antigo Previne Brasil. As informações permanecem disponíveis para consulta, mas é importante ressaltar que, com o encerramento do programa, os resultados apresentados não devem ser considerados para o cofinanciamento da Atenção Primária à Saúde.</span>}
-      />
-    </div>
+			<div
+				style={{
+					lineHeight: "24px",
+				}}
+			>
+				<CardAlert
+					background="#91D3DB"
+					padding="20px 30px"
+					margin="0 80px"
+					color="#1F1F1F"
+					destaque={<span style={{ fontSize: "16px" }}>AVISO: </span>}
+					msg={
+						<span style={{ fontSize: "16px" }}>
+							Os dados exibidos nessa página são referentes aos critérios do
+							antigo Previne Brasil. As informações permanecem disponíveis para
+							consulta, mas é importante ressaltar que, com o encerramento do
+							programa, os resultados apresentados não devem ser considerados
+							para o cofinanciamento da Atenção Primária à Saúde.
+						</span>
+					}
+				/>
+			</div>
 
-    <TituloTexto
-      imagem={{
-        posicao: null,
-        url: ''
-      }}
-      titulo=""
-      texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
-    />
+	<TituloTexto
+		imagem={{
+			posicao: null,
+			url: "",
+		}}
+		titulo=""
+		texto="<b>DIGITE O SEU MUNICIPIO ABAIXO</b>"
+	/>
 
-    <MunicipioSelector
-      municipios={data}
-      municipio={selectedMunicipio}
-      setMunicipio={setSelectedMunicipio}
-    />
-    <Margem
-      componente={
-        <>
-          {
-            scoreCardData?.length>0 &&
-            <ScoreCardGrid
-              valores={scoreCardData}
-            />
-          }
-        </>
-      }
-    />
-
-    <PanelSelector
-      panel={Number(useSearchParams().get('painel') || 0)}
-      states={{
-        activeTabIndex: Number(activeTabIndex),
-        setActiveTabIndex: setActiveTabIndex,
-        activeTitleTabIndex: activeTitleTabIndex,
-        setActiveTitleTabIndex: setActiveTitleTabIndex
-      }}
-      conteudo = "components"
-      components={[[
-        <Indicadores key={"DadosPublicosIndicadores"} cidade={selectedMunicipio}/>,
-        <CapitacaoPonderada key={"DadosPublicosCadastros"} cidade={selectedMunicipio} />,
-        <AcoesEstrategicas key={"DadosPublicosAcoes"} cidade={selectedMunicipio} />,
-
-      ]]}
-      list={[
-        [
-          {
-            label: 'INDICADORES DE DESEMPENHO'
-          },
-          {
-            label: 'CAPITAÇÃO PONDERADA'
-          },
-          {
-            label: 'INCENTIVO A AÇÕES ESTRATEGICAS'
-          },
-        ]
-      ]}
-      titles={[
-        {
-          label: ''
-        }
-      ]}
-    />
-  </>
-
-}
+	<MunicipioSelector
+	  municipio={selectedMunicipio}
+	  setMunicipio={setSelectedMunicipio}
+	/>
+	{scoreCardData?.length > 0 && (
+	  <div>
+		<ScoreCardGrid
+		  valores={scoreCardData}
+		/>
+	  </div>
+	)}
+			<PanelSelector
+				panel={Number(useSearchParams().get("painel") || 0)}
+				states={{
+					activeTabIndex: Number(activeTabIndex),
+					setActiveTabIndex: setActiveTabIndex,
+					activeTitleTabIndex: activeTitleTabIndex,
+					setActiveTitleTabIndex: setActiveTitleTabIndex,
+				}}
+				conteudo="components"
+				components={[
+					[
+						<Indicadores
+							key={"DadosPublicosIndicadores"}
+							cidade={selectedMunicipio}
+						/>,
+						<CapitacaoPonderada
+							key={"DadosPublicosCadastros"}
+							cidade={selectedMunicipio}
+						/>,
+						<AcoesEstrategicas
+							key={"DadosPublicosAcoes"}
+							cidade={selectedMunicipio}
+						/>,
+					],
+				]}
+				list={[
+					[
+						{
+							label: "INDICADORES DE DESEMPENHO",
+						},
+						{
+							label: "CAPITAÇÃO PONDERADA",
+						},
+						{
+							label: "INCENTIVO A AÇÕES ESTRATEGICAS",
+						},
+					],
+				]}
+				titles={[
+					{
+						label: "",
+					},
+				]}
+			/>
+		</>
+	);
+};

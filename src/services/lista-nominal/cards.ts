@@ -1,4 +1,4 @@
-import { CardType } from "@/app/api/card/utils/cardType";
+import type { CardType } from "@/app/api/card/utils/cardType";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 
@@ -20,16 +20,16 @@ export const buildUrlWithParams = (
   let url = baseUrl;
   const { listName, ine, municipio_id_sus, cardType } = params || {};
   if (cardType) {
-    url += `/${cardType}`;
+    url += `/${encodeURIComponent(cardType)}`;
   }
   if (listName) {
-    url += `/${listName}`;
+    url += `/${encodeURIComponent(listName)}`;
   }
   if (municipio_id_sus) {
-    url += `/${municipio_id_sus}`;
+    url += `/${encodeURIComponent(municipio_id_sus)}`;
   }
   if (ine) {
-    url += `/${ine}`;
+    url += `/${encodeURIComponent(ine)}`;
   }
   return url;
 };
@@ -70,10 +70,9 @@ export const getCardsData = async ({
 
   return axios.request({
     method: 'get',
-    maxBodyLength: Number.POSITIVE_INFINITY,
     url: urlWithParams,
     headers: {
-      'Authorization': `Bearer ${token}`
+      'authorization': `Bearer ${token}`
     }
   });
 };

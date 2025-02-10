@@ -1,3 +1,3 @@
-import GraficoEvolucaoEquipe from './GraficoEvolucaoEquipe';
+import GraficoEvolucaoEquipe from "./GraficoEvolucaoEquipe";
 
 export { GraficoEvolucaoEquipe };

@@ -1,3 +1,3 @@
-import GraficoFichaProducao from './GraficoFichaProducao';
+import GraficoFichaProducao from "./GraficoFichaProducao";
 
 export { GraficoFichaProducao };

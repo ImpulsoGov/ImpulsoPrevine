@@ -18,10 +18,6 @@ const getParams = async(searchParams: URLSearchParams) => {
 }
 
 type Data = DataItem[];
-type RequestParams = {
-  list: string;
-  municipio_id_sus: string;
-}
 
 function searchBaseData({
   data,
@@ -36,9 +32,13 @@ function searchBaseData({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: RequestParams }
+  { params }: { params: 
+    Promise<{ 
+      municipio_id_sus: string 
+    }>} 
 ) {
   try {
+    const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
     const filters = await getParams(searchParams);
     const pagination = {
@@ -46,10 +46,10 @@ export async function GET(
       pageSize: searchParams.get('pagination[pageSize]')
     };
     const sorting = searchParams.get('sortBy');
-    const searchName = searchParams.get('search')
+    const searchName = searchParams.get('search');
     const baseData = searchBaseData({
       data: [...data],
-      municipio_id_sus: params.municipio_id_sus,
+      municipio_id_sus: municipio_id_sus,
     });
     const token = getToken(req.headers);
     const secret = getEncodedSecret();
@@ -62,7 +62,6 @@ export async function GET(
       // será substituido por consulta no banco de dados
       responseData = responseData.filter((item) => item.ine === payload.ine);
     }
-
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
     if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
     if(responseData.length === 0) return Response.json({
