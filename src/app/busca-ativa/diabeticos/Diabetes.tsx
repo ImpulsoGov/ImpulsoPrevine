@@ -3,14 +3,12 @@ import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
+import { Spinner } from "@impulsogov/design-system";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import type React from "react";
 import { useEffect, useState } from "react";
-import type { TabelaResponse } from "@/services/busca_ativa/Cito";
-const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
-
 const DiabetesAPS = dynamic(
 	() => import("./DiabetesAPS").then((mod) => mod.DiabetesAPS),
 	{
@@ -28,8 +26,8 @@ const DiabetesEquipe = dynamic(
 
 interface DiabetesProps {
 	session: Session | null;
-	tabelaDataAPS: TabelaResponse | null;
-	tabelaDataEquipe: TabelaResponse | null;
+	tabelaDataAPS: any;
+	tabelaDataEquipe: any;
 }
 
 export const Diabetes: React.FC<DiabetesProps> = ({
@@ -41,22 +39,22 @@ export const Diabetes: React.FC<DiabetesProps> = ({
 		open: false,
 	});
 	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
+	const [voltarGatilho, setVoltarGatilho] = useState(0);
 	const [tabelaData, setTabelaData] = useState([]);
 	const router = useRouter();
 	const path = usePathname();
-	const Voltar = () => window.history.go(-1);
+	const visao =
+		session?.user.perfis.includes(5) || session?.user.perfis.includes(8)
+			? "aps"
+			: "equipe";
 	useEffect(() => {
-		if (!session) return;
-		const visao =
-			session?.user.perfis.includes(5) || session?.user.perfis.includes(8)
-				? "aps"
-				: "equipe";
-				const newUrl = `${path}?aba=${""}&sub_aba=${""}&visao=${visao}`;
-				if (window.location.search !== new URL(newUrl, window.location.origin).search) {
-					router.replace(newUrl); // Usa replace ao invés de push para evitar loops
-				}
-	}, [path, session, router.replace]);
-	
+		router.push(`${path}?aba=${""}&sub_aba=${""}&visao=${visao}`);
+	}, [visao]);
+	const Voltar = () => window.history.go(voltarGatilho * -2);
+	useEffect(() => {
+		setVoltarGatilho(voltarGatilho + 1);
+	}, [path]);
+
 	if (!session) return <Spinner />;
 
 	if (session.user.perfis.includes(9))

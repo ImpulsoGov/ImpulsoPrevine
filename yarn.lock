@@ -2044,10 +2044,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@prisma/client@5.22.0":
-  version "5.22.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.22.0.tgz#da1ca9c133fbefe89e0da781c75e1c59da5f8802"
-  integrity sha512-M0SVXfyHnQREBKxCgyo7sffrKttwE6R8PMq330MIUF0pTwjUhLbW84pFDlf06B27XyCR++VtjugEnIHdr07SVA==
+"@prisma/client@5.21.1":
+  version "5.21.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.21.1.tgz#ad51ef220eb80173f882e859960d81e626b73898"
+  integrity sha512-3n+GgbAZYjaS/k0M03yQsQfR1APbr411r74foknnsGpmhNKBG49VuUkxIU6jORgvJPChoD4WC4PqoHImN1FP0w==
 
 "@prisma/debug@5.22.0":
   version "5.22.0"
@@ -2619,11 +2619,6 @@
   dependencies:
     "@typescript-eslint/types" "8.24.0"
     eslint-visitor-keys "^4.2.0"
-
-"@vercel/otel@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/@vercel/otel/-/otel-1.10.1.tgz#c9f46b549f2cb23ae27cb6f57b652c0996ec26e5"
-  integrity sha512-jZrHSAP03WVUfu1yid4AkYAZ/pwde/txVBSovk5kxQ99Bmb8sqMmQ9RJCSbWuV1EvbTimrVotAP0Devi/qHXgw==
 
 "@xstate/fsm@^1.4.0":
   version "1.6.5"
@@ -5547,7 +5542,7 @@ pretty-format@^3.8.0:
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
   integrity sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==
 
-prisma@^5.22.0:
+prisma@^5.21.1:
   version "5.22.0"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-5.22.0.tgz#1f6717ff487cdef5f5799cc1010459920e2e6197"
   integrity sha512-vtpjW3XuYCSnMsNVBjLMNkTj6OZbudcPPTPYHqX0CJfpcdWciI1dM8uHETwmDxxiqEwCIE6WvXucWUetJgfu/A==

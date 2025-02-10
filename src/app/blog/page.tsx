@@ -1,32 +1,17 @@
 import { getData } from "@services/cms";
 import { LISTA_ARTIGOS, POSTS } from "@utils/QUERYS";
-import dynamic from 'next/dynamic';
-
-const HomeBlog = dynamic(() => import('./HomeBlog').then(mod => mod.HomeBlog));
+import { HomeBlog } from "./HomeBlog";
 
 interface Artigo {
-  id: string;
-  tag: string;
-  titulo: string;
-  texto: {
-    raw: {
-      children: {
-        children: {
-          text: string;
-        }[];
-      }[];
-    };
-  };
-  autor: string;
-  avatar?: {
-    url: string;
-  };
-  createdAt: string;
-  capa?: {
-    url: string;
-  };
+	id: string;
+	tag: string;
+	titulo: string;
+	texto: string;
+	autor: string;
+	avatar: string;
+	data: string;
+	imagem: string;
 }
-
 interface ArtigosListaData {
 	listaArtigos: {
 		titulo: string;
@@ -38,7 +23,7 @@ interface ArtigosListaData {
 const HomeBlogPage = async () => {
 	const artigosData = (await getData(POSTS)) as { blogArtigos: Artigo[] };
 	const artigos = artigosData
-		? artigosData.blogArtigos.map((artigo: Artigo) => {
+		? artigosData.blogArtigos.map((artigo: any) => {
 				return {
 					id: artigo.id,
 					tag: artigo.tag,
@@ -52,8 +37,8 @@ const HomeBlogPage = async () => {
 			})
 		: [];
 	const artigoDestaque = artigos.sort(
-			(a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
-		)[0];
+		(a: any, b: any) => new Date(b.data).getTime() - new Date(a.data).getTime(),
+	)[0];
 	const artigosListaData = (await getData(LISTA_ARTIGOS)) as ArtigosListaData;
 	return (
 		<>

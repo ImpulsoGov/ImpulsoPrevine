@@ -3,29 +3,28 @@ import {
 	tabelaHipertensaoAPS,
 	tabelaHipertensaoEquipe,
 } from "@services/busca_ativa/Hipertensao";
-import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import { Hipertensao } from "./Hipertensao";
 
 const DiabetesPage = async () => {
 	const session = await getServerSession(nextAuthOptions);
-	let diabetesTabelaDataAps: TabelaResponse | null = null;
+	let DiabetesTabelaDataAPS;
 	if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
-		diabetesTabelaDataAps = await tabelaHipertensaoAPS(
+		DiabetesTabelaDataAPS = await tabelaHipertensaoAPS(
 			session?.user?.municipio_id_sus,
 			session?.user?.access_token,
 		);
-	let diabetesTabelaDataEquipe: TabelaResponse | null = null;
+	let DiabetesTabelaDataEquipe;
 	if (session?.user?.perfis.includes(9))
-		diabetesTabelaDataEquipe = await tabelaHipertensaoEquipe(
+		DiabetesTabelaDataEquipe = await tabelaHipertensaoEquipe(
 			session?.user?.municipio_id_sus,
 			session?.user?.equipe,
 			session?.user?.access_token,
 		);
 	return (
 		<Hipertensao
-			tabelaDataAPS={diabetesTabelaDataAps}
-			tabelaDataEquipe={diabetesTabelaDataEquipe}
+			tabelaDataAPS={DiabetesTabelaDataAPS}
+			tabelaDataEquipe={DiabetesTabelaDataEquipe}
 			session={session}
 		/>
 	);

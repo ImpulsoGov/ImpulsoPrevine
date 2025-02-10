@@ -1,13 +1,10 @@
 "use client";
+import { Spinner } from "@impulsogov/design-system";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import type React from "react";
 import { useEffect, useState } from "react";
-import type { TabelaResponse } from "@/services/busca_ativa/Cito";
-
-const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
-
 const GestantesAPS = dynamic(
 	() => import("./GestantesAPS").then((mod) => mod.GestantesAPS),
 	{
@@ -25,8 +22,8 @@ const GestantesEquipe = dynamic(
 
 interface GestantesProps {
 	session: Session | null;
-	tabelaDataAPS: TabelaResponse | null;
-	tabelaDataEquipe: TabelaResponse | null;
+	tabelaDataAPS: any;
+	tabelaDataEquipe: any;
 }
 
 export const Gestantes: React.FC<GestantesProps> = ({
@@ -37,21 +34,26 @@ export const Gestantes: React.FC<GestantesProps> = ({
 	const [showSnackBar, setShowSnackBar] = useState({
 		open: false,
 	});
+	const [voltarGatilho, setVoltarGatilho] = useState(0);
 	const [tabelaData, setTabelaData] = useState([]);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
 	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const router = useRouter();
+	const path = usePathname();
 	const visao =
 		session?.user.perfis.includes(5) || session?.user.perfis.includes(8)
 			? "aps"
 			: "equipe";
 	useEffect(() => {
 		router.push(
-			`?aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}&visao=${visao}`,
+			`${path}?aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}&visao=${visao}`,
 		);
-	}, [visao, activeTabIndex, activeTitleTabIndex, router]);
-	const Voltar = () => window.history.go(-1);
+	}, [visao, activeTabIndex, activeTitleTabIndex]);
+	const Voltar = () => window.history.go(voltarGatilho * -2);
+	useEffect(() => {
+		setVoltarGatilho(voltarGatilho + 1);
+	}, [path]);
 	if (!session) return <Spinner />;
 
 	if (session.user.perfis.includes(9))

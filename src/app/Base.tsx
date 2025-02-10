@@ -5,6 +5,9 @@ import type React from "react";
 import { Suspense, useEffect, useState } from "react";
 
 import Analytics from "@/componentes/Analytics/Analytics";
+import { FooterMounted } from "@componentes/mounted/base/FooterMonted";
+import { NavBarMounted } from "@componentes/mounted/base/NavBarMounted";
+import { Spinner } from "@impulsogov/design-system";
 
 import { hotjarVersion } from "@constants/hotjarVersion";
 import Hotjar from "@hotjar/browser";
@@ -23,12 +26,6 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { userSetterSentry } from "@/hooks/userSetterSentry";
 
-import dynamic from 'next/dynamic';
-
-const FooterMounted = dynamic(() => import('@componentes/mounted/base/FooterMonted').then(mod => mod.FooterMounted));
-const NavBarMounted = dynamic(() => import('@componentes/mounted/base/NavBarMounted').then(mod => mod.NavBarMounted));
-const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
-
 const tagManagerArgs = {
 	gtmId: process.env.GTM_ID || "default-gtm-id",
 };
@@ -45,10 +42,9 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 	const [cidade, setCidade] = useState("João Pessoa - PB");
 	const [isLoading] = useState(true);
 	const [active, setMode] = useState(true);
-	if (process.env.ENV !== "development") {
+	if (process.env.ENV !== "development")
 		Hotjar.init(Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID), hotjarVersion);
-		mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
-	}
+	mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
 	useEffect(() => {
 		if (typeof window !== "undefined") window.mixpanel = mixpanel;
 	}, []);
@@ -58,7 +54,6 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 	useEffect(() => {
 		getLayoutDataHook(setRes);
 	}, []);
-
 
 	return (
 		<>

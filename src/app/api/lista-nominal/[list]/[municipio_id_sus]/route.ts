@@ -1,13 +1,11 @@
-import type { NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server';
 import data from '../../data.json';
-import { sortData, validateSortOrder } from '../../utils/sorting';
-import type { SortOrder } from '../../utils/sorting';
+import { sortData, SortOrder, validateSortOrder } from '../../utils/sorting';
 import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
-import { AuthenticationError, decodeToken, getToken, getEncodedSecret } from '@/utils/token';
-import type { JWTToken } from '@/utils/token';
+import { AuthenticationError, decodeToken, getToken, JWTToken, getEncodedSecret } from '@/utils/token';
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
