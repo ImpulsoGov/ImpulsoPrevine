@@ -190,7 +190,7 @@ export const Home = () => {
 									titulo="PARCEIRO DESDE 2023"
 									indicador="Jandaíra/BA"
 									descricao="“Depois que começa a usar não vai querer parar mais. É maravilhoso porque a gente consegue seguir no trabalho da forma como tem que seguir porque a gente já tem tudo pronto. O Impulso Previne tá dando pra gente tudo mastigado... Coisa que a gente poderia sentar pra digitar, pra escrever, e já vem pra gente prontinho.”
-                      Luana de Jesus, Coordenadora de Equipe"
+Luana de Jesus, Coordenadora de Equipe"
 								/>,
 								<CardIP
 									key="card_6"
