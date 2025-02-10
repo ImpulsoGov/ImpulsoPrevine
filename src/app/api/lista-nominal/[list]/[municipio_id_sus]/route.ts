@@ -1,11 +1,13 @@
-import { type NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 import data from '../../data.json';
-import { sortData, SortOrder, validateSortOrder } from '../../utils/sorting';
+import { sortData, validateSortOrder } from '../../utils/sorting';
+import type { SortOrder } from '../../utils/sorting';
 import { paginateData, validatePaginationParams } from '../../utils/pagination';
 import { BadRequestError } from '../../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
-import { AuthenticationError, decodeToken, getToken, JWTToken, getEncodedSecret } from '@/utils/token';
+import { AuthenticationError, decodeToken, getToken, getEncodedSecret } from '@/utils/token';
+import type { JWTToken } from '@/utils/token';
 
 const getParams = async(searchParams: URLSearchParams) => {
     const filters: Filters = {};
@@ -18,10 +20,6 @@ const getParams = async(searchParams: URLSearchParams) => {
 }
 
 type Data = DataItem[];
-type RequestParams = {
-  list: string;
-  municipio_id_sus: string;
-}
 
 function searchBaseData({
   data,
@@ -36,9 +34,14 @@ function searchBaseData({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: RequestParams }
-) {
+  { params }: { 
+    params: Promise<{      
+      municipio_id_sus: string;
+      list: string;
+      type: string
+  }>}) {
   try {
+    const { type, list, municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
     const filters = await getParams(searchParams);
     const pagination = {
@@ -49,7 +52,7 @@ export async function GET(
     const searchName = searchParams.get('search')
     const baseData = searchBaseData({
       data: [...data],
-      municipio_id_sus: params.municipio_id_sus,
+      municipio_id_sus: municipio_id_sus,
     });
     const token = getToken(req.headers);
     const secret = getEncodedSecret();

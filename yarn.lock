@@ -1528,10 +1528,10 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@impulsogov/design-system@^1.0.312", "@impulsogov/design-system@^1.0.318":
-  version "1.0.336"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.336.tgz#b016caf2b1341d7e8425ea478a93256f822ad71f"
-  integrity sha512-6LSvd4+tRZcky5JWOAZS6oOwRx2u/oiZhazgS5Wt2DghXGmjf5d8Rwu/ipxRGmFTq6q7UwKW+PXfjEIZi2kr6A==
+"@impulsogov/design-system@1.0.312":
+  version "1.0.312"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.312.tgz#30adf1cfce056abc44fad80dd406e9ec61e4b451"
+  integrity sha512-Hyu9cKh2hAm60CXIE0Q5TDFVAi/e7lQWUp7IFHKgRHwt737L8z6mhHVH8WExhWxTEXppjeHs0t1ItzE+S27sXQ==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
@@ -1540,7 +1540,6 @@
     "@babel/preset-typescript" "^7.26.0"
     "@emotion/react" "^11.10.8"
     "@emotion/styled" "^11.10.8"
-    "@impulsogov/design-system" "^1.0.318"
     "@mdx-js/react" "^2.3.0"
     "@mui/material" "^5.12.3"
     "@mui/x-data-grid" "^6.6.0"
