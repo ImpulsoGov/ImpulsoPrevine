@@ -37,7 +37,6 @@ const TituloSmallTexto = dynamic<{
 	botao: { label: string; url: string };
 	imagem: { posicao: boolean | null; url: string; width?: string };
 }>(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto));
-
 interface SliderData {
 	titulo: string;
 	button: string;

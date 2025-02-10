@@ -5,6 +5,7 @@ import type React from "react";
 import { Suspense, useEffect, useState } from "react";
 
 import Analytics from "@/componentes/Analytics/Analytics";
+
 import { hotjarVersion } from "@constants/hotjarVersion";
 import Hotjar from "@hotjar/browser";
 import mixpanel from "mixpanel-browser";
@@ -88,9 +89,9 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 							paddingTop:
 								width > 1000
 									? "76px"
-									: path === "/"
+									: path == "/"
 										? "0px"
-										: path === "/apoio"
+										: path == "/apoio"
 											? "0px"
 											: "30px",
 							height: "100%",

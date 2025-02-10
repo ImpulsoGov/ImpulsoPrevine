@@ -38,10 +38,10 @@ export async function GET(
     params: Promise<{      
       municipio_id_sus: string;
       list: string;
-      type: string
-  }>}) {
+  }>}
+) {
   try {
-    const { type, list, municipio_id_sus } = await params;
+    const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
     const filters = await getParams(searchParams);
     const pagination = {
