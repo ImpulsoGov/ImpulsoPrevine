@@ -41,7 +41,6 @@ export const ListaNominal = ({
   props,
 }: ListaNominalProps) => {
   const childrenComponents = subTabChildrenSelector(props, SubTabChildrenID, SubTabChildren);
-
   return (
     <PanelSelectorWithCards 
       {...props} 

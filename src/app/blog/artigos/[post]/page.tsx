@@ -1,8 +1,6 @@
 import { getData } from "@/services/cms";
 import { POST, POSTID } from "@/utils/QUERYS";
-import dynamic from 'next/dynamic';
-
-const BlogContent = dynamic(() => import('./BlogContent').then(mod => mod.default));
+import BlogContent from "./BlogContent";
 
 interface BlogPost {
 	id: string;
