@@ -119,7 +119,7 @@ export const getListData = async ({
     maxBodyLength: Number.POSITIVE_INFINITY,
     url: urlWithParams,
     headers: {
-        'Authorization': `Bearer ${token}`
+        'authorization': `Bearer ${token}`
     }
   });
 };

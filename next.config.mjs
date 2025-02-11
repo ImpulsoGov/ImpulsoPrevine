@@ -32,6 +32,16 @@ const nextConfig = {
 			},
 		},
 	},
+	images: {
+		dangerouslyAllowSVG: true,
+		remotePatterns: [
+		  {
+			protocol: 'https',
+			hostname: 'media.graphassets.com',
+			pathname: '/**',
+		  },
+		],
+	  },
 };
 
 export default isDev
