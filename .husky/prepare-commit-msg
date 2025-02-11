@@ -12,4 +12,10 @@ if [ -n "$GIT_SEQUENCE_EDITOR" ]; then
   exit 0
 fi
 
+GIT_DIR=$(git rev-parse --git-dir)
+if [ -d "$GIT_DIR/rebase-merge" ] || [ -d "$GIT_DIR/rebase-apply" ]; then
+  echo "Skipping prepare-commit-msg hook due to active rebase."
+  exit 0
+fi
+
 exec < /dev/tty && yarn commit --hook || true

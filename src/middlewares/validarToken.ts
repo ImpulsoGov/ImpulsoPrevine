@@ -10,7 +10,12 @@ interface ExtendedNextRequest extends NextRequest {
 export const validarTokenMiddleware = async (req : ExtendedNextRequest) => {
     try {
         const secret = getEncodedSecret();
-        if(!secret) return Response.json({ message: 'Erro ao verificar token.', detail: 'Secret não fornecido.' }), { status: 500 };
+        if (!secret) {
+          return Response.json(
+            { message: 'Erro ao verificar token.', detail: 'Secret não fornecido.' },
+            { status: 500 }
+          );
+        }
         const token = getToken(req.headers);
         const decodedToken = await decodeToken(token, secret);
         // const decodedToken = await jwtVerify(token, secret); // Verifica assinatura,validade e decodifica o token

@@ -1,14 +1,17 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
-import { Session } from 'next-auth';
+import type { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
-import { DataItem, filterData } from '@/utils/FilterData';
-import { renderDateTagCell, renderStatusTagCell, TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
-import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import { filterData } from '@/utils/FilterData';
+import type { DataItem } from '@/utils/FilterData';
+import { renderDateTagCell, renderStatusTagCell } from '@/helpers/lista-nominal/renderCell';
+import type { TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
+import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
 import { getListData } from '@/services/lista-nominal/ListaNominal';
-import { CardDetailsMap, getCardsProps } from '@/helpers/cardsList';
+import type { CardDetailsMap } from '@/helpers/cardsList';
+import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
@@ -39,6 +42,8 @@ const filters = [
             { value: 'ACS 11', label: 'ACS 11' },
             { value: 'ACS 12', label: 'ACS 12' },
             { value: 'ACS 13', label: 'ACS 13' },
+            { value: 'ACS 14', label: 'ACS 14' },
+            { value: 'ACS 15', label: 'ACS 15' },
         ],
         label: 'ACS Responsável',
         id : 'acs_nome_cadastro',
@@ -138,10 +143,9 @@ export const columns: GridColDef[] = [
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
-        },
+        }
     },
     {
-        field: 'dt_afericao_pressao_mais_recente',
         headerName: 'Data de aferição de PA mais recente',
         width: 200 ,
         headerAlign: 'left',
