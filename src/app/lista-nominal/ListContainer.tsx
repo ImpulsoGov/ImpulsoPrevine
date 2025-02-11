@@ -337,7 +337,7 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 100px 0px"}}>
+    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
         <p style={{fontSize: "26px", margin: "75px 0 15px 0", lineHeight: "130%"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <div style={{marginTop: "15px"}}>
@@ -348,8 +348,10 @@ export const ListContainer = ({
                 handleSearchClick={handleSearchClick}
             />
         </div>
-        <hr style={{border: "1px solid #A6B5BE", margin: "0"}}/>
+        <hr style={{border: "1px solid #c6cfd4", margin: "0"}}/>
+        <div style={{borderTop: "1px solid #C6CFD4"}}>
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
+        </div>
         <Table
             columns={columns}
             data={tableData.data}
