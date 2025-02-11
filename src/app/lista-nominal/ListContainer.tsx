@@ -348,10 +348,8 @@ export const ListContainer = ({
                 handleSearchClick={handleSearchClick}
             />
         </div>
-        <hr style={{border: "1px solid #c6cfd4", margin: "0"}}/>
-        <div style={{borderTop: "1px solid #C6CFD4"}}>
+        <hr style={{border: "1px solid #C6CFD4", margin: "0"}}/>
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
-        </div>
         <Table
             columns={columns}
             data={tableData.data}
