@@ -85,64 +85,69 @@ const ListaNominalPage = async() => {
                 title: 'Gráficos',
                 tabID: 'chart',
                 subTabs: [
-                { 
-                    icon: {
-                    active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
-                    inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr'
+                    { 
+                        icon: {
+                        active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
+                        inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr',
+                        inactiveHover: 'https://media.graphassets.com/QyT9jkJRkiq73uwGHPBg'
+                        }, 
+                        text: 'Sub-Aba 1',
+                        subTabID: 'ChartSubTabID1',
+                        child: <div>Sub-Aba</div>,
+                        title: 'Gráfico 1', 
+                    },
+                    { 
+                        icon: {
+                        active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
+                        inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX',
+                        inactiveHover: 'https://media.graphassets.com/nFtUIgG3TDSIBD0Mzsq4'
                     }, 
-                    text: 'Sub-Aba 1',
-                    subTabID: 'ChartSubTabID1',
-                    child: <div>Sub-Aba</div>,
-                    title: 'Gráfico 1', 
+                        text: 'Sub-Aba 2',
+                        subTabID: 'ChartSubTabID2',
+                        child: <div>Sub-Aba</div>,
+                        title: 'Gráfico 2',
+                    },
+                    ],
                 },
-                { 
-                    icon: {
-                    active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
-                    inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
-                    }, 
-                    text: 'Sub-Aba 2',
-                    subTabID: 'ChartSubTabID2',
-                    child: <div>Sub-Aba</div>,
-                    title: 'Gráfico 2',
-                },
-                ],
-            },
             lists: {
                 title: 'Listas',
                 tabID: 'list',
                 subTabs: [
-                { 
-                    icon: {
-                    active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
-                    inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr'
+                    { 
+                        icon: {
+                        active: 'https://media.graphassets.com/dVxSjSUyROm9A2YkiEMj',
+                        inactive: 'https://media.graphassets.com/jPDKYUhTXaEkGHFpjpfr',
+                        inactiveHover: 'https://media.graphassets.com/QyT9jkJRkiq73uwGHPBg'
                     }, 
-                    text: 'Lista 1',
-                    subTabID: 'subTabID1',
-                    child: <div>Sub-Aba</div>,
-                    title: 'Lista 1',
-                },
-                { 
-                    icon: {
-                    active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
-                    inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
+                        text: 'Lista 1',
+                        subTabID: 'subTabID1',
+                        child: <div>Sub-Aba</div>,
+                        title: 'Lista 1',
+                    },
+                    { 
+                        icon: {
+                        active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
+                        inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX',
+                        inactiveHover: 'https://media.graphassets.com/nFtUIgG3TDSIBD0Mzsq4'
                     }, 
-                    text: 'Lista 2',
-                    subTabID: 'subTabID2',
-                    child: <div>Sub-Aba</div>,
-                    title: 'Lista 2',
-                },
-                { 
-                    icon: {
-                    active: 'https://media.graphassets.com/EQSROnFQRm20pX1CVbT2',
-                    inactive: 'https://media.graphassets.com/8sikQD27QLO3IkoxkQ9D'
+                        text: 'Lista 2',
+                        subTabID: 'subTabID2',
+                        child: <div>Sub-Aba</div>,
+                        title: 'Lista 2',
+                    },
+                    { 
+                        icon: {
+                        active: 'https://media.graphassets.com/EQSROnFQRm20pX1CVbT2',
+                        inactive: 'https://media.graphassets.com/8sikQD27QLO3IkoxkQ9D',
+                        inactiveHover: 'https://media.graphassets.com/M0tdvdQLaVoWOcCjjWGQ'
                     }, 
-                    text: 'Lista 3',
-                    subTabID: 'subTabID3',
-                    child: <div>Sub-Aba</div>,
-                    title: 'Lista 3',
-                },
-                ],
-            }
+                        text: 'Lista 3',
+                        subTabID: 'subTabID3',
+                        child: <div>Sub-Aba</div>,
+                        title: 'Lista 3',
+                    },
+                    ],
+                }
         },
         inicialContent: {
             tabID: "charts",
