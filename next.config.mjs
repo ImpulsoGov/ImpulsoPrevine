@@ -1,7 +1,7 @@
 import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
-const isDev = process.env.ENV === "development";
+const isDev = process.env.NODE_ENV === "dev";
 
 const nextConfig = {
 	redirects: async () => {
@@ -32,6 +32,16 @@ const nextConfig = {
 			},
 		},
 	},
+	images: {
+		dangerouslyAllowSVG: true,
+		remotePatterns: [
+		  {
+			protocol: 'https',
+			hostname: 'media.graphassets.com',
+			pathname: '/**',
+		  },
+		],
+	  },
 };
 
 export default isDev

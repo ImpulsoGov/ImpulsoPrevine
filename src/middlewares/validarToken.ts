@@ -1,5 +1,4 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken } from "@/utils/token";
 import { captureException } from "@sentry/nextjs";
 

@@ -66,17 +66,17 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						{
 							descricao:
 								"Total de pessoas com consulta e aferição de PA em dia",
-							valor: tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-								return item.prazo_proxima_consulta === "Em dia" &&
-									item.prazo_proxima_afericao_pa === "Em dia"
+							valor: tabelaDataAPS.reduce((acumulador: any, item: any) => {
+								return item.prazo_proxima_consulta == "Em dia" &&
+									item.prazo_proxima_afericao_pa == "Em dia"
 									? acumulador + 1
 									: acumulador;
 							}, 0),
 						},
 						{
 							descricao: "Total de pessoas com diagnóstico autorreferido",
-							valor: tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-								return item.identificacao_condicao_hipertensao ===
+							valor: tabelaDataAPS.reduce((acumulador: any, item: any) => {
+								return item.identificacao_condicao_hipertensao ==
 									"Autorreferida"
 									? acumulador + 1
 									: acumulador;
@@ -84,8 +84,8 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						},
 						{
 							descricao: "Total de pessoas com diagnóstico clínico",
-							valor: tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-								return item.identificacao_condicao_hipertensao ===
+							valor: tabelaDataAPS.reduce((acumulador: any, item: any) => {
+								return item.identificacao_condicao_hipertensao ==
 									"Diagnóstico Clínico"
 									? acumulador + 1
 									: acumulador;
@@ -120,10 +120,10 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						series: [
 							{
 								data: Object.entries(
-									tabelaDataAPS.reduce((acumulador: { [x: string]: number; }, item: Record<string,string>) => {
+									tabelaDataAPS.reduce((acumulador: any, item: any) => {
 										if (
-											item.prazo_proxima_consulta === "Em dia" &&
-											item.prazo_proxima_afericao_pa === "Em dia"
+											item.prazo_proxima_consulta == "Em dia" &&
+											item.prazo_proxima_afericao_pa == "Em dia"
 										)
 											acumulador[item.equipe_nome_cadastro] =
 												(acumulador[item.equipe_nome_cadastro] || 0) + 1;
@@ -136,10 +136,10 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 							},
 							{
 								data: Object.entries(
-									tabelaDataAPS.reduce((acumulador: { [x: string]: number; }, item: Record<string,string>) => {
+									tabelaDataAPS.reduce((acumulador: any, item: any) => {
 										if (
-											item.prazo_proxima_consulta !== "Em dia" &&
-											item.prazo_proxima_afericao_pa === "Em dia"
+											item.prazo_proxima_consulta == "Em dia" &&
+											item.prazo_proxima_afericao_pa != "Em dia"
 										)
 											acumulador[item.equipe_nome_cadastro] =
 												(acumulador[item.equipe_nome_cadastro] || 0) + 1;
@@ -152,10 +152,10 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 							},
 							{
 								data: Object.entries(
-									tabelaDataAPS.reduce((acumulador: { [x: string]: number; }, item: Record<string,string>) => {
+									tabelaDataAPS.reduce((acumulador: any, item: any) => {
 										if (
-											item.prazo_proxima_afericao_pa !== "Em dia" &&
-											item.prazo_proxima_consulta === "Em dia"
+											item.prazo_proxima_afericao_pa == "Em dia" &&
+											item.prazo_proxima_consulta != "Em dia"
 										)
 											acumulador[item.equipe_nome_cadastro] =
 												(acumulador[item.equipe_nome_cadastro] || 0) + 1;
@@ -168,10 +168,10 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 							},
 							{
 								data: Object.entries(
-									tabelaDataAPS.reduce((acumulador: { [x: string]: number; }, item: Record<string,string>) => {
+									tabelaDataAPS.reduce((acumulador: any, item: any) => {
 										if (
-											item.prazo_proxima_consulta !== "Em dia" &&
-											item.prazo_proxima_afericao_pa !== "Em dia"
+											item.prazo_proxima_consulta != "Em dia" &&
+											item.prazo_proxima_afericao_pa != "Em dia"
 										)
 											acumulador[item.equipe_nome_cadastro] =
 												(acumulador[item.equipe_nome_cadastro] || 0) + 1;
@@ -189,7 +189,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						xAxis: {
 							data: Array.from(
 								new Set(
-									tabelaDataAPS.map((item: Record<string,string>) => item.equipe_nome_cadastro),
+									tabelaDataAPS.map((item: any) => item.equipe_nome_cadastro),
 								),
 							),
 							type: "category",
@@ -200,7 +200,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 						yAxis: {
 							type: "value",
 							axisLabel: {
-								formatter: (value: number) => value.toLocaleString("pt-BR"),
+								formatter: (value: any) => value.toLocaleString("pt-BR"),
 							},
 						},
 					}}
@@ -217,9 +217,9 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 									{
 										name: "Consulta e Aferição de PA em dia",
 										value: (
-											(tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-												return item.prazo_proxima_consulta === "Em dia" &&
-													item.prazo_proxima_afericao_pa === "Em dia"
+											(tabelaDataAPS.reduce((acumulador: any, item: any) => {
+												return item.prazo_proxima_consulta == "Em dia" &&
+													item.prazo_proxima_afericao_pa == "Em dia"
 													? acumulador + 1
 													: acumulador;
 											}, 0) *
@@ -230,9 +230,9 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 									{
 										name: "Apenas a consulta a fazer",
 										value: (
-											(tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-												return item.prazo_proxima_consulta !== "Em dia" &&
-													item.prazo_proxima_afericao_pa === "Em dia"
+											(tabelaDataAPS.reduce((acumulador: any, item: any) => {
+												return item.prazo_proxima_consulta == "Em dia" &&
+													item.prazo_proxima_afericao_pa != "Em dia"
 													? acumulador + 1
 													: acumulador;
 											}, 0) *
@@ -243,9 +243,9 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 									{
 										name: "Apenas Aferição de PA a fazer",
 										value: (
-											(tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-												return item.prazo_proxima_afericao_pa !== "Em dia" &&
-													item.prazo_proxima_consulta === "Em dia"
+											(tabelaDataAPS.reduce((acumulador: any, item: any) => {
+												return item.prazo_proxima_afericao_pa == "Em dia" &&
+													item.prazo_proxima_consulta != "Em dia"
 													? acumulador + 1
 													: acumulador;
 											}, 0) *
@@ -256,9 +256,9 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
 									{
 										name: "Os dois a fazer",
 										value: (
-											(tabelaDataAPS.reduce((acumulador: number, item: Record<string,string>) => {
-												return item.prazo_proxima_consulta !== "Em dia" &&
-													item.prazo_proxima_afericao_pa !== "Em dia"
+											(tabelaDataAPS.reduce((acumulador: any, item: any) => {
+												return item.prazo_proxima_consulta != "Em dia" &&
+													item.prazo_proxima_afericao_pa != "Em dia"
 													? acumulador + 1
 													: acumulador;
 											}, 0) *

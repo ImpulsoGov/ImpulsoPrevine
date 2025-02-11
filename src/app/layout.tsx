@@ -1,8 +1,6 @@
 import "./globals.css";
-import dynamic from 'next/dynamic';
+import { Base } from "./Base";
 import { SessionWrapperLayout } from "./SessionWrapperLayout";
-
-const Base = dynamic(() => import('./Base').then(mod => mod.Base));
 
 export default function RootLayout({
 	children,
