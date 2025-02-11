@@ -1,12 +1,14 @@
-import { getServerSession, Session } from "next-auth";
+import { getServerSession } from "next-auth";
+import type { Session } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
 import type { getListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from './ListaNominal';
 import { getCardsData } from "@/services/lista-nominal/cards";
-import { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
+import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { baseURL } from '@/utils/baseURL';
-import { CardDetailsMap, getCardsProps } from "@/helpers/cardsList";
+import type { CardDetailsMap } from "@/helpers/cardsList";
+import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 
 const ListaNominalPage = async() => {

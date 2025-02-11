@@ -39,8 +39,8 @@ export async function GET(
     params: Promise<{      
       municipio_id_sus: string;
       list: string;
-      type: string
-  }>}) {
+  }>}
+) {
   try {
     const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;

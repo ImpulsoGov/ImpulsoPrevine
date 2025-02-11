@@ -197,8 +197,7 @@ export const Home = () => {
 									titulo="PARCEIRO DESDE 2023"
 									indicador="Jandaíra/BA"
 									descricao="“Eu trabalho com meu território, mas tem muitos pacientes que não vem pra unidade e são cadastrados como hipertensos e diabéticos só que eu não sei se são mesmo. Então com a lista eu consigo ir fazer a busca e capturar esse paciente pra gente aqui.”
-                      Ananda Larissa, Coordenadora de Equipe"
-								/>,
+                      Ananda Larissa, Coordenadora de Equipe"/>,
 							]}
 						/>
 						<div id="espaco150"> </div>
