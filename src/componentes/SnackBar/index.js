@@ -1,3 +1,3 @@
-import SnackBar from './SnackBar';
+import SnackBar from "./SnackBar";
 
 export { SnackBar };

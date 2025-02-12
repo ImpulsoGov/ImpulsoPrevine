@@ -1,3 +1,3 @@
-import GraficoValorConsolidado from './GraficoValorConsolidado';
+import GraficoValorConsolidado from "./GraficoValorConsolidado";
 
 export { GraficoValorConsolidado };

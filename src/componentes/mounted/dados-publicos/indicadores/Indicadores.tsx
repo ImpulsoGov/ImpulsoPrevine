@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Grid12Col, TituloSmallTexto } from "@impulsogov/design-system"
 import TabelaIndicadores from "@componentes/mounted/dados-publicos/indicadores/TabelaIndicadores/TabelaIndicadores"
 import { AcessoindicadoresDesempenho } from '@services/indicadoresDesempenho'
@@ -101,7 +101,7 @@ export const Indicadores : React.FC<IndicadoresType>  = ({
       <TabelaIndicadores
         TabIndicadores={indicadoresData}
       />
-      <div style={{ paddingBottom: '105px' }}></div>
+      <div style={{ paddingBottom: '105px' }}> </div>
     </div>
   )
 }
