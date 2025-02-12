@@ -41,7 +41,7 @@ export const TabelaEquipeSemExame = ({
     setShowSnackBar,
     setFiltros_aplicados,
 })=>{
-    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario != 12)
+    const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(item=>item.id_status_usuario !== 12)
     return tabelaDataEquipe ? 
     <>
         <PainelBuscaAtiva
