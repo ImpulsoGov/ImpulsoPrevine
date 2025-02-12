@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
@@ -363,5 +363,17 @@ export const ListContainer = ({
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
         />
+        <ModalAlertControlled
+            display={showModalImpressao}
+            close={fecharModalImpressao}
+        >
+            <Components.PersonalizacaoImpressao
+                labels={labelsModalImpressao}
+                handleButtonClick={personalizarImpressao}
+                handleClose={fecharModalImpressao}
+                valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
+            />
+        </ModalAlertControlled>
+
     </div>;
 }
