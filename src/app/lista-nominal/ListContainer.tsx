@@ -337,10 +337,10 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "25px 1px 100px 1px"}}>
-        <p style={{fontSize: "26px", marginTop: "75px"}}>{title}</p>
+    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
+        <p style={{fontSize: "26px", margin: "75px 0 15px 0", lineHeight: "130%"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
-        <div style={{marginTop: "25px"}}>
+        <div style={{marginTop: "15px"}}>
             <ToolBarMounted
                 updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
                 print={() => {}}
@@ -348,7 +348,7 @@ export const ListContainer = ({
                 handleSearchClick={handleSearchClick}
             />
         </div>
-        <hr style={{border: "1px solid #A6B5BE", margin: "0"}}/>
+        <hr style={{border: "1px solid #C6CFD4", margin: "0"}}/>
         <FilterBar filters={filtersSelect} clearButton={clearButton}/>
         <Table
             columns={columns}
