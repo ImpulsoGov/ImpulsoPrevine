@@ -73,12 +73,6 @@ export async function GET(
       totalRows: 0,
     }, { status: 200 });
 
-    if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
-    if(responseData.length === 0) return Response.json({
-      data: responseData,
-      totalRows: 0,
-    }, { status: 200 });
-
     if (sorting) {
       const sortingOptions = sorting.split(',');
 
