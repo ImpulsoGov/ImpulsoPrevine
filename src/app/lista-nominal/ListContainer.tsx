@@ -270,7 +270,6 @@ export const ListContainer = ({
                 setIsLoading(false);
             };
             getListDataResponse();
-            console.log(search)
         }
     }, [user, value, list, pagination, sorting, search]);
 
