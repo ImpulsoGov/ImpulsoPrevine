@@ -94,7 +94,7 @@ export const TabelaAPSComExame = ({
             })}
             trackObject={mixpanel}
             painel="aps"
-            lista="<span>CITOPATOLÓGICO<span/><span style='display: block;'>PESSOAS EM DIA COM EXAME<span/>"
+            lista="<span>CITOPATOLÓGICO</span><span style='display: block;'>PESSOAS EM DIA COM EXAME</span>"
             divisorVertical={[1,4]}
             largura_colunas_impressao={{
                 paisagem: larguraColunasCitoPaisagemAPS,
