@@ -265,7 +265,10 @@ export const ListContainer = ({
                     setResponse(res.data);
                     setErrorMessage('');
                 } catch (error) {
+                } catch (error) {
+                    captureException(error);
                     setErrorMessage('Erro ao buscar dados, entre em contato com o suporte.');
+                }
                 }
                 setIsLoading(false);
             };
