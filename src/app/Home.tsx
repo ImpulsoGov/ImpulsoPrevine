@@ -39,12 +39,10 @@ const ImagensFull2 = dynamic<{
 const Margem = dynamic<{
   componente: JSX.Element;
 }>(() => import('@impulsogov/design-system').then(mod => mod.Margem));
-const BannerWebinarMounted = dynamic(() => import('@componentes/mounted/banner/BannerWebinar').then(mod => mod.BannerWebinarMounted));
 
 export const Home = () => {
 	return (
 		<div style={{ backgroundColor: "#E6ECF0" }}>
-			<BannerWebinarMounted />
 			<Margem
 				componente={
 					<>
