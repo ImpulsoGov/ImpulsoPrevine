@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
@@ -15,6 +15,10 @@ import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
+import { VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/helpers/lista-nominal/impressao/handlePrint';
+import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/labelsModalImpressao';
+import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
+import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -101,7 +105,8 @@ const IconDetailsMap: TagIconDetailsMap = {
         alt: 'Ícone de uma ampulheta',
     },
 };
-
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
+const propPrintGrouping = "acs_nome_cadastro" 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns: GridColDef[] = [
     {
@@ -180,14 +185,14 @@ export const columns: GridColDef[] = [
     },
 ] as GridColDef[];
 
-export type optionsType = { 
+export type OptionsType = { 
     value: string; 
     label: string 
 }
 interface Filter {
     id: string;
     label: string;
-    options: optionsType[];
+    options: OptionsType[];
     isMultiSelect: boolean;
     width: string;
 }
@@ -201,6 +206,11 @@ interface ListContainerProps {
     subTabID: string;
     title: string;
 }
+export type PrintOptions = {
+    agrupamento: string,
+    separacaoGrupoPorFolha: boolean,
+    ordenacao: boolean,
+}
 
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
@@ -211,6 +221,8 @@ export const ListContainer = ({
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
+    const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
+    const closePrintModal = () => setPrintModalVisibility(false);
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
@@ -245,6 +257,7 @@ export const ListContainer = ({
     }, [session?.user]);
 
     useEffect(() => {
+        //modularizar essa função
         if (user) {
             const getListDataResponse = async () => {
                 setIsLoading(true);
@@ -282,6 +295,7 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
+        //modularizar essa função
         const getCardsDataResponse = async () => {
             if (!user) return;
 
@@ -312,6 +326,43 @@ export const ListContainer = ({
             ? setSorting([...newSortModel])
             : setSorting([...DEFAULT_SORTING]);
     }
+    const handleCostumizePrint = (options: PrintOptions) =>{ 
+        const props: PrintTableProps = {
+            data: tableData.data,
+            columns: columns,
+            list: list,
+            appliedFilters: value,
+            latestProductionDate: String(tableData.data[0]?.atualizacao_data),
+            fontFamily: "sans-serif",
+            dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
+            pageSplit: options.separacaoGrupoPorFolha, 
+            printColumnsWidth: {
+                landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+                portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+            },
+            verticalDivider:[2,4,6], 
+            propPrintGrouping: propPrintGrouping
+        }
+        customizePrint(options, closePrintModal, props);
+}
+    const props: PrintTableProps = {
+        data: tableData.data,
+        columns: columns,
+        list: list,
+        appliedFilters: value,
+        latestProductionDate: String(tableData.data[0]?.atualizacao_data),
+        fontFamily: "sans-serif",
+        dataSplit:false, 
+        pageSplit:false, 
+        printColumnsWidth: {
+            landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+            portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+        },
+        verticalDivider:[2,4,6], 
+        propPrintGrouping: propPrintGrouping
+    }
+    const handlePrintClick = () => 
+        handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
     if (!user) return <p>Usuário não autenticado</p>;
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
@@ -343,7 +394,7 @@ export const ListContainer = ({
         <div style={{marginTop: "15px"}}>
             <ToolBarMounted
                 updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
-                print={() => {}}
+                print={handlePrintClick}
                 inputProps={{value: inputValue, onChange: setInputValue}}
                 handleSearchClick={handleSearchClick}
             />
@@ -364,13 +415,13 @@ export const ListContainer = ({
             isLoading={isLoading}
         />
         <ModalAlertControlled
-            display={showModalImpressao}
-            close={fecharModalImpressao}
+            display={isPrintModalVisible}
+            close={closePrintModal}
         >
-            <Components.PersonalizacaoImpressao
-                labels={labelsModalImpressao}
-                handleButtonClick={personalizarImpressao}
-                handleClose={fecharModalImpressao}
+            <PersonalizacaoImpressao
+                labels={user.perfis.includes(9) ? labelsModalImpressaoEquipe : labelsModalImpressaoAPS}
+                handleButtonClick={handleCostumizePrint}
+                handleClose={closePrintModal}
                 valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
             />
         </ModalAlertControlled>

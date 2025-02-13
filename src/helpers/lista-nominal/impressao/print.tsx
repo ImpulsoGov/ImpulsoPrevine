@@ -1,9 +1,13 @@
-import { PrintTable } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
+import { PrintTable, type PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
 import { RenderPrint } from './RenderPrint';
 
 const PRINT_ESCALE = '1';
 
-export const print = (props) => {
+export type PrintProps = {
+    props: PrintTableProps
+}
+
+export const print = (props: PrintTableProps) => {
     const PrintTableMounted = <PrintTable {...props} />
-    RenderPrint(PRINT_ESCALE,PrintTableMounted)
+    RenderPrint(PRINT_ESCALE, PrintTableMounted)
 }
