@@ -1,13 +1,23 @@
-import { sanitize } from "../../../../sanitize";
+import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { sanitize } from "@utils/sanitize";
 
-export const CabecalhoPagina = ({
-    filtros_aplicados,
-    data_producao_mais_recente,
-    lista,
+export type PageHeaderProps = {
+  appliedFilters: FilterItem;
+  latestProductionDate: string;
+  list: string;
+  fontFamily?: string;
+  printLegend?: string[];
+  equipesDivididas?: boolean;
+}
+
+export const PageHeader = ({
+    appliedFilters,
+    latestProductionDate,
+    list,
     fontFamily="sans-serif",
-    legendaImpressao=[],
+    printLegend=[],
     equipesDivididas=false
-})=>{
+}: PageHeaderProps)=>{
     return(
       <div>
         <div 
@@ -20,8 +30,8 @@ export const CabecalhoPagina = ({
           }}
         >
           <div>
-            <p style={{marginTop : 0}}><b>LISTA NOMINAL <span dangerouslySetInnerHTML={{ __html: sanitize(lista) }}/></b></p>
-            <p><i>PRODUÇÃO MAIS RECENTE RECEBIDA EM : {data_producao_mais_recente}</i></p>
+            <p style={{marginTop : 0}}><b>LISTA NOMINAL {sanitize(list)}</b></p>
+            <p><i>PRODUÇÃO MAIS RECENTE RECEBIDA EM : {latestProductionDate}</i></p>
           </div>
           <div style={{
               width : "fit-content",
@@ -51,11 +61,11 @@ export const CabecalhoPagina = ({
             marginTop: "16px",
           }}><b>Filtros aplicados: </b></p>
           {
-            filtros_aplicados && filtros_aplicados.length>0 ?
-            filtros_aplicados.map((filtro,index)=>{
+            appliedFilters ?
+            Object.keys(appliedFilters).map((filtro)=>{
               return(
                 <div 
-                  key={index}
+                  key={filtro}
                   style={{
                     border : "solid 1px #757574",
                     borderRadius : "5px",
@@ -71,7 +81,7 @@ export const CabecalhoPagina = ({
             ["Sem filtros aplicados"]
           }
         </div>
-        {legendaImpressao.length > 0 &&
+        {printLegend.length > 0 &&
           <div style={{
             fontSize : "15px",
             fontFamily: `${fontFamily}, sans-serif`,
@@ -82,13 +92,7 @@ export const CabecalhoPagina = ({
             flexDirection: "column",
             gap: "10px"
           }}>
-            {legendaImpressao.map((item) => (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: sanitize(item),
-                }}
-              />
-            ))}
+            {printLegend.map((item) => <div key={item}>{sanitize(item)}</div>)}
           </div>
         }
       </div>

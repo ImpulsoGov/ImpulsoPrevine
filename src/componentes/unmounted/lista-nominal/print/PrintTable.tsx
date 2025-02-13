@@ -1,24 +1,48 @@
-import { divisaoPorEquipes } from "../helpers/divisaoPorEquipes";
-import { MultiplasEquipesPorPagina } from "./MultiplasEquipesPorPagina";
-import { UnicaEquipePorPagina } from "./UnicaEquipePorPagina";
-import { SemDivisao } from "./SemDivisao";
+import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
+import { MultipleTeamsPerPage } from "./MultipleTeamsPerPage";
+import { SingleTeamPerPage } from "./SingleTeamPerPage";
+import { NoSplit } from "./NoSplit";
+import type { DataItem } from '@/utils/FilterData';
+import type { GridColDef } from '@mui/x-data-grid';
+import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+
+export type PrintColumnsWidthProps = {
+  portrait: Record<string,string>,
+  landscape: Record<string,string>,
+}
+
+export type PrintTableProps = {
+    data: DataItem[],
+    columns: GridColDef[],
+    list: string,
+    appliedFilters: FilterItem,
+    dataSplit: boolean,
+    pageSplit: boolean,
+    latestProductionDate: string,
+    auxiliaryLists?: Record<string, Record<string,string>>,
+    printColumnsWidth: PrintColumnsWidthProps,
+    verticalDivider: number[],
+    fontFamily: string,
+    propPrintGrouping: string,
+    printLegend?: string[]
+}
 
 export const PrintTable = ({ 
     data, 
-    colunas, 
-    lista,
-    filtros_aplicados,
-    divisao_dados=true, 
-    divisao_paginas=false, 
-    data_producao_mais_recente,
-    listas_auxiliares,
-    largura_colunas_impressao,
-    divisorVertical,
+    columns, 
+    list,
+    appliedFilters,
+    dataSplit=true, 
+    pageSplit=false, 
+    latestProductionDate,
+    auxiliaryLists,
+    printColumnsWidth,
+    verticalDivider,
     fontFamily="sans-serif",
-    propAgrupamentoImpressao,
-    legendaImpressao
-  }) => {
-    const divisao_por_equipes = divisao_dados ? divisaoPorEquipes(data,propAgrupamentoImpressao) : []
+    propPrintGrouping,
+    printLegend
+  }: PrintTableProps) => {
+    const teamSplit = SplitByTeam(data,propPrintGrouping)
     return (
       <div 
         className="largura"
@@ -27,59 +51,58 @@ export const PrintTable = ({
         }}
       >
         {
-          divisao_dados && !divisao_paginas && divisao_por_equipes &&
-          <MultiplasEquipesPorPagina
-            divisao_por_equipes={divisao_por_equipes}
-            cabecalho={{
-              filtros_aplicados : filtros_aplicados,
-              data_producao_mais_recente : data_producao_mais_recente,
-              lista : lista
+          dataSplit && !pageSplit && teamSplit &&
+          <MultipleTeamsPerPage
+            teamSplit={teamSplit}
+            header={{
+              appliedFilters : appliedFilters,
+              latestProductionDate : latestProductionDate,
+              list : list
             }}
-            legendaImpressao={legendaImpressao}
-            tabelas={{
-              colunas : colunas,
-              listas_auxiliares : listas_auxiliares,
-              largura_colunas_impressao : largura_colunas_impressao,
-              divisorVertical : divisorVertical
-            }}
-            fontFamily={fontFamily}
-            propAgrupamentoImpressao={propAgrupamentoImpressao}
-          />
-        }
-        {
-          divisao_paginas && divisao_dados &&
-          <UnicaEquipePorPagina
-            divisao_por_equipes={divisao_por_equipes}
-            cabecalho={{
-              filtros_aplicados : filtros_aplicados,
-              data_producao_mais_recente : data_producao_mais_recente,
-              lista : lista
-            }}
-            legendaImpressao={legendaImpressao}
-            tabelas={{
-              colunas : colunas,
-              listas_auxiliares : listas_auxiliares,
-              largura_colunas_impressao : largura_colunas_impressao,
-              divisorVertical : divisorVertical
+            printLegend={printLegend}
+            tables={{
+              columns: columns,
+              auxiliaryLists: auxiliaryLists,
+              printColumnsWidth: printColumnsWidth,
+              verticalDivider: verticalDivider
             }}
             fontFamily={fontFamily}
           />
         }
         {
-          (!divisao_dados && !divisao_paginas) &&
-          <SemDivisao
+          pageSplit && dataSplit &&
+          <SingleTeamPerPage
+            teamSplit={teamSplit}
+            header={{
+              appliedFilters: appliedFilters,
+              latestProductionDate: latestProductionDate,
+              list: list
+            }}
+            printLegend={printLegend}
+            tables={{
+              columns : columns,
+              auxiliaryLists: auxiliaryLists,
+              printColumnsWidth: printColumnsWidth,
+              verticalDivider: verticalDivider
+            }}
+            fontFamily={fontFamily}
+          />
+        }
+        {
+          !(dataSplit && pageSplit) &&
+          <NoSplit
             data={data}
-            cabecalho={{
-              filtros_aplicados : filtros_aplicados,
-              data_producao_mais_recente : data_producao_mais_recente,
-              lista : lista
+            header={{
+              appliedFilters : appliedFilters,
+              latestProductionDate : latestProductionDate,
+              list : list
             }}
-            legendaImpressao={legendaImpressao}
-            tabelas={{
-              colunas : colunas,
-              listas_auxiliares : listas_auxiliares,
-              largura_colunas_impressao : largura_colunas_impressao,
-              divisorVertical : divisorVertical
+            printLegend={printLegend}
+            table={{
+              columns: columns,
+              auxiliaryLists: auxiliaryLists,
+              printColumnsWidth: printColumnsWidth,
+              verticalDivider: verticalDivider
             }}
             fontFamily={fontFamily}
           />
