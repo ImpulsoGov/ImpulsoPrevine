@@ -43,10 +43,10 @@ const ListaNominalPage = async(
     }
     const session = await getServerSession(nextAuthOptions) as Session;
     const user = session?.user as Session['user'];
+
     const resolvedSearchParams = await searchParams;
     const tabID = resolvedSearchParams?.tabID || "charts"; 
     const subTabID = resolvedSearchParams?.subTabID || "ChartSubTabID1";
-
 
     let externalCardsProps: CardProps[] = [];
     if (!session || !user) return <p>Usuário não autenticado</p>;
@@ -165,6 +165,6 @@ const ListaNominalPage = async(
         },
     };
 
-    return <ListaNominal props={props}/>
+    return props && <ListaNominal props={props}/>
 }
 export default ListaNominalPage;
