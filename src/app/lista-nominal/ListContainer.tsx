@@ -106,7 +106,8 @@ const IconDetailsMap: TagIconDetailsMap = {
     },
 };
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-const propPrintGrouping = "acs_nome_cadastro" 
+const propPrintGrouping = "ine" 
+
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns: GridColDef[] = [
     {
@@ -114,21 +115,21 @@ export const columns: GridColDef[] = [
         headerName: 'Nome',
         width: 260,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'identificacao_condicao',
         headerName: 'Identificação da Condição',
         width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'dt_consulta_mais_recente',
@@ -143,26 +144,27 @@ export const columns: GridColDef[] = [
     {
         field: 'prazo_proxima_consulta',
         headerName: 'Prazo para próxima consulta',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
-        }
+        },
     },
     {
+        field: 'dt_afericao_pressao_mais_recente',
         headerName: 'Data de aferição de PA mais recente',
-        width: 200 ,
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderDateTagCell(value, IconDetailsMap);
-        },
+        }
     },
     {
         field: 'prazo_proxima_afericao_pa',
-        headerName: 'Prazo para próxima aferição de PA',
-        width: 200 ,
+        headerName: 'Prazo para próx. aferição de PA',
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
@@ -172,16 +174,16 @@ export const columns: GridColDef[] = [
     {
         field: 'acs_nome_cadastro',
         headerName: 'ACS responsável',
-        width: 250 ,
+        width: 250,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'status',
         headerName: 'Status',
         width: 150,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
 ] as GridColDef[];
 
@@ -232,6 +234,11 @@ export const ListContainer = ({
         data: [],
         totalRows: 0,
     });
+    const [printresponse, setPrintResponse] = useState<ListData>({
+        data: [],
+        totalRows: 0,
+    });
+
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -248,7 +255,6 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
-
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
@@ -286,6 +292,27 @@ export const ListContainer = ({
             getListDataResponse();
         }
     }, [user, value, list, pagination, sorting, search]);
+
+    const getPrintDataResponse = async () => {
+        if (!user) return;
+        try {
+            const res = await getListData({
+                municipio_id_sus: user.municipio_id_sus,
+                token: user.access_token,
+                listName: list,
+                sorting: [{
+                    sortField: sorting[0].field,
+                    sortOrder: sorting[0].sort,
+                }],
+                filters: value,
+                ine: user.perfis.includes(9) ? user.equipe : undefined,
+                search: search,
+            });
+            return res.data;
+        } catch (error) {
+            captureException(error);
+        }
+    };
 
     useEffect(() => {
         setTableData({
@@ -326,13 +353,14 @@ export const ListContainer = ({
             ? setSorting([...newSortModel])
             : setSorting([...DEFAULT_SORTING]);
     }
-    const handleCostumizePrint = (options: PrintOptions) =>{ 
+    const handleCostumizePrint = async(options: PrintOptions) =>{ 
+        const data = await getPrintDataResponse()
         const props: PrintTableProps = {
-            data: tableData.data,
+            data: data?.data ?? [],
             columns: columns,
             list: list,
             appliedFilters: value,
-            latestProductionDate: String(tableData.data[0]?.atualizacao_data),
+            latestProductionDate: new Date(String(tableData.data[0].atualizacao_data)).toLocaleDateString("pt-BR"),
             fontFamily: "sans-serif",
             dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
             pageSplit: options.separacaoGrupoPorFolha, 

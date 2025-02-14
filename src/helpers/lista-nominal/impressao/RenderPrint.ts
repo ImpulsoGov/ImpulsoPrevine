@@ -1,20 +1,53 @@
 import type React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
+interface PrintWindowProps extends Window {
+  document: Document;
+}
+
+interface Image extends HTMLImageElement {
+  onload: ((this: GlobalEventHandlers, ev: Event) => void) | null;
+  onerror: OnErrorEventHandler;
+}
+
+const loadImages = (printWindow: PrintWindowProps): void => {
+  const doc = printWindow.document;
+  const images: Image[] = Array.from(doc.images) as Image[];
+  let loads = 0;
+  const imagesTotal = images.length;
+  for (let i = 0; i < imagesTotal; i++) {
+    if (images[i].complete) {
+      loads++;
+    } else {
+      images[i].onload = images[i].onerror = () => {
+        loads++;
+        if (loads === imagesTotal) {
+          printWindow.print();
+        }
+      };
+    }
+  }
+  if (loads === imagesTotal) printWindow.print();
+}
+
+
 export const RenderPrint = (
     escala: string,
     child: React.ReactElement,
   ) => {
     if (typeof window !== 'undefined') {
-      const largura = window.innerWidth;
-      const altura = window.innerHeight;
-      const conteudo = ReactDOMServer.renderToString(child);
-      const janelaImpressao = window.open('', '', `width=${largura},height=${altura}`);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const content = ReactDOMServer.renderToString(child);
+      const printWindow = window.open('', '', `width=${width},height=${height}`);
   
-      if (janelaImpressao) {
-        const doc = janelaImpressao.document;
+      if (printWindow) {
+        const doc = printWindow.document;
         doc.open();
-        // Em vez de document.write, define o conteúdo do documento usando innerHTML
+        if (!doc.documentElement) {
+            const htmlElement = doc.createElement('html');
+            doc.appendChild(htmlElement);
+        }
         doc.documentElement.innerHTML = `
           <head>
             <style>
@@ -27,13 +60,13 @@ export const RenderPrint = (
                 body {
                   margin: 0;
                 }
-                .largura {
+                .width {
                   width: 1215px;
                 }
-                .retrato{
+                .portrait{
                   display: none !important;
                 }
-                .paisagem{
+                .landscape{
                   display: block !important;
                 }
               }
@@ -46,42 +79,24 @@ export const RenderPrint = (
                 body {
                   margin: 0;
                 }
-                .largura {
+                .width {
                   width: 868px;
                 }
-                .retrato{
+                .portrait{
                   display: block !important;
                 }
-                .paisagem{
+                .landscape{
                   display: none !important;
                 }
               }
             </style>
           </head>
-          <body>${conteudo}</body>
+          <body>${content}</body>
         `;
         doc.close();
   
         // Aguarda imagens carregarem
-        const imagens = doc.images;
-        let carregadas = 0;
-        const totalImagens = imagens.length;
-        for (let i = 0; i < totalImagens; i++) {
-          if (imagens[i].complete) {
-            carregadas++;
-          } else {
-            imagens[i].onload = imagens[i].onerror = () => {
-              carregadas++;
-              if (carregadas === totalImagens) {
-                janelaImpressao.print();
-              }
-            };
-          }
-        }
-  
-        if (carregadas === totalImagens) {
-          janelaImpressao.print();
-        }
+        loadImages(printWindow);
       }
     }
   };

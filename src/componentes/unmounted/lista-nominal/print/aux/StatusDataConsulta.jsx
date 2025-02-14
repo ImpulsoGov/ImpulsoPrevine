@@ -30,7 +30,7 @@ export const StatusDataConsulta = ({
             width,
             fontSize: orientacao === "retrato" && "9px"
           }}>
-            <img width={9} height={9} src={ icones.ampulheta_simbolo } />
+            <img width={9} height={9} src={ icones.ampulheta_simbolo } alt="icon"/>
             <div>Não realizada</div>
           </div>
         )
