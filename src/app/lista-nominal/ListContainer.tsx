@@ -234,11 +234,6 @@ export const ListContainer = ({
         data: [],
         totalRows: 0,
     });
-    const [printresponse, setPrintResponse] = useState<ListData>({
-        data: [],
-        totalRows: 0,
-    });
-
     const [tableData, setTableData] = useState<ListData>({
         data: [],
         totalRows: 0,
