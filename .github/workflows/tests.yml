@@ -32,7 +32,7 @@ jobs:
 
           # Poll Vercel API until deployment is ready
           for i in {1..30}; do
-            DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$ENCODED_BRANCH_NAME" \
+            DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$ENCODED_BRANCH_NAME&teamId=team_wPtgjclfDI2XuQ38C7lGvOqV" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
 
             # Debugging: Print the raw response from Vercel
