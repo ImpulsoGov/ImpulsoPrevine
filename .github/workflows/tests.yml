@@ -24,11 +24,14 @@ jobs:
         run: |
           BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}
           echo "Checking Vercel deployment for branch: $BRANCH_NAME"
-
+          echo "Original Branch Name: ${GITHUB_REF}"
+          echo "Derived Branch Name: ${BRANCH_NAME}"
           # Poll Vercel API until deployment is ready
           for i in {1..30}; do
-            DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$BRANCH_NAME" \
-              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
+            ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | jq -sRr @uri)
+            DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$ENCODED_BRANCH_NAME" \
+          - H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
+
 
             DEPLOY_URL=$(echo "$DEPLOY_DATA" | jq -r '.deployments[] | select(.state == "READY") | .url' | head -n 1)
 
