@@ -11,7 +11,9 @@ import type { CardDetailsMap } from "@/helpers/cardsList";
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 
-const ListaNominalPage = async() => {
+const ListaNominalPage = async(
+    { searchParams }: { searchParams: { [key: string]: string } }
+) => {
     // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
     const cardsDetails: CardDetailsMap = {
         "COM_CONSULTA_AFERICAO_PRESSAO": {
@@ -41,6 +43,10 @@ const ListaNominalPage = async() => {
     }
     const session = await getServerSession(nextAuthOptions) as Session;
     const user = session?.user as Session['user'];
+    const tabID = searchParams.tabID || "charts"; 
+    const subTabID = searchParams.subTabID || "ChartSubTabID1";
+
+
     let externalCardsProps: CardProps[] = [];
     if (!session || !user) return <p>Usuário não autenticado</p>;
     const params: getListDataProps = {
@@ -153,8 +159,8 @@ const ListaNominalPage = async() => {
                 }
         },
         inicialContent: {
-            tabID: "charts",
-            subTabID: "ChartSubTabID1"
+            tabID: tabID,
+            subTabID: subTabID
         },
     };
 
