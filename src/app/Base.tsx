@@ -89,9 +89,9 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 							paddingTop:
 								width > 1000
 									? "76px"
-									: path == "/"
+									: path === "/"
 										? "0px"
-										: path == "/apoio"
+										: path === "/apoio"
 											? "0px"
 											: "30px",
 							height: "100%",
