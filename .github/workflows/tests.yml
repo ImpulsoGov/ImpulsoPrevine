@@ -20,38 +20,38 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: Wait for Vercel Preview Deployment
-id: get-vercel-url
-run: |
-  BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-  echo "Checking Vercel deployment for branch: $BRANCH_NAME"
-  echo "Original Branch Name: ${GITHUB_REF}"
-  echo "Derived Branch Name: ${BRANCH_NAME}"
+        id: get-vercel-url
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          echo "Checking Vercel deployment for branch: $BRANCH_NAME"
+          echo "Original Branch Name: ${GITHUB_REF}"
+          echo "Derived Branch Name: ${BRANCH_NAME}"
 
-  # URL-encode the branch name to handle special characters
-  ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | jq -sRr @uri)
+          # URL-encode the branch name to handle special characters
+          ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | jq -sRr @uri)
 
-  # Poll Vercel API until deployment is ready
-  for i in {1..30}; do
-    DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$ENCODED_BRANCH_NAME" \
-      -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
+          # Poll Vercel API until deployment is ready
+          for i in {1..30}; do
+            DEPLOY_DATA=$(curl -s "https://api.vercel.com/v6/deployments?meta-gitBranch=$ENCODED_BRANCH_NAME" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
 
-    # Debugging: Print the raw response from Vercel
-    echo "Vercel API Response: $DEPLOY_DATA"
+            # Debugging: Print the raw response from Vercel
+            echo "Vercel API Response: $DEPLOY_DATA"
 
-    DEPLOY_URL=$(echo "$DEPLOY_DATA" | jq -r '.deployments[] | select(.state == "READY") | .url' | head -n 1)
+            DEPLOY_URL=$(echo "$DEPLOY_DATA" | jq -r '.deployments[] | select(.state == "READY") | .url' | head -n 1)
 
-    if [ -n "$DEPLOY_URL" ]; then
-      echo "Deployment is ready: $DEPLOY_URL"
-      echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-      exit 0
-    fi
+            if [ -n "$DEPLOY_URL" ]; then
+              echo "Deployment is ready: $DEPLOY_URL"
+              echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+              exit 0
+            fi
 
-    echo "Waiting for deployment... ($i/30)"
-    sleep 10
-  done
+            echo "Waiting for deployment... ($i/30)"
+            sleep 10
+          done
 
-  echo "Error: No Vercel deployment found for branch '$BRANCH_NAME' after waiting."
-  exit 1
+          echo "Error: No Vercel deployment found for branch '$BRANCH_NAME' after waiting."
+          exit 1
 
       - name: Run Playwright tests
         run: DEBUG=pw:webserver yarn playwright test --base-url=https://$DEPLOY_URL
@@ -64,6 +64,7 @@ run: |
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
   chromatic:
     name: Run Chromatic
     needs: playwright
@@ -80,8 +81,8 @@ run: |
       - name: Download Playwright test results
         uses: actions/download-artifact@v4
         with:
-          name: test-results
-          path: ./test-results
+          name: playwright-report
+          path: ./playwright-report
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
