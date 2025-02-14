@@ -416,7 +416,8 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
+    return <>
+    <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
         <p style={{fontSize: "26px", margin: "75px 0 15px 0", lineHeight: "130%"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <div style={{marginTop: "15px"}}>
@@ -442,7 +443,8 @@ export const ListContainer = ({
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
         />
-        <ModalAlertControlled
+    </div>
+            <ModalAlertControlled
             display={isPrintModalVisible}
             close={closePrintModal}
         >
@@ -453,6 +455,5 @@ export const ListContainer = ({
                 valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
             />
         </ModalAlertControlled>
-
-    </div>;
+    </>
 }
