@@ -2,6 +2,7 @@ name: "Tests using GitHub Events"
 
 on:
   deployment_status:
+
 jobs:
   playwright:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
@@ -24,8 +25,9 @@ jobs:
           echo "Deployment is ready: $DEPLOY_URL"
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       - name: Run Playwright tests
-        run: DEBUG=pw:webserver yarn playwright test --base-url=https://$DEPLOY_URL
+        run: DEBUG=pw:webserver yarn playwright test
         env:
+          BASE_URL: ${{ env.DEPLOY_URL }}
           ENV: development
       - uses: actions/upload-artifact@v4
         if: always()
