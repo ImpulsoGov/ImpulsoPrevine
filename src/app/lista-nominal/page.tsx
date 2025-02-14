@@ -12,7 +12,7 @@ import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 
 const ListaNominalPage = async(
-    { searchParams }: { searchParams: { [key: string]: string } }
+    { searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }
 ) => {
     // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
     const cardsDetails: CardDetailsMap = {
@@ -43,8 +43,9 @@ const ListaNominalPage = async(
     }
     const session = await getServerSession(nextAuthOptions) as Session;
     const user = session?.user as Session['user'];
-    const tabID = searchParams.tabID || "charts"; 
-    const subTabID = searchParams.subTabID || "ChartSubTabID1";
+    const resolvedSearchParams = await searchParams;
+    const tabID = resolvedSearchParams?.tabID || "charts"; 
+    const subTabID = resolvedSearchParams?.subTabID || "ChartSubTabID1";
 
 
     let externalCardsProps: CardProps[] = [];
