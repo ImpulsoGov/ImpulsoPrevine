@@ -26,7 +26,7 @@ import { userSetterSentry } from "@/hooks/userSetterSentry";
 import dynamic from 'next/dynamic';
 
 const FooterMounted = dynamic(() => import('@componentes/mounted/base/FooterMonted').then(mod => mod.FooterMounted));
-const NavBarMounted = dynamic(() => import('@componentes/mounted/base/NavBarMounted').then(mod => mod.NavBarMounted));
+const NavBarMounted = dynamic(() => import('@componentes/mounted/base/NavBarMounted').then(mod => mod.NavBarMounted), { ssr: false });
 const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
 
 const tagManagerArgs = {
@@ -89,9 +89,9 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 							paddingTop:
 								width > 1000
 									? "76px"
-									: path == "/"
+									: path === "/"
 										? "0px"
-										: path == "/apoio"
+										: path === "/apoio"
 											? "0px"
 											: "30px",
 							height: "100%",
