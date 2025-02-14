@@ -111,7 +111,7 @@ export const nextAuthOptions : NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/inicio',
+    signIn: '/auth/signin',
     signOut: '/auth/signout',
   },
   events: {

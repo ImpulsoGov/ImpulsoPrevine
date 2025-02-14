@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 const rotasPublicas = ["/", "/quem-somos", "/apoio", "/faq", "/blog"];
 
-const rotasProtegidas = [
+export const rotasProtegidas = [
   '/inicio',
   '/capacitacao',
   '/capacitacoes',
@@ -40,7 +40,7 @@ export const middlewarePages = async (request: NextRequest) => {
 	if (token) expiracao = Date.now() > new Date(token.exp * 1000).getTime();
 	let response = NextResponse.next();
 	if ((!token || expiracao) && rotasProtegidas.includes(url.pathname)) {
-		response = NextResponse.redirect(new URL("/", request.url));
+		// response = NextResponse.redirect(new URL("/", request.url));
 		response.cookies.set("next-auth.session-token", "", {
 			maxAge: -1,
 			path: "/",
