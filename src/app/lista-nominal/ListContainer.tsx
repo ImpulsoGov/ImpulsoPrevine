@@ -444,7 +444,11 @@ export const ListContainer = ({
             isLoading={isLoading}
         />
     </div>
-            <ModalAlertControlled
+    <div style={{
+        position: "fixed",
+        left: 0,
+    }}>
+        <ModalAlertControlled
             display={isPrintModalVisible}
             close={closePrintModal}
         >
@@ -455,5 +459,6 @@ export const ListContainer = ({
                 valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
             />
         </ModalAlertControlled>
+    </div>
     </>
 }
