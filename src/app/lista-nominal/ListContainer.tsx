@@ -445,7 +445,7 @@ export const ListContainer = ({
         />
     </div>
     <div style={{
-        position: "fixed",
+        position: "absolute",
         left: 0,
     }}>
         <ModalAlertControlled
