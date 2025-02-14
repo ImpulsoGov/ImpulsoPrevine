@@ -8,6 +8,6 @@ export type PrintProps = {
 }
 
 export const print = (props: PrintTableProps) => {
-    const PrintTableMounted = <PrintTable {...props} />
+    const PrintTableMounted = <PrintTable {...props} key="print-table-child"/>
     RenderPrint(PRINT_ESCALE, PrintTableMounted)
 }

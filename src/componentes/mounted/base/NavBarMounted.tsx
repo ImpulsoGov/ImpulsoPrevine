@@ -57,7 +57,7 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
 				cargo: session != null ? session.user.cargo : "",
 				button: { label: "sair" },
 				label:
-					session == null || typeof session == undefined
+					session == null || typeof session === "undefined"
 						? "Acesso Restrito"
 						: nome?.[0],
 				equipe: session?.user?.equipe,
@@ -79,10 +79,10 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
 				logoProjeto:
 					width > 900 ? res.logoIps[0].logo[0].url : res.logoIps[1].logo[0].url,
 				cor:
-					path == "/" ||
-					path == "/apoio" ||
-					path == "/analise" ||
-					path == "/quem-somos"
+					path === "/" ||
+					path === "/apoio" ||
+					path === "/analise" ||
+					path === "/quem-somos"
 						? "Cinza"
 						: "White",
 				logoLink: session ? "/inicio" : "/",

@@ -1,4 +1,3 @@
-import { cpfOrBirthDayFormatter } from "@helpers/lista-nominal/impressao/cpfFormartter";
 import type { ExtendedGridColDef } from "./UnitTable"; 
 import { PrazoStyle } from "@componentes/unmounted/lista-nominal/print/aux/PrazoStyle";
 import { Selecionar_status_usuario_descricao } from "@componentes/unmounted/lista-nominal/print/aux/Selecionar_status_usuario_descricao";
@@ -36,20 +35,9 @@ const TableCellContent = ({
         "id_status_usuario": <Selecionar_status_usuario_descricao orientacao={layoutOrientation} value={item[column.field]} status_usuario_descricao={auxiliaryLists?.status_usuario_descricao} />,
         "prazo_proxima_afericao_pa": <PrazoStyle orientacao={layoutOrientation} value={item[column.field]} />,
         "prazo_proxima_consulta": <PrazoStyle orientacao={layoutOrientation} value={item[column.field]} />,
-        "dt_consulta_mais_recente": <StatusDataConsulta orientacao={layoutOrientation} value={item[column.field]} />,
-        "dt_afericao_pressao_mais_recente": <StatusDataConsulta orientacao={layoutOrientation} value={item[column.field]} />,
-        "cidadao_cpf_dt_nascimento": <>{cpfOrBirthDayFormatter({ value: item[column.field] as unknown as string })}</>,
         "cpf_e_identificacao_condicao": <CpfEIdentificacaoCondicao value={item[column.field]} />
-
     }
-    return <>
-        {
-            Object.keys(renderField).map((field) => column.field === field && renderField[field])
-        }
-        {
-            Object.keys(renderField).map((field) => column.field !== field)
-        }
-    </>
+    return <>{renderField[column.field] ?? item[column.field]}</>;
 }
 export const TableCell = ({
     item,

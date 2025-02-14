@@ -31,19 +31,18 @@ export const MultipleTeamsPerPage = ({
     printLegend
 }: MultipleTeamsPerPageProps)=>{
     return(
-      <div>
+      <div key="multiple-teams-per-page">
         <PageHeader
+          key="page-header"
           appliedFilters={header.appliedFilters}
           latestProductionDate={header.latestProductionDate}
           list={header.list}
           fontFamily={fontFamily}
           printLegend={printLegend}
-          equipesDivididas
         />
         {
           Object.keys(teamSplit).sort(ordenarGrupos).map((record,index)=>{
             return( 
-              <>
               <div 
                 key={`${record+index}`}
               >
@@ -71,11 +70,10 @@ export const MultipleTeamsPerPage = ({
                     verticalDivider={tables.verticalDivider}
                     fontFamily = {fontFamily}
                     columnsWidth={tables.printColumnsWidth.landscape}
-                    layoutOrientation="portrait"
+                    layoutOrientation="landscape"
                   />
                 </div>
               </div>
-              </>
           )})
         }   
       </div>  

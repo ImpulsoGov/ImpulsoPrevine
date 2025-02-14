@@ -32,8 +32,8 @@ export const PrintTable = ({
     columns, 
     list,
     appliedFilters,
-    dataSplit=true, 
-    pageSplit=false, 
+    dataSplit, 
+    pageSplit, 
     latestProductionDate,
     auxiliaryLists,
     printColumnsWidth,
@@ -43,15 +43,17 @@ export const PrintTable = ({
     printLegend
   }: PrintTableProps) => {
     const teamSplit = SplitByTeam(data,propPrintGrouping)
+    console.log(pageSplit, dataSplit)
     return (
       <div 
+        key="print-table"
         className="largura"
         style={{
           fontFamily: `${fontFamily}, sans-serif`,
         }}
       >
         {
-          dataSplit && !pageSplit && teamSplit &&
+          dataSplit && !pageSplit &&
           <MultipleTeamsPerPage
             teamSplit={teamSplit}
             header={{
@@ -89,7 +91,7 @@ export const PrintTable = ({
           />
         }
         {
-          !(dataSplit && pageSplit) &&
+          !(dataSplit || pageSplit) &&
           <NoSplit
             data={data}
             header={{
