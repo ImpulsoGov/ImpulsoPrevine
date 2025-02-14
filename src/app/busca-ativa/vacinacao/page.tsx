@@ -3,28 +3,31 @@ import {
 	tabelaVacinacaoAPS,
 	tabelaVacinacaoEquipe,
 } from "@services/busca_ativa/Vacinacao";
+import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
-import { Vacinacao } from "./Vacinacao";
+import dynamic from "next/dynamic";
+const Vacinacao = dynamic(() =>import("./Vacinacao").then((mod) => mod.Vacinacao));
+
 
 const VacinacaoPage = async () => {
 	const session = await getServerSession(nextAuthOptions);
-	let VacinacaoTabelaDataAPS;
+	let vacinacaoTabelaDataAps: TabelaResponse | null = null;
 	if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
-		VacinacaoTabelaDataAPS = await tabelaVacinacaoAPS(
+		vacinacaoTabelaDataAps  = await tabelaVacinacaoAPS(
 			session?.user?.municipio_id_sus,
 			session?.user?.access_token,
 		);
-	let VacinacaoTabelaDataEquipe;
+	let vacinacaoTabelaDataEquipe: TabelaResponse | null = null;
 	if (session?.user?.perfis.includes(9))
-		VacinacaoTabelaDataEquipe = await tabelaVacinacaoEquipe(
+		vacinacaoTabelaDataEquipe = await tabelaVacinacaoEquipe(
 			session?.user?.municipio_id_sus,
 			session?.user?.equipe,
 			session?.user?.access_token,
 		);
 	return (
 		<Vacinacao
-			tabelaDataAPS={VacinacaoTabelaDataAPS}
-			tabelaDataEquipe={VacinacaoTabelaDataEquipe}
+			tabelaDataAPS={vacinacaoTabelaDataAps }
+			tabelaDataEquipe={vacinacaoTabelaDataEquipe}
 			session={session}
 		/>
 	);

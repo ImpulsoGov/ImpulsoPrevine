@@ -3,13 +3,15 @@ import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
 } from "@helpers/eventosImpressaoHotjar";
-import { Spinner } from "@impulsogov/design-system";
 import mixpanel from "mixpanel-browser";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import type React from "react";
+import type { TabelaResponse } from "@services/busca_ativa/Cito";
 import { useEffect, useState } from "react";
+
+const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
 const CitoAps = dynamic(() => import("./CitoAPS").then((mod) => mod.CitoAPS), {
 	ssr: false,
 	loading: () => <Spinner />,
@@ -23,8 +25,8 @@ const CitoEquipe = dynamic(
 );
 
 interface CitoProps {
-	tabelaDataAPS: any;
-	tabelaDataEquipe: any;
+	tabelaDataAPS: TabelaResponse | null;
+	tabelaDataEquipe: TabelaResponse | null;
 	session: Session | null;
 }
 export const Cito: React.FC<CitoProps> = ({
@@ -38,23 +40,23 @@ export const Cito: React.FC<CitoProps> = ({
 	const [filtrosAplicados, setFiltrosAplicados] = useState(false);
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
 	const [activeTitleTabIndex, setActiveTitleTabIndex] = useState(0);
-	const [voltarGatilho, setVoltarGatilho] = useState(0);
 	const [tabelaData, setTabelaData] = useState([]);
 	const router = useRouter();
 	const path = usePathname();
-	const Voltar = () => window.history.go(voltarGatilho * -2);
+	const Voltar = () => window.history.go(-1)
 	useEffect(() => {
-		router.push(`${path}?aba=${""}&sub_aba=${activeTabIndex}&visao=${visao}`);
-	}, [activeTabIndex, activeTitleTabIndex]);
-	useEffect(() => {
-		setVoltarGatilho(voltarGatilho + 1);
-	}, [path]);
+		if (!session) return;
+		const visao =
+			session?.user.perfis.includes(5) || session?.user.perfis.includes(8)
+				? "aps"
+				: "equipe";
+				const newUrl = `${path}?aba=${""}&sub_aba=${activeTabIndex}&visao=${visao}`;
+				if (window.location.search !== new URL(newUrl, window.location.origin).search) {
+					router.replace(newUrl); // Usa replace ao invés de push para evitar loops
+				}
+	}, [activeTabIndex, path, session, router.replace]);
 
 	if (!session) return <Spinner />;
-	const visao =
-		session.user.perfis.includes(5) || session.user.perfis.includes(8)
-			? "aps"
-			: "equipe";
 
 	if (session.user.perfis.includes(9))
 		return (

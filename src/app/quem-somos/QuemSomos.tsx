@@ -1,23 +1,52 @@
 "use client";
-import {
-	CardAlert,
-	CardImg,
-	Grid12Col,
-	ImagensFull2,
-	Margem,
-	NovoTituloTexto,
-	TituloSmallTexto,
-} from "@impulsogov/design-system";
+import dynamic from 'next/dynamic';
+import type { JSX } from 'react';
 
-const Parceiros = (parceiros: any) =>
-	parceiros.map((logo: any) => (
-		<Margem
-			componente={
-				<ImagensFull2 imagem={logo.url} alt={logo.fileName} width={300} />
-			}
-			key="Parceiros"
-		/>
-	));
+const CardAlert = dynamic<{
+	background: string;
+	destaque: string;
+	msg: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardAlert));
+const CardImg = dynamic<{
+	descricao: string;
+	imagemSrc: string;
+	indicador: string;
+	imagemStyle: { width: string; margin: string };
+}>(() => import('@impulsogov/design-system').then(mod => mod.CardImg));
+const Grid12Col = dynamic<{
+	items: (JSX.Element | null)[];
+	proporcao: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Grid12Col));
+const ImagensFull2 = dynamic<{
+	imagem: string;
+	alt?: string;
+	width?: number;
+}>(() => import('@impulsogov/design-system').then(mod => mod.ImagensFull2));
+const Margem = dynamic<{
+	componente: JSX.Element;
+}>(() => import('@impulsogov/design-system').then(mod => mod.Margem));
+const NovoTituloTexto = dynamic<{
+	titulo: string;
+	texto: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.NovoTituloTexto));
+const TituloSmallTexto = dynamic<{
+	botao: { label: string; url: string };
+	imagem?: { posicao: boolean | null; url: string };
+	supertitulo: string;
+	titulo: string;
+	texto: string;
+}>(() => import('@impulsogov/design-system').then(mod => mod.TituloSmallTexto));
+
+const Parceiros = (parceiros: Parceiro[]) =>
+	parceiros.map((logo: Parceiro) => (
+        <Margem
+			key={logo.url}
+            componente={
+                <ImagensFull2 imagem={logo.url} alt={logo.fileName} width={300} />
+            }
+        />
+    ));
+
 interface Parceiro {
 	url: string;
 	fileName: string;
@@ -42,25 +71,25 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 			<Margem
 				componente={
 					<>
-						<div style={{ paddingTop: 80 }}></div>
+						<div style={{ paddingTop: 80 }}> </div>
 						<div style={{ textAlign: "center" }}>
 							<NovoTituloTexto
 								titulo="Ajudamos os profissionais da atenção primária de forma gratuita"
 								texto="O Impulso Previne é um projeto da ImpulsoGov, uma organização sem fins lucrativos e recebemos apoio de entidades filantrópicas, organizações privadas e públicas para oferecer soluções e serviços ao SUS sem nenhum custo para municípios de todo o Brasil."
 							/>
 
-							<div style={{ paddingTop: 75 }}></div>
+							<div style={{ paddingTop: 75 }}> </div>
 							<ImagensFull2 imagem="https://media.graphassets.com/Lq3Tp6uTRZe1boQkBkRo" />
 						</div>
 					</>
 				}
 			/>
-			<div style={{ paddingTop: 75 }}></div>
+			<div style={{ paddingTop: 75 }}> </div>
 
 			<Margem
 				componente={
 					<>
-						<div style={{ paddingTop: 80 }}></div>
+						<div style={{ paddingTop: 80 }}> </div>
 
 						<NovoTituloTexto
 							titulo="Apoio focado na Atenção Primária à Saúde"
@@ -70,22 +99,22 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 						<Grid12Col
 							proporcao="6-6"
 							items={[
-								<>
 									<CardImg
+										key="1"
 										descricao="Semanalmente enviamos para o seu e-mail sugestões para melhorar sua rotina de trabalho e mantemos você informado sobre as atualizações da APS."
 										imagemSrc="https://media.graphassets.com/7G4x3fHQBSAiOz1eHpyG"
 										indicador="Conteúdos e materiais com dicas"
 										imagemStyle={{ width: "65%", margin: "auto" }}
 									/>
-								</>,
-								<>
+								,
 									<CardImg
+										key="2"
 										imagemSrc="https://media.graphassets.com/RDN83YVAR6yBEpg8DOLE"
 										indicador="Capacitações com especialistas"
 										descricao="Realizamos eventos sobre temas específicos para todas as categorias de profissionais proporcionando uma troca com nossos especialistas."
 										imagemStyle={{ width: "65%", margin: "auto" }}
 									/>
-								</>,
+								,
 							]}
 						/>
 					</>
@@ -94,34 +123,30 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 
 			<Margem
 				componente={
-					<>
-						<div style={{ textAlign: "center", paddingTop: 75 }}>
-							<NovoTituloTexto
-								titulo="Apoio especializado para parceiros"
-								texto=""
-							/>
+					<div style={{ textAlign: "center", paddingTop: 75 }}>
+						<NovoTituloTexto
+							titulo="Apoio especializado para parceiros"
+							texto=""
+						/>
 
-							<ImagensFull2 imagem="https://media.graphassets.com/QZVVznaoQ6est0kbxLQO" />
+						<ImagensFull2 imagem="https://media.graphassets.com/QZVVznaoQ6est0kbxLQO" />
 
-							<TituloSmallTexto
-								botao={{ label: "", url: "" }}
-								imagem={{}}
-								supertitulo=""
-								titulo=""
-								texto="Periodicamente, selecionamos municípios para se tornarem parceiros e receberem mentorias personalizadas da nossa equipe de especialistas em saúde."
-							/>
-						</div>
-					</>
+						<TituloSmallTexto
+							botao={{ label: "", url: "" }}
+							supertitulo=""
+							titulo=""
+							texto="Periodicamente, selecionamos municípios para se tornarem parceiros e receberem mentorias personalizadas da nossa equipe de especialistas em saúde."
+						/>
+					</div>
 				}
 			/>
 
 			<Grid12Col
 				proporcao="4-4-4"
 				items={[
-					<>
 						<Margem
+							key="1"
 							componente={
-								<>
 									<TituloSmallTexto
 										key={"1"}
 										botao={{ label: "", url: "" }}
@@ -130,14 +155,12 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 										titulo=""
 										texto="Ferramentas de gestão para busca ativa"
 									/>
-								</>
 							}
 						/>
-					</>,
-					<>
+					,
 						<Margem
+							key="2"
 							componente={
-								<>
 									<div style={{ fontSize: "24px", textAlign: "center" }}>
 										<TituloSmallTexto
 											key={"2"}
@@ -148,14 +171,12 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 											texto="Treinamentos sobre boas práticas dos indicadores"
 										/>
 									</div>
-								</>
 							}
 						/>
-					</>,
-					<>
+					,
 						<Margem
+							key="3"
 							componente={
-								<>
 									<TituloSmallTexto
 										key={"3"}
 										botao={{ label: "", url: "" }}
@@ -164,36 +185,31 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 										titulo=""
 										texto="Encontros de dúvidas com especialistas"
 									/>
-								</>
 							}
-						/>
-					</>,
+						/>,
 				]}
 			/>
 
 			<Margem
 				componente={
-					<>
 						<div style={{ textAlign: "center" }}>
 							<TituloSmallTexto
 								botao={{
 									label: "INSCRIÇÃO NA CONSULTORIA",
 									url: "https://bit.ly/interesse-apoio-IP",
 								}}
-								imagem={{}}
 								supertitulo=""
 								titulo=""
 								texto=""
 							/>
 						</div>
-					</>
 				}
 			/>
 
 			<Margem
 				componente={
 					<>
-						<div style={{ paddingTop: 75 }}></div>
+						<div style={{ paddingTop: 75 }}> </div>
 
 						<NovoTituloTexto
 							titulo="O Impulso Previne é um dos projetos da ImpulsoGov"
@@ -217,7 +233,7 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 							texto="Por isso, trabalhamos para que todos os profissionais de saúde do SUS tenham, em suas mãos, as informações e ferramentas necessárias para agir de maneira preventiva e resolutiva. Nos unimos a eles para criar produtos e soluções digitais baseadas em dados que facilitam a compreensão e a identificação de riscos de saúde da população e facilitam a tomada de decisão baseada em evidências."
 						/>
 
-						<div style={{ paddingTop: 75 }}></div>
+						<div style={{ paddingTop: 75 }}> </div>
 					</>
 				}
 			/>
@@ -225,8 +241,8 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 			<Grid12Col
 				proporcao="4-4-4"
 				items={[
-					<>
 						<Margem
+							key="2019"
 							componente={
 								<>
 									<ImagensFull2
@@ -244,9 +260,9 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 								</>
 							}
 						/>
-					</>,
-					<>
+					,
 						<Margem
+							key="2021"
 							componente={
 								<>
 									<ImagensFull2
@@ -263,10 +279,9 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 									/>
 								</>
 							}
-						/>
-					</>,
-					<>
+						/>,
 						<Margem
+							key="2023"
 							componente={
 								<>
 									<ImagensFull2
@@ -284,28 +299,27 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 								</>
 							}
 						/>
-					</>,
+					,
 				]}
 			/>
 
 			<Margem
 				componente={
 					<>
-						<div style={{ paddingTop: 75 }}></div>
-
-						<NovoTituloTexto
-							titulo="&nbsp;&nbsp;&nbsp;Tudo que criamos para o SUS está disponível sem custos"
-							texto="Contamos com uma rede de apoio institucional e financiadores e por isso podemos oferecer nosso trabalho gratuitamente.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-						/>
-
-						<div style={{ paddingTop: 75 }}></div>
+						<div style={{ paddingTop: 75 }}> </div>
+						<div style={{ padding: "0 20px" }}>
+							<NovoTituloTexto
+								titulo="Tudo que criamos para o SUS está disponível sem custos"
+								texto="Contamos com uma rede de apoio institucional e financiadores e por isso podemos oferecer nosso trabalho gratuitamente.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							/>
+						</div>
+						<div style={{ paddingTop: 75 }}> </div>
 					</>
 				}
 			/>
 
 			<Margem
 				componente={
-					<>
 						<TituloSmallTexto
 							key={"apoio_financeiro"}
 							botao={{ label: "", url: "" }}
@@ -314,11 +328,10 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 							titulo=""
 							texto=""
 						/>
-					</>
 				}
 			/>
 
-			{res && res.logoParceiros && res.logoParceiros.length > 0 && (
+			{res?.logoParceiros && res?.logoParceiros.length > 0 && (
 				<Grid12Col
 					proporcao="4-4-4"
 					items={Parceiros(res.logoParceiros[0].logoparceiro)}
@@ -326,7 +339,6 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 			)}
 			<Margem
 				componente={
-					<>
 						<TituloSmallTexto
 							key="apoio"
 							botao={{ label: "", url: "" }}
@@ -335,28 +347,24 @@ export const QuemSomos: React.FC<QuemSomosProps> = ({
 							titulo=""
 							texto=""
 						/>
-					</>
 				}
 			/>
 
 			<Grid12Col
 				proporcao="4-4-4"
 				items={[
-					<>
 						<Margem
+							key="apoio1"
 							componente={
-								<>
 									<ImagensFull2
 										imagem="https://media.graphassets.com/6vKKZ64yQO5d34YyfbU9"
 										width={300}
 									/>
-								</>
 							}
-						/>
-					</>,
+						/>,
 				]}
 			/>
-			<div style={{ paddingTop: 75 }}></div>
+			<div style={{ paddingTop: 75 }}> </div>
 		</div>
 	);
 };
