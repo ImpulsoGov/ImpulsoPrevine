@@ -462,9 +462,7 @@ export const ListContainer = ({
             sortModel={sorting}
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
-            localeText={{
-                noRowsLabel: 'A lista não possui cidadãos com as informações selecionada nos filtros. Limpe os filtros e selecione outra combinação.',            
-            }}
+            noRowsContent='A lista não possui cidadãos com as informações selecionada nos filtros. Limpe os filtros e selecione outra combinação.'          
         />
     </div>
     <div style={{
