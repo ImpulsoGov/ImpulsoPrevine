@@ -102,8 +102,8 @@ const ListaNominalPage = async() => {
                     { 
                         icon: {
                         active: 'https://media.graphassets.com/Tx39n37HTGWapXUq8UBv',
-                        inactive: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX',
-                        inactiveHover: 'https://media.graphassets.com/nFtUIgG3TDSIBD0Mzsq4'
+                        inactive: 'https://media.graphassets.com/nFtUIgG3TDSIBD0Mzsq4',
+                        inactiveHover: 'https://media.graphassets.com/veVDjWw1ROmaXsuOY7LX'
                     }, 
                         text: 'Sub-Aba 2',
                         subTabID: 'ChartSubTabID2',

@@ -9,15 +9,15 @@ import type { DataItem, Filters } from '@/utils/FilterData';
 import { AuthenticationError, decodeToken, getToken, getEncodedSecret } from '@/utils/token';
 import type { JWTToken } from '@/utils/token';
 
-
-const getParams = async(searchParams: URLSearchParams) => {
-    const filters: Filters = {};
-    searchParams.get('filters')?.split(';').forEach((filter) => {
-        const [key, valueString] = filter.split(':');
-        const valueArray = valueString.split(',');
-        filters[key] = valueArray.length !== 1 ? valueArray : valueArray[0];
-    });
-    return filters
+const getFiltersParams = async(filtersString: string | null) => {
+  const filters: Filters = {};
+  if (!filtersString) return filters;
+  const filtersStringSplit = filtersString.split(';').filter(Boolean)
+  for (const filter of filtersStringSplit) {
+    const [key, value] = filter.split(':')
+    filters[key] = value.split(',').length > 1 ? value.split(',') : value.split(',')[0];
+  }
+  return filters
 }
 
 type Data = DataItem[];
@@ -44,7 +44,8 @@ export async function GET(
   try {
     const { municipio_id_sus } = await params;
     const searchParams = req.nextUrl.searchParams;
-    const filters = await getParams(searchParams);
+    const filtersParams = searchParams.get('filters');
+    const filters = await getFiltersParams(filtersParams);
     const pagination = {
       page: searchParams.get('pagination[page]'),
       pageSize: searchParams.get('pagination[pageSize]')
@@ -103,6 +104,7 @@ export async function GET(
       totalRows: baseData.length,
     }, { status: 200 });
   } catch (error) {
+    console.error(error);
     if (error instanceof BadRequestError) {
       return Response.json({ message: error.message }, { status: 400 });
     }

@@ -9,7 +9,7 @@ import { renderDateTagCell, renderStatusTagCell } from '@/helpers/lista-nominal/
 import type { TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
 import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
-import { getListData } from '@/services/lista-nominal/ListaNominal';
+import { getListData, isFilterApplied } from '@/services/lista-nominal/ListaNominal';
 import type { CardDetailsMap } from '@/helpers/cardsList';
 import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
@@ -19,6 +19,7 @@ import { VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/he
 import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/labelsModalImpressao';
 import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
 import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
+import { onlyAppliedFilters } from '@/utils/onlyAppliedFilters';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -106,8 +107,13 @@ const IconDetailsMap: TagIconDetailsMap = {
     },
 };
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-const propPrintGrouping = "ine" 
-
+const propPrintGrouping = "equipe_nome"; 
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
+const filtersLabels = {
+    identificacao_condicao: "Identificação da Condição",
+    acs_nome_cadastro: "ACS Responsável",
+    status: "Status",
+}
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns: GridColDef[] = [
     {
@@ -242,6 +248,7 @@ export const ListContainer = ({
         page: 0,
         pageSize: 8,
     });
+
     const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -250,6 +257,13 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
+    const [printStates, setPrintStates] = useState({
+        value,
+        list,
+        sorting,
+        search,
+    });
+
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
@@ -287,21 +301,30 @@ export const ListContainer = ({
             getListDataResponse();
         }
     }, [user, value, list, pagination, sorting, search]);
+    useEffect(() => {
+        setPrintStates({
+            value,
+            list,
+            sorting,
+            search,
+        })
+    }, [user, value, list, sorting, search]);
 
     const getPrintDataResponse = async () => {
         if (!user) return;
+        console.log(printStates.value);
         try {
             const res = await getListData({
                 municipio_id_sus: user.municipio_id_sus,
                 token: user.access_token,
-                listName: list,
+                listName: printStates.list,
                 sorting: [{
-                    sortField: sorting[0].field,
-                    sortOrder: sorting[0].sort,
+                    sortField: printStates.sorting[0].field,
+                    sortOrder: printStates.sorting[0].sort,
                 }],
-                filters: value,
+                filters: printStates.value,
                 ine: user.perfis.includes(9) ? user.equipe : undefined,
-                search: search,
+                search: printStates.search,
             });
             return res.data;
         } catch (error) {
@@ -354,7 +377,7 @@ export const ListContainer = ({
             data: data?.data ?? [],
             columns: columns,
             list: list,
-            appliedFilters: value,
+            appliedFilters: isFilterApplied(value) ? onlyAppliedFilters(value) : {},
             latestProductionDate: new Date(String(tableData.data[0].atualizacao_data)).toLocaleDateString("pt-BR"),
             fontFamily: "sans-serif",
             dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
@@ -364,7 +387,8 @@ export const ListContainer = ({
                 portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
             },
             verticalDivider:[2,4,6], 
-            propPrintGrouping: propPrintGrouping
+            propPrintGrouping: propPrintGrouping,
+            filtersLabels: filtersLabels,
         }
         customizePrint(options, closePrintModal, props);
 }
@@ -382,7 +406,8 @@ export const ListContainer = ({
             portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
         },
         verticalDivider:[2,4,6], 
-        propPrintGrouping: propPrintGrouping
+        propPrintGrouping: propPrintGrouping,
+        filtersLabels: filtersLabels,
     }
     const handlePrintClick = () => 
         handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
@@ -437,6 +462,9 @@ export const ListContainer = ({
             sortModel={sorting}
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
+            localeText={{
+                noRowsLabel: 'A lista não possui cidadãos com as informações selecionada nos filtros. Limpe os filtros e selecione outra combinação.',            
+            }}
         />
     </div>
     <div style={{
