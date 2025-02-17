@@ -19,7 +19,8 @@ const buildSortingParams = (sorting: SortingItem[]): string => {
     .map(item => `${item.sortField}:${item.sortOrder}`)
     .join(',')}`;
 };
-const buildFilterParams = (filters: FilterItem): string => {
+const buildFilterParams = (filters?: FilterItem): string => {
+  if (!filters) return '';
   let filterParams = "filters=";
   for (const [key, value] of Object.entries(filters)) {
       if (Array.isArray(value) && value.length > 0) {
