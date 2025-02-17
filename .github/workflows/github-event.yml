@@ -1,11 +1,10 @@
-name: "Tests using GitHub Events"
+name: "End-to-End and visual Testing"
 
 on:
-  deployment_status:
+  push:
 
 jobs:
-  playwright:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+  End-to-End Testing(Playwright):
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -19,16 +18,41 @@ jobs:
         run: npm install -g yarn && yarn install --frozen-lockfile
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
-      - name: Extract Deployment URL
+
+      - name: Wait for Vercel Deployment
         run: |
-          DEPLOY_URL=${{ github.event.deployment_status.environment_url }}
-          echo "Deployment is ready: $DEPLOY_URL"
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+          GIT_SHA=$(git rev-parse HEAD)
+          echo "Looking for deployment with commit SHA: $GIT_SHA"
+          
+          for i in {1..30}; do
+            response=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              "https://api.vercel.com/v13/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&limit=5")
+
+            DEPLOY_URL=$(echo "$response" | jq -r --arg GIT_SHA "$GIT_SHA" '
+              .deployments[] | select(.meta.githubCommitSha == $GIT_SHA) | .url')
+
+            if [[ -n "$DEPLOY_URL" && "$DEPLOY_URL" != "null" ]]; then
+              echo "::notice::Found deployment: $DEPLOY_URL"
+              echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+              break
+            fi
+            
+            echo "Deployment not found yet... retrying in 10s"
+            sleep 10
+          done
+
+          if [[ -z "$DEPLOY_URL" || "$DEPLOY_URL" == "null" ]]; then
+            echo "::error::Deployment not found for commit SHA: $GIT_SHA"
+            exit 1
+          fi
+        shell: bash
+
       - name: Run Playwright tests
         run: DEBUG=pw:webserver yarn playwright test
         env:
           BASE_URL: ${{ env.DEPLOY_URL }}
           ENV: development
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -37,8 +61,9 @@ jobs:
           retention-days: 30
 
   chromatic:
-    name: Run Chromatic
+    name: Visual Regression Testing (Chromatic)
     needs: playwright
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
