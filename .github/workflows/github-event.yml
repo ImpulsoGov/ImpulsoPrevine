@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  End-to-End Testing(Playwright):
+  end-to-end-testing-playwright:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -61,8 +61,8 @@ jobs:
           retention-days: 30
 
   chromatic:
-    name: Visual Regression Testing (Chromatic)
-    needs: playwright
+    name: visual-regression-testing-chromatic
+    needs: end-to-end-testing-playwright
     if: success()
     runs-on: ubuntu-latest
     steps:
