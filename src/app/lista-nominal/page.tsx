@@ -10,7 +10,6 @@ import { baseURL } from '@/utils/baseURL';
 import type { CardDetailsMap } from "@/helpers/cardsList";
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
-import { Auth } from "@/componentes/mounted/base/Auth";
 import { AuthErrorPage } from "./AuthErrorPage";
 
 const ListaNominalPage = async(
