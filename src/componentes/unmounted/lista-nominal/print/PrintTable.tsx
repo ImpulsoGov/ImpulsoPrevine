@@ -43,7 +43,6 @@ export const PrintTable = ({
     printLegend
   }: PrintTableProps) => {
     const teamSplit = SplitByTeam(data,propPrintGrouping)
-    console.log(pageSplit, dataSplit)
     return (
       <div 
         key="print-table"
