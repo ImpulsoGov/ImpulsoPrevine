@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
@@ -254,6 +254,8 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
+    useEffect(() => setUser(session?.user), [session?.user]);
+
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
@@ -391,7 +393,7 @@ export const ListContainer = ({
     const handlePrintClick = () => 
         handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
-    if (!user) return <p>Usuário não autenticado</p>;
+    if (!user) return <Spinner/>;
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
 
