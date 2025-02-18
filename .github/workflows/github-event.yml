@@ -26,12 +26,13 @@ jobs:
           
           for i in {1..30}; do
             response=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-              "https://api.vercel.com/v6/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&teamId=${{ secrets.VERCEL_TEAM_ID }}")
+              "https://api.vercel.com/v13/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&limit=5")
 
             DEPLOY_URL=$(echo "$response" | jq -r --arg GIT_SHA "$GIT_SHA" '
               .deployments[] | select(.meta.githubCommitSha == $GIT_SHA) | .url')
 
             if [[ -n "$DEPLOY_URL" && "$DEPLOY_URL" != "null" ]]; then
+              DEPLOY_URL="https://$DEPLOY_URL" 
               echo "::notice::Found deployment: $DEPLOY_URL"
               echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
               break
