@@ -15,7 +15,10 @@
 		"format:fix": "biome format --write",
 		"commitlint": "commitlint --edit",
 		"commit": "cz",
-		"postinstall": "husky"
+		"postinstall": "husky",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage"
 	},
 	"dependencies": {
 		"@hotjar/browser": "^1.0.9",
@@ -61,7 +64,11 @@
 		"@biomejs/biome": "1.9.4",
 		"@commitlint/cli": "^19.6.1",
 		"@commitlint/config-conventional": "^19.6.0",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
 		"@types/dompurify": "^3.0.5",
+		"@types/jest": "^29.5.14",
 		"@types/jsonwebtoken": "^9.0.7",
 		"@types/mixpanel-browser": "^2.50.0",
 		"@types/next-auth": "^3.15.0",
@@ -72,6 +79,9 @@
 		"commitizen": "^4.3.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"husky": "^9.1.7",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"ts-node": "^10.9.2",
 		"typescript": "^5"
 	},
 	"config": {
