@@ -1,6 +1,6 @@
 import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -225,6 +225,7 @@ export const ListContainer = ({
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
     const searchParams = useSearchParams();
+    const router = useRouter();
     const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     const closePrintModal = () => setPrintModalVisibility(false);
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
@@ -255,7 +256,12 @@ export const ListContainer = ({
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
     useEffect(() => setUser(session?.user), [session?.user]);
-
+    // useEffect(()=>{
+    //     const params = new URLSearchParams(searchParams.toString());
+    //     Object.entries()
+    //     params.set('meuParametro', 'novoValor');
+    //     router.push(`?${params.toString()}`);
+    // },[value])
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);

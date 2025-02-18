@@ -19,20 +19,32 @@ const buildSortingParams = (sorting: SortingItem[]): string => {
     .map(item => `${item.sortField}:${item.sortOrder}`)
     .join(',')}`;
 };
-const buildFilterParams = (filters: FilterItem): string => {
-    return Object.entries(filters)
-        .flatMap(([fieldName, fieldValue]) => 
-            (Array.isArray(fieldValue) ? fieldValue : [fieldValue])
-                .map(value => `filters[${fieldName}]=${value}`)
-        )
-        .join('&');
+const buildFilterParams = (filters?: FilterItem): string => {
+  if (!filters) return '';
+  let filterParams = "filters=";
+  for (const [key, value] of Object.entries(filters)) {
+      if (Array.isArray(value) && value.length > 0) {
+          filterParams += `${key}:${value.join(",")};`; // Usa .join(",") para evitar a última vírgula
+      } else if (typeof value === "string" && value.length > 0) {
+          filterParams += `${key}:${value};`;
+      }
+  }
+  return filterParams;
 };
-
 const buildPaginationParams = (pagination: Pagination): string => {
   const { page, pageSize } = pagination;
   return `pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
 }
-
+export const isFilterApplied = (filters: FilterItem | undefined): boolean => {
+  if (!filters) return false;
+  const filterApplied = Object.values(filters)
+  .map((value: string | string[]) => {
+    if (Array.isArray(value) && value.length > 0) return true;
+    if (typeof value === 'string' && value.length > 0) return true;
+    return false;
+  });
+  return filterApplied.some(value => value);
+}
 /**
  * Adds sorting and filtering parameters to a URL
  * @param baseUrl - Base URL to add parameters to
@@ -53,18 +65,15 @@ export const buildUrlWithParams = (
 ): string => {
   let url = baseUrl;
   const { sorting, filters, listName, ine, municipio_id_sus, pagination, search } = params || {};
-  if (listName) {
-    url += `/${listName}`;
-  }
-  if (municipio_id_sus) {
-    url += `/${municipio_id_sus}`;
-  }
-  if (ine) {
-    url += `/${ine}`;
-  }
-  if (sorting?.length) {
-    url += `?${buildSortingParams(sorting)}`;
-  }
+
+  if (listName) url += `/${listName}`;
+  
+  if (municipio_id_sus) url += `/${municipio_id_sus}`;
+
+  if (ine) url += `/${ine}`;
+  
+  if (sorting?.length) url += `?${buildSortingParams(sorting)}`;
+
   if (filters?.length) {
     const prefix = url.includes('?') ? '&' : '?';
     url += `${prefix}${buildFilterParams(filters)}`;
