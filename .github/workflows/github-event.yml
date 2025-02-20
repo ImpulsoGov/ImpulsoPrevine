@@ -1,4 +1,4 @@
-name: "End-to-End and visual Testing"
+name: "End-to-End and Visual Testing"
 
 on:
   push:
@@ -18,9 +18,8 @@ jobs:
         run: npm install -g yarn && yarn install --frozen-lockfile
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
-
       - name: Wait for Vercel Deployment
-        run: 
+        run: |
           GIT_SHA=$(git rev-parse HEAD)
           echo "Looking for deployment with commit SHA: $GIT_SHA"
 
@@ -49,13 +48,11 @@ jobs:
             exit 1
           fi
         shell: bash
-
       - name: Run Playwright tests
         run: DEBUG=pw:webserver yarn playwright test
         env:
           BASE_URL: ${{ env.DEPLOY_URL }}
           ENV: development
-
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -66,7 +63,6 @@ jobs:
   chromatic:
     name: visual-regression-testing-chromatic
     needs: end-to-end-testing-playwright
-    if: success()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
