@@ -20,52 +20,9 @@ import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/l
 import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
 import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
 import { onlyAppliedFilters } from '@/utils/onlyAppliedFilters';
+import dataJson from '../api/lista-nominal/data.json';
+
 //dados mockados essa parte do código será substituída por uma chamada a API
-const filters = [
-    {
-        options: [
-            { value: 'Autorreferido', label: 'Autorreferido' },
-            { value: 'Diagnostico clínico', label: 'Diagnostico clínico' },
-        ],
-        label: 'Identificação da Condição',
-        id : 'identificacao_condicao',
-        isMultiSelect: true,
-        width: '240px',
-    },
-    {
-        options: [
-            { value: 'ACS 1', label: 'ACS 1' },
-            { value: 'ACS 2', label: 'ACS 2' },
-            { value: 'ACS 3', label: 'ACS 3' },
-            { value: 'ACS 4', label: 'ACS 4' },
-            { value: 'ACS 5', label: 'ACS 5' },
-            { value: 'ACS 6', label: 'ACS 6' },
-            { value: 'ACS 7', label: 'ACS 7' },
-            { value: 'ACS 8', label: 'ACS 8' },
-            { value: 'ACS 9', label: 'ACS 9' },
-            { value: 'ACS 10', label: 'ACS 10' },
-            { value: 'ACS 11', label: 'ACS 11' },
-            { value: 'ACS 12', label: 'ACS 12' },
-            { value: 'ACS 13', label: 'ACS 13' },
-            { value: 'ACS 14', label: 'ACS 14' },
-            { value: 'ACS 15', label: 'ACS 15' },
-        ],
-        label: 'ACS Responsável',
-        id : 'acs_nome_cadastro',
-        isMultiSelect: true,
-        width: '240px',
-    },
-    {
-        options: [
-            { value: 'em dia', label: 'Em dia' },
-            { value: 'atrasado', label: 'Atrasado' },
-        ],
-        label: 'Status',
-        id : 'status',
-        isMultiSelect: false,
-        width: '240px',
-    },
-]
 
 // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
 const cardsDetails: CardDetailsMap = {
@@ -107,7 +64,6 @@ const IconDetailsMap: TagIconDetailsMap = {
     },
 };
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-const propPrintGrouping = "equipe_nome"; 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 const filtersLabels = {
     identificacao_condicao: "Identificação da Condição",
@@ -231,6 +187,42 @@ export const ListContainer = ({
     const [user, setUser] = useState<Session['user']>();
     const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     const closePrintModal = () => setPrintModalVisibility(false);
+    const filters = [
+        {
+            options: [
+                { value: 'Autorreferido', label: 'Autorreferido' },
+                { value: 'Diagnostico clínico', label: 'Diagnostico clínico' },
+            ],
+            label: 'Identificação da Condição',
+            id : 'identificacao_condicao',
+            isMultiSelect: true,
+            width: '240px',
+        },
+        {
+            options: dataJson
+            .filter(item=> {
+                const notFilterByTeam = user?.perfis.includes(9) ? item.ine === user.equipe: true
+                return item.municipio_id_sus === user?.municipio_id_sus && notFilterByTeam
+            }
+            )
+            .map((item) => ({ value: item.acs_nome_cadastro, label: item.acs_nome_cadastro }))
+            .sort((a,b) => a.label.localeCompare(b.label)),
+            label: 'ACS Responsável',
+            id : 'acs_nome_cadastro',
+            isMultiSelect: true,
+            width: '240px',
+        },
+        {
+            options: [
+                { value: 'em dia', label: 'Em dia' },
+                { value: 'atrasado', label: 'Atrasado' },
+            ],
+            label: 'Status',
+            id : 'status',
+            isMultiSelect: false,
+            width: '240px',
+        },
+    ]
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
@@ -278,7 +270,6 @@ export const ListContainer = ({
                 setIsLoading(true);
                 try {
                     const res = await getListData({
-                        municipio_id_sus: user.municipio_id_sus,
                         token: user.access_token,
                         listName: list,
                         sorting: [{
@@ -286,7 +277,6 @@ export const ListContainer = ({
                             sortOrder: sorting[0].sort,
                         }],
                         filters: value,
-                        ine: user.perfis.includes(9) ? user.equipe : undefined,
                         pagination,
                         search: search,
                     });
@@ -312,10 +302,8 @@ export const ListContainer = ({
 
     const getPrintDataResponse = async () => {
         if (!user) return;
-        console.log(printStates.value);
         try {
             const res = await getListData({
-                municipio_id_sus: user.municipio_id_sus,
                 token: user.access_token,
                 listName: printStates.list,
                 sorting: [{
@@ -323,7 +311,6 @@ export const ListContainer = ({
                     sortOrder: printStates.sorting[0].sort,
                 }],
                 filters: printStates.value,
-                ine: user.perfis.includes(9) ? user.equipe : undefined,
                 search: printStates.search,
             });
             return res.data;
@@ -347,11 +334,9 @@ export const ListContainer = ({
             try {
             const currentURL = new URL(window.location.href).origin;
             const res = await getCardsData({
-                municipio_id_sus: user.municipio_id_sus,
                 token: user.access_token,
                 listName: list,
                 cardType: 'internal',
-                ine: user.perfis.includes(9) ? user.equipe : undefined,
                 baseUrl: currentURL,
             });
 
@@ -406,13 +391,14 @@ export const ListContainer = ({
             portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
         },
         verticalDivider:[2,4,6], 
-        propPrintGrouping: propPrintGrouping,
+        propPrintGrouping: user?.perfis.includes(9) ? "acs_nome_cadastro" : "equipe_nome",
         filtersLabels: filtersLabels,
     }
     const handlePrintClick = () => 
         handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
     if (!user) return <p>Usuário não autenticado</p>;
+    const propPrintGrouping = user.perfis.includes(9) ? "acs_nome_cadastro" : "equipe_nome"; 
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
 

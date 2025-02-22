@@ -58,19 +58,14 @@ export const buildUrlWithParams = (
     filters?: FilterItem,
     pagination?: Pagination;
     listName: string,
-    ine?: string,
-    municipio_id_sus: string,
     search?: string;
   }
 ): string => {
   let url = baseUrl;
-  const { sorting, filters, listName, ine, municipio_id_sus, pagination, search } = params || {};
+  const { sorting, filters, listName, pagination, search } = params || {};
   
   if (listName) url += `/${listName}`;
   
-  if (municipio_id_sus) url += `/${municipio_id_sus}`;
-
-  if (ine) url += `/${ine}`;
   
   if (sorting?.length) url += `?${buildSortingParams(sorting)}`;
   
@@ -89,13 +84,11 @@ export const buildUrlWithParams = (
   return url;
 };  
 
-export type getListDataProps = {
-  municipio_id_sus: string;
+export type GetListDataProps = {
   token: string;
   listName: string;
   sorting?: SortingItem[];
   filters?: FilterItem;
-  ine?: string;
   pagination?: Pagination;
   search?: string;
 };
@@ -106,22 +99,19 @@ export type ListDataResponse = {
 }
 
 export const getListData = async ({
-  municipio_id_sus,
   token,
   listName,
   sorting,
   filters,
-  ine,
   pagination,
   search
-}: getListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
+}: GetListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
   if (!token) throw new Error('Token de autenticação é obrigatório');
-  if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
   if (!listName) throw new Error('Tipo de lista é obrigatório');
 
   const currentURL = new URL(window.location.href);
   const url = `${currentURL.origin}/api/lista-nominal`;
-  const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, ine, municipio_id_sus, pagination, search });
+  const urlWithParams = buildUrlWithParams(url, { sorting, filters, listName, pagination, search });
 
   return axios.request({
     method: 'get',

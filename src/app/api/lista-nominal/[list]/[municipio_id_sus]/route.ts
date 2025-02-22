@@ -35,17 +35,21 @@ function searchBaseData({
 
 export async function GET(
   req: NextRequest,
-  { params }: { 
-    params: Promise<{      
-      municipio_id_sus: string;
-      list: string;
-  }>}
+  // { params }: { 
+  //   params: Promise<{      
+  //     list: string;
+  // }>} // quando for utilizar a conexao com o banco de dados
 ) {
   try {
-    const { municipio_id_sus } = await params;
+    // const { list } = await params; // quando for utilizar a conexao com o banco de dados
     const searchParams = req.nextUrl.searchParams;
     const filtersParams = searchParams.get('filters');
     const filters = await getFiltersParams(filtersParams);
+
+    const token = getToken(req.headers);
+    const secret = getEncodedSecret();
+    const { payload } = await decodeToken(token, secret) as JWTToken;
+    const municipioIdSus = payload?.municipio as string;
     const pagination = {
       page: searchParams.get('pagination[page]'),
       pageSize: searchParams.get('pagination[pageSize]')
@@ -54,18 +58,15 @@ export async function GET(
     const searchName = searchParams.get('search');
     const baseData = searchBaseData({
       data: [...data],
-      municipio_id_sus: municipio_id_sus,
+      municipio_id_sus: municipioIdSus,
     });
-    const token = getToken(req.headers);
-    const secret = getEncodedSecret();
-    const { payload } = await decodeToken(token, secret) as JWTToken;
-
+    let totalRows = baseData.length;
     // será substituido por consulta no banco de dados
     let responseData: Data = [...baseData];
-
-    if (payload?.perfis?.includes(9) && payload?.ine) {
+    if (payload?.perfis?.includes(9) && payload?.equipe) {
       // será substituido por consulta no banco de dados
-      responseData = responseData.filter((item) => item.ine === payload.ine);
+      responseData = responseData.filter((item) => item.ine === payload.equipe);
+      totalRows = responseData.length;
     }
     responseData = filterData(responseData,filters); // será substituido por consulta no banco de dados
     if(searchName) responseData = responseData.filter((item) => String(item.nome).includes(searchName)); // será substituido por consulta no banco de dados
@@ -101,7 +102,7 @@ export async function GET(
     }
     return Response.json({
       data: responseData,
-      totalRows: baseData.length,
+      totalRows: totalRows,
     }, { status: 200 });
   } catch (error) {
     console.error(error);

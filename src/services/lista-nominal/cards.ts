@@ -12,30 +12,21 @@ export const buildUrlWithParams = (
   baseUrl: string,
   params?: {
     listName: string,
-    ine?: string,
-    municipio_id_sus: string;
     cardType: CardType;
   }
 ): string => {
   let url = baseUrl;
-  const { listName, ine, municipio_id_sus, cardType } = params || {};
+  const { listName, cardType } = params || {};
   if (cardType) {
     url += `/${encodeURIComponent(cardType)}`;
   }
   if (listName) {
     url += `/${encodeURIComponent(listName)}`;
   }
-  if (municipio_id_sus) {
-    url += `/${encodeURIComponent(municipio_id_sus)}`;
-  }
-  if (ine) {
-    url += `/${encodeURIComponent(ine)}`;
-  }
   return url;
 };
 
-export type getCardsDataProps = {
-  municipio_id_sus: string;
+export type GetCardsDataProps = {
   token: string;
   listName: string;
   cardType: CardType;
@@ -44,29 +35,24 @@ export type getCardsDataProps = {
 };
 
 export type CardsDataResponse = {
-  municipio_id_sus: string;
   lista: string;
   descricao: string;
   valor: number;
-  equipe_ine?: string;
 }
 
 export const getCardsData = async ({
-  municipio_id_sus,
   token,
   listName,
   cardType,
-  ine,
   baseUrl,
-}: getCardsDataProps): Promise<AxiosResponse<CardsDataResponse[]>> => {
+}: GetCardsDataProps): Promise<AxiosResponse<CardsDataResponse[]>> => {
   if (!token) throw new Error('Token de autenticação é obrigatório');
-  if (!municipio_id_sus) throw new Error('ID do município é obrigatório');
   if (!listName) throw new Error('Tipo de lista é obrigatório');
   if (!cardType) throw new Error('Tipo de card é obrigatório');
   if (!baseUrl) throw new Error('URL base é obrigatória');
 
   const url = `${baseUrl}/api/card`;
-  const urlWithParams = buildUrlWithParams(url, { listName, ine, municipio_id_sus, cardType });
+  const urlWithParams = buildUrlWithParams(url, { listName, cardType });
 
   return axios.request({
     method: 'get',

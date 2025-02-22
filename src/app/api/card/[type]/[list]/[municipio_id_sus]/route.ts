@@ -12,17 +12,16 @@ export async function GET(
   req: NextRequest,
   { params }: { 
     params: Promise<{      
-      municipio_id_sus: string;
       list: string;
       type: string
   }>}
 ) {
   try {
-    const { type, list, municipio_id_sus } = await params;
+    const { type, list } = await params;
     const token = getToken(req.headers);
     const secret = getEncodedSecret();
     const { payload } = await decodeToken(token, secret) as JWTToken;
-
+    const municipioIdSus = payload?.municipio as string;
     validateCardType(type);
 
     const data = getDataByType(type);
@@ -31,13 +30,13 @@ export async function GET(
     // Quando conectar com o banco de dados, agrupar os dados por descrição
     // para somar os valores de todas equipe do município por descrição (card).
     let filteredData = data.filter(card =>
-      card.municipio_id_sus === municipio_id_sus
+      card.municipio_id_sus === municipioIdSus
       && card.lista === list
     );
 
-    if (payload?.perfis?.includes(9) && payload?.ine) {
+    if (payload?.perfis?.includes(9) && payload?.equipe) {
       // será substituido por consulta no banco de dados
-      filteredData = filteredData.filter((card) => card.ine === payload.ine);
+      filteredData = filteredData.filter((card) => card.ine === payload.equipe);
     }
 
     return Response.json(filteredData, { status: 200 });

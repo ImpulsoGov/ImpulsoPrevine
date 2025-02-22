@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import type { Session } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { ListaNominal } from "./ListaNominal";
-import type { getListDataProps } from "@services/lista-nominal/ListaNominal";
+import type { GetListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from './ListaNominal';
 import { getCardsData } from "@/services/lista-nominal/cards";
 import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
@@ -43,19 +43,15 @@ const ListaNominalPage = async() => {
     const user = session?.user as Session['user'];
     let externalCardsProps: CardProps[] = [];
     if (!session || !user) return <p>Usuário não autenticado</p>;
-    const params: getListDataProps = {
-        municipio_id_sus: user.municipio_id_sus,
+    const params: GetListDataProps = {
         token: user.access_token,
         listName: "HIPERTENSÃO", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
-    if(user.perfis.includes(9)) params.ine = user.equipe
     try {
         const { data } = await getCardsData({
-            municipio_id_sus: params.municipio_id_sus,
             token: params.token,
             listName: params.listName,
             cardType: "external",
-            ine: params.ine,
             baseUrl: baseURL() ,
         });
 
