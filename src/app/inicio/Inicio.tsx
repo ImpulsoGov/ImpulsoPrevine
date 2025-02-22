@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 const CardsGrid = dynamic<{
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
-}>(() => import('./CardsGrid').then(mod => mod.CardsGrid));
+}>(() => import('./CardsGrid').then(mod => mod.CardsGrid),{ ssr: false });
 const Greeting = dynamic<{
     cargo: string;
     greeting: string;
