@@ -1,20 +1,20 @@
 [
   {
-    "municipio_id_sus": "111111",
+    "municipio_id_sus": "150030",
     "ine": "0002192659",
     "lista": "hipertensao",
     "valor": 45,
     "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
   },
   {
-    "municipio_id_sus": "111111",
+    "municipio_id_sus": "150030",
     "ine": "0002192659",
     "lista": "hipertensao",
     "valor": 52,
     "descricao": "DIAGNOSTICO_AUTORREFERIDO"
   },
   {
-    "municipio_id_sus": "111111",
+    "municipio_id_sus": "150030",
     "ine": "0002192659",
     "lista": "hipertensao",
     "valor": 40,

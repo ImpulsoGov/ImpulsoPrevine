@@ -66,7 +66,6 @@ export const buildUrlWithParams = (
   
   if (listName) url += `/${listName}`;
   
-  
   if (sorting?.length) url += `?${buildSortingParams(sorting)}`;
   
   if (isFilterApplied(filters)) {

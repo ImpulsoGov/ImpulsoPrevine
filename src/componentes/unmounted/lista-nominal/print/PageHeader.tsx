@@ -65,7 +65,7 @@ export const PageHeader = ({
           {
             Object.keys(appliedFilters).length > 0 ?
             Object.entries(appliedFilters).map(([filter, value])=>{
-              return(
+              if(value.length > 0) return(
                 <div 
                   key={filter}
                   style={{

@@ -38,7 +38,6 @@ export async function GET(
       // será substituido por consulta no banco de dados
       filteredData = filteredData.filter((card) => card.ine === payload.equipe);
     }
-
     return Response.json(filteredData, { status: 200 });
   } catch (error) {
     if (error instanceof InvalidCardTypeError) {

@@ -45,7 +45,7 @@ const ListaNominalPage = async() => {
     if (!session || !user) return <p>Usuário não autenticado</p>;
     const params: GetListDataProps = {
         token: user.access_token,
-        listName: "HIPERTENSÃO", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
+        listName: "hipertensao", //esse valor inicial vai vir da url, assim como os filtros e ordenacao inicial
     }
     try {
         const { data } = await getCardsData({
@@ -57,6 +57,7 @@ const ListaNominalPage = async() => {
 
         externalCardsProps = getCardsProps(cardsDetails, data);
     } catch (error) {
+        console.error(error);
         captureException(error);
         return <p>Erro ao buscar dados cards</p>;
     }

@@ -1,9 +1,9 @@
 import type { NextRequest } from 'next/server';
-import data from '../../data.json';
-import { sortData, validateSortOrder } from '../../utils/sorting';
-import type { SortOrder } from '../../utils/sorting';
-import { paginateData, validatePaginationParams } from '../../utils/pagination';
-import { BadRequestError } from '../../utils/errors';
+import data from '../data.json';
+import { sortData, validateSortOrder } from '../utils/sorting';
+import type { SortOrder } from '../utils/sorting';
+import { paginateData, validatePaginationParams } from '../utils/pagination';
+import { BadRequestError } from '../utils/errors';
 import { filterData } from '@/utils/FilterData';
 import type { DataItem, Filters } from '@/utils/FilterData';
 import { AuthenticationError, decodeToken, getToken, getEncodedSecret } from '@/utils/token';
