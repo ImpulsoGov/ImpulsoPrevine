@@ -18,7 +18,7 @@ test.describe.parallel('Componente NavBarMounted', () => {
 
   for (const { name, path } of routes) {
     test(`Deve redirecionar para a página "${path}" quando clicar em "${name}"`, async ({ page }) => {
-      const link = page.getByRole('link', { name, exact: true });
+      const link = page.getByRole('link', { name, exact: true }).first();
       await link.click();
       await page.waitForURL(`${BASE_URL}${path}`);
       expect(page.url()).toBe(`${BASE_URL}${path}`);
