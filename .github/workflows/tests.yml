@@ -1,4 +1,4 @@
-name: "Tests"
+name: "Playwright tests"
 
 on:
   deployment_status:
@@ -21,6 +21,10 @@ jobs:
         run: yarn playwright install --with-deps
       - name: Extract Deployment URL
         run: |
+          if [ -z "${{ github.event.deployment_status.environment_url }}" ]; then
+            echo "Error: Deployment URL is empty"
+            exit 1
+          fi
           DEPLOY_URL=${{ github.event.deployment_status.environment_url }}
           echo "Deployment is ready: $DEPLOY_URL"
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
