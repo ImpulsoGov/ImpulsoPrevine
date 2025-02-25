@@ -40,9 +40,8 @@ export const customizePrint = (
     props: ExtendedPrintTableProps
 ) => {
     const printData = options.ordenacao && options.agrupamento !== VALORES_AGRUPAMENTO_IMPRESSAO.nao
-        ? sortByString(props.data, props.propPrintGrouping)
+        ? sortByString(props.data, "acs_nome_cadastro") //TODO tornar propriedade dinâmica
         : props.data;
-
     print({ ...props, data: printData });
 
     closePrintModal();
