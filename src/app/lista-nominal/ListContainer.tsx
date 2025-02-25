@@ -15,7 +15,7 @@ import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
-import { VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/helpers/lista-nominal/impressao/handlePrint';
+import { type ExtendedPrintTableProps, VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/helpers/lista-nominal/impressao/handlePrint';
 import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/labelsModalImpressao';
 import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
 import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
@@ -358,7 +358,7 @@ export const ListContainer = ({
     }
     const handleCostumizePrint = async(options: PrintOptions) =>{ 
         const data = await getPrintDataResponse()
-        const props: PrintTableProps = {
+        const props: ExtendedPrintTableProps = {
             data: data?.data ?? [],
             columns: columns,
             list: list,
@@ -367,6 +367,7 @@ export const ListContainer = ({
             fontFamily: "sans-serif",
             dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
             pageSplit: options.separacaoGrupoPorFolha, 
+            orderByProp: options.ordenacao,
             printColumnsWidth: {
                 landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
                 portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,

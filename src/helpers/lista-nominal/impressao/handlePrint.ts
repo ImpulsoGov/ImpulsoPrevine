@@ -30,12 +30,14 @@ export const handlePrint = (
     const abrirModal = filtros.length === NUMERO_DE_FILTROS_PARA_IMPRESSAO_SEM_PERSONALIZACAO;
     abrirModal ? printWithoutModalWindow(props) : setShowModalImpressao(true)
 }
-
+export type ExtendedPrintTableProps = PrintTableProps & {
+  orderByProp: boolean;
+}
 //funcao executada quando o usuário clica no botão de impressão no modal
 export const customizePrint = (
     options: PrintOptions, 
     closePrintModal: ()=>void, 
-    props: PrintTableProps
+    props: ExtendedPrintTableProps
 ) => {
     const printData = options.ordenacao && options.agrupamento !== VALORES_AGRUPAMENTO_IMPRESSAO.nao
         ? sortByString(props.data, props.propPrintGrouping)
