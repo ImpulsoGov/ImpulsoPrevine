@@ -28,12 +28,9 @@ const cargoNome = async (
 	const config = {
 		method: "get",
 		url:
-			API_URL_USUARIOS +
-			"suporte/ger_usuarios/cargo-nome?id=" +
-			cpf +
-			"&id_cod=2",
+			`${API_URL_USUARIOS}suporte/ger_usuarios/cargo-nome?id=${cpf}&id_cod=2`,
 		headers: {
-			Authorization: "Bearer " + token,
+			authorization: `Bearer ${token}`,
 		},
 	};
 	return await axios(config)
@@ -52,7 +49,7 @@ const getToken = async (
 	data.append("password", credentials.password);
 	const config = {
 		method: "post",
-		url: API_URL_USUARIOS + "suporte/usuarios/token",
+		url: `${API_URL_USUARIOS}suporte/usuarios/token`,
 		headers: {
 			...data.getHeaders(),
 		},
@@ -87,10 +84,9 @@ export const nextAuthOptions : NextAuthOptions = {
         if (token) {
           // Any object returned will be saved in `user` property of the JWT
           return token
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null
         }
+		// If you return null then an error will be displayed advising the user to check their details.
+		return null
       }
     })
   ],
@@ -105,12 +101,11 @@ export const nextAuthOptions : NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
-      user && (token.user = user);
-
+	  if (user) token.user = user;
       return Promise.resolve(token);
     },
     session: async ({ session, token }) => {
-      token.user && (session.user = token.user as User);
+      if(token.user) session.user = token.user as User;
       if(token?.expires) session.expires = new Date(token.expires as number).toISOString();
       return Promise.resolve(session);
     },
