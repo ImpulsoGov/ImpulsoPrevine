@@ -256,12 +256,13 @@ export const ListContainer = ({
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
     useEffect(() => setUser(session?.user), [session?.user]);
-    // useEffect(()=>{
-    //     const params = new URLSearchParams(searchParams.toString());
-    //     Object.entries()
-    //     params.set('meuParametro', 'novoValor');
-    //     router.push(`?${params.toString()}`);
-    // },[value])
+    useEffect(()=>{
+        const params = new URLSearchParams(searchParams.toString());
+        for (const [key, valueString] of Object.entries(value)) {
+            params.set(key, valueString as string);
+        }
+        router.push(`?${params.toString()}`);
+    },[searchParams, router, value]);
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
