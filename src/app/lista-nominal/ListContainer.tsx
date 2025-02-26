@@ -1,4 +1,4 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
@@ -9,58 +9,20 @@ import { renderDateTagCell, renderStatusTagCell } from '@/helpers/lista-nominal/
 import type { TagIconDetailsMap } from '@/helpers/lista-nominal/renderCell';
 import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { useSession } from 'next-auth/react';
-import { getListData } from '@/services/lista-nominal/ListaNominal';
+import { getListData, isFilterApplied } from '@/services/lista-nominal/ListaNominal';
 import type { CardDetailsMap } from '@/helpers/cardsList';
 import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
+import { type ExtendedPrintTableProps, VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/helpers/lista-nominal/impressao/handlePrint';
+import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/labelsModalImpressao';
+import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
+import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
+import { onlyAppliedFilters } from '@/utils/onlyAppliedFilters';
+import dataJson from '../api/lista-nominal/data.json';
+
 //dados mockados essa parte do código será substituída por uma chamada a API
-const filters = [
-    {
-        options: [
-            { value: 'Autorreferido', label: 'Autorreferido' },
-            { value: 'Diagnostico clínico', label: 'Diagnostico clínico' },
-        ],
-        label: 'Identificação da Condição',
-        id : 'identificacao_condicao',
-        isMultiSelect: true,
-        width: '240px',
-    },
-    {
-        options: [
-            { value: 'ACS 1', label: 'ACS 1' },
-            { value: 'ACS 2', label: 'ACS 2' },
-            { value: 'ACS 3', label: 'ACS 3' },
-            { value: 'ACS 4', label: 'ACS 4' },
-            { value: 'ACS 5', label: 'ACS 5' },
-            { value: 'ACS 6', label: 'ACS 6' },
-            { value: 'ACS 7', label: 'ACS 7' },
-            { value: 'ACS 8', label: 'ACS 8' },
-            { value: 'ACS 9', label: 'ACS 9' },
-            { value: 'ACS 10', label: 'ACS 10' },
-            { value: 'ACS 11', label: 'ACS 11' },
-            { value: 'ACS 12', label: 'ACS 12' },
-            { value: 'ACS 13', label: 'ACS 13' },
-            { value: 'ACS 14', label: 'ACS 14' },
-            { value: 'ACS 15', label: 'ACS 15' },
-        ],
-        label: 'ACS Responsável',
-        id : 'acs_nome_cadastro',
-        isMultiSelect: true,
-        width: '240px',
-    },
-    {
-        options: [
-            { value: 'em dia', label: 'Em dia' },
-            { value: 'atrasado', label: 'Atrasado' },
-        ],
-        label: 'Status',
-        id : 'status',
-        isMultiSelect: false,
-        width: '240px',
-    },
-]
 
 // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
 const cardsDetails: CardDetailsMap = {
@@ -101,7 +63,13 @@ const IconDetailsMap: TagIconDetailsMap = {
         alt: 'Ícone de uma ampulheta',
     },
 };
-
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
+const filtersLabels = {
+    identificacao_condicao: "Identificação da Condição",
+    acs_nome_cadastro: "ACS Responsável",
+    status: "Status",
+}
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns: GridColDef[] = [
     {
@@ -109,21 +77,21 @@ export const columns: GridColDef[] = [
         headerName: 'Nome',
         width: 260,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'identificacao_condicao',
         headerName: 'Identificação da Condição',
         width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'dt_consulta_mais_recente',
@@ -138,26 +106,27 @@ export const columns: GridColDef[] = [
     {
         field: 'prazo_proxima_consulta',
         headerName: 'Prazo para próxima consulta',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
-        }
+        },
     },
     {
+        field: 'dt_afericao_pressao_mais_recente',
         headerName: 'Data de aferição de PA mais recente',
-        width: 200 ,
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderDateTagCell(value, IconDetailsMap);
-        },
+        }
     },
     {
         field: 'prazo_proxima_afericao_pa',
-        headerName: 'Prazo para próxima aferição de PA',
-        width: 200 ,
+        headerName: 'Prazo para próx. aferição de PA',
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
@@ -167,27 +136,27 @@ export const columns: GridColDef[] = [
     {
         field: 'acs_nome_cadastro',
         headerName: 'ACS responsável',
-        width: 250 ,
+        width: 250,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'status',
         headerName: 'Status',
         width: 150,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
 ] as GridColDef[];
 
-export type optionsType = { 
+export type OptionsType = { 
     value: string; 
     label: string 
 }
 interface Filter {
     id: string;
     label: string;
-    options: optionsType[];
+    options: OptionsType[];
     isMultiSelect: boolean;
     width: string;
 }
@@ -201,6 +170,11 @@ interface ListContainerProps {
     subTabID: string;
     title: string;
 }
+export type PrintOptions = {
+    agrupamento: string,
+    separacaoGrupoPorFolha: boolean,
+    ordenacao: boolean,
+}
 
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
@@ -211,6 +185,44 @@ export const ListContainer = ({
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
+    const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
+    const closePrintModal = () => setPrintModalVisibility(false);
+    const filters = [
+        {
+            options: [
+                { value: 'Autorreferido', label: 'Autorreferido' },
+                { value: 'Diagnostico clínico', label: 'Diagnostico clínico' },
+            ],
+            label: 'Identificação da Condição',
+            id : 'identificacao_condicao',
+            isMultiSelect: true,
+            width: '240px',
+        },
+        {
+            options: dataJson
+            .filter(item=> {
+                const notFilterByTeam = user?.perfis.includes(9) ? item.ine === user.equipe: true
+                return item.municipio_id_sus === user?.municipio_id_sus && notFilterByTeam
+            }
+            )
+            .map((item) => ({ value: item.acs_nome_cadastro, label: item.acs_nome_cadastro }))
+            .sort((a,b) => a.label.localeCompare(b.label)),
+            label: 'ACS Responsável',
+            id : 'acs_nome_cadastro',
+            isMultiSelect: true,
+            width: '240px',
+        },
+        {
+            options: [
+                { value: 'em dia', label: 'Em dia' },
+                { value: 'atrasado', label: 'Atrasado' },
+            ],
+            label: 'Status',
+            id : 'status',
+            isMultiSelect: false,
+            width: '240px',
+        },
+    ]
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
         acc[filter.id] = filter.isMultiSelect ? [] : "";
         return acc;
@@ -228,6 +240,7 @@ export const ListContainer = ({
         page: 0,
         pageSize: 8,
     });
+
     const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -236,6 +249,12 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
+    const [printStates, setPrintStates] = useState({
+        value,
+        list,
+        sorting,
+        search,
+    });
 
     useEffect(() => {
         const sessionAsync = async() => {
@@ -245,12 +264,12 @@ export const ListContainer = ({
     }, [session?.user]);
 
     useEffect(() => {
+        //modularizar essa função
         if (user) {
             const getListDataResponse = async () => {
                 setIsLoading(true);
                 try {
                     const res = await getListData({
-                        municipio_id_sus: user.municipio_id_sus,
                         token: user.access_token,
                         listName: list,
                         sorting: [{
@@ -258,7 +277,6 @@ export const ListContainer = ({
                             sortOrder: sorting[0].sort,
                         }],
                         filters: value,
-                        ine: user.perfis.includes(9) ? user.equipe : undefined,
                         pagination,
                         search: search,
                     });
@@ -273,6 +291,33 @@ export const ListContainer = ({
             getListDataResponse();
         }
     }, [user, value, list, pagination, sorting, search]);
+    useEffect(() => {
+        setPrintStates({
+            value,
+            list,
+            sorting,
+            search,
+        })
+    }, [user, value, list, sorting, search]);
+
+    const getPrintDataResponse = async () => {
+        if (!user) return;
+        try {
+            const res = await getListData({
+                token: user.access_token,
+                listName: printStates.list,
+                sorting: [{
+                    sortField: printStates.sorting[0].field,
+                    sortOrder: printStates.sorting[0].sort,
+                }],
+                filters: printStates.value,
+                search: printStates.search,
+            });
+            return res.data;
+        } catch (error) {
+            captureException(error);
+        }
+    };
 
     useEffect(() => {
         setTableData({
@@ -282,17 +327,16 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
+        //modularizar essa função
         const getCardsDataResponse = async () => {
             if (!user) return;
 
             try {
             const currentURL = new URL(window.location.href).origin;
             const res = await getCardsData({
-                municipio_id_sus: user.municipio_id_sus,
                 token: user.access_token,
                 listName: list,
                 cardType: 'internal',
-                ine: user.perfis.includes(9) ? user.equipe : undefined,
                 baseUrl: currentURL,
             });
 
@@ -312,8 +356,50 @@ export const ListContainer = ({
             ? setSorting([...newSortModel])
             : setSorting([...DEFAULT_SORTING]);
     }
+    const handleCostumizePrint = async(options: PrintOptions) =>{ 
+        const data = await getPrintDataResponse()
+        const props: ExtendedPrintTableProps = {
+            data: data?.data ?? [],
+            columns: columns,
+            list: list,
+            appliedFilters: isFilterApplied(value) ? onlyAppliedFilters(value) : {},
+            latestProductionDate: new Date(String(tableData.data[0].atualizacao_data)).toLocaleDateString("pt-BR"),
+            fontFamily: "sans-serif",
+            dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
+            pageSplit: options.separacaoGrupoPorFolha, 
+            orderByProp: options.ordenacao,
+            printColumnsWidth: {
+                landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+                portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+            },
+            verticalDivider:[2,4,6], 
+            propPrintGrouping: propPrintGrouping,
+            filtersLabels: filtersLabels,
+        }
+        customizePrint(options, closePrintModal, props);
+}
+    const props: PrintTableProps = {
+        data: tableData.data,
+        columns: columns,
+        list: list,
+        appliedFilters: value,
+        latestProductionDate: String(tableData.data[0]?.atualizacao_data),
+        fontFamily: "sans-serif",
+        dataSplit:false, 
+        pageSplit:false, 
+        printColumnsWidth: {
+            landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+            portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+        },
+        verticalDivider:[2,4,6], 
+        propPrintGrouping: user?.perfis.includes(9) ? "acs_nome_cadastro" : "equipe_nome",
+        filtersLabels: filtersLabels,
+    }
+    const handlePrintClick = () => 
+        handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
     if (!user) return <p>Usuário não autenticado</p>;
+    const propPrintGrouping = user.perfis.includes(9) ? "acs_nome_cadastro" : "equipe_nome"; 
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
 
@@ -337,13 +423,14 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
+    return <>
+    <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
         <p style={{fontSize: "26px", margin: "75px 0 15px 0", lineHeight: "130%"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <div style={{marginTop: "15px"}}>
             <ToolBarMounted
                 updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
-                print={() => {}}
+                print={handlePrintClick}
                 inputProps={{value: inputValue, onChange: setInputValue}}
                 handleSearchClick={handleSearchClick}
             />
@@ -362,6 +449,26 @@ export const ListContainer = ({
             sortModel={sorting}
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
+            slots={{	
+                noRowsOverlay: () => <p style={{ textAlign: "center", padding: "40px" }}>A lista não possui cidadãos com as informações selecionadas nos filtros. Limpe os filtros e selecione outra combinação.</p>,
+            }}
         />
-    </div>;
+    </div>
+    <div style={{
+        position: "absolute",
+        left: 0,
+    }}>
+        <ModalAlertControlled
+            display={isPrintModalVisible}
+            close={closePrintModal}
+        >
+            <PersonalizacaoImpressao
+                labels={user.perfis.includes(9) ? labelsModalImpressaoEquipe : labelsModalImpressaoAPS}
+                handleButtonClick={handleCostumizePrint}
+                handleClose={closePrintModal}
+                valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
+            />
+        </ModalAlertControlled>
+    </div>
+    </>
 }
