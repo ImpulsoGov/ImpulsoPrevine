@@ -450,7 +450,7 @@ export const ListContainer = ({
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
             slots={{	
-                noRowsOverlay: () => <p style={{ textAlign: "center", padding: "40px" }}>A lista não possui cidadãos com as informações selecionada nos filtros. Limpe os filtros e selecione outra combinação.</p>,
+                noRowsOverlay: () => <p style={{ textAlign: "center", padding: "40px" }}>A lista não possui cidadãos com as informações selecionadas nos filtros. Limpe os filtros e selecione outra combinação.</p>,
             }}
         />
     </div>
