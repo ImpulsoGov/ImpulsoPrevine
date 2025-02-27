@@ -29,7 +29,6 @@ const Index = ({ res }) => {
 			imagem: artigo?.capa?.url,
 		};
 	});
-	console.log(artigos);
 	return (
 		<>
 			<TituloTexto
