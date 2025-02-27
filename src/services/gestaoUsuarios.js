@@ -16,7 +16,7 @@ export const listarPerfis = async (token) => {
 
 		return response.data;
 	} catch (error) {
-		console.log(error.response.data);
+		console.error(error.response.data);
 	}
 };
 
@@ -30,7 +30,7 @@ export const listarUsuarios = async (token) => {
 
 		return response.data;
 	} catch (error) {
-		console.log(error.response.data);
+		console.error(error.response.data);
 	}
 };
 

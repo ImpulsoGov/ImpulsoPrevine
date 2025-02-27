@@ -261,8 +261,10 @@ export const ListContainer = ({
         for (const [key, valueString] of Object.entries(value)) {
             params.set(key, valueString as string);
         }
+        params.set('sort', sorting[0].field as string);
+        params.set('order', sorting[0].sort as string);
         router.push(`?${params.toString()}`);
-    },[searchParams, router, value]);
+    },[searchParams, router, value, searchParams.toString, router.push, sorting]);
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
