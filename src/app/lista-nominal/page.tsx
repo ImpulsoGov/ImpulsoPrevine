@@ -10,7 +10,7 @@ import { baseURL } from '@/utils/baseURL';
 import type { CardDetailsMap } from "@/helpers/cardsList";
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
-import { AuthErrorPage } from "./AuthErrorPage";
+import { ErrorPage } from "./ErrorPage";
 
 const ListaNominalPage = async(
     { searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }
@@ -166,6 +166,6 @@ const ListaNominalPage = async(
         return props && session && <ListaNominal props={props}/>
     
     }
-    return <AuthErrorPage />;
+    return <ErrorPage />;
 }
 export default ListaNominalPage;
