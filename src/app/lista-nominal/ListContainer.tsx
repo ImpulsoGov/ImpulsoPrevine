@@ -450,7 +450,7 @@ export const ListContainer = ({
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
             slots={{	
-                noRowsOverlay: () => <p style={{ textAlign: "center", padding: "40px" }}>A lista não possui cidadãos com as informações selecionadas nos filtros. Limpe os filtros e selecione outra combinação.</p>,
+                noRowsOverlay: () => <p style={{ textAlign: "center", padding: "40px" }}>Nenhum dado disponível. Isso pode ocorrer por ausência de resultados ou instabilidade na plataforma. Se já aplicou filtros ou utilizou a busca, tente ajustá-los. Se ainda assim os dados não foram exibidos, contate o suporte.</p>,
             }}
         />
     </div>
