@@ -1,12 +1,13 @@
 'use client'
 import { useSession } from "next-auth/react";
 import type { SituacaoPorIndicador } from '@/types/inicio';
+import { cargoTransform } from '@helpers/cargoTransform'
 import dynamic from 'next/dynamic';
 
 const CardsGrid = dynamic<{
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
-}>(() => import('./CardsGrid').then(mod => mod.CardsGrid));
+}>(() => import('./CardsGrid').then(mod => mod.CardsGrid),{ ssr: false });
 const Greeting = dynamic<{
     cargo: string;
     greeting: string;
@@ -26,22 +27,20 @@ const Texto = dynamic<{
 import style from './Inicio.module.css';
 
 interface InicioProps {
-	cargo: string;
 	situacaoPorIndicador: SituacaoPorIndicador;
 }
 
 export const Inicio: React.FC<InicioProps> = ({
-	cargo,
 	situacaoPorIndicador = null,
 }) => {
 	const { data: session } = useSession();
-
+	
 	if (session && situacaoPorIndicador) {
 		return (
 			<div className={style.Container}>
 				<div className={style.GreetingContainer}>
 					<Greeting
-						cargo={cargo}
+						cargo={cargoTransform(session.user.cargo)}
 						greeting="Boas vindas"
 						municipio_uf={session?.user.municipio}
 						nome_usuario={session?.user.nome}

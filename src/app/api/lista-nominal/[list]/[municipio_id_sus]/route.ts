@@ -61,7 +61,6 @@ export async function GET(
 
     // será substituido por consulta no banco de dados
     let responseData: Data = [...baseData];
-
     if (payload?.perfis?.includes(9) && payload?.ine) {
       // será substituido por consulta no banco de dados
       responseData = responseData.filter((item) => item.ine === payload.ine);

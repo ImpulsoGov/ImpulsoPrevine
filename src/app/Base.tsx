@@ -23,10 +23,12 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { userSetterSentry } from "@/hooks/userSetterSentry";
 
+import { rotasProtegidas } from "@/middlewares/middlewarePages";
+
 import dynamic from 'next/dynamic';
 
 const FooterMounted = dynamic(() => import('@componentes/mounted/base/FooterMonted').then(mod => mod.FooterMounted));
-const NavBarMounted = dynamic(() => import('@componentes/mounted/base/NavBarMounted').then(mod => mod.NavBarMounted));
+const NavBarMounted = dynamic(() => import('@componentes/mounted/base/NavBarMounted').then(mod => mod.NavBarMounted), { ssr: false });
 const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
 
 const tagManagerArgs = {
@@ -58,8 +60,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 	useEffect(() => {
 		getLayoutDataHook(setRes);
 	}, []);
-
-
+	const LoginFallback = ()=> <div style={{padding: "200px", textAlign: "center"}}>Usuário não autenticado, realize login em ACESSO RESTRITO no canto superior direito da tela</div>;
 	return (
 		<>
 			<Suspense
@@ -89,15 +90,20 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 							paddingTop:
 								width > 1000
 									? "76px"
-									: path == "/"
+									: path === "/"
 										? "0px"
-										: path == "/apoio"
+										: path === "/apoio"
 											? "0px"
 											: "30px",
 							height: "100%",
 						}}
 					>
-						{children}
+						{session ? (
+							rotasProtegidas.includes(path) ? children : null // Redirecionamento será tratado no middleware
+							) : (
+							rotasProtegidas.includes(path) ? <LoginFallback /> : children
+						)}
+
 					</div>
 					{res && <FooterMounted res={res} session={session} />}
 				</SessionWrapper>

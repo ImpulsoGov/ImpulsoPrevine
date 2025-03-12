@@ -1,5 +1,6 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -15,6 +16,10 @@ import { getCardsProps } from '@/helpers/cardsList';
 import { getCardsData } from '@/services/lista-nominal/cards';
 import { captureException } from "@sentry/nextjs";
 import { ToolBarMounted } from '@/componentes/mounted/lista-nominal/ToolBarMounted';
+import { VALORES_AGRUPAMENTO_IMPRESSAO, customizePrint, handlePrint } from '@/helpers/lista-nominal/impressao/handlePrint';
+import { labelsModalImpressaoAPS, labelsModalImpressaoEquipe } from '@/helpers/labelsModalImpressao';
+import type { PrintTableProps } from '@/componentes/unmounted/lista-nominal/print/PrintTable';
+import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from '@/helpers/larguraColunasHipertensao';
 //dados mockados essa parte do código será substituída por uma chamada a API
 const filters = [
     {
@@ -101,6 +106,8 @@ const IconDetailsMap: TagIconDetailsMap = {
         alt: 'Ícone de uma ampulheta',
     },
 };
+//dados mockados essa parte do código será substituída por uma chamada a API do CMS
+const propPrintGrouping = "ine" 
 
 //dados mockados essa parte do código será substituída por uma chamada a API do CMS
 export const columns: GridColDef[] = [
@@ -109,21 +116,21 @@ export const columns: GridColDef[] = [
         headerName: 'Nome',
         width: 260,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'cpf',
         headerName: 'CPF',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'identificacao_condicao',
         headerName: 'Identificação da Condição',
         width: 180,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'dt_consulta_mais_recente',
@@ -138,26 +145,27 @@ export const columns: GridColDef[] = [
     {
         field: 'prazo_proxima_consulta',
         headerName: 'Prazo para próxima consulta',
-        width: 180 ,
+        width: 180,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderStatusTagCell(value, IconDetailsMap);
-        }
+        },
     },
     {
+        field: 'dt_afericao_pressao_mais_recente',
         headerName: 'Data de aferição de PA mais recente',
-        width: 200 ,
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
             return renderDateTagCell(value, IconDetailsMap);
-        },
+        }
     },
     {
         field: 'prazo_proxima_afericao_pa',
-        headerName: 'Prazo para próxima aferição de PA',
-        width: 200 ,
+        headerName: 'Prazo para próx. aferição de PA',
+        width: 200,
         headerAlign: 'left',
         align: 'left',
         renderCell({ value }) {
@@ -167,27 +175,27 @@ export const columns: GridColDef[] = [
     {
         field: 'acs_nome_cadastro',
         headerName: 'ACS responsável',
-        width: 250 ,
+        width: 250,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
     {
         field: 'status',
         headerName: 'Status',
         width: 150,
         headerAlign: 'left',
-        align: 'left'
+        align: 'left',
     },
 ] as GridColDef[];
 
-export type optionsType = { 
+export type OptionsType = { 
     value: string; 
     label: string 
 }
 interface Filter {
     id: string;
     label: string;
-    options: optionsType[];
+    options: OptionsType[];
     isMultiSelect: boolean;
     width: string;
 }
@@ -201,6 +209,11 @@ interface ListContainerProps {
     subTabID: string;
     title: string;
 }
+export type PrintOptions = {
+    agrupamento: string,
+    separacaoGrupoPorFolha: boolean,
+    ordenacao: boolean,
+}
 
 const DEFAULT_SORTING: GridSortModel = [{ field: 'nome', sort: 'asc' }];
 
@@ -211,8 +224,14 @@ export const ListContainer = ({
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
+    const closePrintModal = () => setPrintModalVisibility(false);
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
-        acc[filter.id] = filter.isMultiSelect ? [] : "";
+        const paramValue = searchParams.get(filter.id);
+        acc[filter.id] = paramValue ? 
+        (filter.isMultiSelect ? paramValue.split(',') : paramValue) : (filter.isMultiSelect ? [] : "");
         return acc;
     }, {});
     const [value, setValue] = useState<FilterItem>(initialFilters);
@@ -236,7 +255,16 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>('');
     const [search, setSearch] = useState<string>('');
     const handleSearchClick = () => setSearch(inputValue);
-
+    useEffect(() => setUser(session?.user), [session?.user]);
+    useEffect(()=>{
+        const params = new URLSearchParams(searchParams.toString());
+        for (const [key, valueString] of Object.entries(value)) {
+            params.set(key, valueString as string);
+        }
+        params.set('sort', sorting[0].field as string);
+        params.set('order', sorting[0].sort as string);
+        router.push(`?${params.toString()}`);
+    },[searchParams, router, value, searchParams.toString, router.push, sorting]);
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);
@@ -245,6 +273,7 @@ export const ListContainer = ({
     }, [session?.user]);
 
     useEffect(() => {
+        //modularizar essa função
         if (user) {
             const getListDataResponse = async () => {
                 setIsLoading(true);
@@ -274,6 +303,27 @@ export const ListContainer = ({
         }
     }, [user, value, list, pagination, sorting, search]);
 
+    const getPrintDataResponse = async () => {
+        if (!user) return;
+        try {
+            const res = await getListData({
+                municipio_id_sus: user.municipio_id_sus,
+                token: user.access_token,
+                listName: list,
+                sorting: [{
+                    sortField: sorting[0].field,
+                    sortOrder: sorting[0].sort,
+                }],
+                filters: value,
+                ine: user.perfis.includes(9) ? user.equipe : undefined,
+                search: search,
+            });
+            return res.data;
+        } catch (error) {
+            captureException(error);
+        }
+    };
+
     useEffect(() => {
         setTableData({
             data: filterData(response.data, value),
@@ -282,6 +332,7 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
+        //modularizar essa função
         const getCardsDataResponse = async () => {
             if (!user) return;
 
@@ -312,8 +363,46 @@ export const ListContainer = ({
             ? setSorting([...newSortModel])
             : setSorting([...DEFAULT_SORTING]);
     }
+    const handleCostumizePrint = async(options: PrintOptions) =>{ 
+        const data = await getPrintDataResponse()
+        const props: PrintTableProps = {
+            data: data?.data ?? [],
+            columns: columns,
+            list: list,
+            appliedFilters: value,
+            latestProductionDate: new Date(String(tableData.data[0].atualizacao_data)).toLocaleDateString("pt-BR"),
+            fontFamily: "sans-serif",
+            dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim, 
+            pageSplit: options.separacaoGrupoPorFolha, 
+            printColumnsWidth: {
+                landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+                portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+            },
+            verticalDivider:[2,4,6], 
+            propPrintGrouping: propPrintGrouping
+        }
+        customizePrint(options, closePrintModal, props);
+}
+    const props: PrintTableProps = {
+        data: tableData.data,
+        columns: columns,
+        list: list,
+        appliedFilters: value,
+        latestProductionDate: String(tableData.data[0]?.atualizacao_data),
+        fontFamily: "sans-serif",
+        dataSplit:false, 
+        pageSplit:false, 
+        printColumnsWidth: {
+            landscape: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipePaisagem: larguraColunasHipertensaoPaisagem,
+            portrait: user?.perfis.includes(9) ? larguraColunasHipertensaoEquipeRetrato: larguraColunasHipertensaoRetrato,
+        },
+        verticalDivider:[2,4,6], 
+        propPrintGrouping: propPrintGrouping
+    }
+    const handlePrintClick = () => 
+        handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
-    if (!user) return <p>Usuário não autenticado</p>;
+    if (!user) return <Spinner/>;
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
 
@@ -337,13 +426,14 @@ export const ListContainer = ({
         />
     ));
     const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs}/>;
-    return <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
+    return <>
+    <div style={{display: "flex", flexDirection: "column", gap: "35px", padding: "0px 0px 150px 0px"}}>
         <p style={{fontSize: "26px", margin: "75px 0 15px 0", lineHeight: "130%"}}>{title}</p>
         {cards && <CardGrid cards={cards}/>}
         <div style={{marginTop: "15px"}}>
             <ToolBarMounted
                 updateDate={tableData.data[0]?.atualizacao_data && typeof tableData.data[0].atualizacao_data !== 'boolean' ? new Date(tableData.data[0].atualizacao_data) : undefined}
-                print={() => {}}
+                print={handlePrintClick}
                 inputProps={{value: inputValue, onChange: setInputValue}}
                 handleSearchClick={handleSearchClick}
             />
@@ -363,5 +453,22 @@ export const ListContainer = ({
             onSortModelChange={handleSortModelChange}
             isLoading={isLoading}
         />
-    </div>;
+    </div>
+    <div style={{
+        position: "absolute",
+        left: 0,
+    }}>
+        <ModalAlertControlled
+            display={isPrintModalVisible}
+            close={closePrintModal}
+        >
+            <PersonalizacaoImpressao
+                labels={user.perfis.includes(9) ? labelsModalImpressaoEquipe : labelsModalImpressaoAPS}
+                handleButtonClick={handleCostumizePrint}
+                handleClose={closePrintModal}
+                valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
+            />
+        </ModalAlertControlled>
+    </div>
+    </>
 }
