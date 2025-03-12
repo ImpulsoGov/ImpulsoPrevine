@@ -1,5 +1,6 @@
-import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao } from '@impulsogov/design-system';
+import { FilterBar, SelectDropdown, ClearFilters, CardGrid, Table, ModalAlertControlled, PersonalizacaoImpressao, Spinner } from '@impulsogov/design-system';
 import { useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { Session } from 'next-auth';
 import type { GridColDef, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
@@ -185,6 +186,8 @@ export const ListContainer = ({
 } : ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session['user']>();
+    const searchParams = useSearchParams();
+    const router = useRouter();
     const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     const closePrintModal = () => setPrintModalVisibility(false);
     const filters = [
@@ -224,7 +227,9 @@ export const ListContainer = ({
         },
     ]
     const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
-        acc[filter.id] = filter.isMultiSelect ? [] : "";
+        const paramValue = searchParams.get(filter.id);
+        acc[filter.id] = paramValue ? 
+        (filter.isMultiSelect ? paramValue.split(',') : paramValue) : (filter.isMultiSelect ? [] : "");
         return acc;
     }, {});
     const [value, setValue] = useState<FilterItem>(initialFilters);
@@ -256,6 +261,16 @@ export const ListContainer = ({
         search,
     });
 
+    useEffect(() => setUser(session?.user), [session?.user]);
+    useEffect(()=>{
+        const params = new URLSearchParams(searchParams.toString());
+        for (const [key, valueString] of Object.entries(value)) {
+            params.set(key, valueString as string);
+        }
+        params.set('sort', sorting[0].field as string);
+        params.set('order', sorting[0].sort as string);
+        router.push(`?${params.toString()}`);
+    },[searchParams, router, value, searchParams.toString, router.push, sorting]);
     useEffect(() => {
         const sessionAsync = async() => {
             setUser(session?.user);

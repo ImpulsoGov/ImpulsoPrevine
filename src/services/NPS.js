@@ -39,7 +39,7 @@ async function NPSAvaliacaoClient(usuarioId, avaliacao, token) {
 	const res = await axios(config)
 		.then((response) => response.data)
 		.catch((error) => {
-			console.log(error);
+			console.error(error);
 			return error.response.data;
 		});
 	return res;

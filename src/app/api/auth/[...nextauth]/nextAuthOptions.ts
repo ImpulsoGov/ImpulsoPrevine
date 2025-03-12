@@ -109,9 +109,14 @@ export const nextAuthOptions : NextAuthOptions = {
       if(token?.expires) session.expires = new Date(token.expires as number).toISOString();
       return Promise.resolve(session);
     },
+	redirect: async ({ url, baseUrl }) => {
+		if (url.startsWith(baseUrl)) return url;
+		if (url.startsWith("/")) return new URL(url, baseUrl).toString();
+		return baseUrl;
+	}
   },
   pages: {
-    signIn: '/inicio',
+    signIn: '/auth/signin',
     signOut: '/auth/signout',
   },
   events: {

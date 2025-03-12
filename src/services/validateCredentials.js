@@ -39,6 +39,7 @@ const validacao = (
 	mail,
 	senha,
 	setEsperandoResposta,
+	setModal
 ) => {
 	const res = async () => await validarCredencial(mail, senha);
 	if (mail.length < 1 || senha.length < 1) {
@@ -49,11 +50,12 @@ const validacao = (
 		res().then((response) => {
 			if (typeof response["access_token"] !== "undefined") {
 				entrar("credentials", {
-					redirect: true,
+					redirect: false,
 					username: mail,
 					password: senha,
-					callbackUrl: "/inicio",
+					callbackUrl: window.location.href,
 				});
+				setModal(false);
 			} else {
 				setResposta(response["detail"]);
 				setEsperandoResposta(false);
