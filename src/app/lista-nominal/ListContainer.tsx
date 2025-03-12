@@ -414,6 +414,7 @@ export const ListContainer = ({
         handlePrint(value,propPrintGrouping,setPrintModalVisibility,props);
 
     if (!user) return <p>Usuário não autenticado</p>;
+    if (!user.perfis.includes(5)) return <p>Usuário sem permissão</p>;
     const propPrintGrouping = user.perfis.includes(9) ? "acs_nome_cadastro" : "equipe_nome"; 
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>;
     // if (response.data.length === 0) return <Spinner/>;
