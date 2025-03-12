@@ -2,6 +2,7 @@ import axios from "axios";
 import FormData from "form-data";
 import mixpanel from "mixpanel-browser";
 import { API_URL_USUARIOS } from "../constants/API_URL";
+import { rotasPublicas } from "@/middlewares/middlewarePages";
 
 const validateCredentials = async (mail, senha) => {
 	mixpanel.track("button_click", {
@@ -50,10 +51,10 @@ const validacao = (
 		res().then((response) => {
 			if (typeof response["access_token"] !== "undefined") {
 				entrar("credentials", {
-					redirect: false,
+					redirect: true,
 					username: mail,
 					password: senha,
-					callbackUrl: window.location.href,
+					callbackUrl: rotasPublicas.includes(window.location.pathname) ? `${window.location.origin}/inicio`: window.location.href,
 				});
 				setModal(false);
 			} else {

@@ -10,6 +10,7 @@ export type MultipleTeamsPerPageProps = {
     teamSplit: Record<string, DataItem[]>,
     header: {
         appliedFilters: FilterItem,
+        filtersLabels: Record<string,string>,
         latestProductionDate: string,
         list: string
     },
@@ -20,7 +21,7 @@ export type MultipleTeamsPerPageProps = {
         printColumnsWidth: PrintColumnsWidthProps
     },
     fontFamily?: string,
-    printLegend?: string[]
+    printLegend?: string[],
 }
 
 export const MultipleTeamsPerPage = ({
@@ -28,13 +29,14 @@ export const MultipleTeamsPerPage = ({
     header,
     tables,
     fontFamily="sans-serif",
-    printLegend
+    printLegend,
 }: MultipleTeamsPerPageProps)=>{
     return(
       <div key="multiple-teams-per-page">
         <PageHeader
           key="page-header"
           appliedFilters={header.appliedFilters}
+          filtersLabels={header.filtersLabels}
           latestProductionDate={header.latestProductionDate}
           list={header.list}
           fontFamily={fontFamily}

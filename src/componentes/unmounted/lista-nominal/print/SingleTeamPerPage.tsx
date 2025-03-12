@@ -10,6 +10,7 @@ export type SingleTeamPerPageProps = {
     teamSplit: Record<string, DataItem[]>,
     header: {
         appliedFilters: FilterItem,
+        filtersLabels: Record<string,string>,
         latestProductionDate: string,
         list: string
     },
@@ -45,6 +46,7 @@ export const SingleTeamPerPage = ({
               >
                 <PageHeader 
                   appliedFilters={header.appliedFilters}
+                  filtersLabels={header.filtersLabels}
                   latestProductionDate={header.latestProductionDate}
                   list={header.list}
                   fontFamily = {fontFamily}

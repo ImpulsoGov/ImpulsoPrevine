@@ -8,6 +8,7 @@ export type NoSplitProps = {
     data: DataItem[],
     header: {
         appliedFilters: FilterItem,
+        filtersLabels: Record<string,string>,
         latestProductionDate: string,
         list: string,
     },
@@ -44,6 +45,7 @@ export const NoSplit =({
       >
         <PageHeader 
           appliedFilters={header.appliedFilters}
+          filtersLabels={header.filtersLabels}
           latestProductionDate={header.latestProductionDate}
           list={header.list}
           fontFamily = {fontFamily}

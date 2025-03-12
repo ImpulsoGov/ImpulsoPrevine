@@ -3,6 +3,7 @@ import { sanitize } from "@utils/sanitize";
 
 export type PageHeaderProps = {
   appliedFilters: FilterItem;
+  filtersLabels: Record<string,string>;
   latestProductionDate: string;
   list: string;
   fontFamily?: string;
@@ -12,6 +13,7 @@ export type PageHeaderProps = {
 
 export const PageHeader = ({
     appliedFilters,
+    filtersLabels,
     latestProductionDate,
     list,
     fontFamily="sans-serif",
@@ -61,11 +63,11 @@ export const PageHeader = ({
             marginTop: "16px",
           }}><b>Filtros aplicados: </b></p>
           {
-            appliedFilters ?
-            Object.keys(appliedFilters).map((filtro)=>{
-              return(
+            Object.keys(appliedFilters).length > 0 ?
+            Object.entries(appliedFilters).map(([filter, value])=>{
+              if(value.length > 0) return(
                 <div 
-                  key={filtro}
+                  key={filter}
                   style={{
                     border : "solid 1px #757574",
                     borderRadius : "5px",
@@ -74,11 +76,10 @@ export const PageHeader = ({
                     backgroundColor : "#F5F5F5"
                   }}
                 >
-                  {filtro}
+                 {filtersLabels[filter]}: {Array.isArray(value) ? value.join(", ") : value}
                 </div>
               )
-            }) :
-            ["Sem filtros aplicados"]
+          }): ["Sem filtros aplicados"]
           }
         </div>
         {printLegend.length > 0 &&

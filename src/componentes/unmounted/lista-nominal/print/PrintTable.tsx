@@ -24,7 +24,8 @@ export type PrintTableProps = {
     verticalDivider: number[],
     fontFamily: string,
     propPrintGrouping: string,
-    printLegend?: string[]
+    printLegend?: string[],
+    filtersLabels: Record<string,string>
 }
 
 export const PrintTable = ({ 
@@ -40,7 +41,8 @@ export const PrintTable = ({
     verticalDivider,
     fontFamily="sans-serif",
     propPrintGrouping,
-    printLegend
+    printLegend,
+    filtersLabels
   }: PrintTableProps) => {
     const teamSplit = SplitByTeam(data,propPrintGrouping)
     return (
@@ -57,6 +59,7 @@ export const PrintTable = ({
             teamSplit={teamSplit}
             header={{
               appliedFilters : appliedFilters,
+              filtersLabels : filtersLabels,
               latestProductionDate : latestProductionDate,
               list : list
             }}
@@ -76,6 +79,7 @@ export const PrintTable = ({
             teamSplit={teamSplit}
             header={{
               appliedFilters: appliedFilters,
+              filtersLabels : filtersLabels,
               latestProductionDate: latestProductionDate,
               list: list
             }}
@@ -95,6 +99,7 @@ export const PrintTable = ({
             data={data}
             header={{
               appliedFilters : appliedFilters,
+              filtersLabels : filtersLabels,
               latestProductionDate : latestProductionDate,
               list : list
             }}
