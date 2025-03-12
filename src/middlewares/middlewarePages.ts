@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
 
-const rotasPublicas = ["/", "/quem-somos", "/apoio", "/faq", "/blog"];
+export const rotasPublicas = ["/", "/quem-somos", "/apoio", "/faq", "/blog"];
 
 export const rotasProtegidas = [
   '/inicio',
