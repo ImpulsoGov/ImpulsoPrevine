@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { AllowProfile } from "@componentes/unmounted/auth/AllowProfile";
+import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
 import type { Session } from "next-auth";
 import type { ImpulserProfileID } from "@/types/profile";
 
