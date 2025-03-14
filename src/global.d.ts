@@ -30,7 +30,7 @@ declare module "next-auth" {
 			municipio: string;
 			equipe: string;
 			municipio_id_sus: string;
-			perfis: number[];
+			perfis: number[]; //TODO alterar para PROFILE_ID
 			access_token: string;
 		};
 		status: string;
