@@ -11,6 +11,7 @@ export const rotasProtegidas = [
   '/conteudo-programatico',
   '/duvidas',
   '/gestao-usuarios',
+  '/gestao-usuarios/cadastro/individual',
   '/busca-ativa',
   '/busca-ativa/citopatologico',
   '/busca-ativa/diabeticos',
