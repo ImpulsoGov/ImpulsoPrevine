@@ -1,4 +1,5 @@
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from '@sentry/nextjs';
+
 /** @type {import('next').NextConfig} */
 const isDev = process.env.ENV === "development";
 
@@ -31,6 +32,16 @@ const nextConfig = {
 			},
 		},
 	},
+	images: {
+		dangerouslyAllowSVG: true,
+		remotePatterns: [
+		  {
+			protocol: 'https',
+			hostname: 'media.graphassets.com',
+			pathname: '/**',
+		  },
+		],
+	  },
 };
 
 export default isDev

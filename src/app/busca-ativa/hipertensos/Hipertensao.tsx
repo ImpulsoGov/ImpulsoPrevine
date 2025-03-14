@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
 import {
 	dispararEventoAbrirImpressaoAPS,
 	dispararEventoAbrirImpressaoEquipe,
@@ -11,8 +11,6 @@ import { usePathname, useRouter } from "next/navigation";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 const Spinner = dynamic(() => import("@impulsogov/design-system").then((mod) => mod.Spinner));
 
-
-import dynamic from "next/dynamic";
 const HipertensaoAPS = dynamic(
 	() => import("./HipertensaoAPS").then((mod) => mod.HipertensaoAPS),
 	{

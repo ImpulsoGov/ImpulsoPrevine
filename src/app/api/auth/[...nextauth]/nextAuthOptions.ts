@@ -28,12 +28,9 @@ const cargoNome = async (
 	const config = {
 		method: "get",
 		url:
-			API_URL_USUARIOS +
-			"suporte/ger_usuarios/cargo-nome?id=" +
-			cpf +
-			"&id_cod=2",
+			`${API_URL_USUARIOS}suporte/ger_usuarios/cargo-nome?id=${cpf}&id_cod=2`,
 		headers: {
-			Authorization: "Bearer " + token,
+			authorization: `Bearer ${token}`,
 		},
 	};
 	return await axios(config)
@@ -52,7 +49,7 @@ const getToken = async (
 	data.append("password", credentials.password);
 	const config = {
 		method: "post",
-		url: API_URL_USUARIOS + "suporte/usuarios/token",
+		url: `${API_URL_USUARIOS}suporte/usuarios/token`,
 		headers: {
 			...data.getHeaders(),
 		},
@@ -72,62 +69,57 @@ const getToken = async (
 		});
 };
 
-export const nextAuthOptions: NextAuthOptions = {
-	secret: process.env.NEXTAUTH_SECRET,
-	providers: [
-		CredentialsProvider({
-			name: "Credentials",
-			credentials: {
-				username: { label: "Username", type: "text" },
-				password: { label: "Password", type: "password" },
-			},
-			async authorize(
-				credentials: Record<"username" | "password", string> | undefined,
-			) {
-				if (!credentials) return null;
-				const token = await getToken(credentials);
-				if (token) {
-					// Any object returned will be saved in `user` property of the JWT
-					return token;
-				} else {
-					// If you return null then an error will be displayed advising the user to check their details.
-					return null;
-				}
-			},
-		}),
-	],
-	session: {
-		strategy: "jwt",
-		maxAge: 8 * 60 * 60,
-		updateAge: 8 * 60 * 60,
-	},
-	jwt: {
-		secret: process.env.NEXTAUTH_SECRET,
-		maxAge: 8 * 60 * 60,
-	},
-	callbacks: {
-		jwt: async ({ token, user }) => {
-			user && (token.user = user);
-
-			return Promise.resolve(token);
-		},
-		session: async ({ session, token }) => {
-			token.user && (session.user = token.user as User);
-			if (token?.expires)
-				session.expires = new Date(token.expires as number).toISOString();
-			return Promise.resolve(session);
-		},
-	},
-	pages: {
-		signIn: "/inicio",
-		signOut: "/auth/signout",
-	},
-	events: {
-		signIn: ({ user }) => {
-			Sentry.setUser({ id: user.id });
-		},
-		signOut: () => {
-			Sentry.setUser(null);
-		},
-	},
-};
+export const nextAuthOptions : NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials: Record<"username" | "password", string> | undefined)  {
+        if (!credentials) return null;
+        const token = await getToken(credentials)  
+        if (token) {
+          // Any object returned will be saved in `user` property of the JWT
+          return token
+        }
+		// If you return null then an error will be displayed advising the user to check their details.
+		return null
+      }
+    })
+  ],
+  session: {
+    strategy: "jwt",
+    maxAge: 8 * 60 * 60,
+    updateAge: 8 * 60 * 60
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
+    maxAge: 8 * 60 * 60
+  },
+  callbacks: {
+    jwt: async ({ token, user }) => {
+	  if (user) token.user = user;
+      return Promise.resolve(token);
+    },
+    session: async ({ session, token }) => {
+      if(token.user) session.user = token.user as User;
+      if(token?.expires) session.expires = new Date(token.expires as number).toISOString();
+      return Promise.resolve(session);
+    },
+  },
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+  },
+  events: {
+   signIn:({user}) => {
+      Sentry.setUser({id:user.id})
+   },
+    signOut:() => {
+        Sentry.setUser(null)
+    },
+  }
+}

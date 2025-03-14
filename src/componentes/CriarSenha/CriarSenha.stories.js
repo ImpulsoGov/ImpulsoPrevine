@@ -25,7 +25,7 @@ const submitCadastro = async (nome, mail, senha, cpf) => {
 	return await axios(config)
 		.then((response) => response.data)
 		.catch((error) => {
-			console.log(error);
+			console.error(error);
 		});
 };
 
@@ -49,7 +49,7 @@ const submitCadastroIp = async (municipio, cargo, telefone, whatsapp, mail) => {
 	return await axios(config)
 		.then((response) => response.data)
 		.catch((error) => {
-			console.log(error);
+			console.error(error);
 		});
 };
 

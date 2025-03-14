@@ -2,6 +2,7 @@ import axios from "axios";
 import FormData from "form-data";
 import mixpanel from "mixpanel-browser";
 import { API_URL_USUARIOS } from "../constants/API_URL";
+import { rotasPublicas } from "@/middlewares/middlewarePages";
 
 const validateCredentials = async (mail, senha) => {
 	mixpanel.track("button_click", {
@@ -21,6 +22,7 @@ const validateCredentials = async (mail, senha) => {
 	const res = await axios(config)
 		.then((response) => response.data)
 		.catch((error) => {
+			console.log(error);
 			mixpanel.track("validation_error", {
 				button_action: "entrar_area_restitra_apos_senha",
 				error_message: error.response.data,
@@ -39,6 +41,7 @@ const validacao = (
 	mail,
 	senha,
 	setEsperandoResposta,
+	setModal
 ) => {
 	const res = async () => await validarCredencial(mail, senha);
 	if (mail.length < 1 || senha.length < 1) {
@@ -52,8 +55,9 @@ const validacao = (
 					redirect: true,
 					username: mail,
 					password: senha,
-					callbackUrl: "/inicio",
+					callbackUrl: rotasPublicas.includes(window.location.pathname) ? `${window.location.origin}/inicio`: window.location.href,
 				});
+				setModal(false);
 			} else {
 				setResposta(response["detail"]);
 				setEsperandoResposta(false);
