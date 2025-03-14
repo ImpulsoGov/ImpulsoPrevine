@@ -12,7 +12,8 @@ import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 import { ErrorPage } from "./ErrorPage";
 import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
-import { PROFILE_ID, ProfileID } from "@types/profile";
+import { PROFILE_ID } from "@/types/profile";
+
 const ListaNominalPage = async(
     { searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }
 ) => {
