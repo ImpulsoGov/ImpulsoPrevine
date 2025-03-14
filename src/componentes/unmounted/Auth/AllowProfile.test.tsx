@@ -47,3 +47,16 @@ describe("AllowProfile", () => {
     expect(screen.queryByTestId("child")).not.toBeInTheDocument()
   })
 })
+
+it("deve renderizar o erro quando o usuário não possui o perfis atribuidos", () => {
+  const notAllowedUser = { ...user, perfis: [] }
+  const allowedProfile = PROFILE_ID.impulser
+  render(
+    <AllowProfile user={notAllowedUser} error={<DummyError />} profileID={allowedProfile}>
+      <DummyChild />
+    </AllowProfile>
+  )
+  // Verifica se o erro está presente e o conteúdo permitido não
+  expect(screen.getByTestId("error")).toBeInTheDocument()
+  expect(screen.queryByTestId("child")).not.toBeInTheDocument()
+})
