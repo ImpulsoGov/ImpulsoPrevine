@@ -1,10 +1,10 @@
 import type { Session } from "next-auth"
-import type { ProfileID } from "@/types/profile"
+import type { ProfileIdValue } from "@/types/profile"
 
 export type AllowProfileProps = React.PropsWithChildren<{
     user: Session['user'],
     error: React.ReactElement,
-    profileID: ProfileID
+    profileID: ProfileIdValue
 }>
 
 export const AllowProfile= ({
