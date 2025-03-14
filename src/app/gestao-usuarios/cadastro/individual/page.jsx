@@ -5,13 +5,12 @@ import { v4 as uuidV4 } from 'uuid';
 import { MENSAGENS_DE_ERRO } from '@constants/gestaoUsuarios';
 import { atualizarAutorizacoes, cadastrarUsuario, listarPerfis, listarUsuarios } from '@services/gestaoUsuarios';
 import {log_out} from "../../../../hooks/log_out"
-import dynamic from 'next/dynamic';
 
-const Spinner = dynamic(() => import('@impulsogov/design-system').then(mod => mod.Spinner));
-const TituloTexto = dynamic(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto));
-const TabelaGestaoUsuarios = dynamic(() => import('@componentes/TabelaGestaoUsuarios').then(mod => mod.TabelaGestaoUsuarios));
-const ModalCadastroUsuario = dynamic(() => import('@componentes/ModalCadastroUsuario').then(mod => mod.ModalCadastroUsuario));
-const SnackBar = dynamic(() => import('@componentes/SnackBar').then(mod => mod.SnackBar));
+import { Spinner }from '@impulsogov/design-system';
+import { TituloTexto } from '@impulsogov/design-system';
+import TabelaGestaoUsuarios from '@componentes/TabelaGestaoUsuarios/TabelaGestaoUsuarios';
+import ModalCadastroUsuario from '@componentes/ModalCadastroUsuario/ModalCadastroUsuario';
+import SnackBar from '@componentes/SnackBar/SnackBar';
 
 const GestaoDeUsuarios = () => {
 	const { data: session } = useSession();
