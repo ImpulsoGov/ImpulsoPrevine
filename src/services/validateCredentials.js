@@ -22,6 +22,7 @@ const validateCredentials = async (mail, senha) => {
 	const res = await axios(config)
 		.then((response) => response.data)
 		.catch((error) => {
+			console.log(error);
 			mixpanel.track("validation_error", {
 				button_action: "entrar_area_restitra_apos_senha",
 				error_message: error.response.data,

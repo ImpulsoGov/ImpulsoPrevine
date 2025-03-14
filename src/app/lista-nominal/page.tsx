@@ -11,7 +11,8 @@ import type { CardDetailsMap } from "@/helpers/cardsList";
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 import { ErrorPage } from "./ErrorPage";
-
+import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
+import { PROFILE_ID, ProfileID } from "@types/profile";
 const ListaNominalPage = async(
     { searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }
 ) => {
@@ -159,8 +160,10 @@ const ListaNominalPage = async(
                 subTabID: subTabID
             },
         };
-        return props && session && <ListaNominal props={props}/>
-    
+        return props && session && 
+        <AllowProfile user={user}   profileID={PROFILE_ID.impulser} error={<p style={{padding: "80px",textAlign: "center"}}>Usuário sem permissão</p>}>
+            <ListaNominal props={props}/>
+        </AllowProfile>
     }
     return <ErrorPage />;
 }
