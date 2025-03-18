@@ -28,7 +28,7 @@ export const MessageComponent = () => {
       <Image
         src="https://media.graphassets.com/NRsR0fBPTCeeAblg3lGv"
         alt="Warning-icon"
-        style={{ marginRight: 8 }}
+        // style={{ marginRight: 8 }}
         width={20}
         height={20}
       />
@@ -71,7 +71,7 @@ export const AlertSnackBar = ({ show }: AlertSnackBarProps) =>  {
 				sx={{
 					width: 450,
 					minHeight: 66,
-					backgroundColor: "#E57373",
+					backgroundColor: "#EF565D",
 					display: "flex",
 					flexDirection: "row",
 					alignItems: "start"
