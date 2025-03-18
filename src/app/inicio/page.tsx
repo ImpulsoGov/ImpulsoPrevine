@@ -24,11 +24,8 @@ const InicioPage = async() => {
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
         if(!situacaoPorIndicador) return <ErrorPage />
-        return (
-            <>
-                <Inicio situacaoPorIndicador={situacaoPorIndicador} />
-            </>
-        );
+        if(Object.keys(situacaoPorIndicador).length === 0) return <ErrorPage />
+        return <Inicio situacaoPorIndicador={situacaoPorIndicador} />
     }
     return <ErrorPage />
 }
