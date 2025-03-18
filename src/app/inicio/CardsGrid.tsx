@@ -169,7 +169,9 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						display: "flex",
 						flexDirection: "column",
 						gap: "24px",
-						height: "100%",
+						height: situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.pendente &&
+						situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.pendente &&
+						situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente ? "100%" : "fit-content",
 					}}
 				>
 					<CardLista
@@ -191,36 +193,32 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{
-							situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total || situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.pendente ?
+							situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.pendente &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.pendente &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente ?
+							<>
 							<DetailedInfo
 								descricao="Gestantes com menos de 6 consultas de pré-natal**"
 								destaque={
 									situacaoPorIndicador[Indicadores?.PRE_NATAL_6_CONSULTAS].pendente
 								}
 								complemento={`de ${situacaoPorIndicador[Indicadores?.PRE_NATAL_6_CONSULTAS].total}`}
-							/> :
-							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
-						}
-						{
-							situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total || situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.pendente ?
+							/>
 							<DetailedInfo
 								descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
 								destaque={
 									situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].pendente
 								}
 								complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
-							/> :
-							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
-						}
-						{
-							situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total || situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente ?
+							/>
 							<DetailedInfo
 								descricao="Gestantes sem o atendimento odontológico identificado"
 								destaque={
 									situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].pendente
 								}
 								complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
-							/> : 
+							/>
+							</> :
 							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
 						}
 					</CardLista>
