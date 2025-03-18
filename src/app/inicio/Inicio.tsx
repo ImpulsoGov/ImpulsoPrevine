@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import type { SituacaoPorIndicador } from '@/types/inicio';
 import { cargoTransform } from '@helpers/cargoTransform'
 import dynamic from 'next/dynamic';
+import { AlertSnackBar } from "@/componentes/mounted/inicio/snackbar/AlertSnackBar";
 
 const CardsGrid = dynamic<{
     situacaoPorIndicador: SituacaoPorIndicador;
@@ -95,7 +96,9 @@ export const Inicio: React.FC<InicioProps> = ({
 					lineHeight="18.2px"
 					margin="0 0 60px 0"
 				/>
+				<AlertSnackBar show={true} />
 			</div>
 		);
+		
 	}
 };
