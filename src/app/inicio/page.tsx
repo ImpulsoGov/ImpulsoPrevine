@@ -10,6 +10,7 @@ import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituaca
 import type { SituacaoPorIndicador } from '@/types/inicio';
 import { ErrorPage } from './Error';
 
+
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
     let situacaoIndicadores = [];
@@ -23,7 +24,11 @@ const InicioPage = async() => {
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
         if(!situacaoPorIndicador) return <ErrorPage />
-        return <Inicio  situacaoPorIndicador={situacaoPorIndicador} /> 
+        return (
+            <>
+                <Inicio situacaoPorIndicador={situacaoPorIndicador} />
+            </>
+        );
     }
     return <ErrorPage />
 }
