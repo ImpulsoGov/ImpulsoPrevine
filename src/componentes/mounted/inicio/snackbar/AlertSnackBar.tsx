@@ -26,17 +26,16 @@ export const MessageComponent = () => {
 		}}
 	>
       <Image
-        src="https://media.graphassets.com/NRsR0fBPTCeeAblg3lGv"
+        src="https://media.graphassets.com/coTPuum3T0agxKfE0972"
         alt="Warning-icon"
-        // style={{ marginRight: 8 }}
-        width={20}
-        height={20}
+        width={22}
+        height={22}
       />
 	  <div>
 	  Não foi possível carregar os dados. Entre em
       <strong>
         <a
-          href="www.google.com"
+          href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20atendente!%0AAs%20informa%C3%A7%C3%B5es%20de%20um%20indicador%20mostradas%20na%20tela%20inicial%20n%C3%A3o%20est%C3%A3o%20carregando.%20Me%20ajuda%20a%20resolver%20esse%20problema?"
           style={{ color: "white", textDecoration: "underline" }}
         >
           {" "}
