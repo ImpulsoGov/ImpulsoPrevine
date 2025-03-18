@@ -7,16 +7,9 @@ const Inicio = dynamic(() => import('./Inicio').then(mod => mod.Inicio));
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituacaoPorIndicadores';
-import AlertSnackBar from '@/componentes/mounted/snackbar/AlertSnackBar';
 import type { SituacaoPorIndicador } from '@/types/inicio';
 import { ErrorPage } from './Error';
 
-const hasInvalidValues = (obj: SituacaoPorIndicador): boolean => {
-    return Object.values(obj).some(item => 
-        item.total === null || item.total === undefined || 
-        item.pendente === null || item.pendente === undefined 
-    );
-};
 
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
@@ -33,7 +26,6 @@ const InicioPage = async() => {
         if(!situacaoPorIndicador) return <ErrorPage />
         return (
             <>
-                <AlertSnackBar show={true} />
                 <Inicio situacaoPorIndicador={situacaoPorIndicador} />
             </>
         );
