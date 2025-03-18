@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type SyntheticEvent } from "react";
 import Snackbar from "@mui/material/Snackbar";
+import type { SnackbarCloseReason } from "@mui/material/Snackbar";
 import SnackbarContent from "@mui/material/SnackbarContent";
 import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
@@ -55,9 +56,13 @@ export const AlertSnackBar = ({ show }: AlertSnackBarProps) =>  {
 		setOpen(show);
 	}, [show]);
 
-	const handleClose = () => {
+	const handleClose = (
+		event?: SyntheticEvent | Event,
+		reason?: SnackbarCloseReason,
+	) => {
+		if (reason === 'clickaway') return;
 		setOpen(false);
-	};
+	  };
 
 	return (
 		<Snackbar
