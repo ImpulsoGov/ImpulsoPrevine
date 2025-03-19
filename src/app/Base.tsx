@@ -23,7 +23,7 @@ import { identifyUserGuiding } from "@/hooks/identifyUserGuiding";
 import { sessionIdentifyMixPanel } from "@/hooks/sessionIdentifyMixPanel";
 import { userSetterSentry } from "@/hooks/userSetterSentry";
 
-import { rotasProtegidas } from "@/middlewares/middlewarePages";
+import { rotasProtegidas, rotasPublicas } from "@/middlewares/middlewarePages";
 
 import dynamic from 'next/dynamic';
 
@@ -101,7 +101,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 						{session ? (
 							rotasProtegidas.includes(path) ? children : null // Redirecionamento será tratado no middleware
 							) : (
-							rotasProtegidas.includes(path) ? <LoginFallback /> : children
+							rotasPublicas.includes(path) ? children : <LoginFallback />
 						)}
 
 					</div>
