@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
-export const ErrorPage = () => {
+export const AuthErrorPage = () => {
     const router = useRouter();
     const { data: session } = useSession();
 
