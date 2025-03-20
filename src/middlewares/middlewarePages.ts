@@ -39,7 +39,9 @@ const ExibirURL = [
     "/conteudo-programatico",
     "/dadosPublicos",
 ];
+
 const secret = process.env.NEXTAUTH_SECRET;
+
 export const middlewarePages = async (request: NextRequest) => {
     const url = request.nextUrl;
     const headers = new Headers(request.headers);
