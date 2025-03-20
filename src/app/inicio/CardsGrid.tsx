@@ -121,7 +121,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{
-							situacaoPorIndicador[Indicadores.VACINACAO]?.total || situacaoPorIndicador[Indicadores.VACINACAO]?.pendente ?
+							situacaoPorIndicador[Indicadores.HIPERTENSOS]?.total || situacaoPorIndicador[Indicadores.HIPERTENSOS]?.pendente ?
 							<DetailedInfo
 								descricao="Pessoas com consulta ou aferição de pressão a fazer"
 								destaque={situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente}
