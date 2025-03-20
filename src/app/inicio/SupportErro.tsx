@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { ButtonColor } from "@impulsogov/design-system"
 
-export const SuportError = () => {
+export const SupportError = () => {
     return <div style={{display: "flex",gap: "94px", alignItems: "center", justifyContent: "center", padding: "200px"}}>
         <div 
             style={{
