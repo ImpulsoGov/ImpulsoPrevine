@@ -14,6 +14,10 @@ interface CardsGridProps {
 	situacaoPorIndicador: SituacaoPorIndicador;
 	visao: string;
 }
+function isValidSituation(situacaoPorIndicador: SituacaoPorIndicador, indicador: Indicadores): boolean {  
+    //!! é uma gambiarra de javascript pra converter (null | value) pra bool.  
+    return !!(situacaoPorIndicador[indicador]?.total || situacaoPorIndicador[indicador]?.pendente)  
+}
 
 export const CardsGrid: React.FC<CardsGridProps> = ({
 	situacaoPorIndicador,
@@ -52,7 +56,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{	
-							situacaoPorIndicador[Indicadores.DIABETES]?.total || situacaoPorIndicador[Indicadores.DIABETES]?.pendente ?
+							isValidSituation(situacaoPorIndicador, Indicadores.DIABETES) ?
 							<DetailedInfo
 								descricao="Pessoas com consulta ou solicitação de hemoglobina a fazer"
 								destaque={situacaoPorIndicador[Indicadores.DIABETES].pendente}
@@ -82,7 +86,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>	
 						{
-							situacaoPorIndicador[Indicadores.VACINACAO]?.total || situacaoPorIndicador[Indicadores.VACINACAO]?.pendente ?
+							isValidSituation(situacaoPorIndicador, Indicadores.VACINACAO) ?
 							<DetailedInfo
 								descricao="Crianças com pelo menos uma dose em atraso"
 								destaque={situacaoPorIndicador[Indicadores.VACINACAO].pendente}
@@ -121,7 +125,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{
-							situacaoPorIndicador[Indicadores.HIPERTENSOS]?.total || situacaoPorIndicador[Indicadores.HIPERTENSOS]?.pendente ?
+							isValidSituation(situacaoPorIndicador, Indicadores.HIPERTENSOS) ?
 							<DetailedInfo
 								descricao="Pessoas com consulta ou aferição de pressão a fazer"
 								destaque={situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente}
@@ -150,7 +154,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{
-							situacaoPorIndicador[Indicadores.CITOPATOLOGICO]?.total || situacaoPorIndicador[Indicadores.CITOPATOLOGICO]?.pendente ?
+							isValidSituation(situacaoPorIndicador, Indicadores.CITOPATOLOGICO) ?
 							<DetailedInfo
 								descricao="Pessoas com coleta de citopatológico a fazer"
 								destaque={
@@ -193,9 +197,9 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						}
 					>
 						{
-							situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.pendente &&
-							situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.pendente &&
-							situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total && situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente ?
+							isValidSituation(situacaoPorIndicador, Indicadores.PRE_NATAL_6_CONSULTAS) &&
+							isValidSituation(situacaoPorIndicador, Indicadores.PRE_NATAL_SIFILIS_HIV) &&
+							isValidSituation(situacaoPorIndicador, Indicadores.PRE_NATAL_ODONTO) ?
 							<>
 							<DetailedInfo
 								descricao="Gestantes com menos de 6 consultas de pré-natal**"
