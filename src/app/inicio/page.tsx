@@ -9,7 +9,7 @@ import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituacaoPorIndicadores';
 import type { SituacaoPorIndicador } from '@/types/inicio';
 import { AuthErrorPage } from './AuthError';
-import { SupportError } from './SupportErro';
+import { SupportError } from './SupportError';
 
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
