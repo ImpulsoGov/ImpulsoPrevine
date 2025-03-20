@@ -5,6 +5,7 @@ import { InicioAPSRequest } from '@/services/inicio/inicioAPS'
 import { InicioEquipeRequest } from '@/services/inicio/inicioEquipe'
 import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituacaoPorIndicadores';
 import { SessionProvider } from 'next-auth/react';
+import { PROFILE_ID } from '@/types/profile';
 
 // Mocks para as dependências
 jest.mock('next/dynamic', () => () => {
@@ -41,6 +42,11 @@ jest.mock('../../src/app/inicio/Inicio', () => ({
     Inicio: jest.fn(() => <div data-testid="inicio-component">Inicio Component</div>),
 }));
 
+const user = { 
+  municipio_id_sus: '123', 
+  access_token: 'token' 
+}
+
 describe('InicioPage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -59,7 +65,7 @@ describe('InicioPage', () => {
   test('renderiza SuportError quando unificarSituacaoPorIndicadores é null', async () => {
     // Simula sessão com usuário e perfis APS
     (getServerSession as jest.Mock).mockResolvedValue({
-      user: { perfis: [5], municipio_id_sus: '123', access_token: 'token' },
+      user: {...user, perfis: [PROFILE_ID.COAPS]},
     });
     (InicioAPSRequest as jest.Mock).mockResolvedValue([{ some: 'data' }]);
     // Simula falha ao unificar dados
@@ -75,7 +81,7 @@ describe('InicioPage', () => {
     const validData = { indicator: 'value' };
 
     (getServerSession as jest.Mock).mockResolvedValue({
-      user: { perfis: [8], municipio_id_sus: '123', access_token: 'token' },
+      user: { ...user, perfis: [PROFILE_ID.COAPS] },
     });
     const clientSession = {
         user: { 
@@ -109,7 +115,7 @@ describe('InicioPage', () => {
     const validData = { indicator: 'value' };
 
     (getServerSession as jest.Mock).mockResolvedValue({
-      user: { perfis: [9], municipio_id_sus: '123', equipe: 'equipe1', access_token: 'token' },
+      user: { ...user, perfis: [PROFILE_ID.COEQ], equipe: 'equipe1'},
     });
     (InicioEquipeRequest as jest.Mock).mockResolvedValue([{ some: 'data' }]);
     (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(validData);
@@ -123,7 +129,7 @@ describe('InicioPage', () => {
   test('deve renderizar SuportError quando unificarSituacaoPorIndicadores retorna objeto vazio', async () => {
     // Configura a sessão com usuário e perfil válido (por exemplo, perfil APS)
     (getServerSession as jest.Mock).mockResolvedValue({
-      user: { perfis: [5], municipio_id_sus: '123', access_token: 'token' },
+      user: { ...user, perfis: [5]},
     });
 
     // Simula o retorno válido do request APS
