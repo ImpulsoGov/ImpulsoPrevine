@@ -7,7 +7,7 @@ export const isValidSituation = (
 	indicador: Indicadores,
 ): boolean => {
 	return !!(
-		situacaoPorIndicador[indicador]?.total !== null &&
-		situacaoPorIndicador[indicador]?.pendente !== null
+		situacaoPorIndicador[indicador]?.total &&
+		situacaoPorIndicador[indicador]?.pendente 
 	);
 };
