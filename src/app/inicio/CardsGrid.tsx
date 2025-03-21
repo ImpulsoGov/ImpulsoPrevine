@@ -1,4 +1,5 @@
 import { Indicadores, type SituacaoPorIndicador } from "@/types/inicio";
+import { isValidSituation } from "@/helpers/inicio/isValidSituation";
 import {
 	Banner,
 	CardClicavel,
@@ -14,16 +15,7 @@ interface CardsGridProps {
 	situacaoPorIndicador: SituacaoPorIndicador;
 	visao: string;
 }
-function isValidSituation(
-	situacaoPorIndicador: SituacaoPorIndicador,
-	indicador: Indicadores,
-): boolean {
-	//!! é uma gambiarra de javascript pra converter (null | value) pra bool.
-	return !!(
-		situacaoPorIndicador[indicador]?.total ||
-		situacaoPorIndicador[indicador]?.pendente
-	);
-}
+
 
 export const CardsGrid: React.FC<CardsGridProps> = ({
 	situacaoPorIndicador,
