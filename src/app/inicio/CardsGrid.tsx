@@ -1,4 +1,5 @@
 import { Indicadores, type SituacaoPorIndicador } from "@/types/inicio";
+import { isValidSituation } from "@/helpers/inicio/isValidSituation";
 import {
 	Banner,
 	CardClicavel,
@@ -8,11 +9,13 @@ import {
 } from "@impulsogov/design-system";
 import mixpanel from "mixpanel-browser";
 import type React from "react";
+import { DetailInfoError } from "@componentes/unmounted/Inicio/DetailInfoError";
 
 interface CardsGridProps {
 	situacaoPorIndicador: SituacaoPorIndicador;
 	visao: string;
 }
+
 
 export const CardsGrid: React.FC<CardsGridProps> = ({
 	situacaoPorIndicador,
@@ -50,11 +53,15 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 							})
 						}
 					>
-						<DetailedInfo
-							descricao="Pessoas com consulta ou solicitação de hemoglobina a fazer"
-							destaque={situacaoPorIndicador[Indicadores.DIABETES].pendente}
-							complemento={`de ${situacaoPorIndicador[Indicadores.DIABETES].total}`}
-						/>
+						{isValidSituation(situacaoPorIndicador, Indicadores.DIABETES) ? (
+							<DetailedInfo
+								descricao="Pessoas com consulta ou solicitação de hemoglobina a fazer"
+								destaque={situacaoPorIndicador[Indicadores.DIABETES].pendente}
+								complemento={`de ${situacaoPorIndicador[Indicadores.DIABETES].total}`}
+							/>
+						) : (
+							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
+						)}
 					</CardLista>
 					<CardLista
 						icone={{
@@ -75,11 +82,15 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 							})
 						}
 					>
-						<DetailedInfo
-							descricao="Crianças com pelo menos uma dose em atraso"
-							destaque={situacaoPorIndicador[Indicadores.VACINACAO].pendente}
-							complemento={`de ${situacaoPorIndicador[Indicadores.VACINACAO].total}*`}
-						/>
+						{isValidSituation(situacaoPorIndicador, Indicadores.VACINACAO) ? (
+							<DetailedInfo
+								descricao="Crianças com pelo menos uma dose em atraso"
+								destaque={situacaoPorIndicador[Indicadores.VACINACAO].pendente}
+								complemento={`de ${situacaoPorIndicador[Indicadores.VACINACAO].total}*`}
+							/>
+						) : (
+							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
+						)}
 					</CardLista>
 				</div>,
 				<div
@@ -110,11 +121,17 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 							})
 						}
 					>
-						<DetailedInfo
-							descricao="Pessoas com consulta ou aferição de pressão a fazer"
-							destaque={situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente}
-							complemento={`de ${situacaoPorIndicador[Indicadores.HIPERTENSOS].total}`}
-						/>
+						{isValidSituation(situacaoPorIndicador, Indicadores.HIPERTENSOS) ? (
+							<DetailedInfo
+								descricao="Pessoas com consulta ou aferição de pressão a fazer"
+								destaque={
+									situacaoPorIndicador[Indicadores.HIPERTENSOS].pendente
+								}
+								complemento={`de ${situacaoPorIndicador[Indicadores.HIPERTENSOS].total}`}
+							/>
+						) : (
+							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
+						)}
 					</CardLista>
 					<CardLista
 						icone={{
@@ -135,13 +152,20 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 							})
 						}
 					>
-						<DetailedInfo
-							descricao="Pessoas com coleta de citopatológico a fazer"
-							destaque={
-								situacaoPorIndicador[Indicadores.CITOPATOLOGICO].pendente
-							}
-							complemento={`de ${situacaoPorIndicador[Indicadores.CITOPATOLOGICO].total}`}
-						/>
+						{isValidSituation(
+							situacaoPorIndicador,
+							Indicadores.CITOPATOLOGICO,
+						) ? (
+							<DetailedInfo
+								descricao="Pessoas com coleta de citopatológico a fazer"
+								destaque={
+									situacaoPorIndicador[Indicadores.CITOPATOLOGICO].pendente
+								}
+								complemento={`de ${situacaoPorIndicador[Indicadores.CITOPATOLOGICO].total}`}
+							/>
+						) : (
+							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
+						)}
 					</CardLista>
 				</div>,
 				<div
@@ -150,7 +174,17 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 						display: "flex",
 						flexDirection: "column",
 						gap: "24px",
-						height: "100%",
+						height:
+							situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]
+								?.pendente &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]
+								?.pendente &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total &&
+							situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente
+								? "100%"
+								: "fit-content",
 					}}
 				>
 					<CardLista
@@ -171,27 +205,46 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
 							})
 						}
 					>
-						<DetailedInfo
-							descricao="Gestantes com menos de 6 consultas de pré-natal**"
-							destaque={
-								situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].pendente
-							}
-							complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total}`}
-						/>
-						<DetailedInfo
-							descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
-							destaque={
-								situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].pendente
-							}
-							complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
-						/>
-						<DetailedInfo
-							descricao="Gestantes sem o atendimento odontológico identificado"
-							destaque={
-								situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].pendente
-							}
-							complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
-						/>
+						{isValidSituation(
+							situacaoPorIndicador,
+							Indicadores.PRE_NATAL_6_CONSULTAS,
+						) &&
+						isValidSituation(
+							situacaoPorIndicador,
+							Indicadores.PRE_NATAL_SIFILIS_HIV,
+						) &&
+						isValidSituation(
+							situacaoPorIndicador,
+							Indicadores.PRE_NATAL_ODONTO,
+						) ? (
+							<>
+								<DetailedInfo
+									descricao="Gestantes com menos de 6 consultas de pré-natal**"
+									destaque={
+										situacaoPorIndicador[Indicadores?.PRE_NATAL_6_CONSULTAS]
+											.pendente
+									}
+									complemento={`de ${situacaoPorIndicador[Indicadores?.PRE_NATAL_6_CONSULTAS].total}`}
+								/>
+								<DetailedInfo
+									descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
+									destaque={
+										situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]
+											.pendente
+									}
+									complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
+								/>
+								<DetailedInfo
+									descricao="Gestantes sem o atendimento odontológico identificado"
+									destaque={
+										situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].pendente
+									}
+									complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
+								/>
+							</>
+						) : (
+							<DetailInfoError error="Não foi possível carregar os dados do indicador" />
+						)}
 					</CardLista>
 					<CardClicavel
 						descricao={{

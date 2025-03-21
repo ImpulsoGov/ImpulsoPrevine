@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import type { SituacaoPorIndicador } from '@/types/inicio';
 import { cargoTransform } from '@helpers/cargoTransform'
 import dynamic from 'next/dynamic';
+import { AlertSnackBar } from "@/componentes/mounted/inicio/snackbar/AlertSnackBar";
 
 const CardsGrid = dynamic<{
     situacaoPorIndicador: SituacaoPorIndicador;
@@ -34,7 +35,6 @@ export const Inicio: React.FC<InicioProps> = ({
 	situacaoPorIndicador = null,
 }) => {
 	const { data: session } = useSession();
-	
 	if (session && situacaoPorIndicador) {
 		return (
 			<div className={style.Container}>
@@ -95,7 +95,9 @@ export const Inicio: React.FC<InicioProps> = ({
 					lineHeight="18.2px"
 					margin="0 0 60px 0"
 				/>
+				<AlertSnackBar show={Object.keys(situacaoPorIndicador).length < 7} />
 			</div>
 		);
+		
 	}
 };

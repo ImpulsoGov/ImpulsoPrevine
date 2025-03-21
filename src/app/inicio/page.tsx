@@ -8,11 +8,13 @@ import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from '@/helpers/inicio/unificarSituacaoPorIndicadores';
 import type { SituacaoPorIndicador } from '@/types/inicio';
-import { ErrorPage } from './Error';
+import { AuthErrorPage } from './AuthError';
+import { SupportError } from './SupportError';
 
 const InicioPage = async() => {
     const session = await getServerSession(nextAuthOptions);
     let situacaoIndicadores = [];
+    
     if(session?.user){ 
         if(session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8)) {
             situacaoIndicadores = await InicioAPSRequest(session?.user?.municipio_id_sus,session?.user?.access_token)
@@ -22,10 +24,11 @@ const InicioPage = async() => {
             situacaoIndicadores = await InicioEquipeRequest(session?.user?.municipio_id_sus,session?.user?.equipe,session?.user?.access_token)
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null = await unificarSituacaoPorIndicadores(situacaoIndicadores);
-        if(!situacaoPorIndicador) return <ErrorPage />
-        return <Inicio  situacaoPorIndicador={situacaoPorIndicador} /> 
+        if(!situacaoPorIndicador) return <SupportError />
+        if(Object.keys(situacaoPorIndicador).length === 0) return <SupportError />
+        return <Inicio situacaoPorIndicador={situacaoPorIndicador} data-testid="inicio-component"/>
     }
-    return <ErrorPage />
+    return <AuthErrorPage />
 }
 
 export default InicioPage;
