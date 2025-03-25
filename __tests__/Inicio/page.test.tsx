@@ -34,8 +34,8 @@ jest.mock('../../src/app/inicio/AuthError', () => ({
   AuthErrorPage: jest.fn(() => <div data-testid="auth-error">Auth Error</div>),
 }));
 
-jest.mock('../../src/app/inicio/SuportErro', () => ({
-  SuportError: jest.fn(() => <div data-testid="suport-error">Suport Error</div>),
+jest.mock('../../src/app/inicio/SupportErro', () => ({
+  SupportError: jest.fn(() => <div data-testid="support-error">Support Error</div>),
 }));
 
 jest.mock('../../src/app/inicio/Inicio', () => ({
@@ -62,7 +62,7 @@ describe('InicioPage', () => {
     expect(screen.getByTestId('auth-error')).toBeInTheDocument();
   });
 
-  test('renderiza SuportError quando unificarSituacaoPorIndicadores é null', async () => {
+  test('renderiza SupportError quando unificarSituacaoPorIndicadores é null', async () => {
     // Simula sessão com usuário e perfis APS
     (getServerSession as jest.Mock).mockResolvedValue({
       user: {...user, perfis: [PROFILE_ID.COAPS]},
@@ -74,7 +74,7 @@ describe('InicioPage', () => {
     const pageElement = await InicioPage();
     render(pageElement);
 
-    expect(screen.getByTestId('suport-error')).toBeInTheDocument();
+    expect(screen.getByTestId('support-error')).toBeInTheDocument();
   });
 
   test('renderiza Inicio quando unificarSituacaoPorIndicadores retorna dados válidos para perfil APS', async () => {
@@ -126,7 +126,7 @@ describe('InicioPage', () => {
     expect(screen.getByTestId('inicio-component')).toBeInTheDocument();
   });
 
-  test('deve renderizar SuportError quando unificarSituacaoPorIndicadores retorna objeto vazio', async () => {
+  test('deve renderizar SupportError quando unificarSituacaoPorIndicadores retorna objeto vazio', async () => {
     // Configura a sessão com usuário e perfil válido (por exemplo, perfil APS)
     (getServerSession as jest.Mock).mockResolvedValue({
       user: { ...user, perfis: [5]},
@@ -142,7 +142,7 @@ describe('InicioPage', () => {
     const pageElement = await InicioPage();
     render(pageElement);
 
-    // Verifica se o componente SuportError foi renderizado
-    expect(screen.getByTestId('suport-error')).toBeInTheDocument();
+    // Verifica se o componente SupportError foi renderizado
+    expect(screen.getByTestId('support-error')).toBeInTheDocument();
   });
 });
