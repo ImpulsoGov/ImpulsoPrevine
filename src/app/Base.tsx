@@ -103,7 +103,6 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
 							) : (
 							rotasPublicas.includes(path) ? children : <LoginFallback />
 						)}
-
 					</div>
 					{res && <FooterMounted res={res} session={session} />}
 				</SessionWrapper>
