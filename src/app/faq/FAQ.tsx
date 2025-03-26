@@ -1,25 +1,25 @@
 "use client";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const TituloTexto = dynamic<{
-	imagem: {
-		posicao: boolean | null;
-		url: string;
-	};
-	titulo: string;
-	texto: string;
-}>(() => import('@impulsogov/design-system').then(mod => mod.TituloTexto));
+    imagem: {
+        posicao: boolean | null;
+        url: string;
+    };
+    titulo: string;
+    texto: string;
+}>(() => import("@impulsogov/design-system").then((mod) => mod.TituloTexto));
 const ToggleList = dynamic<{
-	title: string;
-	list: {
-		title: string;
-		blocks: {
-			subTitle: string;
-			description: string;
-			source: string;
-		}[];
-	}[];
-}>(() => import('@impulsogov/design-system').then(mod => mod.ToggleList));
+    title: string;
+    list: {
+        title: string;
+        blocks: {
+            subTitle: string;
+            description: string;
+            source: string;
+        }[];
+    }[];
+}>(() => import("@impulsogov/design-system").then((mod) => mod.ToggleList));
 
 export const FAQ = () => {
     return (
@@ -52,8 +52,7 @@ export const FAQ = () => {
                 title="Sobre a área logada"
                 list={[
                     {
-                        title:
-                            "O que é a área logada (acesso restrito) do site do Impulso Previne?",
+                        title: "O que é a área logada (acesso restrito) do site do Impulso Previne?",
                         blocks: [
                             {
                                 subTitle: "",
@@ -113,8 +112,7 @@ export const FAQ = () => {
                         ],
                     },
                     {
-                        title:
-                            "Estou fazendo meu primeiro acesso como município parceiro e ainda não tenho uma senha",
+                        title: "Estou fazendo meu primeiro acesso como município parceiro e ainda não tenho uma senha",
                         blocks: [
                             {
                                 subTitle: "",

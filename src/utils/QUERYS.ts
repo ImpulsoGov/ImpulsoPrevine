@@ -180,7 +180,7 @@ export const POSTS = `
 `;
 
 export const POST = (id: string) => {
-	return `
+    return `
     {
       blogArtigo(where: {id: "${id}"}) {
         id
@@ -235,7 +235,7 @@ export const CONTEUDOS_TRILHAS = `
     }
     `;
 export const CAPACITACAO = (trilhaId: string) => {
-	return `
+    return `
   {
     trilhas(where: {id: "${trilhaId}"}) {
       conteudo {
@@ -273,10 +273,10 @@ export const CAPACITACAO = (trilhaId: string) => {
 };
 
 export const CONTEUDO_CAPACITACAO = (
-	codigoConteudo: string,
-	trilhaId: string,
+    codigoConteudo: string,
+    trilhaId: string,
 ) => {
-	return `
+    return `
   {
     conteudos(where: {codigo: "${codigoConteudo}"}, orderBy: codigo_ASC) {
       codigo
@@ -310,7 +310,7 @@ export const CONTEUDO_CAPACITACAO = (
 };
 
 export const CONTEUDO_PROGRAMATICO = (trilhaId: string) => {
-	return `{
+    return `{
       trilhas(where: {id: "${trilhaId}"}) {
         titulo
         sobre {
