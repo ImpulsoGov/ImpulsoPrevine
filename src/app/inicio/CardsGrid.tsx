@@ -222,12 +222,9 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                         flexDirection: "column",
                         gap: "24px",
                         height:
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.total &&
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS]?.pendente &&
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.total &&
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV]?.pendente &&
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.total &&
-                            situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO]?.pendente
+                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_6_CONSULTAS) &&
+                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_SIFILIS_HIV) &&
+                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_ODONTO)
                                 ? "100%"
                                 : "fit-content",
                     }}
