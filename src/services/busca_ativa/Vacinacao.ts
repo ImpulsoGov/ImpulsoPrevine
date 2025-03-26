@@ -3,9 +3,9 @@ import { API_URL_DADOS_NOMINAIS } from "@constants/API_URL";
 import type { TabelaResponse } from "@services/busca_ativa/Cito";
 
 const tabelaVacinacaoEquipe = async (
-    municipioIdSus: string, 
-    equipe: string, 
-    token: string
+    municipioIdSus: string,
+    equipe: string,
+    token: string,
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",
@@ -29,8 +29,8 @@ const tabelaVacinacaoEquipe = async (
 };
 
 const tabelaVacinacaoAPS = async (
-    municipioIdSus: string, 
-    token: string
+    municipioIdSus: string,
+    token: string,
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",

@@ -38,7 +38,9 @@ export interface CardsGridProps {
     visao: string;
 }
 
-export type CardIndicatorType = "cardsDiabetesEVacinacao" | "cardsHipertensaoECito";
+export type CardIndicatorType =
+    | "cardsDiabetesEVacinacao"
+    | "cardsHipertensaoECito";
 
 export type CardsGridDataType = {
     [Key in CardIndicatorType]: {
@@ -52,7 +54,10 @@ export type CardsGridDataType = {
     };
 };
 
-export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visao }) => {
+export const CardsGrid: React.FC<CardsGridProps> = ({
+    situacaoPorIndicador,
+    visao,
+}) => {
     const CardsGridData: CardsGridDataType = {
         cardsDiabetesEVacinacao: {
             div: {
@@ -71,7 +76,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                             alt: "Ícone de um estômago",
                         },
                         titulo: "Diabetes",
-                        descricao: "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
+                        descricao:
+                            "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
                         height: "50%",
                         link: {
                             url: `/busca-ativa/diabeticos?aba=${""}&sub_aba=${""}&visao=${visao}`,
@@ -85,7 +91,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                     },
                     child: {
                         indicador: Indicadores.DIABETES,
-                        descricao: "Pessoas com consulta ou solicitação de hemoglobina a fazer",
+                        descricao:
+                            "Pessoas com consulta ou solicitação de hemoglobina a fazer",
                         error: "Não foi possível carregar os dados do indicador",
                     },
                 },
@@ -96,7 +103,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                             alt: "Ícone de uma seringa",
                         },
                         titulo: "Vacinação",
-                        descricao: "Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
+                        descricao:
+                            "Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
                         height: "50%",
                         link: {
                             url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
@@ -133,7 +141,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                             alt: "Ícone de um estetoscópio",
                         },
                         titulo: "Hipertensão",
-                        descricao: "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
+                        descricao:
+                            "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
                         height: "50%",
                         link: {
                             url: `busca-ativa/hipertensos?aba=${""}&sub_aba=${""}&visao=${visao}`,
@@ -147,7 +156,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                     },
                     child: {
                         indicador: Indicadores.HIPERTENSOS,
-                        descricao: "Pessoas com consulta ou aferição de pressão a fazer",
+                        descricao:
+                            "Pessoas com consulta ou aferição de pressão a fazer",
                         error: "Não foi possível carregar os dados do indicador",
                     },
                 },
@@ -158,7 +168,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                             alt: "Ícone de um tubo de ensaio meio cheio",
                         },
                         titulo: "Citopatológico",
-                        descricao: "Mostra os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
+                        descricao:
+                            "Mostra os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
                         height: "50%",
                         link: {
                             url: `/busca-ativa/citopatologico?aba=${""}&sub_aba=0&visao=${visao}`,
@@ -172,7 +183,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                     },
                     child: {
                         indicador: Indicadores.CITOPATOLOGICO,
-                        descricao: "Pessoas com coleta de citopatológico a fazer",
+                        descricao:
+                            "Pessoas com coleta de citopatológico a fazer",
                         error: "Não foi possível carregar os dados do indicador",
                     },
                 },
@@ -193,11 +205,18 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                         link={cardList.wrapper.link}
                         onHeaderClick={cardList.wrapper.onHeaderClick}
                     >
-                        {isValid(situacaoPorIndicador, cardList.child.indicador) ? (
+                        {isValid(
+                            situacaoPorIndicador,
+                            cardList.child.indicador,
+                        ) ? (
                             <>
                                 <DetailedInfo
                                     descricao={cardList.child.descricao}
-                                    destaque={situacaoPorIndicador[cardList.child.indicador].pendente}
+                                    destaque={
+                                        situacaoPorIndicador[
+                                            cardList.child.indicador
+                                        ].pendente
+                                    }
                                     complemento={`de ${situacaoPorIndicador[cardList.child.indicador].total}`}
                                 />
                             </>
@@ -214,7 +233,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
         <Grid12Col
             proporcao="3-3-3-3"
             items={[
-				...cardsExceptPregnant,
+                ...cardsExceptPregnant,
                 <div
                     key="cardsPreNatalESuporte"
                     style={{
@@ -222,9 +241,18 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                         flexDirection: "column",
                         gap: "24px",
                         height:
-                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_6_CONSULTAS) &&
-                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_SIFILIS_HIV) &&
-                                isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_ODONTO)
+                            isValid(
+                                situacaoPorIndicador,
+                                Indicadores.PRE_NATAL_6_CONSULTAS,
+                            ) &&
+                            isValid(
+                                situacaoPorIndicador,
+                                Indicadores.PRE_NATAL_SIFILIS_HIV,
+                            ) &&
+                            isValid(
+                                situacaoPorIndicador,
+                                Indicadores.PRE_NATAL_ODONTO,
+                            )
                                 ? "100%"
                                 : "fit-content",
                     }}
@@ -247,23 +275,44 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                             })
                         }
                     >
-                        {isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_6_CONSULTAS) &&
-                        isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_SIFILIS_HIV) &&
-                        isValid(situacaoPorIndicador, Indicadores.PRE_NATAL_ODONTO) ? (
+                        {isValid(
+                            situacaoPorIndicador,
+                            Indicadores.PRE_NATAL_6_CONSULTAS,
+                        ) &&
+                        isValid(
+                            situacaoPorIndicador,
+                            Indicadores.PRE_NATAL_SIFILIS_HIV,
+                        ) &&
+                        isValid(
+                            situacaoPorIndicador,
+                            Indicadores.PRE_NATAL_ODONTO,
+                        ) ? (
                             <>
                                 <DetailedInfo
                                     descricao="Gestantes com menos de 6 consultas de pré-natal**"
-                                    destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].pendente}
+                                    destaque={
+                                        situacaoPorIndicador[
+                                            Indicadores.PRE_NATAL_6_CONSULTAS
+                                        ].pendente
+                                    }
                                     complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total}`}
                                 />
                                 <DetailedInfo
                                     descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
-                                    destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].pendente}
+                                    destaque={
+                                        situacaoPorIndicador[
+                                            Indicadores.PRE_NATAL_SIFILIS_HIV
+                                        ].pendente
+                                    }
                                     complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
                                 />
                                 <DetailedInfo
                                     descricao="Gestantes sem o atendimento odontológico identificado"
-                                    destaque={situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].pendente}
+                                    destaque={
+                                        situacaoPorIndicador[
+                                            Indicadores.PRE_NATAL_ODONTO
+                                        ].pendente
+                                    }
                                     complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
                                 />
                             </>
@@ -274,12 +323,14 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                     <CardClicavel
                         descricao={{
                             content: "Clique aqui para falar com o suporte",
-                            contentOnHover: "<u>Clique aqui</u> para falar com o suporte",
+                            contentOnHover:
+                                "<u>Clique aqui</u> para falar com o suporte",
                         }}
                         icone={{
                             alt: "Ícone do whatsapp",
                             src: "https://media.graphassets.com/eyhtI9x1RIiXOyUgnD8K",
-                            srcOnHover: "https://media.graphassets.com/GBWxV5tTQjK8RKcvee3z",
+                            srcOnHover:
+                                "https://media.graphassets.com/GBWxV5tTQjK8RKcvee3z",
                         }}
                         link={{
                             newTab: true,
@@ -297,7 +348,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({ situacaoPorIndicador, visa
                 <Banner
                     key="bannerGuiasEDicas"
                     descricao={{
-                        content: "Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!",
+                        content:
+                            "Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!",
                     }}
                     icone={{
                         alt: "Ícone de uma lâmpada",

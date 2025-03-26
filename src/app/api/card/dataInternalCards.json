@@ -1,58 +1,58 @@
 [
-  {
-    "municipio_id_sus": "150030",
-    "ine": "0002192659",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_1",
-    "valor": 37
-  },
-  {
-    "municipio_id_sus": "150030",
-    "ine": "0002192659",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_2",
-    "valor": 45
-  },
-  {
-    "municipio_id_sus": "150030",
-    "ine": "0002192659",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_3",
-    "valor": 52
-  },
-  {
-    "municipio_id_sus": "150030",
-    "ine": "0002192659",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_4",
-    "valor": 52
-  },
-  {
-    "municipio_id_sus": "140015",
-    "ine": "0001590324",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_1",
-    "valor": 73
-  },
-  {
-    "municipio_id_sus": "140015",
-    "ine": "0001590324",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_2",
-    "valor": 54
-  },
-  {
-    "municipio_id_sus": "140015",
-    "ine": "0001590324",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_3",
-    "valor": 25
-  },
-  {
-    "municipio_id_sus": "140015",
-    "ine": "0001590324",
-    "lista": "hipertensao",
-    "descricao": "INDICADOR_4",
-    "valor": 25
-  }
+    {
+        "municipio_id_sus": "150030",
+        "ine": "0002192659",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_1",
+        "valor": 37
+    },
+    {
+        "municipio_id_sus": "150030",
+        "ine": "0002192659",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_2",
+        "valor": 45
+    },
+    {
+        "municipio_id_sus": "150030",
+        "ine": "0002192659",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_3",
+        "valor": 52
+    },
+    {
+        "municipio_id_sus": "150030",
+        "ine": "0002192659",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_4",
+        "valor": 52
+    },
+    {
+        "municipio_id_sus": "140015",
+        "ine": "0001590324",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_1",
+        "valor": 73
+    },
+    {
+        "municipio_id_sus": "140015",
+        "ine": "0001590324",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_2",
+        "valor": 54
+    },
+    {
+        "municipio_id_sus": "140015",
+        "ine": "0001590324",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_3",
+        "valor": 25
+    },
+    {
+        "municipio_id_sus": "140015",
+        "ine": "0001590324",
+        "lista": "hipertensao",
+        "descricao": "INDICADOR_4",
+        "valor": 25
+    }
 ]
