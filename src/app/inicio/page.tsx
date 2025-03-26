@@ -8,7 +8,8 @@ import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
 import type { SituacaoPorIndicador } from "@/types/inicio";
-import { ErrorPage } from "./Error";
+import { AuthErrorPage } from "./AuthError";
+import { SupportError } from "./SupportError";
 
 const InicioPage = async () => {
     const session = await getServerSession(nextAuthOptions);
@@ -33,10 +34,17 @@ const InicioPage = async () => {
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null =
             await unificarSituacaoPorIndicadores(situacaoIndicadores);
-        if (!situacaoPorIndicador) return <ErrorPage />;
-        return <Inicio situacaoPorIndicador={situacaoPorIndicador} />;
+        if (!situacaoPorIndicador) return <SupportError />;
+        if (Object.keys(situacaoPorIndicador).length === 0)
+            return <SupportError />;
+        return (
+            <Inicio
+                situacaoPorIndicador={situacaoPorIndicador}
+                data-testid="inicio-component"
+            />
+        );
     }
-    return <ErrorPage />;
+    return <AuthErrorPage />;
 };
 
 export default InicioPage;

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { ErrorPageWhatsAppLink } from "@/constants/whatsAppLinks";
 
 export const ErrorPage = () => {
     const router = useRouter();
@@ -23,7 +24,7 @@ export const ErrorPage = () => {
         >
             Erro ao buscar dados, entre em contato com o{" "}
             <Link
-                href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20uma%20atendente"
+                href={ErrorPageWhatsAppLink}
                 style={{
                     color: "#1E8E76",
                     marginLeft: "5px",
