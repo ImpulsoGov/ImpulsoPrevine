@@ -72,7 +72,7 @@ export const Inicio: React.FC<InicioProps> = ({
                         situacaoPorIndicador={situacaoPorIndicador}
                         visao={
                             session.user.perfis.includes(5) ||
-                                session.user.perfis.includes(8)
+                            session.user.perfis.includes(8)
                                 ? "aps"
                                 : "equipe"
                         }

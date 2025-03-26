@@ -245,14 +245,14 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                 situacaoPorIndicador,
                                 Indicadores.PRE_NATAL_6_CONSULTAS,
                             ) &&
-                                isValid(
-                                    situacaoPorIndicador,
-                                    Indicadores.PRE_NATAL_SIFILIS_HIV,
-                                ) &&
-                                isValid(
-                                    situacaoPorIndicador,
-                                    Indicadores.PRE_NATAL_ODONTO,
-                                )
+                            isValid(
+                                situacaoPorIndicador,
+                                Indicadores.PRE_NATAL_SIFILIS_HIV,
+                            ) &&
+                            isValid(
+                                situacaoPorIndicador,
+                                Indicadores.PRE_NATAL_ODONTO,
+                            )
                                 ? "100%"
                                 : "fit-content",
                     }}
@@ -279,14 +279,14 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             situacaoPorIndicador,
                             Indicadores.PRE_NATAL_6_CONSULTAS,
                         ) &&
-                            isValid(
-                                situacaoPorIndicador,
-                                Indicadores.PRE_NATAL_SIFILIS_HIV,
-                            ) &&
-                            isValid(
-                                situacaoPorIndicador,
-                                Indicadores.PRE_NATAL_ODONTO,
-                            ) ? (
+                        isValid(
+                            situacaoPorIndicador,
+                            Indicadores.PRE_NATAL_SIFILIS_HIV,
+                        ) &&
+                        isValid(
+                            situacaoPorIndicador,
+                            Indicadores.PRE_NATAL_ODONTO,
+                        ) ? (
                             <>
                                 <DetailedInfo
                                     descricao="Gestantes com menos de 6 consultas de pré-natal**"
