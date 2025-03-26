@@ -1,52 +1,52 @@
 .FullModalContainer {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	z-index: 101;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 101;
 }
 
 .FullModalLeftContainer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 58%;
-	background-color: #145c56;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 58%;
+    background-color: #145c56;
 }
 .FullModalRightContainer {
-	display: flex;
-	width: 42%;
-	align-items: center;
-	justify-content: center;
-	padding: 0 45px;
-	background-color: #fff;
+    display: flex;
+    width: 42%;
+    align-items: center;
+    justify-content: center;
+    padding: 0 45px;
+    background-color: #fff;
 }
 .FullModalLogo {
-	width: 160px;
-	height: 80px;
+    width: 160px;
+    height: 80px;
 }
 
 .FullModalBackButton {
-	border: 1px solid rgba(255, 255, 255, 0.25);
-	border-radius: 100px;
-	height: 48px;
-	width: 48px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	font-weight: bolder;
-	position: absolute;
-	top: 20px;
-	left: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bolder;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 @media screen and (max-width: 1023px) {
-	.FullModalLeftContainer {
-		display: none;
-	}
-	.FullModalRightContainer {
-		width: 100%;
-	}
+    .FullModalLeftContainer {
+        display: none;
+    }
+    .FullModalRightContainer {
+        width: 100%;
+    }
 }

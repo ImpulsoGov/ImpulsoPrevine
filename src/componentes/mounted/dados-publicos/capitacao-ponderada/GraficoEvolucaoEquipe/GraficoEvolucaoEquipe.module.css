@@ -1,52 +1,52 @@
 .selectorBox {
-	margin-bottom: 2px;
-	border: 1.5px solid #95b5b3;
-	border-radius: 8px;
-	width: 220px;
-	text-align: center;
-	padding: 10px;
-	transition: border-color 0.3s;
-	font-size: 13px;
-	position: relative;
+    margin-bottom: 2px;
+    border: 1.5px solid #95b5b3;
+    border-radius: 8px;
+    width: 220px;
+    text-align: center;
+    padding: 10px;
+    transition: border-color 0.3s;
+    font-size: 13px;
+    position: relative;
 }
 
 .textContainer {
-	display: flex;
-	align-items: center;
-	font-size: 18px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
 }
 
 .selectorHeader {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 3px;
-	cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px;
+    cursor: pointer;
 }
 
 .arrowIcon {
-	margin-left: 8px;
+    margin-left: 8px;
 }
 
 .checkboxes {
-	top: 100%;
-	border: 1.5px solid #95b5b3;
-	border-radius: 8px;
-	position: absolute;
-	padding: 5px;
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	background-color: #ebeced;
-	transition: border-color 0.3s;
-	align-items: flex-start;
-	text-align: left;
-	z-index: 2;
+    top: 100%;
+    border: 1.5px solid #95b5b3;
+    border-radius: 8px;
+    position: absolute;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #ebeced;
+    transition: border-color 0.3s;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 2;
 }
 
 .selectorBox:hover {
-	background-color: #ebeced; /* Altera a cor da borda no hover */
+    background-color: #ebeced; /* Altera a cor da borda no hover */
 }
 .checkboxes:hover {
-	background-color: #ebeced; /* Altera a cor da borda no hover */
+    background-color: #ebeced; /* Altera a cor da borda no hover */
 }

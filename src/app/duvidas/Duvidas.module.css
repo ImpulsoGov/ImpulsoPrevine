@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 
 .BotaoVoltar {
-	padding: 30px 80px 30px 80px;
+    padding: 30px 80px 30px 80px;
 }
 
 /* XLARGE */
 @media screen and (min-width: 1920px) {
-	.BotaoVoltar {
-		padding: 30px 80px 30px 125px;
-		padding-right: 125px;
-	}
+    .BotaoVoltar {
+        padding: 30px 80px 30px 125px;
+        padding-right: 125px;
+    }
 }
 
 /* LARGE */

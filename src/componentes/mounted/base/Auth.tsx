@@ -2,17 +2,17 @@
 import type { Session } from "next-auth";
 
 export const Auth = ({
-	children,
-	setStatus,
-	session,
+    children,
+    setStatus,
+    session,
 }: Readonly<{
-	children: React.ReactNode;
-	setStatus: any;
-	session: Session | null;
+    children: React.ReactNode;
+    setStatus: any;
+    session: Session | null;
 }>) => {
-	setStatus(session);
-	if (!session) {
-		return <div>Loading...</div>;
-	}
-	return children;
+    setStatus(session);
+    if (!session) {
+        return <div>Loading...</div>;
+    }
+    return children;
 };

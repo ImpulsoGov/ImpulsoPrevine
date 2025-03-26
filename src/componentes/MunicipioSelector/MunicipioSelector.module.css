@@ -1,16 +1,16 @@
 .municipio {
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	outline: none;
-	margin-left: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-left: 80px;
 }
 
 .municipio option:hover {
-	background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .municipio option:checked {
-	background-color: #007bff;
-	color: #fff;
+    background-color: #007bff;
+    color: #fff;
 }
