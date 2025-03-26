@@ -5,6 +5,7 @@ import type { SnackbarCloseReason } from "@mui/material/Snackbar";
 import SnackbarContent from "@mui/material/SnackbarContent";
 import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
+import { SnackBarWhatsAppLink } from "@/constants/whatsAppLinks";
 
 interface AlertSnackBarProps {
 	show: boolean;
@@ -36,7 +37,7 @@ export const MessageComponent = () => {
 	  Não foi possível carregar os dados. Entre em
       <strong>
         <a
-          href="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20atendente!%0AAs%20informa%C3%A7%C3%B5es%20de%20um%20indicador%20mostradas%20na%20tela%20inicial%20n%C3%A3o%20est%C3%A3o%20carregando.%20Me%20ajuda%20a%20resolver%20esse%20problema?"
+          href={SnackBarWhatsAppLink}
           style={{ color: "white", textDecoration: "underline" }}
         >
           {" "}

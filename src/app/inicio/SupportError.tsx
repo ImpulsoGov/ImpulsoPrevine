@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image"
 import { ButtonColor } from "@impulsogov/design-system"
+import { SupportErrorWhatsAppLink } from "@/constants/whatsAppLinks"
 
 export const SupportError = () => {
     return <div style={{display: "flex",gap: "94px", alignItems: "center", justifyContent: "center", padding: "200px"}}>
@@ -25,7 +26,7 @@ export const SupportError = () => {
                     posicao: "right"
                 }}
                 label="Falar com o suporte"
-                link="https://api.whatsapp.com/send?phone=5511941350260&text=Ol%C3%A1,%20atendente!%0AEntrei%20na%20minha%20conta%20do%20Impulso%20Previne%20e%20me%20deparei%20com%20uma%20mensagem%20de%20erro%20na%20tela%20inicial.%20N%C3%A3o%20consigo%20acessar%20nenhuma%20lista%20nominal!%20Me%20ajuda%20a%20resolver%20esse%20problema?"
+                link={SupportErrorWhatsAppLink}
             />
         </div>
         <Image 
