@@ -108,6 +108,7 @@ const config: Config = {
         "^@prisma/(.*)$": "<rootDir>/prisma/$1",
         "^@types/(.*)$": "<rootDir>/src/types/$1",
         "^@data/(.*)$": "<rootDir>/src/data/$1",
+        "^@app/(.*)$": "<rootDir>/src/app/$1",
     },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -174,7 +175,7 @@ const config: Config = {
 
     // The glob patterns Jest uses to detect test files
     testMatch: [
-        "**/__tests__/unit/**/*.[jt]s?(x)",
+        "<rootDir>/__tests__/unit/**/*.[jt]s?(x)",
     ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
