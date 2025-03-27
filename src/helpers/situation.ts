@@ -1,7 +1,7 @@
 import type { SituacaoPorIndicador } from "../types/inicio";
 import type { Indicadores } from "../types/inicio";
 
-const isValid = (
+export const isValid = (
     situacaoPorIndicador: SituacaoPorIndicador,
     indicador: Indicadores,
 ): boolean => {
@@ -17,5 +17,3 @@ const isValid = (
         return true;
     return false;
 };
-
-export { isValid };

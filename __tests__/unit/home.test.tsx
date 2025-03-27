@@ -1,5 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { Home } from "../src/app/Home";
+import { Home } from "../../src/app/Home";
+import '@testing-library/jest-dom'
+
 jest.mock("@impulsogov/design-system", () => ({
     FormConsultoria: (props) => <div>FormConsultoria Mock</div>,
     TituloSmallTexto: (props) => <div>TituloSmallTexto Mock</div>,

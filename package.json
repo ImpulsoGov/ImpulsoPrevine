@@ -18,7 +18,10 @@
         "postinstall": "husky",
         "test": "jest",
         "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage"
+        "test:coverage": "jest --coverage",
+        "test:unit-node": "jest --selectProjects unit-node",
+        "test:unit-jsdom": "jest --selectProjects unit-jsdom",
+        "test:e2e": "jest --selectProjects e2e"
     },
     "dependencies": {
         "@hotjar/browser": "^1.0.9",
@@ -69,6 +72,8 @@
         "husky": "^9.1.7",
         "jest": "^29.7.0",
         "jest-environment-jsdom": "^29.7.0",
+        "jest-playwright-preset": "^4.0.0",
+        "playwright": "^1.51.1",
         "ts-node": "^10.9.2",
         "typescript": "^5"
     },

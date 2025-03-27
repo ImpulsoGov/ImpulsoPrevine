@@ -212,6 +212,25 @@ const config: Config = {
 
     // Whether to use watchman for file crawling
     // watchman: true,
-};
+    preset: 'jest-playwright-preset',
+    projects: [
+        {
+            displayName: 'unit-node',
+            testMatch: ['**/__tests__/unit/**/*.(spec|test).[jt]s'],
+            testEnvironment: 'node',
+        },
+        {
+            displayName: 'unit-jsdom',
+            testMatch: ['**/__tests__/unit/**/*.(spec|test).[jt]sx'],
+            testEnvironment: 'jsdom',
+        },
+        {
+            displayName: 'e2e',
+            testMatch: ['**/__tests__/integration/**/*.(spec|test).[jt]s?(x)'],
+            preset: 'jest-playwright-preset',
+        },
+      ],
+      moduleDirectories: ["node_modules", "<rootDir>"],
+    };
 
 export default createJestConfig(config);

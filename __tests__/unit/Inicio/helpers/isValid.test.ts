@@ -1,4 +1,4 @@
-import { isValid } from "@/helpers/situation";
+import { isValid } from "../../../../src/helpers/situation";
 import type { SituacaoPorIndicador } from "@/types/inicio";
 import type { Indicadores } from "@/types/inicio";
 

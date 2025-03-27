@@ -1,15 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import dadosPublicosPage from "../../src/app/analise/page";
+import dadosPublicosPage from "../../../src/app/dadoPublicos/page";
 import { SessionProvider } from "next-auth/react";
-import { PROFILE_ID } from "@/types/profile";
+import { PROFILE_ID } from "../../../src/types/profile";
+import '@testing-library/jest-dom'
 
 // Mocks para as dependências
 jest.mock("next/dynamic", () => () => {
-    const mod = require("../../src/app/analise/Analise");
+    const mod = require("../../../src/app/analise/Analise");
     return mod.Analise;
 });
 
-jest.mock("../../src/app/analise/Analise", () => ({
+jest.mock("../../../src/app/analise/Analise", () => ({
     Analise: jest.fn(() => (
         <div data-testid="analise-component">Analise Component</div>
     )),
