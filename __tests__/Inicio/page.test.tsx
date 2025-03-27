@@ -35,7 +35,7 @@ jest.mock("../../src/app/inicio/AuthError", () => ({
     )),
 }));
 
-jest.mock("../../src/app/inicio/SupportErro", () => ({
+jest.mock("../../src/app/inicio/SupportError", () => ({
     SupportError: jest.fn(() => (
         <div data-testid="support-error">Support Error</div>
     )),
