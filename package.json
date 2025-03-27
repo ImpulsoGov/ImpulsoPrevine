@@ -52,6 +52,7 @@
         "@biomejs/biome": "1.9.4",
         "@commitlint/cli": "^19.6.1",
         "@commitlint/config-conventional": "^19.6.0",
+        "@playwright/test": "^1.51.1",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",

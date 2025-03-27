@@ -1,15 +1,15 @@
-import { render, screen } from "@testing-library/react";
-import InicioPage from "../../src/app/inicio/page";
-import { getServerSession } from "next-auth";
+import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
 import { InicioAPSRequest } from "@/services/inicio/inicioAPS";
 import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
-import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
-import { SessionProvider } from "next-auth/react";
 import { PROFILE_ID } from "@/types/profile";
+import InicioPage from "@app/inicio/page";
+import { render, screen } from "@testing-library/react";
+import { getServerSession } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 
 // Mocks para as dependências
 jest.mock("next/dynamic", () => () => {
-    const mod = require("../../src/app/inicio/Inicio");
+    const mod = require("@app/inicio/Inicio");
     return mod.Inicio;
 });
 
@@ -17,31 +17,31 @@ jest.mock("next-auth", () => ({
     getServerSession: jest.fn(),
 }));
 
-jest.mock("@/services/inicio/inicioAPS", () => ({
+jest.mock("@services/inicio/inicioAPS", () => ({
     InicioAPSRequest: jest.fn(),
 }));
 
-jest.mock("@/services/inicio/inicioEquipe", () => ({
+jest.mock("@services/inicio/inicioEquipe", () => ({
     InicioEquipeRequest: jest.fn(),
 }));
 
-jest.mock("@/helpers/inicio/unificarSituacaoPorIndicadores", () => ({
+jest.mock("@helpers/inicio/unificarSituacaoPorIndicadores", () => ({
     unificarSituacaoPorIndicadores: jest.fn(),
 }));
 
-jest.mock("../../src/app/inicio/AuthError", () => ({
+jest.mock("@app/inicio/AuthError", () => ({
     AuthErrorPage: jest.fn(() => (
         <div data-testid="auth-error">Auth Error</div>
     )),
 }));
 
-jest.mock("../../src/app/inicio/SupportError", () => ({
+jest.mock("@app/inicio/SupportError", () => ({
     SupportError: jest.fn(() => (
         <div data-testid="support-error">Support Error</div>
     )),
 }));
 
-jest.mock("../../src/app/inicio/Inicio", () => ({
+jest.mock("@app/inicio/Inicio", () => ({
     Inicio: jest.fn(() => (
         <div data-testid="inicio-component">Inicio Component</div>
     )),

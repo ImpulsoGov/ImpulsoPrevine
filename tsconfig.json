@@ -28,7 +28,8 @@
             "@middlewares/*": ["./src/middlewares/*"],
             "@prisma/*": ["./prisma/*"],
             "@types/*": ["./src/types/*"],
-            "@data/*": ["./src/data/*"]
+            "@data/*": ["./src/data/*"],
+            "@app/*": ["./src/app/*"],
         },
         "target": "ES2017"
     },
