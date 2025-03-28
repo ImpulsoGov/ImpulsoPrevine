@@ -1,13 +1,12 @@
 import { test, expect, type Page } from "@playwright/test";
 
-//TODO: Fazer playwright subir o servidor automaticamente com `yarn start`
 //TODO: Pensar em como lidar com essa base URL
 const baseUrl = "http://localhost:3000";
 const pageUrl = `${baseUrl}/lista-nominal`;
 
 const login = async ({ page }: { page: Page }) => {
     await page.goto(`${baseUrl}/`);
-    await page.getByText("ACESSO RESTRITO").first().click();
+    await page.getByText("ACESSO RESTRITO", {}).first().click();
     await page.getByRole('button', { name: 'ENTRAR' }).click();
     await page.getByRole('textbox', { name: 'CPF' }).fill(process.env.userTest || "000.000.000-00");
     await page
