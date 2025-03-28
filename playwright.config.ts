@@ -1,3 +1,4 @@
+import { baseURL } from "@/utils/baseURL";
 import { defineConfig, devices } from "@playwright/test";
 import * as dotenv from 'dotenv';
 dotenv.config(); 
@@ -71,7 +72,7 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
   webServer: {
     command: 'yarn dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    url: baseURL(),
+    reuseExistingServer: process.env.ENV === "development",
   },
 });
