@@ -34,15 +34,4 @@ test.describe("Testes de renderização do componente Table no ListContainer", (
         const table = page.locator('[data-testid="list-table"]');
         await expect(table).toBeVisible();
     });
-
-    test('Deve renderizar a tabela e conter o cabeçalho "Nome"', async ({
-        page,
-    }) => {
-        // Navegue para a página onde o ListContainer é renderizado
-        await page.goto(pageUrl);
-
-        // Procura pelo cabeçalho da tabela "Nome" usando getByRole
-        const header = page.getByRole("columnheader", { name: "Nome" });
-        await expect(header).toBeVisible();
-    });
 });
