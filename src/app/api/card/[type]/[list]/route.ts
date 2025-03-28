@@ -2,14 +2,14 @@ import type { NextRequest } from "next/server";
 
 import { getDataByType, validateCardType } from "@/app/api/card/utils/cardType";
 import { InvalidCardTypeError } from "@/app/api/card/utils/errors";
-import { captureException } from "@sentry/nextjs";
 import {
     AuthenticationError,
     decodeToken,
-    getToken,
     getEncodedSecret,
+    getToken,
 } from "@/utils/token";
 import type { JWTToken } from "@/utils/token";
+import { captureException } from "@sentry/nextjs";
 
 
 const adapterList = {
@@ -31,7 +31,7 @@ export async function GET(
     },
 ) {
     try {
-        const { type, list } = await params as { type: string; list: keyof typeof adapterList };
+        const { type, list } = await params as { type: string; list: "HIPERTENSÃO" | "DIABETES" };
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
