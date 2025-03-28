@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { type Page, expect, test } from "@playwright/test";
 
 //TODO: Pensar em como lidar com essa base URL
 const baseUrl = "http://localhost:3000";
@@ -6,12 +6,12 @@ const pageUrl = `${baseUrl}/lista-nominal`;
 
 const login = async ({ page }: { page: Page }) => {
     await page.goto(`${baseUrl}/`);
-    await page.getByText("ACESSO RESTRITO", {}).first().click();
+    await page.getByText("Acesso Restrito", {exact: true}).click();
     await page.getByRole('button', { name: 'ENTRAR' }).click();
-    await page.getByRole('textbox', { name: 'CPF' }).fill(process.env.userTest || "000.000.000-00");
+    await page.getByRole('textbox', { name: 'CPF' }).fill(process.env.TEST_USER || "000.000.000-00");
     await page
         .getByRole('textbox', { name: 'Senha' })
-        .fill(process.env.userTestPassword || "123456");
+        .fill(process.env.TEST_USER_PASSWORD || "123456");
     await Promise.all([
         page.getByRole('button', { name: 'ENTRAR' }).click()
     ]);
