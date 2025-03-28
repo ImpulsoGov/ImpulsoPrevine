@@ -29,7 +29,7 @@
             "@prisma/*": ["./prisma/*"],
             "@types/*": ["./src/types/*"],
             "@data/*": ["./src/data/*"],
-            "@app/*": ["./src/app/*"],
+            "@app/*": ["./src/app/*"]
         },
         "target": "ES2017"
     },

@@ -6,7 +6,6 @@ import {
     Table,
     ModalAlertControlled,
     PersonalizacaoImpressao,
-    Spinner,
 } from "@impulsogov/design-system";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -575,7 +574,10 @@ export const ListContainer = ({
                     isLoading={isLoading}
                     slots={{
                         noRowsOverlay: () => (
-                            <p style={{ textAlign: "center", padding: "40px" }}>
+                            <p
+                                style={{ textAlign: "center", padding: "40px" }}
+                                data-testid="error-message-table"
+                            >
                                 Nenhum dado disponível. Isso pode ocorrer por
                                 ausência de resultados ou instabilidade na
                                 plataforma. Se já aplicou filtros ou utilizou a
@@ -584,6 +586,7 @@ export const ListContainer = ({
                             </p>
                         ),
                     }}
+                    data-testid="list-table"
                 />
             </div>
             <div
