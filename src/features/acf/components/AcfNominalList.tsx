@@ -29,7 +29,7 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<
     listaNominalID: string;
 };
 
-export type ListaNominalProps = {
+export type AcfNameListProps = {
     props: ExtendedPanelSelectorWithCardsProps;
 };
 
@@ -50,7 +50,7 @@ const SubTabChildren: Record<string, string> = {
     subTabID3: "ListChildID1",
 };
 
-export const ListaNominal = ({ props }: ListaNominalProps) => {
+export const AcfNominalList = ({ props }: AcfNameListProps) => {
     const childrenComponents = subTabChildrenSelector(
         props,
         SubTabChildrenID,

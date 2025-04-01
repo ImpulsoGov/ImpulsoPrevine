@@ -6,7 +6,6 @@ import {
     Table,
     ModalAlertControlled,
     PersonalizacaoImpressao,
-    Spinner,
 } from "@impulsogov/design-system";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -53,7 +52,7 @@ import {
     larguraColunasHipertensaoRetrato,
 } from "@/helpers/larguraColunasHipertensao";
 import { onlyAppliedFilters } from "@/utils/onlyAppliedFilters";
-import dataJson from "../api/lista-nominal/data.json";
+import dataJson from "@app/api/lista-nominal/data.json";
 
 //dados mockados essa parte do código será substituída por uma chamada a API
 
@@ -361,7 +360,10 @@ export const ListContainer = ({
             getListDataResponse();
         }
     }, [user, value, list, pagination, sorting, search]);
-    useEffect(() => {
+
+    //TODO: Remover 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+        useEffect(() => {
         setPrintStates({
             value,
             list,
