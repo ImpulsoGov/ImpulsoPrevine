@@ -12,8 +12,7 @@ import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
 import { PROFILE_ID } from "@/types/profile";
 import { ErrorPage } from "./ErrorPage";
 import { SessionGuard } from "@/common/components/SessionGuard";
-import { getServerSession, type Session } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
+import type { Session } from "next-auth";
 
 const externalCardsDetails: CardDetailsMap = {
     COM_CONSULTA_AFERICAO_PRESSAO: {
@@ -42,7 +41,13 @@ const externalCardsDetails: CardDetailsMap = {
     },
 };
 
-const Batatinha = async ({searchParams, session}) => {
+const Batatinha = async ({
+    searchParams, 
+    session
+}:{ 
+    searchParams: Promise<{ [key: string]: string | undefined }>, 
+    session: Session 
+}) => {
     const resolvedSearchParams = await searchParams;
     const tabID = resolvedSearchParams?.tabID || "charts";
     const subTabID = resolvedSearchParams?.subTabID || "ChartSubTabID1";
@@ -189,6 +194,5 @@ const Batatinha = async ({searchParams, session}) => {
 export const AcfDashboardPage = async ({
     searchParams,
 }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
-    // Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
     return <SessionGuard error={<ErrorPage />} Children={Batatinha} searchParams={searchParams}/>
 };
