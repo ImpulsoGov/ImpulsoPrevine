@@ -1,23 +1,22 @@
 
 const data = [
-    [
         {
-            "municipio_id_sus": "150030",
-            "ine": "0002192659",
+            "municipio_id_sus": "111111",
+            "ine": "0000098574",
             "lista": "hipertensao",
             "valor": 45,
             "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
         },
         {
-            "municipio_id_sus": "150030",
-            "ine": "0002192659",
+            "municipio_id_sus": "111111",
+            "ine": "0000098574",
             "lista": "hipertensao",
             "valor": 52,
             "descricao": "DIAGNOSTICO_AUTORREFERIDO"
         },
         {
-            "municipio_id_sus": "150030",
-            "ine": "0002192659",
+            "municipio_id_sus": "111111",
+            "ine": "0000098574",
             "lista": "hipertensao",
             "valor": 40,
             "descricao": "DIAGNOSTICO_CLINICO"
@@ -42,16 +41,17 @@ const data = [
             "lista": "hipertensao",
             "valor": 43,
             "descricao": "DIAGNOSTICO_CLINICO"
-        }
-    ]    
+        }    
 ]
 
 export const externalCardsAcfDashboardDataRepository = (
-    municipalitySusID: string,
-    TeamIne: string,
+    listName: string,
+    teamIne: string,
+    municipalitySusID: string
 )=>{
     return data.filter((item) => {
-        item.municipio_id_sus === municipalitySusID &&
-        item.equipe_ine_cadastro === TeamIne
+        item.lista === listName 
+        && item.ine === teamIne 
+        && item.municipio_id_sus === municipalitySusID; 
     })
 }
