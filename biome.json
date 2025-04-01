@@ -37,7 +37,10 @@
             },
             "correctness": {
                 "useHookAtTopLevel": "error",
-                "noUnusedVariables": "error",
+                "noUnusedVariables": {
+                    "level": "error",
+                    "fix": "none"
+                },
                 "noUnusedImports": "error",
                 "noUnusedFunctionParameters": "error"
             },
