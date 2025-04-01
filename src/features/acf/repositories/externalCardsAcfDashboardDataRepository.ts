@@ -1,0 +1,57 @@
+
+const data = [
+    [
+        {
+            "municipio_id_sus": "150030",
+            "ine": "0002192659",
+            "lista": "hipertensao",
+            "valor": 45,
+            "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
+        },
+        {
+            "municipio_id_sus": "150030",
+            "ine": "0002192659",
+            "lista": "hipertensao",
+            "valor": 52,
+            "descricao": "DIAGNOSTICO_AUTORREFERIDO"
+        },
+        {
+            "municipio_id_sus": "150030",
+            "ine": "0002192659",
+            "lista": "hipertensao",
+            "valor": 40,
+            "descricao": "DIAGNOSTICO_CLINICO"
+        },
+        {
+            "municipio_id_sus": "140015",
+            "ine": "0001590324",
+            "lista": "hipertensao",
+            "valor": 54,
+            "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
+        },
+        {
+            "municipio_id_sus": "140015",
+            "ine": "0001590324",
+            "lista": "hipertensao",
+            "valor": 25,
+            "descricao": "DIAGNOSTICO_AUTORREFERIDO"
+        },
+        {
+            "municipio_id_sus": "140015",
+            "ine": "0001590324",
+            "lista": "hipertensao",
+            "valor": 43,
+            "descricao": "DIAGNOSTICO_CLINICO"
+        }
+    ]    
+]
+
+export const externalCardsAcfDashboardDataRepository = (
+    municipalitySusID: string,
+    TeamIne: string,
+)=>{
+    return data.filter((item) => {
+        item.municipio_id_sus === municipalitySusID &&
+        item.equipe_ine_cadastro === TeamIne
+    })
+}
