@@ -1,6 +1,10 @@
 {
     "compilerOptions": {
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
@@ -18,19 +22,45 @@
             }
         ],
         "paths": {
-            "@/*": ["./src/*"],
-            "@hooks/*": ["./src/hooks/*"],
-            "@componentes/*": ["./src/componentes/*"],
-            "@services/*": ["./src/services/*"],
-            "@helpers/*": ["./src/helpers/*"],
-            "@utils/*": ["./src/utils/*"],
-            "@constants/*": ["./src/constants/*"],
-            "@middlewares/*": ["./src/middlewares/*"],
-            "@prisma/*": ["./prisma/*"],
-            "@types/*": ["./src/types/*"],
-            "@data/*": ["./src/data/*"],
-            "@app/*": ["./src/app/*"],
-            "@features/*": ["./src/features/*"],
+            "@/*": [
+                "./src/*"
+            ],
+            "@hooks/*": [
+                "./src/hooks/*"
+            ],
+            "@componentes/*": [
+                "./src/componentes/*"
+            ],
+            "@services/*": [
+                "./src/services/*"
+            ],
+            "@helpers/*": [
+                "./src/helpers/*"
+            ],
+            "@utils/*": [
+                "./src/utils/*"
+            ],
+            "@constants/*": [
+                "./src/constants/*"
+            ],
+            "@middlewares/*": [
+                "./src/middlewares/*"
+            ],
+            "@prisma/*": [
+                "./prisma/*"
+            ],
+            "@types/*": [
+                "./src/types/*"
+            ],
+            "@data/*": [
+                "./src/data/*"
+            ],
+            "@app/*": [
+                "./src/app/*"
+            ],
+            "@features/*": [
+                "./src/features/*"
+            ],
         },
         "target": "ES2017"
     },
@@ -41,5 +71,7 @@
         ".next/types/**/*.ts",
         "src/global.d.ts"
     ],
-    "exclude": ["node_modules"]
+    "exclude": [
+        "node_modules"
+    ]
 }
