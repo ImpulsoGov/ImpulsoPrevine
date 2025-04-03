@@ -1,16 +1,12 @@
 import { AcfNominalList } from './AcfNominalList';
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
-import type { Session } from "next-auth";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type { ExtendedPanelSelectorWithCardsProps } from "./AcfNominalList";
 import type { CardDetailsMap } from "@/helpers/cardsList";
 import { externalCardsAcfDashboardDataController } from '../controllers/externalCardsAcfDashboardDataController';
 import type { AcfDashboardType } from '../models/ExternalCardItem';
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { profile } from 'console';
-import { ProfileIdValue } from '@/types/profile';
+import type { ProfileIdValue } from '@types/profile'; 
 
 //TODO: mover para outro arquivo
 const externalCardsDetails: CardDetailsMap = {
