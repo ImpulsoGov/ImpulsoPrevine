@@ -1,6 +1,6 @@
-import { externalCardsAcfDashboardDataAdapter } from "../adapters/externalCardsAcfDashboardDataAdapter"
-import type { ExternalCardDataItem, AcfDashboardType } from "../models/ExternalCardItem";
-import { externalCardsAcfDashboardDataRepository } from "../repositories/externalCardsAcfDashboardDataRepository";
+import { externalCardsAcfDashboardDataAdapter } from "./externalCardsAcfDashboardData.adapter"
+import type { ExternalCardDataItem, AcfDashboardType } from "./models/ExternalCardItem";
+import { externalCardsAcfDashboardDataRepository } from "./externalCardsAcfDashboardData.repository";
 import type { ProfileIdValue } from "@/types/profile";
 
 export const externalCardsAcfDashboardDataController = async(

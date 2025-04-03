@@ -1,6 +1,6 @@
 "use client";
-import { ListContainer } from "./ListContainer";
-import { ChartsContainer } from "./ChartsContainer";
+import { ListContainer } from "./modules/List";
+import { ChartsContainer } from "./modules/Charts";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
 import type {
     PanelSelectorWithCardsProps,

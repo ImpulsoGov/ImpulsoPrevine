@@ -1,11 +1,11 @@
-import { AcfNominalList } from './AcfNominalList';
+import { AcfNominalList } from './AcfNominalList.presentation';
 import { getCardsProps } from "@/helpers/cardsList";
 import { captureException } from "@sentry/nextjs";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { ExtendedPanelSelectorWithCardsProps } from "./AcfNominalList";
+import type { ExtendedPanelSelectorWithCardsProps } from "./AcfNominalList.presentation";
 import type { CardDetailsMap } from "@/helpers/cardsList";
-import { externalCardsAcfDashboardDataController } from '../controllers/externalCardsAcfDashboardDataController';
-import type { AcfDashboardType } from '../models/ExternalCardItem';
+import { externalCardsAcfDashboardDataController } from '../DashboardSelector/externalCardsAcfDashboardData.controller';
+import type { AcfDashboardType } from '../DashboardSelector/ExternalCardItem.model';
 import type { ProfileIdValue } from '@types/profile'; 
 
 //TODO: mover para outro arquivo

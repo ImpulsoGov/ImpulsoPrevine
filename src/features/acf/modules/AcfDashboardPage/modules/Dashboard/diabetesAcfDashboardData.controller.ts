@@ -1,5 +1,5 @@
-import { diabetesAcfDashboardDataAdapter } from "../adapters/diabetesAcfDashboardDataAdapter"
-import type { DiabetesAcfItem } from "../models/DiabetesAcfItem"
+import { diabetesAcfDashboardDataAdapter } from "./diabetesAcfDashboardData.adapter"
+import type { DiabetesAcfItem } from "./DiabetesAcfItem.model"
 
 export const diabetesAcfDashboardDataController = (
     municipalitySusID: string,

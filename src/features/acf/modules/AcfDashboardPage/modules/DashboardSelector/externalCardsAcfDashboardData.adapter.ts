@@ -1,4 +1,4 @@
-import type { ExternalCardDataItem, AcfDashboardType, DiabetesAcfExternalCardsDescriptionType } from "../models/ExternalCardItem"
+import type { ExternalCardDataItem, AcfDashboardType, DiabetesAcfExternalCardsDescriptionType } from "./ExternalCardItem.model.ts"
 
 export const externalCardsAcfDashboardDataAdapter = (
     data: { 

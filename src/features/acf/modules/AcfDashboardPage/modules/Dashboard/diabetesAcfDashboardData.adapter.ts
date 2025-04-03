@@ -1,5 +1,5 @@
-import { diabetesAcfDashboardDataRepository } from "../repositories/diabetesAcfDashboardDataRepository"
-import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "../models/DiabetesAcfItem"
+import { diabetesAcfDashboardDataRepository } from "./diabetesAcfDashboardData.repository"
+import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
 
 const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string) => {
     if (patientCpfOrBirthdayString .length === 11 && !patientCpfOrBirthdayString.includes("-") ) return patientCpfOrBirthdayString 
