@@ -1,4 +1,5 @@
 import type { CardType } from "@/app/api/card/utils/cardType";
+import type { ExternalCardDataItem } from "@/features/acf/models/ExternalCardItem";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 
@@ -34,18 +35,13 @@ export type GetCardsDataProps = {
     ine?: string;
 };
 
-export type CardsDataResponse = {
-    lista: string;
-    descricao: string;
-    valor: number;
-};
 
 export const getCardsData = async ({
     token,
     listName,
     cardType,
     baseUrl,
-}: GetCardsDataProps): Promise<AxiosResponse<CardsDataResponse[]>> => {
+}: GetCardsDataProps): Promise<AxiosResponse<ExternalCardDataItem[]>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     if (!listName) throw new Error("Tipo de lista é obrigatório");
     if (!cardType) throw new Error("Tipo de card é obrigatório");

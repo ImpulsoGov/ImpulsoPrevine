@@ -8,7 +8,8 @@ import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Ca
 import type { GetListDataProps } from "@services/lista-nominal/ListaNominal";
 import type { ExtendedPanelSelectorWithCardsProps } from "./AcfNominalList";
 import type { CardDetailsMap } from "@/helpers/cardsList";
-
+import { externalCardsAcfDashboardDataController } from '../controllers/externalCardsAcfDashboardDataController';
+import type { AcfDashboardType } from '../models/ExternalCardItem';
 //TODO: mover para outro arquivo
 const externalCardsDetails: CardDetailsMap = {
     COM_CONSULTA_AFERICAO_PRESSAO: {
@@ -164,7 +165,7 @@ export const AllowProfileWrapper = async ({
         listName: resolvedSearchParams.list || "DIABETES",
     };
     try {
-        const data = await externalCardsAcfDashboardDataController()
+        const data =  await externalCardsAcfDashboardDataController((resolvedSearchParams.list || "DIABETES" )as AcfDashboardType, session.user.municipio_id_sus, session.user.equipe);
         externalCardsProps = getCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
