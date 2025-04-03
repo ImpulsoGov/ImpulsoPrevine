@@ -25,7 +25,7 @@ export const externalCardsDetails: CardDetailsMap = {
     },
 };
 
-const breadcrumb = {
+export const breadcrumb = {
     breadcrumb: [
         {
             label: "Inicio",
@@ -38,7 +38,7 @@ const breadcrumb = {
     ],
 };
 
-const tabs = {
+const tabDefinitions = {
     tabs: {
         charts: {
             title: "Gráficos",

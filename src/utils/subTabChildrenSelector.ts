@@ -1,8 +1,10 @@
 import React from "react";
 import type {
-    ExtendedsubTabsWithChildrenAndChildrenDataProps,
     ExtendedPanelSelectorWithCardsProps,
+    ExtendedsubTabsWithChildrenAndChildrenDataProps,
 } from "../app/lista-nominal/ListaNominal";
+
+//TODO: Remover daqui
 /**
  * Seleciona e cria componentes filhos para sub-tabs.
  *
