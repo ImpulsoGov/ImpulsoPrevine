@@ -1,12 +1,13 @@
 "use client";
-import { ListContainer } from "./modules/List";
-import { ChartsContainer } from "./modules/Charts";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
 import type {
     PanelSelectorWithCardsProps,
     subTabsWithChildrenProps,
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
 import { subTabChildrenSelector } from "@utils/subTabChildrenSelector";
+import { acfNominalListProps } from "./PanelSelector.consts";
+import { ChartsContainer } from "./modules/Charts";
+import { ListContainer } from "./modules/List";
 
 export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     subTabsWithChildrenProps & {
@@ -50,12 +51,19 @@ const SubTabChildren: Record<string, string> = {
     subTabID3: "ListChildID1",
 };
 
-export const AcfNominalList = ({ props }: AcfNameListProps) => {
+export const PanelSelector = ({ props }: AcfNameListProps) => {
     const childrenComponents = subTabChildrenSelector(
         props,
         SubTabChildrenID,
         SubTabChildren,
     );
+
+const props = acfNominalListProps(
+    externalCardsProps,
+    listName,
+    tabID,
+    subTabID,
+)
     return (
         <PanelSelectorWithCards
             {...props}
