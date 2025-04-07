@@ -12,27 +12,13 @@ import { useSearchParams, useRouter } from "next/navigation";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { Session } from "next-auth";
 import type {
-    GridColDef,
     GridPaginationModel,
     GridSortModel,
 } from "@mui/x-data-grid";
 import { filterData } from "@/utils/FilterData";
-import type { DataItem } from "@/utils/FilterData";
-import {
-    renderDateTagCell,
-    renderStatusTagCell,
-} from "@/helpers/lista-nominal/renderCell";
-import type { TagIconDetailsMap } from "@/helpers/lista-nominal/renderCell";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { useSession } from "next-auth/react";
-import {
-    getListData,
-    isFilterApplied,
-} from "@/services/lista-nominal/ListaNominal";
-import type { CardDetailsMap } from "@/helpers/cardsList";
-import { getCardsProps } from "@/helpers/cardsList";
-import { getCardsData } from "@/services/lista-nominal/cards";
-import { captureException } from "@sentry/nextjs";
+import { isFilterApplied } from "@/services/lista-nominal/ListaNominal";
 import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import {
     type ExtendedPrintTableProps,
@@ -52,150 +38,18 @@ import {
     larguraColunasHipertensaoRetrato,
 } from "@/helpers/larguraColunasHipertensao";
 import { onlyAppliedFilters } from "@/utils/onlyAppliedFilters";
-import dataJson from "@app/api/lista-nominal/data.json";
+import { columns } from "./modules/columns";
+import { filtersLabels } from "./modules/filtersLabels";
+import { filtersBuilder } from "./modules/filtersBuilder";
+import { clearFiltersArgs } from "./modules/clearFiltersArgs";
+import { initialFiltersBuilder, type Filter } from "./modules/initialFilters";
+import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
+import { sessionHook } from "./modules/sessionHook";
+import { getListDataResponse, type ListData } from "./modules/getListData";
+import { getPrintDataResponse } from "./modules/getPrintDataResponse";
+import { getCardsDataResponse } from "./modules/getCardsDataResponse";
+import { handleSortModelChangeFunction, DEFAULT_SORTING } from "./modules/handleSortModelChange";
 
-//dados mockados essa parte do código será substituída por uma chamada a API
-
-// Dados mockados que virão do CMS. Quantidade e conteúdo varia com a lista.
-const cardsDetails: CardDetailsMap = {
-    INDICADOR_1: {
-        title: "Indicador 1",
-        titlePosition: "top",
-    },
-    INDICADOR_2: {
-        title: "Indicador 2",
-        titlePosition: "top",
-    },
-    INDICADOR_3: {
-        title: "Indicador 3",
-        titlePosition: "top",
-    },
-    INDICADOR_4: {
-        title: "Indicador 4",
-        titlePosition: "top",
-    },
-};
-
-// Informações que devem vir do CMS
-const IconDetailsMap: TagIconDetailsMap = {
-    danger: {
-        src: "https://media.graphassets.com/TWH6Oby6QuTFyq0wH9QK",
-        alt: "Ícone com símbolo da letra x",
-    },
-    warning: {
-        src: "https://media.graphassets.com/o0OkjNboRCqy2bYrRNnb",
-        alt: "Ícone de uma exclamação",
-    },
-    success: {
-        src: "https://media.graphassets.com/4qKuRCxHSySL23zxLd9b",
-        alt: "Ícone de uma marca de verificação",
-    },
-    pending: {
-        src: "https://media.graphassets.com/IdqIxy4LQAeIZfe9hWZK",
-        alt: "Ícone de uma ampulheta",
-    },
-};
-//dados mockados essa parte do código será substituída por uma chamada a API do CMS
-//dados mockados essa parte do código será substituída por uma chamada a API do CMS
-const filtersLabels = {
-    identificacao_condicao: "Identificação da Condição",
-    acs_nome_cadastro: "ACS Responsável",
-    status: "Status",
-};
-//dados mockados essa parte do código será substituída por uma chamada a API do CMS
-export const columns: GridColDef[] = [
-    {
-        field: "nome",
-        headerName: "Nome",
-        width: 260,
-        headerAlign: "left",
-        align: "left",
-    },
-    {
-        field: "cpf",
-        headerName: "CPF",
-        width: 180,
-        headerAlign: "left",
-        align: "left",
-    },
-    {
-        field: "identificacao_condicao",
-        headerName: "Identificação da Condição",
-        width: 180,
-        headerAlign: "left",
-        align: "left",
-    },
-    {
-        field: "dt_consulta_mais_recente",
-        headerName: "Data da consulta mais recente",
-        width: 180,
-        headerAlign: "left",
-        align: "left",
-        renderCell({ value }) {
-            return renderDateTagCell(value, IconDetailsMap);
-        },
-    },
-    {
-        field: "prazo_proxima_consulta",
-        headerName: "Prazo para próxima consulta",
-        width: 180,
-        headerAlign: "left",
-        align: "left",
-        renderCell({ value }) {
-            return renderStatusTagCell(value, IconDetailsMap);
-        },
-    },
-    {
-        field: "dt_afericao_pressao_mais_recente",
-        headerName: "Data de aferição de PA mais recente",
-        width: 200,
-        headerAlign: "left",
-        align: "left",
-        renderCell({ value }) {
-            return renderDateTagCell(value, IconDetailsMap);
-        },
-    },
-    {
-        field: "prazo_proxima_afericao_pa",
-        headerName: "Prazo para próx. aferição de PA",
-        width: 200,
-        headerAlign: "left",
-        align: "left",
-        renderCell({ value }) {
-            return renderStatusTagCell(value, IconDetailsMap);
-        },
-    },
-    {
-        field: "acs_nome_cadastro",
-        headerName: "ACS responsável",
-        width: 250,
-        headerAlign: "left",
-        align: "left",
-    },
-    {
-        field: "status",
-        headerName: "Status",
-        width: 150,
-        headerAlign: "left",
-        align: "left",
-    },
-] as GridColDef[];
-
-export type OptionsType = {
-    value: string;
-    label: string;
-};
-interface Filter {
-    id: string;
-    label: string;
-    options: OptionsType[];
-    isMultiSelect: boolean;
-    width: string;
-}
-type ListData = {
-    data: DataItem[];
-    totalRows: number;
-};
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListContainerProps {
     list: string;
@@ -208,8 +62,6 @@ export type PrintOptions = {
     ordenacao: boolean;
 };
 
-const DEFAULT_SORTING: GridSortModel = [{ field: "nome", sort: "asc" }];
-
 export const ListContainer = ({
     // subTabID,
     title,
@@ -221,60 +73,8 @@ export const ListContainer = ({
     const router = useRouter();
     const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     const closePrintModal = () => setPrintModalVisibility(false);
-    const filters = [
-        {
-            options: [
-                { value: "Autorreferido", label: "Autorreferido" },
-                { value: "Diagnostico clínico", label: "Diagnostico clínico" },
-            ],
-            label: "Identificação da Condição",
-            id: "identificacao_condicao",
-            isMultiSelect: true,
-            width: "240px",
-        },
-        {
-            options: dataJson
-                .filter((item) => {
-                    const notFilterByTeam = user?.perfis.includes(9)
-                        ? item.ine === user.equipe
-                        : true;
-                    return (
-                        item.municipio_id_sus === user?.municipio_id_sus &&
-                        notFilterByTeam
-                    );
-                })
-                .map((item) => ({
-                    value: item.acs_nome_cadastro,
-                    label: item.acs_nome_cadastro,
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            label: "ACS Responsável",
-            id: "acs_nome_cadastro",
-            isMultiSelect: true,
-            width: "240px",
-        },
-        {
-            options: [
-                { value: "em dia", label: "Em dia" },
-                { value: "atrasado", label: "Atrasado" },
-            ],
-            label: "Status",
-            id: "status",
-            isMultiSelect: false,
-            width: "240px",
-        },
-    ];
-    const initialFilters = filters.reduce<FilterItem>((acc, filter: Filter) => {
-        const paramValue = searchParams.get(filter.id);
-        acc[filter.id] = paramValue
-            ? filter.isMultiSelect
-                ? paramValue.split(",")
-                : paramValue
-            : filter.isMultiSelect
-              ? []
-              : "";
-        return acc;
-    }, {});
+    const filters = filtersBuilder(session?.user);
+    const initialFilters = initialFiltersBuilder(searchParams,filters);
     const [value, setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<ListData>({
         data: [],
@@ -305,15 +105,7 @@ export const ListContainer = ({
     });
 
     useEffect(() => setUser(session?.user), [session?.user]);
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams.toString());
-        for (const [key, valueString] of Object.entries(value)) {
-            params.set(key, valueString as string);
-        }
-        params.set("sort", sorting[0].field as string);
-        params.set("order", sorting[0].sort as string);
-        router.push(`?${params.toString()}`);
-    }, [
+    useEffect(()=>urlSearchParamsHook(searchParams,sorting,router,value), [
         searchParams,
         router,
         value,
@@ -322,48 +114,15 @@ export const ListContainer = ({
         sorting,
     ]);
     useEffect(() => {
-        const sessionAsync = async () => {
-            setUser(session?.user);
-        };
-        sessionAsync();
+        sessionHook(session?.user, setUser);
     }, [session?.user]);
 
-    useEffect(() => {
-        //modularizar essa função
-        if (user) {
-            const getListDataResponse = async () => {
-                setIsLoading(true);
-                try {
-                    const res = await getListData({
-                        token: user.access_token,
-                        listName: list,
-                        sorting: [
-                            {
-                                sortField: sorting[0].field,
-                                sortOrder: sorting[0].sort,
-                            },
-                        ],
-                        filters: value,
-                        pagination,
-                        search: search,
-                    });
-                    setResponse(res.data);
-                    setErrorMessage("");
-                } catch (error) {
-                    captureException(error);
-                    setErrorMessage(
-                        "Erro ao buscar dados, entre em contato com o suporte.",
-                    );
-                }
-                setIsLoading(false);
-            };
-            getListDataResponse();
-        }
+    useEffect(()=>{
+        if (user) getListDataResponse(user,setResponse,setIsLoading,setErrorMessage,list,sorting,value,pagination,search);
     }, [user, value, list, pagination, sorting, search]);
 
-    //TODO: Remover 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-        useEffect(() => {
+    useEffect(() => {
         setPrintStates({
             value,
             list,
@@ -371,27 +130,6 @@ export const ListContainer = ({
             search,
         });
     }, [user, value, list, sorting, search]);
-
-    const getPrintDataResponse = async () => {
-        if (!user) return;
-        try {
-            const res = await getListData({
-                token: user.access_token,
-                listName: printStates.list,
-                sorting: [
-                    {
-                        sortField: printStates.sorting[0].field,
-                        sortOrder: printStates.sorting[0].sort,
-                    },
-                ],
-                filters: printStates.value,
-                search: printStates.search,
-            });
-            return res.data;
-        } catch (error) {
-            captureException(error);
-        }
-    };
 
     useEffect(() => {
         setTableData({
@@ -401,39 +139,11 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
-        //modularizar essa função
-        const getCardsDataResponse = async () => {
-            if (!user) return;
-
-            try {
-                const currentURL = new URL(window.location.href).origin;
-                const res = await getCardsData({
-                    token: user.access_token,
-                    listName: list,
-                    cardType: "internal",
-                    baseUrl: currentURL,
-                });
-
-                setCards([...getCardsProps(cardsDetails, res.data)]);
-                setErrorMessage("");
-            } catch (error) {
-                captureException(error);
-                setErrorMessage(
-                    "Erro ao buscar dados, entre em contato com o suporte.",
-                );
-            }
-        };
-
-        getCardsDataResponse();
+        if(user) getCardsDataResponse(user, list, setCards, setErrorMessage);
     }, [list, user]);
-
-    function handleSortModelChange(newSortModel: GridSortModel) {
-        newSortModel.length > 0
-            ? setSorting([...newSortModel])
-            : setSorting([...DEFAULT_SORTING]);
-    }
+    const handleSortModelChange = ()=> handleSortModelChangeFunction(sorting, setSorting);
     const handleCostumizePrint = async (options: PrintOptions) => {
-        const data = await getPrintDataResponse();
+        const data = await getPrintDataResponse(user, printStates);
         const props: ExtendedPrintTableProps = {
             data: data?.data ?? [],
             columns: columns,
@@ -501,13 +211,6 @@ export const ListContainer = ({
             </p>
         );
     // if (response.data.length === 0) return <Spinner/>;
-
-    //dados mockados essa parte do código será substituída por uma chamada a API do CMS
-    const clearFiltersArgs = {
-        iconActive: "https://media.graphassets.com/1EOGJH6TvSMqTrjigY1g",
-        iconInactive: "https://media.graphassets.com/x37RkcUrTH6G50ganj9d",
-        label: "Limpar todos os filtros",
-    };
 
     const filtersSelect = filters.map((filter: Filter) => (
         <SelectDropdown

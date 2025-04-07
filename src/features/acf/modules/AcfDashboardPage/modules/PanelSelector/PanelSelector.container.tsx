@@ -2,8 +2,8 @@ import { getCardsProps } from "@/helpers/cardsList";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import type { ProfileIdValue } from "@types/profile";
-import type { AcfDashboardType } from "../DashboardSelector/ExternalCardItem.model";
-import { externalCardsAcfDashboardDataController } from "../DashboardSelector/externalCardsAcfDashboardData.controller";
+import type { AcfDashboardType } from "./modules/externalCards/ExternalCardItem.model";
+import { externalCardsAcfDashboardDataController } from "./modules/externalCards/externalCardsAcfDashboardData.controller";
 import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
@@ -40,14 +40,11 @@ export const PanelSelectorContainer = async ({
         captureException(error);
         return <p>Erro ao buscar dados cards</p>;
     }
-    return (
-        AcfNominalListProps && (
-            <PanelSelector
-                    externalCardsProps={externalCardsProps}
-                    listName={listName}
-                    tabID = {tabID}
-                    subTabID = {subTabID}
-            />
-        )
-    );
+    return externalCardsProps && 
+        <PanelSelector
+                externalCardsProps={externalCardsProps}
+                listName={listName}
+                tabID = {tabID}
+                subTabID = {subTabID}
+        />
 };

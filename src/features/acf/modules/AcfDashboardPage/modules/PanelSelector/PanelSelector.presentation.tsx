@@ -5,9 +5,11 @@ import type {
     subTabsWithChildrenProps,
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
 import { acfNominalListProps, breadcrumb, header, tabDefinitions } from "./PanelSelector.consts";
-import { ChartsContainer } from "./modules/Charts";
-import { ListContainer } from "./modules/List";
-
+import { ChartsContainer } from "./modules/dashboards/Charts";
+import { ListContainer } from "./modules/dashboards/List";
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+import { tabsBuilder } from "./tabsBuilder";
+import { subTabChildrenSelector } from "./subTabChildrenSelector";
 
 export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     subTabsWithChildrenProps & {
@@ -15,7 +17,7 @@ export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
         title: string;
     };
 
-type Tabs = Record<
+export type Tabs = Record<
         string,
         {
             title: string;
@@ -24,7 +26,7 @@ type Tabs = Record<
         }
     >;
 
-type ListaNominalID = string;
+export type ListaNominalID = string;
 
 
 export type ExtendedPanelSelectorWithCardsProps = Omit<
@@ -68,39 +70,18 @@ const SubTabChildren: Record<string, string> = {
  * @param {Record<string, string>} subTabChildren - Mapeamento de IDs de sub-tabs para IDs que representam os componentes React.
  * @returns {Record<string, React.ReactNode>} - Mapeamento de IDs de sub-tabs para nós React, onde cada nó é um componente React criado com as propriedades apropriadas.
  */
-export const subTabChildrenSelector = (
-    tabs: Tabs,
-    listaNominalID: ListaNominalID,
-    subTabChildrenID: Record<
-        string,
-        React.ComponentType<{ subTabID: string; title: string; list: string }>
-    >,
-    subTabChildren: Record<string, string>,
-) => {
-    return Object.values(tabs)
-        .flatMap((tab) => tab.subTabs)
-        .reduce(
-            (
-                result,
-                subTab: ExtendedsubTabsWithChildrenAndChildrenDataProps,
-            ) => {
-                const Component =
-                    subTabChildrenID[subTabChildren[subTab.subTabID]];
-                result[subTab.subTabID] = Component
-                    ? React.createElement(Component, {
-                          subTabID: subTab.subTabID,
-                          title: subTab.title,
-                          list: listaNominalID,
-                      })
-                    : null;
-                return result;
-            },
-            {} as Record<string, React.ReactNode>,
-        );
-};
 
-
-export const PanelSelector = ({ listName, tabID, subTabID}) => {
+export const PanelSelector = ({ 
+    listName, 
+    tabID, 
+    subTabID,
+    externalCardsProps
+}:{
+    listName: string;
+    tabID: string;
+    subTabID: string;
+    externalCardsProps: CardProps[];
+}) => {
     const props = acfNominalListProps(
         externalCardsProps,
         listName,
@@ -114,31 +95,18 @@ export const PanelSelector = ({ listName, tabID, subTabID}) => {
     }
 
     const childrenComponents = subTabChildrenSelector(
-        tabDefinitions,
-        listNameID,
+        tabDefinitions.tabs,
+        listName,
         SubTabChildrenID,
         SubTabChildren,
     );
-
-    const tabs = Object.fromEntries(
-        Object.entries(props.tabs).map(([key, tab]) => [
-            key,
-            {
-                ...tab,
-                subTabs: tab.subTabs.map((subTab) => ({
-                    ...subTab,
-                    child: childrenComponents[subTab.subTabID],
-                })),
-            },
-        ]),
-    );
-
+    const tabs = tabsBuilder(props,childrenComponents);
 
     return (
         <PanelSelectorWithCards
             {...header}
-            breadcrumb={breadcrumb}
-            cards={cards}
+            breadcrumb={breadcrumb.breadcrumb}
+            cards={externalCardsProps}
             listaNominalID={listName}
             inicialContent = {initialContent}
             tabs={tabs}

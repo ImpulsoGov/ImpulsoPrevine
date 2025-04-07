@@ -1,3 +1,4 @@
+import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 
 const data = [
         {
@@ -53,20 +54,20 @@ export type ExternalCardDBDataItem = {
 }
 export const externalCardsAcfDashboardDataRepository = (
     listName: string,
-    _teamIne: string,
-    municipalitySusID: string
+    teamIne: string,
+    municipalitySusID: string,
+    profileId: ProfileIdValue[]
 )=>{
     const filterAPSCallback = (item: ExternalCardDBDataItem) => (
         item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
         && item.municipio_id_sus === municipalitySusID 
     )
-    // const filterTeamCallback = (item: ExternalCardDBDataItem) => (
-    //     item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
-    //     && item.municipio_id_sus === municipalitySusID 
-    // )
+    const filterTeamCallback = (item: ExternalCardDBDataItem) => (
+        item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
+        && item.municipio_id_sus === municipalitySusID 
+        && item.ine === teamIne
+    )
 
-    //TODO implementar condicional para visao de equipe
-    // return data.filter(isUserAPS ? filterAPSCallback: filterTeamCallback) 
+    return data.filter(profileId.includes(PROFILE_ID.COAPS) ? filterAPSCallback: filterTeamCallback) 
 
-    return data.filter(filterAPSCallback)
 }

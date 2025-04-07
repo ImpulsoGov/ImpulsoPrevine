@@ -5,7 +5,7 @@ import { PROFILE_ID } from "@/types/profile";
 import type { ProfileIdValue } from "@/types/profile";
 import type { Session } from "next-auth";
 import { getServerSession } from "next-auth";
-import { ErrorPage } from "./ErrorPage";
+import { ErrorPage } from "./ErrorPage.components";
 import { PanelSelectorContainer } from "./modules/PanelSelector/PanelSelector.container";
 
 export const AcfDashboardPage = async ({

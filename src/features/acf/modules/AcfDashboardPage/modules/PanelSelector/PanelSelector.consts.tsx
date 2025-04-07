@@ -1,3 +1,6 @@
+import type { CardDetailsMap } from '@helpers/cardsList'; // Adjust the path to where CardDetailsMap is defined
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+import type { ExtendedPanelSelectorWithCardsProps } from "./PanelSelector.presentation";
 export const externalCardsDetails: CardDetailsMap = {
     COM_CONSULTA_AFERICAO_PRESSAO: {
         title: "Total de pessoas com consulta e aferição de PA em dia",
@@ -38,7 +41,7 @@ export const breadcrumb = {
     ],
 };
 
-const tabDefinitions = {
+export const tabDefinitions = {
     tabs: {
         charts: {
             title: "Gráficos",
@@ -120,7 +123,7 @@ const tabDefinitions = {
     },
 };
 
-const header = {
+export const header = {
     municipality: "São Paulo - SP",
     title: "Pré-natal (indicadores 1, 2 e 3)",
     tooltip:
@@ -136,7 +139,7 @@ export const acfNominalListProps = (
 ): ExtendedPanelSelectorWithCardsProps =>
 ({
     ...breadcrumb,
-    ...tabs,
+    ...tabDefinitions,
     ...header,
     cards: externalCardsProps,
     listaNominalID: listName,
@@ -145,4 +148,4 @@ export const acfNominalListProps = (
         tabID: tabID,
         subTabID: subTabID,
     },
-}) as ExtendedPanelSelectorWithCardsProps;
+})
