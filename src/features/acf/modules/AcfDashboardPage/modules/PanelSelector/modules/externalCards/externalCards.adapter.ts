@@ -1,4 +1,6 @@
-import type { AcfDashboardType, DiabetesAcfExternalCardsDescriptionType, ExternalCardDBDataItem, ExternalCardDataItem } from "./externalCards.model"
+import type { AcfDashboardType } from "../../../../types"
+import type { DiabetesAcfExternalCardsDescriptionType, ExternalCardDBDataItem, ExternalCardDataItem } from "./externalCards.model"
+
 
 export const externalCardsDbToModel = (
     data: ExternalCardDBDataItem[]

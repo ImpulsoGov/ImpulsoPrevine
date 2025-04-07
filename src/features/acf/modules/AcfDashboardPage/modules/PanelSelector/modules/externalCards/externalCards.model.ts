@@ -1,8 +1,4 @@
-
-/**
- * @deprecated Usar o tipo em AcfDashboardPage/types.ts
- */
-export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";    
+import { AcfDashboardType } from "../../../../types";
 
 export type DiabetesAcfExternalCardsDescriptionType = "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO"
 
