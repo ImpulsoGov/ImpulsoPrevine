@@ -1,4 +1,4 @@
-import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
+import { } from "@/types/profile";
 
 const data = [
         {
@@ -45,29 +45,14 @@ const data = [
         }    
 ]
 
-export type ExternalCardDBDataItem = {
-    municipio_id_sus: string;
-    ine: string;
-    lista: string;
-    valor: number;
-    descricao: string;
-}
-export const externalCardsAcfDashboardDataRepository = (
+export const externalCardsDataForTeam = (
     listName: string,
     teamIne: string,
     municipalitySusID: string,
-    profileId: ProfileIdValue[]
-)=>{
-    const filterAPSCallback = (item: ExternalCardDBDataItem) => (
-        item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
-        && item.municipio_id_sus === municipalitySusID 
-    )
-    const filterTeamCallback = (item: ExternalCardDBDataItem) => (
+): ExternalCardDBDataItem[]=>{
+    return data.filter((item: ExternalCardDBDataItem): boolean => (
         item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
         && item.municipio_id_sus === municipalitySusID 
         && item.ine === teamIne
-    )
-
-    return data.filter(profileId.includes(PROFILE_ID.COAPS) ? filterAPSCallback: filterTeamCallback) 
-
+    )) 
 }

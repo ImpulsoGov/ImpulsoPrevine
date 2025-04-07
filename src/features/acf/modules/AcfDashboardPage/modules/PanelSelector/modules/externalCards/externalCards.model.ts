@@ -1,5 +1,9 @@
 
+/**
+ * @deprecated Usar o tipo em AcfDashboardPage/types.ts
+ */
 export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";    
+
 export type DiabetesAcfExternalCardsDescriptionType = "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO"
 
 export type ExternalCardItem = ExternalCardDataItem &{
@@ -12,3 +16,11 @@ export type ExternalCardDataItem = {
     acfExternalCardsDescription: DiabetesAcfExternalCardsDescriptionType;
     value: number;
 } 
+
+export type ExternalCardDBDataItem = {
+    municipio_id_sus: string;
+    ine: string;
+    lista: string;
+    valor: number;
+    descricao: string;
+}

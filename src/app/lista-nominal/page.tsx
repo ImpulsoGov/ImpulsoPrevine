@@ -1,3 +1,3 @@
-import { AcfDashboardPage } from '@features/acf/components/AcfDashboardPage';
+import { AcfDashboardPage } from '@features/acf/modules/AcfDashboardPage/AcfDashboardPage';
 
 export default AcfDashboardPage;

@@ -1,40 +1,44 @@
 import { getCardsProps } from "@/helpers/cardsList";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
-import type { ProfileIdValue } from "@types/profile";
-import type { AcfDashboardType } from "./modules/externalCards/ExternalCardItem.model";
-import { externalCardsAcfDashboardDataController } from "./modules/externalCards/externalCardsAcfDashboardData.controller";
 import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
+import { externalCardsAcfDashboardDataController } from "./modules/externalCards/externalCards.controller";
+
+type PanelSelectorContainerProps = {
+    municipalitySusId: string;
+    teamIne: string;
+    userProfiles: ProfileIdValue[];
+    initialTabId: string | undefined;
+    initialSubTabId: string | undefined;
+    acfDashboardType: AcfDashboardType
+}
 
 // Container aqui se refere ao padrão Container/Presentation, descrito em: https://www.patterns.dev/react/presentational-container-pattern/
 export const PanelSelectorContainer = async ({
-    searchParams,
     municipalitySusId,
     teamIne,
-    profileId,
-}: {
-    searchParams: Promise<{ [key: string]: string | undefined }>;
-    municipalitySusId: string;
-    teamIne: string;
-    profileId: ProfileIdValue[];
-}) => {
-    const resolvedSearchParams = await searchParams;
-    const tabID = resolvedSearchParams?.tabID || "charts";
-    const subTabID = resolvedSearchParams?.subTabID || "ChartSubTabID1";
-    const listName = resolvedSearchParams.list || "DIABETES";
-
+    userProfiles,
+    initialTabId,
+    initialSubTabId,
+    acfDashboardType,
+}: PanelSelectorContainerProps) => {
     let externalCardsProps: CardProps[] = [];
-
+    
     try {
+    // biome-ignore lint/suspicious/noConsoleLog:please biome heppp
+        console.log("antes externalCardsAcfDashboardDataController");
         const data = await externalCardsAcfDashboardDataController(
-            (resolvedSearchParams.list || "DIABETES") as AcfDashboardType,
+            acfDashboardType,
             municipalitySusId,
             teamIne,
-            profileId,
+            userProfiles,
         );
+
+    // biome-ignore lint/suspicious/noConsoleLog:please biome heppp
+        console.log("antes de getCardsProps");
         externalCardsProps = getCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
@@ -43,8 +47,8 @@ export const PanelSelectorContainer = async ({
     return externalCardsProps && 
         <PanelSelector
                 externalCardsProps={externalCardsProps}
-                listName={listName}
-                tabID = {tabID}
-                subTabID = {subTabID}
+                listName={acfDashboardType}
+                tabID = {initialTabId}
+                subTabID = {initialSubTabId}
         />
 };

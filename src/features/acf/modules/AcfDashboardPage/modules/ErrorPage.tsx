@@ -1,9 +1,9 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { ErrorPageWhatsAppLink } from "@/constants/whatsAppLinks";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { ErrorPageWhatsAppLink } from "@/constants/whatsAppLinks";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const ErrorPage = () => {
     const router = useRouter();
