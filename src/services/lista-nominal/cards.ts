@@ -1,5 +1,9 @@
 import type { CardType } from "@/app/api/card/utils/cardType";
+<<<<<<< HEAD
 import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/ExternalCardItem.model";
+=======
+import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/ExternalCardItem.model"
+>>>>>>> c4e5ffddedde54a8535b99544539afe17abbfafa
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 
