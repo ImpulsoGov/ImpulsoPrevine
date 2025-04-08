@@ -1,15 +1,26 @@
 "use client";
+import type {
+    CoordinatorProfile,
+    ProfileIdValue
+} from "@/types/profile";
+import { PROFILE_ID } from "@/types/profile";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type {
     PanelSelectorWithCardsProps,
     subTabsWithChildrenProps,
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
-import { acfNominalListProps, breadcrumb, header, tabDefinitions } from "./PanelSelector.consts";
+import type { AcfDashboardType } from "../../types";
+import {
+    acfNominalListProps,
+    breadcrumb,
+    header,
+    tabDefinitions,
+} from "./PanelSelector.consts";
 import { ChartsContainer } from "./modules/dashboards/Charts";
 import { ListContainer } from "./modules/dashboards/List";
-import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import { tabsBuilder } from "./tabsBuilder";
 import { subTabChildrenSelector } from "./subTabChildrenSelector";
+import { tabsBuilder } from "./tabsBuilder";
 
 export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     subTabsWithChildrenProps & {
@@ -18,37 +29,55 @@ export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     };
 
 export type Tabs = Record<
-        string,
-        {
-            title: string;
-            tabID: string;
-            subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
-        }
-    >;
-
-export type ListaNominalID = string;
-
+    string,
+    {
+        title: string;
+        tabID: string;
+        subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
+    }
+>;
 
 export type ExtendedPanelSelectorWithCardsProps = Omit<
     PanelSelectorWithCardsProps,
     "tabs"
 > & {
     tabs: Tabs;
-    listaNominalID: ListaNominalID;
+    listaNominalID: AcfDashboardType;
 };
+
+const ErrorMessage = () => (
+    <p>Você não possui as permissões necessárias para acessar este conteúdo.</p>
+);
 
 export type AcfNameListProps = {
     props: ExtendedPanelSelectorWithCardsProps;
 };
-
-const SubTabChildrenID: Record<
+const SubTabChildrenID = (
+    userProfiles: ProfileIdValue[],
+): Record<
     string,
-    React.ComponentType<{ subTabID: string; title: string; list: string }>
-> = {
-    ChartChildID1: ChartsContainer,
-    ListChildID1: ListContainer,
-};
+    React.ComponentType<{ title: string; list: AcfDashboardType }>
+> => {
+    const listChildren: Record<CoordinatorProfile, React.ComponentType<{ title: string; list: AcfDashboardType }>> = {
+        [PROFILE_ID.COAPS]: ListContainer,
+        [PROFILE_ID.COEQ]: ListContainer
+    };
+    const userProfile: CoordinatorProfile | undefined = userProfiles.find(
+        (profile) =>
+            profile === PROFILE_ID.COAPS || profile === PROFILE_ID.COEQ,
+    );
+    if (!userProfile) {
+        return {
+            ChartChildID1: ErrorMessage,
+            ListChildID1: ErrorMessage,
+        };
+    }
 
+    return {
+        ChartChildID1: ChartsContainer,
+        ListChildID1: listChildren[userProfile]
+    };
+};
 //Essa informação vai vir do CMS
 const SubTabChildren: Record<string, string> = {
     ChartSubTabID1: "ChartChildID1",
@@ -58,30 +87,22 @@ const SubTabChildren: Record<string, string> = {
     subTabID3: "ListChildID1",
 };
 
-/**
- * Seleciona e cria componentes filhos para sub-tabs.
- *
- * Esta função recebe as propriedades do seletor de painel, um mapeamento de IDs para componentes React,
- * e um mapeamento de IDs de sub-tabs para IDs de componentes. Ela percorre todas as sub-tabs definidas nas propriedades do seletor
- * e cria os componentes React correspondentes, retornando um mapeamento de IDs de sub-tabs para nós React.
- *
- * @param {ExtendedPanelSelectorWithCardsProps} selectorProps - Propriedades do seletor de painel, incluindo informações sobre tabs e sub-tabs.
- * @param {Record<string, React.ComponentType<{ subTabID: string, title: string, list: string }>>} subTabChildrenID - Mapeamento de IDs para componentes React.
- * @param {Record<string, string>} subTabChildren - Mapeamento de IDs de sub-tabs para IDs que representam os componentes React.
- * @returns {Record<string, React.ReactNode>} - Mapeamento de IDs de sub-tabs para nós React, onde cada nó é um componente React criado com as propriedades apropriadas.
- */
 
-export const PanelSelector = ({ 
-    listName, 
-    tabID, 
-    subTabID,
-    externalCardsProps
-}:{
-    listName: string;
+type PanelSelectorProps = {
+    listName: AcfDashboardType;
     tabID: string;
     subTabID: string;
     externalCardsProps: CardProps[];
-}) => {
+    userProfiles: ProfileIdValue[];
+};
+
+export const PanelSelector = ({
+    listName,
+    tabID,
+    subTabID,
+    externalCardsProps,
+    userProfiles,
+}: PanelSelectorProps) => {
     const props = acfNominalListProps(
         externalCardsProps,
         listName,
@@ -92,15 +113,15 @@ export const PanelSelector = ({
     const initialContent = {
         tabID: tabID,
         subTabID: subTabID,
-    }
+    };
 
     const childrenComponents = subTabChildrenSelector(
         tabDefinitions.tabs,
         listName,
-        SubTabChildrenID,
+        SubTabChildrenID(userProfiles),
         SubTabChildren,
     );
-    const tabs = tabsBuilder(props,childrenComponents);
+    const tabs = tabsBuilder(props, childrenComponents);
 
     return (
         <PanelSelectorWithCards
@@ -108,7 +129,7 @@ export const PanelSelector = ({
             breadcrumb={breadcrumb.breadcrumb}
             cards={externalCardsProps}
             listaNominalID={listName}
-            inicialContent = {initialContent}
+            inicialContent={initialContent}
             tabs={tabs}
         />
     );

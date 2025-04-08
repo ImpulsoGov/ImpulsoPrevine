@@ -47,5 +47,6 @@ export const PanelSelectorContainer = async ({
                 listName={acfDashboardType}
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
+                userProfiles={userProfiles}
         />
 };

@@ -1,13 +1,13 @@
 import React from "react";
-import type { ExtendedsubTabsWithChildrenAndChildrenDataProps } from "./PanelSelector.presentation";
-import type { Tabs, ListaNominalID } from "./PanelSelector.presentation";
+import type { AcfDashboardType } from "../../types";
+import type { ExtendedsubTabsWithChildrenAndChildrenDataProps, Tabs } from "./PanelSelector.presentation";
 
 export const subTabChildrenSelector = (
     tabs: Tabs,
-    listaNominalID: ListaNominalID,
+    listaNominalID: AcfDashboardType,
     subTabChildrenID: Record<
         string,
-        React.ComponentType<{ subTabID: string; title: string; list: string }>
+        React.ComponentType<{ title: string; list: AcfDashboardType }>
     >,
     subTabChildren: Record<string, string>,
 ):Record<string, React.ReactNode>  => {
@@ -22,7 +22,6 @@ export const subTabChildrenSelector = (
                     subTabChildrenID[subTabChildren[subTab.subTabID]];
                 result[subTab.subTabID] = Component
                     ? React.createElement(Component, {
-                          subTabID: subTab.subTabID,
                           title: subTab.title,
                           list: listaNominalID,
                       })

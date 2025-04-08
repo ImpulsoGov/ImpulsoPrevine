@@ -24,10 +24,7 @@ import {
     Table,
 } from "@impulsogov/design-system";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type {
-    GridPaginationModel,
-    GridSortModel,
-} from "@mui/x-data-grid";
+import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -37,23 +34,34 @@ import { getCardsDataResponse } from "./modules/cards/getCardsDataResponse";
 import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
 import { filtersLabels } from "./modules/filters/filtersLabels";
-import { type Filter, initialFiltersBuilder } from "./modules/filters/initialFilters";
+import {
+    type Filter,
+    initialFiltersBuilder,
+} from "./modules/filters/initialFilters";
 import { PrintModal } from "./modules/print/PrintModal";
 import { getPrintDataResponse } from "./modules/print/getPrintDataResponse";
-import { propPrintGroupingCoapsFunction, propPrintGroupingCoeqFunction } from "./modules/print/propPrintGrouping";
+import {
+    propPrintGroupingCoapsFunction,
+    propPrintGroupingCoeqFunction,
+} from "./modules/print/propPrintGrouping";
 import { sessionHook } from "./modules/sessionHook";
-import { DEFAULT_SORTING, handleSortModelChangeFunction } from "./modules/sorting/handleSortModelChange";
+import {
+    DEFAULT_SORTING,
+    handleSortModelChangeFunction,
+} from "./modules/sorting/handleSortModelChange";
 import { EmptyTableMessage } from "./modules/table/modules/EmptyTableMessage";
 import { columns } from "./modules/table/modules/diabetes/columns";
-import { type ListData, getListDataResponse } from "./modules/table/modules/diabetes/getListData";
+import {
+    type ListData,
+    getListDataResponse,
+} from "./modules/table/modules/diabetes/getListData";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 
 // Adicionar união de valores quando soubermos as listas que teremos
-interface ListContainerProps {
+export type ListContainerProps = {
     list: AcfDashboardType;
-    subTabID: string;
     title: string;
-}
+};
 export type PrintOptions = {
     agrupamento: string;
     separacaoGrupoPorFolha: boolean;
@@ -61,7 +69,6 @@ export type PrintOptions = {
 };
 
 export const ListContainer = ({
-    // subTabID,
     title,
     list,
 }: ListContainerProps) => {
@@ -72,7 +79,7 @@ export const ListContainer = ({
     const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     const closePrintModal = () => setPrintModalVisibility(false);
     const filters = filtersBuilder(session?.user);
-    const initialFilters = initialFiltersBuilder(searchParams,filters);
+    const initialFilters = initialFiltersBuilder(searchParams, filters);
     const [value, setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<ListData>({
         data: [],
@@ -101,22 +108,38 @@ export const ListContainer = ({
         sorting,
         search,
     });
-    const propPrintGrouping = user?.perfis.includes(9) ? propPrintGroupingCoeqFunction(list) : propPrintGroupingCoapsFunction(list);
+    const propPrintGrouping = user?.perfis.includes(9)
+        ? propPrintGroupingCoeqFunction(list)
+        : propPrintGroupingCoapsFunction(list);
     useEffect(() => setUser(session?.user), [session?.user]);
-    useEffect(()=>urlSearchParamsHook(searchParams,sorting,router,value), [
-        searchParams,
-        router,
-        value,
-        searchParams.toString,
-        router.push,
-        sorting,
-    ]);
+    useEffect(
+        () => urlSearchParamsHook(searchParams, sorting, router, value),
+        [
+            searchParams,
+            router,
+            value,
+            searchParams.toString,
+            router.push,
+            sorting,
+        ],
+    );
     useEffect(() => {
         sessionHook(session?.user, setUser);
     }, [session?.user]);
 
-    useEffect(()=>{
-        if (user) getListDataResponse(user,setResponse,setIsLoading,setErrorMessage,list,sorting,value,pagination,search);
+    useEffect(() => {
+        if (user)
+            getListDataResponse(
+                user,
+                setResponse,
+                setIsLoading,
+                setErrorMessage,
+                list,
+                sorting,
+                value,
+                pagination,
+                search,
+            );
     }, [user, value, list, pagination, sorting, search]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
@@ -137,10 +160,13 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
-        if(user) getCardsDataResponse(user, list, setCards, setErrorMessage);
+        if (user) getCardsDataResponse(user, list, setCards, setErrorMessage);
     }, [list, user]);
-    const handleSortModelChange = ()=> handleSortModelChangeFunction(sorting, setSorting);
-    const handleCostumizePrint = async (options: PrintOptions): Promise<void> => {
+    const handleSortModelChange = () =>
+        handleSortModelChangeFunction(sorting, setSorting);
+    const handleCostumizePrint = async (
+        options: PrintOptions,
+    ): Promise<void> => {
         const data = await getPrintDataResponse(user, printStates);
         const props: ExtendedPrintTableProps = {
             data: data?.data ?? [],
@@ -194,9 +220,15 @@ export const ListContainer = ({
             : "equipe_nome",
         filtersLabels: filtersLabels,
     };
-    const handlePrintClick = () =>{
-        if(user) handlePrint(value, propPrintGrouping, setPrintModalVisibility, props);
-    }
+    const handlePrintClick = () => {
+        if (user)
+            handlePrint(
+                value,
+                propPrintGrouping,
+                setPrintModalVisibility,
+                props,
+            );
+    };
     if (errorMessage)
         return (
             <p style={{ textAlign: "center", padding: "20px" }}>
@@ -217,7 +249,9 @@ export const ListContainer = ({
             width={filter.width}
         />
     ));
-    const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
+    const clearButton = (
+        <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
+    );
     return (
         <>
             <div
@@ -269,16 +303,19 @@ export const ListContainer = ({
                     sortModel={sorting}
                     onSortModelChange={handleSortModelChange}
                     isLoading={isLoading}
-                    slots={{noRowsOverlay: EmptyTableMessage}}
+                    slots={{ noRowsOverlay: EmptyTableMessage }}
                     data-testid="list-table"
                 />
             </div>
-            <PrintModal
-                isPrintModalVisible={isPrintModalVisible}
-                closePrintModal={closePrintModal}
-                handleCostumizePrint={handleCostumizePrint}
-                user={user}
-            />
+            {
+                user &&
+                <PrintModal
+                    isPrintModalVisible={isPrintModalVisible}
+                    closePrintModal={closePrintModal}
+                    handleCostumizePrint={handleCostumizePrint}
+                    userProfiles={user.perfis}
+                />
+            }
         </>
     );
 };
