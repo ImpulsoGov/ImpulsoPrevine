@@ -1,6 +1,7 @@
 import type { CardDetailsMap } from '@helpers/cardsList'; // Adjust the path to where CardDetailsMap is defined
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type { ExtendedPanelSelectorWithCardsProps } from "./PanelSelector.presentation";
+import type { AcfDashboardType } from '../../types';
 export const externalCardsDetails: CardDetailsMap = {
     COM_CONSULTA_AFERICAO_PRESSAO: {
         title: "Total de pessoas com consulta e aferição de PA em dia",
@@ -133,7 +134,7 @@ export const header = {
 
 export const acfNominalListProps = (
     externalCardsProps: CardProps[],
-    listName: string,
+    listName: AcfDashboardType,
     tabID: string,
     subTabID: string,
 ): ExtendedPanelSelectorWithCardsProps =>
