@@ -197,8 +197,6 @@ export const ListContainer = ({
     const handlePrintClick = () =>{
         if(user) handlePrint(value, propPrintGrouping, setPrintModalVisibility, props);
     }
-    if (!user) return <p>Usuário não autenticado</p>;
-    if (!user.perfis.includes(5)) return <p>Usuário sem permissão</p>;
     if (errorMessage)
         return (
             <p style={{ textAlign: "center", padding: "20px" }}>
