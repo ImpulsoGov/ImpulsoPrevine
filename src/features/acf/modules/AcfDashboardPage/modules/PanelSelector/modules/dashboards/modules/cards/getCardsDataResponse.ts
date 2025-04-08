@@ -5,6 +5,7 @@ import { getCardsProps } from "@/helpers/cardsList";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { cardsDetails } from "./cardsDetails";
 
+//TODO: Trocar chamada para API por controller
 export const getCardsDataResponse = async (
     user: Session["user"],
     list: string,

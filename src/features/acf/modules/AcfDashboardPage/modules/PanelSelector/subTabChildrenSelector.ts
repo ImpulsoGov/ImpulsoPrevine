@@ -10,7 +10,7 @@ export const subTabChildrenSelector = (
         React.ComponentType<{ subTabID: string; title: string; list: string }>
     >,
     subTabChildren: Record<string, string>,
-) => {
+):Record<string, React.ReactNode>  => {
     return Object.values(tabs)
         .flatMap((tab) => tab.subTabs)
         .reduce(

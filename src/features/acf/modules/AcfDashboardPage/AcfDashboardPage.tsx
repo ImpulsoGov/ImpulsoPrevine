@@ -15,8 +15,8 @@ export const AcfDashboardPage = async ({
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = (await getServerSession(nextAuthOptions)) as Session;
     const resolvedSearchParams = await searchParams;
-    const initialTabId = resolvedSearchParams?.tabID || "charts";
-    const initialSubTabId = resolvedSearchParams?.subTabID || "ChartSubTabID1";
+    const initialTabId = resolvedSearchParams.tabID || "charts";
+    const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = resolvedSearchParams.list as AcfDashboardType || "DIABETES";
 
     return (
@@ -30,13 +30,12 @@ export const AcfDashboardPage = async ({
                 }
             >
                 <PanelSelectorContainer
-                    searchParams={searchParams}
                     initialTabId={initialTabId}
                     initialSubTabId={initialSubTabId}
                     acfDashboardType={acfDashboardType}
                     municipalitySusId={session?.user.municipio_id_sus}
                     teamIne={session?.user.equipe}
-                    profileId={session?.user.perfis as ProfileIdValue[]}
+                    userProfiles={session?.user.perfis as ProfileIdValue[]}
                 />
             </AllowProfile>
         </SessionGuard>

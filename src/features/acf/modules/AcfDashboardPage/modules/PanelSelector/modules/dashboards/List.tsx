@@ -1,35 +1,4 @@
-import {
-    FilterBar,
-    SelectDropdown,
-    ClearFilters,
-    CardGrid,
-    Table,
-    ModalAlertControlled,
-    PersonalizacaoImpressao,
-} from "@impulsogov/design-system";
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
-import type { Session } from "next-auth";
-import type {
-    GridPaginationModel,
-    GridSortModel,
-} from "@mui/x-data-grid";
-import { filterData } from "@/utils/FilterData";
-import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import { useSession } from "next-auth/react";
-import { isFilterApplied } from "@/services/lista-nominal/ListaNominal";
 import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import {
-    type ExtendedPrintTableProps,
-    VALORES_AGRUPAMENTO_IMPRESSAO,
-    customizePrint,
-    handlePrint,
-} from "@/helpers/lista-nominal/impressao/handlePrint";
-import {
-    labelsModalImpressaoAPS,
-    labelsModalImpressaoEquipe,
-} from "@/helpers/labelsModalImpressao";
 import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
 import {
     larguraColunasHipertensaoEquipePaisagem,
@@ -37,22 +6,51 @@ import {
     larguraColunasHipertensaoPaisagem,
     larguraColunasHipertensaoRetrato,
 } from "@/helpers/larguraColunasHipertensao";
+import {
+    type ExtendedPrintTableProps,
+    VALORES_AGRUPAMENTO_IMPRESSAO,
+    customizePrint,
+    handlePrint,
+} from "@/helpers/lista-nominal/impressao/handlePrint";
+import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { isFilterApplied } from "@/services/lista-nominal/ListaNominal";
+import { filterData } from "@/utils/FilterData";
 import { onlyAppliedFilters } from "@/utils/onlyAppliedFilters";
-import { columns } from "./modules/columns";
-import { filtersLabels } from "./modules/filtersLabels";
-import { filtersBuilder } from "./modules/filtersBuilder";
-import { clearFiltersArgs } from "./modules/clearFiltersArgs";
-import { initialFiltersBuilder, type Filter } from "./modules/initialFilters";
-import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
+import {
+    CardGrid,
+    ClearFilters,
+    FilterBar,
+    SelectDropdown,
+    Table,
+} from "@impulsogov/design-system";
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+import type {
+    GridPaginationModel,
+    GridSortModel,
+} from "@mui/x-data-grid";
+import type { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import type { AcfDashboardType } from "../../../../types";
+import { getCardsDataResponse } from "./modules/cards/getCardsDataResponse";
+import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
+import { filtersBuilder } from "./modules/filters/filtersBuilder";
+import { filtersLabels } from "./modules/filters/filtersLabels";
+import { type Filter, initialFiltersBuilder } from "./modules/filters/initialFilters";
+import { PrintModal } from "./modules/print/PrintModal";
+import { getPrintDataResponse } from "./modules/print/getPrintDataResponse";
+import { propPrintGroupingCoapsFunction, propPrintGroupingCoeqFunction } from "./modules/print/propPrintGrouping";
 import { sessionHook } from "./modules/sessionHook";
-import { getListDataResponse, type ListData } from "./modules/getListData";
-import { getPrintDataResponse } from "./modules/getPrintDataResponse";
-import { getCardsDataResponse } from "./modules/getCardsDataResponse";
-import { handleSortModelChangeFunction, DEFAULT_SORTING } from "./modules/handleSortModelChange";
+import { DEFAULT_SORTING, handleSortModelChangeFunction } from "./modules/sorting/handleSortModelChange";
+import { EmptyTableMessage } from "./modules/table/modules/EmptyTableMessage";
+import { columns } from "./modules/table/modules/diabetes/columns";
+import { type ListData, getListDataResponse } from "./modules/table/modules/diabetes/getListData";
+import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 interface ListContainerProps {
-    list: string;
+    list: AcfDashboardType;
     subTabID: string;
     title: string;
 }
@@ -103,7 +101,7 @@ export const ListContainer = ({
         sorting,
         search,
     });
-
+    const propPrintGrouping = user?.perfis.includes(9) ? propPrintGroupingCoeqFunction(list) : propPrintGroupingCoapsFunction(list);
     useEffect(() => setUser(session?.user), [session?.user]);
     useEffect(()=>urlSearchParamsHook(searchParams,sorting,router,value), [
         searchParams,
@@ -142,7 +140,7 @@ export const ListContainer = ({
         if(user) getCardsDataResponse(user, list, setCards, setErrorMessage);
     }, [list, user]);
     const handleSortModelChange = ()=> handleSortModelChangeFunction(sorting, setSorting);
-    const handleCostumizePrint = async (options: PrintOptions) => {
+    const handleCostumizePrint = async (options: PrintOptions): Promise<void> => {
         const data = await getPrintDataResponse(user, printStates);
         const props: ExtendedPrintTableProps = {
             data: data?.data ?? [],
@@ -196,14 +194,11 @@ export const ListContainer = ({
             : "equipe_nome",
         filtersLabels: filtersLabels,
     };
-    const handlePrintClick = () =>
-        handlePrint(value, propPrintGrouping, setPrintModalVisibility, props);
-
+    const handlePrintClick = () =>{
+        if(user) handlePrint(value, propPrintGrouping, setPrintModalVisibility, props);
+    }
     if (!user) return <p>Usuário não autenticado</p>;
     if (!user.perfis.includes(5)) return <p>Usuário sem permissão</p>;
-    const propPrintGrouping = user.perfis.includes(9)
-        ? "acs_nome_cadastro"
-        : "equipe_nome";
     if (errorMessage)
         return (
             <p style={{ textAlign: "center", padding: "20px" }}>
@@ -224,9 +219,7 @@ export const ListContainer = ({
             width={filter.width}
         />
     ));
-    const clearButton = (
-        <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
-    );
+    const clearButton = <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
     return (
         <>
             <div
@@ -278,45 +271,16 @@ export const ListContainer = ({
                     sortModel={sorting}
                     onSortModelChange={handleSortModelChange}
                     isLoading={isLoading}
-                    slots={{
-                        noRowsOverlay: () => (
-                            <p
-                                style={{ textAlign: "center", padding: "40px" }}
-                                data-testid="error-message-table"
-                            >
-                                Nenhum dado disponível. Isso pode ocorrer por
-                                ausência de resultados ou instabilidade na
-                                plataforma. Se já aplicou filtros ou utilizou a
-                                busca, tente ajustá-los. Se ainda assim os dados
-                                não foram exibidos, contate o suporte.
-                            </p>
-                        ),
-                    }}
+                    slots={{noRowsOverlay: EmptyTableMessage}}
                     data-testid="list-table"
                 />
             </div>
-            <div
-                style={{
-                    position: "absolute",
-                    left: 0,
-                }}
-            >
-                <ModalAlertControlled
-                    display={isPrintModalVisible}
-                    close={closePrintModal}
-                >
-                    <PersonalizacaoImpressao
-                        labels={
-                            user.perfis.includes(9)
-                                ? labelsModalImpressaoEquipe
-                                : labelsModalImpressaoAPS
-                        }
-                        handleButtonClick={handleCostumizePrint}
-                        handleClose={closePrintModal}
-                        valoresAgrupamento={VALORES_AGRUPAMENTO_IMPRESSAO}
-                    />
-                </ModalAlertControlled>
-            </div>
+            <PrintModal
+                isPrintModalVisible={isPrintModalVisible}
+                closePrintModal={closePrintModal}
+                handleCostumizePrint={handleCostumizePrint}
+                user={user}
+            />
         </>
     );
 };

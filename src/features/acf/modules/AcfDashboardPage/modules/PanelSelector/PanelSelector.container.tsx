@@ -1,6 +1,8 @@
 import { getCardsProps } from "@/helpers/cardsList";
+import type { ProfileIdValue } from "@/types/profile";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
+import type { AcfDashboardType } from "../../types";
 import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
@@ -11,8 +13,8 @@ type PanelSelectorContainerProps = {
     municipalitySusId: string;
     teamIne: string;
     userProfiles: ProfileIdValue[];
-    initialTabId: string | undefined;
-    initialSubTabId: string | undefined;
+    initialTabId: string;
+    initialSubTabId: string;
     acfDashboardType: AcfDashboardType
 }
 
@@ -28,17 +30,12 @@ export const PanelSelectorContainer = async ({
     let externalCardsProps: CardProps[] = [];
     
     try {
-    // biome-ignore lint/suspicious/noConsoleLog:please biome heppp
-        console.log("antes externalCardsAcfDashboardDataController");
         const data = await externalCardsAcfDashboardDataController(
             acfDashboardType,
             municipalitySusId,
             teamIne,
             userProfiles,
         );
-
-    // biome-ignore lint/suspicious/noConsoleLog:please biome heppp
-        console.log("antes de getCardsProps");
         externalCardsProps = getCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);

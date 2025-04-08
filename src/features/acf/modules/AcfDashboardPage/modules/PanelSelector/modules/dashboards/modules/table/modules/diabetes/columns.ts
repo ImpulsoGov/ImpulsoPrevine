@@ -1,9 +1,9 @@
-import { iconDetailsMap } from "./iconDetailsMap";
 import {
     renderDateTagCell,
     renderStatusTagCell,
 } from "@/helpers/lista-nominal/renderCell";
 import type { GridColDef } from "@mui/x-data-grid";
+import { iconDetailsMap } from "./iconDetailsMap";
 
 export const columns: GridColDef[] = [
     {
