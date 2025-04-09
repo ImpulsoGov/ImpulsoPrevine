@@ -1,14 +1,6 @@
 import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
 import {
-    larguraColunasHipertensaoEquipePaisagem,
-    larguraColunasHipertensaoEquipeRetrato,
-    larguraColunasHipertensaoPaisagem,
-    larguraColunasHipertensaoRetrato,
 } from "@/helpers/larguraColunasHipertensao";
-import {
-    handlePrint
-} from "@/helpers/lista-nominal/impressao/handlePrint";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
@@ -28,12 +20,10 @@ import type { AcfDashboardType } from "../../../../types";
 import { getCardsDataResponse } from "./modules/cards/getCardsDataResponse";
 import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
-import { filtersLabels } from "./modules/filters/filtersLabels";
 import {
     type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
-import { PrintModal } from "./modules/print/PrintModal";
 import {
     propPrintGroupingCoapsFunction,
     propPrintGroupingCoeqFunction,
@@ -50,6 +40,7 @@ import {
     getListDataResponse,
 } from "./modules/table/modules/diabetes/getListData";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
+// import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListContainerProps = {
@@ -67,7 +58,7 @@ export const ListContainer = ({
     title,
     list,
 }: ListContainerProps) => {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [user, setUser] = useState<Session["user"]>();
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -157,80 +148,22 @@ export const ListContainer = ({
     useEffect(() => {
         if (user) getCardsDataResponse(user, list, setCards, setErrorMessage);
     }, [list, user]);
-    const handleSortModelChange = () =>
-        handleSortModelChangeFunction(sorting, setSorting);
-    // const handleCostumizePrint = async (
-    //     options: PrintOptions,
-    // ): Promise<void> => {
-    //     const data = await getPrintDataResponse(user, printStates);
-    //     const props: ExtendedPrintTableProps = {
-    //         data: data?.data ?? [],
-    //         columns: columns,
-    //         list: list,
-    //         appliedFilters: isFilterApplied(value)
-    //             ? onlyAppliedFilters(value)
-    //             : {},
-    //         latestProductionDate: new Date(
-    //             String(tableData.data[0].atualizacao_data),
-    //         ).toLocaleDateString("pt-BR"),
-    //         fontFamily: "sans-serif",
-    //         dataSplit:
-    //             options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim,
-    //         pageSplit: options.separacaoGrupoPorFolha,
-    //         orderByProp: options.ordenacao,
-    //         printColumnsWidth: {
-    //             landscape: user?.perfis.includes(9)
-    //                 ? larguraColunasHipertensaoEquipePaisagem
-    //                 : larguraColunasHipertensaoPaisagem,
-    //             portrait: user?.perfis.includes(9)
-    //                 ? larguraColunasHipertensaoEquipeRetrato
-    //                 : larguraColunasHipertensaoRetrato,
-    //         },
-    //         verticalDivider: [2, 4, 6],
-    //         propPrintGrouping: propPrintGrouping,
-    //         filtersLabels: filtersLabels,
-    //     };
-    //     customizePrint(options, closePrintModal, props);
+    const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
+    // const handlePrintClick = () => {
+    //     if (user)
+    //         handlePrint(
+    //             value,
+    //             setPrintModalVisibility,
+    //             buildPrintProps(
+    //                 list,
+    //                 tableData.data, //resolver conflito de tipo depois
+    //                 user.perfis,
+    //                 value,
+    //                 ),
+    //         );
     // };
-    const props: PrintTableProps = {
-        data: tableData.data,
-        columns: columns,
-        list: list,
-        appliedFilters: value,
-        latestProductionDate: String(tableData.data[0]?.atualizacao_data),
-        fontFamily: "sans-serif",
-        dataSplit: false,
-        pageSplit: false,
-        printColumnsWidth: {
-            landscape: user?.perfis.includes(9)
-                ? larguraColunasHipertensaoEquipePaisagem
-                : larguraColunasHipertensaoPaisagem,
-            portrait: user?.perfis.includes(9)
-                ? larguraColunasHipertensaoEquipeRetrato
-                : larguraColunasHipertensaoRetrato,
-        },
-        verticalDivider: [2, 4, 6],
-        propPrintGrouping: user?.perfis.includes(9)
-            ? "acs_nome_cadastro"
-            : "equipe_nome",
-        filtersLabels: filtersLabels,
-    };
-    const handlePrintClick = () => {
-        if (user)
-            handlePrint(
-                value,
-                propPrintGrouping,
-                setPrintModalVisibility,
-                props,
-            );
-    };
-    if (errorMessage)
-        return (
-            <p style={{ textAlign: "center", padding: "20px" }}>
-                {errorMessage}
-            </p>
-        );
-    // if (response.data.length === 0) return <Spinner/>;
+    if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>
+    // if (status === "loading") return <Spinner/>;
 
     const filtersSelect = filters.map((filter: Filter) => (
         <SelectDropdown
@@ -302,7 +235,7 @@ export const ListContainer = ({
                     data-testid="list-table"
                 />
             </div>
-            {
+            {/* {
                 user &&
                 <PrintModal
                     isPrintModalVisible={isPrintModalVisible}
@@ -310,7 +243,7 @@ export const ListContainer = ({
                     handleCostumizePrint={handleCostumizePrint}
                     userProfiles={user.perfis}
                 />
-            }
+            } */}
         </>
     );
 };
