@@ -1,9 +1,9 @@
-import { print } from "./print";
 import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
-import type { Dispatch, SetStateAction } from "react";
+import type { PrintOptions } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/List";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { DataItem } from "@/utils/FilterData";
-import type { PrintOptions } from "@/app/lista-nominal/ListContainer";
+import type { Dispatch, SetStateAction } from "react";
+import { print } from "./print";
 
 export const NUMERO_DE_FILTROS_PARA_IMPRESSAO_SEM_PERSONALIZACAO = 1;
 export const VALORES_AGRUPAMENTO_IMPRESSAO = { sim: "sim", nao: "não" };

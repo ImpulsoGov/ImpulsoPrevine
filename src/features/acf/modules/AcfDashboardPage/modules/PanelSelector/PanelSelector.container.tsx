@@ -7,7 +7,7 @@ import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
-import { externalCardsAcfDashboardDataController } from "./modules/externalCards/externalCards.controller";
+import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/externalCards/externalCards.controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -30,11 +30,10 @@ export const PanelSelectorContainer = async ({
     let externalCardsProps: CardProps[] = [];
     
     try {
-        const data = await externalCardsAcfDashboardDataController(
+        const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
             municipalitySusId,
             teamIne,
-            userProfiles,
         );
         externalCardsProps = getCardsProps(externalCardsDetails, data);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { } from "@/types/profile";
+import type { ExternalCardDBDataItem } from "./externalCards.model"
 
 const data = [
         {
@@ -49,6 +49,7 @@ export const externalCardsDataForTeam = (
     listName: string,
     teamIne: string,
     municipalitySusID: string,
+
 ): ExternalCardDBDataItem[]=>{
     return data.filter((item: ExternalCardDBDataItem): boolean => (
         item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 

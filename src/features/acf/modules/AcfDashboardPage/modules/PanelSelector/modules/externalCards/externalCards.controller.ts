@@ -1,14 +1,13 @@
-import type { ProfileIdValue } from "@/types/profile";
-import type { AcfDashboardType } from "./ExternalCardItem.model";
-import { externalCardsDbToModel } from "./externalCards.adapter"
+import type { AcfDashboardType } from "../../../../types";
+import { externalCardsDbToModel } from "./externalCards.adapter";
+import type { ExternalCardDataItem } from "./externalCards.model";
 import { externalCardsDataForTeam } from "./externalCards.repository";
 
-export const externalCardsAcfDashboardDataController = async(
+export const externalCardsAcfDashboardDataControllerForTeam = async(
     listName: AcfDashboardType, 
     municipalitySusId: string, 
     teamIne : string,
-    userProfiles : ProfileIdValue[]
 ): Promise<ExternalCardDataItem[]> => {
-    const data = externalCardsDataForTeam(listName, teamIne, municipalitySusId, userProfiles);
+    const data = externalCardsDataForTeam(listName, teamIne, municipalitySusId);
     return externalCardsDbToModel(data);
 }

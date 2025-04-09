@@ -1,6 +1,5 @@
-
+import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/externalCards.model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { ExternalCardDataItem } from "@/features/acf/models/ExternalCardItem";
 export type CardDetails = Omit<CardProps, "value">;
 export type CardDetailsMap = Record<string, CardDetails>;
 
