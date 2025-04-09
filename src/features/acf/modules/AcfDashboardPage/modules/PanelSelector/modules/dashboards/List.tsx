@@ -1,3 +1,4 @@
+
 import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import {
 } from "@/helpers/larguraColunasHipertensao";
@@ -25,8 +26,6 @@ import {
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import {
-    propPrintGroupingCoapsFunction,
-    propPrintGroupingCoeqFunction,
 } from "./modules/print/propPrintGrouping";
 import { sessionHook } from "./modules/sessionHook";
 import {
@@ -58,12 +57,12 @@ export const ListContainer = ({
     title,
     list,
 }: ListContainerProps) => {
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const [user, setUser] = useState<Session["user"]>();
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
-    const closePrintModal = () => setPrintModalVisibility(false);
+    // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
+    // const closePrintModal = () => setPrintModalVisibility(false);
     const filters = filtersBuilder(session?.user);
     const initialFilters = initialFiltersBuilder(searchParams, filters);
     const [value, setValue] = useState<FilterItem>(initialFilters);
@@ -88,15 +87,15 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>("");
     const [search, setSearch] = useState<string>("");
     const handleSearchClick = () => setSearch(inputValue);
-    const [printStates, setPrintStates] = useState<PrintStatesType>({
-        value,
-        list,
-        sorting,
-        search,
-    });
-    const propPrintGrouping = user?.perfis.includes(9)
-        ? propPrintGroupingCoeqFunction(list)
-        : propPrintGroupingCoapsFunction(list);
+    // const [printStates, setPrintStates] = useState<PrintStatesType>({
+    //     value,
+    //     list,
+    //     sorting,
+    //     search,
+    // });
+    // const propPrintGrouping = user?.perfis.includes(9)
+    //     ? propPrintGroupingCoeqFunction(list)
+    //     : propPrintGroupingCoapsFunction(list);
     useEffect(() => setUser(session?.user), [session?.user]);
     useEffect(
         () => urlSearchParamsHook(searchParams, sorting, router, value),
@@ -112,7 +111,7 @@ export const ListContainer = ({
     useEffect(() => {
         sessionHook(session?.user, setUser);
     }, [session?.user]);
-
+    
     useEffect(() => {
         if (user)
             getListDataResponse(
@@ -129,14 +128,14 @@ export const ListContainer = ({
     }, [user, value, list, pagination, sorting, search]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-    useEffect(() => {
-        setPrintStates({
-            value,
-            list,
-            sorting,
-            search,
-        });
-    }, [user, value, list, sorting, search]);
+    // useEffect(() => {
+    //     setPrintStates({
+    //         value,
+    //         list,
+    //         sorting,
+    //         search,
+    //     });
+    // }, [user, value, list, sorting, search]);
 
     useEffect(() => {
         setTableData({
@@ -209,7 +208,8 @@ export const ListContainer = ({
                                 ? new Date(tableData.data[0].atualizacao_data)
                                 : undefined
                         }
-                        print={handlePrintClick}
+                        // print={handlePrintClick}
+                        print={()=> undefined}
                         inputProps={{
                             value: inputValue,
                             onChange: setInputValue,
