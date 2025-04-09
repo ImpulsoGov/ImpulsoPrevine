@@ -7,15 +7,10 @@ import {
     larguraColunasHipertensaoRetrato,
 } from "@/helpers/larguraColunasHipertensao";
 import {
-    type ExtendedPrintTableProps,
-    VALORES_AGRUPAMENTO_IMPRESSAO,
-    customizePrint,
-    handlePrint,
+    handlePrint
 } from "@/helpers/lista-nominal/impressao/handlePrint";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
-import { isFilterApplied } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
-import { onlyAppliedFilters } from "@/utils/onlyAppliedFilters";
 import {
     CardGrid,
     ClearFilters,
@@ -39,7 +34,6 @@ import {
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import { PrintModal } from "./modules/print/PrintModal";
-import { getPrintDataResponse } from "./modules/print/getPrintDataResponse";
 import {
     propPrintGroupingCoapsFunction,
     propPrintGroupingCoeqFunction,
@@ -62,11 +56,12 @@ export type ListContainerProps = {
     list: AcfDashboardType;
     title: string;
 };
-export type PrintOptions = {
-    agrupamento: string;
-    separacaoGrupoPorFolha: boolean;
-    ordenacao: boolean;
-};
+export type PrintStatesType= {
+    value: FilterItem;
+    list: AcfDashboardType;
+    sorting: GridSortModel;
+    search: string;
+}
 
 export const ListContainer = ({
     title,
@@ -102,7 +97,7 @@ export const ListContainer = ({
     const [inputValue, setInputValue] = useState<string>("");
     const [search, setSearch] = useState<string>("");
     const handleSearchClick = () => setSearch(inputValue);
-    const [printStates, setPrintStates] = useState({
+    const [printStates, setPrintStates] = useState<PrintStatesType>({
         value,
         list,
         sorting,
@@ -164,39 +159,39 @@ export const ListContainer = ({
     }, [list, user]);
     const handleSortModelChange = () =>
         handleSortModelChangeFunction(sorting, setSorting);
-    const handleCostumizePrint = async (
-        options: PrintOptions,
-    ): Promise<void> => {
-        const data = await getPrintDataResponse(user, printStates);
-        const props: ExtendedPrintTableProps = {
-            data: data?.data ?? [],
-            columns: columns,
-            list: list,
-            appliedFilters: isFilterApplied(value)
-                ? onlyAppliedFilters(value)
-                : {},
-            latestProductionDate: new Date(
-                String(tableData.data[0].atualizacao_data),
-            ).toLocaleDateString("pt-BR"),
-            fontFamily: "sans-serif",
-            dataSplit:
-                options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim,
-            pageSplit: options.separacaoGrupoPorFolha,
-            orderByProp: options.ordenacao,
-            printColumnsWidth: {
-                landscape: user?.perfis.includes(9)
-                    ? larguraColunasHipertensaoEquipePaisagem
-                    : larguraColunasHipertensaoPaisagem,
-                portrait: user?.perfis.includes(9)
-                    ? larguraColunasHipertensaoEquipeRetrato
-                    : larguraColunasHipertensaoRetrato,
-            },
-            verticalDivider: [2, 4, 6],
-            propPrintGrouping: propPrintGrouping,
-            filtersLabels: filtersLabels,
-        };
-        customizePrint(options, closePrintModal, props);
-    };
+    // const handleCostumizePrint = async (
+    //     options: PrintOptions,
+    // ): Promise<void> => {
+    //     const data = await getPrintDataResponse(user, printStates);
+    //     const props: ExtendedPrintTableProps = {
+    //         data: data?.data ?? [],
+    //         columns: columns,
+    //         list: list,
+    //         appliedFilters: isFilterApplied(value)
+    //             ? onlyAppliedFilters(value)
+    //             : {},
+    //         latestProductionDate: new Date(
+    //             String(tableData.data[0].atualizacao_data),
+    //         ).toLocaleDateString("pt-BR"),
+    //         fontFamily: "sans-serif",
+    //         dataSplit:
+    //             options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim,
+    //         pageSplit: options.separacaoGrupoPorFolha,
+    //         orderByProp: options.ordenacao,
+    //         printColumnsWidth: {
+    //             landscape: user?.perfis.includes(9)
+    //                 ? larguraColunasHipertensaoEquipePaisagem
+    //                 : larguraColunasHipertensaoPaisagem,
+    //             portrait: user?.perfis.includes(9)
+    //                 ? larguraColunasHipertensaoEquipeRetrato
+    //                 : larguraColunasHipertensaoRetrato,
+    //         },
+    //         verticalDivider: [2, 4, 6],
+    //         propPrintGrouping: propPrintGrouping,
+    //         filtersLabels: filtersLabels,
+    //     };
+    //     customizePrint(options, closePrintModal, props);
+    // };
     const props: PrintTableProps = {
         data: tableData.data,
         columns: columns,

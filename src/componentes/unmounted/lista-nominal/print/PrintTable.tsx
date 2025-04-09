@@ -1,10 +1,10 @@
-import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
-import { MultipleTeamsPerPage } from "./MultipleTeamsPerPage";
-import { SingleTeamPerPage } from "./SingleTeamPerPage";
-import { NoSplit } from "./NoSplit";
-import type { DataItem } from "@/utils/FilterData";
-import type { GridColDef } from "@mui/x-data-grid";
+import type { DiabetesAcfPrintItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/print/diabetes/print.model";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
+import type { GridColDef } from "@mui/x-data-grid";
+import { MultipleTeamsPerPage } from "./MultipleTeamsPerPage";
+import { NoSplit } from "./NoSplit";
+import { SingleTeamPerPage } from "./SingleTeamPerPage";
 
 export type PrintColumnsWidthProps = {
     portrait: Record<string, string>;
@@ -12,7 +12,7 @@ export type PrintColumnsWidthProps = {
 };
 
 export type PrintTableProps = {
-    data: DataItem[];
+    data: DiabetesAcfPrintItem[];
     columns: GridColDef[];
     list: string;
     appliedFilters: FilterItem;
