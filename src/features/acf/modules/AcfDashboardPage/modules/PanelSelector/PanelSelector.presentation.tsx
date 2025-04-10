@@ -94,6 +94,7 @@ type PanelSelectorProps = {
     subTabID: string;
     externalCardsProps: CardProps[];
     userProfiles: ProfileIdValue[];
+    userMunicipality: string;
 };
 
 export const PanelSelector = ({
@@ -102,6 +103,7 @@ export const PanelSelector = ({
     subTabID,
     externalCardsProps,
     userProfiles,
+    userMunicipality
 }: PanelSelectorProps) => {
     const props = acfNominalListProps(
         externalCardsProps,
@@ -125,6 +127,7 @@ export const PanelSelector = ({
 
     return (
         <PanelSelectorWithCards
+            municipality={userMunicipality}
             {...header}
             breadcrumb={breadcrumb.breadcrumb}
             cards={externalCardsProps}

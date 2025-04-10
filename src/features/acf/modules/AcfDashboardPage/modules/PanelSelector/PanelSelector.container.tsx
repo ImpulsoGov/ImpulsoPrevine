@@ -1,5 +1,6 @@
 import { getCardsProps } from "@/helpers/cardsList";
 import type { ProfileIdValue } from "@/types/profile";
+import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../types";
@@ -18,6 +19,19 @@ type PanelSelectorContainerProps = {
     acfDashboardType: AcfDashboardType
 }
 
+//TODO: Mover esta função para algum lugar que seja reutilizável
+const municipalityName = (municipalityId: string): string => {
+    //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
+    const municipalityData = MUNICIPIOS.find((municipality) => municipality.municipioIdSus === municipalityId);
+
+    //TODO: Tentar encontrar uma forma de tipar as coisas pra esse caso ser impossível.
+    if (!municipalityData) {
+        return "Município - UF";
+    }
+
+    return `${municipalityData.nome} - ${municipalityData.uf}`;
+}
+
 // Container aqui se refere ao padrão Container/Presentation, descrito em: https://www.patterns.dev/react/presentational-container-pattern/
 export const PanelSelectorContainer = async ({
     municipalitySusId,
@@ -28,7 +42,7 @@ export const PanelSelectorContainer = async ({
     acfDashboardType,
 }: PanelSelectorContainerProps) => {
     let externalCardsProps: CardProps[] = [];
-    
+
     try {
         const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
@@ -42,6 +56,7 @@ export const PanelSelectorContainer = async ({
     }
     return externalCardsProps && 
         <PanelSelector
+                userMunicipality={municipalityName(municipalitySusId)}
                 externalCardsProps={externalCardsProps}
                 listName={acfDashboardType}
                 tabID = {initialTabId}
