@@ -1,5 +1,5 @@
 
-import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
+// import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import {
 } from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
@@ -61,6 +61,7 @@ export const ListContainer = ({
     const [user, setUser] = useState<Session["user"]>();
     const searchParams = useSearchParams();
     const router = useRouter();
+    //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
     const filters = filtersBuilder(session?.user);
@@ -84,9 +85,9 @@ export const ListContainer = ({
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [cards, setCards] = useState<CardProps[]>([]);
 
-    const [inputValue, setInputValue] = useState<string>("");
-    const [search, setSearch] = useState<string>("");
-    const handleSearchClick = () => setSearch(inputValue);
+    // const [inputValue, setInputValue] = useState<string>("");
+    const [search, _setSearch] = useState<string>("");
+    // const handleSearchClick = () => setSearch(inputValue);
     // const [printStates, setPrintStates] = useState<PrintStatesType>({
     //     value,
     //     list,
@@ -111,7 +112,7 @@ export const ListContainer = ({
     useEffect(() => {
         sessionHook(session?.user, setUser);
     }, [session?.user]);
-    
+
     useEffect(() => {
         if (user)
             getListDataResponse(
@@ -199,7 +200,7 @@ export const ListContainer = ({
                     {title}
                 </p>
                 {cards && <CardGrid cards={cards} />}
-                <div style={{ marginTop: "15px" }}>
+                {/* <div style={{ marginTop: "15px" }}>
                     <ToolBarMounted
                         updateDate={
                             tableData.data[0]?.atualizacao_data &&
@@ -209,14 +210,14 @@ export const ListContainer = ({
                                 : undefined
                         }
                         // print={handlePrintClick}
-                        print={()=> undefined}
+                        print={()=> alert("Impressão será implementada em breve")}
                         inputProps={{
                             value: inputValue,
                             onChange: setInputValue,
                         }}
                         handleSearchClick={handleSearchClick}
                     />
-                </div>
+                </div> */}
                 <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} />
                 <FilterBar filters={filtersSelect} clearButton={clearButton} />
                 <Table
