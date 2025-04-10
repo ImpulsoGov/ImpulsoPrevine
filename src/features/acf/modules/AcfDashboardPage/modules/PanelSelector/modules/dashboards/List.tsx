@@ -1,7 +1,6 @@
 
+import { getInternalCardsProps } from "@/helpers/cardsList";
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import {
-} from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
@@ -13,20 +12,19 @@ import {
 } from "@impulsogov/design-system";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
+import { captureException } from "@sentry/nextjs";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { AcfDashboardType } from "../../../../types";
-import { getCardsDataResponse } from "./modules/cards/getCardsDataResponse";
+import { internalCardsAcfDashboardDataControllerForTeam } from "./internalCards/internalCards.controller";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
 import {
     // type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
-import {
-} from "./modules/print/propPrintGrouping";
 import { sessionHook } from "./modules/sessionHook";
 import {
     DEFAULT_SORTING,
@@ -146,7 +144,27 @@ export const ListContainer = ({
     }, [response, value]);
 
     useEffect(() => {
-        if (user) getCardsDataResponse(user, list, setCards, setErrorMessage);
+        // const cardsRequest = async () => {
+        //     if (user) await getCardsDataResponse(user, list, setCards, setErrorMessage);
+        // }
+
+        // cardsRequest();
+        const cardsData = async () => {
+            try {
+                if(user) {
+                    const internalCardsData = await internalCardsAcfDashboardDataControllerForTeam(
+                        list,
+                        user?.municipio_id_sus,
+                        user?.equipe,
+                    );
+
+                    const internalCardsProps = getInternalCardsProps(, internalCardsData);
+                }
+            } catch (error) {
+                captureException(error);
+                return <p>Erro ao buscar dados cards</p>;
+            }
+    }
     }, [list, user]);
     const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
     // const handlePrintClick = () => {
