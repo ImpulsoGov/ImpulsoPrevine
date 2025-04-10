@@ -9140,8 +9140,8 @@ export const MUNICIPIOS = [
         municipioIdSus: "280740",
     },
     {
-        nome: "Impulsolândia",
-        uf: "BR",
+        nome: "Demo - Monsenhor Tabosa",
+        uf: "CE",
         municipioIdSus: "111111",
     },
     {
