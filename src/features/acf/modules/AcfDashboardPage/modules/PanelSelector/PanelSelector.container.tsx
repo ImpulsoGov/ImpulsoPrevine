@@ -1,4 +1,4 @@
-import { getCardsProps } from "@/helpers/cardsList";
+import { getExternalCardsProps } from "@/helpers/cardsList";
 import type { ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
@@ -49,7 +49,7 @@ export const PanelSelectorContainer = async ({
             municipalitySusId,
             teamIne,
         );
-        externalCardsProps = getCardsProps(externalCardsDetails, data);
+        externalCardsProps = getExternalCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
         return <p>Erro ao buscar dados cards</p>;

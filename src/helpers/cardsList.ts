@@ -1,3 +1,4 @@
+import type { InternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/internalCards/internalCards.model";
 import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/externalCards.model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 export type CardDetails = Omit<CardProps, "value">;
@@ -10,7 +11,7 @@ export type CardDetailsMap = Record<string, CardDetails>;
  * @returns an array of cards data with the props needed for the Card component
  * @throws if a card description is not found in the details object
  */
-export function getCardsProps(
+export function getExternalCardsProps(
     details: CardDetailsMap,
     data: ExternalCardDataItem[],
 ) {
@@ -20,6 +21,26 @@ export function getCardsProps(
         if (!cardDetails) {
             throw new Error(
                 `Detalhes do card ${card.acfExternalCardsDescription} não encontrados na resposta do CMS`,
+            );
+        }
+
+        return {
+            ...cardDetails,
+            value: card.value?.toString() ?? "-",
+        };
+    });
+}
+
+export function getInternalCardsProps(
+    details: CardDetailsMap,
+    data: InternalCardDataItem[],
+) {
+    return data.map<CardProps>((card) => {
+        const cardDetails = details[card.healthIndicator];
+
+        if (!cardDetails) {
+            throw new Error(
+                `Detalhes do card ${card.healthIndicator} não encontrados na resposta do CMS`,
             );
         }
 
