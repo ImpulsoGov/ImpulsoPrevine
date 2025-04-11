@@ -166,7 +166,6 @@ export const acfNominalListProps = (
     municipality: municipalityIdSus,
     cards: externalCardsProps,
     listaNominalID: listName,
-    municipalityIdSus,
     inicialContent: {
         tabID: tabID,
         subTabID: subTabID,
