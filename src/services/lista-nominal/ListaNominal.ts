@@ -2,6 +2,7 @@ import axios from "axios";
 import type { AxiosResponse } from "axios";
 import type { GridSortDirection } from "@mui/x-data-grid";
 
+// TODO: Avaliar se podemos deletar este arquivo
 export interface SortingItem {
     sortField: string;
     sortOrder: GridSortDirection;
@@ -31,6 +32,7 @@ const buildFilterParams = (filters?: FilterItem): string => {
     }
     return filterParams;
 };
+
 const buildPaginationParams = (pagination: Pagination): string => {
     const { page, pageSize } = pagination;
     return `pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
@@ -46,6 +48,7 @@ export const isFilterApplied = (filters: FilterItem | undefined): boolean => {
     );
     return filterApplied.some((value) => value);
 };
+
 /**
  * Adds sorting and filtering parameters to a URL
  * @param baseUrl - Base URL to add parameters to
@@ -84,6 +87,8 @@ export const buildUrlWithParams = (
     return url;
 };
 
+//TODO: Avaliar se vamos precisar disso no futuro
+
 export type GetListDataProps = {
     token: string;
     listName: string;
@@ -98,6 +103,7 @@ export type ListDataResponse = {
     totalRows: number;
 };
 
+//TODO: Avaliar se vamos usar esta função em algum momento
 export const getListData = async ({
     token,
     listName,

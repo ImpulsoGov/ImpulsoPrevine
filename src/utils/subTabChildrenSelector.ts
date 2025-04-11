@@ -1,8 +1,11 @@
+import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 import React from "react";
 import type {
-    ExtendedsubTabsWithChildrenAndChildrenDataProps,
     ExtendedPanelSelectorWithCardsProps,
-} from "../app/lista-nominal/ListaNominal";
+    ExtendedsubTabsWithChildrenAndChildrenDataProps,
+} from "../features/acf/modules/AcfDashboardPage/modules/PanelSelector/PanelSelector.presentation";
+
+//TODO: Remover daqui
 /**
  * Seleciona e cria componentes filhos para sub-tabs.
  *
@@ -19,7 +22,7 @@ export const subTabChildrenSelector = (
     selectorProps: ExtendedPanelSelectorWithCardsProps,
     subTabChildrenID: Record<
         string,
-        React.ComponentType<{ subTabID: string; title: string; list: string }>
+        React.ComponentType<{ title: string; list: AcfDashboardType }>
     >,
     subTabChildren: Record<string, string>,
 ) => {
@@ -34,7 +37,6 @@ export const subTabChildrenSelector = (
                     subTabChildrenID[subTabChildren[subTab.subTabID]];
                 result[subTab.subTabID] = Component
                     ? React.createElement(Component, {
-                          subTabID: subTab.subTabID,
                           title: subTab.title,
                           list: selectorProps.listaNominalID,
                       })

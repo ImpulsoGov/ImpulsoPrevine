@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@hotjar/browser": "^1.0.9",
-        "@impulsogov/design-system": "^1.0.337",
+        "@impulsogov/design-system": "^1.0.338",
         "@mui/material": "^6.1.0",
         "@mui/x-data-grid": "^7.17.0",
         "@prisma/client": "5.22.0",
