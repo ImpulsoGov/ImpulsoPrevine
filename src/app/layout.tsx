@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { SessionWrapperLayout } from "./SessionWrapperLayout";
 
 const Base = dynamic(() => import("./Base").then((mod) => mod.Base));
-
+ 
 export default function RootLayout({
     children,
 }: Readonly<{
