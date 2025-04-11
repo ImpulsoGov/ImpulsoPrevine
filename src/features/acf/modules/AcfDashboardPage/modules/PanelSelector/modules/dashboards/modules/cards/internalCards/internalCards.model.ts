@@ -1,7 +1,7 @@
 import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 
-export type DiabetesAcfInternalCardsHealthIndicatorType = "Total de pessoas com diabetes" | "Total de pessoas com solicitação de hemoglobina glicada e consulta em dia"
- | "Total de pessoas com diagnóstico autorreferido" | "Total de pessoas com diagnóstico clínico";
+export type DiabetesAcfInternalCardsHealthIndicatorType = "TOTAL_COM_DIABETES" | "EXAME_E_CONSULTA_EM_DIA"
+ | "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO";
 
 export type InternalCardDBDataItem = {
     municipio_id_sus: string;

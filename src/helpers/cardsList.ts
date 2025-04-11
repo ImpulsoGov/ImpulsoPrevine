@@ -1,5 +1,5 @@
-import type { InternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/internalCards/internalCards.model";
-import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/externalCards.model";
+import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/cards/externalCards/externalCards.model";
+import type { InternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/cards/internalCards/internalCards.model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 export type CardDetails = Omit<CardProps, "value">;
 export type CardDetailsMap = Record<string, CardDetails>;
