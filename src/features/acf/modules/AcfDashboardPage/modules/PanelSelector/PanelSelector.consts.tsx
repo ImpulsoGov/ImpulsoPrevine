@@ -143,7 +143,7 @@ export const acfNominalListProps = (
     ...breadcrumb,
     ...tabDefinitions,
     ...header,
-    municipalityIdSus,
+    municipality: municipalityIdSus,
     cards: externalCardsProps,
     listaNominalID: listName,
 
