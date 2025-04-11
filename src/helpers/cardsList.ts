@@ -1,6 +1,5 @@
-import { CardsDataResponse } from "@/services/lista-nominal/cards";
-import { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-
+import type { ExternalCardDataItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/externalCards/externalCards.model";
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 export type CardDetails = Omit<CardProps, "value">;
 export type CardDetailsMap = Record<string, CardDetails>;
 
@@ -13,20 +12,20 @@ export type CardDetailsMap = Record<string, CardDetails>;
  */
 export function getCardsProps(
     details: CardDetailsMap,
-    data: CardsDataResponse[],
+    data: ExternalCardDataItem[],
 ) {
     return data.map<CardProps>((card) => {
-        const cardDetails = details[card.descricao];
+        const cardDetails = details[card.acfExternalCardsDescription];
 
         if (!cardDetails) {
             throw new Error(
-                `Detalhes do card ${card.descricao} não encontrados na resposta do CMS`,
+                `Detalhes do card ${card.acfExternalCardsDescription} não encontrados na resposta do CMS`,
             );
         }
 
         return {
             ...cardDetails,
-            value: card.valor?.toString() ?? "-",
+            value: card.value?.toString() ?? "-",
         };
     });
 }
