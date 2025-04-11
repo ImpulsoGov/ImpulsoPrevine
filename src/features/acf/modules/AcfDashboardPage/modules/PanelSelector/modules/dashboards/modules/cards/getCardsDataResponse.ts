@@ -1,8 +1,8 @@
+import { getExternalCardsProps } from "@/helpers/cardsList";
 import { getCardsData } from "@/services/lista-nominal/cards";
-import type { Session } from "next-auth";
-import { captureException } from "@sentry/nextjs";
-import { getCardsProps } from "@/helpers/cardsList";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+import { captureException } from "@sentry/nextjs";
+import type { Session } from "next-auth";
 import { cardsDetails } from "./cardsDetails";
 
 //TODO: Trocar chamada para API por controller
@@ -21,7 +21,7 @@ export const getCardsDataResponse = async (
             baseUrl: currentURL,
         });
 
-        setCards([...getCardsProps(cardsDetails, res.data)]);
+        setCards([...getExternalCardsProps(cardsDetails, res.data)]);
         setErrorMessage("");
     } catch (error) {
         captureException(error);
