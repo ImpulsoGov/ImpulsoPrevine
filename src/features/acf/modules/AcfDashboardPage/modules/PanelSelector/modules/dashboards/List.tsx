@@ -6,9 +6,9 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
     CardGrid,
-    ClearFilters,
-    FilterBar,
-    SelectDropdown,
+    // ClearFilters,
+    // FilterBar,
+    // SelectDropdown,
     Table,
 } from "@impulsogov/design-system";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
@@ -19,10 +19,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { AcfDashboardType } from "../../../../types";
 import { getCardsDataResponse } from "./modules/cards/getCardsDataResponse";
-import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
+// import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
 import {
-    type Filter,
+    // type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import {
@@ -66,7 +66,7 @@ export const ListContainer = ({
     // const closePrintModal = () => setPrintModalVisibility(false);
     const filters = filtersBuilder(session?.user);
     const initialFilters = initialFiltersBuilder(searchParams, filters);
-    const [value, setValue] = useState<FilterItem>(initialFilters);
+    const [value, _setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<ListData>({
         data: [],
         totalRows: 0,
@@ -165,21 +165,21 @@ export const ListContainer = ({
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>
     // if (status === "loading") return <Spinner/>;
 
-    const filtersSelect = filters.map((filter: Filter) => (
-        <SelectDropdown
-            key={filter.id}
-            {...filter}
-            value={value}
-            setValue={setValue}
-            options={filter.options}
-            label={filter.label}
-            multiSelect={filter.isMultiSelect}
-            width={filter.width}
-        />
-    ));
-    const clearButton = (
-        <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
-    );
+    // const filtersSelect = filters.map((filter: Filter) => (
+    //     <SelectDropdown
+    //         key={filter.id}
+    //         {...filter}
+    //         value={value}
+    //         setValue={setValue}
+    //         options={filter.options}
+    //         label={filter.label}
+    //         multiSelect={filter.isMultiSelect}
+    //         width={filter.width}
+    //     />
+    // ));
+    // const clearButton = (
+    //     <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
+    // );
     return (
         <>
             <div
@@ -219,7 +219,7 @@ export const ListContainer = ({
                     />
                 </div> */}
                 <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} />
-                <FilterBar filters={filtersSelect} clearButton={clearButton} />
+                {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
                 <Table
                     columns={columns}
                     data={tableData.data}
