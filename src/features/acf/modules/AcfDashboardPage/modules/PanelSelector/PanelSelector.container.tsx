@@ -56,12 +56,11 @@ export const PanelSelectorContainer = async ({
     }
     return externalCardsProps && 
         <PanelSelector
-                userMunicipality={municipalityName(municipalitySusId)}
+                municipalityIdSus={municipalityName(municipalitySusId)}
                 externalCardsProps={externalCardsProps}
                 listName={acfDashboardType}
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
                 userProfiles={userProfiles}
-                municipalityIdSus={municipalitySusId}
         />
 };
