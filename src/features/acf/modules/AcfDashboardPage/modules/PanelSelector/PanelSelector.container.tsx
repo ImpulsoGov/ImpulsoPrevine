@@ -47,5 +47,6 @@ export const PanelSelectorContainer = async ({
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
                 userProfiles={userProfiles}
+                municipalityIdSus={municipalitySusId}
         />
 };

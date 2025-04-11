@@ -137,11 +137,13 @@ export const acfNominalListProps = (
     listName: AcfDashboardType,
     tabID: string,
     subTabID: string,
+    municipalityIdSus: string,
 ): ExtendedPanelSelectorWithCardsProps =>
 ({
     ...breadcrumb,
     ...tabDefinitions,
     ...header,
+    municipalityIdSus,
     cards: externalCardsProps,
     listaNominalID: listName,
 
