@@ -5,56 +5,56 @@ const data: InternalCardDBDataItem[] = [
       "municipio_id_sus": "111111",
       "ine": "0000098574",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diabetes",
+      "descricao": "TOTAL_COM_DIABETES",
       "valor": 37
   },
   {
       "municipio_id_sus": "111111",
       "ine": "0000098574",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com solicitação de hemoglobina glicada e consulta em dia",
+      "descricao": "EXAME_E_CONSULTA_EM_DIA",
       "valor": 45
   },
   {
       "municipio_id_sus": "111111",
       "ine": "0000098574",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diagnóstico autorreferido",
+      "descricao": "DIAGNOSTICO_AUTORREFERIDO",
       "valor": 52
   },
   {
       "municipio_id_sus": "111111",
       "ine": "0000098574",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diagnóstico clínico",
+      "descricao": "DIAGNOSTICO_CLINICO",
       "valor": 52
   },
   {
       "municipio_id_sus": "140015",
       "ine": "0001590324",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diabetes",
+      "descricao": "TOTAL_COM_DIABETES",
       "valor": 73
   },
   {
       "municipio_id_sus": "140015",
       "ine": "0001590324",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com solicitação de hemoglobiglicada e consulta em dia",
+      "descricao": "EXAME_E_CONSULTA_EM_DIA",
       "valor": 54
   },
   {
       "municipio_id_sus": "140015",
       "ine": "0001590324",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diagnóstico autorreferido",
+      "descricao": "DIAGNOSTICO_AUTORREFERIDO",
       "valor": 25
   },
   {
       "municipio_id_sus": "140015",
       "ine": "0001590324",
       "lista": "DIABETES",
-      "descricao": "Total de pessoas com diagnóstico clínico",
+      "descricao": "DIAGNOSTICO_CLINICO",
       "valor": 25
   }
 ]

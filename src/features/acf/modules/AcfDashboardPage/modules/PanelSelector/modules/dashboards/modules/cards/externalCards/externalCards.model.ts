@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "../../../../types";
+import type { AcfDashboardType } from "../../../../../../../types";
 
 export type DiabetesAcfExternalCardsDescriptionType = "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO"
 

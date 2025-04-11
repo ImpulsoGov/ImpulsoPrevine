@@ -8,7 +8,7 @@ import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
-import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/externalCards/externalCards.controller";
+import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -20,9 +20,9 @@ type PanelSelectorContainerProps = {
 }
 
 //TODO: Mover esta função para algum lugar que seja reutilizável
-const municipalityName = (municipalityId: string): string => {
+const municipalityName = (municipalityIdSus: string): string => {
     //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
-    const municipalityData = MUNICIPIOS.find((municipality) => municipality.municipioIdSus === municipalityId);
+    const municipalityData = MUNICIPIOS.find((municipality) => municipality.municipioIdSus === municipalityIdSus);
 
     //TODO: Tentar encontrar uma forma de tipar as coisas pra esse caso ser impossível.
     if (!municipalityData) {
@@ -56,7 +56,7 @@ export const PanelSelectorContainer = async ({
     }
     return externalCardsProps && 
         <PanelSelector
-                userMunicipality={municipalityName(municipalitySusId)}
+                municipalityIdSus={municipalityName(municipalitySusId)}
                 externalCardsProps={externalCardsProps}
                 listName={acfDashboardType}
                 tabID = {initialTabId}

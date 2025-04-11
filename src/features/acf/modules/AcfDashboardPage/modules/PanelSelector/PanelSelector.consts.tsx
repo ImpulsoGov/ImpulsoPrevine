@@ -1,7 +1,9 @@
 import type { CardDetailsMap } from '@helpers/cardsList'; // Adjust the path to where CardDetailsMap is defined
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { ExtendedPanelSelectorWithCardsProps } from "./PanelSelector.presentation";
 import type { AcfDashboardType } from '../../types';
+import type { ExtendedPanelSelectorWithCardsProps } from "./PanelSelector.presentation";
+
+// TODO: Esse arquivo vai ser diferente para cada lista e pode ser melhor alterar para um array
 export const externalCardsDetails: CardDetailsMap = {
     COM_CONSULTA_AFERICAO_PRESSAO: {
         title: "Total de pessoas com consulta e aferição de PA em dia",
@@ -26,6 +28,25 @@ export const externalCardsDetails: CardDetailsMap = {
             width: "180px",
             backgroundColor: "#FFF",
         },
+    },
+};
+//TODO: Esse arquivo vai ser diferente para cada lista e pode ser melhor alterar para um array
+export const internalCardsDetails: CardDetailsMap = {
+    TOTAL_COM_DIABETES: {
+        title: "Total de pessoas com diabetes",
+        titlePosition: "top",
+    },
+    EXAME_E_CONSULTA_EM_DIA: {
+        title: "Total de pessoas com solicitação de hemoglobina glicada e consulta em dia",
+        titlePosition: "top",
+    },
+    DIAGNOSTICO_AUTORREFERIDO: {
+        title: "Total de pessoas com diagnóstico autorreferido",
+        titlePosition: "top",
+    },
+    DIAGNOSTICO_CLINICO: {
+        title: "Total de pessoas com diagnóstico clínico",
+        titlePosition: "top",
     },
 };
 
@@ -136,6 +157,7 @@ export const acfNominalListProps = (
     listName: AcfDashboardType,
     tabID: string,
     subTabID: string,
+    municipalityIdSus: string,
 ): ExtendedPanelSelectorWithCardsProps =>
 ({
     ...breadcrumb,
@@ -143,7 +165,7 @@ export const acfNominalListProps = (
     ...header,
     cards: externalCardsProps,
     listaNominalID: listName,
-
+    municipalityIdSus,
     inicialContent: {
         tabID: tabID,
         subTabID: subTabID,

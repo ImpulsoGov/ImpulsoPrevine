@@ -43,6 +43,7 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<
 > & {
     tabs: Tabs;
     listaNominalID: AcfDashboardType;
+    
 };
 
 const ErrorMessage = () => (
@@ -94,7 +95,7 @@ type PanelSelectorProps = {
     subTabID: string;
     externalCardsProps: CardProps[];
     userProfiles: ProfileIdValue[];
-    userMunicipality: string;
+    municipalityIdSus: string;
 };
 
 export const PanelSelector = ({
@@ -103,13 +104,14 @@ export const PanelSelector = ({
     subTabID,
     externalCardsProps,
     userProfiles,
-    userMunicipality
+    municipalityIdSus
 }: PanelSelectorProps) => {
     const props = acfNominalListProps(
         externalCardsProps,
         listName,
         tabID,
         subTabID,
+        municipalityIdSus,
     );
 
     const initialContent = {
@@ -127,10 +129,9 @@ export const PanelSelector = ({
 
     return (
         <PanelSelectorWithCards
-            municipality={userMunicipality}
+            municipality={municipalityIdSus}
             {...header}
             breadcrumb={breadcrumb.breadcrumb}
-            cards={externalCardsProps}
             listaNominalID={listName}
             inicialContent={initialContent}
             tabs={tabs}
