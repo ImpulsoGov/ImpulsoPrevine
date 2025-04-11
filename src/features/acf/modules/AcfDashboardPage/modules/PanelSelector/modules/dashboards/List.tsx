@@ -95,7 +95,7 @@ export const ListContainer = ({
     //     : propPrintGroupingCoapsFunction(list);
     useEffect(() => setUser(session?.user), [session?.user]);
     useEffect(
-        () => urlSearchParamsHook(searchParams, sorting, router, value),
+        () => urlSearchParamsHook(searchParams, sorting, router, value, list),
         [
             searchParams,
             router,
@@ -103,6 +103,7 @@ export const ListContainer = ({
             searchParams.toString,
             router.push,
             sorting,
+            list
         ],
     );
     useEffect(() => {

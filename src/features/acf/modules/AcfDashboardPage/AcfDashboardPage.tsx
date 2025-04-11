@@ -1,8 +1,8 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { SessionGuard } from "@/common/components/SessionGuard";
 import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
-import { PROFILE_ID } from "@/types/profile";
 import type { ProfileIdValue } from "@/types/profile";
+import { PROFILE_ID } from "@/types/profile";
 import type { Session } from "next-auth";
 import { getServerSession } from "next-auth";
 import { ErrorPage } from "./modules/ErrorPage";
@@ -18,7 +18,7 @@ export const AcfDashboardPage = async ({
     const initialTabId = resolvedSearchParams.tabID || "charts";
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = resolvedSearchParams.list as AcfDashboardType || "DIABETES";
-
+    
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile
