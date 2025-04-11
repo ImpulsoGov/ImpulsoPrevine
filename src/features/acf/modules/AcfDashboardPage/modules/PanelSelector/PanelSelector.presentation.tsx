@@ -129,7 +129,7 @@ export const PanelSelector = ({
     return (
         <PanelSelectorWithCards
             {...header}
-            municipalityIdSus={municipalityIdSus}
+            municipality={municipalityIdSus}
             breadcrumb={breadcrumb.breadcrumb}
             cards={externalCardsProps}
             listaNominalID={listName}
