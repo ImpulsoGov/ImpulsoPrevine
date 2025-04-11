@@ -142,7 +142,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         },
                         titulo: "Hipertensão",
                         descricao:
-                            "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
+                            "Cidadãos que possuem a condição e o status de consulta e aferição de pressão.",
                         height: "50%",
                         link: {
                             url: `busca-ativa/hipertensos?aba=${""}&sub_aba=${""}&visao=${visao}`,
@@ -169,7 +169,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         },
                         titulo: "Citopatológico",
                         descricao:
-                            "Mostra os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
+                            "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                         height: "50%",
                         link: {
                             url: `/busca-ativa/citopatologico?aba=${""}&sub_aba=0&visao=${visao}`,
