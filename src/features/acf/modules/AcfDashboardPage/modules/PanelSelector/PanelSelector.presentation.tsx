@@ -1,9 +1,9 @@
 "use client";
 import type {
-    CoordinatorProfile,
+    // CoordinatorProfile,
     ProfileIdValue
 } from "@/types/profile";
-import { PROFILE_ID } from "@/types/profile";
+// import { PROFILE_ID } from "@/types/profile";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type {
@@ -12,15 +12,19 @@ import type {
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
 import type { AcfDashboardType } from "../../types";
 import {
-    acfNominalListProps,
+    // acfNominalListProps,
     breadcrumb,
     header,
-    tabDefinitions,
+    // tabDefinitions,
 } from "./PanelSelector.consts";
-import { ChartsContainer } from "./modules/dashboards/Charts";
+// import { ChartsContainer } from "./modules/dashboards/Charts";
 import { ListContainer } from "./modules/dashboards/List";
-import { subTabChildrenSelector } from "./subTabChildrenSelector";
-import { tabsBuilder } from "./tabsBuilder";
+// import { subTabChildrenSelector } from "./subTabChildrenSelector";
+// import { tabsBuilder } from "./tabsBuilder";
+
+//TODO!: não remover codigos comentados, serão utilizados na implementação das proximas entregas
+
+
 
 export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     subTabsWithChildrenProps & {
@@ -46,48 +50,49 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<
     
 };
 
-const ErrorMessage = () => (
-    <p>Você não possui as permissões necessárias para acessar este conteúdo.</p>
-);
+// const ErrorMessage = () => (
+//     <p>Você não possui as permissões necessárias para acessar este conteúdo.</p>
+// );
 
 export type AcfNameListProps = {
     props: ExtendedPanelSelectorWithCardsProps;
 };
-const SubTabChildrenID = (
-    userProfiles: ProfileIdValue[],
-): Record<
-    string,
-    React.ComponentType<{ title: string; list: AcfDashboardType }>
-> => {
-    const listChildren: Record<CoordinatorProfile, React.ComponentType<{ title: string; list: AcfDashboardType }>> = {
-        [PROFILE_ID.COAPS]: ListContainer,
-        [PROFILE_ID.COEQ]: ListContainer
-    };
-    const userProfile: CoordinatorProfile | undefined = userProfiles.find(
-        (profile) =>
-            profile === PROFILE_ID.COAPS || profile === PROFILE_ID.COEQ,
-    );
-    if (!userProfile) {
-        return {
-            ChartChildID1: ErrorMessage,
-            ListChildID1: ErrorMessage,
-        };
-    }
+// const SubTabChildrenID = (
+//     userProfiles: ProfileIdValue[],
+// ): Record<
+//     string,
+//     React.ComponentType<{ title: string; list: AcfDashboardType }>
+// > => {
+//     const listChildren: Record<CoordinatorProfile, React.ComponentType<{ title: string; list: AcfDashboardType }>> = {
+//         [PROFILE_ID.COAPS]: ListContainer,
+//         [PROFILE_ID.COEQ]: ListContainer
+//     };
+//     const userProfile: CoordinatorProfile | undefined = userProfiles.find(
+//         (profile) =>
+//             profile === PROFILE_ID.COAPS || profile === PROFILE_ID.COEQ,
+//     );
+//     if (!userProfile) {
+//         return {
+//             ChartChildID1: ErrorMessage,
+//             ListChildID1: ErrorMessage,
+//         };
+//     }
 
-    return {
-        ChartChildID1: ChartsContainer,
-        ListChildID1: listChildren[userProfile]
-    };
-};
+//     return {
+//         ChartChildID1: ChartsContainer,
+//         ListChildID1: listChildren[userProfile]
+//     };
+// };
 //Essa informação vai vir do CMS
-const SubTabChildren: Record<string, string> = {
-    ChartSubTabID1: "ChartChildID1",
-    ChartSubTabID2: "ChartChildID1",
-    subTabID1: "ListChildID1",
-    subTabID2: "ListChildID1",
-    subTabID3: "ListChildID1",
-};
+// const SubTabChildren: Record<string, string> = {
+//     ChartSubTabID1: "ChartChildID1",
+//     ChartSubTabID2: "ChartChildID1",
+//     subTabID1: "ListChildID1",
+//     subTabID2: "ListChildID1",
+//     subTabID3: "ListChildID1",
+// };
 
+const contentWithoutTabs = ListContainer
 
 type PanelSelectorProps = {
     listName: AcfDashboardType;
@@ -100,32 +105,32 @@ type PanelSelectorProps = {
 
 export const PanelSelector = ({
     listName,
-    tabID,
-    subTabID,
-    externalCardsProps,
-    userProfiles,
+    // tabID,
+    // subTabID,
+    // externalCardsProps,
+    // userProfiles,
     municipalityIdSus
 }: PanelSelectorProps) => {
-    const props = acfNominalListProps(
-        externalCardsProps,
-        listName,
-        tabID,
-        subTabID,
-        municipalityIdSus,
-    );
+    // const props = acfNominalListProps(
+    //     externalCardsProps,
+    //     listName,
+    //     tabID,
+    //     subTabID,
+    //     municipalityIdSus,
+    // );
 
-    const initialContent = {
-        tabID: tabID,
-        subTabID: subTabID,
-    };
+    // const initialContent = {
+    //     tabID: tabID,
+    //     subTabID: subTabID,
+    // };
 
-    const childrenComponents = subTabChildrenSelector(
-        tabDefinitions.tabs,
-        listName,
-        SubTabChildrenID(userProfiles),
-        SubTabChildren,
-    );
-    const tabs = tabsBuilder(props, childrenComponents);
+    // const childrenComponents = subTabChildrenSelector(
+    //     tabDefinitions.tabs,
+    //     listName,
+    //     SubTabChildrenID(userProfiles),
+    //     SubTabChildren,
+    // );
+    // const tabs = tabsBuilder(props, childrenComponents);
 
     return (
         <PanelSelectorWithCards
@@ -133,8 +138,9 @@ export const PanelSelector = ({
             municipality={municipalityIdSus}
             breadcrumb={breadcrumb.breadcrumb}
             listaNominalID={listName}
-            inicialContent={initialContent}
-            tabs={tabs}
+            inicialContent={contentWithoutTabs}
+            tabs={null}
+            contentWithoutTabs={<ListContainer list={listName} />}
         />
     );
 };

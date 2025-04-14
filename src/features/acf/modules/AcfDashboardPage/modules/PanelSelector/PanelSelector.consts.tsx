@@ -152,6 +152,8 @@ export const header = {
     text: "A lista nominal de diabetes reúne os cidadãos que possuem a condição, seja por diagnóstico clínico ou autorreferido, e traz a situação da consulta e da solicitação de hemoblogina, que devem ser realizadas a cada seis meses para acompanhamento. Além disso, você encontrará também o nome profissional responsável pelo cidadão, para facilitar a organização da busca ativa. Utilize os filtros para segmentar a lista como preferir.",
 }
 
+//esse conteudo deve ser dinâmico por lista
+
 export const acfNominalListProps = (
     externalCardsProps: CardProps[],
     listName: AcfDashboardType,

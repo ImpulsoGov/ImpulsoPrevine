@@ -40,7 +40,7 @@ import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListContainerProps = {
     list: AcfDashboardType;
-    title: string;
+    // title: string;
 };
 export type PrintStatesType= {
     value: FilterItem;
@@ -50,7 +50,7 @@ export type PrintStatesType= {
 }
 
 export const ListContainer = ({
-    title,
+    // title,
     list,
 }: ListContainerProps) => {
     const { data: session } = useSession();
@@ -187,9 +187,10 @@ export const ListContainer = ({
                     flexDirection: "column",
                     gap: "35px",
                     padding: "0px 0px 150px 0px",
+                    marginTop: "75px",
                 }}
             >
-                <p
+                {/* <p
                     style={{
                         fontSize: "26px",
                         margin: "75px 0 15px 0",
@@ -197,7 +198,7 @@ export const ListContainer = ({
                     }}
                 >
                     {title}
-                </p>
+                </p> */}
                 {cards && <CardGrid cards={cards} />}
                 {/* <div style={{ marginTop: "15px" }}>
                     <ToolBarMounted
