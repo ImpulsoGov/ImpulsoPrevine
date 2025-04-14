@@ -5,31 +5,38 @@ import {
 import type { GridColDef } from "@mui/x-data-grid";
 import { iconDetailsMap } from "./iconDetailsMap";
 
-export const columns: GridColDef[] = [
+export const diabetesColumns: GridColDef[] = [
     {
-        field: "nome",
+        field: "patientName",
         headerName: "Nome",
         width: 260,
         headerAlign: "left",
         align: "left",
     },
     {
-        field: "cpf",
-        headerName: "CPF",
+        field: "patientCpfOrBirthday",
+        headerName: "CPF/Data de nascimento",
         width: 180,
         headerAlign: "left",
         align: "left",
     },
     {
-        field: "identificacao_condicao",
-        headerName: "Identificação da Condição",
+        field: "conditionIndentifiedBy",
+        headerName: "Tipo de diagnóstico",
         width: 180,
         headerAlign: "left",
         align: "left",
     },
     {
-        field: "dt_consulta_mais_recente",
-        headerName: "Data da consulta mais recente",
+        field: "patientAge",
+        headerName: "Idade (ano)",
+        width: 180,
+        headerAlign: "left",
+        align: "left",
+    },
+    {
+        field: "mostRecentAppointmentDate",
+        headerName: "Data da última consulta",
         width: 180,
         headerAlign: "left",
         align: "left",
@@ -38,7 +45,7 @@ export const columns: GridColDef[] = [
         },
     },
     {
-        field: "prazo_proxima_consulta",
+        field: "nextAppointmentDueDate",
         headerName: "Prazo para próxima consulta",
         width: 180,
         headerAlign: "left",
@@ -48,8 +55,8 @@ export const columns: GridColDef[] = [
         },
     },
     {
-        field: "dt_afericao_pressao_mais_recente",
-        headerName: "Data de aferição de PA mais recente",
+        field: "latestExamRequestDate",
+        headerName: "Data da última solicitação de hemoglobina glicada",
         width: 200,
         headerAlign: "left",
         align: "left",
@@ -58,8 +65,8 @@ export const columns: GridColDef[] = [
         },
     },
     {
-        field: "prazo_proxima_afericao_pa",
-        headerName: "Prazo para próx. aferição de PA",
+        field: "hemoglobinTestDueDate",
+        headerName: "Prazo p/ próxima solicitação de hemoglobina glicada",
         width: 200,
         headerAlign: "left",
         align: "left",
@@ -68,16 +75,9 @@ export const columns: GridColDef[] = [
         },
     },
     {
-        field: "acs_nome_cadastro",
-        headerName: "ACS responsável",
+        field: "visitantCommunityHealthWorker",
+        headerName: "Profissional responsável",
         width: 250,
-        headerAlign: "left",
-        align: "left",
-    },
-    {
-        field: "status",
-        headerName: "Status",
-        width: 150,
         headerAlign: "left",
         align: "left",
     },

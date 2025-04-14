@@ -1,6 +1,6 @@
 
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import type { FilterItem, ListDataResponse } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
     CardGrid,
@@ -29,11 +29,8 @@ import {
     handleSortModelChangeFunction,
 } from "./modules/sorting/handleSortModelChange";
 import { EmptyTableMessage } from "./modules/table/modules/EmptyTableMessage";
-import { columns } from "./modules/table/modules/diabetes/columns";
-import {
-    type ListData,
-    getListDataResponse,
-} from "./modules/table/modules/diabetes/getListData";
+import { diabetesColumns } from "./modules/table/modules/diabetes/columns";
+import { getListDataResponse } from "./modules/table/modules/diabetes/getListData";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
@@ -63,11 +60,11 @@ export const ListContainer = ({
     const filters = filtersBuilder(session?.user);
     const initialFilters = initialFiltersBuilder(searchParams, filters);
     const [value, _setValue] = useState<FilterItem>(initialFilters);
-    const [response, setResponse] = useState<ListData>({
+    const [response, setResponse] = useState<ListDataResponse>({
         data: [],
         totalRows: 0,
     });
-    const [tableData, setTableData] = useState<ListData>({
+    const [tableData, setTableData] = useState<ListDataResponse>({
         data: [],
         totalRows: 0,
     });
@@ -82,7 +79,7 @@ export const ListContainer = ({
     const [cards, setCards] = useState<CardProps[]>([]);
 
     // const [inputValue, setInputValue] = useState<string>("");
-    const [search, _setSearch] = useState<string>("");
+    // const [search, _setSearch] = useState<string>("");
     // const handleSearchClick = () => setSearch(inputValue);
     // const [printStates, setPrintStates] = useState<PrintStatesType>({
     //     value,
@@ -111,19 +108,19 @@ export const ListContainer = ({
     }, [session?.user]);
 
     useEffect(() => {
-        if (user)
+        if (user && list)
             getListDataResponse(
                 user,
                 setResponse,
                 setIsLoading,
                 setErrorMessage,
                 list,
-                sorting,
-                value,
-                pagination,
-                search,
+                // sorting,
+                // value,
+                // pagination,
+                // search,
             );
-    }, [user, value, list, pagination, sorting, search]);
+    }, [user, list]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
@@ -221,7 +218,7 @@ export const ListContainer = ({
                 <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} />
                 {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
                 <Table
-                    columns={columns}
+                    columns={diabetesColumns}
                     data={tableData.data}
                     rowHeight={60}
                     paginationMode="server"
