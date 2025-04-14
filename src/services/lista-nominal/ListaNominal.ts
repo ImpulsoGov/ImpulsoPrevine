@@ -1,8 +1,8 @@
+import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/DiabetesAcfItem.model";
+import type { GridSortDirection } from "@mui/x-data-grid";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
-import type { GridSortDirection } from "@mui/x-data-grid";
 
-// TODO: Avaliar se podemos deletar este arquivo
 export interface SortingItem {
     sortField: string;
     sortOrder: GridSortDirection;
@@ -87,8 +87,6 @@ export const buildUrlWithParams = (
     return url;
 };
 
-//TODO: Avaliar se vamos precisar disso no futuro
-
 export type GetListDataProps = {
     token: string;
     listName: string;
@@ -99,36 +97,35 @@ export type GetListDataProps = {
 };
 
 export type ListDataResponse = {
-    data: Record<string, string | number | Date>[];
+    data: DiabetesAcfItem[];
     totalRows: number;
 };
 
-//TODO: Avaliar se vamos usar esta função em algum momento
 export const getListData = async ({
     token,
     listName,
-    sorting,
-    filters,
-    pagination,
-    search,
+    // sorting,
+    // filters,
+    // pagination,
+    // search,
 }: GetListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     if (!listName) throw new Error("Tipo de lista é obrigatório");
 
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal`;
-    const urlWithParams = buildUrlWithParams(url, {
-        sorting,
-        filters,
-        listName,
-        pagination,
-        search,
-    });
+    const url = `${currentURL.origin}/api/lista-nominal/${listName}`;
+    // const urlWithParams = buildUrlWithParams(url, {
+    //     sorting,
+    //     filters,
+    //     listName,
+    //     pagination,
+    //     search,
+    // });
 
     return axios.request({
         method: "get",
         maxBodyLength: Number.POSITIVE_INFINITY,
-        url: urlWithParams,
+        url,
         headers: {
             authorization: `Bearer ${token}`,
         },

@@ -4,7 +4,7 @@ import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquip
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { filtersLabels } from "../filters/filtersLabels";
-import { columns } from "../table/modules/diabetes/columns";
+import { diabetesColumns } from "../table/modules/diabetes/columns";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 
 export const buildPrintProps = (
@@ -15,7 +15,7 @@ export const buildPrintProps = (
 ): PrintTableProps => {
   const props: PrintTableProps = {
     data: tableData,
-    columns: columns,
+    columns: diabetesColumns,
     list: list,
     appliedFilters: value,
     latestProductionDate: String(tableData[0].mostRecentProductionRecordDate),
