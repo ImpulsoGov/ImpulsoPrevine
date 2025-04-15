@@ -7,18 +7,13 @@ export type IconDetails = {
 export type TagIconDetailsMap = Record<string, IconDetails>;
 
 export const renderDateTagCell = (
-    value: string | null,
     iconDetailsMap: TagIconDetailsMap,
 ) => (
-    <>
-        {value ?? (
-            <TableTag
-                theme="pending"
-                text="Não realizada"
-                icon={iconDetailsMap["pending"]}
-            />
-        )}
-    </>
+    <TableTag
+        theme="pending"
+        text="Não realizada"
+        icon={iconDetailsMap["pending"]}
+    />
 );
 
 export const renderStatusTagCell = (

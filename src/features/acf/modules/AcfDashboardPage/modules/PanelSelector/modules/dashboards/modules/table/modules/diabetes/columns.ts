@@ -1,53 +1,57 @@
 import {
-    renderDateTagCell,
     renderStatusTagCell,
 } from "@/helpers/lista-nominal/renderCell";
 import type { GridColDef } from "@mui/x-data-grid";
+import { cpfOrBirthdayFormatter } from "./cpfOrBirthdayFormatter";
+import { dateRenderCell } from "./dateFormatter";
 import { iconDetailsMap } from "./iconDetailsMap";
 
 export const diabetesColumns: GridColDef[] = [
     {
         field: "patientName",
         headerName: "Nome",
-        width: 260,
+        width: 240,
         headerAlign: "left",
         align: "left",
     },
     {
         field: "patientCpfOrBirthday",
         headerName: "CPF/Data de nascimento",
-        width: 180,
+        width: 150,
         headerAlign: "left",
         align: "left",
+        renderCell({ value }) {
+            return cpfOrBirthdayFormatter(value);
+        },
     },
     {
         field: "conditionIndentifiedBy",
         headerName: "Tipo de diagnóstico",
-        width: 180,
+        width: 160,
         headerAlign: "left",
         align: "left",
     },
     {
         field: "patientAge",
         headerName: "Idade (ano)",
-        width: 180,
+        width: 112,
         headerAlign: "left",
         align: "left",
     },
     {
         field: "mostRecentAppointmentDate",
         headerName: "Data da última consulta",
-        width: 180,
+        width: 164,
         headerAlign: "left",
         align: "left",
         renderCell({ value }) {
-            return renderDateTagCell(value, iconDetailsMap);
+            return dateRenderCell(value);
         },
     },
     {
         field: "nextAppointmentDueDate",
-        headerName: "Prazo para próxima consulta",
-        width: 180,
+        headerName: "Prazo p/ próxima consulta",
+        width: 181,
         headerAlign: "left",
         align: "left",
         renderCell({ value }) {
@@ -57,17 +61,17 @@ export const diabetesColumns: GridColDef[] = [
     {
         field: "latestExamRequestDate",
         headerName: "Data da última solicitação de hemoglobina glicada",
-        width: 200,
+        width: 205,
         headerAlign: "left",
         align: "left",
         renderCell({ value }) {
-            return renderDateTagCell(value, iconDetailsMap);
+            return dateRenderCell(value);
         },
     },
     {
         field: "hemoglobinTestDueDate",
         headerName: "Prazo p/ próxima solicitação de hemoglobina glicada",
-        width: 200,
+        width: 196,
         headerAlign: "left",
         align: "left",
         renderCell({ value }) {
@@ -77,7 +81,7 @@ export const diabetesColumns: GridColDef[] = [
     {
         field: "visitantCommunityHealthWorker",
         headerName: "Profissional responsável",
-        width: 250,
+        width: 230,
         headerAlign: "left",
         align: "left",
     },
