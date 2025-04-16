@@ -1,4 +1,5 @@
-import { birthdayFormatter, cpfFormatter, cpfOrBirthdayFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/cpfOrBirthdayFormatter';
+import { cpfFormatter, cpfOrBirthdayFormatter } from "@/common/cpfOrBirthday";
+import { birthdayFormatter } from "@/common/time";
 
 describe('cpfFormatter', () => {
   it('formata corretamente um CPF com 11 dígitos', () => {
