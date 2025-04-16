@@ -1,10 +1,11 @@
 import { formatDate } from "@/common/time";
-import { renderDateTagCell } from "@/helpers/lista-nominal/renderCell";
-import { iconDetailsMap } from "./iconDetailsMap";
+import { RenderDateTagCell } from "@/helpers/lista-nominal/renderCell";
 
-//TODO: escrever teste unitario
-export const dateRenderCell = (value: string | null): React.ReactNode => {
+export const DateRenderCell = ({ value }: { value: string | null })=> {
     if (!value)
-        return <div data-testid="tag">{renderDateTagCell(iconDetailsMap)}</div>;
+        return <div data-testid="tag">
+            <RenderDateTagCell/>
+        </div>;
+    if (Number.isNaN(new Date(value.slice(0, 10))).valueOf()) null;
     return <div>{formatDate(new Date(value.slice(0, 10)))}</div>;
 }

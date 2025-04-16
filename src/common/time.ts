@@ -1,12 +1,58 @@
-//TODO: criar tipo da string de saida que verifica formato
-//TODO criar teste unitario
-export const formatDate = (date: Date): string => {
-    if (Number.isNaN(date.valueOf())) return "";
+type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 
-    const day = date.getUTCDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString().slice(2);
-    return `${day}/${month}/${year.slice(-2)}`;
+//Dia de 01 a 31
+type DayType =
+  // 01–09
+  | `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
+  // 10–19
+  | `1${Digit}`
+  // 20–29
+  | `2${Digit}`
+  // 30–31
+  | `3${'0'|'1'}`;
+
+  type MonthType =
+  // 01–09
+  | `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
+  // 10–12
+  | `1${'0'|'1'|'2'}`;
+
+
+type YearType = `${Digit}${Digit}`;
+
+export type DateString =
+  `${DayType}/${MonthType}/${YearType}`;
+
+// ——— Type Guards ———
+const isDayType = (s: string): boolean => /^(0[1-9]|[12]\d|3[01])$/.test(s)
+const isMonthType = (s: string): boolean => /^(0[1-9]|1[0-2])$/.test(s);
+const isYearType = (s: string): boolean => /^\d{2}$/.test(s);
+const isDateStringValid = (
+    day: string,
+    month: string,
+    year: string
+): boolean=> {
+    if (!isDayType(day)) {
+        throw new Error(`Dia inválido: ${day}`);
+    }
+    if (!isMonthType(month)) {
+        throw new Error(`Mês inválido: ${month}`);
+    }
+    if (!isYearType(year)) {
+        throw new Error(`Ano inválido: ${year}`);
+    }
+    return true;
+}
+
+export const formatDate = (date: Date): DateString => {
+    const dayString = date.getUTCDate().toString().padStart(2, "0") as DayType;
+    const monthString = (date.getMonth() + 1).toString().padStart(2, "0") as MonthType;
+    const yearString = date.getFullYear().toString().slice(2) as YearType;
+    if (!isDateStringValid(dayString, monthString, yearString)) {
+        throw new Error(`Data inválida: ${dayString}/${monthString}/${yearString}`);
+    }
+    const dateString: DateString = `${dayString}/${monthString}/${yearString}`
+    return dateString;
 }
 
 //essa funcao esta considerando a data no formato yyyy-mm-dd

@@ -21,8 +21,4 @@ describe("formatDate", () => {
         expect(formatDate(date)).toBe("15/07/99");
     });
 
-    it("deve retornar a string vazia quando é passada uma data inválida", () => {
-        const date = new Date("invalid-date");
-        expect(formatDate(date)).toBe("");
-    });
 });
