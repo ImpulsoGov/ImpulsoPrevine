@@ -1,4 +1,4 @@
-import { cpfFormatter, cpfOrBirthdayFormatter } from "@/common/cpfOrBirthday";
+import { cpfFormatter, cpfOrBirthdayFormatter } from "@/common/cpfOrBirthday.formatter";
 import { birthdayFormatter } from "@/common/time";
 
 describe('cpfFormatter', () => {

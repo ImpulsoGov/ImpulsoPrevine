@@ -1,10 +1,8 @@
-import { cpfOrBirthdayFormatter } from "@/common/cpfOrBirthday";
-import {
-    renderStatusTagCell,
-} from "@/helpers/lista-nominal/renderCell";
+
+import { CpfOrBirthdayFormatter } from "@/common/cpfOrBirthday.formatter";
+import { RenderStatusTagCell } from "@/helpers/lista-nominal/renderCell";
 import type { GridColDef } from "@mui/x-data-grid";
-import { dateRenderCell } from "./columns.formatter";
-import { iconDetailsMap } from "./iconDetailsMap";
+import { DateRenderCell } from "./columns.formatter";
 //TODO investigar como a conversao para string no dataGrid
 
 export const diabetesColumns: GridColDef[] = [
@@ -21,10 +19,8 @@ export const diabetesColumns: GridColDef[] = [
         width: 150,
         headerAlign: "left",
         align: "left",
-        renderCell({ value }) {
-            return cpfOrBirthdayFormatter(value);
-        },
-    },
+        renderCell: CpfOrBirthdayFormatter
+     },
     {
         field: "conditionIndentifiedBy",
         headerName: "Tipo de diagnóstico",
@@ -45,9 +41,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 164,
         headerAlign: "left",
         align: "left",
-        renderCell({ value }) {
-            return dateRenderCell(value);
-        },
+        renderCell: DateRenderCell
     },
     {
         field: "nextAppointmentDueDate",
@@ -55,9 +49,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 181,
         headerAlign: "left",
         align: "left",
-        renderCell({ value }) {
-            return renderStatusTagCell(value, iconDetailsMap);
-        },
+        renderCell: RenderStatusTagCell
     },
     {
         field: "latestExamRequestDate",
@@ -65,9 +57,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 205,
         headerAlign: "left",
         align: "left",
-        renderCell({ value }) {
-            return dateRenderCell(value);
-        },
+        renderCell: DateRenderCell
     },
     {
         field: "hemoglobinTestDueDate",
@@ -75,9 +65,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 196,
         headerAlign: "left",
         align: "left",
-        renderCell({ value }) {
-            return renderStatusTagCell(value, iconDetailsMap);
-        },
+        renderCell: RenderStatusTagCell
     },
     {
         field: "visitantCommunityHealthWorker",

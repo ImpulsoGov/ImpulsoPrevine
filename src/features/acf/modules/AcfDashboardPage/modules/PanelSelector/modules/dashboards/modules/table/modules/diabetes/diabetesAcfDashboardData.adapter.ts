@@ -1,10 +1,12 @@
+import { isDate, stringToDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
-import { isDate, stringToDate } from '@/common/time';
-import { cpf } from "cpf-cnpj-validator";
 
 //essa funcao esta considerando que o cpf é uma string de 11 digitos e não contem o caractere '-' para diferenciar da data de nascimento    
-const isCpf = (possibleCpfString: string): boolean => cpf.isValid(possibleCpfString) && !possibleCpfString.includes("-")
+
+//comentamos a validação do CPF pois os cpf's do demo não são cpf's válidos
+// const isCpf = (possibleCpfString: string): boolean => cpf.isValid(possibleCpfString) && !possibleCpfString.includes("-")
+const isCpf = (possibleCpfString: string): boolean => possibleCpfString.length === 11 && !possibleCpfString.includes("-")
 
 const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string | null): Date | string | null => {
     if (!patientCpfOrBirthdayString) return null
