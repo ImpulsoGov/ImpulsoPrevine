@@ -9,6 +9,9 @@ export const diabetesAcfDashboardDataRepository = async(
         where: {
             municipio_id_sus: municipalitySusID,
             equipe_ine_cadastro: teamIne
+        },
+        orderBy: {
+            cidadao_nome: "asc"
         }
     })
 }

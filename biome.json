@@ -22,7 +22,6 @@
         "rules": {
             "recommended": true,
             "suspicious": {
-                "noConsoleLog": "warn",
                 "noExplicitAny": "warn",
                 "noPrototypeBuiltins": "error"
             },
