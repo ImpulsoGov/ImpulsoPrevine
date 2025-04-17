@@ -1,17 +1,18 @@
 import { isDate, stringToDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
+import { isCpfPatientNotBirthday } from './modules/isCpfPatientNotBirthday';
 
-//essa funcao esta considerando que o cpf é uma string de 11 digitos e não contem o caractere '-' para diferenciar da data de nascimento    
-
-//comentamos a validação do CPF pois os cpf's do demo não são cpf's válidos
-// const isCpf = (possibleCpfString: string): boolean => cpf.isValid(possibleCpfString) && !possibleCpfString.includes("-")
-const isCpf = (possibleCpfString: string): boolean => possibleCpfString.length === 11 && !possibleCpfString.includes("-")
-
-const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string | null): Date | string | null => {
+export const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string | null): Date | string | null => {
     if (!patientCpfOrBirthdayString) return null
-    if (isCpf(patientCpfOrBirthdayString)) return patientCpfOrBirthdayString 
-    if (isDate(patientCpfOrBirthdayString)) return stringToDate(patientCpfOrBirthdayString)
+    if (isCpfPatientNotBirthday(patientCpfOrBirthdayString)) return patientCpfOrBirthdayString 
+    try {
+        const isBirthday = isDate(patientCpfOrBirthdayString)
+        if (isBirthday) return stringToDate(patientCpfOrBirthdayString)
+    } catch (error) {
+        console.error("Erro ao converter a data de nascimento:", error)
+        return null
+    }
     return null
 }
 

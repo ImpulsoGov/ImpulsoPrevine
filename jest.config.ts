@@ -110,6 +110,7 @@ const config: Config = {
         "^@data/(.*)$": "<rootDir>/src/data/$1",
         "^@app/(.*)$": "<rootDir>/src/app/$1",
         "^@features/(.*)$": "<rootDir>/src/features/$1",
+        "^common/(.*)$": "<rootDir>/src/common/$1",
     },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
