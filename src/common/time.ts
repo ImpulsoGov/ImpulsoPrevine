@@ -11,17 +11,20 @@ type DayType =
   // 30–31
   | `3${'0'|'1'}`;
 
-  type MonthType =
-  // 01–09
-  | `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
-  // 10–12
-  | `1${'0'|'1'|'2'}`;
-
+type MonthType =
+// 01–09
+| `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
+// 10–12
+| `1${'0'|'1'|'2'}`;
 
 type YearType = `${Digit}${Digit}`;
 
+type YearFourDigitsType = `${"19" | "20"}${Digit}${Digit}`;
+
 export type DateString =
   `${DayType}/${MonthType}/${YearType}`;
+
+export type DateStringISOWithoutTimeStampType = `${YearFourDigitsType}-${MonthType}-${DayType}`;
 
 // ——— Type Guards ———
 const isDayType = (s: string): boolean => /^(0[1-9]|[12]\d|3[01])$/.test(s)
@@ -55,8 +58,15 @@ export const formatDate = (date: Date): DateString => {
     return dateString;
 }
 
-//essa funcao esta considerando a data no formato yyyy-mm-dd
-export const isDate = (date: string): boolean => date.length === 10 && date.includes("-")
+
+const isDateIsoWithoutTimestampType = (date : string)=>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(date);
+
+export const isDate = (date: string): boolean => {
+    if(!isDateIsoWithoutTimestampType(date)) {
+        throw new Error(`Data fora do formato ISO sem timestamp: ${date}`);
+    }
+    return date.length === 10 && date.includes("-")
+}
 
 export const stringToDate = (date: string): Date => new Date(date);
 
