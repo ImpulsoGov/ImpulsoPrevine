@@ -1,9 +1,10 @@
 type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+type NonZeroDigit = Exclude<Digit, '0'>
 
 //Dia de 01 a 31
 type DayType =
   // 01–09
-  | `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
+  | `0${NonZeroDigit}`
   // 10–19
   | `1${Digit}`
   // 20–29
@@ -13,7 +14,7 @@ type DayType =
 
 type MonthType =
 // 01–09
-| `0${'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'}`
+| `0${NonZeroDigit}`
 // 10–12
 | `1${'0'|'1'|'2'}`;
 
@@ -26,34 +27,15 @@ export type DateString =
 
 export type DateStringISOWithoutTimeStampType = `${YearFourDigitsType}-${MonthType}-${DayType}`;
 
-// ——— Type Guards ———
-const isDayType = (s: string): boolean => /^(0[1-9]|[12]\d|3[01])$/.test(s)
-const isMonthType = (s: string): boolean => /^(0[1-9]|1[0-2])$/.test(s);
-const isYearType = (s: string): boolean => /^\d{2}$/.test(s);
-const isDateStringValid = (
-    day: string,
-    month: string,
-    year: string
-): boolean=> {
-    if (!isDayType(day)) {
-        throw new Error(`Dia inválido: ${day}`);
-    }
-    if (!isMonthType(month)) {
-        throw new Error(`Mês inválido: ${month}`);
-    }
-    if (!isYearType(year)) {
-        throw new Error(`Ano inválido: ${year}`);
-    }
-    return true;
-}
+const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime())
 
-export const formatDate = (date: Date): DateString => {
+export const formatDate = (date: Date): DateString | null => {
+    if (!isDateValid(date)) return null;
+
     const dayString = date.getUTCDate().toString().padStart(2, "0") as DayType;
-    const monthString = (date.getMonth() + 1).toString().padStart(2, "0") as MonthType;
-    const yearString = date.getFullYear().toString().slice(2) as YearType;
-    if (!isDateStringValid(dayString, monthString, yearString)) {
-        throw new Error(`Data inválida: ${dayString}/${monthString}/${yearString}`);
-    }
+    // O mês é 0-indexado, então adicionamos 1
+    const monthString = (date.getUTCMonth() + 1).toString().padStart(2, "0") as MonthType;
+    const yearString = date.getUTCFullYear().toString().slice(2) as YearType;
     const dateString: DateString = `${dayString}/${monthString}/${yearString}`
     return dateString;
 }

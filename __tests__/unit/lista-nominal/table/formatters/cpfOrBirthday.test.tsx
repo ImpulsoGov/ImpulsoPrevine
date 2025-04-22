@@ -1,4 +1,4 @@
-import { CpfOrBirthdayFormatter, cpfFormatter} from "@/common/cpfOrBirthday.formatter";
+import { CpfOrBirthdayFormatter, cpfFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/cpfOrBirthday.formatter';
 import { render, screen } from '@testing-library/react';
 
 describe('cpfFormatter', () => {

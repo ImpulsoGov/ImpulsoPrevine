@@ -21,6 +21,10 @@ describe("formatDate", () => {
         expect(formatDate(date)).toBe("15/07/99");
     });
 
+    it("deve retornar null ao receber uma data inválida", () => {
+      const date = new Date("abc");
+      expect(formatDate(date)).toBeNull();
+  });
 });
 
 describe('birthdayFormatter', () => {
