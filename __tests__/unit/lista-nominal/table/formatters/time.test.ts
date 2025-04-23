@@ -1,4 +1,4 @@
-import { formatDate, isDate, stringToDate } from "@/common/time";
+import { formatDate, isDate, parseDate } from "@/common/time";
 
 describe("formatDate", () => {
     it("deve formatar uma data corretamente no formato dd/mm/aa", () => {
@@ -30,40 +30,40 @@ describe("formatDate", () => {
 describe('isDate', () => {
   it('deve retornar true para strings de tamanho 10 que contenham "-"', () => {
     expect(isDate('2025-04-17')).toBe(true);
-    expect(()=>isDate('1234-56-78')).toThrow();
+    expect(isDate('1234-56-78')).toBe(false);
   });
 
   it('deve retornar false para strings com menos de 10 caracteres', () => {
-    expect(()=>isDate('2025-4-17')).toThrow();
-    expect(()=>isDate('')).toThrow();
+    expect(isDate('2025-4-17')).toBe(false);
+    expect(isDate('')).toBe(false);
   });
 
   it('deve retornar false para strings com mais de 10 caracteres', () => {
-    expect(()=>isDate('2025-04-170')).toThrow()
+    expect(isDate('2025-04-170')).toBe(false)
   });
 
   it('deve retornar false para strings de tamanho 10 sem "-"', () => {
-    expect(()=>isDate('2025041701')).toThrow();
-    expect(()=>isDate('abcdefghij')).toThrow();
+    expect(isDate('2025041701')).toBe(false);
+    expect(isDate('abcdefghij')).toBe(false);
   });
 });
 
-describe('stringToDate', () => {
+describe('parseDate', () => {
   it('deve converter uma ISO string válida em um objeto Date correto', () => {
     const isoString = '2025-04-17';
-    const result = stringToDate(isoString);
+    const result = parseDate(isoString);
     expect(result).toBeInstanceOf(Date);
     expect(result.getTime()).toBe(new Date(isoString).getTime());
   });
 
   it('deve retornar "Invalid Date" (getTime() = NaN) para uma string não-data qualquer', () => {
-    const invalid = stringToDate('isso-não-é-uma-data');
+    const invalid = parseDate('isso-não-é-uma-data');
     expect(invalid).toBeInstanceOf(Date);
     expect(invalid.getTime()).toBeNaN();
   });
 
   it('deve retornar "Invalid Date" para string vazia', () => {
-    const empty = stringToDate('');
+    const empty = parseDate('');
     expect(empty.getTime()).toBeNaN();
   });
 });

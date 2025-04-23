@@ -1,11 +1,11 @@
-import { isDate, stringToDate } from '@/common/time'
+import { isDate, parseDate } from '@/common/time'
 import { patientCpfOrBirthdayAdapter  } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.adapter";
 import { isCpfPatientNotBirthday } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/isCpfPatientNotBirthday';
 
 jest.mock('@/common/time', () => ({
   __esModule: true,
   isDate: jest.fn(),
-  stringToDate: jest.fn(),
+  parseDate: jest.fn(),
 }))
 
 jest.mock('@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/isCpfPatientNotBirthday', () => ({
@@ -39,11 +39,11 @@ describe('patientCpfOrBirthdayAdapter', () => {
         (isDate as jest.Mock).mockReturnValue(true);
         const input = '1985-12-17';
         const fakeDate: Date = new Date(input);
-        (stringToDate as jest.Mock).mockReturnValue(fakeDate);
+        (parseDate as jest.Mock).mockReturnValue(fakeDate);
 
         const result = patientCpfOrBirthdayAdapter(input);
         expect(isDate).toHaveBeenCalledWith(input);
-        expect(stringToDate).toHaveBeenCalledWith(input);
+        expect(parseDate).toHaveBeenCalledWith(input);
         expect(result).toBe(fakeDate);
     })
 

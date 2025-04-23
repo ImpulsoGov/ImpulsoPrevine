@@ -41,17 +41,10 @@ export const formatDate = (date: Date): DateString | null => {
     return result;
 }
 
-
-const isFormattedAsIsoWithoutTimestamp = (date : string)=>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(date);
-
 //TODO: escrever testes
 export const isDate = (date: string): boolean => {
-  //TODO: mudar pra expressão booleana
-    if(!isFormattedAsIsoWithoutTimestamp(date)) {
-      return false;
-    }
-    return date.length === 10 && date.includes("-")
-}
+    return isDateValid(parseDate(date));
+};
 
 //TODO: Rename to parseDate
-export const stringToDate = (date: string): Date => new Date(date);
+export const parseDate = (date: string): Date => new Date(date);

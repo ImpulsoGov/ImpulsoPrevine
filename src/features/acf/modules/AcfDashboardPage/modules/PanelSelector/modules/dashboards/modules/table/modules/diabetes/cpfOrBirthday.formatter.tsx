@@ -1,4 +1,4 @@
-import { stringToDate, formatDate } from "@/common/time";
+import { parseDate, formatDate } from "@/common/time";
 
 export const cpfFormatter = (value: string) : string => value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 
@@ -10,7 +10,7 @@ export const CpfOrBirthdayFormatter = ({ value }: { value: string | null }) => {
     if (value.length > 11)
         return (
             <div data-testid="birthday-return">
-                {formatDate(stringToDate(value))}
+                {formatDate(parseDate(value))}
             </div>
         );
     return <div data-testid="fallback-return">{value}</div>;

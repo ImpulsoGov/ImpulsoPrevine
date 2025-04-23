@@ -1,4 +1,4 @@
-import { isDate, stringToDate } from '@/common/time';
+import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
 import { isCpfPatientNotBirthday } from './modules/isCpfPatientNotBirthday';
@@ -8,7 +8,7 @@ export const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string 
     if (isCpfPatientNotBirthday(patientCpfOrBirthdayString)) return patientCpfOrBirthdayString 
     try {
         const isBirthday = isDate(patientCpfOrBirthdayString)
-        if (isBirthday) return stringToDate(patientCpfOrBirthdayString)
+        if (isBirthday) return parseDate(patientCpfOrBirthdayString)
     } catch (error) {
 //TODO: isso deveria logar erro no console mesmo?
         console.error("Erro ao converter a data de nascimento:", error)
