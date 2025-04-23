@@ -29,12 +29,16 @@ export type ISODateString = `${FourDigitYear}-${Month}-${Day}`;
 
 const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime())
 
+/**
+ * Formata uma data qualquer para "dd/MM/yyyy"
+ * @param date - Data a ser formatada
+ * @returns DateString se isDateValid(date) === true, ou null em caso contrário
+ */
 export const formatDate = (date: Date): DateString | null => {
-  //TODO: Retornar algo que descreve o erro, ou fazer throw
     if (!isDateValid(date)) return null;
 
     const day = date.getUTCDate().toString().padStart(2, "0") as Day;
-    // O mês é 0-indexado, então adicionamos 1
+    // O mês é 0-indexado, por isso adicionamos 1
     const month = (date.getUTCMonth() + 1).toString().padStart(2, "0") as Month;
     const year = date.getUTCFullYear().toString().slice(2) as Year;
     const result: DateString = `${day}/${month}/${year}`
@@ -43,8 +47,6 @@ export const formatDate = (date: Date): DateString | null => {
 
 export const parseDate = (date: string): Date => new Date(date);
 
-//TODO: escrever testes
-//TODO: Essa função realmente precisa existir, ou podemos fazer um inline dela?
 export const isDate = (date: string): boolean => {
     return isDateValid(parseDate(date));
 };
