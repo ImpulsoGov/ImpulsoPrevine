@@ -1,4 +1,4 @@
-import { birthdayFormatter, formatDate, isDate, stringToDate } from "@/common/time";
+import { formatDate, isDate, stringToDate } from "@/common/time";
 
 describe("formatDate", () => {
     it("deve formatar uma data corretamente no formato dd/mm/aa", () => {
@@ -21,17 +21,10 @@ describe("formatDate", () => {
         expect(formatDate(date)).toBe("15/07/99");
     });
 
-    it("deve retornar null ao receber uma data inválida", () => {
+    it("deve retornar null ao receber uma string que não é uma data", () => {
       const date = new Date("abc");
       expect(formatDate(date)).toBeNull();
   });
-});
-
-describe('birthdayFormatter', () => {
-    it('formata uma data com timestamp completo corretamente', () => {
-      const date = '2023-01-18T00:00:00.000Z';
-      expect(birthdayFormatter(date)).toBe('18/01/23');
-    });
 });
 
 describe('isDate', () => {

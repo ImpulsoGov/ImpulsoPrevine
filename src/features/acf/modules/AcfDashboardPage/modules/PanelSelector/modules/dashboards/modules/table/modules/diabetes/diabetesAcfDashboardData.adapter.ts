@@ -10,6 +10,7 @@ export const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string 
         const isBirthday = isDate(patientCpfOrBirthdayString)
         if (isBirthday) return stringToDate(patientCpfOrBirthdayString)
     } catch (error) {
+//TODO: isso deveria logar erro no console mesmo?
         console.error("Erro ao converter a data de nascimento:", error)
         return null
     }

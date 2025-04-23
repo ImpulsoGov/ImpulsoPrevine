@@ -2,7 +2,7 @@ type Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 type NonZeroDigit = Exclude<Digit, '0'>
 
 //Dia de 01 a 31
-type DayType =
+type Day =
   // 01–09
   | `0${NonZeroDigit}`
   // 10–19
@@ -12,47 +12,46 @@ type DayType =
   // 30–31
   | `3${'0'|'1'}`;
 
-type MonthType =
+type Month =
 // 01–09
 | `0${NonZeroDigit}`
 // 10–12
 | `1${'0'|'1'|'2'}`;
 
-type YearType = `${Digit}${Digit}`;
+type Year = `${Digit}${Digit}`;
 
-type YearFourDigitsType = `${"19" | "20"}${Digit}${Digit}`;
+type FourDigitYear = `${"19" | "20"}${Digit}${Digit}`;
 
 export type DateString =
-  `${DayType}/${MonthType}/${YearType}`;
+  `${Day}/${Month}/${Year}`;
 
-export type DateStringISOWithoutTimeStampType = `${YearFourDigitsType}-${MonthType}-${DayType}`;
+export type ISODateString = `${FourDigitYear}-${Month}-${Day}`;
 
 const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime())
 
 export const formatDate = (date: Date): DateString | null => {
+  //TODO: Retornar algo que descreve o erro, ou fazer throw
     if (!isDateValid(date)) return null;
 
-    const dayString = date.getUTCDate().toString().padStart(2, "0") as DayType;
+    const day = date.getUTCDate().toString().padStart(2, "0") as Day;
     // O mês é 0-indexado, então adicionamos 1
-    const monthString = (date.getUTCMonth() + 1).toString().padStart(2, "0") as MonthType;
-    const yearString = date.getUTCFullYear().toString().slice(2) as YearType;
-    const dateString: DateString = `${dayString}/${monthString}/${yearString}`
-    return dateString;
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0") as Month;
+    const year = date.getUTCFullYear().toString().slice(2) as Year;
+    const result: DateString = `${day}/${month}/${year}`
+    return result;
 }
 
 
-const isDateIsoWithoutTimestampType = (date : string)=>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(date);
+const isFormattedAsIsoWithoutTimestamp = (date : string)=>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(date);
 
+//TODO: escrever testes
 export const isDate = (date: string): boolean => {
-    if(!isDateIsoWithoutTimestampType(date)) {
-        throw new Error(`Data fora do formato ISO sem timestamp: ${date}`);
+  //TODO: mudar pra expressão booleana
+    if(!isFormattedAsIsoWithoutTimestamp(date)) {
+      return false;
     }
     return date.length === 10 && date.includes("-")
 }
 
+//TODO: Rename to parseDate
 export const stringToDate = (date: string): Date => new Date(date);
-
-export const birthdayFormatter = (value: string) : string => {
-    const [year, month, day] = value.slice(0, 10).split("-");
-    return `${day}/${month}/${year.slice(2)}`;
-}
