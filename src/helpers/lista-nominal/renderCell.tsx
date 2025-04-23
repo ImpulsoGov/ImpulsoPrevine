@@ -1,4 +1,5 @@
 import { TableTag } from "@/componentes/mounted/TableTag";
+import { iconDetailsMap } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/iconDetailsMap";
 
 export type IconDetails = {
     src: string;
@@ -6,25 +7,21 @@ export type IconDetails = {
 };
 export type TagIconDetailsMap = Record<string, IconDetails>;
 
-export const renderDateTagCell = (
-    value: string | null,
-    iconDetailsMap: TagIconDetailsMap,
+export const RenderDateTagCell = (
+    // {iconDetailsMap}:{iconDetailsMap: TagIconDetailsMap},
 ) => (
-    <>
-        {value ?? (
-            <TableTag
-                theme="pending"
-                text="Não realizada"
-                icon={iconDetailsMap["pending"]}
-            />
-        )}
-    </>
+    <TableTag
+        theme="pending"
+        text="Não realizada"
+        icon={iconDetailsMap.pending}
+    />
 );
 
-export const renderStatusTagCell = (
-    value: string,
-    iconDetailsMap: TagIconDetailsMap,
-) => {
+export const RenderStatusTagCell = ({
+    value,
+}:{
+    value: string;
+}) => {
     const theme = value === "Em dia" ? "success" : "warning";
-    return <TableTag theme={theme} text={value} icon={iconDetailsMap[theme]} />;
+    return (<TableTag theme={theme} text={value} icon={iconDetailsMap[theme]} />);
 };
