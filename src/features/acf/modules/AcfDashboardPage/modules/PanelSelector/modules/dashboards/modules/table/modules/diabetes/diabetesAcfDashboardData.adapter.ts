@@ -1,20 +1,12 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
-import { isCpfPatientNotBirthday } from './modules/isCpfPatientNotBirthday';
 
-export const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string | null): Date | string | null => {
-    if (!patientCpfOrBirthdayString) return null
-    if (isCpfPatientNotBirthday(patientCpfOrBirthdayString)) return patientCpfOrBirthdayString 
-    try {
-        const isBirthday = isDate(patientCpfOrBirthdayString)
-        if (isBirthday) return parseDate(patientCpfOrBirthdayString)
-    } catch (error) {
-//TODO: isso deveria logar erro no console mesmo?
-        console.error("Erro ao converter a data de nascimento:", error)
-        return null
+export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
+    if (fieldValue && isDate(fieldValue)) {
+        return parseDate(fieldValue);
     }
-    return null
+    return fieldValue;
 }
 
 export const diabetesAcfDashboardDataAdapter = (
@@ -30,7 +22,7 @@ export const diabetesAcfDashboardDataAdapter = (
         nextAppointmentDueDate: item.prazo_proxima_consulta,
         patientStatus: item.status_usuario as PatientStatus,
         conditionIndentifiedBy: item.identificacao_condicao_diabetes as ConditionIdentifiedBy,
-        patientCpfOrBirthday: patientCpfOrBirthdayAdapter(item.cidadao_cpf_dt_nascimento),
+        patientCpfOrBirthday: cpfOrDate(item.cidadao_cpf_dt_nascimento),
         patientName: item.cidadao_nome,
         patientAgeRange: item.cidadao_faixa_etaria as PatientAgeRange,
         patientAge: item.cidadao_idade,

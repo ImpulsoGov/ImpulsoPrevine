@@ -1,69 +1,23 @@
-import { isDate, parseDate } from '@/common/time'
-import { patientCpfOrBirthdayAdapter  } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.adapter";
-import { isCpfPatientNotBirthday } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/isCpfPatientNotBirthday';
+import { cpfOrDate  } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.adapter";
 
-jest.mock('@/common/time', () => ({
-  __esModule: true,
-  isDate: jest.fn(),
-  parseDate: jest.fn(),
-}))
-
-jest.mock('@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/isCpfPatientNotBirthday', () => ({
-    __esModule: true,
-    isCpfPatientNotBirthday: jest.fn(),
-}))
-
-describe('patientCpfOrBirthdayAdapter', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    })
-
+describe('cpfOrDate', () => {
     it('retorna null quando a entrada for null', () => {
-        expect(patientCpfOrBirthdayAdapter(null)).toBeNull();
+        expect(cpfOrDate(null)).toBeNull();
     })
 
-    it('retorna null quando a string for vazia', () => {
-        (isCpfPatientNotBirthday as jest.Mock).mockReturnValue(false);
-        expect(patientCpfOrBirthdayAdapter('')).toBeNull();
-    })
-
-    it('retorna o próprio CPF quando isCpfPatientNotBirthday for true', () => {
-        (isCpfPatientNotBirthday as jest.Mock).mockReturnValue(true);
+    it('retorna o próprio CPF quando a string representa um cpf', () => {
         const cpf = '12345678901';
-        expect(patientCpfOrBirthdayAdapter(cpf)).toBe(cpf);
-        expect(isCpfPatientNotBirthday).toHaveBeenCalledWith(cpf);
+        expect(cpfOrDate(cpf)).toBe(cpf);
     })
 
-    it('converte para Date quando isDate for true', () => {
-        (isCpfPatientNotBirthday as jest.Mock).mockReturnValue(false);
-        (isDate as jest.Mock).mockReturnValue(true);
-        const input = '1985-12-17';
-        const fakeDate: Date = new Date(input);
-        (parseDate as jest.Mock).mockReturnValue(fakeDate);
-
-        const result = patientCpfOrBirthdayAdapter(input);
-        expect(isDate).toHaveBeenCalledWith(input);
-        expect(parseDate).toHaveBeenCalledWith(input);
-        expect(result).toBe(fakeDate);
+    it('converte para Date quando string representa uma data', () => {
+        expect(cpfOrDate('1985-12-17')).toEqual(new Date('1985-12-17'));
+        expect(cpfOrDate('1985-12-17T00:00:00Z')).toEqual(new Date('1985-12-17T00:00:00Z'));
+        expect(cpfOrDate('2022-12-31T15:00:00Z')).toEqual(new Date('2022-12-31T15:00:00Z'));
     })
 
-    it('retorna null quando não for CPF nem data', () => {
-        (isCpfPatientNotBirthday as jest.Mock).mockReturnValue(false);
-        (isDate as jest.Mock).mockReturnValue(false);
-        expect(patientCpfOrBirthdayAdapter('foo-bar')).toBeNull();
-    })
-
-    it('captura erro interno e retorna null', () => {
-        (isCpfPatientNotBirthday as jest.Mock).mockReturnValue(false);
-        (isDate as jest.Mock).mockImplementation(() => { throw new Error('boom') });
-        const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-        expect(patientCpfOrBirthdayAdapter('1985-12-17')).toBeNull();
-        expect(consoleError).toHaveBeenCalledWith(
-            'Erro ao converter a data de nascimento:',
-            expect.any(Error),
-        );
-
-        consoleError.mockRestore();
+    it('retorna a própria string quando ela não é uma data nem um cpf', () => {
+        expect(cpfOrDate('')).toBe('');
+        expect(cpfOrDate('foo-bar')).toBe('foo-bar');
     })
 })

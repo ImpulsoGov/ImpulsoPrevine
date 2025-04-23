@@ -28,23 +28,18 @@ describe("formatDate", () => {
 });
 
 describe('isDate', () => {
-  it('deve retornar true para strings de tamanho 10 que contenham "-"', () => {
+  it('deve retornar true para strings que representem datas', () => {
     expect(isDate('2025-04-17')).toBe(true);
-    expect(isDate('1234-56-78')).toBe(false);
+    expect(isDate('2025-4-17')).toBe(true);
+    expect(isDate('2025-04-17T00:00:00Z')).toBe(true);
   });
 
-  it('deve retornar false para strings com menos de 10 caracteres', () => {
-    expect(isDate('2025-4-17')).toBe(false);
-    expect(isDate('')).toBe(false);
-  });
-
-  it('deve retornar false para strings com mais de 10 caracteres', () => {
-    expect(isDate('2025-04-170')).toBe(false)
-  });
-
-  it('deve retornar false para strings de tamanho 10 sem "-"', () => {
+  it('deve retornar false para strings que não representem datas', () => {
     expect(isDate('2025041701')).toBe(false);
     expect(isDate('abcdefghij')).toBe(false);
+    expect(isDate('1234-56-78')).toBe(false);
+    expect(isDate('2025-04-170')).toBe(false)
+    expect(isDate('')).toBe(false);
   });
 });
 

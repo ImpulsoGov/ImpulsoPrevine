@@ -41,10 +41,10 @@ export const formatDate = (date: Date): DateString | null => {
     return result;
 }
 
+export const parseDate = (date: string): Date => new Date(date);
+
 //TODO: escrever testes
+//TODO: Essa função realmente precisa existir, ou podemos fazer um inline dela?
 export const isDate = (date: string): boolean => {
     return isDateValid(parseDate(date));
 };
-
-//TODO: Rename to parseDate
-export const parseDate = (date: string): Date => new Date(date);
