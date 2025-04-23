@@ -16,6 +16,7 @@ import type { NextRequest } from "next/server";
 import { BadRequestError } from "../utils/errors";
 import type { GridPaginationModel } from "@mui/x-data-grid";
 import { diabetesAcfDashboardDataCountRepository } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.repository";
+import { validatePaginationParams } from "../utils/validatePaginationParams";
 
 // const getFiltersParams = async (filtersString: string | null) => {
 //     const filters: Filters = {};
@@ -53,34 +54,7 @@ export async function GET(
     //     list: string;
     // }>} // quando for utilizar a conexao com o banco de dados
 ) {
-    function validatePaginationParams({
-        page,
-        pageSize,
-    }: GridPaginationModel
-    ): void {
-        const hasOnlyPage = page && !pageSize;
-        const hasOnlyPageSize = !page && pageSize;
-    
-        if (hasOnlyPage || hasOnlyPageSize) {
-            throw new BadRequestError(
-                "Os parâmetros ´paginacao[pagina]´ e ´paginacao[tamanho]´ devem ser usados em conjunto",
-            );
-        }
-        const parsedPage = Number(page);
-        const parsedPageSize = Number(pageSize);
-    
-        if (parsedPage < 0) {
-            throw new BadRequestError(
-                "O parâmetro ´paginacao[pagina]´ deve ser maior ou igual a 0",
-            );
-        }
-    
-        if (parsedPageSize < 0) {
-            throw new BadRequestError(
-                "O parâmetro ´paginacao[tamanho]´ deve ser maior ou igual a 0",
-            );
-        }
-    }
+   
     try {
         // const { list } = await params; // quando for utilizar a conexao com o banco de dados
         const searchParams = req.nextUrl.searchParams;
@@ -142,18 +116,6 @@ export async function GET(
         //             }),
         //         ];
         //     });
-        // }
-
-
-
-        //     // será substituido por consulta no banco de dados
-        //     responseData = [
-        //         ...paginateData({
-        //             data: responseData,
-        //             page: Number(pagination.page),
-        //             pageSize: Number(pagination.pageSize),
-        //         }),
-        //     ];
         // }
         if (pagination.page || pagination.pageSize) validatePaginationParams(pagination);
         const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne, pagination)
