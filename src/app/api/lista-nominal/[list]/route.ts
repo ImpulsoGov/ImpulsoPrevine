@@ -14,6 +14,8 @@ import type { NextRequest } from "next/server";
 // import type { SortOrder } from "../utils/sorting";
 // import { paginateData, validatePaginationParams } from "../utils/pagination";
 import { BadRequestError } from "../utils/errors";
+import type { GridPaginationModel } from "@mui/x-data-grid";
+import { diabetesAcfDashboardDataCountRepository } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.repository";
 
 // const getFiltersParams = async (filtersString: string | null) => {
 //     const filters: Filters = {};
@@ -44,6 +46,35 @@ import { BadRequestError } from "../utils/errors";
 //     return municipalityData;
 // }
 
+export function validatePaginationParams({
+    page,
+    pageSize,
+}: GridPaginationModel
+): void {
+    const hasOnlyPage = page && !pageSize;
+    const hasOnlyPageSize = !page && pageSize;
+
+    if (hasOnlyPage || hasOnlyPageSize) {
+        throw new BadRequestError(
+            "Os parâmetros ´paginacao[pagina]´ e ´paginacao[tamanho]´ devem ser usados em conjunto",
+        );
+    }
+    const parsedPage = Number(page);
+    const parsedPageSize = Number(pageSize);
+
+    if (parsedPage < 0) {
+        throw new BadRequestError(
+            "O parâmetro ´paginacao[pagina]´ deve ser maior ou igual a 0",
+        );
+    }
+
+    if (parsedPageSize < 0) {
+        throw new BadRequestError(
+            "O parâmetro ´paginacao[tamanho]´ deve ser maior ou igual a 0",
+        );
+    }
+}
+
 export async function GET(
     req: NextRequest,
     // { params }: {
@@ -53,19 +84,20 @@ export async function GET(
 ) {
     try {
         // const { list } = await params; // quando for utilizar a conexao com o banco de dados
-        // const searchParams = req.nextUrl.searchParams;
+        const searchParams = req.nextUrl.searchParams;
         // const filtersParams = searchParams.get("filters");
         // const filters = await getFiltersParams(filtersParams);
-
+        const pageSizeDefault = 8;
+        const pageDefault = 0;
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
         const municipalitySusID = payload?.municipio as string;
         const teamIne = payload?.equipe as string;
-        // const pagination = {
-        //     page: searchParams.get("pagination[page]"),
-        //     pageSize: searchParams.get("pagination[pageSize]"),
-        // };
+        const pagination: GridPaginationModel = {
+            page: Number(searchParams.get("pagination[page]")) || pageDefault,
+            pageSize: Number(searchParams.get("pagination[pageSize]")) || pageSizeDefault,
+        };
         // const sorting = searchParams.get("sortBy");
         // const searchName = searchParams.get("search");
         // const baseData = searchBaseData({
@@ -113,8 +145,7 @@ export async function GET(
         //     });
         // }
 
-        // if (pagination.page || pagination.pageSize) {
-        //     validatePaginationParams(pagination);
+
 
         //     // será substituido por consulta no banco de dados
         //     responseData = [
@@ -125,12 +156,13 @@ export async function GET(
         //         }),
         //     ];
         // }
-
-        const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne)
+        // if (pagination.page || pagination.pageSize) validatePaginationParams(pagination);
+        const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne, pagination)
+        const totalRows = await diabetesAcfDashboardDataCountRepository(municipalitySusID, teamIne);
         return Response.json(
             {
                 data,
-                totalRows: data.length,
+                totalRows: totalRows,
             },
             { status: 200 },
         );

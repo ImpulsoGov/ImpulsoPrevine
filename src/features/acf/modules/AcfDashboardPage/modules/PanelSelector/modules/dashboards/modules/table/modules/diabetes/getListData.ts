@@ -1,4 +1,5 @@
 // import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
+import type { GridPaginationModel } from "@mui/x-data-grid";
 import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 // import { type FilterItem, getListData } from "@/services/lista-nominal/ListaNominal";
 import { type ListDataResponse, getListData } from "@/services/lista-nominal/ListaNominal";
@@ -12,10 +13,9 @@ export const getListDataResponse = async (
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
     list: AcfDashboardType,
-
     // sorting: GridSortModel,
     // value: FilterItem,
-    // pagination: GridPaginationModel,
+    pagination: GridPaginationModel,
     // search: string,
 ) => {
     setIsLoading(true);
@@ -30,7 +30,7 @@ export const getListDataResponse = async (
             //     },
             // ],
             // filters: value,
-            // pagination,
+            pagination,
             // search: search,
         });
         setResponse(res.data);

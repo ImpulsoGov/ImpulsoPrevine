@@ -117,10 +117,10 @@ export const ListContainer = ({
                 list,
                 // sorting,
                 // value,
-                // pagination,
+                pagination,
                 // search,
             );
-    }, [user, list]);
+    }, [user, list, pagination]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
