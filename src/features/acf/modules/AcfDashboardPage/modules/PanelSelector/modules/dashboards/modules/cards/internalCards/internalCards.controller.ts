@@ -1,4 +1,4 @@
-import { internalCardsDbToModel } from "./internalCards.adapter";
+import { dbToModel } from "./internalCards.adapter";
 import type { InternalCardDataItem } from "./internalCards.model";
 import { internalCardsDataForTeam } from "./internalCards.repository";
 
@@ -7,5 +7,5 @@ export const internalCardsAcfDashboardDataControllerForTeam = async(
     teamIne : string,
 ): Promise<InternalCardDataItem[]> => {
     const data = await internalCardsDataForTeam(teamIne, municipalitySusId);
-    return internalCardsDbToModel(data);
+    return dbToModel(data);
 }
