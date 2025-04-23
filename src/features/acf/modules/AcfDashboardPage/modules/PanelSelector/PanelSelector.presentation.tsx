@@ -99,6 +99,7 @@ type PanelSelectorProps = {
     tabID: string;
     subTabID: string;
     externalCardsProps: CardProps[];
+    internalCardsData: CardProps[];
     userProfiles: ProfileIdValue[];
     municipalityIdSus: string;
 };
@@ -109,7 +110,8 @@ export const PanelSelector = ({
     // subTabID,
     // externalCardsProps,
     // userProfiles,
-    municipalityIdSus
+    municipalityIdSus,
+    internalCardsData,
 }: PanelSelectorProps) => {
     // const props = acfNominalListProps(
     //     externalCardsProps,
@@ -140,7 +142,7 @@ export const PanelSelector = ({
             listaNominalID={listName}
             inicialContent={contentWithoutTabs}
             tabs={null}
-            contentWithoutTabs={<ListContainer list={listName} />}
+            contentWithoutTabs={<ListContainer list={listName} internalCardsData={internalCardsData}/>}
         />
     );
 };

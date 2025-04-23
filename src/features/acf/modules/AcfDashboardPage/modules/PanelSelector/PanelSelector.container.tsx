@@ -1,4 +1,4 @@
-import { getExternalCardsProps } from "@/helpers/cardsList";
+import { getExternalCardsProps, getInternalCardsProps } from "@/helpers/cardsList";
 import type { ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
@@ -6,9 +6,11 @@ import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../types";
 import {
     externalCardsDetails,
+    internalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
 import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
+import { internalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/internalCards/internalCards.controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -42,7 +44,7 @@ export const PanelSelectorContainer = async ({
     acfDashboardType,
 }: PanelSelectorContainerProps) => {
     let externalCardsProps: CardProps[] = [];
-
+    let internalCardsProps: CardProps[] = [];
     try {
         const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
@@ -52,8 +54,22 @@ export const PanelSelectorContainer = async ({
         externalCardsProps = getExternalCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
-        return <p>Erro ao buscar dados cards</p>;
+        return <p>Erro ao buscar dados dos cards externos</p>;
     }
+
+    try {
+        const internalCardsData = await internalCardsAcfDashboardDataControllerForTeam(
+            municipalitySusId,
+            teamIne,
+        );
+        internalCardsProps = getInternalCardsProps(internalCardsDetails, internalCardsData);
+    } catch (error) {
+        console.log(error);
+        captureException(error);
+        return <p>Erro ao buscar dados dos cards internos</p>;
+    }
+  
+    
     return externalCardsProps && 
         <PanelSelector
                 municipalityIdSus={municipalityName(municipalitySusId)}
@@ -62,5 +78,6 @@ export const PanelSelectorContainer = async ({
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
                 userProfiles={userProfiles}
+                internalCardsData={internalCardsProps}
         />
 };

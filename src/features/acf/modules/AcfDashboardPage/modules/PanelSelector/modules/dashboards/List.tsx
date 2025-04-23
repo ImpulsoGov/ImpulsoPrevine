@@ -16,7 +16,6 @@ import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { AcfDashboardType } from "../../../../types";
-import { internalCardsDataHook } from "./modules/cards/internalCards/internalCardsDataHook";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
 import {
@@ -36,6 +35,7 @@ import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListContainerProps = {
+    internalCardsData: CardProps[];
     list: AcfDashboardType;
     // title: string;
 };
@@ -49,6 +49,7 @@ export type PrintStatesType= {
 export const ListContainer = ({
     // title,
     list,
+    internalCardsData,
 }: ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session["user"]>();
@@ -76,7 +77,6 @@ export const ListContainer = ({
     const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
-    const [cards, setCards] = useState<CardProps[]>([]);
 
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
@@ -139,11 +139,6 @@ export const ListContainer = ({
         });
     }, [response, value]);
 
-    useEffect(() => {
-        if (user) {
-            internalCardsDataHook(list, user.municipio_id_sus, user.equipe, setCards, setErrorMessage);
-        }
-    }, [list, user]);
     const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
     // const handlePrintClick = () => {
     //     if (user)
@@ -196,7 +191,7 @@ export const ListContainer = ({
                 >
                     {title}
                 </p> */}
-                {cards && <CardGrid cards={cards} />}
+                <CardGrid cards={internalCardsData} />
                 {/* <div style={{ marginTop: "15px" }}>
                     <ToolBarMounted
                         updateDate={
