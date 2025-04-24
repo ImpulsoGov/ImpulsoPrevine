@@ -54,7 +54,6 @@ export const PanelSelectorContainer = async ({
         externalCardsProps = getExternalCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
-        return <p>Erro ao buscar dados dos cards externos</p>;
     }
 
     try {
@@ -64,12 +63,10 @@ export const PanelSelectorContainer = async ({
         );
         internalCardsProps = getInternalCardsProps(internalCardsDetails, internalCardsData);
     } catch (error) {
-        console.log(error);
         captureException(error);
-        return <p>Erro ao buscar dados dos cards internos</p>;
     }
-  
-    
+
+
     return externalCardsProps && 
         <PanelSelector
                 municipalityIdSus={municipalityName(municipalitySusId)}
