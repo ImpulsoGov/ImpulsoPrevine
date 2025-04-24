@@ -3,7 +3,19 @@ import type { GridColDef } from "@mui/x-data-grid";
 import { DateRenderCell } from "./columns.formatter";
 import { CpfOrBirthdayFormatter } from "./cpfOrBirthday.formatter";
 //TODO investigar como a conversao para string no dataGrid
-
+const NameFormatter = ({value} : {value: string | null} )  => {
+    const commonPrepositions = ['da', 'de', 'do', 'dos', 'das', 'e'];
+    if (!value) return <div data-testid="empty-return">{value}</div>;
+    const namePieces = value.toLowerCase().split(" "); 
+    const formattedNames = namePieces.map((piece) => {
+        if(!commonPrepositions.includes(piece)) {
+        return piece.charAt(0).toUpperCase() + piece.slice(1);
+        }
+        return piece;
+    });
+    const fullNameFormatted = formattedNames.join(" ");
+    return <div data-testid="name-formatter">{fullNameFormatted}</div>;
+}
 export const diabetesColumns: GridColDef[] = [
     {
         field: "patientName",
@@ -11,6 +23,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 240,
         headerAlign: "left",
         align: "left",
+         renderCell: NameFormatter
     },
     {
         field: "patientCpfOrBirthday",
@@ -72,5 +85,6 @@ export const diabetesColumns: GridColDef[] = [
         width: 230,
         headerAlign: "left",
         align: "left",
+        renderCell: NameFormatter
     },
 ] as GridColDef[];
