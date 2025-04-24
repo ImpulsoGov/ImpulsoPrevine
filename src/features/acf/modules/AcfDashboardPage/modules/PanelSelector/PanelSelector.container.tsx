@@ -10,7 +10,7 @@ import {
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
 import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
-import { internalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/internalCards/internalCards.controller";
+import { internalCardsController } from "./modules/dashboards/modules/cards/internalCards/internalCards.controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -57,7 +57,7 @@ export const PanelSelectorContainer = async ({
     }
 
     try {
-        const internalCardsData = await internalCardsAcfDashboardDataControllerForTeam(
+        const internalCardsData = await internalCardsController(
             municipalitySusId,
             teamIne,
         );
