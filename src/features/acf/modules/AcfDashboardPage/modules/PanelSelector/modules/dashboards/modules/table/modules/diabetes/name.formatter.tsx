@@ -12,5 +12,5 @@ export const nameFormatter = (value: string ) : string => {
 
 export const NameFormatter = ({value} : {value: string | null} )  => {
     if (!value) return <div data-testid="empty-return">{value}</div>;
-    return <div data-testid="name-formatter">{nameFormatter(value)}</div>;
+    return <div data-testid="name-return">{nameFormatter(value)}</div>;
 }
