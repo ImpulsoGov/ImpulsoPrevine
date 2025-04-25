@@ -90,7 +90,6 @@ export type AcfNameListProps = {
 //     subTabID3: "ListChildID1",
 // };
 
-// const contentWithoutTabs = ListContainer
 
 type PanelSelectorProps = {
     listName: AcfDashboardType;
