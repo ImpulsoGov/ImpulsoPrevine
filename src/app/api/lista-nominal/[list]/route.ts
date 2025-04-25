@@ -1,6 +1,7 @@
 import { diabetesAcfDashboardDataController } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.controller";
+import { diabetesAcfDashboardDataCountRepository } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.repository";
 // import { filterData } from "@/utils/FilterData";
-// import type { DataItem, Filters } from "@/utils/FilterData";
+import type { Filters } from "@/utils/FilterData";
 import {
     AuthenticationError,
     decodeToken,
@@ -8,29 +9,28 @@ import {
     getToken,
 } from "@/utils/token";
 import type { JWTToken } from "@/utils/token";
+import type { GridPaginationModel } from "@mui/x-data-grid";
 import type { NextRequest } from "next/server";
 // import data from "../data.json";
 // import { sortData, validateSortOrder } from "../utils/sorting";
 // import type { SortOrder } from "../utils/sorting";
 // import { paginateData, validatePaginationParams } from "../utils/pagination";
 import { BadRequestError } from "../utils/errors";
-import type { GridPaginationModel } from "@mui/x-data-grid";
-import { diabetesAcfDashboardDataCountRepository } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.repository";
 import { validatePaginationParams } from "../utils/validatePaginationParams";
 
-// const getFiltersParams = async (filtersString: string | null) => {
-//     const filters: Filters = {};
-//     if (!filtersString) return filters;
-//     const filtersStringSplit = filtersString.split(";").filter(Boolean);
-//     for (const filter of filtersStringSplit) {
-//         const [key, value] = filter.split(":");
-//         filters[key] =
-//             value.split(",").length > 1
-//                 ? value.split(",")
-//                 : value.split(",")[0];
-//     }
-//     return filters;
-// };
+const getFiltersParams = async (filtersString: string | null) => {
+    const filters: Filters = {};
+    if (!filtersString) return filters;
+    const filtersStringSplit = filtersString.split(";").filter(Boolean);
+    for (const filter of filtersStringSplit) {
+        const [key, value] = filter.split(":");
+        filters[key] =
+            value.split(",").length > 1
+                ? value.split(",")
+                : value.split(",")[0];
+    }
+    return filters;
+};
 
 // type Data = DataItem[];
 
@@ -58,8 +58,9 @@ export async function GET(
     try {
         // const { list } = await params; // quando for utilizar a conexao com o banco de dados
         const searchParams = req.nextUrl.searchParams;
-        // const filtersParams = searchParams.get("filters");
-        // const filters = await getFiltersParams(filtersParams);
+        const filtersParams = searchParams.get("filters");
+        const filters = await getFiltersParams(filtersParams);
+        console.log(filters)
         const pageSizeDefault = 8;
         const pageDefault = 0;
         const token = getToken(req.headers);
@@ -118,7 +119,7 @@ export async function GET(
         //     });
         // }
         if (pagination.page || pagination.pageSize) validatePaginationParams(pagination);
-        const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne, pagination)
+        const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne, pagination, filters)
         const totalRows = await diabetesAcfDashboardDataCountRepository(municipalitySusID, teamIne);
         return Response.json(
             {

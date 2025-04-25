@@ -44,10 +44,10 @@ export const totalPatientsWithClinicalDiagnosis = async (municipalitySusIdAndTea
 
 export const internalCardsDataForTeam = async(
     teamIne: string,
-    municipalitySusID: string,
+    municipalitySusId: string,
 ): Promise<readonly InternalCardDBDataItem[]> =>{
     const municipalitySusIDAndTeamIne = {
-        municipio_id_sus: municipalitySusID,
+        municipio_id_sus: municipalitySusId,
         equipe_ine_cadastro: teamIne
     }
 

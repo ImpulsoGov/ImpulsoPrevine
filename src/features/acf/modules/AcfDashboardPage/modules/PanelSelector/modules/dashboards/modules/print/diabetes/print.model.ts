@@ -31,7 +31,7 @@ export type DiabetesAcfPrintItem = {
     mostRecentAppointmentDate: Date
     hemoglobinTestDueDate: string,
     patientStatus: PatientStatus
-    conditionIndentifiedBy: ConditionIdentifiedBy
+    conditionIdentifiedBy: ConditionIdentifiedBy
     patientCpfOrBirthday: string | Date | null,
     patientName: string
     patientAgeRange: PatientAgeRange

@@ -18,7 +18,7 @@ export const diabetesAcfPrintForTeamDataAdapter = (
         hemoglobinTestDueDate: item.prazo_proxima_solicitacao_hemoglobina_glicada,
         nextAppointmentDueDate: item.prazo_proxima_consulta,
         patientStatus: item.status_usuario as PatientStatus,
-        conditionIndentifiedBy: item.identificacao_condicao_diabetes as ConditionIdentifiedBy,
+        conditionIdentifiedBy: item.identificacao_condicao_diabetes as ConditionIdentifiedBy,
         patientCpfOrBirthday: patientCpfOrBirthdayAdapter(item.cidadao_cpf_dt_nascimento),
         patientName: item.cidadao_nome,
         patientAgeRange: item.cidadao_faixa_etaria as PatientAgeRange,

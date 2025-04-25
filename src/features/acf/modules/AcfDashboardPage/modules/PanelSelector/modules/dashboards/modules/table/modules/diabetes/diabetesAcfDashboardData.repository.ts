@@ -1,11 +1,13 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { GridPaginationModel } from "@mui/x-data-grid";
+import type { Filters } from "@/utils/FilterData";
 
 export const diabetesAcfDashboardDataRepository = async(
     municipalitySusID: string,
     teamIne: string,
-    pagination: GridPaginationModel
+    pagination: GridPaginationModel,
+    filters: Filters
 ): Promise<readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]> =>{
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany({
         where: {

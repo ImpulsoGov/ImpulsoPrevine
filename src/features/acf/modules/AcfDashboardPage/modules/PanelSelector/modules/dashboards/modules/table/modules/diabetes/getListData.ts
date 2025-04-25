@@ -1,8 +1,7 @@
+import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
+import { type FilterItem, type ListDataResponse, getListData } from "@/services/lista-nominal/ListaNominal";
 // import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
 import type { GridPaginationModel } from "@mui/x-data-grid";
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
-// import { type FilterItem, getListData } from "@/services/lista-nominal/ListaNominal";
-import { type ListDataResponse, getListData } from "@/services/lista-nominal/ListaNominal";
 import { captureException } from "@sentry/nextjs";
 import type { Session } from "next-auth";
 
@@ -14,7 +13,7 @@ export const getListDataResponse = async (
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
     list: AcfDashboardType,
     // sorting: GridSortModel,
-    // value: FilterItem,
+    value: FilterItem,
     pagination: GridPaginationModel,
     // search: string,
 ) => {
@@ -29,7 +28,7 @@ export const getListDataResponse = async (
             //         sortOrder: sorting[0].sort,
             //     },
             // ],
-            // filters: value,
+            filters: value,
             pagination,
             // search: search,
         });

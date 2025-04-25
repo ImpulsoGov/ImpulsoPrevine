@@ -105,7 +105,7 @@ export const getListData = async ({
     token,
     listName,
     // sorting,
-    // filters,
+    filters,
     pagination,
     // search,
 }: GetListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
@@ -116,7 +116,7 @@ export const getListData = async ({
     const url = `${currentURL.origin}/api/lista-nominal/`;
     const urlWithParams = buildUrlWithParams(url, {
         // sorting,
-        // filters,
+        filters,
         listName,
         pagination,
         // search,

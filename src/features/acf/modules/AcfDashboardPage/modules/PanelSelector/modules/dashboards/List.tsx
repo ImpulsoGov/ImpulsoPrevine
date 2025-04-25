@@ -4,9 +4,9 @@ import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/t
 import type { FilterItem, ListDataResponse } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
-    // ClearFilters,
-    // FilterBar,
-    // SelectDropdown,
+    ClearFilters,
+    FilterBar,
+    SelectDropdown,
     Table,
 } from "@impulsogov/design-system";
 import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
@@ -14,10 +14,10 @@ import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
-// import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import {
-    // type Filter,
+    type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import { sessionHook } from "./modules/sessionHook";
@@ -36,6 +36,7 @@ import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 export type ListContainerProps = {
     list: AcfDashboardType;
     // title: string;
+    filtersOptions: any;
 };
 export type PrintStatesType= {
     value: FilterItem;
@@ -47,17 +48,19 @@ export type PrintStatesType= {
 export const List = ({
     // title,
     list,
+    filtersOptions,
 }: ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session["user"]>();
     const searchParams = useSearchParams();
+    console.log("filtersOptions", filtersOptions);
     const router = useRouter();
     //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
     const filters = filtersBuilder(session?.user);
     const initialFilters = initialFiltersBuilder(searchParams, filters);
-    const [value, _setValue] = useState<FilterItem>(initialFilters);
+    const [value, setValue] = useState<FilterItem>(initialFilters);
     const [response, setResponse] = useState<ListDataResponse>({
         data: [],
         totalRows: 0,
@@ -113,11 +116,11 @@ export const List = ({
                 setErrorMessage,
                 list,
                 // sorting,
-                // value,
+                value,
                 pagination,
                 // search,
             );
-    }, [user, list, pagination]);
+    }, [user, list, pagination, value]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
@@ -153,21 +156,21 @@ export const List = ({
     if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>
     // if (status === "loading") return <Spinner/>;
 
-    // const filtersSelect = filters.map((filter: Filter) => (
-    //     <SelectDropdown
-    //         key={filter.id}
-    //         {...filter}
-    //         value={value}
-    //         setValue={setValue}
-    //         options={filter.options}
-    //         label={filter.label}
-    //         multiSelect={filter.isMultiSelect}
-    //         width={filter.width}
-    //     />
-    // ));
-    // const clearButton = (
-    //     <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
-    // );
+    const filtersSelect = filters.map((filter: Filter) => (
+        <SelectDropdown
+            key={filter.id}
+            {...filter}
+            value={value}
+            setValue={setValue}
+            options={filter.options}
+            label={filter.label}
+            multiSelect={filter.isMultiSelect}
+            width={filter.width}
+        />
+    ));
+    const clearButton = (
+        <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
+    );
     return (
         <>
             <div
@@ -205,9 +208,9 @@ export const List = ({
                         }}
                         handleSearchClick={handleSearchClick}
                     />
-                </div> */}
-                {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
-                {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
+                </div>  */}
+                <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} />
+                <FilterBar filters={filtersSelect} clearButton={clearButton} />
                 <Table
                     columns={diabetesColumns}
                     data={tableData.data}
