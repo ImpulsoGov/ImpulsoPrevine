@@ -1,72 +1,72 @@
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types"
-import type { InternalCardDBDataItem } from "./internalCards.model"
-const data: InternalCardDBDataItem[] = [
-  {
-      "municipio_id_sus": "111111",
-      "ine": "0000098574",
-      "lista": "DIABETES",
-      "descricao": "TOTAL_COM_DIABETES",
-      "valor": 37
-  },
-  {
-      "municipio_id_sus": "111111",
-      "ine": "0000098574",
-      "lista": "DIABETES",
-      "descricao": "EXAME_E_CONSULTA_EM_DIA",
-      "valor": 45
-  },
-  {
-      "municipio_id_sus": "111111",
-      "ine": "0000098574",
-      "lista": "DIABETES",
-      "descricao": "DIAGNOSTICO_AUTORREFERIDO",
-      "valor": 52
-  },
-  {
-      "municipio_id_sus": "111111",
-      "ine": "0000098574",
-      "lista": "DIABETES",
-      "descricao": "DIAGNOSTICO_CLINICO",
-      "valor": 52
-  },
-  {
-      "municipio_id_sus": "140015",
-      "ine": "0001590324",
-      "lista": "DIABETES",
-      "descricao": "TOTAL_COM_DIABETES",
-      "valor": 73
-  },
-  {
-      "municipio_id_sus": "140015",
-      "ine": "0001590324",
-      "lista": "DIABETES",
-      "descricao": "EXAME_E_CONSULTA_EM_DIA",
-      "valor": 54
-  },
-  {
-      "municipio_id_sus": "140015",
-      "ine": "0001590324",
-      "lista": "DIABETES",
-      "descricao": "DIAGNOSTICO_AUTORREFERIDO",
-      "valor": 25
-  },
-  {
-      "municipio_id_sus": "140015",
-      "ine": "0001590324",
-      "lista": "DIABETES",
-      "descricao": "DIAGNOSTICO_CLINICO",
-      "valor": 25
-  }
-]
+import { prisma } from "@prisma/prismaClient";
+import { DiabetesAcfInternalCardsHealthIndicator, type InternalCardDBDataItem } from "./internalCards.model";
 
-export const internalCardsDataForTeam = (
-    listName: AcfDashboardType,
+export type MunicipalitySusIdAndTeamIne = {
+    municipio_id_sus: string;
+    equipe_ine_cadastro: string;
+}
+
+export const totalPatientsWithDiabetes = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
+        where: {
+            ...municipalitySusIdAndTeamIne,
+        },
+    })
+}
+
+export const totalPatientsWithExamsAndAppointment = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
+        where: {
+            ...municipalitySusIdAndTeamIne,
+            prazo_proxima_consulta: "Em dia",
+            prazo_proxima_solicitacao_hemoglobina: "Em dia"
+        },
+    })
+}
+
+export const totalPatientsSelfDiagnosed = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
+        where: {
+            ...municipalitySusIdAndTeamIne,
+            identificacao_condicao_diabetes: "Autorreferida"
+        },
+    })
+}
+
+export const totalPatientsWithClinicalDiagnosis = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
+        where: {
+            ...municipalitySusIdAndTeamIne,
+            identificacao_condicao_diabetes: "Diagnóstico Clínico"
+        },
+    })
+}
+
+export const internalCardsDataForTeam = async(
     teamIne: string,
     municipalitySusID: string,
-): InternalCardDBDataItem[]=>{
-    return data.filter((item: InternalCardDBDataItem): boolean => (
-        item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
-        && item.municipio_id_sus === municipalitySusID 
-        && item.ine === teamIne
-    ))
+): Promise<readonly InternalCardDBDataItem[]> =>{
+    const municipalitySusIDAndTeamIne = {
+        municipio_id_sus: municipalitySusID,
+        equipe_ine_cadastro: teamIne
+    }
+
+    return [
+        {
+            valor: await totalPatientsWithDiabetes(municipalitySusIDAndTeamIne),
+            descricao: DiabetesAcfInternalCardsHealthIndicator.TOTAL_COM_DIABETES
+        },
+        {
+            valor: await totalPatientsWithExamsAndAppointment(municipalitySusIDAndTeamIne),
+            descricao: DiabetesAcfInternalCardsHealthIndicator.EXAME_E_CONSULTA_EM_DIA
+        },
+        {
+            valor: await totalPatientsSelfDiagnosed(municipalitySusIDAndTeamIne),
+            descricao: DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_AUTORREFERIDO
+        },
+        {
+            valor: await totalPatientsWithClinicalDiagnosis(municipalitySusIDAndTeamIne),
+            descricao: DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_CLINICO
+        },
+    ]
 }
