@@ -1,13 +1,11 @@
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
-import { internalCardsDbToModel } from "./internalCards.adapter";
+import { dbToModel } from "./internalCards.adapter";
 import type { InternalCardDataItem } from "./internalCards.model";
 import { internalCardsDataForTeam } from "./internalCards.repository";
 
-export const internalCardsAcfDashboardDataControllerForTeam = async(
-    listName: AcfDashboardType,
+export const internalCardsController = async(
     municipalitySusId: string,
     teamIne : string,
 ): Promise<InternalCardDataItem[]> => {
-    const data = internalCardsDataForTeam(listName, teamIne, municipalitySusId);
-    return internalCardsDbToModel(data);
+    const data = await internalCardsDataForTeam(teamIne, municipalitySusId);
+    return dbToModel(data);
 }

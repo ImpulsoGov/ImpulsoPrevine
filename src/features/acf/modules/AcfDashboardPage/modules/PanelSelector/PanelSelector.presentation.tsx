@@ -15,10 +15,8 @@ import {
     // acfNominalListProps,
     breadcrumb,
     header,
-    // tabDefinitions,
 } from "./PanelSelector.consts";
 // import { ChartsContainer } from "./modules/dashboards/Charts";
-import { ListContainer } from "./modules/dashboards/List";
 // import { subTabChildrenSelector } from "./subTabChildrenSelector";
 // import { tabsBuilder } from "./tabsBuilder";
 
@@ -92,7 +90,6 @@ export type AcfNameListProps = {
 //     subTabID3: "ListChildID1",
 // };
 
-const contentWithoutTabs = ListContainer
 
 type PanelSelectorProps = {
     listName: AcfDashboardType;
@@ -101,6 +98,7 @@ type PanelSelectorProps = {
     externalCardsProps: CardProps[];
     userProfiles: ProfileIdValue[];
     municipalityIdSus: string;
+    contentWithoutTabs: React.ReactNode;
 };
 
 export const PanelSelector = ({
@@ -109,7 +107,8 @@ export const PanelSelector = ({
     // subTabID,
     // externalCardsProps,
     // userProfiles,
-    municipalityIdSus
+    municipalityIdSus,
+    contentWithoutTabs
 }: PanelSelectorProps) => {
     // const props = acfNominalListProps(
     //     externalCardsProps,
@@ -140,7 +139,8 @@ export const PanelSelector = ({
             listaNominalID={listName}
             inicialContent={contentWithoutTabs}
             tabs={null}
-            contentWithoutTabs={<ListContainer list={listName} />}
+            contentWithoutTabs={contentWithoutTabs}
         />
+        
     );
 };
