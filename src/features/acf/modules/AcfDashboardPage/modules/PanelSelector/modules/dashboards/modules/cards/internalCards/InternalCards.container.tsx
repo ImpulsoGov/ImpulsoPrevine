@@ -3,7 +3,7 @@ import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Ca
 import { captureException } from '@sentry/nextjs';
 import { Suspense } from 'react';
 import { internalCardsDetails } from '../../../../../PanelSelector.consts';
-import { CardsGridInternal } from './CardsGridInternal';
+import { CardsGridClientWrapper } from './CardsGridClientWrapper';
 import { internalCardsController } from './internalCards.controller';
 
 export const InternalCards = async({
@@ -25,7 +25,7 @@ export const InternalCards = async({
     }
   return (
     <Suspense>
-        <CardsGridInternal internalCardsProps={internalCardsProps} />
+        <CardsGridClientWrapper internalCardsProps={internalCardsProps} />
     </Suspense>
   )
 }
