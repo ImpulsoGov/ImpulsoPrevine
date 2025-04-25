@@ -1,28 +1,27 @@
-
+"use client";
+import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import type { FilterItem, ListDataResponse } from "@/services/lista-nominal/ListaNominal";
 import { filterData } from "@/utils/FilterData";
 import {
-    CardGrid,
     // ClearFilters,
     // FilterBar,
     // SelectDropdown,
     Table,
 } from "@impulsogov/design-system";
-import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { AcfDashboardType } from "../../../../types";
-// import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import { filtersBuilder } from "./modules/filters/filtersBuilder";
+// import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 import {
     // type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import { sessionHook } from "./modules/sessionHook";
+// import { sessionHook } from "./modules/sessionHook";
 import {
     DEFAULT_SORTING,
     handleSortModelChangeFunction,
@@ -35,7 +34,6 @@ import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListContainerProps = {
-    internalCardsData: CardProps[];
     list: AcfDashboardType;
     // title: string;
 };
@@ -46,10 +44,9 @@ export type PrintStatesType= {
     search: string;
 }
 
-export const ListContainer = ({
+export const List = ({
     // title,
     list,
-    internalCardsData,
 }: ListContainerProps) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<Session["user"]>();
@@ -191,7 +188,6 @@ export const ListContainer = ({
                 >
                     {title}
                 </p> */}
-                <CardGrid cards={internalCardsData} />
                 {/* <div style={{ marginTop: "15px" }}>
                     <ToolBarMounted
                         updateDate={
@@ -210,7 +206,7 @@ export const ListContainer = ({
                         handleSearchClick={handleSearchClick}
                     />
                 </div> */}
-                <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} />
+                {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
                 {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
                 <Table
                     columns={diabetesColumns}

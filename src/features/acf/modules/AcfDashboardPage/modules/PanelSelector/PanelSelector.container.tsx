@@ -1,4 +1,4 @@
-import { getExternalCardsProps, getInternalCardsProps } from "@/helpers/cardsList";
+import { getExternalCardsProps } from "@/helpers/cardsList";
 import type { ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
@@ -6,11 +6,10 @@ import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../types";
 import {
     externalCardsDetails,
-    internalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
+import { ListContainer } from "./modules/dashboards/ListContainer";
 import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
-import { internalCardsController } from "./modules/dashboards/modules/cards/internalCards/internalCards.controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -44,7 +43,6 @@ export const PanelSelectorContainer = async ({
     acfDashboardType,
 }: PanelSelectorContainerProps) => {
     let externalCardsProps: CardProps[] = [];
-    let internalCardsProps: CardProps[] = [];
     try {
         const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
@@ -56,17 +54,6 @@ export const PanelSelectorContainer = async ({
         captureException(error);
     }
 
-    try {
-        const internalCardsData = await internalCardsController(
-            municipalitySusId,
-            teamIne,
-        );
-        internalCardsProps = getInternalCardsProps(internalCardsDetails, internalCardsData);
-    } catch (error) {
-        captureException(error);
-    }
-
-
     return externalCardsProps && 
         <PanelSelector
                 municipalityIdSus={municipalityName(municipalitySusId)}
@@ -75,6 +62,8 @@ export const PanelSelectorContainer = async ({
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
                 userProfiles={userProfiles}
-                internalCardsData={internalCardsProps}
+                contentWithoutTabs={
+                    <ListContainer list={acfDashboardType} municipalitySusId={municipalitySusId} teamIne={teamIne} />
+                }
         />
 };
