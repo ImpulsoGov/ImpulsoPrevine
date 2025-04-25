@@ -8,6 +8,7 @@ import {
     externalCardsDetails,
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
+import { ListContainer } from "./modules/dashboards/ListContainer";
 import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
 
 type PanelSelectorContainerProps = {
@@ -42,7 +43,6 @@ export const PanelSelectorContainer = async ({
     acfDashboardType,
 }: PanelSelectorContainerProps) => {
     let externalCardsProps: CardProps[] = [];
-
     try {
         const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
@@ -52,8 +52,8 @@ export const PanelSelectorContainer = async ({
         externalCardsProps = getExternalCardsProps(externalCardsDetails, data);
     } catch (error) {
         captureException(error);
-        return <p>Erro ao buscar dados cards</p>;
     }
+
     return externalCardsProps && 
         <PanelSelector
                 municipalityIdSus={municipalityName(municipalitySusId)}
@@ -62,5 +62,8 @@ export const PanelSelectorContainer = async ({
                 tabID = {initialTabId}
                 subTabID = {initialSubTabId}
                 userProfiles={userProfiles}
+                contentWithoutTabs={
+                    <ListContainer list={acfDashboardType} municipalitySusId={municipalitySusId} teamIne={teamIne} />
+                }
         />
 };
