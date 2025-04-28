@@ -1,12 +1,7 @@
 import { RenderStatusTagCell } from "@/helpers/lista-nominal/renderCell";
 import type { GridColDef } from "@mui/x-data-grid";
-<<<<<<< HEAD:src/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/columns/columns.tsx
-import { CpfOrBirthdayFormatter, DateRenderCell } from "./columns.formatter";
-=======
-import { DateRenderCell } from "./columns.formatter";
-import { CpfOrBirthdayFormatter } from "./cpfOrBirthday.formatter";
-import { NameFormatter } from "./name.formatter";
->>>>>>> e5f5925fef7113af77014641037bd42fc0551852:src/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/columns.tsx
+import { DateRenderCell, CpfOrBirthdayFormatter } from "./columns.formatter";
+import { NameFormatter } from "../../name.formatter";
 //TODO investigar como a conversao para string no dataGrid
 
 export const diabetesColumns: GridColDef[] = [
