@@ -6,7 +6,6 @@ import { type ListDataResponse, getListData } from "@/services/lista-nominal/Lis
 import { captureException } from "@sentry/nextjs";
 import type { Session } from "next-auth";
 
-
 export const getListDataResponse = async (
     user: Session["user"],
     setResponse: React.Dispatch<React.SetStateAction<ListDataResponse>>,
