@@ -9,10 +9,14 @@ export const filterOptions = async (
     fields: FieldNames[]
  ): Promise<readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany({
+        select: fields.reduce((acc, field) => {
+            acc[field] = true;
+            return acc;
+        }, {} as Record<FieldNames, boolean>),
         distinct: [...fields],
         where : {
             municipio_id_sus: municipalitySusId,
             equipe_ine_cadastro: teamIne,
-        },
+        }
     })
 }
