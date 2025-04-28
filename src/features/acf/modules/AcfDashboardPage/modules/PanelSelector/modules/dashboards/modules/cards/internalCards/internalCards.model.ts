@@ -1,18 +1,20 @@
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
+export const DiabetesAcfInternalCardsHealthIndicator = {
+    TOTAL_COM_DIABETES: "TOTAL_COM_DIABETES",
+    EXAME_E_CONSULTA_EM_DIA: "EXAME_E_CONSULTA_EM_DIA",
+    DIAGNOSTICO_AUTORREFERIDO: "DIAGNOSTICO_AUTORREFERIDO",
+    DIAGNOSTICO_CLINICO: "DIAGNOSTICO_CLINICO",
+} as const;
 
-export type DiabetesAcfInternalCardsHealthIndicatorType = "TOTAL_COM_DIABETES" | "EXAME_E_CONSULTA_EM_DIA"
- | "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO";
+export type DiabetesInternalCardsId = typeof DiabetesAcfInternalCardsHealthIndicator;
+export type DiabetesInternalCardsKey = keyof DiabetesInternalCardsId;
+export type DiabetesInternalCardsValue = DiabetesInternalCardsId[DiabetesInternalCardsKey];
 
 export type InternalCardDBDataItem = {
-    municipio_id_sus: string;
-    ine: string;
-    lista: AcfDashboardType;
     valor: number;
-    descricao: string;
+    descricao: DiabetesInternalCardsValue;
 }
 
 export type InternalCardDataItem = {
-    acfDashboardType: AcfDashboardType
     value: number;
-    healthIndicator: DiabetesAcfInternalCardsHealthIndicatorType;
+    healthIndicator: DiabetesInternalCardsValue;
 }
