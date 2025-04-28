@@ -1,4 +1,4 @@
-import { diabetesAcfDashboardDataController } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.controller";
+import { diabetesData } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.controller";
 // import { filterData } from "@/utils/FilterData";
 // import type { DataItem, Filters } from "@/utils/FilterData";
 import {
@@ -15,7 +15,7 @@ import type { NextRequest } from "next/server";
 // import { paginateData, validatePaginationParams } from "../utils/pagination";
 import { BadRequestError } from "../utils/errors";
 import type { GridPaginationModel } from "@mui/x-data-grid";
-import { diabetesAcfDashboardDataCountRepository } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetesAcfDashboardData.repository";
+import { diabetesListCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.repository";
 import { validatePaginationParams } from "../utils/validatePaginationParams";
 
 // const getFiltersParams = async (filtersString: string | null) => {
@@ -118,8 +118,8 @@ export async function GET(
         //     });
         // }
         if (pagination.page || pagination.pageSize) validatePaginationParams(pagination);
-        const data = await diabetesAcfDashboardDataController(municipalitySusID, teamIne, pagination)
-        const totalRows = await diabetesAcfDashboardDataCountRepository(municipalitySusID, teamIne);
+        const data = await diabetesData(municipalitySusID, teamIne, pagination)
+        const totalRows = await diabetesListCount(municipalitySusID, teamIne);
         return Response.json(
             {
                 data,

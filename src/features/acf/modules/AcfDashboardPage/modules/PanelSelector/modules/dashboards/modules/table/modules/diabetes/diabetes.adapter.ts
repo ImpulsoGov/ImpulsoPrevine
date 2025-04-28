@@ -1,6 +1,6 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
-import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./DiabetesAcfItem.model"
+import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./diabetes.model"
 
 export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -9,7 +9,7 @@ export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
     return fieldValue;
 }
 
-export const diabetesAcfDashboardDataAdapter = (
+export const diabetesPageDbToModel = (
     data: readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]
 ): DiabetesAcfItem[] => {
     return data

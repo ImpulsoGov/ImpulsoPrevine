@@ -2,7 +2,7 @@ import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { GridPaginationModel } from "@mui/x-data-grid";
 
-export const diabetesAcfDashboardDataRepository = async(
+export const diabetesPage = async(
     municipalitySusID: string,
     teamIne: string,
     pagination: GridPaginationModel
@@ -20,7 +20,7 @@ export const diabetesAcfDashboardDataRepository = async(
     })
 }
 
-export const diabetesAcfDashboardDataCountRepository = async(
+export const diabetesListCount = async(
     municipalitySusID: string,
     teamIne: string
 ): Promise<number> => {

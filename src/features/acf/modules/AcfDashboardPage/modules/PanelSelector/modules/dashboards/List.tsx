@@ -29,9 +29,9 @@ import {
     handleSortModelChangeFunction,
 } from "./modules/sorting/handleSortModelChange";
 import { EmptyTableMessage } from "./modules/table/modules/EmptyTableMessage";
-import { diabetesColumns } from "./modules/table/modules/diabetes/columns";
 import { getListDataResponse } from "./modules/table/modules/diabetes/getListData";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
+import { diabetesColumns } from "./modules/table/modules/diabetes/modules/columns/columns";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos

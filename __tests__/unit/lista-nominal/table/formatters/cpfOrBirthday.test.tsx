@@ -1,14 +1,9 @@
-import { CpfOrBirthdayFormatter, cpfFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/cpfOrBirthday.formatter';
+import { CpfOrBirthdayFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/columns/columns.formatter';
 import { render, screen } from '@testing-library/react';
 
-describe('cpfFormatter', () => {
-  it('formata corretamente um CPF com 11 dígitos', () => {
-    expect(cpfFormatter('12345678909')).toBe('123.456.789-09');
-  });
-  it('retorna o valor inalterado se o formato não for de CPF', () => {
-    expect(cpfFormatter('123')).toBe('123');
-  });
-});
+jest.mock('@/helpers/lista-nominal/renderCell', () => ({
+  RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
+}));
 
 describe('CpfOrBirthdayFormatter', () => {
   it('renderiza a tag data-testid=empty-return quando `value` é string vazia', () => {

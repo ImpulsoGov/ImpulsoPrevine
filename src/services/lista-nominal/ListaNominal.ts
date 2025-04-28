@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/DiabetesAcfItem.model";
+import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.model";
 import type { GridSortDirection } from "@mui/x-data-grid";
 import axios from "axios";
 import type { AxiosResponse } from "axios";

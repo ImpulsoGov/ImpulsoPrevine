@@ -6,10 +6,9 @@ export type IconDetails = {
     alt: string;
 };
 export type TagIconDetailsMap = Record<string, IconDetails>;
-
-export const RenderDateTagCell = (
-    // {iconDetailsMap}:{iconDetailsMap: TagIconDetailsMap},
-) => (
+// Atenção: Não testar componentes sem antes mockar a chamada das seguintes funções:
+// Problema causado pelo uso do MessageChannel em um ambiente que não o suporta: node/jest/jsdom
+export const RenderDateTagCell = () => (
     <TableTag
         theme="pending"
         text="Não realizada"

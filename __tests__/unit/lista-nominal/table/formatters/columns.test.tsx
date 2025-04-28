@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { DateRenderCell } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/columns.formatter';
 import { RenderDateTagCell } from '@/helpers/lista-nominal/renderCell';
+import { DateRenderCell } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/modules/columns/columns.formatter';
 
 // 1) Mock do RenderDateTagCell para simplificar o teste
 jest.mock('@/helpers/lista-nominal/renderCell', () => ({
