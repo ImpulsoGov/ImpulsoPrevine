@@ -1,16 +1,8 @@
 "use client";
 import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import type { FilterItem, ListDataResponse } from "@/services/lista-nominal/ListaNominal";
-import { filterData } from "@/utils/FilterData";
-import {
-    // ClearFilters,
-    // FilterBar,
-    // SelectDropdown,
-    Table,
-} from "@impulsogov/design-system";
-import type { GridPaginationModel, GridSortModel } from "@mui/x-data-grid";
-import type { Session } from "next-auth";
+import type { FilterItem, } from "@/services/lista-nominal/ListaNominal";
+import type { GridSortModel } from "@mui/x-data-grid";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,20 +12,13 @@ import {
     // type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
-import { sessionHook } from "./modules/sessionHook";
-// import { sessionHook } from "./modules/sessionHook";
-import {
-    DEFAULT_SORTING,
-    handleSortModelChangeFunction,
-} from "./modules/sorting/handleSortModelChange";
-import { EmptyTableMessage } from "./modules/table/modules/EmptyTableMessage";
-import { getListDataResponse } from "./modules/table/modules/diabetes/getListData";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
-import { diabetesColumns } from "./modules/table/modules/diabetes/modules/columns/columns";
+import { PaginatedTable } from "./modules/table/modules/PaginatedTable";
+import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
-export type ListContainerProps = {
+export type ListProps = {
     list: AcfDashboardType;
     // title: string;
 };
@@ -44,12 +29,12 @@ export type PrintStatesType= {
     search: string;
 }
 
+
 export const List = ({
     // title,
     list,
-}: ListContainerProps) => {
+}: ListProps) => {
     const { data: session } = useSession();
-    const [user, setUser] = useState<Session["user"]>();
     const searchParams = useSearchParams();
     const router = useRouter();
     //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
@@ -58,22 +43,8 @@ export const List = ({
     const filters = filtersBuilder(session?.user);
     const initialFilters = initialFiltersBuilder(searchParams, filters);
     const [value, _setValue] = useState<FilterItem>(initialFilters);
-    const [response, setResponse] = useState<ListDataResponse>({
-        data: [],
-        totalRows: 0,
-    });
-    const [tableData, setTableData] = useState<ListDataResponse>({
-        data: [],
-        totalRows: 0,
-    });
-    const [pagination, setPagination] = useState<GridPaginationModel>({
-        page: 0,
-        pageSize: 8,
-    });
 
-    const [sorting, setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [sorting, _setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
 
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
@@ -87,7 +58,6 @@ export const List = ({
     // const propPrintGrouping = user?.perfis.includes(9)
     //     ? propPrintGroupingCoeqFunction(list)
     //     : propPrintGroupingCoapsFunction(list);
-    useEffect(() => setUser(session?.user), [session?.user]);
     useEffect(
         () => urlSearchParamsHook(searchParams, sorting, router, value, list),
         [
@@ -100,24 +70,6 @@ export const List = ({
             list
         ],
     );
-    useEffect(() => {
-        sessionHook(session?.user, setUser);
-    }, [session?.user]);
-
-    useEffect(() => {
-        if (user && list)
-            getListDataResponse(
-                user,
-                setResponse,
-                setIsLoading,
-                setErrorMessage,
-                list,
-                // sorting,
-                // value,
-                pagination,
-                // search,
-            );
-    }, [user, list, pagination]);
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
@@ -129,14 +81,8 @@ export const List = ({
     //     });
     // }, [user, value, list, sorting, search]);
 
-    useEffect(() => {
-        setTableData({
-            data: filterData(response.data, value),
-            totalRows: response.totalRows,
-        });
-    }, [response, value]);
+    // const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
 
-    const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
     // const handlePrintClick = () => {
     //     if (user)
     //         handlePrint(
@@ -150,7 +96,6 @@ export const List = ({
     //                 ),
     //         );
     // };
-    if (errorMessage) return <p style={{ textAlign: "center", padding: "20px" }}>{errorMessage}</p>
     // if (status === "loading") return <Spinner/>;
 
     // const filtersSelect = filters.map((filter: Filter) => (
@@ -208,21 +153,7 @@ export const List = ({
                 </div> */}
                 {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
                 {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
-                <Table
-                    columns={diabetesColumns}
-                    data={tableData.data}
-                    rowHeight={60}
-                    paginationMode="server"
-                    sortingMode="server"
-                    rowCount={tableData.totalRows}
-                    paginationModel={pagination}
-                    onPaginationModelChange={setPagination}
-                    sortModel={sorting}
-                    onSortModelChange={handleSortModelChange}
-                    isLoading={isLoading}
-                    slots={{ noRowsOverlay: EmptyTableMessage }}
-                    data-testid="list-table"
-                />
+                <PaginatedTable acfDashboardType={list} />
             </div>
             {/* {
                 user &&
