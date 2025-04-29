@@ -13,8 +13,8 @@ import {
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
 import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
-import { PaginatedTable } from "./modules/table/modules/PaginatedTable";
 import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
+import { TableContainer } from "./modules/table/Table.container";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
@@ -153,7 +153,7 @@ export const List = ({
                 </div> */}
                 {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
                 {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
-                <PaginatedTable acfDashboardType={list} />
+                <TableContainer acfDashboardType={list} />
             </div>
             {/* {
                 user &&
