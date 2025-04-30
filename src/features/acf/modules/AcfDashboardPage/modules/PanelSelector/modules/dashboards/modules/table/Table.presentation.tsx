@@ -9,10 +9,12 @@ export const PaginatedTable = ({
     response,
     paginationModel,
     setPaginationModel,
+    isLoading
 }:{
     response: AxiosResponse<ListDataResponse> | null,
     paginationModel: GridPaginationModel,
     setPaginationModel: (model: GridPaginationModel) => void,
+    isLoading: boolean,
 }) => {
     if (response && response.status !== 200 && response.data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>
@@ -32,7 +34,7 @@ export const PaginatedTable = ({
             onPaginationModelChange={setPaginationModel}
             // sortModel={DEFAULT_SORTING} //TODO: Mudar para o sorting recebido como prop quando implementarmos sorting
             // onSortModelChange={(_) => {}} //TODO: Mudar para a função recebida como prop quando implementarmos sorting
-            isLoading={!response}
+            isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
         />

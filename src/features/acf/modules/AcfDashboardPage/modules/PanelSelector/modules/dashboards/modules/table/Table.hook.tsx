@@ -12,12 +12,14 @@ export const tableDataHook = (
 ) => {
     const { data: session } = useSession();
     const [response, setResponse] = useState<AxiosResponse<ListDataResponse> | null >(null);
+    const [ isLoading, setIsLoading ] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
     useEffect(() => setUser(session?.user), [session?.user]);
 
     useEffect(() => {
         const getResponse = async () => {
             if (!user) { return; }
+            setIsLoading(true);
             const res = await getListData({
                 token: user.access_token,
                 listName: acfDashboardType,
@@ -31,10 +33,11 @@ export const tableDataHook = (
                 pagination: paginationModel,
                 // search: search,
             });
-                setResponse(res);
+            setResponse(res);
+            setIsLoading(false);
         }
 
         getResponse();
     }, [user, acfDashboardType, paginationModel]);
-    return { response };
+    return { response, isLoading };
 }
