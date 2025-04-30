@@ -16,12 +16,13 @@ export const TableContainer = ({
         page: 0,
         pageSize: 8,
     });
-    const { response } = tableDataHook(acfDashboardType, paginationModel);
+    const { response, isLoading } = tableDataHook(acfDashboardType, paginationModel);
     return (
         <PaginatedTable
             response={response}
             paginationModel={paginationModel}
             setPaginationModel={setPaginationModel}
+            isLoading={isLoading}
         />
     );
 }
