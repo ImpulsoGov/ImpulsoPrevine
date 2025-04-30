@@ -12,7 +12,7 @@ import {
     // type Filter,
     initialFiltersBuilder,
 } from "./modules/filters/initialFilters";
-import { urlSearchParamsHook } from "./modules/urlSearchParamsHook";
+import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
 import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
 import { TableContainer } from "./modules/table/Table.container";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
