@@ -59,7 +59,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
     const [cidade, setCidade] = useState("João Pessoa - PB");
     const [isLoading] = useState(true);
     const [active, setMode] = useState(true);
-    if (process.env.ENV !== "development") {
+    if (process.env.NEXT_PUBLIC_HOTJAR_SITE_ID) {
         Hotjar.init(
             Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID),
             hotjarVersion,
