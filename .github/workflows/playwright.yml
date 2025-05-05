@@ -7,7 +7,7 @@ on:
 
 env:
   NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-  NEXT_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+  NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   ENV: ${{ secrets.ENV }}
   TEST_USER: ${{ secrets.TEST_USER }}
