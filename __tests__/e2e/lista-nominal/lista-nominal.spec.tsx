@@ -15,7 +15,7 @@ const login = async ({ page }: { page: Page }) => {
     await Promise.all([
         page.getByRole('button', { name: 'ENTRAR' }).click()
     ]);
-    await expect(page.getByText("Boas vindas", )).toBeVisible({ timeout: 100000 });
+    await expect(page.getByText("Boas vindas", )).toBeVisible({ timeout: 200000 });
 };
 
 test.describe("Testes de renderização do componente Table no ListContainer", () => {

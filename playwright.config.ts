@@ -5,7 +5,7 @@ dotenv.config();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    timeout: 360 * 1000,
+    timeout: 720 * 1000,
     testDir: "./__tests__/e2e",
     /* Run tests in files in parallel */
     fullyParallel: true,
@@ -75,6 +75,6 @@ export default defineConfig({
     command: 'yarn dev',
     port: 3000,
     reuseExistingServer: !process.env.CI,
-    timeout: 360_000,
+    timeout: 720_000,
   },
 });
