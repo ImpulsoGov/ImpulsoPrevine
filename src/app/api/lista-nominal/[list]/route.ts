@@ -12,7 +12,6 @@ import type { NextRequest } from "next/server";
 // import data from "../data.json";
 // import { sortData, validateSortOrder } from "../utils/sorting";
 // import type { SortOrder } from "../utils/sorting";
-// import { paginateData, validatePaginationParams } from "../utils/pagination";
 import { BadRequestError } from "../utils/errors";
 import type { GridPaginationModel } from "@mui/x-data-grid";
 import { diabetesListCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.repository";

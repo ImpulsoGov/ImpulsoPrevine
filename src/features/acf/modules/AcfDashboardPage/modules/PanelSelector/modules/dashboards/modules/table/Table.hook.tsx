@@ -39,5 +39,5 @@ export const tableDataHook = (
 
         getResponse();
     }, [user, acfDashboardType, paginationModel]);
-    return { response, isLoading };
+    return { data : response?.data, status : response?.status, isLoading };
 }
