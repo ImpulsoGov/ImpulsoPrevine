@@ -14,7 +14,7 @@ import {
 } from "./modules/filters/initialFilters";
 import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
 import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
-import { PaginatedTable } from "./modules/table/PaginatedTable";
+import { PaginatedTable } from "./modules/PaginatedTable";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos

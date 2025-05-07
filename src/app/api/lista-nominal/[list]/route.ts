@@ -1,4 +1,3 @@
-import { diabetesData } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.controller";
 // import { filterData } from "@/utils/FilterData";
 // import type { DataItem, Filters } from "@/utils/FilterData";
 import {
@@ -14,8 +13,9 @@ import type { NextRequest } from "next/server";
 // import type { SortOrder } from "../utils/sorting";
 import { BadRequestError } from "../utils/errors";
 import type { GridPaginationModel } from "@mui/x-data-grid";
-import { diabetesListCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/diabetes.repository";
 import { validatePaginationParams } from "../utils/validatePaginationParams";
+import { diabetesListCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.repository";
+import { diabetesData } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.controller";
 
 // const getFiltersParams = async (filtersString: string | null) => {
 //     const filters: Filters = {};
