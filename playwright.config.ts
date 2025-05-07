@@ -4,7 +4,8 @@ dotenv.config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+
+const defineConfigCI = defineConfig({
     timeout: 720 * 1000,
     testDir: "./__tests__/e2e",
     /* Run tests in files in parallel */
@@ -71,10 +72,21 @@ export default defineConfig({
         // },
     ],
     /* Run your local dev server before starting the tests */
-  webServer: {
-    command: process.env.CI ? 'yarn build && yarn start' : 'yarn dev',
+});
+
+const webServer = {
+    command: 'yarn dev',
     port: 3000,
     reuseExistingServer: !process.env.CI,
     timeout: 720_000,
-  },
-});
+};
+const defineConfigLocal = {
+    ...defineConfigCI,
+    webServer
+};
+
+const defineConfigGlobal = !process.env.CI ? defineConfigCI : defineConfigLocal
+
+export default defineConfigGlobal;
+
+

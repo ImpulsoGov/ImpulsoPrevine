@@ -1,9 +1,6 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main]
+ deployment_status:
 
 env:
   NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
@@ -14,20 +11,32 @@ env:
   TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
 
 jobs:
-  test:
+  end-to-end-with-playwright:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
+        node-version: 22.13.0
     - name: Install dependencies
       run: yarn install --frozen-lockfile
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Extract Deployment URL
+      run:  |
+          if [ -z "${{ github.event.deployment_status.environment_url }}" ]; then
+            echo "Error: Deployment URL is empty"
+            exit 1
+          fi
+          DEPLOY_URL=${{ github.event.deployment_status.environment_url }}
+          echo "Deployment is ready: $DEPLOY_URL"
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+    - name: Run Playwright Tests
+      run: yarn playwright test
+      env:
+        BASE_URL: ${{ env.DEPLOY_URL }} 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

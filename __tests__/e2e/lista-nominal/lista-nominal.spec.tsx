@@ -1,7 +1,7 @@
 import { type Page, expect, test } from "@playwright/test";
 
 //TODO: Pensar em como lidar com essa base URL
-const baseUrl = "http://localhost:3000";
+const baseUrl = process.env.DEPLOY_URL ;
 const pageUrl = `${baseUrl}/lista-nominal`;
 
 const login = async ({ page }: { page: Page }) => {
