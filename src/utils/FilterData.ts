@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/table/modules/diabetes/DiabetesAcfItem.model";
+import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
 
 export type ValidValue = string | number | boolean | Date | null | undefined;
 
