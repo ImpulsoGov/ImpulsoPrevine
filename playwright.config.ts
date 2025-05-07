@@ -85,7 +85,7 @@ const defineConfigLocal = {
     webServer
 };
 
-const defineConfigGlobal = !process.env.CI ? defineConfigCI : defineConfigLocal
+const defineConfigGlobal = !process.env.CI ? defineConfigLocal : defineConfigCI;
 
 export default defineConfigGlobal;
 
