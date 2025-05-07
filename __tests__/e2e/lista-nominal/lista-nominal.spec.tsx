@@ -27,8 +27,6 @@ test.describe("Testes de renderização do componente Table no ListContainer", (
     test("Deve renderizar a tabela usando data-testid", async ({ page }) => {
         await page.goto(pageUrl);
 
-        await page.getByText("Listas", { exact: true}).click();
-
         // Procura pela tabela que possui o data-testid "list-table"
         const table = page.locator('[data-testid="list-table"]');
         await expect(table).toBeVisible();

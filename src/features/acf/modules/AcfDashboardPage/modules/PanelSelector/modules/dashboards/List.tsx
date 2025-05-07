@@ -29,7 +29,6 @@ export type PrintStatesType= {
     search: string;
 }
 
-
 export const List = ({
     // title,
     list,
