@@ -13,7 +13,7 @@ env:
 jobs:
   end-to-end-with-playwright:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
-    timeout-minutes: 60
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
