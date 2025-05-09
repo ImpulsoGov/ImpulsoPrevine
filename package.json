@@ -7,6 +7,12 @@
         "dev": "next dev --turbopack",
         "build": "prisma generate && next build ",
         "start": "next start",
+        "biome:check": "biome check --write",
+        "biome:summary": "biome check --reporter=summary",
+        "lint": "biome lint",
+        "lint:fix": "biome lint --write",
+        "format": "biome format",
+        "format:fix": "biome format --write",
         "commitlint": "commitlint --edit",
         "commit": "cz",
         "postinstall": "husky",
@@ -43,6 +49,7 @@
         "validator": "^13.12.0"
     },
     "devDependencies": {
+        "@biomejs/biome": "1.9.4",
         "@commitlint/cli": "^19.6.1",
         "@commitlint/config-conventional": "^19.6.0",
         "@playwright/test": "^1.51.1",
