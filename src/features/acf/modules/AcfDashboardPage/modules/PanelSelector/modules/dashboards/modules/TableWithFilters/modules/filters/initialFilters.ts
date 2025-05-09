@@ -1,15 +1,16 @@
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 
-export interface Filter {
+export type Filter = {
     id: string;
     label: string;
     options: OptionsType[];
     isMultiSelect: boolean;
     width: string;
 }
+// TODO definir se esses campos serão string | null ou somente string
 export type OptionsType = {
-    value: string;
-    label: string;
+    value: string | null;
+    label: string | null;
 };
 
 export const initialFiltersBuilder = (

@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
+import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
 import type { GridSortDirection } from "@mui/x-data-grid";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
@@ -105,23 +105,23 @@ export const getListData = async ({
     token,
     listName,
     // sorting,
-    // filters,
+    filters,
     pagination,
     // search,
 }: GetListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     if (!listName) throw new Error("Tipo de lista é obrigatório");
-
+    console.log("filters", filters);
     const currentURL = new URL(window.location.href);
     const url = `${currentURL.origin}/api/lista-nominal/`;
     const urlWithParams = buildUrlWithParams(url, {
         // sorting,
-        // filters,
+        filters,
         listName,
         pagination,
         // search,
     });
-
+    console.log("URL com parâmetros:", urlWithParams);
     return axios.request({
         method: "get",
         maxBodyLength: Number.POSITIVE_INFINITY,
