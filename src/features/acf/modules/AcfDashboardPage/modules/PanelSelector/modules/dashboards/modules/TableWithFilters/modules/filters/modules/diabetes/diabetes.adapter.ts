@@ -1,6 +1,6 @@
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { DiabetesFilterItem, DiabetesFilterOptions, DiabetesFilterOptionsDB} from './diabetes.model';
-import type { ConditionIdentifiedBy, PatientStatus } from '../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model';
+import type { ConditionIdentifiedBy, PatientStatus, PatientAgeRange } from '../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model';
 
 /**
  * Tranforma.
@@ -14,6 +14,7 @@ export const diabetesAcfFilterDataAdapter = (
         patientStatus: [],
         conditionIdentifiedBy: [],
         visitantCommunityHealthWorker: [],
+        patientAgeRange: [],
     }
     const groupedItems = aggregateDistinctValues(data)
     // TODO: corrigir atualização dos valores
@@ -21,6 +22,7 @@ export const diabetesAcfFilterDataAdapter = (
         if (key === "status_usuario") diabetesFilterItens.patientStatus = value as PatientStatus[]
         if (key === "identificacao_condicao_diabetes") diabetesFilterItens.conditionIdentifiedBy = value as ConditionIdentifiedBy[]
         if (key === "acs_nome_cadastro") diabetesFilterItens.visitantCommunityHealthWorker = value as string[]
+        if (key === "cidadao_faixa_etaria") diabetesFilterItens.patientAgeRange = value as PatientAgeRange[]
     }
     return diabetesFilterItens;
 }
@@ -49,6 +51,7 @@ export const filterDbtoModelOptions: Record<DiabetesFilterOptions, DiabetesFilte
     patientStatus: "status_usuario",
     conditionIdentifiedBy: "identificacao_condicao_diabetes",
     visitantCommunityHealthWorker: "acs_nome_cadastro",
+    patientAgeRange: "cidadao_faixa_etaria",
 }
 
 export const modelToDB = (item: DiabetesFilterOptions[]) : DiabetesFilterOptionsDB[]=>{

@@ -16,8 +16,9 @@ export const FiltersContainer = async ({
     const filterItem = await diabetesFilterItem(
         municipalitySusID,
         teamIne,
-        modelToDB(['visitantCommunityHealthWorker', 'patientStatus', 'conditionIdentifiedBy'])
+        modelToDB(['visitantCommunityHealthWorker', 'patientStatus', 'conditionIdentifiedBy', 'patientAgeRange'])
     )
+    console.log('filterItem', filterItem)
   return (
     <TableWithFilters filterItem={filterItem} >
         {children}

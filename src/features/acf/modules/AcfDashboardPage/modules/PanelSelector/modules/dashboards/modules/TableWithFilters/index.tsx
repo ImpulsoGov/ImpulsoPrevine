@@ -23,6 +23,7 @@ export const TableWithFilters = ({
     children,
     filterItem
 }: TableWithFiltersProps) => {
+    console.log('filterItem', filterItem)
     const searchParams = useSearchParams(); 
     const filters = filtersBuilder(filterItem);
     const initialFilters = initialFiltersBuilder(searchParams, filters);

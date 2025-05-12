@@ -7,10 +7,10 @@ export type Filter = {
     isMultiSelect: boolean;
     width: string;
 }
-// TODO definir se esses campos serão string | null ou somente string
+
 export type OptionsType = {
-    value: string | null;
-    label: string | null;
+    value: string;
+    label: string;
 };
 
 export const initialFiltersBuilder = (
