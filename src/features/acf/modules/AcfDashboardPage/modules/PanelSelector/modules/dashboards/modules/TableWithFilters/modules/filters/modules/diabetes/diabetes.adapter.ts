@@ -1,6 +1,6 @@
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { DiabetesFilterItem, DiabetesFilterOptions, DiabetesFilterOptionsDB} from './diabetes.model';
-import type { ConditionIdentifiedBy, PatientStatus, PatientAgeRange } from '../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model';
+import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus } from '../../../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model';
 
 /**
  * Tranforma.

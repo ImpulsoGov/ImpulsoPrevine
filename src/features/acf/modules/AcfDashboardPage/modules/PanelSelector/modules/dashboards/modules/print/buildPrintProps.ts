@@ -5,7 +5,7 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { filtersLabels } from "../TableWithFilters/modules/filters/modules/diabetes/filtersLabels";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
-import { diabetesColumns } from "../TableWithFilters/modules/PaginatedTable/modules/DataTable/modules/diabetes/modules/columns/columns";
+import { diabetesColumns } from "../PaginatedTable/modules/DataTable/modules/diabetes/modules/columns/columns";
 
 export const buildPrintProps = (
   list: AcfDashboardType,
