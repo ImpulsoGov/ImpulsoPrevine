@@ -22,7 +22,7 @@ export const DataTable = ({
     onPaginationModelChange,
 }: TableProps) => {
     const filters = useContext<FilterItem>(FiltersContext);
-    const { data, status, isLoading } = tableDataHook(acfDashboardType, paginationModel,filters);
+    const { data, status, isLoading } = tableDataHook(acfDashboardType, paginationModel, filters);
 
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>
