@@ -111,7 +111,6 @@ export const getListData = async ({
 }: GetListDataProps): Promise<AxiosResponse<ListDataResponse>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     if (!listName) throw new Error("Tipo de lista é obrigatório");
-    console.log("filters", filters);
     const currentURL = new URL(window.location.href);
     const url = `${currentURL.origin}/api/lista-nominal/`;
     const urlWithParams = buildUrlWithParams(url, {
@@ -121,7 +120,6 @@ export const getListData = async ({
         pagination,
         // search,
     });
-    console.log("URL com parâmetros:", urlWithParams);
     return axios.request({
         method: "get",
         maxBodyLength: Number.POSITIVE_INFINITY,

@@ -15,7 +15,7 @@ export type DiabetesAcfItem = {
     hemoglobinTestDueDate: string,
     nextAppointmentDueDate: string,
     patientStatus: PatientStatus,
-    conditionIndentifiedBy: ConditionIdentifiedBy,
+    conditionIdentifiedBy: ConditionIdentifiedBy,
     patientCpfOrBirthday: string | Date,
     patientName: string,
     patientAgeRange: PatientAgeRange,

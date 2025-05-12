@@ -18,7 +18,7 @@ export const FiltersContainer = async ({
         teamIne,
         modelToDB(['visitantCommunityHealthWorker', 'patientStatus', 'conditionIdentifiedBy', 'patientAgeRange'])
     )
-    console.log('filterItem', filterItem)
+
   return (
     <TableWithFilters filterItem={filterItem} >
         {children}

@@ -13,16 +13,16 @@ const validateCredentials = async (mail, senha) => {
     data.append("username", mail);
     data.append("password", senha);
 
-    var config = {
+    const config = {
         method: "post",
-        url: API_URL_USUARIOS + "suporte/usuarios/token",
+        url: `${API_URL_USUARIOS}suporte/usuarios/token`,
         data: data,
     };
 
     const res = await axios(config)
         .then((response) => response.data)
         .catch((error) => {
-            console.log(error);
+            console.error(error);
             mixpanel.track("validation_error", {
                 button_action: "entrar_area_restitra_apos_senha",
                 error_message: error.response.data,
@@ -48,9 +48,9 @@ const validacao = (
         const msgCampoVazio = "Preencha todos os campos";
         setResposta(msgCampoVazio);
         return msgCampoVazio;
-    } else {
+    }
         res().then((response) => {
-            if (typeof response["access_token"] !== "undefined") {
+            if (typeof response.access_token !== "undefined") {
                 entrar("credentials", {
                     redirect: true,
                     username: mail,
@@ -63,12 +63,11 @@ const validacao = (
                 });
                 setModal(false);
             } else {
-                setResposta(response["detail"]);
+                setResposta(response.detail);
                 setEsperandoResposta(false);
             }
             return res;
         });
-    }
 };
 
 export { validateCredentials, validacao };

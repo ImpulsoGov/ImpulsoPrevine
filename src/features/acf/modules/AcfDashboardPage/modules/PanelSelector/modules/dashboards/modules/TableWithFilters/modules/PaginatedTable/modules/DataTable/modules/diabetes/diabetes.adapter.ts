@@ -1,6 +1,9 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "./diabetes.model"
+import type { DiabetesFilterOptions } from '../../../../../filters/modules/diabetes/diabetes.model';
+import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
+import { filterDbtoModelOptions } from '../../../../../filters/modules/diabetes/diabetes.adapter';
 
 export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -26,7 +29,7 @@ const diabetesRowToModel = (diabetesRow: impulso_previne_dados_nominais___painel
         hemoglobinTestDueDate: diabetesRow.prazo_proxima_solicitacao_hemoglobina || '',
         nextAppointmentDueDate: diabetesRow.prazo_proxima_consulta || '',
         patientStatus: diabetesRow.status_usuario as PatientStatus,
-        conditionIndentifiedBy: diabetesRow.identificacao_condicao_diabetes as ConditionIdentifiedBy,
+        conditionIdentifiedBy: diabetesRow.identificacao_condicao_diabetes as ConditionIdentifiedBy,
         patientCpfOrBirthday: cpfOrDate(diabetesRow.cidadao_cpf_dt_nascimento) || '',
         patientName: diabetesRow.cidadao_nome || '',
         patientAgeRange: diabetesRow.cidadao_faixa_etaria as PatientAgeRange,
@@ -45,3 +48,24 @@ export const diabetesPageDbToModel = (
 ): DiabetesAcfItem[] => {
     return data.map<DiabetesAcfItem>(diabetesRowToModel)
 }
+
+export type DiabetesDbFilterItem = {
+    status_usuario?: string[] | null | undefined;
+    identificacao_condicao_diabetes?: string[] | null | undefined;
+    acs_nome_cadastro?: string[] | null | undefined;
+}
+
+const mapFilterKeyToDbField = (key: DiabetesFilterOptions, value: string | string[]): Partial<DiabetesDbFilterItem> => {
+    if (value.length > 0) {
+        return { [filterDbtoModelOptions[key]]: Array.isArray(value) ? value : [value] };
+    }
+
+    return {};
+};
+
+//TODO tornar FilterItem um tipo mais especifico
+export const diabetesFilterToDb = (filters: FilterItem): DiabetesDbFilterItem => {
+    return Object.entries(filters).reduce<DiabetesDbFilterItem>((acc, [key, value]) => (
+        Object.assign(acc, mapFilterKeyToDbField(key as DiabetesFilterOptions, value))
+    ), {});
+};

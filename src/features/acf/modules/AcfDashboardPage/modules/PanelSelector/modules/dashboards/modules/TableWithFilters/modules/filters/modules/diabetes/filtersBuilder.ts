@@ -2,7 +2,7 @@ import type { DiabetesAcfItem } from "../../../PaginatedTable/modules/DataTable/
 import type { DiabetesFilterItem } from "./diabetes.model";
 import type { Filter, OptionsType } from "../../initialFilters";
 
-type FilterOptions = DiabetesAcfItem['visitantCommunityHealthWorker'][] | DiabetesAcfItem['patientStatus'][] | DiabetesAcfItem['conditionIdentifiedBy'][];
+type FilterOptions = DiabetesAcfItem['visitantCommunityHealthWorker'][] | DiabetesAcfItem['patientStatus'][] | DiabetesAcfItem['conditionIdentifiedBy'][] | DiabetesAcfItem['patientAgeRange'][];
 
 const filterOptions = (diabetesFilterItem: FilterOptions): OptionsType[] => {
     return diabetesFilterItem.map<OptionsType>((item) => ({
@@ -24,8 +24,8 @@ const sortedOptions = (a: OptionsType, b: OptionsType) => referenceOrder.indexOf
 
 export const filtersBuilder = (filterItem: DiabetesFilterItem) : Filter[] => [
     {
-        options: filterOptions(filterItem.visitantCommunityHealthWorker).filter(option => option.label !== null || option.value !== null)
-        .sort((a, b) => (a.label ?? '').localeCompare(b.label ?? '')),
+        options: filterOptions(filterItem.visitantCommunityHealthWorker)
+        .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Prof. Responsável",
         id: "visitantCommunityHealthWorker",
         isMultiSelect: true,
@@ -33,8 +33,7 @@ export const filtersBuilder = (filterItem: DiabetesFilterItem) : Filter[] => [
     },
     {
         options: filterOptions(filterItem.patientStatus)
-        .filter(option => option.label !== null || option.value !== null)
-        .sort((a, b) => (a.label ?? '').localeCompare(b.label ?? '')),
+        .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Situação",
         id: "patientStatus",
         isMultiSelect: true,
@@ -42,8 +41,7 @@ export const filtersBuilder = (filterItem: DiabetesFilterItem) : Filter[] => [
     },
     {
         options: filterOptions(filterItem.conditionIdentifiedBy)
-        .filter(option => option.label !== null || option.value !== null)
-        .sort((a, b) => (a.label ?? '').localeCompare(b.label ?? '')),
+        .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Tipo de Diagnóstico",
         id: "conditionIdentifiedBy",
         isMultiSelect: true,
@@ -51,7 +49,6 @@ export const filtersBuilder = (filterItem: DiabetesFilterItem) : Filter[] => [
     },
     {
         options: filterOptions(filterItem.patientAgeRange)
-        .filter(option => option.label !== null || option.value !== null)
         .sort(sortedOptions),
         label: "Faixa Etária",
         id: "patientAgeRange",

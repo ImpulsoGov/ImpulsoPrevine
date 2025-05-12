@@ -59,7 +59,6 @@ export async function GET(
         const searchParams = req.nextUrl.searchParams;
         const filtersParams = searchParams.get("filters");
         const filters = await getFiltersParams(filtersParams);
-        console.log(filters)
         const pageSizeDefault = 8;
         const pageDefault = 0;
         const token = getToken(req.headers);
