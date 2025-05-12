@@ -8,19 +8,20 @@ export type PatientAgeRange = "Menos de 17 anos " | "Entre 18 e 24 anos" | "Entr
 //ACF = Active Case Finding = Busca Ativa. Fonte: https://www.who.int/publications/i/item/9789290228486
 //CHW = Community Health Worker = ACS = Agente Comunitário de Saúde
 export type DiabetesAcfItem = {
-    municipalitySusID: string | null
-    municipalityState: string | null
-    latestExamRequestDate: Date | null
-    mostRecentAppointmentDate: Date | null
-    hemoglobinTestDueDate: string | null,
-    patientStatus: PatientStatus | null
-    conditionIdentifiedBy: ConditionIdentifiedBy | null
-    patientCpfOrBirthday: string | Date | null,
-    patientName: string | null
-    patientAgeRange: PatientAgeRange | null
-    patientAge: number | null
-    careTeamIne: string | null
-    careTeamName: string | null
-    visitantCommunityHealthWorker: string | null
-    mostRecentProductionRecordDate: Date | null
+    municipalitySusID: string,
+    municipalityState: string,
+    latestExamRequestDate: Date | null,
+    mostRecentAppointmentDate: Date | null,
+    hemoglobinTestDueDate: string,
+    nextAppointmentDueDate: string,
+    patientStatus: PatientStatus,
+    conditionIndentifiedBy: ConditionIdentifiedBy,
+    patientCpfOrBirthday: string | Date,
+    patientName: string,
+    patientAgeRange: PatientAgeRange,
+    patientAge: number,
+    careTeamIne: string,
+    careTeamName: string,
+    visitantCommunityHealthWorker: string,
+    mostRecentProductionRecordDate: Date | null,
 }
