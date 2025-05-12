@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
+import type { DiabetesAcfItem } from "../../../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
 import type { DiabetesFilterItem } from "./diabetes.model";
 import type { Filter, OptionsType } from "../../initialFilters";
 
@@ -20,7 +20,8 @@ const referenceOrder = [
   "Mais de 65 anos"
 ];
 
-const sortedOptions = (a: OptionsType, b: OptionsType) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label)
+const sortedOptions = (a: OptionsType, b: OptionsType) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
+
 
 export const filtersBuilder = (filterItem: DiabetesFilterItem) : Filter[] => [
     {

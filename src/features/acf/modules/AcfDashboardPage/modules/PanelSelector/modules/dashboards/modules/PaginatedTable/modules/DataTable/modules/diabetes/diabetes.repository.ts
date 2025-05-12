@@ -14,6 +14,7 @@ export const diabetesPage = async(
             status_usuario: { in: filters.status_usuario },
             identificacao_condicao_diabetes: { in: filters.identificacao_condicao_diabetes },
             acs_nome_cadastro: { in: filters.acs_nome_cadastro },
+            cidadao_faixa_etaria: { in: filters.cidadao_faixa_etaria },
             municipio_id_sus: municipalitySusID,
             equipe_ine_cadastro: teamIne,
 

@@ -53,6 +53,7 @@ export type DiabetesDbFilterItem = {
     status_usuario?: string[] | null | undefined;
     identificacao_condicao_diabetes?: string[] | null | undefined;
     acs_nome_cadastro?: string[] | null | undefined;
+    cidadao_faixa_etaria?: string[] | null | undefined;
 }
 
 const mapFilterKeyToDbField = (key: DiabetesFilterOptions, value: string | string[]): Partial<DiabetesDbFilterItem> => {
