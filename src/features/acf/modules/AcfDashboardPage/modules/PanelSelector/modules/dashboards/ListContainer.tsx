@@ -1,8 +1,9 @@
 import type { AcfDashboardType } from "../../../../types";
 import { List } from "./List";
 import { InternalCards } from "./modules/cards/internalCards/InternalCards.container";
-import { FiltersContainer } from "./modules/TableWithFilters/Filters.container";
-import { PaginatedTable } from "./modules/TableWithFilters/modules/PaginatedTable";
+import { PaginatedTable } from "./modules/PaginatedTable";
+import { FiltersContainer } from "./modules/TableWithFilters";
+
 export type ListContainerProps = {
     list: AcfDashboardType;
     municipalitySusId: string;

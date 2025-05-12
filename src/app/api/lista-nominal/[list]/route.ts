@@ -14,8 +14,8 @@ import type { NextRequest } from "next/server";
 // import { paginateData, validatePaginationParams } from "../utils/pagination";
 import { BadRequestError } from "../utils/errors";
 import { validatePaginationParams } from "../utils/validatePaginationParams";
-import { diabetesData, diabetesDataCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.controller";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { diabetesData, diabetesDataCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.controller";
 
 const getFiltersParams = async (filtersString: string | null) => {
     const filters: FilterItem = {};

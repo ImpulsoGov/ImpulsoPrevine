@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
+import type { DiabetesAcfItem } from "../../../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
 
 export type DiabetesFilterItem = {
   visitantCommunityHealthWorker: DiabetesAcfItem['visitantCommunityHealthWorker'][];

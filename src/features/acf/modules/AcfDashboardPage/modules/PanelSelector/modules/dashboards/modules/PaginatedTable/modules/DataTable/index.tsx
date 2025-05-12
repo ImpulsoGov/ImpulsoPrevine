@@ -7,8 +7,8 @@ import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/t
 import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
-import { FiltersContext } from "../../../..";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
 
 type TableProps = {
     acfDashboardType: AcfDashboardType;
