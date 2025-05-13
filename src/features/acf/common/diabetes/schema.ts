@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { DiabetesAcfItem } from "./model";
 
 export const patientStatus = z.enum([
     "Apenas a consulta a fazer",
@@ -29,6 +30,8 @@ export const patientAgeRange = z.enum([
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
 export const filterParams = z.object({
+    //TODO: Adicionar arrays onde fizer sentido
+    //TODO: Pq não enviar sempre arrays ao invés de às vezes mandar um item singular e às vezes um array?
     municipalitySusID: z.string(),
     teamIne: z.string(),
     patientStatus: z.optional(patientStatus),
@@ -46,10 +49,14 @@ export const paginationParams = z.object({
 
 export type PaginationParams = z.infer<typeof paginationParams>;
 
-export const queryParams = z.object({
+export const requestBody = z.object({
     pagination: paginationParams,
     filters: z.optional(filterParams),
 })
 
-export type QueryParams = z.infer<typeof queryParams>;
+export type RequestBody = z.infer<typeof requestBody>;
 
+export type Response = {
+    data: DiabetesAcfItem[];
+    totalRows: number;
+}

@@ -1,12 +1,11 @@
 import type { NextRequest } from "next/server";
-import type { QueryParams } from "./schema";
-import { queryParams as queryParamsSchema } from './schema';
+import type { RequestBody } from "@/features/acf/common/diabetes/schema";
+import { requestBody as queryParamsSchema } from '@/features/acf/common/diabetes/schema';
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken, type JWTToken } from "@/utils/token";
-import { diabetesData, diabetesDataCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.controller";
+import { diabetesData, diabetesDataCount } from "@features/acf/server/diabetes/controller";
 import { BadRequestError } from "../../utils/errors";
 import { ZodError } from "zod";
 
-//TODO: Controllers não deveriam morar dentro de módulos privados, deveriamos passar eles pra fora
 export async function POST(
     req: NextRequest
 ) {
@@ -20,7 +19,7 @@ export async function POST(
         const teamIne = payload?.equipe as string;
 
         const body = await req.json();
-        const queryParams = queryParamsSchema.parse(body) as QueryParams;
+        const queryParams = queryParamsSchema.parse(body) as RequestBody;
 
         //TODO: Tirar esse filtro vazio || {}
         const data = await diabetesData(municipalitySusID, teamIne, queryParams.pagination, queryParams.filters || {});
@@ -35,7 +34,7 @@ export async function POST(
             { status: 200 },
         );
     } catch (error) {
-        //TODO: Fazer essa lógica em algum middleware
+        //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
         console.error(error);
         if (error instanceof ZodError) {
             return Response.json({ message: error.message }, { status: 400 });
