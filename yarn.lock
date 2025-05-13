@@ -1510,10 +1510,10 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@impulsogov/design-system@^1.0.318":
-  version "1.0.336"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.336.tgz#b016caf2b1341d7e8425ea478a93256f822ad71f"
-  integrity sha512-6LSvd4+tRZcky5JWOAZS6oOwRx2u/oiZhazgS5Wt2DghXGmjf5d8Rwu/ipxRGmFTq6q7UwKW+PXfjEIZi2kr6A==
+"@impulsogov/design-system@1.0.346":
+  version "1.0.346"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.346.tgz#58824c6f4fd15f58a6c4624b754726d371156a3c"
+  integrity sha512-ziFW3kyiSUck33JApms0pami+d4kv8XQrNWrTijHt+5CSvw8LuM8z1rV1pb1TBDntHVFjz3vQAxfNdnwOtifng==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
@@ -1543,10 +1543,10 @@
     react-to-print "^2.14.13"
     styled-components "^6.0.1"
 
-"@impulsogov/design-system@^1.0.346":
-  version "1.0.346"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.346.tgz#58824c6f4fd15f58a6c4624b754726d371156a3c"
-  integrity sha512-ziFW3kyiSUck33JApms0pami+d4kv8XQrNWrTijHt+5CSvw8LuM8z1rV1pb1TBDntHVFjz3vQAxfNdnwOtifng==
+"@impulsogov/design-system@^1.0.318":
+  version "1.0.336"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.336.tgz#b016caf2b1341d7e8425ea478a93256f822ad71f"
+  integrity sha512-6LSvd4+tRZcky5JWOAZS6oOwRx2u/oiZhazgS5Wt2DghXGmjf5d8Rwu/ipxRGmFTq6q7UwKW+PXfjEIZi2kr6A==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
@@ -8594,6 +8594,11 @@ yocto-queue@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.0.tgz#4a29a93e7591328fa31768701e6ea66962401f79"
   integrity sha512-KHBC7z61OJeaMGnF3wqNZj+GGNXOyypZviiKpQeiHirG5Ib1ImwcLBH70rbMSkKfSmUNBsdf2PwaEJtKvgmkNw==
+
+zod@^3.24.4:
+  version "3.24.4"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.4.tgz#e2e2cca5faaa012d76e527d0d36622e0a90c315f"
+  integrity sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==
 
 zrender@5.6.1:
   version "5.6.1"
