@@ -18,8 +18,9 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { diabetesData, diabetesDataCount } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.controller";
 
 const getFiltersParams = async (filtersString: string | null) => {
+    if (!filtersString) return {};
+
     const filters: FilterItem = {};
-    if (!filtersString) return filters;
     const filtersStringSplit = filtersString.split(";").filter(Boolean);
     for (const filter of filtersStringSplit) {
         const [key, value] = filter.split(":");

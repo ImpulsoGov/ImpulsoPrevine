@@ -12,17 +12,20 @@ type FiltersContainerProps = {
 export const FiltersContainer = async ({
     municipalitySusID,
     teamIne,
-    children
-}: FiltersContainerProps ) => {
+    children,
+}: FiltersContainerProps) => {
     const filterItem = await diabetesFilterItem(
         municipalitySusID,
         teamIne,
-        modelToDB(['visitantCommunityHealthWorker', 'patientStatus', 'conditionIdentifiedBy', 'patientAgeRange'])
-    )
+        modelToDB([
+            "visitantCommunityHealthWorker",
+            "patientStatus",
+            "conditionIdentifiedBy",
+            "patientAgeRange",
+        ]),
+    );
 
-  return (
-    <TableWithFilters filterItem={filterItem} >
-        {children}
-    </TableWithFilters>
-  )
-}
+    return (
+        <TableWithFilters filterItem={filterItem}>{children}</TableWithFilters>
+    );
+};

@@ -21,6 +21,7 @@ const buildSortingParams = (sorting: SortingItem[]): string => {
         .map((item) => `${item.sortField}:${item.sortOrder}`)
         .join(",")}`;
 };
+
 const buildFilterParams = (filters?: FilterItem): string => {
     if (!filters) return "";
     let filterParams = "filters=";
