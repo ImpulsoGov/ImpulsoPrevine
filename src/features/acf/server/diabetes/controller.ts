@@ -1,12 +1,9 @@
 import type { GridPaginationModel } from "@mui/x-data-grid"
-import type { DiabetesAcfItem } from "./diabetes.model"
-import { diabetesFilterToDb, diabetesPageDbToModel } from "./diabetes.adapter"
-import { diabetesListCount, diabetesPage } from "./diabetes.repository"
+import type { DiabetesAcfItem } from "../../common/diabetes/model"
+import { diabetesFilterToDb, diabetesPageDbToModel } from "./adapter"
+import { diabetesListCount, diabetesPage } from "./repository"
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal"
 
-/**
- * @deprecated use server/diabetes/controller 
- */
 export const diabetesData = async(
     municipalitySusID: string,
     teamIne: string,
@@ -18,9 +15,6 @@ export const diabetesData = async(
     return diabetesPageDbToModel(data)
 }
 
-/**
- * @deprecated use server/diabetes/controller
- */
 export const diabetesDataCount = async(
     municipalitySusID: string,
     teamIne: string,
