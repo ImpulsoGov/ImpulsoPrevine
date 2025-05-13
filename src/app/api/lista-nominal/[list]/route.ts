@@ -117,7 +117,7 @@ export async function GET(
         //     });
         // }
         if (pagination.page || pagination.pageSize) validatePaginationParams(pagination);
-        const data = await diabetesData(municipalitySusID, teamIne, pagination, filters)
+        const data = await diabetesData(municipalitySusID, teamIne, pagination, filters);
         const totalRows = await diabetesDataCount(municipalitySusID, teamIne,filters);
         return Response.json(
             {
