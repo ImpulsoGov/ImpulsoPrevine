@@ -3,23 +3,16 @@ import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/t
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import type { FilterItem, } from "@/services/lista-nominal/ListaNominal";
 import type { GridSortModel } from "@mui/x-data-grid";
-import { useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { filtersBuilder } from "./modules/filters/filtersBuilder";
+import { useState } from "react";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
-import {
-    // type Filter,
-    initialFiltersBuilder,
-} from "./modules/filters/initialFilters";
-import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
+// import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
 import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
-import { PaginatedTable } from "./modules/PaginatedTable";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListProps = {
     list: AcfDashboardType;
+    children: React.ReactNode;
     // title: string;
 };
 export type PrintStatesType= {
@@ -33,18 +26,13 @@ export type PrintStatesType= {
 export const List = ({
     // title,
     list,
+    children
 }: ListProps) => {
-    const { data: session } = useSession();
-    const searchParams = useSearchParams();
-    const router = useRouter();
     //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
-    const filters = filtersBuilder(session?.user);
-    const initialFilters = initialFiltersBuilder(searchParams, filters);
-    const [value, _setValue] = useState<FilterItem>(initialFilters);
 
-    const [sorting, _setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
+    const [_sorting, _setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
 
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
@@ -58,18 +46,21 @@ export const List = ({
     // const propPrintGrouping = user?.perfis.includes(9)
     //     ? propPrintGroupingCoeqFunction(list)
     //     : propPrintGroupingCoapsFunction(list);
-    useEffect(
-        () => urlSearchParamsHook(searchParams, sorting, router, value, list),
-        [
-            searchParams,
-            router,
-            value,
-            searchParams.toString,
-            router.push,
-            sorting,
-            list
-        ],
-    );
+
+    //atualiza a url
+    // value são os valores do filtro cujo estado foi movido para TableWithFilters
+    // useEffect(
+    //     () => urlSearchParamsHook(searchParams, sorting, router, value, list),
+    //     [
+    //         searchParams,
+    //         router,
+    //         value,
+    //         searchParams.toString,
+    //         router.push,
+    //         sorting,
+    //         list
+    //     ],
+    // );
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
@@ -98,21 +89,6 @@ export const List = ({
     // };
     // if (status === "loading") return <Spinner/>;
 
-    // const filtersSelect = filters.map((filter: Filter) => (
-    //     <SelectDropdown
-    //         key={filter.id}
-    //         {...filter}
-    //         value={value}
-    //         setValue={setValue}
-    //         options={filter.options}
-    //         label={filter.label}
-    //         multiSelect={filter.isMultiSelect}
-    //         width={filter.width}
-    //     />
-    // ));
-    // const clearButton = (
-    //     <ClearFilters data={value} setData={setValue} {...clearFiltersArgs} />
-    // );
     return (
         <>
             <div
@@ -152,8 +128,10 @@ export const List = ({
                     />
                 </div> */}
                 {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
-                {/* <FilterBar filters={filtersSelect} clearButton={clearButton} /> */}
-                <PaginatedTable acfDashboardType={list} />
+                {/* <TableWithFilters>
+                    <PaginatedTable acfDashboardType={list} />
+                </TableWithFilters> */}
+                {children}
             </div>
             {/* {
                 user &&

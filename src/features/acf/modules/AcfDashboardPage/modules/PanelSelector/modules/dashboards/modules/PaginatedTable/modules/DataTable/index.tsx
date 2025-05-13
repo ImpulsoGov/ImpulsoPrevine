@@ -1,3 +1,4 @@
+'use client'
 import type { GridPaginationModel } from "@mui/x-data-grid";
 import type { Dispatch, SetStateAction, } from "react";
 import { tableDataHook } from "./DataTable.hook";
@@ -5,6 +6,9 @@ import { diabetesColumns } from "./modules/diabetes/modules/columns/columns";
 import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
+import { useContext } from 'react';
+import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
+import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
 
 type TableProps = {
     acfDashboardType: AcfDashboardType;
@@ -17,8 +21,8 @@ export const DataTable = ({
     paginationModel,
     onPaginationModelChange,
 }: TableProps) => {
-
-    const { data, status, isLoading } = tableDataHook(acfDashboardType, paginationModel);
+    const filters = useContext<FilterItem>(FiltersContext);
+    const { data, status, isLoading } = tableDataHook(acfDashboardType, paginationModel, filters);
 
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>

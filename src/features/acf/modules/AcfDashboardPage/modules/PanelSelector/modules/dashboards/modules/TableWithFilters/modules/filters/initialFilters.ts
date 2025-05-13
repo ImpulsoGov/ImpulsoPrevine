@@ -1,12 +1,13 @@
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 
-export interface Filter {
+export type Filter = {
     id: string;
     label: string;
     options: OptionsType[];
     isMultiSelect: boolean;
     width: string;
 }
+
 export type OptionsType = {
     value: string;
     label: string;

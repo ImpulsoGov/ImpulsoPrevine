@@ -1,5 +1,5 @@
 import type { AcfDashboardType } from '@/features/acf/modules/AcfDashboardPage/types';
-import { getListData, type ListDataResponse } from '@/services/lista-nominal/ListaNominal';
+import { type FilterItem, getListData, type ListDataResponse } from '@/services/lista-nominal/ListaNominal';
 import type { AxiosResponse } from 'axios';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import type { GridPaginationModel } from '@mui/x-data-grid';
 export const tableDataHook = (
     acfDashboardType: AcfDashboardType,
     paginationModel: GridPaginationModel,
+    filters: FilterItem
 ) => {
     const { data: session } = useSession();
     const [response, setResponse] = useState<AxiosResponse<ListDataResponse> | null >(null);
@@ -29,7 +30,7 @@ export const tableDataHook = (
                 //         sortOrder: sorting[0].sort,
                 //     },
                 // ],
-                // filters: value,
+                filters: filters,
                 pagination: paginationModel,
                 // search: search,
             });
@@ -38,6 +39,6 @@ export const tableDataHook = (
         }
 
         getResponse();
-    }, [user, acfDashboardType, paginationModel]);
+    }, [user, acfDashboardType, paginationModel, filters]);
     return { data : response?.data, status : response?.status, isLoading };
 }

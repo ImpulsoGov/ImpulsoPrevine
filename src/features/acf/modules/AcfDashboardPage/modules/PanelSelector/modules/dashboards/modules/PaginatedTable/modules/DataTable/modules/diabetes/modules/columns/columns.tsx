@@ -22,7 +22,7 @@ export const diabetesColumns: GridColDef[] = [
         renderCell: CpfOrBirthdayFormatter
      },
     {
-        field: "conditionIndentifiedBy",
+        field: "conditionIdentifiedBy",
         headerName: "Tipo de diagnóstico",
         width: 160,
         headerAlign: "left",
