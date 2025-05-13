@@ -1,4 +1,4 @@
-import { NameFormatter, nameFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/PaginatedTable/modules/DataTable/modules/diabetes/name.formatter';
+import { NameFormatter, nameFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/name.formatter';
 import { render, screen } from '@testing-library/react';
 describe("nameFormatter", () => {
     it("formata corretamente um nome sem preposições ", () => {
