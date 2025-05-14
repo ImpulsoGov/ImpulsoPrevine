@@ -1,6 +1,6 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
-import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "../../common/diabetes/model"
+import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "../common/model"
 import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
 import type { DiabetesFilterOptions } from '../../modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/filters/modules/diabetes/diabetes.model';
 import { filterDbtoModelOptions } from '../../modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/filters/modules/diabetes/diabetes.adapter';
