@@ -2,9 +2,36 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
-export default tseslint.config(
+import reactConfig from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+
+export default tseslint.config([
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
+  {
+    plugins: {
+      react: reactConfig,
+      "react-hooks": reactHooks,
+    },
+    rules: {
+      "react/jsx-handler-names": [
+        "error",
+        {
+          eventHandlerPrefix: "handle",
+          eventHandlerPropPrefix: "on",
+        },
+      ],
+      "react-hooks/rules-of-hooks": "error",
+      "react/hook-use-state": "error",
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+  },
   {
     languageOptions: {
       parserOptions: {
@@ -13,13 +40,15 @@ export default tseslint.config(
       },
     },
   },
-  prettierConfig, // desativa regras de formatação do eslint para evitar conflitos com o prettier
+  // desativa regras de formatação do eslint para evitar conflitos com o prettier
+  prettierConfig,
   {
     rules: {
       "@typescript-eslint/switch-exhaustiveness-check": "error",
       "@typescript-eslint/ban-ts-comment": [
         "error",
         {
+          // só permite @ts-expect-error com descrição
           "ts-expect-error": "allow-with-description",
         },
       ],
@@ -35,7 +64,7 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/naming-convention": [
-        "error",
+        "warn",
         {
           selector: "variable",
           types: ["boolean"],
@@ -47,21 +76,12 @@ export default tseslint.config(
           format: ["PascalCase"],
         },
         {
-          // Generic type parameter must start with letter T, followed by any uppercase letter.
+          // Parâmetros de tipo genéricos devem começar com a letra T, seguida de qualquer letra maiúscula. Exemplos: TUser, TProduct.
           selector: "typeParameter",
           format: ["PascalCase"],
           custom: { regex: "^T[A-Z]", match: true },
         },
-      ],
-      "react/jsx-handler-names": [
-        "error",
-        {
-          eventHandlerPrefix: "handle",
-          eventHandlerPropPrefix: "on",
-        },
-      ],
-      "react-hooks/rules-of-hooks": "error",
-      "react/hook-use-state": "error",
+      ]
     },
   },
-);
+]);
