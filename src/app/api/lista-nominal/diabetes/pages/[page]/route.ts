@@ -2,38 +2,37 @@ import type { NextRequest } from "next/server";
 import type { RequestBody } from "@/features/acf/diabetes/common/schema";
 import { requestBody as queryParamsSchema } from '@/features/acf/diabetes/common/schema';
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken, type JWTToken } from "@/utils/token";
-import { diabetesData, diabetesDataCount } from "@/features/acf/diabetes/backend/controller";
+import * as diabetesController from "@/features/acf/diabetes/backend/controller";
 import { BadRequestError } from "../../../utils/errors";
 import { z, ZodError } from "zod";
 
+//TODO: Criar um teste de integração para esta rota
 export async function POST(
     req: NextRequest,
     { params } : { params: Promise<{ page: string }> } 
 ) {
     try {
+        //TODO: Extrair essa lógica para um middleware / interceptor
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
-        //TODO: Se alguém estiver logado com um municipalitySusID e passar outro no body, o que acontece?
         const municipalitySusID = payload?.municipio as string;
-        //TODO: Se alguém estiver logado com um teamIne e passar outro no body, o que acontece?
+        //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const teamIne = payload?.equipe as string;
 
         const rawPage = (await params).page;
         console.log(rawPage);
-        const page = z.coerce.number().parse(rawPage);
+        const pageIndex = z.coerce.number().parse(rawPage);
 
         const body = await req.json();
         const queryParams = queryParamsSchema.parse(body) as RequestBody;
 
-        //TODO: Tirar esse filtro vazio || {}
-        const data = await diabetesData(municipalitySusID, teamIne, page, queryParams.filters || {});
-        //TODO: Tirar esse filtro vazio || {}
-        const totalRows = await diabetesDataCount(municipalitySusID, teamIne, queryParams.filters || {});
+        const page = await diabetesController.page(municipalitySusID, teamIne, pageIndex, queryParams.filters || {});
+        const totalRows = await diabetesController.rowCount(municipalitySusID, teamIne, queryParams.filters || {});
 
         return Response.json(
             {
-                data,
+                page,
                 totalRows: totalRows,
             },
             { status: 200 },
