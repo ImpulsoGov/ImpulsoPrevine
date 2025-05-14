@@ -1,9 +1,7 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
-import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "../common/model"
-import type { FilterItem } from '@/services/lista-nominal/ListaNominal';
-import type { DiabetesFilterOptions } from '../../modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/filters/modules/diabetes/diabetes.model';
-import { filterDbtoModelOptions } from '../../modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/filters/modules/diabetes/diabetes.adapter';
+import type { ConditionIdentifiedBy, DiabetesAcfItem, DiabetesDbFilterItem, PatientAgeRange, PatientStatus } from "../common/model"
+import type { FilterParams } from '../common/schema';
 
 export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -39,8 +37,6 @@ const diabetesRowToModel = (diabetesRow: impulso_previne_dados_nominais___painel
         visitantCommunityHealthWorker: diabetesRow.acs_nome_cadastro || '',
         mostRecentProductionRecordDate: diabetesRow.dt_registro_producao_mais_recente,
     }
-
-
 }
 
 export const diabetesPageDbToModel = (
@@ -49,24 +45,16 @@ export const diabetesPageDbToModel = (
     return data.map<DiabetesAcfItem>(diabetesRowToModel)
 }
 
-export type DiabetesDbFilterItem = {
-    status_usuario?: string[] | null | undefined;
-    identificacao_condicao_diabetes?: string[] | null | undefined;
-    acs_nome_cadastro?: string[] | null | undefined;
-    cidadao_faixa_etaria?: string[] | null | undefined;
-}
-
-const mapFilterKeyToDbField = (key: DiabetesFilterOptions, value: string | string[]): Partial<DiabetesDbFilterItem> => {
-    if (value.length > 0) {
-        return { [filterDbtoModelOptions[key]]: Array.isArray(value) ? value : [value] };
-    }
-
-    return {};
-};
-
-//TODO tornar FilterItem um tipo mais especifico
-export const diabetesFilterToDb = (filters: FilterItem): DiabetesDbFilterItem => {
-    return Object.entries(filters).reduce<DiabetesDbFilterItem>((acc, [key, value]) => (
-        Object.assign(acc, mapFilterKeyToDbField(key as DiabetesFilterOptions, value))
-    ), {});
+export const diabetesFilterToDb = (filters: FilterParams): DiabetesDbFilterItem => {
+    return {
+        //TODO: Encontrar uma maneira de fazer o suppress em um bloco de linhas
+        // biome-ignore lint/style/useNamingConvention: <explanation>
+        status_usuario: filters.patientStatus,
+        // biome-ignore lint/style/useNamingConvention: <explanation>
+        identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
+        // biome-ignore lint/style/useNamingConvention: <explanation>
+        acs_nome_cadastro: filters.visitantCommunityHealthWorker,
+        // biome-ignore lint/style/useNamingConvention: <explanation>
+        cidadao_faixa_etaria: filters.patientAgeRange,
+    };
 };

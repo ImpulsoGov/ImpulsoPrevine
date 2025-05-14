@@ -38,3 +38,14 @@ export type DiabetesFilterItem = {
 export type DiabetesFilterOptions = 'visitantCommunityHealthWorker' |'patientStatus' |'conditionIdentifiedBy' | 'patientAgeRange'
 
 export type DiabetesFilterOptionsDB = 'acs_nome_cadastro' | 'status_usuario' | 'identificacao_condicao_diabetes' | 'cidadao_faixa_etaria'
+
+export type DiabetesDbFilterItem = {
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    status_usuario?: string[] | null | undefined;
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    identificacao_condicao_diabetes?: string[] | null | undefined;
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    acs_nome_cadastro?: string[] | null | undefined;
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    cidadao_faixa_etaria?: string[] | null | undefined;
+};

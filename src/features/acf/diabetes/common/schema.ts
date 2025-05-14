@@ -32,12 +32,10 @@ export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 export const filterParams = z.object({
     //TODO: Adicionar arrays onde fizer sentido
     //TODO: Pq não enviar sempre arrays ao invés de às vezes mandar um item singular e às vezes um array?
-    municipalitySusID: z.string(),
-    teamIne: z.string(),
-    patientStatus: z.optional(patientStatus),
-    conditionIdentifiedBy: z.optional(conditionIdentifiedBy),
-    visitantCommunityHealthWorker: z.optional(z.string()),
-    patientAgeRange: z.optional(patientAgeRange),
+    patientStatus: z.optional(z.array(patientStatus)),
+    conditionIdentifiedBy: z.optional(z.array(conditionIdentifiedBy)),
+    visitantCommunityHealthWorker: z.optional(z.array(z.string())),
+    patientAgeRange: z.optional(z.array(patientAgeRange)),
 })
 
 export type FilterParams = z.infer<typeof filterParams>;
