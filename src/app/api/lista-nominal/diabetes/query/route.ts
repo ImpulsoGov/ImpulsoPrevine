@@ -1,8 +1,8 @@
 import type { NextRequest } from "next/server";
-import type { RequestBody } from "@/features/acf/common/diabetes/schema";
-import { requestBody as queryParamsSchema } from '@/features/acf/common/diabetes/schema';
+import type { RequestBody } from "@/features/acf/diabetes/common/schema";
+import { requestBody as queryParamsSchema } from '@/features/acf/diabetes/common/schema';
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken, type JWTToken } from "@/utils/token";
-import { diabetesData, diabetesDataCount } from "@features/acf/server/diabetes/controller";
+import { diabetesData, diabetesDataCount } from "@/features/acf/diabetes/backend/controller";
 import { BadRequestError } from "../../utils/errors";
 import { ZodError } from "zod";
 

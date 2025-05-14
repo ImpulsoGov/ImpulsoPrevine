@@ -1,5 +1,5 @@
 import type { GridPaginationModel } from "@mui/x-data-grid"
-import type { DiabetesAcfItem } from "../../common/diabetes/model"
+import type { DiabetesAcfItem } from "../common/model"
 import { diabetesFilterToDb, diabetesPageDbToModel } from "./adapter"
 import { diabetesListCount, diabetesPage } from "./repository"
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal"
