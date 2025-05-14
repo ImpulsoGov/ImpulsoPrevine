@@ -45,7 +45,7 @@ export const diabetesPageDbToModel = (
     return data.map<DiabetesAcfItem>(diabetesRowToModel)
 }
 
-export const diabetesFilterToDb = (filters: FilterParams): DiabetesDbFilterItem => {
+export const filterParamsToDb = (filters: FilterParams): DiabetesDbFilterItem => {
     return {
         //TODO: Encontrar uma maneira de fazer o suppress em um bloco de linhas
         // biome-ignore lint/style/useNamingConvention: <explanation>

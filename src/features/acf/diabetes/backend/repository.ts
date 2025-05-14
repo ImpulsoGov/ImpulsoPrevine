@@ -50,7 +50,7 @@ function queryWhere(
     };
 }
 
-export const diabetesPage = async (
+export const page = async (
     municipalitySusID: string,
     teamIne: string,
     page: number,
@@ -71,7 +71,7 @@ export const diabetesPage = async (
     );
 };
 
-export const diabetesListCount = async (
+export const rowCount = async (
     municipalitySusID: string,
     teamIne: string,
     filters: DiabetesDbFilterItem,

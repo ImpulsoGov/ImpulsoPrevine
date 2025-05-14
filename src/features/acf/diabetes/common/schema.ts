@@ -48,6 +48,6 @@ export type RequestBody = z.infer<typeof requestBody>;
 
 export type Response = {
     //TODO: A gente deveria estar usando o model aqui?
-    data: DiabetesAcfItem[];
+    page: DiabetesAcfItem[];
     totalRows: number;
 }
