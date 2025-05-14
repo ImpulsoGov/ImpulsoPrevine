@@ -27,7 +27,7 @@ export type DiabetesAcfItem = {
     mostRecentProductionRecordDate: Date | null,
 }
 
-export type DiabetesFilterItem = {
+export type Filters = {
   visitantCommunityHealthWorker: DiabetesAcfItem['visitantCommunityHealthWorker'][];
   patientStatus: DiabetesAcfItem['patientStatus'][];
   conditionIdentifiedBy: DiabetesAcfItem['conditionIdentifiedBy'][];

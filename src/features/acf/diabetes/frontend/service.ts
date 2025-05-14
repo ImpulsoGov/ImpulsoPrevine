@@ -1,44 +1,28 @@
 "use client";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import { RequestBody } from "../../common/diabetes/schema";
+import type { Filters } from "../common/model";
 
-type FilterItem = Record<string, string | string[]>;
-type Pagination = {
-    page: number;
-    pageSize: number;
-};
 export type GetPageParams = {
     token: string;
+    page: number;
     // sorting?: SortingItem[];
-    pagination: Pagination;
-    filters: FilterItem;
+    filters: Filters;
     // search?: string;
 };
 
-const buildRequestBody = (filters: FilterItem, pagination: Pagination): RequestBody => {
-    return {
-        filters: {
-            municipalitySusID: filters.municipality_sus_id?,
-            teamIne: filters.teamIne,
-
-
-        },
-        pagination: pagination,
-    }
-}
 
 export const getPage = async ({
     token,
+    page, 
     // sorting,
     filters,
-    pagination,
     // search,
 }: GetPageParams): Promise<AxiosResponse<Response>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal/diabetes/query`;
-    const body = buildRequestBody(pagination, filters);
+    const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/${page}`;
+    const body = {filters: filters}
     return axios.request({
         method: "POST",
         maxBodyLength: Number.POSITIVE_INFINITY,
