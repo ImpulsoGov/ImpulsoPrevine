@@ -42,15 +42,7 @@ export const filterParams = z.object({
 
 export type FilterParams = z.infer<typeof filterParams>;
 
-export const paginationParams = z.object({
-    page: z.number().nonnegative(),
-    pageSize: z.number().nonnegative(),
-})
-
-export type PaginationParams = z.infer<typeof paginationParams>;
-
 export const requestBody = z.object({
-    pagination: paginationParams,
     filters: z.optional(filterParams),
 })
 

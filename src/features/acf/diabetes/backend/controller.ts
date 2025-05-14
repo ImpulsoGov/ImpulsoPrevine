@@ -1,4 +1,4 @@
-import type { GridPaginationModel } from "@mui/x-data-grid"
+
 import type { DiabetesAcfItem } from "../common/model"
 import { diabetesFilterToDb, diabetesPageDbToModel } from "./adapter"
 import { diabetesListCount, diabetesPage } from "./repository"
@@ -7,11 +7,11 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal"
 export const diabetesData = async(
     municipalitySusID: string,
     teamIne: string,
-    pagination: GridPaginationModel,
+    page: number,
     filters: FilterItem
 ): Promise<DiabetesAcfItem[]> => {
     const filtersDb = diabetesFilterToDb(filters)
-    const data = await diabetesPage(municipalitySusID, teamIne, pagination, filtersDb)
+    const data = await diabetesPage(municipalitySusID, teamIne, page, filtersDb)
     return diabetesPageDbToModel(data)
 }
 
