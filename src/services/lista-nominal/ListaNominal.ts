@@ -1,14 +1,18 @@
 // import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/TableWithFilters/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
-import type { DiabetesAcfItem } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
+import type { DiabetesAcfItem } from "@/features/acf/diabetes/common/model";
 import type { GridSortDirection } from "@mui/x-data-grid";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 
+//TODO: Remover este arquivo
 export interface SortingItem {
     sortField: string;
     sortOrder: GridSortDirection;
 }
 
+/**
+ * @deprecated Use Filters do model ao invés desse tipo 
+ */
 export type FilterItem = Record<string, string | string[]>;
 
 export type Pagination = {
@@ -103,6 +107,9 @@ export type ListDataResponse = {
     totalRows: number;
 };
 
+/**
+ * @deprecated Use getPage do service ao invés disso.
+ */
 export const getListData = async ({
     token,
     listName,
