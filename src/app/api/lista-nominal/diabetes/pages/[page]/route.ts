@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import type { RequestBody } from "@/features/acf/diabetes/common/schema";
 import { requestBody as queryParamsSchema } from '@/features/acf/diabetes/common/schema';
 import { AuthenticationError, decodeToken, getEncodedSecret, getToken, type JWTToken } from "@/utils/token";
-import * as diabetesController from "@/features/acf/diabetes/backend/controller";
+import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
 import { BadRequestError } from "../../../utils/errors";
 import { z, ZodError } from "zod";
 
@@ -21,7 +21,6 @@ export async function POST(
         const teamIne = payload?.equipe as string;
 
         const rawPage = (await params).page;
-        console.log(rawPage);
         const pageIndex = z.coerce.number().parse(rawPage);
 
         const body = await req.json();

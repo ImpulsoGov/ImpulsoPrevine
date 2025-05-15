@@ -2,6 +2,7 @@
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { Filters } from "../common/model";
+import type * as schema from "@/features/acf/diabetes/common/schema";
 
 export type GetPageParams = {
     token: string;
@@ -18,7 +19,7 @@ export const getPage = async ({
     // sorting,
     filters,
     // search,
-}: GetPageParams): Promise<AxiosResponse<Response>> => {
+}: GetPageParams): Promise<AxiosResponse<schema.Response>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
     const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/${page}`;
