@@ -8,7 +8,7 @@ import { ClearFilters } from "@impulsogov/design-system";
 import { FiltersContext } from "./TableWithFilters.context";
 import { FilterBar } from "@impulsogov/design-system";
 import { clearFiltersArgs } from './modules/filters/clearFiltersArgs';
-import type { Filters } from "@/features/acf/diabetes/common/model";
+import type { Filters, FiltersUI } from "@/features/acf/diabetes/common/model";
 
 type TableWithFiltersProps = React.PropsWithChildren<{
     filterItem: Filters
@@ -22,8 +22,8 @@ export const TableWithFilters = ({
     const searchParams = useSearchParams(); 
     const filters = filtersBuilder(filterItem);
     const initialFilters = initialFiltersBuilder(searchParams);
-    const [value, setValue] = useState<Filters>(initialFilters);
-
+    const [value, setValue] = useState<FiltersUI>(initialFilters);
+    console.log(value);
     const filtersSelect = filters.map((filter: Filter) => (
         <SelectDropdown
             key={filter.id}
