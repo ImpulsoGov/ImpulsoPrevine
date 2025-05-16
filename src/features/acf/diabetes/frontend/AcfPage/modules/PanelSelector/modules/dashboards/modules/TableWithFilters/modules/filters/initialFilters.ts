@@ -23,7 +23,6 @@ function onlyValidFilterValues<FilterValue, Schema extends z.ZodTypeAny>(FilterV
 export const initialFiltersBuilder = (
     searchParams: URLSearchParams
 ): FiltersUI =>{
-
     const patientsStatus = searchParams.get("patientStatus")?.split(",") as schema.PatientStatus[] ?? []
     const ranges = searchParams.get("patientAgeRange")?.split(",") as schema.PatientAgeRange[] ?? []
     return {
