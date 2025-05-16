@@ -1,5 +1,5 @@
 "use client"
-import type { Filters } from "@/features/acf/diabetes/common/model";
+import type { FiltersUI } from "@/features/acf/diabetes/common/model";
 import { createContext } from "react";
 
-export const FiltersContext = createContext<Filters>({} as Filters);
+export const FiltersContext = createContext<FiltersUI>({} as FiltersUI);

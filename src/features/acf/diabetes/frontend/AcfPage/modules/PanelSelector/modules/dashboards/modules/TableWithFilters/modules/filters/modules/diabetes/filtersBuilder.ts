@@ -1,15 +1,17 @@
-
+import type { Filters } from "@/features/acf/diabetes/common/model";
 import type { DiabetesAcfItem } from "../../../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
 import type { Filter, OptionsType } from "../../initialFilters";
 
 type FilterOptions = DiabetesAcfItem['visitantCommunityHealthWorker'][] | DiabetesAcfItem['patientStatus'][] | DiabetesAcfItem['conditionIdentifiedBy'][] | DiabetesAcfItem['patientAgeRange'][];
 
 const filterOptions = (diabetesFilterItem: FilterOptions): OptionsType[] => {
+    console.log(diabetesFilterItem);
     return diabetesFilterItem.map<OptionsType>((item) => ({
         value: item,
         label: item,
     }));
-}
+};
+
 const referenceOrder = [
   "Menos de 17 anos",
   "Entre 18 e 24 anos",
@@ -21,13 +23,6 @@ const referenceOrder = [
 ];
 
 const sortedOptions = (a: OptionsType, b: OptionsType) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
-
-export type Filters = {
-    visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
-    patientStatus: DiabetesAcfItem["patientStatus"][];
-    conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"][];
-    patientAgeRange: DiabetesAcfItem["patientAgeRange"][];
-};
 
 export const filtersBuilder = (filterItem: Filters) : Filter[] => [
     {
@@ -51,7 +46,7 @@ export const filtersBuilder = (filterItem: Filters) : Filter[] => [
         .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Tipo de Diagnóstico",
         id: "conditionIdentifiedBy",
-        isMultiSelect: true,
+        isMultiSelect: false,
         width: "228px",
     },
     {
@@ -59,7 +54,7 @@ export const filtersBuilder = (filterItem: Filters) : Filter[] => [
         .sort(sortedOptions),
         label: "Faixa Etária",
         id: "patientAgeRange",
-        isMultiSelect: false,
+        isMultiSelect: true,
         width: "178px",
     },
 ]

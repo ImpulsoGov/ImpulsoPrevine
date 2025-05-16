@@ -2,13 +2,13 @@ import type { AxiosResponse } from 'axios';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import type { Session } from "next-auth";
-import type { Filters } from '@/features/acf/diabetes/common/model';
 import * as service from '@/features/acf/diabetes/frontend/service';
 import type * as schema from "@/features/acf/diabetes/common/schema";
+import type { FiltersUI } from '@/features/acf/diabetes/common/model';
 
 export const tableDataHook = (
     page: number,
-    filters: Filters
+    filters: FiltersUI
 ) => {
     const { data: session } = useSession();
     const [response, setResponse] = useState<AxiosResponse<schema.Response> | null >(null);

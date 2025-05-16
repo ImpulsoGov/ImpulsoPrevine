@@ -11,7 +11,7 @@ export const patientStatus = z.enum([
 export type PatientStatus = z.infer<typeof patientStatus>;
 
 export const conditionIdentifiedBy = z.enum([ 
-    "Diagnóstico clínico", 
+    "Diagnóstico Clínico", 
     "Autorreferida"
 ]);
 
@@ -33,7 +33,7 @@ export const filterParams = z.object({
     //TODO: Adicionar arrays onde fizer sentido
     //TODO: Pq não enviar sempre arrays ao invés de às vezes mandar um item singular e às vezes um array?
     patientStatus: z.optional(z.array(patientStatus)),
-    conditionIdentifiedBy: z.optional(conditionIdentifiedBy),
+    conditionIdentifiedBy: z.optional(z.array(conditionIdentifiedBy)),
     visitantCommunityHealthWorker: z.optional(z.array(z.string())),
     patientAgeRange: z.optional(z.array(patientAgeRange)),
 })

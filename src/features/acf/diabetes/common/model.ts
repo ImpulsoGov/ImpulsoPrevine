@@ -4,7 +4,7 @@ export type PatientStatus =
     | "Apenas a solicitação de hemoglobina a fazer"
     | "Consulta e solicitação de hemoglobina em dia";
 
-export type ConditionIdentifiedBy = "Diagnóstico clínico" | "Autorreferida";
+export type ConditionIdentifiedBy = "Diagnóstico Clínico" | "Autorreferida";
 
 //TODO: Não usar isso, definir no código do front
 //TODO: Deveria ter um espaço no final de "Menos de 17 anos " mesmo?
@@ -39,6 +39,13 @@ export type DiabetesAcfItem = {
 };
 
 export type Filters = {
+    visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
+    patientStatus: DiabetesAcfItem["patientStatus"][];
+    conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"][];
+    patientAgeRange: DiabetesAcfItem["patientAgeRange"][];
+};
+
+export type FiltersUI = {
     visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
     patientStatus: DiabetesAcfItem["patientStatus"][];
     conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"];
