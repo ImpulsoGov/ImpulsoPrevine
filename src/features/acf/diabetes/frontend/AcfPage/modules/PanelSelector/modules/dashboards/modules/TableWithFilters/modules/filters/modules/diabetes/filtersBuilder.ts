@@ -1,12 +1,11 @@
 import type { Filters } from "@/features/acf/diabetes/common/model";
 import type { DiabetesAcfItem } from "../../../../../PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model";
-import type { Filter, OptionsType } from "../../initialFilters";
+import type { SelectConfig, HtmlSelectOption } from "../../initialFilters";
 
 type FilterOptions = DiabetesAcfItem['visitantCommunityHealthWorker'][] | DiabetesAcfItem['patientStatus'][] | DiabetesAcfItem['conditionIdentifiedBy'][] | DiabetesAcfItem['patientAgeRange'][];
 
-const filterOptions = (diabetesFilterItem: FilterOptions): OptionsType[] => {
-    console.log(diabetesFilterItem);
-    return diabetesFilterItem.map<OptionsType>((item) => ({
+const selectOptions = (diabetesFilterItem: FilterOptions): HtmlSelectOption[] => {
+    return diabetesFilterItem.map<HtmlSelectOption>((item) => ({
         value: item,
         label: item,
     }));
@@ -22,11 +21,11 @@ const referenceOrder = [
   "Mais de 65 anos"
 ];
 
-const sortedOptions = (a: OptionsType, b: OptionsType) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
+const sortedOptions = (a: HtmlSelectOption, b: HtmlSelectOption) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
-export const filtersBuilder = (filterItem: Filters) : Filter[] => [
+export const createSelectConfigs = (filterItem: Filters) : SelectConfig[] => [
     {
-        options: filterOptions(filterItem.visitantCommunityHealthWorker)
+        options: selectOptions(filterItem.visitantCommunityHealthWorker)
         .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Prof. Responsável",
         id: "visitantCommunityHealthWorker",
@@ -34,7 +33,7 @@ export const filtersBuilder = (filterItem: Filters) : Filter[] => [
         width: "330px",
     },
     {
-        options: filterOptions(filterItem.patientStatus)
+        options: selectOptions(filterItem.patientStatus)
         .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Situação",
         id: "patientStatus",
@@ -42,7 +41,7 @@ export const filtersBuilder = (filterItem: Filters) : Filter[] => [
         width: "178px",
     },
     {
-        options: filterOptions(filterItem.conditionIdentifiedBy)
+        options: selectOptions(filterItem.conditionIdentifiedBy)
         .sort((a, b) => (a.label).localeCompare(b.label)),
         label: "Tipo de Diagnóstico",
         id: "conditionIdentifiedBy",
@@ -50,7 +49,7 @@ export const filtersBuilder = (filterItem: Filters) : Filter[] => [
         width: "228px",
     },
     {
-        options: filterOptions(filterItem.patientAgeRange)
+        options: selectOptions(filterItem.patientAgeRange)
         .sort(sortedOptions),
         label: "Faixa Etária",
         id: "patientAgeRange",
