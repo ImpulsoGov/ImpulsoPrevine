@@ -23,7 +23,6 @@ export const TableWithFilters = ({
     const filters = filtersBuilder(filterItem);
     const initialFilters = initialFiltersBuilder(searchParams);
     const [value, setValue] = useState<FiltersUI>(initialFilters);
-    console.log(value);
     const filtersSelect = filters.map((filter: Filter) => (
         <SelectDropdown
             key={filter.id}
