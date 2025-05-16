@@ -2,15 +2,15 @@ import type { FiltersUI } from "@/features/acf/diabetes/common/model";
 import * as schema from "@/features/acf/diabetes/common/schema";
 import type * as z from 'zod';
 
-export type Filter = {
+export type SelectConfig = {
     id: string;
     label: string;
-    options: OptionsType[];
+    options: HtmlSelectOption[];
     isMultiSelect: boolean;
     width: string;
 }
 
-export type OptionsType = {
+export type HtmlSelectOption = {
     value: string;
     label: string;
 };

@@ -23,7 +23,6 @@ export const getPage = async ({
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
     const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/${page}`;
-    console.log("filters", filters);
     const filtersRequest: Filters = {
         ...filters,
         conditionIdentifiedBy : filters.conditionIdentifiedBy.length === 0 ? [] : [filters.conditionIdentifiedBy]
