@@ -1,3 +1,4 @@
+'use client';
 import type { GridPaginationModel } from "@mui/x-data-grid";
 import { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
