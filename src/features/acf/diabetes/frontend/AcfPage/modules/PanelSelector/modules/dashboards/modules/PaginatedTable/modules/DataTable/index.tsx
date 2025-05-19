@@ -9,19 +9,19 @@ import { useContext } from 'react';
 import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+import { PaginationContext } from "../../PaginatedTable.context";
 
-
-type TableProps = {
+type TableProps =
+ {
     acfDashboardType: AcfDashboardType;
-    paginationModel: GridPaginationModel;
     onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>
 }
 
 export const DataTable = ({
-    paginationModel,
     onPaginationModelChange,
 }: TableProps) => {
     const filters = useContext<SelectedValues>(FiltersContext);
+    const paginationModel = useContext<GridPaginationModel>(PaginationContext)
     const { data, status, isLoading } = tableDataHook(paginationModel.page, filters);
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>

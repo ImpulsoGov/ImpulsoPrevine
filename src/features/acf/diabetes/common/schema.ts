@@ -46,6 +46,7 @@ export const requestBody = z.object({
 
 export type RequestBody = z.infer<typeof requestBody>;
 
+//TODO: Retornar tamanho da página, e alterar o front para usar esse campo
 export type Response = {
     page: DiabetesAcfItem[];
     totalRows: number;

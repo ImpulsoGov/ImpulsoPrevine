@@ -1,11 +1,17 @@
 'use client';
 import type { GridPaginationModel } from "@mui/x-data-grid";
-import { useState } from "react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 import { DataTable } from "./modules/DataTable";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+import { PaginationContext } from "./PaginatedTable.context";
 
 type PaginatedTableProps = {
     acfDashboardType: AcfDashboardType;
+}
+
+export type PaginationModel = {
+    gridPaginationModel: GridPaginationModel;
+    onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>;
 }
 
 export const PaginatedTable = ({
@@ -18,10 +24,10 @@ export const PaginatedTable = ({
     
     return (
         //TODO: Trocar diabetesColumns quando tivermos novas listas
-        <DataTable
-            acfDashboardType={acfDashboardType}
-            paginationModel={paginationModel}
-            onPaginationModelChange={setPaginationModel}
-        />
+        <PaginationContext.Provider value={{ gridPaginationModel: paginationModel, onPaginationModelChange: setPaginationModel }}>
+            <DataTable 
+            acfDashboardType={acfDashboardType} 
+            onPaginationModelChange={setPaginationModel} />
+        </PaginationContext.Provider>
     );
 };
