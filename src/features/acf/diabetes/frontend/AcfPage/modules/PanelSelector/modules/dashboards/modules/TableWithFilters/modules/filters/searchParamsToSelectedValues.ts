@@ -1,4 +1,4 @@
-import type { FiltersUI } from "@/features/acf/diabetes/common/model";
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import * as schema from "@/features/acf/diabetes/common/schema";
 import type * as z from 'zod';
 
@@ -20,9 +20,9 @@ function onlyValidFilterValues<FilterValue, Schema extends z.ZodTypeAny>(FilterV
 }
 
  
-export const initialFiltersBuilder = (
+export const searchParamsToSelectedValues = (
     searchParams: URLSearchParams
-): FiltersUI =>{
+): SelectedValues =>{
     const patientsStatus = searchParams.get("patientStatus")?.split(",") as schema.PatientStatus[] ?? []
     const ranges = searchParams.get("patientAgeRange")?.split(",") as schema.PatientAgeRange[] ?? []
     return {

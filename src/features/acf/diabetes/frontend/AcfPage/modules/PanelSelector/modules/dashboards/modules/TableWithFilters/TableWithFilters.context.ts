@@ -1,5 +1,5 @@
 "use client"
-import type { FiltersUI } from "@/features/acf/diabetes/common/model";
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import { createContext } from "react";
 
-export const FiltersContext = createContext<FiltersUI>({} as FiltersUI);
+export const FiltersContext = createContext<SelectedValues>({} as SelectedValues);

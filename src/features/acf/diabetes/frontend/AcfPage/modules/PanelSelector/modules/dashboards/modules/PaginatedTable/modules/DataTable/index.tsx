@@ -7,7 +7,7 @@ import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
 import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
-import type { FiltersUI } from "@/features/acf/diabetes/common/model";
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/types";
 
 type TableProps = {
@@ -20,7 +20,7 @@ export const DataTable = ({
     paginationModel,
     onPaginationModelChange,
 }: TableProps) => {
-    const filters = useContext<FiltersUI>(FiltersContext);
+    const filters = useContext<SelectedValues>(FiltersContext);
     const { data, status, isLoading } = tableDataHook(paginationModel.page, filters);
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>

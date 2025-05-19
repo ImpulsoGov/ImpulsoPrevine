@@ -5,7 +5,7 @@ export type PatientStatus =
     | "Consulta e solicitação de hemoglobina em dia";
 
 export type ConditionIdentifiedBy = "Diagnóstico Clínico" | "Autorreferida";
-
+export type VisitantCommunityHealthWorker = string;
 //TODO: Não usar isso, definir no código do front
 //TODO: Deveria ter um espaço no final de "Menos de 17 anos " mesmo?
 export type PatientAgeRange =
@@ -37,33 +37,6 @@ export type DiabetesAcfItem = {
     visitantCommunityHealthWorker: string;
     mostRecentProductionRecordDate: Date | null;
 };
-
-export type Filters = {
-    visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
-    patientStatus: DiabetesAcfItem["patientStatus"][];
-    conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"][];
-    patientAgeRange: DiabetesAcfItem["patientAgeRange"][];
-};
-
-export type FiltersUI = {
-    visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
-    patientStatus: DiabetesAcfItem["patientStatus"][];
-    conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"];
-    patientAgeRange: DiabetesAcfItem["patientAgeRange"][];
-};
-
-// TODO mudar esses tipos para não serem hard coded
-export type DiabetesFilterOptions =
-    | "visitantCommunityHealthWorker"
-    | "patientStatus"
-    | "conditionIdentifiedBy"
-    | "patientAgeRange";
-
-export type DiabetesFilterOptionsDB =
-    | "acs_nome_cadastro"
-    | "status_usuario"
-    | "identificacao_condicao_diabetes"
-    | "cidadao_faixa_etaria";
 
 //TODO: Tirar null e undefined daqui e ver o mundo pegar fogo
 export type DiabetesDbFilterItem = {

@@ -1,6 +1,19 @@
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
-import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus } from '../../frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.model';
-import type { DiabetesFilterOptions, DiabetesFilterOptionsDB, Filters } from '../../common/model';
+import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus } from '@/features/acf/diabetes/common/model';
+import type { Filters } from "../model";
+
+// TODO mudar esses tipos para não serem hard coded
+type DiabetesFilterOptions =
+    | "visitantCommunityHealthWorker"
+    | "patientStatus"
+    | "conditionIdentifiedBy"
+    | "patientAgeRange";
+
+type DiabetesFilterOptionsDB =
+    | "acs_nome_cadastro"
+    | "status_usuario"
+    | "identificacao_condicao_diabetes"
+    | "cidadao_faixa_etaria";
 
 /**
  * Tranforma.
@@ -47,7 +60,7 @@ const aggregateDistinctValues = (data: readonly impulso_previne_dados_nominais__
     return distinctObj;
 }
 
-export const filterDbtoModelOptions: Record<DiabetesFilterOptions, DiabetesFilterOptionsDB> = {
+const filterDbtoModelOptions: Record<DiabetesFilterOptions, DiabetesFilterOptionsDB> = {
     patientStatus: "status_usuario",
     conditionIdentifiedBy: "identificacao_condicao_diabetes",
     visitantCommunityHealthWorker: "acs_nome_cadastro",

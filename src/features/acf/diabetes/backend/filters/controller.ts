@@ -1,4 +1,4 @@
-import type { Filters } from "../../common/model";
+import type { Filters } from "../model";
 import type { FieldNames, } from "./repository";
 import * as repository from "./repository";
 import * as adapter from "./adapter";

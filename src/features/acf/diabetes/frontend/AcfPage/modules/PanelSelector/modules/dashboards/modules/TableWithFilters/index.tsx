@@ -14,7 +14,8 @@ export const FiltersContainer = async ({
     teamIne,
     children,
 }: FiltersContainerProps) => {
-    const filterItem = await filterOptions(
+    //TODO: Remover essa utilização de modelToDB daqui, usar essa função no controller.
+    const filtersValues = await filterOptions(
         municipalitySusID,
         teamIne,
         modelToDB([
@@ -26,6 +27,6 @@ export const FiltersContainer = async ({
     );
 
     return (
-        <TableWithFilters filterItem={filterItem}>{children}</TableWithFilters>
+        <TableWithFilters filtersValues={filtersValues}>{children}</TableWithFilters>
     );
 };

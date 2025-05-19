@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import type { Session } from "next-auth";
 import * as service from '@/features/acf/diabetes/frontend/service';
 import type * as schema from "@/features/acf/diabetes/common/schema";
-import type { FiltersUI } from '@/features/acf/diabetes/common/model';
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 
 export const tableDataHook = (
     page: number,
-    filters: FiltersUI
+    filters: SelectedValues
 ) => {
     const { data: session } = useSession();
     const [response, setResponse] = useState<AxiosResponse<schema.Response> | null >(null);
