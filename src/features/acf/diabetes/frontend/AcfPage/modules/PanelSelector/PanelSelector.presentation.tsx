@@ -10,7 +10,7 @@ import type {
     PanelSelectorWithCardsProps,
     subTabsWithChildrenProps,
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
-import type { AcfDashboardType } from "../../../../common/types";
+import type { AcfDashboardType } from "../../../../common/model";
 import {
     // acfNominalListProps,
     breadcrumb,

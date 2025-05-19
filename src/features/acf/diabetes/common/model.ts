@@ -38,14 +38,4 @@ export type DiabetesAcfItem = {
     mostRecentProductionRecordDate: Date | null;
 };
 
-//TODO: Tirar null e undefined daqui e ver o mundo pegar fogo
-export type DiabetesDbFilterItem = {
-    // biome-ignore lint/style/useNamingConvention: <explanation>
-    status_usuario?: string[] | null | undefined;
-    // biome-ignore lint/style/useNamingConvention: <explanation>
-    identificacao_condicao_diabetes?: string[] | null | undefined;
-    // biome-ignore lint/style/useNamingConvention: <explanation>
-    acs_nome_cadastro?: string[] | null | undefined;
-    // biome-ignore lint/style/useNamingConvention: <explanation>
-    cidadao_faixa_etaria?: string[] | null | undefined;
-};
+export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";    

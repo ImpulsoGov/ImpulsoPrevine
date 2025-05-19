@@ -1,6 +1,6 @@
 import type { CardDetailsMap } from '@helpers/cardsList'; // Adjust the path to where CardDetailsMap is defined
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { AcfDashboardType } from '../../../../common/types';
+import type { AcfDashboardType } from '../../../../common/model';
 import type { ExtendedPanelSelectorWithCardsProps } from "./PanelSelector.presentation";
 
 // TODO: Esse arquivo vai ser diferente para cada lista e pode ser melhor alterar para um array

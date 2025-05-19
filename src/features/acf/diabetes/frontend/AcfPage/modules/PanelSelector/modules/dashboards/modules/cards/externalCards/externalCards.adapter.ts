@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "../../../../../../../../../common/types"
+import type { AcfDashboardType } from "../../../../../../../../../common/model"
 import type { DiabetesAcfExternalCardsDescriptionType, ExternalCardDBDataItem, ExternalCardDataItem } from "./externalCards.model"
 
 

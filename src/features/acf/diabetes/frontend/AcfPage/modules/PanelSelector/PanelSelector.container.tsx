@@ -3,7 +3,7 @@ import type { ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
-import type { AcfDashboardType } from "../../../../common/types";
+import type { AcfDashboardType } from "../../../../common/model";
 import {
     externalCardsDetails,
 } from "./PanelSelector.consts";

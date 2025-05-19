@@ -1,9 +1,8 @@
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
+
 import React from "react";
-import type {
-    ExtendedPanelSelectorWithCardsProps,
-    ExtendedsubTabsWithChildrenAndChildrenDataProps,
-} from "../features/acf/modules/AcfDashboardPage/modules/PanelSelector/PanelSelector.presentation";
+
+import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+import type { ExtendedPanelSelectorWithCardsProps, ExtendedsubTabsWithChildrenAndChildrenDataProps } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/PanelSelector.presentation";
 
 //TODO: Remover daqui
 /**

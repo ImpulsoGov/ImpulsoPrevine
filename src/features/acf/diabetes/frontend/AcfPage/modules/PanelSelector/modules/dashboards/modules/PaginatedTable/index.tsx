@@ -1,8 +1,8 @@
 'use client';
 import type { GridPaginationModel } from "@mui/x-data-grid";
 import { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 import { DataTable } from "./modules/DataTable";
+import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 
 type PaginatedTableProps = {
     acfDashboardType: AcfDashboardType;

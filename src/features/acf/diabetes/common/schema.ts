@@ -47,7 +47,6 @@ export const requestBody = z.object({
 export type RequestBody = z.infer<typeof requestBody>;
 
 export type Response = {
-    //TODO: A gente deveria estar usando o model aqui?
     page: DiabetesAcfItem[];
     totalRows: number;
 }

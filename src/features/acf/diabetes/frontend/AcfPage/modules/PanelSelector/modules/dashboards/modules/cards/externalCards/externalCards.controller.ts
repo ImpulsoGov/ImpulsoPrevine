@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "../../../../../../../../../common/types";
+import type { AcfDashboardType } from "../../../../../../../../../common/model";
 import { externalCardsDbToModel } from "./externalCards.adapter";
 import type { ExternalCardDataItem } from "./externalCards.model";
 import { externalCardsDataForTeam } from "./externalCards.repository";

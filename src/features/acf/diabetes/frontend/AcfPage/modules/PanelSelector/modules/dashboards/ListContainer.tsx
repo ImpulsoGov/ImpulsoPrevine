@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "../../../../../../common/types";
+import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { InternalCards } from "./modules/cards/internalCards/InternalCards.container";
 import { PaginatedTable } from "./modules/PaginatedTable";

@@ -6,12 +6,12 @@ export const filterOptions = async (
     teamIne: string,
  ): Promise<readonly FilterOptionsDb[]> => {
     //TODO: Hoje em dia, essa query está respondendo um array de objetos no formato: 
-    //{
+    //[{
     //  acs_nome_cadastro: 'MIRACI HERNANDES AQUINO',
     //  status_usuario: 'Consulta e solicitação de hemoglobina em dia',
     //  identificacao_condicao_diabetes: 'Diagnóstico Clínico',
     //  cidadao_faixa_etaria: 'Entre 55 e 65 anos'
-    //},
+    //},...]
     //
     //Isso traz alguns problemas:
     //1 - Vários dos resultados do distinct são duplicados. Apenas o resultado com mais valores é realmente distinct (provavelmente acs_nome_cadastro)

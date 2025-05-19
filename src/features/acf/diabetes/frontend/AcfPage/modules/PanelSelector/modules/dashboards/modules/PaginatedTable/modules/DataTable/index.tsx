@@ -8,7 +8,8 @@ import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
 import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
-import type { AcfDashboardType } from "@/features/acf/diabetes/common/types";
+import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+
 
 type TableProps = {
     acfDashboardType: AcfDashboardType;

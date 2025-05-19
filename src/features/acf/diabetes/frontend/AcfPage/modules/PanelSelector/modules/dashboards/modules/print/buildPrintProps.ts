@@ -1,11 +1,11 @@
 import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
-import type { AcfDashboardType } from "@/features/acf/modules/AcfDashboardPage/types";
 import { larguraColunasHipertensaoEquipePaisagem, larguraColunasHipertensaoEquipeRetrato, larguraColunasHipertensaoPaisagem, larguraColunasHipertensaoRetrato } from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { filtersLabels } from "../TableWithFilters/modules/filters/modules/diabetes/filtersLabels";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 import { diabetesColumns } from "../PaginatedTable/modules/DataTable/modules/diabetes/modules/columns/columns";
+import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 
 export const buildPrintProps = (
   list: AcfDashboardType,

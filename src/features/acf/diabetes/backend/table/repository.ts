@@ -1,6 +1,6 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import type { DiabetesDbFilterItem } from "../../common/model";
+import type { DiabetesDbFilterItem } from "../model";
 
 const pageSize = 8;
 

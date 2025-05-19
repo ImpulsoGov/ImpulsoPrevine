@@ -1,7 +1,8 @@
 import { isDate, parseDate } from '@/common/time';
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
-import type { ConditionIdentifiedBy, DiabetesAcfItem, DiabetesDbFilterItem, PatientAgeRange, PatientStatus } from "../../common/model"
+import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientStatus } from "../../common/model"
 import type { FilterParams } from '../../common/schema';
+import type { DiabetesDbFilterItem } from '../model';
 
 export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {

@@ -6,7 +6,7 @@ import { useState } from "react";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 // import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
 import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
-import type { AcfDashboardType } from "@/features/acf/diabetes/common/types";
+import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos

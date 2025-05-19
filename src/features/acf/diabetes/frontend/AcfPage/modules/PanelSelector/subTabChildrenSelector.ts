@@ -1,5 +1,5 @@
 import React from "react";
-import type { AcfDashboardType } from "../../../../common/types";
+import type { AcfDashboardType } from "../../../../common/model";
 import type { ExtendedsubTabsWithChildrenAndChildrenDataProps, Tabs } from "./PanelSelector.presentation";
 
 export const subTabChildrenSelector = (

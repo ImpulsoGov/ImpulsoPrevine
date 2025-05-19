@@ -15,3 +15,14 @@ export type FilterOptionsDb = Pick<
     | "identificacao_condicao_diabetes"
     | "cidadao_faixa_etaria"
 >;
+
+export type DiabetesDbFilterItem = {
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    status_usuario?: string[];
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    identificacao_condicao_diabetes?: string[];
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    acs_nome_cadastro?: string[];
+    // biome-ignore lint/style/useNamingConvention: <explanation>
+    cidadao_faixa_etaria?: string[];
+};
