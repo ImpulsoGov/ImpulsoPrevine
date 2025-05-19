@@ -1,9 +1,8 @@
-import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from '@prisma/client';
 import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus } from '@/features/acf/diabetes/common/model';
-import type { Filters } from "../model";
+import type { FilterOptionsDb, FiltersOptions } from "../model";
 
 // TODO mudar esses tipos para não serem hard coded
-type DiabetesFilterOptions =
+export type DiabetesFilterOptions =
     | "visitantCommunityHealthWorker"
     | "patientStatus"
     | "conditionIdentifiedBy"
@@ -20,10 +19,10 @@ type DiabetesFilterOptionsDB =
  * @param data - The data from the database.
  * @returns The adapted data for the filter options.
  */
-export const filtersOptions = (
-    data: readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]
-): Filters => {
-    const diabetesFilterItens: Filters = {
+export const filtersOptionsDbToModel = (
+    data: readonly FilterOptionsDb[]
+): FiltersOptions => {
+    const diabetesFilterItens: FiltersOptions = {
         patientStatus: [],
         conditionIdentifiedBy: [],
         visitantCommunityHealthWorker: [],
@@ -45,7 +44,7 @@ export const filtersOptions = (
  * @param data - The data from the database.
  * @returns An object with the distinct values grouped by their keys.
  */
-const aggregateDistinctValues = (data: readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]): Record<string, Array<string | number | boolean | Date | null>> =>{
+const aggregateDistinctValues = (data: readonly FilterOptionsDb[]): Record<string, Array<string | number | boolean | Date | null>> =>{
     const groupedData = data.reduce((acc: Record<string, Set<string | number | boolean | Date | null>>, obj) => {
       for (const [key, val] of Object.entries(obj)) {
         if (!acc[key]) acc[key] = new Set();

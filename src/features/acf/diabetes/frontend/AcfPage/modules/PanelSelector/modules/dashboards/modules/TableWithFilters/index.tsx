@@ -1,6 +1,5 @@
 import type React from 'react';
 import { filterOptions } from "../../../../../../../../backend/filters/controller"
-import { modelToDB } from "../../../../../../../../backend/filters/adapter";
 import { TableWithFilters } from './TableWithFilters.presentation';
 
 type FiltersContainerProps = {
@@ -18,12 +17,6 @@ export const FiltersContainer = async ({
     const filtersValues = await filterOptions(
         municipalitySusID,
         teamIne,
-        modelToDB([
-            "visitantCommunityHealthWorker",
-            "patientStatus",
-            "conditionIdentifiedBy",
-            "patientAgeRange",
-        ]),
     );
 
     return (
