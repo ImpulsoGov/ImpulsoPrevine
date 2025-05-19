@@ -28,7 +28,7 @@ export const ListContainer = ({
                     municipalitySusID={municipalitySusId}
                     teamIne={teamIne}
                 >
-                    <PaginatedTable acfDashboardType={list} />
+                    <PaginatedTable />
                 </FiltersContainer>
             </List>
         </>

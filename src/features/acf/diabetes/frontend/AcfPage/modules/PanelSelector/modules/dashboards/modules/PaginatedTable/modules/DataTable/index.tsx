@@ -8,21 +8,13 @@ import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
 import { FiltersContext } from "../../../TableWithFilters/TableWithFilters.context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
-import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 import { PaginationContext } from "../../PaginatedTable.context";
+import type { PaginationModel } from "../..";
 
-type TableProps =
- {
-    acfDashboardType: AcfDashboardType;
-    onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>
-}
-
-export const DataTable = ({
-    onPaginationModelChange,
-}: TableProps) => {
+export const DataTable = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
-    const paginationModel = useContext<GridPaginationModel>(PaginationContext)
-    const { data, status, isLoading } = tableDataHook(paginationModel.page, filters);
+    const paginationModel = useContext<PaginationModel>(PaginationContext);
+    const { data, status, isLoading } = tableDataHook(paginationModel.gridPaginationModel.page, filters);
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>
             Erro ao buscar dados, entre em contato com o suporte.
@@ -38,8 +30,8 @@ export const DataTable = ({
             paginationMode="server"
             // sortingMode="server"
             rowCount={data?.totalRows || 0}
-            paginationModel={paginationModel}
-            onPaginationModelChange={onPaginationModelChange}
+            paginationModel={paginationModel.gridPaginationModel}
+            onPaginationModelChange={paginationModel.onPaginationModelChange}
             // sortModel={DEFAULT_SORTING} //TODO: Mudar para o sorting recebido como prop quando implementarmos sorting
             // onSortModelChange={(_) => {}} //TODO: Mudar para a função recebida como prop quando implementarmos sorting
             isLoading={isLoading}
