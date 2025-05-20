@@ -27,6 +27,7 @@ export type DiabetesDbFilterItem = {
     cidadao_faixa_etaria?: string[];
 };
 
+// TODO rever nomes dos tipos abaixo
 // Cards externos
 
 export type AcfExternalCardsDescription = "DIAGNOSTICO_AUTORREFERIDO" | "DIAGNOSTICO_CLINICO"
