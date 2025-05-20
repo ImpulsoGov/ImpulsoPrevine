@@ -1,13 +1,10 @@
 'use client';
 import type React from "react";
 import type { GridPaginationModel } from "@mui/x-data-grid";
-import { type Dispatch, type SetStateAction, useState } from "react";
+import { useState } from "react";
 import { PaginationContext } from "./context";
 
-export type PaginationModel = {
-    gridPaginationModel: GridPaginationModel;
-    onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>;
-}
+export type { PaginationModel } from './context';
 
 type WithPaginationProps = React.PropsWithChildren
 
