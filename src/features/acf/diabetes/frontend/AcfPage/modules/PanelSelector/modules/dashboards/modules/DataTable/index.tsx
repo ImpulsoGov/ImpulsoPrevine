@@ -1,5 +1,5 @@
 'use client'
-import { tableDataHook } from "./DataTable.hook";
+import { tableDataHook } from "./hook";
 import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
