@@ -7,7 +7,7 @@ import { FiltersContext } from "../WithFilters/context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import { PaginationContext } from "../WithPagination/context";
 import type { PaginationModel } from "../WithPagination";
-import { diabetesColumns } from "./modules/columns/columns";
+import { diabetesColumns } from "./modules/columns";
 
 export const DataTable = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
