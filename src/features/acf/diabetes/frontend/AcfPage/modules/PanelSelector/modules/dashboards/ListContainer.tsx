@@ -2,7 +2,7 @@ import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { InternalCards } from "./modules/cards/internalCards/InternalCards.container";
 import { PaginatedTable } from "./modules/PaginatedTable";
-import { FiltersContainer } from "./modules/TableWithFilters";
+import { FiltersContainer } from "./modules/WithFilters";
 
 export type ListContainerProps = {
     list: AcfDashboardType;

@@ -1,20 +1,20 @@
 'use client'
 import { useSearchParams } from "next/navigation";
-import { createSelectConfigs } from "./modules/filters/modules/diabetes/createSelectConfigs";
-import { type SelectConfig, searchParamsToSelectedValues } from "./modules/filters/searchParamsToSelectedValues";
+import { createSelectConfigs } from "./modules/createSelectConfigs";
 import { useState } from "react";
 import { SelectDropdown } from "@impulsogov/design-system";
 import { ClearFilters } from "@impulsogov/design-system";
-import { FiltersContext } from "./TableWithFilters.context";
+import { FiltersContext } from "./context";
 import { FilterBar } from "@impulsogov/design-system";
-import { clearFiltersArgs } from './modules/filters/clearFiltersArgs';
 import type { FiltersUi, SelectedValues } from "@/features/acf/diabetes/frontend/model";
+import { clearFiltersArgs } from "./modules/clearFiltersArgs";
+import { searchParamsToSelectedValues, type SelectConfig } from "./modules/searchParamsToSelectedValues";
 
 type TableWithFiltersProps = React.PropsWithChildren<{
     filtersValues: FiltersUi
 }>;
 
-export const TableWithFilters = ({
+export const WithFilters = ({
     children,
     filtersValues
 }: TableWithFiltersProps) => {

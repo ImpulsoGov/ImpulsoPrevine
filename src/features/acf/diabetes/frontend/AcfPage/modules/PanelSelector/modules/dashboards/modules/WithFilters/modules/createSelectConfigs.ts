@@ -1,5 +1,5 @@
 import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus, VisitantCommunityHealthWorker } from "@/features/acf/diabetes/common/model";
-import type { SelectConfig, HtmlSelectOption } from "../../searchParamsToSelectedValues";
+import type { SelectConfig, HtmlSelectOption } from "./filters/searchParamsToSelectedValues";
 import type { FiltersUi } from "@/features/acf/diabetes/frontend/model";
 
 type FilterValues = VisitantCommunityHealthWorker[] | PatientStatus[] | ConditionIdentifiedBy[] | PatientAgeRange[]; 

@@ -1,25 +1,22 @@
 import type React from 'react';
 import { filterOptions } from "../../../../../../../../backend/filters/controller"
-import { TableWithFilters } from './TableWithFilters.presentation';
+import { WithFilters } from './presentation';
 
-type FiltersContainerProps = {
+type FiltersContainerProps = React.PropsWithChildren<{
     municipalitySusID: string;
     teamIne: string;
-    children: React.ReactNode;
-}
+}>
 
 export const FiltersContainer = async ({
     municipalitySusID,
     teamIne,
     children,
 }: FiltersContainerProps) => {
-    //TODO: Remover essa utilização de modelToDB daqui, usar essa função no controller.
+    // TODO rever nome do controller filterOptions
     const filtersValues = await filterOptions(
         municipalitySusID,
         teamIne,
     );
 
-    return (
-        <TableWithFilters filtersValues={filtersValues}>{children}</TableWithFilters>
-    );
+    return <WithFilters filtersValues={filtersValues}>{children}</WithFilters>
 };
