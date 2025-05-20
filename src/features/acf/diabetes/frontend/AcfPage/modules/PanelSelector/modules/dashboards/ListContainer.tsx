@@ -3,7 +3,7 @@ import { List } from "./List";
 import { WithPagination } from "./modules/WithPagination";
 import { WithFilters } from "./modules/WithFilters";
 import { DataTable } from "./modules/DataTable";
-import { InternalCardsContainer } from "./modules/Internalcards/Index";
+import { InternalCards } from "./modules/Internalcards/Index";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -20,7 +20,7 @@ export const ListContainer = ({
 }: ListContainerProps) => {
     return (
         <>
-            <InternalCardsContainer
+            <InternalCards
                 municipalitySusId={municipalitySusId}
                 teamIne={teamIne}
             />

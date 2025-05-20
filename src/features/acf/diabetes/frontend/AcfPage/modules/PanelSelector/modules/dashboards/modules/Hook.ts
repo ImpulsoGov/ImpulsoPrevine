@@ -1,3 +1,12 @@
+import type { Session } from "next-auth";
+
+export const sessionHook = async (
+    user: Session["user"] | undefined,
+    setUser: React.Dispatch<React.SetStateAction<Session["user"] | undefined>>
+) => {
+    setUser(user);
+};
+
 // import type{ AcfDashboardType } from "@/features/acf/diabetes/common/types";
 // import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 // import type { GridSortModel } from "@mui/x-data-grid";

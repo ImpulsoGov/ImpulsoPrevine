@@ -15,7 +15,7 @@ import {
     // acfNominalListProps,
     breadcrumb,
     header,
-} from "./PanelSelector.consts";
+} from "./consts";
 // import { ChartsContainer } from "./modules/dashboards/Charts";
 // import { subTabChildrenSelector } from "./subTabChildrenSelector";
 // import { tabsBuilder } from "./tabsBuilder";

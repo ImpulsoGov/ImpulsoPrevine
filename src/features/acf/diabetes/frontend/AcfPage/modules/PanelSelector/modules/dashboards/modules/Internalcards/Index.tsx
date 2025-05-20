@@ -2,11 +2,11 @@ import { getInternalCardsProps } from '@/helpers/cardsList';
 import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
 import { captureException } from '@sentry/nextjs';
 import { Suspense } from 'react';
-import { InternalCards } from './presentation';
+import * as Presentation from './presentation';
 import { internalCardsController } from '../../../../../../../../backend/internalCards/controller';
-import { internalCardsDetails } from '../../../../PanelSelector.consts';
+import { internalCardsDetails } from '../../../../consts';
 
-export const InternalCardsContainer = async({
+export const InternalCards = async({
     municipalitySusId,
     teamIne,
 }:{
@@ -25,7 +25,7 @@ export const InternalCardsContainer = async({
     }
   return (
     <Suspense>
-        <InternalCards internalCardsProps={internalCardsProps} />
+        <Presentation.InternalCards internalCardsProps={internalCardsProps} />
     </Suspense>
   )
 }

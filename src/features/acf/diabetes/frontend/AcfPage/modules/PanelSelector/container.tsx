@@ -6,8 +6,8 @@ import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../../../common/model";
 import {
     externalCardsDetails,
-} from "./PanelSelector.consts";
-import { PanelSelector } from "./PanelSelector.presentation";
+} from "./consts";
+import { PanelSelector } from "./presentation";
 import { ListContainer } from "./modules/dashboards/ListContainer";
 import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/diabetes/backend/externalCards/controller";
 
