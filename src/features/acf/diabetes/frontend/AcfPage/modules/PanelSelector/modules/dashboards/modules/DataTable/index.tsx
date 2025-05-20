@@ -1,13 +1,13 @@
 'use client'
 import { tableDataHook } from "./DataTable.hook";
-import { diabetesColumns } from "./modules/diabetes/modules/columns/columns";
 import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
-import { FiltersContext } from "../../../WithFilters/context";
+import { FiltersContext } from "../WithFilters/context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
-import { PaginationContext } from "../../PaginatedTable.context";
-import type { PaginationModel } from "../..";
+import { PaginationContext } from "../WithPagination/context";
+import type { PaginationModel } from "../WithPagination";
+import { diabetesColumns } from "./modules/columns/columns";
 
 export const DataTable = () => {
     const filters = useContext<SelectedValues>(FiltersContext);

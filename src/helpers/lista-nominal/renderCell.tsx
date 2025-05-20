@@ -1,5 +1,5 @@
 import { TableTag } from "@/componentes/mounted/TableTag";
-import { iconDetailsMap } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/iconDetailsMap";
+import { iconDetailsMap } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/iconDetailsMap";
 
 export type IconDetails = {
     src: string;

@@ -10,14 +10,14 @@ import type { FiltersUi, SelectedValues } from "@/features/acf/diabetes/frontend
 import { clearFiltersArgs } from "./modules/clearFiltersArgs";
 import { searchParamsToSelectedValues, type SelectConfig } from "./modules/searchParamsToSelectedValues";
 
-type TableWithFiltersProps = React.PropsWithChildren<{
+type WithFiltersProps = React.PropsWithChildren<{
     filtersValues: FiltersUi
 }>;
 
 export const WithFilters = ({
     children,
     filtersValues
-}: TableWithFiltersProps) => {
+}: WithFiltersProps) => {
     const searchParams = useSearchParams(); 
     const selectConfigs = createSelectConfigs(filtersValues);
     const initialSelectedValues = searchParamsToSelectedValues(searchParams);

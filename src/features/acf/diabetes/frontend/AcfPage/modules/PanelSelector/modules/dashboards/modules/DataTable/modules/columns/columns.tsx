@@ -1,7 +1,7 @@
 import { RenderStatusTagCell } from "@/helpers/lista-nominal/renderCell";
 import type { GridColDef } from "@mui/x-data-grid";
 import { DateRenderCell, CpfOrBirthdayFormatter } from "./columns.formatter";
-import { NameFormatter } from "../../name.formatter";
+import { NameFormatter } from "./name.formatter";
 //TODO investigar como a conversao para string no dataGrid
 
 export const diabetesColumns: GridColDef[] = [

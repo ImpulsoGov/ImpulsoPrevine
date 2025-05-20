@@ -1,8 +1,9 @@
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { InternalCards } from "./modules/cards/internalCards/InternalCards.container";
-import { PaginatedTable } from "./modules/PaginatedTable";
+import { WithPagination } from "./modules/WithPagination";
 import { FiltersContainer } from "./modules/WithFilters";
+import { DataTable } from "./modules/DataTable";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -28,7 +29,9 @@ export const ListContainer = ({
                     municipalitySusID={municipalitySusId}
                     teamIne={teamIne}
                 >
-                    <PaginatedTable />
+                    <WithPagination >
+                        <DataTable />
+                    </WithPagination>
                 </FiltersContainer>
             </List>
         </>
