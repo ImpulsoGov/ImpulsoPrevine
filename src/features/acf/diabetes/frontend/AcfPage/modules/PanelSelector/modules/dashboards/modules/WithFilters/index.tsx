@@ -1,14 +1,14 @@
 import type React from 'react';
 import { filterOptions } from "../../../../../../../../backend/filters/controller"
-import { WithFilters } from './presentation';
 import { Suspense } from 'react';
+import * as Presentation from './presentation';
 
 type FiltersContainerProps = React.PropsWithChildren<{
     municipalitySusID: string;
     teamIne: string;
 }>
 
-export const FiltersContainer = async ({
+export const WithFilters = async ({
     municipalitySusID,
     teamIne,
     children,
@@ -21,7 +21,7 @@ export const FiltersContainer = async ({
 
     return(
         <Suspense>
-            <WithFilters filtersValues={filtersValues}>{children}</WithFilters>
+            <Presentation.WithFilters filtersValues={filtersValues}>{children}</Presentation.WithFilters>
         </Suspense>
     )
 
