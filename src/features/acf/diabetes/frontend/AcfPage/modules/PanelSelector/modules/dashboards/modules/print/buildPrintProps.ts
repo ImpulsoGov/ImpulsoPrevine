@@ -4,8 +4,8 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { filtersLabels } from "../WithFilters/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
-import { diabetesColumns } from "../DataTable/modules/diabetes/modules/columns/columns";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+import { diabetesColumns } from "../DataTable/modules/columns";
 
 export const buildPrintProps = (
   list: AcfDashboardType,

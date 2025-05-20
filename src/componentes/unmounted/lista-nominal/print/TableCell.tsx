@@ -1,7 +1,6 @@
 import type { ExtendedGridColDef } from "./UnitTable";
 import { PrazoStyle } from "@componentes/unmounted/lista-nominal/print/aux/PrazoStyle";
 import { Selecionar_status_usuario_descricao } from "@componentes/unmounted/lista-nominal/print/aux/Selecionar_status_usuario_descricao";
-import { StatusDataConsulta } from "@componentes/unmounted/lista-nominal/print/aux/StatusDataConsulta";
 import { CpfEIdentificacaoCondicao } from "@componentes/unmounted/lista-nominal/print/aux/CpfEIdentificacaoCondicao";
 import type { DataItem } from "@/utils/FilterData";
 import type { JSX } from "react";
