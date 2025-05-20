@@ -1,7 +1,7 @@
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { WithPagination } from "./modules/WithPagination";
-import { FiltersContainer } from "./modules/WithFilters";
+import { WithFilters } from "./modules/WithFilters";
 import { DataTable } from "./modules/DataTable";
 import { InternalCardsContainer } from "./modules/Internalcards/Index";
 
@@ -25,14 +25,14 @@ export const ListContainer = ({
                 teamIne={teamIne}
             />
             <List list={list}>
-                <FiltersContainer
+                <WithFilters
                     municipalitySusID={municipalitySusId}
                     teamIne={teamIne}
                 >
                     <WithPagination >
                         <DataTable />
                     </WithPagination>
-                </FiltersContainer>
+                </WithFilters>
             </List>
         </>
     );
