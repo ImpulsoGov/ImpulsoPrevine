@@ -9,7 +9,7 @@ import {
 } from "./PanelSelector.consts";
 import { PanelSelector } from "./PanelSelector.presentation";
 import { ListContainer } from "./modules/dashboards/ListContainer";
-import { externalCardsAcfDashboardDataControllerForTeam } from "./modules/dashboards/modules/cards/externalCards/externalCards.controller";
+import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/diabetes/backend/externalCards/controller";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;

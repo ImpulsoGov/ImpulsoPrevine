@@ -1,9 +1,9 @@
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
-import { InternalCards } from "./modules/cards/internalCards/InternalCards.container";
 import { WithPagination } from "./modules/WithPagination";
 import { FiltersContainer } from "./modules/WithFilters";
 import { DataTable } from "./modules/DataTable";
+import { InternalCardsContainer } from "./modules/Internalcards/Index";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -20,7 +20,7 @@ export const ListContainer = ({
 }: ListContainerProps) => {
     return (
         <>
-            <InternalCards
+            <InternalCardsContainer
                 municipalitySusId={municipalitySusId}
                 teamIne={teamIne}
             />

@@ -1,7 +1,9 @@
-import type { ExternalCardDBDataItem } from "./externalCards.model"
+import type { ExternalCardDBDataItem } from "../model"
 
+// TODO usar prisma para buscar os dados quando fizermos uma lista que possui cards externos
 const data = [
         {
+            // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "111111",
             "ine": "0000098574",
             "lista": "diabetes",
@@ -9,6 +11,7 @@ const data = [
             "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
         },
         {
+         // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "111111",
             "ine": "0000098574",
             "lista": "diabetes",
@@ -16,6 +19,7 @@ const data = [
             "descricao": "DIAGNOSTICO_AUTORREFERIDO"
         },
         {
+            // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "111111",
             "ine": "0000098574",
             "lista": "diabetes",
@@ -23,6 +27,7 @@ const data = [
             "descricao": "DIAGNOSTICO_CLINICO"
         },
         {
+            // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "140015",
             "ine": "0001590324",
             "lista": "diabetes",
@@ -30,6 +35,7 @@ const data = [
             "descricao": "COM_CONSULTA_AFERICAO_PRESSAO"
         },
         {
+            // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "140015",
             "ine": "0001590324",
             "lista": "diabetes",
@@ -37,6 +43,7 @@ const data = [
             "descricao": "DIAGNOSTICO_AUTORREFERIDO"
         },
         {
+            // biome-ignore lint/style/useNamingConvention: <explanation>
             "municipio_id_sus": "140015",
             "ine": "0001590324",
             "lista": "diabetes",

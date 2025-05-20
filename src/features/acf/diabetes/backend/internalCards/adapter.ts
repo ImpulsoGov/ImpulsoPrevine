@@ -1,4 +1,4 @@
-import type { DiabetesInternalCardsValue, InternalCardDBDataItem, InternalCardDataItem } from "./internalCards.model"
+import type { DiabetesInternalCardsValue, InternalCardDataItem, InternalCardDBDataItem } from "../model"
 
 export const dbToModel = (
     data: readonly InternalCardDBDataItem[]

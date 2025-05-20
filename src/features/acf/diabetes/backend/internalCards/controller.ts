@@ -1,6 +1,6 @@
-import { dbToModel } from "./internalCards.adapter";
-import type { InternalCardDataItem } from "./internalCards.model";
-import { internalCardsDataForTeam } from "./internalCards.repository";
+import type { InternalCardDataItem } from "../model";
+import { dbToModel } from "./adapter";
+import { internalCardsDataForTeam } from "./repository";
 
 export const internalCardsController = async(
     municipalitySusId: string,

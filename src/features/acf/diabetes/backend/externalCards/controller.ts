@@ -1,7 +1,7 @@
-import type { AcfDashboardType } from "../../../../../../../../../common/model";
-import { externalCardsDbToModel } from "./externalCards.adapter";
-import type { ExternalCardDataItem } from "./externalCards.model";
-import { externalCardsDataForTeam } from "./externalCards.repository";
+import type { AcfDashboardType } from "../../common/model";
+import type { ExternalCardDataItem } from "../model";
+import { externalCardsDbToModel } from "./adapter";
+import { externalCardsDataForTeam } from "./repository";
 
 export const externalCardsAcfDashboardDataControllerForTeam = async(
     listName: AcfDashboardType, 
