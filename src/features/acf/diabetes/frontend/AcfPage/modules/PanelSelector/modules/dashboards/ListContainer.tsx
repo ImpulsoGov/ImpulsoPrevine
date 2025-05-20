@@ -3,7 +3,7 @@ import { List } from "./List";
 import { WithPagination } from "./modules/WithPagination";
 import { WithFilters } from "./modules/WithFilters";
 import { DataTable } from "./modules/DataTable";
-import { InternalCards } from "./modules/Internalcards/Index";
+import { InternalCards } from "./modules/Internalcards";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
