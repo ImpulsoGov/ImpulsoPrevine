@@ -18,7 +18,7 @@
         "postinstall": "husky",
         "test": "jest",
         "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage"
+        "test:coverage": "jest --coverage --watchAll=false --bail"
     },
     "dependencies": {
         "@hotjar/browser": "^1.0.9",
