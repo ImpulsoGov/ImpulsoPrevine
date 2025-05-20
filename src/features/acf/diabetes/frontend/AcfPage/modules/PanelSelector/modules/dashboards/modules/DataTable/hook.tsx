@@ -6,7 +6,7 @@ import * as service from '@/features/acf/diabetes/frontend/service';
 import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 
-export const tableDataHook = (
+export const useTableData = (
     page: number,
     filters: SelectedValues
 ) => {

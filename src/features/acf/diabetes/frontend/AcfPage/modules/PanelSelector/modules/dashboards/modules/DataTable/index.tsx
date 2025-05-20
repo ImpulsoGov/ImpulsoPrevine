@@ -1,5 +1,5 @@
 'use client'
-import { tableDataHook } from "./hook";
+import { useTableData } from "./hook";
 import { Table } from "@impulsogov/design-system";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from 'react';
@@ -12,7 +12,7 @@ import { diabetesColumns } from "./modules/columns/columns";
 export const DataTable = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
     const paginationModel = useContext<PaginationModel>(PaginationContext);
-    const { data, status, isLoading } = tableDataHook(paginationModel.gridPaginationModel.page, filters);
+    const { data, status, isLoading } = useTableData(paginationModel.gridPaginationModel.page, filters);
     if (data && status !== 200 && data.totalRows !== undefined){
         return <p style={{ textAlign: "center", padding: "20px" }}>
             Erro ao buscar dados, entre em contato com o suporte.
