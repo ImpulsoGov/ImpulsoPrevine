@@ -12,12 +12,12 @@ export type ListContainerProps = {
     // title: string;
 };
 
-export const ListContainer = ({
+export const ListContainer: React.FC<ListContainerProps> = ({
     // title,
     list,
     municipalitySusId,
     teamIne,
-}: ListContainerProps) => {
+}) => {
     return (
         <>
             <InternalCards

@@ -32,6 +32,7 @@ export const List = ({
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
 
+    // eslint-disable-next-line react/hook-use-state
     const [_sorting, _setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
 
     // const [inputValue, setInputValue] = useState<string>("");
