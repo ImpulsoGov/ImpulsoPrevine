@@ -5,7 +5,7 @@ import { internalCardsDataForTeam } from "./repository";
 export const internalCardsController = async(
     municipalitySusId: string,
     teamIne : string,
-): Promise<InternalCardDataItem[]> => {
+): Promise<Array<InternalCardDataItem>> => {
     const data = await internalCardsDataForTeam(teamIne, municipalitySusId);
     return dbToModel(data);
 }

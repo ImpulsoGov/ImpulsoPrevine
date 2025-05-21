@@ -41,8 +41,8 @@ const diabetesRowToModel = (diabetesRow: impulso_previne_dados_nominais___painel
 }
 
 export const diabetesPageDbToModel = (
-    data: readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]
-): DiabetesAcfItem[] => {
+    data: ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
+): Array<DiabetesAcfItem> => {
     return data.map<DiabetesAcfItem>(diabetesRowToModel)
 }
 

@@ -158,7 +158,7 @@ export const header = {
 
 //esse conteudo deve ser dinâmico por lista
 export const acfNominalListProps = (
-    externalCardsProps: CardProps[],
+    externalCardsProps: Array<CardProps>,
     listName: AcfDashboardType,
     tabID: string,
     subTabID: string,

@@ -57,7 +57,7 @@ export const externalCardsDataForTeam = (
     teamIne: string,
     municipalitySusID: string,
 
-): ExternalCardDBDataItem[]=>{
+): Array<ExternalCardDBDataItem>=>{
     return data.filter((item: ExternalCardDBDataItem): boolean => (
         item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() 
         && item.municipio_id_sus === municipalitySusID 

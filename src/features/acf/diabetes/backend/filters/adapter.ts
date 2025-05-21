@@ -20,7 +20,7 @@ type DiabetesFilterOptionsDB =
  * @returns The adapted data for the filter options.
  */
 export const filtersOptionsDbToModel = (
-    data: readonly FilterOptionsDb[]
+    data: ReadonlyArray<FilterOptionsDb>
 ): FiltersOptions => {
     const diabetesFilterItens: FiltersOptions = {
         patientStatus: [],
@@ -31,10 +31,10 @@ export const filtersOptionsDbToModel = (
     const groupedItems = aggregateDistinctValues(data)
     // TODO: corrigir atualização dos valores
     for (const [key, value] of Object.entries(groupedItems)) {
-        if (key === "status_usuario") diabetesFilterItens.patientStatus = value as PatientStatus[]
-        if (key === "identificacao_condicao_diabetes") diabetesFilterItens.conditionIdentifiedBy = value as ConditionIdentifiedBy[]
-        if (key === "acs_nome_cadastro") diabetesFilterItens.visitantCommunityHealthWorker = value as string[]
-        if (key === "cidadao_faixa_etaria") diabetesFilterItens.patientAgeRange = value as PatientAgeRange[]
+        if (key === "status_usuario") diabetesFilterItens.patientStatus = value as Array<PatientStatus>
+        if (key === "identificacao_condicao_diabetes") diabetesFilterItens.conditionIdentifiedBy = value as Array<ConditionIdentifiedBy>
+        if (key === "acs_nome_cadastro") diabetesFilterItens.visitantCommunityHealthWorker = value as Array<string>
+        if (key === "cidadao_faixa_etaria") diabetesFilterItens.patientAgeRange = value as Array<PatientAgeRange>
     }
     return diabetesFilterItens;
 }
@@ -44,7 +44,7 @@ export const filtersOptionsDbToModel = (
  * @param data - The data from the database.
  * @returns An object with the distinct values grouped by their keys.
  */
-const aggregateDistinctValues = (data: readonly FilterOptionsDb[]): Record<string, Array<string | number | boolean | Date | null>> =>{
+const aggregateDistinctValues = (data: ReadonlyArray<FilterOptionsDb>): Record<string, Array<string | number | boolean | Date | null>> =>{
     const groupedData = data.reduce((acc: Record<string, Set<string | number | boolean | Date | null>>, obj) => {
       for (const [key, val] of Object.entries(obj)) {
         if (!acc[key]) acc[key] = new Set();
@@ -66,6 +66,6 @@ const filterDbtoModelOptions: Record<DiabetesFilterOptions, DiabetesFilterOption
     patientAgeRange: "cidadao_faixa_etaria",
 }
 
-export const modelToDB = (item: DiabetesFilterOptions[]) : DiabetesFilterOptionsDB[]=>{
+export const modelToDB = (item: Array<DiabetesFilterOptions>) : Array<DiabetesFilterOptionsDB>=>{
     return item.map((filterItem) => filterDbtoModelOptions[filterItem])
 }

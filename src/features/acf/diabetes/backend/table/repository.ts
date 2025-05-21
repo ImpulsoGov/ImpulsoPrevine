@@ -6,13 +6,13 @@ const pageSize = 8;
 
 type QueryWhere = {
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    status_usuario?: { in: string[] };
+    status_usuario?: { in: Array<string> };
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    identificacao_condicao_diabetes?: { in: string[] };
+    identificacao_condicao_diabetes?: { in: Array<string> };
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    acs_nome_cadastro?: { in: string[] };
+    acs_nome_cadastro?: { in: Array<string> };
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    cidadao_faixa_etaria?: { in: string[] };
+    cidadao_faixa_etaria?: { in: Array<string> };
     // biome-ignore lint/style/useNamingConvention: <explanation>
     municipio_id_sus: string;
     // biome-ignore lint/style/useNamingConvention: <explanation>
@@ -47,7 +47,7 @@ export const page = async (
     page: number,
     filters: DiabetesDbFilterItem,
 ): Promise<
-    readonly impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos[]
+    ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
 > => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany(
         {

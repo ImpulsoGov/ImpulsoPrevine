@@ -35,7 +35,7 @@ export const AcfDashboardPage = async ({
                     acfDashboardType={acfDashboardType}
                     municipalitySusId={session?.user.municipio_id_sus}
                     teamIne={session?.user.equipe}
-                    userProfiles={session?.user.perfis as ProfileIdValue[]}
+                    userProfiles={session?.user.perfis as Array<ProfileIdValue>}
                 />
             </AllowProfile>
         </SessionGuard>

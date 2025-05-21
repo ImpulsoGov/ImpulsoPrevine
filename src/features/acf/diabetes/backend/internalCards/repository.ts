@@ -51,7 +51,7 @@ export const totalPatientsWithClinicalDiagnosis = async (municipalitySusIdAndTea
 export const internalCardsDataForTeam = async(
     teamIne: string,
     municipalitySusID: string,
-): Promise<readonly InternalCardDBDataItem[]> =>{
+): Promise<ReadonlyArray<InternalCardDBDataItem>> =>{
     const municipalitySusIDAndTeamIne = {
         // biome-ignore lint/style/useNamingConvention: <explanation>
         municipio_id_sus: municipalitySusID,

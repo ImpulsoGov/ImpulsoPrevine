@@ -14,7 +14,7 @@ export const subTabChildrenSelector = (
 ):Record<string, React.ReactNode>  => {
     return Object.values(tabs)
         .flatMap((tab) => tab.subTabs)
-        .reduce(
+        .reduce<Record<string, React.ReactNode>>(
             (
                 result,
                 subTab: ExtendedsubTabsWithChildrenAndChildrenDataProps,
@@ -29,7 +29,7 @@ export const subTabChildrenSelector = (
                     : null;
                 return result;
             },
-            {} as Record<string, React.ReactNode>,
+            {},
         );
 };
 
@@ -38,11 +38,11 @@ export const tabsBuilder = (
     childrenComponents: Record<string, React.ReactNode>
 ): PanelSelectorWithCardsProps["tabs"] => {
     return Object.fromEntries(
-        Object.entries(props.tabs as Tabs).map(([key, tab]) => [
+        Object.entries(props.tabs).map(([key, tab]) => [
             key,
             {
                 ...tab,
-                subTabs: (tab as Tabs[string]).subTabs.map((subTab) => ({
+                subTabs: (tab).subTabs.map((subTab) => ({
                     ...subTab,
                     child: childrenComponents[subTab.subTabID],
                 })),

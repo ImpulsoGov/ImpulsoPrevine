@@ -3,8 +3,8 @@ import type { AcfExternalCardsDescription, ExternalCardDataItem, ExternalCardDBD
 
 
 export const externalCardsDbToModel = (
-    data: ExternalCardDBDataItem[]
-): ExternalCardDataItem[] => {
+    data: Array<ExternalCardDBDataItem>
+): Array<ExternalCardDataItem> => {
     return data.map((item) => ({
         value: item.valor,
         acfDashboardType: item.lista as AcfDashboardType,

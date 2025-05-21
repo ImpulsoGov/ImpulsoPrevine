@@ -14,7 +14,7 @@ export const useTableData = (
     const [response, setResponse] = useState<AxiosResponse<schema.Response> | null >(null);
     const [ isLoading, setIsLoading ] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
-    useEffect(() => setUser(session?.user), [session?.user]);
+    useEffect(() => { setUser(session?.user); }, [session?.user]);
 
     useEffect(() => {
         const getResponse = async () => {

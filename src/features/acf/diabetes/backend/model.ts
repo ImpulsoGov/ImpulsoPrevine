@@ -2,10 +2,10 @@ import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_
 import type { AcfDashboardType, DiabetesAcfItem } from "../common/model";
 
 export type FiltersOptions = {
-    visitantCommunityHealthWorker: DiabetesAcfItem["visitantCommunityHealthWorker"][];
-    patientStatus: DiabetesAcfItem["patientStatus"][];
-    conditionIdentifiedBy: DiabetesAcfItem["conditionIdentifiedBy"][];
-    patientAgeRange: DiabetesAcfItem["patientAgeRange"][];
+    visitantCommunityHealthWorker: Array<DiabetesAcfItem["visitantCommunityHealthWorker"]>;
+    patientStatus: Array<DiabetesAcfItem["patientStatus"]>;
+    conditionIdentifiedBy: Array<DiabetesAcfItem["conditionIdentifiedBy"]>;
+    patientAgeRange: Array<DiabetesAcfItem["patientAgeRange"]>;
 };
 
 export type FilterOptionsDb = Pick<
@@ -18,13 +18,13 @@ export type FilterOptionsDb = Pick<
 
 export type DiabetesDbFilterItem = {
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    status_usuario?: string[];
+    status_usuario?: Array<string>;
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    identificacao_condicao_diabetes?: string[];
+    identificacao_condicao_diabetes?: Array<string>;
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    acs_nome_cadastro?: string[];
+    acs_nome_cadastro?: Array<string>;
     // biome-ignore lint/style/useNamingConvention: <explanation>
-    cidadao_faixa_etaria?: string[];
+    cidadao_faixa_etaria?: Array<string>;
 };
 
 // TODO rever nomes dos tipos abaixo

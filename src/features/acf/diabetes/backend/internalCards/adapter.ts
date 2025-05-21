@@ -1,10 +1,10 @@
 import type { DiabetesInternalCardsValue, InternalCardDataItem, InternalCardDBDataItem } from "../model"
 
 export const dbToModel = (
-    data: readonly InternalCardDBDataItem[]
-): InternalCardDataItem[] => {
+    data: ReadonlyArray<InternalCardDBDataItem>
+): Array<InternalCardDataItem> => {
     return data.map((item) => ({
         value: item.valor,
-        healthIndicator: item.descricao as DiabetesInternalCardsValue
+        healthIndicator: item.descricao
     }))
 }

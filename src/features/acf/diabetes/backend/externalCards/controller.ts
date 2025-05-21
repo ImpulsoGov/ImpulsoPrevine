@@ -7,7 +7,7 @@ export const externalCardsAcfDashboardDataControllerForTeam = async(
     listName: AcfDashboardType, 
     municipalitySusId: string, 
     teamIne : string,
-): Promise<ExternalCardDataItem[]> => {
+): Promise<Array<ExternalCardDataItem>> => {
     const data = externalCardsDataForTeam(listName, teamIne, municipalitySusId);
     return externalCardsDbToModel(data);
 }

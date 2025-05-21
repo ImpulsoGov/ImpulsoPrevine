@@ -35,7 +35,7 @@ export type Tabs = Record<
     {
         title: string;
         tabID: string;
-        subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
+        subTabs: Array<ExtendedsubTabsWithChildrenAndChildrenDataProps>;
     }
 >;
 
@@ -95,8 +95,8 @@ type PanelSelectorProps = {
     listName: AcfDashboardType;
     tabID: string;
     subTabID: string;
-    externalCardsProps: CardProps[];
-    userProfiles: ProfileIdValue[];
+    externalCardsProps: Array<CardProps>;
+    userProfiles: Array<ProfileIdValue>;
     municipalityIdSus: string;
     contentWithoutTabs: React.ReactNode;
 };

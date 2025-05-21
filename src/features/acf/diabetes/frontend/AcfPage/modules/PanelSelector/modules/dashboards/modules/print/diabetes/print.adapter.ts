@@ -7,8 +7,8 @@ const patientCpfOrBirthdayAdapter = (patientCpfOrBirthdayString : string) => {
 }
 
 export const diabetesAcfPrintForTeamDataAdapter = (
-    data: DiabetesAcfDbItem[],
-): DiabetesAcfPrintItem[] => {
+    data: Array<DiabetesAcfDbItem>,
+): Array<DiabetesAcfPrintItem> => {
     return data
     .map((item) => ({
         municipalitySusID: item.municipio_id_sus,

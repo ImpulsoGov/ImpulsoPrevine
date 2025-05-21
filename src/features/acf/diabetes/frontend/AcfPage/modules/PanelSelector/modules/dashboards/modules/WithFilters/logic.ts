@@ -4,12 +4,12 @@ import * as schema from "@/features/acf/diabetes/common/schema";
 import { referenceOrder } from "./consts";
 import type * as z from "zod";
 
-export type FilterValues = VisitantCommunityHealthWorker[] | PatientStatus[] | ConditionIdentifiedBy[] | PatientAgeRange[];
+export type FilterValues = Array<VisitantCommunityHealthWorker> | Array<PatientStatus> | Array<ConditionIdentifiedBy> | Array<PatientAgeRange>;
 
 export type SelectConfig = {
     id: string;
     label: string;
-    options: HtmlSelectOption[];
+    options: Array<HtmlSelectOption>;
     isMultiSelect: boolean;
     width: string;
 };
@@ -21,7 +21,7 @@ export type HtmlSelectOption = {
 
 export const sortedOptions = (a: HtmlSelectOption, b: HtmlSelectOption) => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
-export const createSelectConfigs = (filtersValues: FiltersUi): SelectConfig[] => [
+export const createSelectConfigs = (filtersValues: FiltersUi): Array<SelectConfig> => [
     {
         options: selectOptions(filtersValues.visitantCommunityHealthWorker)
             .sort((a, b) => (a.label).localeCompare(b.label)),
@@ -56,10 +56,10 @@ export const createSelectConfigs = (filtersValues: FiltersUi): SelectConfig[] =>
     },
 ];
 
-export const onlyValidFilterValues = <FilterValue, Schema extends z.ZodTypeAny>(FilterValues: FilterValue[], schema: Schema) =>
+export const onlyValidFilterValues = <FilterValue, Schema extends z.ZodTypeAny>(FilterValues: Array<FilterValue>, schema: Schema) =>
     FilterValues.filter((filterValue: FilterValue) => schema.safeParse(filterValue).success);
 
-export const selectOptions = (filterValues: FilterValues): HtmlSelectOption[] => {
+export const selectOptions = (filterValues: FilterValues): Array<HtmlSelectOption> => {
     return filterValues.map<HtmlSelectOption>((item) => ({
         value: item,
         label: item,
@@ -69,8 +69,8 @@ export const selectOptions = (filterValues: FilterValues): HtmlSelectOption[] =>
 export const searchParamsToSelectedValues = (
     searchParams: URLSearchParams
 ): SelectedValues => {
-    const patientsStatus = searchParams.get("patientStatus")?.split(",") as schema.PatientStatus[] ?? [];
-    const ranges = searchParams.get("patientAgeRange")?.split(",") as schema.PatientAgeRange[] ?? [];
+    const patientsStatus = searchParams.get("patientStatus")?.split(",") as Array<schema.PatientStatus> ?? [];
+    const ranges = searchParams.get("patientAgeRange")?.split(",") as Array<schema.PatientAgeRange> ?? [];
     return {
         visitantCommunityHealthWorker: searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
         patientStatus: onlyValidFilterValues(patientsStatus, schema.patientStatus),

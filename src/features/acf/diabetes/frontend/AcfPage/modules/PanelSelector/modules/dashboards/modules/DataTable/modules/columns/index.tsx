@@ -4,7 +4,7 @@ import { DateRenderCell, CpfOrBirthdayFormatter } from "./formatters/columns";
 import { NameFormatter } from "./formatters/name";
 //TODO investigar como a conversao para string no dataGrid
 
-export const diabetesColumns: GridColDef[] = [
+export const diabetesColumns: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome",
@@ -75,4 +75,4 @@ export const diabetesColumns: GridColDef[] = [
         align: "left",
         renderCell: NameFormatter
     },
-] as GridColDef[];
+] as Array<GridColDef>;

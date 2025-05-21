@@ -271,14 +271,14 @@ const data = [
         "status_usuario": "Consulta e exame a fazer",
         "municipio_uf": "Demo - Monsenhor Tabosa - CE"
     }
-] as DiabetesAcfDbItem[]
+] as Array<DiabetesAcfDbItem>
 
 
 //TODO: será substituido por query
 export const diabetesAcfPrintDataForTeamRepository = async(
     municipalitySusID: string,
     TeamIne: string,
-): Promise<DiabetesAcfDbItem[]>=>{
+): Promise<Array<DiabetesAcfDbItem>>=>{
     return data.filter((item) => {
         item.municipio_id_sus === municipalitySusID &&
         item.equipe_ine_cadastro === TeamIne

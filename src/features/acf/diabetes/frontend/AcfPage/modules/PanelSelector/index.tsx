@@ -14,7 +14,7 @@ import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/d
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
     teamIne: string;
-    userProfiles: ProfileIdValue[];
+    userProfiles: Array<ProfileIdValue>;
     initialTabId: string;
     initialSubTabId: string;
     acfDashboardType: AcfDashboardType
@@ -42,7 +42,7 @@ export const PanelSelectorContainer = async ({
     initialSubTabId,
     acfDashboardType,
 }: PanelSelectorContainerProps) => {
-    let externalCardsProps: CardProps[] = [];
+    let externalCardsProps: Array<CardProps> = [];
     try {
         const data = await externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,

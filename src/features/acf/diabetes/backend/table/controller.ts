@@ -8,7 +8,7 @@ export const page = async(
     teamIne: string,
     pageIndex: number,
     filters: FilterParams
-): Promise<DiabetesAcfItem[]> => {
+): Promise<Array<DiabetesAcfItem>> => {
     const filtersDb = adapter.filterParamsToDb(filters)
     const page = await repository.page(municipalitySusID, teamIne, pageIndex, filtersDb)
     return adapter.diabetesPageDbToModel(page)

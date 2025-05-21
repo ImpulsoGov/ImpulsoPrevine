@@ -13,7 +13,7 @@ export const InternalCards = async({
     municipalitySusId: string;
     teamIne: string;
 }) => {
-    let internalCardsProps: CardProps[] = [];
+    let internalCardsProps: Array<CardProps> = [];
     try {
         const internalCardsData = await internalCardsController(
             municipalitySusId,

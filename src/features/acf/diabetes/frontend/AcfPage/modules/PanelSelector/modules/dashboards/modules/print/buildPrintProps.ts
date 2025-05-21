@@ -9,8 +9,8 @@ import { diabetesColumns } from "../DataTable/modules/columns";
 
 export const buildPrintProps = (
   list: AcfDashboardType,
-  tableData: DiabetesAcfPrintItem[],
-  userProfiles: ProfileIdValue[],
+  tableData: Array<DiabetesAcfPrintItem>,
+  userProfiles: Array<ProfileIdValue>,
   value: FilterItem,
 ): PrintTableProps => {
   const props: PrintTableProps = {
