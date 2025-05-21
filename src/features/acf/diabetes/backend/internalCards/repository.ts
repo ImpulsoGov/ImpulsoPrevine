@@ -8,7 +8,7 @@ export type MunicipalitySusIdAndTeamIne = {
     equipe_ine_cadastro: string;
 }
 
-export const totalPatientsWithDiabetes = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+export const totalPatientsWithDiabetes = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne): Promise<number> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
         where: {
             ...municipalitySusIdAndTeamIne,
@@ -16,7 +16,7 @@ export const totalPatientsWithDiabetes = async (municipalitySusIdAndTeamIne: Mun
     })
 }
 
-export const totalPatientsWithExamsAndAppointment = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+export const totalPatientsWithExamsAndAppointment = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne): Promise<number> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
         where: {
             ...municipalitySusIdAndTeamIne,
@@ -28,7 +28,7 @@ export const totalPatientsWithExamsAndAppointment = async (municipalitySusIdAndT
     })
 }
 
-export const totalPatientsSelfDiagnosed = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+export const totalPatientsSelfDiagnosed = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne): Promise<number> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
         where: {
             ...municipalitySusIdAndTeamIne,
@@ -38,7 +38,7 @@ export const totalPatientsSelfDiagnosed = async (municipalitySusIdAndTeamIne: Mu
     })
 }
 
-export const totalPatientsWithClinicalDiagnosis = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne) => {
+export const totalPatientsWithClinicalDiagnosis = async (municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne): Promise<number> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count({
         where: {
             ...municipalitySusIdAndTeamIne,

@@ -19,7 +19,7 @@ type QueryWhere = {
     equipe_ine_cadastro: string;
 };
 
-function addFilterField(where: QueryWhere, filter: DiabetesDbFilterItem, field: keyof DiabetesDbFilterItem ) {
+function addFilterField(where: QueryWhere, filter: DiabetesDbFilterItem, field: keyof DiabetesDbFilterItem ): void {
     if (filter[field] && filter[field].length > 0) {
         where[field] = {in: filter[field]};
     }

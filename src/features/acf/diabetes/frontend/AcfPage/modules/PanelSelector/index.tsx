@@ -34,7 +34,7 @@ const municipalityName = (municipalityIdSus: string): string => {
 }
 
 // Container aqui se refere ao padrão Container/Presentation, descrito em: https://www.patterns.dev/react/presentational-container-pattern/
-export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = async ({
+export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
     municipalitySusId,
     teamIne,
     userProfiles,
@@ -44,7 +44,7 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = asy
 }) => {
     let externalCardsProps: Array<CardProps> = [];
     try {
-        const data = await externalCardsAcfDashboardDataControllerForTeam(
+        const data = externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
             municipalitySusId,
             teamIne,

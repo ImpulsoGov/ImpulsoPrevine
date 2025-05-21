@@ -3,11 +3,11 @@ import type { ExternalCardDataItem } from "../model";
 import { externalCardsDbToModel } from "./adapter";
 import { externalCardsDataForTeam } from "./repository";
 
-export const externalCardsAcfDashboardDataControllerForTeam = async(
+export const externalCardsAcfDashboardDataControllerForTeam = (
     listName: AcfDashboardType, 
     municipalitySusId: string, 
     teamIne : string,
-): Promise<Array<ExternalCardDataItem>> => {
+): Array<ExternalCardDataItem> => {
     const data = externalCardsDataForTeam(listName, teamIne, municipalitySusId);
     return externalCardsDbToModel(data);
 }
