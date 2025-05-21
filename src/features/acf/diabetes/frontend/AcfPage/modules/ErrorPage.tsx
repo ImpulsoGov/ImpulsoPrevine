@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export const ErrorPage = () => {
+export const ErrorPage: React.FC = () => {
     const router = useRouter();
     const { data: session } = useSession();
 

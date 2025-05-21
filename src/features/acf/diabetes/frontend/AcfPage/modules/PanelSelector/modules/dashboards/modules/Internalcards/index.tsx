@@ -6,12 +6,14 @@ import * as Presentation from './presentation';
 import { internalCardsController } from '../../../../../../../../backend/internalCards/controller';
 import { internalCardsDetails } from '../../../../consts';
 
-export const InternalCards = async({
-    municipalitySusId,
-    teamIne,
-}:{
+type InternalCardsProps = {
     municipalitySusId: string;
     teamIne: string;
+};
+
+export const InternalCards: React.FC<InternalCardsProps> = async({
+    municipalitySusId,
+    teamIne,
 }) => {
     let internalCardsProps: Array<CardProps> = [];
     try {

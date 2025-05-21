@@ -12,7 +12,6 @@ import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListProps = {
     list: AcfDashboardType;
-    children: React.ReactNode;
     // title: string;
 };
 export type PrintStatesType= {
@@ -23,11 +22,11 @@ export type PrintStatesType= {
 }
 
 
-export const List = ({
+export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     // title,
-    list,
+    // list,
     children
-}: ListProps) => {
+}) => {
     //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);

@@ -101,7 +101,7 @@ type PanelSelectorProps = {
     contentWithoutTabs: React.ReactNode;
 };
 
-export const PanelSelector = ({
+export const PanelSelector: React.FC<PanelSelectorProps> = ({
     listName,
     // tabID,
     // subTabID,
@@ -109,7 +109,7 @@ export const PanelSelector = ({
     // userProfiles,
     municipalityIdSus,
     contentWithoutTabs
-}: PanelSelectorProps) => {
+}) => {
     // const props = acfNominalListProps(
     //     externalCardsProps,
     //     listName,
