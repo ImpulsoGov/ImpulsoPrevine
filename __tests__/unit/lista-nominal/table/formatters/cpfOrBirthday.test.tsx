@@ -1,4 +1,4 @@
-import { CpfOrBirthdayFormatter } from '@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/modules/columns/columns.formatter';
+import { CpfOrBirthdayFormatter } from '@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns';
 import { render, screen } from '@testing-library/react';
 
 jest.mock('@/helpers/lista-nominal/renderCell', () => ({

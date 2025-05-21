@@ -1,4 +1,4 @@
-import { cpfOrDate } from "@/features/acf/modules/AcfDashboardPage/modules/PanelSelector/modules/dashboards/modules/PaginatedTable/modules/DataTable/modules/diabetes/diabetes.adapter";
+import { cpfOrDate } from "@/features/acf/diabetes/backend/table/adapter";
 
 describe('cpfOrDate', () => {
     it('retorna null quando a entrada for null', () => {
