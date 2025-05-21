@@ -37,7 +37,7 @@ export type ExternalCardDataItem = {
     acfDashboardType: AcfDashboardType,
     acfExternalCardsDescription: AcfExternalCardsDescription;
     value: number;
-} 
+}
 
 export type ExternalCardDBDataItem = {
     // biome-ignore lint/style/useNamingConvention: <explanation>

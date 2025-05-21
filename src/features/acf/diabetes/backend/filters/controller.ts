@@ -2,7 +2,7 @@ import type { FiltersOptions } from "../model";
 import * as repository from "./repository";
 import * as adapter from "./adapter";
 
-export const filterOptions = async(
+export const filterOptions = async (
     municipalitySusID: string,
     teamIne: string,
 ): Promise<FiltersOptions> => {

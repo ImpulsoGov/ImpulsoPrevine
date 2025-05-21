@@ -4,7 +4,7 @@ import type { FilterOptionsDb } from "../model";
 export const filterOptions = async (
     municipalitySusId: string,
     teamIne: string,
- ): Promise<ReadonlyArray<FilterOptionsDb>> => {
+): Promise<ReadonlyArray<FilterOptionsDb>> => {
     //TODO: Hoje em dia, essa query está respondendo um array de objetos no formato: 
     //[{
     //  acs_nome_cadastro: 'MIRACI HERNANDES AQUINO',
