@@ -3,7 +3,7 @@ import type { FilterParams } from "../../common/schema"
 import * as adapter from "./adapter"
 import * as repository from "./repository"
 
-export const page = async(
+export const page = async (
     municipalitySusID: string,
     teamIne: string,
     pageIndex: number,
@@ -14,7 +14,7 @@ export const page = async(
     return adapter.diabetesPageDbToModel(page)
 }
 
-export const rowCount = async(
+export const rowCount = async (
     municipalitySusID: string,
     teamIne: string,
     filters: FilterParams

@@ -44,19 +44,19 @@ export const filtersOptionsDbToModel = (
  * @param data - The data from the database.
  * @returns An object with the distinct values grouped by their keys.
  */
-const aggregateDistinctValues = (data: ReadonlyArray<FilterOptionsDb>): Record<string, Array<string | number | boolean | Date | null>> =>{
+const aggregateDistinctValues = (data: ReadonlyArray<FilterOptionsDb>): Record<string, Array<string | number | boolean | Date | null>> => {
     const groupedData = data.reduce((acc: Record<string, Set<string | number | boolean | Date | null>>, obj) => {
-      for (const [key, val] of Object.entries(obj)) {
-        // Essa função será removida em breve, por isso o erro de linter foi ignorado
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (!acc[key]) acc[key] = new Set();
-        acc[key].add(val);
-      }
-      return acc;
+        for (const [key, val] of Object.entries(obj)) {
+            // Essa função será removida em breve, por isso o erro de linter foi ignorado
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+            if (!acc[key]) acc[key] = new Set();
+            acc[key].add(val);
+        }
+        return acc;
     }, {});
-  
+
     const distinctObj = Object.fromEntries(
-      Object.entries(groupedData).map(([key, set]) => [key, Array.from(set)])
+        Object.entries(groupedData).map(([key, set]) => [key, Array.from(set)])
     );
     return distinctObj;
 }
@@ -68,6 +68,6 @@ const filterDbtoModelOptions: Record<DiabetesFilterOptions, DiabetesFilterOption
     patientAgeRange: "cidadao_faixa_etaria",
 }
 
-export const modelToDB = (item: Array<DiabetesFilterOptions>) : Array<DiabetesFilterOptionsDB>=>{
+export const modelToDB = (item: Array<DiabetesFilterOptions>): Array<DiabetesFilterOptionsDB> => {
     return item.map((filterItem) => filterDbtoModelOptions[filterItem])
 }

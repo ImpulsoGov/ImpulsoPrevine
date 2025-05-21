@@ -4,7 +4,7 @@ import type { ConditionIdentifiedBy, DiabetesAcfItem, PatientAgeRange, PatientSt
 import type { FilterParams } from '../../common/schema';
 import type { DiabetesDbFilterItem } from '../model';
 
-export const cpfOrDate = (fieldValue : string | null): Date | string | null => {
+export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
         return parseDate(fieldValue);
     }
