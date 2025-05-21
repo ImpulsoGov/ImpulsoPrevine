@@ -17,14 +17,14 @@
 // };
 
 // export type TableDataPrintType = {
-//     data: DiabetesAcfPrintItem; //TODO: adicionar os models das outras listas. 
+//     data: DiabetesAcfPrintItem; //TODO: adicionar os models das outras listas.
 // };
 // export const handleCostumizePrint = async (
 //     options: PrintOptions,
 //     list: AcfDashboardType,
-//     userProfiles: ProfileIdValue[], 
+//     userProfiles: ProfileIdValue[],
 //     _municipalitySusID: string,
-//     _TeamIne: string,  
+//     _TeamIne: string,
 //     _printStates: PrintStatesType,
 //     closePrintModal: () => void,
 //     tableData: TableDataPrintType,

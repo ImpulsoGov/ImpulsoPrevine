@@ -25,14 +25,10 @@ const IdFiltrosCito = {
 
 //TODO alterar o formato dos nomes das variáveis para camelCase
 const IdFiltrosOrdenacaoCito = {
-    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     paciente_nome: "asc",
-    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     acs_nome: "asc",
     idade: "asc",
-    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     vencimento_da_coleta: "asc",
-    // biome-ignore lint/style/useNamingConvention: <as variaveis já estão nesse formato vindo do backend e do banco de dados>
     prazo_proxima_coleta: "asc",
 };
 

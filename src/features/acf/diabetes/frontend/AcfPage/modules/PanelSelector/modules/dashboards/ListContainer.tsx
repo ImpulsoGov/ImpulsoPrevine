@@ -29,7 +29,7 @@ export const ListContainer: React.FC<ListContainerProps> = ({
                     municipalitySusID={municipalitySusId}
                     teamIne={teamIne}
                 >
-                    <WithPagination >
+                    <WithPagination>
                         <DataTable />
                     </WithPagination>
                 </WithFilters>

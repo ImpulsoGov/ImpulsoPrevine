@@ -4,9 +4,7 @@ import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../../../common/model";
-import {
-    externalCardsDetails,
-} from "./consts";
+import { externalCardsDetails } from "./consts";
 import { PanelSelector } from "./presentation";
 import { ListContainer } from "./modules/dashboards/ListContainer";
 import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/diabetes/backend/externalCards/controller";
@@ -17,13 +15,15 @@ type PanelSelectorContainerProps = {
     userProfiles: Array<ProfileIdValue>;
     initialTabId: string;
     initialSubTabId: string;
-    acfDashboardType: AcfDashboardType
-}
+    acfDashboardType: AcfDashboardType;
+};
 
 //TODO: Mover esta função para algum lugar que seja reutilizável
 const municipalityName = (municipalityIdSus: string): string => {
     //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
-    const municipalityData = MUNICIPIOS.find((municipality) => municipality.municipioIdSus === municipalityIdSus);
+    const municipalityData = MUNICIPIOS.find(
+        (municipality) => municipality.municipioIdSus === municipalityIdSus
+    );
 
     //TODO: Tentar encontrar uma forma de tipar as coisas pra esse caso ser impossível.
     if (!municipalityData) {
@@ -31,7 +31,7 @@ const municipalityName = (municipalityIdSus: string): string => {
     }
 
     return `${municipalityData.nome} - ${municipalityData.uf}`;
-}
+};
 
 // Container aqui se refere ao padrão Container/Presentation, descrito em: https://www.patterns.dev/react/presentational-container-pattern/
 export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
@@ -47,7 +47,7 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
         const data = externalCardsAcfDashboardDataControllerForTeam(
             acfDashboardType,
             municipalitySusId,
-            teamIne,
+            teamIne
         );
         externalCardsProps = getExternalCardsProps(externalCardsDetails, data);
     } catch (error) {
@@ -59,11 +59,16 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
             municipalityIdSus={municipalityName(municipalitySusId)}
             externalCardsProps={externalCardsProps}
             listName={acfDashboardType}
-            tabID = {initialTabId}
-            subTabID = {initialSubTabId}
+            tabID={initialTabId}
+            subTabID={initialSubTabId}
             userProfiles={userProfiles}
             contentWithoutTabs={
-                <ListContainer list={acfDashboardType} municipalitySusId={municipalitySusId} teamIne={teamIne} />
+                <ListContainer
+                    list={acfDashboardType}
+                    municipalitySusId={municipalitySusId}
+                    teamIne={teamIne}
+                />
             }
-        />)
+        />
+    );
 };

@@ -1,6 +1,6 @@
 "use client";
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
-import type { FilterItem, } from "@/services/lista-nominal/ListaNominal";
+import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { GridSortModel } from "@mui/x-data-grid";
 import { useState } from "react";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
@@ -14,25 +14,26 @@ export type ListProps = {
     list: AcfDashboardType;
     // title: string;
 };
-export type PrintStatesType= {
+export type PrintStatesType = {
     value: FilterItem;
     list: AcfDashboardType;
     sorting: GridSortModel;
     search: string;
-}
-
+};
 
 export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     // title,
     // list,
-    children
+    children,
 }) => {
     //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
 
     // eslint-disable-next-line react/hook-use-state
-    const [_sorting, _setSorting] = useState<GridSortModel>([...DEFAULT_SORTING]);
+    const [_sorting, _setSorting] = useState<GridSortModel>([
+        ...DEFAULT_SORTING,
+    ]);
 
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
@@ -62,7 +63,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     //     ],
     // );
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     // useEffect(() => {
     //     setPrintStates({
     //         value,

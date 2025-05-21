@@ -1,4 +1,9 @@
-import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus, VisitantCommunityHealthWorker } from "../common/model";
+import type {
+    ConditionIdentifiedBy,
+    PatientAgeRange,
+    PatientStatus,
+    VisitantCommunityHealthWorker,
+} from "../common/model";
 
 export type SelectedValues = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;

@@ -1,7 +1,7 @@
-import type { DiabetesAcfItem } from "../../common/model"
-import type { FilterParams } from "../../common/schema"
-import * as adapter from "./adapter"
-import * as repository from "./repository"
+import type { DiabetesAcfItem } from "../../common/model";
+import type { FilterParams } from "../../common/schema";
+import * as adapter from "./adapter";
+import * as repository from "./repository";
 
 export const page = async (
     municipalitySusID: string,
@@ -9,16 +9,21 @@ export const page = async (
     pageIndex: number,
     filters: FilterParams
 ): Promise<Array<DiabetesAcfItem>> => {
-    const filtersDb = adapter.filterParamsToDb(filters)
-    const page = await repository.page(municipalitySusID, teamIne, pageIndex, filtersDb)
-    return adapter.diabetesPageDbToModel(page)
-}
+    const filtersDb = adapter.filterParamsToDb(filters);
+    const page = await repository.page(
+        municipalitySusID,
+        teamIne,
+        pageIndex,
+        filtersDb
+    );
+    return adapter.diabetesPageDbToModel(page);
+};
 
 export const rowCount = async (
     municipalitySusID: string,
     teamIne: string,
     filters: FilterParams
 ): Promise<number> => {
-    const filtersDb = adapter.filterParamsToDb(filters)
-    return await repository.rowCount(municipalitySusID, teamIne, filtersDb)
-}
+    const filtersDb = adapter.filterParamsToDb(filters);
+    return await repository.rowCount(municipalitySusID, teamIne, filtersDb);
+};

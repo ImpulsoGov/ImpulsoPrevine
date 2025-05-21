@@ -14,25 +14,24 @@ type Props = {
     }>;
 };
 
-export const AcfDashboardPage: React.FC<Props> = async ({
-    searchParams,
-}) => {
+export const AcfDashboardPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
     const resolvedSearchParams = await searchParams;
     const initialTabId = resolvedSearchParams.tabID || "charts";
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
-    const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list || "DIABETES") as AcfDashboardType;
-    
-    const errorText = <p style={{ padding: "80px", textAlign: "center" }}>
-        Usuário sem permissão
-    </p>;
+    const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
+        "DIABETES") as AcfDashboardType;
+
+    const errorText = (
+        <p style={{ padding: "80px", textAlign: "center" }}>
+            Usuário sem permissão
+        </p>
+    );
 
     return (
         <SessionGuard error={<ErrorPage />}>
-            <AllowProfile
-                profileID={PROFILE_ID.impulser}
-                error={ errorText } >
+            <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
                 <PanelSelectorContainer
                     initialTabId={initialTabId}
                     initialSubTabId={initialSubTabId}

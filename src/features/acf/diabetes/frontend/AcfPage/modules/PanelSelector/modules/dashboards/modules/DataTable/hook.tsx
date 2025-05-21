@@ -1,24 +1,33 @@
-import type { AxiosResponse } from 'axios';
-import { useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import type { AxiosResponse } from "axios";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 import type { Session } from "next-auth";
-import * as service from '@/features/acf/diabetes/frontend/service';
+import * as service from "@/features/acf/diabetes/frontend/service";
 import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 
 export const useTableData = (
     page: number,
     filters: SelectedValues
-): { data: schema.Response | undefined; status: number | undefined; isLoading: boolean } => {
+): {
+    data: schema.Response | undefined;
+    status: number | undefined;
+    isLoading: boolean;
+} => {
     const { data: session } = useSession();
-    const [response, setResponse] = useState<AxiosResponse<schema.Response> | null >(null);
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [response, setResponse] =
+        useState<AxiosResponse<schema.Response> | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
-    useEffect(() => { setUser(session?.user); }, [session?.user]);
+    useEffect(() => {
+        setUser(session?.user);
+    }, [session?.user]);
 
     useEffect(() => {
         const getResponse = async (): Promise<void> => {
-            if (!user) { return; }
+            if (!user) {
+                return;
+            }
             setIsLoading(true);
             const res = await service.getPage({
                 token: user.access_token,
@@ -34,9 +43,9 @@ export const useTableData = (
             });
             setResponse(res);
             setIsLoading(false);
-        }
+        };
 
         void getResponse();
     }, [user, page, filters]);
-    return { data : response?.data, status : response?.status, isLoading };
-}
+    return { data: response?.data, status: response?.status, isLoading };
+};
