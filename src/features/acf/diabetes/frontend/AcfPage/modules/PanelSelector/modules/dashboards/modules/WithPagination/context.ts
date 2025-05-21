@@ -4,7 +4,7 @@ import { createContext, type SetStateAction, type Dispatch } from 'react'
 
 export type PaginationModel = {
     gridPaginationModel: GridPaginationModel;
-    onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>;
+    handlePaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>;
 }
 
 export const PaginationContext = createContext<PaginationModel>({} as PaginationModel);

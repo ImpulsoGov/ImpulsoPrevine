@@ -1,4 +1,4 @@
-export const EmptyTableMessage = () => {
+export const EmptyTableMessage: React.FC = () => {
   return (
     <p
         style={{ textAlign: "center", padding: "40px" }}

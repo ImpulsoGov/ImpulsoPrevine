@@ -10,7 +10,11 @@ export const nameFormatter = (value: string ) : string => {
     return formattedNames.join(" ");
 };
 
-export const NameFormatter = ({value} : {value: string | null} )  => {
+type NameFormatterProps = {
+    value: string | null;
+};
+
+export const NameFormatter: React.FC<NameFormatterProps> = ({value})  => {
     if (!value) return <div data-testid="empty-return">{value}</div>;
     return <div data-testid="name-return">{nameFormatter(value)}</div>;
 }

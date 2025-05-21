@@ -9,7 +9,7 @@ import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 export const useTableData = (
     page: number,
     filters: SelectedValues
-) => {
+): { data: schema.Response | undefined; status: number | undefined; isLoading: boolean } => {
     const { data: session } = useSession();
     const [response, setResponse] = useState<AxiosResponse<schema.Response> | null >(null);
     const [ isLoading, setIsLoading ] = useState(false);
@@ -17,7 +17,7 @@ export const useTableData = (
     useEffect(() => { setUser(session?.user); }, [session?.user]);
 
     useEffect(() => {
-        const getResponse = async () => {
+        const getResponse = async (): Promise<void> => {
             if (!user) { return; }
             setIsLoading(true);
             const res = await service.getPage({
@@ -36,7 +36,7 @@ export const useTableData = (
             setIsLoading(false);
         }
 
-        getResponse();
+        void getResponse();
     }, [user, page, filters]);
     return { data : response?.data, status : response?.status, isLoading };
 }
