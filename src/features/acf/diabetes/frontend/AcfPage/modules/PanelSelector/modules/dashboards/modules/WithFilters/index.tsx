@@ -8,11 +8,11 @@ type FiltersContainerProps = React.PropsWithChildren<{
     teamIne: string;
 }>;
 
-export const WithFilters = async ({
+export const WithFilters: React.FC<FiltersContainerProps> = async ({
     municipalitySusID,
     teamIne,
     children,
-}: FiltersContainerProps) => {
+}) => {
     // TODO rever nome do controller filterOptions
     const filtersValues = await filterOptions(municipalitySusID, teamIne);
 
