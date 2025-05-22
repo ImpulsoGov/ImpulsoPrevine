@@ -9,22 +9,22 @@ import { z, ZodError } from "zod";
 //TODO: Criar um teste de integração para esta rota
 export async function POST(
     req: NextRequest,
-    { params } : { params: Promise<{ page: string }> } 
-) {
+    { params }: { params: Promise<{ page: string }> }
+): Promise<Response> {
     try {
         //TODO: Extrair essa lógica para um middleware / interceptor
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
-        const municipalitySusID = payload?.municipio as string;
+        const municipalitySusID = payload.municipio as string;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-        const teamIne = payload?.equipe as string;
+        const teamIne = payload.equipe as string;
 
         const rawPage = (await params).page;
         const pageIndex = z.coerce.number().parse(rawPage);
 
-        const body = await req.json();
-        const queryParams = queryParamsSchema.parse(body) as RequestBody;
+        const body: unknown = await req.json();
+        const queryParams: RequestBody = queryParamsSchema.parse(body);
 
         const page = await diabetesController.page(municipalitySusID, teamIne, pageIndex, queryParams.filters || {});
         const totalRows = await diabetesController.rowCount(municipalitySusID, teamIne, queryParams.filters || {});

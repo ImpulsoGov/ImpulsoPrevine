@@ -1,7 +1,7 @@
 import { prisma } from "@prisma/prismaClient";
 import type { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
     try {
         const searchParams = req.nextUrl.searchParams;
         const municipioIdSus = searchParams.get("municipio_id_sus");
