@@ -27,7 +27,7 @@ export const sortingSchema = z.object({
     order: z.enum(["asc", "desc"]),
 })
 
-export type Sort = z.infer<typeof sortingSchema>;
+export type SortModel = z.infer<typeof sortingSchema>;
 
 export type FilterParams = z.infer<typeof filterParams>;
 
