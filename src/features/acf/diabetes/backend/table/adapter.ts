@@ -6,7 +6,11 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "../../common/model";
-import type { FilterParams, SortingFields, SortModel } from "../../common/schema";
+import type {
+    FilterParams,
+    SortableFields,
+    SortingParams,
+} from "../../common/schema";
 import type { DiabetesDbFilterItem } from "../model";
 import { ValueOf } from "next/dist/shared/lib/constants";
 
@@ -81,7 +85,7 @@ export const filterParamsToDb = (
     };
 };
 
-type SortFieldDb =
+type SortableDbFields =
     | "dt_solicitacao_hemoglobina_glicada_mais_recente"
     | "dt_consulta_mais_recente"
     | "prazo_proxima_solicitacao_hemoglobina"
@@ -92,29 +96,28 @@ type SortFieldDb =
     | "cidadao_idade"
     | "acs_nome_cadastro";
 
-export const sortParamsToDb = (sortField: SortingFields): SortFieldDb => {
-    let sortFieldDb
-    switch (sortField) {
-        case "visitantCommunityHealthWorker":
-            sortFieldDb = "acs_nome_cadastro";
-            break;
-        case "patientAge":
-            sortFieldDb = "cidadao_idade";
-            break;
-        case "conditionIdentifiedBy":
-            sortFieldDb = "identificacao_condicao_diabetes";
-            break;
-        case "latestExamRequestDate":
-            sortFieldDb = "dt_solicitacao_hemoglobina_glicada_mais_recente";
-            break;
-        case "mostRecentAppointmentDate": 
-            sortFieldDb = "dt_consulta_mais_recente";
-            break;
-        case "patientAge":
-            
-            break;                
-        default:
-            break;
-    }
-    return sortFieldDb;
-}
+// export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => {
+//     let sortFieldDb;
+//     switch (sortField) {
+//         case "visitantCommunityHealthWorker":
+//             sortFieldDb = "acs_nome_cadastro";
+//             break;
+//         case "patientAge":
+//             sortFieldDb = "cidadao_idade";
+//             break;
+//         case "conditionIdentifiedBy":
+//             sortFieldDb = "identificacao_condicao_diabetes";
+//             break;
+//         case "latestExamRequestDate":
+//             sortFieldDb = "dt_solicitacao_hemoglobina_glicada_mais_recente";
+//             break;
+//         case "mostRecentAppointmentDate":
+//             sortFieldDb = "dt_consulta_mais_recente";
+//             break;
+//         case "patientAge":
+//             break;
+//         default:
+//             break;
+//     }
+//     return sortFieldDb;
+// };
