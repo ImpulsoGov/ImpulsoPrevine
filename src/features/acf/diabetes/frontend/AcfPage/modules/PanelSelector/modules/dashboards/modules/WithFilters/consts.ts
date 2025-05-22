@@ -9,7 +9,7 @@ export const filtersLabels = {
     conditionIdentifiedBy: "Tipo de Diagnóstico",
     visitantCommunityHealthWorker: "Prof. Responsável",
     patientStatus: "Situação",
-    patientAgeRange: 'Faixa Etária',
+    patientAgeRange: "Faixa Etária",
 };
 export const referenceOrder = [
     "Menos de 17 anos",
@@ -18,6 +18,5 @@ export const referenceOrder = [
     "Entre 35 e 44 anos",
     "Entre 45 e 54 anos",
     "Entre 55 e 65 anos",
-    "Mais de 65 anos"
+    "Mais de 65 anos",
 ];
-

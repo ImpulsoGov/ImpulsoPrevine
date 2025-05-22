@@ -11,7 +11,7 @@ export const SessionGuard = async ({
     error,
     children,
 }: SessionGuardProps): Promise<React.ReactNode> => {
-    const session = (await getServerSession(nextAuthOptions)) as Session;
+    const session = await getServerSession(nextAuthOptions);
     if (session?.user) return children;
     return error;
 };

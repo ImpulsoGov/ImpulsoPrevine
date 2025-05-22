@@ -1,31 +1,38 @@
-import { getInternalCardsProps } from '@/helpers/cardsList';
-import type { CardProps } from '@impulsogov/design-system/dist/molecules/Card/Card';
-import { captureException } from '@sentry/nextjs';
-import { Suspense } from 'react';
-import * as Presentation from './presentation';
-import { internalCardsController } from '../../../../../../../../backend/internalCards/controller';
-import { internalCardsDetails } from '../../../../consts';
+import { getInternalCardsProps } from "@/helpers/cardsList";
+import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+import { captureException } from "@sentry/nextjs";
+import { Suspense } from "react";
+import * as Presentation from "./presentation";
+import { internalCardsController } from "../../../../../../../../backend/internalCards/controller";
+import { internalCardsDetails } from "../../../../consts";
 
-export const InternalCards = async({
-    municipalitySusId,
-    teamIne,
-}:{
+type InternalCardsProps = {
     municipalitySusId: string;
     teamIne: string;
+};
+
+export const InternalCards: React.FC<InternalCardsProps> = async ({
+    municipalitySusId,
+    teamIne,
 }) => {
-    let internalCardsProps: CardProps[] = [];
+    let internalCardsProps: Array<CardProps> = [];
     try {
         const internalCardsData = await internalCardsController(
             municipalitySusId,
-            teamIne,
+            teamIne
         );
-        internalCardsProps = getInternalCardsProps(internalCardsDetails, internalCardsData);
+        internalCardsProps = getInternalCardsProps(
+            internalCardsDetails,
+            internalCardsData
+        );
     } catch (error) {
         captureException(error);
     }
-  return (
-    <Suspense>
-        <Presentation.InternalCards internalCardsProps={internalCardsProps} />
-    </Suspense>
-  )
-}
+    return (
+        <Suspense>
+            <Presentation.InternalCards
+                internalCardsProps={internalCardsProps}
+            />
+        </Suspense>
+    );
+};

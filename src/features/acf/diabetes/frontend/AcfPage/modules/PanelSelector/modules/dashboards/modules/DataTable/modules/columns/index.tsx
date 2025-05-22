@@ -4,14 +4,14 @@ import { DateRenderCell, CpfOrBirthdayFormatter } from "./formatters/columns";
 import { NameFormatter } from "./formatters/name";
 //TODO investigar como a conversao para string no dataGrid
 
-export const diabetesColumns: GridColDef[] = [
+export const diabetesColumns: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome",
         width: 240,
         headerAlign: "left",
         align: "left",
-         renderCell: NameFormatter
+        renderCell: NameFormatter,
     },
     {
         field: "patientCpfOrBirthday",
@@ -19,8 +19,8 @@ export const diabetesColumns: GridColDef[] = [
         width: 150,
         headerAlign: "left",
         align: "left",
-        renderCell: CpfOrBirthdayFormatter
-     },
+        renderCell: CpfOrBirthdayFormatter,
+    },
     {
         field: "conditionIdentifiedBy",
         headerName: "Tipo de diagnóstico",
@@ -41,7 +41,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 164,
         headerAlign: "left",
         align: "left",
-        renderCell: DateRenderCell
+        renderCell: DateRenderCell,
     },
     {
         field: "nextAppointmentDueDate",
@@ -49,7 +49,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 181,
         headerAlign: "left",
         align: "left",
-        renderCell: RenderStatusTagCell
+        renderCell: RenderStatusTagCell,
     },
     {
         field: "latestExamRequestDate",
@@ -57,7 +57,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 205,
         headerAlign: "left",
         align: "left",
-        renderCell: DateRenderCell
+        renderCell: DateRenderCell,
     },
     {
         field: "hemoglobinTestDueDate",
@@ -65,7 +65,7 @@ export const diabetesColumns: GridColDef[] = [
         width: 196,
         headerAlign: "left",
         align: "left",
-        renderCell: RenderStatusTagCell
+        renderCell: RenderStatusTagCell,
     },
     {
         field: "visitantCommunityHealthWorker",
@@ -73,6 +73,6 @@ export const diabetesColumns: GridColDef[] = [
         width: 230,
         headerAlign: "left",
         align: "left",
-        renderCell: NameFormatter
+        renderCell: NameFormatter,
     },
-] as GridColDef[];
+] as Array<GridColDef>;

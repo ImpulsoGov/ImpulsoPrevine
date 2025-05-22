@@ -38,4 +38,4 @@ export type DiabetesAcfItem = {
     mostRecentProductionRecordDate: Date | null;
 };
 
-export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";    
+export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";

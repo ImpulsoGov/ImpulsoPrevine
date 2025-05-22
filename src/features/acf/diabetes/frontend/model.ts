@@ -1,15 +1,20 @@
-import type { ConditionIdentifiedBy, PatientAgeRange, PatientStatus, VisitantCommunityHealthWorker } from "../common/model";
+import type {
+    ConditionIdentifiedBy,
+    PatientAgeRange,
+    PatientStatus,
+    VisitantCommunityHealthWorker,
+} from "../common/model";
 
 export type SelectedValues = {
-    visitantCommunityHealthWorker: VisitantCommunityHealthWorker[];
-    patientStatus: PatientStatus[];
+    visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
+    patientStatus: Array<PatientStatus>;
     conditionIdentifiedBy: ConditionIdentifiedBy;
-    patientAgeRange: PatientAgeRange[];
+    patientAgeRange: Array<PatientAgeRange>;
 };
 
 export type FiltersUi = {
-    visitantCommunityHealthWorker: VisitantCommunityHealthWorker[];
-    patientStatus: PatientStatus[];
-    conditionIdentifiedBy: ConditionIdentifiedBy[];
-    patientAgeRange: PatientAgeRange[];
+    visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
+    patientStatus: Array<PatientStatus>;
+    conditionIdentifiedBy: Array<ConditionIdentifiedBy>;
+    patientAgeRange: Array<PatientAgeRange>;
 };

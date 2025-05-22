@@ -1,7 +1,7 @@
 "use client";
 import type {
     // CoordinatorProfile,
-    ProfileIdValue
+    ProfileIdValue,
 } from "@/types/profile";
 // import { PROFILE_ID } from "@/types/profile";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
@@ -22,8 +22,6 @@ import {
 
 //TODO!: não remover codigos comentados, serão utilizados na implementação das proximas entregas
 
-
-
 export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
     subTabsWithChildrenProps & {
         child?: React.ReactNode; // Tornando child opcional
@@ -35,7 +33,7 @@ export type Tabs = Record<
     {
         title: string;
         tabID: string;
-        subTabs: ExtendedsubTabsWithChildrenAndChildrenDataProps[];
+        subTabs: Array<ExtendedsubTabsWithChildrenAndChildrenDataProps>;
     }
 >;
 
@@ -45,7 +43,6 @@ export type ExtendedPanelSelectorWithCardsProps = Omit<
 > & {
     tabs: Tabs;
     listaNominalID: AcfDashboardType;
-    
 };
 
 // const ErrorMessage = () => (
@@ -90,26 +87,25 @@ export type AcfNameListProps = {
 //     subTabID3: "ListChildID1",
 // };
 
-
 type PanelSelectorProps = {
     listName: AcfDashboardType;
     tabID: string;
     subTabID: string;
-    externalCardsProps: CardProps[];
-    userProfiles: ProfileIdValue[];
+    externalCardsProps: Array<CardProps>;
+    userProfiles: Array<ProfileIdValue>;
     municipalityIdSus: string;
     contentWithoutTabs: React.ReactNode;
 };
 
-export const PanelSelector = ({
+export const PanelSelector: React.FC<PanelSelectorProps> = ({
     listName,
     // tabID,
     // subTabID,
     // externalCardsProps,
     // userProfiles,
     municipalityIdSus,
-    contentWithoutTabs
-}: PanelSelectorProps) => {
+    contentWithoutTabs,
+}) => {
     // const props = acfNominalListProps(
     //     externalCardsProps,
     //     listName,
@@ -141,6 +137,5 @@ export const PanelSelector = ({
             tabs={null}
             contentWithoutTabs={contentWithoutTabs}
         />
-        
     );
 };
