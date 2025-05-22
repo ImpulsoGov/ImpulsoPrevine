@@ -1,5 +1,8 @@
 import { z } from "zod";
 import type { DiabetesAcfItem } from "./model";
+import { diabetesColumns } from "../frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns";
+import { GridColDef } from "@mui/x-data-grid";
+import { GridBaseColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 
 export const patientStatus = z.enum([
     "Consulta e solicitação de hemoglobina a fazer",
@@ -16,22 +19,15 @@ export const conditionIdentifiedBy = z.enum([
 ]);
 
 export const sortingFields = z.enum([
-    "municipalitySusID",
-    "municipalityState",
     "latestExamRequestDate",
     "mostRecentAppointmentDate",
     "hemoglobinTestDueDate",
     "nextAppointmentDueDate",
-    "patientStatus",
     "conditionIdentifiedBy",
     "patientCpfOrBirthday",
     "patientName",
-    "patientAgeRange",
     "patientAge",
-    "careTeamIne",
-    "careTeamName",
     "visitantCommunityHealthWorker",
-    "mostRecentProductionRecordDate",
 ]);
 
 export type SortingFields = z.infer<typeof sortingFields>;
@@ -64,7 +60,7 @@ export const sortingSchema = z.object({
     order: z.enum(["asc", "desc"]),
 })
 
-export type Sort = z.infer<typeof sortingSchema>;
+export type SortModel = z.infer<typeof sortingSchema>;
 
 export type FilterParams = z.infer<typeof filterParams>;
 

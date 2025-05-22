@@ -1,7 +1,7 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import type { DiabetesDbFilterItem } from "../model";
-import { Sort } from "../../common/schema";
+import type { SortModel } from "../../common/schema";
 
 const pageSize = 8;
 
@@ -45,7 +45,7 @@ export const page = async (
     teamIne: string,
     page: number,
     filters: DiabetesDbFilterItem,
-    sorting: Sort
+    sorting: SortModel
 ): Promise<
     ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
 > => {
@@ -53,7 +53,7 @@ export const page = async (
         {
             where: queryWhere(filters, municipalitySusID, teamIne),
             orderBy: {
-                ${sorting.field}: sorting.sort,
+                cidadao_nome: "asc",
             },
             take: pageSize,
             skip: pageSize * page,
