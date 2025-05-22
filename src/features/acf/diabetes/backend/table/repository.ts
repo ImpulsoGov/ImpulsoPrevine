@@ -1,7 +1,7 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import type { DiabetesDbFilterItem } from "../model";
-import type { SortModel } from "../../common/schema";
+import type { SortingParams } from "../../common/schema";
 
 const pageSize = 8;
 
@@ -45,7 +45,7 @@ export const page = async (
     teamIne: string,
     page: number,
     filters: DiabetesDbFilterItem,
-    sorting: SortModel
+    sorting: SortingParams
 ): Promise<
     ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
 > => {
