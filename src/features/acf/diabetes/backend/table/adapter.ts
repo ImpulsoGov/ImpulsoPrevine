@@ -6,8 +6,9 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "../../common/model";
-import type { FilterParams } from "../../common/schema";
+import type { FilterParams, SortingFields, SortModel } from "../../common/schema";
 import type { DiabetesDbFilterItem } from "../model";
+import { ValueOf } from "next/dist/shared/lib/constants";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -79,3 +80,41 @@ export const filterParamsToDb = (
         cidadao_faixa_etaria: filters.patientAgeRange,
     };
 };
+
+type SortFieldDb =
+    | "dt_solicitacao_hemoglobina_glicada_mais_recente"
+    | "dt_consulta_mais_recente"
+    | "prazo_proxima_solicitacao_hemoglobina"
+    | "prazo_proxima_consulta"
+    | "identificacao_condicao_diabetes"
+    | "cidadao_cpf_dt_nascimento"
+    | "cidadao_nome"
+    | "cidadao_idade"
+    | "acs_nome_cadastro";
+
+export const sortParamsToDb = (sortField: SortingFields): SortFieldDb => {
+    let sortFieldDb
+    switch (sortField) {
+        case "visitantCommunityHealthWorker":
+            sortFieldDb = "acs_nome_cadastro";
+            break;
+        case "patientAge":
+            sortFieldDb = "cidadao_idade";
+            break;
+        case "conditionIdentifiedBy":
+            sortFieldDb = "identificacao_condicao_diabetes";
+            break;
+        case "latestExamRequestDate":
+            sortFieldDb = "dt_solicitacao_hemoglobina_glicada_mais_recente";
+            break;
+        case "mostRecentAppointmentDate": 
+            sortFieldDb = "dt_consulta_mais_recente";
+            break;
+        case "patientAge":
+            
+            break;                
+        default:
+            break;
+    }
+    return sortFieldDb;
+}
