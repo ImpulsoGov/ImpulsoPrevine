@@ -15,6 +15,27 @@ export const conditionIdentifiedBy = z.enum([
     "Autorreferida",
 ]);
 
+export const sortingFields = z.enum([
+    "municipalitySusID",
+    "municipalityState",
+    "latestExamRequestDate",
+    "mostRecentAppointmentDate",
+    "hemoglobinTestDueDate",
+    "nextAppointmentDueDate",
+    "patientStatus",
+    "conditionIdentifiedBy",
+    "patientCpfOrBirthday",
+    "patientName",
+    "patientAgeRange",
+    "patientAge",
+    "careTeamIne",
+    "careTeamName",
+    "visitantCommunityHealthWorker",
+    "mostRecentProductionRecordDate",
+]);
+
+export type SortingFields = z.infer<typeof sortingFields>;
+
 export type ConditionIdentifiedBy = z.infer<typeof conditionIdentifiedBy>;
 
 export const patientAgeRange = z.enum([
@@ -37,6 +58,13 @@ export const filterParams = z.object({
     visitantCommunityHealthWorker: z.optional(z.array(z.string())),
     patientAgeRange: z.optional(z.array(patientAgeRange)),
 });
+
+export const sortingSchema = z.object({
+    field: sortingFields,
+    order: z.enum(["asc", "desc"]),
+})
+
+export type Sort = z.infer<typeof sortingSchema>;
 
 export type FilterParams = z.infer<typeof filterParams>;
 
