@@ -22,13 +22,6 @@ export const filterParams = z.object({
     patientAgeRange: z.optional(z.array(patientAgeRange)),
 });
 
-export const sortingSchema = z.object({
-    field: sortingFields,
-    order: z.enum(["asc", "desc"]),
-})
-
-export type SortModel = z.infer<typeof sortingSchema>;
-
 export type FilterParams = z.infer<typeof filterParams>;
 
 export const sortingParams = z.object({
