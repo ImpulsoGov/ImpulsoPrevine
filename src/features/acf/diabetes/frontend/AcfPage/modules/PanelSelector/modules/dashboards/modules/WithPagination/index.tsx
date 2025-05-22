@@ -22,7 +22,7 @@ export const WithPagination: React.FC<WithPaginationProps> = ({
         <PaginationContext.Provider
             value={{
                 gridPaginationModel: paginationModel,
-                handlePaginationModelChange: setPaginationModel,
+                onPaginationModelChange: setPaginationModel,
             }}
         >
             {children}

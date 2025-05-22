@@ -5,10 +5,12 @@ import type { Session } from "next-auth";
 import * as service from "@/features/acf/diabetes/frontend/service";
 import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
+import type { GridSortItem } from "@mui/x-data-grid";
 
 export const useTableData = (
     page: number,
-    filters: SelectedValues
+    filters: SelectedValues,
+    sorting: GridSortItem,
 ): {
     data: schema.Response | undefined;
     status: number | undefined;
@@ -31,12 +33,10 @@ export const useTableData = (
             setIsLoading(true);
             const res = await service.getPage({
                 token: user.access_token,
-                // sorting: [
-                //     {
-                //         sortField: sorting[0].field,
-                //         sortOrder: sorting[0].sort,
-                //     },
-                // ],
+                sorting: {
+                    field: sorting.field,
+                    sort: sorting.sort,
+                },
                 filters: filters,
                 page: page,
                 // search: search,

@@ -7,14 +7,18 @@ import { FiltersContext } from "../WithFilters/context";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import { PaginationContext } from "../WithPagination/context";
 import type { PaginationModel } from "../WithPagination";
+import type { SortingModel } from "../WithSorting";
 import { diabetesColumns } from "./modules/columns";
+import { SortingContext } from "../WithSorting/context";
 
 export const DataTable: React.FC = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
-    const paginationModel = useContext<PaginationModel>(PaginationContext);
+    const { gridPaginationModel, onPaginationModelChange } = useContext<PaginationModel>(PaginationContext);
+    const { gridSortingModel, onSortingModelChange } = useContext<SortingModel>(SortingContext);
     const { data, status, isLoading } = useTableData(
-        paginationModel.gridPaginationModel.page,
-        filters
+        gridPaginationModel.page,
+        filters,
+        gridSortingModel[0]
     );
     if (data && status !== 200) {
         return (
@@ -31,14 +35,12 @@ export const DataTable: React.FC = () => {
             data={data?.page || []}
             rowHeight={60}
             paginationMode="server"
-            // sortingMode="server"
+            sortingMode="server"
             rowCount={data?.totalRows || 0}
-            paginationModel={paginationModel.gridPaginationModel}
-            onPaginationModelChange={
-                paginationModel.handlePaginationModelChange
-            }
-            // sortModel={DEFAULT_SORTING} //TODO: Mudar para o sorting recebido como prop quando implementarmos sorting
-            // onSortModelChange={(_) => {}} //TODO: Mudar para a função recebida como prop quando implementarmos sorting
+            paginationModel={gridPaginationModel}
+            onPaginationModelChange={onPaginationModelChange}
+            sortModel={gridSortingModel} 
+            onSortModelChange={onSortingModelChange} 
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
