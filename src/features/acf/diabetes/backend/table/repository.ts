@@ -1,8 +1,13 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import type { DiabetesDbFilterItem } from "../model";
+<<<<<<< HEAD
 import type { SortingParams } from "../../common/schema";
 import { sortParamsToDb } from "./adapter";
+=======
+import { Sort } from "../../common/schema";
+
+>>>>>>> ae3fc14 (feat: wip)
 const pageSize = 8;
 
 type QueryWhere = {
