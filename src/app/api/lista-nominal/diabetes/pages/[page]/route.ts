@@ -1,7 +1,13 @@
 import type { NextRequest } from "next/server";
 import type { RequestBody } from "@/features/acf/diabetes/common/schema";
-import { requestBody as queryParamsSchema } from '@/features/acf/diabetes/common/schema';
-import { AuthenticationError, decodeToken, getEncodedSecret, getToken, type JWTToken } from "@/utils/token";
+import { requestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
+import {
+    AuthenticationError,
+    decodeToken,
+    getEncodedSecret,
+    getToken,
+    type JWTToken,
+} from "@/utils/token";
 import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
 import { BadRequestError } from "../../../utils/errors";
 import { z, ZodError } from "zod";
@@ -26,15 +32,24 @@ export async function POST(
         const body: unknown = await req.json();
         const queryParams: RequestBody = queryParamsSchema.parse(body);
 
-        const page = await diabetesController.page(municipalitySusID, teamIne, pageIndex, queryParams.filters || {});
-        const totalRows = await diabetesController.rowCount(municipalitySusID, teamIne, queryParams.filters || {});
+        const page = await diabetesController.page(
+            municipalitySusID,
+            teamIne,
+            pageIndex,
+            queryParams.filters || {}
+        );
+        const totalRows = await diabetesController.rowCount(
+            municipalitySusID,
+            teamIne,
+            queryParams.filters || {}
+        );
 
         return Response.json(
             {
                 page,
                 totalRows: totalRows,
             },
-            { status: 200 },
+            { status: 200 }
         );
     } catch (error) {
         //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
@@ -55,7 +70,7 @@ export async function POST(
                 message: "Erro ao consultar dados",
                 detail: (error as Error).message,
             },
-            { status: 500 },
+            { status: 500 }
         );
     }
 }

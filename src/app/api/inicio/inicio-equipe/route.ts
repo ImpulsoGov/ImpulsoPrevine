@@ -9,12 +9,12 @@ export async function GET(req: NextRequest): Promise<Response> {
         if (!municipioIdSus)
             return Response.json(
                 { message: "Parâmetro municipio_id_sus é obrigatório" },
-                { status: 400 },
+                { status: 400 }
             );
         if (!equipeIne)
             return Response.json(
                 { message: "Parâmetro equipe é obrigatório" },
-                { status: 400 },
+                { status: 400 }
             );
         const getData = await prisma.dados_agregados_area_logada.groupBy({
             by: [
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest): Promise<Response> {
                 message: "Erro ao consultar dados",
                 detail: (error as Error).message,
             },
-            { status: 500 },
+            { status: 500 }
         );
     }
 }
