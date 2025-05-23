@@ -1,18 +1,16 @@
 import { isDate, parseDate } from "@/common/time";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import type {
-    ConditionIdentifiedBy,
-    DiabetesAcfItem,
-    PatientAgeRange,
-    PatientStatus,
+import {
+    type ConditionIdentifiedBy,
+    type DiabetesAcfItem,
+    type PatientAgeRange,
+    type PatientStatus,
 } from "../../common/model";
 import type {
     FilterParams,
     SortableFields,
-    SortingParams,
 } from "../../common/schema";
-import type { DiabetesDbFilterItem } from "../model";
-import { ValueOf } from "next/dist/shared/lib/constants";
+import { sortableFieldsToDb, type DiabetesDbFilterItem, type SortableDbFields } from "../model";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -85,17 +83,9 @@ export const filterParamsToDb = (
     };
 };
 
-type SortableDbFields =
-    | "dt_solicitacao_hemoglobina_glicada_mais_recente"
-    | "dt_consulta_mais_recente"
-    | "prazo_proxima_solicitacao_hemoglobina"
-    | "prazo_proxima_consulta"
-    | "identificacao_condicao_diabetes"
-    | "cidadao_cpf_dt_nascimento"
-    | "cidadao_nome"
-    | "cidadao_idade"
-    | "acs_nome_cadastro";
-
+export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => 
+    sortableFieldsToDb[sortField];
+  
 // export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => {
 //     let sortFieldDb;
 //     switch (sortField) {
