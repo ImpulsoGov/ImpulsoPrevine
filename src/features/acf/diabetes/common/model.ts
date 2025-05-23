@@ -65,6 +65,18 @@ export const sortableFields = [
 
 export type SortableFields = (typeof sortableFields)[number]
 
+export const sortableFieldsToDb = {
+    "dt_solicitacao_hemoglobina_glicada_mais_recente": "latestExamRequestDate",
+    "dt_consulta_mais_recente": "mostRecentAppointmentDate",
+    "prazo_proxima_solicitacao_hemoglobina": "hemoglobinTestDueDate",
+    "prazo_proxima_consulta": "nextAppointmentDueDate",
+    "identificacao_condicao_diabetes": "conditionIdentifiedBy",
+    "cidadao_cpf_dt_nascimento": "patientCpfOrBirthday",
+    "cidadao_nome": "patientName",
+    "cidadao_idade": "patientAge",
+    "acs_nome_cadastro": "visitantCommunityHealthWorker",
+};
+
 export const sortOrder = ["asc", "desc"] as const;
 
 export type SortOrder = (typeof sortOrder)[number]
