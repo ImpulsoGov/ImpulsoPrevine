@@ -84,6 +84,15 @@ const loggedMenu = (session: any) => {
                 menu_action: "acessar_dados_sisab",
             }),
     });
+    menus.push({
+    label: "Ajuda com os Novos Indicadores",
+    url: "https://bit.ly/susana-menu-logado",
+    onClick: () =>
+        mixpanel.track("menu_click", {
+            menu_action: "acessar_susana",
+        }),
+    });
+
     return menus;
 };
 const notLoggedMenu = (res: any) => {
