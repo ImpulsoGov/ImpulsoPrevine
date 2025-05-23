@@ -30,7 +30,6 @@ export type SortableDbFields =
 
 export type SortableFieldsDb = Record<SortableFields, SortableDbFields>
 
-
 export const sortableFieldsToDb: SortableFieldsDb = {
     "latestExamRequestDate": "dt_solicitacao_hemoglobina_glicada_mais_recente", 
     "mostRecentAppointmentDate": "dt_consulta_mais_recente", 
