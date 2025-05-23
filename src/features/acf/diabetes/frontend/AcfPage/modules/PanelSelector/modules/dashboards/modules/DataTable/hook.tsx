@@ -46,6 +46,6 @@ export const useTableData = (
         };
 
         void getResponse();
-    }, [user, page, filters]);
+    }, [user, page, filters, sorting]);
     return { data: response?.data, status: response?.status, isLoading };
 };

@@ -26,14 +26,14 @@ export type FilterParams = z.infer<typeof filterParams>;
 
 export const sortingParams = z.object({
     field: sortableFields,
-    order: z.enum(model.sortOrder),
+    sort: z.enum(model.sortOrder),
 });
 
 export type SortingParams = z.infer<typeof sortingParams>;
 
 export const requestBody = z.object({
     filters: z.optional(filterParams),
-    sort: z.optional(sortingParams),
+    sorting: sortingParams,
 });
 
 export type RequestBody = z.infer<typeof requestBody>;

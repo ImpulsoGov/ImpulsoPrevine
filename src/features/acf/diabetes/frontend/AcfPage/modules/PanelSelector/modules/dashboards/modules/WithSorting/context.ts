@@ -1,10 +1,15 @@
 "use client";
 import type { GridSortModel } from "@mui/x-data-grid";
 import { createContext } from "react";
+//O campo que define a ordem da ordenação no tipo do x-data-grid se chama sort, por isso decidimos padronizar como sort no lugar de order.
+export const DEFAULT_SORTING: GridSortModel = [{ field: "patientName", sort: "asc" }];
 
 export type SortingModel = {
     gridSortingModel: GridSortModel;
     onSortingModelChange: (newSortModel: GridSortModel) => void;
 };
 
-export const SortingContext = createContext<SortingModel>({} as SortingModel);
+export const SortingContext = createContext<SortingModel>({
+    gridSortingModel: DEFAULT_SORTING,
+    onSortingModelChange: () => void 0,
+});
