@@ -2,11 +2,8 @@
 import type React from "react";
 import type { GridSortModel } from "@mui/x-data-grid";
 import { useState } from "react";
-import { SortingContext } from "./context";
-
+import { DEFAULT_SORTING, SortingContext } from "./context";
 export type { SortingModel } from "./context";
-
-export const DEFAULT_SORTING: GridSortModel = [{ field: "nome", sort: "asc" }];
 
 type WithSortingProps = React.PropsWithChildren;
 
