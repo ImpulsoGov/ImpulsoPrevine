@@ -16,7 +16,10 @@ export const page = async (
         teamIne,
         pageIndex,
         filtersDb,
-        sorting
+        {
+            field: adapter.sortParamsToDb(sorting.field),
+            sort: sorting.sort
+        }
     );
     return adapter.diabetesPageDbToModel(page);
 };
