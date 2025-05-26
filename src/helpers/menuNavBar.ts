@@ -85,8 +85,8 @@ const loggedMenu = (session: any) => {
             }),
     });
     menus.push({
-    label: "Ajuda com os Novos Indicadores",
-    url: "https://bit.ly/susana-menu-logado",
+    label: "Entenda os Novos Indicadores",
+    url: "https://impulsogov-2jxn.help.userguiding.com/pt/articles/11867-perguntas-frequentes",
     onClick: () =>
         mixpanel.track("menu_click", {
             menu_action: "acessar_susana",
