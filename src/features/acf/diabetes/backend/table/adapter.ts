@@ -25,7 +25,6 @@ const diabetesRowToModel = (
     //Este throw é uma gambiarra. Nós sabemos que estes campos
     //não tem nenhum valor null no BD hoje, e é só o tipo das colunas que está nullable, quando não deveria
 
-    // -ignore lint/complexity/useSimplifiedLogicExpression: é mais fácil de ler desse jeito
     if (!diabetesRow.municipio_id_sus || !diabetesRow.equipe_ine_cadastro) {
         throw new Error(
             "Municipo ou INE da equipe faltando em um dos registros"
@@ -71,43 +70,13 @@ export const filterParamsToDb = (
     filters: FilterParams
 ): DiabetesDbFilterItem => {
     return {
-        //TODO: Encontrar uma maneira de fazer o suppress em um bloco de linhas
-        // -ignore lint/style/useNamingConvention: <explanation>
         status_usuario: filters.patientStatus,
-        // -ignore lint/style/useNamingConvention: <explanation>
         identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
-        // -ignore lint/style/useNamingConvention: <explanation>
         acs_nome_cadastro: filters.visitantCommunityHealthWorker,
-        // -ignore lint/style/useNamingConvention: <explanation>
         cidadao_faixa_etaria: filters.patientAgeRange,
     };
 };
 
 export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => 
     sortableFieldsToDb[sortField];
-  
-// export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => {
-//     let sortFieldDb;
-//     switch (sortField) {
-//         case "visitantCommunityHealthWorker":
-//             sortFieldDb = "acs_nome_cadastro";
-//             break;
-//         case "patientAge":
-//             sortFieldDb = "cidadao_idade";
-//             break;
-//         case "conditionIdentifiedBy":
-//             sortFieldDb = "identificacao_condicao_diabetes";
-//             break;
-//         case "latestExamRequestDate":
-//             sortFieldDb = "dt_solicitacao_hemoglobina_glicada_mais_recente";
-//             break;
-//         case "mostRecentAppointmentDate":
-//             sortFieldDb = "dt_consulta_mais_recente";
-//             break;
-//         case "patientAge":
-//             break;
-//         default:
-//             break;
-//     }
-//     return sortFieldDb;
-// };
+
