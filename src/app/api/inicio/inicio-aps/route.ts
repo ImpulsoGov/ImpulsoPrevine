@@ -1,14 +1,14 @@
 import { prisma } from "@prisma/prismaClient";
 import type { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
     try {
         const searchParams = req.nextUrl.searchParams;
         const municipioIdSus = searchParams.get("municipio_id_sus");
         if (!municipioIdSus)
             return Response.json(
                 { message: "Parâmetro municipio_id_sus é obrigatório" },
-                { status: 400 },
+                { status: 400 }
             );
         const getData = await prisma.dados_agregados_area_logada.groupBy({
             by: ["municipio_id_sus", "indicador", "parametro_descricao"],
@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
                 message: "Erro ao consultar dados",
                 detail: (error as Error).message,
             },
-            { status: 500 },
+            { status: 500 }
         );
     }
 }

@@ -15,7 +15,7 @@ export const AllowProfile = async ({
     profileID,
 }: AllowProfileProps) => {
     //TODO: Verificar se conseguimos remover esta dependencia do getServerSession
-    const session = (await getServerSession(nextAuthOptions)) as Session;
+    const session = await getServerSession(nextAuthOptions);
     if (!session?.user.perfis.includes(profileID)) return error;
     return children;
 };
