@@ -3,18 +3,20 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { FiltersUi, SelectedValues } from "./model";
 import type * as schema from "@/features/acf/diabetes/common/schema";
+import type { GridSortItem } from "@mui/x-data-grid";
 
 export type GetPageParams = {
     token: string;
     page: number;
-    // sorting?: SortingItem[];
+    sorting: GridSortItem;
     filters: SelectedValues;
     // search?: string;
 };
 
 export const getPage = async ({
     token,
-    page, // sorting,
+    page,
+    sorting,
     filters,
     // search,
 }: GetPageParams): Promise<AxiosResponse<schema.Response>> => {
@@ -28,7 +30,7 @@ export const getPage = async ({
                 ? []
                 : [filters.conditionIdentifiedBy],
     };
-    const body = { filters: filtersRequest };
+    const body = { filters: filtersRequest, sorting: sorting };
     return axios.request({
         method: "POST",
         maxBodyLength: Number.POSITIVE_INFINITY,

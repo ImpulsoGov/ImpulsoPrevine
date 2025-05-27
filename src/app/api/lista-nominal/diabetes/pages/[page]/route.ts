@@ -36,7 +36,8 @@ export async function POST(
             municipalitySusID,
             teamIne,
             pageIndex,
-            queryParams.filters || {}
+            queryParams.filters || {},
+            queryParams.sorting
         );
         const totalRows = await diabetesController.rowCount(
             municipalitySusID,

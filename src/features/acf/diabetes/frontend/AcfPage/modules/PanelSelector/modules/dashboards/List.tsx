@@ -2,10 +2,8 @@
 // import { ToolBarMounted } from "@/componentes/mounted/lista-nominal/ToolBarMounted";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { GridSortModel } from "@mui/x-data-grid";
-import { useState } from "react";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 // import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
-import { DEFAULT_SORTING } from "./modules/sorting/handleSortModelChange";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
@@ -31,9 +29,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     // const closePrintModal = () => setPrintModalVisibility(false);
 
     // eslint-disable-next-line react/hook-use-state
-    const [_sorting, _setSorting] = useState<GridSortModel>([
-        ...DEFAULT_SORTING,
-    ]);
 
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
@@ -71,8 +66,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     //         search,
     //     });
     // }, [user, value, list, sorting, search]);
-
-    // const handleSortModelChange = () => handleSortModelChangeFunction(sorting, setSorting);
 
     // const handlePrintClick = () => {
     //     if (user)

@@ -1,5 +1,5 @@
 import type { DiabetesAcfItem } from "../../common/model";
-import type { FilterParams } from "../../common/schema";
+import type { FilterParams, SortingParams } from "../../common/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
 
@@ -7,14 +7,19 @@ export const page = async (
     municipalitySusID: string,
     teamIne: string,
     pageIndex: number,
-    filters: FilterParams
+    filters: FilterParams,
+    sorting: SortingParams
 ): Promise<Array<DiabetesAcfItem>> => {
     const filtersDb = adapter.filterParamsToDb(filters);
     const page = await repository.page(
         municipalitySusID,
         teamIne,
         pageIndex,
-        filtersDb
+        filtersDb,
+        {
+            field: adapter.sortableFieldToDb(sorting.field),
+            sort: sorting.sort,
+        }
     );
     return adapter.diabetesPageDbToModel(page);
 };
