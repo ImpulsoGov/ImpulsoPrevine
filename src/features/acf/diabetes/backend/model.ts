@@ -2,7 +2,7 @@ import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_
 import type {
     AcfDashboardType,
     DiabetesAcfItem,
-    SortableFields,
+    SortableField,
 } from "../common/model";
 
 export type FiltersOptions = {
@@ -32,7 +32,7 @@ export type SortableDbField =
     | "cidadao_idade"
     | "acs_nome_cadastro";
 
-export const sortableFieldsToDb: Record<SortableFields, SortableDbField> = {
+export const sortableFieldsToDb: Record<SortableField, SortableDbField> = {
     latestExamRequestDate: "dt_solicitacao_hemoglobina_glicada_mais_recente",
     mostRecentAppointmentDate: "dt_consulta_mais_recente",
     hemoglobinTestDueDate: "prazo_proxima_solicitacao_hemoglobina",

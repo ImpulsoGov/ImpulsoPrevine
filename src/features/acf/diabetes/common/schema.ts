@@ -8,7 +8,7 @@ export type PatientStatus = z.infer<typeof patientStatus>;
 export const conditionIdentifiedBy = z.enum(model.conditionIdentifiedBy);
 export type ConditionIdentifiedBy = z.infer<typeof conditionIdentifiedBy>;
 
-export const sortableFields = z.enum(model.sortableFields);
+export const sortableFields = z.enum(model.sortableField);
 
 export type SortableFields = z.infer<typeof sortableFields>;
 

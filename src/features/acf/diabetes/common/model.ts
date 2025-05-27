@@ -51,7 +51,7 @@ export type DiabetesAcfItem = {
 
 export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";
 
-export const sortableFields = [
+export const sortableField = [
     "latestExamRequestDate",
     "mostRecentAppointmentDate",
     "hemoglobinTestDueDate",
@@ -63,7 +63,7 @@ export const sortableFields = [
     "visitantCommunityHealthWorker",
 ] as const;
 
-export type SortableFields = (typeof sortableFields)[number];
+export type SortableField = (typeof sortableField)[number];
 
 export const sortOrder = ["asc", "desc"] as const;
 
