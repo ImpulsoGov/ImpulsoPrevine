@@ -10,7 +10,7 @@ import type {
 } from "@/features/acf/diabetes/common/model";
 import * as schema from "@/features/acf/diabetes/common/schema";
 import { referenceOrder } from "./consts";
-import type * as z from "zod";
+import type * as z from "zod/v4";
 
 export type FilterValues =
     | Array<VisitantCommunityHealthWorker>
@@ -79,7 +79,7 @@ export const createSelectConfigs = (
 
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
-    schema: z.ZodTypeAny
+    schema: z.ZodType
 ): Array<TFilterValue> => {
     return filterValues.filter(
         (filterValue: TFilterValue) => schema.safeParse(filterValue).success

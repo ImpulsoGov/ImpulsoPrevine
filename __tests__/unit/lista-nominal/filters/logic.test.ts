@@ -1,5 +1,5 @@
 import { onlyValidFilterValues, searchParamsToSelectedValues, selectOptions } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/WithFilters/logic";
-import * as z from "zod";
+import * as z from "zod/v4";
 
 // Mocks
 const mockPatientStatusEnum = z.enum(["Em dia", "A fazer"]);
