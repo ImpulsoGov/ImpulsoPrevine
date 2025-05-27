@@ -18,7 +18,7 @@ export const DataTable: React.FC = () => {
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
         filters,
-        gridSortingModel[0]
+        gridSortingModel
     );
     if (data && status !== 200) {
         return (
@@ -39,7 +39,7 @@ export const DataTable: React.FC = () => {
             rowCount={data?.totalRows || 0}
             paginationModel={gridPaginationModel}
             onPaginationModelChange={onPaginationModelChange}
-            sortModel={gridSortingModel} 
+            sortModel={[gridSortingModel]} 
             onSortModelChange={onSortingModelChange} 
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
