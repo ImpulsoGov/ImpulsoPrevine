@@ -12,7 +12,8 @@ export const WithSorting: React.FC<WithSortingProps> = ({
 }: WithSortingProps) => {
     const [sorting, setSorting] = useState<GridSortItem>(DEFAULT_SORTING);
 
-    const handleSortModelChangeFunction = (
+    // Essa função usa o estado interno do Datagrid, que é o GridSortModel
+    const handleSortModelChange = (
         newSortModel: GridSortModel,
     ): void => {
         if (newSortModel.length > 0) {
@@ -26,7 +27,7 @@ export const WithSorting: React.FC<WithSortingProps> = ({
         <SortingContext.Provider
             value={{
                 gridSortingModel: sorting,
-                onSortingModelChange: handleSortModelChangeFunction,
+                onSortingModelChange: handleSortModelChange,
             }}
         >
             {children}
