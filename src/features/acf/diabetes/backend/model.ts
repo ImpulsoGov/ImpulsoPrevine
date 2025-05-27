@@ -21,7 +21,7 @@ export type FilterOptionsDb = Pick<
     | "identificacao_condicao_diabetes"
     | "cidadao_faixa_etaria"
 >;
-export type SortableDbFields =
+export type SortableDbField =
     | "dt_solicitacao_hemoglobina_glicada_mais_recente"
     | "dt_consulta_mais_recente"
     | "prazo_proxima_solicitacao_hemoglobina"
@@ -32,7 +32,7 @@ export type SortableDbFields =
     | "cidadao_idade"
     | "acs_nome_cadastro";
 
-export const sortableFieldsToDb: Record<SortableFields, SortableDbFields> = {
+export const sortableFieldsToDb: Record<SortableFields, SortableDbField> = {
     latestExamRequestDate: "dt_solicitacao_hemoglobina_glicada_mais_recente",
     mostRecentAppointmentDate: "dt_consulta_mais_recente",
     hemoglobinTestDueDate: "prazo_proxima_solicitacao_hemoglobina",

@@ -1,6 +1,6 @@
 import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import type { DiabetesDbFilterItem, SortableDbFields } from "../model";
+import type { DiabetesDbFilterItem, SortableDbField } from "../model";
 import type { SortOrder } from "../../common/model";
 const pageSize = 8;
 
@@ -45,7 +45,7 @@ export const page = async (
     page: number,
     filters: DiabetesDbFilterItem,
     sorting: {
-        field: SortableDbFields,
+        field: SortableDbField,
         sort: SortOrder
     }
 ): Promise<

@@ -1,16 +1,16 @@
 import { isDate, parseDate } from "@/common/time";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import {
-    type ConditionIdentifiedBy,
-    type DiabetesAcfItem,
-    type PatientAgeRange,
-    type PatientStatus,
+import type {
+    ConditionIdentifiedBy,
+    DiabetesAcfItem,
+    PatientAgeRange,
+    PatientStatus,
 } from "../../common/model";
 import type {
     FilterParams,
     SortableFields,
 } from "../../common/schema";
-import { sortableFieldsToDb, type DiabetesDbFilterItem, type SortableDbFields } from "../model";
+import { sortableFieldsToDb, type DiabetesDbFilterItem, type SortableDbField } from "../model";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -77,6 +77,6 @@ export const filterParamsToDb = (
     };
 };
 
-export const sortableFieldToDb = (sortField: SortableFields): SortableDbFields => 
+export const sortableFieldToDb = (sortField: SortableFields): SortableDbField => 
     sortableFieldsToDb[sortField];
 
