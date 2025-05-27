@@ -77,6 +77,6 @@ export const filterParamsToDb = (
     };
 };
 
-export const sortParamsToDb = (sortField: SortableFields): SortableDbFields => 
+export const sortableFieldToDb = (sortField: SortableFields): SortableDbFields => 
     sortableFieldsToDb[sortField];
 

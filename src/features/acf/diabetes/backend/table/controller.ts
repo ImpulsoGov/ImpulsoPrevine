@@ -17,7 +17,7 @@ export const page = async (
         pageIndex,
         filtersDb,
         {
-            field: adapter.sortParamsToDb(sorting.field),
+            field: adapter.sortableFieldToDb(sorting.field),
             sort: sorting.sort
         }
     );

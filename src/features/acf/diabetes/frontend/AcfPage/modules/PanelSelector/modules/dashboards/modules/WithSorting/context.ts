@@ -11,5 +11,5 @@ export type SortingModel = {
 
 export const SortingContext = createContext<SortingModel>({
     gridSortingModel: DEFAULT_SORTING,
-    onSortingModelChange: () => void 0,
+    onSortingModelChange: () => {},
 });

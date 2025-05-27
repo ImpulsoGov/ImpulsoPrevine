@@ -1,5 +1,9 @@
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import type { AcfDashboardType, DiabetesAcfItem, SortableFields } from "../common/model";
+import type {
+    AcfDashboardType,
+    DiabetesAcfItem,
+    SortableFields,
+} from "../common/model";
 
 export type FiltersOptions = {
     visitantCommunityHealthWorker: Array<
@@ -28,19 +32,16 @@ export type SortableDbFields =
     | "cidadao_idade"
     | "acs_nome_cadastro";
 
-export type SortableFieldsDb = Record<SortableFields, SortableDbFields>
-
-
-export const sortableFieldsToDb: SortableFieldsDb = {
-    "latestExamRequestDate": "dt_solicitacao_hemoglobina_glicada_mais_recente", 
-    "mostRecentAppointmentDate": "dt_consulta_mais_recente", 
-     "hemoglobinTestDueDate": "prazo_proxima_solicitacao_hemoglobina",
-    "nextAppointmentDueDate": "prazo_proxima_consulta", 
-     "conditionIdentifiedBy": "identificacao_condicao_diabetes",
-     "patientCpfOrBirthday": "cidadao_cpf_dt_nascimento",
-    "patientName": "cidadao_nome", 
-    "patientAge": "cidadao_idade", 
-    "visitantCommunityHealthWorker": "acs_nome_cadastro" 
+export const sortableFieldsToDb: Record<SortableFields, SortableDbFields> = {
+    latestExamRequestDate: "dt_solicitacao_hemoglobina_glicada_mais_recente",
+    mostRecentAppointmentDate: "dt_consulta_mais_recente",
+    hemoglobinTestDueDate: "prazo_proxima_solicitacao_hemoglobina",
+    nextAppointmentDueDate: "prazo_proxima_consulta",
+    conditionIdentifiedBy: "identificacao_condicao_diabetes",
+    patientCpfOrBirthday: "cidadao_cpf_dt_nascimento",
+    patientName: "cidadao_nome",
+    patientAge: "cidadao_idade",
+    visitantCommunityHealthWorker: "acs_nome_cadastro",
 };
 
 export type DiabetesDbFilterItem = {
