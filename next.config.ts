@@ -1,5 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs";
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 /** @type {import('next').NextConfig} */
 const isDev = process.env.ENV === "development";
@@ -41,21 +41,21 @@ const nextConfig: NextConfig = {
     // TODO remover esse configuração quando não houver mais erros de linter
     eslint: {
         ignoreDuringBuilds: true,
-    }
+    },
 };
 
 export default isDev
     ? nextConfig
     : withSentryConfig(nextConfig, {
-        org: "impulsogov",
-        project: "impulso-previne",
-        silent: !process.env.CI,
-        widenClientFileUpload: true,
-        reactComponentAnnotation: {
-            enabled: true,
-        },
-        tunnelRoute: "/monitoring",
-        hideSourceMaps: true,
-        disableLogger: true,
-        automaticVercelMonitors: true,
-    });
+          org: "impulsogov",
+          project: "impulso-previne",
+          silent: !process.env.CI,
+          widenClientFileUpload: true,
+          reactComponentAnnotation: {
+              enabled: true,
+          },
+          tunnelRoute: "/monitoring",
+          hideSourceMaps: true,
+          disableLogger: true,
+          automaticVercelMonitors: true,
+      });
