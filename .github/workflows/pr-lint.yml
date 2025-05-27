@@ -1,0 +1,23 @@
+name: Run Linter
+
+on: [pull_request]
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "22"
+
+            - name: Install dependencies
+              run: |
+                  yarn install
+
+            - name: Run ESLint
+              run: yarn eslint src/features --check --ext .ts,.tsx
