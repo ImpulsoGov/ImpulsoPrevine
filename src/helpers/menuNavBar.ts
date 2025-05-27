@@ -84,6 +84,15 @@ const loggedMenu = (session: any) => {
                 menu_action: "acessar_dados_sisab",
             }),
     });
+    menus.push({
+    label: "Entenda os Novos Indicadores",
+    url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
+    onClick: () =>
+        mixpanel.track("menu_click", {
+            menu_action: "acessar_faq_novos_indicadores",
+        }),
+    });
+
     return menus;
 };
 const notLoggedMenu = (res: any) => {
