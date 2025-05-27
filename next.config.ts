@@ -1,9 +1,11 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import type { NextConfig } from 'next'
 
 /** @type {import('next').NextConfig} */
 const isDev = process.env.ENV === "development";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
+    //eslint-disable-next-line @typescript-eslint/require-await
     redirects: async () => {
         return [
             {
@@ -23,14 +25,8 @@ const nextConfig = {
             },
         ];
     },
-    experimental: {
-        turbo: {
-            resolveExtensions: [".tsx", ".ts", ".jsx", ".js", ".mjs"],
-            cache: {
-                enabled: true,
-                path: "./.turbo-cache",
-            },
-        },
+    turbopack: {
+        resolveExtensions: [".tsx", ".ts", ".jsx", ".js", ".mjs"],
     },
     images: {
         dangerouslyAllowSVG: true,
