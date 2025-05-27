@@ -6,11 +6,12 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "../../common/model";
-import type {
-    FilterParams,
-    SortableFields,
-} from "../../common/schema";
-import { sortableFieldsToDb, type DiabetesDbFilterItem, type SortableDbField } from "../model";
+import type { FilterParams, SortableFields } from "../../common/schema";
+import {
+    sortableFieldsToDb,
+    type DiabetesDbFilterItem,
+    type SortableDbField,
+} from "../model";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -77,6 +78,5 @@ export const filterParamsToDb = (
     };
 };
 
-export const sortableFieldToDb = (sortField: SortableFields): SortableDbField => 
+export const sortableFieldToDb = (sortField: SortableFields): SortableDbField =>
     sortableFieldsToDb[sortField];
-

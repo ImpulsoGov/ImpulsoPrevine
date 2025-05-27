@@ -13,8 +13,10 @@ import { SortingContext } from "../WithSorting/context";
 
 export const DataTable: React.FC = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
-    const { gridPaginationModel, onPaginationModelChange } = useContext<PaginationModel>(PaginationContext);
-    const { gridSortingModel, onSortingModelChange } = useContext<SortingModel>(SortingContext);
+    const { gridPaginationModel, onPaginationModelChange } =
+        useContext<PaginationModel>(PaginationContext);
+    const { gridSortingModel, onSortingModelChange } =
+        useContext<SortingModel>(SortingContext);
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
         filters,
@@ -39,8 +41,8 @@ export const DataTable: React.FC = () => {
             rowCount={data?.totalRows || 0}
             paginationModel={gridPaginationModel}
             onPaginationModelChange={onPaginationModelChange}
-            sortModel={[gridSortingModel]} 
-            onSortModelChange={onSortingModelChange} 
+            sortModel={[gridSortingModel]}
+            onSortModelChange={onSortingModelChange}
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"

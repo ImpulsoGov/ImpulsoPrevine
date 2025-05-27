@@ -80,11 +80,11 @@ export const createSelectConfigs = (
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
     schema: z.ZodTypeAny
-): Array<TFilterValue> =>{
+): Array<TFilterValue> => {
     return filterValues.filter(
         (filterValue: TFilterValue) => schema.safeParse(filterValue).success
     );
-}
+};
 export const selectOptions = (
     filterValues: FilterValues
 ): Array<HtmlSelectOption> => {
@@ -97,8 +97,9 @@ export const selectOptions = (
 export const searchParamsToSelectedValues = (
     searchParams: URLSearchParams
 ): SelectedValues => {
-    const patientsStatus: Array<schema.PatientStatus> = (searchParams.get("patientStatus")?.split(",") ??
-        []) as Array<schema.PatientStatus>;
+    const patientsStatus: Array<schema.PatientStatus> = (searchParams
+        .get("patientStatus")
+        ?.split(",") ?? []) as Array<schema.PatientStatus>;
     const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
         []) as Array<schema.PatientAgeRange>;
     return {

@@ -63,7 +63,7 @@ export const sortableFields = [
     "visitantCommunityHealthWorker",
 ] as const;
 
-export type SortableFields = (typeof sortableFields)[number]
+export type SortableFields = (typeof sortableFields)[number];
 
 export const sortOrder = ["asc", "desc"] as const;
 

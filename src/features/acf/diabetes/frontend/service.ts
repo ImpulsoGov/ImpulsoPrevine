@@ -15,7 +15,7 @@ export type GetPageParams = {
 
 export const getPage = async ({
     token,
-    page, 
+    page,
     sorting,
     filters,
     // search,

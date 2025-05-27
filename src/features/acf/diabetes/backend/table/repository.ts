@@ -45,8 +45,8 @@ export const page = async (
     page: number,
     filters: DiabetesDbFilterItem,
     sorting: {
-        field: SortableDbField,
-        sort: SortOrder
+        field: SortableDbField;
+        sort: SortOrder;
     }
 ): Promise<
     ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
@@ -57,8 +57,8 @@ export const page = async (
             orderBy: {
                 [sorting.field]: {
                     sort: sorting.sort,
-                    nulls: sorting.sort == "asc" ? "first": "last",
-                }
+                    nulls: sorting.sort == "asc" ? "first" : "last",
+                },
             },
             take: pageSize,
             skip: pageSize * page,

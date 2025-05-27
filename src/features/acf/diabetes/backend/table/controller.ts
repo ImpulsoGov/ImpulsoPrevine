@@ -18,7 +18,7 @@ export const page = async (
         filtersDb,
         {
             field: adapter.sortableFieldToDb(sorting.field),
-            sort: sorting.sort
+            sort: sorting.sort,
         }
     );
     return adapter.diabetesPageDbToModel(page);

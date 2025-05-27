@@ -10,7 +10,7 @@ import type { GridSortItem } from "@mui/x-data-grid";
 export const useTableData = (
     page: number,
     filters: SelectedValues,
-    sorting: GridSortItem,
+    sorting: GridSortItem
 ): {
     data: schema.Response | undefined;
     status: number | undefined;

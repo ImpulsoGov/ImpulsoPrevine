@@ -67,7 +67,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     //     });
     // }, [user, value, list, sorting, search]);
 
-
     // const handlePrintClick = () => {
     //     if (user)
     //         handlePrint(
