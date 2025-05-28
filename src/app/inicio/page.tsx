@@ -17,20 +17,20 @@ const InicioPage = async () => {
 
     if (session?.user) {
         if (
-            session?.user?.perfis.includes(5) ||
-            session?.user?.perfis.includes(8)
+            session.user.perfis.includes(5) ||
+            session.user.perfis.includes(8)
         ) {
             situacaoIndicadores = await InicioAPSRequest(
-                session?.user?.municipio_id_sus,
-                session?.user?.access_token,
+                session.user.municipio_id_sus,
+                session.user.access_token
             );
         }
 
-        if (session?.user?.perfis.includes(9)) {
+        if (session.user.perfis.includes(9)) {
             situacaoIndicadores = await InicioEquipeRequest(
-                session?.user?.municipio_id_sus,
-                session?.user?.equipe,
-                session?.user?.access_token,
+                session.user.municipio_id_sus,
+                session.user.equipe,
+                session.user.access_token
             );
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null =

@@ -355,8 +355,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                     key="bannerGuiasEDicas"
                     descricao={{
                         content:
-                            "Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!",
-                        color: "",
+                            "Estamos adaptando o Impulso Previne às novas regras da APS. Quer ser um dos primeiros a testar e ajudar a construir essa nova fase? 👀 ",
+                        color: "#1F7A99",
                     }}
                     icone={{
                         alt: "Ícone de uma lâmpada",
@@ -368,14 +368,13 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         url: "https://bit.ly/pg-inicial-pesquisa-interesse",
                     }}
                     botao={{
-                        label: "CONTA PRA GENTE",
-                        backgroundColor: "",
-                        backgroundColorOnHover: "",
-                        color: "",
+                        label: "QUERO PARTICIPAR",
+                        backgroundColor: "#1F7A99",
+                        backgroundColorOnHover: "#1F7A99",
                     }}
                     titulo={{
-                        content: "O que você gostaria de ver aqui?",
-                        color: "",
+                        content: "Novos indicadores",
+                        color: "#1F7A99",
                     }}
                     onClick={(): void => {
                         mixpanel.track("card_click", {
@@ -383,7 +382,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             card_page: "pg_inicio",
                         });
                     }}
-                    backgroundColor="#8F9BA3"
+                    backgroundColor="#B5E4E9"
                 />,
             ]}
         />

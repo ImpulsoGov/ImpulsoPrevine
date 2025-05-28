@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ButtonColor } from "@impulsogov/design-system";
 import { SupportErrorWhatsAppLink } from "@/constants/whatsAppLinks";
 
-export const SupportError = () => {
+export const SupportError: React.FC = () => {
     return (
         <div
             style={{
