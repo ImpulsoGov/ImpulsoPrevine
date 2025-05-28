@@ -360,12 +360,12 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                     }}
                     icone={{
                         alt: "Ícone de uma lâmpada",
-                        src: "https://media.graphassets.com/NuB8Kdi2ThW19WzQg52z",
+                        src: "https://media.graphassets.com/czfiUThpQWWTmUNquGAR",
                         width: "21px",
                     }}
                     link={{
                         newTab: true,
-                        url: "https://bit.ly/pg-inicial-pesquisa-interesse",
+                        url: "https://bit.ly/contruibua-tela-inicial",
                     }}
                     botao={{
                         label: "QUERO PARTICIPAR",
