@@ -355,7 +355,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                     key="bannerGuiasEDicas"
                     descricao={{
                         content:
-                            "Estamos adaptando o Impulso Previne às novas regras da APS. Quer ser um dos primeiros a testar e ajudar a construir essa nova fase? 👀 ",
+                            "Estamos adaptando o Impulso Previne às novas regras da APS. <p>Quer ser um dos primeiros a testar e ajudar a construir essa nova fase? 👀 </p>",
                         color: "#1F7A99",
                     }}
                     icone={{
