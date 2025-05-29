@@ -30,8 +30,8 @@ export const diabetesColumns: Array<GridColDef> = [
     },
     {
         field: "patientAge",
-        headerName: "Idade (ano)",
-        width: 112,
+        headerName: "Idade (anos)",
+        width: 95,
         headerAlign: "left",
         align: "left",
     },
