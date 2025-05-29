@@ -361,8 +361,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                     icone={{
                         alt: "Ícone de uma lâmpada",
                         src: "https://media.graphassets.com/czfiUThpQWWTmUNquGAR",
-                        width: "26px",
-                        height: "35px",
+                        width: "33px",
+                        height: "40px",
                     }}
                     link={{
                         newTab: true,
