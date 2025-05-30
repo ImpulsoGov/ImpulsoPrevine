@@ -20,13 +20,24 @@ export const diabetesColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         renderCell: CpfOrBirthdayFormatter,
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                CPF/Data de <br />
+                nascimento
+            </span>
+        ),
     },
     {
         field: "conditionIdentifiedBy",
-        headerName: "Tipo de diagnóstico",
         width: 160,
         headerAlign: "left",
         align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Tipo de <br />
+                diagnóstico
+            </span>
+        ),
     },
     {
         field: "patientAge",
@@ -37,35 +48,69 @@ export const diabetesColumns: Array<GridColDef> = [
     },
     {
         field: "mostRecentAppointmentDate",
-        headerName: "Data da última consulta",
         width: 164,
         headerAlign: "left",
         align: "left",
         renderCell: DateRenderCell,
+        renderHeader: () => (
+            <span
+                className="MuiDataGrid-columnHeaderTitle"
+                style={{ marginRight: "10px" }}
+            >
+                Data da última
+                <br />
+                consulta
+            </span>
+        ),
     },
     {
         field: "nextAppointmentDueDate",
-        headerName: "Prazo p/ próxima consulta",
         width: 181,
         headerAlign: "left",
         align: "left",
         renderCell: RenderStatusTagCell,
+        renderHeader: () => (
+            <span
+                className="MuiDataGrid-columnHeaderTitle"
+                style={{ marginRight: "10px" }}
+            >
+                Prazo p/ próxima
+                <br />
+                consulta
+            </span>
+        ),
     },
     {
         field: "latestExamRequestDate",
-        headerName: "Data da última solicitação de hemoglobina glicada",
         width: 205,
         headerAlign: "left",
         align: "left",
         renderCell: DateRenderCell,
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Data da última
+                <br />
+                solicitação de
+                <br />
+                hemoglobina glicada
+            </span>
+        ),
     },
     {
         field: "hemoglobinTestDueDate",
-        headerName: "Prazo p/ próxima solicitação de hemoglobina glicada",
         width: 196,
         headerAlign: "left",
         align: "left",
         renderCell: RenderStatusTagCell,
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Prazo p/ próxima
+                <br />
+                solicitação de
+                <br />
+                hemoglobina glicada
+            </span>
+        ),
     },
     {
         field: "visitantCommunityHealthWorker",
