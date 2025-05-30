@@ -89,8 +89,8 @@ export const TabelaEquipe = ({
                     data: [
                         ...new Set(
                             TabelaDataEquipeTratada.map(
-                                (item) => item.acs_nome_cadastro,
-                            ),
+                                (item) => item.acs_nome_cadastro
+                            )
                         ),
                     ],
                     filtro: "acs_nome_cadastro",
@@ -101,8 +101,8 @@ export const TabelaEquipe = ({
                         ...new Set(
                             TabelaDataEquipeTratada.map(
                                 (item) =>
-                                    item.identificacao_condicao_hipertensao,
-                            ),
+                                    item.identificacao_condicao_hipertensao
+                            )
                         ),
                     ],
                     filtro: "identificacao_condicao_hipertensao",
@@ -112,8 +112,8 @@ export const TabelaEquipe = ({
                     data: [
                         ...new Set(
                             TabelaDataEquipeTratada.map(
-                                (item) => item.status_usuario,
-                            ),
+                                (item) => item.status_usuario
+                            )
                         ),
                     ],
                     filtro: "status_usuario",
@@ -123,8 +123,8 @@ export const TabelaEquipe = ({
                     data: [
                         ...new Set(
                             TabelaDataEquipeTratada.map(
-                                (item) => item.cidadao_faixa_etaria,
-                            ),
+                                (item) => item.cidadao_faixa_etaria
+                            )
                         ),
                     ],
                     filtro: "cidadao_faixa_etaria",
@@ -145,13 +145,13 @@ export const TabelaEquipe = ({
             atualizacao={new Date(
                 tabelaDataEquipe.reduce((maisRecente, objeto) => {
                     const dataAtual = new Date(
-                        objeto.dt_registro_producao_mais_recente,
+                        objeto.dt_registro_producao_mais_recente
                     );
                     const dataMaisRecenteAnterior = new Date(maisRecente);
                     return dataAtual > dataMaisRecenteAnterior
                         ? objeto.dt_registro_producao_mais_recente
                         : maisRecente;
-                }, "2000-01-01"),
+                }, "2000-01-01")
             ).toLocaleString("pt-BR", {
                 timeZone: "UTC",
                 year: "numeric",

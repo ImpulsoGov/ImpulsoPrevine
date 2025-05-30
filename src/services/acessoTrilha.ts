@@ -22,7 +22,7 @@ const acessoTrilhasClient = async (usuarioId: string, token: string) => {
 const acessoModulosTrilhasClient = async (
     usuarioId: string,
     trilhaId: string,
-    token: string,
+    token: string
 ) => {
     const config = {
         method: "get",

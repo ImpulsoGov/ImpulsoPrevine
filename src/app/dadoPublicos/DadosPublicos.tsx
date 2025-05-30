@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { JSX } from "react";
 import dynamic from "next/dynamic";
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 const PanelSelector = dynamic<{
     panel: number;
@@ -34,7 +34,7 @@ const ScoreCardGrid = dynamic<{ valores: { id: number; value: string }[] }>(
     () => import("@impulsogov/design-system").then((mod) => mod.ScoreCardGrid),
     {
         loading: () => <Spinner />,
-    },
+    }
 );
 const CardAlert = dynamic<{
     background: string;
@@ -49,11 +49,11 @@ const CardAlert = dynamic<{
 const MunicipioSelector = dynamic(
     () =>
         import("@componentes/MunicipioSelector").then(
-            (mod) => mod.MunicipioSelector,
+            (mod) => mod.MunicipioSelector
         ),
     {
         loading: () => <Spinner />,
-    },
+    }
 );
 
 import { CaracterizacaoMunicipalResumo } from "@services/caracterizacao_municipal_resumo";
@@ -77,11 +77,11 @@ export const DadosPublicos = () => {
     }, [painel]);
     useEffect(
         () => router.push(`${path}?painel=${activeTabIndex}`),
-        [activeTabIndex, path, router],
+        [activeTabIndex, path, router]
     );
     useEffect(() => {
         CaracterizacaoMunicipalResumo(selectedMunicipio).then((res) =>
-            setScoreCardData(res),
+            setScoreCardData(res)
         );
     }, [selectedMunicipio]);
 

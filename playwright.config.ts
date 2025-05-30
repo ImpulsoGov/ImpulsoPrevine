@@ -1,7 +1,7 @@
 import { baseURL } from "@/utils/baseURL";
 import { defineConfig, devices } from "@playwright/test";
-import * as dotenv from 'dotenv';
-dotenv.config(); 
+import * as dotenv from "dotenv";
+dotenv.config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -70,9 +70,9 @@ export default defineConfig({
         // },
     ],
     /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'yarn dev',
-    url: baseURL(),
-    reuseExistingServer: process.env.ENV === "development",
-  },
+    webServer: {
+        command: "yarn dev",
+        url: baseURL(),
+        reuseExistingServer: process.env.ENV === "development",
+    },
 });

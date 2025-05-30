@@ -73,7 +73,7 @@ const loggedMenu = (session: any) => {
                 session.user.perfis.includes(5) ||
                     session.user.perfis.includes(8)
                     ? "aps"
-                    : "equipe",
+                    : "equipe"
             ),
         });
     menus.push({
@@ -85,12 +85,12 @@ const loggedMenu = (session: any) => {
             }),
     });
     menus.push({
-    label: "Entenda os Novos Indicadores",
-    url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
-    onClick: () =>
-        mixpanel.track("menu_click", {
-            menu_action: "acessar_faq_novos_indicadores",
-        }),
+        label: "Entenda os Novos Indicadores",
+        url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
+        onClick: () =>
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_faq_novos_indicadores",
+            }),
     });
 
     return menus;

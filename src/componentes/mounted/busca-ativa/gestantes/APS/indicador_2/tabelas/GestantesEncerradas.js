@@ -62,15 +62,15 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesEncerradas.map((item) =>
-                                item.id_exame_hiv_sifilis.toString(),
-                            ),
+                                item.id_exame_hiv_sifilis.toString()
+                            )
                         ),
                     ],
                     labels: [
                         ...new Set(
                             identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.map(
-                                (item) => item.exame_hiv_sifilis_descricao,
-                            ),
+                                (item) => item.exame_hiv_sifilis_descricao
+                            )
                         ),
                     ],
                     filtro: "id_exame_hiv_sifilis",
@@ -80,8 +80,8 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesEncerradas.map(
-                                (item) => item.equipe_nome_e_ine,
-                            ),
+                                (item) => item.equipe_nome_e_ine
+                            )
                         ),
                     ],
                     filtro: "equipe_nome_e_ine",
@@ -91,8 +91,8 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesEncerradas.map(
-                                (item) => item.gestacao_quadrimestre,
-                            ),
+                                (item) => item.gestacao_quadrimestre
+                            )
                         ),
                     ],
                     filtro: "gestacao_quadrimestre",
@@ -117,15 +117,15 @@ const IndicadorDoisTabelaGestantesEncerradas = ({
                 tabelaDataAPSGestantesEncerradas.reduce(
                     (maisRecente, objeto) => {
                         const dataAtual = new Date(
-                            objeto.dt_registro_producao_mais_recente,
+                            objeto.dt_registro_producao_mais_recente
                         );
                         const dataMaisRecenteAnterior = new Date(maisRecente);
                         return dataAtual > dataMaisRecenteAnterior
                             ? objeto.dt_registro_producao_mais_recente
                             : maisRecente;
                     },
-                    "2000-01-01",
-                ),
+                    "2000-01-01"
+                )
             ).toLocaleString("pt-BR", {
                 timeZone: "UTC",
                 year: "numeric",

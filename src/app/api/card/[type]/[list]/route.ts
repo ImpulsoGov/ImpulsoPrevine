@@ -11,11 +11,10 @@ import {
 import type { JWTToken } from "@/utils/token";
 import { captureException } from "@sentry/nextjs";
 
-
 const adapterList = {
     HIPERTENSÃO: "hipertensao",
     DIABETES: "diabetes",
-}
+};
 
 // TODO rever nomenclatura do endpoint para que a API seja orientada à informação e não à interface
 // vide: https://github.com/ImpulsoGov/ImpulsoPrevine/pull/289#issuecomment-2593257565
@@ -28,10 +27,13 @@ export async function GET(
             list: string;
             type: string;
         }>;
-    },
+    }
 ) {
     try {
-        const { type, list } = await params as { type: string; list: "HIPERTENSÃO" | "DIABETES" };
+        const { type, list } = (await params) as {
+            type: string;
+            list: "HIPERTENSÃO" | "DIABETES";
+        };
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
@@ -43,12 +45,13 @@ export async function GET(
         // para somar os valores de todas equipe do município por descrição (card).
         let filteredData = data.filter(
             (card) =>
-                card.municipio_id_sus === municipioIdSus && card.lista === adapterList[list],
+                card.municipio_id_sus === municipioIdSus &&
+                card.lista === adapterList[list]
         );
         if (payload?.perfis?.includes(9) && payload?.equipe) {
             // será substituido por consulta no banco de dados
             filteredData = filteredData.filter(
-                (card) => card.ine === payload.equipe,
+                (card) => card.ine === payload.equipe
             );
         }
         return Response.json(filteredData, { status: 200 });
@@ -64,7 +67,7 @@ export async function GET(
         captureException(error);
         return Response.json(
             { message: "Erro ao consultar dados" },
-            { status: 500 },
+            { status: 500 }
         );
     }
 }

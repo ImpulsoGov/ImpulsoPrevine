@@ -40,15 +40,11 @@ export const sortedOptions = (
 export const createSelectConfigs = (
     filtersValues: FiltersUi
 ): Array<SelectConfig> => {
-    //VCHW = Visitant Community Health Worker
-    const formattedVCHWNames = filtersValues.visitantCommunityHealthWorker.map(
-        (item) => nameFormatter(item)
-    );
     return [
         {
-            options: selectOptions(formattedVCHWNames).sort((a, b) =>
-                a.label.localeCompare(b.label)
-            ),
+            options: selectOptions(filtersValues.visitantCommunityHealthWorker)
+                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
             label: "Prof. Responsável",
             id: "visitantCommunityHealthWorker",
             isMultiSelect: true,

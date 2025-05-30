@@ -1,29 +1,29 @@
 "use client";
 import dynamic from "next/dynamic";
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 const ButtonLightSubmit = dynamic(
     () =>
         import("@impulsogov/design-system").then(
-            (mod) => mod.ButtonLightSubmit,
+            (mod) => mod.ButtonLightSubmit
         ),
     {
         loading: () => <Spinner />,
-    },
+    }
 );
 const TabelaHiperDia = dynamic(
     () => import("@impulsogov/design-system").then((mod) => mod.TabelaHiperDia),
     {
         loading: () => <Spinner />,
-    },
+    }
 );
 const TituloSmallTexto = dynamic(
     () =>
         import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto),
     {
         loading: () => <Spinner />,
-    },
+    }
 );
 
 import { signOut, useSession } from "next-auth/react";
@@ -60,7 +60,7 @@ const TratamentoValidacao = async (
     setDadosValidados,
     setValidacaoRealizada,
     jsondata,
-    setDadosReq,
+    setDadosReq
 ) => {
     const dadosTratados = await Tratamento(jsondata);
     const dadosValidados = await Validacao(dadosTratados);
@@ -96,7 +96,7 @@ const GestaoDeUsuarios = () => {
                 setDadosValidados,
                 setValidacaoRealizada,
                 jsondata,
-                setDadosReq,
+                setDadosReq
             );
     }, [etapa, jsondata]);
     useEffect(() => {
@@ -105,7 +105,7 @@ const GestaoDeUsuarios = () => {
                 dadosReq,
                 setRes,
                 setErroProcessamento,
-                session.user.access_token,
+                session.user.access_token
             );
         etapa === 0 && setJSONDATA() && setDadosReq();
     }, [etapa]);

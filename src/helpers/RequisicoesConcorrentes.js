@@ -12,13 +12,13 @@ const CadastrarUsuarioLotes = async (
     data,
     setRes,
     setErroProcessamento,
-    token,
+    token
 ) => {
     const formDataArray = data.map((item) => createFormData(item));
     const results = await Promise.all(
         formDataArray.map((formData) => {
             return CadastrarUsuario(formData, token);
-        }),
+        })
     ); // Aguarda todas as solicitações simultaneamente
     let erros = 0;
     results.forEach((result) => {

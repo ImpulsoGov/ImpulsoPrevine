@@ -20,7 +20,7 @@ export const Selecionar_status_usuario_descricao = ({
     };
 
     const descricao = status_usuario_descricao.find(
-        (item) => item?.id_status_usuario == value,
+        (item) => item?.id_status_usuario == value
     )?.status_usuario_descricao;
 
     return (
@@ -91,7 +91,7 @@ export const selecionar_status_usuario_descricao = ({ value }) => {
     };
 
     const descricao = status_usuario_descricao.find(
-        (item) => item?.id_status_usuario === value,
+        (item) => item?.id_status_usuario === value
     )?.status_usuario_descricao;
     return (
         <div style={styleStatus[value]}>

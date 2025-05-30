@@ -3,7 +3,7 @@ import type { Indicadores } from "../types/inicio";
 
 const isValid = (
     situacaoPorIndicador: SituacaoPorIndicador,
-    indicador: Indicadores,
+    indicador: Indicadores
 ): boolean => {
     if (
         situacaoPorIndicador[indicador]?.total > 0 ||

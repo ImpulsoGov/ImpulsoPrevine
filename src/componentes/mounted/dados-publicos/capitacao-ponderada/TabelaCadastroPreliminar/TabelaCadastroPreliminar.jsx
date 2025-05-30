@@ -18,7 +18,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
         let updatedSelectedIndicadores;
         if (selectedIndicadores.includes(value)) {
             updatedSelectedIndicadores = selectedIndicadores.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedIndicadores = [...selectedIndicadores, value];
@@ -32,18 +32,16 @@ const TabelaCadastroPreliminarcomSeletor = ({
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.equipe_nome),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.equipe_nome)
                 ),
             ]);
             setSelectedNovoIndicador([
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.periodo_data_inicio),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.periodo_data_inicio)
                 ),
             ]);
         }
@@ -59,7 +57,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
         let updatedSelectedNovoIndicador;
         if (selectedNovoIndicador.includes(value)) {
             updatedSelectedNovoIndicador = selectedNovoIndicador.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedNovoIndicador = [...selectedNovoIndicador, value];
@@ -72,18 +70,16 @@ const TabelaCadastroPreliminarcomSeletor = ({
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.equipe_nome),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.equipe_nome)
                 ),
             ]);
             setSelectedNovoIndicador([
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.periodo_data_inicio),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.periodo_data_inicio)
                 ),
             ]);
         }
@@ -100,16 +96,16 @@ const TabelaCadastroPreliminarcomSeletor = ({
             ...new Set(
                 TabCadPreliminar.filter(
                     (item) =>
-                        item.validacao_nome === "Preliminar>Reprovado(PROF)",
-                ).map((item) => item.equipe_nome),
+                        item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                ).map((item) => item.equipe_nome)
             ),
         ]);
         setSelectedNovoIndicador([
             ...new Set(
                 TabCadPreliminar.filter(
                     (item) =>
-                        item.validacao_nome === "Preliminar>Reprovado(PROF)",
-                ).map((item) => item.periodo_data_inicio),
+                        item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                ).map((item) => item.periodo_data_inicio)
             ),
         ]);
     };
@@ -140,7 +136,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
                             {selectedIndicadores
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -152,7 +148,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveCheckboxChange(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -162,11 +158,11 @@ const TabelaCadastroPreliminarcomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedIndicadores.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleCheckboxChange(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -202,7 +198,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
                             {selectedNovoIndicador
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -214,7 +210,7 @@ const TabelaCadastroPreliminarcomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChange(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -224,11 +220,11 @@ const TabelaCadastroPreliminarcomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicador.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChange(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -248,16 +244,16 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
     const [selectedIndicadores, setSelectedIndicadores] = useState([
         ...new Set(
             TabCadPreliminar.filter(
-                (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)",
-            ).map((item) => item.equipe_nome),
+                (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)"
+            ).map((item) => item.equipe_nome)
         ),
     ]);
 
     const [selectedNovoIndicador, setSelectedNovoIndicador] = useState([
         ...new Set(
             TabCadPreliminar.filter(
-                (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)",
-            ).map((item) => item.periodo_data_inicio),
+                (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)"
+            ).map((item) => item.periodo_data_inicio)
         ),
     ]);
 
@@ -266,7 +262,7 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
             const filteredData = TabCadPreliminar.filter(
                 (item) =>
                     equipeNomes.includes(item.equipe_nome) &&
-                    item.validacao_nome === "Preliminar>Reprovado(PROF)",
+                    item.validacao_nome === "Preliminar>Reprovado(PROF)"
             );
 
             const quantidade = filteredData.reduce((acc, item) => {
@@ -351,7 +347,7 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
         const linhasUnicas = new Set();
 
         const linhasFiltradas = TabCadPreliminar.filter(
-            (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)",
+            (item) => item.validacao_nome === "Preliminar>Reprovado(PROF)"
         )
             .map((item) => {
                 const chave = `${item.validacao_nome}-${item.recomendacao}`;
@@ -363,7 +359,7 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
                         recomendacao: item.recomendacao,
                         equipe_nome: item.equipe_nome,
                         validacao_quantidade: calculateQuantidade(
-                            item.equipe_nome,
+                            item.equipe_nome
                         ),
                     };
                 }
@@ -380,12 +376,11 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.equipe_nome),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.equipe_nome)
                 ),
             ]),
-        [TabCadPreliminar],
+        [TabCadPreliminar]
     );
     useEffect(
         () =>
@@ -393,12 +388,11 @@ const TabelaCadastroPreliminar = ({ TabCadPreliminar }) => {
                 ...new Set(
                     TabCadPreliminar.filter(
                         (item) =>
-                            item.validacao_nome ===
-                            "Preliminar>Reprovado(PROF)",
-                    ).map((item) => item.periodo_data_inicio),
+                            item.validacao_nome === "Preliminar>Reprovado(PROF)"
+                    ).map((item) => item.periodo_data_inicio)
                 ),
             ]),
-        [TabCadPreliminar],
+        [TabCadPreliminar]
     );
 
     return (

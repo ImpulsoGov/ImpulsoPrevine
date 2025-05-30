@@ -4,12 +4,8 @@ import {
     Spinner,
 } from "@impulsogov/design-system";
 import mixpanel from "mixpanel-browser";
-import vacinacaoStatusPenta from "../../../../../../data/vacinacao_status_penta.json" assert {
-    type: "json",
-};
-import vacinacaoStatusPolio from "../../../../../../data/vacinacao_status_polio.json" assert {
-    type: "json",
-};
+import vacinacaoStatusPenta from "../../../../../../data/vacinacao_status_penta.json" assert { type: "json" };
+import vacinacaoStatusPolio from "../../../../../../data/vacinacao_status_polio.json" assert { type: "json" };
 import { colunasImpressaoVacinacaoAPS } from "../../../../../../helpers/colunasImpressaoVacinacao";
 import { colunasVacinacaoAPS } from "../../../../../../helpers/colunasVacinacao";
 import { labelsModalImpressaoAPS } from "../../../../../../helpers/labelsModalImpressao";
@@ -76,7 +72,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                     Number(item.id_status_polio) - 1
                 ]
                     ? codigosPolio[Number(item.id_status_polio) - 1]
-                    : item.id_status_polio),
+                    : item.id_status_polio)
         );
 
     const dataAtual = Date.now();
@@ -85,7 +81,7 @@ const TabelaAPSQuadrimestreFuturo = ({
         : [];
     const proximosQuadrisFormatados = formatarQuadrimestres(
         dadosProximosQuadris.slice(-2),
-        " + ",
+        " + "
     );
 
     return tabelaDataAPS ? (
@@ -120,7 +116,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                     ? acumulador + 1
                                     : acumulador;
                             },
-                            0,
+                            0
                         ),
                     },
                     {
@@ -139,7 +135,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                     },
                     {
@@ -151,7 +147,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                     ? acumulador + 1
                                     : acumulador;
                             },
-                            0,
+                            0
                         ),
                     },
                     {
@@ -164,7 +160,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                     ? acumulador + 1
                                     : acumulador;
                             },
-                            0,
+                            0
                         ),
                     },
                 ]}
@@ -180,8 +176,8 @@ const TabelaAPSQuadrimestreFuturo = ({
                         data: [
                             ...new Set(
                                 tabelaDataAPSVacinacao.map(
-                                    (item) => item.equipe_nome_e_ine,
-                                ),
+                                    (item) => item.equipe_nome_e_ine
+                                )
                             ),
                         ],
                         filtro: "equipe_nome_e_ine",
@@ -191,8 +187,8 @@ const TabelaAPSQuadrimestreFuturo = ({
                         data: [
                             ...new Set(
                                 tabelaDataAPSVacinacao.map(
-                                    (item) => item.acs_nome,
-                                ),
+                                    (item) => item.acs_nome
+                                )
                             ),
                         ],
                         filtro: "acs_nome",
@@ -202,8 +198,8 @@ const TabelaAPSQuadrimestreFuturo = ({
                         data: [
                             ...new Set(
                                 tabelaDataAPSVacinacao.map((item) =>
-                                    item.id_status_polio.toString(),
-                                ),
+                                    item.id_status_polio.toString()
+                                )
                             ),
                         ],
                         labels: vacinacaoStatusPolio.dataTabela.reduce(
@@ -212,7 +208,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                     item.status_descricao;
                                 return obj;
                             },
-                            {},
+                            {}
                         ),
                         filtro: "id_status_polio",
                         rotulo: "Filtrar por status polio",
@@ -221,8 +217,8 @@ const TabelaAPSQuadrimestreFuturo = ({
                         data: [
                             ...new Set(
                                 tabelaDataAPSVacinacao.map((item) =>
-                                    item.id_status_penta.toString(),
-                                ),
+                                    item.id_status_penta.toString()
+                                )
                             ),
                         ],
                         labels: vacinacaoStatusPenta.data.reduce(
@@ -231,7 +227,7 @@ const TabelaAPSQuadrimestreFuturo = ({
                                     item.status_descricao;
                                 return obj;
                             },
-                            {},
+                            {}
                         ),
                         filtro: "id_status_penta",
                         rotulo: "Filtrar por status penta",
@@ -265,13 +261,13 @@ const TabelaAPSQuadrimestreFuturo = ({
                 atualizacao={new Date(
                     tabelaDataAPSVacinacao.reduce((maisRecente, objeto) => {
                         const dataAtual = new Date(
-                            objeto.dt_registro_producao_mais_recente,
+                            objeto.dt_registro_producao_mais_recente
                         );
                         const dataMaisRecenteAnterior = new Date(maisRecente);
                         return dataAtual > dataMaisRecenteAnterior
                             ? objeto.dt_registro_producao_mais_recente
                             : maisRecente;
-                    }, "2000-01-01"),
+                    }, "2000-01-01")
                 ).toLocaleString("pt-BR", {
                     timeZone: "UTC",
                     year: "numeric",

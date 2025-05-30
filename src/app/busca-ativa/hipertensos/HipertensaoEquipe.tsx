@@ -81,7 +81,7 @@ export const HipertensaoEquipe: React.FC<HipertensaoEquipeType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -94,7 +94,7 @@ export const HipertensaoEquipe: React.FC<HipertensaoEquipeType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -107,7 +107,7 @@ export const HipertensaoEquipe: React.FC<HipertensaoEquipeType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                     ]}

@@ -13,14 +13,14 @@ const DiabetesPage = async () => {
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         diabetesTabelaDataAps = await tabelaHipertensaoAPS(
             session?.user?.municipio_id_sus,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     let diabetesTabelaDataEquipe: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(9))
         diabetesTabelaDataEquipe = await tabelaHipertensaoEquipe(
             session?.user?.municipio_id_sus,
             session?.user?.equipe,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     return (
         <Hipertensao

@@ -15,7 +15,7 @@ export const StatusAtendimentoOdontologico = ({
 }) => {
     const descricao = useMemo(() => {
         return identificacao_atendimento_odontologico.find(
-            (item) => item.id_atendimento_odontologico == value,
+            (item) => item.id_atendimento_odontologico == value
         ).atendimento_odontologico_descricao;
     }, [identificacao_atendimento_odontologico, value]);
 

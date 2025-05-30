@@ -2,7 +2,7 @@ import type { Mixpanel } from "mixpanel-browser";
 
 export const handleRouteChangeMixPanel = (
     mixpanel: Mixpanel,
-    sessionStatus: string,
+    sessionStatus: string
 ) => {
     if (mixpanel?.track && sessionStatus !== "loading")
         mixpanel.track("Page View", {

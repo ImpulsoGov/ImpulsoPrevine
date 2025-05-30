@@ -74,7 +74,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -87,7 +87,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -100,7 +100,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                     ]}
@@ -150,8 +150,8 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Consulta e solicitação de hemoglobina em dia",
                                 stack: "stack",
@@ -176,8 +176,8 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Apenas a consulta a fazer",
                                 stack: "stack",
@@ -202,8 +202,8 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Apenas a solicitação de hemoglobina a fazer",
                                 stack: "stack",
@@ -228,8 +228,8 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Os dois a fazer",
                                 stack: "stack",
@@ -243,10 +243,9 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                             data: Array.from(
                                 new Set(
                                     tabelaDataAPS.map(
-                                        (item: any) =>
-                                            item.equipe_nome_cadastro,
-                                    ),
-                                ),
+                                        (item: any) => item.equipe_nome_cadastro
+                                    )
+                                )
                             ),
                             type: "category",
                             axisLabel: {
@@ -277,7 +276,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: any,
-                                                    item: any,
+                                                    item: any
                                                 ) => {
                                                     return item.prazo_proxima_consulta ==
                                                         "Em dia" &&
@@ -286,7 +285,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -298,7 +297,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: any,
-                                                    item: any,
+                                                    item: any
                                                 ) => {
                                                     return item.prazo_proxima_consulta !=
                                                         "Em dia" &&
@@ -307,7 +306,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -319,7 +318,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: any,
-                                                    item: any,
+                                                    item: any
                                                 ) => {
                                                     return item.prazo_proxima_solicitacao_hemoglobina !=
                                                         "Em dia" &&
@@ -328,7 +327,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -340,7 +339,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: any,
-                                                    item: any,
+                                                    item: any
                                                 ) => {
                                                     return item.prazo_proxima_consulta !=
                                                         "Em dia" &&
@@ -349,7 +348,7 @@ export const DiabetesAPS: React.FC<DiabetesAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length

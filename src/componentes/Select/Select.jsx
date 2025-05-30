@@ -49,7 +49,7 @@ function Select({
                         {isMulti && (
                             <Checkbox
                                 checked={selectedOptions.includes(
-                                    option.descricao,
+                                    option.descricao
                                 )}
                             />
                         )}

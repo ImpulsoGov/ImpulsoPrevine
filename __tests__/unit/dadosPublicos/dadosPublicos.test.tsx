@@ -49,7 +49,7 @@ describe("dadosPublicos", () => {
         render(
             <SessionProvider session={clientSession}>
                 {pageElement}
-            </SessionProvider>,
+            </SessionProvider>
         );
 
         expect(screen.getByTestId("analise-component")).toBeInTheDocument();

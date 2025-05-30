@@ -7,7 +7,7 @@ import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
 const Vacinacao = dynamic(() =>
-    import("./Vacinacao").then((mod) => mod.Vacinacao),
+    import("./Vacinacao").then((mod) => mod.Vacinacao)
 );
 
 const VacinacaoPage = async () => {
@@ -16,14 +16,14 @@ const VacinacaoPage = async () => {
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         vacinacaoTabelaDataAps = await tabelaVacinacaoAPS(
             session?.user?.municipio_id_sus,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     let vacinacaoTabelaDataEquipe: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(9))
         vacinacaoTabelaDataEquipe = await tabelaVacinacaoEquipe(
             session?.user?.municipio_id_sus,
             session?.user?.equipe,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     return (
         <Vacinacao

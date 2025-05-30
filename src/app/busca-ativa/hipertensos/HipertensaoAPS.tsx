@@ -69,7 +69,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                             valor: tabelaDataAPS.reduce(
                                 (
                                     acumulador: number,
-                                    item: Record<string, string>,
+                                    item: Record<string, string>
                                 ) => {
                                     return item.prazo_proxima_consulta ===
                                         "Em dia" &&
@@ -78,7 +78,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -87,14 +87,14 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                             valor: tabelaDataAPS.reduce(
                                 (
                                     acumulador: number,
-                                    item: Record<string, string>,
+                                    item: Record<string, string>
                                 ) => {
                                     return item.identificacao_condicao_hipertensao ===
                                         "Autorreferida"
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -103,14 +103,14 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                             valor: tabelaDataAPS.reduce(
                                 (
                                     acumulador: number,
-                                    item: Record<string, string>,
+                                    item: Record<string, string>
                                 ) => {
                                     return item.identificacao_condicao_hipertensao ===
                                         "Diagnóstico Clínico"
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                     ]}
@@ -145,7 +145,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                     tabelaDataAPS.reduce(
                                         (
                                             acumulador: { [x: string]: number },
-                                            item: Record<string, string>,
+                                            item: Record<string, string>
                                         ) => {
                                             if (
                                                 item.prazo_proxima_consulta ===
@@ -162,8 +162,8 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Consulta e aferição de PA em dia",
                                 stack: "stack",
@@ -174,7 +174,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                     tabelaDataAPS.reduce(
                                         (
                                             acumulador: { [x: string]: number },
-                                            item: Record<string, string>,
+                                            item: Record<string, string>
                                         ) => {
                                             if (
                                                 item.prazo_proxima_consulta !==
@@ -191,8 +191,8 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Apenas a consulta a fazer",
                                 stack: "stack",
@@ -203,7 +203,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                     tabelaDataAPS.reduce(
                                         (
                                             acumulador: { [x: string]: number },
-                                            item: Record<string, string>,
+                                            item: Record<string, string>
                                         ) => {
                                             if (
                                                 item.prazo_proxima_afericao_pa !==
@@ -220,8 +220,8 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Apenas a aferição de PA a fazer",
                                 stack: "stack",
@@ -232,7 +232,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                     tabelaDataAPS.reduce(
                                         (
                                             acumulador: { [x: string]: number },
-                                            item: Record<string, string>,
+                                            item: Record<string, string>
                                         ) => {
                                             if (
                                                 item.prazo_proxima_consulta !==
@@ -249,8 +249,8 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                     ] || 0) + 1;
                                             return acumulador;
                                         },
-                                        {},
-                                    ),
+                                        {}
+                                    )
                                 ),
                                 name: "Os dois a fazer",
                                 stack: "stack",
@@ -265,9 +265,9 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                 new Set(
                                     tabelaDataAPS.map(
                                         (item: Record<string, string>) =>
-                                            item.equipe_nome_cadastro,
-                                    ),
-                                ),
+                                            item.equipe_nome_cadastro
+                                    )
+                                )
                             ),
                             type: "category",
                             axisLabel: {
@@ -298,10 +298,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: number,
-                                                    item: Record<
-                                                        string,
-                                                        string
-                                                    >,
+                                                    item: Record<string, string>
                                                 ) => {
                                                     return item.prazo_proxima_consulta ===
                                                         "Em dia" &&
@@ -310,7 +307,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -322,10 +319,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: number,
-                                                    item: Record<
-                                                        string,
-                                                        string
-                                                    >,
+                                                    item: Record<string, string>
                                                 ) => {
                                                     return item.prazo_proxima_consulta !==
                                                         "Em dia" &&
@@ -334,7 +328,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -346,10 +340,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: number,
-                                                    item: Record<
-                                                        string,
-                                                        string
-                                                    >,
+                                                    item: Record<string, string>
                                                 ) => {
                                                     return item.prazo_proxima_afericao_pa !==
                                                         "Em dia" &&
@@ -358,7 +349,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length
@@ -370,10 +361,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                             (tabelaDataAPS.reduce(
                                                 (
                                                     acumulador: number,
-                                                    item: Record<
-                                                        string,
-                                                        string
-                                                    >,
+                                                    item: Record<string, string>
                                                 ) => {
                                                     return item.prazo_proxima_consulta !==
                                                         "Em dia" &&
@@ -382,7 +370,7 @@ export const HipertensaoAPS: React.FC<HipertensaoAPSType> = ({
                                                         ? acumulador + 1
                                                         : acumulador;
                                                 },
-                                                0,
+                                                0
                                             ) *
                                                 100) /
                                             tabelaDataAPS.length

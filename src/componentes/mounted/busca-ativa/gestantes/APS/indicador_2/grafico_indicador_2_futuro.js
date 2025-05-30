@@ -13,12 +13,12 @@ const quadrisFuturos = dataAtual
     : [];
 const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, " e ");
 const quadrisFuturosFiltro = quadrisFuturos.map(
-    (item) => `${item.ano}.Q${item.quadrimestre}`,
+    (item) => `${item.ano}.Q${item.quadrimestre}`
 );
 
 const CardsGraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
 
     return dataQuadriFuturo ? (
@@ -84,7 +84,7 @@ const CardsGraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
 
 const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
     return tabelaDataAPS ? (
         <>
@@ -119,7 +119,7 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Os dois exames identificados",
                             stack: "stack",
@@ -133,7 +133,7 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Nenhum exame identificado",
                             stack: "stack",
@@ -147,7 +147,7 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Ex. de Sífilis não identificado",
                             stack: "stack",
@@ -161,7 +161,7 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Ex. de HIV não identificado",
                             stack: "stack",
@@ -174,9 +174,7 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriFuturo.map(
-                                    (item) => item.equipe_nome,
-                                ),
+                                dataQuadriFuturo.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -211,13 +209,13 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -231,13 +229,13 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -251,13 +249,13 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -271,13 +269,13 @@ const GraficoIndicadorDoisQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },

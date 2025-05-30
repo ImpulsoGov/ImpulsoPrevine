@@ -22,7 +22,7 @@ export const DATA_BY_TYPE: Record<CardType, CardsData[]> = {
 export function validateCardType(type: string): asserts type is CardType {
     if (!VALID_CARD_TYPES.includes(type)) {
         throw new InvalidCardTypeError(
-            "Tipo de card deve ser `external` ou `internal`",
+            "Tipo de card deve ser `external` ou `internal`"
         );
     }
 }
@@ -32,7 +32,7 @@ export function getDataByType(type: CardType): CardsData[] {
 
     if (!data) {
         throw new InvalidCardTypeError(
-            `Dados não encontrados para o tipo de card: ${type}`,
+            `Dados não encontrados para o tipo de card: ${type}`
         );
     }
 

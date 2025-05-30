@@ -9,7 +9,7 @@ export const rotasPublicas = [
     "/blog",
     "/dadoPublicos",
     "/analise",
-    "/termos-uso-e-privacidade"
+    "/termos-uso-e-privacidade",
 ];
 
 export const rotasProtegidas = [
@@ -32,7 +32,7 @@ export const rotasProtegidas = [
     "/lista-nominal",
     "/dadoPublicos",
     "/analise",
-    "/termos-uso-e-privacidade"
+    "/termos-uso-e-privacidade",
 ];
 
 const ExibirURL = [

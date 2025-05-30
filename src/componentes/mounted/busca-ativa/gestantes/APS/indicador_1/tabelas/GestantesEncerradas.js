@@ -66,8 +66,8 @@ const IndicadorUmTabelaGestantesEncerradas = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesEncerradas.map(
-                                (item) => item.equipe_nome_e_ine,
-                            ),
+                                (item) => item.equipe_nome_e_ine
+                            )
                         ),
                     ],
                     filtro: "equipe_nome_e_ine",
@@ -77,8 +77,8 @@ const IndicadorUmTabelaGestantesEncerradas = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesEncerradas.map(
-                                (item) => item.gestacao_quadrimestre,
-                            ),
+                                (item) => item.gestacao_quadrimestre
+                            )
                         ),
                     ],
                     filtro: "gestacao_quadrimestre",
@@ -99,15 +99,15 @@ const IndicadorUmTabelaGestantesEncerradas = ({
                 tabelaDataAPSGestantesEncerradas.reduce(
                     (maisRecente, objeto) => {
                         const dataAtual = new Date(
-                            objeto.dt_registro_producao_mais_recente,
+                            objeto.dt_registro_producao_mais_recente
                         );
                         const dataMaisRecenteAnterior = new Date(maisRecente);
                         return dataAtual > dataMaisRecenteAnterior
                             ? objeto.dt_registro_producao_mais_recente
                             : maisRecente;
                     },
-                    "2000-01-01",
-                ),
+                    "2000-01-01"
+                )
             ).toLocaleString("pt-BR", {
                 timeZone: "UTC",
                 year: "numeric",

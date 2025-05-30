@@ -9,7 +9,7 @@ const FormConsultoria = dynamic<{
     button: string;
     theme: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.FormConsultoria),
+    import("@impulsogov/design-system").then((mod) => mod.FormConsultoria)
 );
 const TituloSmallTexto = dynamic<{
     supertitulo: string;
@@ -18,7 +18,7 @@ const TituloSmallTexto = dynamic<{
     botao: { label: string; url: string };
     imagem: { posicao: string | null; url: string };
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto),
+    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto)
 );
 const ParceriasTexto = dynamic<{
     text: string;
@@ -37,7 +37,7 @@ const NovoTituloTexto = dynamic<{
     titulo: string;
     texto: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto),
+    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto)
 );
 const ImagensFull2 = dynamic<{
     imagem: string;
