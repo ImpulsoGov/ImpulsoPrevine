@@ -4,32 +4,19 @@ import type { SituacaoPorIndicador } from "@/types/inicio";
 import { cargoTransform } from "@helpers/cargoTransform";
 import dynamic from "next/dynamic";
 import { AlertSnackBar } from "@/componentes/mounted/inicio/snackbar/AlertSnackBar";
+import { Greeting } from "@impulsogov/design-system";
+import { Texto } from "@impulsogov/design-system";
 
 const CardsGrid = dynamic<{
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
 }>(() => import("./CardsGrid").then((mod) => mod.CardsGrid), { ssr: false });
-const Greeting = dynamic<{
-    cargo: string;
-    greeting: string;
-    municipio_uf: string;
-    nome_usuario: string;
-    margin: string;
-}>(() => import("@impulsogov/design-system").then((mod) => mod.Greeting));
-const Texto = dynamic<{
-    texto: string;
-    color: string;
-    fontSize: string;
-    fontWeight: string;
-    lineHeight: string;
-    margin?: string;
-}>(() => import("@impulsogov/design-system").then((mod) => mod.Texto));
 
 import style from "./Inicio.module.css";
 
-interface InicioProps {
+type InicioProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
-}
+};
 
 export const Inicio: React.FC<InicioProps> = ({
     situacaoPorIndicador = null,
@@ -42,8 +29,8 @@ export const Inicio: React.FC<InicioProps> = ({
                     <Greeting
                         cargo={cargoTransform(session.user.cargo)}
                         greeting="Boas vindas"
-                        municipio_uf={session?.user.municipio}
-                        nome_usuario={session?.user.nome}
+                        municipio_uf={session.user.municipio}
+                        nome_usuario={session.user.nome}
                         margin="45px 0"
                     />
                 </div>
