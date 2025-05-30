@@ -7,7 +7,7 @@ import mixpanel from "mixpanel-browser";
 import type { Session } from "next-auth";
 import dynamic from "next/dynamic";
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 import { usePathname, useRouter } from "next/navigation";
 import type React from "react";
@@ -22,7 +22,7 @@ const CitoEquipe = dynamic(
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 
 interface CitoProps {
@@ -48,7 +48,7 @@ export const Cito: React.FC<CitoProps> = ({
     const Voltar = () => window.history.go(voltarGatilho * -2);
     useEffect(() => {
         router.push(
-            `${path}?aba=${""}&sub_aba=${activeTabIndex}&visao=${visao}`,
+            `${path}?aba=${""}&sub_aba=${activeTabIndex}&visao=${visao}`
         );
     }, [activeTabIndex, activeTitleTabIndex]);
     useEffect(() => {

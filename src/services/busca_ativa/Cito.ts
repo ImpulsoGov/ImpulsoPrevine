@@ -4,7 +4,7 @@ import { API_URL_DADOS_NOMINAIS } from "../../constants/API_URL";
 const tabelaCitoEquipe = async (
     municipioIdSus: string,
     equipe: string,
-    token: string,
+    token: string
 ) => {
     const config = {
         method: "get",
@@ -33,7 +33,7 @@ export type TabelaResponse = Record<
 
 const tabelaCitoAps = async (
     municipioIdSus: string,
-    token: string,
+    token: string
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",

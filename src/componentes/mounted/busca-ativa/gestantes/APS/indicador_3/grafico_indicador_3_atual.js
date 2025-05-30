@@ -14,7 +14,7 @@ const CardsGraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS.filter(
         (item) =>
             item.gestacao_quadrimestre ==
-            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`,
+            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`
     );
     return dataQuadriAtual ? (
         <>
@@ -69,7 +69,7 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS.filter(
         (item) =>
             item.gestacao_quadrimestre ==
-            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`,
+            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`
     );
     return dataQuadriAtual ? (
         <>
@@ -106,7 +106,7 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes com atendimento odontológico realizado",
                             stack: "stack",
@@ -124,7 +124,7 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes sem atendimento odontológico realizado",
                             stack: "stack",
@@ -137,7 +137,7 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriAtual.map((item) => item.equipe_nome),
+                                dataQuadriAtual.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -176,13 +176,13 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -200,13 +200,13 @@ const GraficoIndicadorTresQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },

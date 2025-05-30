@@ -16,7 +16,7 @@ export function validateSortOrder(sortOrder: string): void {
 
     if (!isValidSort) {
         throw new BadRequestError(
-            "Valor de ´ordem´ inválido, deve ser igual a asc ou desc",
+            "Valor de ´ordem´ inválido, deve ser igual a asc ou desc"
         );
     }
 }
@@ -36,7 +36,7 @@ const parseDate = (dateStr: string): Date => {
 const compareValues = (
     a: ValidValue,
     b: ValidValue,
-    sortOrder: SortOrder,
+    sortOrder: SortOrder
 ): number => {
     const isSortOrderAsc = sortOrder === "asc";
     // Se os valores forem iguais, não é necessário ordenar
@@ -65,6 +65,6 @@ const compareValues = (
 
 export function sortData({ data, field, sortOrder }: SortConfig): DataItem[] {
     return [...data].sort((a, b) =>
-        compareValues(a[field], b[field], sortOrder),
+        compareValues(a[field], b[field], sortOrder)
     );
 }

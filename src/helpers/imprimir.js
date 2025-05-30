@@ -13,7 +13,7 @@ export const Imprimir = (escala, child, lista, aba, subAba = "") => {
         const janelaImpressao = window.open(
             "",
             "",
-            `width=${largura},height=${altura}`,
+            `width=${largura},height=${altura}`
         );
         const conteudo = ReactDOMServer.renderToString(child);
         janelaImpressao.document.write(`

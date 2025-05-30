@@ -23,7 +23,7 @@ interface User {
 }
 const cargoNome = async (
     token: string,
-    cpf: string,
+    cpf: string
 ): Promise<{ cargo: string; nome: string }> => {
     const config = {
         method: "get",
@@ -41,7 +41,7 @@ const cargoNome = async (
 };
 
 const getToken = async (
-    credentials: Credentials,
+    credentials: Credentials
 ): Promise<Awaitable<User | null>> => {
     const data = new FormData();
     data.append("username", credentials.username);
@@ -58,7 +58,7 @@ const getToken = async (
         .then(async (response) => {
             const cargonome = await cargoNome(
                 response.data.access_token,
-                credentials.username.replace(/\D/g, ""),
+                credentials.username.replace(/\D/g, "")
             );
             return {
                 ...response.data,
@@ -82,9 +82,7 @@ export const nextAuthOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" },
             },
             async authorize(
-                credentials:
-                    | Record<"username" | "password", string>
-                    | undefined,
+                credentials: Record<"username" | "password", string> | undefined
             ) {
                 if (!credentials) return null;
                 const token = await getToken(credentials);
@@ -115,7 +113,7 @@ export const nextAuthOptions: NextAuthOptions = {
             if (token.user) session.user = token.user as User;
             if (token?.expires)
                 session.expires = new Date(
-                    token.expires as number,
+                    token.expires as number
                 ).toISOString();
             return Promise.resolve(session);
         },

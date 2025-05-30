@@ -10,7 +10,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 
 const DiabetesAPS = dynamic(
@@ -18,14 +18,14 @@ const DiabetesAPS = dynamic(
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 const DiabetesEquipe = dynamic(
     () => import("./DiabetesEquipe").then((mod) => mod.DiabetesEquipe),
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 
 interface DiabetesProps {

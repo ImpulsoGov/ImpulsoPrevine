@@ -8,15 +8,15 @@ const CardsEquipe = ({ tabelaDataEquipe }) =>
                     valor: [
                         ...new Set(
                             tabelaDataEquipe.map(
-                                (item) => item.chave_id_gestacao,
-                            ),
+                                (item) => item.chave_id_gestacao
+                            )
                         ),
                     ].length,
                 },
                 {
                     descricao: "Total de gestantes ativas",
                     valor: tabelaDataEquipe.filter(
-                        (item) => item.id_status_usuario == 8,
+                        (item) => item.id_status_usuario == 8
                     ).length,
                 },
                 {

@@ -10,7 +10,7 @@ export const Tratamento = async (data) => {
                 .map(
                     (item) =>
                         item.charAt(0).toUpperCase() +
-                        item.slice(1).toLowerCase(),
+                        item.slice(1).toLowerCase()
                 )
                 .join(" ")
                 .trim();
@@ -96,6 +96,6 @@ export const Validacao = async (data) => {
 
 export const BuscarIdSusPorNome = (nome) => {
     return MUNICIPIOS.find(
-        (municipio) => `${municipio.nome} - ${municipio.uf}` === nome,
+        (municipio) => `${municipio.nome} - ${municipio.uf}` === nome
     ).municipioIdSus;
 };

@@ -13,12 +13,12 @@ const quadrisFuturos = dataAtual
     : [];
 const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, " e ");
 const quadrisFuturosFiltro = quadrisFuturos.map(
-    (item) => `${item.ano}.Q${item.quadrimestre}`,
+    (item) => `${item.ano}.Q${item.quadrimestre}`
 );
 
 const CardsGraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS?.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
 
     return tabelaDataAPS ? (
@@ -88,7 +88,7 @@ const CardsGraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
 
 const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
     return tabelaDataAPS ? (
         <>
@@ -127,7 +127,7 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes com 1ª consulta após a 12ª semana",
                             stack: "stack",
@@ -147,7 +147,7 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes com menos de 6 consultas (1ª consulta até a 12ª semana)",
                             stack: "stack",
@@ -167,7 +167,7 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes com mais de 6 consultas (1ª consulta até a 12ª semana)",
                             stack: "stack",
@@ -180,9 +180,7 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriFuturo.map(
-                                    (item) => item.equipe_nome,
-                                ),
+                                dataQuadriFuturo.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -221,13 +219,13 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -247,13 +245,13 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -273,13 +271,13 @@ const GraficoIndicadorUmQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },

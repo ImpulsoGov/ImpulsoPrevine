@@ -36,7 +36,7 @@ describe("isValid", () => {
             PRE_NATAL_6_CONSULTAS: { total: 0, pendente: 0 },
         };
         expect(isValid(situacao, "PRE_NATAL_6_CONSULTAS" as Indicadores)).toBe(
-            true,
+            true
         );
     });
 
@@ -46,7 +46,7 @@ describe("isValid", () => {
             PRE_NATAL_ODONTO: { total: null, pendente: null },
         };
         expect(isValid(situacao, "PRE_NATAL_ODONTO" as Indicadores)).toBe(
-            false,
+            false
         );
     });
 
@@ -56,7 +56,7 @@ describe("isValid", () => {
             PRE_NATAL_SIFILIS_HIV: { total: undefined, pendente: undefined },
         };
         expect(isValid(situacao, "PRE_NATAL_SIFILIS_HIV" as Indicadores)).toBe(
-            false,
+            false
         );
     });
 });

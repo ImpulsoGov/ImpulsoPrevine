@@ -13,7 +13,7 @@ const GraficoHistoricoComSeletor = ({
     const handleCheckboxChange = (value) => {
         if (selectedIndicadores.includes(value)) {
             setSelectedIndicadores((prevSelected) =>
-                prevSelected.filter((indicador) => indicador !== value),
+                prevSelected.filter((indicador) => indicador !== value)
             );
         } else {
             setSelectedIndicadores((prevSelected) => [...prevSelected, value]);
@@ -35,9 +35,7 @@ const GraficoHistoricoComSeletor = ({
                     <div className={styles.checkboxes}>
                         {[
                             ...new Set(
-                                GrafHistorico.map(
-                                    (item) => item.indicador_nome,
-                                ),
+                                GrafHistorico.map((item) => item.indicador_nome)
                             ),
                         ].map((indicador, index) => (
                             <label key={index}>
@@ -45,7 +43,7 @@ const GraficoHistoricoComSeletor = ({
                                     type="checkbox"
                                     value={indicador}
                                     checked={selectedIndicadores.includes(
-                                        indicador,
+                                        indicador
                                     )}
                                     onChange={(e) =>
                                         handleCheckboxChange(e.target.value)
@@ -75,7 +73,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
 
     useEffect(() => {
         const selectedData = GrafHistorico.filter((item) =>
-            selectedIndicadores.includes(item.indicador_nome),
+            selectedIndicadores.includes(item.indicador_nome)
         );
 
         const periodos = [
@@ -87,7 +85,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
                 const dataForPeriod = selectedData.find(
                     (item) =>
                         item.periodo_codigo === periodo &&
-                        item.indicador_nome === indicador,
+                        item.indicador_nome === indicador
                 );
                 return dataForPeriod
                     ? dataForPeriod.indicador_nota_porcentagem
@@ -111,7 +109,7 @@ const GraficoHistoricoDesempenho = ({ GrafHistorico }) => {
             setSelectedIndicadores([
                 ...new Set(GrafHistorico.map((item) => item.indicador_nome)),
             ]),
-        [GrafHistorico],
+        [GrafHistorico]
     );
     const option = {
         tooltip: {

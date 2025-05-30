@@ -9,4 +9,6 @@ export type ProfileId = typeof PROFILE_ID;
 export type ProfileIdKey = keyof ProfileId;
 export type ProfileIdValue = ProfileId[ProfileIdKey];
 
-export type CoordinatorProfile = typeof PROFILE_ID.COAPS | typeof PROFILE_ID.COEQ;
+export type CoordinatorProfile =
+    | typeof PROFILE_ID.COAPS
+    | typeof PROFILE_ID.COEQ;

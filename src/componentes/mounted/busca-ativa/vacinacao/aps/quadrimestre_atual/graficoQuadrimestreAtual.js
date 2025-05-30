@@ -9,7 +9,7 @@ import {
 } from "../../../../../../utils/quadrimestre";
 const CardsGraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS?.filter(
-        (item) => item.id_status_quadrimestre == 1,
+        (item) => item.id_status_quadrimestre == 1
     );
     const dataAtual = Date.now();
     const dadosQuadriAtual = dataAtual
@@ -103,7 +103,7 @@ const CardsGraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
 
 const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS?.filter(
-        (item) => item.id_status_quadrimestre == 1,
+        (item) => item.id_status_quadrimestre == 1
     );
     return tabelaDataAPS ? (
         <>
@@ -142,7 +142,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com os dois esquemas vacinais completos",
                             stack: "stack",
@@ -168,7 +168,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com um ou os dois esquemas vacinais em andamento",
                             stack: "stack",
@@ -186,7 +186,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com pelo menos uma dose em atraso",
                             stack: "stack",
@@ -204,7 +204,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com os dois esquemas vacinais não iniciados",
                             stack: "stack",
@@ -217,7 +217,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriAtual.map((item) => item.equipe_nome),
+                                dataQuadriAtual.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -254,7 +254,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.length
@@ -287,7 +287,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             -100) /
                                             dataQuadriAtual.length +
@@ -310,7 +310,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.length
@@ -332,7 +332,7 @@ const GraficoAPSQuadrimestreAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.length

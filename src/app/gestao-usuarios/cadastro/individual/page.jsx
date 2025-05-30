@@ -32,7 +32,7 @@ const GestaoDeUsuarios = () => {
     useEffect(() => {
         if (session?.user?.access_token) {
             listarPerfis(session?.user?.access_token).then((perfis) =>
-                setAutorizacoes(perfis),
+                setAutorizacoes(perfis)
             );
 
             listarUsuarios(session?.user?.access_token).then((usuarios) => {
@@ -92,12 +92,12 @@ const GestaoDeUsuarios = () => {
 
     const closeModalAutorizacoes = useCallback(
         () => setShowModalAutorizacoes(false),
-        [],
+        []
     );
 
     const closeModalCadastro = useCallback(
         () => setShowModalCadastro(false),
-        [],
+        []
     );
 
     const openModalCadastro = useCallback(() => setShowModalCadastro(true), []);
@@ -107,16 +107,16 @@ const GestaoDeUsuarios = () => {
             const autorizacoesIds = autorizacoesSelecionadas.map(
                 (autorizacao) => {
                     const { id } = autorizacoes.find(
-                        ({ descricao }) => descricao === autorizacao,
+                        ({ descricao }) => descricao === autorizacao
                     );
 
                     return id;
-                },
+                }
             );
 
             return autorizacoesIds;
         },
-        [autorizacoes],
+        [autorizacoes]
     );
 
     const validarAutorizacoesSelecionadas = useCallback(
@@ -125,7 +125,7 @@ const GestaoDeUsuarios = () => {
                 throw new Error(MENSAGENS_DE_ERRO.autorizacoesVazias);
             }
         },
-        [],
+        []
     );
 
     const getDescricaoAutorizacoes = useCallback((dadosAutorizacoes) => {
@@ -136,24 +136,24 @@ const GestaoDeUsuarios = () => {
         async ({ selectedRowId, selectedRowAutorizacoes }) => {
             try {
                 const { usuarioId } = rows.find(
-                    ({ id }) => id === selectedRowId,
+                    ({ id }) => id === selectedRowId
                 );
 
                 validarAutorizacoesSelecionadas(selectedRowAutorizacoes);
 
                 const autorizacoesIds = getSelectedAutorizacoesIds(
-                    selectedRowAutorizacoes,
+                    selectedRowAutorizacoes
                 );
                 const response = await atualizarAutorizacoes(
                     usuarioId,
                     autorizacoesIds,
-                    session?.user?.access_token,
+                    session?.user?.access_token
                 );
                 const novasAutorizacoes = getDescricaoAutorizacoes(response);
                 const linhasAtualizadas = rows.map((row) =>
                     row.id === selectedRowId
                         ? { ...row, autorizacoes: novasAutorizacoes }
-                        : row,
+                        : row
                 );
 
                 setRows(linhasAtualizadas);
@@ -172,7 +172,7 @@ const GestaoDeUsuarios = () => {
             getDescricaoAutorizacoes,
             session?.user?.access_token,
             closeModalAutorizacoes,
-        ],
+        ]
     );
 
     const validarCamposObrigatorios = useCallback((dados) => {
@@ -201,16 +201,16 @@ const GestaoDeUsuarios = () => {
                         whatsapp,
                         municipioIdSus: dados.municipioIdSus,
                     },
-                    session?.user?.access_token,
+                    session?.user?.access_token
                 );
                 const { id_usuario: usuarioId } = usuarioCadastrado;
                 const autorizacoesIds = getSelectedAutorizacoesIds(
-                    dados.autorizacoesSelecionadas,
+                    dados.autorizacoesSelecionadas
                 );
                 const autorizacoesUsuario = await atualizarAutorizacoes(
                     usuarioId,
                     autorizacoesIds,
-                    session?.user?.access_token,
+                    session?.user?.access_token
                 );
 
                 const novaLinha = {
@@ -224,7 +224,7 @@ const GestaoDeUsuarios = () => {
                     telefone: usuarioCadastrado.telefone,
                     equipe: usuarioCadastrado.equipe,
                     perfilAtivo: checarPerfilAtivo(
-                        usuarioCadastrado["perfil_ativo"],
+                        usuarioCadastrado["perfil_ativo"]
                     ),
                     autorizacoes: getDescricaoAutorizacoes(autorizacoesUsuario),
                     editarAutorizacoes: openModalAutorizacoes,
@@ -248,7 +248,7 @@ const GestaoDeUsuarios = () => {
             getDescricaoAutorizacoes,
             validarCamposObrigatorios,
             session?.user?.access_token,
-        ],
+        ]
     );
 
     if (session) {

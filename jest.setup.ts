@@ -1,2 +1,2 @@
 import "@testing-library/jest-dom";
-require('dotenv').config();
+require("dotenv").config();

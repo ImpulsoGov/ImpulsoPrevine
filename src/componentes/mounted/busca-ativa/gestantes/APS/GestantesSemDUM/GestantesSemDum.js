@@ -60,8 +60,8 @@ const TabelaGestantesSemDUM = ({
                     data: [
                         ...new Set(
                             tabelaDataAPSGestantesSemDUM.map(
-                                (item) => item.equipe_nome_e_ine,
-                            ),
+                                (item) => item.equipe_nome_e_ine
+                            )
                         ),
                     ],
                     filtro: "equipe_nome_e_ine",
@@ -87,13 +87,13 @@ const TabelaGestantesSemDUM = ({
             atualizacao={new Date(
                 tabelaDataAPSGestantesSemDUM.reduce((maisRecente, objeto) => {
                     const dataAtual = new Date(
-                        objeto.dt_registro_producao_mais_recente,
+                        objeto.dt_registro_producao_mais_recente
                     );
                     const dataMaisRecenteAnterior = new Date(maisRecente);
                     return dataAtual > dataMaisRecenteAnterior
                         ? objeto.dt_registro_producao_mais_recente
                         : maisRecente;
-                }, "2000-01-01"),
+                }, "2000-01-01")
             ).toLocaleString("pt-BR", {
                 timeZone: "UTC",
                 year: "numeric",

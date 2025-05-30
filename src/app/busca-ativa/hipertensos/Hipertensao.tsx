@@ -10,7 +10,7 @@ import type { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 
 const HipertensaoAPS = dynamic(
@@ -18,14 +18,14 @@ const HipertensaoAPS = dynamic(
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 const HipertensaoEquipe = dynamic(
     () => import("./HipertensaoEquipe").then((mod) => mod.HipertensaoEquipe),
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 
 interface HipertensaoProps {

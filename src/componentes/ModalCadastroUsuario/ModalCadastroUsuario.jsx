@@ -26,7 +26,7 @@ function ModalCadastroUsuario({
     const [equipe, setEquipe] = useState("");
     const [whatsapp, setWhatsapp] = useState(false);
     const [autorizacoesSelecionadas, setAutorizacoesSelecionadas] = useState(
-        [],
+        []
     );
 
     const handleAutorizacoesChange = useCallback((event) => {
@@ -36,7 +36,7 @@ function ModalCadastroUsuario({
 
         // On autofill we get a stringified value.
         setAutorizacoesSelecionadas(
-            typeof value === "string" ? value.split(", ") : value,
+            typeof value === "string" ? value.split(", ") : value
         );
     }, []);
 
@@ -195,7 +195,7 @@ function ModalCadastroUsuario({
                                 whatsapp,
                                 autorizacoesSelecionadas,
                             },
-                            limparInputs,
+                            limparInputs
                         )
                     }
                 />

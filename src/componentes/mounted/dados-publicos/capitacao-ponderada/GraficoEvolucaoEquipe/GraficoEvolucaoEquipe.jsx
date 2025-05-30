@@ -42,7 +42,7 @@ const GraficoEvolucaoEquipecomSeletor = ({
     const handleCheckboxChange = (value) => {
         if (selectedIndicadores.includes(value)) {
             setSelectedIndicadores((prevSelected) =>
-                prevSelected.filter((indicador) => indicador !== value),
+                prevSelected.filter((indicador) => indicador !== value)
             );
         } else {
             setSelectedIndicadores((prevSelected) => [...prevSelected, value]);
@@ -71,8 +71,8 @@ const GraficoEvolucaoEquipecomSeletor = ({
                             {[
                                 ...new Set(
                                     GrafEvolucao.map(
-                                        (item) => item.equipe_status,
-                                    ),
+                                        (item) => item.equipe_status
+                                    )
                                 ),
                             ].map((indicador, index) => (
                                 <label key={index}>
@@ -80,7 +80,7 @@ const GraficoEvolucaoEquipecomSeletor = ({
                                         type="checkbox"
                                         value={indicador}
                                         checked={selectedIndicadores.includes(
-                                            indicador,
+                                            indicador
                                         )}
                                         onChange={(e) =>
                                             handleCheckboxChange(e.target.value)
@@ -122,7 +122,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
             GrafEvolucaoFiltrado.map((item) => {
                 const dataFormatada = formatarData(item.data_inicio);
                 return dataFormatada;
-            }),
+            })
         ),
     ];
 
@@ -130,7 +130,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
 
     useEffect(() => {
         const selectedData = GrafEvolucaoFiltrado.filter((item) =>
-            selectedIndicadores.includes(item.equipe_status),
+            selectedIndicadores.includes(item.equipe_status)
         );
 
         const periodos = [
@@ -141,11 +141,11 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
             (indicador) => {
                 const dadosPorIndicador = periodos.map((periodo) => {
                     const dataForPeriod = selectedData.filter(
-                        (item) => item.data_inicio === periodo,
+                        (item) => item.data_inicio === periodo
                     );
                     const soma = dataForPeriod.reduce(
                         (acc, curr) => acc + curr[indicador],
-                        0,
+                        0
                     );
                     return soma;
                 });
@@ -157,7 +157,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
                     symbol: "circle",
                     symbolSize: 8,
                 };
-            },
+            }
         );
 
         newSeries.push({
@@ -181,7 +181,7 @@ const GraficoEvolucaoEquipe = ({ GrafEvolucao }) => {
             setSelectedIndicadores([
                 ...new Set(GrafEvolucao.map((item) => item.equipe_status)),
             ]),
-        [GrafEvolucao],
+        [GrafEvolucao]
     );
 
     const option = {

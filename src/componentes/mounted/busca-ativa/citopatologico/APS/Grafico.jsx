@@ -54,7 +54,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Coleta em dia",
                             stack: "stack",
@@ -68,7 +68,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Nunca realizou coleta",
                             stack: "stack",
@@ -82,7 +82,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Coleta antes dos 25 anos de idade",
                             stack: "stack",
@@ -96,7 +96,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Vence neste quadrimestre",
                             stack: "stack",
@@ -110,7 +110,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Coleta vencida",
                             stack: "stack",
@@ -123,7 +123,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                     xAxis: {
                         data: [
                             ...new Set(
-                                tabelaDataAPS.map((item) => item.equipe_nome),
+                                tabelaDataAPS.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -165,7 +165,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         tabelaDataAPS.length
@@ -181,7 +181,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         tabelaDataAPS.length
@@ -197,7 +197,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         tabelaDataAPS.length
@@ -213,7 +213,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         tabelaDataAPS.length
@@ -229,7 +229,7 @@ export const Grafico = ({ tabelaDataAPS }) =>
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         tabelaDataAPS.length

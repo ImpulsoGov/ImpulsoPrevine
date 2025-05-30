@@ -27,7 +27,7 @@ const NovoTituloTexto = dynamic<{
     titulo: string;
     texto: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto),
+    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto)
 );
 
 interface CardData {
@@ -128,32 +128,31 @@ export const Analise: React.FC<AnaliseProps> = ({ cardsData }) => {
             </div>
 
             <style jsx>{`
-            .cardGrid {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-between;
-              padding: 40px;
-             
-            }
-    
-            .cardContainer {
-              width: calc(33.33% - 20px);
-              position: relative;
-              margin-bottom: 20px;
-            }
-    
-            @media (max-width: 1050px) {
-              .cardGrid {
-                flex-direction: column;
-                align-items: center;
-              }
-    
-              .cardContainer {
-                width: 100%;
-                padding: 20px;
-              }
-            }
-          `}</style>
+                .cardGrid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding: 40px;
+                }
+
+                .cardContainer {
+                    width: calc(33.33% - 20px);
+                    position: relative;
+                    margin-bottom: 20px;
+                }
+
+                @media (max-width: 1050px) {
+                    .cardGrid {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .cardContainer {
+                        width: 100%;
+                        padding: 20px;
+                    }
+                }
+            `}</style>
             <div style={{ paddingBottom: "105px" }}> </div>
         </div>
     );

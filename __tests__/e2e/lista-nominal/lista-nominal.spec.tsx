@@ -6,16 +6,21 @@ const pageUrl = `${baseUrl}/lista-nominal`;
 
 const login = async ({ page }: { page: Page }) => {
     await page.goto(`${baseUrl}/`);
-    await page.locator('div[class*="__NavBarLogin"]').filter({ hasText: "ACESSO RESTRITO" }).click();
-    await page.getByRole('button', { name: 'ENTRAR' }).click();
-    await page.getByRole('textbox', { name: 'CPF' }).fill(process.env.TEST_USER || "000.000.000-00");
     await page
-        .getByRole('textbox', { name: 'Senha' })
+        .locator('div[class*="__NavBarLogin"]')
+        .filter({ hasText: "ACESSO RESTRITO" })
+        .click();
+    await page.getByRole("button", { name: "ENTRAR" }).click();
+    await page
+        .getByRole("textbox", { name: "CPF" })
+        .fill(process.env.TEST_USER || "000.000.000-00");
+    await page
+        .getByRole("textbox", { name: "Senha" })
         .fill(process.env.TEST_USER_PASSWORD || "123456");
-    await Promise.all([
-        page.getByRole('button', { name: 'ENTRAR' }).click()
-    ]);
-    await expect(page.getByText("Boas vindas", )).toBeVisible({ timeout: 100000 });
+    await Promise.all([page.getByRole("button", { name: "ENTRAR" }).click()]);
+    await expect(page.getByText("Boas vindas")).toBeVisible({
+        timeout: 100000,
+    });
 };
 
 test.describe("Testes de renderização do componente Table no ListContainer", () => {

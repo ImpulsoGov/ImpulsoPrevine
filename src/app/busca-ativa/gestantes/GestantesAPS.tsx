@@ -304,7 +304,7 @@ export const GestantesAPS = ({
     const quadrisFuturosFormatados = dataAtual
         ? formatarQuadrimestres(
               obterDadosProximosQuadrimestres(dataAtual),
-              " + ",
+              " + "
           )
         : "";
 

@@ -7,7 +7,7 @@ import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
 const Gestantes = dynamic(() =>
-    import("./Gestantes").then((mod) => mod.Gestantes),
+    import("./Gestantes").then((mod) => mod.Gestantes)
 );
 
 const GestantesPage = async () => {
@@ -16,14 +16,14 @@ const GestantesPage = async () => {
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         gestantesTabelaDataAps = await tabelaGestantesAPS(
             session?.user?.municipio_id_sus,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     let gestantesTabelaDataEquipe: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(9))
         gestantesTabelaDataEquipe = await tabelaGestantesEquipe(
             session?.user?.municipio_id_sus,
             session?.user?.equipe,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     return (
         <Gestantes

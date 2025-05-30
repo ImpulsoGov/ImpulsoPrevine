@@ -7,21 +7,21 @@ import dynamic from "next/dynamic";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 const VacinacaoAPS = dynamic(
     () => import("./VacinacaoAPS").then((mod) => mod.VacinacaoAPS),
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 const VacinacaoEquipe = dynamic(
     () => import("./VacinacaoEquipe").then((mod) => mod.VacinacaoEquipe),
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 
 interface VacinacaoProps {

@@ -7,7 +7,7 @@ const modulosDataTransform = async (ConteudosCMS, TrilhaID, userID, token) => {
     const modulosLiberadosRes = await acessoModulosTrilhasClient(
         userID,
         TrilhaID,
-        token,
+        token
     );
     const modulosLiberados = modulosLiberadosRes
         .map((item) => item.modulos[0])
@@ -32,16 +32,16 @@ const conteudosDataTransform = async (
     conteudosCMS,
     trilhaID,
     userID,
-    token,
+    token
 ) => {
     const conteudos = [];
     const avaliacoesUsuario = await consultarAvaliacaoConclusaoPorUsuario(
         userID,
-        token,
+        token
     );
     const checkSobre =
         avaliacoesUsuario.filter(
-            (item) => item.codigo_conteudo.slice(3, 10) == "MOD0-C0",
+            (item) => item.codigo_conteudo.slice(3, 10) == "MOD0-C0"
         ).length > 0;
     for (let i = 0; i < conteudosCMS.length; i++) {
         const moduloID = conteudosCMS[i].moduloId;
@@ -63,8 +63,7 @@ const conteudosDataTransform = async (
             const Concluido = avaliacoesUsuario
                 ? avaliacoesUsuario?.filter(
                       (item) =>
-                          item.codigo_conteudo ==
-                          modulo.conteudos[index].codigo,
+                          item.codigo_conteudo == modulo.conteudos[index].codigo
                   )
                 : false;
             const item = {
@@ -80,10 +79,10 @@ const conteudosDataTransform = async (
         }
     }
     const siglaTrilha = trilhasIDSigla.trilhas.filter(
-        (item) => item.ID == trilhaID,
+        (item) => item.ID == trilhaID
     )[0]?.sigla;
     const ultimoModulo = avaliacoesUsuario.filter(
-        (item) => item?.codigo_conteudo.slice(3, 10) == "MOD0-C0",
+        (item) => item?.codigo_conteudo.slice(3, 10) == "MOD0-C0"
     )[0]
         ? Math.max(
               ...[
@@ -92,11 +91,11 @@ const conteudosDataTransform = async (
                           .filter(
                               (item) =>
                                   item.codigo_conteudo.slice(0, 2) ==
-                                  siglaTrilha,
+                                  siglaTrilha
                           )
-                          .map((item) => Number(item.codigo_conteudo[6])),
+                          .map((item) => Number(item.codigo_conteudo[6]))
                   ),
-              ],
+              ]
           )
         : 0;
     return [conteudos, ultimoModulo, checkSobre];
@@ -106,13 +105,13 @@ const progresso = async (ConteudosCMS, userID, token) => {
     //Modulos Concluidos pelo usuario
     const modulosUsuario = await consultarAvaliacaoConclusaoPorUsuario(
         userID,
-        token,
+        token
     );
     const UsuarioConclusoes = (codigoTrilha, modulos_usuario, modulosID) => {
         return modulosID.map((modulo) => {
             const cont = modulos_usuario
                 ?.filter(
-                    (item) => item.codigo_conteudo.slice(0, 2) == codigoTrilha,
+                    (item) => item.codigo_conteudo.slice(0, 2) == codigoTrilha
                 )
                 .map((item) => {
                     return {
@@ -143,11 +142,11 @@ const progresso = async (ConteudosCMS, userID, token) => {
         const conclusoes = UsuarioConclusoes(
             item.codigoTrilha,
             modulosUsuario,
-            [...Array(item.qtd.length).keys()],
+            [...Array(item.qtd.length).keys()]
         );
         item.qtd.forEach((element) => {
             element.conclusao = conclusoes.filter(
-                (conclusao) => conclusao.modulo == element.modulo,
+                (conclusao) => conclusao.modulo == element.modulo
             )[0]?.conteudosConcluidos;
             element.modulo != 0 && element.conteudosQTD > 0
                 ? (element.progresso =
@@ -167,7 +166,7 @@ const progresso = async (ConteudosCMS, userID, token) => {
         item.progresso = Math.round(
             item.qtd.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.progresso;
-            }, 0),
+            }, 0)
         );
     });
     return conteudosPorModulo;

@@ -13,12 +13,12 @@ const quadrisFuturos = dataAtual
     : [];
 const quadrisFuturosFormatados = formatarQuadrimestres(quadrisFuturos, " e ");
 const quadrisFuturosFiltro = quadrisFuturos.map(
-    (item) => `${item.ano}.Q${item.quadrimestre}`,
+    (item) => `${item.ano}.Q${item.quadrimestre}`
 );
 
 const CardsGraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
 
     return dataQuadriFuturo ? (
@@ -73,7 +73,7 @@ const CardsGraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
 
 const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS.filter((item) =>
-        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre),
+        quadrisFuturosFiltro.includes(item.gestacao_quadrimestre)
     );
     return dataQuadriFuturo ? (
         <>
@@ -110,7 +110,7 @@ const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes com atendimento odontológico realizado",
                             stack: "stack",
@@ -128,7 +128,7 @@ const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Gestantes sem atendimento odontológico realizado",
                             stack: "stack",
@@ -141,9 +141,7 @@ const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriFuturo.map(
-                                    (item) => item.equipe_nome,
-                                ),
+                                dataQuadriFuturo.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -182,13 +180,13 @@ const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -206,13 +204,13 @@ const GraficoIndicadorTresQuadriFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },

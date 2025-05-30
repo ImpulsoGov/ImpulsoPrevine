@@ -14,7 +14,7 @@ export const buildUrlWithParams = (
     params?: {
         listName: string;
         cardType: CardType;
-    },
+    }
 ): string => {
     let url = baseUrl;
     const { listName, cardType } = params || {};
@@ -34,7 +34,6 @@ export type GetCardsDataProps = {
     baseUrl: string;
     ine?: string;
 };
-
 
 export const getCardsData = async ({
     token,

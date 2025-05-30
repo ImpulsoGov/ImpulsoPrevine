@@ -27,7 +27,7 @@ export const getToken = (headers: Headers) => {
 
     if (!authHeader.startsWith("Bearer ")) {
         throw new AuthenticationError(
-            "Formato de autorização inválido. Use: Bearer <token>",
+            "Formato de autorização inválido. Use: Bearer <token>"
         );
     }
 
@@ -40,7 +40,7 @@ export const getToken = (headers: Headers) => {
 
 export const decodeToken = async (
     token: string,
-    encodedSecrect: Uint8Array,
+    encodedSecrect: Uint8Array
 ) => {
     try {
         return await jwtVerify(token, encodedSecrect);

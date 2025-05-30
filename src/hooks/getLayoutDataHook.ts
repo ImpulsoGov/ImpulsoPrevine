@@ -16,7 +16,7 @@ export const getLayoutDataHook = (setRes: Dispatch<SetStateAction<any>>) => {
 };
 export const getDataHook = (
     setRes: Dispatch<SetStateAction<any>>,
-    query: string,
+    query: string
 ) => {
     const fetchData = async () => {
         try {

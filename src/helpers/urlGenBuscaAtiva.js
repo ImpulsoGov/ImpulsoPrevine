@@ -15,7 +15,7 @@ const urlGenBuscaAtivaEquipe = (
     municipioUf,
     equipe,
     cargo,
-    faixaEtaria,
+    faixaEtaria
 ) => {
     if (cargo == "Coordenação de Equipe" || cargo == "Impulser") {
         const baseURL = dataStudio;
@@ -42,7 +42,7 @@ const urlGenBuscaAtivaCoordenacaoAPS = (
     token,
     municipioUf,
     cargo,
-    faixaEtaria,
+    faixaEtaria
 ) => {
     if (cargo == "Coordenação APS" || cargo == "Impulser") {
         const baseURL = dataStudio;
@@ -67,7 +67,7 @@ const urlGenBuscaAtivaCoordenacaoAPSGraficos = (
     dataStudio,
     token,
     municipioUf,
-    cargo,
+    cargo
 ) => {
     if (cargo == "Coordenação APS" || cargo == "Impulser") {
         const baseURL = dataStudio;
