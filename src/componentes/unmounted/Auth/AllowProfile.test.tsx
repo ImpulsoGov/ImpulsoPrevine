@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
+import { AllowProfile } from "@/features/acf/common/components/AllowProfile";
 import type { Session } from "next-auth";
 import { PROFILE_ID } from "@/types/profile";
 
@@ -30,7 +30,7 @@ describe("AllowProfile", () => {
                 profileID={allowedProfile}
             >
                 <DummyChild />
-            </AllowProfile>,
+            </AllowProfile>
         );
         // Verifica se o conteúdo permitido está presente e o erro não
         expect(screen.getByTestId("child")).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe("AllowProfile", () => {
                 profileID={allowedProfile}
             >
                 <DummyChild />
-            </AllowProfile>,
+            </AllowProfile>
         );
         // Verifica se o erro está presente e o conteúdo permitido não
         expect(screen.getByTestId("error")).toBeInTheDocument();
@@ -65,7 +65,7 @@ it("deve renderizar o erro quando o usuário não possui o perfis atribuidos", (
             profileID={allowedProfile}
         >
             <DummyChild />
-        </AllowProfile>,
+        </AllowProfile>
     );
     // Verifica se o erro está presente e o conteúdo permitido não
     expect(screen.getByTestId("error")).toBeInTheDocument();

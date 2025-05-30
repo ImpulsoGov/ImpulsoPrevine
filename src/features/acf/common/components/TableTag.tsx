@@ -1,5 +1,5 @@
 import { Tag, Icon, Text } from "@impulsogov/design-system";
-import type { TagTheme } from "@impulsogov/design-system/dist/molecules/Tag/Tag";
+import type { TagTheme } from "@impulsogov/design-system/dist/molecules/Tag";
 
 export type TableTagProps = {
     theme?: TagTheme;

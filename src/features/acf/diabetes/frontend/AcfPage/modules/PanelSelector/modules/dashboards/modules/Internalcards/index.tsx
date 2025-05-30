@@ -1,14 +1,27 @@
-import { getInternalCardsProps } from "@/helpers/cardsList";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import { Suspense } from "react";
 import * as Presentation from "./presentation";
 import { internalCardsController } from "../../../../../../../../backend/internalCards/controller";
-import { internalCardsDetails } from "../../../../consts";
+import { type CardDetailsMap, internalCardsDetails } from "../../../../consts";
+import type { InternalCardDataItem } from "@/features/acf/diabetes/backend/model";
 
 type InternalCardsProps = {
     municipalitySusId: string;
     teamIne: string;
+};
+
+const getInternalCardsProps = (
+    details: CardDetailsMap,
+    data: Array<InternalCardDataItem>
+): Array<CardProps> => {
+    return data.map<CardProps>((card) => {
+        const cardDetails = details[card.healthIndicator];
+        return {
+            ...cardDetails,
+            value: card.value.toString(),
+        };
+    });
 };
 
 export const InternalCards: React.FC<InternalCardsProps> = async ({

@@ -1,6 +1,9 @@
-import { RenderDateTagCell } from "@/helpers/lista-nominal/renderCell";
 import { parseDate, formatDate } from "@/common/time";
 import { cpfFormatter } from "@/common/formatters/cpf";
+import { TableTag } from "@/features/acf/common/components/TableTag";
+import { iconDetailsMap } from "../../../consts";
+
+import React from "react";
 
 type CpfOrBirthdayFormatterProps = {
     value: string | null;
@@ -33,4 +36,17 @@ export const DateRenderCell: React.FC<DateRenderCellProps> = ({ value }) => {
             </div>
         );
     return <div>{formatDate(new Date(value.slice(0, 10)))}</div>;
+};
+
+export const RenderDateTagCell: React.FC = () => (
+    <TableTag
+        theme="pending"
+        text="Não realizada"
+        icon={iconDetailsMap.pending}
+    />
+);
+
+export const RenderStatusTagCell: React.FC<{ value: string }> = ({ value }) => {
+    const theme = value === "Em dia" ? "success" : "warning";
+    return <TableTag theme={theme} text={value} icon={iconDetailsMap[theme]} />;
 };

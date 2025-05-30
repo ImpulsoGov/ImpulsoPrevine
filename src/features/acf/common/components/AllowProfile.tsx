@@ -1,19 +1,17 @@
-import type { Session } from "next-auth";
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import type { ProfileIdValue } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 
-export type AllowProfileProps = React.PropsWithChildren<{
-    // user: Session["user"];
+type AllowProfileProps = React.PropsWithChildren<{
     error: React.ReactElement;
     profileID: ProfileIdValue;
 }>;
 
-export const AllowProfile = async ({
+export const AllowProfile: React.FC<AllowProfileProps> = async ({
     children,
     error,
     profileID,
-}: AllowProfileProps) => {
+}) => {
     //TODO: Verificar se conseguimos remover esta dependencia do getServerSession
     const session = await getServerSession(nextAuthOptions);
     if (!session?.user.perfis.includes(profileID)) return error;
