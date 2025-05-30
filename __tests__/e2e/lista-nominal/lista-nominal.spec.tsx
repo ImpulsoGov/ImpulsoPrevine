@@ -1,12 +1,14 @@
 import { type Page, expect, test } from "@playwright/test";
 
 //TODO: Pensar em como lidar com essa base URL
-const baseUrl = "http://localhost:3000";
+const baseUrl = process.env.DEPLOY_URL ;
 const pageUrl = `${baseUrl}/lista-nominal`;
 
 const login = async ({ page }: { page: Page }) => {
     await page.goto(`${baseUrl}/`);
-    await page.locator('div[class*="__NavBarLogin"]').filter({ hasText: "ACESSO RESTRITO" }).click();
+    const button =  page.locator('div[class*="__NavBarLogin"]').filter({ hasText: "ACESSO RESTRITO" });
+    button.waitFor({ state: "visible", timeout: 20000 });
+    await button.click();
     await page.getByRole('button', { name: 'ENTRAR' }).click();
     await page.getByRole('textbox', { name: 'CPF' }).fill(process.env.TEST_USER || "000.000.000-00");
     await page
@@ -15,7 +17,7 @@ const login = async ({ page }: { page: Page }) => {
     await Promise.all([
         page.getByRole('button', { name: 'ENTRAR' }).click()
     ]);
-    await expect(page.getByText("Boas vindas", )).toBeVisible({ timeout: 100000 });
+    await expect(page.getByText("Boas vindas", )).toBeVisible({ timeout: 200000 });
 };
 
 test.describe("Testes de renderização do componente Table no ListContainer", () => {
