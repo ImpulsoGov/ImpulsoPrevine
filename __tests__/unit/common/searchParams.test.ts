@@ -12,49 +12,49 @@ describe("dadosPublicos", () => {
 
     test("Retorna {} se filters é uma string vazia", () => {
         const params = new URLSearchParams();
-        params.set("filters", "") 
+        params.set("filters", "");
         expect(extractFilters(params)).toEqual({});
     });
 
     test("Retorna FilterItem se filters contém um valor válido", () => {
         const params = new URLSearchParams();
-        params.set("filters", "campo:valor") 
-        expect(extractFilters(params)).toEqual({"campo": "valor"});
+        params.set("filters", "campo:valor");
+        expect(extractFilters(params)).toEqual({ campo: "valor" });
     });
 
     test("Retorna FilterItem se filters contém mais de um valor válidos", () => {
         const params = new URLSearchParams();
-        params.set("filters", "campo:valor;campo2:valor2") 
+        params.set("filters", "campo:valor;campo2:valor2");
         expect(extractFilters(params)).toEqual({
-            "campo": "valor",
-            "campo2": "valor2"
+            campo: "valor",
+            campo2: "valor2",
         });
     });
 
     test("Deve filtrar campos com valores vazios", () => {
         const params = new URLSearchParams();
-        params.set("filters", "campo:;campo2:valor2") 
+        params.set("filters", "campo:;campo2:valor2");
         expect(extractFilters(params)).toEqual({
-            "campo": "",
-            "campo2": "valor2"
+            campo: "",
+            campo2: "valor2",
         });
     });
 
     test("Deve filtrar campos com valores vazios", () => {
         const params = new URLSearchParams();
-        params.set("filters", "campo:,;campo2:valor2") 
+        params.set("filters", "campo:,;campo2:valor2");
         expect(extractFilters(params)).toEqual({
-            "campo": ["", ""],
-            "campo2": "valor2"
+            campo: ["", ""],
+            campo2: "valor2",
         });
     });
 
     test("Retorna FilterItem com um array caso campo tenha multiplos valores", () => {
         const params = new URLSearchParams();
-        params.set("filters", "campo:valor;campo2:valor2,valor3") 
+        params.set("filters", "campo:valor;campo2:valor2,valor3");
         expect(extractFilters(params)).toEqual({
-            "campo": "valor",
-            "campo2": ["valor2", "valor3"]
+            campo: "valor",
+            campo2: ["valor2", "valor3"],
         });
     });
 });

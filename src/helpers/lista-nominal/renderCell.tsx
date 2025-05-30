@@ -16,11 +16,7 @@ export const RenderDateTagCell = () => (
     />
 );
 
-export const RenderStatusTagCell = ({
-    value,
-}:{
-    value: string;
-}) => {
+export const RenderStatusTagCell = ({ value }: { value: string }) => {
     const theme = value === "Em dia" ? "success" : "warning";
-    return (<TableTag theme={theme} text={value} icon={iconDetailsMap[theme]} />);
+    return <TableTag theme={theme} text={value} icon={iconDetailsMap[theme]} />;
 };

@@ -55,14 +55,14 @@ const GraficoFichaProducaocomSeletor = ({
         let updatedSelectedIndicadores;
         if (selectedIndicadores.includes(value)) {
             updatedSelectedIndicadores = selectedIndicadores.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedIndicadores = [...selectedIndicadores, value];
         }
 
         const filteredCnes = GrafFicha.filter((item) =>
-            updatedSelectedIndicadores.includes(item.equipe_nome),
+            updatedSelectedIndicadores.includes(item.equipe_nome)
         ).map((item) => item.cnes_nome);
 
         setSelectedIndicadores(updatedSelectedIndicadores);
@@ -82,7 +82,7 @@ const GraficoFichaProducaocomSeletor = ({
         const updatedSelectedIndicadores = [value];
 
         const filteredCnes = GrafFicha.filter((item) =>
-            updatedSelectedIndicadores.includes(item.equipe_nome),
+            updatedSelectedIndicadores.includes(item.equipe_nome)
         ).map((item) => item.cnes_nome);
 
         setSelectedIndicadores(updatedSelectedIndicadores);
@@ -93,14 +93,14 @@ const GraficoFichaProducaocomSeletor = ({
         let updatedSelectedNovoIndicador;
         if (selectedNovoIndicador.includes(value)) {
             updatedSelectedNovoIndicador = selectedNovoIndicador.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedNovoIndicador = [...selectedNovoIndicador, value];
         }
 
         const teamsForSelectedCnes = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicador.includes(item.cnes_nome),
+            updatedSelectedNovoIndicador.includes(item.cnes_nome)
         ).map((item) => item.equipe_nome);
 
         setSelectedNovoIndicador(updatedSelectedNovoIndicador);
@@ -120,7 +120,7 @@ const GraficoFichaProducaocomSeletor = ({
         const updatedSelectedNovoIndicador = [value];
 
         const teamsForSelectedCnes = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicador.includes(item.cnes_nome),
+            updatedSelectedNovoIndicador.includes(item.cnes_nome)
         ).map((item) => item.equipe_nome);
 
         setSelectedNovoIndicador(updatedSelectedNovoIndicador);
@@ -131,7 +131,7 @@ const GraficoFichaProducaocomSeletor = ({
         let updatedSelectedNovoIndicadorapli;
         if (selectedNovoIndicadorapli.includes(value)) {
             updatedSelectedNovoIndicadorapli = selectedNovoIndicadorapli.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedNovoIndicadorapli = [
@@ -141,7 +141,7 @@ const GraficoFichaProducaocomSeletor = ({
         }
 
         const teamsForSelectedApli = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao),
+            updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao)
         ).map((item) => item.validacao_nome);
 
         setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
@@ -161,7 +161,7 @@ const GraficoFichaProducaocomSeletor = ({
         const updatedSelectedNovoIndicadorapli = [value];
 
         const teamsForSelectedApli = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao),
+            updatedSelectedNovoIndicadorapli.includes(item.validacao_aplicacao)
         ).map((item) => item.validacao_nome);
 
         setSelectedNovoIndicadorapli(updatedSelectedNovoIndicadorapli);
@@ -173,7 +173,7 @@ const GraficoFichaProducaocomSeletor = ({
         if (selectedNovoIndicadorvalidacao.includes(value)) {
             updatedSelectedNovoIndicadorvalidacao =
                 selectedNovoIndicadorvalidacao.filter(
-                    (indicador) => indicador !== value,
+                    (indicador) => indicador !== value
                 );
         } else {
             updatedSelectedNovoIndicadorvalidacao = [
@@ -183,11 +183,11 @@ const GraficoFichaProducaocomSeletor = ({
         }
 
         const teamsForSelectedValidacao = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome),
+            updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome)
         ).map((item) => item.validacao_aplicacao);
 
         setSelectedNovoIndicadorvalidacao(
-            updatedSelectedNovoIndicadorvalidacao,
+            updatedSelectedNovoIndicadorvalidacao
         );
         setSelectedNovoIndicadorapli(teamsForSelectedValidacao);
 
@@ -205,11 +205,11 @@ const GraficoFichaProducaocomSeletor = ({
         const updatedSelectedNovoIndicadorvalidacao = [value];
 
         const teamsForSelectedValidacao = GrafFicha.filter((item) =>
-            updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome),
+            updatedSelectedNovoIndicadorvalidacao.includes(item.validacao_nome)
         ).map((item) => item.validacao_aplicacao);
 
         setSelectedNovoIndicadorvalidacao(
-            updatedSelectedNovoIndicadorvalidacao,
+            updatedSelectedNovoIndicadorvalidacao
         );
         setSelectedNovoIndicadorapli(teamsForSelectedValidacao);
     };
@@ -255,7 +255,7 @@ const GraficoFichaProducaocomSeletor = ({
                             {selectedIndicadores
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -267,7 +267,7 @@ const GraficoFichaProducaocomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveCheckboxChange(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -277,11 +277,11 @@ const GraficoFichaProducaocomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedIndicadores.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleCheckboxChange(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -317,7 +317,7 @@ const GraficoFichaProducaocomSeletor = ({
                             {selectedNovoIndicador
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -329,7 +329,7 @@ const GraficoFichaProducaocomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangecnes(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -339,11 +339,11 @@ const GraficoFichaProducaocomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicador.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangecnes(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -361,7 +361,7 @@ const GraficoFichaProducaocomSeletor = ({
                         className={styles.selectorHeader}
                         onClick={() =>
                             setShowNovoCheckboxesaplicacao(
-                                !showNovoCheckboxesaplicacao,
+                                !showNovoCheckboxesaplicacao
                             )
                         }
                     >
@@ -381,7 +381,7 @@ const GraficoFichaProducaocomSeletor = ({
                             {selectedNovoIndicadorapli
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -393,7 +393,7 @@ const GraficoFichaProducaocomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangesapli(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -403,11 +403,11 @@ const GraficoFichaProducaocomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicadorapli.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangeaplicacao(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -425,7 +425,7 @@ const GraficoFichaProducaocomSeletor = ({
                         className={styles.selectorHeader}
                         onClick={() =>
                             setShowNovoCheckboxesvalidacao(
-                                !showNovoCheckboxesvalidacao,
+                                !showNovoCheckboxesvalidacao
                             )
                         }
                     >
@@ -445,7 +445,7 @@ const GraficoFichaProducaocomSeletor = ({
                             {selectedNovoIndicadorvalidacao
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -457,7 +457,7 @@ const GraficoFichaProducaocomSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangesvalidacao(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -467,11 +467,11 @@ const GraficoFichaProducaocomSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicadorvalidacao.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangevalidacao(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -521,7 +521,7 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
             GrafFichaFiltrado.map((item) => {
                 const dataFormatada = formatarData(item.periodo_data_inicio);
                 return dataFormatada;
-            }),
+            })
         ),
     ];
 
@@ -533,7 +533,7 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
                 selectedIndicadores.includes(item.equipe_nome) &&
                 selectedNovoIndicador.includes(item.cnes_nome) &&
                 selectedNovoIndicadorapli.includes(item.validacao_aplicacao) &&
-                selectedNovoIndicadorvalidacao.includes(item.validacao_nome),
+                selectedNovoIndicadorvalidacao.includes(item.validacao_nome)
         );
 
         const periodos = [
@@ -549,11 +549,11 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
                 const dataForPeriodAndValidation = selectedData.filter(
                     (item) =>
                         item.periodo_data_inicio === periodo &&
-                        item.validacao_nome === validacaoNome,
+                        item.validacao_nome === validacaoNome
                 );
                 const soma = dataForPeriodAndValidation.reduce(
                     (acc, curr) => acc + curr.validacao_quantidade,
-                    0,
+                    0
                 );
                 return soma;
             });
@@ -581,28 +581,28 @@ const GraficoFichaProducao = ({ GrafFicha }) => {
             setSelectedIndicadores([
                 ...new Set(GrafFicha.map((item) => item.equipe_nome)),
             ]),
-        [GrafFicha],
+        [GrafFicha]
     );
     useEffect(
         () =>
             setSelectedNovoIndicador([
                 ...new Set(GrafFicha.map((item) => item.cnes_nome)),
             ]),
-        [GrafFicha],
+        [GrafFicha]
     );
     useEffect(
         () =>
             setSelectedNovoIndicadorapli([
                 ...new Set(GrafFicha.map((item) => item.validacao_aplicacao)),
             ]),
-        [GrafFicha],
+        [GrafFicha]
     );
     useEffect(
         () =>
             setSelectedNovoIndicadorvalidacao([
                 ...new Set(GrafFicha.map((item) => item.validacao_nome)),
             ]),
-        [GrafFicha],
+        [GrafFicha]
     );
 
     const option = {

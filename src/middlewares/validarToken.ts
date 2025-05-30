@@ -21,7 +21,7 @@ export const validarTokenMiddleware = async (req: ExtendedNextRequest) => {
                     message: "Erro ao verificar token.",
                     detail: "Secret não fornecido.",
                 },
-                { status: 500 },
+                { status: 500 }
             );
         }
         const token = getToken(req.headers);
@@ -40,7 +40,7 @@ export const validarTokenMiddleware = async (req: ExtendedNextRequest) => {
                 message: "Erro ao verificar token.",
                 detail: (error as Error).message,
             },
-            { status: 500 },
+            { status: 500 }
         );
     }
 };

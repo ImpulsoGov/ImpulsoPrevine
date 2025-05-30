@@ -18,7 +18,7 @@ export const AcoesEstrategicas = ({ cidade }) => {
     const [indicadoresDataGraf, setIndicadoresDataGraf] = useState([]); // Estado para armazenar os dados dos indicadores
     useEffect(() => {
         AcoesEstrategicasRepasses(cidade).then((result) =>
-            setIndicadoresDataGraf(result),
+            setIndicadoresDataGraf(result)
         );
     }, [cidade]);
     return (

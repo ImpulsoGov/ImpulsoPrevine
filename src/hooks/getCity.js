@@ -33,10 +33,10 @@ const getCity = (cidade, setCidade, setLoading) => {
                     position.coords.latitude +
                     "&lon=" +
                     position.coords.longitude +
-                    "&zoom=10&format=json",
+                    "&zoom=10&format=json"
             )
             .then((response) =>
-                setCidadeCarregamento(response, setCidade, setLoading),
+                setCidadeCarregamento(response, setCidade, setLoading)
             );
     };
     if (nav && cidade.length == 0)

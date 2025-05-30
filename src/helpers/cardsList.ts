@@ -1,4 +1,7 @@
-import type { ExternalCardDataItem, InternalCardDataItem } from "@/features/acf/diabetes/backend/model";
+import type {
+    ExternalCardDataItem,
+    InternalCardDataItem,
+} from "@/features/acf/diabetes/backend/model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 export type CardDetails = Omit<CardProps, "value">;
 export type CardDetailsMap = Record<string, CardDetails>;
@@ -12,14 +15,14 @@ export type CardDetailsMap = Record<string, CardDetails>;
  */
 export function getExternalCardsProps(
     details: CardDetailsMap,
-    data: ExternalCardDataItem[],
+    data: ExternalCardDataItem[]
 ) {
     return data.map<CardProps>((card) => {
         const cardDetails = details[card.acfExternalCardsDescription];
 
         if (!cardDetails) {
             throw new Error(
-                `Detalhes do card ${card.acfExternalCardsDescription} não encontrados na resposta do CMS`,
+                `Detalhes do card ${card.acfExternalCardsDescription} não encontrados na resposta do CMS`
             );
         }
 
@@ -32,14 +35,14 @@ export function getExternalCardsProps(
 
 export function getInternalCardsProps(
     details: CardDetailsMap,
-    data: InternalCardDataItem[],
+    data: InternalCardDataItem[]
 ) {
     return data.map<CardProps>((card) => {
         const cardDetails = details[card.healthIndicator];
 
         if (!cardDetails) {
             throw new Error(
-                `Detalhes do card ${card.healthIndicator} não encontrados na resposta do CMS`,
+                `Detalhes do card ${card.healthIndicator} não encontrados na resposta do CMS`
             );
         }
 

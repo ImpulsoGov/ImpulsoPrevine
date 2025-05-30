@@ -81,8 +81,8 @@ export const TabelaAPS = ({
                     data: [
                         ...new Set(
                             TabelaAPSTratada.map(
-                                (item) => item.equipe_nome_e_ine,
-                            ),
+                                (item) => item.equipe_nome_e_ine
+                            )
                         ),
                     ],
                     filtro: "equipe_nome_e_ine",
@@ -92,8 +92,8 @@ export const TabelaAPS = ({
                     data: [
                         ...new Set(
                             TabelaAPSTratada.map(
-                                (item) => item.acs_nome_cadastro,
-                            ),
+                                (item) => item.acs_nome_cadastro
+                            )
                         ),
                     ],
                     filtro: "acs_nome_cadastro",
@@ -104,8 +104,8 @@ export const TabelaAPS = ({
                         ...new Set(
                             TabelaAPSTratada.map(
                                 (item) =>
-                                    item.identificacao_condicao_hipertensao,
-                            ),
+                                    item.identificacao_condicao_hipertensao
+                            )
                         ),
                     ],
                     filtro: "identificacao_condicao_hipertensao",
@@ -114,7 +114,7 @@ export const TabelaAPS = ({
                 {
                     data: [
                         ...new Set(
-                            TabelaAPSTratada.map((item) => item.status_usuario),
+                            TabelaAPSTratada.map((item) => item.status_usuario)
                         ),
                     ],
                     filtro: "status_usuario",
@@ -124,8 +124,8 @@ export const TabelaAPS = ({
                     data: [
                         ...new Set(
                             TabelaAPSTratada.map(
-                                (item) => item.cidadao_faixa_etaria,
-                            ),
+                                (item) => item.cidadao_faixa_etaria
+                            )
                         ),
                     ],
                     filtro: "cidadao_faixa_etaria",
@@ -147,13 +147,13 @@ export const TabelaAPS = ({
             atualizacao={new Date(
                 tabelaDataAPS.reduce((maisRecente, objeto) => {
                     const dataAtual = new Date(
-                        objeto.dt_registro_producao_mais_recente,
+                        objeto.dt_registro_producao_mais_recente
                     );
                     const dataMaisRecenteAnterior = new Date(maisRecente);
                     return dataAtual > dataMaisRecenteAnterior
                         ? objeto.dt_registro_producao_mais_recente
                         : maisRecente;
-                }, "2000-01-01"),
+                }, "2000-01-01")
             ).toLocaleString("pt-BR", {
                 timeZone: "UTC",
                 year: "numeric",

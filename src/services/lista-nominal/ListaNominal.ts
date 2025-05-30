@@ -11,7 +11,7 @@ export interface SortingItem {
 }
 
 /**
- * @deprecated Use Filters do model ao invés desse tipo 
+ * @deprecated Use Filters do model ao invés desse tipo
  */
 export type FilterItem = Record<string, string | string[]>;
 
@@ -50,7 +50,7 @@ export const isFilterApplied = (filters: FilterItem | undefined): boolean => {
             if (Array.isArray(value) && value.length > 0) return true;
             if (typeof value === "string" && value.length > 0) return true;
             return false;
-        },
+        }
     );
     return filterApplied.some((value) => value);
 };
@@ -69,7 +69,7 @@ export const buildUrlWithParams = (
         pagination?: Pagination;
         listName: string;
         search?: string;
-    },
+    }
 ): string => {
     let url = baseUrl;
     const { sorting, filters, listName, pagination, search } = params || {};

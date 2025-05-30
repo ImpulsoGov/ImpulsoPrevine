@@ -42,7 +42,7 @@ export const TabelaEquipeSemExame = ({
     setFiltros_aplicados,
 }) => {
     const tabelaDataEquipeSemExame = tabelaDataEquipe?.filter(
-        (item) => item.id_status_usuario !== 12,
+        (item) => item.id_status_usuario !== 12
     );
     return tabelaDataEquipe ? (
         <>
@@ -60,8 +60,8 @@ export const TabelaEquipeSemExame = ({
                         data: [
                             ...new Set(
                                 tabelaDataEquipeSemExame.map(
-                                    (item) => item.acs_nome,
-                                ),
+                                    (item) => item.acs_nome
+                                )
                             ),
                         ],
                         filtro: "acs_nome",
@@ -71,15 +71,15 @@ export const TabelaEquipeSemExame = ({
                         data: [
                             ...new Set(
                                 tabelaDataEquipeSemExame.map((item) =>
-                                    item.id_status_usuario.toString(),
-                                ),
+                                    item.id_status_usuario.toString()
+                                )
                             ),
                         ],
                         labels: [
                             ...new Set(
                                 status_usuario_descricao.map(
-                                    (item) => item.status_usuario_descricao,
-                                ),
+                                    (item) => item.status_usuario_descricao
+                                )
                             ),
                         ],
                         filtro: "id_status_usuario",
@@ -89,15 +89,15 @@ export const TabelaEquipeSemExame = ({
                         data: [
                             ...new Set(
                                 tabelaDataEquipeSemExame.map((item) =>
-                                    item.id_faixa_etaria.toString(),
-                                ),
+                                    item.id_faixa_etaria.toString()
+                                )
                             ),
                         ],
                         labels: [
                             ...new Set(
                                 faixaEtaria.data.map(
-                                    (item) => item.faixa_etaria_descricao,
-                                ),
+                                    (item) => item.faixa_etaria_descricao
+                                )
                             ),
                         ],
                         filtro: "id_faixa_etaria",
@@ -118,13 +118,13 @@ export const TabelaEquipeSemExame = ({
                 atualizacao={new Date(
                     tabelaDataEquipeSemExame.reduce((maisRecente, objeto) => {
                         const dataAtual = new Date(
-                            objeto.dt_registro_producao_mais_recente,
+                            objeto.dt_registro_producao_mais_recente
                         );
                         const dataMaisRecenteAnterior = new Date(maisRecente);
                         return dataAtual > dataMaisRecenteAnterior
                             ? objeto.dt_registro_producao_mais_recente
                             : maisRecente;
-                    }, "2000-01-01"),
+                    }, "2000-01-01")
                 ).toLocaleString("pt-BR", {
                     timeZone: "UTC",
                     year: "numeric",

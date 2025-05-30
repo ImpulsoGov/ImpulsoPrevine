@@ -4,10 +4,10 @@ import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
 import dynamic from "next/dynamic";
 const Inicio = dynamic(() => import("./Inicio").then((mod) => mod.Inicio));
 
-import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
 import type { SituacaoPorIndicador } from "@/types/inicio";
+import { getServerSession } from "next-auth";
 import { AuthErrorPage } from "./AuthError";
 import { SupportError } from "./SupportError";
 

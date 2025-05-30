@@ -1,6 +1,4 @@
-import statusUsuarioDescricao from "../data/StatusAcompanhamento.json" assert {
-    type: "json",
-};
+import statusUsuarioDescricao from "../data/StatusAcompanhamento.json" assert { type: "json" };
 
 const selecionarStatusUsuarioDescricao = ({ value }) => {
     const alert = {
@@ -88,7 +86,7 @@ const selecionarStatusUsuarioDescricao = ({ value }) => {
     };
 
     const descricao = statusUsuarioDescricao.data.find(
-        (item) => item?.id_status_usuario == value,
+        (item) => item?.id_status_usuario == value
     )?.status_usuario_descricao;
     return (
         <div style={styleStatus[value]}>

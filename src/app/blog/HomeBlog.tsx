@@ -31,12 +31,10 @@ const PreviewArtigoDestaque = dynamic<{
     };
     imagem?: string;
 }>(() =>
-    import("@impulsogov/design-system").then(
-        (mod) => mod.PreviewArtigoDestaque,
-    ),
+    import("@impulsogov/design-system").then((mod) => mod.PreviewArtigoDestaque)
 );
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 const TituloTexto = dynamic<{
     imagem: {

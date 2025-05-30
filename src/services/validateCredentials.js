@@ -41,7 +41,7 @@ const validacao = (
     mail,
     senha,
     setEsperandoResposta,
-    setModal,
+    setModal
 ) => {
     const res = async () => await validarCredencial(mail, senha);
     if (mail.length < 1 || senha.length < 1) {
@@ -49,25 +49,23 @@ const validacao = (
         setResposta(msgCampoVazio);
         return msgCampoVazio;
     }
-        res().then((response) => {
-            if (typeof response.access_token !== "undefined") {
-                entrar("credentials", {
-                    redirect: true,
-                    username: mail,
-                    password: senha,
-                    callbackUrl: rotasPublicas.includes(
-                        window.location.pathname,
-                    )
-                        ? `${window.location.origin}/inicio`
-                        : window.location.href,
-                });
-                setModal(false);
-            } else {
-                setResposta(response.detail);
-                setEsperandoResposta(false);
-            }
-            return res;
-        });
+    res().then((response) => {
+        if (typeof response.access_token !== "undefined") {
+            entrar("credentials", {
+                redirect: true,
+                username: mail,
+                password: senha,
+                callbackUrl: rotasPublicas.includes(window.location.pathname)
+                    ? `${window.location.origin}/inicio`
+                    : window.location.href,
+            });
+            setModal(false);
+        } else {
+            setResposta(response.detail);
+            setEsperandoResposta(false);
+        }
+        return res;
+    });
 };
 
 export { validateCredentials, validacao };

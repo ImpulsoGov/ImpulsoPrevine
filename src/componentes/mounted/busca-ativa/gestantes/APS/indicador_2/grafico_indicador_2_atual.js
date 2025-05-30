@@ -14,7 +14,7 @@ const CardsGraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS.filter(
         (item) =>
             item.gestacao_quadrimestre ==
-            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`,
+            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`
     );
     return tabelaDataAPS ? (
         <>
@@ -81,7 +81,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
     const dataQuadriAtual = tabelaDataAPS.filter(
         (item) =>
             item.gestacao_quadrimestre ==
-            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`,
+            `${dadosQuadriAtual.ano}.Q${dadosQuadriAtual.quadrimestre}`
     );
     return tabelaDataAPS ? (
         <>
@@ -116,7 +116,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Os dois exames identificados",
                             stack: "stack",
@@ -130,7 +130,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Nenhum exame identificado",
                             stack: "stack",
@@ -144,7 +144,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Ex. de Sífilis não identificado",
                             stack: "stack",
@@ -158,7 +158,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Ex. de HIV não identificado",
                             stack: "stack",
@@ -171,7 +171,7 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriAtual.map((item) => item.equipe_nome),
+                                dataQuadriAtual.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -206,13 +206,13 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -226,13 +226,13 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -246,13 +246,13 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },
@@ -266,13 +266,13 @@ const GraficoIndicadorDoisQuadriAtual = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriAtual.filter(
                                             (item) =>
                                                 item.id_status_usuario == 8 ||
-                                                item.id_status_usuario == 9,
+                                                item.id_status_usuario == 9
                                         ).length
                                     ).toFixed(1),
                                 },

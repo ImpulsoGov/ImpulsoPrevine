@@ -1,6 +1,6 @@
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 
-export const extractFilters = (searchParams: URLSearchParams) : FilterItem => {
+export const extractFilters = (searchParams: URLSearchParams): FilterItem => {
     const filters = searchParams.get("filters");
 
     if (!filters) return {};

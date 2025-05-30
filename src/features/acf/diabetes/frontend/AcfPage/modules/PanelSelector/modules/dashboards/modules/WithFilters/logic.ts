@@ -11,6 +11,7 @@ import type {
 import * as schema from "@/features/acf/diabetes/common/schema";
 import { referenceOrder } from "./consts";
 import type * as z from "zod/v4";
+import { nameFormatter } from "../../../../logic";
 
 export type FilterValues =
     | Array<VisitantCommunityHealthWorker>
@@ -38,45 +39,50 @@ export const sortedOptions = (
 
 export const createSelectConfigs = (
     filtersValues: FiltersUi
-): Array<SelectConfig> => [
-    {
-        options: selectOptions(
-            filtersValues.visitantCommunityHealthWorker
-        ).sort((a, b) => a.label.localeCompare(b.label)),
-        label: "Prof. Responsável",
-        id: "visitantCommunityHealthWorker",
-        isMultiSelect: true,
-        width: "330px",
-    },
-    {
-        options: selectOptions(filtersValues.patientStatus).sort((a, b) =>
-            a.label.localeCompare(b.label)
-        ),
-        label: "Situação",
-        id: "patientStatus",
-        isMultiSelect: true,
-        width: "178px",
-    },
-    {
-        options: selectOptions(filtersValues.conditionIdentifiedBy).sort(
-            (a, b) => a.label.localeCompare(b.label)
-        ),
-        label: "Tipo de Diagnóstico",
-        id: "conditionIdentifiedBy",
-        isMultiSelect: false,
-        width: "228px",
-    },
-    {
-        options: selectOptions(filtersValues.patientAgeRange).sort(
-            sortedOptions
-        ),
-        label: "Faixa Etária",
-        id: "patientAgeRange",
-        isMultiSelect: true,
-        width: "178px",
-    },
-];
-
+): Array<SelectConfig> => {
+    //VCHW = Visitant Community Health Worker
+    const formattedVCHWNames = filtersValues.visitantCommunityHealthWorker.map(
+        (item) => nameFormatter(item)
+    );
+    return [
+        {
+            options: selectOptions(formattedVCHWNames).sort((a, b) =>
+                a.label.localeCompare(b.label)
+            ),
+            label: "Prof. Responsável",
+            id: "visitantCommunityHealthWorker",
+            isMultiSelect: true,
+            width: "330px",
+        },
+        {
+            options: selectOptions(filtersValues.patientStatus).sort((a, b) =>
+                a.label.localeCompare(b.label)
+            ),
+            label: "Situação",
+            id: "patientStatus",
+            isMultiSelect: true,
+            width: "178px",
+        },
+        {
+            options: selectOptions(filtersValues.conditionIdentifiedBy).sort(
+                (a, b) => a.label.localeCompare(b.label)
+            ),
+            label: "Tipo de Diagnóstico",
+            id: "conditionIdentifiedBy",
+            isMultiSelect: false,
+            width: "228px",
+        },
+        {
+            options: selectOptions(filtersValues.patientAgeRange).sort(
+                sortedOptions
+            ),
+            label: "Faixa Etária",
+            id: "patientAgeRange",
+            isMultiSelect: true,
+            width: "178px",
+        },
+    ];
+};
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
     schema: z.ZodType

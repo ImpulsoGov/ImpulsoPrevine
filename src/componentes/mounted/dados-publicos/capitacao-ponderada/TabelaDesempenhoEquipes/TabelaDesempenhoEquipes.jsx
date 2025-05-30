@@ -27,14 +27,14 @@ const TabelaDesempenhoEquipesComSeletor = ({
         let updatedSelectedNovoIndicador;
         if (selectedNovoIndicador.includes(value)) {
             updatedSelectedNovoIndicador = selectedNovoIndicador.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedNovoIndicador = [...selectedNovoIndicador, value];
         }
 
         const teamsForSelectedCnes = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicador.includes(item.cnes_nome),
+            updatedSelectedNovoIndicador.includes(item.cnes_nome)
         ).map((item) => item.equipe_status);
 
         setSelectedNovoIndicador(updatedSelectedNovoIndicador);
@@ -57,7 +57,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         const updatedSelectedNovoIndicador = [value];
 
         const teamsForSelectedCnes = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicador.includes(item.cnes_nome),
+            updatedSelectedNovoIndicador.includes(item.cnes_nome)
         ).map(((item) => item.equipe_nome) && ((item) => item.equipe_status));
 
         setSelectedNovoIndicador(updatedSelectedNovoIndicador);
@@ -68,14 +68,14 @@ const TabelaDesempenhoEquipesComSeletor = ({
         let updatedSelectedIndicadores;
         if (selectedIndicadores.includes(value)) {
             updatedSelectedIndicadores = selectedIndicadores.filter(
-                (indicador) => indicador !== value,
+                (indicador) => indicador !== value
             );
         } else {
             updatedSelectedIndicadores = [...selectedIndicadores, value];
         }
 
         const filtered = TabDesempenhos.filter((item) =>
-            updatedSelectedIndicadores.includes(item.equipe_status),
+            updatedSelectedIndicadores.includes(item.equipe_status)
         ).map((item) => item.equipe_nome);
 
         setSelectedIndicadores(updatedSelectedIndicadores);
@@ -98,7 +98,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         const updatedSelectedIndicadores = [value];
 
         const filtered = TabDesempenhos.filter((item) =>
-            updatedSelectedIndicadores.includes(item.equipe_status),
+            updatedSelectedIndicadores.includes(item.equipe_status)
         ).map((item) => item.equipe_nome);
 
         setSelectedIndicadores(updatedSelectedIndicadores);
@@ -110,7 +110,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         if (selectedNovoIndicadorequipe.includes(value)) {
             updatedSelectedNovoIndicadorequipe =
                 selectedNovoIndicadorequipe.filter(
-                    (indicador) => indicador !== value,
+                    (indicador) => indicador !== value
                 );
         } else {
             updatedSelectedNovoIndicadorequipe = [
@@ -120,7 +120,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         }
 
         const teamsForSelectedequipe = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicadorequipe.includes(item.equipe_nome),
+            updatedSelectedNovoIndicadorequipe.includes(item.equipe_nome)
         ).map((item) => item.data_inicio);
 
         setSelectedNovoIndicadorequipe(updatedSelectedNovoIndicadorequipe);
@@ -146,7 +146,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         const updatedSelectedNovoIndicadorequipe = [value];
 
         const teamsForSelectedequipe = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicadorequipe.includes(item.equipe_nome),
+            updatedSelectedNovoIndicadorequipe.includes(item.equipe_nome)
         ).map((item) => item.data_inicio);
 
         setSelectedNovoIndicadorequipe(updatedSelectedNovoIndicadorequipe);
@@ -158,7 +158,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         if (selectedNovoIndicadorperiodo.includes(value)) {
             updatedSelectedNovoIndicadorperiodo =
                 selectedNovoIndicadorperiodo.filter(
-                    (indicador) => indicador !== value,
+                    (indicador) => indicador !== value
                 );
         } else {
             updatedSelectedNovoIndicadorperiodo = [
@@ -168,7 +168,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         }
 
         const teamsForSelectedperiodo = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicadorperiodo.includes(item.data_inicio),
+            updatedSelectedNovoIndicadorperiodo.includes(item.data_inicio)
         ).map((item) => item.equipe_nome);
 
         setSelectedNovoIndicadorperiodo(updatedSelectedNovoIndicadorperiodo);
@@ -188,7 +188,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
         const updatedSelectedNovoIndicadorperiodo = [value];
 
         const teamsForSelectedperiodo = TabDesempenhos.filter((item) =>
-            updatedSelectedNovoIndicadorperiodo.includes(item.data_inicio),
+            updatedSelectedNovoIndicadorperiodo.includes(item.data_inicio)
         ).map((item) => item.equipe_nome);
 
         setSelectedNovoIndicadorperiodo(updatedSelectedNovoIndicadorperiodo);
@@ -238,7 +238,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                             {selectedNovoIndicador
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -250,7 +250,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangecnes(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -260,11 +260,11 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicador.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangecnes(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -298,7 +298,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                             {selectedIndicadores
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -310,7 +310,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveCheckboxChange(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -320,11 +320,11 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedIndicadores.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleCheckboxChange(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -342,7 +342,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                         className={styles.selectorHeader}
                         onClick={() =>
                             setShowNovoCheckboxesequipe(
-                                !showNovoCheckboxesequipe,
+                                !showNovoCheckboxesequipe
                             )
                         }
                     >
@@ -362,7 +362,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                             {selectedNovoIndicadorequipe
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -374,7 +374,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangesequipe(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -384,11 +384,11 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicadorequipe.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangeequipe(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -406,7 +406,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                         className={styles.selectorHeader}
                         onClick={() =>
                             setShowNovoCheckboxesperiodo(
-                                !showNovoCheckboxesperiodo,
+                                !showNovoCheckboxesperiodo
                             )
                         }
                     >
@@ -426,7 +426,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                             {selectedNovoIndicadorperiodo
                                 .filter(
                                     (indicador, index, self) =>
-                                        self.indexOf(indicador) === index,
+                                        self.indexOf(indicador) === index
                                 )
                                 .map((indicador, index) => (
                                     <div
@@ -438,7 +438,7 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 className={styles.button}
                                                 onClick={() =>
                                                     handleExclusiveNovoCheckboxChangesperiodo(
-                                                        indicador,
+                                                        indicador
                                                     )
                                                 }
                                             >
@@ -448,11 +448,11 @@ const TabelaDesempenhoEquipesComSeletor = ({
                                                 type="checkbox"
                                                 value={indicador}
                                                 checked={selectedNovoIndicadorperiodo.includes(
-                                                    indicador,
+                                                    indicador
                                                 )}
                                                 onChange={(e) =>
                                                     handleNovoCheckboxChangeperiodo(
-                                                        e.target.value,
+                                                        e.target.value
                                                     )
                                                 }
                                             />
@@ -648,7 +648,7 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
                         cadastros_com_pontuacao,
                         cadastro_total,
                     };
-                },
+                }
             );
     }, [
         TabDesempenhos,
@@ -664,28 +664,28 @@ const TabelaDesempenhoEquipes = ({ TabDesempenhos }) => {
             setSelectedIndicadores([
                 ...new Set(TabDesempenhos.map((item) => item.equipe_status)),
             ]),
-        [TabDesempenhos],
+        [TabDesempenhos]
     );
     useEffect(
         () =>
             setSelectedNovoIndicador([
                 ...new Set(TabDesempenhos.map((item) => item.cnes_nome)),
             ]),
-        [TabDesempenhos],
+        [TabDesempenhos]
     );
     useEffect(
         () =>
             setSelectedNovoIndicadorequipe([
                 ...new Set(TabDesempenhos.map((item) => item.equipe_nome)),
             ]),
-        [TabDesempenhos],
+        [TabDesempenhos]
     );
     useEffect(
         () =>
             setSelectedNovoIndicadorperiodo([
                 ...new Set(TabDesempenhos.map((item) => item.data_inicio)),
             ]),
-        [TabDesempenhos],
+        [TabDesempenhos]
     );
 
     const handleChangePage = (event, newPage) => {

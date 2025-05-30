@@ -9,7 +9,7 @@ import {
 } from "../../../../../../utils/quadrimestre";
 const CardsGraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS?.filter(
-        (item) => item.id_status_quadrimestre == 3,
+        (item) => item.id_status_quadrimestre == 3
     );
     const dataAtual = Date.now();
     const dadosProximosQuadris = dataAtual
@@ -17,7 +17,7 @@ const CardsGraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
         : [];
     const proximosQuadrisFormatados = formatarQuadrimestres(
         dadosProximosQuadris.slice(-2),
-        " + ",
+        " + "
     );
 
     return tabelaDataAPS ? (
@@ -103,7 +103,7 @@ const CardsGraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
 
 const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
     const dataQuadriFuturo = tabelaDataAPS?.filter(
-        (item) => item.id_status_quadrimestre == 3,
+        (item) => item.id_status_quadrimestre == 3
     );
 
     return tabelaDataAPS ? (
@@ -143,7 +143,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com os dois esquemas vacinais completos",
                             stack: "stack",
@@ -169,7 +169,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com um ou os dois esquemas vacinais em andamento",
                             stack: "stack",
@@ -187,7 +187,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com pelo menos uma dose em atraso",
                             stack: "stack",
@@ -205,7 +205,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                             (acumulador[item.equipe_nome] ||
                                                 0) + 1;
                                     return acumulador;
-                                }, {}),
+                                }, {})
                             ),
                             name: "Crianças com os dois esquemas vacinais não iniciados",
                             stack: "stack",
@@ -218,9 +218,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                     xAxis: {
                         data: [
                             ...new Set(
-                                dataQuadriFuturo.map(
-                                    (item) => item.equipe_nome,
-                                ),
+                                dataQuadriFuturo.map((item) => item.equipe_nome)
                             ),
                         ],
                         type: "category",
@@ -257,7 +255,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.length
@@ -290,7 +288,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             -100) /
                                             dataQuadriFuturo.length +
@@ -313,7 +311,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.length
@@ -335,7 +333,7 @@ const GraficoAPSQuadrimestreFuturo = ({ tabelaDataAPS }) => {
                                                     ? acumulador + 1
                                                     : acumulador;
                                             },
-                                            0,
+                                            0
                                         ) *
                                             100) /
                                         dataQuadriFuturo.length

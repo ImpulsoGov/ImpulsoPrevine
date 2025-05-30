@@ -13,7 +13,7 @@ export const Indicadores: React.FC<IndicadoresType> = ({ cidade }) => {
     const [indicadoresData, setIndicadoresData] = useState([]); // Estado para armazenar os dados dos indicadores
     useEffect(() => {
         AcessoindicadoresDesempenho(cidade).then((result) =>
-            setIndicadoresData(result),
+            setIndicadoresData(result)
         );
     }, [cidade]);
 

@@ -38,7 +38,7 @@ function CheckboxPerfilAtivo(props) {
 function AutocompleteMunicipios(props) {
     const { id, value, field } = props;
     const municipioSelecionado = MUNICIPIOS.find(
-        ({ nome, uf }) => `${nome} - ${uf}` === value,
+        ({ nome, uf }) => `${nome} - ${uf}` === value
     );
     const apiRef = useGridApiContext();
     const [selectedValue, setSelectedValue] = useState(municipioSelecionado);
@@ -231,7 +231,7 @@ function TabelaGestaoUsuarios({
                 },
             },
         ],
-        [],
+        []
     );
 
     const rowMode = useMemo(() => {
@@ -249,7 +249,7 @@ function TabelaGestaoUsuarios({
                 event.defaultMuiPrevented = true;
             }
         },
-        [rowMode],
+        [rowMode]
     );
 
     const handleRowEditStop = useCallback((_params, event) => {
@@ -300,7 +300,7 @@ function TabelaGestaoUsuarios({
             setSelectedRowId(rowId);
             setSelectedRowAutorizacoes([...autorizacoes]);
         },
-        [rows],
+        [rows]
     );
 
     const processRowUpdate = useCallback(
@@ -310,7 +310,7 @@ function TabelaGestaoUsuarios({
             validarCamposObrigatorios(newRowData);
 
             const { municipioIdSus } = MUNICIPIOS.find(
-                ({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio,
+                ({ nome, uf }) => `${nome} - ${uf}` === newRowData.municipio
             );
 
             if (!municipioIdSus)
@@ -323,7 +323,7 @@ function TabelaGestaoUsuarios({
                     municipioIdSus,
                     perfilAtivo: ESTADOS_PERFIL_ATIVO[newRowData.perfilAtivo],
                 },
-                session?.user?.access_token,
+                session?.user?.access_token
             );
             const linhaAtualizada = {
                 id: newRowData.id,
@@ -336,14 +336,14 @@ function TabelaGestaoUsuarios({
                 telefone: dadosAtualizados.telefone,
                 equipe: dadosAtualizados.equipe,
                 perfilAtivo: checarPerfilAtivo(
-                    dadosAtualizados["perfil_ativo"],
+                    dadosAtualizados["perfil_ativo"]
                 ),
                 autorizacoes: newRowData.autorizacoes,
                 editarAutorizacoes: newRowData.editarAutorizacoes,
                 isNew: false,
             };
             const linhasAtualizadas = rows.map((row) =>
-                row.id === newRowData.id ? linhaAtualizada : row,
+                row.id === newRowData.id ? linhaAtualizada : row
             );
 
             setRows(linhasAtualizadas);
@@ -358,7 +358,7 @@ function TabelaGestaoUsuarios({
             showSuccessMessage,
             session?.user?.access_token,
             checarPerfilAtivo,
-        ],
+        ]
     );
 
     const handleAutorizacoesChange = useCallback((event) => {
@@ -368,7 +368,7 @@ function TabelaGestaoUsuarios({
 
         // On autofill we get a stringified value.
         setSelectedRowAutorizacoes(
-            typeof value === "string" ? value.split(", ") : value,
+            typeof value === "string" ? value.split(", ") : value
         );
     }, []);
 

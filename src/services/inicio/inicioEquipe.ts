@@ -4,7 +4,7 @@ import axios from "axios";
 export const InicioEquipeRequest = async (
     municipioIdSus: string,
     equipe: string,
-    token: string,
+    token: string
 ) => {
     const config = {
         method: "get",

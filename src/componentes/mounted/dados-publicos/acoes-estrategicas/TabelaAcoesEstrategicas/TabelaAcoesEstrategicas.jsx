@@ -76,7 +76,7 @@ const TabelaAcoesEstrategicas = ({ TabAcoes }) => {
                 periodicidade,
                 nivel_repasse,
                 requisitos,
-            }),
+            })
         );
     }, [TabAcoes]);
 

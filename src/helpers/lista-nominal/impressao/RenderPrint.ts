@@ -38,7 +38,7 @@ export const RenderPrint = (escala: string, child: React.ReactElement) => {
         const printWindow = window.open(
             "",
             "",
-            `width=${width},height=${height}`,
+            `width=${width},height=${height}`
         );
 
         if (printWindow) {

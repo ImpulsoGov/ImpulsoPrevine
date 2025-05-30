@@ -5,7 +5,7 @@ import { API_URL } from "../constants/API_URL";
 const consultarAvaliacaoConclusaoClient = async (
     usuarioId,
     codigoConteudo,
-    token,
+    token
 ) => {
     try {
         const data = new FormData();
@@ -34,12 +34,12 @@ const consultarAvaliacaoConclusaoClient = async (
 const consultarAvaliacaoConclusao = async (
     usuarioId,
     codigoConteudo,
-    token,
+    token
 ) => {
     const res = await consultarAvaliacaoConclusaoClient(
         usuarioId,
         codigoConteudo,
-        token,
+        token
     );
     if (res?.error == null) {
         if (res.data) if (res?.data.length > 0) return res.data;
@@ -48,7 +48,7 @@ const consultarAvaliacaoConclusao = async (
 };
 const consultarAvaliacaoConclusaoPorUsuarioClient = async (
     usuarioId,
-    token,
+    token
 ) => {
     try {
         const data = new FormData();
@@ -76,7 +76,7 @@ const consultarAvaliacaoConclusaoPorUsuarioClient = async (
 const consultarAvaliacaoConclusaoPorUsuario = async (usuarioId, token) => {
     const res = await consultarAvaliacaoConclusaoPorUsuarioClient(
         usuarioId,
-        token,
+        token
     );
     if (res?.error == null) {
         if (typeof res?.data == "undefined") return res?.error;
@@ -89,7 +89,7 @@ async function avaliarConteudoClient(
     usuarioId,
     codigoConteudo,
     avaliacao,
-    token,
+    token
 ) {
     const data = new FormData();
     data.append("usuario_id", usuarioId);
@@ -116,7 +116,7 @@ async function avaliarConteudo(usuarioId, codigoConteudo, avaliacao, token) {
         usuarioId,
         codigoConteudo,
         avaliacao,
-        token,
+        token
     );
     if (res?.error == null) return res;
     return false;

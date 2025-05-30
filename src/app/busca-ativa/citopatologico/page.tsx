@@ -11,14 +11,14 @@ const CitoPage = async () => {
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         citoTabelaDataAps = await tabelaCitoAps(
             session?.user?.municipio_id_sus,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     let citoTabelaDataEquipe: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(9))
         citoTabelaDataEquipe = await tabelaCitoEquipe(
             session?.user?.municipio_id_sus,
             session?.user?.equipe,
-            session?.user?.access_token,
+            session?.user?.access_token
         );
     return (
         (citoTabelaDataAps || citoTabelaDataEquipe) && (

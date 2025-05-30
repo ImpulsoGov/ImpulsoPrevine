@@ -49,7 +49,7 @@ const CaracterizacaoMunicipalResumo = async (municipioUf: string) => {
                                 descricao: descricoes[chave],
                                 valor: valor.replace(
                                     "Intermediario",
-                                    "Intermediario \n",
+                                    "Intermediario \n"
                                 ),
                             });
                         } else {
@@ -63,7 +63,7 @@ const CaracterizacaoMunicipalResumo = async (municipioUf: string) => {
                             descricao:
                                 descricoes[chave as keyof DescricoesType],
                             valor: response.data[0][chave].toLocaleString(
-                                "pt-BR",
+                                "pt-BR"
                             ),
                         });
                     }

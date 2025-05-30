@@ -1,6 +1,4 @@
-import identificacaoExameHivSifilis from "../data/identificacao_exame_hiv_sifilis.json" assert {
-    type: "json",
-};
+import identificacaoExameHivSifilis from "../data/identificacao_exame_hiv_sifilis.json" assert { type: "json" };
 
 const formatarNome = ({ value }) => {
     const name = {
@@ -138,7 +136,7 @@ const HIV_STYLE = ({ value }) => {
     };
     const descricao =
         identificacaoExameHivSifilis.identificacao_exame_hiv_sifilis.find(
-            (item) => item.id_exame_hiv_sifilis == value,
+            (item) => item.id_exame_hiv_sifilis == value
         ).exame_hiv_sifilis_descricao;
     return (
         <div style={style[value]}>

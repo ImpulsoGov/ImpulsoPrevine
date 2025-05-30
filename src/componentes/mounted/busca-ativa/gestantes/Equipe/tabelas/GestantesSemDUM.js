@@ -42,7 +42,7 @@ const TabelaEquipeGestantesSemDUM = ({
     setFiltros_aplicados,
 }) => {
     const tabelaDataEquipeGestantesSemDUM = tabelaDataEquipe.filter(
-        (item) => item.id_status_usuario == 11,
+        (item) => item.id_status_usuario == 11
     );
     return tabelaDataEquipeGestantesSemDUM && tabelaDataEquipe && tabelaData ? (
         <>
@@ -61,8 +61,8 @@ const TabelaEquipeGestantesSemDUM = ({
                         data: [
                             ...new Set(
                                 tabelaDataEquipeGestantesSemDUM.map(
-                                    (item) => item.acs_nome,
-                                ),
+                                    (item) => item.acs_nome
+                                )
                             ),
                         ],
                         filtro: "acs_nome",
@@ -87,17 +87,17 @@ const TabelaEquipeGestantesSemDUM = ({
                     tabelaDataEquipeGestantesSemDUM.reduce(
                         (maisRecente, objeto) => {
                             const dataAtual = new Date(
-                                objeto.dt_registro_producao_mais_recente,
+                                objeto.dt_registro_producao_mais_recente
                             );
                             const dataMaisRecenteAnterior = new Date(
-                                maisRecente,
+                                maisRecente
                             );
                             return dataAtual > dataMaisRecenteAnterior
                                 ? objeto.dt_registro_producao_mais_recente
                                 : maisRecente;
                         },
-                        "2000-01-01",
-                    ),
+                        "2000-01-01"
+                    )
                 ).toLocaleString("pt-BR", {
                     timeZone: "UTC",
                     year: "numeric",

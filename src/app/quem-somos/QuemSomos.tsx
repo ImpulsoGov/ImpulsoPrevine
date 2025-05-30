@@ -29,7 +29,7 @@ const NovoTituloTexto = dynamic<{
     titulo: string;
     texto: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto),
+    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto)
 );
 const TituloSmallTexto = dynamic<{
     botao: { label: string; url: string };
@@ -38,7 +38,7 @@ const TituloSmallTexto = dynamic<{
     titulo: string;
     texto: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto),
+    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto)
 );
 
 const Parceiros = (parceiros: Parceiro[]) =>

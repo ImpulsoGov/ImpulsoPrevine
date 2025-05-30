@@ -70,7 +70,7 @@ const TabelaFichasCadastro = ({ TabFichas }) => {
                 agrupados[chaveMes].validacao[validacao_nome].aplicacao[
                     validacao_aplicacao
                 ] += validacao_quantidade;
-            },
+            }
         );
 
         const valoresAgrupados = Object.values(agrupados);
