@@ -15,7 +15,7 @@ export const CapitacaoPonderada = ({ cidade }) => {
     const [indicadoresData, setIndicadoresData] = useState([]);
     useEffect(() => {
         CadastrosEquipeContagem(cidade).then((result) =>
-            setIndicadoresData(result),
+            setIndicadoresData(result)
         );
     }, [cidade]);
 
@@ -27,7 +27,7 @@ export const CapitacaoPonderada = ({ cidade }) => {
     const [CapValidacaoProducao, setCapValidacaoProducao] = useState([]);
     useEffect(() => {
         ValidacaoProducao(cidade).then((result) =>
-            setCapValidacaoProducao(result),
+            setCapValidacaoProducao(result)
         );
     }, [cidade]);
 
@@ -36,7 +36,7 @@ export const CapitacaoPonderada = ({ cidade }) => {
     useEffect(() => {
         if (cidade != null)
             ValidacaoProducaoAplicada(cidade).then((result) =>
-                setCapValidacaoProducaoAplicada(result),
+                setCapValidacaoProducaoAplicada(result)
             );
     }, [cidade]);
 

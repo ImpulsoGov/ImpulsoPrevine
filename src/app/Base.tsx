@@ -29,18 +29,18 @@ import dynamic from "next/dynamic";
 
 const FooterMounted = dynamic(() =>
     import("@componentes/mounted/base/FooterMonted").then(
-        (mod) => mod.FooterMounted,
-    ),
+        (mod) => mod.FooterMounted
+    )
 );
 const NavBarMounted = dynamic(
     () =>
         import("@componentes/mounted/base/NavBarMounted").then(
-            (mod) => mod.NavBarMounted,
+            (mod) => mod.NavBarMounted
         ),
-    { ssr: false },
+    { ssr: false }
 );
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 
 const tagManagerArgs = {
@@ -62,7 +62,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
     if (process.env.ENV !== "development") {
         Hotjar.init(
             Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID),
-            hotjarVersion,
+            hotjarVersion
         );
         mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
     }

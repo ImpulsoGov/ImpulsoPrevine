@@ -274,7 +274,7 @@ export const CAPACITACAO = (trilhaId: string) => {
 
 export const CONTEUDO_CAPACITACAO = (
     codigoConteudo: string,
-    trilhaId: string,
+    trilhaId: string
 ) => {
     return `
   {

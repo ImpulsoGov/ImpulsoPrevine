@@ -17,27 +17,27 @@ const GraficoSuasEquipes = ({ GrafCapitacao }) => {
     const cadastradosData = data.filter(
         (item) =>
             item.equipe_status_tipo === "Cadastrados" &&
-            item.equipe_status === "Cadastradas",
+            item.equipe_status === "Cadastradas"
     );
     const homologadosCadastradasData = data.filter(
         (item) =>
             item.equipe_status_tipo === "Homologados" &&
-            item.equipe_status === "Cadastradas e homologadas",
+            item.equipe_status === "Cadastradas e homologadas"
     );
     const homologadosNaoCadastradasData = data.filter(
         (item) =>
             item.equipe_status_tipo === "Homologados" &&
-            item.equipe_status === "Cadastradas e não homologadas",
+            item.equipe_status === "Cadastradas e não homologadas"
     );
     const validosData = data.filter(
         (item) =>
             item.equipe_status_tipo === "Válidos" &&
-            item.equipe_status === "Homologadas e válidas",
+            item.equipe_status === "Homologadas e válidas"
     );
     const naovalidosData = data.filter(
         (item) =>
             item.equipe_status_tipo === "Válidos" &&
-            item.equipe_status === "Homologadas e não válidas",
+            item.equipe_status === "Homologadas e não válidas"
     );
 
     const option = {

@@ -22,7 +22,7 @@ const InicioPage = async () => {
         ) {
             situacaoIndicadores = await InicioAPSRequest(
                 session?.user?.municipio_id_sus,
-                session?.user?.access_token,
+                session?.user?.access_token
             );
         }
 
@@ -30,7 +30,7 @@ const InicioPage = async () => {
             situacaoIndicadores = await InicioEquipeRequest(
                 session?.user?.municipio_id_sus,
                 session?.user?.equipe,
-                session?.user?.access_token,
+                session?.user?.access_token
             );
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null =

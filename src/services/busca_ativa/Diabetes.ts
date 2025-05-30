@@ -5,7 +5,7 @@ import type { TabelaResponse } from "@services/busca_ativa/Cito";
 const tabelaDiabetesEquipe = async (
     municipioIdSus: string,
     equipe: string,
-    token: string,
+    token: string
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",
@@ -29,7 +29,7 @@ const tabelaDiabetesEquipe = async (
 };
 const tabelaDiabetesAPS = async (
     municipioIdSus: string,
-    token: string,
+    token: string
 ): Promise<TabelaResponse> => {
     const config = {
         method: "get",

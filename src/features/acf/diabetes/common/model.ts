@@ -67,4 +67,4 @@ export type SortableField = (typeof sortableField)[number];
 
 export const sortOrder = ["asc", "desc"] as const;
 
-export type SortOrder = (typeof sortOrder)[number]
+export type SortOrder = (typeof sortOrder)[number];

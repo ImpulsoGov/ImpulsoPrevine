@@ -1,6 +1,4 @@
-import identificacaoAtendimentoOdontologico from "../data/identificacao_atendimento_odontologico.json" assert {
-    type: "json",
-};
+import identificacaoAtendimentoOdontologico from "../data/identificacao_atendimento_odontologico.json" assert { type: "json" };
 
 const formatarNome = ({ value }) => {
     const name = {
@@ -109,7 +107,7 @@ const ATENDIMENTO_ODONTOLOGICO_STYLE = ({ value }) => {
     };
     const descricao =
         identificacaoAtendimentoOdontologico.identificacao_atendimento_odontologico.find(
-            (item) => item.id_atendimento_odontologico == value,
+            (item) => item.id_atendimento_odontologico == value
         ).atendimento_odontologico_descricao;
     return (
         <div style={style[value]}>

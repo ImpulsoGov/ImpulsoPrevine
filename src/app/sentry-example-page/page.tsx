@@ -59,14 +59,14 @@ export default function Page() {
                             },
                             async () => {
                                 const res = await fetch(
-                                    "/api/sentry-example-api",
+                                    "/api/sentry-example-api"
                                 );
                                 if (!res.ok) {
                                     throw new Error(
-                                        "Sentry Example Frontend Error",
+                                        "Sentry Example Frontend Error"
                                     );
                                 }
-                            },
+                            }
                         );
                     }}
                 >

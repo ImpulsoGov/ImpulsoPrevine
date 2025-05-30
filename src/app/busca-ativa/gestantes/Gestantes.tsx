@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 
 const Spinner = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Spinner),
+    import("@impulsogov/design-system").then((mod) => mod.Spinner)
 );
 
 const GestantesAPS = dynamic(
@@ -15,14 +15,14 @@ const GestantesAPS = dynamic(
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 const GestantesEquipe = dynamic(
     () => import("./GestantesEquipe").then((mod) => mod.GestantesEquipe),
     {
         ssr: false,
         loading: () => <Spinner />,
-    },
+    }
 );
 
 interface GestantesProps {
@@ -50,7 +50,7 @@ export const Gestantes: React.FC<GestantesProps> = ({
             : "equipe";
     useEffect(() => {
         router.push(
-            `?aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}&visao=${visao}`,
+            `?aba=${activeTitleTabIndex}&sub_aba=${activeTabIndex}&visao=${visao}`
         );
     }, [visao, activeTabIndex, activeTitleTabIndex, router]);
     const Voltar = () => window.history.go(-1);

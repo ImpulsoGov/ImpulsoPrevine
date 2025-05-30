@@ -58,7 +58,7 @@ export const AlertSnackBar = ({ show }: AlertSnackBarProps) => {
 
     const handleClose = (
         event?: SyntheticEvent | Event,
-        reason?: SnackbarCloseReason,
+        reason?: SnackbarCloseReason
     ) => {
         if (reason === "clickaway") return;
         setOpen(false);

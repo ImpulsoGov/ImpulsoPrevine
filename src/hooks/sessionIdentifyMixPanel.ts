@@ -4,7 +4,7 @@ import type { Session } from "next-auth";
 export const sessionIdentifyMixPanel = (
     mixpanel: Mixpanel,
     Hotjar: any,
-    session: Session | null,
+    session: Session | null
 ) => {
     if (session && session.user) {
         const atributos = {

@@ -10,7 +10,7 @@ const FormConsultoria = dynamic<{
     button: string;
     theme: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.FormConsultoria),
+    import("@impulsogov/design-system").then((mod) => mod.FormConsultoria)
 );
 const Grid12Col = dynamic<{
     items: (JSX.Element | null)[];
@@ -26,7 +26,7 @@ const NovoTituloTexto = dynamic<{
     titulo: string;
     texto: string;
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto),
+    import("@impulsogov/design-system").then((mod) => mod.NovoTituloTexto)
 );
 const Slider = dynamic<{
     titulo: string;
@@ -41,7 +41,7 @@ const TituloSmallTexto = dynamic<{
     botao: { label: string; url: string };
     imagem: { posicao: boolean | null; url: string; width?: string };
 }>(() =>
-    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto),
+    import("@impulsogov/design-system").then((mod) => mod.TituloSmallTexto)
 );
 interface SliderData {
     titulo: string;

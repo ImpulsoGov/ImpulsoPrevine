@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const InicioAPSRequest = async (
     municipioIdSus: string,
-    token: string,
+    token: string
 ) => {
     const config = {
         method: "get",

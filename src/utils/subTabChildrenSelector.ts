@@ -1,8 +1,10 @@
-
 import React from "react";
 
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
-import type { ExtendedPanelSelectorWithCardsProps, ExtendedsubTabsWithChildrenAndChildrenDataProps } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/presentation";
+import type {
+    ExtendedPanelSelectorWithCardsProps,
+    ExtendedsubTabsWithChildrenAndChildrenDataProps,
+} from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/presentation";
 
 //TODO: Remover daqui
 /**
@@ -23,14 +25,14 @@ export const subTabChildrenSelector = (
         string,
         React.ComponentType<{ title: string; list: AcfDashboardType }>
     >,
-    subTabChildren: Record<string, string>,
+    subTabChildren: Record<string, string>
 ) => {
     return Object.values(selectorProps.tabs)
         .flatMap((tab) => tab.subTabs)
         .reduce(
             (
                 result,
-                subTab: ExtendedsubTabsWithChildrenAndChildrenDataProps,
+                subTab: ExtendedsubTabsWithChildrenAndChildrenDataProps
             ) => {
                 const Component =
                     subTabChildrenID[subTabChildren[subTab.subTabID]];
@@ -42,6 +44,6 @@ export const subTabChildrenSelector = (
                     : null;
                 return result;
             },
-            {} as Record<string, React.ReactNode>,
+            {} as Record<string, React.ReactNode>
         );
 };

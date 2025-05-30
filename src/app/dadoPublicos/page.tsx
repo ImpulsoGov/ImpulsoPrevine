@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 const DadosPublicos = dynamic(() =>
-    import("./DadosPublicos").then((mod) => mod.DadosPublicos),
+    import("./DadosPublicos").then((mod) => mod.DadosPublicos)
 );
 
 const DadosPublicosPage = () => {

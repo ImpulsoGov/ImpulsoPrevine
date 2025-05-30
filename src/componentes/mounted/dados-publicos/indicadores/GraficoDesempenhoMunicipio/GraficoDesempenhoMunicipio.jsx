@@ -34,7 +34,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
     useEffect(() => {
         const filteredData = filtrarPorPeriodoCodigo(
             GrafDesempenho,
-            selectedPeriodo,
+            selectedPeriodo
         )?.sort((a, b) => a.indicador_score - b.indicador_score);
         setData(filteredData);
     }, [GrafDesempenho, selectedPeriodo]);
@@ -98,7 +98,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
                     color: "#2EB280",
                 },
                 data: data.map(
-                    (indicador) => indicador.indicador_nota_porcentagem,
+                    (indicador) => indicador.indicador_nota_porcentagem
                 ),
                 label: {
                     show: true,
@@ -115,7 +115,7 @@ const GraficoDesempenhoMunicipio = ({ GrafDesempenho }) => {
                     color: "#D4DBE7",
                 },
                 data: data.map(
-                    (indicador) => indicador.indicador_diferenca_meta,
+                    (indicador) => indicador.indicador_diferenca_meta
                 ),
             },
         ],

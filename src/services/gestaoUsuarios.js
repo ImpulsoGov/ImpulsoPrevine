@@ -63,14 +63,14 @@ export const atualizarUsuario = async (id, dados, token) => {
 export const atualizarAutorizacoes = async (
     usuarioId,
     autorizacoesIds,
-    token,
+    token
 ) => {
     try {
         const requestData = { perfis_ids: autorizacoesIds };
         const response = await instance.put(
             `/perfil-usuario/${usuarioId}`,
             requestData,
-            { headers: { Authorization: `Bearer ${token}` } },
+            { headers: { Authorization: `Bearer ${token}` } }
         );
 
         return response.data;

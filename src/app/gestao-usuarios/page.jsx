@@ -3,10 +3,10 @@ import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
 
 const CardLarge = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.CardLarge),
+    import("@impulsogov/design-system").then((mod) => mod.CardLarge)
 );
 const Greeting = dynamic(() =>
-    import("@impulsogov/design-system").then((mod) => mod.Greeting),
+    import("@impulsogov/design-system").then((mod) => mod.Greeting)
 );
 
 const GestaoDeUsuarios = () => {

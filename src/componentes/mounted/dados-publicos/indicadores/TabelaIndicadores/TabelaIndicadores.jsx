@@ -179,7 +179,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
     const linhas = useMemo(() => {
         const dadosFiltrados = filtrarPorPeriodoCodigo(
             TabIndicadores,
-            ultimoPeriodo,
+            ultimoPeriodo
         );
         if (!TabIndicadores) {
             return [];
@@ -205,7 +205,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
                 indicador_nota,
                 delta_formatado,
                 indicador_recomendacao,
-            }),
+            })
         );
     }, [TabIndicadores, ultimoPeriodo]);
 

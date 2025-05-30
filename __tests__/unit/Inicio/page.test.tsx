@@ -105,14 +105,14 @@ describe("InicioPage", () => {
         };
         (InicioAPSRequest as jest.Mock).mockResolvedValue([{ some: "data" }]);
         (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(
-            validData,
+            validData
         );
 
         const pageElement = await InicioPage();
         render(
             <SessionProvider session={clientSession}>
                 {pageElement}
-            </SessionProvider>,
+            </SessionProvider>
         );
 
         expect(screen.getByTestId("inicio-component")).toBeInTheDocument();
@@ -128,7 +128,7 @@ describe("InicioPage", () => {
             { some: "data" },
         ]);
         (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(
-            validData,
+            validData
         );
 
         const pageElement = await InicioPage();

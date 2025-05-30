@@ -21,7 +21,7 @@ interface QuadrimestreData {
 }
 export const obterDadosProximosQuadrimestres = (
     dataBase: Date | string | number,
-    quantidade: number = QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES,
+    quantidade: number = QUANTIDADE_PADRAO_PROXIMOS_QUADRIMESTRES
 ) => {
     const proximosQuadrimestres: QuadrimestreData[] = [];
 
@@ -37,14 +37,14 @@ export const obterDadosProximosQuadrimestres = (
         const anoDoProximoQuadrimestre = String(
             proximoQuadrimestre > ULTIMO_QUADRIMESTRE_DO_ANO
                 ? Number(dadosUltimoQuadrimestre.ano) + 1
-                : dadosUltimoQuadrimestre.ano,
+                : dadosUltimoQuadrimestre.ano
         );
 
         proximosQuadrimestres.push({
             quadrimestre: String(
                 proximoQuadrimestre > ULTIMO_QUADRIMESTRE_DO_ANO
                     ? PRIMEIRO_QUADRIMESTRE_DO_ANO
-                    : proximoQuadrimestre,
+                    : proximoQuadrimestre
             ),
             ano: anoDoProximoQuadrimestre,
         });
@@ -64,7 +64,7 @@ export const formatarQuadrimestres = (quadrimestres: any, separador = "") => {
 
             return acc;
         },
-        {},
+        {}
     );
 
     const quadrisFormatadosComAno = [];

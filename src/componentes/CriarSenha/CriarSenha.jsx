@@ -33,15 +33,15 @@ const CriarSenha = ({
             data[0]["cadastro_usuario"].nome,
             data[0]["cadastro_usuario"].mail,
             data[0]["cadastro_usuario"].senha,
-            data[0]["cadastro_usuario"].cpf,
+            data[0]["cadastro_usuario"].cpf
         ).then(() =>
             submitCadastroIP(
                 data[0]["cadastro_ip"].municipio,
                 data[0]["cadastro_ip"].cargo,
                 data[0]["cadastro_ip"].telefone,
                 data[0]["cadastro_ip"].whatsapp,
-                data[0]["cadastro_ip"].mail,
-            ),
+                data[0]["cadastro_ip"].mail
+            )
         );
         setEtapa(1);
     };

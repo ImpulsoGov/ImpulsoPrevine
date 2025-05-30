@@ -76,7 +76,7 @@ export const DiabetesEquipe = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -89,7 +89,7 @@ export const DiabetesEquipe = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                         {
@@ -102,7 +102,7 @@ export const DiabetesEquipe = ({
                                         ? acumulador + 1
                                         : acumulador;
                                 },
-                                0,
+                                0
                             ),
                         },
                     ]}

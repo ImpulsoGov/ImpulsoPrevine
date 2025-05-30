@@ -3,7 +3,7 @@ import { LISTA_ARTIGOS, POSTS } from "@utils/QUERYS";
 import dynamic from "next/dynamic";
 
 const HomeBlog = dynamic(() =>
-    import("./HomeBlog").then((mod) => mod.HomeBlog),
+    import("./HomeBlog").then((mod) => mod.HomeBlog)
 );
 
 interface Artigo {
@@ -54,7 +54,7 @@ const HomeBlogPage = async () => {
           })
         : [];
     const artigoDestaque = artigos.sort(
-        (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
+        (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
     )[0];
     const artigosListaData = (await getData(LISTA_ARTIGOS)) as ArtigosListaData;
     return (
