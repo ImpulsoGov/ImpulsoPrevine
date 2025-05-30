@@ -7,7 +7,6 @@ export const extractFilters = (searchParams: URLSearchParams): FilterItem => {
 
     const filterItem: FilterItem = {};
     for (const filter of filters.split(";").filter(Boolean)) {
-        console.log(filter.split(":"));
         const [key, value] = filter.split(":");
         filterItem[key] =
             value.split(",").length > 1
