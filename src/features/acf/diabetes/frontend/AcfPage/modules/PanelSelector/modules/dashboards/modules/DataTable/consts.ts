@@ -1,4 +1,9 @@
-import type { TagIconDetailsMap } from "@/helpers/lista-nominal/renderCell";
+type IconDetails = {
+    src: string;
+    alt: string;
+};
+
+export type TagIconDetailsMap = Record<string, IconDetails>;
 
 export const iconDetailsMap: TagIconDetailsMap = {
     danger: {

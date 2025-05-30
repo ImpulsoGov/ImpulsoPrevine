@@ -1,4 +1,4 @@
-import { RenderStatusTagCell } from "@/helpers/lista-nominal/renderCell";
+import { RenderStatusTagCell } from "./formatters/columns";
 import type { GridColDef } from "@mui/x-data-grid";
 import { DateRenderCell, CpfOrBirthdayFormatter } from "./formatters/columns";
 import { NameFormatter } from "./formatters/name";

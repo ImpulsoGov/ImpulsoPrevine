@@ -1,9 +1,12 @@
 import { CpfOrBirthdayFormatter } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
 import { render, screen } from "@testing-library/react";
 
-jest.mock("@/helpers/lista-nominal/renderCell", () => ({
-    RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
-}));
+jest.mock(
+    "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns",
+    () => ({
+        RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
+    })
+);
 
 describe("CpfOrBirthdayFormatter", () => {
     it("renderiza a tag data-testid=empty-return quando `value` é string vazia", () => {

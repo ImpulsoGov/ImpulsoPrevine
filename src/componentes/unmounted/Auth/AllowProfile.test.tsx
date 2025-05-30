@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { AllowProfile } from "@/componentes/unmounted/Auth/AllowProfile";
+import { AllowProfile } from "@/features/acf/common/components/AllowProfile";
 import type { Session } from "next-auth";
 import { PROFILE_ID } from "@/types/profile";
 

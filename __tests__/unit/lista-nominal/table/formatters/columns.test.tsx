@@ -1,12 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { RenderDateTagCell } from "@/helpers/lista-nominal/renderCell";
+import { RenderDateTagCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
 import { DateRenderCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
 
 // 1) Mock do RenderDateTagCell para simplificar o teste
-jest.mock("@/helpers/lista-nominal/renderCell", () => ({
-    RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
-}));
+jest.mock(
+    "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns.tsx",
+    () => ({
+        RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
+    })
+);
 
 describe("DateRenderCell", () => {
     beforeEach(() => {
