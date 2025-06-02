@@ -8,26 +8,26 @@ import {
     Input,
     Button,
 } from "@impulsogov/design-system";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-interface InputProps {
+type InputProps = {
     value: string;
     onChange: Dispatch<SetStateAction<string>>;
-}
+};
 
-interface ToolBarMountedProps {
+type ToolBarMountedProps = {
     updateDate?: Date;
     print: () => void;
     inputProps: InputProps;
     handleSearchClick: () => void;
-}
-
-export const ToolBarMounted = ({
+};
+//TODO remover depois que o componente estiver pronto em features
+export const ToolBarMounted: React.FC<ToolBarMountedProps> = ({
     updateDate,
     print,
     inputProps,
     handleSearchClick,
-}: ToolBarMountedProps) => {
+}) => {
     return (
         <ListToolBar>
             <>
@@ -55,9 +55,9 @@ export const ToolBarMounted = ({
                         placeholder="PESQUISE UM NOME"
                         shape="rounded-left"
                         value={inputProps.value}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            inputProps.onChange(e.target.value)
-                        }
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            inputProps.onChange(e.target.value);
+                        }}
                         aria-label="Campo de busca por nome"
                         role="searchbox"
                     />

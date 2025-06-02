@@ -10,6 +10,7 @@ import type { PaginationModel } from "../WithPagination";
 import type { SortingModel } from "../WithSorting";
 import { diabetesColumns } from "./modules/columns";
 import { SortingContext } from "../WithSorting/context";
+import { SearchContext, type SearchModel } from "../WithSearch/context";
 
 export const DataTable: React.FC = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
@@ -17,10 +18,12 @@ export const DataTable: React.FC = () => {
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
+    const { search } = useContext<SearchModel>(SearchContext);
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
         filters,
-        gridSortingModel
+        gridSortingModel,
+        search
     );
     if (data && status !== 200) {
         return (

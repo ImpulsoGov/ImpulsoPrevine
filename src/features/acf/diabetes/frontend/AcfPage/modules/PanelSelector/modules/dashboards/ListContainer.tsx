@@ -5,6 +5,8 @@ import { WithFilters } from "./modules/WithFilters";
 import { DataTable } from "./modules/DataTable";
 import { InternalCards } from "./modules/Internalcards";
 import { WithSorting } from "./modules/WithSorting";
+import { WithSearch } from "./modules/WithSearch";
+import { ToolBar } from "./modules/ToolBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -26,16 +28,19 @@ export const ListContainer: React.FC<ListContainerProps> = ({
                 teamIne={teamIne}
             />
             <List list={list}>
-                <WithSorting>
-                    <WithFilters
-                        municipalitySusID={municipalitySusId}
-                        teamIne={teamIne}
-                    >
-                        <WithPagination>
-                            <DataTable />
-                        </WithPagination>
-                    </WithFilters>
-                </WithSorting>
+                <WithSearch>
+                    <ToolBar />
+                    <WithSorting>
+                        <WithFilters
+                            municipalitySusID={municipalitySusId}
+                            teamIne={teamIne}
+                        >
+                            <WithPagination>
+                                <DataTable />
+                            </WithPagination>
+                        </WithFilters>
+                    </WithSorting>
+                </WithSearch>
             </List>
         </>
     );
