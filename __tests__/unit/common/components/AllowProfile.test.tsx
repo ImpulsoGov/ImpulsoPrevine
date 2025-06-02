@@ -59,6 +59,26 @@ describe("AllowProfile", () => {
         mockGetServerSession.mockResolvedValue({
             user: notAllowedUser,
         });
+        //IMPORTANTE: Descobrimos que o await só interpreta componentes assíncronos quando eles são chamados no formato de função
+        //const result = await MeuComponente(props)
+        const result = await AllowProfile({
+            error: <DummyError />,
+            profileID: allowedProfile,
+            children: <DummyChild />,
+        });
+        //metodo render só lida com componentes síncronos por isso precisamos usar o await antes do consumo
+        render(result);
+        // Verifica se o erro está presente e o conteúdo permitido não
+        expect(screen.getByTestId("error")).toBeInTheDocument();
+        expect(screen.queryByTestId("child")).not.toBeInTheDocument();
+    });
+
+    it("deve renderizar o erro quando o usuário não possui o perfis atribuidos", async () => {
+        const notAllowedUser = { ...user, perfis: [] };
+        const allowedProfile = PROFILE_ID.impulser;
+        mockGetServerSession.mockResolvedValue({
+            user: notAllowedUser,
+        });
         const result = await AllowProfile({
             error: <DummyError />,
             profileID: allowedProfile,
@@ -69,21 +89,4 @@ describe("AllowProfile", () => {
         expect(screen.getByTestId("error")).toBeInTheDocument();
         expect(screen.queryByTestId("child")).not.toBeInTheDocument();
     });
-});
-
-it("deve renderizar o erro quando o usuário não possui o perfis atribuidos", async () => {
-    const notAllowedUser = { ...user, perfis: [] };
-    const allowedProfile = PROFILE_ID.impulser;
-    mockGetServerSession.mockResolvedValue({
-        user: notAllowedUser,
-    });
-    const result = await AllowProfile({
-        error: <DummyError />,
-        profileID: allowedProfile,
-        children: <DummyChild />,
-    });
-    render(result);
-    // Verifica se o erro está presente e o conteúdo permitido não
-    expect(screen.getByTestId("error")).toBeInTheDocument();
-    expect(screen.queryByTestId("child")).not.toBeInTheDocument();
 });
