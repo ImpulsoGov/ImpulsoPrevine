@@ -21,7 +21,7 @@ export const page = async (
             field: adapter.sortableFieldToDb(sorting.field),
             sort: sorting.sort,
         },
-        search
+        search.toLocaleUpperCase()
     );
     return adapter.diabetesPageDbToModel(page);
 };
@@ -37,6 +37,6 @@ export const rowCount = async (
         municipalitySusID,
         teamIne,
         filtersDb,
-        search
+        search.toLocaleUpperCase()
     );
 };
