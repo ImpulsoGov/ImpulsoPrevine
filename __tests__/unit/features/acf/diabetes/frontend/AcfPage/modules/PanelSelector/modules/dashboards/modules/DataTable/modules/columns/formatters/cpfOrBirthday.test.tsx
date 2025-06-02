@@ -1,9 +1,15 @@
 import { CpfOrBirthdayFormatter } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
 import { render, screen } from "@testing-library/react";
 
-jest.mock("@/helpers/lista-nominal/renderCell", () => ({
-    RenderDateTagCell: jest.fn(() => <span>MOCK_TAG</span>),
-}));
+// O componente TableTag é importado no mesmo arquivo que o CpfOrBirthdayFormatter,
+// então precisamos mockar ele para evitar o erro de MessageChannel devido ao ícone
+// da TableTag que usa o componente Image do NextJS, que não é compatível
+// com o ambiente de teste do Jest.
+jest.mock("@/features/acf/common/components/TableTag", () => {
+    return {
+        TableTag: jest.fn(() => <span>MOCK_TAG</span>),
+    };
+});
 
 describe("CpfOrBirthdayFormatter", () => {
     it("renderiza a tag data-testid=empty-return quando `value` é string vazia", () => {

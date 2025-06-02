@@ -1,4 +1,4 @@
-import { cpfFormatter } from "@/common/formatters/cpf";
+import { cpfFormatter } from "@/features/common/formatters/cpf";
 
 describe("cpfFormatter", () => {
     it("formata corretamente um CPF com 11 dígitos", () => {
