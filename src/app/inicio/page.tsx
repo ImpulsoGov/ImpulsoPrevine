@@ -4,10 +4,10 @@ import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
 import dynamic from "next/dynamic";
 const Inicio = dynamic(() => import("./Inicio").then((mod) => mod.Inicio));
 
-import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
 import type { SituacaoPorIndicador } from "@/types/inicio";
+import { getServerSession } from "next-auth";
 import { AuthErrorPage } from "./AuthError";
 import { SupportError } from "./SupportError";
 
@@ -17,20 +17,20 @@ const InicioPage = async () => {
 
     if (session?.user) {
         if (
-            session?.user?.perfis.includes(5) ||
-            session?.user?.perfis.includes(8)
+            session.user.perfis.includes(5) ||
+            session.user.perfis.includes(8)
         ) {
             situacaoIndicadores = await InicioAPSRequest(
-                session?.user?.municipio_id_sus,
-                session?.user?.access_token
+                session.user.municipio_id_sus,
+                session.user.access_token
             );
         }
 
-        if (session?.user?.perfis.includes(9)) {
+        if (session.user.perfis.includes(9)) {
             situacaoIndicadores = await InicioEquipeRequest(
-                session?.user?.municipio_id_sus,
-                session?.user?.equipe,
-                session?.user?.access_token
+                session.user.municipio_id_sus,
+                session.user.equipe,
+                session.user.access_token
             );
         }
         const situacaoPorIndicador: SituacaoPorIndicador | null =

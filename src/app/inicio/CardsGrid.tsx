@@ -30,27 +30,29 @@ type CardListaWrapper = {
         url: string;
         newTab: boolean;
     };
-    onHeaderClick: () => void;
+    handleHeaderClick: () => void;
 };
 
-export interface CardsGridProps {
+export type CardsGridProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
-}
+};
 
 export type CardIndicatorType =
     | "cardsDiabetesEVacinacao"
     | "cardsHipertensaoECito";
+
+type CardListaType = {
+    wrapper: CardListaWrapper;
+    child: CardListaChild;
+};
 
 export type CardsGridDataType = {
     [Key in CardIndicatorType]: {
         div: {
             style: CSSProperties;
         };
-        cardLista: {
-            wrapper: CardListaWrapper;
-            child: CardListaChild;
-        }[];
+        cardLista: Array<CardListaType>;
     };
 };
 
@@ -80,14 +82,15 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
                         height: "50%",
                         link: {
-                            url: `/busca-ativa/diabeticos?aba=${""}&sub_aba=${""}&visao=${visao}`,
+                            url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
                             newTab: false,
                         },
-                        onHeaderClick: () =>
+                        handleHeaderClick: (): void => {
                             mixpanel.track("card_click", {
                                 card_action: "acessar_lista_diabetes",
                                 card_page: "pg_inicio",
-                            }),
+                            });
+                        },
                     },
                     child: {
                         indicador: Indicadores.DIABETES,
@@ -110,11 +113,12 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
                             newTab: false,
                         },
-                        onHeaderClick: () =>
+                        handleHeaderClick: (): void => {
                             mixpanel.track("card_click", {
                                 card_action: "acessar_lista_vacinacao",
                                 card_page: "pg_inicio",
-                            }),
+                            });
+                        },
                     },
                     child: {
                         indicador: Indicadores.VACINACAO,
@@ -145,14 +149,15 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             "Cidadãos que possuem a condição e o status de consulta e aferição de pressão.",
                         height: "50%",
                         link: {
-                            url: `busca-ativa/hipertensos?aba=${""}&sub_aba=${""}&visao=${visao}`,
+                            url: `busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
                             newTab: false,
                         },
-                        onHeaderClick: () =>
+                        handleHeaderClick: (): void => {
                             mixpanel.track("card_click", {
                                 card_action: "acessar_lista_hipertensao",
                                 card_page: "pg_inicio",
-                            }),
+                            });
+                        },
                     },
                     child: {
                         indicador: Indicadores.HIPERTENSOS,
@@ -172,14 +177,15 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                         height: "50%",
                         link: {
-                            url: `/busca-ativa/citopatologico?aba=${""}&sub_aba=0&visao=${visao}`,
+                            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
                             newTab: false,
                         },
-                        onHeaderClick: () =>
+                        handleHeaderClick: (): void => {
                             mixpanel.track("card_click", {
                                 card_action: "acessar_lista_citopatologico",
                                 card_page: "pg_inicio",
-                            }),
+                            });
+                        },
                     },
                     child: {
                         indicador: Indicadores.CITOPATOLOGICO,
@@ -203,7 +209,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         titulo={cardList.wrapper.titulo}
                         descricao={cardList.wrapper.descricao}
                         link={cardList.wrapper.link}
-                        onHeaderClick={cardList.wrapper.onHeaderClick}
+                        onHeaderClick={cardList.wrapper.handleHeaderClick}
                     >
                         {isValid(
                             situacaoPorIndicador,
@@ -217,7 +223,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                             cardList.child.indicador
                                         ].pendente
                                     }
-                                    complemento={`de ${situacaoPorIndicador[cardList.child.indicador].total}`}
+                                    complemento={`de ${situacaoPorIndicador[cardList.child.indicador].total.toString()}`}
                                 />
                             </>
                         ) : (
@@ -268,12 +274,12 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
                             newTab: false,
                         }}
-                        onHeaderClick={() =>
+                        onHeaderClick={(): void => {
                             mixpanel.track("card_click", {
                                 card_action: "acessar_lista_pre_natal",
                                 card_page: "pg_inicio",
-                            })
-                        }
+                            });
+                        }}
                     >
                         {isValid(
                             situacaoPorIndicador,
@@ -295,7 +301,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                             Indicadores.PRE_NATAL_6_CONSULTAS
                                         ].pendente
                                     }
-                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total}`}
+                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_6_CONSULTAS].total.toString()}`}
                                 />
                                 <DetailedInfo
                                     descricao="Gestantes sem o exame de Sífilis ou de HIV identificados"
@@ -304,7 +310,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                             Indicadores.PRE_NATAL_SIFILIS_HIV
                                         ].pendente
                                     }
-                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total}`}
+                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_SIFILIS_HIV].total.toString()}`}
                                 />
                                 <DetailedInfo
                                     descricao="Gestantes sem o atendimento odontológico identificado"
@@ -313,7 +319,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                             Indicadores.PRE_NATAL_ODONTO
                                         ].pendente
                                     }
-                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total}`}
+                                    complemento={`de ${situacaoPorIndicador[Indicadores.PRE_NATAL_ODONTO].total.toString()}`}
                                 />
                             </>
                         ) : (
@@ -337,42 +343,47 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             url: "https://bit.ly/atendimento-impulso-previne-site",
                         }}
                         titulo="Falar com o suporte"
-                        onClick={() =>
+                        onClick={(): void => {
                             mixpanel.track("card_click", {
                                 card_action: "solicitar_suporte_wpp",
                                 card_page: "pg_inicio",
-                            })
-                        }
+                            });
+                        }}
                     />
                 </div>,
                 <Banner
                     key="bannerGuiasEDicas"
                     descricao={{
                         content:
-                            "Em breve esse espaço poderá ter uma novidade! Conte pra gente o que você gostaria de ver aqui!",
+                            "Estamos adaptando o Impulso Previne às novas regras da APS. <p>Quer ser um dos primeiros a testar e ajudar a construir essa nova fase? 👀 </p>",
+                        color: "#1F7A99",
                     }}
                     icone={{
                         alt: "Ícone de uma lâmpada",
-                        src: "https://media.graphassets.com/NuB8Kdi2ThW19WzQg52z",
-                        width: "21px",
+                        src: "https://media.graphassets.com/czfiUThpQWWTmUNquGAR",
+                        width: "33px",
+                        height: "40px",
                     }}
                     link={{
                         newTab: true,
-                        url: "https://bit.ly/pg-inicial-pesquisa-interesse",
+                        url: "https://bit.ly/contruibua-tela-inicial",
                     }}
                     botao={{
-                        label: "CONTA PRA GENTE",
+                        label: "QUERO PARTICIPAR",
+                        backgroundColor: "#1F7A99",
+                        backgroundColorOnHover: "#1F7A99",
                     }}
                     titulo={{
-                        content: "O que você gostaria de ver aqui?",
+                        content: "Novos indicadores",
+                        color: "#1F7A99",
                     }}
-                    onClick={() =>
+                    onClick={(): void => {
                         mixpanel.track("card_click", {
                             card_action: "enviar_feedback_novidade",
                             card_page: "pg_inicio",
-                        })
-                    }
-                    backgroundColor="#8F9BA3"
+                        });
+                    }}
+                    backgroundColor="#B5E4E9"
                 />,
             ]}
         />
