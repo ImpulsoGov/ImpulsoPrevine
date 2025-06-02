@@ -1,8 +1,8 @@
-import { cpfFormatter } from "@/common/formatters/cpf";
+import { cpfFormatter } from "@/features/common/formatters/cpf";
 import { TableTag } from "@/features/acf/common/components/TableTag";
 import { iconDetailsMap } from "../../../consts";
 import React from "react";
-import { formatDate, parseDate } from "@/common/time";
+import { formatDate, parseDate } from "@/features/common/time";
 
 type CpfOrBirthdayFormatterProps = {
     value: string | null;

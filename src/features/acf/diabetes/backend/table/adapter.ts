@@ -1,4 +1,4 @@
-import { isDate, parseDate } from "@/common/time";
+import { isDate, parseDate } from "@/features/common/time";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import type {
     ConditionIdentifiedBy,

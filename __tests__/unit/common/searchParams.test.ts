@@ -1,4 +1,4 @@
-import { extractFilters } from "@/common/searchParams";
+import { extractFilters } from "@/features/common/searchParams";
 
 describe("dadosPublicos", () => {
     beforeEach(() => {
