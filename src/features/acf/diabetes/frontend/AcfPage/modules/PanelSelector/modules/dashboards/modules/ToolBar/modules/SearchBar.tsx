@@ -22,6 +22,9 @@ export const SearchBar: React.FC = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setValue(e.target.value);
                 }}
+                onKeyDown={(e: { key: string }) => {
+                    if (e.key === "Enter") onSearchChange(value);
+                }}
                 aria-label="Campo de busca por nome"
                 role="searchbox"
             />
