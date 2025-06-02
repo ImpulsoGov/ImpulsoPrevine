@@ -1,3 +1,4 @@
+"use client";
 import { ListToolBar } from "@impulsogov/design-system";
 import { LastUpdatedCard } from "./modules/LastUpdatedCard";
 import { SearchBar } from "./modules/SearchBar";
