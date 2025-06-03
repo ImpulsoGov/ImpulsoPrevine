@@ -17,12 +17,18 @@ export const WithPagination: React.FC<WithPaginationProps> = ({
             pageSize: 8,
         }
     );
-
+    const resetPagination = (): void => {
+        setPaginationModel((prevState) => ({
+            ...prevState,
+            page: 0,
+        }));
+    };
     return (
         <PaginationContext.Provider
             value={{
                 gridPaginationModel: paginationModel,
                 onPaginationModelChange: setPaginationModel,
+                resetPagination: resetPagination,
             }}
         >
             {children}

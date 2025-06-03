@@ -14,7 +14,7 @@ import { SearchContext, type SearchModel } from "../WithSearch/context";
 
 export const DataTable: React.FC = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
-    const { gridPaginationModel, onPaginationModelChange } =
+    const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
@@ -24,7 +24,7 @@ export const DataTable: React.FC = () => {
         filters,
         gridSortingModel,
         search,
-        onPaginationModelChange
+        resetPagination
     );
     if (data && status !== 200) {
         return (
