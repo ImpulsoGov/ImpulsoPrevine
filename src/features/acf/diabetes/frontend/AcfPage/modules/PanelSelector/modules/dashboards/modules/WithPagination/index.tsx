@@ -1,6 +1,6 @@
 "use client";
-import type React from "react";
 import type { GridPaginationModel } from "@mui/x-data-grid";
+import type React from "react";
 import { useState } from "react";
 import { PaginationContext } from "./context";
 

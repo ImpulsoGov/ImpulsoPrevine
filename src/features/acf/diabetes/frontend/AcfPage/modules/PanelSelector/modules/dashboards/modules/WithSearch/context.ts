@@ -1,12 +1,10 @@
 "use client";
-import { createContext, type Dispatch, type SetStateAction } from "react";
+import { createContext } from "react";
 
 export type SearchModel = {
-    search: string;
-    onSearchChange: Dispatch<SetStateAction<string>>;
+    searchString: string;
 };
 
 export const SearchContext = createContext<SearchModel>({
-    search: "",
-    onSearchChange: () => {},
+    searchString: "",
 });

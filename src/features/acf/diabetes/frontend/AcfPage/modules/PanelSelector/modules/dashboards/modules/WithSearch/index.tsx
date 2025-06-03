@@ -23,8 +23,7 @@ export const WithSearch: React.FC<WithSearchProps> = ({
             <SearchComponent onSearchTriggered={setSearch} />
             <SearchContext.Provider
                 value={{
-                    search: search,
-                    onSearchChange: setSearch,
+                    searchString: search,
                 }}
             >
                 {children}
