@@ -16,7 +16,7 @@ export const SearchBar: React.FC = () => {
         <SearchBarContainer>
             <Input
                 border="top-bottom-left"
-                placeholder="PESQUISE UM NOME"
+                placeholder="Pesquise um nome"
                 shape="rounded-left"
                 value={value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
