@@ -30,6 +30,7 @@ export const ListContainer: React.FC<ListContainerProps> = ({
             <List list={list}>
                 <WithSearch>
                     <ToolBar />
+                    <hr style={{ width: "100%" }} />
                     <WithSorting>
                         <WithFilters
                             municipalitySusID={municipalitySusId}

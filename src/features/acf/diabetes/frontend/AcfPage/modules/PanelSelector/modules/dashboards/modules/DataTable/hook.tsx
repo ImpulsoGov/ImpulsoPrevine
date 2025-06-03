@@ -1,17 +1,19 @@
 import type { AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
+import type { Dispatch, SetStateAction } from "react";
 import { useState, useEffect } from "react";
 import type { Session } from "next-auth";
 import * as service from "@/features/acf/diabetes/frontend/service";
 import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
-import type { GridSortItem } from "@mui/x-data-grid";
+import type { GridPaginationModel, GridSortItem } from "@mui/x-data-grid";
 
 export const useTableData = (
     page: number,
     filters: SelectedValues,
     sorting: GridSortItem,
-    search: string
+    search: string,
+    onPaginationModelChange: Dispatch<SetStateAction<GridPaginationModel>>
 ): {
     data: schema.Response | undefined;
     status: number | undefined;
@@ -22,6 +24,14 @@ export const useTableData = (
         useState<AxiosResponse<schema.Response> | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
+
+    useEffect(() => {
+        onPaginationModelChange((prevState) => ({
+            ...prevState,
+            page: 0,
+        }));
+    }, [filters, sorting, search]);
+
     useEffect(() => {
         setUser(session?.user);
     }, [session?.user]);

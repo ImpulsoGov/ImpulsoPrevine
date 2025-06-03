@@ -23,7 +23,8 @@ export const DataTable: React.FC = () => {
         gridPaginationModel.page,
         filters,
         gridSortingModel,
-        search
+        search,
+        onPaginationModelChange
     );
     if (data && status !== 200) {
         return (
