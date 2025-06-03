@@ -43,6 +43,21 @@ export const SearchBar: React.FC = () => {
                     width={20}
                 />
             </Button>
+            <Button
+                border="full"
+                onClick={() => {
+                    onSearchChange(value);
+                }}
+                shape="rounded-right"
+                theme="white"
+            >
+                <Icon
+                    alt="Ícone de uma lupa"
+                    height={18}
+                    src="https://media.graphassets.com/CnDbZuxgR7mVU87EmN2u"
+                    width={20}
+                />
+            </Button>
         </SearchBarContainer>
     );
 };
