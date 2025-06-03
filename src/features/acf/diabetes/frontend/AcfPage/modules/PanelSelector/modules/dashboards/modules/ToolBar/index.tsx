@@ -1,15 +1,20 @@
 "use client";
 import { ListToolBar } from "@impulsogov/design-system";
+import type { Dispatch, SetStateAction } from "react";
 import { LastUpdatedCard } from "./modules/LastUpdatedCard";
 import { SearchBar } from "./modules/SearchBar";
 // import { PrintButton } from "./modules/PrintButton";
 
-export const ToolBar: React.FC = () => {
+type Props = {
+    onSearchTriggered: Dispatch<SetStateAction<string>>;
+};
+
+export const ToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
     return (
         <ListToolBar>
             <>
                 <LastUpdatedCard />
-                <SearchBar />
+                <SearchBar onSearchTriggered={onSearchTriggered} />
                 {/* <PrintButton /> */}
             </>
         </ListToolBar>

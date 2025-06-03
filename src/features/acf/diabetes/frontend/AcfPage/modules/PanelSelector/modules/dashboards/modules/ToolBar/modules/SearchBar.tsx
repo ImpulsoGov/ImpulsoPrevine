@@ -1,16 +1,19 @@
 "use client";
 import {
-    SearchBarContainer,
-    Input,
     Button,
     Icon,
+    Input,
+    SearchBarContainer,
 } from "@impulsogov/design-system";
-import { useState, useContext } from "react";
-import { SearchContext, type SearchModel } from "../../WithSearch/context";
+import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 
-export const SearchBar: React.FC = () => {
+type Props = {
+    onSearchTriggered: Dispatch<SetStateAction<string>>;
+};
+
+export const SearchBar: React.FC<Props> = ({ onSearchTriggered }) => {
     const [value, setValue] = useState<string>("");
-    const { onSearchChange } = useContext<SearchModel>(SearchContext);
 
     return (
         <SearchBarContainer>
@@ -23,7 +26,7 @@ export const SearchBar: React.FC = () => {
                     setValue(e.target.value);
                 }}
                 onKeyDown={(e: { key: string }) => {
-                    if (e.key === "Enter") onSearchChange(value);
+                    if (e.key === "Enter") onSearchTriggered(value);
                 }}
                 aria-label="Campo de busca por nome"
                 role="searchbox"
@@ -31,7 +34,7 @@ export const SearchBar: React.FC = () => {
             <Button
                 border="full"
                 onClick={() => {
-                    onSearchChange(value);
+                    onSearchTriggered(value);
                 }}
                 shape="rounded-right"
                 theme="white"

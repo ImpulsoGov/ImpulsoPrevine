@@ -1,21 +1,34 @@
 "use client";
 import type React from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { SearchContext } from "./context";
 
-type WithSearchProps = React.PropsWithChildren;
+type Props = {
+    SearchComponent: React.FC<{
+        onSearchTriggered: Dispatch<SetStateAction<string>>;
+    }>;
+};
 
-export const WithSearch: React.FC<WithSearchProps> = ({ children }) => {
+type WithSearchProps = React.PropsWithChildren<Props>;
+
+export const WithSearch: React.FC<WithSearchProps> = ({
+    SearchComponent,
+    children,
+}) => {
     const [search, setSearch] = useState<string>("");
 
     return (
-        <SearchContext.Provider
-            value={{
-                search: search,
-                onSearchChange: setSearch,
-            }}
-        >
-            {children}
-        </SearchContext.Provider>
+        <>
+            <SearchComponent onSearchTriggered={setSearch} />
+            <SearchContext.Provider
+                value={{
+                    search: search,
+                    onSearchChange: setSearch,
+                }}
+            >
+                {children}
+            </SearchContext.Provider>
+        </>
     );
 };

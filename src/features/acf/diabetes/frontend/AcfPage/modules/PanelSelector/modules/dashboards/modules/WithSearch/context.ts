@@ -1,6 +1,5 @@
 "use client";
-import { createContext } from "react";
-import { type Dispatch, type SetStateAction } from "react";
+import { createContext, type Dispatch, type SetStateAction } from "react";
 
 export type SearchModel = {
     search: string;
