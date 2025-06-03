@@ -1,7 +1,7 @@
-import { prisma } from "@prisma/prismaClient";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import type { DiabetesDbFilterItem, SortableDbField } from "../model";
+import { prisma } from "@prisma/prismaClient";
 import type { SortOrder } from "../../common/model";
+import type { DiabetesDbFilterItem, SortableDbField } from "../model";
 const pageSize = 8;
 
 type QueryWhere = {
@@ -56,13 +56,18 @@ export const page = async (
         field: SortableDbField;
         sort: SortOrder;
     },
-    search: string
+    searchString: string
 ): Promise<
     ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
 > => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany(
         {
-            where: queryWhere(filters, municipalitySusID, teamIne, search),
+            where: queryWhere(
+                filters,
+                municipalitySusID,
+                teamIne,
+                searchString.toLocaleUpperCase()
+            ),
             orderBy: {
                 [sorting.field]: {
                     sort: sorting.sort,
@@ -83,7 +88,12 @@ export const rowCount = async (
 ): Promise<number> => {
     return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count(
         {
-            where: queryWhere(filters, municipalitySusID, teamIne, search),
+            where: queryWhere(
+                filters,
+                municipalitySusID,
+                teamIne,
+                search.toLocaleUpperCase()
+            ),
         }
     );
 };

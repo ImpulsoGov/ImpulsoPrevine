@@ -9,7 +9,7 @@ export const page = async (
     pageIndex: number,
     filters: FilterParams,
     sorting: SortingParams,
-    search: string
+    searchString: string
 ): Promise<Array<DiabetesAcfItem>> => {
     const filtersDb = adapter.filterParamsToDb(filters);
     const page = await repository.page(
@@ -21,7 +21,7 @@ export const page = async (
             field: adapter.sortableFieldToDb(sorting.field),
             sort: sorting.sort,
         },
-        search.toLocaleUpperCase()
+        searchString
     );
     return adapter.diabetesPageDbToModel(page);
 };
@@ -30,13 +30,13 @@ export const rowCount = async (
     municipalitySusID: string,
     teamIne: string,
     filters: FilterParams,
-    search: string
+    searchString: string
 ): Promise<number> => {
     const filtersDb = adapter.filterParamsToDb(filters);
     return await repository.rowCount(
         municipalitySusID,
         teamIne,
         filtersDb,
-        search.toLocaleUpperCase()
+        searchString
     );
 };
