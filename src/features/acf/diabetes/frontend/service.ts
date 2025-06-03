@@ -10,7 +10,7 @@ export type GetPageParams = {
     page: number;
     sorting: GridSortItem;
     filters: SelectedValues;
-    // search?: string;
+    search?: string;
 };
 
 export const getPage = async ({
@@ -18,7 +18,7 @@ export const getPage = async ({
     page,
     sorting,
     filters,
-    // search,
+    search,
 }: GetPageParams): Promise<AxiosResponse<schema.Response>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
@@ -30,7 +30,7 @@ export const getPage = async ({
                 ? []
                 : [filters.conditionIdentifiedBy],
     };
-    const body = { filters: filtersRequest, sorting: sorting };
+    const body = { filters: filtersRequest, sorting: sorting, search: search };
     return axios.request({
         method: "POST",
         maxBodyLength: Number.POSITIVE_INFINITY,

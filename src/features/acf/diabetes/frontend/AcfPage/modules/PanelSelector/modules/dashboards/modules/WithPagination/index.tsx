@@ -1,6 +1,6 @@
 "use client";
-import type React from "react";
 import type { GridPaginationModel } from "@mui/x-data-grid";
+import type React from "react";
 import { useState } from "react";
 import { PaginationContext } from "./context";
 
@@ -17,12 +17,18 @@ export const WithPagination: React.FC<WithPaginationProps> = ({
             pageSize: 8,
         }
     );
-
+    const resetPagination = (): void => {
+        setPaginationModel((prevState) => ({
+            ...prevState,
+            page: 0,
+        }));
+    };
     return (
         <PaginationContext.Provider
             value={{
                 gridPaginationModel: paginationModel,
                 onPaginationModelChange: setPaginationModel,
+                resetPagination: resetPagination,
             }}
         >
             {children}

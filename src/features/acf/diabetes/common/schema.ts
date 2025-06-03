@@ -34,6 +34,7 @@ export type SortingParams = z.infer<typeof sortingParams>;
 export const requestBody = z.object({
     filters: z.optional(filterParams),
     sorting: sortingParams,
+    search: z.string(),
 });
 
 export type RequestBody = z.infer<typeof requestBody>;

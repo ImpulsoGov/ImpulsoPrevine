@@ -10,7 +10,9 @@ import type { GridSortItem } from "@mui/x-data-grid";
 export const useTableData = (
     page: number,
     filters: SelectedValues,
-    sorting: GridSortItem
+    sorting: GridSortItem,
+    search: string,
+    resetPagination: () => void
 ): {
     data: schema.Response | undefined;
     status: number | undefined;
@@ -21,6 +23,11 @@ export const useTableData = (
         useState<AxiosResponse<schema.Response> | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
+
+    useEffect(() => {
+        resetPagination();
+    }, [filters, sorting, search]);
+
     useEffect(() => {
         setUser(session?.user);
     }, [session?.user]);
@@ -39,13 +46,13 @@ export const useTableData = (
                 },
                 filters: filters,
                 page: page,
-                // search: search,
+                search: search,
             });
             setResponse(res);
             setIsLoading(false);
         };
 
         void getResponse();
-    }, [user, page, filters, sorting]);
+    }, [user, page, filters, sorting, search]);
     return { data: response?.data, status: response?.status, isLoading };
 };

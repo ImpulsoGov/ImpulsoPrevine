@@ -1,26 +1,30 @@
 "use client";
-import { useTableData } from "./hook";
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
-import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
-import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
-import { PaginationContext } from "../WithPagination/context";
 import type { PaginationModel } from "../WithPagination";
+import { PaginationContext } from "../WithPagination/context";
+import { SearchContext, type SearchModel } from "../WithSearch/context";
 import type { SortingModel } from "../WithSorting";
-import { diabetesColumns } from "./modules/columns";
 import { SortingContext } from "../WithSorting/context";
+import { useTableData } from "./hook";
+import { diabetesColumns } from "./modules/columns";
+import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 export const DataTable: React.FC = () => {
     const filters = useContext<SelectedValues>(FiltersContext);
-    const { gridPaginationModel, onPaginationModelChange } =
+    const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
+    const { searchString } = useContext<SearchModel>(SearchContext);
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
         filters,
-        gridSortingModel
+        gridSortingModel,
+        searchString,
+        resetPagination
     );
     if (data && status !== 200) {
         return (
