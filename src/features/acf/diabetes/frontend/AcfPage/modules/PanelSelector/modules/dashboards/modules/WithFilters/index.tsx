@@ -1,26 +1,40 @@
 import type React from "react";
 import { filterOptions } from "../../../../../../../../backend/filters/controller";
 import { Suspense } from "react";
-import * as Presentation from "./presentation";
 
 type FiltersContainerProps = React.PropsWithChildren<{
     municipalitySusID: string;
     teamIne: string;
+    FiltersBar: React.FC;
 }>;
 
-export const WithFilters: React.FC<FiltersContainerProps> = async ({
+export const WithFiltersCoaps: React.FC<FiltersContainerProps> = async ({
     municipalitySusID,
-    teamIne,
     children,
+    // FiltersBar,
 }) => {
     // TODO rever nome do controller filterOptions
-    const filtersValues = await filterOptions(municipalitySusID, teamIne);
+    const filtersValues = await filterOptionsCoaps(municipalitySusID);
 
     return (
         <Suspense>
-            <Presentation.WithFilters filtersValues={filtersValues}>
-                {children}
-            </Presentation.WithFilters>
+            <FiltersBar filtersValues={filtersValues}>{children}</FiltersBar>
+        </Suspense>
+    );
+};
+
+export const WithFiltersCoeq: React.FC<FiltersContainerProps> = async ({
+    municipalitySusID,
+    teamIne,
+    children,
+    FiltersBar,
+}) => {
+    // TODO rever nome do controller filterOptions
+    const filtersValues = await filterOptionsCoeq(municipalitySusID, teamIne);
+
+    return (
+        <Suspense>
+            <FiltersBar filtersValues={filtersValues}>{children}</FiltersBar>
         </Suspense>
     );
 };

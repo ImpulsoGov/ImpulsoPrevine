@@ -3,7 +3,7 @@ import { List } from "./List";
 import { DataTable } from "./modules/DataTable";
 import { InternalCards } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
-import { WithFilters } from "./modules/WithFilters";
+import { WithFiltersCoaps, WithFiltersCoeq } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
 import { WithSearch } from "./modules/WithSearch";
 import { WithSorting } from "./modules/WithSorting";
@@ -15,12 +15,27 @@ export type ListContainerProps = {
     // title: string;
 };
 
-export const ListContainer: React.FC<ListContainerProps> = ({
-    // title,
-    list,
-    municipalitySusId,
-    teamIne,
-}) => {
+const ContentCoaps = ({ municipalitySusId }) => {
+    return (
+        <>
+            <InternalCards municipalitySusId={municipalitySusId} />
+            <List list={list}>
+                <WithSearch SearchComponent={ToolBar}>
+                    <hr style={{ width: "100%" }} />
+                    <WithSorting>
+                        <WithFiltersCoaps FiltersBar={WithFiltersCoaps}>
+                            <WithPagination>
+                                <DataTable />
+                            </WithPagination>
+                        </WithFiltersCoaps>
+                    </WithSorting>
+                </WithSearch>
+            </List>
+        </>
+    );
+};
+
+const ContentCoeq = ({ municipalitySusId, teamIne }) => {
     return (
         <>
             <InternalCards
@@ -31,17 +46,28 @@ export const ListContainer: React.FC<ListContainerProps> = ({
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFilters
-                            municipalitySusID={municipalitySusId}
-                            teamIne={teamIne}
-                        >
+                        <WithFiltersCoeq FiltersBar={CoeqFilterbar}>
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
-                        </WithFilters>
+                        </WithFiltersCoeq>
                     </WithSorting>
                 </WithSearch>
             </List>
         </>
+    );
+};
+
+export const ListContainer: React.FC<ListContainerProps> = ({
+    // title,
+    list,
+    municipalitySusId,
+    teamIne,
+    visao,
+}) => {
+    return visao == "Coaps" ? (
+        <ContentCoaps municipalitySusId={municipalitySusId} />
+    ) : (
+        <ContentCoeq municipalitySusId={municipalitySusId} teamIne={teamIne} />
     );
 };
