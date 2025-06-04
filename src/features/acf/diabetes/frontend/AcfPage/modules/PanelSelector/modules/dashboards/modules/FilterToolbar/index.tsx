@@ -1,27 +1,10 @@
 "use client";
+import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
+import { ClearFilters, SelectDropdown } from "@impulsogov/design-system";
 import { useSearchParams } from "next/navigation";
-import { createSelectConfigs } from "./logic";
 import { useState } from "react";
-import { SelectDropdown } from "@impulsogov/design-system";
-import { ClearFilters } from "@impulsogov/design-system";
-import { FiltersContext } from "./context";
-import { FilterBar } from "@impulsogov/design-system";
-import type {
-    FiltersUi,
-    SelectedValues,
-} from "@/features/acf/diabetes/frontend/model";
-import { clearFiltersArgs } from "./consts";
-import type { SelectConfig } from "./logic";
-import { searchParamsToSelectedValues } from "./logic";
 
-type WithFiltersProps = React.PropsWithChildren<{
-    filtersValues: FiltersUi;
-}>;
-
-export const WithFilters: React.FC<WithFiltersProps> = ({
-    children,
-    filtersValues,
-}) => {
+export const FilterToolbar: React.FC = () => {
     const searchParams = useSearchParams();
     const selectConfigs = createSelectConfigs(filtersValues);
     const initialSelectedValues = searchParamsToSelectedValues(searchParams);
@@ -46,15 +29,5 @@ export const WithFilters: React.FC<WithFiltersProps> = ({
             setData={setSelectedValues}
             {...clearFiltersArgs}
         />
-    );
-
-    return (
-        <>
-            <FilterBar filters={filtersSelect} clearButton={clearButton} />
-
-            <FiltersContext.Provider value={selectedValues}>
-                {children}
-            </FiltersContext.Provider>
-        </>
     );
 };
