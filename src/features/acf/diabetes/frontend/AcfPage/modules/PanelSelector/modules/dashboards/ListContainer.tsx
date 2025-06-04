@@ -1,3 +1,4 @@
+import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { DataTable } from "./modules/DataTable";
@@ -7,15 +8,25 @@ import { WithFiltersCoaps, WithFiltersCoeq } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
 import { WithSearch } from "./modules/WithSearch";
 import { WithSorting } from "./modules/WithSorting";
+import { FiltersBarCoaps, FiltersBarCoeqs } from "./modules/FiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
     municipalitySusId: string;
     teamIne: string;
+    visao: "coaps" | "coeq";
     // title: string;
 };
 
-const ContentCoaps = ({ municipalitySusId }) => {
+type ContentCoapsProps = {
+    municipalitySusId: string;
+    list: AcfDashboardType;
+};
+
+const ContentCoaps: React.FC<ContentCoapsProps> = ({
+    municipalitySusId,
+    list,
+}) => {
     return (
         <>
             <InternalCards municipalitySusId={municipalitySusId} />
@@ -23,7 +34,10 @@ const ContentCoaps = ({ municipalitySusId }) => {
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFiltersCoaps FiltersBar={WithFiltersCoaps}>
+                        <WithFiltersCoaps
+                            municipalitySusID={municipalitySusId}
+                            FiltersBar={FiltersBarCoaps}
+                        >
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
@@ -35,7 +49,17 @@ const ContentCoaps = ({ municipalitySusId }) => {
     );
 };
 
-const ContentCoeq = ({ municipalitySusId, teamIne }) => {
+type ContentCoeqProps = {
+    municipalitySusId: string;
+    teamIne: string;
+    list: AcfDashboardType;
+};
+
+const ContentCoeq: React.FC<ContentCoeqProps> = ({
+    municipalitySusId,
+    teamIne,
+    list,
+}) => {
     return (
         <>
             <InternalCards
@@ -46,7 +70,11 @@ const ContentCoeq = ({ municipalitySusId, teamIne }) => {
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFiltersCoeq FiltersBar={CoeqFilterbar}>
+                        <WithFiltersCoeq
+                            FiltersBar={FiltersBarCoeqs}
+                            municipalitySusID={municipalitySusId}
+                            teamIne={teamIne}
+                        >
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
@@ -65,9 +93,13 @@ export const ListContainer: React.FC<ListContainerProps> = ({
     teamIne,
     visao,
 }) => {
-    return visao == "Coaps" ? (
-        <ContentCoaps municipalitySusId={municipalitySusId} />
+    return visao == "coaps" ? (
+        <ContentCoaps municipalitySusId={municipalitySusId} list={list} />
     ) : (
-        <ContentCoeq municipalitySusId={municipalitySusId} teamIne={teamIne} />
+        <ContentCoeq
+            municipalitySusId={municipalitySusId}
+            teamIne={teamIne}
+            list={list}
+        />
     );
 };

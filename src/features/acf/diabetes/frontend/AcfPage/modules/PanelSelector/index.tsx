@@ -1,5 +1,5 @@
 import { getExternalCardsProps } from "@/helpers/cardsList";
-import type { ProfileIdValue } from "@/types/profile";
+import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
@@ -67,6 +67,11 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
                     list={acfDashboardType}
                     municipalitySusId={municipalitySusId}
                     teamIne={teamIne}
+                    visao={
+                        userProfiles.includes(PROFILE_ID.COAPS)
+                            ? "coaps"
+                            : "coeq"
+                    }
                 />
             }
         />

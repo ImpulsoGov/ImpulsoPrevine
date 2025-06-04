@@ -1,17 +1,26 @@
 import type React from "react";
-import { filterOptions } from "../../../../../../../../backend/filters/controller";
+import {
+    filterOptionsCoaps,
+    filterOptionsCoeq,
+} from "../../../../../../../../backend/filters/controller";
 import { Suspense } from "react";
+import type { FiltersUi } from "@/features/acf/diabetes/frontend/model";
 
-type FiltersContainerProps = React.PropsWithChildren<{
+type WithFiltersCoapsProps = React.PropsWithChildren<{
     municipalitySusID: string;
-    teamIne: string;
-    FiltersBar: React.FC;
+    FiltersBar: React.FC<React.PropsWithChildren<{ filtersValues: FiltersUi }>>;
 }>;
 
-export const WithFiltersCoaps: React.FC<FiltersContainerProps> = async ({
+type WithFiltersCoeqsProps = React.PropsWithChildren<{
+    municipalitySusID: string;
+    teamIne: string;
+    FiltersBar: React.FC<React.PropsWithChildren<{ filtersValues: FiltersUi }>>;
+}>;
+
+export const WithFiltersCoaps: React.FC<WithFiltersCoapsProps> = async ({
     municipalitySusID,
     children,
-    // FiltersBar,
+    FiltersBar,
 }) => {
     // TODO rever nome do controller filterOptions
     const filtersValues = await filterOptionsCoaps(municipalitySusID);
@@ -23,7 +32,7 @@ export const WithFiltersCoaps: React.FC<FiltersContainerProps> = async ({
     );
 };
 
-export const WithFiltersCoeq: React.FC<FiltersContainerProps> = async ({
+export const WithFiltersCoeq: React.FC<WithFiltersCoeqsProps> = async ({
     municipalitySusID,
     teamIne,
     children,

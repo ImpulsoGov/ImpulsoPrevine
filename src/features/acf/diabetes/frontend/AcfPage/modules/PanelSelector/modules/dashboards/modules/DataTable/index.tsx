@@ -2,7 +2,7 @@
 import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
-import { FiltersContext } from "../WithFilters/context";
+import { FiltersContext } from "../FiltersBar/context";
 import type { PaginationModel } from "../WithPagination";
 import { PaginationContext } from "../WithPagination/context";
 import { SearchContext, type SearchModel } from "../WithSearch/context";

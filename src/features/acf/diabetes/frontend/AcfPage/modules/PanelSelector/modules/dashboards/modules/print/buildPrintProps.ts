@@ -7,7 +7,7 @@ import {
 } from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
-import { filtersLabels } from "../WithFilters/consts";
+import { filtersLabels } from "../FiltersBar/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 import { diabetesColumns } from "../DataTable/modules/columns";

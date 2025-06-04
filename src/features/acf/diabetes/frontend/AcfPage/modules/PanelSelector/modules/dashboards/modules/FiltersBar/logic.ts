@@ -37,7 +37,7 @@ export const sortedOptions = (
     b: HtmlSelectOption
 ): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
-export const createSelectConfigs = (
+export const createSelectConfigsCoaps = (
     filtersValues: FiltersUi
 ): Array<SelectConfig> => {
     return [
@@ -79,6 +79,50 @@ export const createSelectConfigs = (
         },
     ];
 };
+
+export const createSelectConfigsCoeqs = (
+    filtersValues: FiltersUi
+): Array<SelectConfig> => {
+    return [
+        {
+            options: selectOptions(filtersValues.visitantCommunityHealthWorker)
+                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            label: "Prof. Responsável",
+            id: "visitantCommunityHealthWorker",
+            isMultiSelect: true,
+            width: "330px",
+        },
+        {
+            options: selectOptions(filtersValues.patientStatus).sort((a, b) =>
+                a.label.localeCompare(b.label)
+            ),
+            label: "Situação",
+            id: "patientStatus",
+            isMultiSelect: true,
+            width: "178px",
+        },
+        {
+            options: selectOptions(filtersValues.conditionIdentifiedBy).sort(
+                (a, b) => a.label.localeCompare(b.label)
+            ),
+            label: "Tipo de Diagnóstico",
+            id: "conditionIdentifiedBy",
+            isMultiSelect: false,
+            width: "228px",
+        },
+        {
+            options: selectOptions(filtersValues.patientAgeRange).sort(
+                sortedOptions
+            ),
+            label: "Faixa Etária",
+            id: "patientAgeRange",
+            isMultiSelect: true,
+            width: "178px",
+        },
+    ];
+};
+
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
     schema: z.ZodType
@@ -96,7 +140,29 @@ export const selectOptions = (
     }));
 };
 
-export const searchParamsToSelectedValues = (
+export const searchParamsToSelectedValuesCoaps = (
+    searchParams: URLSearchParams
+): SelectedValues => {
+    const patientsStatus: Array<schema.PatientStatus> = (searchParams
+        .get("patientStatus")
+        ?.split(",") ?? []) as Array<schema.PatientStatus>;
+    const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
+        []) as Array<schema.PatientAgeRange>;
+    return {
+        visitantCommunityHealthWorker:
+            searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
+        patientStatus: onlyValidFilterValues(
+            patientsStatus,
+            schema.patientStatus
+        ),
+        conditionIdentifiedBy: (searchParams
+            .get("conditionIdentifiedBy")
+            ?.split(",")[0] ?? "") as schema.ConditionIdentifiedBy,
+        patientAgeRange: onlyValidFilterValues(ranges, schema.patientAgeRange),
+    };
+};
+
+export const searchParamsToSelectedValuesCoeqs = (
     searchParams: URLSearchParams
 ): SelectedValues => {
     const patientsStatus: Array<schema.PatientStatus> = (searchParams

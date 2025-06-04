@@ -24,7 +24,7 @@ const getInternalCardsProps = (
     });
 };
 
-export const InternalCards: React.FC<InternalCardsProps> = async ({
+export const InternalCardsCoeq: React.FC<InternalCardsProps> = async ({
     municipalitySusId,
     teamIne,
 }) => {
@@ -34,6 +34,29 @@ export const InternalCards: React.FC<InternalCardsProps> = async ({
             municipalitySusId,
             teamIne
         );
+        internalCardsProps = getInternalCardsProps(
+            internalCardsDetails,
+            internalCardsData
+        );
+    } catch (error) {
+        captureException(error);
+    }
+    return (
+        <Suspense>
+            <Presentation.InternalCards
+                internalCardsProps={internalCardsProps}
+            />
+        </Suspense>
+    );
+};
+
+export const InternalCardsCoaps: React.FC<InternalCardsProps> = async ({
+    municipalitySusId,
+}) => {
+    let internalCardsProps: Array<CardProps> = [];
+    try {
+        const internalCardsData =
+            await internalCardsController(municipalitySusId);
         internalCardsProps = getInternalCardsProps(
             internalCardsDetails,
             internalCardsData
