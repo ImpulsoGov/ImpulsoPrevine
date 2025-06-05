@@ -1,17 +1,17 @@
 import type {
-    FiltersUi,
-    SelectedValues,
-} from "@/features/acf/diabetes/frontend/model";
-import type {
-    VisitantCommunityHealthWorker,
-    PatientStatus,
     ConditionIdentifiedBy,
     PatientAgeRange,
+    PatientStatus,
+    VisitantCommunityHealthWorker,
 } from "@/features/acf/diabetes/common/model";
 import * as schema from "@/features/acf/diabetes/common/schema";
-import { referenceOrder } from "./consts";
+import type {
+    FiltersUi,
+    SelectedFilterValues,
+} from "@/features/acf/diabetes/frontend/model";
 import type * as z from "zod/v4";
 import { nameFormatter } from "../../../../logic";
+import { referenceOrder } from "./consts";
 
 export type FilterValues =
     | Array<VisitantCommunityHealthWorker>
@@ -36,49 +36,6 @@ export const sortedOptions = (
     a: HtmlSelectOption,
     b: HtmlSelectOption
 ): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
-
-export const createSelectConfigsCoaps = (
-    filtersValues: FiltersUi
-): Array<SelectConfig> => {
-    return [
-        {
-            options: selectOptions(filtersValues.visitantCommunityHealthWorker)
-                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
-            label: "Prof. Responsável",
-            id: "visitantCommunityHealthWorker",
-            isMultiSelect: true,
-            width: "330px",
-        },
-        {
-            options: selectOptions(filtersValues.patientStatus).sort((a, b) =>
-                a.label.localeCompare(b.label)
-            ),
-            label: "Situação",
-            id: "patientStatus",
-            isMultiSelect: true,
-            width: "178px",
-        },
-        {
-            options: selectOptions(filtersValues.conditionIdentifiedBy).sort(
-                (a, b) => a.label.localeCompare(b.label)
-            ),
-            label: "Tipo de Diagnóstico",
-            id: "conditionIdentifiedBy",
-            isMultiSelect: false,
-            width: "228px",
-        },
-        {
-            options: selectOptions(filtersValues.patientAgeRange).sort(
-                sortedOptions
-            ),
-            label: "Faixa Etária",
-            id: "patientAgeRange",
-            isMultiSelect: true,
-            width: "178px",
-        },
-    ];
-};
 
 export const createSelectConfigsCoeqs = (
     filtersValues: FiltersUi
@@ -123,6 +80,13 @@ export const createSelectConfigsCoeqs = (
     ];
 };
 
+export const createSelectConfigsCoaps = (
+    filtersValues: FiltersUi
+): Array<SelectConfig> => {
+    //TODO: Adicionar concat para o campo novo
+    return createSelectConfigsCoeqs(filtersValues);
+};
+
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
     schema: z.ZodType
@@ -142,7 +106,7 @@ export const selectOptions = (
 
 export const searchParamsToSelectedValuesCoaps = (
     searchParams: URLSearchParams
-): SelectedValues => {
+): SelectedFilterValues => {
     const patientsStatus: Array<schema.PatientStatus> = (searchParams
         .get("patientStatus")
         ?.split(",") ?? []) as Array<schema.PatientStatus>;
@@ -164,7 +128,7 @@ export const searchParamsToSelectedValuesCoaps = (
 
 export const searchParamsToSelectedValuesCoeqs = (
     searchParams: URLSearchParams
-): SelectedValues => {
+): SelectedFilterValues => {
     const patientsStatus: Array<schema.PatientStatus> = (searchParams
         .get("patientStatus")
         ?.split(",") ?? []) as Array<schema.PatientStatus>;

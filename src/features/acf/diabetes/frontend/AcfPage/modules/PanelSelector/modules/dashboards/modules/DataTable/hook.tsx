@@ -1,15 +1,15 @@
-import type { AxiosResponse } from "axios";
-import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
-import type { Session } from "next-auth";
-import * as service from "@/features/acf/diabetes/frontend/service";
 import type * as schema from "@/features/acf/diabetes/common/schema";
-import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import * as service from "@/features/acf/diabetes/frontend/service";
 import type { GridSortItem } from "@mui/x-data-grid";
+import type { AxiosResponse } from "axios";
+import type { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 export const useTableData = (
     page: number,
-    filters: SelectedValues,
+    filters: SelectedFilterValues,
     sorting: GridSortItem,
     search: string,
     resetPagination: () => void

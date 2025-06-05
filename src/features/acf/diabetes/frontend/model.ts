@@ -5,12 +5,22 @@ import type {
     VisitantCommunityHealthWorker,
 } from "../common/model";
 
-export type SelectedValues = {
+export type SelectedFilterValuesCoeq = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
     patientStatus: Array<PatientStatus>;
     conditionIdentifiedBy: ConditionIdentifiedBy;
     patientAgeRange: Array<PatientAgeRange>;
 };
+
+export type SelectedFilterValuesCoaps = SelectedFilterValuesCoeq & {
+    campoDeCoaps: Array<string>;
+};
+
+//TODO: Remover este union type, e usar generics no lugar
+export type SelectedFilterValues =
+    | SelectedFilterValuesCoeq
+    | SelectedFilterValuesCoaps
+    | null;
 
 export type FiltersUi = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;

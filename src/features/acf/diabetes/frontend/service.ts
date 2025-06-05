@@ -1,15 +1,15 @@
 "use client";
-import type { AxiosResponse } from "axios";
-import axios from "axios";
-import type { FiltersUi, SelectedValues } from "./model";
 import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
+import type { AxiosResponse } from "axios";
+import axios from "axios";
+import type { FiltersUi, SelectedFilterValues } from "./model";
 
 export type GetPageParams = {
     token: string;
     page: number;
     sorting: GridSortItem;
-    filters: SelectedValues;
+    filters: SelectedFilterValues;
     search?: string;
 };
 

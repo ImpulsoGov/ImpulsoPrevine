@@ -1,8 +1,8 @@
 "use client";
-import type { SelectedValues } from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
-import { FiltersContext } from "../FiltersBar/context";
+import { FiltersContext } from "../WithFilters/context";
 import type { PaginationModel } from "../WithPagination";
 import { PaginationContext } from "../WithPagination/context";
 import { SearchContext, type SearchModel } from "../WithSearch/context";
@@ -13,7 +13,7 @@ import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 export const DataTable: React.FC = () => {
-    const filters = useContext<SelectedValues>(FiltersContext);
+    const filters = useContext<SelectedFilterValues>(FiltersContext);
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
