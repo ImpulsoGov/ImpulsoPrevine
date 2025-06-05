@@ -8,7 +8,7 @@ import { WithFilters } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
 import { WithSearch } from "./modules/WithSearch";
 import { WithSorting } from "./modules/WithSorting";
-import { FiltersBarCoeqs, FiltersBarCoaps } from "./modules/FiltersBar";
+import { FiltersBarCoeqs } from "./modules/FiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -18,36 +18,36 @@ export type ListContainerProps = {
     // title: string;
 };
 
-type ContentCoapsProps = {
-    municipalitySusId: string;
-    list: AcfDashboardType;
-};
+// type ContentCoapsProps = {
+//     municipalitySusId: string;
+//     list: AcfDashboardType;
+// };
 
-const ContentCoaps: React.FC<ContentCoapsProps> = ({
-    municipalitySusId,
-    list,
-}) => {
-    return (
-        <>
-            <InternalCardsCoaps municipalitySusId={municipalitySusId} />
-            <List list={list}>
-                <WithSearch SearchComponent={ToolBar}>
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <WithFilters
-                            municipalitySusID={municipalitySusId}
-                            FiltersBar={FiltersBarCoaps}
-                        >
-                            <WithPagination>
-                                <DataTable />
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
-            </List>
-        </>
-    );
-};
+// const ContentCoaps: React.FC<ContentCoapsProps> = ({
+//     municipalitySusId,
+//     list,
+// }) => {
+//     return (
+//         <>
+//             <InternalCardsCoaps municipalitySusId={municipalitySusId} />
+//             <List list={list}>
+//                 <WithSearch SearchComponent={ToolBar}>
+//                     <hr style={{ width: "100%" }} />
+//                     <WithSorting>
+//                         <WithFilters
+//                             municipalitySusID={municipalitySusId}
+//                             FiltersBar={FiltersBarCoaps}
+//                         >
+//                             <WithPagination>
+//                                 <DataTable />
+//                             </WithPagination>
+//                         </WithFilters>
+//                     </WithSorting>
+//                 </WithSearch>
+//             </List>
+//         </>
+//     );
+// };
 
 type ContentCoeqProps = {
     municipalitySusId: string;
@@ -74,6 +74,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                             FiltersBar={FiltersBarCoeqs}
                             municipalitySusID={municipalitySusId}
                         >
+                            {/* <FiltersBarCoeqs /> */}
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
