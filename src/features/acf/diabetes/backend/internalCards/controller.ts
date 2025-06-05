@@ -1,8 +1,18 @@
 import type { InternalCardDataItem } from "../model";
 import { dbToModel } from "./adapter";
-import { internalCardsDataForTeam } from "./repository";
+import {
+    internalCardsDataForAps,
+    internalCardsDataForTeam,
+} from "./repository";
 
-export const internalCardsController = async (
+export const internalCardsControllerCoaps = async (
+    municipalitySusId: string
+): Promise<Array<InternalCardDataItem>> => {
+    const data = await internalCardsDataForAps(municipalitySusId);
+    return dbToModel(data);
+};
+
+export const internalCardsControllerCoeq = async (
     municipalitySusId: string,
     teamIne: string
 ): Promise<Array<InternalCardDataItem>> => {

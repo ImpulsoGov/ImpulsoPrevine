@@ -2,7 +2,7 @@ import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { DataTable } from "./modules/DataTable";
-import { InternalCards } from "./modules/Internalcards";
+import { InternalCardsCoaps, InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
 import { WithFiltersCoaps, WithFiltersCoeq } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
@@ -29,7 +29,7 @@ const ContentCoaps: React.FC<ContentCoapsProps> = ({
 }) => {
     return (
         <>
-            <InternalCards municipalitySusId={municipalitySusId} />
+            <InternalCardsCoaps municipalitySusId={municipalitySusId} />
             <List list={list}>
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
@@ -62,7 +62,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
 }) => {
     return (
         <>
-            <InternalCards
+            <InternalCardsCoeq
                 municipalitySusId={municipalitySusId}
                 teamIne={teamIne}
             />
