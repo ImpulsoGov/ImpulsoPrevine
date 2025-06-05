@@ -4,11 +4,11 @@ import { List } from "./List";
 import { DataTable } from "./modules/DataTable";
 import { InternalCardsCoaps, InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
-import { WithFiltersCoaps, WithFiltersCoeq } from "./modules/WithFilters";
+import { WithFilters } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
 import { WithSearch } from "./modules/WithSearch";
 import { WithSorting } from "./modules/WithSorting";
-import { FiltersBarCoaps, FiltersBarCoeqs } from "./modules/FiltersBar";
+import { FiltersBarCoeqs, FiltersBarCoaps } from "./modules/FiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -34,14 +34,14 @@ const ContentCoaps: React.FC<ContentCoapsProps> = ({
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFiltersCoaps
+                        <WithFilters
                             municipalitySusID={municipalitySusId}
                             FiltersBar={FiltersBarCoaps}
                         >
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
-                        </WithFiltersCoaps>
+                        </WithFilters>
                     </WithSorting>
                 </WithSearch>
             </List>
@@ -70,15 +70,14 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFiltersCoeq
+                        <WithFilters
                             FiltersBar={FiltersBarCoeqs}
                             municipalitySusID={municipalitySusId}
-                            teamIne={teamIne}
                         >
                             <WithPagination>
                                 <DataTable />
                             </WithPagination>
-                        </WithFiltersCoeq>
+                        </WithFilters>
                     </WithSorting>
                 </WithSearch>
             </List>

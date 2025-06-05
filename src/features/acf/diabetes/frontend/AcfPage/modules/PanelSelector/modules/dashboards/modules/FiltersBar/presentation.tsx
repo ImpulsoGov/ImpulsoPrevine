@@ -1,8 +1,5 @@
 "use client";
-import type {
-    FiltersUi,
-    SelectedFilterValues,
-} from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import {
     ClearFilters,
     FilterBar,
@@ -11,13 +8,18 @@ import {
 import type { Dispatch, SetStateAction } from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
-import { createSelectConfigsCoeqs } from "./logic";
 
-type FiltersBarCoeqsProps = React.PropsWithChildren<{
+type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: SelectedFilterValues;
     setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
-    filtersOptions: FiltersUi;
+    selectConfigs: Array<SelectConfig>;
 }>;
+
+type FiltersSelectProps = {
+    selectConfigs: Array<SelectConfig>;
+    selectedValues: SelectedFilterValues;
+    setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
+};
 
 //TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues
 // type FilterOptions<T> = {
@@ -25,15 +27,12 @@ type FiltersBarCoeqsProps = React.PropsWithChildren<{
 //     options: Array<T>,
 // }
 
-export const FiltersBar: React.FC<FiltersBarCoeqsProps> = ({
+const FiltersSelect: React.FC<FiltersSelectProps> = ({
+    selectConfigs,
     selectedValues,
     setSelectedValues,
-    filtersOptions,
 }) => {
-    //TODO: Extrair as coisas especificas de COEQS para o container
-    const selectConfigs = createSelectConfigsCoeqs(filtersOptions);
-
-    const filtersSelect = selectConfigs.map((select: SelectConfig) => (
+    return selectConfigs.map((select: SelectConfig) => (
         <SelectDropdown
             key={select.id}
             {...select}
@@ -45,6 +44,13 @@ export const FiltersBar: React.FC<FiltersBarCoeqsProps> = ({
             width={select.width}
         />
     ));
+};
+
+export const FiltersBar: React.FC<FiltersBarProps> = ({
+    selectedValues,
+    setSelectedValues,
+    selectConfigs,
+}) => {
     const clearButton = (
         <ClearFilters
             data={selectedValues}
@@ -52,6 +58,12 @@ export const FiltersBar: React.FC<FiltersBarCoeqsProps> = ({
             {...clearFiltersArgs}
         />
     );
-
-    return <FilterBar filters={filtersSelect} clearButton={clearButton} />;
+    const filters = (
+        <FiltersSelect
+            selectConfigs={selectConfigs}
+            selectedValues={selectedValues}
+            setSelectedValues={setSelectedValues}
+        />
+    );
+    return <FilterBar filters={filters} clearButton={clearButton} />;
 };

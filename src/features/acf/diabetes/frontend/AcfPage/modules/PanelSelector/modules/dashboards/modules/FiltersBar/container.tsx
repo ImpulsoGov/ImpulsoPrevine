@@ -1,8 +1,16 @@
-import { filterOptionsCoeq } from "@/features/acf/diabetes/backend/filters/controller";
+import {
+    filterOptionsCoaps,
+    filterOptionsCoeq,
+} from "@/features/acf/diabetes/backend/filters/controller";
 import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import { getServerSession } from "next-auth";
 import type { Dispatch, SetStateAction } from "react";
-import { searchParamsToSelectedValuesCoeqs } from "./logic";
+import {
+    createSelectConfigsCoaps,
+    createSelectConfigsCoeqs,
+    searchParamsToSelectedValuesCoaps,
+    searchParamsToSelectedValuesCoeqs,
+} from "./logic";
 import * as Presentation from "./presentation";
 
 type FiltersBarCoeqsProps = React.PropsWithChildren<{
@@ -16,6 +24,7 @@ export const FiltersBarCoeqs: React.FC<FiltersBarCoeqsProps> = async ({
     setSelectedValues,
     searchParams,
 }) => {
+    "use server";
     const session = await getServerSession();
     //Na teoria, isso não deve ser mostrado nunca, pq este componente é renderizado no servidor,
     //e a usuária não consegue chegar aqui sem estar logada por conta do SessionGuard lá em cima.
@@ -29,6 +38,7 @@ export const FiltersBarCoeqs: React.FC<FiltersBarCoeqsProps> = async ({
         session.user.municipio_id_sus,
         session.user.equipe
     );
+    const selectConfigs = createSelectConfigsCoeqs(filtersValues);
 
     if (!selectedValues) {
         const initialSelectedValues =
@@ -40,7 +50,42 @@ export const FiltersBarCoeqs: React.FC<FiltersBarCoeqsProps> = async ({
         <Presentation.FiltersBar
             selectedValues={selectedValues}
             setSelectedValues={setSelectedValues}
-            filtersOptions={filtersValues}
+            selectConfigs={selectConfigs}
+        ></Presentation.FiltersBar>
+    );
+};
+
+export const FiltersBarCoaps: React.FC<FiltersBarCoeqsProps> = async ({
+    selectedValues,
+    setSelectedValues,
+    searchParams,
+}) => {
+    const session = await getServerSession();
+    //Na teoria, isso não deve ser mostrado nunca, pq este componente é renderizado no servidor,
+    //e a usuária não consegue chegar aqui sem estar logada por conta do SessionGuard lá em cima.
+    if (!session?.user) {
+        return <span>Usuário não está logado.</span>;
+    }
+
+    //TODO rever nome do controller filterOptions
+    //TODO: Chateado que temos que usar os nomes do token aqui.
+    const filtersValues = await filterOptionsCoaps(
+        session.user.municipio_id_sus
+    );
+
+    const selectConfigs = createSelectConfigsCoaps(filtersValues);
+
+    if (!selectedValues) {
+        const initialSelectedValues =
+            searchParamsToSelectedValuesCoaps(searchParams);
+        setSelectedValues(initialSelectedValues);
+    }
+
+    return (
+        <Presentation.FiltersBar
+            selectedValues={selectedValues}
+            setSelectedValues={setSelectedValues}
+            selectConfigs={selectConfigs}
         ></Presentation.FiltersBar>
     );
 };
