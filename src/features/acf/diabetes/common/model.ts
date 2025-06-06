@@ -23,7 +23,7 @@ export const patientAgeRange = [
     "Entre 35 e 44 anos",
     "Entre 45 e 54 anos",
     "Entre 55 e 65 anos",
-    "65 anos ou mais",
+    "Mais de 65 anos",
 ] as const;
 
 export type PatientAgeRange = (typeof patientAgeRange)[number];

@@ -91,15 +91,23 @@ export const ListContainer: React.FC<ListContainerProps> = ({
     list,
     municipalitySusId,
     teamIne,
-    visao,
+    _visao,
 }) => {
-    return visao == "coaps" ? (
-        <ContentCoaps municipalitySusId={municipalitySusId} list={list} />
-    ) : (
+    return (
         <ContentCoeq
             municipalitySusId={municipalitySusId}
             teamIne={teamIne}
             list={list}
         />
     );
+
+    // return visao == "coaps" ? (
+    //     <ContentCoaps municipalitySusId={municipalitySusId} list={list} />
+    // ) : (
+    //     <ContentCoeq
+    //         municipalitySusId={municipalitySusId}
+    //         teamIne={teamIne}
+    //         list={list}
+    //     />
+    // );
 };

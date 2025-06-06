@@ -8,7 +8,7 @@ import type {
 export type SelectedFilterValuesCoeq = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
     patientStatus: Array<PatientStatus>;
-    conditionIdentifiedBy: ConditionIdentifiedBy;
+    conditionIdentifiedBy: ConditionIdentifiedBy | "";
     patientAgeRange: Array<PatientAgeRange>;
 };
 
