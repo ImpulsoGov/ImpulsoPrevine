@@ -1,6 +1,4 @@
 import type { NextRequest } from "next/server";
-import type { RequestBody } from "@/features/acf/diabetes/common/schema";
-import { requestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
 import {
     AuthenticationError,
     decodeToken,
@@ -8,15 +6,12 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
-import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
+import * as diabetesFiltersController from "@/features/acf/diabetes/backend/filters/controller";
 import { BadRequestError } from "../../../utils/errors";
-import { z, ZodError } from "zod";
+import { ZodError } from "zod";
 
 //TODO: Criar um teste de integração para esta rota
-export async function POST(
-    req: NextRequest,
-    { params }: { params: Promise<{ page: string }> }
-): Promise<Response> {
+export async function GET(req: NextRequest): Promise<Response> {
     try {
         //TODO: Extrair essa lógica para um middleware / interceptor
         const token = getToken(req.headers);
@@ -26,31 +21,14 @@ export async function POST(
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const teamIne = payload.equipe as string;
 
-        const rawPage = (await params).page;
-        const pageIndex = z.coerce.number().parse(rawPage);
-
-        const body: unknown = await req.json();
-        const queryParams: RequestBody = queryParamsSchema.parse(body);
-
-        const page = await diabetesController.page(
+        const filters = await diabetesFiltersController.filterOptionsCoeq(
             municipalitySusID,
-            teamIne,
-            pageIndex,
-            queryParams.filters || {},
-            queryParams.sorting,
-            queryParams.search
-        );
-        const totalRows = await diabetesController.rowCount(
-            municipalitySusID,
-            teamIne,
-            queryParams.filters || {},
-            queryParams.search
+            teamIne
         );
         //TODO adicionar schema de saida
         return Response.json(
             {
-                page,
-                totalRows: totalRows,
+                filters,
             },
             { status: 200 }
         );
