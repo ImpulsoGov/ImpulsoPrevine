@@ -14,13 +14,13 @@ export const useTableData = (
     search: string,
     resetPagination: () => void
 ): {
-    data: schema.PageResponse | undefined;
+    data: schema.CoeqPageResponse | undefined;
     status: number | undefined;
     isLoading: boolean;
 } => {
     const { data: session } = useSession();
     const [response, setResponse] =
-        useState<AxiosResponse<schema.PageResponse> | null>(null);
+        useState<AxiosResponse<schema.CoeqPageResponse> | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState<Session["user"]>();
 

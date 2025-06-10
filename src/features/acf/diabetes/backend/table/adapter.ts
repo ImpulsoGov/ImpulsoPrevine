@@ -6,7 +6,7 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "../../common/model";
-import type { FilterParams, SortableFields } from "../../common/schema";
+import type { CoeqFilters, SortableFields } from "../../common/schema";
 import {
     sortableFieldsToDb,
     type DiabetesDbFilterItem,
@@ -68,7 +68,7 @@ export const diabetesPageDbToModel = (
 };
 
 export const filterParamsToDb = (
-    filters: FilterParams
+    filters: CoeqFilters
 ): DiabetesDbFilterItem => {
     return {
         status_usuario: filters.patientStatus,

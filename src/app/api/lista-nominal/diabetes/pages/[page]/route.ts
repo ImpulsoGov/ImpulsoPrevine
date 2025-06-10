@@ -1,5 +1,5 @@
 import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
-import type { PageRequestBody } from "@/features/acf/diabetes/common/schema";
+import type { CoeqPageRequestBody } from "@/features/acf/diabetes/common/schema";
 import { pageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
 import {
     AuthenticationError,
@@ -30,7 +30,7 @@ export async function POST(
         const pageIndex = z.coerce.number().parse(rawPage);
 
         const body: unknown = await req.json();
-        const queryParams: PageRequestBody = queryParamsSchema.parse(body);
+        const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
 
         const page = await diabetesController.page(
             municipalitySusID,

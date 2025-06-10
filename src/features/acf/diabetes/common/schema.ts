@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-import type { DiabetesAcfItem } from "./model";
+import type { DiabetesAcfItem as CoeqDiabetesAcfItem } from "./model";
 import * as model from "./model";
 
 export const patientStatus = z.enum(model.patientStatus);
@@ -15,32 +15,41 @@ export type SortableFields = z.infer<typeof sortableFields>;
 export const patientAgeRange = z.enum(model.patientAgeRange);
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
-export const filterParams = z.object({
-    patientStatus: z.optional(z.array(patientStatus)),
-    conditionIdentifiedBy: z.optional(z.array(conditionIdentifiedBy)),
-    visitantCommunityHealthWorker: z.optional(z.array(z.string())),
-    patientAgeRange: z.optional(z.array(patientAgeRange)),
+export const visitantCommunityHealthWorker = z.string();
+export type VisitantCommunityHealthWorker = z.infer<
+    typeof visitantCommunityHealthWorker
+>;
+
+export const coeqFilters = z.object({
+    patientStatus: z.array(patientStatus),
+    conditionIdentifiedBy: z.array(conditionIdentifiedBy),
+    visitantCommunityHealthWorker: z.array(visitantCommunityHealthWorker),
+    patientAgeRange: z.array(patientAgeRange),
 });
 
-export type FilterParams = z.infer<typeof filterParams>;
+export type CoeqFilters = z.infer<typeof coeqFilters>;
 
-export const sortingParams = z.object({
+export const coeqSort = z.object({
     field: sortableFields,
     sort: z.enum(model.sortOrder),
 });
 
-export type SortingParams = z.infer<typeof sortingParams>;
+export type CoeqSort = z.infer<typeof coeqSort>;
 
 export const pageRequestBody = z.object({
-    filters: z.optional(filterParams),
-    sorting: sortingParams,
+    filters: z.optional(coeqFilters),
+    sorting: coeqSort,
     search: z.string(),
 });
 
-export type PageRequestBody = z.infer<typeof pageRequestBody>;
+export type CoeqPageRequestBody = z.infer<typeof pageRequestBody>;
 
 //TODO: Retornar tamanho da página, e alterar o front para usar esse campo
-export type PageResponse = {
-    page: Array<DiabetesAcfItem>;
+export type CoeqPageResponse = {
+    page: Array<CoeqDiabetesAcfItem>;
     totalRows: number;
+};
+
+export type CoeqFiltersResponse = {
+    filters: CoeqFilters;
 };

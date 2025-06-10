@@ -1,5 +1,5 @@
 import type { DiabetesAcfItem } from "../../common/model";
-import type { FilterParams, SortingParams } from "../../common/schema";
+import type { CoeqFilters, CoeqSort } from "../../common/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
 
@@ -7,8 +7,8 @@ export const page = async (
     municipalitySusID: string,
     teamIne: string,
     pageIndex: number,
-    filters: FilterParams,
-    sorting: SortingParams,
+    filters: CoeqFilters,
+    sorting: CoeqSort,
     searchString: string
 ): Promise<Array<DiabetesAcfItem>> => {
     const filtersDb = adapter.filterParamsToDb(filters);
@@ -29,7 +29,7 @@ export const page = async (
 export const rowCount = async (
     municipalitySusID: string,
     teamIne: string,
-    filters: FilterParams,
+    filters: CoeqFilters,
     searchString: string
 ): Promise<number> => {
     const filtersDb = adapter.filterParamsToDb(filters);
