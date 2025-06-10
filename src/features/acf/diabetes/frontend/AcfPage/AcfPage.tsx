@@ -1,12 +1,12 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { SessionGuard } from "@/features/common/components/SessionGuard";
 import { AllowProfile } from "@/features/common/components/AllowProfile";
+import { SessionGuard } from "@/features/common/components/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
+import type { AcfDashboardType } from "../../common/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelectorContainer } from "./modules/PanelSelector";
-import type { AcfDashboardType } from "../../common/model";
 
 type Props = {
     searchParams: Promise<{

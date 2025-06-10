@@ -5,15 +5,12 @@ import type {
     VisitantCommunityHealthWorker,
 } from "@/features/acf/diabetes/common/model";
 import * as schema from "@/features/acf/diabetes/common/schema";
-import type {
-    FiltersUi,
-    SelectedFilterValues,
-} from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import type * as z from "zod/v4";
 import { nameFormatter } from "../../../../logic";
 import { referenceOrder } from "./consts";
 
-export type FilterValues =
+export type FilterOptions =
     | Array<VisitantCommunityHealthWorker>
     | Array<PatientStatus>
     | Array<ConditionIdentifiedBy>
@@ -37,12 +34,14 @@ export const sortedOptions = (
     b: HtmlSelectOption
 ): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
-export const createSelectConfigsCoeqs = (
-    filtersValues: FiltersUi
+export const toSelectConfigsCoeqs = (
+    filtersValues: schema.CoeqFilters
 ): Array<SelectConfig> => {
     return [
         {
-            options: selectOptions(filtersValues.visitantCommunityHealthWorker)
+            options: toHtmlSelectOptions(
+                filtersValues.visitantCommunityHealthWorker
+            )
                 .map((item) => ({ ...item, label: nameFormatter(item.label) }))
                 .sort((a, b) => a.label.localeCompare(b.label)),
             label: "Prof. Responsável",
@@ -51,8 +50,8 @@ export const createSelectConfigsCoeqs = (
             width: "330px",
         },
         {
-            options: selectOptions(filtersValues.patientStatus).sort((a, b) =>
-                a.label.localeCompare(b.label)
+            options: toHtmlSelectOptions(filtersValues.patientStatus).sort(
+                (a, b) => a.label.localeCompare(b.label)
             ),
             label: "Situação",
             id: "patientStatus",
@@ -60,16 +59,16 @@ export const createSelectConfigsCoeqs = (
             width: "178px",
         },
         {
-            options: selectOptions(filtersValues.conditionIdentifiedBy).sort(
-                (a, b) => a.label.localeCompare(b.label)
-            ),
+            options: toHtmlSelectOptions(
+                filtersValues.conditionIdentifiedBy
+            ).sort((a, b) => a.label.localeCompare(b.label)),
             label: "Tipo de Diagnóstico",
             id: "conditionIdentifiedBy",
             isMultiSelect: false,
             width: "228px",
         },
         {
-            options: selectOptions(filtersValues.patientAgeRange).sort(
+            options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
                 sortedOptions
             ),
             label: "Faixa Etária",
@@ -80,13 +79,6 @@ export const createSelectConfigsCoeqs = (
     ];
 };
 
-export const createSelectConfigsCoaps = (
-    filtersValues: FiltersUi
-): Array<SelectConfig> => {
-    //TODO: Adicionar concat para o campo novo
-    return createSelectConfigsCoeqs(filtersValues);
-};
-
 export const onlyValidFilterValues = <TFilterValue>(
     filterValues: Array<TFilterValue>,
     schema: z.ZodType
@@ -95,35 +87,13 @@ export const onlyValidFilterValues = <TFilterValue>(
         (filterValue: TFilterValue) => schema.safeParse(filterValue).success
     );
 };
-export const selectOptions = (
-    filterValues: FilterValues
+export const toHtmlSelectOptions = (
+    filterValues: FilterOptions
 ): Array<HtmlSelectOption> => {
     return filterValues.map<HtmlSelectOption>((item) => ({
         value: item,
         label: item,
     }));
-};
-
-export const searchParamsToSelectedValuesCoaps = (
-    searchParams: URLSearchParams
-): SelectedFilterValues => {
-    const patientsStatus: Array<schema.PatientStatus> = (searchParams
-        .get("patientStatus")
-        ?.split(",") ?? []) as Array<schema.PatientStatus>;
-    const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
-        []) as Array<schema.PatientAgeRange>;
-    return {
-        visitantCommunityHealthWorker:
-            searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
-        patientStatus: onlyValidFilterValues(
-            patientsStatus,
-            schema.patientStatus
-        ),
-        conditionIdentifiedBy: (searchParams
-            .get("conditionIdentifiedBy")
-            ?.split(",")[0] ?? "") as schema.ConditionIdentifiedBy,
-        patientAgeRange: onlyValidFilterValues(ranges, schema.patientAgeRange),
-    };
 };
 
 export const searchParamsToSelectedValuesCoeqs = (
