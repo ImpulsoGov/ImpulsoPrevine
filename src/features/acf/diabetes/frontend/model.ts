@@ -22,6 +22,7 @@ export type SelectedFilterValues =
     | SelectedFilterValuesCoaps
     | null;
 
+//TODO: Trocar este tipo por CoeqFilters do schema comum
 export type FiltersUi = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
     patientStatus: Array<PatientStatus>;
