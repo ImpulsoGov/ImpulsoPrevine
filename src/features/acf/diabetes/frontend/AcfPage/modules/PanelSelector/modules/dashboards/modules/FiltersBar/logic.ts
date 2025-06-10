@@ -87,6 +87,7 @@ export const onlyValidFilterValues = <TFilterValue>(
         (filterValue: TFilterValue) => schema.safeParse(filterValue).success
     );
 };
+
 export const toHtmlSelectOptions = (
     filterValues: FilterOptions
 ): Array<HtmlSelectOption> => {
@@ -96,7 +97,7 @@ export const toHtmlSelectOptions = (
     }));
 };
 
-export const searchParamsToSelectedValuesCoeqs = (
+export const searchParamsToSelectedValuesCoeq = (
     searchParams: URLSearchParams
 ): SelectedFilterValues => {
     const patientsStatus: Array<schema.PatientStatus> = (searchParams

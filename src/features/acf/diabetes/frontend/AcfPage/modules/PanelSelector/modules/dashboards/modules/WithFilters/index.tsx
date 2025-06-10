@@ -8,11 +8,9 @@ import { FiltersContext } from "./context";
 type FiltersBarProps = {
     selectedValues: SelectedFilterValues;
     setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
-    // searchParams: ReadonlyURLSearchParams;
 };
 
 type WithFiltersProps = React.PropsWithChildren<{
-    municipalitySusID: string;
     FiltersBar: React.FC<FiltersBarProps>;
 }>;
 
@@ -31,11 +29,9 @@ export const WithFilters: React.FC<WithFiltersProps> = ({
         initialSelectedValues
     );
 
-    //TODO: Repensar se realmente queremos repassar o SearhParams pra dentro, talvez seja melhor pegar isso a partir de um provider em cima.
     return (
         <>
             <FiltersBar
-                // searchParams={useSearchParams()}
                 selectedValues={selectedValues}
                 setSelectedValues={setSelectedValues}
             />

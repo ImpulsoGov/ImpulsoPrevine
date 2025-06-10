@@ -1,1 +1,1 @@
-export { FiltersBarCoeqs, FiltersBarCoaps } from "./container";
+export { FiltersBarCoeqs } from "./container";
