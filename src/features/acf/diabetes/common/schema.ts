@@ -31,16 +31,16 @@ export const sortingParams = z.object({
 
 export type SortingParams = z.infer<typeof sortingParams>;
 
-export const requestBody = z.object({
+export const pageRequestBody = z.object({
     filters: z.optional(filterParams),
     sorting: sortingParams,
     search: z.string(),
 });
 
-export type RequestBody = z.infer<typeof requestBody>;
+export type PageRequestBody = z.infer<typeof pageRequestBody>;
 
 //TODO: Retornar tamanho da página, e alterar o front para usar esse campo
-export type Response = {
+export type PageResponse = {
     page: Array<DiabetesAcfItem>;
     totalRows: number;
 };

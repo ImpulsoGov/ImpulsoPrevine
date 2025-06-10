@@ -1,6 +1,6 @@
-import type { NextRequest } from "next/server";
-import type { RequestBody } from "@/features/acf/diabetes/common/schema";
-import { requestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
+import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
+import type { PageRequestBody } from "@/features/acf/diabetes/common/schema";
+import { pageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
 import {
     AuthenticationError,
     decodeToken,
@@ -8,9 +8,9 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
-import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
-import { BadRequestError } from "../../../utils/errors";
+import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod";
+import { BadRequestError } from "../../../utils/errors";
 
 //TODO: Criar um teste de integração para esta rota
 export async function POST(
@@ -30,7 +30,7 @@ export async function POST(
         const pageIndex = z.coerce.number().parse(rawPage);
 
         const body: unknown = await req.json();
-        const queryParams: RequestBody = queryParamsSchema.parse(body);
+        const queryParams: PageRequestBody = queryParamsSchema.parse(body);
 
         const page = await diabetesController.page(
             municipalitySusID,
