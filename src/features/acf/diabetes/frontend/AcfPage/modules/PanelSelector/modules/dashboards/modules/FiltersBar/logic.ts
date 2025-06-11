@@ -4,8 +4,7 @@ import type {
     PatientStatus,
     VisitantCommunityHealthWorker,
 } from "@/features/acf/diabetes/common/model";
-import * as schema from "@/features/acf/diabetes/common/schema";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import type * as schema from "@/features/acf/diabetes/common/schema";
 import type * as z from "zod/v4";
 import { nameFormatter } from "../../../../logic";
 import { referenceOrder } from "./consts";
@@ -97,24 +96,24 @@ export const toHtmlSelectOptions = (
     }));
 };
 
-export const searchParamsToSelectedValuesCoeq = (
-    searchParams: URLSearchParams
-): SelectedFilterValues => {
-    const patientsStatus: Array<schema.PatientStatus> = (searchParams
-        .get("patientStatus")
-        ?.split(",") ?? []) as Array<schema.PatientStatus>;
-    const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
-        []) as Array<schema.PatientAgeRange>;
-    return {
-        visitantCommunityHealthWorker:
-            searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
-        patientStatus: onlyValidFilterValues(
-            patientsStatus,
-            schema.patientStatus
-        ),
-        conditionIdentifiedBy: (searchParams
-            .get("conditionIdentifiedBy")
-            ?.split(",")[0] ?? "") as schema.ConditionIdentifiedBy,
-        patientAgeRange: onlyValidFilterValues(ranges, schema.patientAgeRange),
-    };
-};
+// export const searchParamsToSelectedValuesCoeq = (
+//     searchParams: URLSearchParams
+// ): PossibleSelectedFilterSets => {
+//     const patientsStatus: Array<schema.PatientStatus> = (searchParams
+//         .get("patientStatus")
+//         ?.split(",") ?? []) as Array<schema.PatientStatus>;
+//     const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
+//         []) as Array<schema.PatientAgeRange>;
+//     return {
+//         visitantCommunityHealthWorker:
+//             searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
+//         patientStatus: onlyValidFilterValues(
+//             patientsStatus,
+//             schema.patientStatus
+//         ),
+//         conditionIdentifiedBy: (searchParams
+//             .get("conditionIdentifiedBy")
+//             ?.split(",")[0] ?? "") as schema.ConditionIdentifiedBy,
+//         patientAgeRange: onlyValidFilterValues(ranges, schema.patientAgeRange),
+//     };
+// };
