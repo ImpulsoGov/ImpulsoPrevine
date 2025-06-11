@@ -1,6 +1,6 @@
 import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
 import type { CoeqPageRequestBody } from "@/features/acf/diabetes/common/schema";
-import { pageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
+import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
 import {
     AuthenticationError,
     decodeToken,
@@ -12,6 +12,7 @@ import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod";
 import { BadRequestError } from "../../../utils/errors";
 
+//TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
 export async function POST(
     req: NextRequest,
@@ -32,20 +33,22 @@ export async function POST(
         const body: unknown = await req.json();
         const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
 
-        const page = await diabetesController.page(
+        const page = await diabetesController.page({
             municipalitySusID,
             teamIne,
             pageIndex,
-            queryParams.filters || {},
-            queryParams.sorting,
-            queryParams.search
-        );
-        const totalRows = await diabetesController.rowCount(
+            sorting: queryParams.sorting,
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
+
+        const totalRows = await diabetesController.rowCount({
             municipalitySusID,
             teamIne,
-            queryParams.filters || {},
-            queryParams.search
-        );
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
+
         //TODO adicionar schema de saida
         return Response.json(
             {

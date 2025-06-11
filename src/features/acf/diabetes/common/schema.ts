@@ -36,13 +36,15 @@ export const coeqSort = z.object({
 
 export type CoeqSort = z.infer<typeof coeqSort>;
 
-export const pageRequestBody = z.object({
+export const coeqPageRequestBody = z.object({
     filters: z.optional(coeqFilters),
+    //TODO: Não faz sentido que os filtros sejam opcionais e o resto não.
+    //      Podemos definir valores default caso estes parametros não venham, e usá-los, como vamos fazer no filtro.
     sorting: coeqSort,
     search: z.string(),
 });
 
-export type CoeqPageRequestBody = z.infer<typeof pageRequestBody>;
+export type CoeqPageRequestBody = z.infer<typeof coeqPageRequestBody>;
 
 //TODO: Retornar tamanho da página, e alterar o front para usar esse campo
 export type CoeqPageResponse = {
