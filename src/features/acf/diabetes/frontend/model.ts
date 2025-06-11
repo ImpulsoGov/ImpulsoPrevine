@@ -16,8 +16,8 @@ export type SelectedFilterValuesCoaps = SelectedFilterValuesCoeq & {
     campoDeCoaps: Array<string>;
 };
 
-//TODO: Remover este union type, e usar generics no lugar
+/// Contém todos os possíveis conjuntos de filtros.
+/// Eventualmente, este Union type deve ter um item para cada combinação indicador x perfil
 export type SelectedFilterValues =
     | SelectedFilterValuesCoeq
-    | SelectedFilterValuesCoaps
-    | null;
+    | SelectedFilterValuesCoaps;
