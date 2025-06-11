@@ -1,8 +1,9 @@
+import type { SelectedFilterValuesCoeq } from "@/features/acf/diabetes/frontend/model";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
-import { FiltersBarCoeqs } from "./modules/FiltersBar";
+import { FiltersBarCoeq } from "./modules/FiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
 import { WithFilters } from "./modules/WithFilters";
@@ -22,6 +23,14 @@ type ContentCoeqProps = {
     list: AcfDashboardType;
 };
 
+//TODO: Pensar se faz sentido que isso fique aqui mesmo
+const initialSelectedValues: SelectedFilterValuesCoeq = {
+    patientStatus: [],
+    conditionIdentifiedBy: "",
+    visitantCommunityHealthWorker: [],
+    patientAgeRange: [],
+};
+
 const ContentCoeq: React.FC<ContentCoeqProps> = ({
     municipalitySusId,
     teamIne,
@@ -38,7 +47,10 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                 <WithSearch SearchComponent={ToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
-                        <WithFilters FiltersBar={FiltersBarCoeqs}>
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValues}
+                            FiltersBar={FiltersBarCoeq}
+                        >
                             <WithPagination>
                                 <CoeqDataTable />
                             </WithPagination>

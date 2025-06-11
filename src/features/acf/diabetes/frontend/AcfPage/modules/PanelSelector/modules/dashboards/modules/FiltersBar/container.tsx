@@ -8,13 +8,13 @@ import { toSelectConfigsCoeqs } from "./logic";
 import * as Presentation from "./presentation";
 import { getFiltersCoeq } from "./service";
 
-type FiltersBarCoeqsProps = React.PropsWithChildren<{
+type FiltersBarCoeqProps = React.PropsWithChildren<{
     selectedValues: SelectedFilterValues;
     setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
     // searchParams: URLSearchParams;
 }>;
 
-export const FiltersBarCoeqs: React.FC<FiltersBarCoeqsProps> = ({
+export const FiltersBarCoeq: React.FC<FiltersBarCoeqProps> = ({
     selectedValues,
     setSelectedValues,
     // searchParams,

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export const useTableData = (
     page: number,
-    filters: SelectedFilterValuesCoeq,
+    filters: SelectedFilterValuesCoeq | null,
     sorting: GridSortItem,
     search: string,
     resetPagination: () => void
@@ -38,16 +38,20 @@ export const useTableData = (
                 return;
             }
             setIsLoading(true);
-            const res = await service.getCoeqPage({
-                token: user.access_token,
-                sorting: {
-                    field: sorting.field,
-                    sort: sorting.sort,
-                },
-                filters: filters,
-                page: page,
-                search: search,
-            });
+            const res = await service.getCoeqPage(
+                Object.assign(
+                    {
+                        token: user.access_token,
+                        sorting: {
+                            field: sorting.field,
+                            sort: sorting.sort,
+                        },
+                        page: page,
+                        search: search,
+                    },
+                    !filters ? {} : { filters: filters }
+                )
+            );
             setResponse(res);
             setIsLoading(false);
         };

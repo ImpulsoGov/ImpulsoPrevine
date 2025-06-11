@@ -11,19 +11,14 @@ type FiltersBarProps = {
 };
 
 type WithFiltersProps = React.PropsWithChildren<{
+    initialSelectedValues: SelectedFilterValues;
     FiltersBar: React.FC<FiltersBarProps>;
 }>;
 
-const initialSelectedValues: SelectedFilterValues = {
-    patientStatus: [],
-    conditionIdentifiedBy: "",
-    visitantCommunityHealthWorker: [],
-    patientAgeRange: [],
-};
-
 export const WithFilters: React.FC<WithFiltersProps> = ({
-    children,
+    initialSelectedValues,
     FiltersBar,
+    children,
 }) => {
     const [selectedValues, setSelectedValues] = useState<SelectedFilterValues>(
         initialSelectedValues

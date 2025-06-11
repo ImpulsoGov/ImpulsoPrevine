@@ -16,7 +16,7 @@ import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 export const CoeqDataTable: React.FC = () => {
-    const filters = useContext<SelectedFilterValues>(FiltersContext);
+    const filters = useContext<SelectedFilterValues | null>(FiltersContext);
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
@@ -25,7 +25,7 @@ export const CoeqDataTable: React.FC = () => {
 
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
-        filters as SelectedFilterValuesCoeq, //TODO: Esse as SelectedFilterValuesCoeq é um tanto chato. Será que tem como evitar?
+        filters as SelectedFilterValuesCoeq | null, //TODO: Esse as SelectedFilterValuesCoeq é um tanto chato. Será que tem como evitar?
         gridSortingModel,
         searchString,
         resetPagination
