@@ -1,7 +1,7 @@
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
-import { DataTable } from "./modules/DataTable";
+import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { FiltersBarCoeqs } from "./modules/FiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
@@ -40,7 +40,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                     <WithSorting>
                         <WithFilters FiltersBar={FiltersBarCoeqs}>
                             <WithPagination>
-                                <DataTable />
+                                <CoeqDataTable />
                             </WithPagination>
                         </WithFilters>
                     </WithSorting>

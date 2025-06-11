@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { DateRenderCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/CoeqDataTable/modules/columns/formatters/columns";
 import "@testing-library/jest-dom";
-import { DateRenderCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
+import { render, screen } from "@testing-library/react";
 
 // 1) Mock do RenderDateTagCell para simplificar o teste
 jest.mock("@/features/acf/common/components/TableTag", () => {

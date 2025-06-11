@@ -1,4 +1,4 @@
-import { CpfOrBirthdayFormatter } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/DataTable/modules/columns/formatters/columns";
+import { CpfOrBirthdayFormatter } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/CoeqDataTable/modules/columns/formatters/columns";
 import { render, screen } from "@testing-library/react";
 
 // O componente TableTag é importado no mesmo arquivo que o CpfOrBirthdayFormatter,

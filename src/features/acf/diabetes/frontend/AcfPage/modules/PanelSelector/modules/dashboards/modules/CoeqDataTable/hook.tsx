@@ -1,5 +1,5 @@
 import type * as schema from "@/features/acf/diabetes/common/schema";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValuesCoeq } from "@/features/acf/diabetes/frontend/model";
 import * as service from "@/features/acf/diabetes/frontend/service";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export const useTableData = (
     page: number,
-    filters: SelectedFilterValues,
+    filters: SelectedFilterValuesCoeq,
     sorting: GridSortItem,
     search: string,
     resetPagination: () => void
@@ -38,7 +38,7 @@ export const useTableData = (
                 return;
             }
             setIsLoading(true);
-            const res = await service.getPage({
+            const res = await service.getCoeqPage({
                 token: user.access_token,
                 sorting: {
                     field: sorting.field,

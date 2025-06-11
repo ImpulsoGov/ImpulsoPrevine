@@ -1,5 +1,8 @@
 "use client";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import type {
+    SelectedFilterValues,
+    SelectedFilterValuesCoeq,
+} from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
@@ -12,20 +15,22 @@ import { useTableData } from "./hook";
 import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
-export const DataTable: React.FC = () => {
+export const CoeqDataTable: React.FC = () => {
     const filters = useContext<SelectedFilterValues>(FiltersContext);
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
     const { searchString } = useContext<SearchModel>(SearchContext);
+
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
-        filters,
+        filters as SelectedFilterValuesCoeq, //TODO: Esse as SelectedFilterValuesCoeq é um tanto chato. Será que tem como evitar?
         gridSortingModel,
         searchString,
         resetPagination
     );
+
     if (data && status !== 200) {
         return (
             <p style={{ textAlign: "center", padding: "20px" }}>

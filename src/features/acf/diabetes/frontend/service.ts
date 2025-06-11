@@ -3,18 +3,18 @@ import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { FiltersUi, SelectedFilterValues } from "./model";
+import type { FiltersUi, SelectedFilterValuesCoeq } from "./model";
 
 //TODO: Este arquivo deveria estar colocalizado com a DataTable
 export type GetPageParams = {
     token: string;
     page: number;
     sorting: GridSortItem;
-    filters: SelectedFilterValues;
+    filters: SelectedFilterValuesCoeq;
     search?: string;
 };
 
-export const getPage = async ({
+export const getCoeqPage = async ({
     token,
     page,
     sorting,
@@ -28,11 +28,15 @@ export const getPage = async ({
     const filtersRequest: FiltersUi = {
         ...filters,
         conditionIdentifiedBy:
-            filters.conditionIdentifiedBy.length === 0
+            filters.conditionIdentifiedBy === ""
                 ? []
                 : [filters.conditionIdentifiedBy],
     };
-    const body = { filters: filtersRequest, sorting: sorting, search: search };
+    const body = {
+        filters: filtersRequest,
+        sorting: sorting,
+        search: search,
+    } as schema.CoeqPageRequestBody;
     return axios.request({
         method: "POST",
         maxBodyLength: Number.POSITIVE_INFINITY,
