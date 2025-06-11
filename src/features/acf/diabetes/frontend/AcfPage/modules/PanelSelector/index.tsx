@@ -1,13 +1,13 @@
+import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/diabetes/backend/externalCards/controller";
 import { getExternalCardsProps } from "@/helpers/cardsList";
-import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
+import { type ProfileIdValue } from "@/types/profile";
 import { MUNICIPIOS } from "@constants/municipios";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import type { AcfDashboardType } from "../../../../common/model";
 import { externalCardsDetails } from "./consts";
-import { PanelSelector } from "./presentation";
 import { ListContainer } from "./modules/dashboards/ListContainer";
-import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/diabetes/backend/externalCards/controller";
+import { PanelSelector } from "./presentation";
 
 type PanelSelectorContainerProps = {
     municipalitySusId: string;
@@ -67,11 +67,6 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
                     list={acfDashboardType}
                     municipalitySusId={municipalitySusId}
                     teamIne={teamIne}
-                    visao={
-                        userProfiles.includes(PROFILE_ID.COAPS)
-                            ? "coaps"
-                            : "coeq"
-                    }
                 />
             }
         />
