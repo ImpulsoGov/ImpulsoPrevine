@@ -1,5 +1,6 @@
 import { WithPagination } from "@/features/acf/common/frontend/WithPagination";
 import { WithSearch } from "@/features/acf/common/frontend/WithSearch";
+import { SearchToolBar } from "@features/acf/common/frontend/SearchToolBar";
 import { WithFilters } from "@features/acf/common/frontend/WithFilters";
 import { WithSorting } from "@features/acf/common/frontend/WithSorting";
 import React from "react";
@@ -9,7 +10,6 @@ import type { SelectedFilterValuesCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { FiltersBarCoeq } from "./modules/FiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
-import { ToolBar } from "./modules/ToolBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -44,7 +44,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                 teamIne={teamIne}
             />
             <List list={list}>
-                <WithSearch SearchComponent={ToolBar}>
+                <WithSearch SearchComponent={SearchToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
                         <WithFilters

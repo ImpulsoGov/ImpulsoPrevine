@@ -9,7 +9,7 @@ type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
 };
 
-export const ToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
+export const SearchToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
     return (
         <ListToolBar>
             <>
