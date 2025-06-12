@@ -5,8 +5,6 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { SelectedFilterValuesCoeq } from "./model";
 
-//TODO: Este arquivo deveria estar colocalizado com a DataTable
-
 function toRequestFilters(
     filters: SelectedFilterValuesCoeq
 ): schema.CoeqFilters {

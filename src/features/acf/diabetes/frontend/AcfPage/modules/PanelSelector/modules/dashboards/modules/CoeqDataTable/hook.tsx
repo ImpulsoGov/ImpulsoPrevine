@@ -1,11 +1,11 @@
 import type * as schema from "@/features/acf/diabetes/common/schema";
-import type { SelectedFilterValuesCoeq } from "@/features/acf/diabetes/frontend/model";
-import * as service from "@/features/acf/diabetes/frontend/service";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import type { SelectedFilterValuesCoeq } from "./model";
+import * as service from "./service";
 
 export const useTableData = (
     page: number,

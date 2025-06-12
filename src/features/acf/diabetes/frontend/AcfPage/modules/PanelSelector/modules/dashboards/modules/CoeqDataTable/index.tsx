@@ -1,8 +1,5 @@
 "use client";
-import type {
-    SelectedFilterValues,
-    SelectedFilterValuesCoeq,
-} from "@/features/acf/diabetes/frontend/model";
+import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
@@ -12,8 +9,11 @@ import { SearchContext, type SearchModel } from "../WithSearch/context";
 import type { SortingModel } from "../WithSorting";
 import { SortingContext } from "../WithSorting/context";
 import { useTableData } from "./hook";
+import type { SelectedFilterValuesCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
+
+export type { SelectedFilterValuesCoeq } from "./model";
 
 export const CoeqDataTable: React.FC = () => {
     const filters = useContext<SelectedFilterValues | null>(FiltersContext);
@@ -25,7 +25,7 @@ export const CoeqDataTable: React.FC = () => {
 
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
-        filters as SelectedFilterValuesCoeq | null, //TODO: Esse as SelectedFilterValuesCoeq é um tanto chato. Será que tem como evitar?
+        filters as SelectedFilterValuesCoeq | null, //TODO: Esse cast pra SelectedFilterValuesCoeq | null é um tanto chato. Será que tem como evitar?
         gridSortingModel,
         searchString,
         resetPagination
