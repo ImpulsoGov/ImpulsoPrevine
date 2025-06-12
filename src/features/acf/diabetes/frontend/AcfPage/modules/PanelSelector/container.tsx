@@ -6,7 +6,7 @@ import type { ProfileIdValue } from "@/types/profile";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import { externalCardsDetails } from "./consts";
-import { ListContainer } from "./modules/dashboards/ListContainer";
+import { List } from "./modules/List";
 import { PanelSelector } from "./presentation";
 
 export type PanelSelectorContainerProps = {
@@ -64,7 +64,7 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
             subTabID={initialSubTabId}
             userProfiles={userProfiles}
             contentWithoutTabs={
-                <ListContainer
+                <List
                     list={acfDashboardType}
                     municipalitySusId={municipalitySusId}
                     teamIne={teamIne}

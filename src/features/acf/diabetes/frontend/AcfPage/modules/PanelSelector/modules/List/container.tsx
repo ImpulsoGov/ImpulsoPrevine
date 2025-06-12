@@ -5,11 +5,11 @@ import { WithFilters } from "@features/acf/common/frontend/WithFilters";
 import { WithSorting } from "@features/acf/common/frontend/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
-import { List } from "./List";
 import type { AppliedFiltersCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
+import { List } from "./presentation";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
