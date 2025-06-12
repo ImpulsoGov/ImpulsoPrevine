@@ -1,6 +1,6 @@
 "use client";
+import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
 import type * as schema from "@features/acf/diabetes/common/schema";
-import type { PossibleSelectedFilterValues } from "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/WithFilters";
 import { AxiosError, type AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";

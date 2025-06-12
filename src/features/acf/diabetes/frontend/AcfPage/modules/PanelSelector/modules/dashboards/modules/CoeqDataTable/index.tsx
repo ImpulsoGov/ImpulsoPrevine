@@ -5,12 +5,12 @@ import {
     SearchContext,
     type SearchModel,
 } from "@/features/acf/common/frontend/WithSearch";
+import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
+import { FiltersContext } from "@features/acf/common/frontend/WithFilters";
 import type { SortingModel } from "@features/acf/common/frontend/WithSorting";
 import { SortingContext } from "@features/acf/common/frontend/WithSorting/context";
-import type { PossibleSelectedFilterValues } from "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/WithFilters";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
-import { FiltersContext } from "../WithFilters/context";
 import { useTableData } from "./hook";
 import type { SelectedFilterValuesCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";

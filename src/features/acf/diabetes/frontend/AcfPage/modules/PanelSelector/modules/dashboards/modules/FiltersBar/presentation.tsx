@@ -1,5 +1,5 @@
 "use client";
-import type { PossibleSelectedFilterValues } from "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/WithFilters";
+import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
 import {
     ClearFilters,
     FilterBar,
