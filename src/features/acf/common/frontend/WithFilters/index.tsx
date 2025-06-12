@@ -9,7 +9,7 @@ export { FiltersContext };
 export type { AppliedFilters };
 
 type FiltersBarProps = {
-    selectedValues: AppliedFilters;
+    selectedValues: AppliedFilters; //TODO: Usar um generic ao invés do union type aqui
     setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
 };
 
