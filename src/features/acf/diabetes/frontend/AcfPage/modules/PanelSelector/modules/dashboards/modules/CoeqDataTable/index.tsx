@@ -16,7 +16,10 @@ import type { SelectedFilterValuesCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
-export type { SelectedFilterValuesCoeq } from "./model";
+export type {
+    SelectedFilterValuesCoaps,
+    SelectedFilterValuesCoeq,
+} from "./model";
 
 export const CoeqDataTable: React.FC = () => {
     const filters = useContext<PossibleSelectedFilterValues | null>(

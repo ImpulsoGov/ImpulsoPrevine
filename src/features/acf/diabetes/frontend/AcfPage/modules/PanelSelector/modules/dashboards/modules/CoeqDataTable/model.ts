@@ -11,3 +11,8 @@ export type SelectedFilterValuesCoeq = {
     conditionIdentifiedBy: ConditionIdentifiedBy | "";
     patientAgeRange: Array<PatientAgeRange>;
 };
+
+//TODO: Trocar pelo tipo real quando ele existir
+export type SelectedFilterValuesCoaps = SelectedFilterValuesCoeq & {
+    campoDeCoaps: Array<string>;
+};
