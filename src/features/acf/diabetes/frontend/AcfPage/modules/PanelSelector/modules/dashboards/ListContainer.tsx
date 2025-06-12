@@ -8,7 +8,7 @@ import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
 import type { SelectedFilterValuesCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
-import { FiltersBarCoeq } from "./modules/FiltersBar";
+import { FiltersBarCoeq } from "./modules/CoeqFiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
 
 export type ListContainerProps = {

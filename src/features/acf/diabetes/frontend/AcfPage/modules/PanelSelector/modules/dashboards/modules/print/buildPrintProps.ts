@@ -9,7 +9,7 @@ import {
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { diabetesColumns } from "../CoeqDataTable/modules/columns";
-import { filtersLabels } from "../FiltersBar/consts";
+import { filtersLabels } from "../CoeqFiltersBar/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 
 export const buildPrintProps = (
