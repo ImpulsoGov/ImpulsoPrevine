@@ -1,14 +1,14 @@
-import type { SelectedFilterValuesCoeq } from "@/features/acf/diabetes/frontend/model";
+import { WithSearch } from "@/features/acf/common/frontend/WithSearch";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
+import type { SelectedFilterValuesCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { FiltersBarCoeq } from "./modules/FiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
 import { WithFilters } from "./modules/WithFilters";
 import { WithPagination } from "./modules/WithPagination";
-import { WithSearch } from "./modules/WithSearch";
 import { WithSorting } from "./modules/WithSorting";
 
 export type ListContainerProps = {

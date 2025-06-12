@@ -1,11 +1,14 @@
 "use client";
+import {
+    SearchContext,
+    type SearchModel,
+} from "@/features/acf/common/frontend/WithSearch";
 import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
 import type { PaginationModel } from "../WithPagination";
 import { PaginationContext } from "../WithPagination/context";
-import { SearchContext, type SearchModel } from "../WithSearch/context";
 import type { SortingModel } from "../WithSorting";
 import { SortingContext } from "../WithSorting/context";
 import { useTableData } from "./hook";
