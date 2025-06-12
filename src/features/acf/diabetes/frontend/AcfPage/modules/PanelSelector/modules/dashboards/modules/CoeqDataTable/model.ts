@@ -5,7 +5,7 @@ import type {
     VisitantCommunityHealthWorker,
 } from "@/features/acf/diabetes/common/model";
 
-export type SelectedFilterValuesCoeq = {
+export type AppliedFiltersCoeq = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;
     patientStatus: Array<PatientStatus>;
     conditionIdentifiedBy: ConditionIdentifiedBy | "";
@@ -13,6 +13,6 @@ export type SelectedFilterValuesCoeq = {
 };
 
 //TODO: Trocar pelo tipo real quando ele existir
-export type SelectedFilterValuesCoaps = SelectedFilterValuesCoeq & {
+export type ApliedFiltersCoaps = AppliedFiltersCoeq & {
     campoDeCoaps: Array<string>;
 };

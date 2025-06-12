@@ -12,13 +12,13 @@ import { SortingContext } from "@features/acf/common/frontend/WithSorting/contex
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { useTableData } from "./hook";
-import type { SelectedFilterValuesCoeq } from "./model";
+import type { AppliedFiltersCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 export type {
-    SelectedFilterValuesCoaps,
-    SelectedFilterValuesCoeq,
+    ApliedFiltersCoaps as SelectedFilterValuesCoaps,
+    AppliedFiltersCoeq as SelectedFilterValuesCoeq,
 } from "./model";
 
 export const CoeqDataTable: React.FC = () => {
@@ -31,7 +31,7 @@ export const CoeqDataTable: React.FC = () => {
 
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
-        filters as SelectedFilterValuesCoeq | null, //TODO: Esse cast pra SelectedFilterValuesCoeq | null é um tanto chato. Será que tem como evitar?
+        filters as AppliedFiltersCoeq | null, //TODO: Esse cast pra SelectedFilterValuesCoeq | null é um tanto chato. Será que tem como evitar?
         gridSortingModel,
         searchString,
         resetPagination

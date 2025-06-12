@@ -4,12 +4,12 @@ import type { AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import type { SelectedFilterValuesCoeq } from "./model";
+import type { AppliedFiltersCoeq } from "./model";
 import * as service from "./service";
 
 export const useTableData = (
     page: number,
-    filters: SelectedFilterValuesCoeq | null,
+    filters: AppliedFiltersCoeq | null,
     sorting: GridSortItem,
     search: string,
     resetPagination: () => void

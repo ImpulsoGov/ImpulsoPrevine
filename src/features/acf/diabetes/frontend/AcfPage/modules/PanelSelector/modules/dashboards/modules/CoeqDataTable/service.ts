@@ -3,11 +3,9 @@ import type * as schema from "@/features/acf/diabetes/common/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { SelectedFilterValuesCoeq } from "./model";
+import type { AppliedFiltersCoeq } from "./model";
 
-function toRequestFilters(
-    filters: SelectedFilterValuesCoeq
-): schema.CoeqFilters {
+function toRequestFilters(filters: AppliedFiltersCoeq): schema.CoeqFilters {
     return {
         ...filters,
         conditionIdentifiedBy:
@@ -21,7 +19,7 @@ export type GetPageParams = {
     token: string;
     page: number;
     sorting: GridSortItem;
-    filters?: SelectedFilterValuesCoeq;
+    filters?: AppliedFiltersCoeq;
     search?: string;
 };
 
