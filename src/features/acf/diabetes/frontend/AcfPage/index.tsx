@@ -14,7 +14,7 @@ type Props = {
     }>;
 };
 
-export const AcfDashboardPage: React.FC<Props> = async ({ searchParams }) => {
+export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
     const resolvedSearchParams = await searchParams;

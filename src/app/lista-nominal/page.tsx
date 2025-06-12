@@ -1,3 +1,3 @@
-import { AcfDashboardPage } from "@/features/acf/diabetes/frontend/AcfPage/AcfPage";
+import { AcfPage } from "@/features/acf/diabetes/frontend/AcfPage";
 
-export default AcfDashboardPage;
+export default AcfPage;
