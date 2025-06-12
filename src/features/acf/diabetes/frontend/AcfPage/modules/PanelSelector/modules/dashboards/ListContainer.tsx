@@ -9,7 +9,7 @@ import { List } from "./List";
 import type { SelectedFilterValuesCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { FiltersBarCoeq } from "./modules/CoeqFiltersBar";
-import { InternalCardsCoeq } from "./modules/Internalcards";
+import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -39,7 +39,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
     return (
         <>
-            <InternalCardsCoeq
+            <CoeqInternalCards
                 municipalitySusId={municipalitySusId}
                 teamIne={teamIne}
             />

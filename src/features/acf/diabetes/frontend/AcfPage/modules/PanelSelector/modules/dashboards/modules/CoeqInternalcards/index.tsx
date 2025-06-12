@@ -1,21 +1,14 @@
+import type { InternalCardDataItem } from "@/features/acf/diabetes/backend/model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import { Suspense } from "react";
-import * as Presentation from "./presentation";
-import {
-    internalCardsControllerCoaps,
-    internalCardsControllerCoeq,
-} from "../../../../../../../../backend/internalCards/controller";
+import { internalCardsControllerCoeq } from "../../../../../../../../backend/internalCards/controller";
 import { type CardDetailsMap, internalCardsDetails } from "../../../../consts";
-import type { InternalCardDataItem } from "@/features/acf/diabetes/backend/model";
+import * as Presentation from "./presentation";
 
-type InternalCardsCoeqProps = {
+type CoeqInternalCardsProps = {
     municipalitySusId: string;
     teamIne: string;
-};
-
-type InternalCardsCoapsProps = {
-    municipalitySusId: string;
 };
 
 const getInternalCardsProps = (
@@ -31,7 +24,7 @@ const getInternalCardsProps = (
     });
 };
 
-export const InternalCardsCoeq: React.FC<InternalCardsCoeqProps> = async ({
+export const CoeqInternalCards: React.FC<CoeqInternalCardsProps> = async ({
     municipalitySusId,
     teamIne,
 }) => {
@@ -41,29 +34,6 @@ export const InternalCardsCoeq: React.FC<InternalCardsCoeqProps> = async ({
             municipalitySusId,
             teamIne
         );
-        internalCardsProps = getInternalCardsProps(
-            internalCardsDetails,
-            internalCardsData
-        );
-    } catch (error) {
-        captureException(error);
-    }
-    return (
-        <Suspense>
-            <Presentation.InternalCards
-                internalCardsProps={internalCardsProps}
-            />
-        </Suspense>
-    );
-};
-
-export const InternalCardsCoaps: React.FC<InternalCardsCoapsProps> = async ({
-    municipalitySusId,
-}) => {
-    let internalCardsProps: Array<CardProps> = [];
-    try {
-        const internalCardsData =
-            await internalCardsControllerCoaps(municipalitySusId);
         internalCardsProps = getInternalCardsProps(
             internalCardsDetails,
             internalCardsData
