@@ -1,5 +1,6 @@
 "use client";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import { createContext } from "react";
+import type { PossibleSelectedFilterValues } from "./model";
 
-export const FiltersContext = createContext<SelectedFilterValues | null>(null);
+export const FiltersContext =
+    createContext<PossibleSelectedFilterValues | null>(null);

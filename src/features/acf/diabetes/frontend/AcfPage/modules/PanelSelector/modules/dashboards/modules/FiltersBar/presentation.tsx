@@ -1,5 +1,5 @@
 "use client";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import type { PossibleSelectedFilterValues } from "@features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/WithFilters";
 import {
     ClearFilters,
     FilterBar,
@@ -10,15 +10,15 @@ import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 
 type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: SelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
+    selectedValues: PossibleSelectedFilterValues;
+    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 
 type FiltersSelectProps = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: SelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
+    selectedValues: PossibleSelectedFilterValues;
+    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
 };
 
 //TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues

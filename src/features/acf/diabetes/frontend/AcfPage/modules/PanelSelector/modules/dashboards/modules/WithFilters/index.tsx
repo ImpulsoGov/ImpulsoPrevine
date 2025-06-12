@@ -1,17 +1,18 @@
 "use client";
-import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
 import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { FiltersContext } from "./context";
+import type { PossibleSelectedFilterValues } from "./model";
+export type { PossibleSelectedFilterValues };
 
 type FiltersBarProps = {
-    selectedValues: SelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<SelectedFilterValues>>;
+    selectedValues: PossibleSelectedFilterValues;
+    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
 };
 
 type WithFiltersProps = React.PropsWithChildren<{
-    initialSelectedValues: SelectedFilterValues;
+    initialSelectedValues: PossibleSelectedFilterValues;
     FiltersBar: React.FC<FiltersBarProps>;
 }>;
 
@@ -20,9 +21,8 @@ export const WithFilters: React.FC<WithFiltersProps> = ({
     FiltersBar,
     children,
 }) => {
-    const [selectedValues, setSelectedValues] = useState<SelectedFilterValues>(
-        initialSelectedValues
-    );
+    const [selectedValues, setSelectedValues] =
+        useState<PossibleSelectedFilterValues>(initialSelectedValues);
 
     return (
         <>
