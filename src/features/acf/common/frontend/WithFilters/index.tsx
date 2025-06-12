@@ -3,18 +3,18 @@ import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { FiltersContext } from "./context";
-import type { PossibleSelectedFilterValues } from "./model";
+import type { AppliedFilters } from "./model";
 
 export { FiltersContext };
-export type { PossibleSelectedFilterValues };
+export type { AppliedFilters };
 
 type FiltersBarProps = {
-    selectedValues: PossibleSelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
+    selectedValues: AppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
 };
 
 type WithFiltersProps = React.PropsWithChildren<{
-    initialSelectedValues: PossibleSelectedFilterValues;
+    initialSelectedValues: AppliedFilters;
     FiltersBar: React.FC<FiltersBarProps>;
 }>;
 
@@ -23,8 +23,9 @@ export const WithFilters: React.FC<WithFiltersProps> = ({
     FiltersBar,
     children,
 }) => {
-    const [selectedValues, setSelectedValues] =
-        useState<PossibleSelectedFilterValues>(initialSelectedValues);
+    const [selectedValues, setSelectedValues] = useState<AppliedFilters>(
+        initialSelectedValues
+    );
 
     return (
         <>

@@ -5,7 +5,7 @@ import {
     SearchContext,
     type SearchModel,
 } from "@/features/acf/common/frontend/WithSearch";
-import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
+import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
 import { FiltersContext } from "@features/acf/common/frontend/WithFilters";
 import type { SortingModel } from "@features/acf/common/frontend/WithSorting";
 import { SortingContext } from "@features/acf/common/frontend/WithSorting/context";
@@ -22,9 +22,7 @@ export type {
 } from "./model";
 
 export const CoeqDataTable: React.FC = () => {
-    const filters = useContext<PossibleSelectedFilterValues | null>(
-        FiltersContext
-    );
+    const filters = useContext<AppliedFilters | null>(FiltersContext);
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =

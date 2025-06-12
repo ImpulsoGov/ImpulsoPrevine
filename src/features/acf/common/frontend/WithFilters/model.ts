@@ -3,6 +3,6 @@ import type * as diabetes from "@features/acf/diabetes/frontend/AcfPage/modules/
 
 /// Contém todos os possíveis conjuntos de filtros.
 /// Eventualmente, este Union type deve ter um item para cada combinação indicador x perfil
-export type PossibleSelectedFilterValues =
+export type AppliedFilters =
     | diabetes.SelectedFilterValuesCoeq
     | diabetes.SelectedFilterValuesCoaps;

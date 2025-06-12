@@ -1,5 +1,5 @@
 "use client";
-import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
+import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
 import type * as schema from "@features/acf/diabetes/common/schema";
 import { AxiosError, type AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
@@ -9,8 +9,8 @@ import * as Presentation from "./presentation";
 import { getFiltersCoeq } from "./service";
 
 type FiltersBarCoeqProps = React.PropsWithChildren<{
-    selectedValues: PossibleSelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
+    selectedValues: AppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
     // searchParams: URLSearchParams;
 }>;
 

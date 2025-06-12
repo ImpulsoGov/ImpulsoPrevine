@@ -1,5 +1,5 @@
 "use client";
-import type { PossibleSelectedFilterValues } from "@features/acf/common/frontend/WithFilters";
+import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
 import {
     ClearFilters,
     FilterBar,
@@ -10,15 +10,15 @@ import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 
 type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: PossibleSelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
+    selectedValues: AppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 
 type FiltersSelectProps = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: PossibleSelectedFilterValues;
-    setSelectedValues: Dispatch<SetStateAction<PossibleSelectedFilterValues>>;
+    selectedValues: AppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
 };
 
 //TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues
