@@ -33,7 +33,7 @@ export const sortedOptions = (
     b: HtmlSelectOption
 ): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
-export const toSelectConfigsCoeqs = (
+export const toSelectConfigsCoeq = (
     filtersValues: schema.CoeqFilters
 ): Array<SelectConfig> => {
     return [

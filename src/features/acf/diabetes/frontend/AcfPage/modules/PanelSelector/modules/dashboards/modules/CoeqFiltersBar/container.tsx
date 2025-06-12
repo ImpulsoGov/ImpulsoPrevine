@@ -1,16 +1,16 @@
 "use client";
-import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
 import type * as schema from "@features/acf/diabetes/common/schema";
 import { AxiosError, type AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import { toSelectConfigsCoeqs } from "./logic";
+import type { AppliedFiltersCoeq } from "../CoeqDataTable"; //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
+import { toSelectConfigsCoeq } from "./logic";
 import * as Presentation from "./presentation";
 import { getFiltersCoeq } from "./service";
 
 type CoeqFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
+    selectedValues: AppliedFiltersCoeq;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoeq>>;
     // searchParams: URLSearchParams;
 }>;
 
@@ -66,7 +66,7 @@ export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
         );
     }
 
-    const selectConfigs = toSelectConfigsCoeqs(response.data.filters);
+    const selectConfigs = toSelectConfigsCoeq(response.data.filters);
 
     return (
         <Presentation.FiltersBar

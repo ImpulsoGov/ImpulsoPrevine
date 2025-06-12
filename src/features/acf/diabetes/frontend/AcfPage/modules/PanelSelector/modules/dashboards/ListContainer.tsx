@@ -6,9 +6,9 @@ import { WithSorting } from "@features/acf/common/frontend/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
-import type { SelectedFilterValuesCoeq } from "./modules/CoeqDataTable";
+import type { AppliedFiltersCoeq } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
-import { FiltersBarCoeq } from "./modules/CoeqFiltersBar";
+import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 
 export type ListContainerProps = {
@@ -24,7 +24,7 @@ type ContentCoeqProps = {
 };
 
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValues: SelectedFilterValuesCoeq = {
+const initialSelectedValues: AppliedFiltersCoeq = {
     patientStatus: [],
     conditionIdentifiedBy: "",
     visitantCommunityHealthWorker: [],
@@ -49,7 +49,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                     <WithSorting>
                         <WithFilters
                             initialSelectedValues={initialSelectedValues}
-                            FiltersBar={FiltersBarCoeq}
+                            FiltersBar={CoeqFiltersBar}
                         >
                             <WithPagination>
                                 <CoeqDataTable />

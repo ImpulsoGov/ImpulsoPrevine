@@ -1,1 +1,1 @@
-export { CoeqFiltersBar as FiltersBarCoeq } from "./container";
+export { CoeqFiltersBar } from "./container";

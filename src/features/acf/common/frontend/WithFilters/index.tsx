@@ -8,22 +8,22 @@ import type { AppliedFilters } from "./model";
 export { FiltersContext };
 export type { AppliedFilters };
 
-type FiltersBarProps = {
-    selectedValues: AppliedFilters; //TODO: Usar um generic ao invés do union type aqui
-    setSelectedValues: Dispatch<SetStateAction<AppliedFilters>>;
+type FiltersBarProps<TAppliedFilters> = {
+    selectedValues: TAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
 };
 
-type WithFiltersProps = React.PropsWithChildren<{
-    initialSelectedValues: AppliedFilters;
-    FiltersBar: React.FC<FiltersBarProps>;
+type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
+    initialSelectedValues: TAppliedFilters;
+    FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
 }>;
 
-export const WithFilters: React.FC<WithFiltersProps> = ({
+export function WithFilters<TAppliedFilters extends AppliedFilters>({
     initialSelectedValues,
     FiltersBar,
     children,
-}) => {
-    const [selectedValues, setSelectedValues] = useState<AppliedFilters>(
+}: WithFiltersProps<TAppliedFilters>): React.ReactNode {
+    const [selectedValues, setSelectedValues] = useState<TAppliedFilters>(
         initialSelectedValues
     );
 
@@ -38,4 +38,4 @@ export const WithFilters: React.FC<WithFiltersProps> = ({
             </FiltersContext.Provider>
         </>
     );
-};
+}

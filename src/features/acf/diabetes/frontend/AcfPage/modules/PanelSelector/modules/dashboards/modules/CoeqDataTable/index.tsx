@@ -16,10 +16,7 @@ import type { AppliedFiltersCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
-export type {
-    ApliedFiltersCoaps as SelectedFilterValuesCoaps,
-    AppliedFiltersCoeq as SelectedFilterValuesCoeq,
-} from "./model";
+export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
 
 export const CoeqDataTable: React.FC = () => {
     const filters = useContext<AppliedFilters | null>(FiltersContext);
@@ -31,7 +28,7 @@ export const CoeqDataTable: React.FC = () => {
 
     const { data, status, isLoading } = useTableData(
         gridPaginationModel.page,
-        filters as AppliedFiltersCoeq | null, //TODO: Esse cast pra SelectedFilterValuesCoeq | null é um tanto chato. Será que tem como evitar?
+        filters as AppliedFiltersCoeq | null, //TODO: Esse cast é um tanto quanto chato. Será que tem como evitar?
         gridSortingModel,
         searchString,
         resetPagination
