@@ -6,7 +6,7 @@ import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
 import type { AcfDashboardType } from "../../common/model";
 import { ErrorPage } from "./modules/ErrorPage";
-import { PanelSelectorContainer } from "./modules/PanelSelector";
+import { PanelSelector } from "./modules/PanelSelector";
 
 type Props = {
     searchParams: Promise<{
@@ -32,7 +32,7 @@ export const AcfDashboardPage: React.FC<Props> = async ({ searchParams }) => {
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
-                <PanelSelectorContainer
+                <PanelSelector
                     initialTabId={initialTabId}
                     initialSubTabId={initialSubTabId}
                     acfDashboardType={acfDashboardType}
