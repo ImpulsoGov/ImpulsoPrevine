@@ -1,9 +1,11 @@
 "use client";
-import type React from "react";
 import type { GridSortItem, GridSortModel } from "@mui/x-data-grid";
+import type React from "react";
 import { useState } from "react";
 import { DEFAULT_SORTING, SortingContext } from "./context";
+
 export type { SortingModel } from "./context";
+export { SortingContext };
 
 type WithSortingProps = React.PropsWithChildren;
 

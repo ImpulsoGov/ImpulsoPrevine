@@ -1,5 +1,6 @@
 import { WithPagination } from "@/features/acf/common/frontend/WithPagination";
 import { WithSearch } from "@/features/acf/common/frontend/WithSearch";
+import { WithSorting } from "@features/acf/common/frontend/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../common/model";
 import { List } from "./List";
@@ -9,7 +10,6 @@ import { FiltersBarCoeq } from "./modules/FiltersBar";
 import { InternalCardsCoeq } from "./modules/Internalcards";
 import { ToolBar } from "./modules/ToolBar";
 import { WithFilters } from "./modules/WithFilters";
-import { WithSorting } from "./modules/WithSorting";
 
 export type ListContainerProps = {
     list: AcfDashboardType;

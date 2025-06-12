@@ -6,11 +6,11 @@ import {
     type SearchModel,
 } from "@/features/acf/common/frontend/WithSearch";
 import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/model";
+import type { SortingModel } from "@features/acf/common/frontend/WithSorting";
+import { SortingContext } from "@features/acf/common/frontend/WithSorting/context";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
-import type { SortingModel } from "../WithSorting";
-import { SortingContext } from "../WithSorting/context";
 import { useTableData } from "./hook";
 import type { SelectedFilterValuesCoeq } from "./model";
 import { diabetesColumns } from "./modules/columns";
