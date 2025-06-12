@@ -1,4 +1,6 @@
 "use client";
+import type { PaginationModel } from "@/features/acf/common/frontend/WithPagination";
+import { PaginationContext } from "@/features/acf/common/frontend/WithPagination/context";
 import {
     SearchContext,
     type SearchModel,
@@ -7,8 +9,6 @@ import type { SelectedFilterValues } from "@/features/acf/diabetes/frontend/mode
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { FiltersContext } from "../WithFilters/context";
-import type { PaginationModel } from "../WithPagination";
-import { PaginationContext } from "../WithPagination/context";
 import type { SortingModel } from "../WithSorting";
 import { SortingContext } from "../WithSorting/context";
 import { useTableData } from "./hook";
