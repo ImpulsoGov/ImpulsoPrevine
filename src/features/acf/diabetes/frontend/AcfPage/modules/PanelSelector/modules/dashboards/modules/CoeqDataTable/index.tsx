@@ -11,9 +11,9 @@ import type { SortingModel } from "@features/acf/common/frontend/WithSorting";
 import { SortingContext } from "@features/acf/common/frontend/WithSorting/context";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
+import { coeqColumns } from "./consts";
 import { useTableData } from "./hook";
 import type { AppliedFiltersCoeq } from "./model";
-import { diabetesColumns } from "./modules/columns";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
@@ -43,9 +43,8 @@ export const CoeqDataTable: React.FC = () => {
     }
 
     return (
-        //TODO: Trocar diabetesColumns quando tivermos novas listas
         <Table
-            columns={diabetesColumns}
+            columns={coeqColumns}
             data={data?.page || []}
             rowHeight={60}
             paginationMode="server"

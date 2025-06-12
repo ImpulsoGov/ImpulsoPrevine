@@ -8,7 +8,7 @@ import {
 } from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
-import { diabetesColumns } from "../CoeqDataTable/modules/columns";
+import { diabetesColumns } from "../CoeqDataTable/modules/Columns";
 import { filtersLabels } from "../CoeqFiltersBar/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 

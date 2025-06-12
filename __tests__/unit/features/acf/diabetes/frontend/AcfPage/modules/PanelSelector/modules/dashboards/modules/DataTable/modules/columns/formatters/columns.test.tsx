@@ -1,4 +1,4 @@
-import { DateRenderCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/CoeqDataTable/modules/columns/formatters/columns";
+import { DateRenderCell } from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/modules/dashboards/modules/CoeqDataTable/modules/DateRenderCell";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
