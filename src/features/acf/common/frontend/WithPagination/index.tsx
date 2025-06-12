@@ -5,6 +5,7 @@ import { useState } from "react";
 import { PaginationContext } from "./context";
 
 export type { PaginationModel } from "./context";
+export { PaginationContext };
 
 type WithPaginationProps = React.PropsWithChildren;
 

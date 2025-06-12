@@ -1,6 +1,6 @@
 "use client";
 import type { PaginationModel } from "@/features/acf/common/frontend/WithPagination";
-import { PaginationContext } from "@/features/acf/common/frontend/WithPagination/context";
+import { PaginationContext } from "@/features/acf/common/frontend/WithPagination";
 import {
     SearchContext,
     type SearchModel,
