@@ -28,8 +28,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
     // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
     // const closePrintModal = () => setPrintModalVisibility(false);
 
-    // eslint-disable-next-line react/hook-use-state
-
     // const [inputValue, setInputValue] = useState<string>("");
     // const [search, _setSearch] = useState<string>("");
     // const handleSearchClick = () => setSearch(inputValue);
