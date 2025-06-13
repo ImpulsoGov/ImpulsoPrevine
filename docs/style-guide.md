@@ -21,7 +21,9 @@ Importante: Todo o código dentro de `src/features` deve respeitar as regras aba
     - Submódulos devem ser incluídos dentro de uma pasta `modules` (a não ser para as pastas `backend`, `frontend` e `shared`, como dito anteriormente).
 - Quando dois módulos precisam interagir, algumas regras devem ser respeitadas:
     - imports para arquivos internos a um módulo ou submódulo são permitidos e devem usar caminho relativo. i.e.: `'./controller.ts'`
-    - imports para arquivos externos ao módulo são permitidos, mas devem ser muito bem avaliados, e sempre usar caminhos absolutos. i.e.: `'@features/acf/diabetes'` 
+    - imports para arquivos externos ao módulo são permitidos, mas devem ser muito bem avaliados, usados com cuidado e só com uma boa razão, e sempre usar caminhos absolutos. i.e.: `'@features/acf/diabetes'` 
+    - Imports de um módulo para um módulo acima na árvore devem ser evitados quando possível
+        - Considere passar a info como parametro para os submódulos ao invés de fazer um `import`.
     - Módulos nunca devem importar arquivos internos de outros módulos. Se isso precisa acontecer, então a informação deve ser exposta dentro do `index` e o módulo externo importa ela diretamente do index.
         - Exemplo: se `M1` precisa usar o controller interno do `M2`, então ao invés de importar `@features/M2/controller'`, este controller deve ser exposto no `index.ts` de `M2` e o import deve ser `import * as M2 from @features/M2`.
 - Arquivos de teste ficam colozalizados com o código que testam, dentro da pasta `__tests__`.
