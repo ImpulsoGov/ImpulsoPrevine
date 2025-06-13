@@ -1,9 +1,18 @@
-import type { ExternalCardDataItem } from "@/features/acf/backend/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 
 // TODO excluir esses tipos quando movermos getExternalCardsProps para dentro de features
 type CardDetails = Omit<CardProps, "value">;
 type CardDetailsMap = Record<string, CardDetails>;
+export type AcfExternalCardsDescription =
+    | "DIAGNOSTICO_AUTORREFERIDO"
+    | "DIAGNOSTICO_CLINICO";
+
+export type ExternalCardDataItem = {
+    acfDashboardType: AcfDashboardType;
+    acfExternalCardsDescription: AcfExternalCardsDescription;
+    value: number;
+};
 
 /**
  * Merge different cards data sets into the one needed for the Card component

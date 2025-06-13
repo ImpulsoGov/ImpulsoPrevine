@@ -1,6 +1,6 @@
 import type { AcfDashboardType } from "../../../../shared/diabetes/model";
-import type { ExternalCardDataItem } from "../../model";
 import { externalCardsDbToModel } from "./adapter";
+import type { ExternalCardDataItem } from "./model";
 import { externalCardsDataForTeam } from "./repository";
 
 export const externalCardsAcfDashboardDataControllerForTeam = (

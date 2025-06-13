@@ -1,5 +1,5 @@
-import type { FiltersOptions } from "../../model";
 import * as adapter from "./adapter";
+import type { FiltersOptions } from "./model";
 import * as repository from "./repository";
 
 export const filterOptionsCoeq = async (

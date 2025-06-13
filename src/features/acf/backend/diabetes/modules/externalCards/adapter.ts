@@ -3,7 +3,7 @@ import type {
     AcfExternalCardsDescription,
     ExternalCardDataItem,
     ExternalCardDBDataItem,
-} from "../../model";
+} from "./model";
 
 export const externalCardsDbToModel = (
     data: Array<ExternalCardDBDataItem>

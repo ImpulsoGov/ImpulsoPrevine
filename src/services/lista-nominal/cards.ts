@@ -1,7 +1,18 @@
 import type { CardType } from "@/app/api/card/utils/cardType";
-import type { ExternalCardDataItem } from "@/features/acf/backend/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
+
+//TODO: Temporário, remover
+export type AcfExternalCardsDescription =
+    | "DIAGNOSTICO_AUTORREFERIDO"
+    | "DIAGNOSTICO_CLINICO";
+
+export type ExternalCardDataItem = {
+    acfDashboardType: AcfDashboardType;
+    acfExternalCardsDescription: AcfExternalCardsDescription;
+    value: number;
+};
 
 /**
  * Builds URL with given parameters

@@ -9,12 +9,12 @@ import type {
     SortableFields,
 } from "@/features/acf/shared/diabetes/schema";
 import { isDate, parseDate } from "@/features/common/shared/time";
+import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import {
     sortableFieldsToDb,
     type DiabetesDbFilterItem,
     type SortableDbField,
-} from "@features/acf/backend/diabetes/model";
-import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
+} from "./model";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {

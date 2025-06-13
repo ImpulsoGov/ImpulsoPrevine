@@ -1,4 +1,4 @@
-import type { ExternalCardDBDataItem } from "../../model";
+import type { ExternalCardDBDataItem } from "./model";
 
 // TODO usar prisma para buscar os dados quando fizermos uma lista que possui cards externos
 const data = [
