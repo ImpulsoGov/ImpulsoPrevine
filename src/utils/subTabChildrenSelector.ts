@@ -3,7 +3,7 @@ import React from "react";
 import type {
     ExtendedPanelSelectorWithCardsProps,
     ExtendedsubTabsWithChildrenAndChildrenDataProps,
-} from "@/features/acf/diabetes/frontend/AcfPage/modules/PanelSelector/presentation";
+} from "@/features/acf/frontend/diabetes/AcfPage/modules/PanelSelector/presentation";
 import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 
 //TODO: Remover daqui
