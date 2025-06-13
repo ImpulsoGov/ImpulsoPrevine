@@ -1,6 +1,6 @@
 import { formatDate } from "@/features/common/shared/time";
 import React from "react";
-import { RenderDateTagCell } from "./RenderDateTagCell";
+import { RenderDateTagCell } from "./modules/RenderDateTagCell";
 
 type DateRenderCellProps = {
     value: string | null;

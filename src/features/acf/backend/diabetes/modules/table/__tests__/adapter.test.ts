@@ -1,4 +1,4 @@
-import { cpfOrDate } from "@/features/acf/diabetes/backend/table/adapter";
+import { cpfOrDate } from "../adapter";
 
 describe("cpfOrDate", () => {
     it("retorna null quando a entrada for null", () => {
