@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from "@/features/acf/diabetes/common/model";
+import type { DiabetesAcfItem } from "@/features/acf/shared/diabetes/model";
 
 export type ValidValue = string | number | boolean | Date | null | undefined;
 
