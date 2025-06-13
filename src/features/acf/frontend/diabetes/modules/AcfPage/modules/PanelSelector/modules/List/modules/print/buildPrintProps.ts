@@ -8,7 +8,7 @@ import {
 } from "@/helpers/larguraColunasHipertensao";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
-import { diabetesColumns } from "../CoeqDataTable/modules/Columns";
+import { coeqColumns } from "../CoeqDataTable/consts";
 import { filtersLabels } from "../CoeqFiltersBar/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
 
@@ -21,7 +21,7 @@ export const buildPrintProps = (
 ): PrintTableProps => {
     const props: PrintTableProps = {
         data: tableData,
-        columns: diabetesColumns,
+        columns: coeqColumns,
         list: list,
         appliedFilters: value,
         latestProductionDate: String(
