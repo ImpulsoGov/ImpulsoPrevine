@@ -1,8 +1,8 @@
-import { WithPagination } from "@/features/acf/common/frontend/WithPagination";
-import { WithSearch } from "@/features/acf/common/frontend/WithSearch";
-import { SearchToolBar } from "@features/acf/common/frontend/SearchToolBar";
-import { WithFilters } from "@features/acf/common/frontend/WithFilters";
-import { WithSorting } from "@features/acf/common/frontend/WithSorting";
+import { SearchToolBar } from "@/features/acf/frontend/common/SearchToolBar";
+import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
+import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
+import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
+import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../../shared/diabetes/model";
 import type { AppliedFiltersCoeq } from "./modules/CoeqDataTable";

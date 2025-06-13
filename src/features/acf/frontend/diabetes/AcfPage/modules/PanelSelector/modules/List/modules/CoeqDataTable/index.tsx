@@ -1,14 +1,14 @@
 "use client";
-import type { PaginationModel } from "@/features/acf/common/frontend/WithPagination";
-import { PaginationContext } from "@/features/acf/common/frontend/WithPagination";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
+import { FiltersContext } from "@/features/acf/frontend/common/WithFilters";
+import type { PaginationModel } from "@/features/acf/frontend/common/WithPagination";
+import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import {
     SearchContext,
     type SearchModel,
-} from "@/features/acf/common/frontend/WithSearch";
-import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
-import { FiltersContext } from "@features/acf/common/frontend/WithFilters";
-import type { SortingModel } from "@features/acf/common/frontend/WithSorting";
-import { SortingContext } from "@features/acf/common/frontend/WithSorting/context";
+} from "@/features/acf/frontend/common/WithSearch";
+import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
+import { SortingContext } from "@/features/acf/frontend/common/WithSorting/context";
 import { Table } from "@impulsogov/design-system";
 import { useContext } from "react";
 import { coeqColumns } from "./consts";

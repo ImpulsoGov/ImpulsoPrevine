@@ -1,5 +1,5 @@
 "use client";
-import type { AppliedFilters } from "@features/acf/common/frontend/WithFilters";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
 import {
     ClearFilters,
     FilterBar,

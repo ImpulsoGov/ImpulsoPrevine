@@ -1,4 +1,4 @@
-import { TableTag } from "@/features/acf/common/frontend/TableTag";
+import { TableTag } from "@/features/acf/frontend/common/TableTag";
 import React from "react";
 import { iconDetailsMap } from "../consts";
 
