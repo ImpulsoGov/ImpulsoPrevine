@@ -1,5 +1,5 @@
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { AcfDashboardType } from "../../../../../shared/diabetes/model";
+import type { AcfDashboardType } from "../../../../../../shared/diabetes/model";
 import type { ExtendedPanelSelectorWithCardsProps } from "./presentation";
 
 export type CardDetails = Omit<CardProps, "value">;

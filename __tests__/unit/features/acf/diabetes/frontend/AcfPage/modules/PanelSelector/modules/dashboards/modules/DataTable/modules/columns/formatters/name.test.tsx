@@ -1,5 +1,5 @@
-import { nameFormatter } from "@/features/acf/frontend/diabetes/AcfPage/modules/PanelSelector/logic";
-import { NameFormatter } from "@/features/acf/frontend/diabetes/AcfPage/modules/PanelSelector/modules/List/modules/CoeqDataTable/modules/NameFormatter";
+import { nameFormatter } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/logic";
+import { NameFormatter } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoeqDataTable/modules/NameFormatter";
 import { render, screen } from "@testing-library/react";
 describe("nameFormatter", () => {
     it("formata corretamente um nome sem preposições ", () => {

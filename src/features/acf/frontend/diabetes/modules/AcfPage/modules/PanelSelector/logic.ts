@@ -1,6 +1,6 @@
 import type { PanelSelectorWithCardsProps } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
 import React from "react";
-import type { AcfDashboardType } from "../../../../../shared/diabetes/model";
+import type { AcfDashboardType } from "../../../../../../shared/diabetes/model";
 import type {
     ExtendedPanelSelectorWithCardsProps,
     ExtendedsubTabsWithChildrenAndChildrenDataProps,
