@@ -3,11 +3,11 @@ import type {
     DiabetesAcfItem,
     PatientAgeRange,
     PatientStatus,
-} from "@/features/acf/diabetes/common/model";
+} from "@/features/acf/shared/diabetes/model";
 import type {
     CoeqFilters,
     SortableFields,
-} from "@/features/acf/diabetes/common/schema";
+} from "@/features/acf/shared/diabetes/schema";
 import { isDate, parseDate } from "@/features/common/shared/time";
 import {
     sortableFieldsToDb,

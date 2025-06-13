@@ -3,7 +3,7 @@ import type {
     PatientAgeRange,
     PatientStatus,
     VisitantCommunityHealthWorker,
-} from "@/features/acf/diabetes/common/model";
+} from "@/features/acf/shared/diabetes/model";
 
 export type AppliedFiltersCoeq = {
     visitantCommunityHealthWorker: Array<VisitantCommunityHealthWorker>;

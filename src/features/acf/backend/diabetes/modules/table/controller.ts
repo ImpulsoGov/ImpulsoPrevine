@@ -1,8 +1,8 @@
+import type { DiabetesAcfItem } from "@/features/acf/shared/diabetes/model";
 import type {
     CoeqFilters,
     CoeqSort,
-} from "@/features/acf/diabetes/common/schema";
-import type { DiabetesAcfItem } from "@features/acf/diabetes/common/model";
+} from "@/features/acf/shared/diabetes/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
 

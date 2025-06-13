@@ -1,5 +1,5 @@
-import type { CoeqPageRequestBody } from "@/features/acf/diabetes/common/schema";
-import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
+import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
+import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import {
     AuthenticationError,
     decodeToken,

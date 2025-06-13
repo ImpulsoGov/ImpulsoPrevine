@@ -2,7 +2,7 @@ import type {
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-} from "@/features/acf/diabetes/common/model";
+} from "@/features/acf/shared/diabetes/model";
 import type { FilterOptionsDb, FiltersOptions } from "../../model";
 
 // TODO mudar esses tipos para não serem hard coded

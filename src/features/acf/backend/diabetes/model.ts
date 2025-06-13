@@ -3,7 +3,7 @@ import type {
     AcfDashboardType,
     DiabetesAcfItem,
     SortableField,
-} from "../../diabetes/common/model";
+} from "../../shared/diabetes/model";
 
 //TODO: sumir com esse arquivo, esses tipos podem ir pra dentro dos módulos
 export type FiltersOptions = {

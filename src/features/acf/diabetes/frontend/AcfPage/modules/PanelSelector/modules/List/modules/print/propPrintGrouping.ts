@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
+import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 
 export const propPrintGroupingCoapsFunction = (
     listName: AcfDashboardType

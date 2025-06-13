@@ -1,4 +1,4 @@
-import type * as schema from "@/features/acf/diabetes/common/schema";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import type { Session } from "next-auth";

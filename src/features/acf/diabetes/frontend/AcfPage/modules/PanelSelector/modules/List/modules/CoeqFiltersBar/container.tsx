@@ -1,5 +1,5 @@
 "use client";
-import type * as schema from "@features/acf/diabetes/common/schema";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { AxiosError, type AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
