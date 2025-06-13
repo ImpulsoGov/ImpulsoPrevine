@@ -1,5 +1,5 @@
 import { prisma } from "@prisma/prismaClient";
-import type { FilterOptionsDb } from "../../../backend/diabetes/model";
+import type { FilterOptionsDb } from "../model";
 
 export const filterOptionsCoaps = async (
     municipalitySusId: string

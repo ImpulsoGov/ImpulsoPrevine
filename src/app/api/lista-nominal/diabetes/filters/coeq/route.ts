@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import {
     AuthenticationError,
     decodeToken,
@@ -6,9 +6,9 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
-import * as diabetesFiltersController from "@/features/acf/diabetes/backend/filters/controller";
-import { BadRequestError } from "../../../utils/errors";
+import type { NextRequest } from "next/server";
 import { ZodError } from "zod";
+import { BadRequestError } from "../../../utils/errors";
 
 //TODO: Criar um teste de integração para esta rota
 export async function GET(req: NextRequest): Promise<Response> {
@@ -21,7 +21,7 @@ export async function GET(req: NextRequest): Promise<Response> {
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const teamIne = payload.equipe as string;
 
-        const filters = await diabetesFiltersController.filterOptionsCoeq(
+        const filters = await diabetesBackend.filterOptionsCoeq(
             municipalitySusID,
             teamIne
         );
