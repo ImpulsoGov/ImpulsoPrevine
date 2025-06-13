@@ -1,4 +1,3 @@
-import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
 import type { CoeqPageRequestBody } from "@/features/acf/diabetes/common/schema";
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
 import {
@@ -8,6 +7,7 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
+import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod";
 import { BadRequestError } from "../../../utils/errors";
@@ -33,7 +33,7 @@ export async function POST(
         const body: unknown = await req.json();
         const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
 
-        const page = await diabetesController.page({
+        const page = await diabetesBackend.getPage({
             municipalitySusID,
             teamIne,
             pageIndex,
@@ -42,7 +42,7 @@ export async function POST(
             filters: queryParams.filters,
         });
 
-        const totalRows = await diabetesController.rowCount({
+        const totalRows = await diabetesBackend.getRowCount({
             municipalitySusID,
             teamIne,
             searchString: queryParams.search,

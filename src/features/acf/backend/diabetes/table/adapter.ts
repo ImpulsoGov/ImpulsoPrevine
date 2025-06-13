@@ -1,17 +1,20 @@
-import { isDate, parseDate } from "@/features/common/shared/time";
-import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
-import {
-    sortableFieldsToDb,
-    type DiabetesDbFilterItem,
-    type SortableDbField,
-} from "../../../backend/diabetes/model";
 import type {
     ConditionIdentifiedBy,
     DiabetesAcfItem,
     PatientAgeRange,
     PatientStatus,
-} from "../../common/model";
-import type { CoeqFilters, SortableFields } from "../../common/schema";
+} from "@/features/acf/diabetes/common/model";
+import type {
+    CoeqFilters,
+    SortableFields,
+} from "@/features/acf/diabetes/common/schema";
+import { isDate, parseDate } from "@/features/common/shared/time";
+import {
+    sortableFieldsToDb,
+    type DiabetesDbFilterItem,
+    type SortableDbField,
+} from "@features/acf/backend/diabetes/model";
+import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
