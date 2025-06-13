@@ -1,10 +1,12 @@
-import { cpfFormatter } from "@/features/common/formatters/cpf";
-import { formatDate, parseDate } from "@/features/common/time";
+import { formatDate, parseDate } from "@/features/common/shared/time";
 import React from "react";
 
 type CpfOrBirthdayFormatterProps = {
     value: string | null;
 };
+
+export const cpfFormatter = (value: string): string =>
+    value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 
 export const CpfOrBirthdayFormatter: React.FC<CpfOrBirthdayFormatterProps> = ({
     value,

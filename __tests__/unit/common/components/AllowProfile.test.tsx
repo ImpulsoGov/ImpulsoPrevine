@@ -1,8 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { AllowProfile } from "@/features/common/components/AllowProfile";
-import { getServerSession, type Session } from "next-auth";
+import { AllowProfile } from "@/features/common/frontend/AllowProfile";
 import { PROFILE_ID } from "@/types/profile";
+import "@testing-library/jest-dom";
+import { render, screen, waitFor } from "@testing-library/react";
+import { getServerSession, type Session } from "next-auth";
 
 jest.mock("next-auth", () => {
     return {

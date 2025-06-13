@@ -1,6 +1,6 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { AllowProfile } from "@/features/common/components/AllowProfile";
-import { SessionGuard } from "@/features/common/components/SessionGuard";
+import { AllowProfile } from "@/features/common/frontend/AllowProfile";
+import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";

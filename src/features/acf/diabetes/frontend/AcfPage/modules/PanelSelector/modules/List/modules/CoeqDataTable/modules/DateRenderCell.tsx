@@ -1,4 +1,4 @@
-import { formatDate } from "@/features/common/time";
+import { formatDate } from "@/features/common/shared/time";
 import React from "react";
 import { RenderDateTagCell } from "./RenderDateTagCell";
 
