@@ -1,5 +1,4 @@
-import type { InternalCardDataItem } from "@/features/acf/backend/diabetes/internalCards";
-import * as diabetesInternalCards from "@features/acf/backend/diabetes/internalCards";
+import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import { captureException } from "@sentry/nextjs";
 import { Suspense } from "react";
@@ -11,9 +10,10 @@ type CoeqInternalCardsProps = {
     teamIne: string;
 };
 
+//TODO: Mover pra adapter
 const toInternalCardsProps = (
     details: CardDetailsMap,
-    data: Array<InternalCardDataItem>
+    data: Array<diabetesBackend.InternalCardDataItem>
 ): Array<CardProps> => {
     return data.map<CardProps>((card) => {
         const cardDetails = details[card.healthIndicator];
@@ -30,7 +30,7 @@ export const CoeqInternalCards: React.FC<CoeqInternalCardsProps> = async ({
 }) => {
     let internalCardsProps: Array<CardProps> = [];
     try {
-        const internalCardsData = await diabetesInternalCards.getCoeq(
+        const internalCardsData = await diabetesBackend.getInternalCardsCoeq(
             municipalitySusId,
             teamIne
         );

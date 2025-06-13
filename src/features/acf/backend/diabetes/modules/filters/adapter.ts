@@ -3,7 +3,7 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "@/features/acf/diabetes/common/model";
-import type { FilterOptionsDb, FiltersOptions } from "../model";
+import type { FilterOptionsDb, FiltersOptions } from "../../model";
 
 // TODO mudar esses tipos para não serem hard coded
 export type DiabetesFilterOptions =

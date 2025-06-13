@@ -1,5 +1,5 @@
 import { MUNICIPIOS } from "@/constants/municipios";
-import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/backend/diabetes/externalCards/controller";
+import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/backend/diabetes/modules/externalCards/controller";
 import type { AcfDashboardType } from "@/features/acf/diabetes/common/model";
 import { getExternalCardsProps } from "@/helpers/cardsList";
 import type { ProfileIdValue } from "@/types/profile";

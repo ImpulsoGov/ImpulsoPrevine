@@ -1,4 +1,4 @@
-//TODO: importar direto de ./table
-export { page as getPage, rowCount as getRowCount } from "./table/controller";
-
-export { filterOptionsCoeq } from "./filters";
+export { filterOptionsCoeq } from "./modules/filters";
+export { getCoeq as getInternalCardsCoeq } from "./modules/internalCards";
+export type { InternalCardDataItem } from "./modules/internalCards";
+export { page as getPage, rowCount as getRowCount } from "./modules/table";

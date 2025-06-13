@@ -1,10 +1,7 @@
 import type { SortOrder } from "@features/acf/diabetes/common/model";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import { prisma } from "@prisma/prismaClient";
-import type {
-    DiabetesDbFilterItem,
-    SortableDbField,
-} from "../../../backend/diabetes/model";
+import type { DiabetesDbFilterItem, SortableDbField } from "../../model";
 const pageSize = 8;
 
 type QueryWhere = {

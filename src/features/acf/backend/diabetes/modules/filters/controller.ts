@@ -1,4 +1,4 @@
-import type { FiltersOptions } from "../model";
+import type { FiltersOptions } from "../../model";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
 
