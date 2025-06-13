@@ -1,6 +1,6 @@
-import type { FiltersOptions } from "../model";
-import * as repository from "./repository";
+import type { FiltersOptions } from "../../../backend/diabetes/model";
 import * as adapter from "./adapter";
+import * as repository from "./repository";
 
 export const filterOptionsCoeq = async (
     municipalitySusID: string,

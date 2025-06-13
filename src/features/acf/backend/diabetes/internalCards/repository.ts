@@ -2,7 +2,7 @@ import { prisma } from "@prisma/prismaClient";
 import {
     DiabetesAcfInternalCardsHealthIndicator,
     type InternalCardDBDataItem,
-} from "../model";
+} from "./model";
 
 export type MunicipalitySusIdAndTeamIne = {
     municipio_id_sus: string;

@@ -1,5 +1,5 @@
 import type { CardType } from "@/app/api/card/utils/cardType";
-import type { ExternalCardDataItem } from "@/features/acf/diabetes/backend/model";
+import type { ExternalCardDataItem } from "@/features/acf/backend/diabetes/model";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 

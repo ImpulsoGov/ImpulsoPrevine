@@ -1,4 +1,4 @@
-import type { ExternalCardDataItem } from "@/features/acf/diabetes/backend/model";
+import type { ExternalCardDataItem } from "@/features/acf/backend/diabetes/model";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 
 // TODO excluir esses tipos quando movermos getExternalCardsProps para dentro de features

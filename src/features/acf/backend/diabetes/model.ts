@@ -3,8 +3,9 @@ import type {
     AcfDashboardType,
     DiabetesAcfItem,
     SortableField,
-} from "../common/model";
+} from "../../diabetes/common/model";
 
+//TODO: sumir com esse arquivo, esses tipos podem ir pra dentro dos módulos
 export type FiltersOptions = {
     visitantCommunityHealthWorker: Array<
         DiabetesAcfItem["visitantCommunityHealthWorker"]
@@ -51,9 +52,6 @@ export type DiabetesDbFilterItem = {
     cidadao_faixa_etaria?: Array<string>;
 };
 
-// TODO rever nomes dos tipos abaixo
-// Cards externos
-
 export type AcfExternalCardsDescription =
     | "DIAGNOSTICO_AUTORREFERIDO"
     | "DIAGNOSTICO_CLINICO";
@@ -70,29 +68,4 @@ export type ExternalCardDBDataItem = {
     lista: string;
     valor: number;
     descricao: string;
-};
-
-//Cards internos
-
-export const DiabetesAcfInternalCardsHealthIndicator = {
-    TOTAL_COM_DIABETES: "TOTAL_COM_DIABETES",
-    EXAME_E_CONSULTA_EM_DIA: "EXAME_E_CONSULTA_EM_DIA",
-    DIAGNOSTICO_AUTORREFERIDO: "DIAGNOSTICO_AUTORREFERIDO",
-    DIAGNOSTICO_CLINICO: "DIAGNOSTICO_CLINICO",
-} as const;
-
-export type DiabetesInternalCardsId =
-    typeof DiabetesAcfInternalCardsHealthIndicator;
-export type DiabetesInternalCardsKey = keyof DiabetesInternalCardsId;
-export type DiabetesInternalCardsValue =
-    DiabetesInternalCardsId[DiabetesInternalCardsKey];
-
-export type InternalCardDBDataItem = {
-    valor: number;
-    descricao: DiabetesInternalCardsValue;
-};
-
-export type InternalCardDataItem = {
-    value: number;
-    healthIndicator: DiabetesInternalCardsValue;
 };
