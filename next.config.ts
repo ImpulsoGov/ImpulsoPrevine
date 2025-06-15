@@ -9,6 +9,13 @@ const nextConfig: NextConfig = {
     redirects: async () => {
         return [
             {
+                source: "/apoio",
+                destination:
+                    "http://49147153.hs-sites.com/apoio-aos-munic%C3%ADpios-impulsogov",
+                permanent: true,
+            },
+
+            {
                 source: "/social-medias/linkedin",
                 destination: "https://www.linkedin.com/company/impulsogov/",
                 permanent: true,
