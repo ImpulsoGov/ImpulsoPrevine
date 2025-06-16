@@ -1,4 +1,3 @@
-import { dbToModel } from "./adapter";
 import type { InternalCardDataItem } from "./model";
 import {
     internalCardsDataForAps,
@@ -7,15 +6,15 @@ import {
 
 export const getCoaps = async (
     municipalitySusId: string
-): Promise<Array<InternalCardDataItem>> => {
+): Promise<ReadonlyArray<InternalCardDataItem>> => {
     const data = await internalCardsDataForAps(municipalitySusId);
-    return dbToModel(data);
+    return data;
 };
 
 export const getCoeq = async (
     municipalitySusId: string,
     teamIne: string
-): Promise<Array<InternalCardDataItem>> => {
+): Promise<ReadonlyArray<InternalCardDataItem>> => {
     const data = await internalCardsDataForTeam(teamIne, municipalitySusId);
-    return dbToModel(data);
+    return data;
 };

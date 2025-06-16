@@ -13,7 +13,7 @@ type CoeqInternalCardsProps = {
 //TODO: Mover pra adapter
 const toInternalCardsProps = (
     details: CardDetailsMap,
-    data: Array<diabetesBackend.InternalCardDataItem>
+    data: ReadonlyArray<diabetesBackend.InternalCardDataItem>
 ): Array<CardProps> => {
     return data.map<CardProps>((card) => {
         const cardDetails = details[card.healthIndicator];

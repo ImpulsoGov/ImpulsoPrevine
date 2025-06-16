@@ -1,7 +1,7 @@
 import { prisma } from "@prisma/prismaClient";
 import {
     DiabetesAcfInternalCardsHealthIndicator,
-    type InternalCardDBDataItem,
+    type InternalCardDataItem,
 } from "./model";
 
 export type MunicipalitySusIdAndTeamIne = {
@@ -64,7 +64,7 @@ export const totalPatientsWithClinicalDiagnosis = async (
 export const internalCardsDataForTeam = async (
     teamIne: string,
     municipalitySusID: string
-): Promise<ReadonlyArray<InternalCardDBDataItem>> => {
+): Promise<ReadonlyArray<InternalCardDataItem>> => {
     const municipalitySusIDAndTeamIne = {
         municipio_id_sus: municipalitySusID,
         equipe_ine_cadastro: teamIne,
@@ -72,29 +72,29 @@ export const internalCardsDataForTeam = async (
 
     return [
         {
-            valor: await totalPatientsWithDiabetes(municipalitySusIDAndTeamIne),
-            descricao:
+            value: await totalPatientsWithDiabetes(municipalitySusIDAndTeamIne),
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.TOTAL_COM_DIABETES,
         },
         {
-            valor: await totalPatientsWithExamsAndAppointment(
+            value: await totalPatientsWithExamsAndAppointment(
                 municipalitySusIDAndTeamIne
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.EXAME_E_CONSULTA_EM_DIA,
         },
         {
-            valor: await totalPatientsSelfDiagnosed(
+            value: await totalPatientsSelfDiagnosed(
                 municipalitySusIDAndTeamIne
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_AUTORREFERIDO,
         },
         {
-            valor: await totalPatientsWithClinicalDiagnosis(
+            value: await totalPatientsWithClinicalDiagnosis(
                 municipalitySusIDAndTeamIne
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_CLINICO,
         },
     ];
@@ -158,38 +158,38 @@ export const totalPatientsWithClinicalDiagnosisByMunicipality = async (
 
 export const internalCardsDataForAps = async (
     municipalitySusID: string
-): Promise<ReadonlyArray<InternalCardDBDataItem>> => {
+): Promise<ReadonlyArray<InternalCardDataItem>> => {
     const municipalitySusIdObj = {
         municipio_id_sus: municipalitySusID,
     };
     // Essas funçoes poderiam sofrer overload ao invés de serem reescritas? O comportamento do overload seria o mesmo de uma prop opcional?
     return [
         {
-            valor: await totalPatientsWithDiabetesByMunicipality(
+            value: await totalPatientsWithDiabetesByMunicipality(
                 municipalitySusIdObj
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.TOTAL_COM_DIABETES,
         },
         {
-            valor: await totalPatientsWithExamsAndAppointmentByMunicipality(
+            value: await totalPatientsWithExamsAndAppointmentByMunicipality(
                 municipalitySusIdObj
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.EXAME_E_CONSULTA_EM_DIA,
         },
         {
-            valor: await totalPatientsSelfDiagnosedByMunicipality(
+            value: await totalPatientsSelfDiagnosedByMunicipality(
                 municipalitySusIdObj
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_AUTORREFERIDO,
         },
         {
-            valor: await totalPatientsWithClinicalDiagnosisByMunicipality(
+            value: await totalPatientsWithClinicalDiagnosisByMunicipality(
                 municipalitySusIdObj
             ),
-            descricao:
+            healthIndicator:
                 DiabetesAcfInternalCardsHealthIndicator.DIAGNOSTICO_CLINICO,
         },
     ];
