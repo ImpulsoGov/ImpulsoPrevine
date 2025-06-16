@@ -7,7 +7,7 @@ import {
     type JWTToken,
 } from "@/utils/token";
 import type { NextRequest } from "next/server";
-import { ZodError } from "zod";
+import { ZodError } from "zod/v4";
 import { BadRequestError } from "../../../utils/errors";
 
 //TODO: Criar um teste de integração para esta rota

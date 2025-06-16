@@ -9,7 +9,7 @@ import {
 } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
-import { z, ZodError } from "zod";
+import { z, ZodError } from "zod/v4";
 import { BadRequestError } from "../../../utils/errors";
 
 //TODO: Criar um endpoint equivalente para APS
