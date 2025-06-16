@@ -7,8 +7,6 @@
         "dev": "next dev --turbopack",
         "build": "prisma generate && next build ",
         "start": "next start",
-        "commitlint": "commitlint --edit",
-        "commit": "cz",
         "postinstall": "husky",
         "test": "jest",
         "test:watch": "jest --watch",
@@ -43,8 +41,6 @@
         "zod": "^3.25.0"
     },
     "devDependencies": {
-        "@commitlint/cli": "^19.6.1",
-        "@commitlint/config-conventional": "^19.6.0",
         "@eslint/js": "^9.26.0",
         "@playwright/test": "^1.51.1",
         "@testing-library/dom": "^10.4.0",
@@ -59,8 +55,6 @@
         "@types/react": "19.0.8",
         "@types/react-dom": "19.0.3",
         "@types/react-gtm-module": "^2.0.3",
-        "commitizen": "^4.3.1",
-        "cz-conventional-changelog": "^3.3.0",
         "dotenv": "^16.4.7",
         "eslint": "^9.26.0",
         "eslint-config-prettier": "^10.1.5",
@@ -72,11 +66,6 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.32.0"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
     },
     "resolutions": {
         "@types/react": "19.0.8",
