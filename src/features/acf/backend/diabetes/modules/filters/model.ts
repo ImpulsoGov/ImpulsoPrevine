@@ -3,12 +3,15 @@ import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_
 
 //TODO: sumir com esse arquivo, esses tipos podem ir pra dentro dos módulos
 export type FiltersOptions = {
-    visitantCommunityHealthWorker: Array<
+    //TODO: Este nome está errado. No DB nós usamos o acs_nome_cadastro, e não o acs que faz as visitas. Precisamos renomear.
+    visitantCommunityHealthWorker: ReadonlyArray<
         DiabetesAcfItem["visitantCommunityHealthWorker"]
     >;
-    patientStatus: Array<DiabetesAcfItem["patientStatus"]>;
-    conditionIdentifiedBy: Array<DiabetesAcfItem["conditionIdentifiedBy"]>;
-    patientAgeRange: Array<DiabetesAcfItem["patientAgeRange"]>;
+    patientStatus: ReadonlyArray<DiabetesAcfItem["patientStatus"]>;
+    conditionIdentifiedBy: ReadonlyArray<
+        DiabetesAcfItem["conditionIdentifiedBy"]
+    >;
+    patientAgeRange: ReadonlyArray<DiabetesAcfItem["patientAgeRange"]>;
 };
 
 export type FilterOptionsDb = Pick<
