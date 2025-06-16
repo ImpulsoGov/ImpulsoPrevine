@@ -1,6 +1,5 @@
-import type { NextRequest } from "next/server";
-import type { RequestBody } from "@/features/acf/diabetes/common/schema";
-import { requestBody as queryParamsSchema } from "@/features/acf/diabetes/common/schema";
+import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
+import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import {
     AuthenticationError,
     decodeToken,
@@ -8,10 +7,12 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
-import * as diabetesController from "@/features/acf/diabetes/backend/table/controller";
-import { BadRequestError } from "../../../utils/errors";
+import * as diabetesBackend from "@features/acf/backend/diabetes";
+import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod";
+import { BadRequestError } from "../../../utils/errors";
 
+//TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
 export async function POST(
     req: NextRequest,
@@ -30,23 +31,25 @@ export async function POST(
         const pageIndex = z.coerce.number().parse(rawPage);
 
         const body: unknown = await req.json();
-        const queryParams: RequestBody = queryParamsSchema.parse(body);
+        const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
 
-        const page = await diabetesController.page(
+        const page = await diabetesBackend.getPage({
             municipalitySusID,
             teamIne,
             pageIndex,
-            queryParams.filters || {},
-            queryParams.sorting,
-            queryParams.search
-        );
-        const totalRows = await diabetesController.rowCount(
+            sorting: queryParams.sorting,
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
+
+        const totalRows = await diabetesBackend.getRowCount({
             municipalitySusID,
             teamIne,
-            queryParams.filters || {},
-            queryParams.search
-        );
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
 
+        //TODO adicionar schema de saida
         return Response.json(
             {
                 page,
