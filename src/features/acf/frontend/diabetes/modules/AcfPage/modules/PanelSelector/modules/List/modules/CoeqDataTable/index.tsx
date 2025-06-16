@@ -29,7 +29,7 @@ import * as service from "./service";
 
 export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
 
-function fetchPage(
+const fetchPage = (
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
@@ -41,7 +41,7 @@ function fetchPage(
             AxiosResponse<schema.CoeqPageResponse> | AxiosError | null
         >
     >
-): void {
+): void => {
     if (!session?.user) {
         return;
     }
@@ -78,7 +78,7 @@ function fetchPage(
                 console.error(`Erro ao buscar a página. Razão: ${error}`);
             }
         });
-}
+};
 
 export const CoeqDataTable: React.FC = () => {
     const { data: session } = useSession();
