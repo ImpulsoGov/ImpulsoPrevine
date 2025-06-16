@@ -11,11 +11,6 @@ export type DiabetesInternalCardsKey = keyof DiabetesInternalCardsId;
 export type DiabetesInternalCardsValue =
     DiabetesInternalCardsId[DiabetesInternalCardsKey];
 
-export type InternalCardDBDataItem = {
-    valor: number;
-    descricao: DiabetesInternalCardsValue;
-};
-
 export type InternalCardDataItem = {
     value: number;
     healthIndicator: DiabetesInternalCardsValue;
