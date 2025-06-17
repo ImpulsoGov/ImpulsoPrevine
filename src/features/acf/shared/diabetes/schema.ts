@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-import type { DiabetesAcfItem as CoeqDiabetesAcfItem } from "./model";
+import type { DiabetesAcfItem } from "./model";
 import * as model from "./model";
 
 export const patientStatus = z.enum(model.patientStatus);
@@ -32,7 +32,7 @@ export type CoeqFilters = z.infer<typeof coeqFilters>;
 
 export const coapsFilters = z.object({
     ...coeqFilters.shape,
-    careTeamIne: z.array(z.string()),
+    careTeamName: z.array(z.string()),
 });
 
 export type CoapsFilters = z.infer<typeof coapsFilters>;
@@ -73,8 +73,8 @@ export const coapsPageRequestBody = z.object({
 export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;
 
 //TODO: Retornar tamanho da página, e alterar o front para usar esse campo
-export type CoeqPageResponse = {
-    page: Array<CoeqDiabetesAcfItem>;
+export type PageResponse = {
+    page: Array<DiabetesAcfItem>;
     totalRows: number;
 };
 

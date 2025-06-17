@@ -1,6 +1,4 @@
 "use client";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters";
 import type { PaginationModel } from "@/features/acf/frontend/common/WithPagination";
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import {
@@ -23,18 +21,20 @@ import {
     useEffect,
     useState,
 } from "react";
-import { coeqColumns } from "./consts";
+import { coapsColumns } from "./consts";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import * as service from "./service";
+import type { AppliedFiltersCoaps } from "./model";
+import { createFiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
 
-export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
+export type { AppliedFiltersCoaps } from "./model";
 
 const fetchPage = (
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
     searchString: string,
-    filters: AppliedFilters | null,
+    filters: AppliedFiltersCoaps | null,
     setIsLoading: Dispatch<SetStateAction<boolean>>,
     setResponse: Dispatch<
         SetStateAction<AxiosResponse<schema.PageResponse> | AxiosError | null>
@@ -46,7 +46,7 @@ const fetchPage = (
 
     setIsLoading(true);
 
-    const getCoeqPageParams = Object.assign(
+    const getCoapsPageParams = Object.assign(
         {
             token: session.user.access_token,
             sorting: {
@@ -60,7 +60,7 @@ const fetchPage = (
     );
 
     service
-        .getCoeqPage(getCoeqPageParams)
+        .getCoapsPage(getCoapsPageParams)
         .then((res) => {
             setResponse(res);
             setIsLoading(false);
@@ -78,9 +78,9 @@ const fetchPage = (
         });
 };
 
-export const CoeqDataTable: React.FC = () => {
+export const CoapsDataTable: React.FC = () => {
     const { data: session } = useSession();
-    const filters = useContext<AppliedFilters | null>(FiltersContext);
+    const filters = useContext(createFiltersContext<AppliedFiltersCoaps>());
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
@@ -118,7 +118,7 @@ export const CoeqDataTable: React.FC = () => {
 
     return (
         <Table
-            columns={coeqColumns}
+            columns={coapsColumns}
             data={response?.data.page || []}
             rowHeight={60}
             paginationMode="server"

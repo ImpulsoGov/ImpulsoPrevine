@@ -31,5 +31,5 @@ export type DiabetesDbFilterItemCoeq = {
 };
 
 export type DiabetesDbFilterItemCoaps = DiabetesDbFilterItemCoeq & {
-    equipe_ine_cadastro?: Array<string>;
+    equipe_nome_cadastro?: Array<string>;
 };

@@ -18,7 +18,7 @@ type QueryWhere = {
 };
 
 type QueryWhereCoaps = QueryWhere & {
-    equipe_ine_cadastro?: { in: Array<string> };
+    equipe_nome_cadastro?: { in: Array<string> };
 };
 
 type QueryWhereCoeq = QueryWhere & {
@@ -57,11 +57,12 @@ const queryWhereCoaps = (
     search: string
 ): QueryWhere => {
     const querys = {} as QueryWhereCoaps;
+
     addFilterFieldCoaps(querys, filter, "status_usuario");
     addFilterFieldCoaps(querys, filter, "acs_nome_cadastro");
     addFilterFieldCoaps(querys, filter, "cidadao_faixa_etaria");
     addFilterFieldCoaps(querys, filter, "identificacao_condicao_diabetes");
-    addFilterFieldCoaps(querys, filter, "equipe_ine_cadastro");
+    addFilterFieldCoaps(querys, filter, "equipe_nome_cadastro");
 
     querys.municipio_id_sus = municipalitySusID;
     addSearchField(querys, search);

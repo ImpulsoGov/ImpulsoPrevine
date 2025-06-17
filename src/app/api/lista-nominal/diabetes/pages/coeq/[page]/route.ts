@@ -28,7 +28,7 @@ export async function POST(
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const teamIne = payload.equipe;
         const perfis = payload.perfis;
-        if (!perfis.includes(PROFILE_ID.COEQ)) {
+        if (!perfis.includes(PROFILE_ID.COAPS)) {
             throw new AuthenticationError(
                 "Usuário não autorizado a acessar esta rota"
             );

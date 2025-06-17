@@ -17,7 +17,7 @@ const defaultCoeqFilters: CoeqFilters = {
 
 const defaultCoapsFilters: CoapsFilters = {
     ...defaultCoeqFilters,
-    careTeamIne: [],
+    careTeamName: [],
 };
 
 type PageParams = {

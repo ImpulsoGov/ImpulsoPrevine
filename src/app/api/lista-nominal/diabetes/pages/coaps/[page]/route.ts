@@ -45,6 +45,7 @@ export async function POST(
             searchString: queryParams.search,
             filters: queryParams.filters,
         });
+        console.log("page", page);
 
         const totalRows = await diabetesBackend.getRowCountCoaps({
             municipalitySusID,
