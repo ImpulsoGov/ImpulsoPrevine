@@ -15,15 +15,13 @@ export type SortableFields = z.infer<typeof sortableFields>;
 export const patientAgeRange = z.enum(model.patientAgeRange);
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
-export const visitantCommunityHealthWorker = z.string();
-export type VisitantCommunityHealthWorker = z.infer<
-    typeof visitantCommunityHealthWorker
->;
+export const communityHealthWorker = z.string();
+export type communityHealthWorker = z.infer<typeof communityHealthWorker>;
 
 export const coeqFilters = z.object({
     patientStatus: z.array(patientStatus),
     conditionIdentifiedBy: z.array(conditionIdentifiedBy),
-    visitantCommunityHealthWorker: z.array(visitantCommunityHealthWorker),
+    communityHealthWorker: z.array(communityHealthWorker),
     patientAgeRange: z.array(patientAgeRange),
 });
 

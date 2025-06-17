@@ -46,7 +46,7 @@ export const diabetesAcfPrintForTeamDataAdapter = (
         patientAge: item.cidadao_idade,
         careTeamIne: item.equipe_ine_cadastro,
         careTeamName: item.equipe_nome_cadastro,
-        visitantCommunityHealthWorker: item.acs_nome_cadastro,
+        communityHealthWorker: item.acs_nome_cadastro,
         mostRecentProductionRecordDate: new Date(
             item.dt_registro_producao_mais_recente
         ),

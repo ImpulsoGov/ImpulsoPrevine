@@ -20,7 +20,7 @@ export const sortableFieldsToDb: Record<SortableField, SortableDbField> = {
     patientCpfOrBirthday: "cidadao_cpf_dt_nascimento",
     patientName: "cidadao_nome",
     patientAge: "cidadao_idade",
-    visitantCommunityHealthWorker: "acs_nome_cadastro",
+    communityHealthWorker: "acs_nome_cadastro",
 };
 
 export type DiabetesDbFilterItem = {

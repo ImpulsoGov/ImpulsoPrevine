@@ -113,7 +113,7 @@ export const coeqColumns: Array<GridColDef> = [
         ),
     },
     {
-        field: "visitantCommunityHealthWorker",
+        field: "communityHealthWorker",
         headerName: "Profissional responsável",
         width: 230,
         headerAlign: "left",
