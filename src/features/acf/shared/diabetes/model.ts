@@ -14,7 +14,7 @@ export const conditionIdentifiedBy = [
 
 export type ConditionIdentifiedBy = (typeof conditionIdentifiedBy)[number];
 
-export type VisitantCommunityHealthWorker = string;
+export type communityHealthWorker = string;
 
 export const patientAgeRange = [
     "Menos de 17 anos",
@@ -45,7 +45,7 @@ export type DiabetesAcfItem = {
     patientAge: number;
     careTeamIne: string;
     careTeamName: string;
-    visitantCommunityHealthWorker: string;
+    communityHealthWorker: string;
     mostRecentProductionRecordDate: Date | null;
 };
 
@@ -60,7 +60,7 @@ export const sortableField = [
     "patientCpfOrBirthday",
     "patientName",
     "patientAge",
-    "visitantCommunityHealthWorker",
+    "communityHealthWorker",
 ] as const;
 
 export type SortableField = (typeof sortableField)[number];

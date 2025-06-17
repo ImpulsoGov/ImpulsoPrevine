@@ -31,14 +31,14 @@ describe("selectOptions", () => {
 //             patientStatus:
 //                 "Consulta e solicitação de hemoglobina a fazer,Apenas a consulta a fazer,Apenas a solicitação de hemoglobina a fazer,Consulta e solicitação de hemoglobina em dia,Inválido",
 //             patientAgeRange: "Menos de 17 anos,Inválido",
-//             visitantCommunityHealthWorker: "ACS1,ACS2",
+//             communityHealthWorker: "ACS1,ACS2",
 //             conditionIdentifiedBy: "Diagnóstico Clínico,Inválido",
 //         });
 
 //         const result = searchParamsToSelectedValues(params);
 
 //         expect(result).toEqual({
-//             visitantCommunityHealthWorker: ["ACS1", "ACS2"],
+//             communityHealthWorker: ["ACS1", "ACS2"],
 //             patientStatus: [
 //                 "Consulta e solicitação de hemoglobina a fazer",
 //                 "Apenas a consulta a fazer",
@@ -55,7 +55,7 @@ describe("selectOptions", () => {
 //         const result = searchParamsToSelectedValues(params);
 
 //         expect(result).toEqual({
-//             visitantCommunityHealthWorker: [],
+//             communityHealthWorker: [],
 //             patientStatus: [],
 //             conditionIdentifiedBy: "",
 //             patientAgeRange: [],

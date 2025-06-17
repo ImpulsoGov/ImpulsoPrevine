@@ -2,7 +2,7 @@ import type {
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-    VisitantCommunityHealthWorker,
+    communityHealthWorker,
 } from "@/features/acf/shared/diabetes/model";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type * as z from "zod/v4";
@@ -10,7 +10,7 @@ import { nameFormatter } from "../../../../logic";
 import { referenceOrder } from "./consts";
 
 export type FilterOptions =
-    | Array<VisitantCommunityHealthWorker>
+    | Array<communityHealthWorker>
     | Array<PatientStatus>
     | Array<ConditionIdentifiedBy>
     | Array<PatientAgeRange>;
@@ -38,13 +38,11 @@ export const toSelectConfigsCoeq = (
 ): Array<SelectConfig> => {
     return [
         {
-            options: toHtmlSelectOptions(
-                filtersValues.visitantCommunityHealthWorker
-            )
+            options: toHtmlSelectOptions(filtersValues.communityHealthWorker)
                 .map((item) => ({ ...item, label: nameFormatter(item.label) }))
                 .sort((a, b) => a.label.localeCompare(b.label)),
             label: "Prof. Responsável",
-            id: "visitantCommunityHealthWorker",
+            id: "communityHealthWorker",
             isMultiSelect: true,
             width: "330px",
         },
@@ -105,8 +103,8 @@ export const toHtmlSelectOptions = (
 //     const ranges = (searchParams.get("patientAgeRange")?.split(",") ??
 //         []) as Array<schema.PatientAgeRange>;
 //     return {
-//         visitantCommunityHealthWorker:
-//             searchParams.get("visitantCommunityHealthWorker")?.split(",") ?? [],
+//         communityHealthWorker:
+//             searchParams.get("communityHealthWorker")?.split(",") ?? [],
 //         patientStatus: onlyValidFilterValues(
 //             patientsStatus,
 //             schema.patientStatus

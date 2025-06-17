@@ -9,7 +9,7 @@ import * as repository from "./repository";
 const defaultCoeqFilters: CoeqFilters = {
     patientStatus: [],
     conditionIdentifiedBy: [],
-    visitantCommunityHealthWorker: [],
+    communityHealthWorker: [],
     patientAgeRange: [],
 };
 

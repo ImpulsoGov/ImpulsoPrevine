@@ -58,7 +58,7 @@ const diabetesRowToModel = (
         patientAge: diabetesRow.cidadao_idade || 0,
         careTeamIne: diabetesRow.equipe_ine_cadastro,
         careTeamName: diabetesRow.equipe_nome_cadastro || "",
-        visitantCommunityHealthWorker: diabetesRow.acs_nome_cadastro || "",
+        communityHealthWorker: diabetesRow.acs_nome_cadastro || "",
         mostRecentProductionRecordDate:
             diabetesRow.dt_registro_producao_mais_recente,
     };
@@ -76,7 +76,7 @@ export const filterParamsToDb = (
     return {
         status_usuario: filters.patientStatus,
         identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
-        acs_nome_cadastro: filters.visitantCommunityHealthWorker,
+        acs_nome_cadastro: filters.communityHealthWorker,
         cidadao_faixa_etaria: filters.patientAgeRange,
     };
 };

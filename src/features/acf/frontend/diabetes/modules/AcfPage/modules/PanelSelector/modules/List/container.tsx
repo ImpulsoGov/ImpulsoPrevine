@@ -27,7 +27,7 @@ type ContentCoeqProps = {
 const initialSelectedValues: AppliedFiltersCoeq = {
     patientStatus: [],
     conditionIdentifiedBy: "",
-    visitantCommunityHealthWorker: [],
+    communityHealthWorker: [],
     patientAgeRange: [],
 };
 

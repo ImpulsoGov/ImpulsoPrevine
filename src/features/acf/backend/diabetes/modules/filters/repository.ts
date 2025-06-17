@@ -39,7 +39,7 @@ export const coeqFilterOptions = async (
     municipalitySusId: string,
     teamIne: string
 ): Promise<FiltersOptions> => {
-    const visitantCommunityHealthWorker = await fieldOptions(
+    const communityHealthWorker = await fieldOptions(
         "acs_nome_cadastro",
         municipalitySusId,
         teamIne
@@ -62,7 +62,7 @@ export const coeqFilterOptions = async (
     );
 
     return {
-        visitantCommunityHealthWorker: visitantCommunityHealthWorker.map(
+        communityHealthWorker: communityHealthWorker.map(
             (field) => field || ""
         ),
         patientStatus: patientStatus.map((field) => field as PatientStatus),

@@ -49,6 +49,6 @@ export type DiabetesAcfPrintItem = {
     patientAge: number;
     careTeamIne: string;
     careTeamName: string;
-    visitantCommunityHealthWorker: string;
+    communityHealthWorker: string;
     mostRecentProductionRecordDate: Date;
 };

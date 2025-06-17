@@ -7,7 +7,7 @@ export const clearFiltersArgs = {
 //Descricão dos filtros para impressão
 export const filtersLabels = {
     conditionIdentifiedBy: "Tipo de Diagnóstico",
-    visitantCommunityHealthWorker: "Prof. Responsável",
+    communityHealthWorker: "Prof. Responsável",
     patientStatus: "Situação",
     patientAgeRange: "Faixa Etária",
 };
