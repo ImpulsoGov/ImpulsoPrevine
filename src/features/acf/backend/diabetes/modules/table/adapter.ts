@@ -92,7 +92,7 @@ export const filterParamsToDbCoaps = (
         identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
         acs_nome_cadastro: filters.communityHealthWorker,
         cidadao_faixa_etaria: filters.patientAgeRange,
-        equipe_ine_cadastro: filters.careTeamName,
+        equipe_nome_cadastro: filters.careTeamName,
     };
 };
 

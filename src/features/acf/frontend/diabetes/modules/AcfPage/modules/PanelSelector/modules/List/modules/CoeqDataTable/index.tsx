@@ -26,6 +26,8 @@ import {
 import { coeqColumns } from "./consts";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import * as service from "./service";
+import type { AppliedFiltersCoeq } from "./model";
+import { createFiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
 
 export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
 
@@ -80,7 +82,7 @@ const fetchPage = (
 
 export const CoeqDataTable: React.FC = () => {
     const { data: session } = useSession();
-    const filters = useContext<AppliedFilters | null>(FiltersContext);
+    const filters = useContext(createFiltersContext<AppliedFiltersCoeq>());
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
