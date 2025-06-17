@@ -2,11 +2,11 @@ import type {
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-    communityHealthWorker,
+    CommunityHealthWorker,
 } from "@/features/acf/shared/diabetes/model";
 
 export type AppliedFiltersCoeq = {
-    communityHealthWorker: Array<communityHealthWorker>;
+    communityHealthWorker: Array<CommunityHealthWorker>;
     patientStatus: Array<PatientStatus>;
     conditionIdentifiedBy: ConditionIdentifiedBy | "";
     patientAgeRange: Array<PatientAgeRange>;

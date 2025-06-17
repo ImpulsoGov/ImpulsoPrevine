@@ -2,7 +2,7 @@ import type {
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-    communityHealthWorker,
+    CommunityHealthWorker,
 } from "@/features/acf/shared/diabetes/model";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type * as z from "zod/v4";
@@ -10,7 +10,7 @@ import { nameFormatter } from "../../../../logic";
 import { referenceOrder } from "./consts";
 
 export type FilterOptions =
-    | Array<communityHealthWorker>
+    | Array<CommunityHealthWorker>
     | Array<PatientStatus>
     | Array<ConditionIdentifiedBy>
     | Array<PatientAgeRange>;

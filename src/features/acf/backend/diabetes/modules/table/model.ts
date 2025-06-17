@@ -23,9 +23,13 @@ export const sortableFieldsToDb: Record<SortableField, SortableDbField> = {
     communityHealthWorker: "acs_nome_cadastro",
 };
 
-export type DiabetesDbFilterItem = {
+export type DiabetesDbFilterItemCoeq = {
     status_usuario?: Array<string>;
     identificacao_condicao_diabetes?: Array<string>;
     acs_nome_cadastro?: Array<string>;
     cidadao_faixa_etaria?: Array<string>;
+};
+
+export type DiabetesDbFilterItemCoaps = DiabetesDbFilterItemCoeq & {
+    equipe_ine_cadastro?: Array<string>;
 };

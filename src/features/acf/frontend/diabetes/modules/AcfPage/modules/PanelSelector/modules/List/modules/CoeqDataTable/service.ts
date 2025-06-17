@@ -32,7 +32,7 @@ export const getCoeqPage = async ({
 }: GetPageParams): Promise<AxiosResponse<schema.CoeqPageResponse>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/${page.toString()}`;
+    const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/coeq/${page.toString()}`;
     const body = Object.assign(
         {
             sorting: sorting,

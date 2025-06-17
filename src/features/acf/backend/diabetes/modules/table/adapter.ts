@@ -5,14 +5,17 @@ import type {
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
 import type {
+    CoapsFilters,
     CoeqFilters,
-    SortableFields,
+    SortableFieldsCoaps,
+    SortableFieldsCoeq,
 } from "@/features/acf/shared/diabetes/schema";
 import { isDate, parseDate } from "@/features/common/shared/time";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import {
     sortableFieldsToDb,
-    type DiabetesDbFilterItem,
+    type DiabetesDbFilterItemCoaps,
+    type DiabetesDbFilterItemCoeq,
     type SortableDbField,
 } from "./model";
 
@@ -70,9 +73,9 @@ export const diabetesPageDbToModel = (
     return data.map<DiabetesAcfItem>(diabetesRowToModel);
 };
 
-export const filterParamsToDb = (
+export const filterParamsToDbCoeq = (
     filters: CoeqFilters
-): DiabetesDbFilterItem => {
+): DiabetesDbFilterItemCoeq => {
     return {
         status_usuario: filters.patientStatus,
         identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
@@ -81,5 +84,22 @@ export const filterParamsToDb = (
     };
 };
 
-export const sortableFieldToDb = (sortField: SortableFields): SortableDbField =>
-    sortableFieldsToDb[sortField];
+export const filterParamsToDbCoaps = (
+    filters: CoapsFilters
+): DiabetesDbFilterItemCoaps => {
+    return {
+        status_usuario: filters.patientStatus,
+        identificacao_condicao_diabetes: filters.conditionIdentifiedBy,
+        acs_nome_cadastro: filters.communityHealthWorker,
+        cidadao_faixa_etaria: filters.patientAgeRange,
+        equipe_ine_cadastro: filters.careTeamIne,
+    };
+};
+
+export const sortableFieldToDbCoeq = (
+    sortField: SortableFieldsCoeq
+): SortableDbField => sortableFieldsToDb[sortField];
+
+export const sortableFieldToDbCoaps = (
+    sortField: SortableFieldsCoaps
+): SortableDbField => sortableFieldsToDb[sortField];
