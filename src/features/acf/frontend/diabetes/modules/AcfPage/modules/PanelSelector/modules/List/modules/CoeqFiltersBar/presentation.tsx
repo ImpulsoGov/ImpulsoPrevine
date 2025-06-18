@@ -51,7 +51,6 @@ export const FiltersBar: React.FC<FiltersBarProps> = ({
     setSelectedValues,
     selectConfigs,
 }) => {
-    console.log(selectedValues);
     const clearButton = (
         <ClearFilters
             data={selectedValues}
