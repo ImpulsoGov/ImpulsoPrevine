@@ -13,7 +13,8 @@ import type {
 import { isDate, parseDate } from "@/features/common/shared/time";
 import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
 import {
-    sortableFieldsToDb,
+    coapsSortableFieldsToDb,
+    coeqSortableFieldsToDb,
     type DiabetesDbFilterItemCoaps,
     type DiabetesDbFilterItemCoeq,
     type SortableDbField,
@@ -98,8 +99,8 @@ export const filterParamsToDbCoaps = (
 
 export const sortableFieldToDbCoeq = (
     sortField: SortableFieldsCoeq
-): SortableDbField => sortableFieldsToDb[sortField];
+): SortableDbField => coeqSortableFieldsToDb[sortField];
 
 export const sortableFieldToDbCoaps = (
     sortField: SortableFieldsCoaps
-): SortableDbField => sortableFieldsToDb[sortField];
+): SortableDbField => coapsSortableFieldsToDb[sortField];

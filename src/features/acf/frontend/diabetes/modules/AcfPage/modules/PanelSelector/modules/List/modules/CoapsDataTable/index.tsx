@@ -25,7 +25,8 @@ import { coapsColumns } from "./consts";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import * as service from "./service";
 import type { AppliedFiltersCoaps } from "./model";
-import { createFiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
 
 export type { AppliedFiltersCoaps } from "./model";
 
@@ -80,7 +81,9 @@ const fetchPage = (
 
 export const CoapsDataTable: React.FC = () => {
     const { data: session } = useSession();
-    const filters = useContext(createFiltersContext<AppliedFiltersCoaps>());
+    //TODO: adicionar um type guard aqui para garantir que o context é do tipo AppliedFiltersCoaps
+    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
+    const filters = filtersContext as AppliedFiltersCoaps | null;
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =

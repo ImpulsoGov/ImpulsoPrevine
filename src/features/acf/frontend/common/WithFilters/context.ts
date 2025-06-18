@@ -1,8 +1,5 @@
 "use client";
-import type { Context } from "react";
 import { createContext } from "react";
+import type { AppliedFilters } from "./model";
 
-export const createFiltersContext = <
-    TAppliedFilters,
->(): Context<TAppliedFilters | null> =>
-    createContext<TAppliedFilters | null>(null);
+export const FiltersContext = createContext<AppliedFilters | null>(null);

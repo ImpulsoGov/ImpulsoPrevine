@@ -73,9 +73,12 @@ export const sortableFieldCoaps = [
     "patientName",
     "patientAge",
     "communityHealthWorker",
+    "careTeamName",
 ] as const;
 
-export type SortableField = (typeof sortableFieldCoeq)[number];
+export type SortableFieldCoeq = (typeof sortableFieldCoeq)[number];
+
+export type SortableFieldCoaps = (typeof sortableFieldCoaps)[number];
 
 export const sortOrder = ["asc", "desc"] as const;
 
