@@ -14,5 +14,5 @@ export type AppliedFiltersCoeq = {
 
 //TODO: Trocar pelo tipo real quando ele existir
 export type AppliedFiltersCoaps = AppliedFiltersCoeq & {
-    campoDeCoaps: Array<string>;
+    careTeamName: Array<string>;
 };

@@ -2,10 +2,10 @@
 import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
-import { FiltersContext } from "./context";
+import { createFiltersContext } from "./context";
 import type { AppliedFilters } from "./model";
 
-export { FiltersContext };
+// export { FiltersContext };
 export type { AppliedFilters };
 
 type FiltersBarProps<TAppliedFilters> = {
@@ -17,6 +17,8 @@ type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
     initialSelectedValues: TAppliedFilters;
     FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
 }>;
+
+export const FiltersContext = createFiltersContext();
 
 export function WithFilters<TAppliedFilters extends AppliedFilters>({
     initialSelectedValues,

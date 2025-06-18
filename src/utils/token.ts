@@ -10,14 +10,15 @@ export const getEncodedSecret = () => {
 
 export class AuthenticationError extends Error {}
 
-export interface TokenPayload extends JWTPayload {
-    perfis: number[];
-    ine: string;
-}
+export type TokenPayload = JWTPayload & {
+    perfis: Array<number>;
+    equipe: string;
+    municipio: string;
+};
 
-export interface JWTToken extends JWTVerifyResult {
+export type JWTToken = JWTVerifyResult & {
     payload: TokenPayload;
-}
+};
 
 export const getToken = (headers: Headers) => {
     const authHeader = headers.get("authorization");

@@ -1,4 +1,3 @@
-import type { Session } from "next-auth";
 import type React from "react";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";

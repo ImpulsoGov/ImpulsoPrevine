@@ -10,11 +10,15 @@ import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 import { List } from "./presentation";
+import type { ProfileIdValue } from "@/types/profile";
+import { PROFILE_ID } from "@/types/profile";
+import { CoapsDataTable } from "./modules/CoapsDataTable";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
     municipalitySusId: string;
     teamIne: string;
+    userProfile: ProfileIdValue;
 };
 
 type ContentCoeqProps = {
@@ -31,12 +35,44 @@ const initialSelectedValues: AppliedFiltersCoeq = {
     patientAgeRange: [],
 };
 
+const ContentCoaps: React.FC<ContentCoeqProps> = ({
+    municipalitySusId,
+    teamIne,
+    list,
+}) => {
+    //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    return (
+        <>
+            <CoeqInternalCards
+                municipalitySusId={municipalitySusId}
+                teamIne={teamIne}
+            />
+            <List list={list}>
+                <WithSearch SearchComponent={SearchToolBar}>
+                    <hr style={{ width: "100%" }} />
+                    <WithSorting>
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValues}
+                            FiltersBar={CoeqFiltersBar}
+                        >
+                            <WithPagination>
+                                <CoapsDataTable />
+                            </WithPagination>
+                        </WithFilters>
+                    </WithSorting>
+                </WithSearch>
+            </List>
+        </>
+    );
+};
+
 const ContentCoeq: React.FC<ContentCoeqProps> = ({
     municipalitySusId,
     teamIne,
     list,
 }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    // TODO: criar card de COAPS e FilterBarCoaps
     return (
         <>
             <CoeqInternalCards
@@ -66,9 +102,16 @@ export const ListContainer: React.FC<ListContainerProps> = ({
     list,
     municipalitySusId,
     teamIne,
+    userProfile,
 }) => {
-    return (
+    return userProfile === PROFILE_ID.COEQ ? (
         <ContentCoeq
+            municipalitySusId={municipalitySusId}
+            teamIne={teamIne}
+            list={list}
+        />
+    ) : (
+        <ContentCoaps
             municipalitySusId={municipalitySusId}
             teamIne={teamIne}
             list={list}

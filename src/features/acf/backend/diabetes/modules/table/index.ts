@@ -1,1 +1,1 @@
-export { page, rowCount } from "./controller";
+export { pageCoeq, pageCoaps, rowCountCoaps, rowCountCoeq } from "./controller";

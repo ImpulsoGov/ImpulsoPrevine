@@ -3,9 +3,11 @@ import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { AppliedFiltersCoeq } from "./model";
+import type { AppliedFiltersCoaps } from "./model";
 
-function toRequestFilters(filters: AppliedFiltersCoeq): schema.CoeqFilters {
+const toRequestFilters = (
+    filters: AppliedFiltersCoaps
+): schema.CoapsFilters => {
     return {
         ...filters,
         conditionIdentifiedBy:
@@ -13,17 +15,17 @@ function toRequestFilters(filters: AppliedFiltersCoeq): schema.CoeqFilters {
                 ? []
                 : [filters.conditionIdentifiedBy],
     };
-}
+};
 
 export type GetPageParams = {
     token: string;
     page: number;
     sorting: GridSortItem;
-    filters?: AppliedFiltersCoeq;
+    filters?: AppliedFiltersCoaps;
     search?: string;
 };
 
-export const getCoeqPage = async ({
+export const getCoapsPage = async ({
     token,
     page,
     sorting,
@@ -32,14 +34,14 @@ export const getCoeqPage = async ({
 }: GetPageParams): Promise<AxiosResponse<schema.PageResponse>> => {
     if (!token) throw new Error("Token de autenticação é obrigatório");
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/coeq/${page.toString()}`;
+    const url = `${currentURL.origin}/api/lista-nominal/diabetes/pages/coaps/${page.toString()}`;
     const body = Object.assign(
         {
             sorting: sorting,
             search: search,
         },
         !filters ? {} : { filters: toRequestFilters(filters) }
-    ) as schema.CoeqPageRequestBody;
+    ) as schema.CoapsPageRequestBody;
 
     return axios.request({
         method: "POST",
