@@ -47,7 +47,7 @@ export const toSelectConfigsCoaps = (
             label: "Equipe",
             id: "careTeamName",
             isMultiSelect: true,
-            width: "178px",
+            width: "330px",
         },
     ];
 };
