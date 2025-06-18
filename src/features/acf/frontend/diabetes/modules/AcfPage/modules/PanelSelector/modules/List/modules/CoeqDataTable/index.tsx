@@ -1,6 +1,5 @@
 "use client";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters";
 import type { PaginationModel } from "@/features/acf/frontend/common/WithPagination";
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import {
