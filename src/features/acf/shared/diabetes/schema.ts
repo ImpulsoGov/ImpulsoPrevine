@@ -81,3 +81,7 @@ export type PageResponse = {
 export type CoeqFiltersResponse = {
     filters: CoeqFilters;
 };
+
+export type CoapsFiltersResponse = {
+    filters: CoapsFilters;
+};

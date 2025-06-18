@@ -1,0 +1,1 @@
+export { CoapsFiltersBar } from "./container";

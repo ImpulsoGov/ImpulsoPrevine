@@ -12,7 +12,9 @@ import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 import { List } from "./presentation";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
+import type { AppliedFiltersCoaps } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
+import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
@@ -28,11 +30,19 @@ type ContentCoeqProps = {
 };
 
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValues: AppliedFiltersCoeq = {
+const initialSelectedValuesCoeq: AppliedFiltersCoeq = {
     patientStatus: [],
     conditionIdentifiedBy: "",
     communityHealthWorker: [],
     patientAgeRange: [],
+};
+
+const initialSelectedValuesCoaps: AppliedFiltersCoaps = {
+    patientStatus: [],
+    conditionIdentifiedBy: "",
+    communityHealthWorker: [],
+    patientAgeRange: [],
+    careTeamName: [],
 };
 
 const ContentCoaps: React.FC<ContentCoeqProps> = ({
@@ -52,8 +62,8 @@ const ContentCoaps: React.FC<ContentCoeqProps> = ({
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
                         <WithFilters
-                            initialSelectedValues={initialSelectedValues}
-                            FiltersBar={CoeqFiltersBar}
+                            initialSelectedValues={initialSelectedValuesCoaps}
+                            FiltersBar={CoapsFiltersBar}
                         >
                             <WithPagination>
                                 <CoapsDataTable />
@@ -84,7 +94,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
                         <WithFilters
-                            initialSelectedValues={initialSelectedValues}
+                            initialSelectedValues={initialSelectedValuesCoeq}
                             FiltersBar={CoeqFiltersBar}
                         >
                             <WithPagination>

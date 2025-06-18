@@ -1,4 +1,4 @@
-export { filterOptionsCoeq } from "./modules/filters";
+export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";
 export { getCoeq as getInternalCardsCoeq } from "./modules/internalCards";
 export type { InternalCardDataItem } from "./modules/internalCards";
 export {

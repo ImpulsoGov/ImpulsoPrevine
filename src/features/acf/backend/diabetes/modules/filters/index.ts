@@ -1,1 +1,1 @@
-export { filterOptionsCoeq } from "./controller";
+export { filterOptionsCoeq, filterOptionsCoaps } from "./controller";
