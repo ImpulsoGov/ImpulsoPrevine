@@ -25,10 +25,10 @@ import {
 import { coeqColumns } from "./consts";
 import * as service from "./service";
 import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
-import type { AppliedFiltersCoeq } from "../../model";
+import type { AppliedFiltersCoeq } from "./model";
 import { EmptyTableMessage } from "../common/EmptyTableMessage";
 
-export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "../../model";
+export type { AppliedFiltersCoeq } from "./model";
 
 const fetchPage = (
     session: Session | null,
