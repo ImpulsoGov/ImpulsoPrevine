@@ -5,16 +5,18 @@ import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "../../../../../../../../shared/diabetes/model";
-import type { AppliedFiltersCoeq } from "./modules/CoeqDataTable";
-import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 import { List } from "./presentation";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
-import type { AppliedFiltersCoaps } from "./modules/CoapsDataTable";
-import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
+import {
+    CoapsDataTable,
+    CoeqDataTable,
+    type AppliedFiltersCoaps,
+    type AppliedFiltersCoeq,
+} from "./modules/DataTable";
 
 export type ListContainerProps = {
     list: AcfDashboardType;

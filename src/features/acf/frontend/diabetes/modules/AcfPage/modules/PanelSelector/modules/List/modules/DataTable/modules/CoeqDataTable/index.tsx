@@ -23,12 +23,12 @@ import {
     useState,
 } from "react";
 import { coeqColumns } from "./consts";
-import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import * as service from "./service";
-import type { AppliedFiltersCoeq } from "./model";
 import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import type { AppliedFiltersCoeq } from "../../model";
+import { EmptyTableMessage } from "../../common/EmptyTableMessage";
 
-export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
+export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "../../model";
 
 const fetchPage = (
     session: Session | null,

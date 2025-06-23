@@ -3,7 +3,7 @@ import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { AppliedFiltersCoaps } from "./model";
+import type { AppliedFiltersCoaps } from "../../model";
 
 const toRequestFilters = (
     filters: AppliedFiltersCoaps

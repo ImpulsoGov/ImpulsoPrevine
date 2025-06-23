@@ -22,13 +22,13 @@ import {
     useState,
 } from "react";
 import { coapsColumns } from "./consts";
-import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import * as service from "./service";
-import type { AppliedFiltersCoaps } from "./model";
 import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
+import { EmptyTableMessage } from "../../common/EmptyTableMessage";
+import type { AppliedFiltersCoaps } from "../../model";
 
-export type { AppliedFiltersCoaps } from "./model";
+// export type { AppliedFiltersCoaps } from "./model";
 
 const fetchPage = (
     session: Session | null,
