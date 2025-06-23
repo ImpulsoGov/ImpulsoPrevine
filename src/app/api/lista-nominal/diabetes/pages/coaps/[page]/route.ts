@@ -1,4 +1,5 @@
-import * as diabetesBackend from "@/features/acf/backend/diabetes/";
+import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
+import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import {
     AuthenticationError,
     decodeToken,
@@ -6,12 +7,18 @@ import {
     getToken,
     type JWTToken,
 } from "@/utils/token";
+import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
-import { ZodError } from "zod/v4";
-import { BadRequestError } from "../../../utils/errors";
+import { z, ZodError } from "zod/v4";
+import { BadRequestError } from "../../../../utils/errors";
+import { PROFILE_ID } from "@/types/profile";
 
+//TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-export async function GET(req: NextRequest): Promise<Response> {
+export async function POST(
+    req: NextRequest,
+    { params }: { params: Promise<{ page: string }> }
+): Promise<Response> {
     try {
         //TODO: Extrair essa lógica para um middleware / interceptor
         const token = getToken(req.headers);
@@ -19,16 +26,37 @@ export async function GET(req: NextRequest): Promise<Response> {
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
         const municipalitySusID = payload.municipio;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-        const teamIne = payload.equipe;
+        const perfis = payload.perfis;
+        if (!perfis.includes(PROFILE_ID.COAPS)) {
+            throw new AuthenticationError(
+                "Usuário não autorizado a acessar esta rota"
+            );
+        }
+        const rawPage = (await params).page;
+        const pageIndex = z.coerce.number().parse(rawPage);
 
-        const filters = await diabetesBackend.filterOptionsCoeq(
+        const body: unknown = await req.json();
+        const queryParams: CoapsPageRequestBody = queryParamsSchema.parse(body);
+
+        const page = await diabetesBackend.getPageCoaps({
             municipalitySusID,
-            teamIne
-        );
+            pageIndex,
+            sorting: queryParams.sorting,
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
+
+        const totalRows = await diabetesBackend.getRowCountCoaps({
+            municipalitySusID,
+            searchString: queryParams.search,
+            filters: queryParams.filters,
+        });
+
         //TODO adicionar schema de saida
         return Response.json(
             {
-                filters,
+                page,
+                totalRows: totalRows,
             },
             { status: 200 }
         );

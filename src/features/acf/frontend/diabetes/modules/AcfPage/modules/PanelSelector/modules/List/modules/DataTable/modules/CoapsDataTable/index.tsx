@@ -1,6 +1,4 @@
 "use client";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters";
 import type { PaginationModel } from "@/features/acf/frontend/common/WithPagination";
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import {
@@ -23,23 +21,25 @@ import {
     useEffect,
     useState,
 } from "react";
-import { coeqColumns } from "./consts";
-import { EmptyTableMessage } from "./modules/EmptyTableMessage";
+import { coapsColumns } from "./consts";
 import * as service from "./service";
+import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
+import { EmptyTableMessage } from "../common/EmptyTableMessage";
 
-export type { AppliedFiltersCoaps, AppliedFiltersCoeq } from "./model";
+import type { AppliedFiltersCoaps } from "./model";
+
+export type { AppliedFiltersCoaps } from "./model";
 
 const fetchPage = (
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
     searchString: string,
-    filters: AppliedFilters | null,
+    filters: AppliedFiltersCoaps | null,
     setIsLoading: Dispatch<SetStateAction<boolean>>,
     setResponse: Dispatch<
-        SetStateAction<
-            AxiosResponse<schema.CoeqPageResponse> | AxiosError | null
-        >
+        SetStateAction<AxiosResponse<schema.PageResponse> | AxiosError | null>
     >
 ): void => {
     if (!session?.user) {
@@ -48,7 +48,7 @@ const fetchPage = (
 
     setIsLoading(true);
 
-    const getCoeqPageParams = Object.assign(
+    const getCoapsPageParams = Object.assign(
         {
             token: session.user.access_token,
             sorting: {
@@ -62,7 +62,7 @@ const fetchPage = (
     );
 
     service
-        .getCoeqPage(getCoeqPageParams)
+        .getCoapsPage(getCoapsPageParams)
         .then((res) => {
             setResponse(res);
             setIsLoading(false);
@@ -80,16 +80,18 @@ const fetchPage = (
         });
 };
 
-export const CoeqDataTable: React.FC = () => {
+export const CoapsDataTable: React.FC = () => {
     const { data: session } = useSession();
-    const filters = useContext<AppliedFilters | null>(FiltersContext);
+    //TODO: adicionar um type guard aqui para garantir que o context é do tipo AppliedFiltersCoaps
+    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
+    const filters = filtersContext as AppliedFiltersCoaps | null;
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
     const { searchString } = useContext<SearchModel>(SearchContext);
     const [response, setResponse] = useState<
-        AxiosResponse<schema.CoeqPageResponse> | AxiosError | null
+        AxiosResponse<schema.PageResponse> | AxiosError | null
     >(null);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -120,7 +122,7 @@ export const CoeqDataTable: React.FC = () => {
 
     return (
         <Table
-            columns={coeqColumns}
+            columns={coapsColumns}
             data={response?.data.page || []}
             rowHeight={60}
             paginationMode="server"

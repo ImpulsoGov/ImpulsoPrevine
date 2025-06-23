@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FiltersContext } from "./context";
 import type { AppliedFilters } from "./model";
 
-export { FiltersContext };
+// export { FiltersContext };
 export type { AppliedFilters };
 
 type FiltersBarProps<TAppliedFilters> = {
@@ -18,11 +18,11 @@ type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
     FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
 }>;
 
-export function WithFilters<TAppliedFilters extends AppliedFilters>({
+export const WithFilters = <TAppliedFilters extends AppliedFilters>({
     initialSelectedValues,
     FiltersBar,
     children,
-}: WithFiltersProps<TAppliedFilters>): React.ReactNode {
+}: WithFiltersProps<TAppliedFilters>): React.ReactNode => {
     const [selectedValues, setSelectedValues] = useState<TAppliedFilters>(
         initialSelectedValues
     );
@@ -38,4 +38,4 @@ export function WithFilters<TAppliedFilters extends AppliedFilters>({
             </FiltersContext.Provider>
         </>
     );
-}
+};

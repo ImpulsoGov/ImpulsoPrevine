@@ -4,22 +4,23 @@ import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import { toSelectConfigsCoeq } from "./logic";
+//TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
+import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { AppliedFiltersCoeq } from "../DataTable";
+import type { AppliedFiltersCoaps } from "../DataTable";
 
-type CoeqFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoeq;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoeq>>;
+type CoapsFiltersBarProps = React.PropsWithChildren<{
+    selectedValues: AppliedFiltersCoaps;
+    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
     // searchParams: URLSearchParams;
 }>;
 
-const fetchCoeqFilters = (
+const fetchCoapsFilters = (
     session: Session | null,
     setResponse: Dispatch<
         SetStateAction<
-            AxiosResponse<schema.CoeqFiltersResponse> | AxiosError | null
+            AxiosResponse<schema.CoapsFiltersResponse> | AxiosError | null
         >
     >
 ): void => {
@@ -28,7 +29,7 @@ const fetchCoeqFilters = (
     }
 
     service
-        .getFiltersCoeq(session.user.access_token)
+        .getFiltersCoaps(session.user.access_token)
         .then((response) => {
             setResponse(response);
         })
@@ -45,19 +46,18 @@ const fetchCoeqFilters = (
         });
 };
 
-export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
+export const CoapsFiltersBar: React.FC<CoapsFiltersBarProps> = ({
     selectedValues,
     setSelectedValues,
-    // searchParams,
 }) => {
     const { data: session } = useSession();
     //TODO: Criar type alias pra AxiosResponse | AxiosError | null
     const [response, setResponse] = useState<
-        AxiosResponse<schema.CoeqFiltersResponse> | AxiosError | null
+        AxiosResponse<schema.CoapsFiltersResponse> | AxiosError | null
     >(null);
 
     useEffect(() => {
-        fetchCoeqFilters(session, setResponse);
+        fetchCoapsFilters(session, setResponse);
     }, []);
 
     //Na teoria, isso não deve ser mostrado nunca, por conta do SessionGuard
@@ -79,8 +79,8 @@ export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
         );
     }
 
-    const selectConfigs = toSelectConfigsCoeq(response.data.filters);
-
+    const selectConfigs = toSelectConfigsCoaps(response.data.filters);
+    console.log("selectConfigs", selectConfigs);
     return (
         <Presentation.FiltersBar
             selectedValues={selectedValues}

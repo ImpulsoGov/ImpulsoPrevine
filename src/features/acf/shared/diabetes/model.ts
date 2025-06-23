@@ -14,7 +14,7 @@ export const conditionIdentifiedBy = [
 
 export type ConditionIdentifiedBy = (typeof conditionIdentifiedBy)[number];
 
-export type communityHealthWorker = string;
+export type CommunityHealthWorker = string;
 
 export const patientAgeRange = [
     "Menos de 17 anos",
@@ -51,7 +51,7 @@ export type DiabetesAcfItem = {
 
 export type AcfDashboardType = "HIPERTENSAO" | "DIABETES";
 
-export const sortableField = [
+export const sortableFieldCoeq = [
     "latestExamRequestDate",
     "mostRecentAppointmentDate",
     "hemoglobinTestDueDate",
@@ -63,7 +63,22 @@ export const sortableField = [
     "communityHealthWorker",
 ] as const;
 
-export type SortableField = (typeof sortableField)[number];
+export const sortableFieldCoaps = [
+    "latestExamRequestDate",
+    "mostRecentAppointmentDate",
+    "hemoglobinTestDueDate",
+    "nextAppointmentDueDate",
+    "conditionIdentifiedBy",
+    "patientCpfOrBirthday",
+    "patientName",
+    "patientAge",
+    "communityHealthWorker",
+    "careTeamName",
+] as const;
+
+export type SortableFieldCoeq = (typeof sortableFieldCoeq)[number];
+
+export type SortableFieldCoaps = (typeof sortableFieldCoaps)[number];
 
 export const sortOrder = ["asc", "desc"] as const;
 
