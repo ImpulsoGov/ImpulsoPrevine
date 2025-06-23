@@ -4,10 +4,10 @@ import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import type { AppliedFiltersCoeq } from "../CoeqDataTable"; //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
 import { toSelectConfigsCoeq } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
+import type { AppliedFiltersCoeq } from "../DataTable/model";
 
 type CoeqFiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoeq;

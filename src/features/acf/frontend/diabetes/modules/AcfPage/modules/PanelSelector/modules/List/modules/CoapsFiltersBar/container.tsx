@@ -4,10 +4,11 @@ import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import type { AppliedFiltersCoaps } from "../CoeqDataTable"; //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
+//TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
 import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
+import type { AppliedFiltersCoaps } from "../DataTable/model";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;

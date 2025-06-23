@@ -7,7 +7,7 @@ import {
 import type { Dispatch, SetStateAction } from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
-import type { AppliedFiltersCoaps } from "../CoapsDataTable";
+import type { AppliedFiltersCoaps } from "../DataTable/model";
 
 type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;
