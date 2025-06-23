@@ -1,8 +1,8 @@
 import type { GridColDef } from "@mui/x-data-grid";
-import { NameFormatter } from "../../common/NameFormatter";
-import { CpfOrBirthdayFormatter } from "../../common/CpfOrBirthdayFormatter";
-import { DateRenderCell } from "../../common/DateRenderCell";
-import { RenderStatusTagCell } from "../../common/RenderStatusTagCell";
+import { NameFormatter } from "../common/NameFormatter";
+import { CpfOrBirthdayFormatter } from "../common/CpfOrBirthdayFormatter";
+import { DateRenderCell } from "../common/DateRenderCell";
+import { RenderStatusTagCell } from "../common/RenderStatusTagCell";
 
 export const coeqColumns: Array<GridColDef> = [
     {
