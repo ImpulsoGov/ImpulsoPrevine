@@ -1,21 +1,20 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import {
-    AuthenticationError,
-    decodeToken,
-    getEncodedSecret,
-    getToken,
-} from "@/utils/token";
-import { captureException } from "@sentry/nextjs";
+import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
+import type { Session } from "next-auth";
+import type { JWTVerifyResult } from "jose";
+import { errorHandler } from "@/app/api/shared/errorHandler";
 
-interface ExtendedNextRequest extends NextRequest {
-    user?: any;
-}
+type ExtendedNextRequest = NextRequest & {
+    user?: Session["user"];
+};
 
-export const validarTokenMiddleware = async (req: ExtendedNextRequest) => {
+export const validarTokenMiddleware = async (
+    req: ExtendedNextRequest
+): Promise<Response> => {
     try {
         const secret = getEncodedSecret();
-        if (!secret) {
+        if (secret.length === 0) {
             return Response.json(
                 {
                     message: "Erro ao verificar token.",
@@ -25,22 +24,13 @@ export const validarTokenMiddleware = async (req: ExtendedNextRequest) => {
             );
         }
         const token = getToken(req.headers);
-        const decodedToken = await decodeToken(token, secret);
+
+        type DecodedToken = JWTVerifyResult & Session["user"];
+        const decodedToken = (await decodeToken(token, secret)) as DecodedToken; // Verifica assinatura, validade e decodifica o token
         // const decodedToken = await jwtVerify(token, secret); // Verifica assinatura,validade e decodifica o token
-        req.user = decodedToken; // Armazena o token decodificado para uso posterior na requisição
+        req.user = decodedToken; // Armazena o tokendecodificado para uso posterior na requisição
         return NextResponse.next();
     } catch (error) {
-        if (error instanceof AuthenticationError) {
-            return Response.json({ message: error.message }, { status: 401 });
-        }
-
-        captureException(error);
-        return Response.json(
-            {
-                message: "Erro ao verificar token.",
-                detail: (error as Error).message,
-            },
-            { status: 500 }
-        );
+        return errorHandler(error);
     }
 };

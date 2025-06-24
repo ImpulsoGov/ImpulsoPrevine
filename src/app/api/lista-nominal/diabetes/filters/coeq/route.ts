@@ -1,14 +1,12 @@
 import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import {
-    AuthenticationError,
     decodeToken,
     getEncodedSecret,
     getToken,
     type JWTToken,
 } from "@/utils/token";
 import type { NextRequest } from "next/server";
-import { ZodError } from "zod/v4";
-import { BadRequestError } from "../../../utils/errors";
+import { errorHandler } from "@/app/api/shared/errorHandler";
 
 //TODO: Criar um teste de integração para esta rota
 export async function GET(req: NextRequest): Promise<Response> {
@@ -33,25 +31,6 @@ export async function GET(req: NextRequest): Promise<Response> {
             { status: 200 }
         );
     } catch (error) {
-        //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
-        console.error(error);
-        if (error instanceof ZodError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-        if (error instanceof BadRequestError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-
-        if (error instanceof AuthenticationError) {
-            return Response.json({ message: error.message }, { status: 401 });
-        }
-
-        return Response.json(
-            {
-                message: "Erro ao consultar dados",
-                detail: (error as Error).message,
-            },
-            { status: 500 }
-        );
+        return errorHandler(error);
     }
 }

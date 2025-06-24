@@ -1,7 +1,6 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import {
-    AuthenticationError,
     decodeToken,
     getEncodedSecret,
     getToken,
@@ -9,9 +8,10 @@ import {
 } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
-import { z, ZodError } from "zod/v4";
-import { BadRequestError } from "../../../../utils/errors";
+import { z } from "zod/v4";
 import { PROFILE_ID } from "@/types/profile";
+import { errorHandler } from "@/app/api/shared/errorHandler";
+import { AuthenticationError } from "@/app/api/shared/errors";
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
@@ -61,25 +61,6 @@ export async function POST(
             { status: 200 }
         );
     } catch (error) {
-        //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
-        console.error(error);
-        if (error instanceof ZodError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-        if (error instanceof BadRequestError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-
-        if (error instanceof AuthenticationError) {
-            return Response.json({ message: error.message }, { status: 401 });
-        }
-
-        return Response.json(
-            {
-                message: "Erro ao consultar dados",
-                detail: (error as Error).message,
-            },
-            { status: 500 }
-        );
+        return errorHandler(error);
     }
 }

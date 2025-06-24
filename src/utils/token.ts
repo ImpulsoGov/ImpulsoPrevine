@@ -1,6 +1,8 @@
+import { AuthenticationError } from "@/app/api/shared/errors";
 import { errors, jwtVerify, type JWTPayload, type JWTVerifyResult } from "jose";
+import type { Session } from "next-auth";
 
-export const getEncodedSecret = () => {
+export const getEncodedSecret = (): Uint8Array => {
     if (!process.env.NEXTAUTH_SECRET) {
         throw new Error("NEXTAUTH_SECRET não está configurado no ambiente");
     }
@@ -8,19 +10,13 @@ export const getEncodedSecret = () => {
     return new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 };
 
-export class AuthenticationError extends Error {}
-
-export type TokenPayload = JWTPayload & {
-    perfis: Array<number>;
-    equipe: string;
-    municipio: string;
-};
+export type TokenPayload = JWTPayload & Session["user"];
 
 export type JWTToken = JWTVerifyResult & {
     payload: TokenPayload;
 };
 
-export const getToken = (headers: Headers) => {
+export const getToken = (headers: Headers): string => {
     const authHeader = headers.get("authorization");
 
     if (!authHeader)
@@ -42,7 +38,7 @@ export const getToken = (headers: Headers) => {
 export const decodeToken = async (
     token: string,
     encodedSecrect: Uint8Array
-) => {
+): Promise<JWTVerifyResult> => {
     try {
         return await jwtVerify(token, encodedSecrect);
     } catch (error) {

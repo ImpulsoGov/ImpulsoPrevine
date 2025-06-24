@@ -9,19 +9,19 @@ type UserGuidingData = {
     perfil: string;
 };
 
-interface UserGuiding {
+type UserGuiding = {
     identify: (id: string, data: UserGuidingData) => void;
-}
+};
 
 declare global {
-    interface Window {
+    type Window = {
         mixpanel: Mixpanel;
         userGuiding: UserGuiding;
-    }
+    };
 }
 
 declare module "next-auth" {
-    interface Session {
+    type Session = {
         user: {
             id: string;
             nome: string;
@@ -30,9 +30,9 @@ declare module "next-auth" {
             municipio: string;
             equipe: string;
             municipio_id_sus: string;
-            perfis: number[]; //TODO alterar para PROFILE_ID
+            perfis: Array<number>; //TODO alterar para PROFILE_ID
             access_token: string;
         };
         status: string;
-    }
+    };
 }

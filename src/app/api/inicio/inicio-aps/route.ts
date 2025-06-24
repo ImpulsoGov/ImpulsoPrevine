@@ -1,5 +1,6 @@
 import { prisma } from "@prisma/prismaClient";
 import type { NextRequest } from "next/server";
+import { errorHandler } from "../../shared/errorHandler";
 
 export async function GET(req: NextRequest): Promise<Response> {
     try {
@@ -31,12 +32,6 @@ export async function GET(req: NextRequest): Promise<Response> {
         }));
         return Response.json(resultadoFormatado, { status: 200 });
     } catch (error) {
-        return Response.json(
-            {
-                message: "Erro ao consultar dados",
-                detail: (error as Error).message,
-            },
-            { status: 500 }
-        );
+        return errorHandler(error);
     }
 }

@@ -44,7 +44,9 @@ const ExibirURL = [
 
 const secret = process.env.NEXTAUTH_SECRET;
 
-export const middlewarePages = async (request: NextRequest) => {
+export const middlewarePages = async (
+    request: NextRequest
+): Promise<NextResponse> => {
     const url = request.nextUrl;
     const headers = new Headers(request.headers);
     const token = (await getToken({ req: request, secret })) as {
