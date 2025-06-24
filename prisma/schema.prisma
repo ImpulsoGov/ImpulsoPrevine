@@ -59,56 +59,6 @@ model DiabetesAcf {
   @@schema("impulso_previne_dados_nominais")
 }
 
-model impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_hipertensos {
-  id                                 String    @id(map: "painel_hipertensos_pk")
-  municipio_id_sus                   String?   @db.VarChar
-  municipio_uf                       String?
-  quadrimestre_atual                 String?
-  realizou_afericao_ultimos_6_meses  Boolean?
-  dt_afericao_pressao_mais_recente   String?   @db.VarChar(11)
-  realizou_consulta_ultimos_6_meses  Boolean?
-  dt_consulta_mais_recente           DateTime? @db.Date
-  prazo_proxima_afericao_pa          String?
-  prazo_proxima_consulta             String?
-  consulta_e_afericao_em_dia         Int?
-  status_em_dia                      String?
-  status_usuario                     String?
-  identificacao_condicao_hipertensao String?
-  cidadao_cpf                        String?
-  cidadao_cpf_dt_nascimento          String?
-  cidadao_cns                        String?
-  cidadao_nome                       String?
-  cidadao_nome_social                String?   @db.VarChar(500)
-  cidadao_sexo                       String?   @db.VarChar
-  dt_nascimento                      DateTime? @db.Date
-  cidadao_idade                      Int?
-  cidadao_faixa_etaria               String?
-  estabelecimento_cnes_atendimento   String?
-  estabelecimento_cnes               String?
-  estabelecimento_nome_atendimento   String?
-  estabelecimento_nome               String?
-  equipe_ine_atendimento             String?
-  equipe_ine_cadastro                String?
-  equipe_nome_atendimento            String?
-  equipe_nome_cadastro               String?
-  acs_nome_cadastro                  String?
-  acs_nome_visita                    String?
-  possui_hipertensao_autorreferida   Boolean?
-  possui_hipertensao_diagnosticada   Boolean?
-  apenas_autorreferida               Int?
-  diagnostico_clinico                Int?
-  data_ultimo_cadastro               DateTime? @db.Date
-  dt_ultima_consulta                 DateTime? @db.Date
-  se_faleceu                         Int?
-  se_mudou                           Int?
-  criacao_data                       DateTime? @db.Timestamptz(6)
-  atualizacao_data                   DateTime? @db.Timestamptz(6)
-  dt_registro_producao_mais_recente  DateTime? @db.Date
-
-  @@map("__painel_enfermeiras_lista_nominal_hipertensos")
-  @@schema("impulso_previne_dados_nominais")
-}
-
 model dados_agregados_area_logada {
   municipio_id_sus    String    @db.Char(6)
   equipe_ine          String
