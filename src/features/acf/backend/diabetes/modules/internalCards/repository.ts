@@ -12,7 +12,7 @@ export type MunicipalitySusIdAndTeamIne = {
 export const totalPatientsWithDiabetes = async (
     municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusIdAndTeamIne,
         },
@@ -22,7 +22,7 @@ export const totalPatientsWithDiabetes = async (
 export const totalPatientsWithExamsAndAppointment = async (
     municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusIdAndTeamIne,
             nextAppointmentDueDate: "Em dia",
@@ -34,7 +34,7 @@ export const totalPatientsWithExamsAndAppointment = async (
 export const totalPatientsSelfDiagnosed = async (
     municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusIdAndTeamIne,
             conditionIdentifiedBy: "Autorreferida",
@@ -45,7 +45,7 @@ export const totalPatientsSelfDiagnosed = async (
 export const totalPatientsWithClinicalDiagnosis = async (
     municipalitySusIdAndTeamIne: MunicipalitySusIdAndTeamIne
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusIdAndTeamIne,
             conditionIdentifiedBy: "Diagnóstico Clínico",
@@ -99,7 +99,7 @@ export type MunicipalitySusIdOnly = {
 export const totalPatientsWithDiabetesByMunicipality = async (
     municipalitySusId: MunicipalitySusIdOnly
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusId,
         },
@@ -109,7 +109,7 @@ export const totalPatientsWithDiabetesByMunicipality = async (
 export const totalPatientsWithExamsAndAppointmentByMunicipality = async (
     municipalitySusId: MunicipalitySusIdOnly
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusId,
             nextAppointmentDueDate: "Em dia",
@@ -121,7 +121,7 @@ export const totalPatientsWithExamsAndAppointmentByMunicipality = async (
 export const totalPatientsSelfDiagnosedByMunicipality = async (
     municipalitySusId: MunicipalitySusIdOnly
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusId,
             conditionIdentifiedBy: "Autorreferida",
@@ -132,7 +132,7 @@ export const totalPatientsSelfDiagnosedByMunicipality = async (
 export const totalPatientsWithClinicalDiagnosisByMunicipality = async (
     municipalitySusId: MunicipalitySusIdOnly
 ): Promise<number> => {
-    return await prisma.diabetesAcf.count({
+    return await prisma.diabetesAcfItem.count({
         where: {
             ...municipalitySusId,
             conditionIdentifiedBy: "Diagnóstico Clínico",

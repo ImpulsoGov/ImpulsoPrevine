@@ -1,11 +1,6 @@
-import type {
-    ConditionIdentifiedBy,
-    DiabetesAcfItem,
-    PatientAgeRange,
-    PatientStatus,
-} from "@/features/acf/shared/diabetes/model";
+import type * as model from "@/features/acf/shared/diabetes/model";
 import { isDate, parseDate } from "@/features/common/shared/time";
-import type { DiabetesAcf } from "@prisma/client";
+import type * as db from "@prisma/client";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -14,7 +9,7 @@ export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     return fieldValue;
 };
 
-const diabetesRowToModel = (diabetesRow: DiabetesAcf): DiabetesAcfItem => {
+const dbToModel = (diabetesRow: db.DiabetesAcfItem): model.DiabetesAcfItem => {
     //Este throw é uma gambiarra. Nós sabemos que estes campos
     //não tem nenhum valor null no BD hoje, e é só o tipo das colunas que está nullable, quando não deveria
 
@@ -25,7 +20,7 @@ const diabetesRowToModel = (diabetesRow: DiabetesAcf): DiabetesAcfItem => {
     }
 
     return {
-        municipalitySusId: diabetesRow.municipalitySusId,
+        municipalitySusId: diabetesRow.municipalitySusId || "",
         municipalityState: diabetesRow.municipalityState || "",
         latestExamRequestDate: diabetesRow.latestExamRequestDate
             ? new Date(diabetesRow.latestExamRequestDate)
@@ -33,12 +28,12 @@ const diabetesRowToModel = (diabetesRow: DiabetesAcf): DiabetesAcfItem => {
         mostRecentAppointmentDate: diabetesRow.mostRecentAppointmentDate,
         hemoglobinTestDueDate: diabetesRow.hemoglobinTestDueDate || "",
         nextAppointmentDueDate: diabetesRow.nextAppointmentDueDate || "",
-        patientStatus: diabetesRow.patientStatus as PatientStatus,
+        patientStatus: diabetesRow.patientStatus as model.PatientStatus,
         conditionIdentifiedBy:
-            diabetesRow.conditionIdentifiedBy as ConditionIdentifiedBy,
+            diabetesRow.conditionIdentifiedBy as model.ConditionIdentifiedBy,
         patientCpfOrBirthday: cpfOrDate(diabetesRow.patientCpfOrBirthday) || "",
         patientName: diabetesRow.patientName || "",
-        patientAgeRange: diabetesRow.patientAgeRange as PatientAgeRange,
+        patientAgeRange: diabetesRow.patientAgeRange as model.PatientAgeRange,
         patientAge: diabetesRow.patientAge || 0,
         careTeamIne: diabetesRow.careTeamIne,
         careTeamName: diabetesRow.careTeamName || "",
@@ -48,7 +43,7 @@ const diabetesRowToModel = (diabetesRow: DiabetesAcf): DiabetesAcfItem => {
     };
 };
 export const diabetesPageDbToModel = (
-    data: ReadonlyArray<DiabetesAcf>
-): Array<DiabetesAcfItem> => {
-    return data.map<DiabetesAcfItem>(diabetesRowToModel);
+    data: ReadonlyArray<db.DiabetesAcfItem>
+): Array<model.DiabetesAcfItem> => {
+    return data.map<model.DiabetesAcfItem>(dbToModel);
 };

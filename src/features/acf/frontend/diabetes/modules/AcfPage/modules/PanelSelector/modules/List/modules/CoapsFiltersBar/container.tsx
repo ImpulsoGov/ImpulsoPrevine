@@ -35,6 +35,7 @@ const fetchCoapsFilters = (
         })
         .catch((error: unknown) => {
             //TODO: generalizar esse error handling e reutilizar
+            console.error(error);
             if (error instanceof AxiosError) {
                 setResponse(error);
             }
