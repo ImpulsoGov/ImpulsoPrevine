@@ -1,4 +1,3 @@
-//TODO: Remover este arquivo depois que a DataTable genérica estiver pronta
 export const EmptyTableMessage: React.FC = () => {
     return (
         <p
