@@ -1,4 +1,4 @@
-import type { diabetesAcf } from "@prisma/client";
+import type { DiabetesAcf } from "@prisma/client";
 import { prisma } from "@prisma/prismaClient";
 import type {
     CoapsFilters,
@@ -95,7 +95,7 @@ export const pageCoeq = async (
     filters: CoeqFilters,
     sorting: CoeqSort,
     searchString: string
-): Promise<ReadonlyArray<diabetesAcf>> => {
+): Promise<ReadonlyArray<DiabetesAcf>> => {
     return await prisma.diabetesAcf.findMany({
         where: queryWhereCoeq(
             filters,
@@ -120,7 +120,7 @@ export const pageCoaps = async (
     filters: CoapsFilters,
     sorting: CoapsSort,
     searchString: string
-): Promise<ReadonlyArray<diabetesAcf>> => {
+): Promise<ReadonlyArray<DiabetesAcf>> => {
     return await prisma.diabetesAcf.findMany({
         where: queryWhereCoaps(
             filters,

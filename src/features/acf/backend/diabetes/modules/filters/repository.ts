@@ -3,15 +3,15 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
-import { type diabetesAcf } from "@prisma/client";
+import { type DiabetesAcf } from "@prisma/client";
 import { prisma } from "@prisma/prismaClient";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 
-const fieldOptionsCoeq = async <TField extends keyof diabetesAcf>(
+const fieldOptionsCoeq = async <TField extends keyof DiabetesAcf>(
     field: TField,
     municipalitySusId: string,
     teamIne: string
-): Promise<ReadonlyArray<diabetesAcf[TField]>> => {
+): Promise<ReadonlyArray<DiabetesAcf[TField]>> => {
     const result = await prisma.diabetesAcf.findMany({
         select: {
             [field]: true,
@@ -25,10 +25,10 @@ const fieldOptionsCoeq = async <TField extends keyof diabetesAcf>(
     return result.map((item) => item[field]);
 };
 
-const fieldOptionsCoaps = async <TField extends keyof diabetesAcf>(
+const fieldOptionsCoaps = async <TField extends keyof DiabetesAcf>(
     field: TField,
     municipalitySusId: string
-): Promise<ReadonlyArray<diabetesAcf[TField]>> => {
+): Promise<ReadonlyArray<DiabetesAcf[TField]>> => {
     const result = await prisma.diabetesAcf.findMany({
         select: {
             [field]: true,

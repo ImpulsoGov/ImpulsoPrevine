@@ -5,7 +5,7 @@ import type {
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
 import { isDate, parseDate } from "@/features/common/shared/time";
-import type { diabetesAcf } from "@prisma/client";
+import type { DiabetesAcf } from "@prisma/client";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {
@@ -14,7 +14,7 @@ export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     return fieldValue;
 };
 
-const diabetesRowToModel = (diabetesRow: diabetesAcf): DiabetesAcfItem => {
+const diabetesRowToModel = (diabetesRow: DiabetesAcf): DiabetesAcfItem => {
     //Este throw é uma gambiarra. Nós sabemos que estes campos
     //não tem nenhum valor null no BD hoje, e é só o tipo das colunas que está nullable, quando não deveria
 
@@ -48,7 +48,7 @@ const diabetesRowToModel = (diabetesRow: diabetesAcf): DiabetesAcfItem => {
     };
 };
 export const diabetesPageDbToModel = (
-    data: ReadonlyArray<diabetesAcf>
+    data: ReadonlyArray<DiabetesAcf>
 ): Array<DiabetesAcfItem> => {
     return data.map<DiabetesAcfItem>(diabetesRowToModel);
 };

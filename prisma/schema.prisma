@@ -9,7 +9,7 @@ datasource db {
   schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
 }
 
-model diabetesAcf {
+model DiabetesAcf {
   id                                               String    @id(map: "painel_diabeticos_pk")
   municipalitySusId                                String?   @db.VarChar @map("municipio_id_sus")
   municipalityState                                String?   @map("municipio_uf")
