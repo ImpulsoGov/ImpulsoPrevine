@@ -19,10 +19,10 @@ export type PanelSelectorContainerProps = {
 };
 
 //TODO: Mover esta função para algum lugar que seja reutilizável
-export const municipalityName = (municipalityIdSus: string): string => {
+export const municipalityName = (municipalitySusId: string): string => {
     //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
     const municipalityData = MUNICIPIOS.find(
-        (municipality) => municipality.municipioIdSus === municipalityIdSus
+        (municipality) => municipality.municipioIdSus === municipalitySusId
     );
 
     //TODO: Tentar encontrar uma forma de tipar as coisas pra esse caso ser impossível.
@@ -57,7 +57,7 @@ export const PanelSelectorContainer: React.FC<PanelSelectorContainerProps> = ({
 
     return (
         <PanelSelector
-            municipalityIdSus={municipalityName(municipalitySusId)}
+            municipalitySusId={municipalityName(municipalitySusId)}
             externalCardsProps={externalCardsProps}
             listName={acfDashboardType}
             tabID={initialTabId}
