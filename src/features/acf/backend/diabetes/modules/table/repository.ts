@@ -1,187 +1,169 @@
-import type { SortOrder } from "@/features/acf/shared/diabetes/model";
-import type { impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos } from "@prisma/client";
+import type { diabetesAcf } from "@prisma/client";
 import { prisma } from "@prisma/prismaClient";
 import type {
-    DiabetesDbFilterItemCoaps,
-    DiabetesDbFilterItemCoeq,
-    SortableDbField,
-} from "./model";
+    CoapsFilters,
+    CoapsSort,
+    CoeqFilters,
+    CoeqSort,
+} from "@/features/acf/shared/diabetes/schema";
 const pageSize = 8;
 
 type QueryWhere = {
-    status_usuario?: { in: Array<string> };
-    identificacao_condicao_diabetes?: { in: Array<string> };
-    acs_nome_cadastro?: { in: Array<string> };
-    cidadao_faixa_etaria?: { in: Array<string> };
-    municipio_id_sus: string;
-    cidadao_nome?: { contains: string };
+    patientStatus?: { in: Array<string> };
+    conditionIdentifiedBy?: { in: Array<string> };
+    communityHealthWorker?: { in: Array<string> };
+    patientAgeRange?: { in: Array<string> };
+    municipalitySusId: string;
+    patientName?: { contains: string };
 };
 
 type QueryWhereCoaps = QueryWhere & {
-    equipe_nome_cadastro?: { in: Array<string> };
+    careTeamName?: { in: Array<string> };
 };
 
 type QueryWhereCoeq = QueryWhere & {
-    equipe_ine_cadastro: string;
+    careTeamIne: string;
 };
 
 const addFilterFieldCoaps = (
     where: QueryWhereCoaps,
-    filter: DiabetesDbFilterItemCoaps,
-    field: keyof DiabetesDbFilterItemCoaps
+    filter: CoapsFilters,
+    field: keyof CoapsFilters
 ): void => {
-    if (filter[field] && filter[field].length > 0) {
+    if (filter[field].length > 0) {
         where[field] = { in: filter[field] };
     }
 };
 
 const addFilterFieldCoeq = (
     where: QueryWhereCoeq,
-    filter: DiabetesDbFilterItemCoeq,
-    field: keyof DiabetesDbFilterItemCoeq
+    filter: CoeqFilters,
+    field: keyof CoeqFilters
 ): void => {
-    if (filter[field] && filter[field].length > 0) {
+    if (filter[field].length > 0) {
         where[field] = { in: filter[field] };
     }
 };
 
 const addSearchField = (where: QueryWhere, search: string): void => {
     if (search.length > 0) {
-        where["cidadao_nome"] = { contains: search };
+        where["patientName"] = { contains: search };
     }
 };
 
 const queryWhereCoaps = (
-    filter: DiabetesDbFilterItemCoaps,
-    municipalitySusID: string,
+    filter: CoapsFilters,
+    municipalitySusId: string,
     search: string
 ): QueryWhere => {
     const querys = {} as QueryWhereCoaps;
 
-    addFilterFieldCoaps(querys, filter, "status_usuario");
-    addFilterFieldCoaps(querys, filter, "acs_nome_cadastro");
-    addFilterFieldCoaps(querys, filter, "cidadao_faixa_etaria");
-    addFilterFieldCoaps(querys, filter, "identificacao_condicao_diabetes");
-    addFilterFieldCoaps(querys, filter, "equipe_nome_cadastro");
+    addFilterFieldCoaps(querys, filter, "patientStatus");
+    addFilterFieldCoaps(querys, filter, "communityHealthWorker");
+    addFilterFieldCoaps(querys, filter, "patientAgeRange");
+    addFilterFieldCoaps(querys, filter, "conditionIdentifiedBy");
+    addFilterFieldCoaps(querys, filter, "careTeamName");
 
-    querys.municipio_id_sus = municipalitySusID;
+    querys.municipalitySusId = municipalitySusId;
     addSearchField(querys, search);
 
     return querys;
 };
 
 const queryWhereCoeq = (
-    filter: DiabetesDbFilterItemCoeq,
-    municipalitySusID: string,
+    filter: CoeqFilters,
+    municipalitySusId: string,
     teamIne: string,
     search: string
 ): QueryWhere => {
     const querys = {} as QueryWhereCoeq;
-    addFilterFieldCoeq(querys, filter, "status_usuario");
-    addFilterFieldCoeq(querys, filter, "acs_nome_cadastro");
-    addFilterFieldCoeq(querys, filter, "cidadao_faixa_etaria");
-    addFilterFieldCoeq(querys, filter, "identificacao_condicao_diabetes");
-    querys.municipio_id_sus = municipalitySusID;
-    querys.equipe_ine_cadastro = teamIne;
+    addFilterFieldCoeq(querys, filter, "patientStatus");
+    addFilterFieldCoeq(querys, filter, "communityHealthWorker");
+    addFilterFieldCoeq(querys, filter, "patientAgeRange");
+    addFilterFieldCoeq(querys, filter, "conditionIdentifiedBy");
+    querys.municipalitySusId = municipalitySusId;
+    querys.careTeamIne = teamIne;
     addSearchField(querys, search);
 
     return querys;
 };
 
 export const pageCoeq = async (
-    municipalitySusID: string,
+    municipalitySusId: string,
     teamIne: string,
     page: number,
-    filters: DiabetesDbFilterItemCoeq,
-    sorting: {
-        field: SortableDbField;
-        sort: SortOrder;
-    },
+    filters: CoeqFilters,
+    sorting: CoeqSort,
     searchString: string
-): Promise<
-    ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
-> => {
-    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany(
-        {
-            where: queryWhereCoeq(
-                filters,
-                municipalitySusID,
-                teamIne,
-                searchString.toLocaleUpperCase()
-            ),
-            orderBy: {
-                [sorting.field]: {
-                    sort: sorting.sort,
-                    nulls: sorting.sort == "asc" ? "first" : "last",
-                },
+): Promise<ReadonlyArray<diabetesAcf>> => {
+    return await prisma.diabetesAcf.findMany({
+        where: queryWhereCoeq(
+            filters,
+            municipalitySusId,
+            teamIne,
+            searchString.toLocaleUpperCase()
+        ),
+        orderBy: {
+            [sorting.field]: {
+                sort: sorting.sort,
+                nulls: sorting.sort == "asc" ? "first" : "last",
             },
-            take: pageSize,
-            skip: pageSize * page,
-        }
-    );
+        },
+        take: pageSize,
+        skip: pageSize * page,
+    });
 };
 
 export const pageCoaps = async (
-    municipalitySusID: string,
+    municipalitySusId: string,
     page: number,
-    filters: DiabetesDbFilterItemCoeq,
-    sorting: {
-        field: SortableDbField;
-        sort: SortOrder;
-    },
+    filters: CoapsFilters,
+    sorting: CoapsSort,
     searchString: string
-): Promise<
-    ReadonlyArray<impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos>
-> => {
-    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.findMany(
-        {
-            where: queryWhereCoaps(
-                filters,
-                municipalitySusID,
-                searchString.toLocaleUpperCase()
-            ),
-            orderBy: {
-                [sorting.field]: {
-                    sort: sorting.sort,
-                    nulls: sorting.sort == "asc" ? "first" : "last",
-                },
+): Promise<ReadonlyArray<diabetesAcf>> => {
+    return await prisma.diabetesAcf.findMany({
+        where: queryWhereCoaps(
+            filters,
+            municipalitySusId,
+            searchString.toLocaleUpperCase()
+        ),
+        orderBy: {
+            [sorting.field]: {
+                sort: sorting.sort,
+                nulls: sorting.sort == "asc" ? "first" : "last",
             },
-            take: pageSize,
-            skip: pageSize * page,
-        }
-    );
+        },
+        take: pageSize,
+        skip: pageSize * page,
+    });
 };
 
 export const rowCountCoaps = async (
-    municipalitySusID: string,
-    filters: DiabetesDbFilterItemCoeq,
+    municipalitySusId: string,
+    filters: CoapsFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count(
-        {
-            where: queryWhereCoaps(
-                filters,
-                municipalitySusID,
-                search.toLocaleUpperCase()
-            ),
-        }
-    );
+    return await prisma.diabetesAcf.count({
+        where: queryWhereCoaps(
+            filters,
+            municipalitySusId,
+            search.toLocaleUpperCase()
+        ),
+    });
 };
 
 export const rowCountCoeq = async (
-    municipalitySusID: string,
+    municipalitySusId: string,
     teamIne: string,
-    filters: DiabetesDbFilterItemCoeq,
+    filters: CoeqFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.impulso_previne_dados_nominais___painel_enfermeiras_lista_nominal_diabeticos.count(
-        {
-            where: queryWhereCoeq(
-                filters,
-                municipalitySusID,
-                teamIne,
-                search.toLocaleUpperCase()
-            ),
-        }
-    );
+    return await prisma.diabetesAcf.count({
+        where: queryWhereCoeq(
+            filters,
+            municipalitySusId,
+            teamIne,
+            search.toLocaleUpperCase()
+        ),
+    });
 };
