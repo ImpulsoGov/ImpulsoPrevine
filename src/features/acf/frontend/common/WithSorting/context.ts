@@ -7,7 +7,6 @@ import { createContext } from "react";
 
 //O campo que define a ordem da ordenação no tipo do x-data-grid se chama sort, por isso decidimos padronizar como sort no lugar de order.
 export const DEFAULT_SORTING: GridSortItem = {
-    //TODO: Este default deveria estar no backend, e não aqui no front. Depois de adaptar lá, precisamos mudar aqui pra se tornar um GridSortItem | null
     field: "patientName",
     sort: "asc",
 };
