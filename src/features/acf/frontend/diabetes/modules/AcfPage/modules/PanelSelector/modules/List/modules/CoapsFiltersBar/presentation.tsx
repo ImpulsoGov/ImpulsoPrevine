@@ -8,6 +8,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 import type { AppliedFiltersCoaps } from "../DataTable";
+import { Autocomplete, TextField } from "@mui/material";
 
 type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;
@@ -32,18 +33,31 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectedValues,
     setSelectedValues,
 }) => {
-    return selectConfigs.map((select: SelectConfig) => (
-        <SelectDropdown
-            key={select.id}
-            {...select}
-            value={selectedValues}
-            setValue={setSelectedValues}
-            options={select.options}
-            label={select.label}
-            multiSelect={select.isMultiSelect}
-            width={select.width}
-        />
-    ));
+    console.log(selectConfigs);
+    return selectConfigs.map((select: SelectConfig) =>
+        select.id === "communityHealthWorker" ? (
+            <Autocomplete
+                key={select.id}
+                multiple
+                options={select.options}
+                renderInput={(params) => (
+                    <TextField {...params} label={select.label} />
+                )}
+                style={{ width: select.width }}
+            />
+        ) : (
+            <SelectDropdown
+                key={select.id}
+                {...select}
+                value={selectedValues}
+                setValue={setSelectedValues}
+                options={select.options}
+                label={select.label}
+                multiSelect={select.isMultiSelect}
+                width={select.width}
+            />
+        )
+    );
 };
 
 export const FiltersBar: React.FC<FiltersBarProps> = ({
