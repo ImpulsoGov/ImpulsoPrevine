@@ -93,7 +93,7 @@ type PanelSelectorProps = {
     subTabID: string;
     externalCardsProps: Array<CardProps>;
     userProfiles: Array<ProfileIdValue>;
-    municipalityIdSus: string;
+    municipalitySusId: string;
     contentWithoutTabs: React.ReactNode;
 };
 
@@ -103,7 +103,7 @@ export const PanelSelector: React.FC<PanelSelectorProps> = ({
     // subTabID,
     // externalCardsProps,
     // userProfiles,
-    municipalityIdSus,
+    municipalitySusId,
     contentWithoutTabs,
 }) => {
     // const props = acfNominalListProps(
@@ -130,7 +130,7 @@ export const PanelSelector: React.FC<PanelSelectorProps> = ({
     return (
         <PanelSelectorWithCards
             {...header}
-            municipality={municipalityIdSus}
+            municipality={municipalitySusId}
             breadcrumb={breadcrumb.breadcrumb}
             listaNominalID={listName}
             inicialContent={contentWithoutTabs}

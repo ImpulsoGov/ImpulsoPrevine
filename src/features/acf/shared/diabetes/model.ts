@@ -31,7 +31,7 @@ export type PatientAgeRange = (typeof patientAgeRange)[number];
 //ACF = Active Case Finding = Busca Ativa. Fonte: https://www.who.int/publications/i/item/9789290228486
 //CHW = Community Health Worker = ACS = Agente Comunitário de Saúde
 export type DiabetesAcfItem = {
-    municipalitySusID: string;
+    municipalitySusId: string;
     municipalityState: string;
     latestExamRequestDate: Date | null;
     mostRecentAppointmentDate: Date | null;

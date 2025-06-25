@@ -26,7 +26,7 @@ export const diabetesAcfPrintForTeamDataAdapter = (
     data: Array<DiabetesAcfDbItem>
 ): Array<DiabetesAcfPrintItem> => {
     return data.map((item) => ({
-        municipalitySusID: item.municipio_id_sus,
+        municipalitySusId: item.municipio_id_sus,
         municipalityState: item.municipio_uf,
         latestExamRequestDate: new Date(
             item.dt_solicitacao_hemoglobina_glicada_mais_recente

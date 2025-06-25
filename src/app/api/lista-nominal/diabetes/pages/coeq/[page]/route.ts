@@ -24,7 +24,7 @@ export async function POST(
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
-        const municipalitySusID = payload.municipio;
+        const municipalitySusId = payload.municipio;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const teamIne = payload.equipe;
         const perfis = payload.perfis;
@@ -41,7 +41,7 @@ export async function POST(
         const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
 
         const page = await diabetesBackend.getPageCoeq({
-            municipalitySusID,
+            municipalitySusId,
             teamIne,
             pageIndex,
             sorting: queryParams.sorting,
@@ -50,7 +50,7 @@ export async function POST(
         });
 
         const totalRows = await diabetesBackend.getRowCountCoeq({
-            municipalitySusID,
+            municipalitySusId,
             teamIne,
             searchString: queryParams.search,
             filters: queryParams.filters,

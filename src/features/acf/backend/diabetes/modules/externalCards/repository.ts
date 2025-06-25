@@ -49,12 +49,12 @@ const data = [
 export const externalCardsDataForTeam = (
     listName: string,
     teamIne: string,
-    municipalitySusID: string
+    municipalitySusId: string
 ): Array<ExternalCardDBDataItem> => {
     return data.filter(
         (item: ExternalCardDBDataItem): boolean =>
             item.lista.toLocaleUpperCase() === listName.toLocaleUpperCase() &&
-            item.municipio_id_sus === municipalitySusID &&
+            item.municipio_id_sus === municipalitySusId &&
             item.ine === teamIne
     );
 };

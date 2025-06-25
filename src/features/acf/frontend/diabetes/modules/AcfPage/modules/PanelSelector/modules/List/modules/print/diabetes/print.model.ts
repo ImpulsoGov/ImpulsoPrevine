@@ -36,7 +36,7 @@ export type DiabetesAcfDbItem = {
 //ACF = Active Case Finding = Busca Ativa. Fonte: https://www.who.int/publications/i/item/9789290228486
 //CHW = Community Health Worker = ACS = Agente Comunitário de Saúde
 export type DiabetesAcfPrintItem = {
-    municipalitySusID: string;
+    municipalitySusId: string;
     municipalityState: string;
     latestExamRequestDate: Date;
     mostRecentAppointmentDate: Date;
