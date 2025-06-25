@@ -4,7 +4,7 @@ import {
     FilterBar,
     SelectDropdown,
 } from "@impulsogov/design-system";
-import type { Dispatch, SetStateAction } from "react";
+import type { CSSProperties, Dispatch, SetStateAction } from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 import type { AppliedFiltersCoaps } from "../DataTable";
@@ -27,19 +27,53 @@ type FiltersSelectProps = {
 //     selected: Array<T>,
 //     options: Array<T>,
 // }
-
+export const sxSelect = (
+    value: string | Array<string>
+): Record<string, CSSProperties> | CSSProperties => {
+    const colorSelect = value.length === 0 ? "#A6B5BE" : "#1E8E76";
+    return {
+        color: colorSelect,
+        "& .MuiOutlinedInput-notchedOutline": {
+            borderRadius: "100px",
+            border: `2px solid ${colorSelect}`,
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+            border: "2px solid #A6B5BE",
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            border: "2px solid #1E8E76",
+        },
+        "& .MuiSelect-icon": {
+            color: colorSelect,
+        },
+        "&.Mui-focused .MuiSelect-icon": {
+            color: "#1E8E76",
+        },
+        "& .MuiAutocomplete-inputRoot": {
+            maxHeight: 56,
+        },
+        "& .MuiAutocomplete-tag": {
+            maxWidth: "100%",
+        },
+        "& .MuiSvgIcon-fontSizeSmall": {
+            fill: "red",
+        },
+    };
+};
 const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectConfigs,
     selectedValues,
     setSelectedValues,
 }) => {
-    console.log(selectConfigs);
     return selectConfigs.map((select: SelectConfig) =>
         select.id === "communityHealthWorker" ? (
             <Autocomplete
                 key={select.id}
                 multiple
                 options={select.options}
+                limitTags={1}
+                sx={sxSelect(selectedValues[select.id])}
+                disableCloseOnSelect
                 renderInput={(params) => (
                     <TextField {...params} label={select.label} />
                 )}
