@@ -3,11 +3,11 @@ import type { DiabetesAcfPrintItem } from "./print.model";
 import { diabetesAcfPrintDataForTeamRepository } from "./print.repository";
 
 export const diabetesAcfPrintDataForTeamController = (
-    municipalitySusID: string,
+    municipalitySusId: string,
     TeamIne: string
 ): Array<DiabetesAcfPrintItem> => {
     const data = diabetesAcfPrintDataForTeamRepository(
-        municipalitySusID,
+        municipalitySusId,
         TeamIne
     );
     return diabetesAcfPrintForTeamDataAdapter(data);

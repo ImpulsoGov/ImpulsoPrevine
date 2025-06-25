@@ -17,11 +17,11 @@ export async function GET(req: NextRequest): Promise<Response> {
         const token = getToken(req.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
-        const municipalitySusID = payload.municipio;
+        const municipalitySusId = payload.municipio;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
 
         const filters =
-            await diabetesBackend.filterOptionsCoaps(municipalitySusID);
+            await diabetesBackend.filterOptionsCoaps(municipalitySusId);
         //TODO adicionar schema de saida
         return Response.json(
             {

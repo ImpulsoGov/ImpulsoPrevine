@@ -275,12 +275,12 @@ const data = [
 
 //TODO: será substituido por query
 export const diabetesAcfPrintDataForTeamRepository = (
-    municipalitySusID: string,
+    municipalitySusId: string,
     TeamIne: string
 ): Array<DiabetesAcfDbItem> => {
     return data.filter((item) => {
         return (
-            item.municipio_id_sus === municipalitySusID &&
+            item.municipio_id_sus === municipalitySusId &&
             item.equipe_ine_cadastro === TeamIne
         );
     });
