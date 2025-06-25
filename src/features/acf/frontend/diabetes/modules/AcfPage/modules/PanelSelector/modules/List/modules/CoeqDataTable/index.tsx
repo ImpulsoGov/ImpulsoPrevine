@@ -1,5 +1,5 @@
 "use client";
-import { DataTable } from "../common/DataTable";
+import { DataTable } from "@features/acf/frontend/common/DataTable";
 import { coeqColumns } from "./consts";
 import * as service from "./service";
 

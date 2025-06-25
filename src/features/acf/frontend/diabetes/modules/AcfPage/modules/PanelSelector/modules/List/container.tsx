@@ -13,10 +13,12 @@ import { PROFILE_ID } from "@/types/profile";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import {
     CoapsDataTable,
-    CoeqDataTable,
     type AppliedFiltersCoaps,
+} from "./modules/CoapsDataTable";
+import {
+    CoeqDataTable,
     type AppliedFiltersCoeq,
-} from "./modules/DataTable";
+} from "./modules/CoeqDataTable";
 
 export type ListContainerProps = {
     list: AcfDashboardType;

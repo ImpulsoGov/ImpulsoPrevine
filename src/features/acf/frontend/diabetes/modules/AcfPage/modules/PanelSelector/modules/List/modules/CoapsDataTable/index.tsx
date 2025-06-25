@@ -2,7 +2,7 @@
 import { coapsColumns } from "./consts";
 import * as service from "./service";
 
-import { DataTable } from "../common/DataTable";
+import { DataTable } from "@features/acf/frontend/common/DataTable";
 
 export type { AppliedFiltersCoaps } from "./model";
 

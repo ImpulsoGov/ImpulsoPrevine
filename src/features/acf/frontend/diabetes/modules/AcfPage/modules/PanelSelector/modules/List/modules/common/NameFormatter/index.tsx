@@ -1,4 +1,4 @@
-import { nameFormatter } from "../../../../../../../logic"; //TODO: Checar este import
+import { nameFormatter } from "../../../../../logic"; //TODO: Checar este import
 
 type NameFormatterProps = {
     value: string | null;
