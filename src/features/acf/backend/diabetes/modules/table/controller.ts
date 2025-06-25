@@ -20,19 +20,24 @@ const defaultCoapsFilters: CoapsFilters = {
     careTeamName: [],
 };
 
+const defaultSorting = {
+    field: "patientName",
+    sort: "asc",
+} as const satisfies CoapsSort;
+
 type PageParams = {
     municipalitySusId: string;
     pageIndex: number;
-    searchString: string;
+    searchString?: string;
 };
 
 type PageParamsCoaps = PageParams & {
-    sorting: CoapsSort;
+    sorting?: CoapsSort;
     filters?: CoapsFilters;
 };
 type PageParamsCoeq = PageParams & {
     teamIne: string;
-    sorting: CoeqSort;
+    sorting?: CoeqSort;
     filters?: CoeqFilters;
 };
 
@@ -49,8 +54,8 @@ export const pageCoeq = async ({
         teamIne,
         pageIndex,
         filters || defaultCoeqFilters,
-        sorting,
-        searchString
+        sorting || defaultSorting,
+        searchString || ""
     );
     return adapter.diabetesPageDbToModel(page);
 };
@@ -66,15 +71,15 @@ export const pageCoaps = async ({
         municipalitySusId,
         pageIndex,
         filters || defaultCoapsFilters,
-        sorting,
-        searchString
+        sorting || defaultSorting,
+        searchString || ""
     );
     return adapter.diabetesPageDbToModel(page);
 };
 
 type RowCountParams = {
     municipalitySusId: string;
-    searchString: string;
+    searchString?: string;
 };
 
 type RowCountParamsCoaps = RowCountParams & {
@@ -96,7 +101,7 @@ export const rowCountCoeq = async ({
         municipalitySusId,
         teamIne,
         filters || defaultCoeqFilters,
-        searchString
+        searchString || ""
     );
 };
 
@@ -108,6 +113,6 @@ export const rowCountCoaps = async ({
     return await repository.rowCountCoaps(
         municipalitySusId,
         filters || defaultCoapsFilters,
-        searchString
+        searchString || ""
     );
 };
