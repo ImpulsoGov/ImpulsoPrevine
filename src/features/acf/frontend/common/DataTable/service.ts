@@ -1,10 +1,9 @@
 "use client";
-import type * as schema from "@/features/acf/shared/diabetes/schema";
+import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFilters } from "../WithFilters";
-import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
 
 //TODO: rever este tipo
 type CoordinatorProfile = "coaps" | "coeq";
@@ -66,40 +65,3 @@ export const getPageBuilder = <
         });
     };
 };
-
-// export const getPageBuilder = <
-//     TRequestBody,
-//     TResponse,
-//     TAppliedFilters extends AppliedFilters,
-// >({
-//     bodyBuilder,
-//     token,
-//     acfDashboardType,
-//     coordinatorProfile,
-//     page,
-//     sorting,
-//     filters,
-//     search,
-// }: GetPageParams<TRequestBody, TAppliedFilters>): Promise<
-//     AxiosResponse<TResponse>
-// > => {
-//     if (!token) throw new Error("Token de autenticação é obrigatório");
-//     const currentURL = new URL(window.location.href);
-//     const url = `${currentURL.origin}/api/lista-nominal/${acfDashboardType}/pages/${coordinatorProfile}/${page.toString()}`;
-//     const body = bodyBuilder(
-//         token,
-//         sorting || null,
-//         filters || null,
-//         search || null
-//     );
-
-//     return axios.request({
-//         method: "POST",
-//         maxBodyLength: Number.POSITIVE_INFINITY,
-//         url: url,
-//         data: body,
-//         headers: {
-//             authorization: `Bearer ${token}`,
-//         },
-//     });
-// };
