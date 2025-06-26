@@ -13,9 +13,6 @@ import type { AxiosError, AxiosRequestHeaders } from "axios";
 jest.mock("@impulsogov/design-system", () => ({
     Table: jest.fn(() => <div data-testid="list-table"> TABLE </div>),
 }));
-jest.mock("next-auth", () => ({
-    useSession: jest.fn(),
-}));
 
 const mockServiceGetPage = jest.fn().mockResolvedValue({
     data: {

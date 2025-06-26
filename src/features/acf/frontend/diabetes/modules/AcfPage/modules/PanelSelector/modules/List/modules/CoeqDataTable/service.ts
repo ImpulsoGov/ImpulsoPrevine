@@ -4,6 +4,10 @@ import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFiltersCoeq } from "./model";
+import {
+    BodyBuilder,
+    getPageBuilder,
+} from "@features/acf/frontend/common/DataTable";
 
 function toRequestFilters(filters: AppliedFiltersCoeq): schema.CoeqFilters {
     return {
@@ -15,6 +19,21 @@ function toRequestFilters(filters: AppliedFiltersCoeq): schema.CoeqFilters {
     };
 }
 
+const bodyBuilder: BodyBuilder<
+    AppliedFiltersCoeq,
+    schema.CoeqPageRequestBody
+> = (sorting, filters, search) => {
+    return Object.assign(
+        {
+            sorting: sorting as schema.CoeqSort,
+            search: search,
+        },
+        !filters ? {} : { filters: toRequestFilters(filters) }
+    );
+};
+
+export const getCoeqPage = getPageBuilder("DIABETES", "coeq", bodyBuilder);
+
 export type GetPageParams = {
     token: string;
     page: number;
@@ -23,7 +42,7 @@ export type GetPageParams = {
     search?: string;
 };
 
-export const getCoeqPage = async ({
+export const getCoeqPageOld = async ({
     token,
     page,
     sorting,

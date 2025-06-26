@@ -27,6 +27,9 @@ import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 import type { GridColDef } from "@mui/x-data-grid";
 
+export { getPageBuilder } from "./service";
+export type { GetPageParams, BodyBuilder } from "./service";
+
 type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     token: string;
     page: number;
@@ -58,7 +61,7 @@ const fetchPage = <TAppliedFilters extends AppliedFilters>(
 
     setIsLoading(true);
 
-    const getCoapsPageParams = Object.assign(
+    const getPageParams = Object.assign(
         {
             token: session.user.access_token,
             sorting: {
@@ -71,7 +74,7 @@ const fetchPage = <TAppliedFilters extends AppliedFilters>(
         !filters ? {} : { filters: filters }
     );
 
-    serviceGetPage(getCoapsPageParams)
+    serviceGetPage(getPageParams)
         .then((res) => {
             setResponse(res);
             setIsLoading(false);
@@ -131,7 +134,6 @@ export const DataTable = <TAppliedFilters extends AppliedFilters>({
     }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
 
     if (isAxiosError(response)) {
-        console.log("RESPONSE IS AN INSTANCE OF AXIOSERROR");
         return (
             <p
                 data-testid="error-message"
