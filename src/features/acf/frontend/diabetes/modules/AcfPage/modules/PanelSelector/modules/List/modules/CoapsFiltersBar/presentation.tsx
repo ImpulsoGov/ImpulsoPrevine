@@ -4,7 +4,12 @@ import {
     FilterBar,
     SelectDropdown,
 } from "@impulsogov/design-system";
-import type { CSSProperties, Dispatch, SetStateAction } from "react";
+import {
+    useState,
+    type CSSProperties,
+    type Dispatch,
+    type SetStateAction,
+} from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 import type { AppliedFiltersCoaps } from "../DataTable";
@@ -54,9 +59,42 @@ export const sxSelect = (
         },
         "& .MuiAutocomplete-tag": {
             maxWidth: "100%",
+            backgroundColor: "#DEF7EC",
+            color: "#046C4E",
+            borderRadius: "100%",
+            fontSize: "13px",
+            padding: "3px 7px",
+            fontWeight: "bold",
         },
         "& .MuiSvgIcon-fontSizeSmall": {
-            fill: "red",
+            fill: "#EF565D",
+        },
+        "& .MuiAutocomplete-clearIndicator": {
+            visibility: "visible",
+        },
+        "&:hover .MuiAutocomplete-clearIndicator": {
+            backgroundColor: "#FFE8E8",
+        },
+        "& .MuiChip-colorDefault": {
+            color: "#000000de",
+            borderRadius: "16px",
+            padding: "0px",
+            fontWeight: "normal",
+        },
+        "& .MuiChip-deleteIcon": {
+            color: "#046C4E",
+        },
+        "&:hover .MuiChip-deleteIcon": {
+            color: "#046C4E",
+        },
+        "& .Mui-focused": {
+            color: "#1E8E76",
+        },
+        '& [data-tag-index]:not([data-tag-index="0"])': {
+            visibility: "hidden",
+        },
+        "& .MuiAutocomplete-options": {
+            backgroundColor: "red",
         },
     };
 };
@@ -65,9 +103,17 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectedValues,
     setSelectedValues,
 }) => {
+    const [open, setOpen] = useState(true);
     return selectConfigs.map((select: SelectConfig) =>
         select.id === "communityHealthWorker" ? (
             <Autocomplete
+                open={open}
+                onOpen={() => {
+                    setOpen(true);
+                }} // evita warning
+                onClose={() => {
+                    setOpen(false);
+                }}
                 key={select.id}
                 multiple
                 options={select.options}
