@@ -95,6 +95,9 @@ export const sxSelect = (
         '& [data-tag-index]:not([data-tag-index="0"])': {
             visibility: "hidden",
         },
+        // "& .MuiInputLabel-root": {
+        //     color: colorSelect,
+        // },
     };
 };
 const FiltersSelect: React.FC<FiltersSelectProps> = ({
@@ -144,7 +147,6 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 renderTags={(value, getTagProps) => {
                     const numTags = value.length;
                     const limitTags = 1;
-
                     return (
                         <>
                             {value.slice(0, limitTags).map((option, index) => (
@@ -155,23 +157,35 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                                 />
                             ))}
 
-                            <div
-                                style={{
-                                    backgroundColor: "#DEF7EC",
-                                    borderRadius: "100%",
-                                    padding: "3px 7px",
-                                    fontSize: "13px",
-                                    fontWeight: "bold",
-                                    color: "#046C4E",
-                                }}
-                            >
-                                {numTags > limitTags &&
-                                    `+${String(numTags - limitTags)}`}
-                            </div>
+                            {numTags - limitTags > 0 && (
+                                <div
+                                    style={{
+                                        backgroundColor: "#DEF7EC",
+                                        borderRadius: "100%",
+                                        padding: "3px 7px",
+                                        fontSize: "13px",
+                                        fontWeight: "bold",
+                                        color: "#046C4E",
+                                    }}
+                                >
+                                    {numTags > limitTags &&
+                                        `+${String(numTags - limitTags)}`}
+                                </div>
+                            )}
                         </>
                     );
                 }}
                 slotProps={{
+                    // chip: {
+                    //     sx: {
+                    //         "& .MuiChip-deleteIcon": {
+                    //             color: "#046C4E",
+                    //         },
+                    //         "&:hover .MuiChip-deleteIcon": {
+                    //             color: "#046C4E",
+                    //         },
+                    //     },
+                    // },
                     listbox: {
                         sx: {
                             '& .MuiAutocomplete-option[aria-selected="true"]': {
