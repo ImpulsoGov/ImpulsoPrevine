@@ -95,7 +95,10 @@ export const sxSelect = (
         '& [data-tag-index]:not([data-tag-index="0"])': {
             visibility: "hidden",
         },
-        // "& .MuiInputLabel-root": {
+        // "& .MuiFormControl-root": {
+        //     color: colorSelect,
+        // },
+        // "& .MuiInputBase-root:hover": {
         //     color: colorSelect,
         // },
     };
