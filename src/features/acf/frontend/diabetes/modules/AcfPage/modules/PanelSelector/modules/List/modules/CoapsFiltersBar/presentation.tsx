@@ -58,10 +58,12 @@ export const sxSelect = (
         },
         "& .MuiAutocomplete-inputRoot": {
             maxHeight: 56,
+            fontFamily: "Inter",
         },
         "& .MuiAutocomplete-tag": {
             maxWidth: "100%",
             backgroundColor: "#DEF7EC",
+            fontFamily: "Inter",
             // color: "#046C4E",
             // borderRadius: "100%",
             // fontSize: "13px",
@@ -84,10 +86,10 @@ export const sxSelect = (
             fontWeight: "normal",
         },
         "& .MuiChip-deleteIcon": {
-            color: "#046C4E",
+            color: "#1E8E76",
         },
         "&:hover .MuiChip-deleteIcon": {
-            color: "#046C4E",
+            color: "#145C56",
         },
         "& .Mui-focused": {
             color: "#1E8E76",
@@ -95,6 +97,12 @@ export const sxSelect = (
         '& [data-tag-index]:not([data-tag-index="0"])': {
             visibility: "hidden",
         },
+        "& .MuiInputLabel-root": {
+            fontFamily: "Inter",
+        },
+        // "& .MuiInputBase-root": {
+        //     fontFamily: "Inter",
+        // },
         // "& .MuiFormControl-root": {
         //     color: colorSelect,
         // },
@@ -108,17 +116,17 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectedValues,
     setSelectedValues,
 }) => {
-    // const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(true);
     return selectConfigs.map((select: SelectConfig) =>
         select.id === "communityHealthWorker" ? (
             <Autocomplete
-                // open={open}
-                // onOpen={() => {
-                //     setOpen(true);
-                // }} // evita warning
-                // onClose={() => {
-                //     setOpen(false);
-                // }}
+                open={open}
+                onOpen={() => {
+                    setOpen(true);
+                }} // evita warning
+                onClose={() => {
+                    setOpen(false);
+                }}
                 key={select.id}
                 multiple
                 options={select.options}
@@ -138,6 +146,7 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                             style={{
                                 display: "flex",
                                 justifyContent: "space-between",
+                                fontFamily: "Inter",
                             }}
                         >
                             {option.label}
@@ -169,6 +178,7 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                                         fontSize: "13px",
                                         fontWeight: "bold",
                                         color: "#046C4E",
+                                        fontFamily: "Inter",
                                     }}
                                 >
                                     {numTags > limitTags &&
@@ -179,16 +189,6 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                     );
                 }}
                 slotProps={{
-                    // chip: {
-                    //     sx: {
-                    //         "& .MuiChip-deleteIcon": {
-                    //             color: "#046C4E",
-                    //         },
-                    //         "&:hover .MuiChip-deleteIcon": {
-                    //             color: "#046C4E",
-                    //         },
-                    //     },
-                    // },
                     listbox: {
                         sx: {
                             '& .MuiAutocomplete-option[aria-selected="true"]': {
@@ -196,7 +196,11 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                             },
                             '& .MuiAutocomplete-option[aria-selected="true"]:hover':
                                 {
-                                    backgroundColor: "#DEF7EC",
+                                    backgroundColor: "#BCF0DA",
+                                },
+                            '& .MuiAutocomplete-option[aria-selected="false"]:hover':
+                                {
+                                    backgroundColor: "#F4F4F4",
                                 },
                             "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused":
                                 {
@@ -213,25 +217,13 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                                 {
                                     backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
                                 },
-                            '& .MuiAutocomplete-option[aria-selected="false"]:hover':
-                                {
-                                    backgroundColor: "#31C48D",
-                                    color: "white",
-                                    font: "Inter",
-                                    fontWeight: 600,
-                                },
                             '& .MuiAutocomplete-option[aria-selected="true"]': {
-                                backgroundColor: "#DEF7EC",
                                 color: "#000000de",
                             },
                             '& .MuiAutocomplete-option[aria-selected="true"]:hover':
                                 {
-                                    backgroundColor: "#DEF7EC",
                                     color: "#000000de",
                                 },
-                            "& .MuiAutocomplete-option[]": {
-                                backgroundColor: "red",
-                            },
                         },
                     },
                 }}
