@@ -111,6 +111,7 @@ const config: Config = {
         "^@app/(.*)$": "<rootDir>/src/app/$1",
         "^@features/(.*)$": "<rootDir>/src/features/$1",
         "^common/(.*)$": "<rootDir>/src/common/$1",
+        "react-dom/server": "react-dom/server.edge", // https://stackoverflow.com/questions/79506842/react-19-jest-let-test-cases-failed-with-error-referenceerror-messagechannel
     },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
