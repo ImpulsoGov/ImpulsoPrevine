@@ -4,7 +4,7 @@ import { getPageBuilder } from "@/features/acf/frontend/common/DataTable";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type { CoapsAppliedFilters } from "./model";
 
-const bodyBuilder: BodyBuilder<
+export const bodyBuilder: BodyBuilder<
     CoapsAppliedFilters,
     schema.CoapsPageRequestBody
 > = (appliedSorting, appliedFilters, searchString) => {
