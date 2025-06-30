@@ -11,11 +11,11 @@ import {
     type SetStateAction,
 } from "react";
 import { clearFiltersArgs } from "./consts";
-import type { SelectConfig } from "./logic";
+import type { HtmlSelectOption, SelectConfig } from "./logic";
 import type { AppliedFiltersCoaps } from "../DataTable";
-import { Autocomplete, Chip, TextField } from "@mui/material";
+import { Autocomplete, Chip, InputLabel, TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-
+import CloseIcon from "@mui/icons-material/Close";
 type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;
     setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
@@ -39,15 +39,24 @@ export const sxSelect = (
     const colorSelect = value.length === 0 ? "#A6B5BE" : "#1E8E76";
     return {
         color: colorSelect,
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+                borderRadius: "100px",
+                border: `2px solid #1E8E76`,
+            },
+        "& .MuiInputLabel-shrink.Mui-focused": {
+            color: "#1E8E76",
+        },
         "& .MuiOutlinedInput-notchedOutline": {
             borderRadius: "100px",
             border: `2px solid ${colorSelect}`,
         },
-        "& .MuiOutlinedInput-notchedOutline:hover": {
+        "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
             borderRadius: "100px",
             border: `2px solid ${colorSelect}`,
         },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+            color: "#1E8E76",
             border: "2px solid #1E8E76",
         },
         "& .MuiSelect-icon": {
@@ -70,8 +79,14 @@ export const sxSelect = (
             // padding: "3px 7px",
             // fontWeight: "bold",
         },
-        "& .MuiSvgIcon-fontSizeSmall": {
-            fill: "#EF565D",
+        "& .MuiChip-root .MuiChip-deleteIcon": {
+            color: "#1E8E76",
+        },
+        "&:hover .MuiChip-root .MuiChip-deleteIcon": {
+            color: "#145C56",
+        },
+        "& .MuiSvgIcon-fontSizeSmall.MuiSvgIcon-root": {
+            color: "red",
         },
         "& .MuiAutocomplete-clearIndicator": {
             visibility: "visible",
@@ -85,21 +100,37 @@ export const sxSelect = (
             padding: "0px",
             fontWeight: "normal",
         },
-        "& .MuiChip-deleteIcon": {
-            color: "#1E8E76",
-        },
-        "&:hover .MuiChip-deleteIcon": {
-            color: "#145C56",
-        },
-        "& .Mui-focused": {
-            color: "#1E8E76",
-        },
         '& [data-tag-index]:not([data-tag-index="0"])': {
             visibility: "hidden",
         },
         "& .MuiInputLabel-root": {
             fontFamily: "Inter",
         },
+        '& .MuiAutocomplete-option[aria-selected="true"]': {
+            backgroundColor: "#DEF7EC",
+        },
+        '& .MuiAutocomplete-option[aria-selected="true"]:hover': {
+            backgroundColor: "#BCF0DA",
+        },
+        '& .MuiAutocomplete-option[aria-selected="false"]:hover': {
+            backgroundColor: "#F4F4F4",
+        },
+        "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused": {
+            backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
+        },
+        // '& .MuiAutocomplete-option[aria-selected="true"]': {
+        //     backgroundColor: "#DEF7EC",
+        // },
+        // '& .MuiAutocomplete-option[aria-selected="true"]:hover': {
+        //     backgroundColor: "#BCF0DA",
+        // },
+        // '& .MuiAutocomplete-option[aria-selected="false"]:hover': {
+        //     backgroundColor: "#F4F4F4",
+        // },
+        // "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused": {
+        //     backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
+        // },
+
         // "& .MuiInputBase-root": {
         //     fontFamily: "Inter",
         // },
@@ -128,6 +159,12 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 //     setOpen(false);
                 // }}
                 // disablePortal
+
+                // value={
+                //     selectedValues as unknown as
+                //         | Array<HtmlSelectOption>
+                //         | undefined
+                // }
                 key={select.id}
                 // onChange={(_, value) => {
                 //     setSelectedValues((prevState) => ({
