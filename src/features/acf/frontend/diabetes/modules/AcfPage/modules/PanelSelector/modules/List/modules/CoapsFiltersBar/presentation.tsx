@@ -116,18 +116,25 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectedValues,
     setSelectedValues,
 }) => {
-    const [open, setOpen] = useState(true);
+    // const [open, setOpen] = useState(true);
     return selectConfigs.map((select: SelectConfig) =>
         select.id === "communityHealthWorker" ? (
             <Autocomplete
-                open={open}
-                onOpen={() => {
-                    setOpen(true);
-                }} // evita warning
-                onClose={() => {
-                    setOpen(false);
-                }}
+                // open={open}
+                // onOpen={() => {
+                //     setOpen(true);
+                // }} // evita warning
+                // onClose={() => {
+                //     setOpen(false);
+                // }}
+                disablePortal
                 key={select.id}
+                onChange={(_, value) => {
+                    setSelectedValues((prevState) => ({
+                        ...prevState,
+                        [select.id]: value.map((item) => item.value),
+                    }));
+                }}
                 multiple
                 options={select.options}
                 limitTags={1}
