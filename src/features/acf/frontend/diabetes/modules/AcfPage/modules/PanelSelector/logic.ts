@@ -53,6 +53,7 @@ export const tabsBuilder = (
         ])
     );
 };
+//Todo: Mover essa função para dentro de List/modules/common
 export const nameFormatter = (value: string): string => {
     const commonPrepositions = ["da", "de", "do", "dos", "das", "e"];
     const namePieces = value.toLowerCase().split(" ");

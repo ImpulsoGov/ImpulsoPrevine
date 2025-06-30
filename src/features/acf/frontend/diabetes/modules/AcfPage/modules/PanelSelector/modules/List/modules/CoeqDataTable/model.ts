@@ -1,3 +1,3 @@
 import type { SharedAppliedFilters } from "../common/SharedAppliedFilters";
 
-export type AppliedFiltersCoeq = SharedAppliedFilters;
+export type CoeqAppliedFilters = SharedAppliedFilters;

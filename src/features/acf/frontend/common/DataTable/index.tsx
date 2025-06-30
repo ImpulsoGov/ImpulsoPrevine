@@ -1,4 +1,6 @@
 "use client";
+import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
 import type { PaginationModel } from "@/features/acf/frontend/common/WithPagination";
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import {
@@ -10,33 +12,44 @@ import { SortingContext } from "@/features/acf/frontend/common/WithSorting/conte
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { Table } from "@impulsogov/design-system";
 import type { GridPaginationModel, GridSortItem } from "@mui/x-data-grid";
-import type { AxiosResponse } from "axios";
-import { AxiosError } from "axios";
+import type { AxiosError, AxiosResponse } from "axios";
+import { isAxiosError } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-import {
+import React, {
     type Dispatch,
     type SetStateAction,
     useContext,
     useEffect,
     useState,
 } from "react";
-import { coapsColumns } from "./consts";
-import * as service from "./service";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
-import { EmptyTableMessage } from "../common/EmptyTableMessage";
+import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
-import type { AppliedFiltersCoaps } from "./model";
+import type { GridColDef } from "@mui/x-data-grid";
 
-export type { AppliedFiltersCoaps } from "./model";
+export { getPageBuilder } from "./service";
+export type { BodyBuilder, GetPageParams } from "./service";
 
-const fetchPage = (
+type GetPageParams<TAppliedFilters extends AppliedFilters> = {
+    token: string;
+    page: number;
+    sorting: GridSortItem;
+    filters?: TAppliedFilters;
+    search?: string;
+};
+
+//TODO: Incluir TResponse aqui e usar no lugar de schema.PageResponse
+type ServiceGetPage<TAppliedFilters extends AppliedFilters> = (
+    params: GetPageParams<TAppliedFilters>
+) => Promise<AxiosResponse<schema.PageResponse>>;
+
+const fetchPage = <TAppliedFilters extends AppliedFilters>(
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
     searchString: string,
-    filters: AppliedFiltersCoaps | null,
+    filters: TAppliedFilters | null,
+    serviceGetPage: ServiceGetPage<TAppliedFilters>,
     setIsLoading: Dispatch<SetStateAction<boolean>>,
     setResponse: Dispatch<
         SetStateAction<AxiosResponse<schema.PageResponse> | AxiosError | null>
@@ -48,7 +61,7 @@ const fetchPage = (
 
     setIsLoading(true);
 
-    const getCoapsPageParams = Object.assign(
+    const getPageParams = Object.assign(
         {
             token: session.user.access_token,
             sorting: {
@@ -61,8 +74,7 @@ const fetchPage = (
         !filters ? {} : { filters: filters }
     );
 
-    service
-        .getCoapsPage(getCoapsPageParams)
+    serviceGetPage(getPageParams)
         .then((res) => {
             setResponse(res);
             setIsLoading(false);
@@ -70,7 +82,7 @@ const fetchPage = (
         .catch((error: unknown) => {
             //TODO: generalizar esse error handling e reutilizar
             setIsLoading(false);
-            if (error instanceof AxiosError) {
+            if (isAxiosError(error)) {
                 setResponse(error);
             }
             if (error instanceof Error) {
@@ -80,11 +92,19 @@ const fetchPage = (
         });
 };
 
-export const CoapsDataTable: React.FC = () => {
+type DataTableProps<TAppliedFilters extends AppliedFilters> = {
+    columns: Array<GridColDef>;
+    serviceGetPage: ServiceGetPage<TAppliedFilters>;
+};
+
+export const DataTable = <TAppliedFilters extends AppliedFilters>({
+    columns,
+    serviceGetPage,
+}: DataTableProps<TAppliedFilters>): React.ReactNode => {
     const { data: session } = useSession();
-    //TODO: adicionar um type guard aqui para garantir que o context é do tipo AppliedFiltersCoaps
+    //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
     const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const filters = filtersContext as AppliedFiltersCoaps | null;
+    const filters = filtersContext as TAppliedFilters | null;
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
@@ -107,14 +127,18 @@ export const CoapsDataTable: React.FC = () => {
             gridPaginationModel,
             searchString,
             filters,
+            serviceGetPage,
             setIsLoading,
             setResponse
         );
     }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
 
-    if (response instanceof AxiosError) {
+    if (isAxiosError(response)) {
         return (
-            <p style={{ textAlign: "center", padding: "20px" }}>
+            <p
+                data-testid="error-message"
+                style={{ textAlign: "center", padding: "20px" }}
+            >
                 Erro ao buscar dados, entre em contato com o suporte.
             </p>
         );
@@ -122,7 +146,7 @@ export const CoapsDataTable: React.FC = () => {
 
     return (
         <Table
-            columns={coapsColumns}
+            columns={columns}
             data={response?.data.page || []}
             rowHeight={60}
             paginationMode="server"

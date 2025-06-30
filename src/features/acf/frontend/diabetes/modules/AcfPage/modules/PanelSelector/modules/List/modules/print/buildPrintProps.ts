@@ -10,7 +10,7 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
 import { filtersLabels } from "../CoeqFiltersBar/consts";
 import type { DiabetesAcfPrintItem } from "./diabetes/print.model";
-import { coeqColumns } from "../DataTable/modules/CoeqDataTable/consts";
+import { coeqColumns } from "../CoeqDataTable/consts";
 
 export const buildPrintProps = (
     list: AcfDashboardType,
