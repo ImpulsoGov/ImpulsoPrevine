@@ -129,12 +129,12 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 // }}
                 // disablePortal
                 key={select.id}
-                onChange={(_, value) => {
-                    setSelectedValues((prevState) => ({
-                        ...prevState,
-                        [select.id]: value.map((item) => item.value),
-                    }));
-                }}
+                // onChange={(_, value) => {
+                //     setSelectedValues((prevState) => ({
+                //         ...prevState,
+                //         [select.id]: value.map((item) => item.value),
+                //     }));
+                // }}
                 multiple
                 options={select.options}
                 limitTags={1}
