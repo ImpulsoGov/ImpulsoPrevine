@@ -4,7 +4,7 @@ import * as service from "./service";
 
 import { DataTable } from "@features/acf/frontend/common/DataTable";
 
-export type { AppliedFiltersCoaps } from "./model";
+export type { CoapsAppliedFilters } from "./model";
 
 export const CoapsDataTable: React.FC = () => {
     return (

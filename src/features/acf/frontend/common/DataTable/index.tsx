@@ -12,7 +12,7 @@ import { SortingContext } from "@/features/acf/frontend/common/WithSorting/conte
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { Table } from "@impulsogov/design-system";
 import type { GridPaginationModel, GridSortItem } from "@mui/x-data-grid";
-import type { AxiosResponse, AxiosError } from "axios";
+import type { AxiosError, AxiosResponse } from "axios";
 import { isAxiosError } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
@@ -28,7 +28,7 @@ import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 import type { GridColDef } from "@mui/x-data-grid";
 
 export { getPageBuilder } from "./service";
-export type { GetPageParams, BodyBuilder } from "./service";
+export type { BodyBuilder, GetPageParams } from "./service";
 
 type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     token: string;
@@ -102,7 +102,7 @@ export const DataTable = <TAppliedFilters extends AppliedFilters>({
     serviceGetPage,
 }: DataTableProps<TAppliedFilters>): React.ReactNode => {
     const { data: session } = useSession();
-    //TODO: adicionar um type guard aqui para garantir que o context é do tipo AppliedFiltersCoaps
+    //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
     const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
     const filters = filtersContext as TAppliedFilters | null;
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =

@@ -5,20 +5,20 @@ import {
     SelectDropdown,
 } from "@impulsogov/design-system";
 import type { Dispatch, SetStateAction } from "react";
+import type { CoapsAppliedFilters } from "../CoapsDataTable";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
-import type { AppliedFiltersCoaps } from "../CoapsDataTable";
 
 type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoaps;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 
 type FiltersSelectProps = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: AppliedFiltersCoaps;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
 };
 
 //TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues

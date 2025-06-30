@@ -1,24 +1,24 @@
 "use client";
-import type { AppliedFiltersCoeq } from "../CoeqDataTable";
 import {
     ClearFilters,
     FilterBar,
     SelectDropdown,
 } from "@impulsogov/design-system";
 import type { Dispatch, SetStateAction } from "react";
+import type { CoeqAppliedFilters } from "../CoeqDataTable";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
 
 type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoeq;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoeq>>;
+    selectedValues: CoeqAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 
 type FiltersSelectProps = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: AppliedFiltersCoeq;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoeq>>;
+    selectedValues: CoeqAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
 };
 
 //TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues

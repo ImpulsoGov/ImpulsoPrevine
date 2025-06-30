@@ -4,14 +4,14 @@ import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import type { CoeqAppliedFilters } from "../CoeqDataTable";
 import { toSelectConfigsCoeq } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { AppliedFiltersCoeq } from "../CoeqDataTable";
 
 type CoeqFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoeq;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoeq>>;
+    selectedValues: CoeqAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
     // searchParams: URLSearchParams;
 }>;
 
