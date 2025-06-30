@@ -7,7 +7,7 @@ import type { CoeqAppliedFilters } from "./model";
 //TODO: Por algum motivo, retirar estes type hints daqui fazem o typescript
 //      ser incapaz de inferir os tipos dos parametros. Em algum momento, é uma boa estudar pq, e tentar tirar de novo.
 //      Se essa variável for inlined, a inferência funciona. Coisa de louco.
-const bodyBuilder: BodyBuilder<
+export const bodyBuilder: BodyBuilder<
     CoeqAppliedFilters,
     schema.CoeqPageRequestBody
 > = (appliedSorting, appliedFilters, searchString) => {
