@@ -127,7 +127,7 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 // onClose={() => {
                 //     setOpen(false);
                 // }}
-                disablePortal
+                // disablePortal
                 key={select.id}
                 onChange={(_, value) => {
                     setSelectedValues((prevState) => ({
