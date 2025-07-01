@@ -8,7 +8,7 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { AppliedFiltersCoaps } from "../DataTable";
+import type { AppliedFiltersCoaps } from "../../../DataTable";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;

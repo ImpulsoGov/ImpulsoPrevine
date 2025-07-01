@@ -7,7 +7,7 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoeq } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { AppliedFiltersCoeq } from "../DataTable";
+import type { AppliedFiltersCoeq } from "../../../DataTable";
 
 type CoeqFiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoeq;
