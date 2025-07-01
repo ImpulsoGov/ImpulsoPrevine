@@ -5,17 +5,16 @@ import {
     SelectDropdown,
 } from "@impulsogov/design-system";
 import {
-    useState,
+    useMemo,
     type CSSProperties,
     type Dispatch,
     type SetStateAction,
 } from "react";
 import { clearFiltersArgs } from "./consts";
-import type { HtmlSelectOption, SelectConfig } from "./logic";
-import type { AppliedFiltersCoaps } from "../DataTable";
-import { Autocomplete, Chip, InputLabel, TextField } from "@mui/material";
+import type { SelectConfig } from "./logic";
+import { Autocomplete, Chip, TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
+import type { AppliedFiltersCoaps } from "../../../DataTable";
 type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: AppliedFiltersCoaps;
     setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
@@ -73,11 +72,6 @@ export const sxSelect = (
             maxWidth: "100%",
             backgroundColor: "#DEF7EC",
             fontFamily: "Inter",
-            // color: "#046C4E",
-            // borderRadius: "100%",
-            // fontSize: "13px",
-            // padding: "3px 7px",
-            // fontWeight: "bold",
         },
         "& .MuiChip-root .MuiChip-deleteIcon": {
             color: "#1E8E76",
@@ -118,28 +112,6 @@ export const sxSelect = (
         "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused": {
             backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
         },
-        // '& .MuiAutocomplete-option[aria-selected="true"]': {
-        //     backgroundColor: "#DEF7EC",
-        // },
-        // '& .MuiAutocomplete-option[aria-selected="true"]:hover': {
-        //     backgroundColor: "#BCF0DA",
-        // },
-        // '& .MuiAutocomplete-option[aria-selected="false"]:hover': {
-        //     backgroundColor: "#F4F4F4",
-        // },
-        // "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused": {
-        //     backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
-        // },
-
-        // "& .MuiInputBase-root": {
-        //     fontFamily: "Inter",
-        // },
-        // "& .MuiFormControl-root": {
-        //     color: colorSelect,
-        // },
-        // "& .MuiInputBase-root:hover": {
-        //     color: colorSelect,
-        // },
     };
 };
 const FiltersSelect: React.FC<FiltersSelectProps> = ({
@@ -147,31 +119,31 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectedValues,
     setSelectedValues,
 }) => {
-    // const [open, setOpen] = useState(true);
+    const valueMemo = useMemo(() => {
+        const selected = selectedValues["communityHealthWorker"];
+        const config = selectConfigs.find(
+            (s) => s.id === "communityHealthWorker"
+        );
+        if (!config) return [];
+
+        if (Array.isArray(selected)) {
+            return config.options.filter((opt) => selected.includes(opt.value));
+        } else {
+            return config.options.filter((opt) => opt.value === selected);
+        }
+    }, [selectedValues["communityHealthWorker"], selectConfigs]);
+
     return selectConfigs.map((select: SelectConfig) =>
         select.id === "communityHealthWorker" ? (
             <Autocomplete
-                // open={open}
-                // onOpen={() => {
-                //     setOpen(true);
-                // }} // evita warning
-                // onClose={() => {
-                //     setOpen(false);
-                // }}
-                // disablePortal
-
-                // value={
-                //     selectedValues as unknown as
-                //         | Array<HtmlSelectOption>
-                //         | undefined
-                // }
+                value={valueMemo}
                 key={select.id}
-                // onChange={(_, value) => {
-                //     setSelectedValues((prevState) => ({
-                //         ...prevState,
-                //         [select.id]: value.map((item) => item.value),
-                //     }));
-                // }}
+                onChange={(_event, newValue) => {
+                    setSelectedValues((prevState) => ({
+                        ...prevState,
+                        [select.id]: newValue.map((item) => item.value),
+                    }));
+                }}
                 multiple
                 options={select.options}
                 limitTags={1}
@@ -182,10 +154,10 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 )}
                 renderOption={(props, option, { selected }) => {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const { key, ...optionProps } = props;
+                    const { key = option.value, ...optionProps } = props;
                     return (
                         <li
-                            key={option.value}
+                            key={key as string}
                             {...optionProps}
                             style={{
                                 display: "flex",
@@ -238,29 +210,25 @@ const FiltersSelect: React.FC<FiltersSelectProps> = ({
                             '& .MuiAutocomplete-option[aria-selected="true"]': {
                                 backgroundColor: "#DEF7EC",
                             },
-                            '& .MuiAutocomplete-option[aria-selected="true"]:hover':
-                                {
-                                    backgroundColor: "#BCF0DA",
-                                },
                             '& .MuiAutocomplete-option[aria-selected="false"]:hover':
                                 {
                                     backgroundColor: "#F4F4F4",
                                 },
-                            "& MuiAutocomplete-listbox.MuiAutocomplete-option.Mui-focused":
+                            "& .MuiAutocomplete-option.Mui-focused": {
+                                backgroundColor: "#FFF",
+                            },
+                            '& .MuiAutocomplete-option.Mui-focused[aria-selected="true"]':
                                 {
-                                    backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
+                                    backgroundColor: "#DEF7EC",
+                                },
+                            '& .MuiAutocomplete-option.Mui-focused[aria-selected="true"]:hover':
+                                {
+                                    backgroundColor: "#BCF0DA",
                                 },
                         },
                     },
                     paper: {
                         sx: {
-                            "& .MuiAutocomplete-listbox .Mui-focused": {
-                                backgroundColor: "#FFF", // Cor de fundo ao passar mouse ou focar
-                            },
-                            '& .MuiAutocomplete-option.Mui-focused[aria-selected="true"]':
-                                {
-                                    backgroundColor: "#DEF7EC", // Cor de fundo ao passar mouse ou focar
-                                },
                             '& .MuiAutocomplete-option[aria-selected="true"]': {
                                 color: "#000000de",
                             },

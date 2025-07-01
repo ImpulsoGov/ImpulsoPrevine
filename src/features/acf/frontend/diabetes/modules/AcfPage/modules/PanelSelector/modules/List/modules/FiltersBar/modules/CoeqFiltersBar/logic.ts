@@ -6,7 +6,7 @@ import type {
 } from "@/features/acf/shared/diabetes/model";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type * as z from "zod/v4";
-import { nameFormatter } from "../../../../logic";
+import { nameFormatter } from "../../../../../logic";
 import { referenceOrder } from "./consts";
 
 export type FilterOptions =
