@@ -1519,10 +1519,10 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.2.tgz#ecf19250f8fe35de684aa2b0ec6f773b3447247b"
   integrity sha512-aUdT6zEYtDKCaxkofmmJDJYGCf0+pJg3eU9/oBuqvEeoB9dKI6ZLc/1iLJCTuJQDO4ptntAlkUmHgGjyuobZbw==
 
-"@impulsogov/design-system@1.0.353":
-  version "1.0.353"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.353.tgz#2beecd77f6f09f49a8422f713992375f5dcf7fe6"
-  integrity sha512-nUrype8gqz/lDR9P1i4DyMlAExPp95b86N0O1CMx7AVE6iKiGVhCHl+3cu6+ylDdGP8hPRNmQNTM4XV5+9MKaA==
+"@impulsogov/design-system@^1.0.318":
+  version "1.0.346"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.346.tgz#58824c6f4fd15f58a6c4624b754726d371156a3c"
+  integrity sha512-ziFW3kyiSUck33JApms0pami+d4kv8XQrNWrTijHt+5CSvw8LuM8z1rV1pb1TBDntHVFjz3vQAxfNdnwOtifng==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
@@ -1552,10 +1552,10 @@
     react-to-print "^2.14.13"
     styled-components "^6.0.1"
 
-"@impulsogov/design-system@^1.0.318":
-  version "1.0.346"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.346.tgz#58824c6f4fd15f58a6c4624b754726d371156a3c"
-  integrity sha512-ziFW3kyiSUck33JApms0pami+d4kv8XQrNWrTijHt+5CSvw8LuM8z1rV1pb1TBDntHVFjz3vQAxfNdnwOtifng==
+"@impulsogov/design-system@^1.0.354":
+  version "1.0.354"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.354.tgz#c809f6fbc9cd1a63d2f439df88f7d3b5885eb62f"
+  integrity sha512-HbC3zrTF/icSxsjtLC5cnmRo4IK96PWClBFMh9MPgTOBieXpYv0/w6tcmI+RQToPIoIu/lPnRN6yzKYN+TqjrQ==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
