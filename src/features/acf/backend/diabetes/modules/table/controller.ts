@@ -20,75 +20,66 @@ const defaultCoapsFilters: CoapsFilters = {
     careTeamName: [],
 };
 
+const defaultSorting = {
+    field: "patientName",
+    sort: "asc",
+} as const satisfies CoapsSort;
+
 type PageParams = {
-    municipalitySusID: string;
+    municipalitySusId: string;
     pageIndex: number;
-    searchString: string;
+    searchString?: string;
 };
 
 type PageParamsCoaps = PageParams & {
-    sorting: CoapsSort;
+    sorting?: CoapsSort;
     filters?: CoapsFilters;
 };
 type PageParamsCoeq = PageParams & {
     teamIne: string;
-    sorting: CoeqSort;
+    sorting?: CoeqSort;
     filters?: CoeqFilters;
 };
 
 export const pageCoeq = async ({
-    municipalitySusID,
+    municipalitySusId,
     teamIne,
     pageIndex,
     sorting,
     searchString,
     filters,
 }: PageParamsCoeq): Promise<Array<DiabetesAcfItem>> => {
-    const filtersDb = adapter.filterParamsToDbCoeq(
-        filters || defaultCoeqFilters
-    );
-    const sortingDb = {
-        field: adapter.sortableFieldToDbCoeq(sorting.field),
-        sort: sorting.sort,
-    };
     const page = await repository.pageCoeq(
-        municipalitySusID,
+        municipalitySusId,
         teamIne,
         pageIndex,
-        filtersDb,
-        sortingDb,
-        searchString
+        filters || defaultCoeqFilters,
+        sorting || defaultSorting,
+        searchString || ""
     );
     return adapter.diabetesPageDbToModel(page);
 };
 
 export const pageCoaps = async ({
-    municipalitySusID,
+    municipalitySusId,
     pageIndex,
     sorting,
     searchString,
     filters,
 }: PageParamsCoaps): Promise<Array<DiabetesAcfItem>> => {
-    const filtersDb = adapter.filterParamsToDbCoaps(
-        filters || defaultCoapsFilters
-    );
-    const sortingDb = {
-        field: adapter.sortableFieldToDbCoaps(sorting.field),
-        sort: sorting.sort,
-    };
     const page = await repository.pageCoaps(
-        municipalitySusID,
+        municipalitySusId,
         pageIndex,
-        filtersDb,
-        sortingDb,
-        searchString
+        filters || defaultCoapsFilters,
+        sorting || defaultSorting,
+        searchString || ""
     );
     return adapter.diabetesPageDbToModel(page);
 };
 
 type RowCountParams = {
-    municipalitySusID: string;
-    searchString: string;
+    municipalitySusId: string;
+    searchString?: string;
 };
 
 type RowCountParamsCoaps = RowCountParams & {
@@ -101,33 +92,27 @@ type RowCountParamsCoeq = RowCountParams & {
 };
 
 export const rowCountCoeq = async ({
-    municipalitySusID,
+    municipalitySusId,
     teamIne,
     searchString,
     filters,
 }: RowCountParamsCoeq): Promise<number> => {
-    const filtersDb = adapter.filterParamsToDbCoeq(
-        filters || defaultCoeqFilters
-    );
     return await repository.rowCountCoeq(
-        municipalitySusID,
+        municipalitySusId,
         teamIne,
-        filtersDb,
-        searchString
+        filters || defaultCoeqFilters,
+        searchString || ""
     );
 };
 
 export const rowCountCoaps = async ({
-    municipalitySusID,
+    municipalitySusId,
     searchString,
     filters,
 }: RowCountParamsCoaps): Promise<number> => {
-    const filtersDb = adapter.filterParamsToDbCoaps(
-        filters || defaultCoapsFilters
-    );
     return await repository.rowCountCoaps(
-        municipalitySusID,
-        filtersDb,
-        searchString
+        municipalitySusId,
+        filters || defaultCoapsFilters,
+        searchString || ""
     );
 };

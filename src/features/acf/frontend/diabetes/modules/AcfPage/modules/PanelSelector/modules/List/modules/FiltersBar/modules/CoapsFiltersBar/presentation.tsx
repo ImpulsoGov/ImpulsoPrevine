@@ -3,11 +3,12 @@ import { ClearFilters, FilterBar } from "@impulsogov/design-system";
 import { type Dispatch, type SetStateAction } from "react";
 import { clearFiltersArgs } from "./consts";
 import type { SelectConfig } from "./logic";
-import type { AppliedFiltersCoaps } from "../../../DataTable";
 import { FiltersSelect } from "../common/FiltersSelect";
+import type { CoapsAppliedFilters } from "../../../CoapsDataTable";
+
 type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoaps;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 

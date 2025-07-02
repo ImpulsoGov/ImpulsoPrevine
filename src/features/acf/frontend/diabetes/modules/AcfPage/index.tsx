@@ -8,6 +8,11 @@ import type { AcfDashboardType } from "../../../../shared/diabetes/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
 
+export type {
+    CoapsAppliedFilters,
+    CoeqAppliedFilters,
+} from "./modules/PanelSelector";
+
 type Props = {
     searchParams: Promise<{
         [key: string]: string | undefined;

@@ -53,10 +53,8 @@ export type CoeqSort = z.infer<typeof coeqSort>;
 
 export const coeqPageRequestBody = z.object({
     filters: z.optional(coeqFilters),
-    //TODO: Não faz sentido que os filtros sejam opcionais e o resto não.
-    //      Podemos definir valores default caso estes parametros não venham, e usá-los, como vamos fazer no filtro.
-    sorting: coeqSort,
-    search: z.string(),
+    sorting: z.optional(coeqSort),
+    search: z.optional(z.string()),
 });
 
 export type CoeqPageRequestBody = z.infer<typeof coeqPageRequestBody>;
@@ -64,10 +62,8 @@ export type CoeqPageRequestBody = z.infer<typeof coeqPageRequestBody>;
 // TODO criar um schema com os dados compoartilhado entre coaps e coeq
 export const coapsPageRequestBody = z.object({
     filters: z.optional(coapsFilters),
-    //TODO: Não faz sentido que os filtros sejam opcionais e o resto não.
-    //      Podemos definir valores default caso estes parametros não venham, e usá-los, como vamos fazer no filtro.
-    sorting: coapsSort,
-    search: z.string(),
+    sorting: z.optional(coapsSort),
+    search: z.optional(z.string()),
 });
 
 export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;

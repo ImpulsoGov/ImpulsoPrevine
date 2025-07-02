@@ -8,11 +8,11 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { AppliedFiltersCoaps } from "../../../DataTable";
+import type { CoapsAppliedFilters } from "../../../CoapsDataTable";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: AppliedFiltersCoaps;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
     // searchParams: URLSearchParams;
 }>;
 
@@ -35,6 +35,7 @@ const fetchCoapsFilters = (
         })
         .catch((error: unknown) => {
             //TODO: generalizar esse error handling e reutilizar
+            console.error(error);
             if (error instanceof AxiosError) {
                 setResponse(error);
             }

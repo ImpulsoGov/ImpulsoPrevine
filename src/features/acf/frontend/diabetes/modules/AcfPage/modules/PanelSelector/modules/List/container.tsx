@@ -3,19 +3,21 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React from "react";
-import type { AcfDashboardType } from "../../../../../../../../shared/diabetes/model";
-import { CoeqInternalCards } from "./modules/CoeqInternalcards";
-import { List } from "./presentation";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
+import React from "react";
+import type { AcfDashboardType } from "../../../../../../../../shared/diabetes/model";
 import {
     CoapsDataTable,
+    type CoapsAppliedFilters,
+} from "./modules/CoapsDataTable";
+import {
     CoeqDataTable,
-    type AppliedFiltersCoaps,
-    type AppliedFiltersCoeq,
-} from "./modules/DataTable";
-import { CoapsFiltersBar } from "./modules/FiltersBar/modules/CoapsFiltersBar/container";
+    type CoeqAppliedFilters,
+} from "./modules/CoeqDataTable";
+import { CoeqInternalCards } from "./modules/CoeqInternalcards";
+import { List } from "./presentation";
+import { CoapsFiltersBar } from "./modules/FiltersBar/modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/FiltersBar/modules/CoeqFiltersBar";
 
 export type ListContainerProps = {
@@ -32,14 +34,14 @@ type ContentCoeqProps = {
 };
 
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValuesCoeq: AppliedFiltersCoeq = {
+const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     patientStatus: [],
     conditionIdentifiedBy: "",
     communityHealthWorker: [],
     patientAgeRange: [],
 };
 
-const initialSelectedValuesCoaps: AppliedFiltersCoaps = {
+const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     patientStatus: [],
     conditionIdentifiedBy: "",
     communityHealthWorker: [],
