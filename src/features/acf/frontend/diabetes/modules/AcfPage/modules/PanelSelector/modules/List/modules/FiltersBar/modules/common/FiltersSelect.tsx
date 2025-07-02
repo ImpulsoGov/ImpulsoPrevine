@@ -302,7 +302,7 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 onChange={(_event, newValue) => {
                     setSelectedValues((prevState) => ({
                         ...prevState,
-                        [select.id]: newValue?.value,
+                        [select.id]: newValue ? newValue.value : "",
                     }));
                 }}
                 multiple={false}
