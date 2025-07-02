@@ -26,6 +26,13 @@ const sxMultipleSelect = (
                 borderRadius: "100px",
                 border: `2px solid #1E8E76`,
             },
+        "& .MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline":
+            {
+                border: `2px solid #1E8E76`,
+            },
+        "& .MuiInputLabel-shrink": {
+            color: "#1E8E76",
+        },
         "& .MuiInputLabel-shrink.Mui-focused": {
             color: "#1E8E76",
         },
@@ -113,6 +120,13 @@ const sxSingleSelect = (
             {
                 visibility: value.length > 0 ? "visible" : "hidden",
             },
+        "& .MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline":
+            {
+                border: `2px solid #1E8E76`,
+            },
+        "& .MuiInputLabel-shrink": {
+            color: "#1E8E76",
+        },
         "& .MuiInputLabel-shrink.Mui-focused": {
             color: "#1E8E76",
         },
