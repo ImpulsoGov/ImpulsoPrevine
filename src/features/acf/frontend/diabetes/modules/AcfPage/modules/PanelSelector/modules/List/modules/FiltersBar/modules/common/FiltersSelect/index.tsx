@@ -1,4 +1,3 @@
-import type { AppliedFiltersCoaps } from "../../../../DataTable/modules/CoapsDataTable/model";
 import type {
     SelectConfig,
     HtmlSelectOption,
@@ -8,17 +7,18 @@ import {
     AutoCompleteMultiSelect,
     AutoCompleteSingleSelect,
 } from "./modules/AutoComplete";
+import type { CoapsAppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoapsDataTable";
 
 export type FiltersSelectProps = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: AppliedFiltersCoaps;
-    setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
 };
 
 const getSelectedOptions = (
-    filter: keyof AppliedFiltersCoaps,
+    filter: keyof CoapsAppliedFilters,
     selectConfigs: Array<SelectConfig>,
-    selectedValues: AppliedFiltersCoaps
+    selectedValues: CoapsAppliedFilters
 ): Array<HtmlSelectOption> => {
     const selected = selectedValues[filter];
     const config = selectConfigs.find((s) => s.id === filter);
@@ -64,7 +64,7 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 selectConfigs,
                 selectedValues
             ),
-        } as Record<keyof AppliedFiltersCoaps, Array<HtmlSelectOption>>;
+        } as Record<keyof CoapsAppliedFilters, Array<HtmlSelectOption>>;
 
         return filters;
     }, [selectedValues, selectConfigs]);
@@ -72,6 +72,7 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
     return selectConfigs.map((select: SelectConfig) =>
         select.isMultiSelect ? (
             <AutoCompleteMultiSelect
+                key={`${select.id}-multiSelect`}
                 valueMemo={valueMemo}
                 select={select}
                 setSelectedValues={setSelectedValues}
@@ -79,6 +80,7 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
             />
         ) : (
             <AutoCompleteSingleSelect
+                key={`${select.id}-singleSelect`}
                 valueMemo={valueMemo}
                 select={select}
                 setSelectedValues={setSelectedValues}
