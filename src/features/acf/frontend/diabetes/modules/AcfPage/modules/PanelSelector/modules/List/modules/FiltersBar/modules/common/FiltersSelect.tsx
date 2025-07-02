@@ -15,7 +15,7 @@ type FiltersSelectProps = {
     setSelectedValues: Dispatch<SetStateAction<AppliedFiltersCoaps>>;
 };
 
-const sxSelect = (
+const sxMultipleSelect = (
     value: string | Array<string>
 ): Record<string, CSSProperties> | CSSProperties => {
     const colorSelect = value.length === 0 ? "#A6B5BE" : "#1E8E76";
@@ -98,6 +98,56 @@ const sxSelect = (
     };
 };
 
+const sxSingleSelect = (
+    value: string | Array<string>
+): Record<string, CSSProperties> | CSSProperties => {
+    const colorSelect = value.length === 0 ? "#A6B5BE" : "#1E8E76";
+    return {
+        color: colorSelect,
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+                borderRadius: "100px",
+                border: `2px solid #1E8E76`,
+            },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiAutocomplete-clearIndicator":
+            {
+                visibility: value.length > 0 ? "visible" : "hidden",
+            },
+        "& .MuiInputLabel-shrink.Mui-focused": {
+            color: "#1E8E76",
+        },
+        "& .MuiOutlinedInput-notchedOutline": {
+            borderRadius: "100px",
+            border: `2px solid ${colorSelect}`,
+        },
+        "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+            borderRadius: "100px",
+            border: `2px solid ${colorSelect}`,
+        },
+        "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+            color: "#1E8E76",
+            border: "2px solid #1E8E76",
+        },
+        "& .MuiAutocomplete-inputRoot": {
+            maxHeight: 56,
+            fontFamily: "Inter",
+        },
+        "& .MuiSvgIcon-fontSizeSmall.MuiSvgIcon-root": {
+            color: "red",
+        },
+        "& .MuiAutocomplete-clearIndicator": {
+            visibility: value.length > 0 ? "visible" : "hidden",
+        },
+        "&:hover .MuiAutocomplete-clearIndicator": {
+            backgroundColor: "#FFE8E8",
+            visibility: value.length > 0 ? "visible" : "hidden",
+        },
+        "& .MuiInputLabel-root": {
+            fontFamily: "Inter",
+        },
+    };
+};
+
 export const FiltersSelect: React.FC<FiltersSelectProps> = ({
     selectConfigs,
     selectedValues,
@@ -144,7 +194,7 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 options={select.options}
                 // // isOptionEqualToValue={(option, value) => option.value === value.value}
                 limitTags={1}
-                sx={sxSelect(
+                sx={sxMultipleSelect(
                     selectedValues[select.id as keyof AppliedFiltersCoaps]
                 )}
                 disableCloseOnSelect
@@ -258,66 +308,13 @@ export const FiltersSelect: React.FC<FiltersSelectProps> = ({
                 multiple={false}
                 options={select.options}
                 // // isOptionEqualToValue={(option, value) => option.value === value.value}
-                limitTags={1}
-                sx={sxSelect(
+                sx={sxSingleSelect(
                     selectedValues[select.id as keyof AppliedFiltersCoaps]
                 )}
                 disableCloseOnSelect
                 renderInput={(params) => (
                     <TextField {...params} label={select.label} />
                 )}
-                renderOption={(props, option, { selected }) => {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const { key = option.value, ...optionProps } = props;
-                    return (
-                        <li
-                            key={key as string}
-                            {...optionProps}
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                fontFamily: "Inter",
-                            }}
-                        >
-                            {option.label}
-                            {selected && (
-                                <CheckIcon style={{ fill: "#046C4E" }} />
-                            )}
-                        </li>
-                    );
-                }}
-                renderTags={(value, getTagProps) => {
-                    const numTags = value.length;
-                    const limitTags = 1;
-                    return (
-                        <>
-                            {value.slice(0, limitTags).map((option, index) => (
-                                <Chip
-                                    {...getTagProps({ index })}
-                                    key={index}
-                                    label={option.label}
-                                />
-                            ))}
-
-                            {numTags - limitTags > 0 && (
-                                <div
-                                    style={{
-                                        backgroundColor: "#DEF7EC",
-                                        borderRadius: "100%",
-                                        padding: "3px 7px",
-                                        fontSize: "13px",
-                                        fontWeight: "bold",
-                                        color: "#046C4E",
-                                        fontFamily: "Inter",
-                                    }}
-                                >
-                                    {numTags > limitTags &&
-                                        `+${String(numTags - limitTags)}`}
-                                </div>
-                            )}
-                        </>
-                    );
-                }}
                 slotProps={{
                     listbox: {
                         sx: {
