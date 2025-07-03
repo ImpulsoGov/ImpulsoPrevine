@@ -11,3 +11,8 @@ export type SharedAppliedFilters = {
     conditionIdentifiedBy: ConditionIdentifiedBy | "";
     patientAgeRange: Array<PatientAgeRange>;
 };
+
+export type AppliedFilters = SharedAppliedFilters & {
+    careTeamName: Array<string>;
+};
+//TODO: rever o export desse tipo aqui, pois ele já existe em outras camadas da aplicação.

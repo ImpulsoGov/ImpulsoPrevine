@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, JSX, SetStateAction } from "react";
 import type {
     HtmlSelectOption,
     SelectConfig,
@@ -10,28 +10,26 @@ import {
     renderOptionMultiSelect,
     renderTagsMultiSelect,
 } from "./logic";
-import type { SharedAppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
-import type { CoapsAppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoapsDataTable";
+import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
 
-type AutoCompleteProps = {
-    valueMemo: Record<
-        keyof SharedAppliedFilters | "careTeamName",
-        Array<HtmlSelectOption>
-    >;
+type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
+    valueMemo: Record<keyof TAppliedFilters, Array<HtmlSelectOption>>;
     select: SelectConfig;
-    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
-    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
+    selectedValues: TAppliedFilters;
 };
 
-export const AutoCompleteMultiSelect: React.FC<AutoCompleteProps> = ({
+export const AutoCompleteMultiSelect = <
+    TAppliedFilters extends AppliedFilters,
+>({
     valueMemo,
     select,
     setSelectedValues,
     selectedValues,
-}) => {
+}: AutoCompleteProps<TAppliedFilters>): JSX.Element => {
     return (
         <Autocomplete
-            value={valueMemo[select.id as keyof CoapsAppliedFilters]}
+            value={valueMemo[select.id as keyof TAppliedFilters]}
             key={select.id}
             onChange={(_event, newValue) => {
                 setSelectedValues((prevState) => ({
@@ -43,7 +41,9 @@ export const AutoCompleteMultiSelect: React.FC<AutoCompleteProps> = ({
             options={select.options}
             limitTags={1}
             sx={sxMultipleSelect(
-                selectedValues[select.id as keyof CoapsAppliedFilters]
+                selectedValues[
+                    select.id as keyof TAppliedFilters
+                ] as Array<string>
             )}
             disableCloseOnSelect
             renderInput={renderInput(select.label)}
@@ -55,16 +55,18 @@ export const AutoCompleteMultiSelect: React.FC<AutoCompleteProps> = ({
     );
 };
 
-export const AutoCompleteSingleSelect: React.FC<AutoCompleteProps> = ({
+export const AutoCompleteSingleSelect = <
+    TAppliedFilters extends AppliedFilters,
+>({
     valueMemo,
     select,
     setSelectedValues,
     selectedValues,
-}) => {
+}: AutoCompleteProps<TAppliedFilters>): JSX.Element => {
     return (
         <Autocomplete
             value={
-                valueMemo[select.id as keyof CoapsAppliedFilters][0] ?? {
+                valueMemo[select.id as keyof TAppliedFilters][0] ?? {
                     value: "",
                     label: "",
                 }
@@ -79,7 +81,7 @@ export const AutoCompleteSingleSelect: React.FC<AutoCompleteProps> = ({
             multiple={false}
             options={select.options}
             sx={sxSingleSelect(
-                selectedValues[select.id as keyof CoapsAppliedFilters]
+                selectedValues[select.id as keyof TAppliedFilters] as string
             )}
             disableCloseOnSelect
             renderInput={renderInput(select.label)}

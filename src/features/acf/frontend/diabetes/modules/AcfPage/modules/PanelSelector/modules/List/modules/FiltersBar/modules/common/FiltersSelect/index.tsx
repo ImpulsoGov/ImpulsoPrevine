@@ -2,23 +2,24 @@ import type {
     SelectConfig,
     HtmlSelectOption,
 } from "../../CoapsFiltersBar/logic";
+import type { JSX } from "react";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
 import {
     AutoCompleteMultiSelect,
     AutoCompleteSingleSelect,
 } from "./modules/AutoComplete";
-import type { CoapsAppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoapsDataTable";
+import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
 
-export type FiltersSelectProps = {
+export type FiltersSelectProps<TAppliedFilters extends AppliedFilters> = {
     selectConfigs: Array<SelectConfig>;
-    selectedValues: CoapsAppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
+    selectedValues: TAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
 };
 
-const getSelectedOptions = (
-    filter: keyof CoapsAppliedFilters,
+const getSelectedOptions = <TAppliedFilters extends AppliedFilters>(
+    filter: keyof TAppliedFilters,
     selectConfigs: Array<SelectConfig>,
-    selectedValues: CoapsAppliedFilters
+    selectedValues: TAppliedFilters
 ): Array<HtmlSelectOption> => {
     const selected = selectedValues[filter];
     const config = selectConfigs.find((s) => s.id === filter);
@@ -32,39 +33,26 @@ const getSelectedOptions = (
     }
 };
 
-export const FiltersSelect: React.FC<FiltersSelectProps> = ({
+export const FiltersSelect = <TAppliedFilters extends AppliedFilters>({
     selectConfigs,
     selectedValues,
     setSelectedValues,
-}) => {
+}: FiltersSelectProps<TAppliedFilters>): Array<JSX.Element> => {
     const valueMemo = useMemo(() => {
-        const filters = {
-            communityHealthWorker: getSelectedOptions(
-                "communityHealthWorker",
-                selectConfigs,
-                selectedValues
-            ),
-            conditionIdentifiedBy: getSelectedOptions(
-                "conditionIdentifiedBy",
-                selectConfigs,
-                selectedValues
-            ),
-            patientAgeRange: getSelectedOptions(
-                "patientAgeRange",
-                selectConfigs,
-                selectedValues
-            ),
-            patientStatus: getSelectedOptions(
-                "patientStatus",
-                selectConfigs,
-                selectedValues
-            ),
-            careTeamName: getSelectedOptions(
-                "careTeamName",
-                selectConfigs,
-                selectedValues
-            ),
-        } as Record<keyof CoapsAppliedFilters, Array<HtmlSelectOption>>;
+        const keys = Object.keys(selectedValues);
+        const filters = keys.reduce<
+            Record<keyof TAppliedFilters, Array<HtmlSelectOption>>
+        >(
+            (acc, key) => {
+                acc[key as keyof TAppliedFilters] = getSelectedOptions(
+                    key as keyof TAppliedFilters,
+                    selectConfigs,
+                    selectedValues
+                );
+                return acc;
+            },
+            {} as Record<keyof TAppliedFilters, Array<HtmlSelectOption>>
+        );
 
         return filters;
     }, [selectedValues, selectConfigs]);
