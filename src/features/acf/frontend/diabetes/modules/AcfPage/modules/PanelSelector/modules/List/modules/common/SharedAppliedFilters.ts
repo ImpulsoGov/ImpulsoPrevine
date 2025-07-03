@@ -12,7 +12,9 @@ export type SharedAppliedFilters = {
     patientAgeRange: Array<PatientAgeRange>;
 };
 
-export type AppliedFilters = SharedAppliedFilters & {
-    careTeamName: Array<string>;
-};
 //TODO: rever o export desse tipo aqui, pois ele já existe em outras camadas da aplicação.
+export type AppliedFilters =
+    | SharedAppliedFilters
+    | (SharedAppliedFilters & {
+          careTeamName: Array<string>;
+      });
