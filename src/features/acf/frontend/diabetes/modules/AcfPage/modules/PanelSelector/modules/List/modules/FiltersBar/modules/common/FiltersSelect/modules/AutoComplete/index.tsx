@@ -13,7 +13,9 @@ import {
 import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
+    // TODO: rever nome dessa prop e se os componentes precisam receber todos os valores do valueMemo ou apenas os que são necessários.
     valueMemo: Record<keyof TAppliedFilters, Array<HtmlSelectOption>>;
+    // TODO: rever se o componente precisa receber o select inteiro ou apenas o id e as opções.
     select: SelectConfig;
     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
     selectedValues: TAppliedFilters;

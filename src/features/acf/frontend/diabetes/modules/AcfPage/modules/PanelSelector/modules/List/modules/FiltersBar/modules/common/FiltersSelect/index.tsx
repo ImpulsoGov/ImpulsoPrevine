@@ -13,6 +13,7 @@ import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/Ac
 export type FiltersSelectProps<TAppliedFilters extends AppliedFilters> = {
     selectConfigs: Array<SelectConfig>;
     selectedValues: TAppliedFilters;
+    // TODO: renomear essa prop para algo como handleAutocompleteChange?
     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
 };
 
