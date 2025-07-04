@@ -6,10 +6,11 @@ export const rotasPublicas = [
     "/quem-somos",
     "/apoio",
     "/faq",
-    "/blog",
     "/dadoPublicos",
     "/analise",
     "/termos-uso-e-privacidade",
+    "/blog",
+    "/blog/artigos",
 ];
 
 export const rotasProtegidas = [
@@ -33,6 +34,8 @@ export const rotasProtegidas = [
     "/dadoPublicos",
     "/analise",
     "/termos-uso-e-privacidade",
+    "/blog",
+    "/blog/artigos",
 ];
 
 const ExibirURL = [
@@ -41,7 +44,6 @@ const ExibirURL = [
     "/conteudo-programatico",
     "/dadosPublicos",
 ];
-
 const secret = process.env.NEXTAUTH_SECRET;
 
 export const middlewarePages = async (request: NextRequest) => {
@@ -53,8 +55,14 @@ export const middlewarePages = async (request: NextRequest) => {
     let response = NextResponse.next();
     if (
         token &&
-        !rotasProtegidas.includes(url.pathname) &&
-        rotasPublicas.includes(url.pathname)
+        !rotasProtegidas.some(
+            (route) =>
+                url.pathname === route || url.pathname.startsWith(`${route}/`)
+        ) &&
+        rotasPublicas.some(
+            (route) =>
+                url.pathname === route || url.pathname.startsWith(`${route}/`)
+        )
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
     if (ExibirURL.includes(url.pathname)) {
