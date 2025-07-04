@@ -34,6 +34,8 @@ export const rotasProtegidas = [
     "/dadoPublicos",
     "/analise",
     "/termos-uso-e-privacidade",
+    "/blog",
+    "/blog/artigos",
 ];
 
 const ExibirURL = [
@@ -51,10 +53,12 @@ export const middlewarePages = async (request: NextRequest) => {
         exp: number;
     } | null;
     let response = NextResponse.next();
-    console.log(url.pathname);
     if (
         token &&
-        !rotasProtegidas.includes(url.pathname) &&
+        !rotasProtegidas.some(
+            (route) =>
+                url.pathname === route || url.pathname.startsWith(`${route}/`)
+        ) &&
         rotasPublicas.some(
             (route) =>
                 url.pathname === route || url.pathname.startsWith(`${route}/`)
