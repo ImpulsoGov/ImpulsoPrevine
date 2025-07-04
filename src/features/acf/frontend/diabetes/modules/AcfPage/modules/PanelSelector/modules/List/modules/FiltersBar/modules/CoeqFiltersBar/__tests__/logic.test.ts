@@ -1,5 +1,5 @@
 import * as z from "zod/v4";
-import { onlyValidFilterValues, toHtmlSelectOptions } from "../logic";
+import { onlyValidFilterValues, toHtmlSelectOptions } from "../../../logic";
 
 // Mocks
 const mockPatientStatusEnum = z.enum(["Em dia", "A fazer"]);

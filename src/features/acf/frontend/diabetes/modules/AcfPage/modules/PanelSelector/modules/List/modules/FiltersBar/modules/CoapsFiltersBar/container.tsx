@@ -5,10 +5,10 @@ import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
-import type { CoapsAppliedFilters } from "../CoapsDataTable";
 import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
+import type { CoapsAppliedFilters } from "../../../CoapsDataTable";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
     selectedValues: CoapsAppliedFilters;
@@ -81,7 +81,7 @@ export const CoapsFiltersBar: React.FC<CoapsFiltersBarProps> = ({
     }
 
     const selectConfigs = toSelectConfigsCoaps(response.data.filters);
-    console.log("selectConfigs", selectConfigs);
+
     return (
         <Presentation.FiltersBar
             selectedValues={selectedValues}
