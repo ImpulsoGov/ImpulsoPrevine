@@ -47,7 +47,30 @@ export const AutoCompleteMultiSelect = <
             )}
             disableCloseOnSelect
             renderInput={renderInput(select.label)}
-            renderOption={renderOptionMultiSelect}
+            renderOption={(props, option, state) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                const { key = option.value, ...optionProps } = props;
+                return (
+                    <li
+                        key={key as string}
+                        {...optionProps}
+                        // style={{
+                        //     display: "flex",
+                        //     justifyContent: "space-between",
+                        //     fontFamily: "Inter",
+                        // }}
+                    >
+                        <Radio
+                            checked={state.selected}
+                            // onChange={handleChange}
+                            // value="a"
+                            name={select.id}
+                            // inputProps={{ 'aria-label': 'A' }}
+                        />
+                        {option.label}
+                    </li>
+                );
+            }}
             renderTags={renderTagsMultiSelect}
             slotProps={slotProps}
             style={{ width: select.width }}
