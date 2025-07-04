@@ -37,6 +37,7 @@ const fieldOptionsCoaps = async <TField extends keyof DiabetesAcfItem>(
         where: {
             municipalitySusId: municipalitySusId,
         },
+        take: 100,
     });
     return result.map((item) => item[field]);
 };
