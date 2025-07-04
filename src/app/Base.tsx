@@ -122,7 +122,10 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
                             rotasProtegidas.includes(path) ? (
                                 children
                             ) : null // Redirecionamento será tratado no middleware
-                        ) : rotasPublicas.includes(path) ? (
+                        ) : rotasPublicas.some(
+                              (route) =>
+                                  path === route || path.startsWith(`${route}/`)
+                          ) ? (
                             children
                         ) : (
                             <LoginFallback />
