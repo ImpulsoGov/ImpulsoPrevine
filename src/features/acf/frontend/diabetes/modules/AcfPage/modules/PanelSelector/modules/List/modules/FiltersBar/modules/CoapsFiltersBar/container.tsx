@@ -81,7 +81,7 @@ export const CoapsFiltersBar: React.FC<CoapsFiltersBarProps> = ({
     }
 
     const selectConfigs = toSelectConfigsCoaps(response.data.filters);
-    console.log("selectConfigs", selectConfigs);
+
     return (
         <Presentation.FiltersBar
             selectedValues={selectedValues}
