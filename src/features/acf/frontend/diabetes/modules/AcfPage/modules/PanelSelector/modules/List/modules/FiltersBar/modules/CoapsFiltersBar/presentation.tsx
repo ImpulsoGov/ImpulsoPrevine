@@ -1,10 +1,10 @@
 "use client";
 import { ClearFilters, FilterBar } from "@impulsogov/design-system";
 import { type Dispatch, type SetStateAction } from "react";
-import { clearFiltersArgs } from "./consts";
-import type { SelectConfig } from "./logic";
 import { FiltersSelect } from "../common/FiltersSelect";
 import type { CoapsAppliedFilters } from "../../../CoapsDataTable";
+import type { SelectConfig } from "../common/SelectConfig";
+import { clearFiltersArgs } from "../../consts";
 
 type FiltersBarProps = React.PropsWithChildren<{
     selectedValues: CoapsAppliedFilters;

@@ -1,7 +1,4 @@
-import type {
-    SelectConfig,
-    HtmlSelectOption,
-} from "../../CoapsFiltersBar/logic";
+import type { SelectConfig, HtmlSelectOption } from "../SelectConfig";
 import type { JSX } from "react";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
 import {

@@ -2,8 +2,8 @@
 import { ClearFilters, FilterBar } from "@impulsogov/design-system";
 import type { Dispatch, SetStateAction } from "react";
 import type { CoeqAppliedFilters } from "../../..//CoeqDataTable";
-import { clearFiltersArgs } from "./consts";
-import type { SelectConfig } from "./logic";
+import { clearFiltersArgs } from "../../consts";
+import type { SelectConfig } from "../common/SelectConfig";
 import { FiltersSelect } from "../common/FiltersSelect";
 
 type FiltersBarProps = React.PropsWithChildren<{

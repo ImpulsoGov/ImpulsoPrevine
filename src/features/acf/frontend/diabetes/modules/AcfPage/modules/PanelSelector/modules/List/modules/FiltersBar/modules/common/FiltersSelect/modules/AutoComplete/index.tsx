@@ -1,8 +1,4 @@
 import type { Dispatch, JSX, SetStateAction } from "react";
-import type {
-    HtmlSelectOption,
-    SelectConfig,
-} from "../../../../CoeqFiltersBar/logic";
 import Autocomplete from "@mui/material/Autocomplete";
 import { sxMultipleSelect, slotProps, sxSingleSelect } from "./const";
 import {
@@ -11,6 +7,7 @@ import {
     renderTagsMultiSelect,
 } from "./logic";
 import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
+import type { HtmlSelectOption, SelectConfig } from "../../../SelectConfig";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
     // TODO: rever nome dessa prop e se os componentes precisam receber todos os valores do valueMemo ou apenas os que são necessários.
@@ -39,7 +36,7 @@ export const AutoCompleteMultiSelect = <
                     [select.id]: newValue.map((item) => item.value),
                 }));
             }}
-            multiple
+            multiple={true}
             options={select.options}
             limitTags={1}
             sx={sxMultipleSelect(

@@ -1,9 +1,9 @@
 import type { JSX, LiHTMLAttributes, ReactNode } from "react";
-import type { HtmlSelectOption } from "../../../../CoapsFiltersBar/logic";
 import CheckIcon from "@mui/icons-material/Check";
 import Chip from "@mui/material/Chip";
 import type { AutocompleteRenderInputParams } from "@mui/material";
 import { TextField } from "@mui/material";
+import type { HtmlSelectOption } from "../../../SelectConfig";
 
 type RenderOptionMultiSelectProps = {
     key?: string | number;

@@ -1,18 +1,24 @@
 import { referenceOrder } from "./consts";
 import type * as z from "zod/v4";
+import type {
+    ConditionIdentifiedBy,
+    PatientAgeRange,
+    PatientStatus,
+    // CommunityHealthWorker,
+} from "@/features/acf/shared/diabetes/model";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
+import { nameFormatter } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/logic";
+import type {
+    HtmlSelectOption,
+    SelectConfig,
+} from "./modules/common/SelectConfig";
 
-export type HtmlSelectOption = {
-    value: string;
-    label: string;
-};
-
-export type SelectConfig = {
-    id: string;
-    label: string;
-    options: Array<HtmlSelectOption>;
-    isMultiSelect: boolean;
-    width: string;
-};
+export type FilterOptions =
+    // | Array<CommunityHealthWorker>
+    | Array<string>
+    | Array<PatientStatus>
+    | Array<ConditionIdentifiedBy>
+    | Array<PatientAgeRange>;
 
 export const sortedOptions = (
     a: HtmlSelectOption,
@@ -35,4 +41,47 @@ export const toHtmlSelectOptions = (
         value: item,
         label: item,
     }));
+};
+
+export const toSelectConfigsShared = (
+    filtersValues: schema.SharedFilters
+): Array<SelectConfig> => {
+    return [
+        {
+            options: toHtmlSelectOptions(filtersValues.communityHealthWorker)
+                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            label: "Prof. Responsável",
+            id: "communityHealthWorker",
+            isMultiSelect: true,
+            width: "330px",
+        },
+        {
+            options: toHtmlSelectOptions(filtersValues.patientStatus).sort(
+                (a, b) => a.label.localeCompare(b.label)
+            ),
+            label: "Situação",
+            id: "patientStatus",
+            isMultiSelect: true,
+            width: "178px",
+        },
+        {
+            options: toHtmlSelectOptions(
+                filtersValues.conditionIdentifiedBy
+            ).sort((a, b) => a.label.localeCompare(b.label)),
+            label: "Tipo de Diagnóstico",
+            id: "conditionIdentifiedBy",
+            isMultiSelect: false,
+            width: "228px",
+        },
+        {
+            options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
+                sortedOptions
+            ),
+            label: "Faixa Etária",
+            id: "patientAgeRange",
+            isMultiSelect: true,
+            width: "178px",
+        },
+    ];
 };
