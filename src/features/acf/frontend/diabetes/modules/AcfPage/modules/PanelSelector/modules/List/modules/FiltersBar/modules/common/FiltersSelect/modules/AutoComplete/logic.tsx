@@ -47,7 +47,11 @@ export const renderTagsMultiSelect = (
                 <Chip
                     {...getTagProps({ index })}
                     key={index}
-                    label={option.label}
+                    label={
+                        option.label.length > 20
+                            ? `${option.label.slice(0, 20)}...`
+                            : option.label
+                    }
                 />
             ))}
 

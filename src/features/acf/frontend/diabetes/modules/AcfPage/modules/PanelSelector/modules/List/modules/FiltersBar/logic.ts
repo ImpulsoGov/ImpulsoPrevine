@@ -54,7 +54,7 @@ export const toSelectConfigsShared = (
             label: "Prof. Responsável",
             id: "communityHealthWorker",
             isMultiSelect: true,
-            width: "330px",
+            width: "321px",
         },
         {
             options: toHtmlSelectOptions(filtersValues.patientStatus).sort(
@@ -63,7 +63,7 @@ export const toSelectConfigsShared = (
             label: "Situação",
             id: "patientStatus",
             isMultiSelect: true,
-            width: "178px",
+            width: "299px",
         },
         {
             options: toHtmlSelectOptions(
@@ -72,7 +72,7 @@ export const toSelectConfigsShared = (
             label: "Tipo de Diagnóstico",
             id: "conditionIdentifiedBy",
             isMultiSelect: false,
-            width: "228px",
+            width: "232px",
         },
         {
             options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
@@ -81,7 +81,7 @@ export const toSelectConfigsShared = (
             label: "Faixa Etária",
             id: "patientAgeRange",
             isMultiSelect: true,
-            width: "178px",
+            width: "280px",
         },
     ];
 };
