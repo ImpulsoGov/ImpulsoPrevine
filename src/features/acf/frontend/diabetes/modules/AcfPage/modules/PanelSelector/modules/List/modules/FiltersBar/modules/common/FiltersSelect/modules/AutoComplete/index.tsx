@@ -8,6 +8,7 @@ import {
 } from "./logic";
 import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
 import type { HtmlSelectOption, SelectConfig } from "../../../SelectConfig";
+import { Radio } from "@mui/material";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
     // TODO: rever nome dessa prop e se os componentes precisam receber todos os valores do valueMemo ou apenas os que são necessários.
@@ -84,6 +85,30 @@ export const AutoCompleteSingleSelect = <
             )}
             disableCloseOnSelect
             renderInput={renderInput(select.label)}
+            renderOption={(props, option, state) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                const { key = option.value, ...optionProps } = props;
+                return (
+                    <li
+                        key={key as string}
+                        {...optionProps}
+                        // style={{
+                        //     display: "flex",
+                        //     justifyContent: "space-between",
+                        //     fontFamily: "Inter",
+                        // }}
+                    >
+                        <Radio
+                            checked={state.selected}
+                            // onChange={handleChange}
+                            // value="a"
+                            name={select.id}
+                            // inputProps={{ 'aria-label': 'A' }}
+                        />
+                        {option.label}
+                    </li>
+                );
+            }}
             slotProps={slotProps}
             style={{ width: select.width }}
         />
