@@ -21,7 +21,7 @@ const referenceOrder = [
     "Mais de 65 anos",
 ];
 
-export type FilterOptions =
+type FilterOptions =
     | Array<string>
     | Array<PatientStatus>
     | Array<ConditionIdentifiedBy>
