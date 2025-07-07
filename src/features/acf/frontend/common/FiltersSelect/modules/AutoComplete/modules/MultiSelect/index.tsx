@@ -1,14 +1,14 @@
-import type { Dispatch, JSX, SetStateAction } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
+import type { Dispatch, JSX, SetStateAction } from "react";
 import { sxMultipleSelect } from "./consts";
 
-import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
 import type {
     HtmlSelectOption,
     SelectConfig,
 } from "@features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/FiltersBar/modules/common/SelectConfig";
-import { slotProps } from "../common/slotProps";
 import { renderInput } from "../common/renderInput";
+import { slotProps } from "../common/slotProps";
 import { renderOptionMultiSelect, renderTagsMultiSelect } from "./logic";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {

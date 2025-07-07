@@ -1,8 +1,8 @@
-import type { SelectConfig, HtmlSelectOption } from "../SelectConfig";
 import type { JSX } from "react";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
+import type { HtmlSelectOption, SelectConfig } from "../SelectConfig";
 
-import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
+import type { AppliedFilters } from "../WithFilters";
 import { AutoCompleteMultiSelect } from "./modules/AutoComplete/modules/MultiSelect";
 import { AutoCompleteSingleSelect } from "./modules/AutoComplete/modules/SingleSelect";
 
