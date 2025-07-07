@@ -77,7 +77,6 @@ export const FiltersBar = <
     >(null);
 
     useEffect(() => {
-        console.log(serviceGetFilters);
         fetchFilters(session, setResponse, serviceGetFilters);
     }, []);
 

@@ -1,15 +1,11 @@
-import type { LiHTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import Chip from "@mui/material/Chip";
 import type { HtmlSelectOption } from "@/features/acf/frontend/common/SelectConfig";
-
-type RenderOptionMultiSelectProps = {
-    key?: string | number;
-} & LiHTMLAttributes<HTMLLIElement>;
-
-type RenderOptionMultiSelectState = {
-    selected: boolean;
-};
+import type {
+    RenderOptionMultiSelectProps,
+    RenderOptionMultiSelectState,
+} from "../common/RenderOption";
 
 export const renderOptionMultiSelect = (
     props: RenderOptionMultiSelectProps,

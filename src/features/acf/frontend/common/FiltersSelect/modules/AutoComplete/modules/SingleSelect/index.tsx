@@ -1,6 +1,6 @@
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
 import Autocomplete from "@mui/material/Autocomplete";
-import type { Dispatch, JSX, SetStateAction } from "react";
+import { type Dispatch, type JSX, type SetStateAction } from "react";
 import { renderInput } from "../common/renderInput";
 import { slotProps } from "../common/slotProps";
 import { sxSingleSelect } from "./consts";
@@ -8,6 +8,7 @@ import type {
     HtmlSelectOption,
     SelectConfig,
 } from "@/features/acf/frontend/common/SelectConfig";
+import { renderOptionsSingleSelect } from "./logic";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
     value: HtmlSelectOption;
@@ -42,6 +43,7 @@ export const AutoCompleteSingleSelect = <
             )}
             disableCloseOnSelect
             renderInput={renderInput(select.label)}
+            renderOption={renderOptionsSingleSelect}
             slotProps={slotProps}
             style={{ width: select.width }}
         />
