@@ -47,9 +47,9 @@ const Spinner = dynamic(() =>
 const tagManagerArgs = {
     gtmId: process.env.GTM_ID || "default-gtm-id",
 };
-interface BaseProps {
+type BaseProps = {
     children: React.ReactNode;
-}
+};
 
 export const Base: React.FC<BaseProps> = ({ children }) => {
     const dynamicRoute = usePathname();
