@@ -5,10 +5,10 @@ import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
+import * as Presentation from "@features/acf/frontend/common/FiltersBar";
+import type { CoapsAppliedFilters } from "@features/acf/frontend/diabetes";
 import { toSelectConfigsCoaps } from "./logic";
-import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { CoapsAppliedFilters } from "@features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoapsDataTable/index";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
     selectedValues: CoapsAppliedFilters;

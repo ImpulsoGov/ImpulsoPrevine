@@ -1,28 +1,23 @@
 "use client";
 import { ClearFilters, FilterBar } from "@impulsogov/design-system";
 import type { Dispatch, SetStateAction } from "react";
-import type { CoeqAppliedFilters } from "../../..//CoeqDataTable";
-import { clearFiltersArgs } from "../../consts";
-import type { SelectConfig } from "../common/SelectConfig";
-import { FiltersSelect } from "../common/FiltersSelect";
+import React from "react";
+import { FiltersSelect } from "../FiltersSelect";
+import type { SelectConfig } from "../SelectConfig";
+import type { AppliedFilters } from "../WithFilters";
+import { clearFiltersArgs } from "./consts";
 
-type FiltersBarProps = React.PropsWithChildren<{
-    selectedValues: CoeqAppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
+type FiltersBarProps<TAppliedFilters> = React.PropsWithChildren<{
+    selectedValues: TAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
     selectConfigs: Array<SelectConfig>;
 }>;
 
-//TODO: Pra depois, pensar em mudar a estrutura de dados pra algo desse tipo ao invés de FiltersUi + SelectedFilterValues
-// type FilterOptions<T> = {
-//     selected: Array<T>,
-//     options: Array<T>,
-// }
-
-export const FiltersBar: React.FC<FiltersBarProps> = ({
+export function FiltersBar<TAppliedFilters extends AppliedFilters>({
     selectedValues,
     setSelectedValues,
     selectConfigs,
-}) => {
+}: FiltersBarProps<TAppliedFilters>): React.ReactNode {
     const clearButton = (
         <ClearFilters
             data={selectedValues}
@@ -38,4 +33,4 @@ export const FiltersBar: React.FC<FiltersBarProps> = ({
         />
     );
     return <FilterBar filters={filters} clearButton={clearButton} />;
-};
+}

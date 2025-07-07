@@ -48,9 +48,9 @@ const fetchCoeqFilters = (
 export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
     selectedValues,
     setSelectedValues,
-    // searchParams,
 }) => {
     const { data: session } = useSession();
+    //TODO: Criar type alias pra AxiosResponse | AxiosError | null
     const [response, setResponse] = useState<
         AxiosResponse<schema.CoeqFiltersResponse> | AxiosError | null
     >(null);
