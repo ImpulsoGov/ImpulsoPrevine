@@ -1,7 +1,7 @@
 import type { LiHTMLAttributes, ReactNode } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import Chip from "@mui/material/Chip";
-import type { HtmlSelectOption } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/FiltersBar/modules/common/SelectConfig";
+import type { HtmlSelectOption } from "@/features/acf/frontend/common/SelectConfig";
 
 type RenderOptionMultiSelectProps = {
     key?: string | number;

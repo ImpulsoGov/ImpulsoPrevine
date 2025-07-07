@@ -3,13 +3,13 @@ import type { Dispatch, JSX, SetStateAction } from "react";
 import { sxMultipleSelect } from "./consts";
 
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import type {
-    HtmlSelectOption,
-    SelectConfig,
-} from "@features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/FiltersBar/modules/common/SelectConfig";
 import { renderInput } from "../common/renderInput";
 import { slotProps } from "../common/slotProps";
 import { renderOptionMultiSelect, renderTagsMultiSelect } from "./logic";
+import type {
+    HtmlSelectOption,
+    SelectConfig,
+} from "@/features/acf/frontend/common/SelectConfig";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
     value: Array<HtmlSelectOption>;

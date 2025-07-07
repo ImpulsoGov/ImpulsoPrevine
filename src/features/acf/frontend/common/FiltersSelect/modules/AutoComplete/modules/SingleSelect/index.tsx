@@ -1,13 +1,13 @@
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import type {
-    HtmlSelectOption,
-    SelectConfig,
-} from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/FiltersBar/modules/common/SelectConfig";
 import Autocomplete from "@mui/material/Autocomplete";
 import type { Dispatch, JSX, SetStateAction } from "react";
 import { renderInput } from "../common/renderInput";
 import { slotProps } from "../common/slotProps";
 import { sxSingleSelect } from "./consts";
+import type {
+    HtmlSelectOption,
+    SelectConfig,
+} from "@/features/acf/frontend/common/SelectConfig";
 
 type AutoCompleteProps<TAppliedFilters extends AppliedFilters> = {
     value: HtmlSelectOption;
