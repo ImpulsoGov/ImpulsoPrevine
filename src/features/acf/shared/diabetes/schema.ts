@@ -85,3 +85,6 @@ export type CoeqFiltersResponse = {
 export type CoapsFiltersResponse = {
     filters: CoapsFilters;
 };
+
+//TODO: Pensar se existe alguma forma de evitar isso
+export type FilterResponses = CoapsFilters | CoeqFilters;

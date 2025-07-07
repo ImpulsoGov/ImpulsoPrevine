@@ -1,4 +1,5 @@
 "use client";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
@@ -18,11 +19,12 @@ type ServiceGetFilters<TResponse> = (
 
 type FiltersBarProps<
     TAppliedFilters extends AppliedFilters,
+    TFiltersResponse extends schema.FilterResponses,
     TResponse,
 > = React.PropsWithChildren<{
     selectedValues: TAppliedFilters;
     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
-    filtersToSelectConfigs: (filters: TAppliedFilters) => Array<SelectConfig>;
+    filtersToSelectConfigs: (filters: TFiltersResponse) => Array<SelectConfig>;
     serviceGetFilters: ServiceGetFilters<TResponse>;
 }>;
 
@@ -56,13 +58,18 @@ const fetchFilters = <TResponse,>(
 
 export const FiltersBar = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends { filters: TAppliedFilters },
+    TFiltersResponses extends schema.FilterResponses,
+    TResponse extends { filters: TFiltersResponses },
 >({
     selectedValues,
     setSelectedValues,
     filtersToSelectConfigs,
     serviceGetFilters,
-}: FiltersBarProps<TAppliedFilters, TResponse>): React.ReactNode => {
+}: FiltersBarProps<
+    TAppliedFilters,
+    TFiltersResponses,
+    TResponse
+>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: Criar type alias pra AxiosResponse | AxiosError | null
     const [response, setResponse] = useState<
