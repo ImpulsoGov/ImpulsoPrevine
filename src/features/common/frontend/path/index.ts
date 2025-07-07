@@ -1,4 +1,4 @@
-export const checkPath = (
+export const matchesRoute = (
     paths: Array<string>,
     currentPath: string
 ): boolean => {

@@ -26,7 +26,7 @@ import { userSetterSentry } from "@/hooks/userSetterSentry";
 import { rotasProtegidas, rotasPublicas } from "@/middlewares/middlewarePages";
 
 import dynamic from "next/dynamic";
-import { checkPath } from "@/features/common/frontend/path";
+import { matchesRoute } from "@/features/common/frontend/path";
 
 const FooterMounted = dynamic(() =>
     import("@componentes/mounted/base/FooterMonted").then(
@@ -120,10 +120,10 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
                         }}
                     >
                         {session ? (
-                            checkPath(rotasProtegidas, path) ? (
+                            matchesRoute(rotasProtegidas, path) ? (
                                 children
                             ) : null // Redirecionamento será tratado no middleware
-                        ) : checkPath(rotasPublicas, path) ? (
+                        ) : matchesRoute(rotasPublicas, path) ? (
                             children
                         ) : (
                             <LoginFallback />

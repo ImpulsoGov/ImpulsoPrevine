@@ -1,4 +1,4 @@
-import { checkPath } from "@/features/common/frontend/path";
+import { matchesRoute } from "@/features/common/frontend/path";
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
 
@@ -56,8 +56,8 @@ export const middlewarePages = async (
     let response = NextResponse.next();
     if (
         token &&
-        checkPath(rotasProtegidas, url.pathname) &&
-        checkPath(rotasPublicas, url.pathname)
+        matchesRoute(rotasProtegidas, url.pathname) &&
+        matchesRoute(rotasPublicas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
     if (ExibirURL.includes(url.pathname)) {
