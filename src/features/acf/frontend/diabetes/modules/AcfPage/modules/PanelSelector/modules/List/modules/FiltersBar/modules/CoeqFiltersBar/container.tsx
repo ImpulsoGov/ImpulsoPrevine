@@ -20,6 +20,6 @@ export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
             setSelectedValues={setSelectedValues}
             filtersToSelectConfigs={toSelectConfigsCoeq}
             serviceGetFilters={service.getFiltersCoeq}
-        ></FiltersBar>
+        />
     );
 };
