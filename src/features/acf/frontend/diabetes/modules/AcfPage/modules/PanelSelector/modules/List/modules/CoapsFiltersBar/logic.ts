@@ -3,9 +3,9 @@ import {
     sortedOptions,
     toHtmlSelectOptions,
     toSelectConfigsShared,
-} from "../../logic";
-import type { SelectConfig } from "../common/SelectConfig";
-import { nameFormatter } from "../../../../../../logic";
+} from "../common/toSelectConfigsShared";
+import { nameFormatter } from "../../../../logic";
+import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters

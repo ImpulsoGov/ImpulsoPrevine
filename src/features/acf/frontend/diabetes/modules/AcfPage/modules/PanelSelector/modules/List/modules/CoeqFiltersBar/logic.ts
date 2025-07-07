@@ -1,6 +1,6 @@
 import type * as schema from "@/features/acf/shared/diabetes/schema";
-import { toSelectConfigsShared } from "../../logic";
-import type { SelectConfig } from "../common/SelectConfig";
+import { toSelectConfigsShared } from "../common/toSelectConfigsShared";
+import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 
 export const toSelectConfigsCoeq = (
     filtersValues: schema.CoeqFilters

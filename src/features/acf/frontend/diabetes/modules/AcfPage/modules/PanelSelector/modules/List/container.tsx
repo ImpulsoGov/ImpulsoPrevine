@@ -17,8 +17,8 @@ import {
 } from "./modules/CoeqDataTable";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 import { List } from "./presentation";
-import { CoapsFiltersBar } from "./modules/FiltersBar/modules/CoapsFiltersBar";
-import { CoeqFiltersBar } from "./modules/FiltersBar/modules/CoeqFiltersBar";
+import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
+import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
