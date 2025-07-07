@@ -1,34 +1,43 @@
 "use client";
-import type { CoeqAppliedFilters } from "@/features/acf/frontend/diabetes";
-import type * as schema from "@/features/acf/shared/diabetes/schema";
-import * as Presentation from "@features/acf/frontend/common/FiltersBar";
 import { AxiosError, type AxiosResponse } from "axios";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import { toSelectConfigsCoeq } from "./logic";
-import * as service from "./service";
+import React, {
+    useEffect,
+    useState,
+    type Dispatch,
+    type SetStateAction,
+} from "react";
+import type { SelectConfig } from "../SelectConfig";
+import type { AppliedFilters } from "../WithFilters";
+import * as Presentation from "./presentation";
 
-type CoeqFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: CoeqAppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
-    // searchParams: URLSearchParams;
+type ServiceGetFilters<TResponse> = (
+    access_token: string
+) => Promise<AxiosResponse<TResponse>>;
+
+type FiltersBarProps<
+    TAppliedFilters extends AppliedFilters,
+    TResponse,
+> = React.PropsWithChildren<{
+    selectedValues: TAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
+    filtersToSelectConfigs: (filters: TAppliedFilters) => Array<SelectConfig>;
+    serviceGetFilters: ServiceGetFilters<TResponse>;
 }>;
 
-const fetchCoeqFilters = (
+const fetchFilters = <TResponse,>(
     session: Session | null,
     setResponse: Dispatch<
-        SetStateAction<
-            AxiosResponse<schema.CoeqFiltersResponse> | AxiosError | null
-        >
-    >
+        SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
+    >,
+    serviceGetFilters: ServiceGetFilters<TResponse>
 ): void => {
     if (!session?.user) {
         return;
     }
 
-    service
-        .getFiltersCoeq(session.user.access_token)
+    serviceGetFilters(session.user.access_token)
         .then((response) => {
             setResponse(response);
         })
@@ -45,18 +54,24 @@ const fetchCoeqFilters = (
         });
 };
 
-export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
+export const FiltersBar = <
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends { filters: TAppliedFilters },
+>({
     selectedValues,
     setSelectedValues,
-}) => {
+    filtersToSelectConfigs,
+    serviceGetFilters,
+}: FiltersBarProps<TAppliedFilters, TResponse>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: Criar type alias pra AxiosResponse | AxiosError | null
     const [response, setResponse] = useState<
-        AxiosResponse<schema.CoeqFiltersResponse> | AxiosError | null
+        AxiosResponse<TResponse> | AxiosError | null
     >(null);
 
     useEffect(() => {
-        fetchCoeqFilters(session, setResponse);
+        console.log(serviceGetFilters);
+        fetchFilters(session, setResponse, serviceGetFilters);
     }, []);
 
     //Na teoria, isso não deve ser mostrado nunca, por conta do SessionGuard
@@ -78,7 +93,7 @@ export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({
         );
     }
 
-    const selectConfigs = toSelectConfigsCoeq(response.data.filters);
+    const selectConfigs = filtersToSelectConfigs(response.data.filters);
 
     return (
         <Presentation.FiltersBar

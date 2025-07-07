@@ -1,1 +1,1 @@
-export { FiltersBar } from "./presentation";
+export { FiltersBar } from "./container";
