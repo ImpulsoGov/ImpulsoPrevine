@@ -1,8 +1,8 @@
 import type {
+    CommunityHealthWorker,
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-    CommunityHealthWorker,
 } from "@/features/acf/shared/diabetes/model";
 
 export type SharedAppliedFilters = {

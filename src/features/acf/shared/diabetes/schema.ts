@@ -18,20 +18,24 @@ export type SortableFieldsCoaps = z.infer<typeof sortableFieldsCoaps>;
 export const patientAgeRange = z.enum(model.patientAgeRange);
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
-export const CommunityHealthWorker = z.string();
-export type CommunityHealthWorker = z.infer<typeof CommunityHealthWorker>;
+export const communityHealthWorker = z.string();
+export type CommunityHealthWorker = z.infer<typeof communityHealthWorker>;
 
-export const coeqFilters = z.object({
+export const sharedFilters = z.object({
     patientStatus: z.array(patientStatus),
     conditionIdentifiedBy: z.array(conditionIdentifiedBy),
-    communityHealthWorker: z.array(CommunityHealthWorker),
+    communityHealthWorker: z.array(communityHealthWorker),
     patientAgeRange: z.array(patientAgeRange),
 });
+
+export type SharedFilters = z.infer<typeof sharedFilters>;
+
+export const coeqFilters = z.object({ ...sharedFilters.shape });
 
 export type CoeqFilters = z.infer<typeof coeqFilters>;
 
 export const coapsFilters = z.object({
-    ...coeqFilters.shape,
+    ...sharedFilters.shape,
     careTeamName: z.array(z.string()),
 });
 
@@ -81,3 +85,6 @@ export type CoeqFiltersResponse = {
 export type CoapsFiltersResponse = {
     filters: CoapsFilters;
 };
+
+//TODO: Pensar se existe alguma forma de evitar isso
+export type FilterResponses = CoapsFilters | CoeqFilters;

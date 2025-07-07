@@ -11,14 +11,14 @@ import {
     CoapsDataTable,
     type CoapsAppliedFilters,
 } from "./modules/CoapsDataTable";
-import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import {
     CoeqDataTable,
     type CoeqAppliedFilters,
 } from "./modules/CoeqDataTable";
-import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
 import { List } from "./presentation";
+import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
+import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 
 export type ListContainerProps = {
     list: AcfDashboardType;
