@@ -1,9 +1,7 @@
-import type { JSX, LiHTMLAttributes, ReactNode } from "react";
+import type { LiHTMLAttributes, ReactNode } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import Chip from "@mui/material/Chip";
-import type { AutocompleteRenderInputParams } from "@mui/material";
-import { TextField } from "@mui/material";
-import type { HtmlSelectOption } from "../../../SelectConfig";
+import type { HtmlSelectOption } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/FiltersBar/modules/common/SelectConfig";
 
 type RenderOptionMultiSelectProps = {
     key?: string | number;
@@ -71,11 +69,5 @@ export const renderTagsMultiSelect = (
                 </div>
             )}
         </>
-    );
-};
-
-export const renderInput = (label: string) => {
-    return (params: AutocompleteRenderInputParams): JSX.Element => (
-        <TextField {...params} label={label} />
     );
 };

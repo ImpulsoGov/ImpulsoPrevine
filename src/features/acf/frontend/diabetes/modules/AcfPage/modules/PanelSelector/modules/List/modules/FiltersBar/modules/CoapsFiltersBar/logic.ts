@@ -7,14 +7,6 @@ import {
 import type { SelectConfig } from "../common/SelectConfig";
 import { nameFormatter } from "../../../../../../logic";
 
-//TODO: Existem funcoes duplicadas entre CoapsFiltersBar e CoeqFiltersBar, podemos criar uma camada de abstração para elas
-
-// export type FilterOptions =
-//     | Array<CommunityHealthWorker>
-//     | Array<PatientStatus>
-//     | Array<ConditionIdentifiedBy>
-//     | Array<PatientAgeRange>;
-
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters
 ): Array<SelectConfig> => {

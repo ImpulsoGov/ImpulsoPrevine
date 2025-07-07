@@ -8,7 +8,7 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoaps } from "./logic";
 import * as Presentation from "./presentation";
 import * as service from "./service";
-import type { CoapsAppliedFilters } from "../../../CoapsDataTable";
+import type { CoapsAppliedFilters } from "@features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/CoapsDataTable/index";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
     selectedValues: CoapsAppliedFilters;

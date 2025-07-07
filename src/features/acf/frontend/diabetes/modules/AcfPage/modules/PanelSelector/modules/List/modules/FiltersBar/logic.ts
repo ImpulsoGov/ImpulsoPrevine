@@ -4,7 +4,6 @@ import type {
     ConditionIdentifiedBy,
     PatientAgeRange,
     PatientStatus,
-    // CommunityHealthWorker,
 } from "@/features/acf/shared/diabetes/model";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { nameFormatter } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/logic";
@@ -14,7 +13,6 @@ import type {
 } from "./modules/common/SelectConfig";
 
 export type FilterOptions =
-    // | Array<CommunityHealthWorker>
     | Array<string>
     | Array<PatientStatus>
     | Array<ConditionIdentifiedBy>

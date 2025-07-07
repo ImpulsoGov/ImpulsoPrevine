@@ -1,11 +1,10 @@
 import type { SelectConfig, HtmlSelectOption } from "../SelectConfig";
 import type { JSX } from "react";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
-import {
-    AutoCompleteMultiSelect,
-    AutoCompleteSingleSelect,
-} from "./modules/AutoComplete";
+
 import type { AppliedFilters } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/common/SharedAppliedFilters";
+import { AutoCompleteMultiSelect } from "./modules/AutoComplete/modules/MultiSelect";
+import { AutoCompleteSingleSelect } from "./modules/AutoComplete/modules/SingleSelect";
 
 export type FiltersSelectProps<TAppliedFilters extends AppliedFilters> = {
     selectConfigs: Array<SelectConfig>;
@@ -59,7 +58,7 @@ export const FiltersSelect = <TAppliedFilters extends AppliedFilters>({
         select.isMultiSelect ? (
             <AutoCompleteMultiSelect
                 key={`${select.id}-multiSelect`}
-                valueMemo={valueMemo}
+                value={valueMemo[select.id as keyof TAppliedFilters]}
                 select={select}
                 setSelectedValues={setSelectedValues}
                 selectedValues={selectedValues}
@@ -67,7 +66,12 @@ export const FiltersSelect = <TAppliedFilters extends AppliedFilters>({
         ) : (
             <AutoCompleteSingleSelect
                 key={`${select.id}-singleSelect`}
-                valueMemo={valueMemo}
+                value={
+                    valueMemo[select.id as keyof TAppliedFilters][0] ?? {
+                        value: "",
+                        label: "",
+                    }
+                }
                 select={select}
                 setSelectedValues={setSelectedValues}
                 selectedValues={selectedValues}
