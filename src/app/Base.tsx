@@ -26,6 +26,7 @@ import { userSetterSentry } from "@/hooks/userSetterSentry";
 import { rotasProtegidas, rotasPublicas } from "@/middlewares/middlewarePages";
 
 import dynamic from "next/dynamic";
+import { matchesRoute } from "@/features/common/frontend/path";
 
 const FooterMounted = dynamic(() =>
     import("@componentes/mounted/base/FooterMonted").then(
@@ -46,9 +47,9 @@ const Spinner = dynamic(() =>
 const tagManagerArgs = {
     gtmId: process.env.GTM_ID || "default-gtm-id",
 };
-interface BaseProps {
+type BaseProps = {
     children: React.ReactNode;
-}
+};
 
 export const Base: React.FC<BaseProps> = ({ children }) => {
     const dynamicRoute = usePathname();
@@ -119,10 +120,10 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
                         }}
                     >
                         {session ? (
-                            rotasProtegidas.includes(path) ? (
+                            matchesRoute(rotasProtegidas, path) ? (
                                 children
                             ) : null // Redirecionamento será tratado no middleware
-                        ) : rotasPublicas.includes(path) ? (
+                        ) : matchesRoute(rotasPublicas, path) ? (
                             children
                         ) : (
                             <LoginFallback />

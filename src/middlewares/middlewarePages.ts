@@ -1,3 +1,4 @@
+import { matchesRoute } from "@/features/common/frontend/path";
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
 
@@ -6,10 +7,11 @@ export const rotasPublicas = [
     "/quem-somos",
     "/apoio",
     "/faq",
-    "/blog",
     "/dadoPublicos",
     "/analise",
     "/termos-uso-e-privacidade",
+    "/blog",
+    "/blog/artigos",
 ];
 
 export const rotasProtegidas = [
@@ -41,10 +43,11 @@ const ExibirURL = [
     "/conteudo-programatico",
     "/dadosPublicos",
 ];
-
 const secret = process.env.NEXTAUTH_SECRET;
 
-export const middlewarePages = async (request: NextRequest) => {
+export const middlewarePages = async (
+    request: NextRequest
+): Promise<NextResponse> => {
     const url = request.nextUrl;
     const headers = new Headers(request.headers);
     const token = (await getToken({ req: request, secret })) as {
@@ -53,8 +56,8 @@ export const middlewarePages = async (request: NextRequest) => {
     let response = NextResponse.next();
     if (
         token &&
-        !rotasProtegidas.includes(url.pathname) &&
-        rotasPublicas.includes(url.pathname)
+        matchesRoute(rotasProtegidas, url.pathname) &&
+        matchesRoute(rotasPublicas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
     if (ExibirURL.includes(url.pathname)) {
