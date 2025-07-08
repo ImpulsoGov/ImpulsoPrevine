@@ -8,7 +8,6 @@ import {
 } from "@/utils/token";
 import type { NextRequest } from "next/server";
 import { ZodError } from "zod/v4";
-import { BadRequestError } from "../../../utils/errors";
 
 //TODO: Criar um teste de integração para esta rota
 export async function GET(req: NextRequest): Promise<Response> {
@@ -33,9 +32,6 @@ export async function GET(req: NextRequest): Promise<Response> {
         //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
         console.error(error);
         if (error instanceof ZodError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-        if (error instanceof BadRequestError) {
             return Response.json({ message: error.message }, { status: 400 });
         }
 

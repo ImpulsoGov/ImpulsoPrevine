@@ -1,5 +1,6 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
+import { PROFILE_ID } from "@/types/profile";
 import {
     AuthenticationError,
     decodeToken,
@@ -10,8 +11,6 @@ import {
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod/v4";
-import { BadRequestError } from "../../../../utils/errors";
-import { PROFILE_ID } from "@/types/profile";
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
@@ -64,9 +63,6 @@ export async function POST(
         //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
         console.error(error);
         if (error instanceof ZodError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-        if (error instanceof BadRequestError) {
             return Response.json({ message: error.message }, { status: 400 });
         }
 
