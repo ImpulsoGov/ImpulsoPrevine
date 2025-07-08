@@ -1,21 +1,19 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import { PROFILE_ID } from "@/types/profile";
-import { AuthenticationError, type JWTToken } from "@/utils/token";
+import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
-import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
 
 const handler = async (
-    req: NextRequest,
-    { params }: { params: Promise<{ page: string }> },
-    payload: JWTToken["payload"]
+    req: interceptors.NextRequestWithPayload,
+    { params }: { params: Promise<{ page: string }> }
 ): Promise<Response> => {
     try {
-        const municipalitySusId = payload.municipio;
+        const municipalitySusId = req.payload.municipio;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-        const perfis = payload.perfis;
+        const perfis = req.payload.perfis;
         if (!perfis.includes(PROFILE_ID.COAPS)) {
             throw new AuthenticationError(
                 "Usuário não autorizado a acessar esta rota"
