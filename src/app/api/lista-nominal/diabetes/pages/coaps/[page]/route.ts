@@ -1,28 +1,18 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import { PROFILE_ID } from "@/types/profile";
-import {
-    AuthenticationError,
-    decodeToken,
-    getEncodedSecret,
-    getToken,
-    type JWTToken,
-} from "@/utils/token";
+import { AuthenticationError, type JWTToken } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
 import { z, ZodError } from "zod/v4";
+import * as interceptors from "@/features/interceptors/backend";
 
-//TODO: Criar um endpoint equivalente para APS
-//TODO: Criar um teste de integração para esta rota
-export async function POST(
+const handler = async (
     req: NextRequest,
-    { params }: { params: Promise<{ page: string }> }
-): Promise<Response> {
+    { params }: { params: Promise<{ page: string }> },
+    payload: JWTToken["payload"]
+): Promise<Response> => {
     try {
-        //TODO: Extrair essa lógica para um middleware / interceptor
-        const token = getToken(req.headers);
-        const secret = getEncodedSecret();
-        const { payload } = (await decodeToken(token, secret)) as JWTToken;
         const municipalitySusId = payload.municipio;
         //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
         const perfis = payload.perfis;
@@ -78,4 +68,10 @@ export async function POST(
             { status: 500 }
         );
     }
-}
+};
+
+//TODO: Criar um endpoint equivalente para APS
+//TODO: Criar um teste de integração para esta rota
+export const POST = interceptors.accessPayload(
+    handler as interceptors.HandlerWithPayload
+);
