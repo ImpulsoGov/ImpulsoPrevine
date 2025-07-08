@@ -65,4 +65,4 @@ async function handler(
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-export const POST = interceptors.catchErrors(handler);
+export const POST = interceptors.catchErrors(handler as interceptors.Handler);
