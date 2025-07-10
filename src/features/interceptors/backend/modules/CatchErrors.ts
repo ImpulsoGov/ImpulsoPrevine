@@ -1,10 +1,14 @@
 import { AuthenticationError } from "@/utils/token";
-import type { NextRequest } from "next/server";
 import { ZodError } from "zod/v4";
-import type { Context, Handler } from "..";
+import type { Context, Handler, NextRequestWithPayload, Params } from "..";
 
-export const catchErrors = (handler: Handler): Handler => {
-    return async (request: NextRequest, context?: Context) => {
+export const catchErrors = <TParams extends Params>(
+    handler: Handler<TParams>
+): Handler<TParams> => {
+    return async (
+        request: NextRequestWithPayload,
+        context: Context<TParams>
+    ) => {
         return handler(request, context).catch((error: unknown) => {
             console.error(error);
             if (error instanceof ZodError) {

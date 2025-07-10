@@ -1,13 +1,14 @@
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import type { Context, HandlerWithPayload, NextRequestWithPayload } from "..";
+import type { Context, Handler, NextRequestWithPayload, Params } from "..";
 
-export const accessPayload = (
-    handler: HandlerWithPayload
-): HandlerWithPayload => {
+// TODO: retornar sempre HandlerWithContext?
+export const accessPayload = <TParams extends Params>(
+    handler: Handler<TParams>
+): Handler<TParams> => {
     return async (
         request: NextRequestWithPayload,
-        context?: Context
+        context: Context<TParams>
     ): Promise<Response> => {
         const token = getToken(request.headers);
         const secret = getEncodedSecret();

@@ -65,4 +65,5 @@ async function handler(
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-export const POST = interceptors.catchErrors(handler as interceptors.Handler);
+// ? deveria dar erro porque onde espero um NextRequestWithPayload, recebo um NextRequest?
+export const POST = interceptors.catchErrors(handler);

@@ -70,6 +70,4 @@ const handler = async (
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-export const POST = interceptors.accessPayload(
-    handler as interceptors.HandlerWithPayload
-);
+export const POST = interceptors.accessPayload(handler);
