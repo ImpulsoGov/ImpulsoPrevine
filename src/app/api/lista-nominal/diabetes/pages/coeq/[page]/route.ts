@@ -2,29 +2,18 @@ import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema"
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
-import {
-    AuthenticationError,
-    decodeToken,
-    getEncodedSecret,
-    getToken,
-    type JWTToken,
-} from "@/utils/token";
+import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
-import type { NextRequest } from "next/server";
 import { z } from "zod/v4";
 
 async function handler(
-    req: NextRequest,
+    req: interceptors.NextRequestWithUser,
     { params }: { params: Promise<{ page: string }> }
 ): Promise<Response> {
-    //TODO: Extrair essa lógica para um middleware / interceptor
-    const token = getToken(req.headers);
-    const secret = getEncodedSecret();
-    const { payload } = (await decodeToken(token, secret)) as JWTToken;
-    const municipalitySusId = payload.municipio;
+    const municipalitySusId = req.user.municipalitySusId;
     //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-    const teamIne = payload.equipe;
-    const perfis = payload.perfis;
+    const teamIne = req.user.teamIne;
+    const perfis = req.user.profiles;
     if (!perfis.includes(PROFILE_ID.COEQ)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"
@@ -65,5 +54,8 @@ async function handler(
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-// ? deveria dar erro porque onde espero um NextRequestWithPayload, recebo um NextRequest?
-export const POST = interceptors.catchErrors(handler);
+// ? deveria dar erro porque onde espero um NextRequestWithUser, recebo um NextRequest?
+export const POST = interceptors.compose(
+    interceptors.withUser,
+    interceptors.catchErrors
+)(handler);
