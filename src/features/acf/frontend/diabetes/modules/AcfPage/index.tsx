@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import type { AcfDashboardType } from "../../../../shared/diabetes/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
-import { allowedMunicipalitiesIdFlag } from "./modules/flags";
+import { allowedMunicipalitiesIdFlag } from "../../../../../common/shared/flags/flags";
 
 export type {
     CoapsAppliedFilters,
@@ -19,7 +19,9 @@ type Props = {
         [key: string]: string | undefined;
     }>;
 };
-
+const identify = (municipalityId: string): { municipalityId: string } => {
+    return { municipalityId: municipalityId };
+};
 export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
@@ -33,8 +35,10 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
             Usuário sem permissão
         </p>
     );
-    const flag = await allowedMunicipalitiesIdFlag();
-    if (flag) return <p>Conteudo exibido com a flag</p>;
+    // const municipalitySusId = session?.user.municipio_id_sus
+
+    // const hasFlag = await allowedMunicipalitiesIdFlag.run({ identify: {municipalityId: municipalitySusId || ""} });
+    // if (hasFlag) return <p>Conteudo exibido com a flag</p>;
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
