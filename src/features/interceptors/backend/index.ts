@@ -4,6 +4,7 @@ import type { NextRequest } from "next/server";
 
 export { catchErrors } from "./modules/CatchErrors";
 export { accessPayload } from "./modules/AccessPayload";
+export { compose } from "./modules/Compose";
 
 export type NextRequestWithPayload = NextRequest & {
     payload: TokenPayload;
