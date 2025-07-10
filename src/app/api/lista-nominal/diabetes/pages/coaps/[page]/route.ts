@@ -7,13 +7,13 @@ import { z } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
 
 const handler = async (
-    req: interceptors.NextRequestWithPayload,
+    req: interceptors.NextRequestWithUser,
     { params }: { params: Promise<{ page: string }> }
 ): Promise<Response> => {
-    const municipalitySusId = req.payload.municipio;
+    const municipalitySusId = req.user.municipalitySusId;
     //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-    const perfis = req.payload.perfis;
-    if (!perfis.includes(PROFILE_ID.COAPS)) {
+    const userProfiles = req.user.profiles;
+    if (!userProfiles.includes(PROFILE_ID.COAPS)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"
         );
@@ -51,6 +51,6 @@ const handler = async (
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
 export const POST = interceptors.compose(
-    interceptors.accessPayload,
+    interceptors.withUser,
     interceptors.catchErrors
 )(handler);
