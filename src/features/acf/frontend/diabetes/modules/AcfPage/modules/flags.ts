@@ -7,5 +7,3 @@ export const allowedMunicipalitiesIdFlag = flag<boolean>({
         return true;
     },
 });
-
-export const precomputeFlags = [allowedMunicipalitiesIdFlag] as const;
