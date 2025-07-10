@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import type { AcfDashboardType } from "../../../../shared/diabetes/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
+import { allowedMunicipalitiesIdFlag } from "./modules/flags";
 
 export type {
     CoapsAppliedFilters,
@@ -27,13 +28,13 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "DIABETES") as AcfDashboardType;
-
     const errorText = (
         <p style={{ padding: "80px", textAlign: "center" }}>
             Usuário sem permissão
         </p>
     );
-
+    const flag = await allowedMunicipalitiesIdFlag();
+    if (flag) return <p>Conteudo exibido com a flag</p>;
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>

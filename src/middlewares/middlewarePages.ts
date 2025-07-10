@@ -52,8 +52,17 @@ export const middlewarePages = async (
     const headers = new Headers(request.headers);
     const token = (await getToken({ req: request, secret })) as {
         exp: number;
+        user: {
+            id: string;
+            email: string;
+            name: string;
+            perfis: Array<string>;
+            equipe: string;
+            municipio_id_sus: string;
+        };
     } | null;
     let response = NextResponse.next();
+
     if (
         token &&
         matchesRoute(rotasProtegidas, url.pathname) &&
