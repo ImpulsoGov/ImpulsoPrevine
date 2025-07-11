@@ -1,11 +1,11 @@
 import { AuthenticationError } from "@/utils/token";
 import { ZodError } from "zod/v4";
-import type { Handler } from "./common/Handler";
+import type { Handler, HandlerWithContext } from "./common/Handler";
 import type { NextRequest } from "next/server";
 
 export const catchErrors = <TContext>(
     handler: Handler<TContext>
-): Handler<TContext> => {
+): HandlerWithContext<TContext> => {
     return async (request: NextRequest, context: TContext) => {
         return handler(request, context).catch((error: unknown) => {
             console.error(error);
