@@ -1,6 +1,7 @@
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import type { Handler, User } from "..";
+import type { User } from "..";
+import type { Handler } from "./common/Handler";
 import type { NextRequest } from "next/server";
 
 type ContextWithUser<TContext> = TContext & {

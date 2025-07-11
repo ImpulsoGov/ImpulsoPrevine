@@ -1,6 +1,6 @@
 import { AuthenticationError } from "@/utils/token";
 import { ZodError } from "zod/v4";
-import type { Handler } from "..";
+import type { Handler } from "./common/Handler";
 import type { NextRequest } from "next/server";
 
 export const catchErrors = <TContext>(

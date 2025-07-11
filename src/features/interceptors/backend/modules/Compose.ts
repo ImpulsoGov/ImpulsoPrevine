@@ -1,4 +1,4 @@
-import type { Handler } from "..";
+import type { Handler } from "./common/Handler";
 
 type Interceptor<TContext> = (handler: Handler<TContext>) => Handler<TContext>;
 
