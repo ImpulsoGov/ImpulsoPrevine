@@ -19,9 +19,7 @@ type Props = {
         [key: string]: string | undefined;
     }>;
 };
-const identify = (municipalityId: string): { municipalityId: string } => {
-    return { municipalityId: municipalityId };
-};
+
 export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
@@ -35,10 +33,12 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
             Usuário sem permissão
         </p>
     );
-    // const municipalitySusId = session?.user.municipio_id_sus
+    const municipalitySusId = session?.user.municipio_id_sus;
 
-    // const hasFlag = await allowedMunicipalitiesIdFlag.run({ identify: {municipalityId: municipalitySusId || ""} });
-    // if (hasFlag) return <p>Conteudo exibido com a flag</p>;
+    const hasFlag = await allowedMunicipalitiesIdFlag.run({
+        identify: { municipalityId: municipalitySusId || "" },
+    });
+    if (hasFlag) return <h1>Conteudo exibido com a flag</h1>;
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
@@ -47,7 +47,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                     initialSubTabId={initialSubTabId}
                     acfDashboardType={acfDashboardType}
                     //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                    municipalitySusId={session?.user.municipio_id_sus}
+                    municipalitySusId={municipalitySusId}
                     //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
                     teamIne={session?.user.equipe}
                     userProfiles={session?.user.perfis as Array<ProfileIdValue>}

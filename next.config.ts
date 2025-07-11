@@ -1,5 +1,9 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
+import withVercelToolbarPlugin from "@vercel/toolbar/plugins/next";
+
+const withVercelToolbar: (config: NextConfig) => NextConfig =
+    withVercelToolbarPlugin();
 
 /** @type {import('next').NextConfig} */
 const isDev = process.env.ENV === "development";
@@ -52,7 +56,7 @@ const nextConfig: NextConfig = {
 };
 
 export default isDev
-    ? nextConfig
+    ? withVercelToolbar(nextConfig)
     : withSentryConfig(nextConfig, {
           org: "impulsogov",
           project: "impulso-previne",
