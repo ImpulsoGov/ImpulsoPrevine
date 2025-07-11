@@ -1,20 +1,25 @@
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import type { Context, Handler, NextRequestWithUser, Params } from "..";
+import type { Handler, User } from "..";
+import type { NextRequest } from "next/server";
+
+type ContextWithUser<TContext> = TContext & {
+    user: User;
+};
 
 // TODO: retornar sempre HandlerWithContext?
-export const withUser = <TParams extends Params>(
-    handler: Handler<TParams>
-): Handler<TParams> => {
+export const withUser = <TContext>(
+    handler: Handler<TContext>
+): Handler<ContextWithUser<TContext>> => {
     return async (
-        request: NextRequestWithUser,
-        context: Context<TParams>
+        request: NextRequest,
+        context: ContextWithUser<TContext>
     ): Promise<Response> => {
         const token = getToken(request.headers);
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
 
-        request.user = {
+        context.user = {
             municipalitySusId: payload.municipio,
             teamIne: payload.equipe,
             profiles: payload.perfis,

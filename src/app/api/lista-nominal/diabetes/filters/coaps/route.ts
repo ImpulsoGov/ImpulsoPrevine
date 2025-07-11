@@ -1,10 +1,16 @@
 import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import * as interceptors from "@/features/interceptors/backend";
+import type { NextRequest } from "next/server";
+
+type Context = {
+    user: interceptors.User;
+};
 
 const handler = async (
-    req: interceptors.NextRequestWithUser
+    _req: NextRequest,
+    { user }: Context
 ): Promise<Response> => {
-    const municipalitySusId = req.user.municipalitySusId;
+    const municipalitySusId = user.municipalitySusId;
     //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
 
     const filters = await diabetesBackend.filterOptionsCoaps(municipalitySusId);

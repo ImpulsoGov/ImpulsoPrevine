@@ -4,16 +4,22 @@ import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
+import type { NextRequest } from "next/server";
 import { z } from "zod/v4";
 
+type Context = {
+    params: Promise<{ page: string }>;
+    user: interceptors.User;
+};
+
 async function handler(
-    req: interceptors.NextRequestWithUser,
-    { params }: { params: Promise<{ page: string }> }
+    req: NextRequest,
+    { params, user }: Context
 ): Promise<Response> {
-    const municipalitySusId = req.user.municipalitySusId;
+    const municipalitySusId = user.municipalitySusId;
     //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-    const teamIne = req.user.teamIne;
-    const perfis = req.user.profiles;
+    const teamIne = user.teamIne;
+    const perfis = user.profiles;
     if (!perfis.includes(PROFILE_ID.COEQ)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"
@@ -54,7 +60,6 @@ async function handler(
 
 //TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
-// ? deveria dar erro porque onde espero um NextRequestWithUser, recebo um NextRequest?
 export const POST = interceptors.compose(
     interceptors.withUser,
     interceptors.catchErrors

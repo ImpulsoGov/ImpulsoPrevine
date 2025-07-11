@@ -5,14 +5,20 @@ import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import { z } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
+import type { NextRequest } from "next/server";
+
+type Context = {
+    params: Promise<{ page: string }>;
+    user: interceptors.User;
+};
 
 const handler = async (
-    req: interceptors.NextRequestWithUser,
-    { params }: { params: Promise<{ page: string }> }
+    req: NextRequest,
+    { params, user }: Context
 ): Promise<Response> => {
-    const municipalitySusId = req.user.municipalitySusId;
+    const municipalitySusId = user.municipalitySusId;
     //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-    const userProfiles = req.user.profiles;
+    const userProfiles = user.profiles;
     if (!userProfiles.includes(PROFILE_ID.COAPS)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"
