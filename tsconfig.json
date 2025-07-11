@@ -39,7 +39,8 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        "src/global.d.ts"
+        "src/global.d.ts",
+        "src/app/.well-known/vercel/flags/route.ts"
     ],
     "exclude": ["node_modules"]
 }
