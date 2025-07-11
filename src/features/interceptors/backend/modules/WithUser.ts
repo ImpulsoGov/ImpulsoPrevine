@@ -19,6 +19,7 @@ export const withUser = <TContext>(
         const secret = getEncodedSecret();
         const { payload } = (await decodeToken(token, secret)) as JWTToken;
 
+        // TODO: usar Object.assign para não alterar o parâmetro
         context.user = {
             municipalitySusId: payload.municipio,
             teamIne: payload.equipe,
