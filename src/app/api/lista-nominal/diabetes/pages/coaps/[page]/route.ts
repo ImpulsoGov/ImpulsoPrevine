@@ -52,9 +52,8 @@ const handler = async (
 };
 
 //TODO: Criar um teste de integração para esta rota
-const parseBodyInterceptor = interceptors.parseBody(queryParamsSchema);
 const composed = interceptors.compose(
-    parseBodyInterceptor,
+    interceptors.parseBody(queryParamsSchema),
     interceptors.withUser,
     interceptors.catchErrors
 );
