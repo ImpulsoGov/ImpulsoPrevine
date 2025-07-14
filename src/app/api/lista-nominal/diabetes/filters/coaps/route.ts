@@ -11,7 +11,6 @@ const handler = async (
     { user }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
-    //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
 
     const filters = await diabetesBackend.filterOptionsCoaps(municipalitySusId);
     //TODO adicionar schema de saida

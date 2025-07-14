@@ -17,7 +17,6 @@ const handler = async (
     { params, user }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
-    //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
     const userProfiles = user.profiles;
     if (!userProfiles.includes(PROFILE_ID.COAPS)) {
         throw new AuthenticationError(
@@ -54,7 +53,6 @@ const handler = async (
     );
 };
 
-//TODO: Criar um endpoint equivalente para APS
 //TODO: Criar um teste de integração para esta rota
 export const POST = interceptors.compose(
     interceptors.withUser,
