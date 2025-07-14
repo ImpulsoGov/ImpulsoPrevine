@@ -10,11 +10,12 @@ import { z } from "zod/v4";
 type Context = {
     params: Promise<{ page: string }>;
     user: interceptors.User;
+    parsedBody: CoeqPageRequestBody;
 };
 
 async function handler(
     req: NextRequest,
-    { params, user }: Context
+    { params, user, parsedBody }: Context
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
     const teamIne = user.teamIne;
@@ -28,23 +29,20 @@ async function handler(
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 
-    const body: unknown = await req.json();
-    const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
-
     const page = await diabetesBackend.getPageCoeq({
         municipalitySusId,
         teamIne,
         pageIndex,
-        sorting: queryParams.sorting,
-        searchString: queryParams.search,
-        filters: queryParams.filters,
+        sorting: parsedBody.sorting,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
     });
 
     const totalRows = await diabetesBackend.getRowCountCoeq({
         municipalitySusId,
         teamIne,
-        searchString: queryParams.search,
-        filters: queryParams.filters,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
     });
 
     //TODO adicionar schema de saida
@@ -56,9 +54,9 @@ async function handler(
         { status: 200 }
     );
 }
-
+const parsedBodyInterceptor = interceptors.parseBody(queryParamsSchema);
 const composed = interceptors.compose(
-    interceptors.parseBody(queryParamsSchema),
+    parsedBodyInterceptor,
     interceptors.withUser,
     interceptors.catchErrors
 );
