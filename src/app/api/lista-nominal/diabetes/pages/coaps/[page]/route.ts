@@ -10,11 +10,12 @@ import type { NextRequest } from "next/server";
 type Context = {
     params: Promise<{ page: string }>;
     user: interceptors.User;
+    parsedBody: CoapsPageRequestBody;
 };
 
 const handler = async (
     req: NextRequest,
-    { params, user }: Context
+    { params, user, parsedBody }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
     const userProfiles = user.profiles;
@@ -26,21 +27,18 @@ const handler = async (
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 
-    const body: unknown = await req.json();
-    const queryParams: CoapsPageRequestBody = queryParamsSchema.parse(body);
-
     const page = await diabetesBackend.getPageCoaps({
         municipalitySusId,
         pageIndex,
-        sorting: queryParams.sorting,
-        searchString: queryParams.search,
-        filters: queryParams.filters,
+        sorting: parsedBody.sorting,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
     });
 
     const totalRows = await diabetesBackend.getRowCountCoaps({
         municipalitySusId,
-        searchString: queryParams.search,
-        filters: queryParams.filters,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
     });
 
     //TODO adicionar schema de saida
@@ -53,20 +51,13 @@ const handler = async (
     );
 };
 
-const schemaValidator = interceptors.parseBody(queryParamsSchema);
-
-// const composed = interceptors.compose(
-//     interceptors.withUser,
-//     schemaValidator,
-//     interceptors.catchErrors
-// );
+//TODO: Criar um teste de integração para esta rota
+const parseBodyInterceptor = interceptors.parseBody(queryParamsSchema);
+const composed = interceptors.compose(
+    parseBodyInterceptor,
+    interceptors.withUser,
+    interceptors.catchErrors
+);
 
 //TODO: Criar um teste de integração para esta rota
-// export const POST = composed(handler);
-// const withUser = interceptors.withUser();
-const parseBody = interceptors.parseBody(queryParamsSchema);
-// const catchErrors = interceptos.catchErrors();
-
-export const POST = interceptors.withUser(
-    interceptors.parseBody(queryParamsSchema)(interceptors.catchErrors(handler))
-);
+export const POST = composed(handler);

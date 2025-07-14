@@ -54,9 +54,9 @@ async function handler(
         { status: 200 }
     );
 }
-const parsedBodyInterceptor = interceptors.parseBody(queryParamsSchema);
+const parseBodyInterceptor = interceptors.parseBody(queryParamsSchema);
 const composed = interceptors.compose(
-    parsedBodyInterceptor,
+    parseBodyInterceptor,
     interceptors.withUser,
     interceptors.catchErrors
 );
