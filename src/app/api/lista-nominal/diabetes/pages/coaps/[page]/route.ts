@@ -53,8 +53,20 @@ const handler = async (
     );
 };
 
+const schemaValidator = interceptors.parseBody(queryParamsSchema);
+
+// const composed = interceptors.compose(
+//     interceptors.withUser,
+//     schemaValidator,
+//     interceptors.catchErrors
+// );
+
 //TODO: Criar um teste de integração para esta rota
-export const POST = interceptors.compose(
-    interceptors.withUser,
-    interceptors.catchErrors
-)(handler);
+// export const POST = composed(handler);
+// const withUser = interceptors.withUser();
+const parseBody = interceptors.parseBody(queryParamsSchema);
+// const catchErrors = interceptos.catchErrors();
+
+export const POST = interceptors.withUser(
+    interceptors.parseBody(queryParamsSchema)(interceptors.catchErrors(handler))
+);

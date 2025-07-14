@@ -57,8 +57,9 @@ async function handler(
     );
 }
 
-//TODO: Criar um teste de integração para esta rota
-export const POST = interceptors.compose(
+const composed = interceptors.compose(
     interceptors.withUser,
     interceptors.catchErrors
-)(handler);
+);
+//TODO: Criar um teste de integração para esta rota
+export const POST = composed(handler);

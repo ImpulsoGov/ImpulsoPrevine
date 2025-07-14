@@ -1,6 +1,8 @@
 import type { Handler } from "./common/Handler";
 
-type Interceptor<TContext> = (handler: Handler<TContext>) => Handler<TContext>;
+export type Interceptor<TContext> = (
+    handler: Handler<TContext>
+) => Handler<TContext>;
 
 export const compose = <TContext>(
     ...interceptors: Array<Interceptor<TContext>>

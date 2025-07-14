@@ -24,8 +24,9 @@ const handler = async (
     );
 };
 
-//TODO: Criar um teste de integração para esta rota
-export const GET = interceptors.compose(
+const composed = interceptors.compose(
     interceptors.withUser,
     interceptors.catchErrors
-)(handler);
+);
+//TODO: Criar um teste de integração para esta rota
+export const GET = composed(handler);
