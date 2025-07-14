@@ -1,8 +1,8 @@
-import { allowedMunicipalitiesIdFlag } from "@/features/common/shared/flags/flags";
+import { diabetesNewProgram } from "@/features/common/shared/flags/flags";
 
 export async function GET() {
-    const isFlag = await allowedMunicipalitiesIdFlag.run({
-        identify: { municipalityId: "111111X" }, // Example municipality ID
+    const isFlag = await diabetesNewProgram.run({
+        identify: { municipalityId: "111111" }, // Example municipality ID
     });
     return isFlag
         ? Response.json({ message: "Hello World" })
