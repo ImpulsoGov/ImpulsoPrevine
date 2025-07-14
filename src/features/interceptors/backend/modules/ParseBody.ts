@@ -1,19 +1,15 @@
-import type { z } from "zod/v4";
-import type { Handler } from "./common/Handler";
 import type { NextRequest } from "next/server";
+import type { z } from "zod/v4";
+import type { Handler, HandlerWithContext } from "./common/Handler";
 
 type ContextWithParsedBody<TContext, TSchema extends z.ZodType> = TContext & {
     parsedBody: TSchema;
 };
 
-type Interceptor<TContext, TSchema extends z.ZodType> = (
-    handler: Handler<TContext>
-) => Handler<ContextWithParsedBody<TContext, TSchema>>;
-
-export const parseBody = <TContext, TSchema extends z.ZodType>(
-    schema: TSchema
-): Interceptor<TContext, TSchema> => {
-    return (handler: Handler<TContext>) => {
+export const parseBody = <TSchema extends z.ZodType>(schema: TSchema) => {
+    return <TContext>(
+        handler: Handler<TContext>
+    ): HandlerWithContext<ContextWithParsedBody<TContext, TSchema>> => {
         return async (
             request: NextRequest,
             context: ContextWithParsedBody<TContext, TSchema>

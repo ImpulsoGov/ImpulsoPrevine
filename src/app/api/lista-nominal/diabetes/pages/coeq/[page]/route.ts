@@ -58,8 +58,10 @@ async function handler(
 }
 
 const composed = interceptors.compose(
+    interceptors.parseBody(queryParamsSchema),
     interceptors.withUser,
     interceptors.catchErrors
 );
+
 //TODO: Criar um teste de integração para esta rota
 export const POST = composed(handler);
