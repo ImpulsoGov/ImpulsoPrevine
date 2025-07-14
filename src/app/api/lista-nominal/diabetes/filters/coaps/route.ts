@@ -2,9 +2,7 @@ import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import * as interceptors from "@/features/interceptors/backend";
 import type { NextRequest } from "next/server";
 
-type Context = {
-    user: interceptors.User;
-};
+type Context = { user: interceptors.User };
 
 const handler = async (
     _req: NextRequest,
