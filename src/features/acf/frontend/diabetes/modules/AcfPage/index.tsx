@@ -8,6 +8,7 @@ import type { AcfDashboardType } from "../../../../shared/diabetes/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
 import { diabetesNewProgram } from "../../../../../common/shared/flags/flags";
+import { notFound } from "next/navigation";
 
 export type {
     CoapsAppliedFilters,
@@ -35,10 +36,8 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     );
     const municipalitySusId = session?.user.municipio_id_sus;
 
-    const hasFlag = await diabetesNewProgram.run({
-        identify: { municipalityId: municipalitySusId || "" },
-    });
-    if (hasFlag) return <h1>Conteudo exibido com a flag</h1>;
+    const hasFlag = await diabetesNewProgram();
+    if (!hasFlag) notFound();
     return (
         <SessionGuard error={<ErrorPage />}>
             <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
