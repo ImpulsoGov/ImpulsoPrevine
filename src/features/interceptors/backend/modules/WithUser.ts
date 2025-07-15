@@ -1,8 +1,13 @@
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import type { User } from "..";
 import type { Handler, HandlerWithContext } from "./common/Handler";
 import type { NextRequest } from "next/server";
+
+export type User = {
+    municipalitySusId: string;
+    teamIne: string;
+    profiles: Array<number>;
+};
 
 type ContextWithUser<TContext> = TContext & {
     user: User;
