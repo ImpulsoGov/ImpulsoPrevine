@@ -6,7 +6,7 @@ type ContextWithParsedBody<TContext, TSchema extends z.ZodType> = TContext & {
     parsedBody: TSchema;
 };
 
-export const parseBody = <TSchema extends z.ZodType>(schema: TSchema) => {
+export const withBodyParsing = <TSchema extends z.ZodType>(schema: TSchema) => {
     return <TContext>(
         handler: Handler<TContext>
     ): HandlerWithContext<ContextWithParsedBody<TContext, TSchema>> => {

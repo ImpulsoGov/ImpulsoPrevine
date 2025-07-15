@@ -1,7 +1,7 @@
 export { catchErrors } from "./modules/CatchErrors";
 export { withUser } from "./modules/WithUser";
 export { compose } from "./modules/Compose";
-export { parseBody } from "./modules/ParseBody";
+export { withBodyParsing } from "./modules/WithBodyParsing";
 
 // TODO: mover esse tipo pra outro lugar
 export type User = {

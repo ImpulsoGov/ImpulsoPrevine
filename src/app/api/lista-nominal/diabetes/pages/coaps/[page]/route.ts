@@ -14,7 +14,7 @@ type Context = {
 };
 
 const handler = async (
-    req: NextRequest,
+    _req: NextRequest,
     { params, user, parsedBody }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
@@ -51,9 +51,8 @@ const handler = async (
     );
 };
 
-//TODO: Criar um teste de integração para esta rota
 const composed = interceptors.compose(
-    interceptors.parseBody(queryParamsSchema),
+    interceptors.withBodyParsing(queryParamsSchema),
     interceptors.withUser,
     interceptors.catchErrors
 );

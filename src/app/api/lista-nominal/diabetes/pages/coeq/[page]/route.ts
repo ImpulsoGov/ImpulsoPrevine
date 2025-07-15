@@ -14,7 +14,7 @@ type Context = {
 };
 
 async function handler(
-    req: NextRequest,
+    _req: NextRequest,
     { params, user, parsedBody }: Context
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
@@ -56,7 +56,7 @@ async function handler(
 }
 
 const composed = interceptors.compose(
-    interceptors.parseBody(queryParamsSchema),
+    interceptors.withBodyParsing(queryParamsSchema),
     interceptors.withUser,
     interceptors.catchErrors
 );
