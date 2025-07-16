@@ -8,6 +8,7 @@ export const getEncodedSecret = () => {
     return new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 };
 
+// TODO: mover para features/errors/backend
 export class AuthenticationError extends Error {}
 
 export type TokenPayload = JWTPayload & {

@@ -1,5 +1,6 @@
 import * as diabetesBackend from "@/features/acf/backend/diabetes/";
 import * as interceptors from "@/features/interceptors/backend";
+import { PROFILE_ID } from "@/types/profile";
 import type { NextRequest } from "next/server";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 
@@ -30,6 +31,7 @@ const handler = async (
 
 const composed = interceptors.compose(
     interceptors.withUser,
+    interceptors.allowProfiles([PROFILE_ID.COEQ]),
     interceptors.catchErrors
 );
 //TODO: Criar um teste de integração para esta rota
