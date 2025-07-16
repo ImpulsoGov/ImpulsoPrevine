@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import type { Handler, HandlerWithContext } from "./common/Handler";
+import type { Handler, HandlerWithContext } from "../common/Handler";
 import type { ProfileIdValue } from "@/types/profile";
 import { AuthorizationError } from "@/features/errors/backend";
 import type { JWTToken } from "@/utils/token";
