@@ -6,6 +6,7 @@ import * as diabetesBackend from "@features/acf/backend/diabetes";
 import { z } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
 import type { NextRequest } from "next/server";
+import { diabetesNewProgram } from "@/features/common/shared/flags/flags";
 
 type Context = {
     params: Promise<{ page: string }>;
@@ -19,6 +20,8 @@ const handler = async (
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
     const userProfiles = user.profiles;
+    // const isFlag = await diabetesNewProgram();
+    // if (!isFlag) return Response.json({}, { status: 404 });
     if (!userProfiles.includes(PROFILE_ID.COAPS)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"

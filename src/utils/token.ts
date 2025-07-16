@@ -42,7 +42,7 @@ export const getToken = (headers: Headers) => {
 export const decodeToken = async (
     token: string,
     encodedSecrect: Uint8Array
-) => {
+): Promise<JWTVerifyResult> => {
     try {
         return await jwtVerify(token, encodedSecrect);
     } catch (error) {

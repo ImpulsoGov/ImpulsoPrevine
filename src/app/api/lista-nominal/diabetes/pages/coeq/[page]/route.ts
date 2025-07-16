@@ -1,5 +1,6 @@
 import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
+import { diabetesNewProgram } from "@/features/common/shared/flags/flags";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import { AuthenticationError } from "@/utils/token";
@@ -18,6 +19,9 @@ async function handler(
     { params, user, parsedBody }: Context
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
+    const isFlag = await diabetesNewProgram();
+    if (!isFlag) return Response.json({}, { status: 404 });
+
     const teamIne = user.teamIne;
     const perfis = user.profiles;
     if (!perfis.includes(PROFILE_ID.COEQ)) {
