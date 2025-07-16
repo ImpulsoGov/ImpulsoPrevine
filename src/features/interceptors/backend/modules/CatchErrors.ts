@@ -2,6 +2,7 @@ import { AuthenticationError } from "@/utils/token";
 import { ZodError } from "zod/v4";
 import type { Handler, HandlerWithContext } from "./common/Handler";
 import type { NextRequest } from "next/server";
+import { AuthorizationError } from "@/features/errors/backend";
 
 export const catchErrors = <TContext>(
     handler: Handler<TContext>
@@ -20,6 +21,13 @@ export const catchErrors = <TContext>(
                 return Response.json(
                     { message: error.message },
                     { status: 401 }
+                );
+            }
+
+            if (error instanceof AuthorizationError) {
+                return Response.json(
+                    { message: error.message },
+                    { status: 403 }
                 );
             }
 

@@ -2,7 +2,6 @@ import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema"
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
-import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
 import { z } from "zod/v4";
@@ -19,13 +18,6 @@ async function handler(
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
     const teamIne = user.teamIne;
-    const perfis = user.profiles;
-    if (!perfis.includes(PROFILE_ID.COEQ)) {
-        throw new AuthenticationError(
-            "Usuário não autorizado a acessar esta rota"
-        );
-    }
-
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 
@@ -57,6 +49,7 @@ async function handler(
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
+    interceptors.withAuthorization([PROFILE_ID.COEQ]),
     interceptors.withUser,
     interceptors.catchErrors
 );

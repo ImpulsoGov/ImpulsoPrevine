@@ -1,7 +1,6 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import { PROFILE_ID } from "@/types/profile";
-import { AuthenticationError } from "@/utils/token";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import { z } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
@@ -18,12 +17,6 @@ const handler = async (
     { params, user, parsedBody }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
-    const userProfiles = user.profiles;
-    if (!userProfiles.includes(PROFILE_ID.COAPS)) {
-        throw new AuthenticationError(
-            "Usuário não autorizado a acessar esta rota"
-        );
-    }
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 
@@ -53,6 +46,7 @@ const handler = async (
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
+    interceptors.withAuthorization([PROFILE_ID.COAPS]),
     interceptors.withUser,
     interceptors.catchErrors
 );
