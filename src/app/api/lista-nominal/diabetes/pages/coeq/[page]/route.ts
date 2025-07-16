@@ -1,6 +1,6 @@
 import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
-import { diabetesNewProgram } from "@/features/common/shared/flags/flags";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import { AuthenticationError } from "@/utils/token";

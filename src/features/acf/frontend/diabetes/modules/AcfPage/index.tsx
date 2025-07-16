@@ -4,10 +4,10 @@ import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "../../../../shared/diabetes/model";
+import type { AcfDashboardType } from "@features/acf/shared/diabetes/model";
 import { ErrorPage } from "./modules/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
-import { diabetesNewProgram } from "../../../../../common/shared/flags/flags";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 
 export type {
