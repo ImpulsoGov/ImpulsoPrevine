@@ -49,7 +49,7 @@ async function handler(
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
-    interceptors.withAuthorization([PROFILE_ID.COEQ]),
+    interceptors.allowProfiles([PROFILE_ID.COEQ]),
     interceptors.withUser,
     interceptors.catchErrors
 );

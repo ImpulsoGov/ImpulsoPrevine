@@ -46,7 +46,7 @@ const handler = async (
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
-    interceptors.withAuthorization([PROFILE_ID.COAPS]),
+    interceptors.allowProfiles([PROFILE_ID.COAPS]),
     interceptors.withUser,
     interceptors.catchErrors
 );

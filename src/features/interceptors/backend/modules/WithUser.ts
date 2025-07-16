@@ -9,7 +9,7 @@ export type User = {
     profiles: Array<number>;
 };
 
-export type ContextWithUser<TContext> = TContext & {
+type ContextWithUser<TContext> = TContext & {
     user: User;
 };
 

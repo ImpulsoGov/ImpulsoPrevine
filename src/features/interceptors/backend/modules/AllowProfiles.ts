@@ -1,25 +1,28 @@
 import type { NextRequest } from "next/server";
 import type { Handler, HandlerWithContext } from "./common/Handler";
 import type { ProfileIdValue } from "@/types/profile";
-import type { ContextWithUser } from "./WithUser";
 import { AuthorizationError } from "@/features/errors/backend";
+import type { JWTToken } from "@/utils/token";
+import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
 
-export const withAuthorization = (
-    authorizedProfiles: Array<ProfileIdValue>
-) => {
+export const allowProfiles = (profiles: Array<ProfileIdValue>) => {
     return <TContext>(
-        handler: Handler<ContextWithUser<TContext>>
-    ): HandlerWithContext<ContextWithUser<TContext>> => {
+        handler: Handler<TContext>
+    ): HandlerWithContext<TContext> => {
         return async (
             request: NextRequest,
-            context: ContextWithUser<TContext>
+            context: TContext
         ): Promise<Response> => {
-            const userProfiles = context.user.profiles;
-            const isUserAuthorized = authorizedProfiles.every((profile) =>
+            const token = getToken(request.headers);
+            const secret = getEncodedSecret();
+            const {
+                payload: { perfis: userProfiles },
+            } = (await decodeToken(token, secret)) as JWTToken;
+            const isUserAllowed = profiles.every((profile) =>
                 userProfiles.includes(profile)
             );
 
-            if (!isUserAuthorized) {
+            if (!isUserAllowed) {
                 throw new AuthorizationError(
                     "Usuário não autorizado a acessar esta rota"
                 );

@@ -3,4 +3,4 @@ export { withUser } from "./modules/WithUser";
 export type { User } from "./modules/WithUser";
 export { compose } from "./modules/Compose";
 export { withBodyParsing } from "./modules/WithBodyParsing";
-export { withAuthorization } from "./modules/WithAuthorization";
+export { allowProfiles } from "./modules/AllowProfiles";
