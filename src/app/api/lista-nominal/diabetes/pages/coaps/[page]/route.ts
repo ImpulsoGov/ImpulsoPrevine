@@ -20,8 +20,8 @@ const handler = async (
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
     const userProfiles = user.profiles;
-    // const isFlag = await diabetesNewProgram();
-    // if (!isFlag) return Response.json({}, { status: 404 });
+    const isFlag = await diabetesNewProgram();
+    if (!isFlag) return Response.json({}, { status: 404 });
     if (!userProfiles.includes(PROFILE_ID.COAPS)) {
         throw new AuthenticationError(
             "Usuário não autorizado a acessar esta rota"
