@@ -12,8 +12,6 @@ jest.mock("@/utils/token", () => ({
 }));
 
 const allowedProfiles = [PROFILE_ID.COAPS, PROFILE_ID.userManagement];
-const notAllowedProfiles = [PROFILE_ID.COEQ, PROFILE_ID.impulser];
-const tokenPayload = { perfis: allowedProfiles };
 const token = "fake.jwt.token";
 const secret = "encoded-secret";
 const request = {} as NextRequest;
@@ -25,13 +23,16 @@ const mockDecodeToken = decodeToken as jest.Mock;
 const mockHandler: jest.MockedFunction<Handler<typeof context>> = jest.fn();
 
 describe("allowProfiles", () => {
-    it("deve permitir acesso a usuários que possuem os perfis permitidos", async () => {
+    it("deve permitir acesso quando o usuário possui todos os perfis permitidos", async () => {
+        const userProfiles = [...allowedProfiles];
         const response = { message: "Acesso permitido" } as unknown as Response;
 
         mockHandler.mockResolvedValue(response);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
-        mockDecodeToken.mockResolvedValue({ payload: tokenPayload });
+        mockDecodeToken.mockResolvedValue({
+            payload: { perfis: userProfiles },
+        });
 
         const interceptor = allowProfiles(allowedProfiles);
         const routeHandler = interceptor(mockHandler);
@@ -42,13 +43,36 @@ describe("allowProfiles", () => {
         expect(mockHandler).toHaveBeenCalledWith(request, context);
     });
 
-    it("deve lançar um erro de autorização quando o usuário não possui os perfis permitidos", async () => {
+    it("deve lançar um erro de autorização quando o usuário não possui nenhum dos perfis permitidos", async () => {
+        const userProfiles = [PROFILE_ID.COEQ, PROFILE_ID.impulser];
+
         mockHandler.mockResolvedValue({} as Response);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
-        mockDecodeToken.mockResolvedValue({ payload: tokenPayload });
+        mockDecodeToken.mockResolvedValue({
+            payload: { perfis: userProfiles },
+        });
 
-        const interceptor = allowProfiles(notAllowedProfiles);
+        const interceptor = allowProfiles(allowedProfiles);
+        const routeHandler = interceptor(mockHandler);
+
+        await expect(routeHandler(request, context)).rejects.toThrow(
+            AuthorizationError
+        );
+        expect(mockHandler).not.toHaveBeenCalled();
+    });
+
+    it("deve lançar um erro de autorização quando o usuário não possui todos os perfis permitidos", async () => {
+        const userProfiles = [PROFILE_ID.COAPS, PROFILE_ID.impulser];
+
+        mockHandler.mockResolvedValue({} as Response);
+        mockGetToken.mockReturnValue(token);
+        mockGetEncodedSecret.mockReturnValue(secret);
+        mockDecodeToken.mockResolvedValue({
+            payload: { perfis: userProfiles },
+        });
+
+        const interceptor = allowProfiles(allowedProfiles);
         const routeHandler = interceptor(mockHandler);
 
         await expect(routeHandler(request, context)).rejects.toThrow(
