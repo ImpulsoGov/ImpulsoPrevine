@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import type { z } from "zod/v4";
-import type { Handler, HandlerWithContext } from "./common/Handler";
+import type { Handler, HandlerWithContext } from "../common/Handler";
 
 type ContextWithParsedBody<TContext, TSchema extends z.ZodType> = TContext & {
     parsedBody: TSchema;
