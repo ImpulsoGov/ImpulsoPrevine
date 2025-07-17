@@ -1,10 +1,7 @@
 import { decodeToken } from "@/utils/token";
-import { flag } from "flags/next";
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-
-//TODO: Implementara tipos mais especificos para municipioID
-type MunicipalityIdSus = string | undefined;
+import type { MunicipalityIdSus } from "../../diabetesNewProgram";
 
 type CookieTokenType = {
     user: {
@@ -25,10 +22,7 @@ type CookieTokenType = {
     jti: string;
 };
 
-// TODO: Mover os municipios permitidos para o .env
-const allowedMunicipalities = ["111111"];
-
-const municipalityIdSusFromHeader = async (
+export const municipalityIdSusFromHeader = async (
     authHeader: string,
     secret: string
 ): Promise<string | undefined> => {
@@ -36,12 +30,14 @@ const municipalityIdSusFromHeader = async (
     try {
         const secretUint8 = new TextEncoder().encode(secret);
         const decodedToken = await decodeToken(tokenHeader, secretUint8);
+        if (typeof decodedToken.payload.municipio !== "string")
+            return undefined;
         return decodedToken.payload.municipio as MunicipalityIdSus;
     } catch (_error) {
         return undefined;
     }
 };
-const municipalityIdSusFromCookie = async (
+export const municipalityIdSusFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,
     secret: string
 ): Promise<string | undefined> => {
@@ -58,19 +54,3 @@ const municipalityIdSusFromCookie = async (
     const tokenDecoded = decoded as CookieTokenType;
     return tokenDecoded.user.municipio_id_sus;
 };
-
-export const diabetesNewProgram = flag<boolean, MunicipalityIdSus>({
-    key: "diabetesNewProgram",
-    identify: async ({ headers, cookies }) => {
-        const authHeader = headers.get("authorization");
-        const secret = process.env.NEXTAUTH_SECRET || "";
-        return authHeader
-            ? await municipalityIdSusFromHeader(authHeader, secret)
-            : await municipalityIdSusFromCookie(cookies, secret);
-    },
-    decide({ entities: municipalityIdSus }) {
-        if (municipalityIdSus)
-            return allowedMunicipalities.includes(municipalityIdSus);
-        return false;
-    },
-});
