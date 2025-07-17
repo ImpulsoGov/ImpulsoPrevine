@@ -42,7 +42,7 @@ describe("allowProfiles", () => {
         expect(mockHandler).toHaveBeenCalledWith(request, context);
     });
 
-    it("deve lançar um erro de autorização quando o usuário não possue os perfis permitidos", async () => {
+    it("deve lançar um erro de autorização quando o usuário não possui os perfis permitidos", async () => {
         mockHandler.mockResolvedValue({} as Response);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
