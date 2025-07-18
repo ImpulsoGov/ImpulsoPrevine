@@ -4,7 +4,11 @@ import { PROFILE_ID } from "@/types/profile";
 import { AuthorizationError } from "@/features/errors/backend";
 import type { Handler } from "../../common/Handler";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
+import { userHasAllProfiles } from "../modules/UserHasAllProfiles";
 
+jest.mock("../modules/UserHasAllProfiles", () => ({
+    userHasAllProfiles: jest.fn(),
+}));
 jest.mock("@/utils/token", () => ({
     getToken: jest.fn(),
     getEncodedSecret: jest.fn(),
@@ -17,6 +21,7 @@ const secret = "encoded-secret";
 const request = {} as NextRequest;
 const context: Record<string, string> = {};
 
+const mockUserHasAllProfiles = userHasAllProfiles as jest.Mock;
 const mockGetToken = getToken as jest.Mock;
 const mockGetEncodedSecret = getEncodedSecret as jest.Mock;
 const mockDecodeToken = decodeToken as jest.Mock;
@@ -28,6 +33,7 @@ describe("allowProfiles", () => {
         const response = { message: "Acesso permitido" } as unknown as Response;
 
         mockHandler.mockResolvedValue(response);
+        mockUserHasAllProfiles.mockReturnValue(true);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
         mockDecodeToken.mockResolvedValue({
@@ -43,29 +49,11 @@ describe("allowProfiles", () => {
         expect(mockHandler).toHaveBeenCalledWith(request, context);
     });
 
-    it("deve lançar um erro de autorização quando o usuário não possui nenhum dos perfis permitidos", async () => {
+    it("deve lançar um erro de autorização quando o usuário não possui os perfis permitidos", async () => {
         const userProfiles = [PROFILE_ID.COEQ, PROFILE_ID.impulser];
 
         mockHandler.mockResolvedValue({} as Response);
-        mockGetToken.mockReturnValue(token);
-        mockGetEncodedSecret.mockReturnValue(secret);
-        mockDecodeToken.mockResolvedValue({
-            payload: { perfis: userProfiles },
-        });
-
-        const interceptor = allowProfiles(allowedProfiles);
-        const routeHandler = interceptor(mockHandler);
-
-        await expect(routeHandler(request, context)).rejects.toThrow(
-            AuthorizationError
-        );
-        expect(mockHandler).not.toHaveBeenCalled();
-    });
-
-    it("deve lançar um erro de autorização quando o usuário não possui todos os perfis permitidos", async () => {
-        const userProfiles = [PROFILE_ID.COAPS, PROFILE_ID.impulser];
-
-        mockHandler.mockResolvedValue({} as Response);
+        mockUserHasAllProfiles.mockReturnValue(false);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
         mockDecodeToken.mockResolvedValue({
