@@ -14,7 +14,11 @@ export const catchErrors = <TContext>(
             console.error(error);
             if (error instanceof ZodError) {
                 return Response.json(
-                    { message: error.message },
+                    {
+                        message:
+                            "Erro na validação dos parâmetros da requisição",
+                        detail: error.issues,
+                    },
                     { status: 400 }
                 );
             }

@@ -14,14 +14,9 @@ class MockResponse {
         this.body = body;
         this.status = init.status;
     }
-    static json(data: unknown, init?: { status: number }): Promise<unknown> {
-        const mockResponse = new MockResponse(
-            JSON.stringify(data),
-            init ?? { status: 200 }
-        );
-        return new Promise((resolve) => {
-            resolve(mockResponse);
-        });
+    static json(data: unknown, init?: { status: number }): MockResponse {
+        const mockResponse = new MockResponse(data, init ?? { status: 200 });
+        return mockResponse;
     }
 }
 
@@ -43,7 +38,6 @@ describe("catchErrors", () => {
     it("deve retornar uma resposta com status 400 quando ocorre um erro de validação no handler", async () => {
         const errorDetails = [
             {
-                // define 'code' como uma string literal
                 code: "custom" as const,
                 message: "Erro de validação",
                 path: [],
@@ -60,8 +54,11 @@ describe("catchErrors", () => {
 
         expect(consoleErrorSpy).toHaveBeenCalledWith(zodError);
         expect(response.status).toBe(400);
-        const res = await new Response(response.body).text();
-        expect(JSON.parse(res)).toEqual({ message: errorDetails });
+        expect(response.body).toHaveProperty(
+            "message",
+            "Erro na validação dos parâmetros da requisição"
+        );
+        expect(response.body).toHaveProperty("detail", errorDetails);
     });
 
     it("deve retornar uma resposta com status 401 quando ocorre um erro de autenticação no handler", async () => {
@@ -76,9 +73,7 @@ describe("catchErrors", () => {
 
         expect(consoleErrorSpy).toHaveBeenCalledWith(authenticationError);
         expect(response.status).toBe(401);
-        expect(response.body).toEqual(
-            JSON.stringify({ message: errorMessage })
-        );
+        expect(response.body).toHaveProperty("message", errorMessage);
     });
 
     it("deve retornar uma resposta com status 403 quando ocorre um erro de autorização no handler", async () => {
@@ -93,9 +88,7 @@ describe("catchErrors", () => {
 
         expect(consoleErrorSpy).toHaveBeenCalledWith(authorizationError);
         expect(response.status).toBe(403);
-        expect(response.body).toEqual(
-            JSON.stringify({ message: errorMessage })
-        );
+        expect(response.body).toHaveProperty("message", errorMessage);
     });
 
     it("deve retornar uma resposta com status 500 quando ocorre um erro inesperado no handler", async () => {
@@ -110,24 +103,31 @@ describe("catchErrors", () => {
 
         expect(consoleErrorSpy).toHaveBeenCalledWith(unexpectedError);
         expect(response.status).toBe(500);
-        expect(response.body).toEqual(
-            JSON.stringify({
-                message: "Erro ao consultar dados",
-                detail: errorMessage,
-            })
+        expect(response.body).toHaveProperty(
+            "message",
+            "Erro ao consultar dados"
         );
+        expect(response.body).toHaveProperty("detail", errorMessage);
     });
 
     it("deve executar o handler normalmente quando nenhum erro é lançado", async () => {
-        const response = { message: "Success" };
+        const responseMessage = "Success";
+        const response = Response.json(
+            { message: responseMessage },
+            { status: 200 }
+        );
 
-        mockHandler.mockResolvedValue(response as unknown as Response);
+        mockHandler.mockResolvedValue(response);
 
         const routeHandler = catchErrors(mockHandler);
 
         const routeHandlerResponse = await routeHandler(request, context);
 
         expect(consoleErrorSpy).not.toHaveBeenCalled();
-        expect(routeHandlerResponse).toEqual(response);
+        expect(routeHandlerResponse.status).toBe(200);
+        expect(routeHandlerResponse.body).toHaveProperty(
+            "message",
+            responseMessage
+        );
     });
 });
