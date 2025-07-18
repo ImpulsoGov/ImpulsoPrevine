@@ -1,8 +1,10 @@
-import { AuthenticationError } from "@/utils/token";
 import { ZodError } from "zod/v4";
-import type { Handler, HandlerWithContext } from "./common/Handler";
+import type { Handler, HandlerWithContext } from "../common/Handler";
 import type { NextRequest } from "next/server";
-import { AuthorizationError } from "@/features/errors/backend";
+import {
+    AuthenticationError,
+    AuthorizationError,
+} from "@/features/errors/backend";
 
 export const catchErrors = <TContext>(
     handler: Handler<TContext>
@@ -12,7 +14,11 @@ export const catchErrors = <TContext>(
             console.error(error);
             if (error instanceof ZodError) {
                 return Response.json(
-                    { message: error.message },
+                    {
+                        message:
+                            "Erro na validação dos parâmetros da requisição",
+                        detail: error.issues,
+                    },
                     { status: 400 }
                 );
             }
