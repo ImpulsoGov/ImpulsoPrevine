@@ -1,12 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import {
-    AuthenticationError,
-    decodeToken,
-    getEncodedSecret,
-    getToken,
-} from "@/utils/token";
+import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
 import { captureException } from "@sentry/nextjs";
+import { AuthenticationError } from "@/features/errors/backend";
 
 interface ExtendedNextRequest extends NextRequest {
     user?: any;

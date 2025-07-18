@@ -1,89 +1,58 @@
 import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
-import {
-    AuthenticationError,
-    decodeToken,
-    getEncodedSecret,
-    getToken,
-    type JWTToken,
-} from "@/utils/token";
+import * as interceptors from "@/features/interceptors/backend";
+import { PROFILE_ID } from "@/types/profile";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
-import { z, ZodError } from "zod/v4";
-import { BadRequestError } from "../../../../utils/errors";
-import { PROFILE_ID } from "@/types/profile";
+import { z } from "zod/v4";
 
-//TODO: Criar um endpoint equivalente para APS
-//TODO: Criar um teste de integração para esta rota
-export async function POST(
-    req: NextRequest,
-    { params }: { params: Promise<{ page: string }> }
+type Context = {
+    params: Promise<{ page: string }>;
+    user: interceptors.User;
+    parsedBody: CoeqPageRequestBody;
+};
+
+async function handler(
+    _req: NextRequest,
+    { params, user, parsedBody }: Context
 ): Promise<Response> {
-    try {
-        //TODO: Extrair essa lógica para um middleware / interceptor
-        const token = getToken(req.headers);
-        const secret = getEncodedSecret();
-        const { payload } = (await decodeToken(token, secret)) as JWTToken;
-        const municipalitySusId = payload.municipio;
-        //TODO: Quando tivermos o caso de APS, vamos ter que rever como fazemos esse filtro de teamIne
-        const teamIne = payload.equipe;
-        const perfis = payload.perfis;
-        if (!perfis.includes(PROFILE_ID.COEQ)) {
-            throw new AuthenticationError(
-                "Usuário não autorizado a acessar esta rota"
-            );
-        }
+    const municipalitySusId = user.municipalitySusId;
+    const teamIne = user.teamIne;
+    const rawPage = (await params).page;
+    const pageIndex = z.coerce.number().parse(rawPage);
 
-        const rawPage = (await params).page;
-        const pageIndex = z.coerce.number().parse(rawPage);
+    const page = await diabetesBackend.getPageCoeq({
+        municipalitySusId,
+        teamIne,
+        pageIndex,
+        sorting: parsedBody.sorting,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
+    });
 
-        const body: unknown = await req.json();
-        const queryParams: CoeqPageRequestBody = queryParamsSchema.parse(body);
+    const totalRows = await diabetesBackend.getRowCountCoeq({
+        municipalitySusId,
+        teamIne,
+        searchString: parsedBody.search,
+        filters: parsedBody.filters,
+    });
 
-        const page = await diabetesBackend.getPageCoeq({
-            municipalitySusId,
-            teamIne,
-            pageIndex,
-            sorting: queryParams.sorting,
-            searchString: queryParams.search,
-            filters: queryParams.filters,
-        });
-
-        const totalRows = await diabetesBackend.getRowCountCoeq({
-            municipalitySusId,
-            teamIne,
-            searchString: queryParams.search,
-            filters: queryParams.filters,
-        });
-
-        //TODO adicionar schema de saida
-        return Response.json(
-            {
-                page,
-                totalRows: totalRows,
-            },
-            { status: 200 }
-        );
-    } catch (error) {
-        //TODO: Fazer essa lógica em algum middleware, não tem pq ficar repetindo isso em todas as rotas.
-        console.error(error);
-        if (error instanceof ZodError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-        if (error instanceof BadRequestError) {
-            return Response.json({ message: error.message }, { status: 400 });
-        }
-
-        if (error instanceof AuthenticationError) {
-            return Response.json({ message: error.message }, { status: 401 });
-        }
-
-        return Response.json(
-            {
-                message: "Erro ao consultar dados",
-                detail: (error as Error).message,
-            },
-            { status: 500 }
-        );
-    }
+    //TODO adicionar schema de saida
+    return Response.json(
+        {
+            page,
+            totalRows: totalRows,
+        },
+        { status: 200 }
+    );
 }
+
+const composed = interceptors.compose(
+    interceptors.withBodyParsing(queryParamsSchema),
+    interceptors.allowProfiles([PROFILE_ID.COEQ]),
+    interceptors.withUser,
+    interceptors.catchErrors
+);
+
+//TODO: Criar um teste de integração para esta rota
+export const POST = composed(handler);
