@@ -1,12 +1,13 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
+  output          = "../../node_modules/.prisma/productionClient"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
+  url      = env("PRODUCTION_DATABASE_URL")
+  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos","indicadores_cuidado_mockups"]
 }
 
 model DiabetesAcfItem {

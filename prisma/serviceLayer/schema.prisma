@@ -1,0 +1,41 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../../node_modules/.prisma/serviceLayerClient"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SERVICE_LAYER_DATABASE_URL")
+  schemas  = ["indicadores_cuidado_mockups"]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model lista_nominal_hipertensos {
+  cidadao_id                        Int
+  cidadao_nome                      String
+  cidadao_cpf                       String    @db.VarChar(14)
+  cidadao_cns                       String    @db.VarChar(32)
+  municipio_id_sus                  String    @db.VarChar(6)
+  municipio_nome                    String
+  total_boas_praticas_atendidas     Int
+  total_boas_praticas_disponiveis   Int
+  situacao_atualizacao_cadastral    Boolean
+  data_ultima_consulta              DateTime? @db.Date
+  data_ultimo_peso_altura           DateTime? @db.Date
+  data_ultima_visita_domiciliar     DateTime? @db.Date
+  data_ultima_afericao_pc           DateTime? @db.Date
+  situacao_quadrimestre_consulta    Int?      @db.SmallInt
+  situacao_quadrimestre_pa          Int?      @db.SmallInt
+  situacao_quadrimestre_peso_altura Int?      @db.SmallInt
+  situacao_quadrimestre_visita      Int?      @db.SmallInt
+  visitas_domiciliares_12m          Int?
+  equipe_ine                        String?
+  equipe_nome                       String?
+  equipe_microarea                  String?
+  cidadao_telefone                  String?
+  cidadao_idade                     Int
+
+  @@id([cidadao_id, municipio_id_sus], map: "pk_lista_nominal_hipertensos")
+  @@schema("indicadores_cuidado_mockups")
+}
