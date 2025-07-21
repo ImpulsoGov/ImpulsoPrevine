@@ -1,3 +1,4 @@
+import { AuthenticationError } from "@/features/errors/backend";
 import { errors, jwtVerify, type JWTPayload, type JWTVerifyResult } from "jose";
 
 export const getEncodedSecret = () => {
@@ -7,8 +8,6 @@ export const getEncodedSecret = () => {
 
     return new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 };
-
-export class AuthenticationError extends Error {}
 
 export type TokenPayload = JWTPayload & {
     perfis: Array<number>;
