@@ -6,7 +6,7 @@ export const decide = ({
 }: {
     entities?: MunicipalityIdSus;
 }): boolean => {
-    if (municipalityIdSus)
-        return allowedMunicipalities.includes(municipalityIdSus);
-    return false;
+    return (
+        !!municipalityIdSus && allowedMunicipalities.includes(municipalityIdSus)
+    );
 };
