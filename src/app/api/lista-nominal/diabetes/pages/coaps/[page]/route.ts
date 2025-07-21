@@ -5,6 +5,7 @@ import * as diabetesBackend from "@features/acf/backend/diabetes";
 import { z } from "zod/v4";
 import * as interceptors from "@/features/interceptors/backend";
 import type { NextRequest } from "next/server";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 
 type Context = {
     params: Promise<{ page: string }>;
@@ -17,6 +18,10 @@ const handler = async (
     { params, user, parsedBody }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
+
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
+
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 

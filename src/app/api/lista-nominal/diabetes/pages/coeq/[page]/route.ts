@@ -1,5 +1,6 @@
 import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
@@ -17,6 +18,9 @@ async function handler(
     { params, user, parsedBody }: Context
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
+
     const teamIne = user.teamIne;
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
