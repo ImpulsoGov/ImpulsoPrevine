@@ -4,7 +4,7 @@ import type { ProfileIdValue } from "@/types/profile";
 import { AuthorizationError } from "@/features/errors/backend";
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import { userHasAllProfiles } from "./modules/UserHasAllProfiles";
+import { userHasAnyAllowedProfile } from "./modules/UserHasAnyAllowedProfile";
 
 export const allowProfiles = (profiles: Array<ProfileIdValue>) => {
     return <TContext>(
@@ -19,7 +19,10 @@ export const allowProfiles = (profiles: Array<ProfileIdValue>) => {
             const {
                 payload: { perfis: userProfiles },
             } = (await decodeToken(token, secret)) as JWTToken;
-            const isUserAllowed = userHasAllProfiles(userProfiles, profiles);
+            const isUserAllowed = userHasAnyAllowedProfile(
+                userProfiles,
+                profiles
+            );
 
             if (!isUserAllowed) {
                 throw new AuthorizationError(

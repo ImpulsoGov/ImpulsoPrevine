@@ -4,10 +4,10 @@ import { PROFILE_ID } from "@/types/profile";
 import { AuthorizationError } from "@/features/errors/backend";
 import type { Handler } from "../../common/Handler";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
-import { userHasAllProfiles } from "../modules/UserHasAllProfiles";
+import { userHasAnyAllowedProfile } from "../modules/UserHasAnyAllowedProfile";
 
-jest.mock("../modules/UserHasAllProfiles", () => ({
-    userHasAllProfiles: jest.fn(),
+jest.mock("../modules/UserHasAnyAllowedProfile", () => ({
+    userHasAnyAllowedProfile: jest.fn(),
 }));
 jest.mock("@/utils/token", () => ({
     getToken: jest.fn(),
@@ -21,7 +21,7 @@ const secret = "encoded-secret";
 const request = {} as NextRequest;
 const context: Record<string, string> = {};
 
-const mockUserHasAllProfiles = userHasAllProfiles as jest.Mock;
+const mockUserHasAnyAllowedProfile = userHasAnyAllowedProfile as jest.Mock;
 const mockGetToken = getToken as jest.Mock;
 const mockGetEncodedSecret = getEncodedSecret as jest.Mock;
 const mockDecodeToken = decodeToken as jest.Mock;
@@ -33,7 +33,7 @@ describe("allowProfiles", () => {
         const response = { message: "Acesso permitido" } as unknown as Response;
 
         mockHandler.mockResolvedValue(response);
-        mockUserHasAllProfiles.mockReturnValue(true);
+        mockUserHasAnyAllowedProfile.mockReturnValue(true);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
         mockDecodeToken.mockResolvedValue({
@@ -53,7 +53,7 @@ describe("allowProfiles", () => {
         const userProfiles = [PROFILE_ID.COEQ, PROFILE_ID.impulser];
 
         mockHandler.mockResolvedValue({} as Response);
-        mockUserHasAllProfiles.mockReturnValue(false);
+        mockUserHasAnyAllowedProfile.mockReturnValue(false);
         mockGetToken.mockReturnValue(token);
         mockGetEncodedSecret.mockReturnValue(secret);
         mockDecodeToken.mockResolvedValue({
