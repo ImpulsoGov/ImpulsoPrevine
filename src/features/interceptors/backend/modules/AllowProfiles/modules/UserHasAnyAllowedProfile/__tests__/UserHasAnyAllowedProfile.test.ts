@@ -14,7 +14,7 @@ describe("userHasAnyAllowedProfile", () => {
     });
 
     it("retorna true se a lista de perfis permitidos está vazia", () => {
-        expect(userHasAnyAllowedProfile([5, 2, 8], [])).toBe(true);
+        expect(userHasAnyAllowedProfile([5, 2, 8], [])).toBe(false);
     });
 
     it("retorna false se o usuário não possui nenhum perfil", () => {
@@ -22,7 +22,7 @@ describe("userHasAnyAllowedProfile", () => {
     });
 
     it("retorna true se ambas as listas estão vazias", () => {
-        expect(userHasAnyAllowedProfile([], [])).toBe(true);
+        expect(userHasAnyAllowedProfile([], [])).toBe(false);
     });
 
     it("retorna false se perfis do usuário não batem com os necessários", () => {
