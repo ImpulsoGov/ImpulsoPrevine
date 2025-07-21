@@ -216,10 +216,6 @@ const config: Config = {
 
     // Whether to use watchman for file crawling
     // watchman: true,
-    transformIgnorePatterns: ["<rootDir>/node_modules/.+.(js|jsx)$"],
-    transform: {
-        "^.+\\.(t)s$": "ts-jest",
-    },
 };
 
 export default createJestConfig(config);

@@ -18,8 +18,8 @@ async function handler(
     { params, user, parsedBody }: Context
 ): Promise<Response> {
     const municipalitySusId = user.municipalitySusId;
-    const isFlag = await diabetesNewProgram();
-    if (!isFlag) return Response.json({}, { status: 404 });
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
 
     const teamIne = user.teamIne;
     const rawPage = (await params).page;

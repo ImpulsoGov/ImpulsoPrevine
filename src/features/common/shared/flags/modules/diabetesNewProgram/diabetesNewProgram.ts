@@ -8,7 +8,5 @@ export type MunicipalityIdSus = string | undefined;
 export const diabetesNewProgram = flag<boolean, MunicipalityIdSus>({
     key: "diabetesNewProgram",
     identify: identify,
-    decide({ entities: municipalityIdSus }) {
-        return decide({ entities: municipalityIdSus });
-    },
+    decide: decide,
 });

@@ -19,8 +19,8 @@ const handler = async (
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
 
-    const isFlag = await diabetesNewProgram();
-    if (!isFlag) return Response.json({}, { status: 404 });
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
 
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);

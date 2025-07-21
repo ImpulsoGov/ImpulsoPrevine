@@ -4,7 +4,7 @@ const allowedMunicipalities = ["111111"];
 export const decide = ({
     entities: municipalityIdSus,
 }: {
-    entities: MunicipalityIdSus;
+    entities?: MunicipalityIdSus;
 }): boolean => {
     if (municipalityIdSus)
         return allowedMunicipalities.includes(municipalityIdSus);

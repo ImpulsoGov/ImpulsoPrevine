@@ -12,10 +12,8 @@ const handler = async (
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
     const teamIne = user.teamIne;
-    const isFlag = await diabetesNewProgram.run({
-        identify: municipalitySusId,
-    });
-    if (!isFlag) return Response.json({}, { status: 404 });
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
     const filters = await diabetesBackend.filterOptionsCoeq(
         municipalitySusId,
         teamIne
