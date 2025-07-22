@@ -4,7 +4,7 @@ import type {
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
 import type { DiabetesAcfItem } from "@prisma/client";
-import { prisma } from "@prisma/prismaClient";
+import { prisma } from "@prisma/production/prismaClient";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 
 const fieldOptionsCoeq = async <TField extends keyof DiabetesAcfItem>(

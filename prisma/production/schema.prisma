@@ -7,7 +7,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("PRODUCTION_DATABASE_URL")
-  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos","indicadores_cuidado_mockups"]
+  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
 }
 
 model DiabetesAcfItem {

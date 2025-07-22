@@ -1,4 +1,4 @@
-import { prisma } from "@prisma/prismaClient";
+import { prisma } from "@prisma/production/prismaClient";
 import type { NextRequest } from "next/server";
 import * as interceptors from "@/features/interceptors/backend";
 
