@@ -11,31 +11,22 @@ datasource db {
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model lista_nominal_hipertensos {
-  cidadao_id                        Int
-  cidadao_nome                      String
-  cidadao_cpf                       String    @db.VarChar(14)
-  cidadao_cns                       String    @db.VarChar(32)
-  municipio_id_sus                  String    @db.VarChar(6)
-  municipio_nome                    String
-  total_boas_praticas_atendidas     Int
-  total_boas_praticas_disponiveis   Int
-  situacao_atualizacao_cadastral    Boolean
-  data_ultima_consulta              DateTime? @db.Date
-  data_ultimo_peso_altura           DateTime? @db.Date
-  data_ultima_visita_domiciliar     DateTime? @db.Date
-  data_ultima_afericao_pc           DateTime? @db.Date
-  situacao_quadrimestre_consulta    Int?      @db.SmallInt
-  situacao_quadrimestre_pa          Int?      @db.SmallInt
-  situacao_quadrimestre_peso_altura Int?      @db.SmallInt
-  situacao_quadrimestre_visita      Int?      @db.SmallInt
-  visitas_domiciliares_12m          Int?
-  equipe_ine                        String?
-  equipe_nome                       String?
-  equipe_microarea                  String?
-  cidadao_telefone                  String?
-  cidadao_idade                     Int
+model HypertensionAcfItem {
+  patientId                          String    @db.Char(11) @map("cidadao_id")
+  municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
+  municipalityName                   String    @map("municipio_nome")
+  patientName                        String    @map("cidadao_nome")
+  patientCpf                         String    @db.VarChar(14) @map("cidadao_cpf")
+  latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta")
+  appointmentStatusByQuarter         Int?      @db.SmallInt @map("situacao_quadrimestre_consulta")
+  latestExamRequestDate              DateTime? @db.Date @map("data_ultima_afericao_pc")
+  latestExamRequestStatusByQuarter   Int?      @db.SmallInt @map("situacao_quadrimestre_pa")
+  careTeamName                       String?   @map("equipe_nome")
+  microAreaName                      String?   @map("equipe_microarea")
+  patientPhoneNumber                 String?   @map("cidadao_telefone")
+  patientAge                         Int       @map("cidadao_idade")
 
-  @@id([cidadao_id, municipio_id_sus], map: "pk_lista_nominal_hipertensos")
+  @@id([patientId, municipalitySusId], map: "pk_lista_nominal_hipertensos")
   @@schema("indicadores_cuidado_mockups")
+  @@map("lista_nominal_hipertensos")
 }

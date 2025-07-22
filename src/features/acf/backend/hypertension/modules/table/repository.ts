@@ -1,68 +1,33 @@
+// TODO: Criar e importar tipos de hipertensão
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
-} from "@/features/acf/shared/diabetes/schema";
-import type { DiabetesAcfItem } from "@prisma/client";
-import { prisma } from "@prisma/production/prismaClient";
+} from "@/features/acf/shared/hypertension/schema";
+import type { HypertensionAcfItem } from ".prisma/serviceLayerClient";
+import { prisma } from "@prisma/serviceLayer/prismaClient";
+import type {
+    GenericQueryWhereCoaps,
+    GenericQueryWhereCoeq,
+} from "@/features/acf/backend/common/PageParams";
+import { addFilterField } from "@/features/acf/backend/common/addFilterField";
+import { addSearchField } from "@/features/acf/backend/common/addSearchField";
+
 const pageSize = 8;
-
-type QueryWhere = {
-    patientStatus?: { in: Array<string> };
-    conditionIdentifiedBy?: { in: Array<string> };
-    communityHealthWorker?: { in: Array<string> };
-    patientAgeRange?: { in: Array<string> };
-    municipalitySusId: string;
-    patientName?: { contains: string };
-};
-
-type QueryWhereCoaps = QueryWhere & {
-    careTeamName?: { in: Array<string> };
-};
-
-type QueryWhereCoeq = QueryWhere & {
-    careTeamIne: string;
-};
-
-const addFilterFieldCoaps = (
-    where: QueryWhereCoaps,
-    filter: CoapsFilters,
-    field: keyof CoapsFilters
-): void => {
-    if (filter[field].length > 0) {
-        where[field] = { in: filter[field] };
-    }
-};
-
-const addFilterFieldCoeq = (
-    where: QueryWhereCoeq,
-    filter: CoeqFilters,
-    field: keyof CoeqFilters
-): void => {
-    if (filter[field].length > 0) {
-        where[field] = { in: filter[field] };
-    }
-};
-
-const addSearchField = (where: QueryWhere, search: string): void => {
-    if (search.length > 0) {
-        where["patientName"] = { contains: search };
-    }
-};
 
 const queryWhereCoaps = (
     filter: CoapsFilters,
     municipalitySusId: string,
     search: string
-): QueryWhere => {
-    const querys = {} as QueryWhereCoaps;
-
-    addFilterFieldCoaps(querys, filter, "patientStatus");
-    addFilterFieldCoaps(querys, filter, "communityHealthWorker");
-    addFilterFieldCoaps(querys, filter, "patientAgeRange");
-    addFilterFieldCoaps(querys, filter, "conditionIdentifiedBy");
-    addFilterFieldCoaps(querys, filter, "careTeamName");
+): GenericQueryWhereCoaps<CoapsFilters> => {
+    const querys = {} as GenericQueryWhereCoaps<CoapsFilters>;
+    //TODO: Criar loop para evitar repetição
+    addFilterField(querys, filter, "microArea");
+    addFilterField(querys, filter, "appointmentStatusByQuarter");
+    addFilterField(querys, filter, "latestExamRequestStatusByQuarter");
+    addFilterField(querys, filter, "patientAgeRange");
+    addFilterField(querys, filter, "careTeamName");
 
     querys.municipalitySusId = municipalitySusId;
     addSearchField(querys, search);
@@ -75,12 +40,12 @@ const queryWhereCoeq = (
     municipalitySusId: string,
     teamIne: string,
     search: string
-): QueryWhere => {
-    const querys = {} as QueryWhereCoeq;
-    addFilterFieldCoeq(querys, filter, "patientStatus");
-    addFilterFieldCoeq(querys, filter, "communityHealthWorker");
-    addFilterFieldCoeq(querys, filter, "patientAgeRange");
-    addFilterFieldCoeq(querys, filter, "conditionIdentifiedBy");
+): GenericQueryWhereCoeq<CoeqFilters> => {
+    const querys = {} as GenericQueryWhereCoeq<CoeqFilters>;
+    addFilterField(querys, filter, "microArea");
+    addFilterField(querys, filter, "appointmentStatusByQuarter");
+    addFilterField(querys, filter, "latestExamRequestStatusByQuarter");
+    addFilterField(querys, filter, "patientAgeRange");
     querys.municipalitySusId = municipalitySusId;
     querys.careTeamIne = teamIne;
     addSearchField(querys, search);
@@ -95,8 +60,8 @@ export const pageCoeq = async (
     filters: CoeqFilters,
     sorting: CoeqSort,
     searchString: string
-): Promise<ReadonlyArray<DiabetesAcfItem>> => {
-    return await prisma.diabetesAcfItem.findMany({
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
         where: queryWhereCoeq(
             filters,
             municipalitySusId,
@@ -120,8 +85,8 @@ export const pageCoaps = async (
     filters: CoapsFilters,
     sorting: CoapsSort,
     searchString: string
-): Promise<ReadonlyArray<DiabetesAcfItem>> => {
-    return await prisma.diabetesAcfItem.findMany({
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
         where: queryWhereCoaps(
             filters,
             municipalitySusId,
@@ -143,7 +108,7 @@ export const rowCountCoaps = async (
     filters: CoapsFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.diabetesAcfItem.count({
+    return await prisma.hypertensionAcfItem.count({
         where: queryWhereCoaps(
             filters,
             municipalitySusId,
@@ -158,7 +123,7 @@ export const rowCountCoeq = async (
     filters: CoeqFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.diabetesAcfItem.count({
+    return await prisma.hypertensionAcfItem.count({
         where: queryWhereCoeq(
             filters,
             municipalitySusId,

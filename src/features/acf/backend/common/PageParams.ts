@@ -4,16 +4,19 @@ type PageParams = {
     searchString?: string;
 };
 
-export type GenericQueryWhere<TSomething> = {
-    [K in keyof TSomething]: { in: Array<string> };
+export type GenericQueryWhere<TFilters> = {
+    [K in keyof TFilters]: { in: Array<string> };
 } & {
     municipalitySusId: string;
     patientName?: { contains: string };
 };
 
-// export type QueryWhereCoeq = GenericQueryWhere<> & {
-//     careTeamIne: string;
-// };
+export type GenericQueryWhereCoaps<TFilters> = GenericQueryWhere<TFilters>;
+
+export type GenericQueryWhereCoeq<TFilters> = GenericQueryWhere<TFilters> & {
+    careTeamIne: string;
+};
+
 export type PageParamsCoaps<TSorting, TFilters> = PageParams & {
     sorting?: TSorting;
     filters?: TFilters;
