@@ -47,7 +47,7 @@ const queryWhereCoeq = (
     addFilterField(querys, filter, "latestExamRequestStatusByQuarter");
     addFilterField(querys, filter, "patientAgeRange");
     querys.municipalitySusId = municipalitySusId;
-    querys.careTeamIne = teamIne;
+    querys.careTeamName = teamIne;
     addSearchField(querys, search);
 
     return querys;

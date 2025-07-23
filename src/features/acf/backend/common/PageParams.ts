@@ -5,7 +5,9 @@ type PageParams = {
 };
 
 export type GenericQueryWhere<TFilters> = {
-    [K in keyof TFilters]: { in: Array<string> };
+    [K in keyof TFilters]: TFilters[K] extends Array<string>
+        ? { in: Array<string> }
+        : { in: Array<number> };
 } & {
     municipalitySusId: string;
     patientName?: { contains: string };
@@ -14,7 +16,7 @@ export type GenericQueryWhere<TFilters> = {
 export type GenericQueryWhereCoaps<TFilters> = GenericQueryWhere<TFilters>;
 
 export type GenericQueryWhereCoeq<TFilters> = GenericQueryWhere<TFilters> & {
-    careTeamIne: string;
+    careTeamName: string;
 };
 
 export type PageParamsCoaps<TSorting, TFilters> = PageParams & {
