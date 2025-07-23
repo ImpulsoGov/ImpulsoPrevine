@@ -22,12 +22,9 @@ const queryWhereCoaps = (
     search: string
 ): GenericQueryWhereCoaps<CoapsFilters> => {
     const querys = {} as GenericQueryWhereCoaps<CoapsFilters>;
-    //TODO: Criar loop para evitar repetição
-    addFilterField(querys, filter, "microArea");
-    addFilterField(querys, filter, "appointmentStatusByQuarter");
-    addFilterField(querys, filter, "latestExamRequestStatusByQuarter");
-    addFilterField(querys, filter, "patientAgeRange");
-    addFilterField(querys, filter, "careTeamName");
+    Object.keys(filter).forEach((key) => {
+        addFilterField(querys, filter, key as keyof CoapsFilters);
+    });
 
     querys.municipalitySusId = municipalitySusId;
     addSearchField(querys, search);
@@ -42,10 +39,9 @@ const queryWhereCoeq = (
     search: string
 ): GenericQueryWhereCoeq<CoeqFilters> => {
     const querys = {} as GenericQueryWhereCoeq<CoeqFilters>;
-    addFilterField(querys, filter, "microArea");
-    addFilterField(querys, filter, "appointmentStatusByQuarter");
-    addFilterField(querys, filter, "latestExamRequestStatusByQuarter");
-    addFilterField(querys, filter, "patientAgeRange");
+    Object.keys(filter).forEach((key) => {
+        addFilterField(querys, filter, key as keyof CoeqFilters);
+    });
     querys.municipalitySusId = municipalitySusId;
     querys.careTeamName = teamIne;
     addSearchField(querys, search);
