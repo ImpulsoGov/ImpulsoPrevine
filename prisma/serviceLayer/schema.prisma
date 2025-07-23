@@ -12,10 +12,10 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model HypertensionAcfItem {
-  patientId                          String    @db.Char(11) @map("cidadao_id")
+  patientId                          Int       @map("cidadao_id")
   municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
   municipalityName                   String    @map("municipio_nome")
-  patientName                        String    @map("cidadao_nome")
+  patientName                        String   @map("cidadao_nome")
   patientCpf                         String    @db.VarChar(14) @map("cidadao_cpf")
   latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta")
   appointmentStatusByQuarter         Int?      @db.SmallInt @map("situacao_quadrimestre_consulta")

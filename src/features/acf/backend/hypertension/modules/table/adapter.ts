@@ -16,7 +16,7 @@ const dbToModel = (
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
-        patientName: hypertensionRow.patientName,
+        patientName: hypertensionRow.patientName ?? "",
         patientCpf: hypertensionRow.patientCpf,
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter: hypertensionRow.appointmentStatusByQuarter,

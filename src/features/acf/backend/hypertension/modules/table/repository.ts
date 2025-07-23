@@ -1,4 +1,3 @@
-// TODO: Criar e importar tipos de hipertensão
 import type {
     CoapsFilters,
     CoapsSort,
@@ -10,10 +9,11 @@ import { prisma } from "@prisma/serviceLayer/prismaClient";
 import type {
     GenericQueryWhereCoaps,
     GenericQueryWhereCoeq,
+    AreKeysNullable,
 } from "@/features/acf/backend/common/PageParams";
 import { addFilterField } from "@/features/acf/backend/common/addFilterField";
 import { addSearchField } from "@/features/acf/backend/common/addSearchField";
-
+import type { HypertensionAcfItem as HypertensionFields } from "@/features/acf/shared/hypertension/model";
 const pageSize = 8;
 
 const queryWhereCoaps = (
@@ -39,6 +39,8 @@ const queryWhereCoeq = (
     search: string
 ): GenericQueryWhereCoeq<CoeqFilters> => {
     const querys = {} as GenericQueryWhereCoeq<CoeqFilters>;
+    // TODO: criar uma função própria que retorna as chaves de um objeto como string literal
+    //  Ex: function typedKeys<T extends object>(obj: T): Array<keyof T> {return Object.keys(obj) as Array<keyof T>;}
     Object.keys(filter).forEach((key) => {
         addFilterField(querys, filter, key as keyof CoeqFilters);
     });
@@ -57,6 +59,8 @@ export const pageCoeq = async (
     sorting: CoeqSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    const isFieldNullable = nullableFields[sorting.field].nullable;
+
     return await prisma.hypertensionAcfItem.findMany({
         where: queryWhereCoeq(
             filters,
@@ -64,15 +68,34 @@ export const pageCoeq = async (
             teamIne,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: {
-            [sorting.field]: {
-                sort: sorting.sort,
-                nulls: sorting.sort == "asc" ? "first" : "last",
-            },
-        },
+        orderBy: isFieldNullable
+            ? {
+                  [sorting.field]: {
+                      sort: sorting.sort,
+                      nulls: sorting.sort == "asc" ? "first" : "last",
+                  },
+              }
+            : { [sorting.field]: sorting.sort },
         take: pageSize,
         skip: pageSize * page,
     });
+};
+
+type NullableFields = AreKeysNullable<
+    Omit<HypertensionFields, "municipalitySusId" | "municipalityName">
+>;
+
+const nullableFields: NullableFields = {
+    patientName: { nullable: false },
+    latestAppointmentDate: { nullable: true },
+    appointmentStatusByQuarter: { nullable: true },
+    latestExamRequestStatusByQuarter: { nullable: true },
+    careTeamName: { nullable: true },
+    microAreaName: { nullable: true },
+    patientPhoneNumber: { nullable: true },
+    patientAge: { nullable: false },
+    latestExamRequestDate: { nullable: true },
+    patientCpf: { nullable: false },
 };
 
 export const pageCoaps = async (
@@ -82,18 +105,21 @@ export const pageCoaps = async (
     sorting: CoapsSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    const isFieldNullable = nullableFields[sorting.field].nullable;
     return await prisma.hypertensionAcfItem.findMany({
         where: queryWhereCoaps(
             filters,
             municipalitySusId,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: {
-            [sorting.field]: {
-                sort: sorting.sort,
-                nulls: sorting.sort == "asc" ? "first" : "last",
-            },
-        },
+        orderBy: isFieldNullable
+            ? {
+                  [sorting.field]: {
+                      sort: sorting.sort,
+                      nulls: sorting.sort == "asc" ? "first" : "last",
+                  },
+              }
+            : { [sorting.field]: sorting.sort },
         take: pageSize,
         skip: pageSize * page,
     });

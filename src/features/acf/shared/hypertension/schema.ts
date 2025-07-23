@@ -67,3 +67,20 @@ export const coapsSort = z.object({
 export type CoapsSort = z.infer<typeof coapsSort>;
 
 export type CoeqSort = z.infer<typeof coeqSort>;
+
+export const coeqPageRequestBody = z.object({
+    filters: z.optional(coeqFilters),
+    sorting: z.optional(coeqSort),
+    search: z.optional(z.string()),
+});
+
+export type CoeqPageRequestBody = z.infer<typeof coeqPageRequestBody>;
+
+// TODO criar um schema com os dados compoartilhado entre coaps e coeq
+export const coapsPageRequestBody = z.object({
+    filters: z.optional(coapsFilters),
+    sorting: z.optional(coapsSort),
+    search: z.optional(z.string()),
+});
+
+export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;
