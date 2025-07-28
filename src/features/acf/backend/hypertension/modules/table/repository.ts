@@ -45,7 +45,7 @@ const queryWhereCoeq = (
         addFilterField(querys, filter, key as keyof CoeqFilters);
     });
     querys.municipalitySusId = municipalitySusId;
-    querys.careTeamName = teamIne;
+    querys.careTeamIne = teamIne;
     addSearchField(querys, search);
 
     return querys;

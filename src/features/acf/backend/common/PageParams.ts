@@ -25,7 +25,7 @@ export type GenericQueryWhere<TFilters> = {
 export type GenericQueryWhereCoaps<TFilters> = GenericQueryWhere<TFilters>;
 
 export type GenericQueryWhereCoeq<TFilters> = GenericQueryWhere<TFilters> & {
-    careTeamName: string;
+    careTeamIne: string;
 };
 
 export type PageParamsCoaps<TSorting, TFilters> = PageParams & {
