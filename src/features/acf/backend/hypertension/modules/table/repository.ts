@@ -88,8 +88,8 @@ type NullableFields = AreKeysNullable<
 const nullableFields: NullableFields = {
     patientName: { nullable: false },
     latestAppointmentDate: { nullable: true },
-    appointmentStatusByQuarter: { nullable: true },
-    latestExamRequestStatusByQuarter: { nullable: true },
+    appointmentStatusByQuarter: { nullable: false },
+    latestExamRequestStatusByQuarter: { nullable: false },
     careTeamName: { nullable: true },
     microAreaName: { nullable: true },
     patientPhoneNumber: { nullable: true },

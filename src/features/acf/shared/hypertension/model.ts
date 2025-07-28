@@ -4,9 +4,9 @@ export type HypertensionAcfItem = {
     patientName: string;
     patientCpf: string;
     latestAppointmentDate: Date | null;
-    appointmentStatusByQuarter: number | null;
+    appointmentStatusByQuarter: number;
     latestExamRequestDate: Date | null;
-    latestExamRequestStatusByQuarter: number | null;
+    latestExamRequestStatusByQuarter: number;
     careTeamName: string | null;
     microAreaName: string | null;
     patientPhoneNumber: string | null;
