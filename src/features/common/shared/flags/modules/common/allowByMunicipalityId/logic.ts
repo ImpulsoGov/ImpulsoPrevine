@@ -1,26 +1,7 @@
 import { decodeToken } from "@/utils/token";
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import type { MunicipalityIdSus } from "../../diabetesNewProgram";
-
-type CookieTokenType = {
-    user: {
-        access_token: string;
-        token_type: string;
-        mail: string;
-        perfis: Array<number>;
-        nome: string;
-        id: string;
-        cargo: string;
-        municipio: string;
-        equipe: string;
-        municipio_id_sus: string;
-    };
-    sub: string;
-    iat: number;
-    exp: number;
-    jti: string;
-};
+import type { CookieToken, MunicipalityIdSus } from "./model";
 
 export const municipalityIdSusFromHeader = async (
     authHeader: string,
@@ -37,6 +18,7 @@ export const municipalityIdSusFromHeader = async (
         return undefined;
     }
 };
+
 export const municipalityIdSusFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,
     secret: string
@@ -51,6 +33,6 @@ export const municipalityIdSusFromCookie = async (
         secret: secret,
     });
     if (!decoded) return undefined;
-    const tokenDecoded = decoded as CookieTokenType;
+    const tokenDecoded = decoded as CookieToken;
     return tokenDecoded.user.municipio_id_sus;
 };

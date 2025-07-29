@@ -1,5 +1,5 @@
-import { municipalityIdSusFromHeader } from "../getMunicipalityIdSus";
 import { decodeToken } from "@/utils/token";
+import { municipalityIdSusFromHeader } from "../logic";
 
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));
