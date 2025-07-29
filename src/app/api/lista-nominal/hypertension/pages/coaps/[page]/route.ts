@@ -1,10 +1,11 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/hypertension/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/hypertension/schema";
+import * as flags from "@/features/common/shared/flags";
+import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import * as hypertensionBackend from "@features/acf/backend/hypertension";
-import { z } from "zod/v4";
-import * as interceptors from "@/features/interceptors/backend";
 import type { NextRequest } from "next/server";
+import { z } from "zod/v4";
 
 type Context = {
     params: Promise<{ page: string }>;
@@ -47,6 +48,7 @@ const handler = async (
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
+    interceptors.allowByFlag(flags.hypertensionNewProgram),
     interceptors.allowProfiles([PROFILE_ID.COAPS]),
     interceptors.withUser,
     interceptors.catchErrors

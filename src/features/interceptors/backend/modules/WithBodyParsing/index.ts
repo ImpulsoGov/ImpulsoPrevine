@@ -6,6 +6,8 @@ type ContextWithParsedBody<TContext, TSchema extends z.ZodType> = TContext & {
     parsedBody: TSchema;
 };
 
+//TODO: Este interceptor só funciona se for o primeiro no compose.
+//      Precisamos descobrir o que tá rolando, pra não fazer o parse do body em casos em que o request não deveria passar
 export const withBodyParsing = <TSchema extends z.ZodType>(schema: TSchema) => {
     return <TContext>(
         handler: Handler<TContext>
