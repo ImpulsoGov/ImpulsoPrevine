@@ -3,7 +3,7 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
-import type { DiabetesAcfItem } from "@prisma/client";
+import type { DiabetesAcfItem } from ".prisma/productionClient";
 import { prisma } from "@prisma/production/prismaClient";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 

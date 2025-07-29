@@ -29,4 +29,4 @@ jobs:
               run: test -d node_modules/.prisma/productionClient || (echo "Prisma client not generated for Production" && exit 1)
               # TODO remover execução apenas em /features no futuro
             - name: Run ESLint
-              run: yarn eslint src/features --ext .ts,.tsx --debug
+              run: yarn eslint src/features --ext .ts,.tsx
