@@ -4,7 +4,7 @@ import type {
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/diabetes/schema";
-import type { DiabetesAcfItem } from "@prisma/client";
+import type { DiabetesAcfItem } from ".prisma/productionClient";
 import { prisma } from "@prisma/production/prismaClient";
 const pageSize = 8;
 
