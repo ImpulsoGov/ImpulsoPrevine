@@ -1,15 +1,18 @@
-import type { GenericQueryWhere } from "./PageParams";
-
 export const addFilterField = <
-    TFilters extends Record<string, Array<string | number>>,
+    TQueryInput extends object,
+    TFilters extends Record<string, Array<unknown>>,
 >(
-    where: GenericQueryWhere<TFilters>,
+    where: TQueryInput,
     filter: TFilters,
     field: keyof TFilters
-): void => {
+): TQueryInput => {
     if (filter[field].length > 0) {
-        where[field] = {
-            in: filter[field],
-        } as unknown as GenericQueryWhere<TFilters>[typeof field];
+        return Object.assign(where, {
+            field: {
+                in: filter[field],
+            },
+        });
     }
+
+    return where;
 };

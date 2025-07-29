@@ -1,3 +1,9 @@
+import type {
+    PageParamsCoaps,
+    PageParamsCoeq,
+    RowCountParamsCoaps,
+    RowCountParamsCoeq,
+} from "@/features/acf/backend/common/Defaults";
 import type { DiabetesAcfItem } from "@/features/acf/shared/diabetes/model";
 import type {
     CoapsFilters,
@@ -7,12 +13,6 @@ import type {
 } from "@/features/acf/shared/diabetes/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
-import type {
-    PageParamsCoaps,
-    PageParamsCoeq,
-    RowCountParamsCoaps,
-    RowCountParamsCoeq,
-} from "@/features/acf/backend/common/PageParams";
 
 const defaultCoeqFilters: CoeqFilters = {
     patientStatus: [],

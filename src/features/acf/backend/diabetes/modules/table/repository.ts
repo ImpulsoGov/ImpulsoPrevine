@@ -1,32 +1,16 @@
+import type { DiabetesAcfItem, Prisma } from ".prisma/pb2024Client";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/diabetes/schema";
-import type { DiabetesAcfItem } from "@prisma/client";
 import { prisma } from "@prisma/pb2024/prismaClient";
+
 const pageSize = 8;
 
-type QueryWhere = {
-    patientStatus?: { in: Array<string> };
-    conditionIdentifiedBy?: { in: Array<string> };
-    communityHealthWorker?: { in: Array<string> };
-    patientAgeRange?: { in: Array<string> };
-    municipalitySusId: string;
-    patientName?: { contains: string };
-};
-
-type QueryWhereCoaps = QueryWhere & {
-    careTeamName?: { in: Array<string> };
-};
-
-type QueryWhereCoeq = QueryWhere & {
-    careTeamIne: string;
-};
-
 const addFilterFieldCoaps = (
-    where: QueryWhereCoaps,
+    where: Prisma.DiabetesAcfItemWhereInput,
     filter: CoapsFilters,
     field: keyof CoapsFilters
 ): void => {
@@ -36,7 +20,7 @@ const addFilterFieldCoaps = (
 };
 
 const addFilterFieldCoeq = (
-    where: QueryWhereCoeq,
+    where: Prisma.DiabetesAcfItemWhereInput,
     filter: CoeqFilters,
     field: keyof CoeqFilters
 ): void => {
@@ -45,7 +29,10 @@ const addFilterFieldCoeq = (
     }
 };
 
-const addSearchField = (where: QueryWhere, search: string): void => {
+const addSearchField = (
+    where: Prisma.DiabetesAcfItemWhereInput,
+    search: string
+): void => {
     if (search.length > 0) {
         where["patientName"] = { contains: search };
     }
@@ -55,8 +42,8 @@ const queryWhereCoaps = (
     filter: CoapsFilters,
     municipalitySusId: string,
     search: string
-): QueryWhere => {
-    const querys = {} as QueryWhereCoaps;
+): Prisma.DiabetesAcfItemWhereInput => {
+    const querys = {} as Prisma.DiabetesAcfItemWhereInput;
 
     addFilterFieldCoaps(querys, filter, "patientStatus");
     addFilterFieldCoaps(querys, filter, "communityHealthWorker");
@@ -75,8 +62,8 @@ const queryWhereCoeq = (
     municipalitySusId: string,
     teamIne: string,
     search: string
-): QueryWhere => {
-    const querys = {} as QueryWhereCoeq;
+): Prisma.DiabetesAcfItemWhereInput => {
+    const querys = {} as Prisma.DiabetesAcfItemWhereInput;
     addFilterFieldCoeq(querys, filter, "patientStatus");
     addFilterFieldCoeq(querys, filter, "communityHealthWorker");
     addFilterFieldCoeq(querys, filter, "patientAgeRange");

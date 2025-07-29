@@ -1,5 +1,5 @@
-import { z } from "zod/v4";
 import * as model from "@/features/acf/shared/hypertension/model";
+import { z } from "zod/v4";
 
 export const careTeamName = z.string();
 export type CareTeamName = z.infer<typeof careTeamName>;
@@ -21,7 +21,7 @@ export const patientAgeRange = z.number();
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
 export const sharedFilters = z.object({
-    microArea: z.array(microArea),
+    microAreaName: z.array(microArea),
     appointmentStatusByQuarter: z.array(appointmentStatusByQuarter),
     latestExamRequestStatusByQuarter: z.array(latestExamRequestStatusByQuarter),
     patientAgeRange: z.array(patientAgeRange),

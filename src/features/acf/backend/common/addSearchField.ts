@@ -1,13 +1,9 @@
-import type {
-    GenericQueryWhereCoaps,
-    GenericQueryWhereCoeq,
-} from "./PageParams";
-
-export const addSearchField = <TFilters>(
-    where: GenericQueryWhereCoaps<TFilters> | GenericQueryWhereCoeq<TFilters>,
+export const addSearchField = <TQueryInput extends object>(
+    where: TQueryInput,
     search: string
-): void => {
+): TQueryInput => {
     if (search.length > 0) {
-        where["patientName"] = { contains: search };
+        return Object.assign(where, { patientName: { contains: search } });
     }
+    return where;
 };

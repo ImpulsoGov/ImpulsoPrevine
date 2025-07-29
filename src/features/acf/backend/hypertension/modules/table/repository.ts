@@ -1,54 +1,47 @@
+import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
+import type { HypertensionAcfItem as HypertensionFields } from "@/features/acf/shared/hypertension/model";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/hypertension/schema";
-import type { HypertensionAcfItem } from ".prisma/serviceLayerClient";
+import type { AreKeysNullable } from "@/features/common/shared/types";
 import { prisma } from "@prisma/serviceLayer/prismaClient";
-import type {
-    GenericQueryWhereCoaps,
-    GenericQueryWhereCoeq,
-    AreKeysNullable,
-} from "@/features/acf/backend/common/PageParams";
-import { addFilterField } from "@/features/acf/backend/common/addFilterField";
-import { addSearchField } from "@/features/acf/backend/common/addSearchField";
-import type { HypertensionAcfItem as HypertensionFields } from "@/features/acf/shared/hypertension/model";
+import { addFilterField } from "../../../common/addFilterField";
+import { addSearchField } from "../../../common/addSearchField";
 const pageSize = 8;
 
-const queryWhereCoaps = (
-    filter: CoapsFilters,
+//TODO: Mover pra algum módulo QueryBuilder ou parecido, junto com addSearchField e addFilterField
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+const whereInput = <TFilters extends Record<string, Array<unknown>>>(
+    filter: TFilters,
     municipalitySusId: string,
     search: string
-): GenericQueryWhereCoaps<CoapsFilters> => {
-    const querys = {} as GenericQueryWhereCoaps<CoapsFilters>;
-    Object.keys(filter).forEach((key) => {
-        addFilterField(querys, filter, key as keyof CoapsFilters);
-    });
+): Prisma.HypertensionAcfItemWhereInput => {
+    const queries: Prisma.HypertensionAcfItemWhereInput = Object.keys(
+        filter
+    ).reduce((acc, key) => {
+        return addFilterField(acc, filter, key as keyof CoeqFilters);
+    }, {});
 
-    querys.municipalitySusId = municipalitySusId;
-    addSearchField(querys, search);
+    queries.municipalitySusId = municipalitySusId;
+    addSearchField(queries, search);
 
-    return querys;
+    return queries;
 };
 
-const queryWhereCoeq = (
+const whereInputCoaps = whereInput;
+
+const whereInputCoeq = (
     filter: CoeqFilters,
     municipalitySusId: string,
     teamIne: string,
     search: string
-): GenericQueryWhereCoeq<CoeqFilters> => {
-    const querys = {} as GenericQueryWhereCoeq<CoeqFilters>;
-    // TODO: criar uma função própria que retorna as chaves de um objeto como string literal
-    //  Ex: function typedKeys<T extends object>(obj: T): Array<keyof T> {return Object.keys(obj) as Array<keyof T>;}
-    Object.keys(filter).forEach((key) => {
-        addFilterField(querys, filter, key as keyof CoeqFilters);
-    });
-    querys.municipalitySusId = municipalitySusId;
-    querys.careTeamIne = teamIne;
-    addSearchField(querys, search);
-
-    return querys;
+): Prisma.HypertensionAcfItemWhereInput => {
+    const result = whereInput(filter, municipalitySusId, search);
+    result.careTeamIne = teamIne;
+    return result;
 };
 
 export const pageCoeq = async (
@@ -62,7 +55,7 @@ export const pageCoeq = async (
     const isFieldNullable = nullableFields[sorting.field].nullable;
 
     return await prisma.hypertensionAcfItem.findMany({
-        where: queryWhereCoeq(
+        where: whereInputCoeq(
             filters,
             municipalitySusId,
             teamIne,
@@ -107,7 +100,7 @@ export const pageCoaps = async (
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
     const isFieldNullable = nullableFields[sorting.field].nullable;
     return await prisma.hypertensionAcfItem.findMany({
-        where: queryWhereCoaps(
+        where: whereInputCoaps(
             filters,
             municipalitySusId,
             searchString.toLocaleUpperCase()
@@ -131,7 +124,7 @@ export const rowCountCoaps = async (
     search: string
 ): Promise<number> => {
     return await prisma.hypertensionAcfItem.count({
-        where: queryWhereCoaps(
+        where: whereInputCoaps(
             filters,
             municipalitySusId,
             search.toLocaleUpperCase()
@@ -146,7 +139,7 @@ export const rowCountCoeq = async (
     search: string
 ): Promise<number> => {
     return await prisma.hypertensionAcfItem.count({
-        where: queryWhereCoeq(
+        where: whereInputCoeq(
             filters,
             municipalitySusId,
             teamIne,

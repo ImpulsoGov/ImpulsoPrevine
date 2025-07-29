@@ -1,3 +1,10 @@
+import type {
+    PageParamsCoaps,
+    PageParamsCoeq,
+    RowCountParamsCoaps,
+    RowCountParamsCoeq,
+} from "@/features/acf/backend/common/Defaults";
+import { defaultSorting } from "@/features/acf/backend/common/Defaults";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type {
     CoapsFilters,
@@ -7,15 +14,8 @@ import type {
 } from "@/features/acf/shared/hypertension/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
-import type {
-    PageParamsCoaps,
-    PageParamsCoeq,
-    RowCountParamsCoaps,
-    RowCountParamsCoeq,
-} from "@/features/acf/backend/common/PageParams";
-import { defaultSorting } from "@/features/acf/backend/common/PageParams";
 const defaultCoeqFilters: CoeqFilters = {
-    microArea: [],
+    microAreaName: [],
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
     patientAgeRange: [],
