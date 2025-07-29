@@ -24,7 +24,7 @@ const fieldOptionsCoeq = async <TField extends keyof DiabetesAcfItem>(
     });
     return result.map((item) => item[field]);
 };
-// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
 const fieldOptionsCoaps = async <TField extends keyof DiabetesAcfItem>(
     field: TField,
     municipalitySusId: string
