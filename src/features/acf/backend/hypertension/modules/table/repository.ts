@@ -8,28 +8,9 @@ import type {
 } from "@/features/acf/shared/hypertension/schema";
 import type { AreKeysNullable } from "@/features/common/shared/types";
 import { prisma } from "@prisma/serviceLayer/prismaClient";
-import { addFilterField } from "../../../common/addFilterField";
-import { addSearchField } from "../../../common/addSearchField";
+import { whereInput } from "@/features/acf/backend/common/QueryBuilder";
+
 const pageSize = 8;
-
-//TODO: Mover pra algum módulo QueryBuilder ou parecido, junto com addSearchField e addFilterField
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-const whereInput = <TFilters extends Record<string, Array<unknown>>>(
-    filter: TFilters,
-    municipalitySusId: string,
-    search: string
-): Prisma.HypertensionAcfItemWhereInput => {
-    const queries: Prisma.HypertensionAcfItemWhereInput = Object.keys(
-        filter
-    ).reduce((acc, key) => {
-        return addFilterField(acc, filter, key as keyof CoeqFilters);
-    }, {});
-
-    queries.municipalitySusId = municipalitySusId;
-    addSearchField(queries, search);
-
-    return queries;
-};
 
 const whereInputCoaps = whereInput;
 
@@ -39,9 +20,10 @@ const whereInputCoeq = (
     teamIne: string,
     search: string
 ): Prisma.HypertensionAcfItemWhereInput => {
-    const result = whereInput(filter, municipalitySusId, search);
-    result.careTeamIne = teamIne;
-    return result;
+    return {
+        ...whereInput(filter, municipalitySusId, search),
+        careTeamIne: teamIne,
+    };
 };
 
 export const pageCoeq = async (
