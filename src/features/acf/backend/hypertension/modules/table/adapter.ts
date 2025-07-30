@@ -4,15 +4,6 @@ import type * as db from ".prisma/serviceLayerClient";
 const dbToModel = (
     hypertensionRow: db.HypertensionAcfItem
 ): model.HypertensionAcfItem => {
-    //Este throw é uma gambiarra. Nós sabemos que estes campos
-    //não tem nenhum valor null no BD hoje, e é só o tipo das colunas que está nullable, quando não deveria
-
-    if (!hypertensionRow.municipalitySusId || !hypertensionRow.careTeamName) {
-        throw new Error(
-            "Municipo ou INE da equipe faltando em um dos registros"
-        );
-    }
-
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
@@ -29,6 +20,7 @@ const dbToModel = (
         patientAge: hypertensionRow.patientAge,
     };
 };
+
 export const hypertensionPageDbToModel = (
     data: ReadonlyArray<db.HypertensionAcfItem>
 ): Array<model.HypertensionAcfItem> => {

@@ -1,4 +1,3 @@
-// export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";
 export {
     pageCoeq as getPageCoeq,
     pageCoaps as getPageCoaps,
