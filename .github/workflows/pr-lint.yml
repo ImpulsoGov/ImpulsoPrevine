@@ -22,11 +22,11 @@ jobs:
               run: |
                   yarn install
             - name: Run Prisma Generate
-              run: yarn prisma generate --schema=prisma/production/schema.prisma && yarn prisma generate --schema=prisma/serviceLayer/schema.prisma
+              run: yarn prisma generate --schema=prisma/pb2024/schema.prisma && yarn prisma generate --schema=prisma/serviceLayer/schema.prisma
             - name: Check Prisma Client is generated for Service Layer
               run: test -d node_modules/.prisma/serviceLayerClient || (echo "Prisma client not generated for Service Layer" && exit 1)
             - name: Check Prisma Client is generated for Production
-              run: test -d node_modules/.prisma/productionClient || (echo "Prisma client not generated for Production" && exit 1)
+              run: test -d node_modules/.prisma/pb2024Client || (echo "Prisma client not generated for Production" && exit 1)
               # TODO remover execução apenas em /features no futuro
             - name: Run ESLint
               run: yarn eslint src/features --ext .ts,.tsx
