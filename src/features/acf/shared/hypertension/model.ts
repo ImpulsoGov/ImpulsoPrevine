@@ -11,6 +11,7 @@ export type HypertensionAcfItem = {
     microAreaName: string | null;
     patientPhoneNumber: string | null;
     patientAge: number;
+    patientAgeRange: number;
 };
 
 export const sortOrder = ["asc", "desc"] as const;

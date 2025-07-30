@@ -40,6 +40,7 @@ export const nullableFields: NullableFields = {
     patientAge: { nullable: false },
     latestExamRequestDate: { nullable: true },
     patientCpf: { nullable: false },
+    patientAgeRange: { nullable: false },
 };
 
 export const pageCoeq = async (
