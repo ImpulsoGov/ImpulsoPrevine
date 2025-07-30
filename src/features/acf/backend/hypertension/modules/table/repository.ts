@@ -1,14 +1,18 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
-import type { HypertensionAcfItem as HypertensionFields } from "@/features/acf/shared/hypertension/model";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/hypertension/schema";
-import type { AreKeysNullable } from "@/features/common/shared/types";
 import { prisma } from "@prisma/serviceLayer/prismaClient";
-import { whereInput } from "@/features/acf/backend/common/QueryBuilder";
+import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
+import {
+    isFieldNullable,
+    orderByNotNullable,
+    orderByNullable,
+    whereInput,
+} from "@/features/acf/backend/common/QueryBuilder";
 
 const pageSize = 8;
 
@@ -25,42 +29,7 @@ const whereInputCoeq = (
         careTeamIne: teamIne,
     };
 };
-
-export const pageCoeq = async (
-    municipalitySusId: string,
-    teamIne: string,
-    page: number,
-    filters: CoeqFilters,
-    sorting: CoeqSort,
-    searchString: string
-): Promise<ReadonlyArray<HypertensionAcfItem>> => {
-    const isFieldNullable = nullableFields[sorting.field].nullable;
-
-    return await prisma.hypertensionAcfItem.findMany({
-        where: whereInputCoeq(
-            filters,
-            municipalitySusId,
-            teamIne,
-            searchString.toLocaleUpperCase()
-        ),
-        orderBy: isFieldNullable
-            ? {
-                  [sorting.field]: {
-                      sort: sorting.sort,
-                      nulls: sorting.sort == "asc" ? "first" : "last",
-                  },
-              }
-            : { [sorting.field]: sorting.sort },
-        take: pageSize,
-        skip: pageSize * page,
-    });
-};
-
-type NullableFields = AreKeysNullable<
-    Omit<HypertensionFields, "municipalitySusId" | "municipalityName">
->;
-
-const nullableFields: NullableFields = {
+export const nullableFields: NullableFields = {
     patientName: { nullable: false },
     latestAppointmentDate: { nullable: true },
     appointmentStatusByQuarter: { nullable: false },
@@ -73,6 +42,29 @@ const nullableFields: NullableFields = {
     patientCpf: { nullable: false },
 };
 
+export const pageCoeq = async (
+    municipalitySusId: string,
+    teamIne: string,
+    page: number,
+    filters: CoeqFilters,
+    sorting: CoeqSort,
+    searchString: string
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
+        where: whereInputCoeq(
+            filters,
+            municipalitySusId,
+            teamIne,
+            searchString.toLocaleUpperCase()
+        ),
+        orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
+            ? orderByNullable(sorting)
+            : orderByNotNullable(sorting),
+        take: pageSize,
+        skip: pageSize * page,
+    });
+};
+
 export const pageCoaps = async (
     municipalitySusId: string,
     page: number,
@@ -80,21 +72,15 @@ export const pageCoaps = async (
     sorting: CoapsSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
-    const isFieldNullable = nullableFields[sorting.field].nullable;
     return await prisma.hypertensionAcfItem.findMany({
         where: whereInputCoaps(
             filters,
             municipalitySusId,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: isFieldNullable
-            ? {
-                  [sorting.field]: {
-                      sort: sorting.sort,
-                      nulls: sorting.sort == "asc" ? "first" : "last",
-                  },
-              }
-            : { [sorting.field]: sorting.sort },
+        orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
+            ? orderByNullable(sorting)
+            : orderByNotNullable(sorting),
         take: pageSize,
         skip: pageSize * page,
     });

@@ -17,7 +17,7 @@ export const sortOrder = ["asc", "desc"] as const;
 
 export type SortOrder = (typeof sortOrder)[number];
 
-export const sortableFieldCoeq = [
+export const sortableFieldCoeq: ReadonlyArray<keyof HypertensionAcfItem> = [
     "patientName",
     "patientCpf",
     "latestAppointmentDate",
@@ -29,7 +29,7 @@ export const sortableFieldCoeq = [
     "patientAge",
 ] as const;
 
-export const sortableFieldCoaps = [
+export const sortableFieldCoaps: ReadonlyArray<keyof HypertensionAcfItem> = [
     "patientName",
     "patientCpf",
     "latestAppointmentDate",

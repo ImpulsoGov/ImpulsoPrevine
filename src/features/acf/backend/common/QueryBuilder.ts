@@ -1,3 +1,9 @@
+import type { Prisma } from ".prisma/serviceLayerClient";
+import type { CoeqSort, CoapsSort } from "../../shared/hypertension/schema";
+import { nullableFields } from "../hypertension/modules/table/repository";
+import type { AreKeysNullable } from "@/features/common/shared/types";
+import type { HypertensionAcfItem as HypertensionFields } from "../../shared/hypertension/model";
+
 type BaseWhereInput = {
     municipalitySusId: string;
 };
@@ -21,9 +27,10 @@ const addFilterField = <TQueryInput, TFilters extends BaseFilters>(
     return where;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const whereInput = <
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
     TFilters extends BaseFilters,
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
     TPrismaWhereInput extends BaseWhereInput,
 >(
     filter: TFilters,
@@ -47,3 +54,21 @@ export const whereInput = <
     }
     return queries;
 };
+export const isFieldNullable = (sortingField: keyof NullableFields): boolean =>
+    nullableFields[sortingField].nullable;
+export const orderByNullable = (
+    sorting: CoeqSort | CoapsSort
+): Record<string, Prisma.SortOrderInput> => ({
+    [sorting.field]: {
+        sort: sorting.sort,
+        nulls: sorting.sort == "asc" ? "first" : "last",
+    },
+});
+export const orderByNotNullable = (
+    sorting: CoeqSort | CoapsSort
+): Record<string, Prisma.SortOrder> => ({
+    [sorting.field]: sorting.sort,
+});
+export type NullableFields = AreKeysNullable<
+    Omit<HypertensionFields, "municipalitySusId" | "municipalityName">
+>;
