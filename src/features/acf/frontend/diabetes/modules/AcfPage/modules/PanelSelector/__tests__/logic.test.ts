@@ -1,4 +1,4 @@
-import { nameFormatter } from "../logic";
+import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 
 describe("nameFormatter", () => {
     it("formata corretamente um nome sem preposições ", () => {

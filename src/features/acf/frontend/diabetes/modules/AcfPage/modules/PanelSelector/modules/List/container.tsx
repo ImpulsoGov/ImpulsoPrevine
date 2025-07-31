@@ -6,7 +6,7 @@ import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import React from "react";
-import type { AcfDashboardType } from "../../../../../../../../shared/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import {
     CoapsDataTable,
     type CoapsAppliedFilters,

@@ -4,7 +4,7 @@ import type {
     ExtendedPanelSelectorWithCardsProps,
     ExtendedsubTabsWithChildrenAndChildrenDataProps,
 } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/presentation";
-import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 
 //TODO: Remover daqui
 /**

@@ -84,3 +84,8 @@ export const coapsPageRequestBody = z.object({
 });
 
 export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;
+
+export type PageResponse = {
+    page: Array<model.HypertensionAcfItem>;
+    totalRows: number;
+};

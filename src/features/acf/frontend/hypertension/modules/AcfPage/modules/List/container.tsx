@@ -1,0 +1,83 @@
+import { SearchToolBar } from "@/features/acf/frontend/common/SearchToolBar";
+import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
+import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
+import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
+import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
+import React from "react";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import { CoapsDataTable } from "./modules/CoapsDataTable";
+import { CoeqDataTable } from "./modules/CoeqDataTable";
+import { List } from "./presentation";
+import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
+import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
+
+type ContentCoeqProps = {
+    list: AcfDashboardType;
+};
+
+type ContentCoapsProps = {
+    list: AcfDashboardType;
+};
+
+//TODO: Pensar se faz sentido que isso fique aqui mesmo
+const initialSelectedValuesCoeq = {
+    microAreaName: [],
+    appointmentStatusByQuarter: [],
+    latestExamRequestStatusByQuarter: [],
+    patientAgeRange: NaN,
+};
+
+const initialSelectedValuesCoaps = {
+    careTeamName: [],
+    microAreaName: [],
+    appointmentStatusByQuarter: [],
+    latestExamRequestStatusByQuarter: [],
+    patientAgeRange: NaN,
+};
+
+export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
+    //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    return (
+        <>
+            <List list={list}>
+                <WithSearch SearchComponent={SearchToolBar}>
+                    <hr style={{ width: "100%" }} />
+                    <WithSorting>
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValuesCoaps}
+                            FiltersBar={CoapsFiltersBar}
+                        >
+                            <WithPagination>
+                                <CoapsDataTable />
+                            </WithPagination>
+                        </WithFilters>
+                    </WithSorting>
+                </WithSearch>
+            </List>
+        </>
+    );
+};
+
+export const ContentCoeq: React.FC<ContentCoeqProps> = ({ list }) => {
+    //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    // TODO: criar card de COAPS e FilterBarCoaps
+    return (
+        <>
+            <List list={list}>
+                <WithSearch SearchComponent={SearchToolBar}>
+                    <hr style={{ width: "100%" }} />
+                    <WithSorting>
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValuesCoeq}
+                            FiltersBar={CoeqFiltersBar}
+                        >
+                            <WithPagination>
+                                <CoeqDataTable />
+                            </WithPagination>
+                        </WithFilters>
+                    </WithSorting>
+                </WithSearch>
+            </List>
+        </>
+    );
+};

@@ -30,4 +30,4 @@ export const getCoapsPage = getPageBuilder<
     schema.CoapsPageRequestBody,
     schema.PageResponse,
     CoapsAppliedFilters
->("DIABETES", "coaps", bodyBuilder);
+>("diabetes", "coaps", bodyBuilder);

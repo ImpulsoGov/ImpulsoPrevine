@@ -4,11 +4,12 @@ import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "@features/acf/shared/diabetes/model";
-import { ErrorPage } from "./modules/ErrorPage";
+import type { AcfDashboardType } from "../../../common/DashboardType";
+import { ErrorPage } from "../../../common/ErrorPage";
 import { PanelSelector } from "./modules/PanelSelector";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
+import { List } from "./modules/PanelSelector/modules/List";
 
 export type {
     CoapsAppliedFilters,
@@ -46,9 +47,21 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                     acfDashboardType={acfDashboardType}
                     //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
                     municipalitySusId={session?.user.municipio_id_sus}
-                    //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                    teamIne={session?.user.equipe}
                     userProfiles={session?.user.perfis as Array<ProfileIdValue>}
+                    contentWithoutTabs={
+                        <List
+                            list={acfDashboardType}
+                            municipalitySusId={
+                                session?.user.municipio_id_sus ?? ""
+                            }
+                            teamIne={session?.user.equipe ?? ""}
+                            userProfile={
+                                session?.user.perfis.includes(PROFILE_ID.COAPS)
+                                    ? PROFILE_ID.COAPS
+                                    : PROFILE_ID.COEQ
+                            }
+                        />
+                    }
                 />
             </AllowProfile>
         </SessionGuard>
