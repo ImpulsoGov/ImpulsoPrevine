@@ -1,11 +1,4 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
-import type {
-    CoapsFilters,
-    CoapsSort,
-    CoeqFilters,
-    CoeqSort,
-} from "@/features/acf/shared/hypertension/schema";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
 import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
     isFieldNullable,
@@ -13,6 +6,13 @@ import {
     orderByNullable,
     whereInput,
 } from "@/features/acf/backend/common/QueryBuilder";
+import type {
+    CoapsFilters,
+    CoapsSort,
+    CoeqFilters,
+    CoeqSort,
+} from "@/features/acf/shared/hypertension/schema";
+import { prisma } from "@prisma/serviceLayer/prismaClient";
 
 const pageSize = 8;
 
@@ -29,6 +29,7 @@ const whereInputCoeq = (
         careTeamIne: teamIne,
     };
 };
+
 export const nullableFields: NullableFields = {
     patientName: { nullable: false },
     latestAppointmentDate: { nullable: true },
@@ -58,12 +59,29 @@ export const pageCoeq = async (
             searchString.toLocaleUpperCase()
         ),
         orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
-            ? orderByNullable(sorting)
-            : orderByNotNullable(sorting),
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
         take: pageSize,
         skip: pageSize * page,
     });
 };
+
+// export const orderByNullable = (
+//     field: keyof Prisma.HypertensionAcfItemOrderByWithRelationInput,
+//     sort: "asc" | "desc"
+// ): Prisma.HypertensionAcfItemOrderByWithRelationInput => ({
+//     [field]: {
+//         sort: sort,
+//         nulls: sort == "asc" ? "first" : "last",
+//     },
+// });
+
+// export const orderByNotNullable = (
+//     field: keyof Prisma.HypertensionAcfItemOrderByWithRelationInput,
+//     sort: "asc" | "desc"
+// ):  Prisma.HypertensionAcfItemOrderByWithRelationInput => ({
+//     [field]: sort,
+// });
 
 export const pageCoaps = async (
     municipalitySusId: string,
@@ -79,8 +97,8 @@ export const pageCoaps = async (
             searchString.toLocaleUpperCase()
         ),
         orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
-            ? orderByNullable(sorting)
-            : orderByNotNullable(sorting),
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
         take: pageSize,
         skip: pageSize * page,
     });
