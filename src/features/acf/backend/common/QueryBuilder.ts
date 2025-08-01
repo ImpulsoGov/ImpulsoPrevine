@@ -1,7 +1,5 @@
 import type { Prisma } from ".prisma/serviceLayerClient";
 import type { AreKeysNullable } from "@/features/common/shared/types";
-import type { HypertensionAcfItem as HypertensionFields } from "../../shared/hypertension/model";
-import { nullableFields } from "../hypertension/modules/table/repository";
 
 type BaseWhereInput = {
     municipalitySusId: string;
@@ -17,7 +15,7 @@ const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     if (filter[field].length > 0) {
         return {
             ...where,
-            field: {
+            [field]: {
                 in: filter[field],
             },
         };
@@ -54,22 +52,22 @@ export const whereInput = <
     return queries;
 };
 
-//TODO: implementar de outra forma
-export const isFieldNullable = (sortingField: keyof NullableFields): boolean =>
-    nullableFields[sortingField].nullable;
+export const isFieldNullable = <TPrismaModel>(
+    nullableFields: NullableFields<TPrismaModel>,
+    sortingField: keyof NullableFields<TPrismaModel>
+): boolean => nullableFields[sortingField];
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const orderByNullable = <TSort>(
     field: keyof TSort,
     sort: "asc" | "desc"
-): { [x: string]: { sort: "asc" | "desc"; nulls: string } } => ({
+): Record<string, Prisma.SortOrderInput> => ({
     [field]: {
         sort: sort,
         nulls: sort == "asc" ? "first" : "last",
-    },
+    } satisfies Prisma.SortOrderInput,
 });
 
-//TODO: Desacoplar de CoeqSort e CoapsSort
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const orderByNotNullable = <TSort>(
     field: keyof TSort,
@@ -78,7 +76,6 @@ export const orderByNotNullable = <TSort>(
     [field]: sort,
 });
 
-//TODO: remover isso
-export type NullableFields = AreKeysNullable<
-    Omit<HypertensionFields, "municipalitySusId" | "municipalityName">
+export type NullableFields<TPrismaModel> = AreKeysNullable<
+    Omit<TPrismaModel, "municipalitySusId" | "municipalityName">
 >;

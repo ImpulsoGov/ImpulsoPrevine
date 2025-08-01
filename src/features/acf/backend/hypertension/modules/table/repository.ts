@@ -1,4 +1,5 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
+
 import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
     isFieldNullable,
@@ -16,6 +17,24 @@ import { prisma } from "@prisma/serviceLayer/prismaClient";
 
 const pageSize = 8;
 
+//TODO: Essa foi a melhor forma que encontramos de passar a informação "quais campos do model são nullable?"
+//      do sistema de tipos para runtime. Se algum dia descobrirmos uma forma melhor, podemos remover isso.
+const nullableFields: NullableFields<HypertensionAcfItem> = {
+    patientId: false,
+    patientName: false,
+    patientCpf: false,
+    latestAppointmentDate: true,
+    appointmentStatusByQuarter: false,
+    latestExamRequestDate: true,
+    latestExamRequestStatusByQuarter: false,
+    careTeamName: true,
+    careTeamIne: true,
+    microAreaName: true,
+    patientPhoneNumber: true,
+    patientAge: false,
+    patientAgeRange: false,
+};
+
 const whereInputCoaps = whereInput;
 
 const whereInputCoeq = (
@@ -28,20 +47,6 @@ const whereInputCoeq = (
         ...whereInput(filter, municipalitySusId, search),
         careTeamIne: teamIne,
     };
-};
-
-export const nullableFields: NullableFields = {
-    patientName: { nullable: false },
-    latestAppointmentDate: { nullable: true },
-    appointmentStatusByQuarter: { nullable: false },
-    latestExamRequestStatusByQuarter: { nullable: false },
-    careTeamName: { nullable: true },
-    microAreaName: { nullable: true },
-    patientPhoneNumber: { nullable: true },
-    patientAge: { nullable: false },
-    latestExamRequestDate: { nullable: true },
-    patientCpf: { nullable: false },
-    patientAgeRange: { nullable: false },
 };
 
 export const pageCoeq = async (
@@ -59,30 +64,17 @@ export const pageCoeq = async (
             teamIne,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
+        //TODO: Extrair essa expressão pro QueryBuilder
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
             ? orderByNullable(sorting.field, sorting.sort)
             : orderByNotNullable(sorting.field, sorting.sort),
         take: pageSize,
         skip: pageSize * page,
     });
 };
-
-// export const orderByNullable = (
-//     field: keyof Prisma.HypertensionAcfItemOrderByWithRelationInput,
-//     sort: "asc" | "desc"
-// ): Prisma.HypertensionAcfItemOrderByWithRelationInput => ({
-//     [field]: {
-//         sort: sort,
-//         nulls: sort == "asc" ? "first" : "last",
-//     },
-// });
-
-// export const orderByNotNullable = (
-//     field: keyof Prisma.HypertensionAcfItemOrderByWithRelationInput,
-//     sort: "asc" | "desc"
-// ):  Prisma.HypertensionAcfItemOrderByWithRelationInput => ({
-//     [field]: sort,
-// });
 
 export const pageCoaps = async (
     municipalitySusId: string,
@@ -97,7 +89,10 @@ export const pageCoaps = async (
             municipalitySusId,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: isFieldNullable(sorting.field as keyof typeof nullableFields)
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
             ? orderByNullable(sorting.field, sorting.sort)
             : orderByNotNullable(sorting.field, sorting.sort),
         take: pageSize,
