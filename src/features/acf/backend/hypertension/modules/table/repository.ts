@@ -1,40 +1,37 @@
-import type { DiabetesAcfItem, Prisma } from ".prisma/pb2024Client";
-import type {
-    CoapsFilters,
-    CoapsSort,
-    CoeqFilters,
-    CoeqSort,
-} from "@/features/acf/shared/diabetes/schema";
+import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
+
+import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
     isFieldNullable,
     orderByNotNullable,
     orderByNullable,
     whereInput,
-    type NullableFields,
-} from "@features/acf/backend/common/QueryBuilder";
-import { prisma } from "@prisma/pb2024/prismaClient";
+} from "@/features/acf/backend/common/QueryBuilder";
+import type {
+    CoapsFilters,
+    CoapsSort,
+    CoeqFilters,
+    CoeqSort,
+} from "@/features/acf/shared/hypertension/schema";
+import { prisma } from "@prisma/serviceLayer/prismaClient";
 
 const pageSize = 8;
 
 //TODO: Essa foi a melhor forma que encontramos de passar a informação "quais campos do model são nullable?"
 //      do sistema de tipos para runtime. Se algum dia descobrirmos uma forma melhor, podemos remover isso.
-const nullableFields: NullableFields<DiabetesAcfItem> = {
-    id: false,
-    municipalityState: true,
+const nullableFields: NullableFields<HypertensionAcfItem> = {
+    patientId: false,
+    patientName: false,
+    patientCpf: false,
+    latestAppointmentDate: true,
+    appointmentStatusByQuarter: false,
     latestExamRequestDate: true,
-    mostRecentAppointmentDate: true,
-    hemoglobinTestDueDate: true,
-    nextAppointmentDueDate: true,
-    patientStatus: true,
-    conditionIdentifiedBy: true,
-    patientCpfOrBirthday: true,
-    patientName: true,
-    patientAge: true,
-    patientAgeRange: true,
-    careTeamIne: true,
+    latestExamRequestStatusByQuarter: false,
     careTeamName: true,
-    communityHealthWorker: true,
-    mostRecentProductionRecordDate: false,
+    careTeamIne: true,
+    microAreaName: true,
+    patientPhoneNumber: true,
+    patientAge: false,
 };
 
 const whereInputCoaps = whereInput;
@@ -44,7 +41,7 @@ const whereInputCoeq = (
     municipalitySusId: string,
     teamIne: string,
     search: string
-): Prisma.DiabetesAcfItemWhereInput => {
+): Prisma.HypertensionAcfItemWhereInput => {
     return {
         ...whereInput(filter, municipalitySusId, search),
         careTeamIne: teamIne,
@@ -58,14 +55,15 @@ export const pageCoeq = async (
     filters: CoeqFilters,
     sorting: CoeqSort,
     searchString: string
-): Promise<ReadonlyArray<DiabetesAcfItem>> => {
-    return await prisma.diabetesAcfItem.findMany({
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
         where: whereInputCoeq(
             filters,
             municipalitySusId,
             teamIne,
             searchString.toLocaleUpperCase()
         ),
+        //TODO: Extrair essa expressão pro QueryBuilder
         orderBy: isFieldNullable(
             nullableFields,
             sorting.field as keyof typeof nullableFields
@@ -83,8 +81,8 @@ export const pageCoaps = async (
     filters: CoapsFilters,
     sorting: CoapsSort,
     searchString: string
-): Promise<ReadonlyArray<DiabetesAcfItem>> => {
-    return await prisma.diabetesAcfItem.findMany({
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
         where: whereInputCoaps(
             filters,
             municipalitySusId,
@@ -106,7 +104,7 @@ export const rowCountCoaps = async (
     filters: CoapsFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.diabetesAcfItem.count({
+    return await prisma.hypertensionAcfItem.count({
         where: whereInputCoaps(
             filters,
             municipalitySusId,
@@ -121,7 +119,7 @@ export const rowCountCoeq = async (
     filters: CoeqFilters,
     search: string
 ): Promise<number> => {
-    return await prisma.diabetesAcfItem.count({
+    return await prisma.hypertensionAcfItem.count({
         where: whereInputCoeq(
             filters,
             municipalitySusId,
