@@ -3,7 +3,8 @@ import type { CSSProperties } from "react";
 export const sxSingleSelect = (
     value: string | Array<string>
 ): Record<string, CSSProperties> | CSSProperties => {
-    const colorSelect = value.length === 0 ? "#A6B5BE" : "#1E8E76";
+    const colorSelect =
+        value.length === 0 || Number.isNaN(value) ? "#A6B5BE" : "#1E8E76";
     return {
         color: colorSelect,
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":

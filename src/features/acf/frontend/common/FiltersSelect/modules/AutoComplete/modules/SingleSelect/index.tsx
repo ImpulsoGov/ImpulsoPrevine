@@ -33,6 +33,7 @@ export const AutoCompleteSingleSelect = <
             onChange={(_event, newValue) => {
                 setSelectedValues((prevState) => ({
                     ...prevState,
+                    // TODO: adicionar caso de value ser number
                     [select.id]: newValue ? newValue.value : "",
                 }));
             }}

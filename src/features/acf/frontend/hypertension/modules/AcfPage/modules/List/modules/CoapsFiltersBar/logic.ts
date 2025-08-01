@@ -10,8 +10,6 @@ import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters
 ): Array<SelectConfig> => {
-    console.log("toHtmlSelectOptions", filtersValues);
-
     return [
         ...toSelectConfigsShared(filtersValues),
         {
