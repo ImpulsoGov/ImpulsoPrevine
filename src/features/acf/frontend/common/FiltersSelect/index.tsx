@@ -23,7 +23,7 @@ const getSelectedOptions = <TAppliedFilters extends AppliedFilters>(
     if (!config) return [];
     if (Array.isArray(selected)) {
         return config.options.filter((opt) =>
-            (selected as Array<string>).includes(opt.value)
+            (selected as Array<string | number>).includes(opt.value)
         );
     } else {
         return config.options.filter((opt) => opt.value === selected);

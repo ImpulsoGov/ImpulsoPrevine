@@ -9,8 +9,6 @@ import {
 } from "@/features/acf/frontend/common/WithSearch";
 import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting/context";
-import type * as DiabetesSchema from "@/features/acf/shared/diabetes/schema";
-import type * as HypertensionSchema from "@/features/acf/shared/hypertension/schema";
 import { Table } from "@impulsogov/design-system";
 import type { GridPaginationModel, GridSortItem } from "@mui/x-data-grid";
 import type { AxiosError, AxiosResponse } from "axios";
@@ -27,12 +25,11 @@ import React, {
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 import type { GridColDef } from "@mui/x-data-grid";
+import type { PageResponses } from "@/features/acf/shared/schema";
 
 export { getPageBuilder } from "./service";
 export type { BodyBuilder, GetPageParams } from "./service";
-type PageResponses =
-    | DiabetesSchema.PageResponse
-    | HypertensionSchema.PageResponse;
+
 type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     token: string;
     page: number;

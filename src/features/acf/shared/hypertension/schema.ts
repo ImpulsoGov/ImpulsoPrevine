@@ -48,9 +48,6 @@ export type CoapsFiltersResponse = {
     filters: CoapsFilters;
 };
 
-//TODO: Pensar se existe alguma forma de evitar isso
-export type FilterResponses = CoapsFilters | CoeqFilters;
-
 export const sortableFieldsCoeq = z.enum(model.sortableFieldCoeq);
 export const sortableFieldsCoaps = z.enum(model.sortableFieldCoaps);
 

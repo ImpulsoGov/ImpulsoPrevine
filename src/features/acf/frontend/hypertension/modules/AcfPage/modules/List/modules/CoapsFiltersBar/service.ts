@@ -1,5 +1,5 @@
 "use client";
-import type * as schema from "@/features/acf/shared/diabetes/schema";
+import type * as schema from "@/features/acf/shared/hypertension/schema";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 
