@@ -18,6 +18,7 @@ const dbToModel = (
         microAreaName: hypertensionRow.microAreaName,
         patientPhoneNumber: hypertensionRow.patientPhoneNumber,
         patientAge: hypertensionRow.patientAge,
+        patientAgeRange: hypertensionRow.patientAgeRange,
     };
 };
 

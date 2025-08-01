@@ -32,6 +32,7 @@ const nullableFields: NullableFields<HypertensionAcfItem> = {
     microAreaName: true,
     patientPhoneNumber: true,
     patientAge: false,
+    patientAgeRange: false,
 };
 
 const whereInputCoaps = whereInput;
