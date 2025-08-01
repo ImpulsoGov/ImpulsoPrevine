@@ -132,7 +132,7 @@ const TabelaIndicadores = ({ TabIndicadores }) => {
         },
         {
             field: "delta_formatado",
-            headerName: "Variação de desempenho de Q2-24/Q3-24",
+            headerName: "Variação de desempenho de Q3-24/Q1-25",
             flex: 2,
             align: "center",
             headerAlign: "center",

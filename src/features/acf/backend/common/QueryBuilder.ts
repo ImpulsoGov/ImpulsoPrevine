@@ -1,8 +1,5 @@
 import type { Prisma } from ".prisma/serviceLayerClient";
-import type { CoeqSort, CoapsSort } from "../../shared/hypertension/schema";
-import { nullableFields } from "../hypertension/modules/table/repository";
 import type { AreKeysNullable } from "@/features/common/shared/types";
-import type { HypertensionAcfItem as HypertensionFields } from "../../shared/hypertension/model";
 
 type BaseWhereInput = {
     municipalitySusId: string;
@@ -10,15 +7,15 @@ type BaseWhereInput = {
 
 type BaseFilters = Record<string, Array<unknown>>;
 
-const addFilterField = <TQueryInput, TFilters extends BaseFilters>(
-    where: TQueryInput,
+const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
+    where: TPrismaWhereInput,
     filter: TFilters,
     field: keyof TFilters
-): TQueryInput => {
+): TPrismaWhereInput => {
     if (filter[field].length > 0) {
         return {
             ...where,
-            field: {
+            [field]: {
                 in: filter[field],
             },
         };
@@ -29,9 +26,9 @@ const addFilterField = <TQueryInput, TFilters extends BaseFilters>(
 
 export const whereInput = <
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-    TFilters extends BaseFilters,
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
     TPrismaWhereInput extends BaseWhereInput,
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+    TFilters extends BaseFilters,
 >(
     filter: TFilters,
     municipalitySusId: string,
@@ -54,21 +51,31 @@ export const whereInput = <
     }
     return queries;
 };
-export const isFieldNullable = (sortingField: keyof NullableFields): boolean =>
-    nullableFields[sortingField].nullable;
-export const orderByNullable = (
-    sorting: CoeqSort | CoapsSort
+
+export const isFieldNullable = <TPrismaModel>(
+    nullableFields: NullableFields<TPrismaModel>,
+    sortingField: keyof NullableFields<TPrismaModel>
+): boolean => nullableFields[sortingField];
+
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export const orderByNullable = <TSort>(
+    field: keyof TSort,
+    sort: "asc" | "desc"
 ): Record<string, Prisma.SortOrderInput> => ({
-    [sorting.field]: {
-        sort: sorting.sort,
-        nulls: sorting.sort == "asc" ? "first" : "last",
-    },
+    [field]: {
+        sort: sort,
+        nulls: sort == "asc" ? "first" : "last",
+    } satisfies Prisma.SortOrderInput,
 });
-export const orderByNotNullable = (
-    sorting: CoeqSort | CoapsSort
+
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export const orderByNotNullable = <TSort>(
+    field: keyof TSort,
+    sort: "asc" | "desc"
 ): Record<string, Prisma.SortOrder> => ({
-    [sorting.field]: sorting.sort,
+    [field]: sort,
 });
-export type NullableFields = AreKeysNullable<
-    Omit<HypertensionFields, "municipalitySusId" | "municipalityName">
+
+export type NullableFields<TPrismaModel> = AreKeysNullable<
+    Omit<TPrismaModel, "municipalitySusId" | "municipalityName">
 >;
