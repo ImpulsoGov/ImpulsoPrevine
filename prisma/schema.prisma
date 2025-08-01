@@ -1,12 +1,11 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
-  output          = "../../node_modules/.prisma/pb2024Client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("PB2024_DATABASE_URL")
+  url      = env("DATABASE_URL")
   schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
 }
 

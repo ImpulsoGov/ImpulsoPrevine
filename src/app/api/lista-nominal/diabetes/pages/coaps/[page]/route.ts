@@ -1,11 +1,11 @@
 import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema";
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
-import * as flags from "@/features/common/shared/flags";
-import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
-import type { NextRequest } from "next/server";
 import { z } from "zod/v4";
+import * as interceptors from "@/features/interceptors/backend";
+import type { NextRequest } from "next/server";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 
 type Context = {
     params: Promise<{ page: string }>;
@@ -18,6 +18,9 @@ const handler = async (
     { params, user, parsedBody }: Context
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
+
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    if (!isDiabetesNewProgramEnabled) return Response.json({}, { status: 404 });
 
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
@@ -48,7 +51,6 @@ const handler = async (
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
-    interceptors.allowByFlag(flags.diabetesNewProgram),
     interceptors.allowProfiles([PROFILE_ID.COAPS]),
     interceptors.withUser,
     interceptors.catchErrors

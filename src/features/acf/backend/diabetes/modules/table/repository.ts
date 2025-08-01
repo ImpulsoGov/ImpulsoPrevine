@@ -1,54 +1,91 @@
-import type { DiabetesAcfItem, Prisma } from ".prisma/pb2024Client";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/diabetes/schema";
-import {
-    isFieldNullable,
-    orderByNotNullable,
-    orderByNullable,
-    whereInput,
-    type NullableFields,
-} from "@features/acf/backend/common/QueryBuilder";
-import { prisma } from "@prisma/pb2024/prismaClient";
-
+import type { DiabetesAcfItem } from "@prisma/client";
+import { prisma } from "@prisma/prismaClient";
 const pageSize = 8;
 
-//TODO: Essa foi a melhor forma que encontramos de passar a informação "quais campos do model são nullable?"
-//      do sistema de tipos para runtime. Se algum dia descobrirmos uma forma melhor, podemos remover isso.
-const nullableFields: NullableFields<DiabetesAcfItem> = {
-    id: false,
-    municipalityState: true,
-    latestExamRequestDate: true,
-    mostRecentAppointmentDate: true,
-    hemoglobinTestDueDate: true,
-    nextAppointmentDueDate: true,
-    patientStatus: true,
-    conditionIdentifiedBy: true,
-    patientCpfOrBirthday: true,
-    patientName: true,
-    patientAge: true,
-    patientAgeRange: true,
-    careTeamIne: true,
-    careTeamName: true,
-    communityHealthWorker: true,
-    mostRecentProductionRecordDate: false,
+type QueryWhere = {
+    patientStatus?: { in: Array<string> };
+    conditionIdentifiedBy?: { in: Array<string> };
+    communityHealthWorker?: { in: Array<string> };
+    patientAgeRange?: { in: Array<string> };
+    municipalitySusId: string;
+    patientName?: { contains: string };
 };
 
-const whereInputCoaps = whereInput;
+type QueryWhereCoaps = QueryWhere & {
+    careTeamName?: { in: Array<string> };
+};
 
-const whereInputCoeq = (
+type QueryWhereCoeq = QueryWhere & {
+    careTeamIne: string;
+};
+
+const addFilterFieldCoaps = (
+    where: QueryWhereCoaps,
+    filter: CoapsFilters,
+    field: keyof CoapsFilters
+): void => {
+    if (filter[field].length > 0) {
+        where[field] = { in: filter[field] };
+    }
+};
+
+const addFilterFieldCoeq = (
+    where: QueryWhereCoeq,
+    filter: CoeqFilters,
+    field: keyof CoeqFilters
+): void => {
+    if (filter[field].length > 0) {
+        where[field] = { in: filter[field] };
+    }
+};
+
+const addSearchField = (where: QueryWhere, search: string): void => {
+    if (search.length > 0) {
+        where["patientName"] = { contains: search };
+    }
+};
+
+const queryWhereCoaps = (
+    filter: CoapsFilters,
+    municipalitySusId: string,
+    search: string
+): QueryWhere => {
+    const querys = {} as QueryWhereCoaps;
+
+    addFilterFieldCoaps(querys, filter, "patientStatus");
+    addFilterFieldCoaps(querys, filter, "communityHealthWorker");
+    addFilterFieldCoaps(querys, filter, "patientAgeRange");
+    addFilterFieldCoaps(querys, filter, "conditionIdentifiedBy");
+    addFilterFieldCoaps(querys, filter, "careTeamName");
+
+    querys.municipalitySusId = municipalitySusId;
+    addSearchField(querys, search);
+
+    return querys;
+};
+
+const queryWhereCoeq = (
     filter: CoeqFilters,
     municipalitySusId: string,
     teamIne: string,
     search: string
-): Prisma.DiabetesAcfItemWhereInput => {
-    return {
-        ...whereInput(filter, municipalitySusId, search),
-        careTeamIne: teamIne,
-    };
+): QueryWhere => {
+    const querys = {} as QueryWhereCoeq;
+    addFilterFieldCoeq(querys, filter, "patientStatus");
+    addFilterFieldCoeq(querys, filter, "communityHealthWorker");
+    addFilterFieldCoeq(querys, filter, "patientAgeRange");
+    addFilterFieldCoeq(querys, filter, "conditionIdentifiedBy");
+    querys.municipalitySusId = municipalitySusId;
+    querys.careTeamIne = teamIne;
+    addSearchField(querys, search);
+
+    return querys;
 };
 
 export const pageCoeq = async (
@@ -60,18 +97,18 @@ export const pageCoeq = async (
     searchString: string
 ): Promise<ReadonlyArray<DiabetesAcfItem>> => {
     return await prisma.diabetesAcfItem.findMany({
-        where: whereInputCoeq(
+        where: queryWhereCoeq(
             filters,
             municipalitySusId,
             teamIne,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: isFieldNullable(
-            nullableFields,
-            sorting.field as keyof typeof nullableFields
-        )
-            ? orderByNullable(sorting.field, sorting.sort)
-            : orderByNotNullable(sorting.field, sorting.sort),
+        orderBy: {
+            [sorting.field]: {
+                sort: sorting.sort,
+                nulls: sorting.sort == "asc" ? "first" : "last",
+            },
+        },
         take: pageSize,
         skip: pageSize * page,
     });
@@ -85,17 +122,17 @@ export const pageCoaps = async (
     searchString: string
 ): Promise<ReadonlyArray<DiabetesAcfItem>> => {
     return await prisma.diabetesAcfItem.findMany({
-        where: whereInputCoaps(
+        where: queryWhereCoaps(
             filters,
             municipalitySusId,
             searchString.toLocaleUpperCase()
         ),
-        orderBy: isFieldNullable(
-            nullableFields,
-            sorting.field as keyof typeof nullableFields
-        )
-            ? orderByNullable(sorting.field, sorting.sort)
-            : orderByNotNullable(sorting.field, sorting.sort),
+        orderBy: {
+            [sorting.field]: {
+                sort: sorting.sort,
+                nulls: sorting.sort == "asc" ? "first" : "last",
+            },
+        },
         take: pageSize,
         skip: pageSize * page,
     });
@@ -107,7 +144,7 @@ export const rowCountCoaps = async (
     search: string
 ): Promise<number> => {
     return await prisma.diabetesAcfItem.count({
-        where: whereInputCoaps(
+        where: queryWhereCoaps(
             filters,
             municipalitySusId,
             search.toLocaleUpperCase()
@@ -122,7 +159,7 @@ export const rowCountCoeq = async (
     search: string
 ): Promise<number> => {
     return await prisma.diabetesAcfItem.count({
-        where: whereInputCoeq(
+        where: queryWhereCoeq(
             filters,
             municipalitySusId,
             teamIne,

@@ -1,2 +1,3 @@
-export { diabetesNewProgram } from "./modules/diabetesNewProgram";
-export { hypertensionNewProgram } from "./modules/hypertensionNewProgram";
+import { diabetesNewProgram } from "./modules/diabetesNewProgram/diabetesNewProgram";
+
+export { diabetesNewProgram };
