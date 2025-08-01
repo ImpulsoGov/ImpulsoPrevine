@@ -1,4 +1,4 @@
-import { prisma } from "@prisma/pb2024/prismaClient";
+import { prisma } from "@prisma/prismaClient";
 import {
     DiabetesAcfInternalCardsHealthIndicator,
     type InternalCardDataItem,

@@ -1,9 +1,3 @@
-import type {
-    PageParamsCoaps,
-    PageParamsCoeq,
-    RowCountParamsCoaps,
-    RowCountParamsCoeq,
-} from "@/features/acf/backend/common/Defaults";
 import type { DiabetesAcfItem } from "@/features/acf/shared/diabetes/model";
 import type {
     CoapsFilters,
@@ -31,6 +25,22 @@ const defaultSorting = {
     sort: "asc",
 } as const satisfies CoapsSort;
 
+type PageParams = {
+    municipalitySusId: string;
+    pageIndex: number;
+    searchString?: string;
+};
+
+type PageParamsCoaps = PageParams & {
+    sorting?: CoapsSort;
+    filters?: CoapsFilters;
+};
+type PageParamsCoeq = PageParams & {
+    teamIne: string;
+    sorting?: CoeqSort;
+    filters?: CoeqFilters;
+};
+
 export const pageCoeq = async ({
     municipalitySusId,
     teamIne,
@@ -38,7 +48,7 @@ export const pageCoeq = async ({
     sorting,
     searchString,
     filters,
-}: PageParamsCoeq<CoeqSort, CoeqFilters>): Promise<Array<DiabetesAcfItem>> => {
+}: PageParamsCoeq): Promise<Array<DiabetesAcfItem>> => {
     const page = await repository.pageCoeq(
         municipalitySusId,
         teamIne,
@@ -56,9 +66,7 @@ export const pageCoaps = async ({
     sorting,
     searchString,
     filters,
-}: PageParamsCoaps<CoapsSort, CoapsFilters>): Promise<
-    Array<DiabetesAcfItem>
-> => {
+}: PageParamsCoaps): Promise<Array<DiabetesAcfItem>> => {
     const page = await repository.pageCoaps(
         municipalitySusId,
         pageIndex,
@@ -69,12 +77,26 @@ export const pageCoaps = async ({
     return adapter.diabetesPageDbToModel(page);
 };
 
+type RowCountParams = {
+    municipalitySusId: string;
+    searchString?: string;
+};
+
+type RowCountParamsCoaps = RowCountParams & {
+    filters?: CoapsFilters;
+};
+
+type RowCountParamsCoeq = RowCountParams & {
+    teamIne: string;
+    filters?: CoeqFilters;
+};
+
 export const rowCountCoeq = async ({
     municipalitySusId,
     teamIne,
     searchString,
     filters,
-}: RowCountParamsCoeq<CoeqFilters>): Promise<number> => {
+}: RowCountParamsCoeq): Promise<number> => {
     return await repository.rowCountCoeq(
         municipalitySusId,
         teamIne,
@@ -87,7 +109,7 @@ export const rowCountCoaps = async ({
     municipalitySusId,
     searchString,
     filters,
-}: RowCountParamsCoaps<CoapsFilters>): Promise<number> => {
+}: RowCountParamsCoaps): Promise<number> => {
     return await repository.rowCountCoaps(
         municipalitySusId,
         filters || defaultCoapsFilters,

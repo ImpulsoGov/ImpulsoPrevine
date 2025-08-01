@@ -1,6 +1,6 @@
+import { municipalityIdSusFromCookie } from "../getMunicipalityIdSus";
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import { municipalityIdSusFromCookie } from "../logic";
 
 jest.mock("next-auth/jwt", () => ({
     decode: jest.fn(),
