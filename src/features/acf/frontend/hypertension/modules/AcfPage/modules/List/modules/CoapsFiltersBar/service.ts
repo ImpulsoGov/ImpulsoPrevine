@@ -7,7 +7,7 @@ export const getFiltersCoaps = async (
     access_token: string
 ): Promise<AxiosResponse<schema.CoapsFiltersResponse>> => {
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal/diabetes/filters/coaps`;
+    const url = `${currentURL.origin}/api/lista-nominal/hypertension/filters/coaps`;
     //TODO: Criar uma camada de abstração fina entre nosso código e o axios, colocar os headers e maxBodyLength lá ao invés de duplicar
     return axios.request({
         method: "GET",

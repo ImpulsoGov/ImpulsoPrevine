@@ -1,10 +1,5 @@
 import type * as z from "zod/v4";
-import type {
-    ConditionIdentifiedBy,
-    PatientAgeRange,
-    PatientStatus,
-} from "@/features/acf/shared/diabetes/model";
-import type * as schema from "@/features/acf/shared/diabetes/schema";
+import type * as schema from "@/features/acf/shared/hypertension/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type {
     HtmlSelectOption,
@@ -21,11 +16,7 @@ const referenceOrder = [
     "Mais de 65 anos",
 ];
 
-type FilterOptions =
-    | Array<string>
-    | Array<PatientStatus>
-    | Array<ConditionIdentifiedBy>
-    | Array<PatientAgeRange>;
+type FilterOptions = Array<string> | Array<number>;
 
 export const sortedOptions = (
     a: HtmlSelectOption,
@@ -46,7 +37,7 @@ export const toHtmlSelectOptions = (
 ): Array<HtmlSelectOption> => {
     return filterValues.map<HtmlSelectOption>((item) => ({
         value: item,
-        label: item,
+        label: String(item),
     }));
 };
 
@@ -55,30 +46,30 @@ export const toSelectConfigsShared = (
 ): Array<SelectConfig> => {
     return [
         {
-            options: toHtmlSelectOptions(filtersValues.communityHealthWorker)
+            options: toHtmlSelectOptions(filtersValues.microAreaName)
                 .map((item) => ({ ...item, label: nameFormatter(item.label) }))
                 .sort((a, b) => a.label.localeCompare(b.label)),
-            label: "Prof. Responsável",
-            id: "communityHealthWorker",
+            label: "Microárea",
+            id: "microAreaName",
             isMultiSelect: true,
             width: "321px",
         },
         {
-            options: toHtmlSelectOptions(filtersValues.patientStatus).sort(
-                (a, b) => a.label.localeCompare(b.label)
-            ),
-            label: "Situação",
-            id: "patientStatus",
+            options: toHtmlSelectOptions(
+                filtersValues.appointmentStatusByQuarter
+            ).sort((a, b) => a.label.localeCompare(b.label)),
+            label: "Consulta",
+            id: "appointmentStatusByQuarter",
             isMultiSelect: true,
             width: "299px",
         },
         {
             options: toHtmlSelectOptions(
-                filtersValues.conditionIdentifiedBy
+                filtersValues.latestExamRequestStatusByQuarter
             ).sort((a, b) => a.label.localeCompare(b.label)),
-            label: "Tipo de Diagnóstico",
-            id: "conditionIdentifiedBy",
-            isMultiSelect: false,
+            label: "Aferição de PA",
+            id: "latestExamRequestStatusByQuarter",
+            isMultiSelect: true,
             width: "232px",
         },
         {
@@ -87,7 +78,7 @@ export const toSelectConfigsShared = (
             ),
             label: "Faixa Etária",
             id: "patientAgeRange",
-            isMultiSelect: true,
+            isMultiSelect: false,
             width: "280px",
         },
     ];
