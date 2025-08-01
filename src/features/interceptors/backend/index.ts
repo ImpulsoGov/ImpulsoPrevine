@@ -1,6 +1,7 @@
+export { allowByFlag } from "./modules/AllowByFlag";
+export { allowProfiles } from "./modules/AllowProfiles";
 export { catchErrors } from "./modules/CatchErrors";
-export { withUser } from "./modules/WithUser";
-export type { User } from "./modules/WithUser";
 export { compose } from "./modules/Compose";
 export { withBodyParsing } from "./modules/WithBodyParsing";
-export { allowProfiles } from "./modules/AllowProfiles";
+export { withUser } from "./modules/WithUser";
+export type { User } from "./modules/WithUser";

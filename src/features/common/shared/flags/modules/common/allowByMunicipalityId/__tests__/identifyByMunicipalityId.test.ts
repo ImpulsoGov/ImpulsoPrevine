@@ -1,12 +1,12 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { identify } from "..";
 import {
-    municipalityIdSusFromHeader,
     municipalityIdSusFromCookie,
-} from "../../getMunicipalityIdSus/getMunicipalityIdSus";
+    municipalityIdSusFromHeader,
+} from "../logic";
 
 // Mock das funções usadas internamente
-jest.mock("../../getMunicipalityIdSus/getMunicipalityIdSus");
+jest.mock("../logic");
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));
 

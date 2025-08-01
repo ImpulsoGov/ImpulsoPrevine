@@ -1,9 +1,9 @@
-import type { CoeqPageRequestBody } from "@/features/acf/shared/diabetes/schema";
-import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
+import type { CoeqPageRequestBody } from "@/features/acf/shared/hypertension/schema";
+import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/hypertension/schema";
 import * as flags from "@/features/common/shared/flags";
 import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
-import * as diabetesBackend from "@features/acf/backend/diabetes";
+import * as hypertensionBackend from "@features/acf/backend/hypertension";
 import type { NextRequest } from "next/server";
 import { z } from "zod/v4";
 
@@ -13,17 +13,16 @@ type Context = {
     parsedBody: CoeqPageRequestBody;
 };
 
-async function handler(
+const handler = async (
     _req: NextRequest,
     { params, user, parsedBody }: Context
-): Promise<Response> {
+): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
-
     const teamIne = user.teamIne;
     const rawPage = (await params).page;
     const pageIndex = z.coerce.number().parse(rawPage);
 
-    const page = await diabetesBackend.getPageCoeq({
+    const page = await hypertensionBackend.getPageCoeq({
         municipalitySusId,
         teamIne,
         pageIndex,
@@ -32,7 +31,7 @@ async function handler(
         filters: parsedBody.filters,
     });
 
-    const totalRows = await diabetesBackend.getRowCountCoeq({
+    const totalRows = await hypertensionBackend.getRowCountCoeq({
         municipalitySusId,
         teamIne,
         searchString: parsedBody.search,
@@ -47,11 +46,11 @@ async function handler(
         },
         { status: 200 }
     );
-}
+};
 
 const composed = interceptors.compose(
     interceptors.withBodyParsing(queryParamsSchema),
-    interceptors.allowByFlag(flags.diabetesNewProgram),
+    interceptors.allowByFlag(flags.hypertensionNewProgram),
     interceptors.allowProfiles([PROFILE_ID.COEQ]),
     interceptors.withUser,
     interceptors.catchErrors
