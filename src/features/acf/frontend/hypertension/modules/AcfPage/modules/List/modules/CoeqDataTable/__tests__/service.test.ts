@@ -1,4 +1,4 @@
-import type * as schema from "@/features/acf/shared/diabetes/schema";
+import type * as schema from "@/features/acf/shared/hypertension/schema";
 import { describe, expect, it } from "@jest/globals";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { HypertensionCoeqAppliedFilters } from "../model";
@@ -33,12 +33,12 @@ describe("bodyBuilder", () => {
         });
     });
 
-    it("deve incluir filtros, traduzindo conditionIdentifiedBy para um Array", () => {
+    it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: HypertensionCoeqAppliedFilters = {
-            communityHealthWorker: ["worker1", "worker2"],
-            patientStatus: ["Apenas a consulta a fazer"],
-            conditionIdentifiedBy: "Autorreferida",
-            patientAgeRange: ["Entre 18 e 24 anos"],
+            microAreaName: ["worker1", "worker2"],
+            appointmentStatusByQuarter: [20, 10],
+            latestExamRequestStatusByQuarter: [20, 10],
+            patientAgeRange: 50,
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -46,17 +46,17 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                conditionIdentifiedBy: ["Autorreferida"],
+                patientAgeRange: [50],
             },
         });
     });
 
-    it("deve traduzir conditionIdentifiedBy vazia como []", () => {
+    it("deve traduzir patientAgeRange vazia como []", () => {
         const appliedFilters: HypertensionCoeqAppliedFilters = {
-            communityHealthWorker: [],
-            patientStatus: [],
-            conditionIdentifiedBy: "",
-            patientAgeRange: [],
+            microAreaName: [],
+            appointmentStatusByQuarter: [],
+            latestExamRequestStatusByQuarter: [],
+            patientAgeRange: NaN,
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -64,7 +64,7 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                conditionIdentifiedBy: [],
+                patientAgeRange: [],
             },
         });
     });
@@ -75,14 +75,10 @@ describe("bodyBuilder", () => {
             sort: "desc",
         };
         const appliedFilters: HypertensionCoeqAppliedFilters = {
-            communityHealthWorker: ["Abdias"],
-            patientStatus: [
-                "Apenas a consulta a fazer",
-                "Apenas a solicitação de hemoglobina a fazer",
-            ],
-            conditionIdentifiedBy: "Diagnóstico Clínico",
-            patientAgeRange: ["Entre 18 e 24 anos", "Entre 25 e 34 anos"],
-            careTeamName: ["Rosa"],
+            microAreaName: ["Abdias"],
+            appointmentStatusByQuarter: [20, 10],
+            latestExamRequestStatusByQuarter: [20, 10],
+            patientAgeRange: 50,
         };
 
         const searchString = "Maria";
@@ -94,7 +90,7 @@ describe("bodyBuilder", () => {
             search: searchString,
             filters: {
                 ...appliedFilters,
-                conditionIdentifiedBy: ["Diagnóstico Clínico"],
+                patientAgeRange: [50],
             },
         });
     });

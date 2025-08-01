@@ -47,7 +47,7 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                patientAgeRage: [50],
+                patientAgeRange: [50],
             },
         });
     });
