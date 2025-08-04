@@ -1,12 +1,35 @@
 generator client {
   provider        = "prisma-client-js"
+  output          = "../../node_modules/.prisma/serviceLayerClient"
   previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
+  url      = env("SERVICE_LAYER_DATABASE_URL")
+  schemas  = ["indicadores_cuidado_mockups","dados_nominais_datalake"]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model HypertensionAcfItem {
+  patientId                          Int       @map("cidadao_id")
+  municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
+  municipalityName                   String    @map("municipio_nome")
+  patientName                        String    @map("cidadao_nome")
+  patientCpf                         String    @db.VarChar(14) @map("cidadao_cpf")
+  latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta")
+  appointmentStatusByQuarter         Int       @db.SmallInt @map("situacao_quadrimestre_consulta")
+  latestExamRequestDate              DateTime? @db.Date @map("data_ultima_afericao_pa")
+  latestExamRequestStatusByQuarter   Int       @db.SmallInt @map("situacao_quadrimestre_pa")
+  careTeamName                       String?   @map("equipe_nome")
+  careTeamIne                        String?   @map("equipe_ine")
+  microAreaName                      String?   @map("equipe_microarea")
+  patientPhoneNumber                 String?   @map("cidadao_telefone")
+  patientAge                         Int       @map("cidadao_idade")
+
+  @@id([patientId, municipalitySusId], map: "pk_lista_nominal_hipertensos")
+  @@schema("indicadores_cuidado_mockups")
+  @@map("lista_nominal_hipertensos")
 }
 
 model DiabetesAcfItem {
@@ -29,7 +52,7 @@ model DiabetesAcfItem {
   mostRecentProductionRecordDate                   DateTime  @db.Date @map("dt_registro_producao_mais_recente")
 
   @@map("__painel_enfermeiras_lista_nominal_diabeticos")
-  @@schema("impulso_previne_dados_nominais")
+  @@schema("dados_nominais_datalake")
 }
 
 model dados_agregados_area_logada {
@@ -41,5 +64,5 @@ model dados_agregados_area_logada {
   atualizacao_data    DateTime? @db.Timestamp(6)
 
   @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
-  @@schema("impulso_previne_dados_nominais")
+  @@schema("dados_nominais_datalake")
 }

@@ -2,7 +2,7 @@ import type { CoapsPageRequestBody } from "@/features/acf/shared/diabetes/schema
 import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import { PROFILE_ID } from "@/types/profile";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
-import { z } from "zod/v4";
+import { z } from "zod";
 import * as interceptors from "@/features/interceptors/backend";
 import type { NextRequest } from "next/server";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
