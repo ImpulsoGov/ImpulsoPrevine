@@ -6,8 +6,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("PB2024_DATABASE_URL")
-  schemas  = ["impulso_previne_dados_nominais", "listas_de_codigos"]
+  url      = env("DATABASE_URL")
+  schemas  = ["dados_nominais_datalake", "indicadores_cuidado_mockups"]
 }
 
 model DiabetesAcfItem {
@@ -30,7 +30,7 @@ model DiabetesAcfItem {
   mostRecentProductionRecordDate                   DateTime  @db.Date @map("dt_registro_producao_mais_recente")
 
   @@map("__painel_enfermeiras_lista_nominal_diabeticos")
-  @@schema("impulso_previne_dados_nominais")
+  @@schema("dados_nominais_datalake")
 }
 
 model dados_agregados_area_logada {
@@ -42,5 +42,5 @@ model dados_agregados_area_logada {
   atualizacao_data    DateTime? @db.Timestamp(6)
 
   @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
-  @@schema("impulso_previne_dados_nominais")
+  @@schema("dados_nominais_datalake")
 }
