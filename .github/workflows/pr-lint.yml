@@ -21,6 +21,8 @@ jobs:
             - name: Install dependencies
               run: |
                   yarn install
+            - name: Run Prisma Generate
+              run: yarn prisma-generate
             # TODO remover execução apenas em /features no futuro
             - name: Run ESLint
               run: yarn eslint src/features --ext .ts,.tsx

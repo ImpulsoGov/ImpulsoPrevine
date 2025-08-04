@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 import type { DiabetesAcfItem } from "./model";
 import * as model from "./model";
 
