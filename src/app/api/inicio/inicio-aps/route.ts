@@ -1,5 +1,5 @@
 import * as interceptors from "@/features/interceptors/backend";
-import { prisma } from "@prisma/pb2024/prismaClient";
+import { prisma } from "@prisma/prismaClient";
 import type { NextRequest } from "next/server";
 
 const handler = async (req: NextRequest): Promise<Response> => {

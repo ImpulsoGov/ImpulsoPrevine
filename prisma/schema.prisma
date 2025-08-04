@@ -1,7 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
-  output          = "../../node_modules/.prisma/pb2024Client"
 }
 
 datasource db {
@@ -43,4 +42,25 @@ model dados_agregados_area_logada {
 
   @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
   @@schema("dados_nominais_datalake")
+}
+
+model HypertensionAcfItem {
+  patientId                          Int       @map("cidadao_id")
+  municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
+  municipalityName                   String    @map("municipio_nome")
+  patientName                        String    @map("cidadao_nome")
+  patientCpf                         String    @db.VarChar(14) @map("cidadao_cpf")
+  latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta")
+  appointmentStatusByQuarter         Int       @db.SmallInt @map("situacao_quadrimestre_consulta")
+  latestExamRequestDate              DateTime? @db.Date @map("data_ultima_afericao_pa")
+  latestExamRequestStatusByQuarter   Int       @db.SmallInt @map("situacao_quadrimestre_pa")
+  careTeamName                       String?   @map("equipe_nome")
+  careTeamIne                        String?   @map("equipe_ine")
+  microAreaName                      String?   @map("equipe_microarea")
+  patientPhoneNumber                 String?   @map("cidadao_telefone")
+  patientAge                         Int       @map("cidadao_idade")
+
+  @@id([patientId, municipalitySusId], map: "pk_lista_nominal_hipertensos")
+  @@schema("indicadores_cuidado_mockups")
+  @@map("lista_nominal_hipertensos")
 }
