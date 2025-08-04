@@ -22,9 +22,7 @@ jobs:
               run: |
                   yarn install
             - name: Run Prisma Generate
-              run: yarn prisma generate --schema=prisma/pb2024/schema.prisma && yarn prisma generate --schema=prisma/serviceLayer/schema.prisma
-            - name: Check Prisma Client is generated for Service Layer
-              run: test -d node_modules/.prisma/serviceLayerClient || (echo "Prisma client not generated for Service Layer" && exit 1)
+              run: yarn prisma generate
             - name: Check Prisma Client is generated for Production
               run: test -d node_modules/@prisma/client || (echo "Prisma client not generated for Production" && exit 1)
               # TODO remover execução apenas em /features no futuro
