@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem } from ".prisma/serviceLayerClient";
+import type { DiabetesAcfItem } from "@prisma/client";
 import type {
     CoapsFilters,
     CoapsSort,
