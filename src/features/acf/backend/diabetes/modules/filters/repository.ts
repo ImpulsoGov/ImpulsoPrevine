@@ -4,7 +4,7 @@ import type {
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
 import type { DiabetesAcfItem } from ".prisma/serviceLayerClient";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
+import { prisma } from "@prisma/prismaClient";
 
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 
