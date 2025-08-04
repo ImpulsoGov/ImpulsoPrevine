@@ -159,7 +159,10 @@ const config: Config = {
     setupFiles: ["<rootDir>/jest.env.js"],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
-    setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+    setupFilesAfterEnv: [
+        "<rootDir>/jest.setup.ts",
+        "<rootDir>/__tests__/setup/prismaMock.ts",
+    ],
 
     // The number of seconds after which a test is considered as slow and reported as such in the results.
     // slowTestThreshold: 5,
@@ -179,6 +182,7 @@ const config: Config = {
     // The glob patterns Jest uses to detect test files
     testMatch: [
         "<rootDir>/__tests__/unit/**/*.[jt]s?(x)",
+        "<rootDir>/__tests__/integration/**/*.[jt]s?(x)",
         "<rootDir>/src/**/__tests__/**/*.[jt]s?(x)",
     ],
 

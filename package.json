@@ -10,7 +10,8 @@
         "postinstall": "husky",
         "test": "jest",
         "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage --watchAll=false --bail"
+        "test:coverage": "jest --coverage --watchAll=false --bail",
+        "test:integration": "jest __tests__/integration"
     },
     "dependencies": {
         "@hotjar/browser": "^1.0.9",
@@ -30,6 +31,7 @@
         "form-data": "^4.0.0",
         "graphql": "^16.9.0",
         "graphql-request": "^7.1.0",
+        "jest-mock-extended": "^4.0.0",
         "jsonwebtoken": "^9.0.2",
         "mixpanel-browser": "^2.55.1",
         "next": "^15.3.2",
