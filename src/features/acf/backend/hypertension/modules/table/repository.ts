@@ -1,4 +1,4 @@
-import type { HypertensionAcfItem, Prisma } from ".prisma/client";
+import type { HypertensionAcfItem, Prisma } from "@prisma/client";
 
 import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
