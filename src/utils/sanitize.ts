@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify";
 
-export const sanitize = (content: string | Node): string | Node => {
+export const sanitize = (content: any) => {
     return typeof window !== "undefined"
         ? DOMPurify.sanitize(content)
         : content;

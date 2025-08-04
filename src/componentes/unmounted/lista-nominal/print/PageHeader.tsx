@@ -32,9 +32,9 @@ export const PageHeader = ({
                 }}
             >
                 <div>
-                    {/* <p style={{ marginTop: 0 }}>
+                    <p style={{ marginTop: 0 }}>
                         <b>LISTA NOMINAL {sanitize(list)}</b>
-                    </p> */}
+                    </p>
                     <p>
                         <i>
                             PRODUÇÃO MAIS RECENTE RECEBIDA EM :{" "}
@@ -113,9 +113,9 @@ export const PageHeader = ({
                         gap: "10px",
                     }}
                 >
-                    {/* {printLegend.map((item) => (
+                    {printLegend.map((item) => (
                         <div key={item}>{sanitize(item)}</div>
-                    ))} */}
+                    ))}
                 </div>
             )}
         </div>
