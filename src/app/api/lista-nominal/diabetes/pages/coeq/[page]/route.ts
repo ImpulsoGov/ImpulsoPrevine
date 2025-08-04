@@ -5,7 +5,7 @@ import * as interceptors from "@/features/interceptors/backend";
 import { PROFILE_ID } from "@/types/profile";
 import * as diabetesBackend from "@features/acf/backend/diabetes";
 import type { NextRequest } from "next/server";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 type Context = {
     params: Promise<{ page: string }>;

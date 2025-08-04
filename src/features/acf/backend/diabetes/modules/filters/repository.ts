@@ -3,9 +3,8 @@ import type {
     PatientAgeRange,
     PatientStatus,
 } from "@/features/acf/shared/diabetes/model";
-import type { DiabetesAcfItem } from ".prisma/serviceLayerClient";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
-
+import type { DiabetesAcfItem } from "@prisma/client";
+import { prisma } from "@prisma/prismaClient";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 
 const fieldOptionsCoeq = async <TField extends keyof DiabetesAcfItem>(

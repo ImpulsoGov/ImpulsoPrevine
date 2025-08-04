@@ -1,12 +1,11 @@
-import type { DiabetesAcfItem } from ".prisma/serviceLayerClient";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/diabetes/schema";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
-
+import type { DiabetesAcfItem } from "@prisma/client";
+import { prisma } from "@prisma/prismaClient";
 const pageSize = 8;
 
 type QueryWhere = {
