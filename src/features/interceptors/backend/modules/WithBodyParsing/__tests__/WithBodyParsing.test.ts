@@ -1,6 +1,6 @@
 import type { Handler } from "../../common/Handler";
 import type { NextRequest } from "next/server";
-import type { ZodType } from "zod";
+import type { ZodType } from "zod/v4";
 import { withBodyParsing } from "..";
 
 const mockSchemaParse = jest.fn();

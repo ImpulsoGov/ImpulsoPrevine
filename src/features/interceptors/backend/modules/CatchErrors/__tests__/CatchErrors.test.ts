@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { catchErrors } from "..";
 import type { Handler } from "../../common/Handler";
-import { ZodError } from "zod";
+import { ZodError } from "zod/v4";
 import {
     AuthenticationError,
     AuthorizationError,

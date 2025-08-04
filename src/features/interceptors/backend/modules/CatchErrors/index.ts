@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "zod/v4";
 import type { Handler, HandlerWithContext } from "../common/Handler";
 import type { NextRequest } from "next/server";
 import {
