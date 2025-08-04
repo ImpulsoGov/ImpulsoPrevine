@@ -5,8 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "next dev --turbopack",
-        "build": "prisma generate --schema=prisma/serviceLayer/schema.prisma && next build",
-        "prisma-generate": "prisma generate --schema=prisma/serviceLayer/schema.prisma",
+        "build": "prisma generate && next build",
         "start": "next start",
         "postinstall": "husky",
         "test": "jest",
