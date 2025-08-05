@@ -5,18 +5,10 @@
 import { PROFILE_ID } from "@/types/profile";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
-import type { DiabetesAcfItem } from "@prisma/client";
+import type { DiabetesAcfItem, PrismaClient } from "@prisma/client";
+import type { DeepMockProxy } from "jest-mock-extended";
+import { mockDeep } from "jest-mock-extended";
 import { NextRequest } from "next/server";
-
-// const diabetesNewProgram = jest.fn();
-// const decodeToken = jest.fn();
-
-// jest.mock("@/utils/token", () => ({
-//     __esModule: true,
-//     ...jest.requireActual('@utils/token'),
-// }));
-
-// import { decodeToken } from '@/utils/token';
 
 // Helper to create mock DiabetesAcfItem data
 const createMockDiabetesItem = (
@@ -81,6 +73,7 @@ const decodedToken = (perfis) => {
 describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     beforeEach(() => {
         jest.clearAllMocks();
+        jest.resetModules();
     });
 
     afterEach(() => {
@@ -88,6 +81,8 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     });
 
     describe("GET /api/lista-nominal/diabetes/filters/coeq", () => {
+        //TODO: Adicionar caso de: perfil não permitido
+        //TODO: Extrair helpers de mock para reutilizar em todos os testes
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
             jest.doMock<typeof import("@/features/common/shared/flags")>(
                 "@/features/common/shared/flags",
@@ -106,6 +101,17 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
                 };
             });
 
+            const mockPrisma =
+                mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
+
+            jest.mock<typeof import("@prisma/prismaClient")>(
+                "@prisma/prismaClient",
+                () => ({
+                    __esModule: true,
+                    prisma: mockPrisma,
+                })
+            );
+
             const { GET } = await import(
                 "@/app/api/lista-nominal/diabetes/filters/coeq/route"
             );
@@ -115,62 +121,88 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             expect(response.status).toBe(404);
         });
 
-        // it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
-        //     jest.doMock<typeof import("@/features/common/shared/flags")>(
-        //         "@/features/common/shared/flags",
-        //         () => ({
-        //             ...jest.requireActual("@/features/common/shared/flags"),
-        //             diabetesNewProgram: async () => true,
-        //         })
-        //     );
+        it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
+            jest.doMock<typeof import("@/features/common/shared/flags")>(
+                "@/features/common/shared/flags",
+                () => ({
+                    ...jest.requireActual("@/features/common/shared/flags"),
+                    diabetesNewProgram: async () => true,
+                })
+            );
 
-        //     jest.doMock<typeof import("@/utils/token")>("@/utils/token", () => {
-        //         return {
-        //             ...jest.requireActual("@/utils/token"),
-        //             decodeToken: async (_x, _y) => {
-        //                 return decodedToken([PROFILE_ID.COEQ]);
-        //             },
-        //         };
-        //     });
+            jest.doMock<typeof import("@/utils/token")>("@/utils/token", () => {
+                return {
+                    ...jest.requireActual("@/utils/token"),
+                    decodeToken: async (_x, _y) => {
+                        return decodedToken([PROFILE_ID.COEQ]);
+                    },
+                };
+            });
 
-        //     const mockCommunityHealthWorkers = [
-        //         createMockDiabetesItem({ communityHealthWorker: "ACS João" }),
-        //         createMockDiabetesItem({ communityHealthWorker: "ACS Maria" }),
-        //     ];
+            const mockPrisma =
+                mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
 
-        //     const mockPatientStatuses = [
-        //         //             createMockDiabetesItem({ patientStatus: 'Ativo' }),
-        //         createMockDiabetesItem({ patientStatus: "Inativo" }),
-        //     ];
+            jest.mock<typeof import("@prisma/prismaClient")>(
+                "@prisma/prismaClient",
+                () => ({
+                    __esModule: true,
+                    prisma: mockPrisma,
+                })
+            );
 
-        //     const mockConditionIdentifiedBy = [
-        //         createMockDiabetesItem({
-        //             conditionIdentifiedBy: "Exame laboratorial",
-        //         }),
-        //         createMockDiabetesItem({
-        //             conditionIdentifiedBy: "Diagnóstico clínico",
-        //         }),
-        //     ];
+            // const { prismaMock } = await import("../../../../../setup/prismaMock");
 
-        //     const mockPatientAgeRanges = [
-        //         createMockDiabetesItem({ patientAgeRange: "40-49" }),
-        //         createMockDiabetesItem({ patientAgeRange: "50-59" }),
-        //     ];
+            const mockCommunityHealthWorkers = [
+                createMockDiabetesItem({ communityHealthWorker: "ACS João" }),
+                createMockDiabetesItem({ communityHealthWorker: "ACS Maria" }),
+            ];
 
-        //     prismaMock.diabetesAcfItem.findMany
-        //         .mockResolvedValueOnce(mockCommunityHealthWorkers)
-        //         .mockResolvedValueOnce(mockPatientStatuses)
-        //         .mockResolvedValueOnce(mockConditionIdentifiedBy)
-        //         .mockResolvedValueOnce(mockPatientAgeRanges);
+            const mockPatientStatuses = [
+                createMockDiabetesItem({ patientStatus: "Ativo" }),
+                createMockDiabetesItem({ patientStatus: "Inativo" }),
+            ];
 
-        //     const { GET } = await import(
-        //         "@/app/api/lista-nominal/diabetes/filters/coeq/route"
-        //     );
+            const mockConditionIdentifiedBy = [
+                createMockDiabetesItem({
+                    conditionIdentifiedBy: "Exame laboratorial",
+                }),
+                createMockDiabetesItem({
+                    conditionIdentifiedBy: "Diagnóstico clínico",
+                }),
+            ];
 
-        //     const request = createMockRequest(coeqUrl, "GET");
-        //     const response = await GET(request, { user: user });
-        //     expect(response.status).toBe(200);
-        //     //TODO: Checar resposta
-        // });
+            const mockPatientAgeRanges = [
+                createMockDiabetesItem({ patientAgeRange: "40-49" }),
+                createMockDiabetesItem({ patientAgeRange: "50-59" }),
+            ];
+
+            mockPrisma.diabetesAcfItem.findMany
+                .mockResolvedValueOnce(mockCommunityHealthWorkers)
+                .mockResolvedValueOnce(mockPatientStatuses)
+                .mockResolvedValueOnce(mockConditionIdentifiedBy)
+                .mockResolvedValueOnce(mockPatientAgeRanges);
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coeq/route"
+            );
+
+            const expectedBody = {
+                filters: {
+                    communityHealthWorker: ["ACS João", "ACS Maria"],
+                    patientStatus: ["Ativo", "Inativo"],
+                    conditionIdentifiedBy: [
+                        "Exame laboratorial",
+                        "Diagnóstico clínico",
+                    ],
+                    patientAgeRange: ["40-49", "50-59"],
+                },
+            };
+
+            const request = createMockRequest(coeqUrl, "GET");
+            const response = await GET(request, { user: user });
+
+            expect(response.status).toBe(200);
+            expect(await response.json()).toEqual(expectedBody);
+        });
     });
 });
