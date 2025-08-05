@@ -4,3 +4,5 @@ export {
     rowCountCoaps as getRowCountCoaps,
     rowCountCoeq as getRowCountCoeq,
 } from "./modules/table";
+
+export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";
