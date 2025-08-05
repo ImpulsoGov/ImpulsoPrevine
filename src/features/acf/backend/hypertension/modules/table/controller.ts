@@ -5,7 +5,6 @@ import type {
     RowCountParamsCoeq,
 } from "@/features/acf/backend/common/Defaults";
 import { defaultSorting } from "@/features/acf/backend/common/Defaults";
-import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type {
     CoapsFilters,
     CoapsSort,
@@ -14,6 +13,8 @@ import type {
 } from "@/features/acf/shared/hypertension/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
+import type { PageItem } from "./model";
+
 const defaultCoeqFilters: CoeqFilters = {
     microAreaName: [],
     appointmentStatusByQuarter: [],
@@ -33,9 +34,7 @@ export const pageCoeq = async ({
     sorting,
     searchString,
     filters,
-}: PageParamsCoeq<CoeqSort, CoeqFilters>): Promise<
-    Array<HypertensionAcfItem>
-> => {
+}: PageParamsCoeq<CoeqSort, CoeqFilters>): Promise<Array<PageItem>> => {
     const page = await repository.pageCoeq(
         municipalitySusId,
         teamIne,
@@ -53,9 +52,7 @@ export const pageCoaps = async ({
     sorting,
     searchString,
     filters,
-}: PageParamsCoaps<CoapsSort, CoapsFilters>): Promise<
-    Array<HypertensionAcfItem>
-> => {
+}: PageParamsCoaps<CoapsSort, CoapsFilters>): Promise<Array<PageItem>> => {
     const page = await repository.pageCoaps(
         municipalitySusId,
         pageIndex,

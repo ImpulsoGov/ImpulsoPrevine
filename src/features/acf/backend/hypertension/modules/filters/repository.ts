@@ -1,6 +1,6 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/client";
 import { prisma } from "@prisma/prismaClient";
-import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
+import type { FiltersOptionsDbCoaps, FiltersOptionsDbCoeq } from "./model";
 
 const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
     field: TField,
@@ -19,7 +19,7 @@ const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
 export const coeqFilterOptions = async (
     municipalitySusId: string,
     teamIne: string
-): Promise<FiltersOptionsCoeq> => {
+): Promise<FiltersOptionsDbCoeq> => {
     const whereFields = {
         municipalitySusId: municipalitySusId,
         careTeamIne: teamIne,
@@ -49,7 +49,7 @@ export const coeqFilterOptions = async (
 
 export const coapsFilterOptions = async (
     municipalitySusId: string
-): Promise<FiltersOptionsCoaps> => {
+): Promise<FiltersOptionsDbCoaps> => {
     const whereFields = {
         municipalitySusId: municipalitySusId,
     };

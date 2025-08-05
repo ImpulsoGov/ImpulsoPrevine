@@ -4,14 +4,14 @@ export type HypertensionAcfItem = {
     patientName: string;
     patientCpf: string;
     latestAppointmentDate: Date | null;
-    appointmentStatusByQuarter: number;
+    appointmentStatusByQuarter: string;
     latestExamRequestDate: Date | null;
-    latestExamRequestStatusByQuarter: number;
+    latestExamRequestStatusByQuarter: string;
     careTeamName: string | null;
     microAreaName: string | null;
     patientPhoneNumber: string | null;
     patientAge: number;
-    patientAgeRange: number;
+    patientAgeRange: string;
 };
 
 export const sortOrder = ["asc", "desc"] as const;
