@@ -1,4 +1,4 @@
-import type { DiabetesAcfItem, Prisma } from ".prisma/pb2024Client";
+import type { DiabetesAcfItem, Prisma } from "@prisma/client";
 import type {
     CoapsFilters,
     CoapsSort,
@@ -12,7 +12,7 @@ import {
     whereInput,
     type NullableFields,
 } from "@features/acf/backend/common/QueryBuilder";
-import { prisma } from "@prisma/pb2024/prismaClient";
+import { prisma } from "@prisma/prismaClient";
 
 const pageSize = 8;
 

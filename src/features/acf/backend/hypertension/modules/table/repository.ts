@@ -1,4 +1,4 @@
-import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
+import type { HypertensionAcfItem, Prisma } from "@prisma/client";
 
 import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
@@ -13,7 +13,7 @@ import type {
     CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/hypertension/schema";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
+import { prisma } from "@prisma/prismaClient";
 
 const pageSize = 8;
 

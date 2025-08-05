@@ -1,4 +1,4 @@
-import type * as db from ".prisma/pb2024Client";
+import type * as db from "@prisma/client";
 import type * as model from "@/features/acf/shared/diabetes/model";
 import { isDate, parseDate } from "@/features/common/shared/time";
 
