@@ -4,20 +4,20 @@ import type {
     RowCountParamsCoaps,
     RowCountParamsCoeq,
 } from "@/features/acf/backend/common/Defaults";
-import type { DiabetesAcfItem } from "@/features/acf/shared/diabetes/model";
+import { defaultSorting } from "@/features/acf/backend/common/Defaults";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type {
     CoapsFilters,
     CoapsSort,
     CoeqFilters,
     CoeqSort,
-} from "@/features/acf/shared/diabetes/schema";
+} from "@/features/acf/shared/hypertension/schema";
 import * as adapter from "./adapter";
 import * as repository from "./repository";
-
 const defaultCoeqFilters: CoeqFilters = {
-    patientStatus: [],
-    conditionIdentifiedBy: [],
-    communityHealthWorker: [],
+    microAreaName: [],
+    appointmentStatusByQuarter: [],
+    latestExamRequestStatusByQuarter: [],
     patientAgeRange: [],
 };
 
@@ -26,11 +26,6 @@ const defaultCoapsFilters: CoapsFilters = {
     careTeamName: [],
 };
 
-const defaultSorting = {
-    field: "patientName",
-    sort: "asc",
-} as const satisfies CoapsSort;
-
 export const pageCoeq = async ({
     municipalitySusId,
     teamIne,
@@ -38,7 +33,9 @@ export const pageCoeq = async ({
     sorting,
     searchString,
     filters,
-}: PageParamsCoeq<CoeqSort, CoeqFilters>): Promise<Array<DiabetesAcfItem>> => {
+}: PageParamsCoeq<CoeqSort, CoeqFilters>): Promise<
+    Array<HypertensionAcfItem>
+> => {
     const page = await repository.pageCoeq(
         municipalitySusId,
         teamIne,
@@ -47,7 +44,7 @@ export const pageCoeq = async ({
         sorting || defaultSorting,
         searchString || ""
     );
-    return adapter.diabetesPageDbToModel(page);
+    return adapter.hypertensionPageDbToModel(page);
 };
 
 export const pageCoaps = async ({
@@ -57,7 +54,7 @@ export const pageCoaps = async ({
     searchString,
     filters,
 }: PageParamsCoaps<CoapsSort, CoapsFilters>): Promise<
-    Array<DiabetesAcfItem>
+    Array<HypertensionAcfItem>
 > => {
     const page = await repository.pageCoaps(
         municipalitySusId,
@@ -66,7 +63,7 @@ export const pageCoaps = async ({
         sorting || defaultSorting,
         searchString || ""
     );
-    return adapter.diabetesPageDbToModel(page);
+    return adapter.hypertensionPageDbToModel(page);
 };
 
 export const rowCountCoeq = async ({
