@@ -1,4 +1,4 @@
-import type { Prisma } from ".prisma/serviceLayerClient";
+import type { Prisma } from "@prisma/client";
 import type { AreKeysNullable } from "@/features/common/shared/types";
 
 type BaseWhereInput = {

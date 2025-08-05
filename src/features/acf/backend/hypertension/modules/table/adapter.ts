@@ -1,5 +1,5 @@
 import type * as model from "@/features/acf/shared/hypertension/model";
-import type * as db from ".prisma/serviceLayerClient";
+import type * as db from "@prisma/client";
 
 const dbToModel = (
     hypertensionRow: db.HypertensionAcfItem
