@@ -40,14 +40,10 @@ export const coeqFilterOptions = async (
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
 
     return {
-        microAreaName: microAreaName.map((field) => field),
-        appointmentStatusByQuarter: appointmentStatusByQuarter.map(
-            (field) => field
-        ),
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter.map(
-            (field) => field
-        ),
-        patientAgeRange: patientAgeRange.map((field) => field),
+        microAreaName: microAreaName,
+        appointmentStatusByQuarter: appointmentStatusByQuarter,
+        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
+        patientAgeRange: patientAgeRange,
     };
 };
 
@@ -70,14 +66,10 @@ export const coapsFilterOptions = async (
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
 
     return {
-        careTeamName: careTeamName.map((field) => field),
-        microAreaName: microAreaName.map((field) => field),
-        appointmentStatusByQuarter: appointmentStatusByQuarter.map(
-            (field) => field
-        ),
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter.map(
-            (field) => field
-        ),
-        patientAgeRange: patientAgeRange.map((field) => field),
+        careTeamName: careTeamName,
+        microAreaName: microAreaName,
+        appointmentStatusByQuarter: appointmentStatusByQuarter,
+        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
+        patientAgeRange: patientAgeRange,
     };
 };
