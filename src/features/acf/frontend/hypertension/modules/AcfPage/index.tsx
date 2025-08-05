@@ -10,6 +10,7 @@ import { PanelSelector } from "../../../common/PanelSelector";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 import { ContentCoeq, ContentCoaps } from "./modules/List/container";
+import { municipalityName } from "../../../common/MunicipalityName";
 
 export type {
     HypertensionCoapsAppliedFilters,
@@ -67,7 +68,9 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
             Usuário sem permissão
         </p>
     );
-    const municipalitySusId = session?.user.municipio_id_sus ?? "";
+    const municipalitySusId = municipalityName(
+        session?.user.municipio_id_sus ?? ""
+    );
 
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
     if (!isHypertensionNewProgramEnabled) notFound();
@@ -78,7 +81,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                     tabID={initialTabId}
                     subTabID={initialSubTabId}
                     acfDashboardType={acfDashboardType}
-                    municipalitySusId={municipalitySusId}
+                    municipalityName={municipalitySusId}
                     userProfiles={session?.user.perfis as Array<ProfileIdValue>}
                     externalCardsProps={[]}
                     header={header}

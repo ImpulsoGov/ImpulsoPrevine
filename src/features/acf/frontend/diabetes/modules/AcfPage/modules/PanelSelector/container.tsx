@@ -1,5 +1,5 @@
-import { MUNICIPIOS } from "@/constants/municipios";
 import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/backend/diabetes/modules/externalCards/controller";
+import { municipalityName } from "@/features/acf/frontend/common/MunicipalityName";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import { getExternalCardsProps } from "@/helpers/cardsList";
 import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
@@ -15,21 +15,6 @@ export type PanelSelectorContainerProps = {
     initialSubTabId: string;
     acfDashboardType: AcfDashboardType;
     contentWithoutTabs?: React.ReactNode;
-};
-
-//TODO: Mover esta função para algum lugar que seja reutilizável
-export const municipalityName = (municipalitySusId: string): string => {
-    //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
-    const municipalityData = MUNICIPIOS.find(
-        (municipality) => municipality.municipioIdSus === municipalitySusId
-    );
-
-    //TODO: Tentar encontrar uma forma de tipar as coisas pra esse caso ser impossível.
-    if (!municipalityData) {
-        return "Município - UF";
-    }
-
-    return `${municipalityData.nome} - ${municipalityData.uf}`;
 };
 
 // Container aqui se refere ao padrão Container/Presentation, descrito em: https://www.patterns.dev/react/presentational-container-pattern/
