@@ -59,6 +59,7 @@ model HypertensionAcfItem {
   microAreaName                      String?   @map("equipe_microarea")
   patientPhoneNumber                 String?   @map("cidadao_telefone")
   patientAge                         Int       @map("cidadao_idade")
+  patientAgeRange                    Int       @map("cidadao_faixa_etaria")
 
   @@id([patientId, municipalitySusId], map: "pk_lista_nominal_hipertensos")
   @@schema("indicadores_cuidado_mockups")
