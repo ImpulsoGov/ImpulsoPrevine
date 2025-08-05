@@ -1,5 +1,5 @@
-import type { HypertensionAcfItem, Prisma } from ".prisma/serviceLayerClient";
-import { prisma } from "@prisma/serviceLayer/prismaClient";
+import type { HypertensionAcfItem, Prisma } from ".prisma/client";
+import { prisma } from "@prisma/prismaClient";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 
 const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
