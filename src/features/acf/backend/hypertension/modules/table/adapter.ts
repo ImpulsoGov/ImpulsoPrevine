@@ -1,6 +1,6 @@
 import type * as db from "@prisma/client";
-import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/dbCodeToText";
-import { statusByQuarterCodeToText } from "@/features/acf/backend/hypertension/modules/common/dbCodeToText";
+import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/DbCodeToText";
+import { statusByQuarterCodeToText } from "@/features/acf/backend/hypertension/modules/common/DbCodeToText";
 import type { PageItem } from "./model";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {

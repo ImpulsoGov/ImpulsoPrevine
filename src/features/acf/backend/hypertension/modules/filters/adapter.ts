@@ -1,5 +1,5 @@
-import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/dbCodeToText";
-import { statusByQuarterCodeToText } from "../common/dbCodeToText";
+import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/DbCodeToText";
+import { statusByQuarterCodeToText } from "../common/DbCodeToText";
 import type {
     FiltersOptionsCoaps,
     FiltersOptionsCoeq,
