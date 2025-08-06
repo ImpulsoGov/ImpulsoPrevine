@@ -1,6 +1,5 @@
 import type { HypertensionSharedAppliedFilters } from "../common/SharedAppliedFilters";
 
-export type HypertensionCoapsAppliedFilters =
-    HypertensionSharedAppliedFilters & {
-        careTeamName: Array<string>;
-    };
+export type CoapsAppliedFilters = HypertensionSharedAppliedFilters & {
+    careTeamName: Array<string>;
+};

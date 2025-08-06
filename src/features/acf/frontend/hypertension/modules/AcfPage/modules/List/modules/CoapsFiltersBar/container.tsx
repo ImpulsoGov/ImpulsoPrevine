@@ -2,15 +2,13 @@
 import { type Dispatch, type SetStateAction } from "react";
 //TODO: Mover este tipo para um lugar em comum entre DataTable e FilterBar
 import { FiltersBar } from "@features/acf/frontend/common/FiltersBar";
-import type { HypertensionCoapsAppliedFilters } from "@features/acf/frontend/hypertension";
+import type { CoapsAppliedFilters } from "@features/acf/frontend/hypertension";
 import { toSelectConfigsCoaps } from "./logic";
 import * as service from "./service";
 
 type CoapsFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: HypertensionCoapsAppliedFilters;
-    setSelectedValues: Dispatch<
-        SetStateAction<HypertensionCoapsAppliedFilters>
-    >;
+    selectedValues: CoapsAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoapsAppliedFilters>>;
 }>;
 
 export const CoapsFiltersBar: React.FC<CoapsFiltersBarProps> = ({

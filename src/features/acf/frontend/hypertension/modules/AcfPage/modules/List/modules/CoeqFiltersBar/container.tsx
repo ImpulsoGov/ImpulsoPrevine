@@ -1,13 +1,13 @@
 "use client";
-import type { HypertensionCoeqAppliedFilters } from "@/features/acf/frontend/hypertension";
+import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension";
 import { FiltersBar } from "@features/acf/frontend/common/FiltersBar";
 import { type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoeq } from "./logic";
 import * as service from "./service";
 
 type CoeqFiltersBarProps = React.PropsWithChildren<{
-    selectedValues: HypertensionCoeqAppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<HypertensionCoeqAppliedFilters>>;
+    selectedValues: CoeqAppliedFilters;
+    setSelectedValues: Dispatch<SetStateAction<CoeqAppliedFilters>>;
 }>;
 
 export const CoeqFiltersBar: React.FC<CoeqFiltersBarProps> = ({

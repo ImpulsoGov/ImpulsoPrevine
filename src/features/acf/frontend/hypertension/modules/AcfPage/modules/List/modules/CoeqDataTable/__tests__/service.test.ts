@@ -1,7 +1,7 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 import { describe, expect, it } from "@jest/globals";
 import type { GridSortItem } from "@mui/x-data-grid";
-import type { HypertensionCoeqAppliedFilters } from "../model";
+import type { CoeqAppliedFilters } from "../model";
 import { bodyBuilder } from "../service";
 
 describe("bodyBuilder", () => {
@@ -34,7 +34,7 @@ describe("bodyBuilder", () => {
     });
 
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
-        const appliedFilters: HypertensionCoeqAppliedFilters = {
+        const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
             appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [
@@ -55,7 +55,7 @@ describe("bodyBuilder", () => {
     });
 
     it("deve traduzir patientAgeRange vazia como []", () => {
-        const appliedFilters: HypertensionCoeqAppliedFilters = {
+        const appliedFilters: CoeqAppliedFilters = {
             microAreaName: [],
             appointmentStatusByQuarter: [],
             latestExamRequestStatusByQuarter: [],
@@ -77,7 +77,7 @@ describe("bodyBuilder", () => {
             field: "patientName",
             sort: "desc",
         };
-        const appliedFilters: HypertensionCoeqAppliedFilters = {
+        const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["Abdias"],
             appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [

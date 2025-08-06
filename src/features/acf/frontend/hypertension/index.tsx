@@ -1,6 +1,6 @@
 export { AcfPage } from "./modules/AcfPage/index";
 
 export type {
-    HypertensionCoapsAppliedFilters,
-    HypertensionCoeqAppliedFilters,
+    CoapsAppliedFilters,
+    CoeqAppliedFilters,
 } from "./modules/AcfPage/index";

@@ -2,10 +2,10 @@
 import type { BodyBuilder } from "@/features/acf/frontend/common/DataTable";
 import { getPageBuilder } from "@/features/acf/frontend/common/DataTable";
 import type * as schema from "@/features/acf/shared/hypertension/schema";
-import type { HypertensionCoapsAppliedFilters } from "./model";
+import type { CoapsAppliedFilters } from "./model";
 
 export const bodyBuilder: BodyBuilder<
-    HypertensionCoapsAppliedFilters,
+    CoapsAppliedFilters,
     schema.CoapsPageRequestBody
 > = (appliedSorting, appliedFilters, searchString) => {
     return Object.assign(
@@ -29,5 +29,5 @@ export const bodyBuilder: BodyBuilder<
 export const getCoapsPage = getPageBuilder<
     schema.CoapsPageRequestBody,
     schema.PageResponse,
-    HypertensionCoapsAppliedFilters
+    CoapsAppliedFilters
 >("hypertension", "coaps", bodyBuilder);

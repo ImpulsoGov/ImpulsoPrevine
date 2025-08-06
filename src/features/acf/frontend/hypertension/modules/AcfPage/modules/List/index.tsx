@@ -1,2 +1,2 @@
-export type { HypertensionCoapsAppliedFilters } from "./modules/CoapsDataTable";
-export type { HypertensionCoeqAppliedFilters } from "./modules/CoeqDataTable";
+export type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
+export type { CoeqAppliedFilters } from "./modules/CoeqDataTable";

@@ -13,8 +13,8 @@ import { ContentCoeq, ContentCoaps } from "./modules/List/container";
 import { municipalityName } from "../../../common/MunicipalityName";
 
 export type {
-    HypertensionCoapsAppliedFilters,
-    HypertensionCoeqAppliedFilters,
+    CoapsAppliedFilters,
+    CoeqAppliedFilters,
 } from "./modules/List/index";
 
 type Props = {
