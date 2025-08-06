@@ -1,6 +1,11 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/client";
 import { prisma } from "@prisma/prismaClient";
 import type { FiltersOptionsDbCoaps, FiltersOptionsDbCoeq } from "./model";
+import type {
+    AppointmentStatusByQuarterCode,
+    LatestExamRequestStatusByQuarterCode,
+    PatientAgeRangeCode,
+} from "@/features/acf/shared/hypertension/model";
 
 const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
     field: TField,
@@ -41,9 +46,11 @@ export const coeqFilterOptions = async (
 
     return {
         microAreaName: microAreaName,
-        appointmentStatusByQuarter: appointmentStatusByQuarter,
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
-        patientAgeRange: patientAgeRange,
+        appointmentStatusByQuarter:
+            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
+        latestExamRequestStatusByQuarter:
+            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
+        patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
     };
 };
 
@@ -68,8 +75,10 @@ export const coapsFilterOptions = async (
     return {
         careTeamName: careTeamName,
         microAreaName: microAreaName,
-        appointmentStatusByQuarter: appointmentStatusByQuarter,
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
-        patientAgeRange: patientAgeRange,
+        appointmentStatusByQuarter:
+            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
+        latestExamRequestStatusByQuarter:
+            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
+        patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
     };
 };

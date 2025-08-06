@@ -1,7 +1,4 @@
 import type { GridColDef } from "@mui/x-data-grid";
-// import { NameFormatter } from "../common/NameFormatter";
-import { CpfOrBirthdayFormatter } from "../common/CpfOrBirthdayFormatter";
-import { DateRenderCell } from "../common/DateRenderCell";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -11,14 +8,12 @@ export const coeqColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         //TODO: Implementar funcao que une nome, cpf e cns
-        // renderCell: NameFormatter,
     },
     {
         field: "latestAppointmentDate",
         width: 135,
         headerAlign: "left",
         align: "left",
-        renderCell: CpfOrBirthdayFormatter,
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data última <br />
@@ -44,7 +39,6 @@ export const coeqColumns: Array<GridColDef> = [
         width: 135,
         headerAlign: "left",
         align: "left",
-        renderCell: DateRenderCell,
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última

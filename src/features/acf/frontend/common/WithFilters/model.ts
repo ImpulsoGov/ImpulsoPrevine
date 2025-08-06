@@ -1,4 +1,3 @@
-//TODO: Pensar melhor nesse import, tá muito nested.
 import type * as Diabetes from "@/features/acf/frontend/diabetes";
 import type {
     HypertensionCoeqAppliedFilters,

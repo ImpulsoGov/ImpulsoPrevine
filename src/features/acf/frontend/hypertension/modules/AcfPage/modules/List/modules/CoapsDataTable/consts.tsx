@@ -1,6 +1,4 @@
 import type { GridColDef } from "@mui/x-data-grid";
-import { CpfOrBirthdayFormatter } from "../common/CpfOrBirthdayFormatter";
-import { DateRenderCell } from "../common/DateRenderCell";
 
 export const coapsColumns: Array<GridColDef> = [
     {
@@ -16,7 +14,6 @@ export const coapsColumns: Array<GridColDef> = [
         width: 131,
         headerAlign: "left",
         align: "left",
-        renderCell: CpfOrBirthdayFormatter,
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data última <br />
@@ -42,7 +39,6 @@ export const coapsColumns: Array<GridColDef> = [
         width: 156,
         headerAlign: "left",
         align: "left",
-        renderCell: DateRenderCell,
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última

@@ -1,6 +1,9 @@
 import type * as db from "@prisma/client";
-import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/DbCodeToText";
-import { statusByQuarterCodeToText } from "@/features/acf/backend/hypertension/modules/common/DbCodeToText";
+import type {
+    AppointmentStatusByQuarterCode,
+    LatestExamRequestStatusByQuarterCode,
+} from "@/features/acf/shared/hypertension/model";
+import { appointmentStatusByQuarterCodeToText } from "@/features/acf/shared/hypertension/model";
 import type { PageItem } from "./model";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
@@ -11,13 +14,13 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         patientCpf: hypertensionRow.patientCpf,
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter:
-            statusByQuarterCodeToText[
-                hypertensionRow.appointmentStatusByQuarter as StatusCodes
+            appointmentStatusByQuarterCodeToText[
+                hypertensionRow.appointmentStatusByQuarter as AppointmentStatusByQuarterCode
             ],
         latestExamRequestDate: hypertensionRow.latestExamRequestDate,
         latestExamRequestStatusByQuarter:
-            statusByQuarterCodeToText[
-                hypertensionRow.latestExamRequestStatusByQuarter as StatusCodes
+            appointmentStatusByQuarterCodeToText[
+                hypertensionRow.latestExamRequestStatusByQuarter as LatestExamRequestStatusByQuarterCode
             ],
         careTeamName: hypertensionRow.careTeamName,
         microAreaName: hypertensionRow.microAreaName,
