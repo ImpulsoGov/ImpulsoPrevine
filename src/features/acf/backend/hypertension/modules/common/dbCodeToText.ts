@@ -1,11 +1,11 @@
 // TODO: Remover valor X  quando implementarmos o calculo do quadrimestre atual
-type QuadriDigits = "1" | "2" | "3" | "X";
-export type StatusDigits = 10 | 20 | 30 | 40;
-type Quadrimester = `Vence dentro de Q${QuadriDigits}`;
-type Status = "Nunca realizado" | "Atrasada" | "Em dia" | Quadrimester;
+type QuadrimesterDigits = "1" | "2" | "3" | "X";
+export type StatusCodes = 10 | 20 | 30 | 40;
+type DueDate = `Vence dentro de Q${QuadrimesterDigits}`;
+type Status = "Nunca realizado" | "Atrasada" | "Em dia" | DueDate;
 
 //TODO: Calcular o quadrimestre atual
-export const statusByQuarterCodeToText: Record<StatusDigits, Status> = {
+export const statusByQuarterCodeToText: Record<StatusCodes, Status> = {
     10: "Nunca realizado",
     20: "Atrasada",
     30: "Vence dentro de QX",

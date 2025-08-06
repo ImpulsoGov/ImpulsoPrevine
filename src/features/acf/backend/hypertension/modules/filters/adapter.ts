@@ -1,4 +1,4 @@
-import type { StatusDigits } from "@/features/acf/backend/hypertension/modules/common/dbCodeToText";
+import type { StatusCodes } from "@/features/acf/backend/hypertension/modules/common/dbCodeToText";
 import { statusByQuarterCodeToText } from "../common/dbCodeToText";
 import type {
     FiltersOptionsCoaps,
@@ -13,7 +13,7 @@ type AgeRange =
     | "20 a 59 (Adulto)"
     | "60 ou mais (Idoso)";
 
-const ageRangeCodeToText: Record<StatusDigits, AgeRange> = {
+const ageRangeCodeToText: Record<StatusCodes, AgeRange> = {
     10: "0 a 10 (Criança)",
     20: "11 a 19 (Adolescente)",
     30: "20 a 59 (Adulto)",
@@ -36,15 +36,15 @@ export const dbToModelCoeq = (
     return {
         appointmentStatusByQuarter:
             filtersOptions.appointmentStatusByQuarter.map(
-                (code) => statusByQuarterCodeToText[code as StatusDigits]
+                (code) => statusByQuarterCodeToText[code as StatusCodes]
             ),
         latestExamRequestStatusByQuarter:
             filtersOptions.latestExamRequestStatusByQuarter.map(
-                (code) => statusByQuarterCodeToText[code as StatusDigits]
+                (code) => statusByQuarterCodeToText[code as StatusCodes]
             ),
         microAreaName: filtersOptions.microAreaName,
         patientAgeRange: filtersOptions.patientAgeRange.map(
-            (code) => ageRangeCodeToText[code as StatusDigits]
+            (code) => ageRangeCodeToText[code as StatusCodes]
         ),
     };
 };
