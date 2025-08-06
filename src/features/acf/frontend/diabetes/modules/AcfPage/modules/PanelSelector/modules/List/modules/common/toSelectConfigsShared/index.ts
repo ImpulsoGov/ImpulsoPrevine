@@ -1,15 +1,10 @@
-import type * as z from "zod/v4";
-import type {
-    ConditionIdentifiedBy,
-    PatientAgeRange,
-    PatientStatus,
-} from "@/features/acf/shared/diabetes/model";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type {
     HtmlSelectOption,
     SelectConfig,
 } from "@/features/acf/frontend/common/SelectConfig";
+import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
 
 const referenceOrder = [
     "Menos de 17 anos",
@@ -21,34 +16,10 @@ const referenceOrder = [
     "Mais de 65 anos",
 ];
 
-type FilterOptions =
-    | Array<string>
-    | Array<PatientStatus>
-    | Array<ConditionIdentifiedBy>
-    | Array<PatientAgeRange>;
-
 export const sortedOptions = (
     a: HtmlSelectOption,
     b: HtmlSelectOption
 ): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
-
-export const onlyValidFilterValues = <TFilterValue>(
-    filterValues: Array<TFilterValue>,
-    schema: z.ZodType
-): Array<TFilterValue> => {
-    return filterValues.filter(
-        (filterValue: TFilterValue) => schema.safeParse(filterValue).success
-    );
-};
-
-export const toHtmlSelectOptions = (
-    filterValues: FilterOptions
-): Array<HtmlSelectOption> => {
-    return filterValues.map<HtmlSelectOption>((item) => ({
-        value: item,
-        label: item,
-    }));
-};
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters

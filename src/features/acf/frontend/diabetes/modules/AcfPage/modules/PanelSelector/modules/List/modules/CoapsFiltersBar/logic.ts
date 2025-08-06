@@ -1,9 +1,9 @@
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import {
     sortedOptions,
-    toHtmlSelectOptions,
     toSelectConfigsShared,
 } from "../common/toSelectConfigsShared";
+import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 

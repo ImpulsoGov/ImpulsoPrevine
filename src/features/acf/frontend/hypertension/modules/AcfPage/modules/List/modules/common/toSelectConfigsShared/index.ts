@@ -1,45 +1,19 @@
-import type * as z from "zod/v4";
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type {
     HtmlSelectOption,
     SelectConfig,
 } from "@/features/acf/frontend/common/SelectConfig";
+import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
 
-const referenceOrder = [
-    "Menos de 17 anos",
-    "Entre 18 e 24 anos",
-    "Entre 25 e 34 anos",
-    "Entre 35 e 44 anos",
-    "Entre 45 e 54 anos",
-    "Entre 55 e 65 anos",
-    "Mais de 65 anos",
-];
-
-type FilterOptions = Array<string>;
-
-export const sortedOptions = (
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export const sortedOptions = <TLabel>(
     a: HtmlSelectOption,
-    b: HtmlSelectOption
-): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
-
-export const onlyValidFilterValues = <TFilterValue>(
-    filterValues: Array<TFilterValue>,
-    schema: z.ZodType
-): Array<TFilterValue> => {
-    return filterValues.filter(
-        (filterValue: TFilterValue) => schema.safeParse(filterValue).success
-    );
-};
-
-export const toHtmlSelectOptions = (
-    filterValues: FilterOptions
-): Array<HtmlSelectOption> => {
-    return filterValues.map<HtmlSelectOption>((item) => ({
-        value: item,
-        label: String(item),
-    }));
-};
+    b: HtmlSelectOption,
+    referenceOrder: Array<TLabel>
+): number =>
+    referenceOrder.indexOf(a.label as TLabel) -
+    referenceOrder.indexOf(b.label as TLabel);
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters
@@ -74,7 +48,7 @@ export const toSelectConfigsShared = (
         },
         {
             options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
-                sortedOptions
+                (a, b) => a.label.localeCompare(b.label)
             ),
             label: "Faixa Etária",
             id: "patientAgeRange",

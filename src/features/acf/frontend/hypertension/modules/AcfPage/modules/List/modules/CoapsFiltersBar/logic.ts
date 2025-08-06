@@ -1,11 +1,8 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
-import {
-    sortedOptions,
-    toHtmlSelectOptions,
-    toSelectConfigsShared,
-} from "../common/toSelectConfigsShared";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
+import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
+import { toSelectConfigsShared } from "../common/toSelectConfigsShared";
 
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters
@@ -15,7 +12,7 @@ export const toSelectConfigsCoaps = (
         {
             options: toHtmlSelectOptions(filtersValues.careTeamName)
                 .map((item) => ({ ...item, label: nameFormatter(item.label) }))
-                .sort(sortedOptions),
+                .sort((a, b) => a.label.localeCompare(b.label)),
             label: "Equipe",
             id: "careTeamName",
             isMultiSelect: true,
