@@ -7,7 +7,7 @@ export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
-        width: 240,
+        width: 211,
         headerAlign: "left",
         align: "left",
         //TODO: Implementar funcao que une nome, cpf e cns
@@ -15,7 +15,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
-        width: 150,
+        width: 135,
         headerAlign: "left",
         align: "left",
         renderCell: CpfOrBirthdayFormatter,
@@ -28,7 +28,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "appointmentStatusByQuarter",
-        width: 160,
+        width: 207,
         headerAlign: "left",
         align: "left",
         // TODO: implementar função que renderiza tags
@@ -41,7 +41,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestDate",
-        width: 164,
+        width: 135,
         headerAlign: "left",
         align: "left",
         renderCell: DateRenderCell,
@@ -55,7 +55,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestStatusByQuarter",
-        width: 160,
+        width: 209,
         headerAlign: "left",
         align: "left",
         // TODO: implementar função que renderiza tags
@@ -69,7 +69,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "microAreaName",
-        width: 196,
+        width: 144,
         headerAlign: "left",
         align: "left",
         // TODO: implementar função que checa valores nulos
@@ -79,7 +79,7 @@ export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 230,
+        width: 136,
         headerAlign: "left",
         align: "left",
         // TODO: Implementar funcao que formata o telefone
@@ -88,7 +88,7 @@ export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientAge",
         headerName: "Idade",
-        width: 230,
+        width: 103,
         headerAlign: "left",
         align: "left",
     },
