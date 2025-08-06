@@ -1,5 +1,5 @@
 export type HtmlSelectOption = {
-    value: string | number;
+    value: string;
     label: string;
 };
 

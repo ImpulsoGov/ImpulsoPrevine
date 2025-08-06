@@ -16,7 +16,7 @@ const referenceOrder = [
     "Mais de 65 anos",
 ];
 
-type FilterOptions = Array<string> | Array<number>;
+type FilterOptions = Array<string>;
 
 export const sortedOptions = (
     a: HtmlSelectOption,

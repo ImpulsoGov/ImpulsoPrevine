@@ -7,17 +7,17 @@ export type CareTeamName = z.infer<typeof careTeamName>;
 export const microArea = z.string();
 export type MicroArea = z.infer<typeof microArea>;
 
-export const appointmentStatusByQuarter = z.number();
+export const appointmentStatusByQuarter = z.string();
 export type AppointmentStatusByQuarter = z.infer<
     typeof appointmentStatusByQuarter
 >;
 
-export const latestExamRequestStatusByQuarter = z.number();
+export const latestExamRequestStatusByQuarter = z.string();
 export type LatestExamRequestStatusByQuarter = z.infer<
     typeof latestExamRequestStatusByQuarter
 >;
 
-export const patientAgeRange = z.number();
+export const patientAgeRange = z.string();
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
 export const sharedFilters = z.object({

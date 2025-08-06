@@ -17,11 +17,10 @@ export const bodyBuilder: BodyBuilder<
             : {
                   filters: {
                       ...appliedFilters,
-                      patientAgeRange: Number.isNaN(
-                          appliedFilters.patientAgeRange
-                      )
-                          ? []
-                          : [appliedFilters.patientAgeRange],
+                      patientAgeRange:
+                          appliedFilters.patientAgeRange === ""
+                              ? []
+                              : [appliedFilters.patientAgeRange],
                   },
               }
     );

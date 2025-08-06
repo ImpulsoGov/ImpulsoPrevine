@@ -1,11 +1,11 @@
-import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/backend/diabetes/modules/externalCards/controller";
+// import { externalCardsAcfDashboardDataControllerForTeam } from "@/features/acf/backend/diabetes/modules/externalCards/controller";
 import { municipalityName } from "@/features/acf/frontend/common/MunicipalityName";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
-import { getExternalCardsProps } from "@/helpers/cardsList";
-import { PROFILE_ID, type ProfileIdValue } from "@/types/profile";
-import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import { captureException } from "@sentry/nextjs";
-import { externalCardsDetails } from "./consts";
+// import { getExternalCardsProps } from "@/helpers/cardsList";
+import { type ProfileIdValue } from "@/types/profile";
+// import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
+// import { captureException } from "@sentry/nextjs";
+// import { externalCardsDetails } from "./consts";
 import { PanelSelector } from "./presentation";
 
 export type PanelSelectorContainerProps = {

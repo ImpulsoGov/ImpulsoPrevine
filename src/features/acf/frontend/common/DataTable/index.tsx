@@ -38,7 +38,6 @@ type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     search?: string;
 };
 
-//TODO: Incluir TResponse aqui e usar no lugar de schema.PageResponse
 type ServiceGetPage<
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,

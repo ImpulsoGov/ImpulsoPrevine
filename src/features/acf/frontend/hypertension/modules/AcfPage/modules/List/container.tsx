@@ -24,7 +24,7 @@ const initialSelectedValuesCoeq = {
     microAreaName: [],
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
-    patientAgeRange: NaN,
+    patientAgeRange: "",
 };
 
 const initialSelectedValuesCoaps = {
@@ -32,7 +32,7 @@ const initialSelectedValuesCoaps = {
     microAreaName: [],
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
-    patientAgeRange: NaN,
+    patientAgeRange: "",
 };
 
 export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
