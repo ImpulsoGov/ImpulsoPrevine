@@ -36,9 +36,12 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: HypertensionCoapsAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: [20, 10],
-            latestExamRequestStatusByQuarter: [20, 10],
-            patientAgeRange: 50,
+            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            latestExamRequestStatusByQuarter: [
+                "Vence dentro de Q1",
+                "Atrasada",
+            ],
+            patientAgeRange: "50 a 59 anos",
             careTeamName: ["team1", "team2"],
         };
 
@@ -47,7 +50,7 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                patientAgeRange: [50],
+                patientAgeRange: ["50 a 59 anos"],
             },
         });
     });
@@ -57,7 +60,7 @@ describe("bodyBuilder", () => {
             microAreaName: [],
             appointmentStatusByQuarter: [],
             latestExamRequestStatusByQuarter: [],
-            patientAgeRange: NaN,
+            patientAgeRange: "",
             careTeamName: [],
         };
 
@@ -78,9 +81,12 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: HypertensionCoapsAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: [20, 10],
-            latestExamRequestStatusByQuarter: [20, 10],
-            patientAgeRange: 40,
+            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            latestExamRequestStatusByQuarter: [
+                "Vence dentro de Q1",
+                "Atrasada",
+            ],
+            patientAgeRange: "60 anos ou mais",
             careTeamName: ["Rosa"],
         };
 
@@ -93,7 +99,7 @@ describe("bodyBuilder", () => {
             search: searchString,
             filters: {
                 ...appliedFilters,
-                patientAgeRange: [40],
+                patientAgeRange: ["60 anos ou mais"],
             },
         });
     });

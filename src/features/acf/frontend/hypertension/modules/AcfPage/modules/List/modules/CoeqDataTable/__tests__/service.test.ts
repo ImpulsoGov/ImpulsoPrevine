@@ -36,9 +36,12 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: HypertensionCoeqAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: [20, 10],
-            latestExamRequestStatusByQuarter: [20, 10],
-            patientAgeRange: 50,
+            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            latestExamRequestStatusByQuarter: [
+                "Vence dentro de Q1",
+                "Atrasada",
+            ],
+            patientAgeRange: "60 anos ou mais",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -46,7 +49,7 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                patientAgeRange: [50],
+                patientAgeRange: ["60 anos ou mais"],
             },
         });
     });
@@ -56,7 +59,7 @@ describe("bodyBuilder", () => {
             microAreaName: [],
             appointmentStatusByQuarter: [],
             latestExamRequestStatusByQuarter: [],
-            patientAgeRange: NaN,
+            patientAgeRange: "",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -76,9 +79,12 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: HypertensionCoeqAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: [20, 10],
-            latestExamRequestStatusByQuarter: [20, 10],
-            patientAgeRange: 50,
+            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            latestExamRequestStatusByQuarter: [
+                "Vence dentro de Q1",
+                "Atrasada",
+            ],
+            patientAgeRange: "60 anos ou mais",
         };
 
         const searchString = "Maria";
@@ -90,7 +96,7 @@ describe("bodyBuilder", () => {
             search: searchString,
             filters: {
                 ...appliedFilters,
-                patientAgeRange: [50],
+                patientAgeRange: ["60 anos ou mais"],
             },
         });
     });
