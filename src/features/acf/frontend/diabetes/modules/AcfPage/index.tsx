@@ -1,5 +1,4 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { AllowProfile } from "@/features/common/frontend/AllowProfile";
 import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
@@ -30,40 +29,31 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "DIABETES") as AcfDashboardType;
-    const errorText = (
-        <p style={{ padding: "80px", textAlign: "center" }}>
-            Usuário sem permissão
-        </p>
-    );
 
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     if (!isDiabetesNewProgramEnabled) notFound();
     return (
         <SessionGuard error={<ErrorPage />}>
-            <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
-                <PanelSelector
-                    initialTabId={initialTabId}
-                    initialSubTabId={initialSubTabId}
-                    acfDashboardType={acfDashboardType}
-                    //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                    municipalitySusId={session?.user.municipio_id_sus}
-                    userProfiles={session?.user.perfis as Array<ProfileIdValue>}
-                    contentWithoutTabs={
-                        <List
-                            list={acfDashboardType}
-                            municipalitySusId={
-                                session?.user.municipio_id_sus ?? ""
-                            }
-                            teamIne={session?.user.equipe ?? ""}
-                            userProfile={
-                                session?.user.perfis.includes(PROFILE_ID.COAPS)
-                                    ? PROFILE_ID.COAPS
-                                    : PROFILE_ID.COEQ
-                            }
-                        />
-                    }
-                />
-            </AllowProfile>
+            <PanelSelector
+                initialTabId={initialTabId}
+                initialSubTabId={initialSubTabId}
+                acfDashboardType={acfDashboardType}
+                //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
+                municipalitySusId={session?.user.municipio_id_sus}
+                userProfiles={session?.user.perfis as Array<ProfileIdValue>}
+                contentWithoutTabs={
+                    <List
+                        list={acfDashboardType}
+                        municipalitySusId={session?.user.municipio_id_sus ?? ""}
+                        teamIne={session?.user.equipe ?? ""}
+                        userProfile={
+                            session?.user.perfis.includes(PROFILE_ID.COAPS)
+                                ? PROFILE_ID.COAPS
+                                : PROFILE_ID.COEQ
+                        }
+                    />
+                }
+            />
         </SessionGuard>
     );
 };

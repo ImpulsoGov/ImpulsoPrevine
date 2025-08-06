@@ -1,5 +1,5 @@
+// TODO atualizar textos e mover para arquivo de const
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { AllowProfile } from "@/features/common/frontend/AllowProfile";
 import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
@@ -63,11 +63,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "hypertension") as AcfDashboardType;
-    const errorText = (
-        <p style={{ padding: "80px", textAlign: "center" }}>
-            Usuário sem permissão
-        </p>
-    );
+
     const municipalitySusId = municipalityName(
         session?.user.municipio_id_sus ?? ""
     );
@@ -76,25 +72,23 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     if (!isHypertensionNewProgramEnabled) notFound();
     return (
         <SessionGuard error={<ErrorPage />}>
-            <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
-                <PanelSelector
-                    tabID={initialTabId}
-                    subTabID={initialSubTabId}
-                    acfDashboardType={acfDashboardType}
-                    municipalityName={municipalitySusId}
-                    userProfiles={session?.user.perfis as Array<ProfileIdValue>}
-                    externalCardsProps={[]}
-                    header={header}
-                    breadcrumb={breadcrumb.breadcrumb}
-                    contentWithoutTabs={
-                        session?.user.perfis.includes(PROFILE_ID.COEQ) ? (
-                            <ContentCoeq list={acfDashboardType} />
-                        ) : (
-                            <ContentCoaps list={acfDashboardType} />
-                        )
-                    }
-                />
-            </AllowProfile>
+            <PanelSelector
+                tabID={initialTabId}
+                subTabID={initialSubTabId}
+                acfDashboardType={acfDashboardType}
+                municipalityName={municipalitySusId}
+                userProfiles={session?.user.perfis as Array<ProfileIdValue>}
+                externalCardsProps={[]}
+                header={header}
+                breadcrumb={breadcrumb.breadcrumb}
+                contentWithoutTabs={
+                    session?.user.perfis.includes(PROFILE_ID.COEQ) ? (
+                        <ContentCoeq list={acfDashboardType} />
+                    ) : (
+                        <ContentCoaps list={acfDashboardType} />
+                    )
+                }
+            />
         </SessionGuard>
     );
 };
