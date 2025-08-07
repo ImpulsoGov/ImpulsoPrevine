@@ -1,5 +1,5 @@
 import type * as schema from "@/features/acf/shared/diabetes/schema";
-import { toSelectConfigsShared } from "../common/toSelectConfigsShared";
+import { toSelectConfigsShared } from "../common/SharedSelectConfigs";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 
 export const toSelectConfigsCoeq = (
