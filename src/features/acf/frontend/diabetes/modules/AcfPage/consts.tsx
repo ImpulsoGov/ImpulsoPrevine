@@ -1,6 +1,33 @@
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
-import type { ExtendedPanelSelectorWithCardsProps } from "./presentation";
+import type {
+    PanelSelectorWithCardsProps,
+    subTabsWithChildrenProps,
+} from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
+
+// TODO: Esses 3 tipos devem ser importados de frontend/common/PanelSelector/logic.ts quando implementarmos as abas
+export type ExtendedsubTabsWithChildrenAndChildrenDataProps =
+    subTabsWithChildrenProps & {
+        child?: React.ReactNode; // Tornando child opcional
+        title: string;
+    };
+
+export type Tabs = Record<
+    string,
+    {
+        title: string;
+        tabID: string;
+        subTabs: Array<ExtendedsubTabsWithChildrenAndChildrenDataProps>;
+    }
+>;
+
+export type ExtendedPanelSelectorWithCardsProps = Omit<
+    PanelSelectorWithCardsProps,
+    "tabs"
+> & {
+    tabs: Tabs;
+    listaNominalID: AcfDashboardType;
+};
 
 export type CardDetails = Omit<CardProps, "value">;
 export type CardDetailsMap = Record<string, CardDetails>;

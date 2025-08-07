@@ -5,22 +5,20 @@ import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
 import type { AcfDashboardType } from "../../../common/DashboardType";
 import { ErrorPage } from "../../../common/ErrorPage";
-import { PanelSelector } from "./modules/PanelSelector";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
-import { List } from "./modules/PanelSelector/modules/List";
+import { List } from "./modules/List";
+import { PanelSelector } from "@/features/acf/frontend/common/PanelSelector";
+import { getMunicipalityName } from "@/features/acf/frontend/common/MunicipalityName";
+import { breadcrumb, header } from "./consts";
 
-export type {
-    CoapsAppliedFilters,
-    CoeqAppliedFilters,
-} from "./modules/PanelSelector";
+export type { CoapsAppliedFilters, CoeqAppliedFilters } from "./modules/List";
 
 type Props = {
     searchParams: Promise<{
         [key: string]: string | undefined;
     }>;
 };
-
 export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
@@ -30,17 +28,23 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "DIABETES") as AcfDashboardType;
 
+    const municipalityName = getMunicipalityName(
+        session?.user.municipio_id_sus ?? ""
+    );
+
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     if (!isDiabetesNewProgramEnabled) notFound();
     return (
         <SessionGuard error={<ErrorPage />}>
             <PanelSelector
-                initialTabId={initialTabId}
-                initialSubTabId={initialSubTabId}
+                tabID={initialTabId}
+                subTabID={initialSubTabId}
                 acfDashboardType={acfDashboardType}
-                //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                municipalitySusId={session?.user.municipio_id_sus}
+                municipalityName={municipalityName}
                 userProfiles={session?.user.perfis as Array<ProfileIdValue>}
+                externalCardsProps={[]}
+                header={header}
+                breadcrumb={breadcrumb.breadcrumb}
                 contentWithoutTabs={
                     <List
                         list={acfDashboardType}

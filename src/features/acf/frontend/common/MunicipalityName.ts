@@ -1,6 +1,6 @@
 import { MUNICIPIOS } from "@/constants/municipios";
 
-export const municipalityName = (municipalitySusId: string): string => {
+export const getMunicipalityName = (municipalitySusId: string): string => {
     //TODO: Criar um mapa associativo municipioId->municipio e usar aqui
     const municipalityData = MUNICIPIOS.find(
         (municipality) => municipality.municipioIdSus === municipalitySusId

@@ -2,7 +2,7 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-
+//TODO: Generalizar essa função para ele receber um <TSchema> e uma url
 //TODO: Introduzir um type alias pro access_token ao invés de string
 export const getFiltersCoeq = async (
     access_token: string

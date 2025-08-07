@@ -1,5 +1,5 @@
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
-import type { DiabetesAcfPrintItem } from "@features/acf/frontend/diabetes/modules/AcfPage/modules/PanelSelector/modules/List/modules/print/diabetes/print.model";
+import type { DiabetesAcfPrintItem } from "@/features/acf/frontend/diabetes/modules/AcfPage/modules/List/modules/print/diabetes/print.model";
 import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
 import type { GridColDef } from "@mui/x-data-grid";
 import { MultipleTeamsPerPage } from "./MultipleTeamsPerPage";

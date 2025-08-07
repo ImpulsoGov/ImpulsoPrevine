@@ -7,7 +7,7 @@ import React from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
-import { List } from "./presentation";
+import { List } from "@/features/acf/frontend/common/List";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 

@@ -16,7 +16,7 @@ import {
     type CoeqAppliedFilters,
 } from "./modules/CoeqDataTable";
 import { CoeqInternalCards } from "./modules/CoeqInternalcards";
-import { List } from "./presentation";
+import { List } from "@/features/acf/frontend/common/List";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 
