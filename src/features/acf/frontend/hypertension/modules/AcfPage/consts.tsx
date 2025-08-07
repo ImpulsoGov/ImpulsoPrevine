@@ -5,29 +5,17 @@ export const breadcrumb = {
             link: "/inicio",
         },
         {
-            label: "Hipertensão",
+            label: "Cuidado da pessoa com hipertensão",
             link: "/lista=hipertensao",
         },
     ],
 };
 
-export const header = {
-    title: "Hipertensão",
-    tooltip: (
-        <div>
-            <p>Legenda </p>
-            <p> Tipo de diagnóstico: </p>
-            <p>
-                <b>Autorreferido </b> - a condição foi identificada como
-                "autorreferida" quando é relatada pelo usuário na realização do
-                Cadastro Individual.
-            </p>
-            <p>
-                <b>Diagnóstico Clínico</b> - a condição foi identificada como
-                "diagnóstico clínico" por haver atendimento individual
-                confirmando o diagnóstico.
-            </p>
-        </div>
-    ),
-    text: "A lista nominal de hipertensão reúne os cidadãos que possuem a condição, seja por diagnóstico clínico ou autorreferido, e traz a situação da consulta e da solicitação de hemoblogina, que devem ser realizadas a cada seis meses para acompanhamento. Além disso, você encontrará também o nome profissional responsável pelo cidadão, para facilitar a organização da busca ativa. Utilize os filtros para segmentar a lista como preferir.",
+export const sharedHeader = {
+    title: "Cuidado da pessoa com hipertensão",
 };
+
+export const textCoaps =
+    "Acompanhe duas boas práticas definidas pelo Ministério da Saúde do indicador C5 de cuidado da pessoa com hipertensão de forma simples visualizando a realização de consultas com profissional da saúde e aferição da pressão arterial. A lista mostra, com base nos registros da base local do município, como anda o cuidado das pessoas com hipertensão arterial nas diferentes equipes do território.";
+export const textCoeq =
+    "Acompanhe duas boas práticas definidas pelo Ministério da Saúde do indicador C5 de cuidado da pessoa com hipertensão de forma simples visualizando a realização de consultas com profissional da saúde e aferição da pressão arterial. A lista mostra, com base nos registros da base local do município, como anda o cuidado das pessoas com hipertensão vinculadas à sua equipe.";
