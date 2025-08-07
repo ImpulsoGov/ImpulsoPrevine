@@ -10,6 +10,7 @@ import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { List } from "@/features/acf/frontend/common/List";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
+import { getCurrentQuadrimester } from "@/features/acf/frontend/common/getCurrentQuadrimester";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -35,11 +36,29 @@ const initialSelectedValuesCoaps = {
     patientAgeRange: "",
 };
 
+// TODO: mover para um módulo
+const CurrentQuadrimester: React.FC = () => {
+    const currentQuadri = getCurrentQuadrimester().toString();
+    const year = new Date().getFullYear().toString();
+    return (
+        <div
+            style={{
+                fontSize: "26px",
+                fontWeight: 400,
+                color: "#1F1F1F",
+                fontFamily: "Inter",
+                marginBottom: "5px",
+            }}
+        >{`${currentQuadri}° Quadrimestre de ${year}`}</div>
+    );
+};
+
 export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
     return (
         <>
             <List list={list}>
+                <CurrentQuadrimester />
                 <WithSearch SearchComponent={SearchToolBar}>
                     <hr style={{ width: "100%" }} />
                     <WithSorting>
