@@ -11,40 +11,48 @@ type CoordinatorProfile = "coaps" | "coeq";
 export type BodyBuilder<
     TAppliedFilters extends AppliedFilters,
     TRequestBody,
+    TSchema,
 > = (
-    sorting: GridSortItem | null,
+    sorting: TSchema | null,
     filters: TAppliedFilters | null,
     search: string | null
 ) => TRequestBody;
 
-export type GetPageParams<TAppliedFilters extends AppliedFilters> = {
+export type GetPageParams<TAppliedFilters extends AppliedFilters, TSchema> = {
     token: string;
     page: number;
-    sorting?: GridSortItem;
+    sorting?: TSchema;
     filters?: TAppliedFilters;
     search?: string;
 };
 
-export type GetPage<TAppliedFilters extends AppliedFilters, TResponse> = (
-    params: GetPageParams<TAppliedFilters>
+export type GetPage<
+    TAppliedFilters extends AppliedFilters,
+    TResponse,
+    TSchema,
+> = (
+    params: GetPageParams<TAppliedFilters, TSchema>
 ) => Promise<AxiosResponse<TResponse>>;
 
 export const getPageBuilder = <
     TRequestBody,
     TResponse,
     TAppliedFilters extends AppliedFilters,
+    TSchema,
 >(
     acfDashboardType: AcfDashboardType,
     coordinatorProfile: CoordinatorProfile,
-    bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody>
-): GetPage<TAppliedFilters, TResponse> => {
+    bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody, TSchema>
+): GetPage<TAppliedFilters, TResponse, TSchema> => {
     return async ({
         page,
         sorting,
         filters,
         search,
         token,
-    }: GetPageParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
+    }: GetPageParams<TAppliedFilters, TSchema>): Promise<
+        AxiosResponse<TResponse>
+    > => {
         if (!token) throw new Error("Token de autenticação é obrigatório");
         const currentURL = new URL(window.location.href);
         const url = `${currentURL.origin}/api/lista-nominal/${acfDashboardType.toLowerCase()}/pages/${coordinatorProfile}/${page.toString()}`;

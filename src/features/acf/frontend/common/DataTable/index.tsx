@@ -30,10 +30,10 @@ import type { PageResponses } from "@/features/acf/shared/schema";
 export { getPageBuilder } from "./service";
 export type { BodyBuilder, GetPageParams } from "./service";
 
-type GetPageParams<TAppliedFilters extends AppliedFilters> = {
+type GetPageParams<TAppliedFilters extends AppliedFilters, TSchema> = {
     token: string;
     page: number;
-    sorting: GridSortItem;
+    sorting: TSchema;
     filters?: TAppliedFilters;
     search?: string;
 };
@@ -41,20 +41,22 @@ type GetPageParams<TAppliedFilters extends AppliedFilters> = {
 type ServiceGetPage<
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,
+    TSchema,
 > = (
-    params: GetPageParams<TAppliedFilters>
+    params: GetPageParams<TAppliedFilters, TSchema>
 ) => Promise<AxiosResponse<TResponse>>;
 
 const fetchPage = <
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,
+    TSchema,
 >(
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
     searchString: string,
     filters: TAppliedFilters | null,
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>,
+    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse, TSchema>,
     setIsLoading: Dispatch<SetStateAction<boolean>>,
     setResponse: Dispatch<
         SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
@@ -72,7 +74,7 @@ const fetchPage = <
             sorting: {
                 field: gridSortingModel.field,
                 sort: gridSortingModel.sort,
-            },
+            } as TSchema,
             page: gridPaginationModel.page,
             search: searchString,
         },
@@ -100,18 +102,20 @@ const fetchPage = <
 type DataTableProps<
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,
+    TSchema,
 > = {
     columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
+    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse, TSchema>;
 };
 
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,
+    TSchema,
 >({
     columns,
     serviceGetPage,
-}: DataTableProps<TAppliedFilters, TResponse>): React.ReactNode => {
+}: DataTableProps<TAppliedFilters, TResponse, TSchema>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
     const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
