@@ -1,29 +1,36 @@
-import type * as model from "@/features/acf/shared/hypertension/model";
 import type * as db from "@prisma/client";
+import type {
+    AppointmentStatusByQuarterCode,
+    LatestExamRequestStatusByQuarterCode,
+} from "@/features/acf/shared/hypertension/model";
+import { appointmentStatusByQuarterCodeToText } from "@/features/acf/shared/hypertension/model";
+import type { PageItem } from "./model";
 
-const dbToModel = (
-    hypertensionRow: db.HypertensionAcfItem
-): model.HypertensionAcfItem => {
+const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
         patientName: hypertensionRow.patientName,
         patientCpf: hypertensionRow.patientCpf,
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
-        appointmentStatusByQuarter: hypertensionRow.appointmentStatusByQuarter,
+        appointmentStatusByQuarter:
+            appointmentStatusByQuarterCodeToText[
+                hypertensionRow.appointmentStatusByQuarter as AppointmentStatusByQuarterCode
+            ],
         latestExamRequestDate: hypertensionRow.latestExamRequestDate,
         latestExamRequestStatusByQuarter:
-            hypertensionRow.latestExamRequestStatusByQuarter,
+            appointmentStatusByQuarterCodeToText[
+                hypertensionRow.latestExamRequestStatusByQuarter as LatestExamRequestStatusByQuarterCode
+            ],
         careTeamName: hypertensionRow.careTeamName,
         microAreaName: hypertensionRow.microAreaName,
         patientPhoneNumber: hypertensionRow.patientPhoneNumber,
         patientAge: hypertensionRow.patientAge,
-        patientAgeRange: hypertensionRow.patientAgeRange,
     };
 };
 
 export const hypertensionPageDbToModel = (
     data: ReadonlyArray<db.HypertensionAcfItem>
-): Array<model.HypertensionAcfItem> => {
-    return data.map<model.HypertensionAcfItem>(dbToModel);
+): Array<PageItem> => {
+    return data.map(dbToModel);
 };

@@ -46,7 +46,7 @@ export const whereInput = <
     if (search.length > 0) {
         return {
             ...queries,
-            patientName: { contains: search },
+            patientName: { contains: search, mode: "insensitive" },
         };
     }
     return queries;

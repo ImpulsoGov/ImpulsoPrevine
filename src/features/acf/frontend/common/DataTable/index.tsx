@@ -9,7 +9,6 @@ import {
 } from "@/features/acf/frontend/common/WithSearch";
 import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting/context";
-import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { Table } from "@impulsogov/design-system";
 import type { GridPaginationModel, GridSortItem } from "@mui/x-data-grid";
 import type { AxiosError, AxiosResponse } from "axios";
@@ -26,6 +25,7 @@ import React, {
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 import type { GridColDef } from "@mui/x-data-grid";
+import type { PageResponses } from "@/features/acf/shared/schema";
 
 export { getPageBuilder } from "./service";
 export type { BodyBuilder, GetPageParams } from "./service";
@@ -38,21 +38,26 @@ type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     search?: string;
 };
 
-//TODO: Incluir TResponse aqui e usar no lugar de schema.PageResponse
-type ServiceGetPage<TAppliedFilters extends AppliedFilters> = (
+type ServiceGetPage<
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+> = (
     params: GetPageParams<TAppliedFilters>
-) => Promise<AxiosResponse<schema.PageResponse>>;
+) => Promise<AxiosResponse<TResponse>>;
 
-const fetchPage = <TAppliedFilters extends AppliedFilters>(
+const fetchPage = <
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+>(
     session: Session | null,
     gridSortingModel: GridSortItem,
     gridPaginationModel: GridPaginationModel,
     searchString: string,
     filters: TAppliedFilters | null,
-    serviceGetPage: ServiceGetPage<TAppliedFilters>,
+    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>,
     setIsLoading: Dispatch<SetStateAction<boolean>>,
     setResponse: Dispatch<
-        SetStateAction<AxiosResponse<schema.PageResponse> | AxiosError | null>
+        SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
     >
 ): void => {
     if (!session?.user) {
@@ -92,15 +97,21 @@ const fetchPage = <TAppliedFilters extends AppliedFilters>(
         });
 };
 
-type DataTableProps<TAppliedFilters extends AppliedFilters> = {
+type DataTableProps<
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+> = {
     columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters>;
+    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
 };
 
-export const DataTable = <TAppliedFilters extends AppliedFilters>({
+export const DataTable = <
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+>({
     columns,
     serviceGetPage,
-}: DataTableProps<TAppliedFilters>): React.ReactNode => {
+}: DataTableProps<TAppliedFilters, TResponse>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
     const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
@@ -111,7 +122,7 @@ export const DataTable = <TAppliedFilters extends AppliedFilters>({
         useContext<SortingModel>(SortingContext);
     const { searchString } = useContext<SearchModel>(SearchContext);
     const [response, setResponse] = useState<
-        AxiosResponse<schema.PageResponse> | AxiosError | null
+        AxiosResponse<TResponse> | AxiosError | null
     >(null);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);

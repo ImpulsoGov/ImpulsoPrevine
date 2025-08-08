@@ -1,6 +1,11 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/client";
 import { prisma } from "@prisma/prismaClient";
-import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
+import type { FiltersOptionsDbCoaps, FiltersOptionsDbCoeq } from "./model";
+import type {
+    AppointmentStatusByQuarterCode,
+    LatestExamRequestStatusByQuarterCode,
+    PatientAgeRangeCode,
+} from "@/features/acf/shared/hypertension/model";
 
 const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
     field: TField,
@@ -19,7 +24,7 @@ const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
 export const coeqFilterOptions = async (
     municipalitySusId: string,
     teamIne: string
-): Promise<FiltersOptionsCoeq> => {
+): Promise<FiltersOptionsDbCoeq> => {
     const whereFields = {
         municipalitySusId: municipalitySusId,
         careTeamIne: teamIne,
@@ -41,15 +46,17 @@ export const coeqFilterOptions = async (
 
     return {
         microAreaName: microAreaName,
-        appointmentStatusByQuarter: appointmentStatusByQuarter,
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
-        patientAgeRange: patientAgeRange,
+        appointmentStatusByQuarter:
+            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
+        latestExamRequestStatusByQuarter:
+            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
+        patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
     };
 };
 
 export const coapsFilterOptions = async (
     municipalitySusId: string
-): Promise<FiltersOptionsCoaps> => {
+): Promise<FiltersOptionsDbCoaps> => {
     const whereFields = {
         municipalitySusId: municipalitySusId,
     };
@@ -68,8 +75,10 @@ export const coapsFilterOptions = async (
     return {
         careTeamName: careTeamName,
         microAreaName: microAreaName,
-        appointmentStatusByQuarter: appointmentStatusByQuarter,
-        latestExamRequestStatusByQuarter: latestExamRequestStatusByQuarter,
-        patientAgeRange: patientAgeRange,
+        appointmentStatusByQuarter:
+            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
+        latestExamRequestStatusByQuarter:
+            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
+        patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
     };
 };
