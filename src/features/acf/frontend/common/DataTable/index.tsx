@@ -124,28 +124,46 @@ export const DataTable = <
     const [response, setResponse] = useState<
         AxiosResponse<TResponse> | AxiosError | null
     >(null);
-
+    const [shouldResetPagination, setShouldResetPagination] =
+        useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        resetPagination();
+        console.log(
+            "setShouldResetPagination no primeiro UseEffect:",
+            shouldResetPagination
+        );
+
+        setShouldResetPagination(true);
     }, [filters, gridSortingModel, searchString]);
 
     useEffect(() => {
-        console.log("Calling API");
-        console.log("paginationModel na DataTable", gridPaginationModel);
-
-        fetchPage(
-            session,
-            gridSortingModel,
-            gridPaginationModel,
-            searchString,
-            filters,
-            serviceGetPage,
-            setIsLoading,
-            setResponse
-        );
-    }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
+        // console.log("Calling API");
+        // console.log("paginationModel na DataTable", gridPaginationModel);
+        if (shouldResetPagination) {
+            resetPagination();
+        } else {
+            fetchPage(
+                session,
+                gridSortingModel,
+                gridPaginationModel,
+                searchString,
+                filters,
+                serviceGetPage,
+                setIsLoading,
+                setResponse
+            );
+            console.log("ShouldResetPagination state:", shouldResetPagination);
+            setShouldResetPagination(false);
+        }
+    }, [
+        session,
+        gridPaginationModel,
+        filters,
+        gridSortingModel,
+        searchString,
+        shouldResetPagination,
+    ]);
 
     if (isAxiosError(response)) {
         return (
@@ -168,7 +186,7 @@ export const DataTable = <
             rowCount={response?.data.totalRows || 0}
             paginationModel={gridPaginationModel}
             onPaginationModelChange={(newModel: GridPaginationModel) => {
-                console.log("Changing pagination model");
+                // console.log("Changing pagination model");
                 onPaginationModelChange(newModel);
             }}
             sortModel={[gridSortingModel]}
