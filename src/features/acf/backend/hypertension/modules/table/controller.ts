@@ -39,7 +39,7 @@ export const pageCoeq = async ({
         municipalitySusId,
         teamIne,
         pageIndex,
-        filters || defaultCoeqFilters,
+        adapter.filtersModelToDbCoeq(filters || defaultCoeqFilters),
         sorting || defaultSorting,
         searchString || ""
     );
@@ -72,7 +72,7 @@ export const rowCountCoeq = async ({
     return await repository.rowCountCoeq(
         municipalitySusId,
         teamIne,
-        filters || defaultCoeqFilters,
+        adapter.filtersModelToDbCoeq(filters || defaultCoeqFilters),
         searchString || ""
     );
 };
