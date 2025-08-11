@@ -5,7 +5,9 @@ import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
+import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { List } from "@/features/acf/frontend/common/List";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
@@ -22,14 +24,14 @@ type ContentCoapsProps = {
 };
 
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValuesCoeq = {
+const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     microAreaName: [],
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
 };
 
-const initialSelectedValuesCoaps = {
+const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     careTeamName: [],
     microAreaName: [],
     appointmentStatusByQuarter: [],
