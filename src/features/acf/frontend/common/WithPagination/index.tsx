@@ -19,6 +19,8 @@ export const WithPagination: React.FC<WithPaginationProps> = ({
         }
     );
     const resetPagination = (): void => {
+        console.log("Resetting pagination model");
+
         setPaginationModel((prevState) => ({
             ...prevState,
             page: 0,

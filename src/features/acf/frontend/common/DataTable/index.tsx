@@ -132,6 +132,9 @@ export const DataTable = <
     }, [filters, gridSortingModel, searchString]);
 
     useEffect(() => {
+        console.log("Calling API");
+        console.log("paginationModel na DataTable", gridPaginationModel);
+
         fetchPage(
             session,
             gridSortingModel,
@@ -164,7 +167,10 @@ export const DataTable = <
             sortingMode="server"
             rowCount={response?.data.totalRows || 0}
             paginationModel={gridPaginationModel}
-            onPaginationModelChange={onPaginationModelChange}
+            onPaginationModelChange={(newModel: GridPaginationModel) => {
+                console.log("Changing pagination model");
+                onPaginationModelChange(newModel);
+            }}
             sortModel={[gridSortingModel]}
             onSortModelChange={onSortingModelChange}
             isLoading={isLoading}
