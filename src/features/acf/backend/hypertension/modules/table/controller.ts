@@ -56,7 +56,7 @@ export const pageCoaps = async ({
     const page = await repository.pageCoaps(
         municipalitySusId,
         pageIndex,
-        filters || defaultCoapsFilters,
+        adapter.filtersModelToDbCoaps(filters || defaultCoapsFilters),
         sorting || defaultSorting,
         searchString || ""
     );
@@ -84,7 +84,7 @@ export const rowCountCoaps = async ({
 }: RowCountParamsCoaps<CoapsFilters>): Promise<number> => {
     return await repository.rowCountCoaps(
         municipalitySusId,
-        filters || defaultCoapsFilters,
+        adapter.filtersModelToDbCoaps(filters || defaultCoapsFilters),
         searchString || ""
     );
 };

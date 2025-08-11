@@ -8,12 +8,14 @@ import {
     whereInput,
 } from "@/features/acf/backend/common/QueryBuilder";
 import type {
-    CoapsFilters,
     CoapsSort,
     CoeqSort,
 } from "@/features/acf/shared/hypertension/schema";
 import { prisma } from "@prisma/prismaClient";
-import type { FiltersOptionsDbCoeq } from "../common/FiltersOptionsDb";
+import type {
+    FiltersOptionsDbCoaps,
+    FiltersOptionsDbCoeq,
+} from "../common/FiltersOptionsDb";
 
 const pageSize = 8;
 
@@ -79,7 +81,7 @@ export const pageCoeq = async (
 export const pageCoaps = async (
     municipalitySusId: string,
     page: number,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     sorting: CoapsSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
@@ -102,7 +104,7 @@ export const pageCoaps = async (
 
 export const rowCountCoaps = async (
     municipalitySusId: string,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     search: string
 ): Promise<number> => {
     return await prisma.hypertensionAcfItem.count({
