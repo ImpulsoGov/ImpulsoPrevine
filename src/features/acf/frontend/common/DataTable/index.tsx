@@ -20,6 +20,7 @@ import React, {
     type SetStateAction,
     useContext,
     useEffect,
+    useRef,
     useState,
 } from "react";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
@@ -124,45 +125,39 @@ export const DataTable = <
     const [response, setResponse] = useState<
         AxiosResponse<TResponse> | AxiosError | null
     >(null);
-    const [shouldResetPagination, setShouldResetPagination] =
-        useState<boolean>(false);
+    // const [shouldResetPagination, setShouldResetPagination] =
+    //     useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
+    const shouldResetPaginationRef = useRef(false);
     useEffect(() => {
-        console.log(
-            "setShouldResetPagination no primeiro UseEffect:",
-            shouldResetPagination
-        );
-
-        setShouldResetPagination(true);
+        shouldResetPaginationRef.current = true;
+        resetPagination();
     }, [filters, gridSortingModel, searchString]);
 
     useEffect(() => {
         // console.log("Calling API");
         // console.log("paginationModel na DataTable", gridPaginationModel);
-        if (shouldResetPagination) {
-            resetPagination();
-        } else {
-            fetchPage(
-                session,
-                gridSortingModel,
-                gridPaginationModel,
-                searchString,
-                filters,
-                serviceGetPage,
-                setIsLoading,
-                setResponse
-            );
-            console.log("ShouldResetPagination state:", shouldResetPagination);
-            setShouldResetPagination(false);
+        if (shouldResetPaginationRef.current) {
+            shouldResetPaginationRef.current = false;
+            return;
         }
+        fetchPage(
+            session,
+            gridSortingModel,
+            gridPaginationModel,
+            searchString,
+            filters,
+            serviceGetPage,
+            setIsLoading,
+            setResponse
+        );
     }, [
         session,
         gridPaginationModel,
         filters,
         gridSortingModel,
         searchString,
-        shouldResetPagination,
+        // shouldResetPagination,
     ]);
 
     if (isAxiosError(response)) {
