@@ -1,7 +1,7 @@
 "use client";
 import { ListToolBar } from "@impulsogov/design-system";
 import type { Dispatch, SetStateAction } from "react";
-import { LastUpdatedCard } from "./modules/LastUpdatedCard";
+// import { LastUpdatedCard } from "./modules/LastUpdatedCard";
 import { SearchBar } from "./modules/SearchBar";
 // import { PrintButton } from "./modules/PrintButton";
 
@@ -13,7 +13,7 @@ export const SearchToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
     return (
         <ListToolBar>
             <>
-                <LastUpdatedCard />
+                {/* <LastUpdatedCard /> */}
                 <SearchBar onSearchTriggered={onSearchTriggered} />
                 {/* <PrintButton /> */}
             </>

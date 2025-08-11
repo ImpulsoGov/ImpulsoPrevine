@@ -11,7 +11,7 @@ import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 import { ContentCoeq, ContentCoaps } from "./modules/List/container";
 import { getMunicipalityName } from "../../../common/MunicipalityName";
-import { header, breadcrumb } from "./consts";
+import { sharedHeader, breadcrumb, textCoaps, textCoeq } from "./consts";
 
 export type {
     CoapsAppliedFilters,
@@ -31,13 +31,23 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "hypertension") as AcfDashboardType;
-
     const municipalityName = getMunicipalityName(
         session?.user.municipio_id_sus ?? ""
     );
-
+    const isCoeq = session?.user.perfis.includes(PROFILE_ID.COEQ);
+    const content = isCoeq ? (
+        <ContentCoeq list={acfDashboardType} />
+    ) : (
+        <ContentCoaps list={acfDashboardType} />
+    );
+    const header = {
+        ...sharedHeader,
+        text: isCoeq ? textCoeq : textCoaps,
+    };
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
+
     if (!isHypertensionNewProgramEnabled) notFound();
+
     return (
         <SessionGuard error={<ErrorPage />}>
             <PanelSelector
@@ -49,13 +59,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                 externalCardsProps={[]}
                 header={header}
                 breadcrumb={breadcrumb.breadcrumb}
-                contentWithoutTabs={
-                    session?.user.perfis.includes(PROFILE_ID.COEQ) ? (
-                        <ContentCoeq list={acfDashboardType} />
-                    ) : (
-                        <ContentCoaps list={acfDashboardType} />
-                    )
-                }
+                contentWithoutTabs={content}
             />
         </SessionGuard>
     );

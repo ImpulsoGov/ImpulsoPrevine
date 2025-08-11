@@ -99,7 +99,7 @@ type PanelSelectorProps = {
     breadcrumb: Array<BreadcrumbItem>;
     header: {
         title: string;
-        tooltip: React.ReactNode;
+        tooltip?: React.ReactNode;
         text: string;
     };
 };
