@@ -125,22 +125,19 @@ export const DataTable = <
     const [response, setResponse] = useState<
         AxiosResponse<TResponse> | AxiosError | null
     >(null);
-    // const [shouldResetPagination, setShouldResetPagination] =
-    //     useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const shouldResetPaginationRef = useRef(false);
+    const shouldSkipNextFetchRef = useRef(false);
     useEffect(() => {
-        shouldResetPaginationRef.current = true;
+        shouldSkipNextFetchRef.current = true;
         resetPagination();
     }, [filters, gridSortingModel, searchString]);
 
     useEffect(() => {
-        // console.log("Calling API");
-        // console.log("paginationModel na DataTable", gridPaginationModel);
-        if (shouldResetPaginationRef.current) {
-            shouldResetPaginationRef.current = false;
+        if (shouldSkipNextFetchRef.current) {
+            shouldSkipNextFetchRef.current = false;
             return;
         }
+
         fetchPage(
             session,
             gridSortingModel,
@@ -151,14 +148,7 @@ export const DataTable = <
             setIsLoading,
             setResponse
         );
-    }, [
-        session,
-        gridPaginationModel,
-        filters,
-        gridSortingModel,
-        searchString,
-        // shouldResetPagination,
-    ]);
+    }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
 
     if (isAxiosError(response)) {
         return (
@@ -180,10 +170,7 @@ export const DataTable = <
             sortingMode="server"
             rowCount={response?.data.totalRows || 0}
             paginationModel={gridPaginationModel}
-            onPaginationModelChange={(newModel: GridPaginationModel) => {
-                // console.log("Changing pagination model");
-                onPaginationModelChange(newModel);
-            }}
+            onPaginationModelChange={onPaginationModelChange}
             sortModel={[gridSortingModel]}
             onSortModelChange={onSortingModelChange}
             isLoading={isLoading}
