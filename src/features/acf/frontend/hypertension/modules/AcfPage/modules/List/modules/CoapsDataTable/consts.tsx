@@ -1,5 +1,7 @@
 import type { GridColDef } from "@mui/x-data-grid";
+import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 
+// TODO: entender se precisamos lidar com a possibilidade de os campos cpf e cns não chegarem com o formato certo e como ficaria a ordenação desse campo no backend
 export const coapsColumns: Array<GridColDef> = [
     {
         field: "patientName",
@@ -7,7 +9,7 @@ export const coapsColumns: Array<GridColDef> = [
         width: 211,
         headerAlign: "left",
         align: "left",
-        //TODO: Implementar funcao que une nome, cpf e cns
+        renderCell: RenderPatientNameCpfCns,
     },
     {
         field: "latestAppointmentDate",

@@ -1,4 +1,5 @@
 import type { GridColDef } from "@mui/x-data-grid";
+import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -7,7 +8,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 211,
         headerAlign: "left",
         align: "left",
-        //TODO: Implementar funcao que une nome, cpf e cns
+        renderCell: RenderPatientNameCpfCns,
     },
     {
         field: "latestAppointmentDate",
