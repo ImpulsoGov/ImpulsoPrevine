@@ -1,8 +1,17 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
+import { formatDate, parseDate } from "@/features/common/shared/time";
+import type { JSX } from "react";
 
-// TODO: entender se precisamos lidar com a possibilidade de os campos cpf e cns não chegarem com o formato certo e como ficaria a ordenação desse campo no backend
+const newLocal = ({ value }: { value: string | null }): JSX.Element => {
+    if (!value) return <span>-</span>;
+
+    const date = parseDate(value);
+    return <span>{formatDate(date)}</span>;
+};
+
 export const coapsColumns: Array<GridColDef> = [
+    // TODO: entender se precisamos lidar com a possibilidade de os campos cpf e cns não chegarem com o formato certo e como ficaria a ordenação desse campo no backend
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
@@ -13,7 +22,7 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
-        width: 131,
+        width: 135,
         headerAlign: "left",
         align: "left",
         renderHeader: () => (
@@ -22,6 +31,7 @@ export const coapsColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
+        renderCell: newLocal,
     },
     {
         field: "appointmentStatusByQuarter",
