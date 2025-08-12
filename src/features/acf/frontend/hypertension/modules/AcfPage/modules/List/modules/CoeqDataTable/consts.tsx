@@ -1,6 +1,6 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
-
+import { RenderDate } from "../common/RenderDate/RenderDate";
 export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientName",
@@ -21,6 +21,7 @@ export const coeqColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
+        renderCell: RenderDate,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -47,6 +48,7 @@ export const coeqColumns: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
+        renderCell: RenderDate,
     },
     {
         field: "latestExamRequestStatusByQuarter",
