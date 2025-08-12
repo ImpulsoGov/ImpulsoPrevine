@@ -50,6 +50,7 @@ model HypertensionAcfItem {
   municipalityName                   String    @map("municipio_nome")
   patientName                        String    @map("cidadao_nome")
   patientCpf                         String    @db.VarChar(14) @map("cidadao_cpf")
+  patientCns                         String    @db.VarChar(32) @map("cidadao_cns")
   latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta")
   appointmentStatusByQuarter         Int       @db.SmallInt @map("situacao_quadrimestre_consulta")
   latestExamRequestDate              DateTime? @db.Date @map("data_ultima_afericao_pa")
