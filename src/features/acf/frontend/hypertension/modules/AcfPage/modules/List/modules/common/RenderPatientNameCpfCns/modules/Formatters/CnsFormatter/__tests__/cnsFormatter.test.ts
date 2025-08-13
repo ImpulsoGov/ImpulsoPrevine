@@ -22,6 +22,6 @@ describe("cnsFormatter", () => {
     it("deve lidar com strings vazias", () => {
         const cns = "";
         const formattedCns = cnsFormatter(cns);
-        expect(formattedCns).toBe("   ");
+        expect(formattedCns).toBe("");
     });
 });

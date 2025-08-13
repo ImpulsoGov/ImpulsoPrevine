@@ -9,7 +9,7 @@ describe("RenderDate", () => {
         render(<RenderDate value={isoString} />);
         expect(screen.getByText(expectedDate)).toBeInTheDocument();
     });
-    it("Deve renderizar a string - quando receber null ou uma data inválida", () => {
+    it("Deve renderizar a string - quando receber null", () => {
         const nullValue = null;
         render(<RenderDate value={nullValue} />);
         expect(screen.getByText("-")).toBeInTheDocument();
