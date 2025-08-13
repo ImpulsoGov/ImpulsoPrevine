@@ -1,12 +1,15 @@
-type DefaultStatusCode = 10 | 20 | 30 | 40;
+export type DefaultStatusCode = 10 | 20 | 30 | 40;
 
 export type PatientAgeRangeCode = DefaultStatusCode;
 
-export type PatientAgeRangeText =
-    | "0 a 10 (Criança)"
-    | "11 a 19 (Adolescente)"
-    | "20 a 59 (Adulto)"
-    | "60 ou mais (Idoso)";
+export const patientAgeRangeTexts = [
+    "0 a 10 (Criança)",
+    "11 a 19 (Adolescente)",
+    "20 a 59 (Adulto)",
+    "60 ou mais (Idoso)",
+] as const;
+
+export type PatientAgeRangeText = (typeof patientAgeRangeTexts)[number];
 
 export const ageRangeCodeToText: Record<
     PatientAgeRangeCode,
@@ -18,14 +21,18 @@ export const ageRangeCodeToText: Record<
     40: "60 ou mais (Idoso)",
 };
 
-type DefaultStatus =
-    | "Nunca realizado"
-    | "Atrasada"
-    | "Em dia"
-    | "Vence dentro do Quadri";
+const defaultStatuses = [
+    "Nunca realizado",
+    "Atrasada",
+    "Em dia",
+    "Vence dentro do Quadri",
+] as const;
+
+export const appointmentStatusByQuarterTexts = [...defaultStatuses] as const;
 
 export type AppointmentStatusByQuarterCode = DefaultStatusCode;
-export type AppointmentStatusByQuarterText = DefaultStatus;
+export type AppointmentStatusByQuarterText =
+    (typeof appointmentStatusByQuarterTexts)[number];
 
 //TODO: Essa fn deveria estar em algum adapter
 export const appointmentStatusByQuarterCodeToText: Record<
@@ -38,8 +45,13 @@ export const appointmentStatusByQuarterCodeToText: Record<
     40: "Em dia",
 };
 
+export const latestExamRequestStatusByQuarterTexts = [
+    ...defaultStatuses,
+] as const;
+
 export type LatestExamRequestStatusByQuarterCode = DefaultStatusCode;
-export type LatestExamRequestStatusByQuarterText = DefaultStatus;
+export type LatestExamRequestStatusByQuarterText =
+    (typeof latestExamRequestStatusByQuarterTexts)[number];
 
 //TODO: Essa fn deveria estar em algum adapter
 export const latestExamRequestStatusByQuarterCodeToText: Record<

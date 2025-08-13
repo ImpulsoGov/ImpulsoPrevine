@@ -3,12 +3,11 @@ import {
     appointmentStatusByQuarterCodeToText,
     latestExamRequestStatusByQuarterCodeToText,
 } from "@/features/acf/shared/hypertension/model";
+import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 import type {
-    FiltersOptionsCoaps,
-    FiltersOptionsCoeq,
     FiltersOptionsDbCoaps,
     FiltersOptionsDbCoeq,
-} from "./model";
+} from "../common/FiltersOptionsDb";
 
 // TODO: criar função que adapta os campos em comum entre coaps e coeq
 export const dbToModelCoaps = (

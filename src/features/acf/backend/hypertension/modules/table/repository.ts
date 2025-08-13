@@ -8,12 +8,14 @@ import {
     whereInput,
 } from "@/features/acf/backend/common/QueryBuilder";
 import type {
-    CoapsFilters,
     CoapsSort,
-    CoeqFilters,
     CoeqSort,
 } from "@/features/acf/shared/hypertension/schema";
 import { prisma } from "@prisma/prismaClient";
+import type {
+    FiltersOptionsDbCoaps,
+    FiltersOptionsDbCoeq,
+} from "../common/FiltersOptionsDb";
 
 const pageSize = 8;
 
@@ -39,7 +41,7 @@ const nullableFields: NullableFields<HypertensionAcfItem> = {
 const whereInputCoaps = whereInput;
 
 const whereInputCoeq = (
-    filter: CoeqFilters,
+    filter: FiltersOptionsDbCoeq,
     municipalitySusId: string,
     teamIne: string,
     search: string
@@ -54,7 +56,7 @@ export const pageCoeq = async (
     municipalitySusId: string,
     teamIne: string,
     page: number,
-    filters: CoeqFilters,
+    filters: FiltersOptionsDbCoeq,
     sorting: CoeqSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
@@ -80,7 +82,7 @@ export const pageCoeq = async (
 export const pageCoaps = async (
     municipalitySusId: string,
     page: number,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     sorting: CoapsSort,
     searchString: string
 ): Promise<ReadonlyArray<HypertensionAcfItem>> => {
@@ -103,7 +105,7 @@ export const pageCoaps = async (
 
 export const rowCountCoaps = async (
     municipalitySusId: string,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     search: string
 ): Promise<number> => {
     return await prisma.hypertensionAcfItem.count({
@@ -118,7 +120,7 @@ export const rowCountCoaps = async (
 export const rowCountCoeq = async (
     municipalitySusId: string,
     teamIne: string,
-    filters: CoeqFilters,
+    filters: FiltersOptionsDbCoeq,
     search: string
 ): Promise<number> => {
     return await prisma.hypertensionAcfItem.count({
