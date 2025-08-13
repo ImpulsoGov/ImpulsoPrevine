@@ -133,6 +133,11 @@ export const DataTable = <
     }, [filters, gridSortingModel, searchString]);
 
     useEffect(() => {
+        // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
+        // a fetchPage é chamada duas vezes com valores diferentes quando a paginação é resetada.
+        // Precisamos pensar numa forma melhor de resolver esse problema e uma das opções é mover
+        // a execução da resetPagination para dentro dos locais em que ela deve ser
+        // chamada, como dentro do WithFilters, WithSorting e WithSearch.
         if (shouldSkipNextFetchRef.current) {
             shouldSkipNextFetchRef.current = false;
             return;

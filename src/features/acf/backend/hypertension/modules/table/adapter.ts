@@ -48,6 +48,7 @@ export const hypertensionPageDbToModel = (
     return data.map(dbToModel);
 };
 
+// TODO: mover para algum common porque essa função está genérica
 const filterOptionsModelToDb = <
     TFilterText extends string,
     TFilterCode extends DefaultStatusCode,
