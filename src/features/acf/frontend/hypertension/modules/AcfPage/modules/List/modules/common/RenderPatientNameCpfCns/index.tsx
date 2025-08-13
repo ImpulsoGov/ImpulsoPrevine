@@ -16,22 +16,16 @@ export type BaseRow = Pick<
 export const RenderPatientNameCpfCns = ({
     row,
 }: GridRenderCellParams<BaseRow>): JSX.Element => {
-    const { patientCpf, patientCns, patientName } = row;
+    const patientCpf = row.patientCpf.padStart(CPF_LENGTH, "0");
+    const patientCns = row.patientCns.padStart(CNS_LENGTH, "0");
 
     return (
         <div>
-            <span>{nameFormatter(patientName)}</span>
+            <span>{nameFormatter(row.patientName)}</span>
             <br />
-            {patientCpf !== "" && (
-                <span>{cpf.format(patientCpf.padStart(CPF_LENGTH, "0"))}</span>
-            )}
-            {patientCpf === "" && patientCns !== "" ? (
-                <span>
-                    {cnsFormatter(patientCns.padStart(CNS_LENGTH, "0"))}
-                </span>
-            ) : (
-                <span>-</span>
-            )}
+            <span>
+                {cpf.format(patientCpf) || cnsFormatter(patientCns) || "-"}
+            </span>
         </div>
     );
 };
