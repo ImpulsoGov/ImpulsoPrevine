@@ -5,7 +5,10 @@ import { cpf } from "cpf-cnpj-validator";
 import type { JSX } from "react";
 import { cnsFormatter } from "./modules/CnsFormatter";
 
-type BaseRow = Pick<
+const CPF_LENGTH = 11;
+const CNS_LENGTH = 15;
+
+export type BaseRow = Pick<
     HypertensionAcfItem,
     "patientName" | "patientCpf" | "patientCns"
 >;
@@ -13,14 +16,22 @@ type BaseRow = Pick<
 export const RenderPatientNameCpfCns = ({
     row,
 }: GridRenderCellParams<BaseRow>): JSX.Element => {
-    const patientCpf = row.patientCpf.padStart(11, "0");
-    const patientCns = row.patientCns.padStart(15, "0");
+    const { patientCpf, patientCns, patientName } = row;
 
     return (
         <div>
-            {nameFormatter(row.patientName)}
+            <span>{nameFormatter(patientName)}</span>
             <br />
-            {cpf.format(patientCpf) || cnsFormatter(patientCns) || "-"}
+            {patientCpf !== "" && (
+                <span>{cpf.format(patientCpf.padStart(CPF_LENGTH, "0"))}</span>
+            )}
+            {patientCpf === "" && patientCns !== "" ? (
+                <span>
+                    {cnsFormatter(patientCns.padStart(CNS_LENGTH, "0"))}
+                </span>
+            ) : (
+                <span>-</span>
+            )}
         </div>
     );
 };
