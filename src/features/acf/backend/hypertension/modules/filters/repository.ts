@@ -1,6 +1,9 @@
 import type { HypertensionAcfItem, Prisma } from ".prisma/client";
 import { prisma } from "@prisma/prismaClient";
-import type { FiltersOptionsDbCoaps, FiltersOptionsDbCoeq } from "./model";
+import type {
+    FiltersOptionsDbCoaps,
+    FiltersOptionsDbCoeq,
+} from "../common/FiltersOptionsDb";
 import type {
     AppointmentStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,

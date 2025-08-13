@@ -5,7 +5,7 @@ type BaseWhereInput = {
     municipalitySusId: string;
 };
 
-type BaseFilters = Record<string, Array<unknown>>;
+type BaseFilters = Record<string, ReadonlyArray<unknown>>;
 
 const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     where: TPrismaWhereInput,
