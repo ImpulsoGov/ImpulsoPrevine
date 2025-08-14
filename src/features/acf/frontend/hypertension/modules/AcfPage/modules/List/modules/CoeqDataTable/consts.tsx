@@ -2,8 +2,8 @@ import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
 // TODO: mover esses formatters pra fora do módulo de RenderPatientNameCpfCns
-import { microAreaFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/MicroAreaFormatter/microAreaFormatter";
-import { numberFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/NumberFormatter/numberFormatter";
+import { microAreaFormatter } from "../common/MicroAreaFormatter/microAreaFormatter";
+import { phoneNumberFormatter } from "../common/NumberFormatter/numberFormatter";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -86,7 +86,7 @@ export const coeqColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         valueFormatter: ({ value }): string => {
-            return numberFormatter(value);
+            return phoneNumberFormatter(value);
         },
     },
     {
