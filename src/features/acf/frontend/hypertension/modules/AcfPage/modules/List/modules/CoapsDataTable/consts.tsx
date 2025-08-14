@@ -1,6 +1,8 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
+import { microAreaFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/MicroAreaFormatter/microAreaFormatter";
+import { numberFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/NumberFormatter/numberFormatter";
 
 export const coapsColumns: Array<GridColDef> = [
     // TODO: entender se precisamos lidar com a possibilidade de os campos cpf e cns não chegarem com o formato certo e como ficaria a ordenação desse campo no backend
@@ -81,6 +83,9 @@ export const coapsColumns: Array<GridColDef> = [
         align: "left",
         // TODO: implementar função que checa valores nulos
         headerName: "Microárea",
+        valueFormatter: ({ value }): string => {
+            return microAreaFormatter(value);
+        },
     },
     {
         field: "patientPhoneNumber",
@@ -88,6 +93,9 @@ export const coapsColumns: Array<GridColDef> = [
         width: 136,
         headerAlign: "left",
         align: "left",
+        valueFormatter: ({ value }): string => {
+            return numberFormatter(value);
+        },
         // TODO: Implementar funcao que formata o telefone
     },
     {
@@ -97,4 +105,4 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
     },
-] as Array<GridColDef>;
+];

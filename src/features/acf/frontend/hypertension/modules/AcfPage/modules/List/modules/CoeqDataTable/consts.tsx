@@ -1,6 +1,8 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
+import { microAreaFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/MicroAreaFormatter/microAreaFormatter";
+import { numberFormatter } from "../common/RenderPatientNameCpfCns/modules/Formatters/NumberFormatter/numberFormatter";
 export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientName",
@@ -70,8 +72,10 @@ export const coeqColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         // TODO: implementar função que checa valores nulos
-        // renderCell: RenderStatusTagCell,
         headerName: "Microárea",
+        valueFormatter: ({ value }): string => {
+            return microAreaFormatter(value);
+        },
     },
     {
         field: "patientPhoneNumber",
@@ -79,8 +83,9 @@ export const coeqColumns: Array<GridColDef> = [
         width: 136,
         headerAlign: "left",
         align: "left",
-        // TODO: Implementar funcao que formata o telefone
-        // renderCell: NameFormatter,
+        valueFormatter: ({ value }): string => {
+            return numberFormatter(value);
+        },
     },
     {
         field: "patientAge",

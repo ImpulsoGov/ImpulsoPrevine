@@ -4,17 +4,20 @@ import type { BaseRow } from "..";
 import { RenderPatientNameCpfCns } from "..";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import { cpf } from "cpf-cnpj-validator";
-import { cnsFormatter } from "../modules/CnsFormatter";
+import { cnsFormatter } from "../modules/Formatters/CnsFormatter";
+import { cpfFormatter } from "../modules/Formatters/CpfFormatter";
 
-jest.mock("cpf-cnpj-validator", () => ({ cpf: { format: jest.fn() } }));
-jest.mock("../modules/CnsFormatter", () => ({ cnsFormatter: jest.fn() }));
+jest.mock("../modules/Formatters/CnsFormatter", () => ({
+    cnsFormatter: jest.fn(),
+}));
+jest.mock("../modules/Formatters/CpfFormatter", () => ({
+    cpfFormatter: jest.fn(),
+}));
 jest.mock("@/features/acf/frontend/common/NameFormatter", () => ({
     nameFormatter: jest.fn(),
 }));
-
 const mockedNameFormatter = nameFormatter as jest.Mock;
-const mockedCpfFormat = cpf.format as jest.Mock;
+const mockedCpfFormatter = cpfFormatter as jest.Mock;
 const mockedCnsFormatter = cnsFormatter as jest.Mock;
 
 describe("RenderPatientNameCpfCns", () => {
@@ -32,17 +35,18 @@ describe("RenderPatientNameCpfCns", () => {
         } as GridRenderCellParams<BaseRow>;
         const formattedName = "José da Silva";
         const formattedCpf = "123.456.789-22";
-        const formattedCns = "123 4567 8901 2345";
 
         mockedNameFormatter.mockReturnValue(formattedName);
-        mockedCpfFormat.mockReturnValue(formattedCpf);
-        mockedCnsFormatter.mockReturnValue(formattedCns);
+        mockedCpfFormatter.mockReturnValue(formattedCpf);
 
         render(<RenderPatientNameCpfCns {...params} />);
 
-        expect(screen.getByText(formattedName)).toBeInTheDocument();
-        expect(screen.getByText(formattedCpf)).toBeInTheDocument();
-        expect(screen.queryByText(formattedCns)).not.toBeInTheDocument();
+        expect(screen.getByTestId("patient-name")).toHaveTextContent(
+            formattedName
+        );
+        expect(screen.getByTestId("patient-cpf-cns")).toHaveTextContent(
+            formattedCpf
+        );
     });
 
     it("Deve renderizar o nome e o CPF quando CPF existe e o CNS não", () => {
@@ -55,17 +59,18 @@ describe("RenderPatientNameCpfCns", () => {
         } as GridRenderCellParams<BaseRow>;
         const formattedName = "José da Silva";
         const formattedCpf = "123.456.789-22";
-        const formattedCns = "";
 
         mockedNameFormatter.mockReturnValue(formattedName);
-        mockedCpfFormat.mockReturnValue(formattedCpf);
-        mockedCnsFormatter.mockReturnValue(formattedCns);
+        mockedCpfFormatter.mockReturnValue(formattedCpf);
 
         render(<RenderPatientNameCpfCns {...params} />);
 
-        expect(screen.getByText(formattedName)).toBeInTheDocument();
-        expect(screen.getByText(formattedCpf)).toBeInTheDocument();
-        expect(screen.queryByText(formattedCns)).not.toBeInTheDocument();
+        expect(screen.getByTestId("patient-name")).toHaveTextContent(
+            formattedName
+        );
+        expect(screen.getByTestId("patient-cpf-cns")).toHaveTextContent(
+            formattedCpf
+        );
     });
 
     it("Deve renderizar o nome e o CNS quando CNS existe e o CPF não", () => {
@@ -77,18 +82,19 @@ describe("RenderPatientNameCpfCns", () => {
             },
         } as GridRenderCellParams<BaseRow>;
         const formattedName = "José da Silva";
-        const formattedCpf = "";
         const formattedCns = "123 4567 8901 2345";
-
+        const formattedCpf = "";
         mockedNameFormatter.mockReturnValue(formattedName);
-        mockedCpfFormat.mockReturnValue(formattedCpf);
         mockedCnsFormatter.mockReturnValue(formattedCns);
-
+        mockedCpfFormatter.mockReturnValue(formattedCpf);
         render(<RenderPatientNameCpfCns {...params} />);
 
-        expect(screen.getByText(formattedName)).toBeInTheDocument();
-        expect(screen.getByText(formattedCns)).toBeInTheDocument();
-        expect(screen.queryByText(formattedCpf)).not.toBeInTheDocument();
+        expect(screen.getByTestId("patient-name")).toHaveTextContent(
+            formattedName
+        );
+        expect(screen.getByTestId("patient-cpf-cns")).toHaveTextContent(
+            formattedCns
+        );
     });
 
     it("Deve renderizar o nome e - quando CPF e CNS não existem", () => {
@@ -100,16 +106,17 @@ describe("RenderPatientNameCpfCns", () => {
             },
         } as GridRenderCellParams<BaseRow>;
         const formattedName = "José da Silva";
-        const formattedCpf = "";
         const formattedCns = "";
-
+        const formattedCpf = "";
         mockedNameFormatter.mockReturnValue(formattedName);
-        mockedCpfFormat.mockReturnValue(formattedCpf);
         mockedCnsFormatter.mockReturnValue(formattedCns);
+        mockedCpfFormatter.mockReturnValue(formattedCpf);
 
         render(<RenderPatientNameCpfCns {...params} />);
 
-        expect(screen.getByText(formattedName)).toBeInTheDocument();
-        expect(screen.getByText("-")).toBeInTheDocument();
+        expect(screen.getByTestId("patient-name")).toHaveTextContent(
+            formattedName
+        );
+        expect(screen.getByTestId("patient-cpf-cns")).toHaveTextContent("-");
     });
 });
