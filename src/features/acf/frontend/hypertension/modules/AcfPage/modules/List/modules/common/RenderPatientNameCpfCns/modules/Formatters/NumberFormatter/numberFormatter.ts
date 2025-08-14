@@ -1,3 +1,4 @@
+// TODO: olhar mais casos de uso na lib https://github.com/patrickpissurno/node-telefone
 export const numberFormatter = (cellNumber: string | null): string => {
     if (!cellNumber) return "-";
     const DDD = cellNumber.slice(0, 2);
@@ -13,13 +14,3 @@ export const numberFormatter = (cellNumber: string | null): string => {
     }
     return `${cellNumber.slice(0, 5)}-${cellNumber.slice(5)}`;
 };
-// def standardize_phone_number(number):
-//     number = str(number)
-//     if number.startswith('559') and len(number) == 11:
-//         return number
-//     elif number.startswith('55') and len(number) == 10:
-//         return '559' + number[2:]
-//     elif number.startswith('9') and len(number) == 9:
-//       return '55' + number
-//     elif len(number) <= 9:
-//       return '559' + number
