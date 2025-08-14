@@ -36,7 +36,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação consulta <br />
-                em Q2
+                no quadrimestre
             </span>
         ),
     },
@@ -64,7 +64,7 @@ export const coapsColumns: Array<GridColDef> = [
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação aferição de
                 <br />
-                PA em Q2
+                PA no quadrimestre
             </span>
         ),
     },
