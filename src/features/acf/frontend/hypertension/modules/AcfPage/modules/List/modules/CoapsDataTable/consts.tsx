@@ -3,6 +3,7 @@ import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter/microAreaFormatter";
 import { phoneNumberFormatter } from "../common/NumberFormatter/numberFormatter";
+import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 
 export const coapsColumns: Array<GridColDef> = [
     // TODO: entender se precisamos lidar com a possibilidade de os campos cpf e cns não chegarem com o formato certo e como ficaria a ordenação desse campo no backend
@@ -75,6 +76,9 @@ export const coapsColumns: Array<GridColDef> = [
         align: "left",
         // TODO: implementar função que checa valores nulos
         headerName: "Equipe",
+        valueFormatter: ({ value }): string => {
+            return nameFormatter(value);
+        },
     },
     {
         field: "microAreaName",

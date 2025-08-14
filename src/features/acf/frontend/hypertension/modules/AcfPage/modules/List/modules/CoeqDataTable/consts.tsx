@@ -1,7 +1,6 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
-// TODO: mover esses formatters pra fora do módulo de RenderPatientNameCpfCns
 import { microAreaFormatter } from "../common/MicroAreaFormatter/microAreaFormatter";
 import { phoneNumberFormatter } from "../common/NumberFormatter/numberFormatter";
 
