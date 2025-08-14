@@ -24,7 +24,7 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
         patientName: hypertensionRow.patientName,
-        patientCpf: hypertensionRow.patientCpf,
+        patientCpf: hypertensionRow.patientCpf || "",
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter:
             appointmentStatusByQuarterCodeToText[
