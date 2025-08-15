@@ -25,7 +25,7 @@ const defaultStatuses = [
     "Nunca realizado",
     "Atrasada",
     "Em dia",
-    "Vence dentro do Quadri",
+    "Vence dentro do quadri",
 ] as const;
 
 export const appointmentStatusByQuarterTexts = [...defaultStatuses] as const;
@@ -41,7 +41,7 @@ export const appointmentStatusByQuarterCodeToText: Record<
 > = {
     10: "Nunca realizado",
     20: "Atrasada",
-    30: "Vence dentro do Quadri",
+    30: "Vence dentro do quadri",
     40: "Em dia",
 };
 
@@ -60,7 +60,7 @@ export const latestExamRequestStatusByQuarterCodeToText: Record<
 > = {
     10: "Nunca realizado",
     20: "Atrasada",
-    30: "Vence dentro do Quadri",
+    30: "Vence dentro do quadri",
     40: "Em dia",
 };
 
