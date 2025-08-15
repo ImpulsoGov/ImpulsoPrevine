@@ -27,7 +27,7 @@ export const iconDetailsMap: TagIconDetailsMap = {
     },
 };
 
-type TableTagProps = {
+export type TableTagProps = {
     theme?: TagTheme;
     text: string;
     icon: {

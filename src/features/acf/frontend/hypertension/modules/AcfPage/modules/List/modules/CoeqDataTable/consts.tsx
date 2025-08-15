@@ -1,4 +1,10 @@
-import type { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { RenderStatusTag } from "../common/RenderStatusTag";
+import type {
+    AppointmentStatusByQuarterText,
+    HypertensionAcfItem,
+    LatestExamRequestStatusByQuarterText,
+} from "@/features/acf/shared/hypertension/model";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -33,6 +39,12 @@ export const coeqColumns: Array<GridColDef> = [
                 no quadrimestre
             </span>
         ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            AppointmentStatusByQuarterText
+        >) => <RenderStatusTag value={value} />,
     },
     {
         field: "latestExamRequestDate",
@@ -52,7 +64,6 @@ export const coeqColumns: Array<GridColDef> = [
         width: 209,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que renderiza tags
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação aferição de
@@ -60,6 +71,12 @@ export const coeqColumns: Array<GridColDef> = [
                 PA no quadrimestre
             </span>
         ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            LatestExamRequestStatusByQuarterText
+        >) => <RenderStatusTag value={value} />,
     },
     {
         field: "microAreaName",
