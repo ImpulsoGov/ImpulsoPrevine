@@ -1,6 +1,6 @@
-export type DefaultStatusCode = 10 | 20 | 30 | 70;
+export type DefaultStatusCode = 10 | 20 | 30 | 40;
 
-export type PatientAgeRangeCode = DefaultStatusCode;
+export type PatientAgeRangeCode = 10 | 20 | 30 | 70;
 
 export const patientAgeRangeTexts = [
     "0 a 10 (Criança)",
@@ -42,7 +42,7 @@ export const appointmentStatusByQuarterCodeToText: Record<
     10: "Nunca realizado",
     20: "Atrasada",
     30: "Vence dentro do Quadri",
-    70: "Em dia",
+    40: "Em dia",
 };
 
 export const latestExamRequestStatusByQuarterTexts = [
@@ -61,7 +61,7 @@ export const latestExamRequestStatusByQuarterCodeToText: Record<
     10: "Nunca realizado",
     20: "Atrasada",
     30: "Vence dentro do Quadri",
-    70: "Em dia",
+    40: "Em dia",
 };
 
 export type HypertensionAcfItem = {
