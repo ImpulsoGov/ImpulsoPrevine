@@ -1,14 +1,14 @@
-import { parsePhoneNumber } from "libphonenumber-js/max";
+import parsePhoneNumber from "libphonenumber-js";
 
 // TODO: escrever testes unitários para as duas funções
-const formatUnvalidPhoneNumbers = (phoneNumber: string): string => {
+const unvalidPhoneNumberFormatter = (phoneNumber: string): string => {
     if (phoneNumber.length === 8) {
-        // Formata números no formato 91360512 ou 33138912 (sem DDD, sem 9 na frente))
+        // Formata números no formato 91360512 ou 33138912 (sem DDD, sem 9 na frente)
         return `( ) ${phoneNumber.slice(0, 4)}-${phoneNumber.slice(4)}`;
     }
 
     if (phoneNumber.length === 9) {
-        // Formata números no formato 99568450 (sem DDD, )as com 9 na frente
+        // Formata números no formato 99568450 (sem DDD, mas com 9 na frente)
 
         return `( ) ${phoneNumber.slice(0, 5)}-${phoneNumber.slice(5)}`;
     }
@@ -19,13 +19,21 @@ const formatUnvalidPhoneNumbers = (phoneNumber: string): string => {
 export const phoneNumberFormatter = (phoneNumber: string | null): string => {
     if (!phoneNumber) return "-";
 
-    const parsedPhoneNumber = parsePhoneNumber("8399568450", {
+    const parsedPhoneNumber = parsePhoneNumber(phoneNumber, {
         defaultCountry: "BR",
-        extract: false,
+        defaultCallingCode: "55",
+        // extract: false,
     });
-    // Não formata se não tiver 8, 9 ou 10 digitos e for mobile, nao formata se tiver 8 ou 9 digitos se for fixo
+
+    // Na teoria, esse caso não deve acontecer
+    if (!parsedPhoneNumber) return "Inválido";
+
+    // Não formata se receber telefone sem DDD (fixo e celular)
+    // ou com DDD, mas sem o 9 na frente (celular)
     const formattedPhoneNumber = parsedPhoneNumber.formatNational();
+
     if (!formattedPhoneNumber.includes("-"))
-        return formatUnvalidPhoneNumbers(formattedPhoneNumber);
+        return unvalidPhoneNumberFormatter(formattedPhoneNumber);
+
     return formattedPhoneNumber;
 };
