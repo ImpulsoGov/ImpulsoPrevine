@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { RenderDate } from "../RenderDate";
+import { RenderDate } from "..";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
 

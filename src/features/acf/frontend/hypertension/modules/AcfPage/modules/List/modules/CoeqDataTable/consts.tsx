@@ -1,7 +1,7 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
-import { RenderDate } from "../common/RenderDate/RenderDate";
-import { microAreaFormatter } from "../common/MicroAreaFormatter/microAreaFormatter";
+import { RenderDate } from "../common/RenderDate";
+import { microAreaFormatter } from "../common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
 
 export const coeqColumns: Array<GridColDef> = [
@@ -72,7 +72,6 @@ export const coeqColumns: Array<GridColDef> = [
         width: 144,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que checa valores nulos
         headerName: "Microárea",
         valueFormatter: ({ value }): string => {
             return microAreaFormatter(value);
