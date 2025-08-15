@@ -1557,10 +1557,10 @@
     react-to-print "^2.14.13"
     styled-components "^6.0.1"
 
-"@impulsogov/design-system@^1.0.358":
-  version "1.0.358"
-  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.358.tgz#c41d309668d195cf1a84dd6c6817dfc4d85fa7b4"
-  integrity sha512-pOemAAeB7zQNlmphsmKeWMfW8yylpZlZtCK1+YNY8OejhzfYViVPYR+j+DeeDdZqyYlhpadTiMm5+KcQ2qoEJA==
+"@impulsogov/design-system@^1.0.359":
+  version "1.0.359"
+  resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.359.tgz#596e309fa5ddb75948764e005b9a5a45a536cd89"
+  integrity sha512-+/JxNnlnd0PAcHWhhNhPqQGM4YOWYAf620ik2Jqxb4RBtQcoyWYvuleL0FU6/ryeNx+e+G2vZPKKvMwkOjOYMw==
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
