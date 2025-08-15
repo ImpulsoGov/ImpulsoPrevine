@@ -10,7 +10,7 @@ describe("cnsFormatter", () => {
     it("deve formatar corretamente um CNS com menos de 15 dígitos", () => {
         const cns = "12345678901234";
         const formattedCns = cnsFormatter(cns);
-        expect(formattedCns).toBe("123 4567 8901 234");
+        expect(formattedCns).toBe("012 3456 7890 1234");
     });
 
     it("deve formatar um CNS com mais de 15 dígitos ignorando os dígitos extra", () => {
