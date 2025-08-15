@@ -6,21 +6,14 @@ describe("phoneNumberFormatter", () => {
         expect(formatted).toBe("-");
     });
 
-    describe("quando o número de telefone não pode ser parseado", () => {
-        it("deve retornar Inválido se o número não possuir DDI válido", () => {
-            const formatted = phoneNumberFormatter("+0098984684501");
-            expect(formatted).toBe("Inválido");
-        });
-
-        it("deve retornar Inválido se o número não for válido", () => {
-            const formatted = phoneNumberFormatter("98984-a84501");
-            expect(formatted).toBe("Inválido");
-        });
+    it("deve retornar '-' quando o número de telefone não puder ser parseado", () => {
+        const formatted = phoneNumberFormatter("a/9*");
+        expect(formatted).toBe("-");
     });
 
     describe("quando o número de telefone tem DDD", () => {
-        it("deve remover caracteres não númericos (exceto + e -) ao redor do número e formata-lo", () => {
-            const formatted = phoneNumberFormatter("a/98984684501*");
+        it("deve remover caracteres não númericos e formatar o telefone", () => {
+            const formatted = phoneNumberFormatter("a/98984b684501*");
             expect(formatted).toBe("(98) 98468-4501");
         });
 

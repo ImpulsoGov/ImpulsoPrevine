@@ -18,13 +18,14 @@ const invalidPhoneNumberFormatter = (phoneNumber: string): string => {
 export const phoneNumberFormatter = (phoneNumber: string | null): string => {
     if (!phoneNumber) return "-";
 
-    const parsedPhoneNumber = parsePhoneNumber(phoneNumber, {
+    const parsedPhoneNumber = parsePhoneNumber(phoneNumber.replace(/\D/g, ""), {
         defaultCountry: "BR",
         defaultCallingCode: "55",
+        extract: true,
     });
 
     // Na teoria, esse caso não deve acontecer
-    if (!parsedPhoneNumber) return "Inválido";
+    if (!parsedPhoneNumber) return "-";
 
     // Não formata se receber telefone sem DDD (fixo e celular)
     // ou com DDD, mas sem o 9 na frente (celular)
