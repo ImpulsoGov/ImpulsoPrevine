@@ -1,4 +1,4 @@
-import { phoneNumberFormatter } from "../numberFormatter";
+import { phoneNumberFormatter } from "..";
 
 // ? O mock parcial não estava funcionando, então fiz um teste de integração
 // jest.mock("../numberFormatter", () => {

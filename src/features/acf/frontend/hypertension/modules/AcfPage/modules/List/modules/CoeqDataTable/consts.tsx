@@ -2,7 +2,7 @@ import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "../common/RenderDate/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter/microAreaFormatter";
-import { phoneNumberFormatter } from "../common/NumberFormatter/numberFormatter";
+import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -81,7 +81,7 @@ export const coeqColumns: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 136,
+        width: 145,
         headerAlign: "left",
         align: "left",
         valueFormatter: ({ value }): string => {
