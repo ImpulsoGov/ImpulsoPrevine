@@ -40,7 +40,6 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         microAreaName: hypertensionRow.microAreaName,
         patientPhoneNumber: hypertensionRow.patientPhoneNumber,
         patientAge: hypertensionRow.patientAge,
-        patientCns: hypertensionRow.patientCns,
     };
 };
 
