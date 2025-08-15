@@ -1,7 +1,6 @@
 import parsePhoneNumber from "libphonenumber-js";
 
-// TODO: escrever testes unitários para as duas funções
-const unvalidPhoneNumberFormatter = (phoneNumber: string): string => {
+const invalidPhoneNumberFormatter = (phoneNumber: string): string => {
     if (phoneNumber.length === 8) {
         // Formata números no formato 91360512 ou 33138912 (sem DDD, sem 9 na frente)
         return `( ) ${phoneNumber.slice(0, 4)}-${phoneNumber.slice(4)}`;
@@ -22,7 +21,6 @@ export const phoneNumberFormatter = (phoneNumber: string | null): string => {
     const parsedPhoneNumber = parsePhoneNumber(phoneNumber, {
         defaultCountry: "BR",
         defaultCallingCode: "55",
-        // extract: false,
     });
 
     // Na teoria, esse caso não deve acontecer
@@ -33,7 +31,7 @@ export const phoneNumberFormatter = (phoneNumber: string | null): string => {
     const formattedPhoneNumber = parsedPhoneNumber.formatNational();
 
     if (!formattedPhoneNumber.includes("-"))
-        return unvalidPhoneNumberFormatter(formattedPhoneNumber);
+        return invalidPhoneNumberFormatter(formattedPhoneNumber);
 
     return formattedPhoneNumber;
 };
