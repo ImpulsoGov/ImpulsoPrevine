@@ -1,8 +1,9 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
-import { RenderDate } from "../common/RenderDate";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -24,7 +25,7 @@ export const coeqColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
-        renderCell: RenderDate,
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -51,7 +52,7 @@ export const coeqColumns: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
-        renderCell: RenderDate,
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
