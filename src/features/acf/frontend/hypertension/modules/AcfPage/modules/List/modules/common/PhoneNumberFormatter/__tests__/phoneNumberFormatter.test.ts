@@ -1,25 +1,6 @@
 import { phoneNumberFormatter } from "..";
 
-// ? O mock parcial não estava funcionando, então fiz um teste de integração
-// jest.mock("../numberFormatter", () => {
-//     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-//     const originalModule = jest.requireActual("../numberFormatter");
-
-//     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-//     return {
-//         __esModule: true,
-//         ...originalModule,
-//         invalidPhoneNumberFormatter: jest.fn(() => { console.log("mocked invalidPhoneNumberFormatter") }),
-//     };
-// });
-
-// const mockedInvalidPhoneNumberFormatter = invalidPhoneNumberFormatter as jest.Mock;
-
 describe("phoneNumberFormatter", () => {
-    // afterEach(() => {
-    //     jest.clearAllMocks();
-    // });
-
     it("deve retornar '-' quando o número de telefone for nulo", () => {
         const formatted = phoneNumberFormatter(null);
         expect(formatted).toBe("-");
@@ -41,19 +22,16 @@ describe("phoneNumberFormatter", () => {
         it("deve remover caracteres não númericos (exceto + e -) ao redor do número e formata-lo", () => {
             const formatted = phoneNumberFormatter("a/98984684501*");
             expect(formatted).toBe("(98) 98468-4501");
-            // expect(mockedInvalidPhoneNumberFormatter).not.toHaveBeenCalled();
         });
 
         it("deve formatar o número de telefone celular com o 9 na frente", () => {
             const formatted = phoneNumberFormatter("98984684501");
             expect(formatted).toBe("(98) 98468-4501");
-            // expect(mockedInvalidPhoneNumberFormatter).not.toHaveBeenCalled();
         });
 
         it("deve formatar o número de telefone fixo", () => {
             const formatted = phoneNumberFormatter("9832564501");
             expect(formatted).toBe("(98) 3256-4501");
-            // expect(mockedInvalidPhoneNumberFormatter).not.toHaveBeenCalled();
         });
 
         it("deve formatar o número de telefone celular sem o 9 na frente", () => {
@@ -63,11 +41,6 @@ describe("phoneNumberFormatter", () => {
     });
 
     describe("quando o número de telefone não tem DDD", () => {
-        // it("deve executar a função invalidPhoneNumberFormatter para telefone fixo", () => {
-        //     phoneNumberFormatter("32564501");
-        //     expect(mockedInvalidPhoneNumberFormatter).toHaveBeenCalled();
-        // });
-
         it("deve formatar o número de telefone celular sem o 9 na frente", () => {
             const formatted = phoneNumberFormatter("81568450");
             expect(formatted).toBe("( ) 8156-8450");
