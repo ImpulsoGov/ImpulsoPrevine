@@ -1,7 +1,8 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
+import { microAreaFormatter } from "./MicroAreaFormatter";
+import { sortMicroAreas } from "./SortMicroAreas";
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters
@@ -9,8 +10,11 @@ export const toSelectConfigsShared = (
     return [
         {
             options: toHtmlSelectOptions(filtersValues.microAreaName)
-                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
+                .map((item) => ({
+                    ...item,
+                    label: microAreaFormatter(item.label),
+                }))
+                .sort(sortMicroAreas),
             label: "Microárea",
             id: "microAreaName",
             isMultiSelect: true,
