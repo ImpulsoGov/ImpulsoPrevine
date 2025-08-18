@@ -1,10 +1,8 @@
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import type {
-    HtmlSelectOption,
-    SelectConfig,
-} from "@/features/acf/frontend/common/SelectConfig";
+import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
+import { sortedOptions } from "@/features/acf/frontend/common/SortedOptions";
 
 const referenceOrder = [
     "Menos de 17 anos",
@@ -15,11 +13,6 @@ const referenceOrder = [
     "Entre 55 e 65 anos",
     "Mais de 65 anos",
 ];
-
-export const sortedOptions = (
-    a: HtmlSelectOption,
-    b: HtmlSelectOption
-): number => referenceOrder.indexOf(a.label) - referenceOrder.indexOf(b.label);
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters
@@ -54,7 +47,7 @@ export const toSelectConfigsShared = (
         },
         {
             options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
-                sortedOptions
+                (a, b) => sortedOptions(a, b, referenceOrder)
             ),
             label: "Faixa Etária",
             id: "patientAgeRange",
