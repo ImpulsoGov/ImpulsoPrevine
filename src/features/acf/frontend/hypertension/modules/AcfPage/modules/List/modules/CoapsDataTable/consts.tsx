@@ -1,4 +1,4 @@
-import type { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter";
@@ -76,9 +76,11 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         headerName: "Equipe",
-        valueFormatter: ({ value }): string => {
-            return nameFormatter(value);
-        },
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {nameFormatter(value)}</span>
+        ),
     },
     {
         field: "microAreaName",
@@ -86,9 +88,11 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         headerName: "Microárea",
-        valueFormatter: ({ value }): string => {
-            return microAreaFormatter(value);
-        },
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {microAreaFormatter(value)}</span>
+        ),
     },
     {
         field: "patientPhoneNumber",
@@ -96,9 +100,11 @@ export const coapsColumns: Array<GridColDef> = [
         width: 145,
         headerAlign: "left",
         align: "left",
-        valueFormatter: ({ value }): string => {
-            return phoneNumberFormatter(value);
-        },
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {phoneNumberFormatter(value)}</span>
+        ),
     },
     {
         field: "patientAge",
@@ -106,5 +112,10 @@ export const coapsColumns: Array<GridColDef> = [
         width: 103,
         headerAlign: "left",
         align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span>{value}</span>
+        ),
     },
 ];
