@@ -8,6 +8,8 @@ export const TableWrapperWithStyle: React.FC<React.PropsWithChildren> = ({
             sx={{
                 "& .patient-name-cpf-cns": {
                     whiteSpace: "break-spaces !important",
+                    paddingTop: "8px !important",
+                    paddingBottom: "8px !important",
                 },
             }}
         >
