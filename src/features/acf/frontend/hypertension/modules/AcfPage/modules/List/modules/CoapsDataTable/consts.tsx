@@ -107,3 +107,25 @@ export const coapsColumns: Array<GridColDef> = [
         align: "left",
     },
 ];
+
+export const captionData = {
+    title: "Tags de situação",
+    items: [
+        {
+            label: "Nunca realizada",
+            value: "não há nenhum registro da prática",
+        },
+        {
+            label: "Atrasada",
+            value: "o prazo para realizar a prática já venceu (por exemplo, a última consulta foi feita há mais de 6 meses).",
+        },
+        {
+            label: "Vence dentro de Q",
+            value: "prática ainda está dentro do prazo, mas o status mudará para “atrasada” até o fim do quadrimestre.",
+        },
+        {
+            label: "Em dia",
+            value: "a boa prática foi realizada no prazo e seguirá válida até o final do quadrimestre.",
+        },
+    ],
+};
