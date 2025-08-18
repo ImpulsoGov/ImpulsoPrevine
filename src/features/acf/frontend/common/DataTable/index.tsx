@@ -170,7 +170,6 @@ export const DataTable = <
         <Table
             columns={columns}
             data={response?.data.page || []}
-            rowHeight={60}
             paginationMode="server"
             sortingMode="server"
             rowCount={response?.data.totalRows || 0}
