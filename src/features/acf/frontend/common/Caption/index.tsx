@@ -27,8 +27,10 @@ export const Caption: React.FC<CaptionProps> = ({ title, items }) => {
             {items.map((item, index) => (
                 <div key={index} style={{ marginLeft: "12px" }}>
                     <div>
-                        • {item.label}:{" "}
-                        <span style={{ fontWeight: 400 }}>{item.value}</span>
+                        • {item.label}:
+                        <span style={{ fontWeight: 400, marginLeft: "6px" }}>
+                            {item.value}
+                        </span>
                     </div>
                 </div>
             ))}
