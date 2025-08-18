@@ -2,7 +2,7 @@ import type * as db from "@prisma/client";
 import type {
     AppointmentStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,
-    DefaultStatusCode,
+    PatientAgeRangeCode,
 } from "@/features/acf/shared/hypertension/model";
 import {
     ageRangeCodeToText,
@@ -24,7 +24,8 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
         patientName: hypertensionRow.patientName,
-        patientCpf: hypertensionRow.patientCpf,
+        patientCpf: hypertensionRow.patientCpf || "",
+        patientCns: hypertensionRow.patientCns || "",
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter:
             appointmentStatusByQuarterCodeToText[
@@ -51,7 +52,11 @@ export const hypertensionPageDbToModel = (
 // TODO: mover para algum common porque essa função está genérica
 const filterOptionsModelToDb = <
     TFilterText extends string,
-    TFilterCode extends DefaultStatusCode,
+    TFilterCode extends
+        | PatientAgeRangeCode
+        | AppointmentStatusByQuarterCode
+        // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents
+        | LatestExamRequestStatusByQuarterCode,
 >(
     options: ReadonlyArray<TFilterText>,
     filterCodeToText: Record<TFilterCode, TFilterText>

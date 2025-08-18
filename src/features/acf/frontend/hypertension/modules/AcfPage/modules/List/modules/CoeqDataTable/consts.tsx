@@ -5,6 +5,10 @@ import type {
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
+import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import { microAreaFormatter } from "../common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -13,7 +17,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 211,
         headerAlign: "left",
         align: "left",
-        //TODO: Implementar funcao que une nome, cpf e cns
+        renderCell: RenderPatientNameCpfCns,
     },
     {
         field: "latestAppointmentDate",
@@ -26,6 +30,7 @@ export const coeqColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -58,6 +63,7 @@ export const coeqColumns: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
@@ -83,18 +89,20 @@ export const coeqColumns: Array<GridColDef> = [
         width: 144,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que checa valores nulos
-        // renderCell: RenderStatusTagCell,
         headerName: "Microárea",
+        valueFormatter: ({ value }): string => {
+            return microAreaFormatter(value);
+        },
     },
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 136,
+        width: 145,
         headerAlign: "left",
         align: "left",
-        // TODO: Implementar funcao que formata o telefone
-        // renderCell: NameFormatter,
+        valueFormatter: ({ value }): string => {
+            return phoneNumberFormatter(value);
+        },
     },
     {
         field: "patientAge",
@@ -103,4 +111,4 @@ export const coeqColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
     },
-] as Array<GridColDef>;
+];

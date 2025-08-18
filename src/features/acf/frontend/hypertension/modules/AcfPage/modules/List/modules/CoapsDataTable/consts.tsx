@@ -5,6 +5,11 @@ import type {
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
+import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import { microAreaFormatter } from "../common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
+import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 
 export const coapsColumns: Array<GridColDef> = [
     {
@@ -13,11 +18,11 @@ export const coapsColumns: Array<GridColDef> = [
         width: 211,
         headerAlign: "left",
         align: "left",
-        //TODO: Implementar funcao que une nome, cpf e cns
+        renderCell: RenderPatientNameCpfCns,
     },
     {
         field: "latestAppointmentDate",
-        width: 131,
+        width: 135,
         headerAlign: "left",
         align: "left",
         renderHeader: () => (
@@ -26,6 +31,7 @@ export const coapsColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -57,6 +63,7 @@ export const coapsColumns: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
+        renderCell: RenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
@@ -82,24 +89,30 @@ export const coapsColumns: Array<GridColDef> = [
         width: 134,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que checa valores nulos
         headerName: "Equipe",
+        valueFormatter: ({ value }): string => {
+            return nameFormatter(value);
+        },
     },
     {
         field: "microAreaName",
         width: 144,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que checa valores nulos
         headerName: "Microárea",
+        valueFormatter: ({ value }): string => {
+            return microAreaFormatter(value);
+        },
     },
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 136,
+        width: 145,
         headerAlign: "left",
         align: "left",
-        // TODO: Implementar funcao que formata o telefone
+        valueFormatter: ({ value }): string => {
+            return phoneNumberFormatter(value);
+        },
     },
     {
         field: "patientAge",
@@ -108,4 +121,4 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
     },
-] as Array<GridColDef>;
+];

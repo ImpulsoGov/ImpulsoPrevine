@@ -1,6 +1,6 @@
 export type DefaultStatusCode = 10 | 20 | 30 | 40;
 
-export type PatientAgeRangeCode = DefaultStatusCode;
+export type PatientAgeRangeCode = 10 | 20 | 30 | 70;
 
 export const patientAgeRangeTexts = [
     "0 a 10 (Criança)",
@@ -18,7 +18,7 @@ export const ageRangeCodeToText: Record<
     10: "0 a 10 (Criança)",
     20: "11 a 19 (Adolescente)",
     30: "20 a 59 (Adulto)",
-    40: "60 ou mais (Idoso)",
+    70: "60 ou mais (Idoso)",
 };
 
 const defaultStatuses = [
@@ -69,6 +69,7 @@ export type HypertensionAcfItem = {
     municipalityName: string;
     patientName: string;
     patientCpf: string;
+    patientCns: string;
     latestAppointmentDate: Date | null;
     appointmentStatusByQuarter: AppointmentStatusByQuarterText;
     latestExamRequestDate: Date | null;
