@@ -12,13 +12,13 @@ describe("microAreaFormatter", () => {
         const expectedString = "Área 2";
         expect(microAreaFormatter(string)).toBe(expectedString);
     });
-    // retorna a string "Fora de Area" quando recebe a string FA
+
     it("Deve retornar a string Fora de área quando receber a string 'FA'", () => {
         const string = "FA";
         const expectedString = "Fora de área";
         expect(microAreaFormatter(string)).toBe(expectedString);
     });
-    // Retorna "-" quando alguma coisa diferente disso acontece
+
     it("Deve retornar '-' quando alguma coisa diferente de um numero ou da string 'FA'so acontece", () => {
         const nullValue = null;
         const expectedString = "-";
