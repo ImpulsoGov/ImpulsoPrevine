@@ -5,7 +5,7 @@ import { tagDetailsByStatus } from "./consts";
 import type { StatusByQuarter, TagDetails } from "./model";
 
 type Props = {
-    value?: StatusByQuarter;
+    value: StatusByQuarter | undefined;
     tagDetails?: Record<StatusByQuarter, TagDetails>;
 };
 
