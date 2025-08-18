@@ -1,5 +1,5 @@
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { RenderStatusTag } from "../common/RenderStatusTag";
+import { RenderStatusByQuarterTag } from "../common/RenderStatusByQuarterTag";
 import type {
     AppointmentStatusByQuarterText,
     HypertensionAcfItem,
@@ -49,7 +49,7 @@ export const coeqColumns: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             AppointmentStatusByQuarterText
-        >) => <RenderStatusTag value={value} />,
+        >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
         field: "latestExamRequestDate",
@@ -82,7 +82,7 @@ export const coeqColumns: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusTag value={value} />,
+        >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
         field: "microAreaName",
