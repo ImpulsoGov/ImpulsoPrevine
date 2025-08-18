@@ -13,6 +13,7 @@ export const coeqColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
+        cellClassName: "patient-name-cpf-cns",
     },
     {
         field: "latestAppointmentDate",
