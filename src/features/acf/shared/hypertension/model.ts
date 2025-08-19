@@ -68,8 +68,8 @@ export type HypertensionAcfItem = {
     municipalitySusId: string;
     municipalityName: string;
     patientName: string;
-    patientCpf: string;
-    patientCns: string;
+    patientCpf: string | null;
+    patientCns: string | null;
     latestAppointmentDate: Date | null;
     appointmentStatusByQuarter: AppointmentStatusByQuarterText;
     latestExamRequestDate: Date | null;

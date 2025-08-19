@@ -1,5 +1,5 @@
-export const cnsFormatter = (cns: string): string => {
-    if (!cns) return "";
+export const cnsFormatter = (cns: string | null): string | null => {
+    if (!cns) return null;
     cns = cns.padStart(15, "0");
     const part1 = cns.slice(0, 3);
     const part2 = cns.slice(3, 7);
