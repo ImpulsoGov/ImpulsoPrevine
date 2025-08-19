@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
                 hostname: "media.graphassets.com",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "sa-east-1.graphassets.com",
+                pathname: "/**",
+            },
         ],
     },
     // TODO remover esse configuração quando não houver mais erros de linter

@@ -1,5 +1,5 @@
 import React from "react";
-import { getCurrentQuadrimester } from "@/features/acf/frontend/common/GetCurrentQuadrimester";
+import { getCurrentQuadrimester } from "@/features/acf/shared/GetCurrentQuadrimester";
 
 export const CurrentQuadrimester: React.FC<{ date?: Date }> = ({
     date = new Date(),

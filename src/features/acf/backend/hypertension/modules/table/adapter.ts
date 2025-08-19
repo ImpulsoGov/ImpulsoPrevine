@@ -18,8 +18,15 @@ import type {
     FiltersOptionsDbCoaps,
     SharedFiltersOptionsDb,
 } from "../common/FiltersOptionsDb";
+import { updateQuarterText } from "../common/UpdateQuarterText";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
+    const updatedAppointmentStatusByQuarter = updateQuarterText(
+        appointmentStatusByQuarterCodeToText
+    );
+    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
+        latestExamRequestStatusByQuarterCodeToText
+    );
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
@@ -28,12 +35,12 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         patientCns: hypertensionRow.patientCns,
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter:
-            appointmentStatusByQuarterCodeToText[
+            updatedAppointmentStatusByQuarter[
                 hypertensionRow.appointmentStatusByQuarter as AppointmentStatusByQuarterCode
             ],
         latestExamRequestDate: hypertensionRow.latestExamRequestDate,
         latestExamRequestStatusByQuarter:
-            latestExamRequestStatusByQuarterCodeToText[
+            updatedLatestExamRequestStatusByQuarter[
                 hypertensionRow.latestExamRequestStatusByQuarter as LatestExamRequestStatusByQuarterCode
             ],
         careTeamName: hypertensionRow.careTeamName,
@@ -75,14 +82,21 @@ const filterOptionsModelToDb = <
 const sharedFiltersModelToDb = (
     filters: SharedFilters
 ): SharedFiltersOptionsDb => {
+    const updatedAppointmentStatusByQuarter = updateQuarterText(
+        appointmentStatusByQuarterCodeToText
+    );
+    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
+        latestExamRequestStatusByQuarterCodeToText
+    );
+
     return {
         appointmentStatusByQuarter: filterOptionsModelToDb(
             filters.appointmentStatusByQuarter,
-            appointmentStatusByQuarterCodeToText
+            updatedAppointmentStatusByQuarter
         ),
         latestExamRequestStatusByQuarter: filterOptionsModelToDb(
             filters.latestExamRequestStatusByQuarter,
-            latestExamRequestStatusByQuarterCodeToText
+            updatedLatestExamRequestStatusByQuarter
         ),
         patientAgeRange: filterOptionsModelToDb(
             filters.patientAgeRange,

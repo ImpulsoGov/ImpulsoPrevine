@@ -1,10 +1,15 @@
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { RenderStatusByQuarterTag } from "../common/RenderStatusByQuarterTag";
+import type {
+    AppointmentStatusByQuarterText,
+    HypertensionAcfItem,
+    LatestExamRequestStatusByQuarterText,
+} from "@/features/acf/shared/hypertension/model";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 
 export const coapsColumns: Array<GridColDef> = [
     {
@@ -34,13 +39,18 @@ export const coapsColumns: Array<GridColDef> = [
         width: 207,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que renderiza tags
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação consulta <br />
-                em Q2
+                no quadrimestre
             </span>
         ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            AppointmentStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
         field: "latestExamRequestDate",
@@ -61,14 +71,19 @@ export const coapsColumns: Array<GridColDef> = [
         width: 209,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que renderiza tags
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação aferição de
                 <br />
-                PA em Q2
+                PA no quadrimestre
             </span>
         ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            LatestExamRequestStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
         field: "careTeamName",
