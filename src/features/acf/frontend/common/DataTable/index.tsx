@@ -170,7 +170,6 @@ export const DataTable = <
         <Table
             columns={columns}
             data={response?.data.page || []}
-            rowHeight={60}
             paginationMode="server"
             sortingMode="server"
             rowCount={response?.data.totalRows || 0}
@@ -181,6 +180,13 @@ export const DataTable = <
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
+            customSx={{
+                "& .breakable-content": {
+                    whiteSpace: "break-spaces",
+                    paddingTop: "8px",
+                    paddingBottom: "8px",
+                },
+            }}
         />
     );
 };

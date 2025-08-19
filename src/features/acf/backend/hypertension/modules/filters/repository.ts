@@ -20,6 +20,9 @@ const fieldOptions = async <TField extends keyof HypertensionAcfItem>(
         },
         distinct: [field],
         where: whereFields,
+        orderBy: {
+            [field]: "asc",
+        },
     });
     return result.map((item) => item[field]);
 };

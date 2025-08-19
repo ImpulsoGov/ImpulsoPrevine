@@ -14,7 +14,6 @@ export const toSelectConfigsShared = (
                     ...item,
                     label: microAreaFormatter(item.label),
                 }))
-                .sort(sortMicroAreas),
             label: "Microárea",
             id: "microAreaName",
             isMultiSelect: true,
@@ -23,7 +22,7 @@ export const toSelectConfigsShared = (
         {
             options: toHtmlSelectOptions(
                 filtersValues.appointmentStatusByQuarter
-            ).sort((a, b) => a.label.localeCompare(b.label)),
+            ),
             label: "Consulta",
             id: "appointmentStatusByQuarter",
             isMultiSelect: true,
@@ -32,16 +31,14 @@ export const toSelectConfigsShared = (
         {
             options: toHtmlSelectOptions(
                 filtersValues.latestExamRequestStatusByQuarter
-            ).sort((a, b) => a.label.localeCompare(b.label)),
+            ),
             label: "Aferição de PA",
             id: "latestExamRequestStatusByQuarter",
             isMultiSelect: true,
             width: "232px",
         },
         {
-            options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
-                (a, b) => a.label.localeCompare(b.label)
-            ),
+            options: toHtmlSelectOptions(filtersValues.patientAgeRange),
             label: "Faixa Etária",
             id: "patientAgeRange",
             isMultiSelect: false,

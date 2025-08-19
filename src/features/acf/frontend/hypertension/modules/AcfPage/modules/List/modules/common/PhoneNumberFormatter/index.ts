@@ -15,7 +15,9 @@ const invalidPhoneNumberFormatter = (phoneNumber: string): string => {
     return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 6)}-${phoneNumber.slice(6)}`;
 };
 
-export const phoneNumberFormatter = (phoneNumber: string | null): string => {
+export const phoneNumberFormatter = (
+    phoneNumber: string | null | undefined
+): string => {
     if (!phoneNumber) return "-";
 
     const parsedPhoneNumber = parsePhoneNumber(phoneNumber.replace(/\D/g, ""), {
