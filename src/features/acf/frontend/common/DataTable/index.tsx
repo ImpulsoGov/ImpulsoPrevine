@@ -180,6 +180,13 @@ export const DataTable = <
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
+            customSx={{
+                "& .breakable-content": {
+                    whiteSpace: "break-spaces",
+                    paddingTop: "8px",
+                    paddingBottom: "8px",
+                },
+            }}
         />
     );
 };

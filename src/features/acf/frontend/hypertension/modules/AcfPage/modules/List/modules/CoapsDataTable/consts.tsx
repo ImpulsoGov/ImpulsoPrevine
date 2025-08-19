@@ -14,7 +14,7 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
-        cellClassName: "patient-name-cpf-cns",
+        cellClassName: "breakable-content",
     },
     {
         field: "latestAppointmentDate",
@@ -76,6 +76,7 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         headerName: "Equipe",
+        cellClassName: "breakable-content",
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
