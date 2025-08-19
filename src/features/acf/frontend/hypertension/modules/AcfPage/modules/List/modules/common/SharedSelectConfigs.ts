@@ -1,16 +1,19 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
+import { microAreaFormatter } from "./MicroAreaFormatter";
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters
 ): Array<SelectConfig> => {
     return [
         {
-            options: toHtmlSelectOptions(filtersValues.microAreaName)
-                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
+            options: toHtmlSelectOptions(filtersValues.microAreaName).map(
+                (item) => ({
+                    ...item,
+                    label: microAreaFormatter(item.label),
+                })
+            ),
             label: "Microárea",
             id: "microAreaName",
             isMultiSelect: true,
@@ -19,7 +22,7 @@ export const toSelectConfigsShared = (
         {
             options: toHtmlSelectOptions(
                 filtersValues.appointmentStatusByQuarter
-            ).sort((a, b) => a.label.localeCompare(b.label)),
+            ),
             label: "Consulta",
             id: "appointmentStatusByQuarter",
             isMultiSelect: true,
@@ -28,16 +31,14 @@ export const toSelectConfigsShared = (
         {
             options: toHtmlSelectOptions(
                 filtersValues.latestExamRequestStatusByQuarter
-            ).sort((a, b) => a.label.localeCompare(b.label)),
+            ),
             label: "Aferição de PA",
             id: "latestExamRequestStatusByQuarter",
             isMultiSelect: true,
             width: "232px",
         },
         {
-            options: toHtmlSelectOptions(filtersValues.patientAgeRange).sort(
-                (a, b) => a.label.localeCompare(b.label)
-            ),
+            options: toHtmlSelectOptions(filtersValues.patientAgeRange),
             label: "Faixa Etária",
             id: "patientAgeRange",
             isMultiSelect: false,

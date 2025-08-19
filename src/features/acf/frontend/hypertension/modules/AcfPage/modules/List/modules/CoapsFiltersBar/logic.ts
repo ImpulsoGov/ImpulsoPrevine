@@ -10,9 +10,9 @@ export const toSelectConfigsCoaps = (
     return [
         ...toSelectConfigsShared(filtersValues),
         {
-            options: toHtmlSelectOptions(filtersValues.careTeamName)
-                .map((item) => ({ ...item, label: nameFormatter(item.label) }))
-                .sort((a, b) => a.label.localeCompare(b.label)),
+            options: toHtmlSelectOptions(filtersValues.careTeamName).map(
+                (item) => ({ ...item, label: nameFormatter(item.label) })
+            ),
             label: "Equipe",
             id: "careTeamName",
             isMultiSelect: true,
