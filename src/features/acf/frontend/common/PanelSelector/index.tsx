@@ -11,7 +11,7 @@ import type {
     PanelSelectorWithCardsProps,
     subTabsWithChildrenProps,
 } from "@impulsogov/design-system/dist/organisms/PanelSelectorWithCards/PanelSelectorWithCards";
-
+import type { JSX } from "react";
 // import { ChartsContainer } from "./modules/dashboards/Charts";
 // import { subTabChildrenSelector } from "./subTabChildrenSelector";
 // import { tabsBuilder } from "./tabsBuilder";
@@ -100,7 +100,7 @@ type PanelSelectorProps = {
     header: {
         title: string;
         tooltip?: React.ReactNode;
-        text: string;
+        text: string | JSX.Element;
     };
 };
 

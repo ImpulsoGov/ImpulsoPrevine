@@ -88,7 +88,7 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
                     flexDirection: "column",
                     gap: "35px",
                     padding: "0px 0px 150px 0px",
-                    marginTop: "75px",
+                    marginTop: "50px",
                 }}
             >
                 {/* <p

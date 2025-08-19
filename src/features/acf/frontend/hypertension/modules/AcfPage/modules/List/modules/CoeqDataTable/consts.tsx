@@ -43,7 +43,7 @@ export const coeqColumns: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestDate",
-        width: 135,
+        width: 156,
         headerAlign: "left",
         align: "left",
         renderHeader: () => (
