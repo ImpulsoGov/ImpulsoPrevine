@@ -14,6 +14,7 @@ export const breadcrumb = {
 export const sharedHeader = {
     title: "Cuidado da pessoa com hipertensão",
 };
+
 export const textCoaps = (
     <div>
         Acompanhe duas boas práticas definidas pelo Ministério da Saúde do{" "}
@@ -24,6 +25,7 @@ export const textCoaps = (
         pessoas com hipertensão arterial nas diferentes equipes do território.
     </div>
 );
+
 export const textCoeq = (
     <div>
         Acompanhe duas boas práticas definidas pelo Ministério da Saúde do{" "}
