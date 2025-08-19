@@ -18,19 +18,7 @@ import type {
     FiltersOptionsDbCoaps,
     SharedFiltersOptionsDb,
 } from "../common/FiltersOptionsDb";
-import { getCurrentQuadrimester } from "@/features/acf/shared/GetCurrentQuadrimester";
-
-const updateQuarterText = <TText, TCode extends number>(
-    codeToText: Record<TCode, TText>
-): Record<TCode, TText> => {
-    const currentQuadrimester = getCurrentQuadrimester();
-    const text = `Vence dentro do Q${currentQuadrimester.toString()}` as TText;
-
-    return {
-        ...codeToText,
-        30: text,
-    };
-};
+import { updateQuarterText } from "../common/UpdateQuarterText";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
     const updatedAppointmentStatusByQuarter = updateQuarterText(
