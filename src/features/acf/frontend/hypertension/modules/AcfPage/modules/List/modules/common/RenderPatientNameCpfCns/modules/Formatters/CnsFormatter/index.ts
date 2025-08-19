@@ -1,4 +1,4 @@
-export const cnsFormatter = (cns: string): string => {
+export const cnsFormatter = (cns: string | null): string => {
     if (!cns) return "";
     cns = cns.padStart(15, "0");
     const part1 = cns.slice(0, 3);
