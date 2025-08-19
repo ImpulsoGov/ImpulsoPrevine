@@ -1,4 +1,4 @@
-import type { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { microAreaFormatter } from "../common/MicroAreaFormatter";
@@ -14,6 +14,7 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
+        cellClassName: "breakable-content",
     },
     {
         field: "latestAppointmentDate",
@@ -75,9 +76,12 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         headerName: "Equipe",
-        valueFormatter: ({ value }): string => {
-            return nameFormatter(value);
-        },
+        cellClassName: "breakable-content",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {nameFormatter(value)}</span>
+        ),
     },
     {
         field: "microAreaName",
@@ -85,9 +89,11 @@ export const coapsColumns: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         headerName: "Microárea",
-        valueFormatter: ({ value }): string => {
-            return microAreaFormatter(value);
-        },
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {microAreaFormatter(value)}</span>
+        ),
     },
     {
         field: "patientPhoneNumber",
@@ -95,9 +101,11 @@ export const coapsColumns: Array<GridColDef> = [
         width: 145,
         headerAlign: "left",
         align: "left",
-        valueFormatter: ({ value }): string => {
-            return phoneNumberFormatter(value);
-        },
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {phoneNumberFormatter(value)}</span>
+        ),
     },
     {
         field: "patientAge",
@@ -105,5 +113,32 @@ export const coapsColumns: Array<GridColDef> = [
         width: 103,
         headerAlign: "left",
         align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span>{value}</span>
+        ),
     },
 ];
+
+export const captionData = {
+    title: "Tags de situação",
+    items: [
+        {
+            label: "Nunca realizada",
+            value: "não há nenhum registro da prática",
+        },
+        {
+            label: "Atrasada",
+            value: "o prazo para realizar a prática já venceu (por exemplo, a última consulta foi feita há mais de 6 meses).",
+        },
+        {
+            label: "Vence dentro de Q",
+            value: "prática ainda está dentro do prazo, mas o status mudará para “atrasada” até o fim do quadrimestre.",
+        },
+        {
+            label: "Em dia",
+            value: "a boa prática foi realizada no prazo e seguirá válida até o final do quadrimestre.",
+        },
+    ],
+};

@@ -1557,10 +1557,12 @@
     react-to-print "^2.14.13"
     styled-components "^6.0.1"
 
+
 "@impulsogov/design-system@^1.0.369":
   version "1.0.369"
   resolved "https://registry.yarnpkg.com/@impulsogov/design-system/-/design-system-1.0.369.tgz#04829f142b6e34b2949e88d26e077d1538a13920"
   integrity sha512-+dheDjcQg9CqoC03npulTVLgwnYkkEQCmpUqVxdvBxMy88n6EYIYA4fgTh/S38gyzs4vhWEjBO/gK7bsT0ZTZg==
+
   dependencies:
     "@babel/cli" "^7.18.9"
     "@babel/core" "^7.18.9"
