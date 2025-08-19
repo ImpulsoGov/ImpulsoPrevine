@@ -42,6 +42,6 @@ describe("cpfFormatter", () => {
     it("deve lidar com cpf inexistente", () => {
         const cpf = "";
         const formattedCpf = cpfFormatter(cpf);
-        expect(formattedCpf).toBe(null);
+        expect(formattedCpf).toBe("");
     });
 });
