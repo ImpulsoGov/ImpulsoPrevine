@@ -1,4 +1,5 @@
-export const nameFormatter = (value: string): string => {
+export const nameFormatter = (value: string | undefined): string => {
+    if (!value) return "-";
     const commonPrepositions = ["da", "de", "do", "dos", "das", "e"];
     const namePieces = value.toLowerCase().split(" ");
     const formattedNames = namePieces.map((piece) => {
