@@ -1,7 +1,7 @@
 import { ordenarGrupos } from "@helpers/lista-nominal/impressao/OrderGroups";
 import { PageHeader } from "./PageHeader";
 import { UnitTable } from "./UnitTable";
-import type { PrintColumnsWidthProps } from "./PrintTable";
+import type { PrintColumnsWidthProps } from "../presentation";
 import type { GridColDef } from "@mui/x-data-grid";
 import type { DataItem } from "@/utils/FilterData";
 import type { FilterItem } from "@/services/lista-nominal/ListaNominal";

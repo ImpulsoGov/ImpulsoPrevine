@@ -5,4 +5,9 @@ export {
     rowCountCoeq as getRowCountCoeq,
 } from "./modules/table";
 
+export {
+    dataPrintCoaps as getDataPrintCoaps,
+    dataPrintCoeq as getDataPrintCoeq,
+} from "./modules/print";
+
 export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";

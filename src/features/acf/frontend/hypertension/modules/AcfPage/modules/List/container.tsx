@@ -14,6 +14,9 @@ import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "./modules/CurrentQuadrimester";
 import { FilterHint } from "./modules/FilterHint";
+import { apsLabelsModal } from "./consts";
+import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
+import { Print } from "@/features/acf/frontend/common/Print";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -39,8 +42,12 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     patientAgeRange: "",
 };
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
-export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
+export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    const ComponentTest = () => <h1>Aqui vai ter o conteudo da impressao</h1>;
+    const PrintTableMounted = <ComponentTest />;
+    const ReactDOMServer = (await import("react-dom/server")).default;
+    const stringComponent = ReactDOMServer.renderToString(PrintTableMounted);
     return (
         <>
             <List list={list}>
@@ -55,6 +62,10 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
                         >
                             <WithPagination>
                                 <CoapsDataTable />
+                                <PrintModal
+                                    modalLabels={apsLabelsModal}
+                                    stringComponent={stringComponent}
+                                />
                             </WithPagination>
                         </WithFilters>
                     </WithSorting>

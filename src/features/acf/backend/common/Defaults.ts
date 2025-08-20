@@ -4,6 +4,13 @@ type PageParams = {
     searchString?: string;
 };
 
+type PrintParams<TSorting, TFilters> = {
+    municipalitySusId: string;
+    searchString?: string;
+    sorting?: TSorting;
+    filters?: TFilters;
+};
+
 export type DefaultSorting = {
     field: "patientName";
     sort: "asc";
@@ -23,6 +30,18 @@ export type PageParamsCoeq<TSorting, TFilters> = PageParams & {
     teamIne: string;
     sorting?: TSorting;
     filters?: TFilters;
+};
+
+export type PrintParamsCoaps<TSorting, TFilters> = PrintParams<
+    TSorting,
+    TFilters
+>;
+
+export type PrintParamsCoeq<TSorting, TFilters> = PrintParams<
+    TSorting,
+    TFilters
+> & {
+    teamIne: string;
 };
 
 type RowCountParams = {

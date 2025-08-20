@@ -5,6 +5,7 @@ type PrintButtonProps = {
 };
 
 export const PrintButton: React.FC<PrintButtonProps> = ({ print }) => {
+    // const print = useContext(CustomPrintContext)
     return (
         <Button hasHover onClick={print}>
             <Icon
