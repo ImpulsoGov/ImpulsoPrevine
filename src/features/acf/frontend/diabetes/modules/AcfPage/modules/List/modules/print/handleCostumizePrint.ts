@@ -19,45 +19,42 @@
 // export type TableDataPrintType = {
 //     data: DiabetesAcfPrintItem; //TODO: adicionar os models das outras listas.
 // };
-// export const handleCostumizePrint = async (
-//     options: PrintOptions,
-//     list: AcfDashboardType,
-//     userProfiles: ProfileIdValue[],
-//     _municipalitySusID: string,
-//     _TeamIne: string,
-//     _printStates: PrintStatesType,
-//     closePrintModal: () => void,
-//     tableData: TableDataPrintType,
-//     data: DiabetesAcfPrintItem[],
-//     value: FilterItem,
-//     propPrintGrouping: string,
-// ): Promise<void> => {
-//   const props: ExtendedPrintTableProps = {
-//       data: data ?? [],
-//       columns: columns,
-//       list: list,
-//       appliedFilters: isFilterApplied(value)
-//           ? onlyAppliedFilters(value)
-//           : {},
-//       latestProductionDate: new Date(
-//           String(tableData.data.mostRecentProductionRecordDate),
-//       ).toLocaleDateString("pt-BR"),
-//       fontFamily: "sans-serif",
-//       dataSplit:
-//           options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim,
-//       pageSplit: options.separacaoGrupoPorFolha,
-//       orderByProp: options.ordenacao,
-//       printColumnsWidth: {
-//           landscape: userProfiles.includes(PROFILE_ID.COEQ)
-//               ? larguraColunasHipertensaoEquipePaisagem
-//               : larguraColunasHipertensaoPaisagem,
-//           portrait: userProfiles.includes(PROFILE_ID.COEQ)
-//               ? larguraColunasHipertensaoEquipeRetrato
-//               : larguraColunasHipertensaoRetrato,
-//       },
-//       verticalDivider: [2, 4, 6],
-//       propPrintGrouping: propPrintGrouping,
-//       filtersLabels: filtersLabels,
-//   };
-//   customizePrint(options, closePrintModal, props);
-// };
+export const handleCostumizePrint = async (
+    options: PrintOptions,
+    list: AcfDashboardType,
+    userProfiles: ProfileIdValue[],
+    _municipalitySusID: string,
+    _TeamIne: string,
+    _printStates: PrintStatesType,
+    closePrintModal: () => void,
+    tableData: TableDataPrintType,
+    data: DiabetesAcfPrintItem[],
+    value: FilterItem,
+    propPrintGrouping: string
+): Promise<void> => {
+    const props: ExtendedPrintTableProps = {
+        data: data ?? [],
+        columns: columns,
+        list: list,
+        appliedFilters: isFilterApplied(value) ? onlyAppliedFilters(value) : {},
+        latestProductionDate: new Date(
+            String(tableData.data.mostRecentProductionRecordDate)
+        ).toLocaleDateString("pt-BR"),
+        fontFamily: "sans-serif",
+        dataSplit: options.agrupamento === VALORES_AGRUPAMENTO_IMPRESSAO.sim,
+        pageSplit: options.separacaoGrupoPorFolha,
+        orderByProp: options.ordenacao,
+        printColumnsWidth: {
+            landscape: userProfiles.includes(PROFILE_ID.COEQ)
+                ? larguraColunasHipertensaoEquipePaisagem
+                : larguraColunasHipertensaoPaisagem,
+            portrait: userProfiles.includes(PROFILE_ID.COEQ)
+                ? larguraColunasHipertensaoEquipeRetrato
+                : larguraColunasHipertensaoRetrato,
+        },
+        verticalDivider: [2, 4, 6],
+        propPrintGrouping: propPrintGrouping,
+        filtersLabels: filtersLabels,
+    };
+    customizePrint(options, closePrintModal, props);
+};

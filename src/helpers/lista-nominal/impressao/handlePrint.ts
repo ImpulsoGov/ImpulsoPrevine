@@ -36,17 +36,17 @@
 //     orderByProp: boolean;
 // };
 // //funcao executada quando o usuário clica no botão de impressão no modal
-// export const customizePrint = (
-//     options: PrintOptions,
-//     closePrintModal: () => void,
-//     props: ExtendedPrintTableProps,
-// ) => {
-//     const printData =
-//         options.ordenacao &&
-//         options.agrupamento !== VALORES_AGRUPAMENTO_IMPRESSAO.nao
-//             ? sortByString(props.data, "acs_nome_cadastro") //TODO tornar propriedade dinâmica
-//             : props.data;
-//     print({ ...props, data: printData });
+export const customizePrint = (
+    options: PrintOptions,
+    closePrintModal: () => void,
+    props: ExtendedPrintTableProps
+) => {
+    const printData =
+        options.ordenacao &&
+        options.agrupamento !== VALORES_AGRUPAMENTO_IMPRESSAO.nao
+            ? sortByString(props.data, "acs_nome_cadastro") //TODO tornar propriedade dinâmica
+            : props.data;
+    print({ ...props, data: printData });
 
-//     closePrintModal();
-// };
+    closePrintModal();
+};
