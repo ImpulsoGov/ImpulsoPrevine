@@ -35,7 +35,7 @@ export const toSelectConfigsShared = (
             label: "Aferição de PA",
             id: "latestExamRequestStatusByQuarter",
             isMultiSelect: true,
-            width: "232px",
+            width: "282px",
         },
         {
             options: toHtmlSelectOptions(filtersValues.patientAgeRange),
