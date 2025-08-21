@@ -5,56 +5,11 @@
 import { PROFILE_ID } from "@/types/profile";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
-import type { DiabetesAcfItem, PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import type { DeepMockProxy } from "jest-mock-extended";
 import { mockDeep } from "jest-mock-extended";
-import { NextRequest } from "next/server";
-
-// Helper to create mock DiabetesAcfItem data
-const createMockDiabetesItem = (
-    overrides: Partial<DiabetesAcfItem> = {}
-): DiabetesAcfItem => ({
-    id: "default-id",
-    municipalitySusId: "111111",
-    municipalityState: "SP",
-    latestExamRequestDate: null,
-    mostRecentAppointmentDate: null,
-    hemoglobinTestDueDate: null,
-    nextAppointmentDueDate: null,
-    patientStatus: "Ativo",
-    conditionIdentifiedBy: "Exame laboratorial",
-    patientCpfOrBirthday: null,
-    patientName: "Test Patient",
-    patientAge: 45,
-    patientAgeRange: "40-49",
-    careTeamIne: "123",
-    careTeamName: "Equipe Teste",
-    communityHealthWorker: "ACS Teste",
-    mostRecentProductionRecordDate: new Date("2024-01-01"),
-    ...overrides,
-});
-
-//TODO: Type method correctly
-// Mock NextRequest for testing
-function createMockRequest(url: string, method: string): NextRequest {
-    //   const { body, searchParams } = options;
-
-    //   const url = new URL('http://localhost:3000/api/users');
-    //   if (searchParams) {
-    //     Object.entries(searchParams).forEach(([key, value]) => {
-    //       url.searchParams.set(key, value);
-    //     });
-    //   }
-
-    return new NextRequest(url, {
-        method,
-        // body: body ? JSON.stringify(body) : undefined,
-        headers: {
-            authorization: "Bearer some-token",
-            "Content-Type": "application/json",
-        },
-    });
-}
+import * as dbHelpers from "../../../../../helpers/db";
+import * as httpHelpers from "../../../../../helpers/http";
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
@@ -116,7 +71,7 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
                 "@/app/api/lista-nominal/diabetes/filters/coeq/route"
             );
 
-            const request = createMockRequest(coeqUrl, "GET");
+            const request = httpHelpers.request(coeqUrl, "GET");
             const response = await GET(request, { user: user });
             expect(response.status).toBe(404);
         });
@@ -150,30 +105,32 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
                 })
             );
 
-            // const { prismaMock } = await import("../../../../../setup/prismaMock");
-
             const mockCommunityHealthWorkers = [
-                createMockDiabetesItem({ communityHealthWorker: "ACS João" }),
-                createMockDiabetesItem({ communityHealthWorker: "ACS Maria" }),
+                dbHelpers.mockDiabetesItem({
+                    communityHealthWorker: "ACS João",
+                }),
+                dbHelpers.mockDiabetesItem({
+                    communityHealthWorker: "ACS Maria",
+                }),
             ];
 
             const mockPatientStatuses = [
-                createMockDiabetesItem({ patientStatus: "Ativo" }),
-                createMockDiabetesItem({ patientStatus: "Inativo" }),
+                dbHelpers.mockDiabetesItem({ patientStatus: "Ativo" }),
+                dbHelpers.mockDiabetesItem({ patientStatus: "Inativo" }),
             ];
 
             const mockConditionIdentifiedBy = [
-                createMockDiabetesItem({
+                dbHelpers.mockDiabetesItem({
                     conditionIdentifiedBy: "Exame laboratorial",
                 }),
-                createMockDiabetesItem({
+                dbHelpers.mockDiabetesItem({
                     conditionIdentifiedBy: "Diagnóstico clínico",
                 }),
             ];
 
             const mockPatientAgeRanges = [
-                createMockDiabetesItem({ patientAgeRange: "40-49" }),
-                createMockDiabetesItem({ patientAgeRange: "50-59" }),
+                dbHelpers.mockDiabetesItem({ patientAgeRange: "40-49" }),
+                dbHelpers.mockDiabetesItem({ patientAgeRange: "50-59" }),
             ];
 
             mockPrisma.diabetesAcfItem.findMany
@@ -198,7 +155,7 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
                 },
             };
 
-            const request = createMockRequest(coeqUrl, "GET");
+            const request = httpHelpers.request(coeqUrl, "GET");
             const response = await GET(request, { user: user });
 
             expect(response.status).toBe(200);
