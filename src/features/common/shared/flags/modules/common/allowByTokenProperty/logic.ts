@@ -3,25 +3,29 @@ import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import type { CookieToken } from "../model";
 import type { Payload } from "@utils/token";
+import type { PayloadProperty, UserProperty } from "./model";
 
-type PayloadProperty = Payload[keyof Payload];
 export const propertyFromHeader = async (
     authHeader: string,
     secret: string,
-    propertyName: keyof Payload
+    propertyName: Extract<keyof Payload, string>
 ): Promise<PayloadProperty | undefined> => {
     const tokenHeader = authHeader.split(" ")[1];
+    if (!tokenHeader) {
+        return undefined;
+    }
     try {
         const secretUint8 = new TextEncoder().encode(secret);
         const decodedToken = await decodeToken(tokenHeader, secretUint8);
         const payload = decodedToken.payload as Payload;
-        return payload[propertyName];
+        if (propertyName in payload) {
+            return payload[propertyName];
+        }
+        return undefined;
     } catch (_error) {
         return undefined;
     }
 };
-
-type UserProperty = CookieToken["user"][keyof CookieToken["user"]];
 
 export const propertyFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,
