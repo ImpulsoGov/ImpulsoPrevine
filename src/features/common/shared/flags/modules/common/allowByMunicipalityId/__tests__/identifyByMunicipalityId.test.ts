@@ -1,6 +1,7 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { identify } from "..";
-import { propertyFromCookie, propertyFromHeader } from "../../logic";
+import { propertyFromHeader } from "../../extractProperty/propertyFromHeader";
+import { propertyFromCookie } from "../../extractProperty/propertyFromCookie";
 
 // Mock das funções usadas internamente
 jest.mock("../../logic");

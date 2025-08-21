@@ -4,7 +4,8 @@ import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension
 //     municipalityIdSusFromHeader,
 // } from "./logic";
 import type { MunicipalityIdSus } from "./model";
-import { propertyFromCookie, propertyFromHeader } from "../logic";
+import { propertyFromHeader } from "../extractProperty/propertyFromHeader";
+import { propertyFromCookie } from "../extractProperty/propertyFromCookie";
 export { buildDecide } from "../logic";
 export type { MunicipalityIdSus } from "./model";
 
