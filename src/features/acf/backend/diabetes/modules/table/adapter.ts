@@ -1,6 +1,6 @@
+import type * as db from "@prisma/client";
 import type * as model from "@/features/acf/shared/diabetes/model";
 import { isDate, parseDate } from "@/features/common/shared/time";
-import type * as db from ".prisma/serviceLayerClient";
 
 export const cpfOrDate = (fieldValue: string | null): Date | string | null => {
     if (fieldValue && isDate(fieldValue)) {

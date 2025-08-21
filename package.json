@@ -5,8 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "next dev --turbopack",
-        "build": "prisma generate --schema=prisma/serviceLayer/schema.prisma && next build",
-        "prisma-generate": "prisma generate --schema=prisma/serviceLayer/schema.prisma",
+        "build": "yarn prisma generate && next build",
         "start": "next start",
         "postinstall": "husky",
         "test": "jest",
@@ -14,12 +13,12 @@
         "test:coverage": "jest --coverage --watchAll=false --bail"
     },
     "dependencies": {
-        "@hotjar/browser": "1.0.9",
-        "@impulsogov/design-system": "1.0.355",
-        "@mui/icons-material": "7.1.2",
-        "@mui/material": "6.1.0",
-        "@mui/x-data-grid": "7.17.0",
-        "@prisma/client": "6.13.0",
+        "@hotjar/browser": "^1.0.9",
+        "@impulsogov/design-system": "^1.0.369",
+        "@mui/icons-material": "^7.1.2",
+        "@mui/material": "^6.1.0",
+        "@mui/x-data-grid": "^7.17.0",
+        "@prisma/client": "5.22.0",
         "@sentry/nextjs": "8",
         "@vercel/otel": "1.10.1",
         "@vercel/toolbar": "0.1.38",
@@ -32,6 +31,7 @@
         "graphql": "16.9.0",
         "graphql-request": "7.1.0",
         "jsonwebtoken": "9.0.2",
+        "libphonenumber-js": "^1.12.12",
         "mixpanel-browser": "2.55.1",
         "next": "15.3.3",
         "next-auth": "4.24.10",
@@ -40,9 +40,9 @@
         "prisma": "6.13.0",
         "react": "19.0.0",
         "react-dom": "19.0.0",
-        "react-gtm-module": "2.0.11",
-        "validator": "13.12.0",
-        "zod": "4.0.14"
+        "react-gtm-module": "^2.0.11",
+        "validator": "^13.12.0",
+        "zod": "^3.25.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.26.0",
@@ -50,7 +50,7 @@
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
-        "@types/dompurify": "^3.2.0",
+        "@types/dompurify": "^3.0.5",
         "@types/jest": "^29.5.14",
         "@types/jsonwebtoken": "^9.0.7",
         "@types/mixpanel-browser": "^2.50.0",

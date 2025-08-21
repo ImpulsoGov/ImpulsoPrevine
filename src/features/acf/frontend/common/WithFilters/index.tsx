@@ -13,10 +13,11 @@ type FiltersBarProps<TAppliedFilters> = {
     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
 };
 
-type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
-    initialSelectedValues: TAppliedFilters;
-    FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
-}>;
+type WithFiltersProps<TAppliedFilters extends AppliedFilters> =
+    React.PropsWithChildren<{
+        initialSelectedValues: TAppliedFilters;
+        FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
+    }>;
 
 export const WithFilters = <TAppliedFilters extends AppliedFilters>({
     initialSelectedValues,

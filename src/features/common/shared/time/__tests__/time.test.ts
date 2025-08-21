@@ -1,4 +1,4 @@
-import { formatDate, isDate, parseDate } from "@/features/common/shared/time";
+import { formatDate, isDate, parseDate } from "..";
 
 describe("formatDate", () => {
     it("deve formatar uma data corretamente no formato dd/mm/aa", () => {

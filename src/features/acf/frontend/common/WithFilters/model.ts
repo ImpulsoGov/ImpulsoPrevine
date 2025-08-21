@@ -1,9 +1,7 @@
-//TODO: Pensar melhor nesse import, tá muito nested.
-import type {
-    CoapsAppliedFilters,
-    CoeqAppliedFilters,
-} from "@/features/acf/frontend/diabetes";
-
-/// Contém todos os possíveis conjuntos de filtros.
-/// Eventualmente, este Union type deve ter um item para cada combinação indicador x perfil
-export type AppliedFilters = CoeqAppliedFilters | CoapsAppliedFilters;
+import type * as Diabetes from "@/features/acf/frontend/diabetes";
+import type * as Hypertension from "@/features/acf/frontend/hypertension";
+export type AppliedFilters =
+    | Hypertension.CoeqAppliedFilters
+    | Hypertension.CoapsAppliedFilters
+    | Diabetes.CoeqAppliedFilters
+    | Diabetes.CoapsAppliedFilters;

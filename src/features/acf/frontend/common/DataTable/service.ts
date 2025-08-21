@@ -1,5 +1,5 @@
 "use client";
-import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
+import type { AcfDashboardType } from "../DashboardType";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";

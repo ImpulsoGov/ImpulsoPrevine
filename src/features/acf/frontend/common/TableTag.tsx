@@ -27,24 +27,31 @@ export const iconDetailsMap: TagIconDetailsMap = {
     },
 };
 
-type TableTagProps = {
+export type TableTagProps = {
     theme?: TagTheme;
     text: string;
     icon: {
         src: string;
         alt: string;
+        width?: number;
+        height?: number;
     };
 };
 
 export const TableTag: React.FC<TableTagProps> = ({
     theme = "danger",
     text,
-    icon: { src, alt },
+    icon: { src, alt, width, height },
 }) => {
     return (
         <Tag theme={theme}>
-            <Icon width={12} height={12} src={src} alt={alt} />
-            <Text style={{ fontWeight: "500", fontSize: "14px" }}>{text}</Text>
+            <Icon
+                width={width ?? 12}
+                height={height ?? 12}
+                src={src}
+                alt={alt}
+            />
+            <Text>{text}</Text>
         </Tag>
     );
 };

@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "../../../../shared/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import { externalCardsDbToModel } from "./adapter";
 import type { ExternalCardDataItem } from "./model";
 import { externalCardsDataForTeam } from "./repository";
