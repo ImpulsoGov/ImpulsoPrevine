@@ -1,6 +1,3 @@
-import type React from "react";
-// import { renderToString } from "react-dom/server";
-
 type PrintWindowProps = {
     document: Document;
 } & Window;
