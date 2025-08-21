@@ -6,3 +6,8 @@ export {
 } from "./modules/table";
 
 export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";
+
+export {
+    dataPrintCoaps as getDataPrintCoaps,
+    dataPrintCoeq as getDataPrintCoeq,
+} from "./modules/print";
