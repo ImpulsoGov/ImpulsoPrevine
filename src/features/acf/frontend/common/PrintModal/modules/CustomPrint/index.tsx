@@ -19,7 +19,7 @@ const DEFAULT_LABELS = {
         splitGroupPerPage: "", //folha vira page, nao confundir com page de pagination
         order: "",
     },
-    button: "",
+    button: "IMPRIMIR",
 };
 
 type Props = {
@@ -38,6 +38,7 @@ export const CustomPrint: React.FC<Props> = ({
 }) => {
     return (
         <div className={style.Container} data-testid="PersonalizacaoImpressao">
+            <h2>Este modal de impressão está em desenvolvimento</h2>
             <div className={style.ContainerBotao}>
                 <ButtonColorSubmitIcon
                     label={labels.button}
