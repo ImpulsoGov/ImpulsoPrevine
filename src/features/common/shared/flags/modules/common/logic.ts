@@ -1,5 +1,5 @@
 type DecideFn<TEntity> = (decideParams: { entities?: TEntity }) => boolean;
-//TODO: adicionar testes de unidade e mover para um lugar mais adequado
+//TODO: mover para um lugar mais adequado
 export const buildDecide = <TEntity>(
     allowList: Array<TEntity>
 ): DecideFn<TEntity> => {
