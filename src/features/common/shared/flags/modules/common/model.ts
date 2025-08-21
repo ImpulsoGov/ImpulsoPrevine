@@ -1,3 +1,5 @@
+import type { Payload } from "@/utils/token";
+
 export type CookieToken = {
     user: {
         access_token: string;
@@ -16,3 +18,7 @@ export type CookieToken = {
     exp: number;
     jti: string;
 };
+
+export type UserProperty = CookieToken["user"][keyof CookieToken["user"]];
+
+export type PayloadProperty = Payload[keyof Payload];

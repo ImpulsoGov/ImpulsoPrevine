@@ -1,10 +1,11 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import {
-    municipalityIdSusFromCookie,
-    municipalityIdSusFromHeader,
-} from "./logic";
+// import {
+//     municipalityIdSusFromCookie,
+//     municipalityIdSusFromHeader,
+// } from "./logic";
 import type { MunicipalityIdSus } from "./model";
-
+import { propertyFromCookie, propertyFromHeader } from "../logic";
+export { buildDecide } from "../logic";
 export type { MunicipalityIdSus } from "./model";
 
 export const identify = async ({
@@ -17,18 +18,14 @@ export const identify = async ({
     const authHeader = headers.get("authorization");
     const secret = process.env.NEXTAUTH_SECRET || "";
     return authHeader
-        ? await municipalityIdSusFromHeader(authHeader, secret)
-        : await municipalityIdSusFromCookie(cookies, secret);
-};
-
-type DecideFn = (decideParams: { entities?: MunicipalityIdSus }) => boolean;
-
-export const buildDecide = (allowList: Array<MunicipalityIdSus>): DecideFn => {
-    return ({
-        entities: municipalityIdSus,
-    }: {
-        entities?: MunicipalityIdSus;
-    }): boolean => {
-        return !!municipalityIdSus && allowList.includes(municipalityIdSus);
-    };
+        ? ((await propertyFromHeader(
+              authHeader,
+              secret,
+              "municipio"
+          )) as MunicipalityIdSus)
+        : ((await propertyFromCookie(
+              cookies,
+              secret,
+              "municipio_id_sus"
+          )) as MunicipalityIdSus);
 };

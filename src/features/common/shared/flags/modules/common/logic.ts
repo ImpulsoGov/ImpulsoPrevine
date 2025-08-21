@@ -1,9 +1,8 @@
 import { decodeToken } from "@/utils/token";
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import type { CookieToken } from "../model";
+import type { CookieToken, PayloadProperty, UserProperty } from "./model";
 import type { Payload } from "@utils/token";
-import type { PayloadProperty, UserProperty } from "./model";
 
 export const propertyFromHeader = async (
     authHeader: string,
@@ -44,4 +43,14 @@ export const propertyFromCookie = async (
     if (!decoded) return undefined;
     const tokenDecoded = decoded as CookieToken;
     return tokenDecoded.user[propertyName];
+};
+
+type DecideFn<TEntity> = (decideParams: { entities?: TEntity }) => boolean;
+
+export const buildDecide = <TEntity>(
+    allowList: Array<TEntity>
+): DecideFn<TEntity> => {
+    return ({ entities }: { entities?: TEntity }): boolean => {
+        return entities !== undefined && allowList.includes(entities);
+    };
 };
