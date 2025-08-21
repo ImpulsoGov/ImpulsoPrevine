@@ -17,7 +17,7 @@ const mockDecode = decode as jest.MockedFunction<typeof decode>;
 
 describe("propertyFromCookie", () => {
     const secret = "test-secret";
-    const id = "id";
+    const mockProperty = "id";
     const mockCookies = (cookieValue?: string): ReadonlyRequestCookies => {
         return {
             get: (_name: string) => {
@@ -32,7 +32,11 @@ describe("propertyFromCookie", () => {
     });
 
     it("retorna undefined quando cookies é undefined", async () => {
-        const result = await propertyFromCookie(undefined, secret, id);
+        const result = await propertyFromCookie(
+            undefined,
+            secret,
+            mockProperty
+        );
         expect(result).toBeUndefined();
     });
 
@@ -40,7 +44,7 @@ describe("propertyFromCookie", () => {
         const result = await propertyFromCookie(
             mockCookies(undefined),
             secret,
-            id
+            mockProperty
         );
         expect(result).toBeUndefined();
     });
@@ -50,7 +54,7 @@ describe("propertyFromCookie", () => {
         const result = await propertyFromCookie(
             mockCookies("fake-token"),
             secret,
-            id
+            mockProperty
         );
         expect(result).toBeUndefined();
         expect(mockDecode).toHaveBeenCalledWith({
@@ -59,7 +63,8 @@ describe("propertyFromCookie", () => {
         });
     });
 
-    it("retorna municipio_id_sus quando decode retorna token válido", async () => {
+    it("retorna a propriedade quando decode retorna token válido", async () => {
+        const property = "municipio_id_sus";
         const mockMunicipioId = "123456";
         mockDecode.mockResolvedValueOnce({
             user: {
@@ -70,12 +75,13 @@ describe("propertyFromCookie", () => {
         const result = await propertyFromCookie(
             mockCookies("valid-token"),
             secret,
-            "municipio_id_sus"
+            property
         );
         expect(result).toBe(mockMunicipioId);
     });
 
     it("usa o cookie correto baseado na ENV", async () => {
+        const property = "municipio_id_sus";
         const mockMunicipioId = "654321";
         mockDecode.mockResolvedValueOnce({
             user: { municipio_id_sus: mockMunicipioId },
@@ -86,7 +92,7 @@ describe("propertyFromCookie", () => {
         const resultDev = await propertyFromCookie(
             mockCookies("dev-token"),
             secret,
-            "municipio_id_sus"
+            property
         );
         expect(mockDecode).toHaveBeenCalledWith({
             token: "dev-token",
@@ -101,7 +107,7 @@ describe("propertyFromCookie", () => {
         const resultProd = await propertyFromCookie(
             mockCookies("prod-token"),
             secret,
-            "municipio_id_sus"
+            property
         );
         expect(mockDecode).toHaveBeenCalledWith({
             token: "prod-token",
