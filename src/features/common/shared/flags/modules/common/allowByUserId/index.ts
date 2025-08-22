@@ -1,6 +1,8 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import { propertyFromHeader } from "../extractProperty/propertyFromHeader";
-import { propertyFromCookie } from "../extractProperty/propertyFromCookie";
+import {
+    propertyFromHeader,
+    propertyFromCookie,
+} from "@/features/common/shared/auth";
 import type { UserId } from "./model";
 export { buildDecide } from "../logic";
 

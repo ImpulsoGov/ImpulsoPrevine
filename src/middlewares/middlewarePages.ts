@@ -12,7 +12,6 @@ export const rotasPublicas = [
     "/termos-uso-e-privacidade",
     "/blog",
     "/blog/artigos",
-    "/teste",
 ];
 
 export const rotasProtegidas = [

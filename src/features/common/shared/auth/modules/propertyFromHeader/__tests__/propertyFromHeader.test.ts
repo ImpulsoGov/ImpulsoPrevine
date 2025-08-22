@@ -1,5 +1,5 @@
 import { decodeToken, type Payload } from "@/utils/token";
-import { propertyFromHeader } from "../propertyFromHeader";
+import { propertyFromHeader } from "..";
 
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));

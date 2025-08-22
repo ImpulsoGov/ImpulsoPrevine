@@ -1,5 +1,5 @@
 import { type Payload, decodeToken } from "@/utils/token";
-import type { PayloadProperty } from "../model";
+import type { PayloadProperty } from "../../../flags/modules/common/model";
 
 export const propertyFromHeader = async (
     authHeader: string,

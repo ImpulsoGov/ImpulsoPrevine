@@ -1,6 +1,9 @@
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import type { CookieToken, UserProperty } from "../model";
+import type {
+    CookieToken,
+    UserProperty,
+} from "../../../flags/modules/common/model";
 
 export const propertyFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,

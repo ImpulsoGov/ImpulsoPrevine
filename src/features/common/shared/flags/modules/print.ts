@@ -10,8 +10,8 @@ const allowedIds = [
     "a4a2bea5-fe36-4cab-943a-5708b234a13a",
 ];
 
-export const developmentFlag = flag<boolean, UserId>({
-    key: "development",
+export const print = flag<boolean, UserId>({
+    key: "print",
     identify: allowByUserId.identify,
     decide: allowByUserId.buildDecide(allowedIds),
 });
