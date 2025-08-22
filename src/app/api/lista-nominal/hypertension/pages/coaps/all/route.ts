@@ -18,7 +18,7 @@ const handler = async (
 ): Promise<Response> => {
     const municipalitySusId = user.municipalitySusId;
 
-    const data = await hypertensionBackend.getDataPrintCoaps({
+    const data = await hypertensionBackend.getAllDataCoaps({
         municipalitySusId,
         sorting: parsedBody.sorting,
         searchString: parsedBody.search,
@@ -28,7 +28,7 @@ const handler = async (
     //TODO adicionar schema de saida
     return Response.json(
         {
-            print: data,
+            data,
         },
         { status: 200 }
     );

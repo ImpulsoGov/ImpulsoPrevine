@@ -19,7 +19,7 @@ const handler = async (
     const municipalitySusId = user.municipalitySusId;
     const teamIne = user.teamIne;
 
-    const data = await hypertensionBackend.getDataPrintCoeq({
+    const data = await hypertensionBackend.getAllDataCoeq({
         municipalitySusId,
         sorting: parsedBody.sorting,
         searchString: parsedBody.search,
@@ -30,7 +30,7 @@ const handler = async (
     //TODO adicionar schema de saida
     return Response.json(
         {
-            print: data,
+            data,
         },
         { status: 200 }
     );

@@ -4,13 +4,6 @@ type PageParams = {
     searchString?: string;
 };
 
-type PrintParams<TSorting, TFilters> = {
-    municipalitySusId: string;
-    searchString?: string;
-    sorting?: TSorting;
-    filters?: TFilters;
-};
-
 export type DefaultSorting = {
     field: "patientName";
     sort: "asc";
@@ -32,17 +25,15 @@ export type PageParamsCoeq<TSorting, TFilters> = PageParams & {
     filters?: TFilters;
 };
 
-export type PrintParamsCoaps<TSorting, TFilters> = PrintParams<
-    TSorting,
-    TFilters
+export type AllDataParamsCoaps<TSorting, TFilters> = Omit<
+    PageParamsCoaps<TSorting, TFilters>,
+    "pageIndex"
 >;
 
-export type PrintParamsCoeq<TSorting, TFilters> = PrintParams<
-    TSorting,
-    TFilters
-> & {
-    teamIne: string;
-};
+export type AllDataParamsCoeq<TSorting, TFilters> = Omit<
+    PageParamsCoeq<TSorting, TFilters>,
+    "pageIndex"
+>;
 
 type RowCountParams = {
     municipalitySusId: string;
