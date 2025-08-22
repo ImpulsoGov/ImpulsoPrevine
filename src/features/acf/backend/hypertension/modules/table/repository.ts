@@ -132,3 +132,48 @@ export const rowCountCoeq = async (
         ),
     });
 };
+
+export const allDataCoeq = async (
+    municipalitySusId: string,
+    teamIne: string,
+    filters: FiltersOptionsDbCoeq,
+    sorting: CoeqSort,
+    searchString: string
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
+        where: whereInputCoeq(
+            filters,
+            municipalitySusId,
+            teamIne,
+            searchString.toLocaleUpperCase()
+        ),
+        //TODO: Extrair essa expressão pro QueryBuilder
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
+    });
+};
+
+export const allDataCoaps = async (
+    municipalitySusId: string,
+    filters: FiltersOptionsDbCoaps,
+    sorting: CoapsSort,
+    searchString: string
+): Promise<ReadonlyArray<HypertensionAcfItem>> => {
+    return await prisma.hypertensionAcfItem.findMany({
+        where: whereInputCoaps(
+            filters,
+            municipalitySusId,
+            searchString.toLocaleUpperCase()
+        ),
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
+    });
+};

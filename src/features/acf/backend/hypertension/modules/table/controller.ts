@@ -1,6 +1,8 @@
 import type {
     PageParamsCoaps,
     PageParamsCoeq,
+    AllDataParamsCoaps,
+    AllDataParamsCoeq,
     RowCountParamsCoaps,
     RowCountParamsCoeq,
 } from "@/features/acf/backend/common/Defaults";
@@ -87,4 +89,36 @@ export const rowCountCoaps = async ({
         adapter.filtersModelToDbCoaps(filters || defaultCoapsFilters),
         searchString || ""
     );
+};
+
+export const allDataCoeq = async ({
+    municipalitySusId,
+    teamIne,
+    sorting,
+    searchString,
+    filters,
+}: AllDataParamsCoeq<CoeqSort, CoeqFilters>): Promise<Array<PageItem>> => {
+    const page = await repository.allDataCoeq(
+        municipalitySusId,
+        teamIne,
+        adapter.filtersModelToDbCoeq(filters || defaultCoeqFilters),
+        sorting || defaultSorting,
+        searchString || ""
+    );
+    return adapter.hypertensionPageDbToModel(page);
+};
+
+export const allDataCoaps = async ({
+    municipalitySusId,
+    sorting,
+    searchString,
+    filters,
+}: AllDataParamsCoaps<CoapsSort, CoapsFilters>): Promise<Array<PageItem>> => {
+    const page = await repository.allDataCoaps(
+        municipalitySusId,
+        adapter.filtersModelToDbCoaps(filters || defaultCoapsFilters),
+        sorting || defaultSorting,
+        searchString || ""
+    );
+    return adapter.hypertensionPageDbToModel(page);
 };
