@@ -1,0 +1,347 @@
+.ResetEspacamento {
+    margin: 0;
+    padding: 0;
+}
+
+.Container {
+    padding-top: 28px;
+    padding-right: 28px;
+    padding-left: 28px;
+    padding-bottom: 36px;
+    box-sizing: border-box;
+    font-family: "Inter";
+    color: #1f1f1f;
+    width: 800px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: relative;
+    z-index: 9000;
+}
+
+.Conteudo {
+    overflow-y: auto;
+    /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+    max-height: calc(100vh - 40px - 200px);
+}
+
+.ModalExit {
+    color: #fff;
+    background-color: black;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.ModalExit:before {
+    content: "✖";
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.Close {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.TituloContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.Titulo {
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #1d856c;
+}
+
+.TituloPersonalizacaoPrincipal {
+    font-size: 25px;
+    line-height: 33px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.DescricaoPersonalizacaoPrincipal {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.OpcaoPersonalizacaoPrincipal {
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.InputPersonalizacaoPrincipal {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    accent-color: #145c56;
+}
+
+.Linha {
+    margin: 17px 0;
+}
+
+.TituloPersonalizacoesSecundarias {
+    font-size: 20px;
+    line-height: 25px;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.ContainerPersonalizacoesSecundarias {
+    padding: 15px 9px 21px 9px;
+    position: relative;
+    border-radius: 8px;
+    border: 1.5px solid #916a20;
+}
+
+.OpcaoPersonalizacaoSecundaria {
+    padding: 0px 9px;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    accent-color: #145c56;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.ContainerPersonalizacoesSecundarias input {
+    width: 15px;
+    height: 17px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.ContainerBotao {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.Recomendacao {
+    padding: 3px 8px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    width: fit-content;
+    position: absolute;
+    z-index: 1000;
+    top: -8px;
+    border-radius: 5px;
+    border: 1px solid #916a20;
+    background-color: #ffefb9;
+}
+
+.TextoRecomendacao {
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 600;
+    text-align: left;
+    color: #4f3d0c;
+}
+
+@media screen and (max-width: 1366px) {
+    .Container {
+        width: 700px;
+        padding-top: 22px;
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-bottom: 24px;
+    }
+
+    .Conteudo {
+        /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+        max-height: calc(100vh - 40px - 160px);
+    }
+
+    .TituloContainer {
+        margin-bottom: 8px;
+    }
+
+    .TituloPersonalizacaoPrincipal {
+        font-size: 23px;
+        line-height: 28px;
+        margin-bottom: 15px;
+    }
+
+    .DescricaoPersonalizacaoPrincipal {
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
+
+    .OpcaoPersonalizacaoPrincipal {
+        padding: 6px 10px;
+        line-height: 15px;
+    }
+
+    .TituloPersonalizacoesSecundarias {
+        font-size: 18px;
+        line-height: 18px;
+        padding: 6px 0;
+        margin-bottom: 16px;
+    }
+
+    .Linha {
+        margin: 10px 0;
+    }
+
+    .OpcaoPersonalizacaoSecundaria {
+        margin-top: 10px;
+        line-height: 15px;
+    }
+
+    .ContainerPersonalizacoesSecundarias {
+        padding: 15px 9px 16px 9px;
+    }
+
+    .Close {
+        margin-bottom: 12px;
+    }
+
+    .ContainerBotao {
+        margin-top: 18px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .Container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .Container {
+        padding: 20px;
+    }
+
+    .Conteudo {
+        /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+        max-height: calc(100vh - 40px - 80px);
+    }
+
+    .TituloContainer {
+        margin-bottom: 10px;
+    }
+
+    .Titulo {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .TituloPersonalizacaoPrincipal {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+
+    .DescricaoPersonalizacaoPrincipal {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 16px;
+    }
+
+    .OpcaoPersonalizacaoPrincipal {
+        padding: 6px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    .TituloPersonalizacoesSecundarias {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 6px 0;
+        margin-bottom: 24px;
+    }
+
+    .Linha {
+        margin: 10px 0;
+    }
+
+    .OpcaoPersonalizacaoSecundaria {
+        padding: 0px 6px;
+        margin-top: 12px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .ContainerPersonalizacoesSecundarias {
+        padding: 12px 8px 18px 8px;
+    }
+
+    .Close {
+        margin-bottom: 16px;
+    }
+
+    .Recomendacao {
+        padding: 3px 6px;
+        width: 90%;
+        top: -18px;
+    }
+
+    .TextoRecomendacao {
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+    .ContainerBotao {
+        margin-top: 16px;
+    }
+
+    .ContainerPersonalizacoesSecundarias input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .IconeTitulo {
+        width: 18px;
+        height: 18px;
+    }
+
+    .IconeRecomendacao {
+        width: 13px;
+        height: 13px;
+    }
+}
