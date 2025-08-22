@@ -1,4 +1,4 @@
-import { buildDecide } from "../logic";
+import { buildDecide } from "..";
 
 describe("buildDecide", () => {
     it("retorna true se a entity está incluida em allowList", () => {

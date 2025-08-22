@@ -9,7 +9,7 @@ export const propertyFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,
     secret: string,
     propertyName: keyof CookieToken["user"]
-): Promise<UserProperty | undefined> => {
+): Promise<UserProperty | null> => {
     const isDev = process.env.ENV === "development";
     const cookieName = isDev
         ? "next-auth.session-token"
@@ -19,7 +19,7 @@ export const propertyFromCookie = async (
         token: token,
         secret: secret,
     });
-    if (!decoded) return undefined;
+    if (!decoded) return null;
     const tokenDecoded = decoded as CookieToken;
     return tokenDecoded.user[propertyName];
 };

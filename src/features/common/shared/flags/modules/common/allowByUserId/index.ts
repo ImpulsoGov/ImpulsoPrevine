@@ -1,10 +1,8 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import {
-    propertyFromHeader,
-    propertyFromCookie,
-} from "@/features/common/shared/auth";
+import { propertyFromCookie } from "@/features/common/shared/auth";
 import type { UserId } from "./model";
-export { buildDecide } from "../logic";
+import { safePropertyFromHeader } from "../safePropertyFromHeader";
+export { buildDecide } from "../buildDecide";
 
 export const identify = async ({
     headers,
@@ -12,10 +10,10 @@ export const identify = async ({
 }: {
     headers: Headers;
     cookies: ReadonlyRequestCookies;
-}): Promise<UserId> => {
+}): Promise<UserId | undefined> => {
     const authHeader = headers.get("authorization");
     const secret = process.env.NEXTAUTH_SECRET || "";
     return authHeader
-        ? ((await propertyFromHeader(authHeader, secret, "id")) as UserId)
+        ? ((await safePropertyFromHeader(authHeader, secret, "id")) as UserId)
         : ((await propertyFromCookie(cookies, secret, "id")) as UserId);
 };

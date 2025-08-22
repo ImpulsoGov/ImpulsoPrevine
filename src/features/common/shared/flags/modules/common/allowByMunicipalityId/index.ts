@@ -1,10 +1,8 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import type { MunicipalityIdSus } from "./model";
-import {
-    propertyFromHeader,
-    propertyFromCookie,
-} from "@/features/common/shared/auth";
-export { buildDecide } from "../logic";
+import { propertyFromCookie } from "@/features/common/shared/auth";
+import { safePropertyFromHeader } from "../safePropertyFromHeader";
+export { buildDecide } from "../buildDecide";
 export type { MunicipalityIdSus } from "./model";
 
 export const identify = async ({
@@ -17,7 +15,7 @@ export const identify = async ({
     const authHeader = headers.get("authorization");
     const secret = process.env.NEXTAUTH_SECRET || "";
     return authHeader
-        ? ((await propertyFromHeader(
+        ? ((await safePropertyFromHeader(
               authHeader,
               secret,
               "municipio"
