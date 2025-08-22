@@ -1,2 +1,2 @@
-export { propertyFromCookie } from "./modules/propertyFromCookie";
+export { propertyFromCookie } from "./modules/Cookie";
 export { propertyFromHeader } from "./modules/propertyFromHeader";

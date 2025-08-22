@@ -3,7 +3,7 @@ import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension
 import type {
     CookieToken,
     UserProperty,
-} from "../../../flags/modules/common/model";
+} from "../../../flags/modules/common/model"; //TODO: alterar para import de caminho absoluto
 
 export const propertyFromCookie = async (
     cookies: ReadonlyRequestCookies | undefined,

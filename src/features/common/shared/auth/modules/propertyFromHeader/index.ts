@@ -4,7 +4,7 @@ import type { PayloadProperty } from "../../../flags/modules/common/model";
 export const propertyFromHeader = async (
     authHeader: string,
     secret: string,
-    propertyName: keyof Payload //todas as chaves de payload são strings
+    propertyName: keyof Payload
 ): Promise<PayloadProperty | undefined> => {
     const tokenHeader = authHeader.split(" ")[1];
     if (!tokenHeader) {
