@@ -6,7 +6,7 @@ import {
 } from "@/features/common/shared/auth";
 
 // Mock das funções usadas internamente
-jest.mock("../../logic");
+jest.mock("@/features/common/shared/auth");
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));
 
