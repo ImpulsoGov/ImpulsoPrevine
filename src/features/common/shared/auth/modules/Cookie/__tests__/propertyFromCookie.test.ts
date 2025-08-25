@@ -1,6 +1,6 @@
 import { decode } from "next-auth/jwt";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-import { municipalityIdSusFromCookie } from "../logic";
+import { propertyFromCookie } from "..";
 
 jest.mock("next-auth/jwt", () => ({
     decode: jest.fn(),
@@ -15,9 +15,9 @@ jest.mock("@/utils/token", () => ({
 
 const mockDecode = decode as jest.MockedFunction<typeof decode>;
 
-describe("municipalityIdSusFromCookie", () => {
+describe("propertyFromCookie", () => {
     const secret = "test-secret";
-
+    const mockProperty = "id";
     const mockCookies = (cookieValue?: string): ReadonlyRequestCookies => {
         return {
             get: (_name: string) => {
@@ -31,33 +31,40 @@ describe("municipalityIdSusFromCookie", () => {
         delete process.env.ENV;
     });
 
-    it("retorna undefined quando cookies é undefined", async () => {
-        const result = await municipalityIdSusFromCookie(undefined, secret);
-        expect(result).toBeUndefined();
+    it("retorna null quando cookies é undefined", async () => {
+        const result = await propertyFromCookie(
+            undefined,
+            secret,
+            mockProperty
+        );
+        expect(result).toBe(null);
     });
 
-    it("retorna undefined quando token não está presente", async () => {
-        const result = await municipalityIdSusFromCookie(
+    it("retorna null quando token não está presente", async () => {
+        const result = await propertyFromCookie(
             mockCookies(undefined),
-            secret
+            secret,
+            mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("retorna undefined quando decode retorna undefined", async () => {
+    it("retorna null quando decode retorna null", async () => {
         mockDecode.mockResolvedValueOnce(null);
-        const result = await municipalityIdSusFromCookie(
+        const result = await propertyFromCookie(
             mockCookies("fake-token"),
-            secret
+            secret,
+            mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
         expect(mockDecode).toHaveBeenCalledWith({
             token: "fake-token",
             secret: secret,
         });
     });
 
-    it("retorna municipio_id_sus quando decode retorna token válido", async () => {
+    it("retorna a propriedade quando decode retorna token válido", async () => {
+        const property = "municipio_id_sus";
         const mockMunicipioId = "123456";
         mockDecode.mockResolvedValueOnce({
             user: {
@@ -65,14 +72,16 @@ describe("municipalityIdSusFromCookie", () => {
             },
         });
 
-        const result = await municipalityIdSusFromCookie(
+        const result = await propertyFromCookie(
             mockCookies("valid-token"),
-            secret
+            secret,
+            property
         );
         expect(result).toBe(mockMunicipioId);
     });
 
     it("usa o cookie correto baseado na ENV", async () => {
+        const property = "municipio_id_sus";
         const mockMunicipioId = "654321";
         mockDecode.mockResolvedValueOnce({
             user: { municipio_id_sus: mockMunicipioId },
@@ -80,9 +89,10 @@ describe("municipalityIdSusFromCookie", () => {
 
         // development
         process.env.ENV = "development";
-        const resultDev = await municipalityIdSusFromCookie(
+        const resultDev = await propertyFromCookie(
             mockCookies("dev-token"),
-            secret
+            secret,
+            property
         );
         expect(mockDecode).toHaveBeenCalledWith({
             token: "dev-token",
@@ -94,9 +104,10 @@ describe("municipalityIdSusFromCookie", () => {
         mockDecode.mockResolvedValueOnce({
             user: { municipio_id_sus: mockMunicipioId },
         });
-        const resultProd = await municipalityIdSusFromCookie(
+        const resultProd = await propertyFromCookie(
             mockCookies("prod-token"),
-            secret
+            secret,
+            property
         );
         expect(mockDecode).toHaveBeenCalledWith({
             token: "prod-token",

@@ -9,11 +9,14 @@ export const getEncodedSecret = () => {
     return new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
 };
 
-export type TokenPayload = JWTPayload & {
+export type Payload = {
     perfis: Array<number>;
     equipe: string;
     municipio: string;
+    id: string;
 };
+
+export type TokenPayload = JWTPayload & Payload;
 
 export type JWTToken = JWTVerifyResult & {
     payload: TokenPayload;
