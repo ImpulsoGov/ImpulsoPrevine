@@ -47,28 +47,23 @@ describe("propertyFromHeader", () => {
         expect(result).toBe(mockMunicipio);
     });
 
-    it("deve retornar undefined se o header estiver malformado (sem token)", async () => {
+    it("deve retornar null se o header estiver malformado (sem token)", async () => {
         const result = await propertyFromHeader(
             "Bearer",
             mockSecret,
             mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("deve retornar undefined se decodeToken lançar erro", async () => {
+    it("deve propagar o erro lançado por decodeToken, se ele lançar erro", async () => {
         mockedDecodeToken.mockRejectedValueOnce(new Error("Invalid token"));
-
-        const result = await propertyFromHeader(
-            buildHeader(mockToken),
-            mockSecret,
-            mockProperty
-        );
-
-        expect(result).toBeUndefined();
+        await expect(
+            propertyFromHeader(buildHeader(mockToken), mockSecret, mockProperty)
+        ).rejects.toThrow("Invalid token");
     });
 
-    it("deve retornar undefined se a propriedade não estiver presente no payload", async () => {
+    it("deve retornar null se a propriedade não estiver presente no payload", async () => {
         const property = "municipio";
         mockedDecodeToken.mockResolvedValueOnce({
             payload: {},
@@ -84,10 +79,10 @@ describe("propertyFromHeader", () => {
             property
         );
 
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("deve retornar undefined se a propriedade não for um campo do payload", async () => {
+    it("deve retornar null se a propriedade não for um campo do payload", async () => {
         const property = "nao existe no payload" as keyof Payload; //Compilador consegue inferir que essa propriedade não é uma chave do payload
         mockedDecodeToken.mockResolvedValueOnce({
             payload: { municipio: true },
@@ -103,6 +98,6 @@ describe("propertyFromHeader", () => {
             property
         );
 
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 });

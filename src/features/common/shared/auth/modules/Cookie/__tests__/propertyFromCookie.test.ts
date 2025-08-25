@@ -31,32 +31,32 @@ describe("propertyFromCookie", () => {
         delete process.env.ENV;
     });
 
-    it("retorna undefined quando cookies é undefined", async () => {
+    it("retorna null quando cookies é undefined", async () => {
         const result = await propertyFromCookie(
             undefined,
             secret,
             mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("retorna undefined quando token não está presente", async () => {
+    it("retorna null quando token não está presente", async () => {
         const result = await propertyFromCookie(
             mockCookies(undefined),
             secret,
             mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("retorna undefined quando decode retorna undefined", async () => {
+    it("retorna null quando decode retorna null", async () => {
         mockDecode.mockResolvedValueOnce(null);
         const result = await propertyFromCookie(
             mockCookies("fake-token"),
             secret,
             mockProperty
         );
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
         expect(mockDecode).toHaveBeenCalledWith({
             token: "fake-token",
             secret: secret,
