@@ -1,4 +1,3 @@
-import type { Session } from "next-auth";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 
 export type Menu = {
@@ -8,7 +7,7 @@ export type Menu = {
     onClick?: () => void;
 };
 
-type Profile = "aps" | "equipe";
+type Profile = "aps" | "equipe" | "";
 
 const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
@@ -44,7 +43,9 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     ];
 };
 
-const loggedMenu = async (session: Session | null): Promise<Array<Menu>> => {
+const loggedMenu = async (
+    view: "aps" | "equipe" | null
+): Promise<Array<Menu>> => {
     const menus: Array<Menu> = [
         {
             label: "Início",
@@ -53,9 +54,7 @@ const loggedMenu = async (session: Session | null): Promise<Array<Menu>> => {
         {
             label: "Listas Nominais",
             url: "",
-            sub: await subMenuListasNominais(
-                session?.user.perfis.includes(8) ? "aps" : "equipe"
-            ),
+            sub: await subMenuListasNominais(view ?? ""),
         },
         {
             label: "Dados do SISAB",
@@ -81,8 +80,8 @@ const notLoggedMenu = (): Array<Menu> => {
 };
 
 export const menuNavBar = async (
-    session: Session | null
+    view: "aps" | "equipe" | null
 ): Promise<Array<Menu>> => {
-    const loggedMenuOptions = await loggedMenu(session);
-    return session ? loggedMenuOptions : notLoggedMenu();
+    const loggedMenuOptions = await loggedMenu(view);
+    return view ? loggedMenuOptions : notLoggedMenu();
 };
