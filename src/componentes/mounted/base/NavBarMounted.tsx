@@ -34,6 +34,56 @@ type NavBarMountedType = {
     setMode: Dispatch<SetStateAction<boolean>>;
     menuNavBarOptions: Array<Menu>;
 };
+const subMenuEvents = [
+    {
+        label: "Citopatológico",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_citopatologico",
+            });
+        },
+    },
+    {
+        label: "Diabetes",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_diabetes",
+            });
+        },
+    },
+    {
+        label: "Hipertensão",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_hipertensao",
+            });
+        },
+    },
+    {
+        label: "👉 Cuidado da pessoa com Hipertensão [BETA]",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_cuidado_da_pessoa_com_hipertensao",
+            });
+        },
+    },
+    {
+        label: "Pré-Natal",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_pre_natal",
+            });
+        },
+    },
+    {
+        label: "Vacinação",
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: "acessar_lista_vacinacao",
+            });
+        },
+    },
+];
 
 const loggedMenuEvents: Array<Menu> = [
     {
@@ -45,13 +95,6 @@ const loggedMenuEvents: Array<Menu> = [
             });
         },
     },
-    // {
-    //     label: "Listas Nominais",
-    //     url: "",
-    //     sub: await subMenuListasNominais(
-    //         session?.user.perfis.includes(8) ? "aps" : "equipe"
-    //     ),
-    // },
     {
         label: "Dados do SISAB",
         url: "/analise",
@@ -85,11 +128,26 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
     menuNavBarOptions,
 }) => {
     const router = useRouter();
-    const menuNavBarOptionsWithEvents = menuNavBarOptions.map((item) => ({
-        ...item,
-        onClick: loggedMenuEvents.find((event) => event.label === item.label)
-            ?.onClick,
-    }));
+    const menuNavBarOptionsWithEvents = menuNavBarOptions.map((item) => {
+        return item.label !== "Listas Nominais" && !item.sub
+            ? {
+                  ...item,
+                  onClick: loggedMenuEvents.find(
+                      (event) => event.label === item.label
+                  )?.onClick,
+              }
+            : {
+                  ...item,
+                  sub: item.sub?.map((subItem) => {
+                      return {
+                          ...subItem,
+                          onClick: subMenuEvents.find(
+                              (event) => event.label === subItem.label
+                          )?.onClick,
+                      };
+                  }),
+              };
+    });
     return (
         <NavBar
             projeto="IP"

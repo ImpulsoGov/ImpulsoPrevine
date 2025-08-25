@@ -16,29 +16,14 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
         {
             label: "Citopatológico",
             url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
-            // onClick: (): void => {
-            //     mixpanel.track("menu_click", {
-            //         menu_action: "acessar_lista_citopatologico",
-            //     });
-            // },
         },
         {
             label: "Diabetes",
             url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
-            // onClick: (): void => {
-            //     mixpanel.track("menu_click", {
-            //         menu_action: "acessar_lista_diabetes",
-            //     });
-            // },
         },
         {
             label: "Hipertensão",
             url: `/busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
-            // onClick: (): void => {
-            //     mixpanel.track("menu_click", {
-            //         menu_action: "acessar_lista_hipertensao",
-            //     });
-            // },
         },
         ...(isHypertensionNewProgramEnabled
             ? [
@@ -51,20 +36,10 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
         {
             label: "Pré-Natal",
             url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
-            // onClick: (): void => {
-            //     mixpanel.track("menu_click", {
-            //         menu_action: "acessar_lista_pre_natal",
-            //     });
-            // },
         },
         {
             label: "Vacinação",
             url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
-            // onClick: (): void => {
-            //     mixpanel.track("menu_click", {
-            //         menu_action: "acessar_lista_vacinacao",
-            //     });
-            // },
         },
     ];
 };
