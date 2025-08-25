@@ -1,9 +1,10 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
 import type React from "react";
-interface SessionWrapperLayoutProps {
+
+type SessionWrapperLayoutProps = {
     children: React.ReactNode;
-}
+};
 export const SessionWrapperLayout: React.FC<SessionWrapperLayoutProps> = ({
     children,
 }) => {
