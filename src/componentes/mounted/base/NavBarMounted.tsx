@@ -115,6 +115,17 @@ const loggedMenuEvents: Array<Menu> = [
     },
 ];
 
+const withMixpanelTrack = (item: Menu): Menu => {
+    return {
+        ...item,
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: item.telemetryEvent,
+            });
+        },
+    };
+};
+
 export const NavBarMounted: React.FC<NavBarMountedType> = ({
     mixpanel,
     session,
@@ -128,26 +139,12 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
     menuNavBarOptions,
 }) => {
     const router = useRouter();
-    const menuNavBarOptionsWithEvents = menuNavBarOptions.map((item) => {
-        return item.label !== "Listas Nominais" && !item.sub
-            ? {
-                  ...item,
-                  onClick: loggedMenuEvents.find(
-                      (event) => event.label === item.label
-                  )?.onClick,
-              }
-            : {
-                  ...item,
-                  sub: item.sub?.map((subItem) => {
-                      return {
-                          ...subItem,
-                          onClick: subMenuEvents.find(
-                              (event) => event.label === subItem.label
-                          )?.onClick,
-                      };
-                  }),
-              };
-    });
+    const menuNavBarOptionsWithEvents = menuNavBarOptions.map((item) =>
+        item.sub
+            ? { ...item, sub: item.sub.map(withMixpanelTrack) }
+            : withMixpanelTrack(item)
+    );
+
     return (
         <NavBar
             projeto="IP"
