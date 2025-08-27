@@ -43,10 +43,7 @@ export const CustomPrint: React.FC<Props> = ({
 
     return (
         <>
-            <div
-                className={style.Container}
-                data-testid="PersonalizacaoImpressao"
-            >
+            <div className={style.Container}>
                 <CloseModal handleClose={handleClose} />
                 <PrintModalContent
                     labels={labels}
@@ -70,7 +67,7 @@ type PrintButtonProps = {
 
 const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
     return (
-        <div className={style.ContainerBotao}>
+        <div className={style.ContainerButton}>
             <ButtonColorSubmitIcon label={label} submit={onPrintClick} />
         </div>
     );
@@ -79,11 +76,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
 const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
     return (
         <div className={style.Close}>
-            <a
-                className={style.ModalExit}
-                onClick={handleClose}
-                data-testid="FecharPersonalizacaoImpressao"
-            />
+            <a className={style.ModalExit} onClick={handleClose} />
         </div>
     );
 };

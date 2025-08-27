@@ -1,13 +1,13 @@
-.ResetEspacamento {
+.ResetSpaces {
     margin: 0;
     padding: 0;
 }
 
 .Container {
-    padding-top: 28px;
-    padding-right: 28px;
-    padding-left: 28px;
-    padding-bottom: 36px;
+    padding-top: 32px;
+    padding-right: 32px;
+    padding-left: 32px;
+    padding-bottom: 48px;
     box-sizing: border-box;
     font-family: "Inter";
     color: #1f1f1f;
@@ -18,7 +18,7 @@
     z-index: 9000;
 }
 
-.Conteudo {
+.Content {
     overflow-y: auto;
     /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
     max-height: calc(100vh - 40px - 200px);
@@ -49,14 +49,14 @@
     justify-content: flex-end;
 }
 
-.TituloContainer {
+.ContainerTitle {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 13px;
+    margin-bottom: 24px;
 }
 
-.Titulo {
+.Title {
     display: flex;
     font-size: 14px;
     font-weight: 400;
@@ -66,26 +66,27 @@
     color: #1d856c;
 }
 
-.TituloPersonalizacaoPrincipal {
-    font-size: 25px;
-    line-height: 33px;
+.MainPersonalizationTitle {
+    font-size: 32px;
+    line-height: 41px;
     margin-bottom: 20px;
     font-weight: 400;
     letter-spacing: -0.02em;
     text-align: left;
+    width: 85%;
 }
 
-.DescricaoPersonalizacaoPrincipal {
-    font-size: 14px;
-    line-height: 20px;
+.MainPrintDescription {
+    font-size: 16px;
+    line-height: 24px;
     margin-bottom: 20px;
     font-weight: 400;
     letter-spacing: -0.01em;
     text-align: left;
 }
 
-.OpcaoPersonalizacaoPrincipal {
-    padding: 8px 10px;
+.MainCustomizationOption {
+    padding: 12px 10px;
     font-size: 14px;
     line-height: 20px;
     display: flex;
@@ -96,7 +97,7 @@
     text-align: left;
 }
 
-.InputPersonalizacaoPrincipal {
+.MainCustomizationInput {
     width: 18px;
     height: 18px;
     padding: 0;
@@ -104,28 +105,28 @@
     accent-color: #145c56;
 }
 
-.Linha {
-    margin: 17px 0;
+.Separator {
+    margin: 24px 0;
 }
 
-.TituloPersonalizacoesSecundarias {
+.SecondaryCustomizationsTitle {
     font-size: 20px;
     line-height: 25px;
     padding: 8px 0;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     font-weight: 400;
     letter-spacing: -0.02em;
     text-align: left;
 }
 
-.ContainerPersonalizacoesSecundarias {
+.SecondaryCustomizationsContainer {
     padding: 15px 9px 21px 9px;
     position: relative;
     border-radius: 8px;
     border: 1.5px solid #916a20;
 }
 
-.OpcaoPersonalizacaoSecundaria {
+.SecondaryCustomOption {
     padding: 0px 9px;
     margin-top: 14px;
     font-size: 14px;
@@ -139,7 +140,7 @@
     text-align: left;
 }
 
-.ContainerPersonalizacoesSecundarias input {
+.SecondaryCustomizationsContainer input {
     width: 15px;
     height: 17px;
     padding: 0;
@@ -147,14 +148,14 @@
     position: relative;
 }
 
-.ContainerBotao {
+.ContainerButton {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-top: 24px;
 }
 
-.Recomendacao {
+.Recommendation {
     padding: 3px 8px;
     display: flex;
     gap: 5px;
@@ -168,7 +169,7 @@
     background-color: #ffefb9;
 }
 
-.TextoRecomendacao {
+.RecommendationText {
     font-size: 12px;
     line-height: 17px;
     font-weight: 600;
@@ -179,54 +180,54 @@
 @media screen and (max-width: 1366px) {
     .Container {
         width: 700px;
-        padding-top: 22px;
-        padding-right: 22px;
-        padding-left: 22px;
+        padding-top: 28px;
+        padding-right: 28px;
+        padding-left: 32px;
         padding-bottom: 24px;
     }
 
-    .Conteudo {
+    .Content {
         /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
         max-height: calc(100vh - 40px - 160px);
     }
 
-    .TituloContainer {
-        margin-bottom: 8px;
+    .ContainerTitle {
+        margin-bottom: 24px;
     }
 
-    .TituloPersonalizacaoPrincipal {
+    .MainPersonalizationTitle {
         font-size: 23px;
         line-height: 28px;
-        margin-bottom: 15px;
+        margin-bottom: 16px;
     }
 
-    .DescricaoPersonalizacaoPrincipal {
+    .MainPrintDescription {
         line-height: 20px;
         margin-bottom: 12px;
     }
 
-    .OpcaoPersonalizacaoPrincipal {
-        padding: 6px 10px;
+    .MainCustomizationOption {
+        padding: 12px 10px;
         line-height: 15px;
     }
 
-    .TituloPersonalizacoesSecundarias {
+    .SecondaryCustomizationsTitle {
         font-size: 18px;
         line-height: 18px;
         padding: 6px 0;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
     }
 
-    .Linha {
-        margin: 10px 0;
+    .Separator {
+        margin: 12px 0;
     }
 
-    .OpcaoPersonalizacaoSecundaria {
-        margin-top: 10px;
+    .SecondaryCustomOption {
+        margin-top: 16px;
         line-height: 15px;
     }
 
-    .ContainerPersonalizacoesSecundarias {
+    .SecondaryCustomizationsContainer {
         padding: 15px 9px 16px 9px;
     }
 
@@ -256,58 +257,58 @@
         padding: 20px;
     }
 
-    .Conteudo {
+    .Content {
         /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
         max-height: calc(100vh - 40px - 80px);
     }
 
-    .TituloContainer {
+    .ContainerTitle {
         margin-bottom: 10px;
     }
 
-    .Titulo {
+    .Title {
         font-size: 12px;
         line-height: 16px;
     }
 
-    .TituloPersonalizacaoPrincipal {
+    .MainPersonalizationTitle {
         font-size: 18px;
         line-height: 22px;
         margin-bottom: 16px;
     }
 
-    .DescricaoPersonalizacaoPrincipal {
+    .MainPrintDescription {
         font-size: 12px;
         line-height: 16px;
         margin-bottom: 16px;
     }
 
-    .OpcaoPersonalizacaoPrincipal {
+    .MainCustomizationOption {
         padding: 6px;
         font-size: 12px;
         font-weight: 400;
         line-height: 16px;
     }
 
-    .TituloPersonalizacoesSecundarias {
+    .SecondaryCustomizationsTitle {
         font-size: 16px;
         line-height: 20px;
         padding: 6px 0;
         margin-bottom: 24px;
     }
 
-    .Linha {
+    .Separator {
         margin: 10px 0;
     }
 
-    .OpcaoPersonalizacaoSecundaria {
+    .SecondaryCustomOption {
         padding: 0px 6px;
         margin-top: 12px;
         font-size: 12px;
         line-height: 16px;
     }
 
-    .ContainerPersonalizacoesSecundarias {
+    .SecondaryCustomizationsContainer {
         padding: 12px 8px 18px 8px;
     }
 
@@ -315,32 +316,32 @@
         margin-bottom: 16px;
     }
 
-    .Recomendacao {
+    .Recommendation {
         padding: 3px 6px;
         width: 90%;
         top: -18px;
     }
 
-    .TextoRecomendacao {
+    .RecommendationText {
         font-size: 10px;
         line-height: 14px;
     }
 
-    .ContainerBotao {
+    .ContainerButton {
         margin-top: 16px;
     }
 
-    .ContainerPersonalizacoesSecundarias input {
+    .SecondaryCustomizationsContainer input {
         width: 14px;
         height: 14px;
     }
 
-    .IconeTitulo {
+    .TitleIcon {
         width: 18px;
         height: 18px;
     }
 
-    .IconeRecomendacao {
+    .RecommendationIcon {
         width: 13px;
         height: 13px;
     }

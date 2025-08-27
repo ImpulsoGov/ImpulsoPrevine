@@ -16,7 +16,7 @@ export const PrintModalContent: React.FC<PrintModalContentProps> = ({
     setCustomization,
 }) => {
     return (
-        <div className={style.Conteudo}>
+        <div className={style.Content}>
             <Header labels={labels} />
             <SplitTeams
                 labels={labels}
@@ -37,34 +37,29 @@ export const PrintModalContent: React.FC<PrintModalContentProps> = ({
 export const Header: React.FC<{ labels: ModalLabels }> = ({ labels }) => {
     return (
         <>
-            <div className={style.TituloContainer}>
+            <div className={style.ContainerTitle}>
                 <img
                     src="https://media.graphassets.com/tkjDWpANQ9SzsdACBiEI"
                     width="28px"
                     height="28px"
                     alt="Icone de brilho"
-                    className={style.IconeTitulo}
+                    className={style.TitleIcon}
                 />
-                <h4 className={cx(style.Titulo, style.ResetEspacamento)}>
+                <h4 className={cx(style.Title, style.ResetSpaces)}>
                     {labels.title}
                 </h4>
             </div>
 
             <h5
                 className={cx(
-                    style.TituloPersonalizacaoPrincipal,
-                    style.ResetEspacamento
+                    style.MainPersonalizationTitle,
+                    style.ResetSpaces
                 )}
             >
                 {labels.primaryCustomOption.title}
             </h5>
 
-            <p
-                className={cx(
-                    style.DescricaoPersonalizacaoPrincipal,
-                    style.ResetEspacamento
-                )}
-            >
+            <p className={cx(style.MainPrintDescription, style.ResetSpaces)}>
                 {labels.primaryCustomOption.description}
             </p>
         </>
@@ -99,10 +94,10 @@ export const SplitTeams: React.FC<SplitTeamsProps> = ({
     };
     return (
         <>
-            <div className={style.OpcaoPersonalizacaoPrincipal}>
+            <div className={style.MainCustomizationOption}>
                 <input
                     onChange={handleChangeTeamSplit}
-                    className={style.InputPersonalizacaoPrincipal}
+                    className={style.MainCustomizationInput}
                     type="radio"
                     value="WithSplitTeam"
                     checked={customization.grouping}
@@ -114,10 +109,10 @@ export const SplitTeams: React.FC<SplitTeamsProps> = ({
                 </label>
             </div>
 
-            <div className={style.OpcaoPersonalizacaoPrincipal}>
+            <div className={style.MainCustomizationOption}>
                 <input
                     onChange={handleChangeTeamSplit}
-                    className={style.InputPersonalizacaoPrincipal}
+                    className={style.MainCustomizationInput}
                     type="radio"
                     value="WithoutSplitTeam"
                     checked={!customization.grouping}
@@ -154,32 +149,32 @@ export const OtherPrintOptions: React.FC<OtherPrintOptionsProps> = ({
     };
     return (
         <>
-            <hr className={style.Linha} />
+            <hr className={style.Separator} />
 
             <h5
                 className={cx(
-                    style.TituloPersonalizacoesSecundarias,
-                    style.ResetEspacamento
+                    style.SecondaryCustomizationsTitle,
+                    style.ResetSpaces
                 )}
             >
                 {labels.secondaryCustomOption.title}
             </h5>
 
-            <div className={style.ContainerPersonalizacoesSecundarias}>
-                <div className={style.Recomendacao}>
+            <div className={style.SecondaryCustomizationsContainer}>
+                <div className={style.Recommendation}>
                     <img
                         src="https://media.graphassets.com/WMvmmV6JTKZ1OhELfymQ"
                         width="14px"
                         height="14px"
                         alt="Ícone de estrela"
-                        className={style.IconeRecomendacao}
+                        className={style.RecommendationIcon}
                     />
-                    <span className={style.TextoRecomendacao}>
+                    <span className={style.RecommendationText}>
                         {labels.secondaryCustomOption.recommendation}
                     </span>
                 </div>
 
-                <div className={style.OpcaoPersonalizacaoSecundaria}>
+                <div className={style.SecondaryCustomOption}>
                     <input
                         onChange={handleCheckboxChange}
                         type="checkbox"
@@ -193,7 +188,7 @@ export const OtherPrintOptions: React.FC<OtherPrintOptionsProps> = ({
                 </div>
 
                 {labels.secondaryCustomOption.ordering && (
-                    <div className={style.OpcaoPersonalizacaoSecundaria}>
+                    <div className={style.SecondaryCustomOption}>
                         <input
                             onChange={handleCheckboxChange}
                             type="checkbox"
