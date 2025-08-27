@@ -27,12 +27,10 @@ const loadImages = (printWindow: PrintWindowProps): void => {
     if (loads === imagesTotal) printWindow.print();
 };
 
-// export const RenderPrint = (escala: string, child: React.ReactElement) => {
-export const RenderPrint = (escala: string, content: string): void => {
+export const RenderPrint = (scale: string, content: string): void => {
     if (typeof window !== "undefined") {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        // const content = renderToString(child);
         const printWindow = window.open(
             "",
             "",
@@ -49,7 +47,7 @@ export const RenderPrint = (escala: string, content: string): void => {
             <style>
               @media print and (orientation: landscape){
                 @page {
-                  transform: scale(${escala});
+                  transform: scale(${scale});
                   transform-origin: top left;
                   margin: 14px;
                 }
@@ -68,7 +66,7 @@ export const RenderPrint = (escala: string, content: string): void => {
               }
               @media print and (orientation: portrait){
                 @page {
-                  transform: scale(${escala});
+                  transform: scale(${scale});
                   transform-origin: top left;
                   margin: 14px;
                 }
@@ -97,7 +95,7 @@ export const RenderPrint = (escala: string, content: string): void => {
     }
 };
 
-const PRINT_ESCALE = "1";
+const PRINT_SCALE = "1";
 export const Print = (stringfiedComponent: string): void => {
-    RenderPrint(PRINT_ESCALE, stringfiedComponent);
+    RenderPrint(PRINT_SCALE, stringfiedComponent);
 };
