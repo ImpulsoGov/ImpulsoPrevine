@@ -8,14 +8,18 @@ import { PrintButton } from "./modules/PrintButton";
 type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
 };
-
+const showBackdoorGuide = (): void => {
+    if (typeof window.userGuiding !== "undefined") {
+        window.userGuiding.previewGuide(150481);
+    }
+};
 export const SearchToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
     return (
         <ListToolBar>
             <>
                 {/* <LastUpdatedCard /> */}
                 <SearchBar onSearchTriggered={onSearchTriggered} />
-                <PrintButton print={() => {}} />
+                <PrintButton print={showBackdoorGuide} />
             </>
         </ListToolBar>
     );
