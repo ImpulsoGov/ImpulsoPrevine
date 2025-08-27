@@ -14,6 +14,14 @@ import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "./modules/CurrentQuadrimester";
 import { FilterHint } from "./modules/FilterHint";
+import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
+import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
+import {
+    apsLabelsModal,
+    coeqLabelsModal,
+} from "@/features/acf/frontend/common/PrintModal/consts";
+import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
+import { print } from "@/features/common/shared/flags";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -39,26 +47,39 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     patientAgeRange: "",
 };
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
-export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
+export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    const isPrintEnabled = await print();
     return (
         <>
             <List list={list}>
                 <CurrentQuadrimester />
-                <WithSearch SearchComponent={SearchToolBar}>
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <FilterHint />
-                        <WithFilters
-                            initialSelectedValues={initialSelectedValuesCoaps}
-                            FiltersBar={CoapsFiltersBar}
-                        >
-                            <WithPagination>
-                                <CoapsDataTable />
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
+                <WithPrintModal>
+                    <WithSearch
+                        SearchComponent={SearchToolBar}
+                        isPrintEnabled={isPrintEnabled}
+                    >
+                        <hr style={{ width: "100%" }} />
+                        <WithSorting>
+                            <FilterHint />
+                            <WithFilters
+                                initialSelectedValues={
+                                    initialSelectedValuesCoaps
+                                }
+                                FiltersBar={CoapsFiltersBar}
+                            >
+                                <WithPagination>
+                                    <CoapsDataTable />
+                                    <WithCustomPrint>
+                                        <PrintModal
+                                            modalLabels={apsLabelsModal}
+                                        />
+                                    </WithCustomPrint>
+                                </WithPagination>
+                            </WithFilters>
+                        </WithSorting>
+                    </WithSearch>
+                </WithPrintModal>
             </List>
         </>
     );
@@ -71,20 +92,29 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ list }) => {
         <>
             <List list={list}>
                 <CurrentQuadrimester />
-                <WithSearch SearchComponent={SearchToolBar}>
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <FilterHint />
-                        <WithFilters
-                            initialSelectedValues={initialSelectedValuesCoeq}
-                            FiltersBar={CoeqFiltersBar}
-                        >
-                            <WithPagination>
-                                <CoeqDataTable />
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
+                <WithPrintModal>
+                    <WithSearch SearchComponent={SearchToolBar}>
+                        <hr style={{ width: "100%" }} />
+                        <WithSorting>
+                            <FilterHint />
+                            <WithFilters
+                                initialSelectedValues={
+                                    initialSelectedValuesCoeq
+                                }
+                                FiltersBar={CoeqFiltersBar}
+                            >
+                                <WithPagination>
+                                    <CoeqDataTable />
+                                    <WithCustomPrint>
+                                        <PrintModal
+                                            modalLabels={coeqLabelsModal}
+                                        />
+                                    </WithCustomPrint>
+                                </WithPagination>
+                            </WithFilters>
+                        </WithSorting>
+                    </WithSearch>
+                </WithPrintModal>
             </List>
         </>
     );
