@@ -1,5 +1,5 @@
-import { decodeToken } from "@/utils/token";
-import { municipalityIdSusFromHeader } from "../logic";
+import { decodeToken, type Payload } from "@/utils/token";
+import { propertyFromHeader } from "..";
 
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));
@@ -13,18 +13,19 @@ jest.mock("@/utils/token", () => ({
 
 const mockedDecodeToken = decodeToken as jest.Mock;
 
-describe("municipalityIdSusFromHeader", () => {
+describe("propertyFromHeader", () => {
     const mockSecret = "my-secret";
     const mockToken = "fake.jwt.token";
     const mockMunicipio = "1234567";
-
+    const mockProperty = "id";
     const buildHeader = (token: string): string => `Bearer ${token}`;
 
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    it("deve retornar o município quando o token for válido", async () => {
+    it("deve retornar a propriedade quando o token for válido", async () => {
+        const property = "municipio";
         mockedDecodeToken.mockResolvedValueOnce({
             payload: { municipio: mockMunicipio },
             protectedHeader: {
@@ -33,9 +34,10 @@ describe("municipalityIdSusFromHeader", () => {
             },
         });
 
-        const result = await municipalityIdSusFromHeader(
+        const result = await propertyFromHeader(
             buildHeader(mockToken),
-            mockSecret
+            mockSecret,
+            property
         );
 
         expect(mockedDecodeToken).toHaveBeenCalledWith(
@@ -45,23 +47,24 @@ describe("municipalityIdSusFromHeader", () => {
         expect(result).toBe(mockMunicipio);
     });
 
-    it("deve retornar undefined se o header estiver malformado (sem token)", async () => {
-        const result = await municipalityIdSusFromHeader("Bearer", mockSecret);
-        expect(result).toBeUndefined();
-    });
-
-    it("deve retornar undefined se decodeToken lançar erro", async () => {
-        mockedDecodeToken.mockRejectedValueOnce(new Error("Invalid token"));
-
-        const result = await municipalityIdSusFromHeader(
-            buildHeader(mockToken),
-            mockSecret
+    it("deve retornar null se o header estiver malformado (sem token)", async () => {
+        const result = await propertyFromHeader(
+            "Bearer",
+            mockSecret,
+            mockProperty
         );
-
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("deve retornar undefined se municipio não estiver presente no payload", async () => {
+    it("deve propagar o erro lançado por decodeToken, se ele lançar erro", async () => {
+        mockedDecodeToken.mockRejectedValueOnce(new Error("Invalid token"));
+        await expect(
+            propertyFromHeader(buildHeader(mockToken), mockSecret, mockProperty)
+        ).rejects.toThrow("Invalid token");
+    });
+
+    it("deve retornar null se a propriedade não estiver presente no payload", async () => {
+        const property = "municipio";
         mockedDecodeToken.mockResolvedValueOnce({
             payload: {},
             protectedHeader: {
@@ -70,15 +73,17 @@ describe("municipalityIdSusFromHeader", () => {
             },
         });
 
-        const result = await municipalityIdSusFromHeader(
+        const result = await propertyFromHeader(
             buildHeader(mockToken),
-            mockSecret
+            mockSecret,
+            property
         );
 
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 
-    it("deve retornar undefined se municipio não for uma string", async () => {
+    it("deve retornar null se a propriedade não for um campo do payload", async () => {
+        const property = "nao existe no payload" as keyof Payload; //Compilador consegue inferir que essa propriedade não é uma chave do payload
         mockedDecodeToken.mockResolvedValueOnce({
             payload: { municipio: true },
             protectedHeader: {
@@ -87,11 +92,12 @@ describe("municipalityIdSusFromHeader", () => {
             },
         });
 
-        const result = await municipalityIdSusFromHeader(
+        const result = await propertyFromHeader(
             buildHeader(mockToken),
-            mockSecret
+            mockSecret,
+            property
         );
 
-        expect(result).toBeUndefined();
+        expect(result).toBe(null);
     });
 });

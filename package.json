@@ -16,7 +16,7 @@
         "@hotjar/browser": "^1.0.9",
         "@impulsogov/design-system": "^1.0.369",
         "@mui/icons-material": "^7.1.2",
-        "@mui/material": "^6.1.0",
+        "@mui/material": "^7.3.1",
         "@mui/x-data-grid": "^7.17.0",
         "@prisma/client": "5.22.0",
         "@sentry/nextjs": "8",
@@ -53,7 +53,7 @@
         "@types/dompurify": "^3.0.5",
         "@types/jest": "^29.5.14",
         "@types/jsonwebtoken": "^9.0.7",
-        "@types/mixpanel-browser": "^2.50.0",
+        "@types/mixpanel-browser": "^2.66.0",
         "@types/next-auth": "^3.15.0",
         "@types/node": "^20",
         "@types/react": "19.0.8",
@@ -68,7 +68,7 @@
         "jest-environment-jsdom": "^29.7.0",
         "prettier": "3.5.3",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.3",
+        "typescript": "5.9",
         "typescript-eslint": "^8.32.0"
     },
     "resolutions": {
