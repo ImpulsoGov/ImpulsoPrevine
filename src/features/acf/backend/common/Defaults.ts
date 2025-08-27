@@ -25,6 +25,16 @@ export type PageParamsCoeq<TSorting, TFilters> = PageParams & {
     filters?: TFilters;
 };
 
+export type AllDataParamsCoaps<TSorting, TFilters> = Omit<
+    PageParamsCoaps<TSorting, TFilters>,
+    "pageIndex"
+>;
+
+export type AllDataParamsCoeq<TSorting, TFilters> = Omit<
+    PageParamsCoeq<TSorting, TFilters>,
+    "pageIndex"
+>;
+
 type RowCountParams = {
     municipalitySusId: string;
     searchString?: string;

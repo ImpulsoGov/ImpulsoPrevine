@@ -3,7 +3,9 @@ import { validarTokenMiddleware } from "./validarToken";
 
 const rotasPublicas = ["/api"];
 
-export const middlewareAPIRoutes = async (request: NextRequest) =>
+export const middlewareAPIRoutes = async (
+    request: NextRequest
+): Promise<NextResponse | Response> =>
     rotasPublicas.includes(request.nextUrl.pathname) ||
     request.nextUrl.pathname.startsWith("/api/auth")
         ? NextResponse.next()
