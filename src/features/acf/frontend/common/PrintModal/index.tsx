@@ -1,15 +1,18 @@
 "use client";
 import { ModalAlertControlled } from "@impulsogov/design-system";
 import type { ModalLabels } from "./model";
-import { useState } from "react";
+import { useContext } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
+import { WithPrintModalContext } from "../WithPrintModal";
 
 type PrintModalProps = {
     modalLabels: ModalLabels;
 };
 
 export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
-    const [isPrintModalVisible, setIsPrintModalVisible] = useState(true);
+    const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
+        WithPrintModalContext
+    );
     const closePrintModal = (): void => {
         setIsPrintModalVisible(false);
     };

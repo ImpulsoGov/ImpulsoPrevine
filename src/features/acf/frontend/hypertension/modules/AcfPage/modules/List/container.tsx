@@ -16,7 +16,11 @@ import { CurrentQuadrimester } from "./modules/CurrentQuadrimester";
 import { FilterHint } from "./modules/FilterHint";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
-import { apsLabelsModal } from "@/features/acf/frontend/common/PrintModal/consts";
+import {
+    apsLabelsModal,
+    coeqLabelsModal,
+} from "@/features/acf/frontend/common/PrintModal/consts";
+import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -48,23 +52,29 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
         <>
             <List list={list}>
                 <CurrentQuadrimester />
-                <WithSearch SearchComponent={SearchToolBar}>
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <FilterHint />
-                        <WithFilters
-                            initialSelectedValues={initialSelectedValuesCoaps}
-                            FiltersBar={CoapsFiltersBar}
-                        >
-                            <WithPagination>
-                                <CoapsDataTable />
-                                <WithCustomPrint>
-                                    <PrintModal modalLabels={apsLabelsModal} />
-                                </WithCustomPrint>
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
+                <WithPrintModal>
+                    <WithSearch SearchComponent={SearchToolBar}>
+                        <hr style={{ width: "100%" }} />
+                        <WithSorting>
+                            <FilterHint />
+                            <WithFilters
+                                initialSelectedValues={
+                                    initialSelectedValuesCoaps
+                                }
+                                FiltersBar={CoapsFiltersBar}
+                            >
+                                <WithPagination>
+                                    <CoapsDataTable />
+                                    <WithCustomPrint>
+                                        <PrintModal
+                                            modalLabels={apsLabelsModal}
+                                        />
+                                    </WithCustomPrint>
+                                </WithPagination>
+                            </WithFilters>
+                        </WithSorting>
+                    </WithSearch>
+                </WithPrintModal>
             </List>
         </>
     );
@@ -77,20 +87,29 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ list }) => {
         <>
             <List list={list}>
                 <CurrentQuadrimester />
-                <WithSearch SearchComponent={SearchToolBar}>
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <FilterHint />
-                        <WithFilters
-                            initialSelectedValues={initialSelectedValuesCoeq}
-                            FiltersBar={CoeqFiltersBar}
-                        >
-                            <WithPagination>
-                                <CoeqDataTable />
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
+                <WithPrintModal>
+                    <WithSearch SearchComponent={SearchToolBar}>
+                        <hr style={{ width: "100%" }} />
+                        <WithSorting>
+                            <FilterHint />
+                            <WithFilters
+                                initialSelectedValues={
+                                    initialSelectedValuesCoeq
+                                }
+                                FiltersBar={CoeqFiltersBar}
+                            >
+                                <WithPagination>
+                                    <CoeqDataTable />
+                                    <WithCustomPrint>
+                                        <PrintModal
+                                            modalLabels={coeqLabelsModal}
+                                        />
+                                    </WithCustomPrint>
+                                </WithPagination>
+                            </WithFilters>
+                        </WithSorting>
+                    </WithSearch>
+                </WithPrintModal>
             </List>
         </>
     );
