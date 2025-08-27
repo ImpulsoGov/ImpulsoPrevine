@@ -8,22 +8,32 @@ import { WithPrintModalContext } from "../WithPrintModal";
 
 type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
+    isPrintEnabled?: boolean;
 };
 const showBackdoorGuide = (): void => {
     if (typeof window.userGuiding !== "undefined") {
         window.userGuiding.previewGuide(150481);
     }
 };
-export const SearchToolBar: React.FC<Props> = ({ onSearchTriggered }) => {
-    const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
-        WithPrintModalContext
-    );
+export const SearchToolBar: React.FC<Props> = ({
+    onSearchTriggered,
+    isPrintEnabled,
+}) => {
+    const { setIsPrintModalVisible } = useContext(WithPrintModalContext);
     return (
         <ListToolBar>
             <>
                 {/* <LastUpdatedCard /> */}
                 <SearchBar onSearchTriggered={onSearchTriggered} />
-                <PrintButton print={showBackdoorGuide} />
+                <PrintButton
+                    print={
+                        isPrintEnabled
+                            ? (): void => {
+                                  setIsPrintModalVisible(true);
+                              }
+                            : showBackdoorGuide
+                    }
+                />
             </>
         </ListToolBar>
     );

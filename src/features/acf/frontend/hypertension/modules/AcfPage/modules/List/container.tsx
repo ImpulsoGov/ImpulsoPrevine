@@ -21,6 +21,7 @@ import {
     coeqLabelsModal,
 } from "@/features/acf/frontend/common/PrintModal/consts";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
+import { print } from "@/features/common/shared/flags";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -46,14 +47,18 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     patientAgeRange: "",
 };
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
-export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
+export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    const isPrintEnabled = await print();
     return (
         <>
             <List list={list}>
                 <CurrentQuadrimester />
                 <WithPrintModal>
-                    <WithSearch SearchComponent={SearchToolBar}>
+                    <WithSearch
+                        SearchComponent={SearchToolBar}
+                        isPrintEnabled={isPrintEnabled}
+                    >
                         <hr style={{ width: "100%" }} />
                         <WithSorting>
                             <FilterHint />
