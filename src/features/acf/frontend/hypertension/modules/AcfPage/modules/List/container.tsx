@@ -15,6 +15,8 @@ import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "./modules/CurrentQuadrimester";
 import { FilterHint } from "./modules/FilterHint";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
+import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
+import { apsLabelsModal } from "@/features/acf/frontend/common/PrintModal/consts";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -40,12 +42,8 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     patientAgeRange: "",
 };
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
-export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
+export const ContentCoaps: React.FC<ContentCoapsProps> = ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
-    const ComponentTest = () => <h1>Aqui vai ter o conteudo da impressao</h1>;
-    const PrintTableMounted = <ComponentTest />;
-    const ReactDOMServer = (await import("react-dom/server")).default;
-    const stringComponent = ReactDOMServer.renderToString(PrintTableMounted);
     return (
         <>
             <List list={list}>
@@ -60,10 +58,9 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
                         >
                             <WithPagination>
                                 <CoapsDataTable />
-                                <PrintModal
-                                    // modalLabels={apsLabelsModal}
-                                    stringComponent={stringComponent}
-                                />
+                                <WithCustomPrint>
+                                    <PrintModal modalLabels={apsLabelsModal} />
+                                </WithCustomPrint>
                             </WithPagination>
                         </WithFilters>
                     </WithSorting>

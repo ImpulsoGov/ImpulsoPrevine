@@ -8,9 +8,9 @@ export type ModalLabels = {
     };
     secondaryCustomOption: {
         title: string;
-        recomendation: string;
+        recommendation: string;
         splitGroupPerPage: string;
-        order?: string;
+        ordering?: string;
     };
     button: string;
 };

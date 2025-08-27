@@ -1,32 +1,17 @@
 "use client";
 import { ModalAlertControlled } from "@impulsogov/design-system";
-// import type { ModalLabels } from "./model";
-// import { groupedValues } from "./consts";
-import { Print } from "../Print";
-// import type { GridColDef } from "@mui/x-data-grid";
+import type { ModalLabels } from "./model";
 import { useState } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
 
 type PrintModalProps = {
-    // modalLabels: ModalLabels;
-    stringComponent: string;
-    // columns: Array<GridColDef>,
-    // service: any
+    modalLabels: ModalLabels;
 };
 
-export const PrintModal: React.FC<PrintModalProps> = ({
-    // modalLabels,
-    stringComponent,
-    // columns,
-    // service
-}) => {
+export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
     const [isPrintModalVisible, setIsPrintModalVisible] = useState(true);
     const closePrintModal = (): void => {
         setIsPrintModalVisible(false);
-    };
-    // const onPrintClick = (): void => {Print(columns, service)};
-    const onPrintClick = (): void => {
-        Print(stringComponent);
     };
 
     if (isPrintModalVisible)
@@ -42,10 +27,8 @@ export const PrintModal: React.FC<PrintModalProps> = ({
                     close={closePrintModal}
                 >
                     <CustomPrint
-                        // labels={modalLabels}
-                        onPrintClick={onPrintClick}
-                        // handleClose={closePrintModal}
-                        // groupedValues={groupedValues}
+                        labels={modalLabels}
+                        handleClose={closePrintModal}
                     />
                 </ModalAlertControlled>
             </div>

@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { ButtonColorSubmitIcon } from "@impulsogov/design-system";
 import style from "./CustomPrint.module.css";
-// import cx from "classnames";
 import type { ModalLabels } from "../../model";
-// import { CustomPrintContext } from "../../../WithCustomPrint/context";
+import { CustomPrintContext } from "../../../WithCustomPrint/context";
+import { ComponentTest } from "../../../Print/modules/ComponentTest";
+import { Print } from "../../../Print/RenderPrint";
+import { PrintModalContent } from "./modules/PrintModalContent";
 
-const DEFAULT_LABELS = {
+const DEFAULT_LABELS: ModalLabels = {
     title: "",
     primaryCustomOption: {
         title: "",
@@ -15,36 +17,73 @@ const DEFAULT_LABELS = {
     },
     secondaryCustomOption: {
         title: "",
-        recomendation: "",
+        recommendation: "",
         splitGroupPerPage: "", //folha vira page, nao confundir com page de pagination
-        order: "",
+        ordering: "",
     },
     button: "IMPRIMIR",
 };
 
 type Props = {
     labels?: ModalLabels;
-    // handleClose: () => void;
-    onPrintClick: () => void;
-    // groupedValues: { yes: string; no: string };
+    handleClose: () => void;
 };
 
-// TODO: dividir em componentes menores?
 export const CustomPrint: React.FC<Props> = ({
     labels = DEFAULT_LABELS,
-    // handleClose,
-    onPrintClick,
-    // groupedValues,
+    handleClose,
 }) => {
+    const { customization, setCustomization } = useContext(CustomPrintContext);
+    const ref = useRef<HTMLDivElement>(null);
+
+    const onPrintClick = (): void => {
+        const htmlString = ref.current?.innerHTML || "";
+        Print(htmlString);
+    };
+
     return (
-        <div className={style.Container} data-testid="PersonalizacaoImpressao">
-            <h2>Este modal de impressão está em desenvolvimento</h2>
-            <div className={style.ContainerBotao}>
-                <ButtonColorSubmitIcon
+        <>
+            <div
+                className={style.Container}
+                data-testid="PersonalizacaoImpressao"
+            >
+                <CloseModal handleClose={handleClose} />
+                <PrintModalContent
+                    labels={labels}
+                    customization={customization}
+                    setCustomization={setCustomization}
+                />
+                <PrintButton
                     label={labels.button}
-                    submit={onPrintClick}
+                    onPrintClick={onPrintClick}
                 />
             </div>
+            <ComponentTest {...customization} ref={ref} />
+        </>
+    );
+};
+
+type PrintButtonProps = {
+    label: string;
+    onPrintClick: () => void;
+};
+
+const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
+    return (
+        <div className={style.ContainerBotao}>
+            <ButtonColorSubmitIcon label={label} submit={onPrintClick} />
+        </div>
+    );
+};
+
+const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
+    return (
+        <div className={style.Close}>
+            <a
+                className={style.ModalExit}
+                onClick={handleClose}
+                data-testid="FecharPersonalizacaoImpressao"
+            />
         </div>
     );
 };

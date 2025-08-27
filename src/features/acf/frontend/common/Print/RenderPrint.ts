@@ -96,3 +96,8 @@ export const RenderPrint = (escala: string, content: string): void => {
         }
     }
 };
+
+const PRINT_ESCALE = "1";
+export const Print = (stringfiedComponent: string): void => {
+    RenderPrint(PRINT_ESCALE, stringfiedComponent);
+};
