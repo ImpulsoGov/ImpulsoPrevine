@@ -30,11 +30,11 @@ type Props = PropsWithChildren<{
     handleClose: () => void;
 }>;
 
-export function CustomPrint({
+export const CustomPrint: React.FC<Props> = ({
     labels = DEFAULT_LABELS,
     handleClose,
     children,
-}: Props): React.ReactNode {
+}) => {
     const { customization, setCustomization } = useContext(CustomPrintContext);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -60,7 +60,7 @@ export function CustomPrint({
             {children}
         </>
     );
-}
+};
 
 type PrintButtonProps = {
     label: string;

@@ -7,6 +7,8 @@ import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import { getCoeqData } from "./modules/Print/service";
 import { coeqLabelsModal } from "./modules/Print/consts";
 import { coeqColumns } from "./modules/CoeqDataTable";
+import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
+import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 export type ListProps = {
     list: AcfDashboardType;
     // title: string;
@@ -28,15 +30,19 @@ export const ListCoeq: React.FC<React.PropsWithChildren<ListProps>> = ({
             >
                 {children}
             </div>
-            <PrintModal modalLabels={coeqLabelsModal}>
-                <PrintTable
-                    columns={coeqColumns}
-                    serviceGetData={getCoeqData}
-                    // customization={customization}
+            <WithPrintModal>
+                <WithCustomPrint>
+                    <PrintModal modalLabels={coeqLabelsModal}>
+                        <PrintTable
+                            columns={coeqColumns}
+                            serviceGetData={getCoeqData}
+                            // customization={customization}
 
-                    // {...customization} ref={ref}
-                />
-            </PrintModal>
+                            // {...customization} ref={ref}
+                        />
+                    </PrintModal>
+                </WithCustomPrint>
+            </WithPrintModal>
         </>
     );
 };
