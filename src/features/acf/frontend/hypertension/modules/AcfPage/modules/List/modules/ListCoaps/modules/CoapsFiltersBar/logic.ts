@@ -2,7 +2,7 @@ import type * as schema from "@/features/acf/shared/hypertension/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
-import { toSelectConfigsShared } from "../common/SharedSelectConfigs";
+import { toSelectConfigsShared } from "../../../common/SharedSelectConfigs";
 
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters

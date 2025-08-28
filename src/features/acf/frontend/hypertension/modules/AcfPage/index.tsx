@@ -9,7 +9,7 @@ import { ErrorPage } from "../../../common/ErrorPage";
 import { PanelSelector } from "../../../common/PanelSelector";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
-import { ContentCoeq, ContentCoaps } from "./modules/List/container";
+import { ContentCoeq, ContentCoaps } from "./modules/List";
 import { getMunicipalityName } from "../../../common/MunicipalityName";
 import { sharedHeader, breadcrumb, textCoaps, textCoeq } from "./consts";
 

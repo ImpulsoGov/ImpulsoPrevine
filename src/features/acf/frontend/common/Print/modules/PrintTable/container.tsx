@@ -18,18 +18,25 @@ import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting";
 import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
 import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
-import type { PageResponses } from "@/features/acf/shared/schema";
-import type { ServiceGetPage } from "../../../DataTable";
+import type { DataResponses } from "@/features/acf/shared/schema";
+import type { GetDataParams } from "./service";
 
-const fetchPage = <
+export type ServiceGetData<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
+    TResponse extends DataResponses,
+> = (
+    params: GetDataParams<TAppliedFilters>
+) => Promise<AxiosResponse<TResponse>>;
+
+const fetchData = <
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends DataResponses,
 >(
     session: Session | null,
     gridSortingModel: GridSortItem,
     searchString: string,
     filters: TAppliedFilters | null,
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>,
+    serviceGetData: ServiceGetData<TAppliedFilters, TResponse>,
     setResponse: Dispatch<
         SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
     >
@@ -38,7 +45,7 @@ const fetchPage = <
         return;
     }
 
-    const getPageParams = Object.assign(
+    const getDataParams = Object.assign(
         {
             token: session.user.access_token,
             sorting: {
@@ -50,7 +57,7 @@ const fetchPage = <
         !filters ? {} : { filters: filters }
     );
 
-    serviceGetPage(getPageParams)
+    serviceGetData(getDataParams)
         .then((res) => {
             setResponse(res);
         })
@@ -68,18 +75,18 @@ const fetchPage = <
 
 type Props<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
+    TResponse extends DataResponses,
 > = {
     columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
+    serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
 };
 
 export const Container = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
+    TResponse extends DataResponses,
 >({
     columns,
-    serviceGetPage,
+    serviceGetData,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
@@ -92,12 +99,12 @@ export const Container = <
     >(null);
 
     useEffect(() => {
-        fetchPage(
+        fetchData(
             session,
             gridSortingModel,
             searchString,
             filters,
-            serviceGetPage,
+            serviceGetData,
             setResponse
         );
     }, [session, filters, gridSortingModel, searchString]);

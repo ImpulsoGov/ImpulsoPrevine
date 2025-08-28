@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from "react";
 import React, { useContext, useRef } from "react";
 import { ButtonColorSubmitIcon } from "@impulsogov/design-system";
 import style from "./CustomPrint.module.css";
@@ -6,11 +7,6 @@ import type { ModalLabels } from "../../model";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
 import { Print } from "../../../Print/RenderPrint";
 import { PrintModalContent } from "./modules/PrintModalContent";
-import { PrintTable } from "../../../Print/modules/PrintTable";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import type { PageResponses } from "@/features/acf/shared/schema";
-import type { GridColDef } from "@mui/x-data-grid";
-import type { ServiceGetPage } from "../../../DataTable";
 
 const DEFAULT_LABELS: ModalLabels = {
     title: "",
@@ -29,25 +25,16 @@ const DEFAULT_LABELS: ModalLabels = {
     button: "IMPRIMIR",
 };
 
-type Props<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
-> = {
+type Props = PropsWithChildren<{
     labels?: ModalLabels;
     handleClose: () => void;
-    columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
-};
+}>;
 
-export function CustomPrint<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
->({
+export function CustomPrint({
     labels = DEFAULT_LABELS,
     handleClose,
-    columns,
-    serviceGetPage,
-}: Props<TAppliedFilters, TResponse>): React.ReactNode {
+    children,
+}: Props): React.ReactNode {
     const { customization, setCustomization } = useContext(CustomPrintContext);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -70,13 +57,7 @@ export function CustomPrint<
                     onPrintClick={onPrintClick}
                 />
             </div>
-            <PrintTable
-                columns={columns}
-                serviceGetPage={serviceGetPage}
-                // customization={customization}
-
-                // {...customization} ref={ref}
-            />
+            {children}
         </>
     );
 }

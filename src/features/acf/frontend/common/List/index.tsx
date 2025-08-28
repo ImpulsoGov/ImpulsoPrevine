@@ -20,66 +20,8 @@ export type PrintStatesType = {
 };
 
 export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
-    // title,
-    // list,
     children,
 }) => {
-    //TODO: Esse codigo não deve ser removido, será utilizado quando a impressão for implementado
-    // const [isPrintModalVisible, setPrintModalVisibility] = useState(false);
-    // const closePrintModal = () => setPrintModalVisibility(false);
-
-    // const [inputValue, setInputValue] = useState<string>("");
-    // const [search, _setSearch] = useState<string>("");
-    // const handleSearchClick = () => setSearch(inputValue);
-    // const [printStates, setPrintStates] = useState<PrintStatesType>({
-    //     value,
-    //     list,
-    //     sorting,
-    //     search,
-    // });
-    // const propPrintGrouping = user?.perfis.includes(9)
-    //     ? propPrintGroupingCoeqFunction(list)
-    //     : propPrintGroupingCoapsFunction(list);
-
-    //atualiza a url
-    // value são os valores do filtro cujo estado foi movido para TableWithFilters
-    // useEffect(
-    //     () => urlSearchParamsHook(searchParams, sorting, router, value, list),
-    //     [
-    //         searchParams,
-    //         router,
-    //         value,
-    //         searchParams.toString,
-    //         router.push,
-    //         sorting,
-    //         list
-    //     ],
-    // );
-
-    // useEffect(() => {
-    //     setPrintStates({
-    //         value,
-    //         list,
-    //         sorting,
-    //         search,
-    //     });
-    // }, [user, value, list, sorting, search]);
-
-    // const handlePrintClick = () => {
-    //     if (user)
-    //         handlePrint(
-    //             value,
-    //             setPrintModalVisibility,
-    //             buildPrintProps(
-    //                 list,
-    //                 tableData.data, //resolver conflito de tipo depois
-    //                 user.perfis,
-    //                 value,
-    //                 ),
-    //         );
-    // };
-    // if (status === "loading") return <Spinner/>;
-
     return (
         <>
             <div
@@ -91,37 +33,6 @@ export const List: React.FC<React.PropsWithChildren<ListProps>> = ({
                     marginTop: "50px",
                 }}
             >
-                {/* <p
-                    style={{
-                        fontSize: "26px",
-                        margin: "75px 0 15px 0",
-                        lineHeight: "130%",
-                    }}
-                >
-                    {title}
-                </p> */}
-                {/* <div style={{ marginTop: "15px" }}>
-                    <ToolBarMounted
-                        updateDate={
-                            tableData.data[0]?.atualizacao_data &&
-                            typeof tableData.data[0].atualizacao_data !==
-                                "boolean"
-                                ? new Date(tableData.data[0].atualizacao_data)
-                                : undefined
-                        }
-                        // print={handlePrintClick}
-                        print={()=> alert("Impressão será implementada em breve")}
-                        inputProps={{
-                            value: inputValue,
-                            onChange: setInputValue,
-                        }}
-                        handleSearchClick={handleSearchClick}
-                    />
-                </div> */}
-                {/* <hr style={{ border: "1px solid #C6CFD4", margin: "0" }} /> */}
-                {/* <TableWithFilters>
-                    <PaginatedTable acfDashboardType={list} />
-                </TableWithFilters> */}
                 {children}
             </div>
             {/* {

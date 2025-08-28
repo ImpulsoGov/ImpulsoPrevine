@@ -78,7 +78,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
                                         <PrintModal
                                             modalLabels={apsLabelsModal}
                                             columns={coapsColumns}
-                                            serviceGetPage={
+                                            serviceGetData={
                                                 service.getCoapsPage
                                             }
                                         />
@@ -121,7 +121,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = async ({ list }) => {
                                         <PrintModal
                                             modalLabels={coeqLabelsModal}
                                             columns={coapsColumns}
-                                            serviceGetPage={
+                                            serviceGetData={
                                                 service.getCoapsPage
                                             }
                                         />

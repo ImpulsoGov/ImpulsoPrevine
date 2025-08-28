@@ -1,31 +1,18 @@
 "use client";
 import { ModalAlertControlled } from "@impulsogov/design-system";
 import type { ModalLabels } from "./model";
-import { useContext } from "react";
+import { type PropsWithChildren, useContext } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
 import { WithPrintModalContext } from "../WithPrintModal";
-import type { GridColDef } from "@mui/x-data-grid";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
-import type { PageResponses } from "@/features/acf/shared/schema";
-import type { ServiceGetPage } from "../DataTable";
 
-type PrintModalProps<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
-> = {
+type PrintModalProps = PropsWithChildren<{
     modalLabels: ModalLabels;
-    columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
-};
+}>;
 
-export const PrintModal = <
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
->({
+export const PrintModal = ({
     modalLabels,
-    columns,
-    serviceGetPage,
-}: PrintModalProps<TAppliedFilters, TResponse>): React.ReactNode => {
+    children,
+}: PrintModalProps): React.ReactNode => {
     const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
         WithPrintModalContext
     );
@@ -48,9 +35,9 @@ export const PrintModal = <
                     <CustomPrint
                         labels={modalLabels}
                         handleClose={closePrintModal}
-                        columns={columns}
-                        serviceGetPage={serviceGetPage}
-                    />
+                    >
+                        {children}
+                    </CustomPrint>
                 </ModalAlertControlled>
             </div>
         );

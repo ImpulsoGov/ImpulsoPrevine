@@ -1,7 +1,8 @@
-import type { PageResponses } from "@/features/acf/shared/schema";
+import type { DataResponses } from "@/features/acf/shared/schema";
 // import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
 import type { GridColDef } from "@mui/x-data-grid";
 import type { AxiosResponse, AxiosError } from "axios";
+import { JsonWebTokenError } from "jsonwebtoken";
 // import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 // import { NoSplit } from "./modules/NoSplit";
 // import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
@@ -12,7 +13,7 @@ export type PrintColumnsWidthProps = {
 };
 
 export type PrintTableProps = {
-    data: AxiosResponse<PageResponses> | AxiosError | null;
+    data: AxiosResponse<DataResponses> | AxiosError | null;
     columns: Array<GridColDef>;
     // list: string;
     // printColumnsWidth: PrintColumnsWidthProps;
@@ -41,7 +42,7 @@ export const PrintTable: React.FC<PrintTableProps> = ({
     //     propPrintGrouping,
     // } = listProps;
     // const teamSplit = SplitByTeam(data, propPrintGrouping);
-    return <h1>Print Table</h1>;
+    return <h1>Print Table and some {JSON.stringify(data)}</h1>;
     // return (
     //     <div
     //         key="print-table"
