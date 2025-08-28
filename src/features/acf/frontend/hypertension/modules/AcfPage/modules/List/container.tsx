@@ -6,7 +6,11 @@ import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
-import { CoapsDataTable } from "./modules/CoapsDataTable";
+import {
+    CoapsDataTable,
+    service,
+    coapsColumns,
+} from "./modules/CoapsDataTable";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { List } from "@/features/acf/frontend/common/List";
@@ -73,6 +77,10 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
                                     <WithCustomPrint>
                                         <PrintModal
                                             modalLabels={apsLabelsModal}
+                                            columns={coapsColumns}
+                                            serviceGetPage={
+                                                service.getCoapsPage
+                                            }
                                         />
                                     </WithCustomPrint>
                                 </WithPagination>
@@ -85,15 +93,19 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
     );
 };
 
-export const ContentCoeq: React.FC<ContentCoeqProps> = ({ list }) => {
+export const ContentCoeq: React.FC<ContentCoeqProps> = async ({ list }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
     // TODO: criar card de COAPS e FilterBarCoaps
+    const isPrintEnabled = await print();
     return (
         <>
             <List list={list}>
                 <CurrentQuadrimester />
                 <WithPrintModal>
-                    <WithSearch SearchComponent={SearchToolBar}>
+                    <WithSearch
+                        SearchComponent={SearchToolBar}
+                        isPrintEnabled={isPrintEnabled}
+                    >
                         <hr style={{ width: "100%" }} />
                         <WithSorting>
                             <FilterHint />
@@ -108,6 +120,10 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ list }) => {
                                     <WithCustomPrint>
                                         <PrintModal
                                             modalLabels={coeqLabelsModal}
+                                            columns={coapsColumns}
+                                            serviceGetPage={
+                                                service.getCoapsPage
+                                            }
                                         />
                                     </WithCustomPrint>
                                 </WithPagination>

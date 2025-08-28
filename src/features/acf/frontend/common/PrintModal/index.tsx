@@ -4,12 +4,28 @@ import type { ModalLabels } from "./model";
 import { useContext } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
 import { WithPrintModalContext } from "../WithPrintModal";
+import type { GridColDef } from "@mui/x-data-grid";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters/model";
+import type { PageResponses } from "@/features/acf/shared/schema";
+import type { ServiceGetPage } from "../DataTable";
 
-type PrintModalProps = {
+type PrintModalProps<
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+> = {
     modalLabels: ModalLabels;
+    columns: Array<GridColDef>;
+    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
 };
 
-export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
+export const PrintModal = <
+    TAppliedFilters extends AppliedFilters,
+    TResponse extends PageResponses,
+>({
+    modalLabels,
+    columns,
+    serviceGetPage,
+}: PrintModalProps<TAppliedFilters, TResponse>): React.ReactNode => {
     const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
         WithPrintModalContext
     );
@@ -32,6 +48,8 @@ export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
                     <CustomPrint
                         labels={modalLabels}
                         handleClose={closePrintModal}
+                        columns={columns}
+                        serviceGetPage={serviceGetPage}
                     />
                 </ModalAlertControlled>
             </div>
