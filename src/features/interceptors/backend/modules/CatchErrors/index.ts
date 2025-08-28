@@ -1,10 +1,10 @@
-import { ZodError } from "zod/v4";
-import type { Handler, HandlerWithContext } from "../common/Handler";
-import type { NextRequest } from "next/server";
 import {
     AuthenticationError,
     AuthorizationError,
 } from "@/features/errors/backend";
+import type { NextRequest } from "next/server";
+import { ZodError } from "zod/v4";
+import type { Handler, HandlerWithContext } from "../common/Handler";
 
 export const catchErrors = <TContext>(
     handler: Handler<TContext>

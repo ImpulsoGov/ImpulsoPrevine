@@ -13,3 +13,6 @@ export const compose = <TContext>(
         }, handler);
     };
 };
+
+//TODO: Fazer uma fn que compõe 2 interceptors
+// Retornar uma fn que recebe o handler e aplica um interceptor por vez
