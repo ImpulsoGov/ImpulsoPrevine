@@ -7,7 +7,6 @@ import React from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
-import { List } from "@/features/acf/frontend/common/List";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
@@ -15,6 +14,7 @@ import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { print } from "@/features/common/shared/flags";
 import { CurrentQuadrimester } from "../common/CurrentQuadrimester";
 import { FilterHint } from "../common/FilterHint";
+import { ListCoaps } from ".";
 
 type ContentCoapsProps = {
     list: AcfDashboardType;
@@ -34,7 +34,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
     const isPrintEnabled = await print();
     return (
         <>
-            <List list={list}>
+            <ListCoaps list={list}>
                 <CurrentQuadrimester />
                 <WithPrintModal>
                     <WithSearch
@@ -58,7 +58,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = async ({ list }) => {
                         </WithSorting>
                     </WithSearch>
                 </WithPrintModal>
-            </List>
+            </ListCoaps>
         </>
     );
 };

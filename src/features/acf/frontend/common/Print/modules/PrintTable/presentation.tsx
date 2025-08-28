@@ -2,7 +2,6 @@ import type { DataResponses } from "@/features/acf/shared/schema";
 // import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
 import type { GridColDef } from "@mui/x-data-grid";
 import type { AxiosResponse, AxiosError } from "axios";
-import { JsonWebTokenError } from "jsonwebtoken";
 // import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 // import { NoSplit } from "./modules/NoSplit";
 // import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
