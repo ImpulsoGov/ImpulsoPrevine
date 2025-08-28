@@ -1,9 +1,9 @@
-import type { NextRequest } from "next/server";
-import type { Handler, HandlerWithContext } from "../common/Handler";
-import type { ProfileIdValue } from "@/types/profile";
 import { AuthorizationError } from "@/features/errors/backend";
+import type { ProfileIdValue } from "@/types/profile";
 import type { JWTToken } from "@/utils/token";
 import { decodeToken, getEncodedSecret, getToken } from "@/utils/token";
+import type { NextRequest } from "next/server";
+import type { Handler, HandlerWithContext } from "../common/Handler";
 import { userHasAnyAllowedProfile } from "./modules/UserHasAnyAllowedProfile";
 
 export const allowProfiles = (profiles: Array<ProfileIdValue>) => {
