@@ -1,107 +1,98 @@
-import mixpanel from "mixpanel-browser";
+import { hypertensionNewProgram } from "@/features/common/shared/flags";
 
-type Menu = {
+export type Menu = {
     label: string;
     url: string;
-    sub?: Menu[];
+    sub?: Array<Menu>;
     onClick?: () => void;
+    telemetryEvent?: string;
 };
 
-const subMenuListasNominais = (visao: string): Menu[] => [
-    {
-        label: "Citopatológico",
-        url: `/busca-ativa/citopatologico?aba=${""}&sub_aba=0&visao=${visao}`,
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_lista_citopatologico",
-            }),
-    },
-    {
-        label: "Diabetes",
-        url: `/busca-ativa/diabeticos?aba=${""}&sub_aba=${""}&visao=${visao}`,
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_lista_diabetes",
-            }),
-    },
-    {
-        label: "Hipertensão",
-        url: `/busca-ativa/hipertensos?aba=${""}&sub_aba=${""}&visao=${visao}`,
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_lista_hipertensao",
-            }),
-    },
-    {
-        label: "Pré-Natal",
-        url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_lista_pre_natal",
-            }),
-    },
-    {
-        label: "Vacinação",
-        url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_lista_vacinacao",
-            }),
-    },
-];
+type Profile = "aps" | "equipe" | "";
 
-const loggedMenu = (session: any) => {
-    const menus: Menu[] = [
+const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
+    const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
+    return [
+        {
+            label: "Citopatológico",
+            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+            telemetryEvent: "acessar_lista_citopatologico",
+        },
+        {
+            label: "Diabetes",
+            url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
+            telemetryEvent: "acessar_lista_diabetes",
+        },
+        {
+            label: "Hipertensão",
+            url: `/busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
+            telemetryEvent: "acessar_lista_hipertensao",
+        },
+        ...(isHypertensionNewProgramEnabled
+            ? [
+                  {
+                      label: "👉 Cuidado da pessoa com Hipertensão [BETA]",
+                      url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
+                      telemetryEvent:
+                          "acessar_lista_cuidado_da_pessoa_com_hipertensao",
+                  },
+              ]
+            : []),
+        {
+            label: "Pré-Natal",
+            url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
+            telemetryEvent: "acessar_lista_pre_natal",
+        },
+        {
+            label: "Vacinação",
+            url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
+            telemetryEvent: "acessar_lista_vacinacao",
+        },
+    ];
+};
+
+const loggedMenu = async (
+    view: "aps" | "equipe" | null
+): Promise<Array<Menu>> => {
+    const menus: Array<Menu> = [
         {
             label: "Início",
             url: "/inicio",
-            onClick: () =>
-                mixpanel.track("menu_click", {
-                    menu_action: "acessar_pg_inicio",
-                }),
+            telemetryEvent: "acessar_pg_inicio",
         },
-    ];
-    if (
-        session?.user.perfis.includes(5) ||
-        session?.user.perfis.includes(8) ||
-        session?.user.perfis.includes(9)
-    )
-        menus.push({
+        {
             label: "Listas Nominais",
             url: "",
-            sub: subMenuListasNominais(
-                session.user.perfis.includes(5) ||
-                    session.user.perfis.includes(8)
-                    ? "aps"
-                    : "equipe"
-            ),
-        });
-    menus.push({
-        label: "Dados do SISAB",
-        url: "/analise",
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_dados_sisab",
-            }),
-    });
-    menus.push({
-        label: "Entenda os Novos Indicadores",
-        url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
-        onClick: () =>
-            mixpanel.track("menu_click", {
-                menu_action: "acessar_faq_novos_indicadores",
-            }),
-    });
+            sub: await subMenuListasNominais(view ?? ""),
+        },
+        {
+            label: "Dados do SISAB",
+            url: "/analise",
+            telemetryEvent: "acessar_pg_dados_sisab",
+        },
+        {
+            label: "Entenda os Novos Indicadores",
+            url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
+            telemetryEvent: "acessar_pg_faq_novos_indicadores",
+        },
+    ];
 
     return menus;
 };
-const notLoggedMenu = (res: any) => {
-    return [res.menus[0], res.menus[1]].concat([
+
+const notLoggedMenu = (): Array<Menu> => {
+    return [
+        { label: "Quem Somos", url: "/quem-somos" },
+        { label: "Dados do SISAB", url: "/analise" },
         { label: "Apoio aos Municípios", url: "/apoio" },
         { label: "FAQ", url: "/faq" },
         { label: "Blog", url: "/blog" },
-    ]);
+    ];
 };
 
-export const menuNavBar = (session: any, res: any) =>
-    session ? loggedMenu(session) : notLoggedMenu(res);
+export const menuNavBar = async (
+    view: "aps" | "equipe" | null
+): Promise<Array<Menu>> => {
+    const loggedMenuOptions = await loggedMenu(view);
+    return view ? loggedMenuOptions : notLoggedMenu();
+};
