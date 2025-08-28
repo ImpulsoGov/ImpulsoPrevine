@@ -10,20 +10,26 @@ export { SearchContext };
 type Props = {
     SearchComponent: React.FC<{
         onSearchTriggered: Dispatch<SetStateAction<string>>;
+        isPrintEnabled?: boolean;
     }>;
+    isPrintEnabled?: boolean;
 };
 
 type WithSearchProps = React.PropsWithChildren<Props>;
 
 export const WithSearch: React.FC<WithSearchProps> = ({
     SearchComponent,
+    isPrintEnabled,
     children,
 }) => {
     const [search, setSearch] = useState<string>("");
 
     return (
         <>
-            <SearchComponent onSearchTriggered={setSearch} />
+            <SearchComponent
+                onSearchTriggered={setSearch}
+                isPrintEnabled={isPrintEnabled}
+            />
             <SearchContext.Provider
                 value={{
                     searchString: search,

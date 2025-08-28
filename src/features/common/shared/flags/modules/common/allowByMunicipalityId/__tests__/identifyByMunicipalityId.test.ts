@@ -1,20 +1,20 @@
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { identify } from "..";
 import {
-    municipalityIdSusFromCookie,
-    municipalityIdSusFromHeader,
-} from "../logic";
+    propertyFromHeader,
+    propertyFromCookie,
+} from "@/features/common/shared/auth";
 
 // Mock das funções usadas internamente
-jest.mock("../logic");
+jest.mock("@/features/common/shared/auth");
 jest.mock("next-auth/jwt", () => ({}));
 jest.mock("jose", () => ({}));
 
-const mockHeader = municipalityIdSusFromHeader as jest.MockedFunction<
-    typeof municipalityIdSusFromHeader
+const mockHeader = propertyFromHeader as jest.MockedFunction<
+    typeof propertyFromHeader
 >;
-const mockCookie = municipalityIdSusFromCookie as jest.MockedFunction<
-    typeof municipalityIdSusFromCookie
+const mockCookie = propertyFromCookie as jest.MockedFunction<
+    typeof propertyFromCookie
 >;
 
 describe("identify", () => {
@@ -25,7 +25,7 @@ describe("identify", () => {
         process.env.NEXTAUTH_SECRET = "fake-secret";
     });
 
-    it("chama municipalityIdSusFromHeader quando o header 'authorization' está presente", async () => {
+    it("chama propertyFromHeader quando o header 'authorization' está presente", async () => {
         const authToken = "Bearer token";
         const expectedMunicipality = "123456";
 
@@ -34,12 +34,16 @@ describe("identify", () => {
 
         const result = await identify({ headers, cookies: mockCookies });
 
-        expect(mockHeader).toHaveBeenCalledWith(authToken, "fake-secret");
+        expect(mockHeader).toHaveBeenCalledWith(
+            authToken,
+            "fake-secret",
+            "municipio"
+        );
         expect(mockCookie).not.toHaveBeenCalled();
         expect(result).toBe(expectedMunicipality);
     });
 
-    it("chama municipalityIdSusFromCookie quando o header 'authorization' está ausente", async () => {
+    it("chama propertyFromCookie quando o header 'authorization' está ausente", async () => {
         const expectedMunicipality = "654321";
 
         const headers = new Headers(); // sem authorization
@@ -47,7 +51,11 @@ describe("identify", () => {
 
         const result = await identify({ headers, cookies: mockCookies });
 
-        expect(mockCookie).toHaveBeenCalledWith(mockCookies, "fake-secret");
+        expect(mockCookie).toHaveBeenCalledWith(
+            mockCookies,
+            "fake-secret",
+            "municipio_id_sus"
+        );
         expect(mockHeader).not.toHaveBeenCalled();
         expect(result).toBe(expectedMunicipality);
     });
