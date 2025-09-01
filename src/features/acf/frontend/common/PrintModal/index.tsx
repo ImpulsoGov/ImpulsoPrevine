@@ -1,15 +1,20 @@
 "use client";
 import { ModalAlertControlled } from "@impulsogov/design-system";
 import type { ModalLabels } from "./model";
-import { useContext } from "react";
+import { type PropsWithChildren, useContext } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
 import { WithPrintModalContext } from "../WithPrintModal";
 
-type PrintModalProps = {
+type PrintModalProps = PropsWithChildren<{
     modalLabels: ModalLabels;
-};
+    ref: React.RefObject<HTMLDivElement | null>;
+}>;
 
-export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
+export const PrintModal = ({
+    modalLabels,
+    ref,
+    children,
+}: PrintModalProps): React.ReactNode => {
     const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
         WithPrintModalContext
     );
@@ -25,14 +30,14 @@ export const PrintModal: React.FC<PrintModalProps> = ({ modalLabels }) => {
                     left: 0,
                 }}
             >
-                <ModalAlertControlled
-                    display={isPrintModalVisible}
-                    close={closePrintModal}
-                >
+                <ModalAlertControlled display={true} close={closePrintModal}>
                     <CustomPrint
                         labels={modalLabels}
                         handleClose={closePrintModal}
-                    />
+                        ref={ref}
+                    >
+                        {children}
+                    </CustomPrint>
                 </ModalAlertControlled>
             </div>
         );

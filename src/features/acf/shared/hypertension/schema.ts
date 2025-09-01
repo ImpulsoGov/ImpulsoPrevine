@@ -90,3 +90,4 @@ export type PageResponse = {
     page: Array<model.HypertensionAcfItem>;
     totalRows: number;
 };
+export type DataResponse = { data: Array<model.HypertensionAcfItem> };

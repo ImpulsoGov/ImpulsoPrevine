@@ -7,9 +7,10 @@ import { getServerSession } from "next-auth";
 import type { AcfDashboardType } from "../../../common/DashboardType";
 import { ErrorPage } from "../../../common/ErrorPage";
 import { PanelSelector } from "../../../common/PanelSelector";
+import { print } from "@/features/common/shared/flags";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
-import { ContentCoeq, ContentCoaps } from "./modules/List/container";
+import { ContentCoeq, ContentCoaps } from "./modules/List";
 import { getMunicipalityName } from "../../../common/MunicipalityName";
 import { sharedHeader, breadcrumb, textCoaps, textCoeq } from "./consts";
 
@@ -35,10 +36,12 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
         session?.user.municipio_id_sus ?? ""
     );
     const isCoeq = session?.user.perfis.includes(PROFILE_ID.COEQ);
+    const isPrintEnabled = await print();
+
     const content = isCoeq ? (
-        <ContentCoeq list={acfDashboardType} />
+        <ContentCoeq list={acfDashboardType} isPrintEnabled={isPrintEnabled} />
     ) : (
-        <ContentCoaps list={acfDashboardType} />
+        <ContentCoaps list={acfDashboardType} isPrintEnabled={isPrintEnabled} />
     );
     const header = {
         ...sharedHeader,
