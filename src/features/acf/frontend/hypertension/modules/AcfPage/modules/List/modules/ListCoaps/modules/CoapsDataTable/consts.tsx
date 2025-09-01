@@ -153,7 +153,7 @@ export const captionData = {
         },
         {
             label: "Em dia",
-            value: "a boa prática foi realizada no prazo e seguirá válida até o final do quadrimestre.",
+            value: "a boa prática está válida e segue até o final do quadrimestre.",
         },
     ],
 };
