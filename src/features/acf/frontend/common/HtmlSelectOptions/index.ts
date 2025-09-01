@@ -5,6 +5,6 @@ export const toHtmlSelectOptions = (
 ): Array<HtmlSelectOption> => {
     return filterValues.map<HtmlSelectOption>((item) => ({
         value: item,
-        label: item,
+        label: item ?? "",
     }));
 };
