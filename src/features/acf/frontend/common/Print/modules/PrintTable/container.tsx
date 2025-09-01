@@ -20,6 +20,7 @@ import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
 import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
 import type { DataResponses } from "@/features/acf/shared/schema";
 import type { GetDataParams } from "./service";
+import { printListProps } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps/modules/Print/consts";
 
 export type ServiceGetData<
     TAppliedFilters extends AppliedFilters,
@@ -79,6 +80,7 @@ type Props<
 > = {
     columns: Array<GridColDef>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
+    ref: React.RefObject<HTMLDivElement | null>;
 };
 
 export const Container = <
@@ -87,6 +89,7 @@ export const Container = <
 >({
     columns,
     serviceGetData,
+    ref,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
@@ -124,8 +127,9 @@ export const Container = <
         <PrintTable
             data={response}
             columns={columns}
-            // listProps
-            // appliedFilters={filters}
+            ref={ref}
+            printListProps={printListProps}
+            appliedFilters={filters}
         />
     );
 };

@@ -1,9 +1,10 @@
+"use client";
 import { SearchToolBar } from "@/features/acf/frontend/common/SearchToolBar";
 import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React from "react";
+import React, { useRef } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { coapsColumns, CoapsDataTable } from "./modules/CoapsDataTable";
@@ -36,43 +37,47 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
+    const ref = useRef<HTMLDivElement>(null);
     return (
         <>
             <ListCoaps list={list}>
-                <CurrentQuadrimester />
-                <WithSearch
-                    SearchComponent={SearchToolBar}
-                    isPrintEnabled={isPrintEnabled}
-                >
-                    <hr style={{ width: "100%" }} />
-                    <WithSorting>
-                        <FilterHint />
-                        <WithFilters
-                            initialSelectedValues={initialSelectedValuesCoaps}
-                            FiltersBar={CoapsFiltersBar}
+                <WithPrintModal>
+                    <WithCustomPrint>
+                        <CurrentQuadrimester />
+                        <WithSearch
+                            SearchComponent={SearchToolBar}
+                            isPrintEnabled={isPrintEnabled}
                         >
-                            <WithPagination>
-                                <CoapsDataTable />
-                                <WithPrintModal>
-                                    <WithCustomPrint>
+                            <hr style={{ width: "100%" }} />
+                            <WithSorting>
+                                <FilterHint />
+                                <WithFilters
+                                    initialSelectedValues={
+                                        initialSelectedValuesCoaps
+                                    }
+                                    FiltersBar={CoapsFiltersBar}
+                                >
+                                    <WithPagination>
+                                        <CoapsDataTable />
                                         <PrintModal
                                             modalLabels={apsLabelsModal}
+                                            ref={ref}
                                         >
                                             <PrintTable
                                                 columns={coapsColumns}
                                                 serviceGetData={getCoapsData}
                                                 // customization={customization}
 
-                                                // {...customization} ref={ref}
+                                                // {...customization}
+                                                ref={ref}
                                             />
                                         </PrintModal>
-                                    </WithCustomPrint>
-                                </WithPrintModal>
-                            </WithPagination>
-                        </WithFilters>
-                    </WithSorting>
-                </WithSearch>
+                                    </WithPagination>
+                                </WithFilters>
+                            </WithSorting>
+                        </WithSearch>
+                    </WithCustomPrint>
+                </WithPrintModal>
             </ListCoaps>
         </>
     );

@@ -7,10 +7,12 @@ import { WithPrintModalContext } from "../WithPrintModal";
 
 type PrintModalProps = PropsWithChildren<{
     modalLabels: ModalLabels;
+    ref: React.RefObject<HTMLDivElement | null>;
 }>;
 
 export const PrintModal = ({
     modalLabels,
+    ref,
     children,
 }: PrintModalProps): React.ReactNode => {
     const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
@@ -28,13 +30,11 @@ export const PrintModal = ({
                     left: 0,
                 }}
             >
-                <ModalAlertControlled
-                    display={isPrintModalVisible}
-                    close={closePrintModal}
-                >
+                <ModalAlertControlled display={true} close={closePrintModal}>
                     <CustomPrint
                         labels={modalLabels}
                         handleClose={closePrintModal}
+                        ref={ref}
                     >
                         {children}
                     </CustomPrint>
