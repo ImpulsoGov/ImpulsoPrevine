@@ -66,9 +66,6 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                             <PrintTable
                                                 columns={coapsColumns}
                                                 serviceGetData={getCoapsData}
-                                                // customization={customization}
-
-                                                // {...customization}
                                                 ref={ref}
                                             />
                                         </PrintModal>

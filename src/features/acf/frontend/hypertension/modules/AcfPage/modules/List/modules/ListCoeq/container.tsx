@@ -3,15 +3,19 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React from "react";
+import React, { useRef } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
-import { CoeqDataTable } from "./modules/CoeqDataTable";
+import { coeqColumns, CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "../common/CurrentQuadrimester";
 import { FilterHint } from "../common/FilterHint";
 
 import { ListCoeq } from ".";
+import { PrintTable } from "@/features/acf/frontend/common/Print";
+import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
+import { coeqLabelsModal } from "./modules/Print/consts";
+import { getCoeqData } from "./modules/Print/service";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -30,9 +34,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
-    // TODO: criar card de COAPS e FilterBarCoaps
-    // const isPrintEnabled = await print();
+    const ref = useRef<HTMLDivElement>(null);
     return (
         <>
             <ListCoeq list={list}>
@@ -50,6 +52,16 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                         >
                             <WithPagination>
                                 <CoeqDataTable />
+                                <PrintModal
+                                    modalLabels={coeqLabelsModal}
+                                    ref={ref}
+                                >
+                                    <PrintTable
+                                        columns={coeqColumns}
+                                        serviceGetData={getCoeqData}
+                                        ref={ref}
+                                    />
+                                </PrintModal>
                             </WithPagination>
                         </WithFilters>
                     </WithSorting>

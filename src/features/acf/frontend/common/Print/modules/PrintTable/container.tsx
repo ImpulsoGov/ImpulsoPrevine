@@ -129,7 +129,6 @@ export const Container = <
             columns={columns}
             ref={ref}
             printListProps={printListProps}
-            appliedFilters={filters}
         />
     );
 };
