@@ -5,6 +5,7 @@ import { Caption } from "@/features/acf/frontend/common/Caption";
 import { captionData, coapsColumns } from "./consts";
 
 export type { CoapsAppliedFilters } from "./model";
+export { coapsColumns, service };
 
 export const CoapsDataTable: React.FC = () => {
     return (

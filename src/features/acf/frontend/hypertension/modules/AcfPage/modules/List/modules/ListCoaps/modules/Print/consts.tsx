@@ -1,0 +1,50 @@
+import type {
+    ModalLabels,
+    PrintListProps,
+} from "@/features/acf/frontend/common/PrintModal/model";
+
+export const apsLabelsModal: ModalLabels = {
+    title: "IMPRESSÃO POR EQUIPES",
+    primaryCustomOption: {
+        title: "Deseja imprimir as listas divididas por Equipes?",
+        description:
+            "Essa impressão agrupa os cidadãos de acordo com as Equipes correspondentes. Qualquer filtro ou ordenação selecionados anteriormente serão mantidos e aplicados dentro desses grupos.",
+        splitTeam: "Sim, dividir listas por equipes.",
+        noSplit: "Não, imprimir a lista como ela está.",
+    },
+    secondaryCustomOption: {
+        title: "Outras opções de impressão por equipes:",
+        recommendation:
+            "Ideal para distribuir listas para coordenadoras de equipe",
+        splitGroupPerPage: "Também dividir equipes em folhas separadas",
+        ordering: "Também ordenar listas por profissional responsável",
+    },
+    button: "IMPRIMIR LISTA",
+};
+
+export const printListProps: PrintListProps = {
+    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    printColumnsWidth: {
+        col1: "100px",
+        col2: "200px",
+        col3: "300px",
+    },
+    verticalDivider: [2, 6],
+    printCaption: [
+        <div>
+            <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
+            do cidadão.
+        </div>,
+        <div>
+            <b>PA:</b> Pressão Arterial
+        </div>,
+    ],
+    filtersLabels: {
+        appointmentStatusByQuarter: "Consulta",
+        careTeamName: "Equipe",
+        latestExamRequestStatusByQuarter: "Afericão de PA",
+        microAreaName: "Microárea",
+        patientAgeRange: "Faixa Etária",
+    },
+    propPrintGrouping: "communityHealthWorker ",
+};

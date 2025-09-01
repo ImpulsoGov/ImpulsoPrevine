@@ -5,7 +5,7 @@ import { DataTable } from "@features/acf/frontend/common/DataTable";
 import { coeqColumns, captionData } from "./consts";
 
 export type { CoeqAppliedFilters } from "./model";
-
+export { coeqColumns };
 export const CoeqDataTable: React.FC = () => {
     return (
         <>

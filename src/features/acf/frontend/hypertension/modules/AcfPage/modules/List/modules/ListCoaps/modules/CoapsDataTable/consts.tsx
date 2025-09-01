@@ -1,15 +1,15 @@
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { RenderStatusByQuarterTag } from "../common/RenderStatusByQuarterTag";
 import type {
     AppointmentStatusByQuarterText,
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
-import { RenderPatientNameCpfCns } from "../common/RenderPatientNameCpfCns";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
-import { microAreaFormatter } from "../common/MicroAreaFormatter";
-import { phoneNumberFormatter } from "../common/PhoneNumberFormatter";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
+import { RenderPatientNameCpfCns } from "../../../common/RenderPatientNameCpfCns";
+import { RenderStatusByQuarterTag } from "../../../common/RenderStatusByQuarterTag";
 
 export const coapsColumns: Array<GridColDef> = [
     {

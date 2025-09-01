@@ -39,7 +39,7 @@ type GetPageParams<TAppliedFilters extends AppliedFilters> = {
     search?: string;
 };
 
-type ServiceGetPage<
+export type ServiceGetPage<
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponses,
 > = (

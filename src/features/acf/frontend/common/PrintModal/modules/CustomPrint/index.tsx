@@ -1,9 +1,10 @@
-import React, { useContext, useRef } from "react";
+import type { PropsWithChildren } from "react";
+import React, { useContext } from "react";
 import { ButtonColorSubmitIcon } from "@impulsogov/design-system";
 import style from "./CustomPrint.module.css";
+//TODO: Ajustar imports relativos
 import type { ModalLabels } from "../../model";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
-import { ComponentTest } from "../../../Print/modules/ComponentTest";
 import { Print } from "../../../Print/RenderPrint";
 import { PrintModalContent } from "./modules/PrintModalContent";
 
@@ -24,17 +25,19 @@ const DEFAULT_LABELS: ModalLabels = {
     button: "IMPRIMIR",
 };
 
-type Props = {
+type Props = PropsWithChildren<{
     labels?: ModalLabels;
     handleClose: () => void;
-};
+    ref: React.RefObject<HTMLDivElement | null>;
+}>;
 
 export const CustomPrint: React.FC<Props> = ({
     labels = DEFAULT_LABELS,
     handleClose,
+    ref,
+    children,
 }) => {
     const { customization, setCustomization } = useContext(CustomPrintContext);
-    const ref = useRef<HTMLDivElement>(null);
 
     const onPrintClick = (): void => {
         const htmlString = ref.current?.innerHTML || "";
@@ -55,7 +58,7 @@ export const CustomPrint: React.FC<Props> = ({
                     onPrintClick={onPrintClick}
                 />
             </div>
-            <ComponentTest {...customization} ref={ref} />
+            {children}
         </>
     );
 };
