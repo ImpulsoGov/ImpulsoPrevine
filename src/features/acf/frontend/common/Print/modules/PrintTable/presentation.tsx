@@ -42,8 +42,6 @@ export const PrintTable: React.FC<PrintTableProps> = ({
         propPrintGrouping,
     } = printListProps;
     // const teamSplit = SplitByTeam(data, propPrintGrouping);
-    console.log(data);
-    console.log(columns);
     const { customization } = useContext(CustomPrintContext);
     const isDataSplit = customization.grouping;
     const isPageSplit = customization.splitGroupPerPage;
