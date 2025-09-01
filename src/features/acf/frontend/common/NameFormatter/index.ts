@@ -19,7 +19,7 @@ export const teamNameFormatter = (value: string | undefined): string => {
 
     const namePieces = value.split(" ");
 
-    const formattedNames = namePieces.map((piece, index) => {
+    const formattedNames = namePieces.map((piece) => {
         const upperPiece = piece.toUpperCase();
         const lowerPiece = piece.toLowerCase();
 
