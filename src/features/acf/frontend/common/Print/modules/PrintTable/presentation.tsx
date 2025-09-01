@@ -5,7 +5,7 @@ import type { AxiosResponse, AxiosError } from "axios";
 import { useContext } from "react";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
 import type { PrintListProps } from "../../../PrintModal/model";
-import type { AppliedFilters } from "../../../WithFilters";
+// import type { AppliedFilters } from "../../../WithFilters";
 // import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";

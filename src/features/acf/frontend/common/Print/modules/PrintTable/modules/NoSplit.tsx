@@ -1,16 +1,15 @@
-import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
-import { PageHeader } from "./PageHeader";
-import { UnitTable } from "./UnitTable";
-import type { ExtendedGridColDef } from "./UnitTable";
-import type { DataItem } from "@/utils/FilterData";
+// import { UnitTable } from "./UnitTable";
+import type { DataResponses } from "@/features/acf/shared/schema";
+// import type { ExtendedGridColDef } from "./UnitTable";
+import type { AxiosResponse, AxiosError } from "axios";
 import type { PropsWithChildren } from "react";
+import React from "react";
 
 export type NoSplitProps = PropsWithChildren<{
-    data?: DataItem[];
+    data?: AxiosResponse<DataResponses> | AxiosError | null;
     table?: {
-        columns: ExtendedGridColDef[];
-        auxiliaryLists?: Record<string, Record<string, string>>;
-        verticalDivider: number[];
+        // columns: Array<ExtendedGridColDef>;
+        verticalDivider: Array<number>;
         printColumnsWidth: {
             landscape: Record<string, string>;
             portrait: Record<string, string>;
@@ -18,14 +17,14 @@ export type NoSplitProps = PropsWithChildren<{
     };
 }>;
 
-export const NoSplit = ({
+export const NoSplit: React.FC<NoSplitProps> = ({
     // data,
     // header,
     // table,
     // fontFamily = "sans-serif",
     // printLegend,
     children,
-}: NoSplitProps) => {
+}) => {
     return (
         <div
             style={{

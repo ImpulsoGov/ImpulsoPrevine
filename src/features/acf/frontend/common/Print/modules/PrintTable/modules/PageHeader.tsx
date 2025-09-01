@@ -8,7 +8,7 @@ export type PageHeaderProps = {
     // latestProductionDate: string;
     listTitle: string;
     printCaption?: Array<ReactElement>;
-    equipesDivididas?: boolean;
+    // equipesDivididas?: boolean;
     filtersLabels: Record<string, string>;
 };
 
@@ -18,7 +18,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     // latestProductionDate, não vamos usar agora
     listTitle,
     printCaption = [],
-    equipesDivididas = false,
+    // equipesDivididas = false,
 }) => {
     const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
     const appliedFilters = filtersContext || {};
