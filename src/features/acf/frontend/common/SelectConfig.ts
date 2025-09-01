@@ -1,6 +1,6 @@
 export type HtmlSelectOption = {
-    value: string;
-    label: string;
+    value: string | null;
+    label: string | null;
 };
 
 export type SelectConfig = {

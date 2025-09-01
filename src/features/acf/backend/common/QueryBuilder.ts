@@ -4,8 +4,7 @@ import type { AreKeysNullable } from "@/features/common/shared/types";
 type BaseWhereInput = {
     municipalitySusId: string;
 };
-
-export type BaseFilters = Record<string, ReadonlyArray<unknown>>;
+type BaseFilters = Record<string, ReadonlyArray<unknown>>;
 
 export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     where: TPrismaWhereInput,
