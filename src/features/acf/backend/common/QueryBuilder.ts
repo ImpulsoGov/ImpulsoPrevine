@@ -5,22 +5,45 @@ type BaseWhereInput = {
     municipalitySusId: string;
 };
 
-type BaseFilters = Record<string, ReadonlyArray<unknown>>;
+export type BaseFilters = Record<string, ReadonlyArray<unknown>>;
 
-const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
+export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     where: TPrismaWhereInput,
     filter: TFilters,
     field: keyof TFilters
 ): TPrismaWhereInput => {
-    if (filter[field].length > 0) {
+    const values = filter[field] as ReadonlyArray<string | null>;
+    if (values.length === 0) {
+        return where;
+    }
+
+    const nonNulls = values.filter(
+        (value): value is string => typeof value === "string"
+    );
+
+    const hasNull = values.includes(null);
+
+    if (nonNulls.length > 0 && hasNull) {
+        return {
+            ...where,
+            OR: [{ [field]: { in: nonNulls } }, { [field]: null }],
+        };
+    }
+    if (nonNulls.length > 0) {
         return {
             ...where,
             [field]: {
-                in: filter[field],
+                in: nonNulls,
             },
         };
     }
 
+    if (hasNull) {
+        return {
+            ...where,
+            [field]: null,
+        };
+    }
     return where;
 };
 
