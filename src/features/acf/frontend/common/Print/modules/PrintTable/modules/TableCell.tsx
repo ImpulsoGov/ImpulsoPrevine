@@ -8,12 +8,6 @@ export type TableCellProps = {
     layoutOrientation: "landscape" | "portrait";
 };
 
-export type TableCellContentProps = {
-    item: AllPagesResponse;
-    coluna: ColumnsProps;
-    layoutOrientation: "landscape" | "portrait";
-};
-
 export const TableCell: React.FC<TableCellProps> = ({
     item,
     columns,
