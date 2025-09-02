@@ -19,7 +19,6 @@ export const MultipleTeamsPerPage = <TResponse extends AllPagesResponse>({
     propSplit,
 }: MultipleTeamsPerPageProps<TResponse>): ReactNode => {
     const splitedByProp = SplitByProp(data, propSplit);
-    console.log(splitedByProp);
     return (
         <div key="multiple-teams-per-page">
             {children}

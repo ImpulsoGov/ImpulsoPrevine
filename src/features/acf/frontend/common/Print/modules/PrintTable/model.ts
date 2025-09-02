@@ -1,12 +1,6 @@
 import type { AllPagesResponse } from "@/features/acf/shared/schema";
 import type { ReactElement } from "react";
 
-//TODO: Rever esse tipo
-export type PrintColumnsWidthProps = {
-    portrait: Record<keyof AllPagesResponse, string>;
-    landscape: Record<keyof AllPagesResponse, string>;
-};
-
 // TODO: adicionar generics nos tipos que usam AllPagesResponse
 export type PrintListProps = {
     listTitle: string;
