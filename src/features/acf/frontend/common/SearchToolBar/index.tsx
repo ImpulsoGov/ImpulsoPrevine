@@ -27,9 +27,6 @@ export const SearchToolBar: React.FC<Props> = ({
     const { setIsPrintModalVisible, isPrintModalVisible } = useContext(
         WithPrintModalContext
     );
-    useEffect(() => {
-        console.log({ isPrintModalVisible });
-    }, [isPrintModalVisible]);
     return (
         <ListToolBar>
             <>
@@ -39,7 +36,6 @@ export const SearchToolBar: React.FC<Props> = ({
                     print={
                         isPrintEnabled
                             ? (): void => {
-                                  console.log("print");
                                   setIsPrintModalVisible(true);
                               }
                             : showBackdoorGuide

@@ -19,7 +19,6 @@ export const TableCell: React.FC<TableCellProps> = ({
     columns,
     layoutOrientation,
 }) => {
-    console.log(item);
     return columns.map((column, index) => {
         return (
             <td
