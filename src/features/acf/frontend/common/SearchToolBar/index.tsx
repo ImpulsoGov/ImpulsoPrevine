@@ -1,11 +1,6 @@
 "use client";
 import { ListToolBar } from "@impulsogov/design-system";
-import {
-    useContext,
-    useEffect,
-    type Dispatch,
-    type SetStateAction,
-} from "react";
+import { useContext, type Dispatch, type SetStateAction } from "react";
 // import { LastUpdatedCard } from "./modules/LastUpdatedCard";
 import { SearchBar } from "./modules/SearchBar";
 import { PrintButton } from "./modules/PrintButton";
@@ -24,9 +19,7 @@ export const SearchToolBar: React.FC<Props> = ({
     onSearchTriggered,
     isPrintEnabled,
 }) => {
-    const { setIsPrintModalVisible, isPrintModalVisible } = useContext(
-        WithPrintModalContext
-    );
+    const { setIsPrintModalVisible } = useContext(WithPrintModalContext);
     return (
         <ListToolBar>
             <>

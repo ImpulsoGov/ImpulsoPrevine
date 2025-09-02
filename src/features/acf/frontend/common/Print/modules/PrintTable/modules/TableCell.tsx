@@ -1,11 +1,14 @@
 import type { AllPagesResponse } from "@/features/acf/shared/schema";
-import type { ColumnsProps } from "../../../../PrintModal/model";
+import type {
+    ColumnsProps,
+    LayoutOrientation,
+} from "../../../../PrintModal/model";
 import React from "react";
 
 export type TableCellProps = {
     item: AllPagesResponse;
     columns: Array<ColumnsProps>;
-    layoutOrientation: "landscape" | "portrait";
+    layoutOrientation: LayoutOrientation;
 };
 
 export const TableCell: React.FC<TableCellProps> = ({

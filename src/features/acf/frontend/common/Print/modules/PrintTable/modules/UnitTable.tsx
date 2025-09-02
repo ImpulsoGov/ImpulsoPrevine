@@ -2,12 +2,15 @@ import { Thead } from "./Thead";
 import { TableCell } from "./TableCell";
 import { simpleHash } from "@helpers/lista-nominal/impressao/simpleHash";
 import type { AllPagesResponses } from "@/features/acf/shared/schema";
-import type { ColumnsProps } from "../../../../PrintModal/model";
+import type {
+    ColumnsProps,
+    LayoutOrientation,
+} from "../../../../PrintModal/model";
 
 export type UnitTableProps<TResponse extends AllPagesResponses> = {
     data: TResponse;
     columns: Array<ColumnsProps>;
-    layoutOrientation: "landscape" | "portrait";
+    layoutOrientation: LayoutOrientation;
 };
 
 export const UnitTable = <TResponse extends AllPagesResponses>({

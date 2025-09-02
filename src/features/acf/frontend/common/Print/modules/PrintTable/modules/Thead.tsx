@@ -1,8 +1,12 @@
-import type { ColumnsProps } from "../../../../PrintModal/model";
+// TODO: rever esse import
+import type {
+    ColumnsProps,
+    LayoutOrientation,
+} from "../../../../PrintModal/model";
 
 export type TheadProps = {
     columns: Array<ColumnsProps>;
-    layoutOrientation: "landscape" | "portrait";
+    layoutOrientation: LayoutOrientation;
 };
 
 export const Thead: React.FC<TheadProps> = ({ columns, layoutOrientation }) => (

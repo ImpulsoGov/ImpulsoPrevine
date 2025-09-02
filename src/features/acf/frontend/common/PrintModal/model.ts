@@ -43,3 +43,5 @@ export type ColumnsProps = {
     verticalDivider?: boolean;
     renderCell?: RenderCell;
 };
+
+export type LayoutOrientation = "landscape" | "portrait";
