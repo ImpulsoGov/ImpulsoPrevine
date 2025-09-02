@@ -25,6 +25,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 135,
         headerAlign: "left",
         align: "left",
+        headerName: "Data última consulta",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data última <br />
@@ -38,7 +39,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 207,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que renderiza tags
+        headerName: "Situação consulta no quadrimestre",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação consulta <br />
@@ -57,6 +58,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 156,
         headerAlign: "left",
         align: "left",
+        headerName: "Data da última aferição de PA",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última
@@ -71,6 +73,7 @@ export const coeqColumns: Array<GridColDef> = [
         width: 209,
         headerAlign: "left",
         align: "left",
+        headerName: "Situação aferição de PA no quadrimestre",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação aferição de

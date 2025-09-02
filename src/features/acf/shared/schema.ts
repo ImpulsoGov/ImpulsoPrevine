@@ -9,4 +9,5 @@ export type FilterResponses =
     | Hypertension.CoeqFilters;
 
 export type PageResponses = Diabetes.PageResponse | Hypertension.PageResponse;
-export type DataResponses = Hypertension.DataResponse;
+export type AllPagesResponses = Hypertension.DataResponse;
+export type AllPagesResponse = AllPagesResponses[number];

@@ -5,7 +5,7 @@ import { PrintTable } from "./presentation";
 import type { Session } from "next-auth";
 import type { AxiosError, AxiosResponse } from "axios";
 import { isAxiosError } from "axios";
-import type { GridColDef, GridSortItem } from "@mui/x-data-grid";
+import type { GridSortItem } from "@mui/x-data-grid";
 import {
     useContext,
     useEffect,
@@ -18,20 +18,21 @@ import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting";
 import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
 import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
-import type { DataResponses } from "@/features/acf/shared/schema";
+import type { AllPagesResponses } from "@/features/acf/shared/schema";
 import type { GetDataParams } from "./service";
 import { printListProps } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps/modules/Print/consts";
+import type { ColumnsProps } from "../../../PrintModal/model";
 
 export type ServiceGetData<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
+    TResponse extends AllPagesResponses,
 > = (
     params: GetDataParams<TAppliedFilters>
 ) => Promise<AxiosResponse<TResponse>>;
 
 const fetchData = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
+    TResponse extends AllPagesResponses,
 >(
     session: Session | null,
     gridSortingModel: GridSortItem,
@@ -76,16 +77,16 @@ const fetchData = <
 
 type Props<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
+    TResponse extends AllPagesResponses,
 > = {
-    columns: Array<GridColDef>;
+    columns: Array<ColumnsProps>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
     ref: React.RefObject<HTMLDivElement | null>;
 };
 
 export const Container = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
+    TResponse extends AllPagesResponses,
 >({
     columns,
     serviceGetData,
@@ -123,12 +124,13 @@ export const Container = <
         );
     }
 
-    return (
-        <PrintTable
-            data={response}
-            columns={columns}
-            ref={ref}
-            printListProps={printListProps}
-        />
-    );
+    if (response !== null)
+        return (
+            <PrintTable
+                data={response.data}
+                columns={columns}
+                ref={ref}
+                printListProps={printListProps}
+            />
+        );
 };

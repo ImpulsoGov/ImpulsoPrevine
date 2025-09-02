@@ -23,6 +23,7 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
+        headerName: "Data da última consulta",
         width: 135,
         headerAlign: "left",
         align: "left",
@@ -37,6 +38,7 @@ export const coapsColumns: Array<GridColDef> = [
     {
         field: "appointmentStatusByQuarter",
         width: 207,
+        headerName: "Situação consulta no quadrimestre",
         headerAlign: "left",
         align: "left",
         renderHeader: () => (
@@ -56,6 +58,7 @@ export const coapsColumns: Array<GridColDef> = [
         field: "latestExamRequestDate",
         width: 156,
         headerAlign: "left",
+        headerName: "Data da última aferição de PA",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
@@ -70,6 +73,7 @@ export const coapsColumns: Array<GridColDef> = [
         field: "latestExamRequestStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerName: "Situação aferição de PA no quadrimestre",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">

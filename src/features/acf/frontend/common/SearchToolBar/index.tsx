@@ -1,6 +1,11 @@
 "use client";
 import { ListToolBar } from "@impulsogov/design-system";
-import { useContext, type Dispatch, type SetStateAction } from "react";
+import {
+    useContext,
+    useEffect,
+    type Dispatch,
+    type SetStateAction,
+} from "react";
 // import { LastUpdatedCard } from "./modules/LastUpdatedCard";
 import { SearchBar } from "./modules/SearchBar";
 import { PrintButton } from "./modules/PrintButton";
@@ -19,7 +24,12 @@ export const SearchToolBar: React.FC<Props> = ({
     onSearchTriggered,
     isPrintEnabled,
 }) => {
-    const { setIsPrintModalVisible } = useContext(WithPrintModalContext);
+    const { setIsPrintModalVisible, isPrintModalVisible } = useContext(
+        WithPrintModalContext
+    );
+    useEffect(() => {
+        console.log({ isPrintModalVisible });
+    }, [isPrintModalVisible]);
     return (
         <ListToolBar>
             <>
@@ -29,6 +39,7 @@ export const SearchToolBar: React.FC<Props> = ({
                     print={
                         isPrintEnabled
                             ? (): void => {
+                                  console.log("print");
                                   setIsPrintModalVisible(true);
                               }
                             : showBackdoorGuide
