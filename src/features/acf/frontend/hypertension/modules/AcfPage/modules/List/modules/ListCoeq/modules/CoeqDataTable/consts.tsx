@@ -38,7 +38,6 @@ export const coeqColumns: Array<GridColDef> = [
         width: 207,
         headerAlign: "left",
         align: "left",
-        // TODO: implementar função que renderiza tags
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Situação consulta <br />

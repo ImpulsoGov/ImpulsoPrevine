@@ -1,30 +1,24 @@
-import type { DataResponses } from "@/features/acf/shared/schema";
 // import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
-import type { GridColDef } from "@mui/x-data-grid";
-import type { AxiosResponse, AxiosError } from "axios";
 import { useContext } from "react";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
-import type { PrintListProps } from "../../../PrintModal/model";
+import type { ColumnsProps, PrintListProps } from "../../../PrintModal/model";
 // import type { AppliedFilters } from "../../../WithFilters";
 // import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
+import { UnitTable } from "./modules/UnitTable";
+import type { AllPagesResponses } from "@/features/acf/shared/schema";
 // import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
 
-export type PrintColumnsWidthProps = {
-    portrait: Record<string, string>;
-    landscape: Record<string, string>;
-};
-
-export type PrintTableProps = {
-    data: AxiosResponse<DataResponses> | AxiosError | null;
-    columns: Array<GridColDef>;
+export type PrintTableProps<TResponse> = {
+    data: TResponse;
+    columns: Array<ColumnsProps>;
     ref: React.RefObject<HTMLDivElement | null>;
     printListProps: PrintListProps;
     // filtersLabels: Record<string, string>;
 };
 
-export const PrintTable: React.FC<PrintTableProps> = ({
+export const PrintTable = <TResponse extends AllPagesResponses>({
     data,
     columns,
     ref,
@@ -32,15 +26,9 @@ export const PrintTable: React.FC<PrintTableProps> = ({
     // dataSplit, //pode consumido via context withCustomPrint
     // pageSplit, //pode consumido via context withCustomPrint
     // auxiliaryLists, //rever o uso
-}) => {
-    const {
-        listTitle,
-        printColumnsWidth,
-        verticalDivider,
-        printCaption,
-        filtersLabels,
-        propPrintGrouping,
-    } = printListProps;
+}: PrintTableProps<TResponse>): React.ReactNode => {
+    const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
+        printListProps;
     // const teamSplit = SplitByTeam(data, propPrintGrouping);
     const { customization } = useContext(CustomPrintContext);
     const isDataSplit = customization.grouping;
@@ -104,19 +92,21 @@ export const PrintTable: React.FC<PrintTableProps> = ({
             )} */}
             {!(isDataSplit || isPageSplit) && (
                 <>
-                    <NoSplit
-                    // data={data}
-                    // table={{
-                    //     columns: columns,
-                    //     auxiliaryLists: auxiliaryLists,
-                    //     printColumnsWidth: printColumnsWidth,
-                    //     verticalDivider: verticalDivider,
-                    // }}
-                    >
+                    <NoSplit>
                         <PageHeader
                             filtersLabels={filtersLabels}
                             listTitle={listTitle}
                             printCaption={printCaption}
+                        />
+                        <UnitTable
+                            data={data}
+                            columns={columns}
+                            layoutOrientation="landscape"
+                        />
+                        <UnitTable
+                            data={data}
+                            columns={columns}
+                            layoutOrientation="portrait"
                         />
                     </NoSplit>
                 </>

@@ -7,7 +7,7 @@ import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useRef } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
-import { coapsColumns, CoapsDataTable } from "./modules/CoapsDataTable";
+import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CurrentQuadrimester } from "../common/CurrentQuadrimester";
 import { FilterHint } from "../common/FilterHint";
@@ -16,7 +16,7 @@ import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
-import { apsLabelsModal } from "./modules/Print/consts";
+import { apsLabelsModal, columns } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
 
 type ContentCoapsProps = {
@@ -64,7 +64,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                             ref={ref}
                                         >
                                             <PrintTable
-                                                columns={coapsColumns}
+                                                columns={columns}
                                                 serviceGetData={getCoapsData}
                                                 ref={ref}
                                             />

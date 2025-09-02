@@ -28,12 +28,7 @@ const handler = async (
     });
 
     //TODO adicionar schema de saida
-    return Response.json(
-        {
-            data,
-        },
-        { status: 200 }
-    );
+    return Response.json(data, { status: 200 });
 };
 
 const composed = interceptors.compose(

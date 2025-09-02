@@ -8,6 +8,7 @@ const allowedIds = [
     "7cef18ab-5d7c-436c-bf10-8b9891b932b8",
     "3fabf432-deba-471f-8ec9-0b1cd446fb31",
     "a4a2bea5-fe36-4cab-943a-5708b234a13a",
+    "b88a10e5-66bb-4032-bb47-437b7004c16b",
 ];
 
 export const print = flag<boolean, UserId>({
