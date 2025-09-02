@@ -7,6 +7,7 @@ export type PrintColumnsWidthProps = {
     landscape: Record<keyof AllPagesResponse, string>;
 };
 
+// TODO: adicionar generics nos tipos que usam AllPagesResponse
 export type PrintListProps = {
     listTitle: string;
     propPrintGrouping: keyof AllPagesResponse;
