@@ -19,9 +19,9 @@ describe("microAreaFormatter", () => {
         expect(microAreaFormatter(string)).toBe(expectedString);
     });
 
-    it("Deve retornar '-' quando alguma coisa diferente de um numero ou da string 'FA'so acontece", () => {
+    it("Deve retornar 'Sem microárea' quando alguma coisa diferente de um numero ou da string 'FA'so acontece", () => {
         const nullValue = null;
-        const expectedString = "-";
+        const expectedString = "Sem microárea";
         expect(microAreaFormatter(nullValue)).toBe(expectedString);
     });
 });

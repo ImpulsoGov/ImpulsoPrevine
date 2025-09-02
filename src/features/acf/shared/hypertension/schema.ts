@@ -4,7 +4,7 @@ import { z } from "zod/v4";
 export const careTeamName = z.string();
 export type CareTeamName = z.infer<typeof careTeamName>;
 
-export const microArea = z.string();
+export const microArea = z.string().nullable();
 export type MicroArea = z.infer<typeof microArea>;
 
 export const appointmentStatusByQuarter = z.enum(

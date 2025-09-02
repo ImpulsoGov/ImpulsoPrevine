@@ -6,5 +6,5 @@ export const microAreaFormatter = (
         return `Área ${parsed.toString()}`;
     }
     if (areaCode === "FA") return "Fora de área";
-    return "-";
+    return "Sem microárea";
 };

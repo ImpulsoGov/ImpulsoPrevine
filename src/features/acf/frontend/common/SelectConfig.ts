@@ -1,5 +1,5 @@
 export type HtmlSelectOption = {
-    value: string;
+    value: string | null;
     label: string;
 };
 
