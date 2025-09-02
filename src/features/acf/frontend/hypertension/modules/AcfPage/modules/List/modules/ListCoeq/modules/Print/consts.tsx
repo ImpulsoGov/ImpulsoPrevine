@@ -4,6 +4,8 @@ import type {
     PrintListProps,
 } from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
+import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoeq";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR PROFISSIONAL RESPONSÁVEL",
@@ -24,7 +26,10 @@ export const coeqLabelsModal: ModalLabels = {
     button: "IMPRIMIR LISTA",
 };
 
-export const printListProps: PrintListProps = {
+export const printListProps: PrintListProps<
+    HypertensionAcfItem,
+    CoeqAppliedFilters
+> = {
     listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
@@ -37,7 +42,6 @@ export const printListProps: PrintListProps = {
     ],
     filtersLabels: {
         appointmentStatusByQuarter: "Consulta",
-        careTeamName: "Equipe",
         latestExamRequestStatusByQuarter: "Afericão de PA",
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
@@ -45,7 +49,7 @@ export const printListProps: PrintListProps = {
     propPrintGrouping: "microAreaName",
 };
 
-export const coeqColumns: Array<ColumnsProps> = [
+export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",

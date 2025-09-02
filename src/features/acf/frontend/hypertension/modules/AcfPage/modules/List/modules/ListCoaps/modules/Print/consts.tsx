@@ -3,8 +3,10 @@ import type {
     ColumnsProps,
     PrintListProps,
 } from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
+import type { CoapsAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps";
 import { formatDate, parseDate } from "@/features/common/shared/time";
 import React from "react";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -25,7 +27,10 @@ export const apsLabelsModal: ModalLabels = {
     button: "IMPRIMIR LISTA",
 };
 
-export const printListProps: PrintListProps = {
+export const printListProps: PrintListProps<
+    HypertensionAcfItem,
+    CoapsAppliedFilters
+> = {
     listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
@@ -46,7 +51,7 @@ export const printListProps: PrintListProps = {
     propPrintGrouping: "careTeamName",
 };
 
-export const columns: Array<ColumnsProps> = [
+export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",

@@ -1,18 +1,21 @@
-import type { AllPagesResponse } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
 import type { ReactElement } from "react";
+import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
 
-// TODO: adicionar generics nos tipos que usam AllPagesResponse
-export type PrintListProps = {
+export type PrintListProps<
+    TAcfItem extends AcfItem,
+    TFilters extends AppliedFilters,
+> = {
     listTitle: string;
-    propPrintGrouping: keyof AllPagesResponse;
+    propPrintGrouping: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
-    filtersLabels: Record<string, string>;
+    filtersLabels: Record<keyof TFilters, string>;
 };
 
 type RenderCell = (param: unknown) => React.ReactNode;
 
-export type ColumnsProps = {
-    fields: Array<keyof AllPagesResponse>;
+export type ColumnsProps<TAcfItem extends AcfItem> = {
+    fields: Array<keyof TAcfItem>;
     headerName: string;
     width: {
         portrait: number;

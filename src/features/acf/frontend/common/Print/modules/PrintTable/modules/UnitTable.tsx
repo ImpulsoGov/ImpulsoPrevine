@@ -1,19 +1,19 @@
 import { Thead } from "./Thead";
 import { TableCell } from "./TableCell";
-import type { AllPagesResponses } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
 import type { ColumnsProps, LayoutOrientation } from "../model";
 
-export type UnitTableProps<TResponse extends AllPagesResponses> = {
-    data: TResponse;
-    columns: Array<ColumnsProps>;
+export type UnitTableProps<TAcfItem extends AcfItem> = {
+    data: Array<TAcfItem>;
+    columns: Array<ColumnsProps<TAcfItem>>;
     layoutOrientation: LayoutOrientation;
 };
 
-export const UnitTable = <TResponse extends AllPagesResponses>({
+export const UnitTable = <TAcfItem extends AcfItem>({
     data,
     columns,
     layoutOrientation,
-}: UnitTableProps<TResponse>): React.ReactNode => {
+}: UnitTableProps<TAcfItem>): React.ReactNode => {
     return (
         <div
             className={

@@ -5,29 +5,35 @@ import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
-import type { AllPagesResponses } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
 // import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
 
-export type PrintTableProps<TResponse> = {
-    data: TResponse;
-    columns: Array<ColumnsProps>;
+export type PrintTableProps<
+    TAcfItem extends AcfItem,
+    TFilters extends AppliedFilters,
+> = {
+    data: Array<TAcfItem>;
+    columns: Array<ColumnsProps<TAcfItem>>;
     ref: React.RefObject<HTMLDivElement | null>;
-    printListProps: PrintListProps;
-    // filtersLabels: Record<string, string>;
+    printListProps: PrintListProps<TAcfItem, TFilters>;
 };
 
-export const PrintTable = <TResponse extends AllPagesResponses>({
+export const PrintTable = <
+    TAcfItem extends AcfItem,
+    TFilters extends AppliedFilters,
+>({
     data,
     columns,
     ref,
     printListProps,
-}: PrintTableProps<TResponse>): React.ReactNode => {
+}: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
     const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
         printListProps;
     const { customization } = useContext(CustomPrintContext);
     const isDataSplit = customization.grouping;
     const isPageSplit = customization.splitGroupPerPage;
-    const isSplitOrderedByProp = customization.order;
+    // const isSplitOrderedByProp = customization.order;
 
     return (
         <div

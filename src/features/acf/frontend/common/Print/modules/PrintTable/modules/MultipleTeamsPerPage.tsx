@@ -1,23 +1,23 @@
-import { ordenarGrupos } from "@/helpers/lista-nominal/impressao/OrderGroups";
+// import { ordenarGrupos } from "@/helpers/lista-nominal/impressao/OrderGroups";
 import type { ColumnsProps } from "../model";
 import { UnitTable } from "./UnitTable";
 import type { PropsWithChildren, ReactNode } from "react";
 import { SplitByProp } from "./SplitByProp";
-import type { AllPagesResponse } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
 
-export type MultipleTeamsPerPageProps<TResponse extends AllPagesResponse> =
+export type MultipleTeamsPerPageProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
-        data: Array<TResponse>;
-        columns: Array<ColumnsProps>;
-        propSplit: keyof TResponse;
+        data: Array<TAcfItem>;
+        columns: Array<ColumnsProps<TAcfItem>>;
+        propSplit: keyof TAcfItem;
     }>;
 
-export const MultipleTeamsPerPage = <TResponse extends AllPagesResponse>({
+export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
     children,
     propSplit,
-}: MultipleTeamsPerPageProps<TResponse>): ReactNode => {
+}: MultipleTeamsPerPageProps<TAcfItem>): ReactNode => {
     const splitedByProp = SplitByProp(data, propSplit);
     return (
         <div key="multiple-teams-per-page">

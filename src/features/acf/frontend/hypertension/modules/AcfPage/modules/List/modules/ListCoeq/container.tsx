@@ -14,7 +14,11 @@ import { FilterHint } from "../common/FilterHint";
 import { ListCoeq } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
-import { coeqColumns, coeqLabelsModal } from "./modules/Print/consts";
+import {
+    coeqColumns,
+    coeqLabelsModal,
+    printListProps,
+} from "./modules/Print/consts";
 import { getCoeqData } from "./modules/Print/service";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
@@ -66,6 +70,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                                 columns={coeqColumns}
                                                 serviceGetData={getCoeqData}
                                                 ref={ref}
+                                                printListProps={printListProps}
                                             />
                                         </PrintModal>
                                     </WithPagination>

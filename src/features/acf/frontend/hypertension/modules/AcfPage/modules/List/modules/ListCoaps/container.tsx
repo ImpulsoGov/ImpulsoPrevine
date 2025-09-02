@@ -18,6 +18,7 @@ import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint"
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { apsLabelsModal, columns } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
+import { printListProps } from "./modules/Print/consts";
 
 type ContentCoapsProps = {
     list: AcfDashboardType;
@@ -67,6 +68,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                                 columns={columns}
                                                 serviceGetData={getCoapsData}
                                                 ref={ref}
+                                                printListProps={printListProps}
                                             />
                                         </PrintModal>
                                     </WithPagination>
