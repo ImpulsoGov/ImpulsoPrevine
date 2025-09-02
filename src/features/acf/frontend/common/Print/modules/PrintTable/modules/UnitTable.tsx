@@ -1,23 +1,19 @@
 import { Thead } from "./Thead";
 import { TableCell } from "./TableCell";
-import { simpleHash } from "@helpers/lista-nominal/impressao/simpleHash";
-import type { AllPagesResponses } from "@/features/acf/shared/schema";
-import type {
-    ColumnsProps,
-    LayoutOrientation,
-} from "../../../../PrintModal/model";
+import type { AcfItem } from "@/features/acf/shared/schema";
+import type { ColumnsProps, LayoutOrientation } from "../model";
 
-export type UnitTableProps<TResponse extends AllPagesResponses> = {
-    data: TResponse;
-    columns: Array<ColumnsProps>;
+export type UnitTableProps<TAcfItem extends AcfItem> = {
+    data: Array<TAcfItem>;
+    columns: Array<ColumnsProps<TAcfItem>>;
     layoutOrientation: LayoutOrientation;
 };
 
-export const UnitTable = <TResponse extends AllPagesResponses>({
+export const UnitTable = <TAcfItem extends AcfItem>({
     data,
     columns,
     layoutOrientation,
-}: UnitTableProps<TResponse>): React.ReactNode => {
+}: UnitTableProps<TAcfItem>): React.ReactNode => {
     return (
         <div
             className={
@@ -45,10 +41,10 @@ export const UnitTable = <TResponse extends AllPagesResponses>({
                     layoutOrientation={layoutOrientation}
                 />
                 <tbody>
-                    {data.map((item) => (
+                    {data.map((item, index) => (
                         <tr
                             data-testid="LinhaTabelaUnitaria"
-                            key={simpleHash(JSON.stringify(item))}
+                            key={`row-${index.toString()}`}
                             style={{
                                 borderBottom: "solid 1px #757574",
                             }}

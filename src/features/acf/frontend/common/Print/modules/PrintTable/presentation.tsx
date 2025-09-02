@@ -1,47 +1,40 @@
-// import { SplitByTeam } from "@helpers/lista-nominal/impressao/SplitByTeam";
 import { useContext } from "react";
-import { CustomPrintContext } from "../../../WithCustomPrint/context";
-import type { ColumnsProps, PrintListProps } from "../../../PrintModal/model";
-// import type { AppliedFilters } from "../../../WithFilters";
-// import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
+import { CustomPrintContext } from "@/features/acf/frontend/common/WithCustomPrint";
+import type { ColumnsProps, PrintListProps } from "./model";
+import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
-import type { AllPagesResponses } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
+import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
 // import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
 
-export type PrintTableProps<TResponse> = {
-    data: TResponse;
-    columns: Array<ColumnsProps>;
+export type PrintTableProps<
+    TAcfItem extends AcfItem,
+    TFilters extends AppliedFilters,
+> = {
+    data: Array<TAcfItem>;
+    columns: Array<ColumnsProps<TAcfItem>>;
     ref: React.RefObject<HTMLDivElement | null>;
-    printListProps: PrintListProps;
-    // filtersLabels: Record<string, string>;
+    printListProps: PrintListProps<TAcfItem, TFilters>;
 };
 
-export const PrintTable = <TResponse extends AllPagesResponses>({
+export const PrintTable = <
+    TAcfItem extends AcfItem,
+    TFilters extends AppliedFilters,
+>({
     data,
     columns,
     ref,
     printListProps,
-    // dataSplit, //pode consumido via context withCustomPrint
-    // pageSplit, //pode consumido via context withCustomPrint
-    // auxiliaryLists, //rever o uso
-}: PrintTableProps<TResponse>): React.ReactNode => {
+}: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
     const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
         printListProps;
-    // const teamSplit = SplitByTeam(data, propPrintGrouping);
     const { customization } = useContext(CustomPrintContext);
     const isDataSplit = customization.grouping;
     const isPageSplit = customization.splitGroupPerPage;
-    const isSplitOrderedByProp = customization.order;
-    // return (
-    //     <div ref={ref} style={{ display: "none" }}>
-    //         <h1>Aqui vai ter o conteudo da impressão </h1>
-    //         <p>Agrupar por equipe ? {isDataSplit ? "Sim" : "Não"}</p>
-    //         <p>Dividir por página ? {isPageSplit ? "Sim" : "Não"}</p>
-    //         <p>Ordenar ? {isSplitOrderedByProp ? "Sim" : "Não"}</p>
-    //     </div>
-    // );
+    // const isSplitOrderedByProp = customization.order;
+
     return (
         <div
             key="print-table"
@@ -52,25 +45,19 @@ export const PrintTable = <TResponse extends AllPagesResponses>({
                 fontFamily: `Inter, sans-serif`,
             }}
         >
-            {/* {dataSplit && !pageSplit && (
+            {isDataSplit && !isPageSplit && (
                 <MultipleTeamsPerPage
-                    teamSplit={teamSplit}
-                    header={{
-                        appliedFilters: appliedFilters,
-                        filtersLabels: filtersLabels,
-                        latestProductionDate: latestProductionDate,
-                        list: list,
-                    }}
-                    printLegend={printCaption}
-                    tables={{
-                        columns: columns,
-                        auxiliaryLists: auxiliaryLists,
-                        printColumnsWidth: printColumnsWidth,
-                        verticalDivider: verticalDivider,
-                    }}
-                    fontFamily={fontFamily}
-                />
-            )} */}
+                    data={data}
+                    columns={columns}
+                    propSplit={propPrintGrouping}
+                >
+                    <PageHeader
+                        filtersLabels={filtersLabels}
+                        listTitle={listTitle}
+                        printCaption={printCaption}
+                    />
+                </MultipleTeamsPerPage>
+            )}
             {/* {pageSplit && dataSplit && (
                 <SingleTeamPerPage
                     teamSplit={teamSplit}

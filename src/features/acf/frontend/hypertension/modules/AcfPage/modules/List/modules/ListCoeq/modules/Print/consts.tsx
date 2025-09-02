@@ -1,8 +1,11 @@
+import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal/model";
 import type {
     ColumnsProps,
-    ModalLabels,
-} from "@/features/acf/frontend/common/PrintModal/model";
+    PrintListProps,
+} from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
+import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoeq";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR PROFISSIONAL RESPONSÁVEL",
@@ -23,7 +26,30 @@ export const coeqLabelsModal: ModalLabels = {
     button: "IMPRIMIR LISTA",
 };
 
-export const coeqColumns: Array<ColumnsProps> = [
+export const printListProps: PrintListProps<
+    HypertensionAcfItem,
+    CoeqAppliedFilters
+> = {
+    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    printCaption: [
+        <div>
+            <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
+            do cidadão.
+        </div>,
+        <div>
+            <b>PA:</b> Pressão Arterial
+        </div>,
+    ],
+    filtersLabels: {
+        appointmentStatusByQuarter: "Consulta",
+        latestExamRequestStatusByQuarter: "Afericão de PA",
+        microAreaName: "Microárea",
+        patientAgeRange: "Faixa Etária",
+    },
+    propPrintGrouping: "microAreaName",
+};
+
+export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",

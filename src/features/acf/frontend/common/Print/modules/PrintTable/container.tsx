@@ -18,21 +18,20 @@ import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting";
 import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
 import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
-import type { AllPagesResponses } from "@/features/acf/shared/schema";
+import type { AcfItem } from "@/features/acf/shared/schema";
 import type { GetDataParams } from "./service";
-import { printListProps } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps/modules/Print/consts";
-import type { ColumnsProps } from "../../../PrintModal/model";
+import type { ColumnsProps, PrintListProps } from "./model";
 
 export type ServiceGetData<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends AllPagesResponses,
+    TResponse extends AcfItem,
 > = (
     params: GetDataParams<TAppliedFilters>
-) => Promise<AxiosResponse<TResponse>>;
+) => Promise<AxiosResponse<Array<TResponse>>>;
 
 const fetchData = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends AllPagesResponses,
+    TResponse extends AcfItem,
 >(
     session: Session | null,
     gridSortingModel: GridSortItem,
@@ -40,7 +39,7 @@ const fetchData = <
     filters: TAppliedFilters | null,
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>,
     setResponse: Dispatch<
-        SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
+        SetStateAction<AxiosResponse<Array<TResponse>> | AxiosError | null>
     >
 ): void => {
     if (!session?.user) {
@@ -77,20 +76,22 @@ const fetchData = <
 
 type Props<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends AllPagesResponses,
+    TResponse extends AcfItem,
 > = {
-    columns: Array<ColumnsProps>;
+    columns: Array<ColumnsProps<TResponse>>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
     ref: React.RefObject<HTMLDivElement | null>;
+    printListProps: PrintListProps<TResponse, TAppliedFilters>;
 };
 
 export const Container = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends AllPagesResponses,
+    TResponse extends AcfItem,
 >({
     columns,
     serviceGetData,
     ref,
+    printListProps,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
     const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
@@ -99,7 +100,7 @@ export const Container = <
     const { gridSortingModel } = useContext<SortingModel>(SortingContext);
     const { searchString } = useContext<SearchModel>(SearchContext);
     const [response, setResponse] = useState<
-        AxiosResponse<TResponse> | AxiosError | null
+        AxiosResponse<Array<TResponse>> | AxiosError | null
     >(null);
 
     useEffect(() => {

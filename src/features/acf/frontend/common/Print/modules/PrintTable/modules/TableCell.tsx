@@ -1,21 +1,18 @@
-import type { AllPagesResponse } from "@/features/acf/shared/schema";
-import type {
-    ColumnsProps,
-    LayoutOrientation,
-} from "../../../../PrintModal/model";
+import type { AcfItem } from "@/features/acf/shared/schema";
+import type { ColumnsProps, LayoutOrientation } from "../model";
 import React from "react";
 
-export type TableCellProps = {
-    item: AllPagesResponse;
-    columns: Array<ColumnsProps>;
+export type TableCellProps<TAcfItem extends AcfItem> = {
+    item: TAcfItem;
+    columns: Array<ColumnsProps<TAcfItem>>;
     layoutOrientation: LayoutOrientation;
 };
 
-export const TableCell: React.FC<TableCellProps> = ({
+export const TableCell = <TAcfItem extends AcfItem>({
     item,
     columns,
     layoutOrientation,
-}) => {
+}: TableCellProps<TAcfItem>): React.ReactNode => {
     return columns.map((column, index) => {
         return (
             <td
