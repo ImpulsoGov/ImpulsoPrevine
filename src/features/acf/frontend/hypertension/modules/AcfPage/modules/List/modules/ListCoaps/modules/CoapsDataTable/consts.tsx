@@ -5,7 +5,7 @@ import type {
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import { teamNameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
 import { RenderPatientNameCpfCns } from "../../../common/RenderPatientNameCpfCns";
@@ -87,7 +87,7 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "careTeamName",
-        width: 134,
+        width: 150,
         headerAlign: "left",
         align: "left",
         headerName: "Equipe",
@@ -95,7 +95,15 @@ export const coapsColumns: Array<GridColDef> = [
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span> {nameFormatter(value)}</span>
+            <div
+                style={{
+                    whiteSpace: "normal",
+                    overflowWrap: "anywhere",
+                    wordBreak: "break-word",
+                }}
+            >
+                {teamNameFormatter(value)}
+            </div>
         ),
     },
     {
