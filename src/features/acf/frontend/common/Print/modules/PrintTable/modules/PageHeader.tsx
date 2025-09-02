@@ -68,7 +68,6 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
                     fontSize: "16px",
                     marginBottom: "11px",
                     fontFamily: `Inter, sans-serif`,
-                    height: "100%",
                 }}
             >
                 <div

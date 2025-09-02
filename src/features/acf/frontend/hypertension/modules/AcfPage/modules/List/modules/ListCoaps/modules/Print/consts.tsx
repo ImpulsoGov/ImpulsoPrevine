@@ -1,8 +1,8 @@
+import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal/model";
 import type {
     ColumnsProps,
-    ModalLabels,
     PrintListProps,
-} from "@/features/acf/frontend/common/PrintModal/model";
+} from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
 import React from "react";
 
@@ -43,7 +43,7 @@ export const printListProps: PrintListProps = {
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
     },
-    propPrintGrouping: "communityHealthWorker ",
+    propPrintGrouping: "careTeamName",
 };
 
 export const columns: Array<ColumnsProps> = [

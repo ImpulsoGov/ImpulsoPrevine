@@ -1,8 +1,4 @@
-// TODO: rever esse import
-import type {
-    ColumnsProps,
-    LayoutOrientation,
-} from "../../../../PrintModal/model";
+import type { ColumnsProps, LayoutOrientation } from "../model";
 
 export type TheadProps = {
     columns: Array<ColumnsProps>;

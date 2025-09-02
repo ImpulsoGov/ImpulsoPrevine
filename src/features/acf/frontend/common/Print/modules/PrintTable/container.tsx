@@ -21,7 +21,7 @@ import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
 import type { AllPagesResponses } from "@/features/acf/shared/schema";
 import type { GetDataParams } from "./service";
 import { printListProps } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps/modules/Print/consts";
-import type { ColumnsProps } from "../../../PrintModal/model";
+import type { ColumnsProps } from "./model";
 
 export type ServiceGetData<
     TAppliedFilters extends AppliedFilters,

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { CustomPrintContext, type CustomPrintState } from "./context";
 
 type WithCustomPrintProps = React.PropsWithChildren;
-
+export { CustomPrintContext };
 export const WithCustomPrint: React.FC<WithCustomPrintProps> = ({
     children,
 }) => {

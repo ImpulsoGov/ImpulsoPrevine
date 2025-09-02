@@ -1,8 +1,5 @@
 import type { AllPagesResponse } from "@/features/acf/shared/schema";
-import type {
-    ColumnsProps,
-    LayoutOrientation,
-} from "../../../../PrintModal/model";
+import type { ColumnsProps, LayoutOrientation } from "../model";
 import React from "react";
 
 export type TableCellProps = {

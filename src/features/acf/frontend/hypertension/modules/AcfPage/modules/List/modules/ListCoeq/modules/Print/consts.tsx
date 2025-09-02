@@ -1,7 +1,8 @@
+import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal/model";
 import type {
     ColumnsProps,
-    ModalLabels,
-} from "@/features/acf/frontend/common/PrintModal/model";
+    PrintListProps,
+} from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
 
 export const coeqLabelsModal: ModalLabels = {
@@ -21,6 +22,27 @@ export const coeqLabelsModal: ModalLabels = {
             "Também dividir a lista impressa com um profissional responsável por folha",
     },
     button: "IMPRIMIR LISTA",
+};
+
+export const printListProps: PrintListProps = {
+    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    printCaption: [
+        <div>
+            <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
+            do cidadão.
+        </div>,
+        <div>
+            <b>PA:</b> Pressão Arterial
+        </div>,
+    ],
+    filtersLabels: {
+        appointmentStatusByQuarter: "Consulta",
+        careTeamName: "Equipe",
+        latestExamRequestStatusByQuarter: "Afericão de PA",
+        microAreaName: "Microárea",
+        patientAgeRange: "Faixa Etária",
+    },
+    propPrintGrouping: "microAreaName",
 };
 
 export const coeqColumns: Array<ColumnsProps> = [
