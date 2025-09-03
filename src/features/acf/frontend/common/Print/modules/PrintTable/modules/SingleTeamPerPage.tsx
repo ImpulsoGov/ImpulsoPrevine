@@ -25,7 +25,6 @@ export const SingleTeamPerPage = <TAcfItem extends AcfItem>({
                 return (
                     <div key={record + String(index)}>
                         <div
-                            key={record + index.toString()}
                             style={{
                                 pageBreakAfter: "always",
                                 display: "flex",
