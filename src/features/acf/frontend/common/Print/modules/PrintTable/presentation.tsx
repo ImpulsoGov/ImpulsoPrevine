@@ -34,13 +34,7 @@ export const PrintTable = <
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
-    const PageHeaderMounted = (
-        <PageHeader
-            filtersLabels={filtersLabels}
-            listTitle={listTitle}
-            printCaption={printCaption}
-        />
-    );
+
     return (
         <div
             key="print-table"
@@ -57,7 +51,11 @@ export const PrintTable = <
                     columns={columns}
                     propSplit={propPrintGrouping}
                 >
-                    {PageHeaderMounted}
+                    <PageHeader
+                        filtersLabels={filtersLabels}
+                        listTitle={listTitle}
+                        printCaption={printCaption}
+                    />
                 </MultipleTeamsPerPage>
             )}
             {isPageSplitEnabled && isDataSplitEnabled && (
@@ -66,13 +64,21 @@ export const PrintTable = <
                     columns={columns}
                     propSplit={propPrintGrouping}
                 >
-                    {PageHeaderMounted}
+                    <PageHeader
+                        filtersLabels={filtersLabels}
+                        listTitle={listTitle}
+                        printCaption={printCaption}
+                    />
                 </SingleTeamPerPage>
             )}
             {!(isDataSplitEnabled || isPageSplitEnabled) && (
                 <>
                     <NoSplit>
-                        {PageHeaderMounted}
+                        <PageHeader
+                            filtersLabels={filtersLabels}
+                            listTitle={listTitle}
+                            printCaption={printCaption}
+                        />
                         <UnitTable
                             data={data}
                             columns={columns}
