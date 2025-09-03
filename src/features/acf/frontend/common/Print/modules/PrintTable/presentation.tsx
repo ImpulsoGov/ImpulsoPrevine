@@ -31,8 +31,8 @@ export const PrintTable = <
     const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
         printListProps;
     const { customization } = useContext(CustomPrintContext);
-    const shouldSplitData = customization.grouping;
-    const shouldSplitPage = customization.splitGroupPerPage;
+    const isDataSplitEnabled = customization.grouping;
+    const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
     const PageHeaderMounted = (
         <PageHeader
@@ -51,7 +51,7 @@ export const PrintTable = <
                 fontFamily: `Inter, sans-serif`,
             }}
         >
-            {shouldSplitData && !shouldSplitPage && (
+            {isDataSplitEnabled && !isPageSplitEnabled && (
                 <MultipleTeamsPerPage
                     data={data}
                     columns={columns}
@@ -60,7 +60,7 @@ export const PrintTable = <
                     {PageHeaderMounted}
                 </MultipleTeamsPerPage>
             )}
-            {shouldSplitPage && shouldSplitData && (
+            {isPageSplitEnabled && isDataSplitEnabled && (
                 <SingleTeamPerPage
                     data={data}
                     columns={columns}
@@ -69,7 +69,7 @@ export const PrintTable = <
                     {PageHeaderMounted}
                 </SingleTeamPerPage>
             )}
-            {!(shouldSplitData || shouldSplitPage) && (
+            {!(isDataSplitEnabled || isPageSplitEnabled) && (
                 <>
                     <NoSplit>
                         {PageHeaderMounted}
