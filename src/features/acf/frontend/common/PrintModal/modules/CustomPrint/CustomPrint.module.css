@@ -11,7 +11,7 @@
     box-sizing: border-box;
     font-family: "Inter";
     color: #1f1f1f;
-    width: 800px;
+    width: 900px;
     background-color: #fff;
     border-radius: 20px;
     position: relative;
@@ -42,18 +42,18 @@
     padding: 0.5em;
 }
 
-.Close {
-    margin-bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
 .ContainerTitle {
     display: flex;
     gap: 8px;
     align-items: center;
     margin-bottom: 24px;
+    justify-content: space-between;
+}
+
+.TitleWithIcon {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .Title {
@@ -98,11 +98,31 @@
 }
 
 .MainCustomizationInput {
-    width: 18px;
-    height: 18px;
-    padding: 0;
-    margin: 0;
-    accent-color: #145c56;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+.MainCustomizationInput[type="radio"]:checked {
+  border-color: #2EB280;
+}
+
+.MainCustomizationInput[type="radio"]:checked::after {
+  content: "";
+  width: 50%;
+  height: 50%;
+  background: #2EB280;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .Separator {
@@ -133,19 +153,15 @@
     line-height: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
     accent-color: #145c56;
     font-weight: 400;
     letter-spacing: -0.01em;
     text-align: left;
 }
 
-.SecondaryCustomizationsContainer input {
-    width: 15px;
-    height: 17px;
-    padding: 0;
-    margin: 0;
-    position: relative;
+.LastSecondaryOption {
+    line-height: 50px;
+
 }
 
 .ContainerButton {

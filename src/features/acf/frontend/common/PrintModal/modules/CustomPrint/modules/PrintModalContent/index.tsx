@@ -3,21 +3,24 @@ import style from "../../CustomPrint.module.css";
 import cx from "classnames";
 import type { ModalLabels } from "../../../../model";
 import type { CustomPrintState } from "@/features/acf/frontend/common/WithCustomPrint/context";
+import { Checkbox } from "@mui/material";
 
 type PrintModalContentProps = {
     labels: ModalLabels;
     customization: CustomPrintState;
     setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
+    handleClose: () => void;
 };
 
 export const PrintModalContent: React.FC<PrintModalContentProps> = ({
     labels,
     customization,
     setCustomization,
+    handleClose,
 }) => {
     return (
         <div className={style.Content}>
-            <Header labels={labels} />
+            <Header labels={labels} handleClose={handleClose} />
             <SplitTeams
                 labels={labels}
                 customization={customization}
@@ -34,20 +37,27 @@ export const PrintModalContent: React.FC<PrintModalContentProps> = ({
     );
 };
 
-export const Header: React.FC<{ labels: ModalLabels }> = ({ labels }) => {
+export const Header: React.FC<{
+    labels: ModalLabels;
+    handleClose: () => void;
+}> = ({ labels, handleClose }) => {
     return (
         <>
             <div className={style.ContainerTitle}>
-                <img
-                    src="https://media.graphassets.com/tkjDWpANQ9SzsdACBiEI"
-                    width="28px"
-                    height="28px"
-                    alt="Icone de brilho"
-                    className={style.TitleIcon}
-                />
-                <h4 className={cx(style.Title, style.ResetSpaces)}>
-                    {labels.title}
-                </h4>
+                <div className={style.TitleWithIcon}>
+                    <img
+                        src="https://media.graphassets.com/tkjDWpANQ9SzsdACBiEI"
+                        width="28px"
+                        height="28px"
+                        alt="Icone de brilho"
+                        className={style.TitleIcon}
+                    />
+                    <h4 className={cx(style.Title, style.ResetSpaces)}>
+                        {labels.title}
+                    </h4>
+                </div>
+
+                <CloseModal handleClose={handleClose} />
             </div>
 
             <h5
@@ -175,33 +185,45 @@ export const OtherPrintOptions: React.FC<OtherPrintOptionsProps> = ({
                 </div>
 
                 <div className={style.SecondaryCustomOption}>
-                    <input
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        checked={customization.splitGroupPerPage}
+                    <Checkbox
                         name="splitGroupPerPage"
-                        id="splitGroupPerPage"
+                        checked={customization.splitGroupPerPage}
+                        onChange={handleCheckboxChange}
+                        sx={{
+                            p: 0.5,
+                            color: "#A6B5BE",
+                            "&.Mui-checked": { color: "#2EB280" },
+                        }}
                     />
-                    <label htmlFor="splitGroupPerPage">
+                    <span>
                         {labels.secondaryCustomOption.splitGroupPerPage}
-                    </label>
+                    </span>
                 </div>
 
                 {labels.secondaryCustomOption.ordering && (
-                    <div className={style.SecondaryCustomOption}>
-                        <input
-                            onChange={handleCheckboxChange}
-                            type="checkbox"
-                            checked={customization.order}
+                    <div className={style.LastSecondaryOption}>
+                        <Checkbox
                             name="order"
-                            id="order"
+                            checked={customization.order}
+                            onChange={handleCheckboxChange}
+                            sx={{
+                                p: 0.5,
+                                color: "#c9cdd2",
+                                "&.Mui-checked": { color: "#2EB280" },
+                            }}
                         />
-                        <label htmlFor="order">
-                            {labels.secondaryCustomOption.ordering}
-                        </label>
+                        <span>{labels.secondaryCustomOption.ordering}</span>
                     </div>
                 )}
             </div>
         </>
+    );
+};
+
+const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
+    return (
+        <div className={style.Close}>
+            <a className={style.ModalExit} onClick={handleClose} />
+        </div>
     );
 };

@@ -47,11 +47,11 @@ export const CustomPrint: React.FC<Props> = ({
     return (
         <>
             <div className={style.Container}>
-                <CloseModal handleClose={handleClose} />
                 <PrintModalContent
                     labels={labels}
                     customization={customization}
                     setCustomization={setCustomization}
+                    handleClose={handleClose}
                 />
                 <PrintButton
                     label={labels.button}
@@ -72,14 +72,6 @@ const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
     return (
         <div className={style.ContainerButton}>
             <ButtonColorSubmitIcon label={label} submit={onPrintClick} />
-        </div>
-    );
-};
-
-const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
-    return (
-        <div className={style.Close}>
-            <a className={style.ModalExit} onClick={handleClose} />
         </div>
     );
 };
