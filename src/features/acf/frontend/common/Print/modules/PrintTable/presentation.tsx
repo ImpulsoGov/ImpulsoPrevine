@@ -7,7 +7,7 @@ import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-// import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
+import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
 
 export type PrintTableProps<
     TAcfItem extends AcfItem,
@@ -34,7 +34,13 @@ export const PrintTable = <
     const isDataSplit = customization.grouping;
     const isPageSplit = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
-
+    const PageHeaderMounted = (
+        <PageHeader
+            filtersLabels={filtersLabels}
+            listTitle={listTitle}
+            printCaption={printCaption}
+        />
+    );
     return (
         <div
             key="print-table"
@@ -51,40 +57,22 @@ export const PrintTable = <
                     columns={columns}
                     propSplit={propPrintGrouping}
                 >
-                    <PageHeader
-                        filtersLabels={filtersLabels}
-                        listTitle={listTitle}
-                        printCaption={printCaption}
-                    />
+                    {PageHeaderMounted}
                 </MultipleTeamsPerPage>
             )}
-            {/* {pageSplit && dataSplit && (
+            {isPageSplit && isDataSplit && (
                 <SingleTeamPerPage
-                    teamSplit={teamSplit}
-                    header={{
-                        appliedFilters: appliedFilters,
-                        filtersLabels: filtersLabels,
-                        latestProductionDate: latestProductionDate,
-                        list: list,
-                    }}
-                    printLegend={printCaption}
-                    tables={{
-                        columns: columns,
-                        auxiliaryLists: auxiliaryLists,
-                        printColumnsWidth: printColumnsWidth,
-                        verticalDivider: verticalDivider,
-                    }}
-                    fontFamily={fontFamily}
-                />
-            )} */}
+                    data={data}
+                    columns={columns}
+                    propSplit={propPrintGrouping}
+                >
+                    {PageHeaderMounted}
+                </SingleTeamPerPage>
+            )}
             {!(isDataSplit || isPageSplit) && (
                 <>
                     <NoSplit>
-                        <PageHeader
-                            filtersLabels={filtersLabels}
-                            listTitle={listTitle}
-                            printCaption={printCaption}
-                        />
+                        {PageHeaderMounted}
                         <UnitTable
                             data={data}
                             columns={columns}
