@@ -49,7 +49,7 @@ export const PrintTable = <
                 <MultipleTeamsPerPage
                     data={data}
                     columns={columns}
-                    propSplit={propPrintGrouping}
+                    propToSplit={propPrintGrouping}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}
@@ -62,7 +62,7 @@ export const PrintTable = <
                 <SingleTeamPerPage
                     data={data}
                     columns={columns}
-                    propSplit={propPrintGrouping}
+                    propToSplit={propPrintGrouping}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}

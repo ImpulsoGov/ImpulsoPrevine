@@ -8,16 +8,16 @@ export type SingleTeamPerPageProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
         data: Array<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
-        propSplit: keyof TAcfItem;
+        propToSplit: keyof TAcfItem;
     }>;
 
 export const SingleTeamPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
-    propSplit,
+    propToSplit,
     children,
 }: SingleTeamPerPageProps<TAcfItem>): ReactNode => {
-    const splitedByProp = SplitByProp(data, propSplit);
+    const splitedByProp = SplitByProp(data, propToSplit);
     return (
         Object.keys(splitedByProp)
             // .sort(ordenarGrupos)
