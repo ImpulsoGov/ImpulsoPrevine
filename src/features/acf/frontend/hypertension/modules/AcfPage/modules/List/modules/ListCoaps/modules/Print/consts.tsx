@@ -48,7 +48,7 @@ export const printListProps: PrintListProps<
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
     },
-    propPrintGrouping: "careTeamName",
+    splitBy: "careTeamName",
 };
 
 export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [

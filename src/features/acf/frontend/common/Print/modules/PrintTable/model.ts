@@ -7,7 +7,7 @@ export type PrintListProps<
     TFilters extends AppliedFilters,
 > = {
     listTitle: string;
-    propPrintGrouping: keyof TAcfItem;
+    splitBy: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
     filtersLabels: Record<keyof TFilters, string>;
 };

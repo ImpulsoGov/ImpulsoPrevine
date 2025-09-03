@@ -1,39 +1,45 @@
-// import { ordenarGrupos } from "@/helpers/lista-nominal/impressao/OrderGroups";
-import type { ColumnsProps } from "../model";
+import type { AcfItem } from "@/features/acf/shared/schema";
 import { UnitTable } from "./UnitTable";
+import type { ColumnsProps } from "../model";
 import type { PropsWithChildren, ReactNode } from "react";
 import { SplitByProp } from "./SplitByProp";
-import type { AcfItem } from "@/features/acf/shared/schema";
 
-export type MultipleTeamsPerPageProps<TAcfItem extends AcfItem> =
+export type SingleTeamPerPageProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
         data: Array<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
         splitBy: keyof TAcfItem;
     }>;
 
-export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
+export const SingleTeamPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
-    children,
     splitBy,
-}: MultipleTeamsPerPageProps<TAcfItem>): ReactNode => {
+    children,
+}: SingleTeamPerPageProps<TAcfItem>): ReactNode => {
     const splitedByProp = SplitByProp(data, splitBy);
     return (
-        <div key="multiple-teams-per-page">
-            {children}
-            {Object.keys(splitedByProp)
-                // .sort(ordenarGrupos)
-                .map((record, index) => {
-                    return (
-                        <div key={record + String(index)}>
-                            <div key={`${record}${index.toString()}`}>
+        Object.keys(splitedByProp)
+            // .sort(ordenarGrupos)
+            .map((record, index) => {
+                return (
+                    <div key={record + String(index)}>
+                        <div
+                            style={{
+                                pageBreakAfter: "always",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "16px",
+                            }}
+                        >
+                            {children}
+                            <>
                                 <p
                                     style={{
                                         fontSize: "11px",
                                         fontFamily: `Inter, sans-serif`,
-                                        marginTop: "40px",
-                                        marginBottom: "17px",
+                                        marginTop: "16px",
+                                        marginBottom: "0px",
                                     }}
                                 >
                                     <b>{record}</b>
@@ -48,10 +54,10 @@ export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
                                     columns={columns}
                                     layoutOrientation="landscape"
                                 />
-                            </div>
+                            </>
                         </div>
-                    );
-                })}
-        </div>
+                    </div>
+                );
+            })
     );
 };

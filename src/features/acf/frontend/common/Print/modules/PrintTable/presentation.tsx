@@ -7,7 +7,7 @@ import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-// import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
+import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
 
 export type PrintTableProps<
     TAcfItem extends AcfItem,
@@ -28,11 +28,10 @@ export const PrintTable = <
     ref,
     printListProps,
 }: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
-    const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
-        printListProps;
+    const { listTitle, printCaption, filtersLabels, splitBy } = printListProps;
     const { customization } = useContext(CustomPrintContext);
-    const isDataSplit = customization.grouping;
-    const isPageSplit = customization.splitGroupPerPage;
+    const isDataSplitEnabled = customization.grouping;
+    const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
 
     return (
@@ -45,11 +44,11 @@ export const PrintTable = <
                 fontFamily: `Inter, sans-serif`,
             }}
         >
-            {isDataSplit && !isPageSplit && (
+            {isDataSplitEnabled && !isPageSplitEnabled && (
                 <MultipleTeamsPerPage
                     data={data}
                     columns={columns}
-                    propSplit={propPrintGrouping}
+                    splitBy={splitBy}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}
@@ -58,26 +57,20 @@ export const PrintTable = <
                     />
                 </MultipleTeamsPerPage>
             )}
-            {/* {pageSplit && dataSplit && (
+            {isPageSplitEnabled && isDataSplitEnabled && (
                 <SingleTeamPerPage
-                    teamSplit={teamSplit}
-                    header={{
-                        appliedFilters: appliedFilters,
-                        filtersLabels: filtersLabels,
-                        latestProductionDate: latestProductionDate,
-                        list: list,
-                    }}
-                    printLegend={printCaption}
-                    tables={{
-                        columns: columns,
-                        auxiliaryLists: auxiliaryLists,
-                        printColumnsWidth: printColumnsWidth,
-                        verticalDivider: verticalDivider,
-                    }}
-                    fontFamily={fontFamily}
-                />
-            )} */}
-            {!(isDataSplit || isPageSplit) && (
+                    data={data}
+                    columns={columns}
+                    splitBy={splitBy}
+                >
+                    <PageHeader
+                        filtersLabels={filtersLabels}
+                        listTitle={listTitle}
+                        printCaption={printCaption}
+                    />
+                </SingleTeamPerPage>
+            )}
+            {!(isDataSplitEnabled || isPageSplitEnabled) && (
                 <>
                     <NoSplit>
                         <PageHeader
