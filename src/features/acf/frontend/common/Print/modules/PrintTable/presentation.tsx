@@ -28,8 +28,7 @@ export const PrintTable = <
     ref,
     printListProps,
 }: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
-    const { listTitle, printCaption, filtersLabels, propPrintGrouping } =
-        printListProps;
+    const { listTitle, printCaption, filtersLabels, splitBy } = printListProps;
     const { customization } = useContext(CustomPrintContext);
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
@@ -49,7 +48,7 @@ export const PrintTable = <
                 <MultipleTeamsPerPage
                     data={data}
                     columns={columns}
-                    propToSplit={propPrintGrouping}
+                    splitBy={splitBy}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}
@@ -62,7 +61,7 @@ export const PrintTable = <
                 <SingleTeamPerPage
                     data={data}
                     columns={columns}
-                    propToSplit={propPrintGrouping}
+                    splitBy={splitBy}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}

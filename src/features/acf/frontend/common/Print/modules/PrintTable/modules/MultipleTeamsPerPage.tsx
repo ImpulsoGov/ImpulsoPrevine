@@ -9,16 +9,16 @@ export type MultipleTeamsPerPageProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
         data: Array<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
-        propToSplit: keyof TAcfItem;
+        splitBy: keyof TAcfItem;
     }>;
 
 export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
     children,
-    propToSplit,
+    splitBy,
 }: MultipleTeamsPerPageProps<TAcfItem>): ReactNode => {
-    const splitedByProp = SplitByProp(data, propToSplit);
+    const splitedByProp = SplitByProp(data, splitBy);
     return (
         <div key="multiple-teams-per-page">
             {children}
