@@ -33,6 +33,7 @@ export const PrintTable = <
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
+    const orderPrintGroups = customization.orderGroup;
 
     return (
         <div
@@ -45,10 +46,11 @@ export const PrintTable = <
             }}
         >
             {isDataSplitEnabled && !isPageSplitEnabled && (
-                <MultipleTeamsPerPage
+                <MultipleTeamsPerPage<TAcfItem>
                     data={data}
                     columns={columns}
                     splitBy={splitBy}
+                    orderGroup={orderPrintGroups}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}
@@ -58,10 +60,11 @@ export const PrintTable = <
                 </MultipleTeamsPerPage>
             )}
             {isPageSplitEnabled && isDataSplitEnabled && (
-                <SingleTeamPerPage
+                <SingleTeamPerPage<TAcfItem>
                     data={data}
                     columns={columns}
                     splitBy={splitBy}
+                    orderGroup={orderPrintGroups}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}

@@ -19,6 +19,7 @@ import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { apsLabelsModal, columns } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
 import { printListProps } from "./modules/Print/consts";
+import { orderPrintGroups } from "./logic";
 
 type ContentCoapsProps = {
     list: AcfDashboardType;
@@ -43,7 +44,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
         <>
             <ListCoaps list={list}>
                 <WithPrintModal>
-                    <WithCustomPrint>
+                    <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
                         <WithSearch
                             SearchComponent={SearchToolBar}

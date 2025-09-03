@@ -12,6 +12,8 @@ export type PrintListProps<
     filtersLabels: Record<keyof TFilters, string>;
 };
 
+export type SortCallback<TItem> = (a: TItem, b: TItem) => number;
+
 type RenderCell = (param: unknown) => React.ReactNode;
 
 export type ColumnsProps<TAcfItem extends AcfItem> = {
@@ -23,6 +25,7 @@ export type ColumnsProps<TAcfItem extends AcfItem> = {
     };
     verticalDivider?: boolean;
     renderCell?: RenderCell;
+    titleFormatter?: (value: unknown) => string;
 };
 
 export type LayoutOrientation = "landscape" | "portrait";

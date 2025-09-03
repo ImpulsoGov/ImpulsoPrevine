@@ -22,6 +22,7 @@ import {
 import { getCoeqData } from "./modules/Print/service";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
+import { orderPrintGroups } from "./logic";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -45,7 +46,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
         <>
             <ListCoeq list={list}>
                 <WithPrintModal>
-                    <WithCustomPrint>
+                    <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
                         <WithSearch
                             SearchComponent={SearchToolBar}
