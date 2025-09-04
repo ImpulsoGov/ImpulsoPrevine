@@ -6,6 +6,7 @@ import type {
 import { formatDate, parseDate } from "@/features/common/shared/time";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoeq";
+import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR PROFISSIONAL RESPONSÁVEL",
@@ -100,6 +101,10 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             portrait: 144,
         },
         headerName: "Microárea",
+        titleFormatter: (value: unknown): string =>
+            microAreaFormatter(value as string),
+        renderCell: (value: unknown): string =>
+            microAreaFormatter(value as string),
     },
     {
         fields: ["patientPhoneNumber", "patientAge"],

@@ -1,17 +1,26 @@
 "use client";
+import type { ReactNode } from "react";
 import React, { useState } from "react";
 import { CustomPrintContext, type CustomPrintState } from "./context";
+import type { SortCallback } from "../Print/modules/PrintTable/model";
 
-type WithCustomPrintProps = React.PropsWithChildren;
+type WithCustomPrintProps<TItem> = React.PropsWithChildren<{
+    orderGroup: SortCallback<TItem>;
+}>;
 export { CustomPrintContext };
-export const WithCustomPrint: React.FC<WithCustomPrintProps> = ({
+
+export const WithCustomPrint = <TItem,>({
+    orderGroup,
     children,
-}) => {
-    const [customization, setCustomization] = useState<CustomPrintState>({
-        grouping: true,
-        splitGroupPerPage: false,
-        order: false,
-    });
+}: WithCustomPrintProps<TItem>): ReactNode => {
+    const [customization, setCustomization] = useState<CustomPrintState<TItem>>(
+        {
+            grouping: true,
+            splitGroupPerPage: false,
+            order: false,
+            orderGroup,
+        }
+    );
 
     return (
         <CustomPrintContext.Provider

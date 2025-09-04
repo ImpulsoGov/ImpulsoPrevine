@@ -1,5 +1,4 @@
-// import { ordenarGrupos } from "@/helpers/lista-nominal/impressao/OrderGroups";
-import type { ColumnsProps } from "../model";
+import type { ColumnsProps, SortCallback } from "../model";
 import { UnitTable } from "./UnitTable";
 import type { PropsWithChildren, ReactNode } from "react";
 import { SplitByProp } from "./SplitByProp";
@@ -10,11 +9,13 @@ export type MultipleTeamsPerPageProps<TAcfItem extends AcfItem> =
         data: Array<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
         splitBy: keyof TAcfItem;
+        orderGroup: SortCallback<keyof TAcfItem>;
     }>;
 
 export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
+    orderGroup,
     children,
     splitBy,
 }: MultipleTeamsPerPageProps<TAcfItem>): ReactNode => {
@@ -22,12 +23,17 @@ export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
     return (
         <div key="multiple-teams-per-page">
             {children}
-            {Object.keys(splitedByProp)
-                // .sort(ordenarGrupos)
-                .map((record, index) => {
+            {(Object.keys(splitedByProp) as Array<keyof TAcfItem>)
+                .sort(orderGroup)
+                .map((record: keyof TAcfItem, index) => {
+                    const recordString = record.toString();
+                    const column = columns.find((col) =>
+                        col.fields.includes(splitBy)
+                    );
+                    const titleFormatter = column?.titleFormatter;
                     return (
-                        <div key={record + String(index)}>
-                            <div key={`${record}${index.toString()}`}>
+                        <div key={`${recordString}-${index.toString()}`}>
+                            <div key={`${recordString}${index.toString()}`}>
                                 <p
                                     style={{
                                         fontSize: "11px",
@@ -36,15 +42,19 @@ export const MultipleTeamsPerPage = <TAcfItem extends AcfItem>({
                                         marginBottom: "17px",
                                     }}
                                 >
-                                    <b>{record}</b>
+                                    <b>
+                                        {titleFormatter
+                                            ? titleFormatter(recordString)
+                                            : recordString}
+                                    </b>
                                 </p>
                                 <UnitTable
-                                    data={splitedByProp[record]}
+                                    data={splitedByProp[recordString]}
                                     columns={columns}
                                     layoutOrientation="portrait"
                                 />
                                 <UnitTable
-                                    data={splitedByProp[record]}
+                                    data={splitedByProp[recordString]}
                                     columns={columns}
                                     layoutOrientation="landscape"
                                 />
