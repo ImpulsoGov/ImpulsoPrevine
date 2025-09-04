@@ -22,6 +22,7 @@ export type GetDataParams<TAppliedFilters extends AppliedFilters> = {
     sorting?: GridSortItem;
     filters?: TAppliedFilters;
     search?: string;
+    page?: number;
 };
 
 export type GetData<TAppliedFilters extends AppliedFilters, TResponse> = (

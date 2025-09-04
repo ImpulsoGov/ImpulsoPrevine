@@ -26,136 +26,134 @@ import React, {
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
 
 import type { GridColDef } from "@mui/x-data-grid";
-import type { PageResponses } from "@/features/acf/shared/schema";
+import type { DataResponses, PageResponse } from "@/features/acf/shared/schema";
+import type { ServiceGetData } from "../useAcfData";
+import { useAcfData, type GetDataParams } from "../useAcfData";
 
 export { getPageBuilder } from "./service";
-export type { BodyBuilder, GetPageParams } from "./service";
+export type { BodyBuilder } from "./service";
 
-type GetPageParams<TAppliedFilters extends AppliedFilters> = {
-    token: string;
-    page: number;
-    sorting: GridSortItem;
-    filters?: TAppliedFilters;
-    search?: string;
-};
+// export type ServiceGetPage<
+//     TAppliedFilters extends AppliedFilters,
+//     TResponse extends PageResponses,
+// > = (
+//     params: GetDataParams<TAppliedFilters>
+// ) => Promise<AxiosResponse<TResponse>>;
 
-export type ServiceGetPage<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
-> = (
-    params: GetPageParams<TAppliedFilters>
-) => Promise<AxiosResponse<TResponse>>;
+// const fetchPage = <
+//     TAppliedFilters extends AppliedFilters,
+//     TResponse extends PageResponses,
+// >(
+//     session: Session | null,
+//     gridSortingModel: GridSortItem,
+//     gridPaginationModel: GridPaginationModel,
+//     searchString: string,
+//     filters: TAppliedFilters | null,
+//     serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>,
+//     setIsLoading: Dispatch<SetStateAction<boolean>>,
+//     setResponse: Dispatch<
+//         SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
+//     >
+// ): void => {
+//     if (!session?.user) {
+//         return;
+//     }
 
-const fetchPage = <
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
->(
-    session: Session | null,
-    gridSortingModel: GridSortItem,
-    gridPaginationModel: GridPaginationModel,
-    searchString: string,
-    filters: TAppliedFilters | null,
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>,
-    setIsLoading: Dispatch<SetStateAction<boolean>>,
-    setResponse: Dispatch<
-        SetStateAction<AxiosResponse<TResponse> | AxiosError | null>
-    >
-): void => {
-    if (!session?.user) {
-        return;
-    }
+//     setIsLoading(true);
 
-    setIsLoading(true);
+//     const getPageParams = Object.assign(
+//         {
+//             token: session.user.access_token,
+//             sorting: {
+//                 field: gridSortingModel.field,
+//                 sort: gridSortingModel.sort,
+//             },
+//             page: gridPaginationModel.page,
+//             search: searchString,
+//         },
+//         !filters ? {} : { filters: filters }
+//     );
 
-    const getPageParams = Object.assign(
-        {
-            token: session.user.access_token,
-            sorting: {
-                field: gridSortingModel.field,
-                sort: gridSortingModel.sort,
-            },
-            page: gridPaginationModel.page,
-            search: searchString,
-        },
-        !filters ? {} : { filters: filters }
-    );
-
-    serviceGetPage(getPageParams)
-        .then((res) => {
-            setResponse(res);
-            setIsLoading(false);
-        })
-        .catch((error: unknown) => {
-            //TODO: generalizar esse error handling e reutilizar
-            setIsLoading(false);
-            if (isAxiosError(error)) {
-                setResponse(error);
-            }
-            if (error instanceof Error) {
-                setResponse(null);
-                console.error(`Erro ao buscar a página. Razão: ${error}`);
-            }
-        });
-};
+//     serviceGetPage(getPageParams)
+//         .then((res) => {
+//             setResponse(res);
+//             setIsLoading(false);
+//         })
+//         .catch((error: unknown) => {
+//             //TODO: generalizar esse error handling e reutilizar
+//             setIsLoading(false);
+//             if (isAxiosError(error)) {
+//                 setResponse(error);
+//             }
+//             if (error instanceof Error) {
+//                 setResponse(null);
+//                 console.error(`Erro ao buscar a página. Razão: ${error}`);
+//             }
+//         });
+// };
 
 type DataTableProps<
     TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
+    TResponse extends DataResponses,
 > = {
     columns: Array<GridColDef>;
-    serviceGetPage: ServiceGetPage<TAppliedFilters, TResponse>;
+    serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
 };
 
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,
-    TResponse extends PageResponses,
+    TResponse extends PageResponse,
 >({
     columns,
     serviceGetPage,
 }: DataTableProps<TAppliedFilters, TResponse>): React.ReactNode => {
-    const { data: session } = useSession();
+    // const { data: session } = useSession();
     //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
-    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const filters = filtersContext as TAppliedFilters | null;
+    // const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
+    // const filters = filtersContext as TAppliedFilters | null;
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
-    const { searchString } = useContext<SearchModel>(SearchContext);
-    const [response, setResponse] = useState<
-        AxiosResponse<TResponse> | AxiosError | null
-    >(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const shouldSkipNextFetchRef = useRef(false);
-    useEffect(() => {
-        shouldSkipNextFetchRef.current = true;
-        resetPagination();
-    }, [filters, gridSortingModel, searchString]);
+    // const { searchString } = useContext<SearchModel>(SearchContext);
+    // const [response, setResponse] = useState<
+    //     AxiosResponse<TResponse> | AxiosError | null
+    // >(null);
+    // const [isLoading, setIsLoading] = useState<boolean>(true);
+    // const shouldSkipNextFetchRef = useRef(false);
+    // useEffect(() => {
+    //     shouldSkipNextFetchRef.current = true;
+    //     resetPagination();
+    // }, [filters, gridSortingModel, searchString]);
 
-    useEffect(() => {
-        // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
-        // a fetchPage é chamada duas vezes com valores diferentes quando a paginação é resetada.
-        // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
-        // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
-        // chamada, como dentro do WithFilters, WithSorting e WithSearch.
-        if (shouldSkipNextFetchRef.current) {
-            shouldSkipNextFetchRef.current = false;
-            return;
-        }
+    // useEffect(() => {
+    //     // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
+    //     // a fetchPage é chamada duas vezes com valores diferentes quando a paginação é resetada.
+    //     // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
+    //     // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
+    //     // chamada, como dentro do WithFilters, WithSorting e WithSearch.
+    //     if (shouldSkipNextFetchRef.current) {
+    //         shouldSkipNextFetchRef.current = false;
+    //         return;
+    //     }
 
-        fetchPage(
-            session,
-            gridSortingModel,
-            gridPaginationModel,
-            searchString,
-            filters,
-            serviceGetPage,
-            setIsLoading,
-            setResponse
-        );
-    }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
+    //     fetchPage(
+    //         session,
+    //         gridSortingModel,
+    //         gridPaginationModel,
+    //         searchString,
+    //         filters,
+    //         serviceGetPage,
+    //         setIsLoading,
+    //         setResponse
+    //     );
+    // }, [session, gridPaginationModel, filters, gridSortingModel, searchString]);
 
-    if (isAxiosError(response)) {
+    const { response, isLoading } = useAcfData<TResponse, TAppliedFilters>({
+        serviceGetData: serviceGetPage,
+    });
+
+    if (isAxiosError(response) || response?.data === null) {
         return (
             <p
                 data-testid="error-message"
@@ -165,14 +163,13 @@ export const DataTable = <
             </p>
         );
     }
-
     return (
         <Table
             columns={columns}
-            data={response?.data.page || []}
+            data={response?.data.page ?? []}
             paginationMode="server"
             sortingMode="server"
-            rowCount={response?.data.totalRows || 0}
+            rowCount={response?.data.totalRows ?? 0}
             paginationModel={gridPaginationModel}
             onPaginationModelChange={onPaginationModelChange}
             sortModel={[gridSortingModel]}
