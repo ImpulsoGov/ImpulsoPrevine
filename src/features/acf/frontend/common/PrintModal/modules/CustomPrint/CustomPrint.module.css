@@ -244,12 +244,10 @@
         text-align: left;
     }
 
-    /* Aplica o padding específico para o primeiro elemento */
     .MainCustomizationOption:first-child {
         padding: 6px 0px 10px 0px;
     }
 
-    /* Aplica o padding específico para o segundo (e último) elemento */
     .MainCustomizationOption:last-child {
         padding: 6px 0px 12px 0px;
     }
