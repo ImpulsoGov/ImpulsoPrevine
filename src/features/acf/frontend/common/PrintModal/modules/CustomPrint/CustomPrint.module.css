@@ -85,8 +85,13 @@
     text-align: left;
 }
 
+.MainCustomizationContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .MainCustomizationOption {
-    padding: 12px 10px;
     font-size: 14px;
     line-height: 20px;
     display: flex;
@@ -97,36 +102,44 @@
     text-align: left;
 }
 
+.MainCustomizationOption:first-child {
+    padding: 4px 10px;
+}
+
+.MainCustomizationOption:last-child {
+    padding: 0px 10px 12px 10px;
+}
+
 .MainCustomizationInput {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  border: 2px solid black;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
 }
 
 .MainCustomizationInput[type="radio"]:checked {
-  border-color: #2EB280;
+    border-color: #2EB280;
 }
 
 .MainCustomizationInput[type="radio"]:checked::after {
-  content: "";
-  width: 50%;
-  height: 50%;
-  background: #2EB280;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    content: "";
+    width: 50%;
+    height: 50%;
+    background: #2EB280;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .Separator {
-    margin: 24px 0;
+    margin: 12px 0 16px 0;
 }
 
 .SecondaryCustomizationsTitle {
@@ -148,7 +161,6 @@
 
 .SecondaryCustomOption {
     padding: 0px 9px;
-    margin-top: 14px;
     font-size: 14px;
     line-height: 20px;
     display: flex;
@@ -159,9 +171,8 @@
     text-align: left;
 }
 
-.LastSecondaryOption {
-    line-height: 50px;
-
+.Recommendation+.SecondaryCustomOption {
+    margin-top: 14px;
 }
 
 .ContainerButton {
@@ -223,8 +234,24 @@
     }
 
     .MainCustomizationOption {
-        padding: 12px 10px;
-        line-height: 15px;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+
+    /* Aplica o padding específico para o primeiro elemento */
+    .MainCustomizationOption:first-child {
+        padding: 6px 0px 10px 0px;
+    }
+
+    /* Aplica o padding específico para o segundo (e último) elemento */
+    .MainCustomizationOption:last-child {
+        padding: 6px 0px 12px 0px;
     }
 
     .SecondaryCustomizationsTitle {
@@ -232,10 +259,6 @@
         line-height: 18px;
         padding: 6px 0;
         margin-bottom: 18px;
-    }
-
-    .Separator {
-        margin: 12px 0;
     }
 
     .SecondaryCustomOption {

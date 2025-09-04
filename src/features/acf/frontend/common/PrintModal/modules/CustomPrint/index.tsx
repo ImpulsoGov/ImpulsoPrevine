@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from "react";
 import React, { useContext } from "react";
-import { ButtonColorSubmitIcon } from "@impulsogov/design-system";
 import style from "./CustomPrint.module.css";
 //TODO: Ajustar imports relativos
 import type { ModalLabels } from "../../model";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
 import { Print } from "../../../Print/RenderPrint";
 import { PrintModalContent } from "./modules/PrintModalContent";
+import { Button } from "@impulsogov/design-system";
 
 const DEFAULT_LABELS: ModalLabels = {
     title: "",
@@ -71,7 +71,7 @@ type PrintButtonProps = {
 const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
     return (
         <div className={style.ContainerButton}>
-            <ButtonColorSubmitIcon label={label} submit={onPrintClick} />
+            <Button onClick={onPrintClick}>{label}</Button>
         </div>
     );
 };

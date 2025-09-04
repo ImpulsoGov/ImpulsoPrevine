@@ -104,34 +104,36 @@ export const SplitTeams: React.FC<SplitTeamsProps> = ({
     };
     return (
         <>
-            <div className={style.MainCustomizationOption}>
-                <input
-                    onChange={handleChangeTeamSplit}
-                    className={style.MainCustomizationInput}
-                    type="radio"
-                    value="WithSplitTeam"
-                    checked={customization.grouping}
-                    name="grouping"
-                    id="splitTeam"
-                />
-                <label htmlFor="splitTeam">
-                    {labels.primaryCustomOption.splitTeam}
-                </label>
-            </div>
+            <div className={style.MainCustomizationContainer}>
+                <div className={style.MainCustomizationOption}>
+                    <input
+                        onChange={handleChangeTeamSplit}
+                        className={style.MainCustomizationInput}
+                        type="radio"
+                        value="WithSplitTeam"
+                        checked={customization.grouping}
+                        name="grouping"
+                        id="splitTeam"
+                    />
+                    <label htmlFor="splitTeam">
+                        {labels.primaryCustomOption.splitTeam}
+                    </label>
+                </div>
 
-            <div className={style.MainCustomizationOption}>
-                <input
-                    onChange={handleChangeTeamSplit}
-                    className={style.MainCustomizationInput}
-                    type="radio"
-                    value="WithoutSplitTeam"
-                    checked={!customization.grouping}
-                    name="grouping"
-                    id="noSplit"
-                />
-                <label htmlFor="noSplit">
-                    {labels.primaryCustomOption.noSplit}
-                </label>
+                <div className={style.MainCustomizationOption}>
+                    <input
+                        onChange={handleChangeTeamSplit}
+                        className={style.MainCustomizationInput}
+                        type="radio"
+                        value="WithoutSplitTeam"
+                        checked={!customization.grouping}
+                        name="grouping"
+                        id="noSplit"
+                    />
+                    <label htmlFor="noSplit">
+                        {labels.primaryCustomOption.noSplit}
+                    </label>
+                </div>
             </div>
         </>
     );
@@ -201,14 +203,14 @@ export const OtherPrintOptions: React.FC<OtherPrintOptionsProps> = ({
                 </div>
 
                 {labels.secondaryCustomOption.ordering && (
-                    <div className={style.LastSecondaryOption}>
+                    <div className={style.SecondaryCustomOption}>
                         <Checkbox
                             name="order"
                             checked={customization.order}
                             onChange={handleCheckboxChange}
                             sx={{
                                 p: 0.5,
-                                color: "#c9cdd2",
+                                color: "#A6B5BE",
                                 "&.Mui-checked": { color: "#2EB280" },
                             }}
                         />
