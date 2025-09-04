@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import type { AxiosError } from "axios";
 import { isAxiosError, type AxiosResponse } from "axios";
 import type { DispatchWithoutAction } from "react";
 import { useContext, useEffect, useRef, useState } from "react";
+=======
+import { type AxiosResponse } from "axios";
+import type { Dispatch, SetStateAction } from "react";
+import { useContext, useEffect, useState } from "react";
+>>>>>>> 7b78d5ea (feat: refatora estrutura de dados e implementa hook useAcfData para gerenciamento de dados)
 import type { AppliedFilters } from "../WithFilters";
 import type { AcfResponse, DataResponses } from "@/features/acf/shared/schema";
 import { useSession } from "next-auth/react";
