@@ -17,7 +17,7 @@ export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     }
 
     const nonNulls = values.filter(
-        (value): value is string => typeof value === "string"
+        (value) => typeof value === "string" || typeof value === "number"
     );
 
     const hasNull = values.includes(null);
