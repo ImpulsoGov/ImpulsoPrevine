@@ -13,7 +13,7 @@ export type FilterResponses =
 
 export type AcfResponse<TResponse> = TResponse extends PageResponse
     ? PageResponse | null
-    : AcfItem | AxiosError | null;
+    : Array<AcfItem> | AxiosError | null;
 
 export type DataResponses = PageResponse | AcfItem;
 
