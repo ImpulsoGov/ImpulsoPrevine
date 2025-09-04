@@ -1,20 +1,23 @@
+import type { ReactNode } from "react";
 import React from "react";
 import style from "../../CustomPrint.module.css";
 import cx from "classnames";
 import type { ModalLabels } from "../../../../model";
 import type { CustomPrintState } from "@/features/acf/frontend/common/WithCustomPrint/context";
 
-type PrintModalContentProps = {
+type PrintModalContentProps<TItem> = {
     labels: ModalLabels;
-    customization: CustomPrintState;
-    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
+    customization: CustomPrintState<TItem>;
+    setCustomization: React.Dispatch<
+        React.SetStateAction<CustomPrintState<TItem>>
+    >;
 };
 
-export const PrintModalContent: React.FC<PrintModalContentProps> = ({
+export const PrintModalContent = <TItem,>({
     labels,
     customization,
     setCustomization,
-}) => {
+}: PrintModalContentProps<TItem>): ReactNode => {
     return (
         <div className={style.Content}>
             <Header labels={labels} />
@@ -66,17 +69,19 @@ export const Header: React.FC<{ labels: ModalLabels }> = ({ labels }) => {
     );
 };
 
-type SplitTeamsProps = {
+type SplitTeamsProps<TItem> = {
     labels: ModalLabels;
-    customization: CustomPrintState;
-    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
+    customization: CustomPrintState<TItem>;
+    setCustomization: React.Dispatch<
+        React.SetStateAction<CustomPrintState<TItem>>
+    >;
 };
 
-export const SplitTeams: React.FC<SplitTeamsProps> = ({
+export const SplitTeams = <TItem,>({
     labels,
     customization,
     setCustomization,
-}) => {
+}: SplitTeamsProps<TItem>): ReactNode => {
     const handleChangeTeamSplit = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
@@ -87,6 +92,7 @@ export const SplitTeams: React.FC<SplitTeamsProps> = ({
                     grouping: false,
                     splitGroupPerPage: false,
                     order: false,
+                    orderGroup: prev.orderGroup,
                 };
             }
             return { ...prev, [name]: true };
@@ -127,17 +133,19 @@ export const SplitTeams: React.FC<SplitTeamsProps> = ({
     );
 };
 
-type OtherPrintOptionsProps = {
+type OtherPrintOptionsProps<TItem> = {
     labels: ModalLabels;
-    customization: CustomPrintState;
-    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
+    customization: CustomPrintState<TItem>;
+    setCustomization: React.Dispatch<
+        React.SetStateAction<CustomPrintState<TItem>>
+    >;
 };
 
-export const OtherPrintOptions: React.FC<OtherPrintOptionsProps> = ({
+export const OtherPrintOptions = <TItem,>({
     labels,
     customization,
     setCustomization,
-}) => {
+}: OtherPrintOptionsProps<TItem>): ReactNode => {
     const handleCheckboxChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
