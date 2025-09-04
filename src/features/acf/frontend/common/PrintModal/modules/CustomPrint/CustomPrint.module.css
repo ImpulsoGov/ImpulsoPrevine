@@ -116,7 +116,7 @@
     width: 18px;
     height: 18px;
     margin: 0;
-    border: 2px solid black;
+    border: 1px solid #000;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
