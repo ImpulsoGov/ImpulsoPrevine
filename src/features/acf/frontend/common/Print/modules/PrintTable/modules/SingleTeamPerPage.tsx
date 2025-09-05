@@ -2,31 +2,26 @@ import type { AcfItem } from "@/features/acf/shared/schema";
 import { UnitTable } from "./UnitTable";
 import type { ColumnsProps, SortCallback } from "../model";
 import type { PropsWithChildren, ReactNode } from "react";
-import { SplitByProp } from "./SplitByProp";
+import type { SplitedByProp } from "./SplitByProp";
 
 export type SingleTeamPerPageProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
-        data: Array<TAcfItem>;
+        data: SplitedByProp<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
-        splitBy: keyof TAcfItem;
         orderGroup: SortCallback<keyof TAcfItem>;
     }>;
 
-export const SingleTeamPerPage = <TAcfItem extends AcfItem>({
+export const SingleGroupPerPage = <TAcfItem extends AcfItem>({
     data,
     columns,
-    splitBy,
     orderGroup,
     children,
 }: SingleTeamPerPageProps<TAcfItem>): ReactNode => {
-    const splitedByProp = SplitByProp(data, splitBy);
-    return (Object.keys(splitedByProp) as Array<keyof TAcfItem>)
+    return (Object.keys(data) as Array<keyof TAcfItem>)
         .sort(orderGroup)
         .map((record, index) => {
             const recordString = record.toString();
-            const column = columns.find((col) => col.fields.includes(splitBy));
-            const titleFormatter = column?.titleFormatter;
-
+            const currentColumn = data[recordString];
             return (
                 <div key={`${recordString}-page-${index.toString()}`}>
                     <div
@@ -47,19 +42,15 @@ export const SingleTeamPerPage = <TAcfItem extends AcfItem>({
                                     marginBottom: "0px",
                                 }}
                             >
-                                <b>
-                                    {titleFormatter
-                                        ? titleFormatter(recordString)
-                                        : recordString}
-                                </b>
+                                <b>{currentColumn.title}</b>
                             </p>
                             <UnitTable
-                                data={splitedByProp[recordString]}
+                                data={currentColumn.data}
                                 columns={columns}
                                 layoutOrientation="portrait"
                             />
                             <UnitTable
-                                data={splitedByProp[recordString]}
+                                data={currentColumn.data}
                                 columns={columns}
                                 layoutOrientation="landscape"
                             />

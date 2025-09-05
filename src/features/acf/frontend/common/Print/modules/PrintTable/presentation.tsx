@@ -1,19 +1,21 @@
 import { useContext } from "react";
 import { CustomPrintContext } from "@/features/acf/frontend/common/WithCustomPrint";
 import type { ColumnsProps, PrintListProps } from "./model";
-import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
+import { MultipleGroupsPerPage } from "./modules/MultipleTeamsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
+import { SingleGroupPerPage } from "./modules/SingleTeamPerPage";
+import type { SplitedByProp } from "./modules/SplitByProp";
 
 export type PrintTableProps<
     TAcfItem extends AcfItem,
     TFilters extends AppliedFilters,
 > = {
     data: Array<TAcfItem>;
+    SplitedData: SplitedByProp<TAcfItem>;
     columns: Array<ColumnsProps<TAcfItem>>;
     ref: React.RefObject<HTMLDivElement | null>;
     printListProps: PrintListProps<TAcfItem, TFilters>;
@@ -24,6 +26,7 @@ export const PrintTable = <
     TFilters extends AppliedFilters,
 >({
     data,
+    SplitedData,
     columns,
     ref,
     printListProps,
@@ -46,8 +49,8 @@ export const PrintTable = <
             }}
         >
             {isDataSplitEnabled && !isPageSplitEnabled && (
-                <MultipleTeamsPerPage<TAcfItem>
-                    data={data}
+                <MultipleGroupsPerPage<TAcfItem>
+                    data={SplitedData}
                     columns={columns}
                     splitBy={splitBy}
                     orderGroup={orderPrintGroups}
@@ -57,13 +60,12 @@ export const PrintTable = <
                         listTitle={listTitle}
                         printCaption={printCaption}
                     />
-                </MultipleTeamsPerPage>
+                </MultipleGroupsPerPage>
             )}
             {isPageSplitEnabled && isDataSplitEnabled && (
-                <SingleTeamPerPage<TAcfItem>
-                    data={data}
+                <SingleGroupPerPage<TAcfItem>
+                    data={SplitedData}
                     columns={columns}
-                    splitBy={splitBy}
                     orderGroup={orderPrintGroups}
                 >
                     <PageHeader
@@ -71,7 +73,7 @@ export const PrintTable = <
                         listTitle={listTitle}
                         printCaption={printCaption}
                     />
-                </SingleTeamPerPage>
+                </SingleGroupPerPage>
             )}
             {!(isDataSplitEnabled || isPageSplitEnabled) && (
                 <>
