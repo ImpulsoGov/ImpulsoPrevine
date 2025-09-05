@@ -44,7 +44,6 @@ export const UnitTable = <TAcfItem extends AcfItem>({
                     {Array.isArray(data) &&
                         data.map((item, index) => (
                             <tr
-                                data-testid="LinhaTabelaUnitaria"
                                 key={`row-${index.toString()}`}
                                 style={{
                                     borderBottom: "solid 1px #757574",
