@@ -19,6 +19,17 @@ describe("addFilterField", () => {
             latestExamRequestStatusByQuarter: { in: [10, 30] },
         });
     });
+    it("Deve adicionar o campo corretamente quando receber um array de string", () => {
+        const result = addFilterField(
+            {},
+            { microAreaName: ["Área 19", "Área 20"] },
+            "microAreaName"
+        );
+        expect(result).toEqual({
+            microAreaName: { in: ["Área 19", "Área 20"] },
+        });
+    });
+
     it("Deve adicionar o campo corretamente quando receber apenas null", () => {
         const result = addFilterField(
             {},

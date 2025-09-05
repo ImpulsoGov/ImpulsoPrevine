@@ -11,14 +11,12 @@ export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     filter: TFilters,
     field: keyof TFilters
 ): TPrismaWhereInput => {
-    const values = filter[field] as ReadonlyArray<string | null>;
+    const values = filter[field] as ReadonlyArray<string | null | number>;
     if (values.length === 0) {
         return where;
     }
 
-    const nonNulls = values.filter(
-        (value) => typeof value === "string" || typeof value === "number"
-    );
+    const nonNulls = values.filter((value) => value !== null);
 
     const hasNull = values.includes(null);
 
