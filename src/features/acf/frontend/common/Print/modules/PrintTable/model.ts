@@ -1,6 +1,7 @@
 import type { AcfItem } from "@/features/acf/shared/schema";
-import type { ReactElement } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
+import type { SplitedByProp } from "./modules/SplitByProp";
 
 export type PrintListProps<
     TAcfItem extends AcfItem,
@@ -29,3 +30,10 @@ export type ColumnsProps<TAcfItem extends AcfItem> = {
 };
 
 export type LayoutOrientation = "landscape" | "portrait";
+
+export type SplitedGroupPerPageProps<TAcfItem extends AcfItem> =
+    PropsWithChildren<{
+        data: SplitedByProp<TAcfItem>;
+        columns: Array<ColumnsProps<TAcfItem>>;
+        sortedKeys: Array<keyof TAcfItem>;
+    }>;

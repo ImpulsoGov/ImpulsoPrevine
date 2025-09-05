@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { CustomPrintContext } from "@/features/acf/frontend/common/WithCustomPrint";
 import type { ColumnsProps, PrintListProps } from "./model";
-import { MultipleGroupsPerPage } from "./modules/MultipleTeamsPerPage";
+import { MultipleGroupsPerPage } from "./modules/MultipleGroupsPerPage";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { SingleGroupPerPage } from "./modules/SingleTeamPerPage";
+import { SingleGroupPerPage } from "./modules/SingleGroupPerPage";
 import type { SplitedByProp } from "./modules/SplitByProp";
 
 export type PrintTableProps<
@@ -19,6 +19,7 @@ export type PrintTableProps<
     columns: Array<ColumnsProps<TAcfItem>>;
     ref: React.RefObject<HTMLDivElement | null>;
     printListProps: PrintListProps<TAcfItem, TFilters>;
+    sortedKeys: Array<keyof TAcfItem>;
 };
 
 export const PrintTable = <
@@ -30,13 +31,13 @@ export const PrintTable = <
     columns,
     ref,
     printListProps,
+    sortedKeys,
 }: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
-    const { listTitle, printCaption, filtersLabels, splitBy } = printListProps;
+    const { listTitle, printCaption, filtersLabels } = printListProps;
     const { customization } = useContext(CustomPrintContext);
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
-    const orderPrintGroups = customization.orderGroup;
 
     return (
         <div
@@ -52,8 +53,7 @@ export const PrintTable = <
                 <MultipleGroupsPerPage<TAcfItem>
                     data={SplitedData}
                     columns={columns}
-                    splitBy={splitBy}
-                    orderGroup={orderPrintGroups}
+                    sortedKeys={sortedKeys}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}
@@ -66,7 +66,7 @@ export const PrintTable = <
                 <SingleGroupPerPage<TAcfItem>
                     data={SplitedData}
                     columns={columns}
-                    orderGroup={orderPrintGroups}
+                    sortedKeys={sortedKeys}
                 >
                     <PageHeader
                         filtersLabels={filtersLabels}

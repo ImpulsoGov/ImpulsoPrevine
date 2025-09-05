@@ -123,14 +123,14 @@
 }
 
 .MainCustomizationInput[type="radio"]:checked {
-    border-color: #2EB280;
+    border-color: #2eb280;
 }
 
 .MainCustomizationInput[type="radio"]:checked::after {
     content: "";
     width: 50%;
     height: 50%;
-    background: #2EB280;
+    background: #2eb280;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -171,7 +171,7 @@
     text-align: left;
 }
 
-.Recommendation+.SecondaryCustomOption {
+.Recommendation + .SecondaryCustomOption {
     margin-top: 14px;
 }
 
@@ -219,7 +219,7 @@
     }
 
     .ContainerTitle {
-        margin-bottom: 24px;
+        margin-bottom: 8px;
     }
 
     .MainPersonalizationTitle {
@@ -231,6 +231,11 @@
     .MainPrintDescription {
         line-height: 20px;
         margin-bottom: 12px;
+    }
+
+    .MainCustomizationContainer {
+        display: flex;
+        flex-direction: column;
     }
 
     .MainCustomizationOption {
@@ -260,7 +265,7 @@
     }
 
     .SecondaryCustomOption {
-        margin-top: 16px;
+        /* margin-top: 16px; */
         line-height: 15px;
     }
 

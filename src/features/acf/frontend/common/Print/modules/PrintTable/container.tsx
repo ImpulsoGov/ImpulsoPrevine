@@ -7,6 +7,8 @@ import type { ColumnsProps, PrintListProps } from "./model";
 import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
 import { useAcfData } from "@features/acf/frontend/common/useAcfData";
 import { SplitByProp } from "./modules/SplitByProp";
+import { useContext } from "react";
+import { CustomPrintContext } from "../../../WithCustomPrint";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
@@ -30,6 +32,8 @@ export const Container = <
     const { response } = useAcfData<TResponse, TAppliedFilters>({
         serviceGetData,
     });
+    const { customization } = useContext(CustomPrintContext);
+    const orderGroup = customization.orderGroup;
 
     if (isAxiosError(response)) {
         return (
@@ -44,6 +48,9 @@ export const Container = <
     if (response !== null) {
         const data = response.data as Array<TResponse>;
         const splitedData = SplitByProp(data, printListProps.splitBy, columns);
+        const sortedKeys = Object.keys(splitedData).sort(orderGroup) as Array<
+            keyof TResponse
+        >;
         return (
             <PrintTable
                 SplitedData={splitedData}
@@ -51,6 +58,7 @@ export const Container = <
                 columns={columns}
                 ref={ref}
                 printListProps={printListProps}
+                sortedKeys={sortedKeys}
             />
         );
     }
