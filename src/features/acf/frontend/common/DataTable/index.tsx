@@ -8,7 +8,6 @@ import { Table } from "@impulsogov/design-system";
 import { isAxiosError } from "axios";
 import React, { useContext } from "react";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
-
 import type { GridColDef } from "@mui/x-data-grid";
 import type { DataResponses, PageResponse } from "@/features/acf/shared/schema";
 import type { ServiceGetData } from "../useAcfData";
@@ -24,7 +23,6 @@ type DataTableProps<
     columns: Array<GridColDef>;
     serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
 };
-
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponse,
@@ -45,10 +43,7 @@ export const DataTable = <
 
     if (isAxiosError(response)) {
         return (
-            <p
-                data-testid="error-message"
-                style={{ textAlign: "center", padding: "20px" }}
-            >
+            <p data-testid="error-message">
                 Erro ao buscar dados, entre em contato com o suporte.
             </p>
         );

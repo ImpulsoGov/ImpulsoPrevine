@@ -22,7 +22,7 @@ export const apsLabelsModal: ModalLabels = {
         recommendation:
             "Ideal para distribuir listas para coordenadoras de equipe",
         splitGroupPerPage: "Também dividir equipes em folhas separadas",
-        ordering: "Também ordenar listas por profissional responsável",
+        ordering: "Também ordenar listas por microárea",
     },
     button: "IMPRIMIR LISTA",
 };
