@@ -66,7 +66,6 @@ export const useAcfData = <
         // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
         // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
         // chamada, como dentro do WithFilters, WithSorting e WithSearch.
-        console.log("hoooooooooook");
         if (shouldSkipNextFetchRef.current) {
             shouldSkipNextFetchRef.current = false;
             return;
