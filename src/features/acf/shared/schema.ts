@@ -2,7 +2,6 @@ import type * as Diabetes from "./diabetes/schema";
 import type * as Hypertension from "./hypertension/schema";
 import type * as HypertensionModel from "./hypertension/model";
 import type * as DiabetesModel from "./diabetes/model";
-import type { AxiosError } from "axios";
 
 //TODO: Pensar se existe alguma forma de evitar isso
 export type FilterResponses =
@@ -12,8 +11,8 @@ export type FilterResponses =
     | Hypertension.CoeqFilters;
 
 export type AcfResponse<TResponse> = TResponse extends PageResponse
-    ? PageResponse | null
-    : Array<AcfItem> | AxiosError | null;
+    ? PageResponse
+    : Array<TResponse>;
 
 export type DataResponses = PageResponse | AcfItem;
 

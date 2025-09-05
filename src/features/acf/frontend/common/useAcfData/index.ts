@@ -1,4 +1,5 @@
-import { type AxiosResponse } from "axios";
+import type { AxiosError } from "axios";
+import { isAxiosError, type AxiosResponse } from "axios";
 import type { DispatchWithoutAction } from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import type { AppliedFilters } from "../WithFilters";
@@ -43,7 +44,7 @@ export const useAcfData = <
     page,
     resetPagination,
 }: Props<TAppliedFilters, TResponse>): {
-    response: AxiosResponse<AcfResponse<TResponse>> | null;
+    response: AxiosResponse<AcfResponse<TResponse>> | null | AxiosError;
     isLoading: boolean;
 } => {
     const { data: session } = useSession();
@@ -52,16 +53,12 @@ export const useAcfData = <
     const { gridSortingModel: sorting } =
         useContext<SortingModel>(SortingContext);
     const { searchString: search } = useContext<SearchModel>(SearchContext);
-    const [response, setResponse] = useState<AxiosResponse<
-        AcfResponse<TResponse>
-    > | null>(null);
+    const [response, setResponse] = useState<
+        AxiosResponse<AcfResponse<TResponse>> | null | AxiosError
+    >(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const shouldSkipNextFetchRef = useRef(false);
-    useEffect(() => {
-        shouldSkipNextFetchRef.current = true;
-        resetPagination?.();
-    }, [filters, sorting, search]);
 
     useEffect(() => {
         // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
@@ -69,6 +66,7 @@ export const useAcfData = <
         // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
         // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
         // chamada, como dentro do WithFilters, WithSorting e WithSearch.
+        console.log("hoooooooooook");
         if (shouldSkipNextFetchRef.current) {
             shouldSkipNextFetchRef.current = false;
             return;
@@ -89,12 +87,20 @@ export const useAcfData = <
             .catch((error: unknown) => {
                 //TODO: generalizar esse error handling e reutilizar
                 setIsLoading(false);
-                setResponse(null);
+                if (isAxiosError(error)) {
+                    setResponse(error);
+                } else {
+                    setResponse(null);
+                }
                 console.error(
                     `Erro ao buscar a página. Razão: ${String(error)}`
                 );
             });
     }, [session, filters, sorting, search, page]);
 
+    useEffect(() => {
+        shouldSkipNextFetchRef.current = true;
+        resetPagination?.();
+    }, [filters, sorting, search]);
     return { response, isLoading };
 };

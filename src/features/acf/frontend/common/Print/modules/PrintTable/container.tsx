@@ -40,14 +40,14 @@ export const Container = <
             </p>
         );
     }
-
-    if (response !== null)
+    if (response !== null) {
         return (
             <PrintTable
-                data={response.data as Array<TResponse>}
+                data={response.data as Array<TResponse>} //TODO: revisar essa coercão, possivelmente adicionar um objeto da resposta ajudaria na inferencia de tipos como na data
                 columns={columns}
                 ref={ref}
                 printListProps={printListProps}
             />
         );
+    }
 };
