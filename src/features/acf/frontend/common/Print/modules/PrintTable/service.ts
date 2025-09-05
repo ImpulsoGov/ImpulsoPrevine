@@ -4,6 +4,7 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFilters } from "../../../WithFilters";
 import type { AcfDashboardType } from "../../../DashboardType";
+import type { GetDataParams } from "@features/acf/frontend/common//useAcfData";
 
 //TODO: rever este tipo
 type CoordinatorProfile = "coaps" | "coeq";
@@ -16,14 +17,6 @@ export type BodyBuilder<
     filters: TAppliedFilters | null,
     search: string | null
 ) => TRequestBody;
-
-export type GetDataParams<TAppliedFilters extends AppliedFilters> = {
-    token: string;
-    sorting?: GridSortItem;
-    filters?: TAppliedFilters;
-    search?: string;
-    page?: number;
-};
 
 export type GetData<TAppliedFilters extends AppliedFilters, TResponse> = (
     params: GetDataParams<TAppliedFilters>
