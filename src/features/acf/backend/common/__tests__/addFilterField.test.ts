@@ -1,4 +1,3 @@
-import { latestExamRequestStatusByQuarter } from "@/features/acf/shared/hypertension/schema";
 import { addFilterField } from "../QueryBuilder";
 
 describe("addFilterField", () => {
