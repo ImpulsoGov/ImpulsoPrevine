@@ -53,7 +53,7 @@ export const DataTable = <
             </p>
         );
     }
-    console.log(isLoading, response);
+
     return (
         <Table
             columns={columns}
