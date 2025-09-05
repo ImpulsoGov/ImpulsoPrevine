@@ -4,9 +4,11 @@ import style from "../../CustomPrint.module.css";
 import cx from "classnames";
 import type { ModalLabels } from "../../../../model";
 import type { CustomPrintState } from "@/features/acf/frontend/common/WithCustomPrint/context";
+import { Checkbox } from "@mui/material";
 
 type PrintModalContentProps<TItem> = {
     labels: ModalLabels;
+    handleClose: () => void;
     customization: CustomPrintState<TItem>;
     setCustomization: React.Dispatch<
         React.SetStateAction<CustomPrintState<TItem>>
@@ -17,10 +19,11 @@ export const PrintModalContent = <TItem,>({
     labels,
     customization,
     setCustomization,
+    handleClose,
 }: PrintModalContentProps<TItem>): ReactNode => {
     return (
         <div className={style.Content}>
-            <Header labels={labels} />
+            <Header labels={labels} handleClose={handleClose} />
             <SplitTeams
                 labels={labels}
                 customization={customization}
@@ -37,20 +40,27 @@ export const PrintModalContent = <TItem,>({
     );
 };
 
-export const Header: React.FC<{ labels: ModalLabels }> = ({ labels }) => {
+export const Header: React.FC<{
+    labels: ModalLabels;
+    handleClose: () => void;
+}> = ({ labels, handleClose }) => {
     return (
         <>
             <div className={style.ContainerTitle}>
-                <img
-                    src="https://media.graphassets.com/tkjDWpANQ9SzsdACBiEI"
-                    width="28px"
-                    height="28px"
-                    alt="Icone de brilho"
-                    className={style.TitleIcon}
-                />
-                <h4 className={cx(style.Title, style.ResetSpaces)}>
-                    {labels.title}
-                </h4>
+                <div className={style.TitleWithIcon}>
+                    <img
+                        src="https://media.graphassets.com/tkjDWpANQ9SzsdACBiEI"
+                        width="28px"
+                        height="28px"
+                        alt="Icone de brilho"
+                        className={style.TitleIcon}
+                    />
+                    <h4 className={cx(style.Title, style.ResetSpaces)}>
+                        {labels.title}
+                    </h4>
+                </div>
+
+                <CloseModal handleClose={handleClose} />
             </div>
 
             <h5
@@ -100,34 +110,36 @@ export const SplitTeams = <TItem,>({
     };
     return (
         <>
-            <div className={style.MainCustomizationOption}>
-                <input
-                    onChange={handleChangeTeamSplit}
-                    className={style.MainCustomizationInput}
-                    type="radio"
-                    value="WithSplitTeam"
-                    checked={customization.grouping}
-                    name="grouping"
-                    id="splitTeam"
-                />
-                <label htmlFor="splitTeam">
-                    {labels.primaryCustomOption.splitTeam}
-                </label>
-            </div>
+            <div className={style.MainCustomizationContainer}>
+                <div className={style.MainCustomizationOption}>
+                    <input
+                        onChange={handleChangeTeamSplit}
+                        className={style.MainCustomizationInput}
+                        type="radio"
+                        value="WithSplitTeam"
+                        checked={customization.grouping}
+                        name="grouping"
+                        id="splitTeam"
+                    />
+                    <label htmlFor="splitTeam">
+                        {labels.primaryCustomOption.splitTeam}
+                    </label>
+                </div>
 
-            <div className={style.MainCustomizationOption}>
-                <input
-                    onChange={handleChangeTeamSplit}
-                    className={style.MainCustomizationInput}
-                    type="radio"
-                    value="WithoutSplitTeam"
-                    checked={!customization.grouping}
-                    name="grouping"
-                    id="noSplit"
-                />
-                <label htmlFor="noSplit">
-                    {labels.primaryCustomOption.noSplit}
-                </label>
+                <div className={style.MainCustomizationOption}>
+                    <input
+                        onChange={handleChangeTeamSplit}
+                        className={style.MainCustomizationInput}
+                        type="radio"
+                        value="WithoutSplitTeam"
+                        checked={!customization.grouping}
+                        name="grouping"
+                        id="noSplit"
+                    />
+                    <label htmlFor="noSplit">
+                        {labels.primaryCustomOption.noSplit}
+                    </label>
+                </div>
             </div>
         </>
     );
@@ -183,33 +195,45 @@ export const OtherPrintOptions = <TItem,>({
                 </div>
 
                 <div className={style.SecondaryCustomOption}>
-                    <input
-                        onChange={handleCheckboxChange}
-                        type="checkbox"
-                        checked={customization.splitGroupPerPage}
+                    <Checkbox
                         name="splitGroupPerPage"
-                        id="splitGroupPerPage"
+                        checked={customization.splitGroupPerPage}
+                        onChange={handleCheckboxChange}
+                        sx={{
+                            p: 0.5,
+                            color: "#A6B5BE",
+                            "&.Mui-checked": { color: "#2EB280" },
+                        }}
                     />
-                    <label htmlFor="splitGroupPerPage">
+                    <span>
                         {labels.secondaryCustomOption.splitGroupPerPage}
-                    </label>
+                    </span>
                 </div>
 
                 {labels.secondaryCustomOption.ordering && (
                     <div className={style.SecondaryCustomOption}>
-                        <input
-                            onChange={handleCheckboxChange}
-                            type="checkbox"
-                            checked={customization.order}
+                        <Checkbox
                             name="order"
-                            id="order"
+                            checked={customization.order}
+                            onChange={handleCheckboxChange}
+                            sx={{
+                                p: 0.5,
+                                color: "#A6B5BE",
+                                "&.Mui-checked": { color: "#2EB280" },
+                            }}
                         />
-                        <label htmlFor="order">
-                            {labels.secondaryCustomOption.ordering}
-                        </label>
+                        <span>{labels.secondaryCustomOption.ordering}</span>
                     </div>
                 )}
             </div>
         </>
+    );
+};
+
+const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
+    return (
+        <div className={style.Close}>
+            <a className={style.ModalExit} onClick={handleClose} />
+        </div>
     );
 };
