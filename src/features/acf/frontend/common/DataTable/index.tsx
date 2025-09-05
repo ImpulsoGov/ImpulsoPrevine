@@ -151,6 +151,8 @@ export const DataTable = <
 
     const { response, isLoading } = useAcfData<TResponse, TAppliedFilters>({
         serviceGetData: serviceGetPage,
+        page: gridPaginationModel.page,
+        resetPagination: resetPagination,
     });
 
     if (isAxiosError(response) || response?.data === null) {

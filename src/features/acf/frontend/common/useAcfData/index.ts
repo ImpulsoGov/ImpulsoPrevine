@@ -1,6 +1,6 @@
 import { type AxiosResponse } from "axios";
-import type { Dispatch, SetStateAction } from "react";
-import { useContext, useEffect, useState } from "react";
+import type { DispatchWithoutAction } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import type { AppliedFilters } from "../WithFilters";
 import type { AcfResponse, DataResponses } from "@/features/acf/shared/schema";
 import { useSession } from "next-auth/react";
@@ -26,47 +26,13 @@ export type ServiceGetData<
     params: GetDataParams<TAppliedFilters>
 ) => Promise<AxiosResponse<AcfResponse<TResponse>>>;
 
-type FetchDataParams<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
-> = GetDataParams<TAppliedFilters> & {
-    serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
-    setResponse: Dispatch<
-        SetStateAction<AxiosResponse<AcfResponse<TResponse>> | null>
-    >;
-    setIsLoading: Dispatch<SetStateAction<boolean>>;
-};
-
-const fetchData = <
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends DataResponses,
->({
-    serviceGetData,
-    setResponse,
-    setIsLoading,
-    ...getDataParams
-}: FetchDataParams<TAppliedFilters, TResponse>): void => {
-    setIsLoading(true);
-
-    serviceGetData(getDataParams)
-        .then((res) => {
-            setResponse(res);
-            setIsLoading(false);
-        })
-        .catch((error: unknown) => {
-            //TODO: generalizar esse error handling e reutilizar
-            setIsLoading(false);
-            setResponse(null);
-            console.error(`Erro ao buscar a página. Razão: ${String(error)}`);
-        });
-};
-
 type Props<
     TAppliedFilters extends AppliedFilters,
     TResponse extends DataResponses,
 > = {
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
     page?: number;
+    resetPagination?: DispatchWithoutAction;
 };
 
 export const useAcfData = <
@@ -75,6 +41,7 @@ export const useAcfData = <
 >({
     serviceGetData,
     page,
+    resetPagination,
 }: Props<TAppliedFilters, TResponse>): {
     response: AxiosResponse<AcfResponse<TResponse>> | null;
     isLoading: boolean;
@@ -90,21 +57,43 @@ export const useAcfData = <
     > | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const getDataParams: GetDataParams<TAppliedFilters> = {
-        token: session?.user.access_token || "",
-        sorting,
-        search,
-        page,
-        filters: filters || undefined,
-    };
+    const shouldSkipNextFetchRef = useRef(false);
+    useEffect(() => {
+        shouldSkipNextFetchRef.current = true;
+        resetPagination?.();
+    }, [filters, sorting, search]);
 
     useEffect(() => {
-        fetchData({
-            ...getDataParams,
-            serviceGetData,
-            setResponse,
-            setIsLoading,
-        });
+        // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
+        // a fetchPage é chamada duas vezes com valores diferentes quando a paginação é resetada.
+        // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
+        // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
+        // chamada, como dentro do WithFilters, WithSorting e WithSearch.
+        if (shouldSkipNextFetchRef.current) {
+            shouldSkipNextFetchRef.current = false;
+            return;
+        }
+        setIsLoading(true);
+        const getDataParams: GetDataParams<TAppliedFilters> = {
+            token: session?.user.access_token || "",
+            sorting,
+            search,
+            page,
+            filters: filters || undefined,
+        };
+        serviceGetData(getDataParams)
+            .then((res) => {
+                setResponse(res);
+                setIsLoading(false);
+            })
+            .catch((error: unknown) => {
+                //TODO: generalizar esse error handling e reutilizar
+                setIsLoading(false);
+                setResponse(null);
+                console.error(
+                    `Erro ao buscar a página. Razão: ${String(error)}`
+                );
+            });
     }, [session, filters, sorting, search, page]);
 
     return { response, isLoading };
