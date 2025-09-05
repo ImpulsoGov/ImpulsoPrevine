@@ -36,12 +36,12 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [
-                "Vence dentro de Q1",
+                "Vence dentro do Q1",
                 "Atrasada",
             ],
-            patientAgeRange: "50 a 59 anos",
+            patientAgeRange: "20 a 59 (Adulto)",
             careTeamName: ["team1", "team2"],
         };
 
@@ -50,7 +50,7 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                patientAgeRange: ["50 a 59 anos"],
+                patientAgeRange: ["20 a 59 (Adulto)"],
             },
         });
     });
@@ -81,12 +81,12 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [
-                "Vence dentro de Q1",
+                "Vence dentro do Q1",
                 "Atrasada",
             ],
-            patientAgeRange: "60 anos ou mais",
+            patientAgeRange: "60 ou mais (Idoso)",
             careTeamName: ["Rosa"],
         };
 
@@ -99,7 +99,7 @@ describe("bodyBuilder", () => {
             search: searchString,
             filters: {
                 ...appliedFilters,
-                patientAgeRange: ["60 anos ou mais"],
+                patientAgeRange: ["60 ou mais (Idoso)"],
             },
         });
     });

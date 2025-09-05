@@ -1,78 +1,11 @@
 "use client";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
 import { PrintTable } from "./presentation";
-import type { Session } from "next-auth";
-import type { AxiosError, AxiosResponse } from "axios";
 import { isAxiosError } from "axios";
-import type { GridSortItem } from "@mui/x-data-grid";
-import {
-    useContext,
-    useEffect,
-    useState,
-    type Dispatch,
-    type SetStateAction,
-} from "react";
-import { useSession } from "next-auth/react";
-import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
-import { SortingContext } from "@/features/acf/frontend/common/WithSorting";
-import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
-import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
 import type { AcfItem } from "@/features/acf/shared/schema";
-import type { GetDataParams } from "./service";
 import type { ColumnsProps, PrintListProps } from "./model";
-
-export type ServiceGetData<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends AcfItem,
-> = (
-    params: GetDataParams<TAppliedFilters>
-) => Promise<AxiosResponse<Array<TResponse>>>;
-
-const fetchData = <
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends AcfItem,
->(
-    session: Session | null,
-    gridSortingModel: GridSortItem,
-    searchString: string,
-    filters: TAppliedFilters | null,
-    serviceGetData: ServiceGetData<TAppliedFilters, TResponse>,
-    setResponse: Dispatch<
-        SetStateAction<AxiosResponse<Array<TResponse>> | AxiosError | null>
-    >
-): void => {
-    if (!session?.user) {
-        return;
-    }
-
-    const getDataParams = Object.assign(
-        {
-            token: session.user.access_token,
-            sorting: {
-                field: gridSortingModel.field,
-                sort: gridSortingModel.sort,
-            },
-            search: searchString,
-        },
-        !filters ? {} : { filters: filters }
-    );
-
-    serviceGetData(getDataParams)
-        .then((res) => {
-            setResponse(res);
-        })
-        .catch((error: unknown) => {
-            //TODO: generalizar esse error handling e reutilizar
-            if (isAxiosError(error)) {
-                setResponse(error);
-            }
-            if (error instanceof Error) {
-                setResponse(null);
-                console.error(`Erro ao buscar a página. Razão: ${error}`);
-            }
-        });
-};
+import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
+import { useAcfData } from "@features/acf/frontend/common/useAcfData";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
@@ -93,26 +26,9 @@ export const Container = <
     ref,
     printListProps,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
-    const { data: session } = useSession();
-    //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
-    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const filters = filtersContext as TAppliedFilters | null;
-    const { gridSortingModel } = useContext<SortingModel>(SortingContext);
-    const { searchString } = useContext<SearchModel>(SearchContext);
-    const [response, setResponse] = useState<
-        AxiosResponse<Array<TResponse>> | AxiosError | null
-    >(null);
-
-    useEffect(() => {
-        fetchData(
-            session,
-            gridSortingModel,
-            searchString,
-            filters,
-            serviceGetData,
-            setResponse
-        );
-    }, [session, filters, gridSortingModel, searchString]);
+    const { response } = useAcfData<TResponse, TAppliedFilters>({
+        serviceGetData,
+    });
 
     if (isAxiosError(response)) {
         return (
@@ -124,14 +40,14 @@ export const Container = <
             </p>
         );
     }
-
-    if (response !== null)
+    if (response !== null) {
         return (
             <PrintTable
-                data={response.data}
+                data={response.data as Array<TResponse>} //TODO: revisar essa coercão, possivelmente adicionar um objeto da resposta ajudaria na inferencia de tipos como na data
                 columns={columns}
                 ref={ref}
                 printListProps={printListProps}
             />
         );
+    }
 };
