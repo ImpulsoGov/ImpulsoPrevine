@@ -46,14 +46,13 @@ export const useAcfData = <
     isLoading: boolean;
 } => {
     const { data: session } = useSession();
-    const filtersContext = useContext(FiltersContext);
-    const filters = filtersContext as TAppliedFilters | null;
+    const filters = useContext(FiltersContext) as TAppliedFilters | null;
     const { gridSortingModel: sorting } = useContext(SortingContext);
     const { searchString: search } = useContext(SearchContext);
     const [response, setResponse] = useState<
         AxiosResponse<AcfResponse<TResponse>> | null | AxiosError
     >(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     const shouldSkipNextFetchRef = useRef(false);
 
@@ -68,7 +67,7 @@ export const useAcfData = <
             return;
         }
         setIsLoading(true);
-        const getDataParams: GetDataParams<TAppliedFilters> = {
+        const getDataParams = {
             token: session?.user.access_token || "",
             sorting,
             search,
