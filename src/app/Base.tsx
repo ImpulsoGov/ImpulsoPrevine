@@ -147,9 +147,6 @@ const SessionWrapper = ({
 }): React.ReactElement => {
     const session = useSession();
     const params = useSearchParams();
-    const path = usePathname();
-    const search = params.toString();
-
     useEffect(() => {
         identifyUserGuiding(session.data);
     }, [session]);
@@ -157,8 +154,8 @@ const SessionWrapper = ({
         sessionIdentifyMixPanel(mixpanel, Hotjar, session.data);
     }, [session]);
     useEffect(() => {
-        handleRouteChangeMixPanel(mixpanel, session.status, path, search);
-    }, [session, params, path, search]);
+        handleRouteChangeMixPanel(mixpanel, session.status);
+    }, [session, params]);
     useEffect(() => {
         addUserDataLayer(session.data);
     }, [session]);
