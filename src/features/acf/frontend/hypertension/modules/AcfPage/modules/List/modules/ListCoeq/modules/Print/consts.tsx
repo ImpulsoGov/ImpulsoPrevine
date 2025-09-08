@@ -9,20 +9,20 @@ import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/mo
 import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
 
 export const coeqLabelsModal: ModalLabels = {
-    title: "IMPRESSÃO POR PROFISSIONAL RESPONSÁVEL",
+    title: "IMPRESSÃO POR MICROÁREA",
     primaryCustomOption: {
-        title: "Deseja imprimir as listas divididas por profissional responsável?",
+        title: "Deseja imprimir as listas divididas por microárea?",
         description:
-            "Essa impressão agrupa os cidadãos de acordo com os profissionais responsáveis correspondentes. Qualquer filtro ou ordenação selecionados anteriormente serão mantidos e aplicados dentro desses grupos.",
-        splitTeam: "Sim, dividir listas por profissional responsável.",
+            "Essa impressão agrupa os cidadãos de acordo com as microáreas correspondentes. Qualquer filtro ou ordenação selecionados anteriormente serão mantidos e aplicados dentro desses grupos.",
+        splitTeam: "Sim, dividir listas por microárea.",
         noSplit: "Não, imprimir a lista como ela está.",
     },
     secondaryCustomOption: {
-        title: "Outras opções de impressão por profissional responsável:",
+        title: "Outras opções de impressão por microárea:",
         recommendation:
             "Ideal para distribuir listas para agentes comunitários de saúde",
         splitGroupPerPage:
-            "Também dividir a lista impressa com um profissional responsável por folha",
+            "Também dividir a lista impressa com uma microárea por folha",
     },
     button: "IMPRIMIR LISTA",
 };

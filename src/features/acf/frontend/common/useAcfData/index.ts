@@ -6,9 +6,7 @@ import type { AppliedFilters } from "../WithFilters";
 import type { AcfResponse, DataResponses } from "@/features/acf/shared/schema";
 import { useSession } from "next-auth/react";
 import { FiltersContext } from "../WithFilters/context";
-import type { SearchModel } from "../WithSearch";
 import { SearchContext } from "../WithSearch";
-import type { SortingModel } from "../WithSorting";
 import { SortingContext } from "../WithSorting";
 import type { GridSortItem } from "@mui/x-data-grid";
 
@@ -48,15 +46,13 @@ export const useAcfData = <
     isLoading: boolean;
 } => {
     const { data: session } = useSession();
-    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const filters = filtersContext as TAppliedFilters | null;
-    const { gridSortingModel: sorting } =
-        useContext<SortingModel>(SortingContext);
-    const { searchString: search } = useContext<SearchModel>(SearchContext);
+    const filters = useContext(FiltersContext) as TAppliedFilters | null;
+    const { gridSortingModel: sorting } = useContext(SortingContext);
+    const { searchString: search } = useContext(SearchContext);
     const [response, setResponse] = useState<
         AxiosResponse<AcfResponse<TResponse>> | null | AxiosError
     >(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     const shouldSkipNextFetchRef = useRef(false);
 
@@ -71,7 +67,7 @@ export const useAcfData = <
             return;
         }
         setIsLoading(true);
-        const getDataParams: GetDataParams<TAppliedFilters> = {
+        const getDataParams = {
             token: session?.user.access_token || "",
             sorting,
             search,

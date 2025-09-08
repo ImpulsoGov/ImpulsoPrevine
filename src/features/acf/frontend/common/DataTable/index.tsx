@@ -8,7 +8,6 @@ import { Table } from "@impulsogov/design-system";
 import { isAxiosError } from "axios";
 import React, { useContext } from "react";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
-
 import type { GridColDef } from "@mui/x-data-grid";
 import type { DataResponses, PageResponse } from "@/features/acf/shared/schema";
 import type { ServiceGetData } from "../useAcfData";
@@ -24,7 +23,6 @@ type DataTableProps<
     columns: Array<GridColDef>;
     serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
 };
-
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,
     TResponse extends PageResponse,
@@ -37,7 +35,7 @@ export const DataTable = <
     const { gridSortingModel, onSortingModelChange } =
         useContext<SortingModel>(SortingContext);
 
-    const { response, isLoading } = useAcfData<TResponse, TAppliedFilters>({
+    const { response, isLoading } = useAcfData({
         serviceGetData: serviceGetPage,
         page: gridPaginationModel.page,
         resetPagination: resetPagination,
