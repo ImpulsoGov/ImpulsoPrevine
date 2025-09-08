@@ -8,7 +8,7 @@ import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
 import { useAcfData } from "@features/acf/frontend/common/useAcfData";
 import { SplitByProp } from "./modules/SplitByProp";
 import { useContext } from "react";
-import { CustomPrintContext } from "../../../WithCustomPrint";
+import { CustomPrintContext } from "@features/acf/frontend/common/WithCustomPrint";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
