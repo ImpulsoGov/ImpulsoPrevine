@@ -9,6 +9,11 @@ import { useAcfData } from "@features/acf/frontend/common/useAcfData";
 import { SplitByProp } from "./modules/SplitByProp";
 import { useContext } from "react";
 import { CustomPrintContext } from "@features/acf/frontend/common/WithCustomPrint";
+import { MultipleGroupsPerBlock } from "./modules/MultipleGroupsPerBlock";
+import { NoSplit } from "./modules/NoSplit";
+import { PageHeader } from "./modules/PageHeader";
+import { SingleGroupPerBlock } from "./modules/SingleGroupPerBlock";
+import { UnitTable } from "./modules/UnitTable";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
@@ -34,6 +39,10 @@ export const Container = <
     });
     const { customization } = useContext(CustomPrintContext);
     const orderGroup = customization.orderGroup;
+    const isDataSplitEnabled = customization.grouping;
+    const isPageSplitEnabled = customization.splitGroupPerPage;
+    // const isSplitOrderedByProp = customization.order;
+    const { listTitle, printCaption, filtersLabels } = printListProps;
 
     if (isAxiosError(response)) {
         return (
@@ -47,19 +56,76 @@ export const Container = <
     }
     if (response !== null) {
         const data = response.data as Array<TResponse>;
-        const splitedData = SplitByProp(data, printListProps.splitBy, columns);
-        const sortedKeys = Object.keys(splitedData).sort(orderGroup) as Array<
-            keyof TResponse
-        >;
+
+        let splitedData: ReturnType<typeof SplitByProp> | undefined;
+        if (isDataSplitEnabled) {
+            splitedData = SplitByProp(data, printListProps.splitBy, columns);
+        }
+
+        const sortedKeys = splitedData
+            ? (Object.keys(splitedData).sort(orderGroup) as Array<
+                  keyof TResponse
+              >)
+            : [];
+
         return (
-            <PrintTable
-                SplitedData={splitedData}
-                data={response.data as Array<TResponse>} //TODO: revisar essa coercão, possivelmente adicionar um objeto da resposta ajudaria na inferencia de tipos como na data
-                columns={columns}
-                ref={ref}
-                printListProps={printListProps}
-                sortedKeys={sortedKeys}
-            />
+            <PrintTable ref={ref}>
+                {isDataSplitEnabled && !isPageSplitEnabled && (
+                    <MultipleGroupsPerBlock<TResponse>
+                        data={SplitByProp(
+                            data,
+                            printListProps.splitBy,
+                            columns
+                        )}
+                        columns={columns}
+                        sortedKeys={sortedKeys}
+                    >
+                        <PageHeader
+                            filtersLabels={filtersLabels}
+                            listTitle={listTitle}
+                            printCaption={printCaption}
+                        />
+                    </MultipleGroupsPerBlock>
+                )}
+                {isPageSplitEnabled && isDataSplitEnabled && (
+                    <SingleGroupPerBlock<TResponse>
+                        data={SplitByProp(
+                            data,
+                            printListProps.splitBy,
+                            columns
+                        )}
+                        columns={columns}
+                        sortedKeys={sortedKeys}
+                    >
+                        <PageHeader
+                            filtersLabels={filtersLabels}
+                            listTitle={listTitle}
+                            printCaption={printCaption}
+                        />
+                    </SingleGroupPerBlock>
+                )}
+                {!(isDataSplitEnabled || isPageSplitEnabled) && (
+                    <>
+                        <NoSplit>
+                            <PageHeader
+                                filtersLabels={filtersLabels}
+                                listTitle={listTitle}
+                                printCaption={printCaption}
+                            />
+                            <UnitTable
+                                data={data}
+                                columns={columns}
+                                layoutOrientation="landscape"
+                            />
+                            <UnitTable
+                                data={data}
+                                columns={columns}
+                                layoutOrientation="portrait"
+                            />
+                        </NoSplit>
+                    </>
+                )}
+            </PrintTable>
         );
     }
 };

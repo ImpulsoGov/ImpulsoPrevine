@@ -31,7 +31,7 @@ export type ColumnsProps<TAcfItem extends AcfItem> = {
 
 export type LayoutOrientation = "landscape" | "portrait";
 
-export type SplitedGroupPerPageProps<TAcfItem extends AcfItem> =
+export type SplitedGroupPerBlockProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
         data: SplitedByProp<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;

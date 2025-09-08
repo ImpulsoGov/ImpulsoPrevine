@@ -1,6 +1,6 @@
 import type { AcfItem } from "@/features/acf/shared/schema";
 import { UnitTable } from "./UnitTable";
-import type { SplitedGroupPerPageProps } from "../model";
+import type { SplitedGroupPerBlockProps } from "../model";
 import type { ReactNode } from "react";
 
 export const SingleGroupPerBlock = <TAcfItem extends AcfItem>({
@@ -8,7 +8,7 @@ export const SingleGroupPerBlock = <TAcfItem extends AcfItem>({
     columns,
     children,
     sortedKeys,
-}: SplitedGroupPerPageProps<TAcfItem>): ReactNode => {
+}: SplitedGroupPerBlockProps<TAcfItem>): ReactNode => {
     return sortedKeys.map((record, index) => {
         const recordString = record.toString();
         const currentColumn = data[recordString];
