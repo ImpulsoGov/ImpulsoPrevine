@@ -9,9 +9,8 @@ export const MultipleGroupsPerBlock = <TAcfItem extends AcfItem>({
     sortedKeys,
     children,
 }: SplitedGroupPerPageProps<TAcfItem>): ReactNode => {
-    console.log({ sortedKeys });
     return (
-        <div key="multiple-teams-per-page">
+        <div key="multiple-groups-per-block">
             {children}
             {sortedKeys.map((record: keyof TAcfItem, index) => {
                 const recordString = record.toString();
@@ -27,7 +26,7 @@ export const MultipleGroupsPerBlock = <TAcfItem extends AcfItem>({
                                     marginBottom: "17px",
                                 }}
                             >
-                                {/* <b>{currentColumn.title}</b> */}
+                                <b>{currentColumn.title}</b>
                             </p>
                             <UnitTable
                                 data={currentColumn.data}
