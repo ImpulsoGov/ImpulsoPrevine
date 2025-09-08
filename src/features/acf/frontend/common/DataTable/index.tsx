@@ -43,7 +43,10 @@ export const DataTable = <
 
     if (isAxiosError(response)) {
         return (
-            <p data-testid="error-message">
+            <p
+                data-testid="error-message"
+                style={{ textAlign: "center", padding: "20px" }}
+            >
                 Erro ao buscar dados, entre em contato com o suporte.
             </p>
         );
