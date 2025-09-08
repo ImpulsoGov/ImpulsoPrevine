@@ -3,7 +3,7 @@ import { UnitTable } from "./UnitTable";
 import type { SplitedGroupPerPageProps } from "../model";
 import type { ReactNode } from "react";
 
-export const SingleGroupPerPage = <TAcfItem extends AcfItem>({
+export const SingleGroupPerBlock = <TAcfItem extends AcfItem>({
     data,
     columns,
     children,

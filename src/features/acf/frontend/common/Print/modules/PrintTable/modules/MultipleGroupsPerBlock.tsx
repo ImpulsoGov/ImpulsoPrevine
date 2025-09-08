@@ -3,7 +3,7 @@ import type { SplitedGroupPerPageProps } from "../model";
 import { UnitTable } from "./UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 
-export const MultipleGroupsPerPage = <TAcfItem extends AcfItem>({
+export const MultipleGroupsPerBlock = <TAcfItem extends AcfItem>({
     data,
     columns,
     sortedKeys,

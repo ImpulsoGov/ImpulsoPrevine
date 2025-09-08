@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { CustomPrintContext } from "@/features/acf/frontend/common/WithCustomPrint";
 import type { ColumnsProps, PrintListProps } from "./model";
-import { MultipleGroupsPerPage } from "./modules/MultipleGroupsPerPage";
+import { MultipleGroupsPerBlock } from "./modules/MultipleGroupsPerBlock";
 import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { UnitTable } from "./modules/UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { SingleGroupPerPage } from "./modules/SingleGroupPerPage";
+import { SingleGroupPerBlock } from "./modules/SingleGroupPerPage";
 import type { SplitedByProp } from "./modules/SplitByProp";
 
 export type PrintTableProps<
@@ -50,7 +50,7 @@ export const PrintTable = <
             }}
         >
             {isDataSplitEnabled && !isPageSplitEnabled && (
-                <MultipleGroupsPerPage<TAcfItem>
+                <MultipleGroupsPerBlock<TAcfItem>
                     data={SplitedData}
                     columns={columns}
                     sortedKeys={sortedKeys}
@@ -60,10 +60,10 @@ export const PrintTable = <
                         listTitle={listTitle}
                         printCaption={printCaption}
                     />
-                </MultipleGroupsPerPage>
+                </MultipleGroupsPerBlock>
             )}
             {isPageSplitEnabled && isDataSplitEnabled && (
-                <SingleGroupPerPage<TAcfItem>
+                <SingleGroupPerBlock<TAcfItem>
                     data={SplitedData}
                     columns={columns}
                     sortedKeys={sortedKeys}
@@ -73,7 +73,7 @@ export const PrintTable = <
                         listTitle={listTitle}
                         printCaption={printCaption}
                     />
-                </SingleGroupPerPage>
+                </SingleGroupPerBlock>
             )}
             {!(isDataSplitEnabled || isPageSplitEnabled) && (
                 <>
