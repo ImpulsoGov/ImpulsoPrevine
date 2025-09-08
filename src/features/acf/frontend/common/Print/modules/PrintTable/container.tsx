@@ -34,7 +34,7 @@ export const Container = <
     ref,
     printListProps,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
-    const { response } = useAcfData<TResponse, TAppliedFilters>({
+    const { response } = useAcfData({
         serviceGetData,
     });
     const { customization } = useContext(CustomPrintContext);
@@ -42,7 +42,6 @@ export const Container = <
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
     // const isSplitOrderedByProp = customization.order;
-    const { listTitle, printCaption, filtersLabels } = printListProps;
 
     if (isAxiosError(response)) {
         return (
@@ -54,77 +53,54 @@ export const Container = <
             </p>
         );
     }
+
     if (response !== null) {
         const data = response.data as Array<TResponse>;
-
-        let splitedData: ReturnType<typeof SplitByProp> | undefined;
         if (isDataSplitEnabled) {
-            splitedData = SplitByProp(data, printListProps.splitBy, columns);
-        }
+            const splitedData = SplitByProp(
+                data,
+                printListProps.splitBy,
+                columns
+            );
+            const sortedKeys = Object.keys(splitedData).sort(
+                orderGroup
+            ) as Array<keyof TResponse>;
 
-        const sortedKeys = splitedData
-            ? (Object.keys(splitedData).sort(orderGroup) as Array<
-                  keyof TResponse
-              >)
-            : [];
+            const dataSplitProps = {
+                data: splitedData,
+                columns,
+                sortedKeys,
+            };
+            return (
+                <PrintTable ref={ref}>
+                    {isPageSplitEnabled ? (
+                        <SingleGroupPerBlock {...dataSplitProps}>
+                            <PageHeader {...printListProps} />
+                        </SingleGroupPerBlock>
+                    ) : (
+                        <MultipleGroupsPerBlock {...dataSplitProps}>
+                            <PageHeader {...printListProps} />
+                        </MultipleGroupsPerBlock>
+                    )}
+                </PrintTable>
+            );
+        }
 
         return (
             <PrintTable ref={ref}>
-                {isDataSplitEnabled && !isPageSplitEnabled && (
-                    <MultipleGroupsPerBlock<TResponse>
-                        data={SplitByProp(
-                            data,
-                            printListProps.splitBy,
-                            columns
-                        )}
+                <NoSplit>
+                    <PageHeader {...printListProps} />
+                    <UnitTable
+                        data={data}
                         columns={columns}
-                        sortedKeys={sortedKeys}
-                    >
-                        <PageHeader
-                            filtersLabels={filtersLabels}
-                            listTitle={listTitle}
-                            printCaption={printCaption}
-                        />
-                    </MultipleGroupsPerBlock>
-                )}
-                {isPageSplitEnabled && isDataSplitEnabled && (
-                    <SingleGroupPerBlock<TResponse>
-                        data={SplitByProp(
-                            data,
-                            printListProps.splitBy,
-                            columns
-                        )}
+                        layoutOrientation="landscape"
+                    />
+                    <UnitTable
+                        data={data}
                         columns={columns}
-                        sortedKeys={sortedKeys}
-                    >
-                        <PageHeader
-                            filtersLabels={filtersLabels}
-                            listTitle={listTitle}
-                            printCaption={printCaption}
-                        />
-                    </SingleGroupPerBlock>
-                )}
-                {!(isDataSplitEnabled || isPageSplitEnabled) && (
-                    <>
-                        <NoSplit>
-                            <PageHeader
-                                filtersLabels={filtersLabels}
-                                listTitle={listTitle}
-                                printCaption={printCaption}
-                            />
-                            <UnitTable
-                                data={data}
-                                columns={columns}
-                                layoutOrientation="landscape"
-                            />
-                            <UnitTable
-                                data={data}
-                                columns={columns}
-                                layoutOrientation="portrait"
-                            />
-                        </NoSplit>
-                    </>
-                )}
+                        layoutOrientation="portrait"
+                    />
+                </NoSplit>
             </PrintTable>
         );
     }
