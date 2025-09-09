@@ -3,7 +3,7 @@ import type { z } from "zod/v4";
 import type { Handler, HandlerWithContext } from "../common/Handler";
 
 type ContextWithParsedBody<TContext, TSchema extends z.ZodType> = TContext & {
-    parsedBody: TSchema;
+    parsedBody: z.infer<TSchema>;
 };
 
 //TODO: Este interceptor só funciona se for o primeiro no compose.
@@ -17,7 +17,7 @@ export const withBodyParsing = <TSchema extends z.ZodType>(schema: TSchema) => {
             context: ContextWithParsedBody<TContext, TSchema>
         ): Promise<Response> => {
             const body: unknown = await request.json();
-            const parsedBody = schema.parse(body) as TSchema;
+            const parsedBody = schema.parse(body);
             context.parsedBody = parsedBody;
 
             return handler(request, context);
