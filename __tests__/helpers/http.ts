@@ -3,10 +3,18 @@
  */
 import { NextRequest } from "next/server";
 
+type RequestOptions = {
+    body?: Record<string, unknown>;
+};
+
 //TODO: Suportar SearchParams
 //TODO: Suportar Body
 //TODO: Suportar Headers
-export const request = (url: string, method: string): NextRequest => {
+export const request = (
+    url: string,
+    method: string,
+    options?: RequestOptions
+): NextRequest => {
     //   const { body, searchParams } = options;
 
     //   const url = new URL('http://localhost:3000/api/users');
@@ -18,7 +26,7 @@ export const request = (url: string, method: string): NextRequest => {
 
     return new NextRequest(url, {
         method,
-        // body: body ? JSON.stringify(body) : undefined,
+        body: options?.body ? JSON.stringify(options.body) : null,
         headers: {
             authorization: "Bearer some-token",
             "Content-Type": "application/json",
