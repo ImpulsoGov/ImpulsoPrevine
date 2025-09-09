@@ -11,19 +11,6 @@ import type { DeepMockProxy } from "jest-mock-extended";
 import { mockDeep } from "jest-mock-extended";
 import * as dbHelpers from "../../../../../helpers/db";
 import * as httpHelpers from "../../../../../helpers/http";
-// import { diabetesNewProgram } from "@features/common/shared/flags";
-
-// type Flag = () => Promise<boolean>;
-
-// jest.mock("@/features/common/shared/flags", () => ({
-//     ...jest.requireActual<
-//         typeof import("@features/common/shared/flags")
-//     >("@/features/common/shared/flags"),
-//     diabetesNewProgram: jest.fn<Flag>(),
-// }));
-
-// const diabetesNewProgramMock =
-//     diabetesNewProgram as unknown as jest.MockedFunction<() => Promise<boolean>>;
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
@@ -102,7 +89,6 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     });
 
     describe("GET /api/lista-nominal/diabetes/filters/coeq", () => {
-        //TODO: Adicionar caso de: perfil não permitido
         //TODO: Extrair helpers de mock para reutilizar em todos os testes
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
             mockDiabetesNewProgram().mockResolvedValue(false);
@@ -135,6 +121,20 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             // TODO: rever se vale casar o perfil do user com o do token
             const response = await GET(request, { user: user });
             expect(response.status).toBe(403);
+        });
+
+        it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
+            mockDiabetesNewProgram().mockResolvedValue(true);
+            mockDecodeToken().mockRejectedValue(new Error("Erro genérico"));
+            mockPrismaClient();
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coeq/route"
+            );
+
+            const request = httpHelpers.request(coeqUrl, "GET");
+            const response = await GET(request, { user: user });
+            expect(response.status).toBe(500);
         });
 
         it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
