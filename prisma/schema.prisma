@@ -43,3 +43,26 @@ model dados_agregados_area_logada {
   @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
   @@schema("dados_nominais_datalake")
 }
+
+model HypertensionAcfItem {
+  municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
+  municipalityName                   String    @map("municipio_nome")
+  patientId                          String    @map("cidadao_ip_id")
+  patientName                        String    @map("cidadao_nome")
+  patientCpf                         String?   @db.VarChar(14) @map("cidadao_cpf")
+  patientCns                         String?   @db.VarChar(32) @map("cidadao_cns")
+  patientAge                         Int       @map("cidadao_idade")
+  patientAgeRange                    Int       @map("cidadao_faixa_etaria")
+  patientPhoneNumber                 String?   @map("cidadao_telefone")
+  careTeamIne                        String?   @map("equipe_ine")
+  careTeamName                       String?   @map("equipe_nome")
+  microAreaName                      String?   @map("micro_area")
+  latestAppointmentDate              DateTime? @db.Date @map("data_ultima_consulta_hipertensao")
+  appointmentStatusByQuarter         Int?      @db.SmallInt @map("situacao_quadrimestre_consulta_hipertensao")
+  latestExamRequestDate              DateTime? @db.Date @map("data_ultima_afericao_pa")
+  latestExamRequestStatusByQuarter   Int?      @db.SmallInt @map("situacao_quadrimestre_afericao_pa")
+
+  @@id([patientId, municipalitySusId], map: "lista_nominal_hipertensao_pkey")
+  @@schema("dados_nominais_datalake")
+  @@map("lista_nominal_hipertensao")
+}

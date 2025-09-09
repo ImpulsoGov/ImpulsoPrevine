@@ -48,7 +48,7 @@ export const AutoCompleteMultiSelect = <
             disableCloseOnSelect
             renderInput={renderInput(select.label)}
             renderOption={renderOptionMultiSelect}
-            renderTags={renderTagsMultiSelect}
+            renderValue={renderTagsMultiSelect}
             slotProps={slotProps}
             style={{ width: select.width }}
         />

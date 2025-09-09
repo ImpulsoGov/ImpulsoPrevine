@@ -11,6 +11,7 @@ type UserGuidingData = {
 
 interface UserGuiding {
     identify: (id: string, data: UserGuidingData) => void;
+    previewGuide: (id: number) => void;
 }
 
 declare global {

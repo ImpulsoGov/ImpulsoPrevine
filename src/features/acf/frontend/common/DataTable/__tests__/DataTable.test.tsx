@@ -32,6 +32,11 @@ const mockPaginationModel = {
     onPaginationModelChange: jest.fn(),
     resetPagination: jest.fn(),
 };
+const newMockPaginationModel = {
+    gridPaginationModel: { page: 0, pageSize: 8 },
+    onPaginationModelChange: jest.fn(),
+    resetPagination: jest.fn(),
+};
 const mockSortingModel = {
     gridSortingModel: { field: "id", sort: "asc" } as GridSortItem,
     onSortingModelChange: jest.fn(),
@@ -94,7 +99,7 @@ describe("DataTable", () => {
             toJSON: () => ({}),
         };
         mockServiceGetPage.mockRejectedValue(axiosError);
-        render(
+        const { rerender } = render(
             <SearchContext.Provider value={mockSearchModel}>
                 <SortingContext.Provider value={mockSortingModel}>
                     <FiltersContext.Provider value={mockFilters}>
@@ -110,7 +115,25 @@ describe("DataTable", () => {
                 </SortingContext.Provider>
             </SearchContext.Provider>
         );
-
+        rerender(
+            // Útil quando quisermos verificar o comportamento de um componente reagindo a mudanças nas suas props ao longo do tempo.
+            <SearchContext.Provider value={mockSearchModel}>
+                <SortingContext.Provider value={mockSortingModel}>
+                    <FiltersContext.Provider value={mockFilters}>
+                        <PaginationContext.Provider
+                            value={newMockPaginationModel}
+                        >
+                            <SessionProvider session={clientSession}>
+                                <DataTableModule.DataTable
+                                    columns={mockColumns}
+                                    serviceGetPage={mockServiceGetPage}
+                                />
+                            </SessionProvider>
+                        </PaginationContext.Provider>
+                    </FiltersContext.Provider>
+                </SortingContext.Provider>
+            </SearchContext.Provider>
+        );
         expect(await screen.findByTestId("error-message")).toBeInTheDocument();
     });
 });

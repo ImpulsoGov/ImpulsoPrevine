@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "@/features/acf/shared/diabetes/model";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 
 export type AcfExternalCardsDescription =
     | "DIAGNOSTICO_AUTORREFERIDO"

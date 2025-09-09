@@ -1,12 +1,13 @@
 import type { Mixpanel } from "mixpanel-browser";
 import type { Session } from "next-auth";
+import type Hotjar from "@hotjar/browser/dist";
 
 export const sessionIdentifyMixPanel = (
     mixpanel: Mixpanel,
-    Hotjar: any,
+    globalHotjar: typeof Hotjar,
     session: Session | null
-) => {
-    if (session && session.user) {
+): void => {
+    if (session?.user) {
         const atributos = {
             cargo: session.user.cargo,
             municipio: session.user.municipio,
@@ -24,8 +25,9 @@ export const sessionIdentifyMixPanel = (
             $email: session.user.mail,
             $name: session.user.nome,
             ...atributos,
+            perfis: session.user.perfis,
         });
-        Hotjar.identify(session.user.id, {
+        globalHotjar.identify(session.user.id, {
             email: session.user.mail,
             name: session.user.nome,
             ...atributos,

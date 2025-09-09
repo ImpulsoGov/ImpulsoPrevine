@@ -1,5 +1,5 @@
 "use client";
-import { menuNavBar } from "@helpers/menuNavBar";
+import type { Menu } from "@helpers/menuNavBar";
 import { NavBar } from "@impulsogov/design-system";
 import {
     alterarSenha,
@@ -20,8 +20,9 @@ import type { Mixpanel } from "mixpanel-browser";
 import type { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
+import mixpanel from "mixpanel-browser";
 
-interface NavBarMountedType {
+type NavBarMountedType = {
     mixpanel: Mixpanel;
     session: Session | null;
     nome: string | null | undefined;
@@ -29,10 +30,21 @@ interface NavBarMountedType {
     cidade: string;
     setCidade: Dispatch<SetStateAction<string>>;
     width: number;
-    res: any;
     active: boolean;
     setMode: Dispatch<SetStateAction<boolean>>;
-}
+    menuNavBarOptions: Array<Menu>;
+};
+
+const withMixpanelTrack = (item: Menu): Menu => {
+    return {
+        ...item,
+        onClick: (): void => {
+            mixpanel.track("menu_click", {
+                menu_action: item.telemetryEvent,
+            });
+        },
+    };
+};
 
 export const NavBarMounted: React.FC<NavBarMountedType> = ({
     mixpanel,
@@ -42,11 +54,17 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
     cidade,
     setCidade,
     width,
-    res,
     active,
     setMode,
+    menuNavBarOptions,
 }) => {
     const router = useRouter();
+    const menuNavBarOptionsWithEvents = menuNavBarOptions.map((item) =>
+        item.sub
+            ? { ...item, sub: item.sub.map(withMixpanelTrack) }
+            : withMixpanelTrack(item)
+    );
+
     return (
         <NavBar
             projeto="IP"
@@ -60,7 +78,7 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                     session == null || typeof session === "undefined"
                         ? "Acesso Restrito"
                         : nome?.[0],
-                equipe: session?.user?.equipe,
+                equipe: session?.user.equipe,
                 login: signIn,
                 logout: signOut,
                 validarCredencial: validateCredentials,
@@ -68,7 +86,9 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                 botaoAuxiliar: session?.user.perfis.includes(2)
                     ? {
                           label: "GESTÃO DE USUÁRIOS",
-                          handelClick: () => router.push("/gestao-usuarios"),
+                          handelClick: (): void => {
+                              router.push("/gestao-usuarios");
+                          },
                       }
                     : null,
             }}
@@ -78,8 +98,8 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
             theme={{
                 logoProjeto:
                     width > 900
-                        ? res.logoIps[0].logo[0].url
-                        : res.logoIps[1].logo[0].url,
+                        ? "https://sa-east-1.graphassets.com/Ajb3KTNmSbWA8v0BEfU1Nz/nMlULkIXRIu0U5SBJBun"
+                        : "https://sa-east-1.graphassets.com/Ajb3KTNmSbWA8v0BEfU1Nz/U6v7lsQNRMKVWBQVCXTL",
                 cor:
                     path === "/" ||
                     path === "/apoio" ||
@@ -89,11 +109,12 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                         : "White",
                 logoLink: session ? "/inicio" : "/",
                 logoOnClick: session
-                    ? () =>
+                    ? (): void => {
                           mixpanel.track("menu_click", {
                               menu_action: "acessar_pg_inicio_logo",
-                          })
-                    : () => {},
+                          });
+                      }
+                    : (): void => {},
             }}
             showMenuMobile={{
                 states: {
@@ -101,9 +122,9 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                     setMode: setMode,
                 },
             }}
-            menu={menuNavBar(session, res)}
-            NavBarIconBranco={res.logoMenuMoblies[0].logo.url}
-            NavBarIconDark={res.logoMenuMoblies[1].logo.url}
+            menu={menuNavBarOptionsWithEvents}
+            NavBarIconBranco="https://sa-east-1.graphassets.com/Ajb3KTNmSbWA8v0BEfU1Nz/CbONT9f9SBGDh6jDsDo6"
+            NavBarIconDark="https://sa-east-1.graphassets.com/Ajb3KTNmSbWA8v0BEfU1Nz/au9retGiTpGQ6zOLa28N"
             esqueciMinhaSenha={{
                 reqs: {
                     verificacao: verificarCPF,
@@ -114,13 +135,14 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                             button_action: "proximo_inseriu_codigo_telefone",
                             login_flow: "esqueceu_senha",
                         });
-                        !response.success &&
+                        if (!response.success) {
                             mixpanel.track("validation_error", {
                                 button_action:
                                     "proximo_inseriu_codigo_telefone",
                                 error_message: response.mensagem,
                                 login_flow: "esqueceu_senha",
                             });
+                        }
                         return response;
                     },
                     alterarSenha: alterarSenha,
@@ -173,13 +195,14 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                             login_flow: "primeiro_acesso",
                         });
                         const response = await validarCodigo(cpf, codigo);
-                        !response.success &&
+                        if (!response.success) {
                             mixpanel.track("validation_error", {
                                 button_action:
                                     "proximo_inseriu_codigo_telefone",
                                 error_message: response.mensagem,
                                 login_flow: "primeiro_acesso",
                             });
+                        }
                         return response;
                     },
                     alterarSenha: criarSenha,

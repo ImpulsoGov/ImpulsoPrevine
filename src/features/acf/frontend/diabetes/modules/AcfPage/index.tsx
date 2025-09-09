@@ -1,26 +1,24 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
-import { AllowProfile } from "@/features/common/frontend/AllowProfile";
 import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "@features/acf/shared/diabetes/model";
-import { ErrorPage } from "./modules/ErrorPage";
-import { PanelSelector } from "./modules/PanelSelector";
+import type { AcfDashboardType } from "../../../common/DashboardType";
+import { ErrorPage } from "../../../common/ErrorPage";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
+import { List } from "./modules/List";
+import { PanelSelector } from "@/features/acf/frontend/common/PanelSelector";
+import { getMunicipalityName } from "@/features/acf/frontend/common/MunicipalityName";
+import { breadcrumb, header } from "./consts";
 
-export type {
-    CoapsAppliedFilters,
-    CoeqAppliedFilters,
-} from "./modules/PanelSelector";
+export type { CoapsAppliedFilters, CoeqAppliedFilters } from "./modules/List";
 
 type Props = {
     searchParams: Promise<{
         [key: string]: string | undefined;
     }>;
 };
-
 export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
@@ -29,28 +27,37 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
     const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
         "DIABETES") as AcfDashboardType;
-    const errorText = (
-        <p style={{ padding: "80px", textAlign: "center" }}>
-            Usuário sem permissão
-        </p>
+
+    const municipalityName = getMunicipalityName(
+        session?.user.municipio_id_sus ?? ""
     );
 
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     if (!isDiabetesNewProgramEnabled) notFound();
     return (
         <SessionGuard error={<ErrorPage />}>
-            <AllowProfile profileID={PROFILE_ID.impulser} error={errorText}>
-                <PanelSelector
-                    initialTabId={initialTabId}
-                    initialSubTabId={initialSubTabId}
-                    acfDashboardType={acfDashboardType}
-                    //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                    municipalitySusId={session?.user.municipio_id_sus}
-                    //@ts-expect-error o componente SessionGuard usado acima garante que não chega undefined aqui. Precisamos refatorar pra não gerar este erro.
-                    teamIne={session?.user.equipe}
-                    userProfiles={session?.user.perfis as Array<ProfileIdValue>}
-                />
-            </AllowProfile>
+            <PanelSelector
+                tabID={initialTabId}
+                subTabID={initialSubTabId}
+                acfDashboardType={acfDashboardType}
+                municipalityName={municipalityName}
+                userProfiles={session?.user.perfis as Array<ProfileIdValue>}
+                externalCardsProps={[]}
+                header={header}
+                breadcrumb={breadcrumb.breadcrumb}
+                contentWithoutTabs={
+                    <List
+                        list={acfDashboardType}
+                        municipalitySusId={session?.user.municipio_id_sus ?? ""}
+                        teamIne={session?.user.equipe ?? ""}
+                        userProfile={
+                            session?.user.perfis.includes(PROFILE_ID.COAPS)
+                                ? PROFILE_ID.COAPS
+                                : PROFILE_ID.COEQ
+                        }
+                    />
+                }
+            />
         </SessionGuard>
     );
 };

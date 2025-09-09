@@ -1,0 +1,389 @@
+.ResetSpaces {
+    margin: 0;
+    padding: 0;
+}
+
+.Container {
+    padding-top: 32px;
+    padding-right: 32px;
+    padding-left: 32px;
+    padding-bottom: 48px;
+    box-sizing: border-box;
+    font-family: "Inter";
+    color: #1f1f1f;
+    width: 900px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: relative;
+    z-index: 9000;
+}
+
+.Content {
+    overflow-y: auto;
+    /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+    max-height: calc(100vh - 40px - 200px);
+}
+
+.ModalExit {
+    color: #fff;
+    background-color: black;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.ModalExit:before {
+    content: "✖";
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.ContainerTitle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+    justify-content: space-between;
+}
+
+.TitleWithIcon {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.Title {
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #1d856c;
+}
+
+.MainPersonalizationTitle {
+    font-size: 32px;
+    line-height: 41px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: left;
+    width: 85%;
+}
+
+.MainPrintDescription {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.MainCustomizationContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.MainCustomizationOption {
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.MainCustomizationOption:first-child {
+    padding: 4px 10px;
+}
+
+.MainCustomizationOption:last-child {
+    padding: 0px 10px 12px 10px;
+}
+
+.MainCustomizationInput {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 1px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.MainCustomizationInput[type="radio"]:checked {
+    border-color: #2eb280;
+}
+
+.MainCustomizationInput[type="radio"]:checked::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    background: #2eb280;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Separator {
+    margin: 12px 0 16px 0;
+}
+
+.SecondaryCustomizationsTitle {
+    font-size: 20px;
+    line-height: 25px;
+    padding: 8px 0;
+    margin-bottom: 24px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.SecondaryCustomizationsContainer {
+    padding: 15px 9px 21px 9px;
+    position: relative;
+    border-radius: 8px;
+    border: 1.5px solid #916a20;
+}
+
+.SecondaryCustomOption {
+    padding: 0px 9px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    accent-color: #145c56;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.Recommendation + .SecondaryCustomOption {
+    margin-top: 14px;
+}
+
+.ContainerButton {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.Recommendation {
+    padding: 3px 8px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    width: fit-content;
+    position: absolute;
+    z-index: 1000;
+    top: -8px;
+    border-radius: 5px;
+    border: 1px solid #916a20;
+    background-color: #ffefb9;
+}
+
+.RecommendationText {
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 600;
+    text-align: left;
+    color: #4f3d0c;
+}
+
+@media screen and (max-width: 1366px) {
+    .Container {
+        width: 700px;
+        padding-top: 28px;
+        padding-right: 28px;
+        padding-left: 32px;
+        padding-bottom: 24px;
+    }
+
+    .Content {
+        /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+        max-height: calc(100vh - 40px - 160px);
+    }
+
+    .ContainerTitle {
+        margin-bottom: 8px;
+    }
+
+    .MainPersonalizationTitle {
+        font-size: 23px;
+        line-height: 28px;
+        margin-bottom: 16px;
+    }
+
+    .MainPrintDescription {
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
+
+    .MainCustomizationContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .MainCustomizationOption {
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+
+    .MainCustomizationOption:first-child {
+        padding: 6px 0px 10px 0px;
+    }
+
+    .MainCustomizationOption:last-child {
+        padding: 6px 0px 12px 0px;
+    }
+
+    .SecondaryCustomizationsTitle {
+        font-size: 18px;
+        line-height: 18px;
+        padding: 6px 0;
+        margin-bottom: 18px;
+    }
+
+    .SecondaryCustomOption {
+        line-height: 15px;
+    }
+
+    .SecondaryCustomizationsContainer {
+        padding: 15px 9px 16px 9px;
+    }
+
+    .Close {
+        margin-bottom: 12px;
+    }
+
+    .ContainerBotao {
+        margin-top: 18px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .Container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .Container {
+        padding: 20px;
+    }
+
+    .Content {
+        /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
+        max-height: calc(100vh - 40px - 80px);
+    }
+
+    .ContainerTitle {
+        margin-bottom: 10px;
+    }
+
+    .Title {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .MainPersonalizationTitle {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+
+    .MainPrintDescription {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 16px;
+    }
+
+    .MainCustomizationOption {
+        padding: 6px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    .SecondaryCustomizationsTitle {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 6px 0;
+        margin-bottom: 24px;
+    }
+
+    .Separator {
+        margin: 10px 0;
+    }
+
+    .SecondaryCustomOption {
+        padding: 0px 6px;
+        margin-top: 12px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .SecondaryCustomizationsContainer {
+        padding: 12px 8px 18px 8px;
+    }
+
+    .Close {
+        margin-bottom: 16px;
+    }
+
+    .Recommendation {
+        padding: 3px 6px;
+        width: 90%;
+        top: -18px;
+    }
+
+    .RecommendationText {
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+    .ContainerButton {
+        margin-top: 16px;
+    }
+
+    .SecondaryCustomizationsContainer input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .TitleIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .RecommendationIcon {
+        width: 13px;
+        height: 13px;
+    }
+}

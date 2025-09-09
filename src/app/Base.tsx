@@ -28,6 +28,8 @@ import { rotasProtegidas, rotasPublicas } from "@/middlewares/middlewarePages";
 import dynamic from "next/dynamic";
 import { matchesRoute } from "@/features/common/frontend/path";
 
+import type { Menu } from "@/helpers/menuNavBar";
+
 const FooterMounted = dynamic(() =>
     import("@componentes/mounted/base/FooterMonted").then(
         (mod) => mod.FooterMounted
@@ -49,9 +51,10 @@ const tagManagerArgs = {
 };
 type BaseProps = {
     children: React.ReactNode;
+    menuNavBarOptions: Array<Menu>;
 };
 
-export const Base: React.FC<BaseProps> = ({ children }) => {
+export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
     const dynamicRoute = usePathname();
     const path = usePathname();
     const [res, setRes] = useState(null);
@@ -92,7 +95,7 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
                 }
             >
                 <SessionWrapper>
-                    {isLoading && res && (
+                    {isLoading && (
                         <NavBarMounted
                             mixpanel={mixpanel}
                             session={session}
@@ -101,9 +104,9 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
                             cidade={cidade}
                             setCidade={setCidade}
                             width={width}
-                            res={res}
                             active={active}
                             setMode={setMode}
+                            menuNavBarOptions={menuNavBarOptions}
                         />
                     )}
                     <div
@@ -137,7 +140,11 @@ export const Base: React.FC<BaseProps> = ({ children }) => {
     );
 };
 
-const SessionWrapper = ({ children }: { children: React.ReactNode }) => {
+const SessionWrapper = ({
+    children,
+}: {
+    children: React.ReactNode;
+}): React.ReactElement => {
     const session = useSession();
     const params = useSearchParams();
     useEffect(() => {
