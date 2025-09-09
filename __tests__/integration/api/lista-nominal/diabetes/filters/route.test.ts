@@ -2,6 +2,7 @@
  * @jest-environment node
  */
 
+import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { PROFILE_ID } from "@/types/profile";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
@@ -10,6 +11,17 @@ import type { DeepMockProxy } from "jest-mock-extended";
 import { mockDeep } from "jest-mock-extended";
 import * as dbHelpers from "../../../../../helpers/db";
 import * as httpHelpers from "../../../../../helpers/http";
+
+jest.mock<typeof import("@/features/common/shared/flags")>(
+    "@/features/common/shared/flags",
+    () => ({
+        ...jest.requireActual("@/features/common/shared/flags"),
+        diabetesNewProgram: jest.fn(),
+    })
+);
+
+const diabetesNewProgramMock =
+    diabetesNewProgram as jest.Mock<jest.UnknownFunction>;
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
