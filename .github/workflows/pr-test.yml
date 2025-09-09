@@ -12,6 +12,8 @@ jobs:
     NextJS-Tests:
         name: Unit Tests
         runs-on: ubuntu-latest
+        env:
+            NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
 
         steps:
             - name: Checkout code
