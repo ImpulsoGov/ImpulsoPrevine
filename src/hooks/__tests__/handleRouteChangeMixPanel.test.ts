@@ -1,5 +1,5 @@
 import { handleRouteChangeMixPanel } from "@/hooks/handleRouteChangeMixPanel";
-import type { Mixpanel } from "mixpanel-browser"; // Importe a interface Mixpanel
+import type { Mixpanel } from "mixpanel-browser";
 
 describe("handleRouteChangeMixPanel", () => {
     let mixpanel: Partial<Mixpanel>;
