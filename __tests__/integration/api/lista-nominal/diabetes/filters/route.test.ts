@@ -43,9 +43,6 @@ const decodedToken = (
     };
 };
 
-const x = { a: 2, b: { c: 3, d: 4 } } as const;
-const y = { x, ...{ b: { c: 3 } } } as const;
-
 describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -85,7 +82,7 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             const mockPrisma =
                 mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
 
-            jest.mock<typeof import("@prisma/prismaClient")>(
+            jest.doMock<typeof import("@prisma/prismaClient")>(
                 "@prisma/prismaClient",
                 () => ({
                     __esModule: true,
@@ -128,7 +125,7 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             const mockPrisma =
                 mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
 
-            jest.mock<typeof import("@prisma/prismaClient")>(
+            jest.doMock<typeof import("@prisma/prismaClient")>(
                 "@prisma/prismaClient",
                 () => ({
                     __esModule: true,
