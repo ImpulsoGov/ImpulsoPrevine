@@ -2,7 +2,9 @@
  * @jest-environment node
  */
 
-import type { DiabetesAcfItem } from "@prisma/client";
+import { jest } from "@jest/globals";
+import type { DiabetesAcfItem, PrismaClient } from "@prisma/client";
+import { type DeepMockProxy, mockDeep } from "jest-mock-extended";
 
 export const mockDiabetesItem = (
     overrides: Partial<DiabetesAcfItem> = {}
@@ -26,3 +28,18 @@ export const mockDiabetesItem = (
     mostRecentProductionRecordDate: new Date("2024-01-01"),
     ...overrides,
 });
+
+export const mockPrismaClient = (): DeepMockProxy<PrismaClient> => {
+    const mockedPrisma =
+        mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
+
+    jest.doMock<typeof import("@prisma/prismaClient")>(
+        "@prisma/prismaClient",
+        () => ({
+            __esModule: true,
+            prisma: mockedPrisma,
+        })
+    );
+
+    return mockedPrisma;
+};

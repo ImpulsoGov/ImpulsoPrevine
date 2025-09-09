@@ -3,14 +3,12 @@
  */
 
 import { PROFILE_ID } from "@/types/profile";
-import type { JWTToken } from "@/utils/token";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
-import type { PrismaClient } from "@prisma/client";
-import type { DeepMockProxy } from "jest-mock-extended";
-import { mockDeep } from "jest-mock-extended";
 import * as dbHelpers from "../../../../../helpers/db";
 import * as httpHelpers from "../../../../../helpers/http";
+import * as authHelpers from "../../../../../helpers/auth";
+import * as flagHelpers from "../../../../../helpers/flag";
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
@@ -18,65 +16,6 @@ const user = {
     teamIne: "123",
     profiles: [1],
 } satisfies interceptors.User;
-
-const decodedToken = (
-    payloadOverrides: Partial<JWTToken["payload"]>
-): JWTToken => {
-    return {
-        payload: {
-            id: "123",
-            sub: "some_sub",
-            perfis: [PROFILE_ID.impulser],
-            equipe: "equipe",
-            municipio: "111111",
-            ...payloadOverrides,
-        },
-        protectedHeader: { alg: "" },
-    };
-};
-
-const mockDiabetesNewProgram = (): jest.Mock<() => Promise<boolean>> => {
-    const mockedDiabetesNewProgram = jest.fn<() => Promise<boolean>>();
-
-    jest.doMock("@/features/common/shared/flags", () => ({
-        ...jest.requireActual<typeof import("@features/common/shared/flags")>(
-            "@/features/common/shared/flags"
-        ),
-        diabetesNewProgram: mockedDiabetesNewProgram,
-    }));
-
-    return mockedDiabetesNewProgram;
-};
-
-const mockDecodeToken = (): jest.Mock<() => Promise<JWTToken>> => {
-    const mockedDecodeToken = jest.fn<() => Promise<JWTToken>>();
-
-    jest.doMock("@/utils/token", () => {
-        return {
-            ...jest.requireActual<typeof import("@/utils/token")>(
-                "@/utils/token"
-            ),
-            decodeToken: mockedDecodeToken,
-        };
-    });
-
-    return mockedDecodeToken;
-};
-
-const mockPrismaClient = (): DeepMockProxy<PrismaClient> => {
-    const mockedPrisma =
-        mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
-
-    jest.doMock<typeof import("@prisma/prismaClient")>(
-        "@prisma/prismaClient",
-        () => ({
-            __esModule: true,
-            prisma: mockedPrisma,
-        })
-    );
-
-    return mockedPrisma;
-};
 
 describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     beforeEach(() => {
@@ -89,13 +28,14 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     });
 
     describe("GET /api/lista-nominal/diabetes/filters/coeq", () => {
-        //TODO: Extrair helpers de mock para reutilizar em todos os testes
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
-            mockDiabetesNewProgram().mockResolvedValue(false);
-            mockDecodeToken().mockResolvedValue(
-                decodedToken({ perfis: [PROFILE_ID.COEQ] })
-            );
-            mockPrismaClient();
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(false);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                );
+            dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
                 "@/app/api/lista-nominal/diabetes/filters/coeq/route"
@@ -107,11 +47,13 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
-            mockDiabetesNewProgram().mockResolvedValue(true);
-            mockDecodeToken().mockResolvedValue(
-                decodedToken({ perfis: [PROFILE_ID.COAPS] })
-            );
-            mockPrismaClient();
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COAPS] })
+                );
+            dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
                 "@/app/api/lista-nominal/diabetes/filters/coeq/route"
@@ -124,9 +66,11 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
-            mockDiabetesNewProgram().mockResolvedValue(true);
-            mockDecodeToken().mockRejectedValue(new Error("Erro genérico"));
-            mockPrismaClient();
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockRejectedValue(new Error("Erro genérico"));
+            dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
                 "@/app/api/lista-nominal/diabetes/filters/coeq/route"
@@ -138,12 +82,14 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
-            mockDiabetesNewProgram().mockResolvedValue(true);
-            mockDecodeToken().mockResolvedValue(
-                decodedToken({ perfis: [PROFILE_ID.COEQ] })
-            );
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                );
 
-            const mockPrisma = mockPrismaClient();
+            const mockPrisma = dbHelpers.mockPrismaClient();
 
             const mockCommunityHealthWorkers = [
                 dbHelpers.mockDiabetesItem({
