@@ -2,8 +2,8 @@
  * @jest-environment node
  */
 
-import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { PROFILE_ID } from "@/types/profile";
+import type { JWTToken } from "@/utils/token";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
 import type { PrismaClient } from "@prisma/client";
@@ -12,16 +12,13 @@ import { mockDeep } from "jest-mock-extended";
 import * as dbHelpers from "../../../../../helpers/db";
 import * as httpHelpers from "../../../../../helpers/http";
 
-jest.mock<typeof import("@/features/common/shared/flags")>(
-    "@/features/common/shared/flags",
-    () => ({
-        ...jest.requireActual("@/features/common/shared/flags"),
-        diabetesNewProgram: jest.fn(),
-    })
-);
+// jest.mock("@/features/common/shared/flags", () => ({
+//     ...jest.requireActual("@/features/common/shared/flags"),
+//     diabetesNewProgram: jest.fn(),
+// }));
 
-const diabetesNewProgramMock =
-    diabetesNewProgram as jest.Mock<jest.UnknownFunction>;
+// const diabetesNewProgramMock =
+//     diabetesNewProgram as jest.Mock<jest.UnknownFunction>;
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
@@ -30,12 +27,24 @@ const user = {
     profiles: [1],
 } satisfies interceptors.User;
 
-const decodedToken = (perfis) => {
+const decodedToken = (
+    payloadOverrides: Partial<JWTToken["payload"]>
+): JWTToken => {
     return {
-        payload: { sub: "some_sub", perfis },
+        payload: {
+            id: "123",
+            sub: "some_sub",
+            perfis: [8],
+            equipe: "equipe",
+            municipio: "111111",
+            ...payloadOverrides,
+        },
         protectedHeader: { alg: "" },
     };
 };
+
+const x = { a: 2, b: { c: 3, d: 4 } } as const;
+const y = { x, ...{ b: { c: 3 } } } as const;
 
 describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
     beforeEach(() => {
@@ -51,20 +60,25 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         //TODO: Adicionar caso de: perfil não permitido
         //TODO: Extrair helpers de mock para reutilizar em todos os testes
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
-            jest.doMock<typeof import("@/features/common/shared/flags")>(
-                "@/features/common/shared/flags",
-                () => ({
-                    ...jest.requireActual("@/features/common/shared/flags"),
-                    diabetesNewProgram: async () => false,
-                })
-            );
+            jest.doMock("@/features/common/shared/flags", () => ({
+                ...jest.requireActual<
+                    typeof import("@features/common/shared/flags")
+                >("@/features/common/shared/flags"),
+                diabetesNewProgram: jest
+                    .fn<() => Promise<boolean>>()
+                    .mockResolvedValue(false),
+            }));
 
-            jest.doMock<typeof import("@/utils/token")>("@/utils/token", () => {
+            jest.doMock("@/utils/token", () => {
                 return {
-                    ...jest.requireActual("@/utils/token"),
-                    decodeToken: async (_x, _y) => {
-                        return decodedToken([PROFILE_ID.COEQ]);
-                    },
+                    ...jest.requireActual<typeof import("@/utils/token")>(
+                        "@/utils/token"
+                    ),
+                    decodeToken: jest
+                        .fn<() => Promise<JWTToken>>()
+                        .mockResolvedValue(
+                            decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                        ),
                 };
             });
 
@@ -89,20 +103,25 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
-            jest.doMock<typeof import("@/features/common/shared/flags")>(
-                "@/features/common/shared/flags",
-                () => ({
-                    ...jest.requireActual("@/features/common/shared/flags"),
-                    diabetesNewProgram: async () => true,
-                })
-            );
+            jest.doMock("@/features/common/shared/flags", () => ({
+                ...jest.requireActual<
+                    typeof import("@/features/common/shared/flags")
+                >("@/features/common/shared/flags"),
+                diabetesNewProgram: jest
+                    .fn<() => Promise<boolean>>()
+                    .mockResolvedValue(true),
+            }));
 
-            jest.doMock<typeof import("@/utils/token")>("@/utils/token", () => {
+            jest.doMock("@/utils/token", () => {
                 return {
-                    ...jest.requireActual("@/utils/token"),
-                    decodeToken: async (_x, _y) => {
-                        return decodedToken([PROFILE_ID.COEQ]);
-                    },
+                    ...jest.requireActual<typeof import("@/utils/token")>(
+                        "@/utils/token"
+                    ),
+                    decodeToken: jest
+                        .fn<() => Promise<JWTToken>>()
+                        .mockResolvedValue(
+                            decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                        ),
                 };
             });
 
