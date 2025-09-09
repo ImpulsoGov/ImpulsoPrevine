@@ -1,0 +1,233 @@
+import { microAreaFormatter } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
+import type { AcfItem } from "@/features/acf/shared/schema";
+import type { ColumnsProps } from "../../../model";
+import { formatDate, parseDate } from "@/features/common/shared/time";
+
+export const mockData: Array<AcfItem> = [
+    {
+        municipalitySusId: "123456",
+        municipalityName: "São Paulo",
+        patientName: "Maria Silva",
+        patientCpf: "123.456.789-00",
+        patientCns: "898001122334455",
+        latestAppointmentDate: new Date("2025-01-15"),
+        appointmentStatusByQuarter: "Em dia",
+        latestExamRequestDate: new Date("2025-02-10"),
+        latestExamRequestStatusByQuarter: "Atrasada",
+        careTeamName: "Equipe Azul",
+        microAreaName: "Microárea 1",
+        patientPhoneNumber: "(11) 98765-4321",
+        patientAge: 58,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "654321",
+        municipalityName: "Campinas",
+        patientName: "João Pereira",
+        patientCpf: null,
+        patientCns: "123456789101112",
+        latestAppointmentDate: null,
+        appointmentStatusByQuarter: "Nunca realizado",
+        latestExamRequestDate: new Date("2025-03-02"),
+        latestExamRequestStatusByQuarter: "Em dia",
+        careTeamName: null,
+        microAreaName: "Microárea 2",
+        patientPhoneNumber: null,
+        patientAge: 72,
+        patientAgeRange: "60 ou mais (Idoso)",
+    },
+    {
+        municipalitySusId: "789012",
+        municipalityName: "Rio de Janeiro",
+        patientName: "Ana Costa",
+        patientCpf: "987.654.321-00",
+        patientCns: null,
+        latestAppointmentDate: new Date("2025-04-20"),
+        appointmentStatusByQuarter: "Vence dentro do Q1",
+        latestExamRequestDate: null,
+        latestExamRequestStatusByQuarter: "Nunca realizado",
+        careTeamName: "Equipe Verde",
+        microAreaName: null,
+        patientPhoneNumber: "(21) 91234-5678",
+        patientAge: 43,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "321789",
+        municipalityName: "Belo Horizonte",
+        patientName: "Carlos Oliveira",
+        patientCpf: "111.222.333-44",
+        patientCns: "987654321000001",
+        latestAppointmentDate: new Date("2025-02-01"),
+        appointmentStatusByQuarter: "Em dia",
+        latestExamRequestDate: new Date("2025-02-15"),
+        latestExamRequestStatusByQuarter: "Vence dentro do Q2",
+        careTeamName: "Equipe Amarela",
+        microAreaName: "Microárea 3",
+        patientPhoneNumber: "(31) 99876-5432",
+        patientAge: 65,
+        patientAgeRange: "60 ou mais (Idoso)",
+    },
+    {
+        municipalitySusId: "456789",
+        municipalityName: "Curitiba",
+        patientName: "Fernanda Souza",
+        patientCpf: "555.666.777-88",
+        patientCns: "444333322221111",
+        latestAppointmentDate: null,
+        appointmentStatusByQuarter: "Atrasada",
+        latestExamRequestDate: null,
+        latestExamRequestStatusByQuarter: "Nunca realizado",
+        careTeamName: null,
+        microAreaName: "Microárea 4",
+        patientPhoneNumber: "(41) 91234-8765",
+        patientAge: 35,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "567890",
+        municipalityName: "Porto Alegre",
+        patientName: "Marcos Lima",
+        patientCpf: null,
+        patientCns: null,
+        latestAppointmentDate: new Date("2025-05-01"),
+        appointmentStatusByQuarter: "Vence dentro do Q3",
+        latestExamRequestDate: new Date("2025-05-10"),
+        latestExamRequestStatusByQuarter: "Em dia",
+        careTeamName: "Equipe Laranja",
+        microAreaName: "Microárea 5",
+        patientPhoneNumber: null,
+        patientAge: 80,
+        patientAgeRange: "60 ou mais (Idoso)",
+    },
+    {
+        municipalitySusId: "678901",
+        municipalityName: "Fortaleza",
+        patientName: "Juliana Almeida",
+        patientCpf: "222.333.444-55",
+        patientCns: "000111122223333",
+        latestAppointmentDate: new Date("2025-06-12"),
+        appointmentStatusByQuarter: "Em dia",
+        latestExamRequestDate: new Date("2025-06-20"),
+        latestExamRequestStatusByQuarter: "Vence dentro do Q1",
+        careTeamName: "Equipe Roxa",
+        microAreaName: null,
+        patientPhoneNumber: "(85) 93456-7890",
+        patientAge: 27,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "789123",
+        municipalityName: "Salvador",
+        patientName: "Ricardo Santos",
+        patientCpf: "333.444.555-66",
+        patientCns: "999888877776666",
+        latestAppointmentDate: null,
+        appointmentStatusByQuarter: "Nunca realizado",
+        latestExamRequestDate: null,
+        latestExamRequestStatusByQuarter: "Vence dentro do Q2",
+        careTeamName: "Equipe Cinza",
+        microAreaName: "Microárea 6",
+        patientPhoneNumber: "(71) 99888-7777",
+        patientAge: 49,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "891234",
+        municipalityName: "Recife",
+        patientName: "Patrícia Gomes",
+        patientCpf: null,
+        patientCns: "555444433332222",
+        latestAppointmentDate: new Date("2025-07-07"),
+        appointmentStatusByQuarter: "Vence dentro do Q2",
+        latestExamRequestDate: new Date("2025-07-15"),
+        latestExamRequestStatusByQuarter: "Atrasada",
+        careTeamName: "Equipe Branca",
+        microAreaName: null,
+        patientPhoneNumber: "(81) 97654-3210",
+        patientAge: 54,
+        patientAgeRange: "20 a 59 (Adulto)",
+    },
+    {
+        municipalitySusId: "912345",
+        municipalityName: "Manaus",
+        patientName: "Diego Ferreira",
+        patientCpf: "444.555.666-77",
+        patientCns: null,
+        latestAppointmentDate: new Date("2025-08-01"),
+        appointmentStatusByQuarter: "Em dia",
+        latestExamRequestDate: null,
+        latestExamRequestStatusByQuarter: "Nunca realizado",
+        careTeamName: "Equipe Preta",
+        microAreaName: "Microárea 7",
+        patientPhoneNumber: "(92) 95555-4444",
+        patientAge: 8,
+        patientAgeRange: "0 a 10 (Criança)",
+    },
+];
+
+export const mockColumns: Array<ColumnsProps<AcfItem>> = [
+    {
+        fields: ["patientName", "patientCpf", "patientCns"],
+        headerName: "Nome e CPF/CNS",
+        width: {
+            landscape: 211,
+            portrait: 135,
+        },
+    },
+    {
+        fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
+        width: {
+            landscape: 135,
+            portrait: 135,
+        },
+        headerName: "Consulta: Data e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, string];
+            return (
+                <>
+                    <div>{formatDate(parseDate(date))}</div>
+                    <div>{status}</div>
+                </>
+            );
+        },
+        verticalDivider: true,
+    },
+    {
+        fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
+        width: {
+            landscape: 156,
+            portrait: 156,
+        },
+        headerName: "Aferição de PA: Data e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, string];
+            return (
+                <>
+                    <div>{formatDate(parseDate(date))}</div>
+                    <div>{status}</div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["microAreaName"],
+        width: {
+            landscape: 144,
+            portrait: 144,
+        },
+        headerName: "Microárea",
+        titleFormatter: (value: unknown): string =>
+            microAreaFormatter(value as string),
+        renderCell: (value: unknown): string =>
+            microAreaFormatter(value as string),
+    },
+    {
+        fields: ["patientPhoneNumber", "patientAge"],
+        headerName: "Telefone e Idade",
+        width: {
+            landscape: 145,
+            portrait: 145,
+        },
+    },
+];
