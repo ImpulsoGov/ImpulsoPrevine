@@ -48,28 +48,32 @@ const decodedToken = (
     };
 };
 
-const mockDiabetesNewProgramWith = (resolvedValue: boolean): void => {
+const mockDiabetesNewProgram = (): jest.Mock<() => Promise<boolean>> => {
+    const mockedDiabetesNewProgram = jest.fn<() => Promise<boolean>>();
+
     jest.doMock("@/features/common/shared/flags", () => ({
         ...jest.requireActual<typeof import("@features/common/shared/flags")>(
             "@/features/common/shared/flags"
         ),
-        diabetesNewProgram: jest
-            .fn<() => Promise<boolean>>()
-            .mockResolvedValue(resolvedValue),
+        diabetesNewProgram: mockedDiabetesNewProgram,
     }));
+
+    return mockedDiabetesNewProgram;
 };
 
-const mockDecodeTokenWith = (resolvedValue: JWTToken): void => {
+const mockDecodeToken = (): jest.Mock<() => Promise<JWTToken>> => {
+    const mockedDecodeToken = jest.fn<() => Promise<JWTToken>>();
+
     jest.doMock("@/utils/token", () => {
         return {
             ...jest.requireActual<typeof import("@/utils/token")>(
                 "@/utils/token"
             ),
-            decodeToken: jest
-                .fn<() => Promise<JWTToken>>()
-                .mockResolvedValue(resolvedValue),
+            decodeToken: mockedDecodeToken,
         };
     });
+
+    return mockedDecodeToken;
 };
 
 const mockPrismaClient = (): DeepMockProxy<PrismaClient> => {
@@ -101,8 +105,10 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         //TODO: Adicionar caso de: perfil não permitido
         //TODO: Extrair helpers de mock para reutilizar em todos os testes
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
-            mockDiabetesNewProgramWith(false);
-            mockDecodeTokenWith(decodedToken({ perfis: [PROFILE_ID.COEQ] }));
+            mockDiabetesNewProgram().mockResolvedValue(false);
+            mockDecodeToken().mockResolvedValue(
+                decodedToken({ perfis: [PROFILE_ID.COEQ] })
+            );
             mockPrismaClient();
 
             const { GET } = await import(
