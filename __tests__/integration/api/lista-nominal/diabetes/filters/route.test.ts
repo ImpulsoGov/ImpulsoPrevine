@@ -121,38 +121,12 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
-            jest.doMock("@/features/common/shared/flags", () => ({
-                ...jest.requireActual<
-                    typeof import("@/features/common/shared/flags")
-                >("@/features/common/shared/flags"),
-                diabetesNewProgram: jest
-                    .fn<() => Promise<boolean>>()
-                    .mockResolvedValue(true),
-            }));
-
-            jest.doMock("@/utils/token", () => {
-                return {
-                    ...jest.requireActual<typeof import("@/utils/token")>(
-                        "@/utils/token"
-                    ),
-                    decodeToken: jest
-                        .fn<() => Promise<JWTToken>>()
-                        .mockResolvedValue(
-                            decodedToken({ perfis: [PROFILE_ID.COEQ] })
-                        ),
-                };
-            });
-
-            const mockPrisma =
-                mockDeep<PrismaClient>() as unknown as DeepMockProxy<PrismaClient>;
-
-            jest.doMock<typeof import("@prisma/prismaClient")>(
-                "@prisma/prismaClient",
-                () => ({
-                    __esModule: true,
-                    prisma: mockPrisma,
-                })
+            mockDiabetesNewProgram().mockResolvedValue(true);
+            mockDecodeToken().mockResolvedValue(
+                decodedToken({ perfis: [PROFILE_ID.COEQ] })
             );
+
+            const mockPrisma = mockPrismaClient();
 
             const mockCommunityHealthWorkers = [
                 dbHelpers.mockDiabetesItem({
