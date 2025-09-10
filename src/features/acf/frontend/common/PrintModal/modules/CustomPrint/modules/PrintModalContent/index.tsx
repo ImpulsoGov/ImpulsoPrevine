@@ -6,21 +6,19 @@ import type { ModalLabels } from "../../../../model";
 import type { CustomPrintState } from "@/features/acf/frontend/common/WithCustomPrint/context";
 import { Checkbox } from "@mui/material";
 
-type PrintModalContentProps<TItem> = {
+type PrintModalContentProps = {
     labels: ModalLabels;
     handleClose: () => void;
-    customization: CustomPrintState<TItem>;
-    setCustomization: React.Dispatch<
-        React.SetStateAction<CustomPrintState<TItem>>
-    >;
+    customization: CustomPrintState;
+    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
 };
 
-export const PrintModalContent = <TItem,>({
+export const PrintModalContent = ({
     labels,
     customization,
     setCustomization,
     handleClose,
-}: PrintModalContentProps<TItem>): ReactNode => {
+}: PrintModalContentProps): ReactNode => {
     return (
         <div className={style.Content}>
             <Header labels={labels} handleClose={handleClose} />
@@ -79,19 +77,17 @@ export const Header: React.FC<{
     );
 };
 
-type SplitTeamsProps<TItem> = {
+type SplitTeamsProps = {
     labels: ModalLabels;
-    customization: CustomPrintState<TItem>;
-    setCustomization: React.Dispatch<
-        React.SetStateAction<CustomPrintState<TItem>>
-    >;
+    customization: CustomPrintState;
+    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
 };
 
-export const SplitTeams = <TItem,>({
+export const SplitTeams = ({
     labels,
     customization,
     setCustomization,
-}: SplitTeamsProps<TItem>): ReactNode => {
+}: SplitTeamsProps): ReactNode => {
     const handleChangeTeamSplit = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
@@ -145,19 +141,17 @@ export const SplitTeams = <TItem,>({
     );
 };
 
-type OtherPrintOptionsProps<TItem> = {
+type OtherPrintOptionsProps = {
     labels: ModalLabels;
-    customization: CustomPrintState<TItem>;
-    setCustomization: React.Dispatch<
-        React.SetStateAction<CustomPrintState<TItem>>
-    >;
+    customization: CustomPrintState;
+    setCustomization: React.Dispatch<React.SetStateAction<CustomPrintState>>;
 };
 
-export const OtherPrintOptions = <TItem,>({
+export const OtherPrintOptions = ({
     labels,
     customization,
     setCustomization,
-}: OtherPrintOptionsProps<TItem>): ReactNode => {
+}: OtherPrintOptionsProps): ReactNode => {
     const handleCheckboxChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {

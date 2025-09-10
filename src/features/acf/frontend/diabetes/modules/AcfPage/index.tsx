@@ -55,6 +55,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                                 ? PROFILE_ID.COAPS
                                 : PROFILE_ID.COEQ
                         }
+                        isPrintEnabled={false}
                     />
                 }
             />
