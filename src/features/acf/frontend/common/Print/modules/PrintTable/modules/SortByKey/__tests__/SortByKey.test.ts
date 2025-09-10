@@ -19,6 +19,22 @@ const base: HypertensionAcfItem = {
 };
 
 describe("SortByKey", () => {
+    it("Ordena array de AcfItem pela propriedade microAreaName asc", () => {
+        const list = [
+            { ...base, microAreaName: "Área 12" },
+            { ...base, microAreaName: "Área 1" },
+            { ...base, microAreaName: "Área 3" },
+        ];
+        const result = list.sort((a, b) =>
+            SortByKey({ a, b, key: "microAreaName", order: "asc" })
+        );
+        const expected = [
+            { ...base, microAreaName: "Área 1" },
+            { ...base, microAreaName: "Área 12" },
+            { ...base, microAreaName: "Área 3" },
+        ];
+        expect(result).toEqual(expected);
+    });
     describe("Item é null", () => {
         const a = { ...base, patientCpf: null };
         const b = { ...base };

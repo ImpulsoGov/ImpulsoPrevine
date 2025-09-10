@@ -1,5 +1,5 @@
 import type { AcfItem } from "@/features/acf/shared/schema";
-import type { ColumnsProps } from "../../model";
+import type { ColumnsProps } from "@features/acf/frontend/common/Print/modules/PrintTable//model";
 import { SortByKey } from "../SortByKey";
 import type { GridSortItem } from "@mui/x-data-grid";
 
@@ -59,35 +59,43 @@ export const orderSplitData = <TAcfItem extends AcfItem>(
     propPrintGrouping: keyof TAcfItem,
     order: GridSortItem
 ): SplitedByProp<TAcfItem> => {
-    const data = structuredClone(splitByProp);
+    const data = JSON.parse(
+        JSON.stringify(splitByProp)
+    ) as SplitedByProp<TAcfItem>;
+
     for (const group of Object.values(data)) {
-        group.data
-            .sort((a, b) =>
-                SortByKey({
-                    a,
-                    b,
-                    key: propPrintGrouping,
-                    order: "asc",
-                })
-            )
-            .sort((a, b) =>
-                SortByKey({
-                    a,
-                    b,
-                    key: order.field as keyof TAcfItem,
-                    order: order.sort ?? "asc",
-                })
-            );
+        group.data.sort((a, b) => {
+            // 1º nível: propPrintGrouping (sempre asc)
+            const primary = SortByKey({
+                a,
+                b,
+                key: propPrintGrouping,
+                order: "asc",
+            });
+            if (primary !== 0) {
+                return primary;
+            }
+
+            // 2º nível: order.field (asc/desc conforme definido)
+            return SortByKey({
+                a,
+                b,
+                key: order.field as keyof TAcfItem,
+                order: order.sort ?? "asc",
+            });
+        });
     }
+
     return data;
 };
 
 export const OrderedSplitByProp = <TAcfItem extends AcfItem>(
     data: Array<TAcfItem>,
     propPrintGrouping: keyof TAcfItem,
+    orderKey: keyof TAcfItem | undefined,
     columns: Array<ColumnsProps<TAcfItem>>,
-    orderByKey: boolean,
-    order: GridSortItem
+    shouldOrderByKey: boolean,
+    dataTableOrder: GridSortItem
 ): OrderedSplitedByProp<TAcfItem> => {
     const splitByProp = SplitByProp(
         data,
@@ -95,7 +103,7 @@ export const OrderedSplitByProp = <TAcfItem extends AcfItem>(
         getTitle(columns, propPrintGrouping)
     );
 
-    return orderByKey
-        ? splitByProp
-        : orderSplitData(splitByProp, propPrintGrouping, order);
+    return shouldOrderByKey && orderKey
+        ? orderSplitData(splitByProp, orderKey, dataTableOrder)
+        : splitByProp;
 };

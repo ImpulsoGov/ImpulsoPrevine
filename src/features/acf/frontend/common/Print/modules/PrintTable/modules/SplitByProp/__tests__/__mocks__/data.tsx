@@ -1,9 +1,9 @@
 import { microAreaFormatter } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import type { AcfItem } from "@/features/acf/shared/schema";
-import type { ColumnsProps } from "../../../model";
+import type { ColumnsProps } from "@features/acf/frontend/common/Print/modules/PrintTable//model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
+import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 
-export const mockData: Array<AcfItem> = [
+export const mockData: Array<HypertensionAcfItem> = [
     {
         municipalitySusId: "123456",
         municipalityName: "São Paulo",
@@ -166,7 +166,7 @@ export const mockData: Array<AcfItem> = [
     },
 ];
 
-export const mockColumns: Array<ColumnsProps<AcfItem>> = [
+export const mockColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",

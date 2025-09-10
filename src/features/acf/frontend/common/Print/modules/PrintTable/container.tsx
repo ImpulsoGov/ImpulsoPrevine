@@ -62,6 +62,7 @@ export const Container = <
             const splitData = OrderedSplitByProp(
                 data,
                 printListProps.splitBy,
+                printListProps.orderBy,
                 columns,
                 isSplitOrderedByProp,
                 gridSortingModel

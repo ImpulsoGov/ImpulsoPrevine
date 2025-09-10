@@ -9,6 +9,7 @@ export type PrintListProps<
 > = {
     listTitle: string;
     splitBy: keyof TAcfItem;
+    orderBy?: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
     filtersLabels: Record<keyof TFilters, string>;
 };
