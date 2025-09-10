@@ -62,5 +62,72 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
             expect(response.status).toBe(404);
         });
+
+        it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                );
+            dbHelpers.mockPrismaClient();
+
+            const { POST } = await import(
+                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const response = await POST(request, {
+                user: user,
+                parsedBody: body,
+                params: Promise.resolve({ page: "0" }),
+            });
+
+            expect(response.status).toBe(403);
+        });
+
+        it("Deve retornar 400 ao tentar acessar uma página inválida", async () => {
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COAPS] })
+                );
+            dbHelpers.mockPrismaClient();
+
+            const { POST } = await import(
+                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const response = await POST(request, {
+                user: user,
+                parsedBody: body,
+                params: Promise.resolve({ page: "0A" }),
+            });
+
+            expect(response.status).toBe(400);
+        });
+
+        it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockRejectedValue(new Error("Erro genérico"));
+            dbHelpers.mockPrismaClient();
+
+            const { POST } = await import(
+                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const response = await POST(request, {
+                user: user,
+                parsedBody: body,
+                params: Promise.resolve({ page: "0" }),
+            });
+
+            expect(response.status).toBe(500);
+        });
     });
 });
