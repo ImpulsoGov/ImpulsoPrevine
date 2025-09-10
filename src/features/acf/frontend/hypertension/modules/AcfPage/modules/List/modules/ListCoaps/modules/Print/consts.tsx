@@ -49,6 +49,7 @@ export const printListProps: PrintListProps<
         patientAgeRange: "Faixa Etária",
     },
     splitBy: "careTeamName",
+    orderBy: "microAreaName",
 };
 
 export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
