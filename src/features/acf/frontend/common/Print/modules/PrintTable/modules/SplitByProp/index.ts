@@ -89,7 +89,7 @@ export const orderSplitData = <TAcfItem extends AcfItem>(
     return data;
 };
 
-export const OrderedSplitByProp = <TAcfItem extends AcfItem>(
+export const SplitByPropWithOptionalOrder = <TAcfItem extends AcfItem>(
     data: Array<TAcfItem>,
     propPrintGrouping: keyof TAcfItem,
     orderKey: keyof TAcfItem | undefined,

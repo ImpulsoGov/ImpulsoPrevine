@@ -1,5 +1,5 @@
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
-import { SplitByProp, orderSplitData, OrderedSplitByProp } from "..";
+import { SplitByProp, orderSplitData, SplitByPropWithOptionalOrder } from "..";
 import { mockData, mockColumns } from "./__mocks__/data";
 import type { GridSortItem } from "@mui/x-data-grid";
 
@@ -54,7 +54,7 @@ describe("orderSplitData", () => {
 
 describe("OrderedSplitByProp", () => {
     it("quando shouldOrderByKey = false, deve apenas retornar o splitByProp (sem ordenação extra)", () => {
-        const result = OrderedSplitByProp(
+        const result = SplitByPropWithOptionalOrder(
             mockData,
             "patientAgeRange",
             undefined,
@@ -68,7 +68,7 @@ describe("OrderedSplitByProp", () => {
     });
 
     it("quando shouldOrderByKey = true, deve retornar os grupos ordenados", () => {
-        const result = OrderedSplitByProp(
+        const result = SplitByPropWithOptionalOrder(
             mockData,
             "patientAgeRange",
             "patientAgeRange",

@@ -6,7 +6,7 @@ import type { AcfItem } from "@/features/acf/shared/schema";
 import type { ColumnsProps, PrintListProps } from "./model";
 import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
 import { useAcfData } from "@features/acf/frontend/common/useAcfData";
-import { OrderedSplitByProp } from "./modules/SplitByProp";
+import { SplitByPropWithOptionalOrder } from "./modules/SplitByProp";
 import { useContext } from "react";
 import { CustomPrintContext } from "@features/acf/frontend/common/WithCustomPrint";
 import { MultipleGroupsPerBlock } from "./modules/MultipleGroupsPerBlock";
@@ -59,7 +59,7 @@ export const Container = <
     if (response !== null) {
         const data = response.data as Array<TResponse>;
         if (isDataSplitEnabled) {
-            const splitData = OrderedSplitByProp(
+            const splitData = SplitByPropWithOptionalOrder(
                 data,
                 printListProps.splitBy,
                 printListProps.orderBy,
