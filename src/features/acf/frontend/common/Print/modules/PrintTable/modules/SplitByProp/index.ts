@@ -44,7 +44,7 @@ export const SplitByProp = <TAcfItem extends AcfItem>(
     return splitByProp;
 };
 
-export const getTitle = <TAcfItem extends AcfItem>(
+export const getTitleFormatter = <TAcfItem extends AcfItem>(
     columns: Array<ColumnsProps<TAcfItem>>,
     propPrintGrouping: keyof TAcfItem
 ): ColumnsProps<TAcfItem>["titleFormatter"] | undefined => {
@@ -100,7 +100,7 @@ export const SplitByPropWithOptionalOrder = <TAcfItem extends AcfItem>(
     const splitByProp = SplitByProp(
         data,
         propPrintGrouping,
-        getTitle(columns, propPrintGrouping)
+        getTitleFormatter(columns, propPrintGrouping)
     );
 
     return shouldOrderByKey && orderKey
