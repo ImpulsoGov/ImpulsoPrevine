@@ -55,6 +55,10 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                             <WithSearch
                                 SearchComponent={SearchToolBar}
                                 isPrintEnabled={isPrintEnabled}
+                                triggerPrintWithoutModal={
+                                    printListProps.triggerPrintWithoutModal
+                                }
+                                ref={ref}
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
@@ -65,16 +69,13 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
                                                 ref={ref}
-                                            >
-                                                <PrintTable
-                                                    columns={coeqColumns}
-                                                    serviceGetData={getCoeqData}
-                                                    ref={ref}
-                                                    printListProps={
-                                                        printListProps
-                                                    }
-                                                />
-                                            </PrintModal>
+                                            />
+                                            <PrintTable
+                                                columns={coeqColumns}
+                                                serviceGetData={getCoeqData}
+                                                ref={ref}
+                                                printListProps={printListProps}
+                                            />
                                         </WithPagination>
                                     </WithFiltersBar>
                                 </WithSorting>
