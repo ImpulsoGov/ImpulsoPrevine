@@ -1,27 +1,22 @@
 "use client";
 import type React from "react";
-import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { FiltersContext } from "./context";
 import type { AppliedFilters } from "./model";
-
 // export { FiltersContext };
 export type { AppliedFilters };
 
-type FiltersBarProps<TAppliedFilters> = {
-    selectedValues: TAppliedFilters;
-    setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
-};
+// type FiltersBarProps<TAppliedFilters> = {
+//     selectedValues: TAppliedFilters;
+//     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
+// };
 
-type WithFiltersProps<TAppliedFilters extends AppliedFilters> =
-    React.PropsWithChildren<{
-        initialSelectedValues: TAppliedFilters;
-        FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
-    }>;
+type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
+    initialSelectedValues: TAppliedFilters;
+}>;
 
 export const WithFilters = <TAppliedFilters extends AppliedFilters>({
     initialSelectedValues,
-    FiltersBar,
     children,
 }: WithFiltersProps<TAppliedFilters>): React.ReactNode => {
     const [selectedValues, setSelectedValues] = useState<TAppliedFilters>(
@@ -30,11 +25,9 @@ export const WithFilters = <TAppliedFilters extends AppliedFilters>({
 
     return (
         <>
-            <FiltersBar
-                selectedValues={selectedValues}
-                setSelectedValues={setSelectedValues}
-            />
-            <FiltersContext.Provider value={selectedValues}>
+            <FiltersContext.Provider
+                value={{ selectedValues, setSelectedValues }}
+            >
                 {children}
             </FiltersContext.Provider>
         </>

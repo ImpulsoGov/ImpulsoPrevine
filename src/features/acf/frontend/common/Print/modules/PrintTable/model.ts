@@ -12,6 +12,7 @@ export type PrintListProps<
     orderBy?: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
     filtersLabels: Record<keyof TFilters, string>;
+    triggerPrintWithoutModal: "careTeamName" | "microAreaName";
 };
 
 export type SortCallback<TItem> = (a: TItem, b: TItem) => number;

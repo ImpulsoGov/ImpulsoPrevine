@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import * as DataTableModule from "../index";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
+import { FiltersContextType } from "@/features/acf/frontend/common/WithFilters/context";
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination/context";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting/context";
 import { SearchContext } from "@/features/acf/frontend/common/WithSearch/context";
@@ -70,7 +70,7 @@ describe("DataTable", () => {
         render(
             <SearchContext.Provider value={mockSearchModel}>
                 <SortingContext.Provider value={mockSortingModel}>
-                    <FiltersContext.Provider value={mockFilters}>
+                    <FiltersContextType.Provider value={mockFilters}>
                         <PaginationContext.Provider value={mockPaginationModel}>
                             <SessionProvider session={clientSession}>
                                 <DataTableModule.DataTable
@@ -79,7 +79,7 @@ describe("DataTable", () => {
                                 />
                             </SessionProvider>
                         </PaginationContext.Provider>
-                    </FiltersContext.Provider>
+                    </FiltersContextType.Provider>
                 </SortingContext.Provider>
             </SearchContext.Provider>
         );
@@ -102,7 +102,7 @@ describe("DataTable", () => {
         const { rerender } = render(
             <SearchContext.Provider value={mockSearchModel}>
                 <SortingContext.Provider value={mockSortingModel}>
-                    <FiltersContext.Provider value={mockFilters}>
+                    <FiltersContextType.Provider value={mockFilters}>
                         <PaginationContext.Provider value={mockPaginationModel}>
                             <SessionProvider session={clientSession}>
                                 <DataTableModule.DataTable
@@ -111,7 +111,7 @@ describe("DataTable", () => {
                                 />
                             </SessionProvider>
                         </PaginationContext.Provider>
-                    </FiltersContext.Provider>
+                    </FiltersContextType.Provider>
                 </SortingContext.Provider>
             </SearchContext.Provider>
         );
@@ -119,7 +119,7 @@ describe("DataTable", () => {
             // Útil quando quisermos verificar o comportamento de um componente reagindo a mudanças nas suas props ao longo do tempo.
             <SearchContext.Provider value={mockSearchModel}>
                 <SortingContext.Provider value={mockSortingModel}>
-                    <FiltersContext.Provider value={mockFilters}>
+                    <FiltersContextType.Provider value={mockFilters}>
                         <PaginationContext.Provider
                             value={newMockPaginationModel}
                         >
@@ -130,7 +130,7 @@ describe("DataTable", () => {
                                 />
                             </SessionProvider>
                         </PaginationContext.Provider>
-                    </FiltersContext.Provider>
+                    </FiltersContextType.Provider>
                 </SortingContext.Provider>
             </SearchContext.Provider>
         );
