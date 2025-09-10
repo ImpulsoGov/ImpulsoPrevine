@@ -6,7 +6,7 @@ import type { AcfItem } from "@/features/acf/shared/schema";
 import type { ColumnsProps, PrintListProps } from "./model";
 import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
 import { useAcfData } from "@features/acf/frontend/common/useAcfData";
-import { SplitByProp } from "./modules/SplitByProp";
+import { SplitByPropWithOptionalOrder } from "./modules/SplitByProp";
 import { useContext } from "react";
 import { CustomPrintContext } from "@features/acf/frontend/common/WithCustomPrint";
 import { MultipleGroupsPerBlock } from "./modules/MultipleGroupsPerBlock";
@@ -14,6 +14,7 @@ import { NoSplit } from "./modules/NoSplit";
 import { PageHeader } from "./modules/PageHeader";
 import { SingleGroupPerBlock } from "./modules/SingleGroupPerBlock";
 import { UnitTable } from "./modules/UnitTable";
+import { SortingContext } from "@features/acf/frontend/common/WithSorting";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
@@ -38,10 +39,11 @@ export const Container = <
         serviceGetData,
     });
     const { customization } = useContext(CustomPrintContext);
+    const { gridSortingModel } = useContext(SortingContext);
     const orderGroup = customization.orderGroup;
     const isDataSplitEnabled = customization.grouping;
     const isPageSplitEnabled = customization.splitGroupPerPage;
-    // const isSplitOrderedByProp = customization.order;
+    const isSplitOrderedByProp = customization.order;
 
     if (isAxiosError(response)) {
         return (
@@ -57,17 +59,20 @@ export const Container = <
     if (response !== null) {
         const data = response.data as Array<TResponse>;
         if (isDataSplitEnabled) {
-            const splitedData = SplitByProp(
+            const splitData = SplitByPropWithOptionalOrder(
                 data,
                 printListProps.splitBy,
-                columns
+                printListProps.orderBy,
+                columns,
+                isSplitOrderedByProp,
+                gridSortingModel
             );
-            const sortedKeys = Object.keys(splitedData).sort(
-                orderGroup
-            ) as Array<keyof TResponse>;
+            const sortedKeys = Object.keys(splitData).sort(orderGroup) as Array<
+                keyof TResponse
+            >;
 
             const dataSplitProps = {
-                data: splitedData,
+                data: splitData,
                 columns,
                 sortedKeys,
             };

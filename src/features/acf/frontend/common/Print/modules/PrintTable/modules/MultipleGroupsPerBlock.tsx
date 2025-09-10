@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { SplitedGroupPerBlockProps } from "../model";
+import type { SplitGroupPerBlockProps } from "../model";
 import { UnitTable } from "./UnitTable";
 import type { AcfItem } from "@/features/acf/shared/schema";
 
@@ -8,7 +8,7 @@ export const MultipleGroupsPerBlock = <TAcfItem extends AcfItem>({
     columns,
     sortedKeys,
     children,
-}: SplitedGroupPerBlockProps<TAcfItem>): ReactNode => {
+}: SplitGroupPerBlockProps<TAcfItem>): ReactNode => {
     return (
         <div key="multiple-groups-per-block">
             {children}

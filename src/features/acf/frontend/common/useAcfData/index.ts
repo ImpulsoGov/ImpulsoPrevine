@@ -1,7 +1,7 @@
 import type { AxiosError } from "axios";
 import { isAxiosError, type AxiosResponse } from "axios";
 import type { DispatchWithoutAction } from "react";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { AppliedFilters } from "../WithFilters";
 import type { AcfResponse, DataResponses } from "@/features/acf/shared/schema";
 import { useSession } from "next-auth/react";
@@ -54,18 +54,11 @@ export const useAcfData = <
     >(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const shouldSkipNextFetchRef = useRef(false);
+    useEffect(() => {
+        resetPagination?.();
+    }, [filters, sorting, search]);
 
     useEffect(() => {
-        // TODO: essa implementação foi o jeito mais rápido que encontramos de evitar o bug em que
-        // a fetchPage é chamada duas vezes com valores diferentes quando a paginação é resetada.
-        // Precisamos pensar numa forma melhor de resolver esse problema sem usar a ref. Uma das
-        // opções é mover a execução da resetPagination para dentro dos locais em que ela deve ser
-        // chamada, como dentro do WithFilters, WithSorting e WithSearch.
-        if (shouldSkipNextFetchRef.current) {
-            shouldSkipNextFetchRef.current = false;
-            return;
-        }
         setIsLoading(true);
         const getDataParams = {
             token: session?.user.access_token || "",
@@ -92,10 +85,5 @@ export const useAcfData = <
                 );
             });
     }, [session, filters, sorting, search, page]);
-
-    useEffect(() => {
-        shouldSkipNextFetchRef.current = true;
-        resetPagination?.();
-    }, [filters, sorting, search]);
     return { response, isLoading };
 };
