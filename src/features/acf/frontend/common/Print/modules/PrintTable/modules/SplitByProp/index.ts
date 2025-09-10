@@ -3,14 +3,14 @@ import type { ColumnsProps } from "@features/acf/frontend/common/Print/modules/P
 import { SortByKey } from "../SortByKey";
 import type { GridSortItem } from "@mui/x-data-grid";
 
-export type SplitedByProp<TAcfItem extends AcfItem> = {
+export type SplitByProp<TAcfItem extends AcfItem> = {
     [key: string]: {
         data: Array<TAcfItem>;
         title: string;
     };
 };
 
-export type OrderedSplitedByProp<TAcfItem extends AcfItem> = {
+export type OrderedSplitByProp<TAcfItem extends AcfItem> = {
     [key: string]: {
         data: Array<TAcfItem>;
         title: string;
@@ -21,8 +21,8 @@ export const SplitByProp = <TAcfItem extends AcfItem>(
     data: Array<TAcfItem>,
     propPrintGrouping: keyof TAcfItem,
     titleFormatter?: ColumnsProps<TAcfItem>["titleFormatter"]
-): SplitedByProp<TAcfItem> => {
-    const splitByProp = data.reduce<SplitedByProp<TAcfItem>>(
+): SplitByProp<TAcfItem> => {
+    const splitByProp = data.reduce<SplitByProp<TAcfItem>>(
         (acc, currentObject) => {
             const aggregationKey: string = String(
                 currentObject[propPrintGrouping]
@@ -55,13 +55,13 @@ export const getTitleFormatter = <TAcfItem extends AcfItem>(
 };
 
 export const orderSplitData = <TAcfItem extends AcfItem>(
-    splitByProp: SplitedByProp<TAcfItem>,
+    splitByProp: SplitByProp<TAcfItem>,
     propPrintGrouping: keyof TAcfItem,
     order: GridSortItem
-): SplitedByProp<TAcfItem> => {
+): SplitByProp<TAcfItem> => {
     const data = JSON.parse(
         JSON.stringify(splitByProp)
-    ) as SplitedByProp<TAcfItem>;
+    ) as SplitByProp<TAcfItem>;
 
     for (const group of Object.values(data)) {
         group.data.sort((a, b) => {
@@ -96,7 +96,7 @@ export const SplitByPropWithOptionalOrder = <TAcfItem extends AcfItem>(
     columns: Array<ColumnsProps<TAcfItem>>,
     shouldOrderByKey: boolean,
     dataTableOrder: GridSortItem
-): OrderedSplitedByProp<TAcfItem> => {
+): OrderedSplitByProp<TAcfItem> => {
     const splitByProp = SplitByProp(
         data,
         propPrintGrouping,
