@@ -12,6 +12,7 @@ import * as flagHelpers from "../../../../../../../helpers/flag";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 
 const coapsUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coaps/0`;
+// TODO: rever se vale a pena criar um builder para o user e body
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
@@ -19,14 +20,14 @@ const user = {
 } satisfies interceptors.User;
 const body = {
     filters: {
-        communityHealthWorker: ["Eliana"],
+        communityHealthWorker: ["ACS Teste"],
         conditionIdentifiedBy: ["Autorreferida"],
         patientStatus: ["Apenas a consulta a fazer"],
         patientAgeRange: ["Menos de 17 anos"],
         careTeamName: ["Equipe Teste"],
     },
     sorting: { field: "patientName", sort: "asc" },
-    search: "",
+    search: "Paciente Teste",
 } satisfies schema.CoapsPageRequestBody;
 
 describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
@@ -104,6 +105,32 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 user: user,
                 parsedBody: body,
                 params: Promise.resolve({ page: "0A" }),
+            });
+
+            expect(response.status).toBe(400);
+        });
+
+        it("Deve retornar 400 quando o body da requisição é inválido", async () => {
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COAPS] })
+                );
+            dbHelpers.mockPrismaClient();
+
+            const { POST } = await import(
+                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+            );
+
+            const bodyWithInvalidSearch = { ...body, search: 20 };
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: bodyWithInvalidSearch,
+            });
+            const response = await POST(request, {
+                user: user,
+                parsedBody: body,
+                params: Promise.resolve({ page: "0" }),
             });
 
             expect(response.status).toBe(400);
