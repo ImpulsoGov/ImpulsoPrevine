@@ -3,13 +3,7 @@ import type React from "react";
 import { useState } from "react";
 import { FiltersContext } from "./context";
 import type { AppliedFilters } from "./model";
-// export { FiltersContext };
 export type { AppliedFilters };
-
-// type FiltersBarProps<TAppliedFilters> = {
-//     selectedValues: TAppliedFilters;
-//     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
-// };
 
 type WithFiltersProps<TAppliedFilters> = React.PropsWithChildren<{
     initialSelectedValues: TAppliedFilters;

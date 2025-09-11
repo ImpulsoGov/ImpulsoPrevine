@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import React from "react";
 import style from "../../CustomPrint.module.css";
 import cx from "classnames";
-import type { ModalLabels } from "../../../../model";
+import type { ModalLabels } from "@features/acf/frontend/common/PrintModal/model";
 import type { CustomPrintState } from "@/features/acf/frontend/common/WithCustomPrint/context";
 import { Checkbox } from "@mui/material";
 
