@@ -3,8 +3,8 @@ import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "../../../common/DashboardType";
-import { ErrorPage } from "../../../common/ErrorPage";
+import type { AcfDashboardType } from "@features/acf/frontend/common/DashboardType";
+import { ErrorPage } from "@features/acf/frontend/common/ErrorPage";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 import { List } from "./modules/List";
@@ -55,6 +55,7 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
                                 ? PROFILE_ID.COAPS
                                 : PROFILE_ID.COEQ
                         }
+                        isPrintEnabled={false}
                     />
                 }
             />

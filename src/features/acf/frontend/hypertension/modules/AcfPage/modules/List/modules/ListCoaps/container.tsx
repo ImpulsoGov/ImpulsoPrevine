@@ -20,6 +20,7 @@ import { apsLabelsModal, columns } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
 import { printListProps } from "./modules/Print/consts";
 import { orderPrintGroups } from "./logic";
+import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoapsProps = {
     list: AcfDashboardType;
@@ -44,39 +45,43 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
         <>
             <ListCoaps list={list}>
                 <WithPrintModal>
-                    <WithCustomPrint orderGroup={orderPrintGroups}>
-                        <CurrentQuadrimester />
-                        <WithSearch
-                            SearchComponent={SearchToolBar}
-                            isPrintEnabled={isPrintEnabled}
-                        >
-                            <hr style={{ width: "100%" }} />
-                            <WithSorting>
-                                <FilterHint />
-                                <WithFilters
-                                    initialSelectedValues={
-                                        initialSelectedValuesCoaps
-                                    }
-                                    FiltersBar={CoapsFiltersBar}
-                                >
-                                    <WithPagination>
-                                        <CoapsDataTable />
-                                        <PrintModal
-                                            modalLabels={apsLabelsModal}
-                                            ref={ref}
-                                        >
+                    <WithFilters
+                        initialSelectedValues={initialSelectedValuesCoaps}
+                    >
+                        <WithCustomPrint orderGroup={orderPrintGroups}>
+                            <CurrentQuadrimester />
+                            <WithSearch
+                                SearchComponent={SearchToolBar}
+                                isPrintEnabled={isPrintEnabled}
+                                propTriggerPrintWithoutModal={
+                                    printListProps.propTriggerPrintWithoutModal
+                                }
+                                ref={ref}
+                            >
+                                <hr style={{ width: "100%" }} />
+                                <WithSorting>
+                                    <FilterHint />
+                                    <WithFiltersBar
+                                        FiltersBar={CoapsFiltersBar}
+                                    >
+                                        <WithPagination>
+                                            <CoapsDataTable />
+                                            <PrintModal
+                                                modalLabels={apsLabelsModal}
+                                                ref={ref}
+                                            ></PrintModal>
                                             <PrintTable
                                                 columns={columns}
                                                 serviceGetData={getCoapsData}
                                                 ref={ref}
                                                 printListProps={printListProps}
                                             />
-                                        </PrintModal>
-                                    </WithPagination>
-                                </WithFilters>
-                            </WithSorting>
-                        </WithSearch>
-                    </WithCustomPrint>
+                                        </WithPagination>
+                                    </WithFiltersBar>
+                                </WithSorting>
+                            </WithSearch>
+                        </WithCustomPrint>
+                    </WithFilters>
                 </WithPrintModal>
             </ListCoaps>
         </>

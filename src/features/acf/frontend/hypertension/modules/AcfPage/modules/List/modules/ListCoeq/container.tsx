@@ -23,6 +23,7 @@ import { getCoeqData } from "./modules/Print/service";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { orderPrintGroups } from "./logic";
+import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -48,36 +49,38 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                 <WithPrintModal>
                     <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
-                        <WithSearch
-                            SearchComponent={SearchToolBar}
-                            isPrintEnabled={isPrintEnabled}
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValuesCoeq}
                         >
-                            <hr style={{ width: "100%" }} />
-                            <WithSorting>
-                                <FilterHint />
-                                <WithFilters
-                                    initialSelectedValues={
-                                        initialSelectedValuesCoeq
-                                    }
-                                    FiltersBar={CoeqFiltersBar}
-                                >
-                                    <WithPagination>
-                                        <CoeqDataTable />
-                                        <PrintModal
-                                            modalLabels={coeqLabelsModal}
-                                            ref={ref}
-                                        >
+                            <WithSearch
+                                SearchComponent={SearchToolBar}
+                                isPrintEnabled={isPrintEnabled}
+                                propTriggerPrintWithoutModal={
+                                    printListProps.propTriggerPrintWithoutModal
+                                }
+                                ref={ref}
+                            >
+                                <hr style={{ width: "100%" }} />
+                                <WithSorting>
+                                    <FilterHint />
+                                    <WithFiltersBar FiltersBar={CoeqFiltersBar}>
+                                        <WithPagination>
+                                            <CoeqDataTable />
+                                            <PrintModal
+                                                modalLabels={coeqLabelsModal}
+                                                ref={ref}
+                                            />
                                             <PrintTable
                                                 columns={coeqColumns}
                                                 serviceGetData={getCoeqData}
                                                 ref={ref}
                                                 printListProps={printListProps}
                                             />
-                                        </PrintModal>
-                                    </WithPagination>
-                                </WithFilters>
-                            </WithSorting>
-                        </WithSearch>
+                                        </WithPagination>
+                                    </WithFiltersBar>
+                                </WithSorting>
+                            </WithSearch>
+                        </WithFilters>
                     </WithCustomPrint>
                 </WithPrintModal>
             </ListCoeq>

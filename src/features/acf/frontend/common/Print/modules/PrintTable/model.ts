@@ -1,7 +1,9 @@
 import type { AcfItem } from "@/features/acf/shared/schema";
 import type { PropsWithChildren, ReactElement } from "react";
 import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
-import type { SplitedByProp } from "./modules/SplitByProp";
+import type { SplitByProp } from "./modules/SplitByProp";
+
+export type PropTriggerPrintWithoutModal = "careTeamName" | "microAreaName";
 
 export type PrintListProps<
     TAcfItem extends AcfItem,
@@ -9,8 +11,10 @@ export type PrintListProps<
 > = {
     listTitle: string;
     splitBy: keyof TAcfItem;
+    orderBy?: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
     filtersLabels: Record<keyof TFilters, string>;
+    propTriggerPrintWithoutModal: PropTriggerPrintWithoutModal;
 };
 
 export type SortCallback<TItem> = (a: TItem, b: TItem) => number;
@@ -31,9 +35,9 @@ export type ColumnsProps<TAcfItem extends AcfItem> = {
 
 export type LayoutOrientation = "landscape" | "portrait";
 
-export type SplitedGroupPerBlockProps<TAcfItem extends AcfItem> =
+export type SplitGroupPerBlockProps<TAcfItem extends AcfItem> =
     PropsWithChildren<{
-        data: SplitedByProp<TAcfItem>;
+        data: SplitByProp<TAcfItem>;
         columns: Array<ColumnsProps<TAcfItem>>;
         sortedKeys: Array<keyof TAcfItem>;
     }>;

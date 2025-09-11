@@ -2,7 +2,10 @@ import { sanitize } from "@utils/sanitize";
 import type { ReactElement } from "react";
 import { useContext } from "react";
 import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@features/acf/frontend/common/WithFilters/context";
+import {
+    FiltersContext,
+    type FiltersContextType,
+} from "@features/acf/frontend/common/WithFilters/context";
 
 export type PageHeaderProps = {
     // latestProductionDate: string;
@@ -17,7 +20,10 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     listTitle,
     printCaption = [],
 }) => {
-    const appliedFilters = useContext(FiltersContext) || {};
+    const { selectedValues } = useContext(
+        FiltersContext
+    ) as FiltersContextType<AppliedFilters>;
+    const appliedFilters = selectedValues ?? {};
     return (
         <div>
             <div
