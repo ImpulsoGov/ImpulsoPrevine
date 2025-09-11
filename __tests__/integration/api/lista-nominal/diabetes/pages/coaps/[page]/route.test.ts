@@ -129,7 +129,7 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
             });
             const response = await POST(request, {
                 user: user,
-                parsedBody: body,
+                parsedBody: {},
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -155,6 +155,74 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
             });
 
             expect(response.status).toBe(500);
+        });
+
+        it("Deve retornar 200 e os dados da página + total de linhas se o request chegar no handler", async () => {
+            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockResolvedValue(
+                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COAPS] })
+                );
+
+            const mockPrisma = dbHelpers.mockPrismaClient();
+            const baseDbItem = dbHelpers.mockDiabetesItem();
+            const totalRows = 4;
+
+            mockPrisma.diabetesAcfItem.findMany.mockResolvedValueOnce([
+                {
+                    ...baseDbItem,
+                    patientName: "Paciente A",
+                    patientCpfOrBirthday: "12345678901",
+                    hemoglobinTestDueDate: "2023-01-05",
+                    nextAppointmentDueDate: "2023-06-05",
+                },
+                {
+                    ...baseDbItem,
+                    patientName: "Paciente B",
+                    patientCpfOrBirthday: "10987654321",
+                },
+            ]);
+            mockPrisma.diabetesAcfItem.count.mockResolvedValueOnce(totalRows);
+
+            const { POST } = await import(
+                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const response = await POST(request, {
+                user: user,
+                parsedBody: body,
+                params: Promise.resolve({ page: "0" }),
+            });
+
+            const { id: _, ...basePageItem } = baseDbItem;
+            const expectedResponseBody = {
+                page: [
+                    {
+                        ...basePageItem,
+                        hemoglobinTestDueDate: "2023-01-05",
+                        nextAppointmentDueDate: "2023-06-05",
+                        patientName: "Paciente A",
+                        patientCpfOrBirthday: "12345678901",
+                        mostRecentProductionRecordDate:
+                            basePageItem.mostRecentProductionRecordDate.toISOString(),
+                    },
+                    {
+                        ...basePageItem,
+                        hemoglobinTestDueDate: "",
+                        nextAppointmentDueDate: "",
+                        patientName: "Paciente B",
+                        patientCpfOrBirthday: "10987654321",
+                        mostRecentProductionRecordDate:
+                            basePageItem.mostRecentProductionRecordDate.toISOString(),
+                    },
+                ],
+                totalRows,
+            };
+
+            expect(response.status).toBe(200);
+            expect(await response.json()).toEqual(expectedResponseBody);
         });
     });
 });
