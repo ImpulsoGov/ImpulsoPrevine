@@ -60,7 +60,6 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             );
 
             const request = httpHelpers.request(coeqUrl, "GET");
-            // TODO: rever se vale casar o perfil do user com o do token
             const response = await GET(request, { user: user });
             expect(response.status).toBe(403);
         });
