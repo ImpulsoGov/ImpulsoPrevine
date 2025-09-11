@@ -11,12 +11,12 @@ import {
 } from "../WithFilters/context";
 import type { AppliedFilters } from "../WithFilters";
 import { Print } from "../Print/RenderPrint";
-import type { TriggerPrintWithoutModalType } from "../Print/modules/PrintTable/model";
+import type { PropTriggerPrintWithoutModal } from "../Print/modules/PrintTable/model";
 
 type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
     isPrintEnabled?: boolean;
-    triggerPrintWithoutModal: TriggerPrintWithoutModalType;
+    propTriggerPrintWithoutModal: PropTriggerPrintWithoutModal;
     ref: React.RefObject<HTMLDivElement | null>;
 };
 
@@ -29,7 +29,7 @@ const showBackdoorGuide = (): void => {
 export const SearchToolBar: React.FC<Props> = ({
     onSearchTriggered,
     isPrintEnabled,
-    triggerPrintWithoutModal,
+    propTriggerPrintWithoutModal,
     ref,
 }) => {
     const { setIsPrintModalVisible } = useContext(WithPrintModalContext);
@@ -38,8 +38,9 @@ export const SearchToolBar: React.FC<Props> = ({
     ) as FiltersContextType<AppliedFilters>;
     const triggerPrint = (): void => {
         const shouldOpenModalToPrint =
-            selectedValues?.[triggerPrintWithoutModal as keyof AppliedFilters]
-                .length === 1;
+            selectedValues?.[
+                propTriggerPrintWithoutModal as keyof AppliedFilters
+            ].length === 1;
 
         if (shouldOpenModalToPrint) {
             Print(ref.current?.innerHTML || "");

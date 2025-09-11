@@ -74,8 +74,8 @@ const ContentCoaps: React.FC<ContentCoeqProps> = ({
                     <WithSearch
                         SearchComponent={SearchToolBar}
                         isPrintEnabled={isPrintEnabled}
-                        triggerPrintWithoutModal={
-                            printListProps.triggerPrintWithoutModal
+                        propTriggerPrintWithoutModal={
+                            printListProps.propTriggerPrintWithoutModal
                         }
                         ref={ref}
                     >
@@ -116,8 +116,8 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                     <WithSearch
                         SearchComponent={SearchToolBar}
                         isPrintEnabled={isPrintEnabled}
-                        triggerPrintWithoutModal={
-                            printListProps.triggerPrintWithoutModal
+                        propTriggerPrintWithoutModal={
+                            printListProps.propTriggerPrintWithoutModal
                         }
                         ref={ref}
                     >

@@ -3,7 +3,7 @@ import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { SearchContext } from "./context";
-import type { TriggerPrintWithoutModalType } from "../Print/modules/PrintTable/model";
+import type { PropTriggerPrintWithoutModal } from "../Print/modules/PrintTable/model";
 
 export type { SearchModel } from "./context";
 export { SearchContext };
@@ -12,11 +12,11 @@ type Props = {
     SearchComponent: React.FC<{
         onSearchTriggered: Dispatch<SetStateAction<string>>;
         isPrintEnabled?: boolean;
-        triggerPrintWithoutModal: TriggerPrintWithoutModalType;
+        propTriggerPrintWithoutModal: PropTriggerPrintWithoutModal;
         ref: React.RefObject<HTMLDivElement | null>;
     }>;
     isPrintEnabled?: boolean;
-    triggerPrintWithoutModal: TriggerPrintWithoutModalType;
+    propTriggerPrintWithoutModal: PropTriggerPrintWithoutModal;
     ref: React.RefObject<HTMLDivElement | null>;
 };
 
@@ -25,7 +25,7 @@ type WithSearchProps = React.PropsWithChildren<Props>;
 export const WithSearch: React.FC<WithSearchProps> = ({
     SearchComponent,
     isPrintEnabled,
-    triggerPrintWithoutModal,
+    propTriggerPrintWithoutModal,
     ref,
     children,
 }) => {
@@ -36,7 +36,7 @@ export const WithSearch: React.FC<WithSearchProps> = ({
             <SearchComponent
                 onSearchTriggered={setSearch}
                 isPrintEnabled={isPrintEnabled}
-                triggerPrintWithoutModal={triggerPrintWithoutModal}
+                propTriggerPrintWithoutModal={propTriggerPrintWithoutModal}
                 ref={ref}
             />
             <SearchContext.Provider

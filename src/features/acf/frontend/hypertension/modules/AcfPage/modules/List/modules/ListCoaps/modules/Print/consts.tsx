@@ -50,7 +50,7 @@ export const printListProps: PrintListProps<
     },
     splitBy: "careTeamName",
     orderBy: "microAreaName",
-    triggerPrintWithoutModal: "careTeamName",
+    propTriggerPrintWithoutModal: "careTeamName",
 };
 
 export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [

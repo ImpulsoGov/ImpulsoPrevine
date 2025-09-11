@@ -53,8 +53,8 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                             <WithSearch
                                 SearchComponent={SearchToolBar}
                                 isPrintEnabled={isPrintEnabled}
-                                triggerPrintWithoutModal={
-                                    printListProps.triggerPrintWithoutModal
+                                propTriggerPrintWithoutModal={
+                                    printListProps.propTriggerPrintWithoutModal
                                 }
                                 ref={ref}
                             >
