@@ -26,7 +26,11 @@ const mockColumns: Array<GridColDef> = [
     { field: "name", headerName: "Name", width: 200 },
 ];
 
-const mockFilters = {} as AppliedFilters;
+const mockFilters = {
+    selectedValues: {} as AppliedFilters,
+    setSelectedValues: jest.fn(),
+};
+
 const mockPaginationModel = {
     gridPaginationModel: { page: 0, pageSize: 10 },
     onPaginationModelChange: jest.fn(),

@@ -2,22 +2,19 @@
 import { createContext, type Dispatch, type SetStateAction } from "react";
 import type { SortCallback } from "../Print/modules/PrintTable/model";
 
-export type CustomPrintState<TItem> = {
+export type CustomPrintState = {
     grouping: boolean;
     splitGroupPerPage: boolean;
     order: boolean;
-    orderGroup: SortCallback<TItem>;
+    orderGroup: SortCallback<string>;
 };
 
-export type CustomPrintContextType<TItem> = {
-    customization: CustomPrintState<TItem>;
-    setCustomization: Dispatch<SetStateAction<CustomPrintState<TItem>>>;
+export type CustomPrintContextType = {
+    customization: CustomPrintState;
+    setCustomization: Dispatch<SetStateAction<CustomPrintState>>;
 };
 
-export const CustomPrintContext = createContext<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    CustomPrintContextType<any>
->({
+export const CustomPrintContext = createContext<CustomPrintContextType>({
     customization: {
         grouping: true,
         splitGroupPerPage: false,

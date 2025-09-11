@@ -5,7 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import type { AppliedFilters } from "../WithFilters";
 import type { AcfResponse, DataResponses } from "@/features/acf/shared/schema";
 import { useSession } from "next-auth/react";
-import { FiltersContext } from "../WithFilters/context";
+import {
+    FiltersContext,
+    type FiltersContextType,
+} from "../WithFilters/context";
 import { SearchContext } from "../WithSearch";
 import { SortingContext } from "../WithSorting";
 import type { GridSortItem } from "@mui/x-data-grid";
@@ -46,7 +49,9 @@ export const useAcfData = <
     isLoading: boolean;
 } => {
     const { data: session } = useSession();
-    const filters = useContext(FiltersContext) as TAppliedFilters | null;
+    const { selectedValues: filters } = useContext(
+        FiltersContext
+    ) as FiltersContextType<TAppliedFilters>;
     const { gridSortingModel: sorting } = useContext(SortingContext);
     const { searchString: search } = useContext(SearchContext);
     const [response, setResponse] = useState<
