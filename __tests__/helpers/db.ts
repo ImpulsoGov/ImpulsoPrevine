@@ -6,7 +6,7 @@ import { jest } from "@jest/globals";
 import type { DiabetesAcfItem, PrismaClient } from "@prisma/client";
 import { type DeepMockProxy, mockDeep } from "jest-mock-extended";
 
-export const mockDiabetesItem = (
+export const diabetesItem = (
     overrides: Partial<DiabetesAcfItem> = {}
 ): DiabetesAcfItem => ({
     id: "1",

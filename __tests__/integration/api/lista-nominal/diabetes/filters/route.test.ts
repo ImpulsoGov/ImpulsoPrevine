@@ -89,37 +89,37 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
                     authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
                 );
 
-            const mockPrisma = dbHelpers.mockPrismaClient();
+            const mockedPrisma = dbHelpers.mockPrismaClient();
 
             const mockCommunityHealthWorkers = [
-                dbHelpers.mockDiabetesItem({
+                dbHelpers.diabetesItem({
                     communityHealthWorker: "ACS João",
                 }),
-                dbHelpers.mockDiabetesItem({
+                dbHelpers.diabetesItem({
                     communityHealthWorker: "ACS Maria",
                 }),
             ];
 
             const mockPatientStatuses = [
-                dbHelpers.mockDiabetesItem({ patientStatus: "Ativo" }),
-                dbHelpers.mockDiabetesItem({ patientStatus: "Inativo" }),
+                dbHelpers.diabetesItem({ patientStatus: "Ativo" }),
+                dbHelpers.diabetesItem({ patientStatus: "Inativo" }),
             ];
 
             const mockConditionIdentifiedBy = [
-                dbHelpers.mockDiabetesItem({
+                dbHelpers.diabetesItem({
                     conditionIdentifiedBy: "Exame laboratorial",
                 }),
-                dbHelpers.mockDiabetesItem({
+                dbHelpers.diabetesItem({
                     conditionIdentifiedBy: "Diagnóstico clínico",
                 }),
             ];
 
             const mockPatientAgeRanges = [
-                dbHelpers.mockDiabetesItem({ patientAgeRange: "40-49" }),
-                dbHelpers.mockDiabetesItem({ patientAgeRange: "50-59" }),
+                dbHelpers.diabetesItem({ patientAgeRange: "40-49" }),
+                dbHelpers.diabetesItem({ patientAgeRange: "50-59" }),
             ];
 
-            mockPrisma.diabetesAcfItem.findMany
+            mockedPrisma.diabetesAcfItem.findMany
                 .mockResolvedValueOnce(mockCommunityHealthWorkers)
                 .mockResolvedValueOnce(mockPatientStatuses)
                 .mockResolvedValueOnce(mockConditionIdentifiedBy)
