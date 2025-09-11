@@ -3,6 +3,8 @@ import type { PropsWithChildren, ReactElement } from "react";
 import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
 import type { SplitByProp } from "./modules/SplitByProp";
 
+export type TriggerPrintWithoutModalType = "careTeamName" | "microAreaName";
+
 export type PrintListProps<
     TAcfItem extends AcfItem,
     TFilters extends AppliedFilters,
@@ -12,7 +14,7 @@ export type PrintListProps<
     orderBy?: keyof TAcfItem;
     printCaption?: Array<ReactElement>;
     filtersLabels: Record<keyof TFilters, string>;
-    triggerPrintWithoutModal: "careTeamName" | "microAreaName";
+    triggerPrintWithoutModal: TriggerPrintWithoutModalType;
 };
 
 export type SortCallback<TItem> = (a: TItem, b: TItem) => number;

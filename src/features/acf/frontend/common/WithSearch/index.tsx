@@ -3,6 +3,7 @@ import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { SearchContext } from "./context";
+import type { TriggerPrintWithoutModalType } from "../Print/modules/PrintTable/model";
 
 export type { SearchModel } from "./context";
 export { SearchContext };
@@ -11,11 +12,11 @@ type Props = {
     SearchComponent: React.FC<{
         onSearchTriggered: Dispatch<SetStateAction<string>>;
         isPrintEnabled?: boolean;
-        triggerPrintWithoutModal: "careTeamName" | "microAreaName";
+        triggerPrintWithoutModal: TriggerPrintWithoutModalType;
         ref: React.RefObject<HTMLDivElement | null>;
     }>;
     isPrintEnabled?: boolean;
-    triggerPrintWithoutModal: "careTeamName" | "microAreaName";
+    triggerPrintWithoutModal: TriggerPrintWithoutModalType;
     ref: React.RefObject<HTMLDivElement | null>;
 };
 

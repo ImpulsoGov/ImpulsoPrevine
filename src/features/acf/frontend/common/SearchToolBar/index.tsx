@@ -11,11 +11,12 @@ import {
 } from "../WithFilters/context";
 import type { AppliedFilters } from "../WithFilters";
 import { Print } from "../Print/RenderPrint";
+import type { TriggerPrintWithoutModalType } from "../Print/modules/PrintTable/model";
 
 type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
     isPrintEnabled?: boolean;
-    triggerPrintWithoutModal: "careTeamName" | "microAreaName";
+    triggerPrintWithoutModal: TriggerPrintWithoutModalType;
     ref: React.RefObject<HTMLDivElement | null>;
 };
 
