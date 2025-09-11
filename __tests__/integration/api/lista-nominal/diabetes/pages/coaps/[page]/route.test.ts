@@ -16,7 +16,7 @@ const coapsUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coaps/0
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
-    profiles: [1],
+    profiles: [PROFILE_ID.COAPS],
 } satisfies interceptors.User;
 const body = {
     filters: {
