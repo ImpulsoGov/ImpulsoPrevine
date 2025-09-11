@@ -5,16 +5,16 @@
 import { PROFILE_ID } from "@/types/profile";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
-import * as dbHelpers from "../../../../../helpers/db";
-import * as httpHelpers from "../../../../../helpers/http";
-import * as authHelpers from "../../../../../helpers/auth";
-import * as flagHelpers from "../../../../../helpers/flag";
+import * as dbHelpers from "../../../../../../helpers/db";
+import * as httpHelpers from "../../../../../../helpers/http";
+import * as authHelpers from "../../../../../../helpers/auth";
+import * as flagHelpers from "../../../../../../helpers/flag";
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
-    profiles: [1],
+    profiles: [PROFILE_ID.COEQ],
 } satisfies interceptors.User;
 
 describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
