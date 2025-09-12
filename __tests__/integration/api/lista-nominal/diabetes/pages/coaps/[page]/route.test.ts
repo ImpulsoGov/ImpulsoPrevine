@@ -28,6 +28,7 @@ const body = {
     sorting: { field: "patientName", sort: "asc" },
     search: "Paciente Teste",
 } satisfies schema.CoapsPageRequestBody;
+const stringfiedBody = JSON.stringify(body);
 
 describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
     beforeEach(() => {
@@ -53,7 +54,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: stringfiedBody,
+            });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
@@ -76,7 +79,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: stringfiedBody,
+            });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
@@ -99,7 +104,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: stringfiedBody,
+            });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
@@ -124,7 +131,7 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
             const bodyWithInvalidSearch = { ...body, search: 20 };
             const request = httpHelpers.request(coapsUrl, "POST", {
-                body: bodyWithInvalidSearch,
+                body: JSON.stringify(bodyWithInvalidSearch),
             });
             const response = await POST(request, {
                 user: user,
@@ -146,7 +153,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: stringfiedBody,
+            });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
@@ -188,7 +197,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", { body });
+            const request = httpHelpers.request(coapsUrl, "POST", {
+                body: stringfiedBody,
+            });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
