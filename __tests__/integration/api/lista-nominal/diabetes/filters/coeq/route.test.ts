@@ -5,10 +5,10 @@
 import { PROFILE_ID } from "@/types/profile";
 import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
-import * as dbHelpers from "../../../../../../helpers/db";
-import * as httpHelpers from "../../../../../../helpers/http";
-import * as authHelpers from "../../../../../../helpers/auth";
-import * as flagHelpers from "../../../../../../helpers/flag";
+import * as dbHelpers from "@tests/helpers/db";
+import * as httpHelpers from "@tests/helpers/http";
+import * as authHelpers from "@tests/helpers/auth";
+import * as flagHelpers from "@tests/helpers/flag";
 
 const coeqUrl = "http://localhost:3000/api/lista-nominal/diabetes/filters/coeq";
 const user = {

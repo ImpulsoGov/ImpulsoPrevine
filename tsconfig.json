@@ -30,7 +30,8 @@
             "@types/*": ["./src/types/*"],
             "@data/*": ["./src/data/*"],
             "@app/*": ["./src/app/*"],
-            "@features/*": ["./src/features/*"]
+            "@features/*": ["./src/features/*"],
+            "@tests/*": ["./__tests__/*"]
         },
         "target": "ES2017"
     },
