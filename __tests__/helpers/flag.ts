@@ -1,5 +1,6 @@
 import { jest } from "@jest/globals";
 
+// TODO: generalizar para fazer mock de outras flags também
 export const mockDiabetesNewProgram = (): jest.Mock<() => Promise<boolean>> => {
     const mockedDiabetesNewProgram = jest.fn<() => Promise<boolean>>();
 
