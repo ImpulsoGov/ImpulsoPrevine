@@ -1,5 +1,4 @@
-# TODO: queremos criar actions separadas para testes de integração?
-name: Unit Tests
+name: Integration Tests
 
 permissions:
     contents: read
@@ -10,8 +9,8 @@ on:
             - main
 
 jobs:
-    NextJS-Tests:
-        name: Unit Tests
+    Integration-Tests:
+        name: Integration Tests
         runs-on: ubuntu-latest
         env:
             NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
@@ -26,8 +25,7 @@ jobs:
                   node-version: "23"
 
             - name: Install dependencies
-              run: |
-                  yarn install
+              run: yarn install
 
             - name: Run Jest tests
-              run: yarn test
+              run: yarn test:integration
