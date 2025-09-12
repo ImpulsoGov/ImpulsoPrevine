@@ -1,9 +1,9 @@
 // @ts-check
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
 import reactConfig from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
 
 export default tseslint.config([
     eslint.configs.recommended,
@@ -56,7 +56,10 @@ export default tseslint.config([
                 },
             ],
             "@typescript-eslint/array-type": ["error", { default: "generic" }],
-            "@typescript-eslint/consistent-type-imports": "error",
+            "@typescript-eslint/consistent-type-imports": [
+                "error",
+                { disallowTypeAnnotations: false },
+            ],
             "@typescript-eslint/explicit-function-return-type": "warn",
             "no-restricted-syntax": [
                 "error",
