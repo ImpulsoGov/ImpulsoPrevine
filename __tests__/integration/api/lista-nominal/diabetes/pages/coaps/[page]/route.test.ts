@@ -12,7 +12,6 @@ import * as flagHelpers from "../../../../../../../helpers/flag";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 
 const coapsUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coaps/0`;
-// TODO: rever se vale a pena criar um builder para o user e body
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
@@ -166,7 +165,7 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 );
 
             const mockPrisma = dbHelpers.mockPrismaClient();
-            const baseDbItem = dbHelpers.mockDiabetesItem();
+            const baseDbItem = dbHelpers.diabetesItem();
             const totalRows = 4;
 
             mockPrisma.diabetesAcfItem.findMany.mockResolvedValueOnce([
