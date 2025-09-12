@@ -166,7 +166,7 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 );
 
             const mockPrisma = dbHelpers.mockPrismaClient();
-            const baseDbItem = dbHelpers.mockDiabetesItem();
+            const baseDbItem = dbHelpers.diabetesItem();
             const totalRows = 4;
 
             mockPrisma.diabetesAcfItem.findMany.mockResolvedValueOnce([
