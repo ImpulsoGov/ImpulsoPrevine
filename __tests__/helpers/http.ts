@@ -6,7 +6,6 @@ import type { RequestInit } from "next/dist/server/web/spec-extension/request";
 import merge from "lodash.merge";
 
 //TODO: Suportar SearchParams
-//TODO: Suportar Headers
 export const request = (
     url: string,
     method: string,
@@ -19,6 +18,6 @@ export const request = (
             "Content-Type": "application/json",
         },
     };
-    const merged = merge({}, init, overrides) as RequestInit;
+    const merged = merge(init, overrides);
     return new NextRequest(url, merged);
 };
