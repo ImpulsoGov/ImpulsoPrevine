@@ -9,10 +9,12 @@ import React from "react";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
-import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
-import { cpfFormatter } from "../../../common/RenderPatientNameCpfCns/modules/Formatters/CpfFormatter";
-import { cnsFormatter } from "../../../common/RenderPatientNameCpfCns/modules/Formatters/CnsFormatter";
-import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
+import {
+    cpfFormatter,
+    cnsFormatter,
+} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
