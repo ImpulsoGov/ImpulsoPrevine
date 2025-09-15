@@ -304,7 +304,7 @@
     width: auto;
   }
 }
-@media (max-width: 576px) {
+@media (max-width: 618px) {
   .SecondaryCustomizationsContainer {
   padding-top: 28px;
   position: relative;
@@ -312,8 +312,9 @@
 
 .Recommendation {
   position: absolute;
-  top: -12px;      
-  left: 12px;      
+  top: -12px;
+  left:12px;
+  right: 12px;      
   display: inline-flex;
   width: auto;
   margin: 0;
