@@ -3,7 +3,11 @@
  */
 
 import { jest } from "@jest/globals";
-import type { DiabetesAcfItem, PrismaClient } from "@prisma/client";
+import type {
+    DiabetesAcfItem,
+    PrismaClient,
+    HypertensionAcfItem,
+} from "@prisma/client";
 import { type DeepMockProxy, mockDeep } from "jest-mock-extended";
 
 export const diabetesItem = (
@@ -26,6 +30,28 @@ export const diabetesItem = (
     careTeamName: "Equipe Teste",
     communityHealthWorker: "ACS Teste",
     mostRecentProductionRecordDate: new Date("2024-01-01"),
+    ...overrides,
+});
+
+export const hypertensionItem = (
+    overrides: Partial<HypertensionAcfItem> = {}
+): HypertensionAcfItem => ({
+    patientId: "1",
+    municipalitySusId: "111111",
+    patientName: "Test Patient",
+    patientAge: 45,
+    patientAgeRange: 30,
+    careTeamIne: "123",
+    careTeamName: "Equipe Teste",
+    municipalityName: "Demo",
+    patientCpf: "12345678901",
+    patientCns: null,
+    patientPhoneNumber: null,
+    microAreaName: null,
+    latestAppointmentDate: null,
+    appointmentStatusByQuarter: 30,
+    latestExamRequestDate: null,
+    latestExamRequestStatusByQuarter: 30,
     ...overrides,
 });
 
