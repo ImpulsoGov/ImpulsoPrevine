@@ -15,7 +15,7 @@ const coapsUrl =
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
-    profiles: [PROFILE_ID.COEQ],
+    profiles: [PROFILE_ID.COAPS],
 } satisfies interceptors.User;
 
 describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
