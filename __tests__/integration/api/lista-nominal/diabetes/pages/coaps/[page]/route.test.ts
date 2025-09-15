@@ -43,13 +43,11 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
     describe(`POST /api/lista-nominal/diabetes/pages/coaps/[page]`, () => {
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
             flagHelpers.mockDiabetesNewProgram().mockResolvedValue(false);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
@@ -70,13 +68,11 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
         it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
             flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COEQ] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
@@ -97,13 +93,11 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
         it("Deve retornar 400 ao tentar acessar uma página inválida", async () => {
             flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
@@ -124,13 +118,11 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
         it("Deve retornar 400 quando o body da requisição é inválido", async () => {
             flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
@@ -175,19 +167,17 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
         it("Deve retornar 200 e os dados da página + total de linhas se o request chegar no handler", async () => {
             flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
 
             const mockPrisma = dbHelpers.mockPrismaClient();
             const baseDbItem = dbHelpers.diabetesItem();
             const totalRows = 4;
 
-            mockPrisma.diabetesAcfItem.findMany.mockResolvedValueOnce([
+            mockPrisma.diabetesAcfItem.findMany.mockResolvedValue([
                 {
                     ...baseDbItem,
                     patientName: "Paciente A",
@@ -201,7 +191,7 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                     patientCpfOrBirthday: "10987654321",
                 },
             ]);
-            mockPrisma.diabetesAcfItem.count.mockResolvedValueOnce(totalRows);
+            mockPrisma.diabetesAcfItem.count.mockResolvedValue(totalRows);
 
             const { POST } = await import(
                 "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
