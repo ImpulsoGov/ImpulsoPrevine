@@ -1,12 +1,20 @@
-import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal/model";
+import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal";
 import type {
     ColumnsProps,
     PrintListProps,
-} from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
-import type { CoapsAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps";
+} from "@/features/acf/frontend/common/Print";
+import type { CoapsAppliedFilters } from "../CoapsDataTable";
 import { formatDate, parseDate } from "@/features/common/shared/time";
 import React from "react";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
+import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
+import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
+import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
+import {
+    cpfFormatter,
+    cnsFormatter,
+} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -61,6 +69,15 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 211,
             portrait: 135,
         },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [name, cpf, cns] = param as [string, string, string];
+            return (
+                <>
+                    <div>{name}</div>
+                    <div>{cpfFormatter(cpf) || cnsFormatter(cns)}</div>
+                </>
+            );
+        },
     },
     {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
@@ -70,11 +87,13 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
         headerName: "Consulta: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string, string];
+            const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
                     <div>{formatDate(parseDate(date))}</div>
-                    <div>{status}</div>
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
                 </>
             );
         },
@@ -88,11 +107,13 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
         headerName: "Aferição de PA: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string, string];
+            const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
                     <div>{formatDate(parseDate(date))}</div>
-                    <div>{status}</div>
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
                 </>
             );
         },
@@ -104,6 +125,15 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             portrait: 144,
         },
         headerName: "Equipe e Microárea",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [careTeamName, microAreaName] = param as [string, string];
+            return (
+                <>
+                    <div>{careTeamName}</div>
+                    <div>{microAreaFormatter(microAreaName)}</div>
+                </>
+            );
+        },
     },
     {
         fields: ["patientPhoneNumber", "patientAge"],
@@ -111,6 +141,15 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         width: {
             landscape: 145,
             portrait: 145,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [patientPhoneNumber, patientAge] = param as [string, string];
+            return (
+                <>
+                    <div>{phoneNumberFormatter(patientPhoneNumber)}</div>
+                    <div>{patientAge} anos</div>
+                </>
+            );
         },
     },
 ];

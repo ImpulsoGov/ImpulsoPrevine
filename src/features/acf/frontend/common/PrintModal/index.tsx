@@ -5,6 +5,8 @@ import { type PropsWithChildren, useContext } from "react";
 import { CustomPrint } from "./modules/CustomPrint";
 import { WithPrintModalContext } from "../WithPrintModal";
 
+export { ModalLabels };
+
 type PrintModalProps = PropsWithChildren<{
     modalLabels: ModalLabels;
     ref: React.RefObject<HTMLDivElement | null>;

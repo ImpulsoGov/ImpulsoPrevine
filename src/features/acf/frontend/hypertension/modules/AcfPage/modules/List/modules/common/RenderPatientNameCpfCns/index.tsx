@@ -4,6 +4,7 @@ import type { GridRenderCellParams } from "@mui/x-data-grid";
 import type { JSX } from "react";
 import { cnsFormatter } from "./modules/Formatters/CnsFormatter";
 import { cpfFormatter } from "./modules/Formatters/CpfFormatter";
+export { cpfFormatter, cnsFormatter };
 
 export type BaseRow = Pick<
     HypertensionAcfItem,

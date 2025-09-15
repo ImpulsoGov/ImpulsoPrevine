@@ -1,0 +1,41 @@
+.container {
+  height: 48px;
+  width: 100%;
+  background: #EFF5F9;
+  padding: 1px 17px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.container:focus {
+  outline: none !important;
+  border-color: none;
+}
+
+.border-none {
+  border: none;
+}
+
+.border-full {
+  border: 1px solid #9CA3AF;
+}
+
+.border-top-bottom-left {
+  border-bottom: 1px;
+  border-top: 1px;
+  border-left: 1px;
+  border-right: 0;
+  border-color: #9CA3AF;
+  border-style: solid;
+}
+
+.shape-rounded-left {
+  border-radius: 100px 0 0 100px;
+}
+
+.shape-rounded-full {
+  border-radius: 100px;
+}
