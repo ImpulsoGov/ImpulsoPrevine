@@ -300,13 +300,25 @@
 
 @media (max-width: 768px) {
   .Recommendation {
-    position: static;
     display: inline-flex;
     width: auto;
   }
 }
+@media (max-width: 576px) {
+  .SecondaryCustomizationsContainer {
+  padding-top: 28px;
+  position: relative;
+}
 
-
+.Recommendation {
+  position: absolute;
+  top: -12px;      
+  left: 12px;      
+  display: inline-flex;
+  width: auto;
+  margin: 0;
+}
+}
 @media screen and (max-width: 360px) {
     .Container {
         padding: 20px;
