@@ -6,10 +6,10 @@ import type {
 } from "@/features/acf/shared/hypertension/model";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { teamNameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
-import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
-import { RenderPatientNameCpfCns } from "../../../common/RenderPatientNameCpfCns";
-import { RenderStatusByQuarterTag } from "../../../common/RenderStatusByQuarterTag";
+import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
+import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 
 export const coapsColumns: Array<GridColDef> = [
     {

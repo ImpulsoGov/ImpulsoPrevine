@@ -1,5 +1,5 @@
-import { Icon, Tag, Text } from "@impulsogov/design-system";
-import type { TagTheme } from "@impulsogov/design-system/dist/molecules/Tag";
+import { Icon, Text } from "@/features/common/frontend/atoms";
+import { type TagTheme, Tag } from "@/features/common/frontend/molecules";
 
 type IconDetails = {
     src: string;
