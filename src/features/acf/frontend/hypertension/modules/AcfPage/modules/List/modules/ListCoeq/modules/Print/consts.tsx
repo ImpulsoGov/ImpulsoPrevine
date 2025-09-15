@@ -12,6 +12,7 @@ import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
 import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
 import { cpfFormatter } from "../../../common/RenderPatientNameCpfCns/modules/Formatters/CpfFormatter";
+import { careTeamName } from "@/features/acf/shared/hypertension/schema";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR MICROÁREA",
@@ -123,10 +124,9 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         titleFormatter: (value: unknown): string =>
             microAreaFormatter(value as string),
         renderCell: (param: unknown): React.ReactNode => {
-            const [careTeamName, microAreaName] = param as [string, string];
+            const [microAreaName] = param as [string, string];
             return (
                 <>
-                    <div>{careTeamName}</div>
                     <div>{microAreaFormatter(microAreaName)}</div>
                 </>
             );
