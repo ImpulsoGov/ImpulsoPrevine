@@ -51,7 +51,7 @@ const spacing: Record<PrintTagType, CSSProperties> = {
 
 const typography: Record<PrintTagType, CSSProperties> = {
     default: {
-        fontSize: "6px",
+        fontSize: "9px",
         fontStyle: "normal",
         fontWeight: 600,
         lineHeight: "150%",
@@ -67,17 +67,17 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     warning: {
         backgroundColor: "#FFE2B8",
         color: "#B45309",
-        width: "48px",
+        width: "55px",
     },
     success: {
         backgroundColor: "#D0F5DB",
         color: "#00923D",
-        width: "40px",
+        width: "45px",
     },
     attention: {
         backgroundColor: "#FFF2A6",
         color: "#654F00",
-        width: "60px",
+        width: "70px",
     },
 };
 

@@ -22,7 +22,6 @@ export const RenderStatusByQuarterTag = ({
     tagDetails = tagDetailsByStatus,
 }: Props): JSX.Element => {
     if (!value) return <span>-</span>;
-
     return (
         <PrintTag
             text={value}
@@ -37,7 +36,7 @@ const attentionTagDetails: TagDetails = {
         src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmecx6gsg007s07kn5oa1q3vs",
         alt: "Indicador de status a vencer no quadrimestre",
         width: 8,
-        height: 2,
+        height: 4,
     },
     theme: "attention",
 };
@@ -47,8 +46,8 @@ export const tagDetailsByStatus: Record<StatusByQuarter, TagDetails> = {
         icon: {
             src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmecx3h8q006007lpwtiggqe3",
             alt: "Indicador de status em dia",
-            width: 6,
-            height: 6,
+            width: 8,
+            height: 8,
         },
         theme: "success",
     },
@@ -57,7 +56,7 @@ export const tagDetailsByStatus: Record<StatusByQuarter, TagDetails> = {
             src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmecx3h8z006507lpwb1nwogs",
             alt: "Indicador de status atrasado",
             width: 8,
-            height: 2,
+            height: 4,
         },
         theme: "warning",
     },
@@ -69,7 +68,7 @@ export const tagDetailsByStatus: Record<StatusByQuarter, TagDetails> = {
             src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmecx3h9e006a07lpnnvguact",
             alt: "Indicador de status nunca realizado",
             width: 8,
-            height: 2,
+            height: 4,
         },
         theme: "danger",
     },
