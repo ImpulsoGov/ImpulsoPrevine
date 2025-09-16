@@ -58,7 +58,9 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }
-                                ref={ref}
+                                setShouldRenderPrintTable={
+                                    setShouldRenderPrintTable
+                                }
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>

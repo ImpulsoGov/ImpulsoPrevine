@@ -59,7 +59,9 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }
-                                ref={ref}
+                                setShouldRenderPrintTable={
+                                    setShouldRenderPrintTable
+                                }
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
