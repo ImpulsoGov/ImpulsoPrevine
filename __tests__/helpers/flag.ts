@@ -4,6 +4,7 @@ import type * as Flags from "@/features/common/shared/flags";
 export const DIABETES_NEW_PROGRAM = "diabetesNewProgram";
 export const HYPERTENSION_NEW_PROGRAM = "hypertensionNewProgram";
 
+// TODO: rever a possibilidades de expor funções com valores resolvidos
 export const mockFlag = (
     name: keyof typeof Flags
 ): jest.Mock<() => Promise<boolean>> => {

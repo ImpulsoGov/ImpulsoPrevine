@@ -19,6 +19,7 @@ export const mockDecodeToken = (): jest.Mock<() => Promise<JWTToken>> => {
     return mockedDecodeToken;
 };
 
+// TODO: rever a possibilidades de expor funções com valores resolvidos
 export const decodedToken = (overrides: DeepPartial<JWTToken>): JWTToken => {
     const defaultToken = {
         payload: {
