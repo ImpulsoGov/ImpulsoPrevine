@@ -69,23 +69,23 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                             <CoeqDataTable />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
-                                                shouldRenderPrintTable={
-                                                    shouldRenderPrintTable
-                                                }
                                                 setShouldRenderPrintTable={
                                                     setShouldRenderPrintTable
                                                 }
-                                                ref={ref}
                                             />
-                                            <PrintTable
-                                                columns={coeqColumns}
-                                                serviceGetData={getCoeqData}
-                                                ref={ref}
-                                                setShouldRenderPrintTable={
-                                                    setShouldRenderPrintTable
-                                                }
-                                                printListProps={printListProps}
-                                            />
+                                            {shouldRenderPrintTable && (
+                                                <PrintTable
+                                                    columns={coeqColumns}
+                                                    serviceGetData={getCoeqData}
+                                                    ref={ref}
+                                                    setShouldRenderPrintTable={
+                                                        setShouldRenderPrintTable
+                                                    }
+                                                    printListProps={
+                                                        printListProps
+                                                    }
+                                                />
+                                            )}
                                         </WithPagination>
                                     </WithFiltersBar>
                                 </WithSorting>

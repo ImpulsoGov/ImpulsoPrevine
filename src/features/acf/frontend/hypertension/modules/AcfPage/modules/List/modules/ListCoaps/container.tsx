@@ -70,10 +70,6 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                             <CoapsDataTable />
                                             <PrintModal
                                                 modalLabels={apsLabelsModal}
-                                                ref={ref}
-                                                shouldRenderPrintTable={
-                                                    shouldRenderPrintTable
-                                                }
                                                 setShouldRenderPrintTable={
                                                     setShouldRenderPrintTable
                                                 }
