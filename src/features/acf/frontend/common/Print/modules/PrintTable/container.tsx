@@ -22,7 +22,6 @@ type Props<
 > = {
     columns: Array<ColumnsProps<TResponse>>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
-    ref: React.RefObject<HTMLDivElement | null>;
     setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
     printListProps: PrintListProps<TResponse, TAppliedFilters>;
 };
@@ -33,7 +32,6 @@ export const Container = <
 >({
     columns,
     serviceGetData,
-    ref,
     printListProps,
     setShouldRenderPrintTable,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
@@ -80,7 +78,6 @@ export const Container = <
             };
             return (
                 <PrintTable
-                    ref={ref}
                     setShouldRenderPrintTable={setShouldRenderPrintTable}
                 >
                     {isPageSplitEnabled ? (
@@ -97,10 +94,7 @@ export const Container = <
         }
 
         return (
-            <PrintTable
-                ref={ref}
-                setShouldRenderPrintTable={setShouldRenderPrintTable}
-            >
+            <PrintTable setShouldRenderPrintTable={setShouldRenderPrintTable}>
                 <NoSplit>
                     <PageHeader {...printListProps} />
                     <UnitTable

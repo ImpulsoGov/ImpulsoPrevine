@@ -1,16 +1,16 @@
-import { useEffect, type PropsWithChildren } from "react";
+import { useEffect, useRef, type PropsWithChildren } from "react";
 import { Print } from "../../RenderPrint";
 
 export type PrintTableProps = PropsWithChildren<{
-    ref: React.RefObject<HTMLDivElement | null>;
     setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export const PrintTable = ({
-    ref,
     children,
     setShouldRenderPrintTable,
 }: PrintTableProps): React.ReactNode => {
+    const ref = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         if (ref.current?.innerHTML) {
             const htmlString = ref.current.innerHTML;
