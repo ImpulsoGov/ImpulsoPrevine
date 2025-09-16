@@ -3,7 +3,7 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
@@ -43,6 +43,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
     isPrintEnabled,
 }) => {
     const ref = useRef<HTMLDivElement>(null);
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
             <ListCoeq list={list}>
@@ -68,12 +69,21 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                             <CoeqDataTable />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
+                                                shouldRenderPrintTable={
+                                                    shouldRenderPrintTable
+                                                }
+                                                setShouldRenderPrintTable={
+                                                    setShouldRenderPrintTable
+                                                }
                                                 ref={ref}
                                             />
                                             <PrintTable
                                                 columns={coeqColumns}
                                                 serviceGetData={getCoeqData}
                                                 ref={ref}
+                                                setShouldRenderPrintTable={
+                                                    setShouldRenderPrintTable
+                                                }
                                                 printListProps={printListProps}
                                             />
                                         </WithPagination>

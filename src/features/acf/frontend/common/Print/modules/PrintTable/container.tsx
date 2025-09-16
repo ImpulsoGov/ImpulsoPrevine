@@ -23,6 +23,7 @@ type Props<
     columns: Array<ColumnsProps<TResponse>>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
     ref: React.RefObject<HTMLDivElement | null>;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
     printListProps: PrintListProps<TResponse, TAppliedFilters>;
 };
 
@@ -34,6 +35,7 @@ export const Container = <
     serviceGetData,
     ref,
     printListProps,
+    setShouldRenderPrintTable,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
     const { response } = useAcfData({
         serviceGetData,
@@ -77,7 +79,10 @@ export const Container = <
                 sortedKeys,
             };
             return (
-                <PrintTable ref={ref}>
+                <PrintTable
+                    ref={ref}
+                    setShouldRenderPrintTable={setShouldRenderPrintTable}
+                >
                     {isPageSplitEnabled ? (
                         <SingleGroupPerBlock {...dataSplitProps}>
                             <PageHeader {...printListProps} />
@@ -92,7 +97,10 @@ export const Container = <
         }
 
         return (
-            <PrintTable ref={ref}>
+            <PrintTable
+                ref={ref}
+                setShouldRenderPrintTable={setShouldRenderPrintTable}
+            >
                 <NoSplit>
                     <PageHeader {...printListProps} />
                     <UnitTable

@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import style from "./CustomPrint.module.css";
 //TODO: Ajustar imports relativos
 import type { ModalLabels } from "../../model";
@@ -29,6 +29,8 @@ type Props = PropsWithChildren<{
     labels?: ModalLabels;
     handleClose: () => void;
     ref: React.RefObject<HTMLDivElement | null>;
+    shouldRenderPrintTable: boolean;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export const CustomPrint: React.FC<Props> = ({
@@ -36,13 +38,38 @@ export const CustomPrint: React.FC<Props> = ({
     handleClose,
     ref,
     children,
+    shouldRenderPrintTable,
+    setShouldRenderPrintTable,
 }) => {
     const { customization, setCustomization } = useContext(CustomPrintContext);
 
     const onPrintClick = (): void => {
-        const htmlString = ref.current?.innerHTML || "";
-        Print(htmlString);
+        setShouldRenderPrintTable(true);
+        // console.log("ref", ref);
+        // const htmlString = ref.current?.innerHTML || "";
+        // Print(htmlString);
+        // setShouldRenderPrintTable(false);
     };
+
+    // useEffect(() => {
+    //     if (shouldRenderPrintTable && ref.current?.innerHTML) {
+    //         const htmlString = ref.current.innerHTML;
+    //         if (htmlString.length > 0) {
+    //             Print(htmlString);
+    //             // setShouldRenderPrintTable(false);
+    //         }
+    //     }
+    // }, [shouldRenderPrintTable, ref.current?.innerHTML]);
+
+    // useEffect(() => {
+    //     if (shouldRenderPrintTable && ref.current) {
+    //         const htmlString = ref.current.innerHTML;
+    //
+    //          Print(htmlString);
+    //        / setShouldRenderPrintTable(false);
+    //
+    //     }
+    // }, [shouldRenderPrintTable]);
 
     return (
         <>
