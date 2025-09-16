@@ -4,7 +4,7 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
@@ -40,7 +40,6 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
 
     return (
@@ -82,7 +81,6 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                                     serviceGetData={
                                                         getCoapsData
                                                     }
-                                                    ref={ref}
                                                     setShouldRenderPrintTable={
                                                         setShouldRenderPrintTable
                                                     }
