@@ -4,7 +4,6 @@ import style from "./CustomPrint.module.css";
 //TODO: Ajustar imports relativos
 import type { ModalLabels } from "../../model";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
-import { Print } from "../../../Print/RenderPrint";
 import { PrintModalContent } from "./modules/PrintModalContent";
 import { Button } from "@impulsogov/design-system";
 
@@ -28,22 +27,20 @@ const DEFAULT_LABELS: ModalLabels = {
 type Props = PropsWithChildren<{
     labels?: ModalLabels;
     handleClose: () => void;
-    ref: React.RefObject<HTMLDivElement | null>;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export const CustomPrint: React.FC<Props> = ({
     labels = DEFAULT_LABELS,
     handleClose,
-    ref,
     children,
+    setShouldRenderPrintTable,
 }) => {
     const { customization, setCustomization } = useContext(CustomPrintContext);
 
     const onPrintClick = (): void => {
-        const htmlString = ref.current?.innerHTML || "";
-        Print(htmlString);
+        setShouldRenderPrintTable(true);
     };
-
     return (
         <>
             <div className={style.Container}>

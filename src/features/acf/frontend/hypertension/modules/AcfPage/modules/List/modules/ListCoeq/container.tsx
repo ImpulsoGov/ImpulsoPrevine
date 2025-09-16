@@ -3,7 +3,7 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
@@ -42,7 +42,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
             <ListCoeq list={list}>
@@ -58,7 +58,9 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }
-                                ref={ref}
+                                setShouldRenderPrintTable={
+                                    setShouldRenderPrintTable
+                                }
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
@@ -68,14 +70,22 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                             <CoeqDataTable />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
-                                                ref={ref}
+                                                setShouldRenderPrintTable={
+                                                    setShouldRenderPrintTable
+                                                }
                                             />
-                                            <PrintTable
-                                                columns={coeqColumns}
-                                                serviceGetData={getCoeqData}
-                                                ref={ref}
-                                                printListProps={printListProps}
-                                            />
+                                            {shouldRenderPrintTable && (
+                                                <PrintTable
+                                                    columns={coeqColumns}
+                                                    serviceGetData={getCoeqData}
+                                                    setShouldRenderPrintTable={
+                                                        setShouldRenderPrintTable
+                                                    }
+                                                    printListProps={
+                                                        printListProps
+                                                    }
+                                                />
+                                            )}
                                         </WithPagination>
                                     </WithFiltersBar>
                                 </WithSorting>

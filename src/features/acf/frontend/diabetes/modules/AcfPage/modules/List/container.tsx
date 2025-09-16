@@ -6,7 +6,7 @@ import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import {
     CoapsDataTable,
@@ -61,8 +61,8 @@ const ContentCoaps: React.FC<ContentCoeqProps> = ({
     isPrintEnabled,
 }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
-    const ref = useRef<HTMLDivElement>(null);
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
             <CoeqInternalCards
@@ -77,7 +77,7 @@ const ContentCoaps: React.FC<ContentCoeqProps> = ({
                         propTriggerPrintWithoutModal={
                             printListProps.propTriggerPrintWithoutModal
                         }
-                        ref={ref}
+                        setShouldRenderPrintTable={setShouldRenderPrintTable}
                     >
                         {" "}
                         <hr style={{ width: "100%" }} />
@@ -103,8 +103,8 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
 }) => {
     //TODO: Pegar municipalitySusId e teamIne dentro do InternalCardsCoeq e tirar da interface do Content e da ListContainer
     // TODO: criar card de COAPS e FilterBarCoaps
-    const ref = useRef<HTMLDivElement>(null);
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
             <CoeqInternalCards
@@ -119,7 +119,7 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                         propTriggerPrintWithoutModal={
                             printListProps.propTriggerPrintWithoutModal
                         }
-                        ref={ref}
+                        setShouldRenderPrintTable={setShouldRenderPrintTable}
                     >
                         <hr style={{ width: "100%" }} />
                         <WithSorting>

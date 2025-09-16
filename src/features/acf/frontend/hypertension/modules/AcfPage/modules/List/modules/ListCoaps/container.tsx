@@ -4,7 +4,7 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
@@ -40,7 +40,8 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
+
     return (
         <>
             <ListCoaps list={list}>
@@ -56,7 +57,9 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }
-                                ref={ref}
+                                setShouldRenderPrintTable={
+                                    setShouldRenderPrintTable
+                                }
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
@@ -68,14 +71,24 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                             <CoapsDataTable />
                                             <PrintModal
                                                 modalLabels={apsLabelsModal}
-                                                ref={ref}
+                                                setShouldRenderPrintTable={
+                                                    setShouldRenderPrintTable
+                                                }
                                             ></PrintModal>
-                                            <PrintTable
-                                                columns={columns}
-                                                serviceGetData={getCoapsData}
-                                                ref={ref}
-                                                printListProps={printListProps}
-                                            />
+                                            {shouldRenderPrintTable && (
+                                                <PrintTable
+                                                    columns={columns}
+                                                    serviceGetData={
+                                                        getCoapsData
+                                                    }
+                                                    setShouldRenderPrintTable={
+                                                        setShouldRenderPrintTable
+                                                    }
+                                                    printListProps={
+                                                        printListProps
+                                                    }
+                                                />
+                                            )}
                                         </WithPagination>
                                     </WithFiltersBar>
                                 </WithSorting>

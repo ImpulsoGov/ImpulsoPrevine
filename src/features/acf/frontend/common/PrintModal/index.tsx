@@ -9,13 +9,13 @@ export { ModalLabels };
 
 type PrintModalProps = PropsWithChildren<{
     modalLabels: ModalLabels;
-    ref: React.RefObject<HTMLDivElement | null>;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export const PrintModal = ({
     modalLabels,
-    ref,
     children,
+    setShouldRenderPrintTable,
 }: PrintModalProps): React.ReactNode => {
     const { isPrintModalVisible, setIsPrintModalVisible } = useContext(
         WithPrintModalContext
@@ -36,7 +36,7 @@ export const PrintModal = ({
                     <CustomPrint
                         labels={modalLabels}
                         handleClose={closePrintModal}
-                        ref={ref}
+                        setShouldRenderPrintTable={setShouldRenderPrintTable}
                     >
                         {children}
                     </CustomPrint>
