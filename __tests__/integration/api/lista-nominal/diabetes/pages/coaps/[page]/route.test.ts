@@ -42,7 +42,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
 
     describe(`POST /api/lista-nominal/diabetes/pages/coaps/[page]`, () => {
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(false);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(false);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
                     payload: { perfis: [PROFILE_ID.COAPS] },
@@ -67,7 +69,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         });
 
         it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
                     payload: { perfis: [PROFILE_ID.COEQ] },
@@ -92,7 +96,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         });
 
         it("Deve retornar 400 ao tentar acessar uma página inválida", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
                     payload: { perfis: [PROFILE_ID.COAPS] },
@@ -117,7 +123,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         });
 
         it("Deve retornar 400 quando o body da requisição é inválido", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
                     payload: { perfis: [PROFILE_ID.COAPS] },
@@ -143,7 +151,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         });
 
         it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers
                 .mockDecodeToken()
                 .mockRejectedValue(new Error("Erro genérico"));
@@ -166,7 +176,9 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         });
 
         it("Deve retornar 200 e os dados da página + total de linhas se o request chegar no handler", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
                     payload: { perfis: [PROFILE_ID.COAPS] },
