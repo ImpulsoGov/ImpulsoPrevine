@@ -31,7 +31,6 @@ export const UnitTable = <TAcfItem extends AcfItem>({
                     fontSize: "10px",
                     fontFamily: `Inter, sans-serif`,
                     letterSpacing: "-0.12px",
-                    textTransform: "uppercase",
                     width: "fit-content",
                     marginBottom: "10px",
                 }}
