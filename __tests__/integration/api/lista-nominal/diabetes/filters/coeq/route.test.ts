@@ -33,7 +33,9 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             authHelpers
                 .mockDecodeToken()
                 .mockResolvedValue(
-                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                    authHelpers.decodedToken({
+                        payload: { perfis: [PROFILE_ID.COEQ] },
+                    })
                 );
             dbHelpers.mockPrismaClient();
 
@@ -51,7 +53,9 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             authHelpers
                 .mockDecodeToken()
                 .mockResolvedValue(
-                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COAPS] })
+                    authHelpers.decodedToken({
+                        payload: { perfis: [PROFILE_ID.COAPS] },
+                    })
                 );
             dbHelpers.mockPrismaClient();
 
@@ -85,7 +89,9 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
             authHelpers
                 .mockDecodeToken()
                 .mockResolvedValue(
-                    authHelpers.decodedToken({ perfis: [PROFILE_ID.COEQ] })
+                    authHelpers.decodedToken({
+                        payload: { perfis: [PROFILE_ID.COEQ] },
+                    })
                 );
 
             const mockedPrisma = dbHelpers.mockPrismaClient();
