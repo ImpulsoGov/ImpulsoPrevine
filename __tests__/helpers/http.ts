@@ -4,12 +4,13 @@
 import { NextRequest } from "next/server";
 import type { RequestInit } from "next/dist/server/web/spec-extension/request";
 import merge from "lodash.merge";
+import type { DeepPartial } from "./types";
 
 //TODO: Suportar SearchParams
 export const request = (
     url: string,
     method: string,
-    overrides?: Partial<RequestInit>
+    overrides?: DeepPartial<RequestInit>
 ): NextRequest => {
     const init = {
         method,

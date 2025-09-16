@@ -2,6 +2,7 @@ import { PROFILE_ID } from "@/types/profile";
 import type { JWTToken } from "@/utils/token";
 import { jest } from "@jest/globals";
 import merge from "lodash.merge";
+import type { DeepPartial } from "./types";
 
 export const mockDecodeToken = (): jest.Mock<() => Promise<JWTToken>> => {
     const mockedDecodeToken = jest.fn<() => Promise<JWTToken>>();
@@ -16,13 +17,6 @@ export const mockDecodeToken = (): jest.Mock<() => Promise<JWTToken>> => {
     });
 
     return mockedDecodeToken;
-};
-
-// TODO: mover para um lugar melhor
-type DeepPartial<TObject extends object> = {
-    [Key in keyof TObject]?: TObject[Key] extends object
-        ? DeepPartial<TObject[Key]>
-        : TObject[Key];
 };
 
 export const decodedToken = (overrides: DeepPartial<JWTToken>): JWTToken => {
