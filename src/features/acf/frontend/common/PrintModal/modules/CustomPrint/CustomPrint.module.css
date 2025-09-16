@@ -4,24 +4,34 @@
 }
 
 .Container {
-    padding-top: 32px;
-    padding-right: 32px;
-    padding-left: 32px;
-    padding-bottom: 48px;
     box-sizing: border-box;
     font-family: "Inter";
     color: #1f1f1f;
-    width: 900px;
+
+    width: min(92vw, 900px);
+    max-width: 900px;
+    margin: 0 auto;
+
     background-color: #fff;
     border-radius: 20px;
     position: relative;
     z-index: 9000;
+
+    padding: clamp(16px, 3vw, 32px);
+    padding-bottom: 48px;
+}
+
+.Container,
+.MainPersonalizationTitle,
+.MainPrintDescription {
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .Content {
     overflow-y: auto;
     /* altura da tela - altura do botão de fechar - altura do botão de imprimir */
-    max-height: calc(100vh - 40px - 200px);
+    max-height: calc(100dvh - 40px - 200px);
 }
 
 .ModalExit {
@@ -48,6 +58,7 @@
     align-items: center;
     margin-bottom: 24px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .TitleWithIcon {
@@ -67,7 +78,7 @@
 }
 
 .MainPersonalizationTitle {
-    font-size: 32px;
+    font-size: clamp(20px, 3.6vw, 32px);
     line-height: 41px;
     margin-bottom: 20px;
     font-weight: 400;
@@ -250,7 +261,7 @@
     }
 
     .MainCustomizationOption:first-child {
-        padding: 6px 0px 10px 0px;
+        padding: 6px 0px 0px 0px;
     }
 
     .MainCustomizationOption:last-child {
@@ -287,12 +298,28 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .Container {
-        width: 90%;
-    }
+@media (max-width: 768px) {
+  .Recommendation {
+    display: inline-flex;
+    width: auto;
+  }
+}
+@media (max-width: 618px) {
+  .SecondaryCustomizationsContainer {
+  padding-top: 28px;
+  position: relative;
 }
 
+.Recommendation {
+  position: absolute;
+  top: -12px;
+  left:12px;
+  right: 12px;      
+  display: inline-flex;
+  width: auto;
+  margin: 0;
+}
+}
 @media screen and (max-width: 360px) {
     .Container {
         padding: 20px;
