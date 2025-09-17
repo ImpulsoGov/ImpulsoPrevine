@@ -55,14 +55,6 @@ export type LatestExamRequestStatusByQuarterCode = DefaultStatusCode;
 export type LatestExamRequestStatusByQuarterText =
     (typeof latestExamRequestStatusByQuarterTexts)[number];
 
-export const GoodPracticesStatusByQuarterCodeToText: Record<
-    GoodPracticesStatusByQuarterCode,
-    GoodPracticesStatusByQuarterText
-> = {
-    10: "Pelo menos uma a fazer",
-    20: "Todas em dia",
-};
-
 //TODO: Essa fn deveria estar em algum adapter
 export const latestExamRequestStatusByQuarterCodeToText: Record<
     LatestExamRequestStatusByQuarterCode,
