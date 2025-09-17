@@ -55,6 +55,14 @@ export type LatestExamRequestStatusByQuarterCode = DefaultStatusCode;
 export type LatestExamRequestStatusByQuarterText =
     (typeof latestExamRequestStatusByQuarterTexts)[number];
 
+export const GoodPracticesStatusByQuarterCodeToText: Record<
+    GoodPracticesStatusByQuarterCode,
+    GoodPracticesStatusByQuarterText
+> = {
+    10: "Pelo menos uma a fazer",
+    20: "Todas em dia",
+};
+
 //TODO: Essa fn deveria estar em algum adapter
 export const latestExamRequestStatusByQuarterCodeToText: Record<
     LatestExamRequestStatusByQuarterCode,
@@ -64,6 +72,72 @@ export const latestExamRequestStatusByQuarterCodeToText: Record<
     20: "Atrasada",
     30: "Vence dentro do Q1",
     40: "Em dia",
+};
+
+export const homeVisitStatusByQuarterTexts = [...defaultStatuses] as const;
+
+export type HomeVisitStatusByQuarterCode = DefaultStatusCode;
+export type HomeVisitStatusByQuarterText =
+    (typeof homeVisitStatusByQuarterTexts)[number];
+
+export const homeVisitStatusByQuarterCodeToText: Record<
+    HomeVisitStatusByQuarterCode,
+    HomeVisitStatusByQuarterText
+> = {
+    10: "Nunca realizado",
+    20: "Atrasada",
+    30: "Vence dentro do Q1",
+    40: "Em dia",
+};
+
+export const weightHeightStatusByQuarterTexts = [...defaultStatuses] as const;
+
+export type WeightHeightStatusByQuarterCode = DefaultStatusCode;
+export type WeightHeightStatusByQuarterText =
+    (typeof weightHeightStatusByQuarterTexts)[number];
+
+export const weightHeightStatusByQuarterCodeToText: Record<
+    WeightHeightStatusByQuarterCode,
+    WeightHeightStatusByQuarterText
+> = {
+    10: "Nunca realizado",
+    20: "Atrasada",
+    30: "Vence dentro do Q1",
+    40: "Em dia",
+};
+
+export const goodPracticesStatusByQuarterTexts = [
+    "Pelo menos uma a fazer",
+    "Todas em dia",
+] as const;
+
+export type GoodPracticesStatusByQuarterCode = 10 | 20;
+export type GoodPracticesStatusByQuarterText =
+    (typeof goodPracticesStatusByQuarterTexts)[number];
+
+export const goodPracticesStatusByQuarterCodeToText: Record<
+    GoodPracticesStatusByQuarterCode,
+    GoodPracticesStatusByQuarterText
+> = {
+    10: "Pelo menos uma a fazer",
+    20: "Todas em dia",
+};
+
+export const medicalRecordUpdatedTexts = [
+    "Atualizada",
+    "Atualização pendente",
+] as const;
+
+export type MedicalRecordUpdatedCode = "true" | "false";
+export type MedicalRecordUpdatedText =
+    (typeof medicalRecordUpdatedTexts)[number];
+
+export const medicalRecordUpdatedCodeToText: Record<
+    MedicalRecordUpdatedCode,
+    MedicalRecordUpdatedText
+> = {
+    true: "Atualizada",
+    false: "Atualização pendente",
 };
 
 export type HypertensionAcfItem = {
@@ -81,6 +155,15 @@ export type HypertensionAcfItem = {
     patientPhoneNumber: string | null;
     patientAge: number;
     patientAgeRange: PatientAgeRangeText;
+    goodPracticesSum: number;
+    latestHomeVisitDate: Date | null;
+    homeVisitStatusByQuarter: HomeVisitStatusByQuarterText;
+    latestWeightHeightDate: Date | null;
+    weightHeightStatusByQuarter: WeightHeightStatusByQuarterText;
+    totalGoodPracticesAttended: number;
+    totalGoodPracticesAvailable: number;
+    medicalRecordUpdated: MedicalRecordUpdatedText;
+    goodPracticesStatusByQuarter: GoodPracticesStatusByQuarterText;
 };
 
 export const sortOrder = ["asc", "desc"] as const;
@@ -97,6 +180,11 @@ export const sortableFieldCoeq: ReadonlyArray<keyof HypertensionAcfItem> = [
     "microAreaName",
     "patientPhoneNumber",
     "patientAge",
+    "goodPracticesSum",
+    "latestHomeVisitDate",
+    "homeVisitStatusByQuarter",
+    "latestWeightHeightDate",
+    "weightHeightStatusByQuarter",
 ] as const;
 
 export const sortableFieldCoaps: ReadonlyArray<keyof HypertensionAcfItem> = [
@@ -110,4 +198,9 @@ export const sortableFieldCoaps: ReadonlyArray<keyof HypertensionAcfItem> = [
     "patientPhoneNumber",
     "patientAge",
     "careTeamName",
+    "goodPracticesSum",
+    "latestHomeVisitDate",
+    "homeVisitStatusByQuarter",
+    "latestWeightHeightDate",
+    "weightHeightStatusByQuarter",
 ] as const;

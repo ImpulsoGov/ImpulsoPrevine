@@ -29,6 +29,10 @@ export const sharedFilters = z.object({
     appointmentStatusByQuarter: z.array(appointmentStatusByQuarter),
     latestExamRequestStatusByQuarter: z.array(latestExamRequestStatusByQuarter),
     patientAgeRange: z.array(patientAgeRange),
+    goodPracticesStatusByQuarter: z.array(
+        z.enum(model.goodPracticesStatusByQuarterTexts)
+    ),
+    medicalRecordUpdated: z.array(z.enum(model.medicalRecordUpdatedTexts)),
 });
 
 export type SharedFilters = z.infer<typeof sharedFilters>;

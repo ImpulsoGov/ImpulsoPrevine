@@ -36,6 +36,15 @@ const nullableFields: NullableFields<HypertensionAcfItem> = {
     patientPhoneNumber: true,
     patientAge: false,
     patientAgeRange: false,
+    goodPracticesSum: false,
+    latestHomeVisitDate: true,
+    homeVisitStatusByQuarter: true,
+    latestWeightHeightDate: true,
+    weightHeightStatusByQuarter: true,
+    totalGoodPracticesAttended: false,
+    totalGoodPracticesAvailable: false,
+    isMedicalRecordUpdated: false,
+    goodPracticesStatusByQuarter: false,
 };
 
 const whereInputCoaps = whereInput;

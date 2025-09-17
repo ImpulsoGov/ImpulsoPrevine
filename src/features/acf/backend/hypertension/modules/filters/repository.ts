@@ -6,6 +6,7 @@ import type {
 } from "../common/FiltersOptionsDb";
 import type {
     AppointmentStatusByQuarterCode,
+    GoodPracticesStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,
     PatientAgeRangeCode,
 } from "@/features/acf/shared/hypertension/model";
@@ -49,6 +50,14 @@ export const coeqFilterOptions = async (
     );
 
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
+    const goodPracticesStatusByQuarter = await fieldOptions(
+        "goodPracticesStatusByQuarter",
+        whereFields
+    );
+    const isMedicalRecordUpdated = await fieldOptions(
+        "isMedicalRecordUpdated",
+        whereFields
+    );
 
     return {
         microAreaName: microAreaName,
@@ -57,6 +66,9 @@ export const coeqFilterOptions = async (
         latestExamRequestStatusByQuarter:
             latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
+        goodPracticesStatusByQuarter:
+            goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,
+        medicalRecordUpdated: isMedicalRecordUpdated,
     };
 };
 
@@ -78,6 +90,16 @@ export const coapsFilterOptions = async (
     );
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
 
+    const goodPracticesStatusByQuarter = await fieldOptions(
+        "goodPracticesStatusByQuarter",
+        whereFields
+    );
+
+    const isMedicalRecordUpdated = await fieldOptions(
+        "isMedicalRecordUpdated",
+        whereFields
+    );
+
     return {
         careTeamName: careTeamName,
         microAreaName: microAreaName,
@@ -86,5 +108,8 @@ export const coapsFilterOptions = async (
         latestExamRequestStatusByQuarter:
             latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
+        goodPracticesStatusByQuarter:
+            goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,
+        medicalRecordUpdated: isMedicalRecordUpdated,
     };
 };

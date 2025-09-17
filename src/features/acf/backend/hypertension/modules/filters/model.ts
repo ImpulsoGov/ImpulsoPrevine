@@ -1,5 +1,7 @@
 import type {
+    MedicalRecordUpdatedText,
     AppointmentStatusByQuarterText,
+    GoodPracticesStatusByQuarterText,
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
     PatientAgeRangeText,
@@ -11,6 +13,8 @@ export type FiltersOptionsCoeq = {
     appointmentStatusByQuarter: ReadonlyArray<AppointmentStatusByQuarterText>;
     latestExamRequestStatusByQuarter: ReadonlyArray<LatestExamRequestStatusByQuarterText>;
     patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
+    goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
+    medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
 };
 
 export type FiltersOptionsCoaps = {
@@ -19,4 +23,8 @@ export type FiltersOptionsCoaps = {
     appointmentStatusByQuarter: ReadonlyArray<AppointmentStatusByQuarterText>;
     latestExamRequestStatusByQuarter: ReadonlyArray<LatestExamRequestStatusByQuarterText>;
     patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
+    goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
+    medicalRecordUpdated: ReadonlyArray<
+        HypertensionAcfItem["medicalRecordUpdated"]
+    >;
 };
