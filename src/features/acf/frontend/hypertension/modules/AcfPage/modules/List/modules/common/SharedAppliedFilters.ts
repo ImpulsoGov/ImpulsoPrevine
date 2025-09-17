@@ -2,6 +2,8 @@ import type {
     AppointmentStatusByQuarter,
     PatientAgeRange,
     LatestExamRequestStatusByQuarter,
+    GoodPracticesStatusByQuarter,
+    MedicalRecordUpdated,
 } from "@/features/acf/shared/hypertension/schema";
 
 export type HypertensionSharedAppliedFilters = {
@@ -9,4 +11,6 @@ export type HypertensionSharedAppliedFilters = {
     appointmentStatusByQuarter: Array<AppointmentStatusByQuarter>;
     latestExamRequestStatusByQuarter: Array<LatestExamRequestStatusByQuarter>;
     patientAgeRange: PatientAgeRange | "";
+    goodPracticesStatusByQuarter: GoodPracticesStatusByQuarter | "";
+    medicalRecordUpdated: MedicalRecordUpdated | "";
 };
