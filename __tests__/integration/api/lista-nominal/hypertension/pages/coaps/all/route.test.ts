@@ -15,7 +15,7 @@ const coapsUrl = `http://localhost:3000/api/lista-nominal/hypertension/pages/coa
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
-    profiles: [PROFILE_ID.COEQ],
+    profiles: [PROFILE_ID.COAPS],
 } satisfies interceptors.User;
 const body = {} satisfies schema.CoapsPageRequestBody;
 const stringfiedBody = JSON.stringify(body);
