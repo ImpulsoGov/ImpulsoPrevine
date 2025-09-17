@@ -22,6 +22,8 @@ const defaultCoeqFilters: CoeqFilters = {
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
     patientAgeRange: [],
+    goodPracticesStatusByQuarter: [],
+    medicalRecordUpdated: [],
 };
 
 const defaultCoapsFilters: CoapsFilters = {

@@ -6,6 +6,10 @@ export type SharedFiltersOptionsDb = {
     appointmentStatusByQuarter: ReadonlyArray<model.AppointmentStatusByQuarterCode>;
     latestExamRequestStatusByQuarter: ReadonlyArray<model.LatestExamRequestStatusByQuarterCode>;
     patientAgeRange: ReadonlyArray<model.PatientAgeRangeCode>;
+    goodPracticesStatusByQuarter: ReadonlyArray<model.GoodPracticesStatusByQuarterCode>;
+    medicalRecordUpdated: ReadonlyArray<
+        db.HypertensionAcfItem["isMedicalRecordUpdated"]
+    >;
 };
 
 export type FiltersOptionsDbCoeq = SharedFiltersOptionsDb;

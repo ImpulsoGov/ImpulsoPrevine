@@ -43,6 +43,8 @@ describe("bodyBuilder", () => {
             ],
             patientAgeRange: "20 a 59 (Adulto)",
             careTeamName: ["team1", "team2"],
+            goodPracticesStatusByQuarter: "",
+            medicalRecordUpdated: "",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -51,6 +53,8 @@ describe("bodyBuilder", () => {
             filters: {
                 ...appliedFilters,
                 patientAgeRange: ["20 a 59 (Adulto)"],
+                goodPracticesStatusByQuarter: [],
+                medicalRecordUpdated: [],
             },
         });
     });
@@ -62,6 +66,8 @@ describe("bodyBuilder", () => {
             latestExamRequestStatusByQuarter: [],
             patientAgeRange: "",
             careTeamName: [],
+            goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
+            medicalRecordUpdated: "Atualizada",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -70,6 +76,8 @@ describe("bodyBuilder", () => {
             filters: {
                 ...appliedFilters,
                 patientAgeRange: [],
+                goodPracticesStatusByQuarter: ["Pelo menos uma a fazer"],
+                medicalRecordUpdated: ["Atualizada"],
             },
         });
     });
@@ -88,6 +96,8 @@ describe("bodyBuilder", () => {
             ],
             patientAgeRange: "60 ou mais (Idoso)",
             careTeamName: ["Rosa"],
+            goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
+            medicalRecordUpdated: "Atualizada",
         };
 
         const searchString = "Maria";
@@ -100,6 +110,8 @@ describe("bodyBuilder", () => {
             filters: {
                 ...appliedFilters,
                 patientAgeRange: ["60 ou mais (Idoso)"],
+                goodPracticesStatusByQuarter: ["Pelo menos uma a fazer"],
+                medicalRecordUpdated: ["Atualizada"],
             },
         });
     });

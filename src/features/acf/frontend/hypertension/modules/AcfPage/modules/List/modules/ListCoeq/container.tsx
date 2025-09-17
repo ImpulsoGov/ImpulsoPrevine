@@ -36,6 +36,8 @@ const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
+    goodPracticesStatusByQuarter: "",
+    medicalRecordUpdated: "",
 };
 
 export const ContentCoeq: React.FC<ContentCoeqProps> = ({

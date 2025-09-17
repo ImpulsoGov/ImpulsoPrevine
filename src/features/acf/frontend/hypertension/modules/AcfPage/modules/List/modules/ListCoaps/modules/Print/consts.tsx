@@ -56,6 +56,8 @@ export const printListProps: PrintListProps<
         latestExamRequestStatusByQuarter: "Afericão de PA",
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
+        goodPracticesStatusByQuarter: "Situação Boas Práticas",
+        medicalRecordUpdated: "Situação Cadastral FCI",
     },
     splitBy: "careTeamName",
     orderBy: "microAreaName",

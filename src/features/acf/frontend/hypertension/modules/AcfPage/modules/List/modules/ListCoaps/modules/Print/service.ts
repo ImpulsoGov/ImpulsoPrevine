@@ -22,6 +22,14 @@ export const bodyBuilder: BodyBuilder<
                           appliedFilters.patientAgeRange === ""
                               ? []
                               : [appliedFilters.patientAgeRange],
+                      goodPracticesStatusByQuarter:
+                          appliedFilters.goodPracticesStatusByQuarter === ""
+                              ? []
+                              : [appliedFilters.goodPracticesStatusByQuarter],
+                      medicalRecordUpdated:
+                          appliedFilters.medicalRecordUpdated === ""
+                              ? []
+                              : [appliedFilters.medicalRecordUpdated],
                   },
               }
     );
