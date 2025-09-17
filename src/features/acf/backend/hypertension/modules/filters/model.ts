@@ -24,7 +24,5 @@ export type FiltersOptionsCoaps = {
     latestExamRequestStatusByQuarter: ReadonlyArray<LatestExamRequestStatusByQuarterText>;
     patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
     goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
-    medicalRecordUpdated: ReadonlyArray<
-        HypertensionAcfItem["medicalRecordUpdated"]
-    >;
+    medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
 };
