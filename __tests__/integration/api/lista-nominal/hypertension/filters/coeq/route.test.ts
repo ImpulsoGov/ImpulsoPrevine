@@ -33,13 +33,11 @@ describe("/api/lista-nominal/hypertension/filters/coeq Route Handler", () => {
             flagHelpers
                 .mockFlag(flagHelpers.HYPERTENSION_NEW_PROGRAM)
                 .mockResolvedValue(false);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COEQ] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
@@ -55,13 +53,11 @@ describe("/api/lista-nominal/hypertension/filters/coeq Route Handler", () => {
             flagHelpers
                 .mockFlag(flagHelpers.HYPERTENSION_NEW_PROGRAM)
                 .mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
@@ -95,13 +91,11 @@ describe("/api/lista-nominal/hypertension/filters/coeq Route Handler", () => {
             flagHelpers
                 .mockFlag(flagHelpers.HYPERTENSION_NEW_PROGRAM)
                 .mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COEQ] },
-                    })
-                );
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
 
             const mockedPrisma = dbHelpers.mockPrismaClient();
 
@@ -129,11 +123,27 @@ describe("/api/lista-nominal/hypertension/filters/coeq Route Handler", () => {
                 dbHelpers.hypertensionItem({ patientAgeRange: 30 }),
             ];
 
+            const mockGoodPracticesStatusByQuarter = [
+                dbHelpers.hypertensionItem({
+                    goodPracticesStatusByQuarter: 20,
+                }),
+                dbHelpers.hypertensionItem({
+                    goodPracticesStatusByQuarter: 10,
+                }),
+            ];
+
+            const mockIsMedicalRecordUpdated = [
+                dbHelpers.hypertensionItem({ isMedicalRecordUpdated: true }),
+                dbHelpers.hypertensionItem({ isMedicalRecordUpdated: false }),
+            ];
+
             mockedPrisma.hypertensionAcfItem.findMany
                 .mockResolvedValueOnce(mockMicroAreaNames)
                 .mockResolvedValueOnce(mockAppointmentStatusesByQuarter)
                 .mockResolvedValueOnce(mockLatestExamRequestStatusesByQuarter)
-                .mockResolvedValueOnce(mockPatientAgeRanges);
+                .mockResolvedValueOnce(mockPatientAgeRanges)
+                .mockResolvedValueOnce(mockGoodPracticesStatusByQuarter)
+                .mockResolvedValueOnce(mockIsMedicalRecordUpdated);
 
             const { GET } = await import(
                 "@/app/api/lista-nominal/hypertension/filters/coeq/route"
@@ -150,6 +160,14 @@ describe("/api/lista-nominal/hypertension/filters/coeq Route Handler", () => {
                     patientAgeRange: [
                         "11 a 19 (Adolescente)",
                         "20 a 59 (Adulto)",
+                    ],
+                    goodPracticesStatusByQuarter: [
+                        "Todas em dia",
+                        "Pelo menos uma a fazer",
+                    ],
+                    medicalRecordUpdated: [
+                        "Atualizada",
+                        "Atualização pendente",
                     ],
                 },
             };

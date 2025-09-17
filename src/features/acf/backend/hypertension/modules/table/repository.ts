@@ -41,8 +41,6 @@ const nullableFields: NullableFields<HypertensionAcfItem> = {
     homeVisitStatusByQuarter: true,
     latestWeightHeightDate: true,
     weightHeightStatusByQuarter: true,
-    totalGoodPracticesAttended: false,
-    totalGoodPracticesAvailable: false,
     isMedicalRecordUpdated: false,
     goodPracticesStatusByQuarter: false,
 };

@@ -36,12 +36,14 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [
-                "Vence dentro de Q1",
+                "Vence dentro do Q1",
                 "Atrasada",
             ],
-            patientAgeRange: "60 anos ou mais",
+            patientAgeRange: "60 ou mais (Idoso)",
+            goodPracticesStatusByQuarter: "Todas em dia",
+            medicalRecordUpdated: "Atualizada",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -49,7 +51,9 @@ describe("bodyBuilder", () => {
         expect(result).toEqual({
             filters: {
                 ...appliedFilters,
-                patientAgeRange: ["60 anos ou mais"],
+                patientAgeRange: ["60 ou mais (Idoso)"],
+                goodPracticesStatusByQuarter: ["Todas em dia"],
+                medicalRecordUpdated: ["Atualizada"],
             },
         });
     });
@@ -60,6 +64,8 @@ describe("bodyBuilder", () => {
             appointmentStatusByQuarter: [],
             latestExamRequestStatusByQuarter: [],
             patientAgeRange: "",
+            goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
+            medicalRecordUpdated: "Atualização pendente",
         };
 
         const result = bodyBuilder(null, appliedFilters, null);
@@ -68,6 +74,8 @@ describe("bodyBuilder", () => {
             filters: {
                 ...appliedFilters,
                 patientAgeRange: [],
+                goodPracticesStatusByQuarter: ["Pelo menos uma a fazer"],
+                medicalRecordUpdated: ["Atualização pendente"],
             },
         });
     });
@@ -79,12 +87,14 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: ["Nunca Realizado", "Em dia"],
+            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
             latestExamRequestStatusByQuarter: [
-                "Vence dentro de Q1",
+                "Vence dentro do Q1",
                 "Atrasada",
             ],
-            patientAgeRange: "60 anos ou mais",
+            patientAgeRange: "60 ou mais (Idoso)",
+            goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
+            medicalRecordUpdated: "Atualizada",
         };
 
         const searchString = "Maria";
@@ -96,7 +106,9 @@ describe("bodyBuilder", () => {
             search: searchString,
             filters: {
                 ...appliedFilters,
-                patientAgeRange: ["60 anos ou mais"],
+                patientAgeRange: ["60 ou mais (Idoso)"],
+                goodPracticesStatusByQuarter: ["Pelo menos uma a fazer"],
+                medicalRecordUpdated: ["Atualizada"],
             },
         });
     });

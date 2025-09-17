@@ -52,6 +52,13 @@ export const hypertensionItem = (
     appointmentStatusByQuarter: 30,
     latestExamRequestDate: null,
     latestExamRequestStatusByQuarter: 30,
+    goodPracticesSum: 25,
+    latestHomeVisitDate: null,
+    homeVisitStatusByQuarter: null,
+    latestWeightHeightDate: null,
+    weightHeightStatusByQuarter: null,
+    goodPracticesStatusByQuarter: 10,
+    isMedicalRecordUpdated: false,
     ...overrides,
 });
 

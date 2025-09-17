@@ -67,8 +67,6 @@ model HypertensionAcfItem {
 	latestWeightHeightDate             DateTime? @db.Date @map("data_ultimo_peso_altura")
 	weightHeightStatusByQuarter        Int?      @db.SmallInt @map("situacao_quadrimestre_peso_altura")
   goodPracticesStatusByQuarter       Int       @db.SmallInt @map("situacao_quadrimestre_boas_praticas")
-	totalGoodPracticesAttended         Int       @db.SmallInt @map("total_boas_praticas_atendidas")
-	totalGoodPracticesAvailable        Int       @db.SmallInt @map("total_boas_praticas_disponiveis")
 	isMedicalRecordUpdated             Boolean   @map("st_cadastro_atualizado")
 
   @@id([patientId, municipalitySusId], map: "lista_nominal_hipertensao_pkey")
