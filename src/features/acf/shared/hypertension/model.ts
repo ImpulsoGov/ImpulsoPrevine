@@ -160,8 +160,6 @@ export type HypertensionAcfItem = {
     homeVisitStatusByQuarter: HomeVisitStatusByQuarterText;
     latestWeightHeightDate: Date | null;
     weightHeightStatusByQuarter: WeightHeightStatusByQuarterText;
-    totalGoodPracticesAttended: number;
-    totalGoodPracticesAvailable: number;
     medicalRecordUpdated: MedicalRecordUpdatedText;
     goodPracticesStatusByQuarter: GoodPracticesStatusByQuarterText;
 };
