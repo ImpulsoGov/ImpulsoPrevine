@@ -157,12 +157,16 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     patientName: "Paciente A",
                     appointmentStatusByQuarter: 10,
                     latestExamRequestStatusByQuarter: 40,
+                    homeVisitStatusByQuarter: 10,
+                    weightHeightStatusByQuarter: 10,
                 },
                 {
                     ...baseDbItem,
                     patientName: "Paciente B",
                     appointmentStatusByQuarter: 20,
                     latestExamRequestStatusByQuarter: 10,
+                    homeVisitStatusByQuarter: 10,
+                    weightHeightStatusByQuarter: 10,
                 },
             ]);
 
