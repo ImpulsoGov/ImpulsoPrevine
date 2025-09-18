@@ -163,6 +163,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     patientName: "Paciente A",
                     appointmentStatusByQuarter: 20,
                     latestExamRequestStatusByQuarter: 10,
+                    homeVisitStatusByQuarter: 20,
+                    weightHeightStatusByQuarter: 20,
                 },
                 {
                     ...baseDbItem,
@@ -170,6 +172,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     appointmentStatusByQuarter: 10,
                     latestExamRequestStatusByQuarter: 40,
                     patientCpf: null,
+                    homeVisitStatusByQuarter: 20,
+                    weightHeightStatusByQuarter: 20,
                 },
             ]);
 
@@ -190,6 +194,9 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                 patientId: _patientId,
                 patientAgeRange: _patientAgeRange,
                 careTeamIne: _careTeamIne,
+                goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                isMedicalRecordUpdated: _isMedicalRecordUpdated,
                 ...basePageItem
             } = baseDbItem;
             const expectedResponseBody = [
@@ -198,6 +205,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     patientName: "Paciente A",
                     appointmentStatusByQuarter: "Atrasada",
                     latestExamRequestStatusByQuarter: "Nunca realizado",
+                    homeVisitStatusByQuarter: "Atrasada",
+                    weightHeightStatusByQuarter: "Atrasada",
                 },
                 {
                     ...basePageItem,
@@ -205,6 +214,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     patientCpf: null,
                     appointmentStatusByQuarter: "Nunca realizado",
                     latestExamRequestStatusByQuarter: "Em dia",
+                    homeVisitStatusByQuarter: "Atrasada",
+                    weightHeightStatusByQuarter: "Atrasada",
                 },
             ];
 
