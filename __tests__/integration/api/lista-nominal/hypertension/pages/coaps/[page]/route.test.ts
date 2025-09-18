@@ -24,6 +24,8 @@ const body = {
         microAreaName: [null],
         appointmentStatusByQuarter: ["Atrasada"],
         latestExamRequestStatusByQuarter: ["Nunca realizado"],
+        goodPracticesStatusByQuarter: ["Pelo menos uma a fazer"],
+        medicalRecordUpdated: ["Atualizada"],
     },
     sorting: { field: "patientName", sort: "asc" },
     search: "Paciente Teste",
@@ -225,6 +227,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 patientId: _patientId,
                 patientAgeRange: _patientAgeRange,
                 careTeamIne: _careTeamIne,
+                goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                isMedicalRecordUpdated: _isMedicalRecordUpdated,
                 ...basePageItem
             } = baseDbItem;
             const expectedResponseBody = {
