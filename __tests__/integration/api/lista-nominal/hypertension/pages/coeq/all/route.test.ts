@@ -183,6 +183,9 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                 patientId: _patientId,
                 patientAgeRange: _patientAgeRange,
                 careTeamIne: _careTeamIne,
+                goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                isMedicalRecordUpdated: _isMedicalRecordUpdated,
                 ...basePageItem
             } = baseDbItem;
             const expectedResponseBody = [
@@ -191,12 +194,16 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     patientName: "Paciente A",
                     appointmentStatusByQuarter: "Nunca realizado",
                     latestExamRequestStatusByQuarter: "Em dia",
+                    homeVisitStatusByQuarter: "Nunca realizado",
+                    weightHeightStatusByQuarter: "Nunca realizado",
                 },
                 {
                     ...basePageItem,
                     patientName: "Paciente B",
                     appointmentStatusByQuarter: "Atrasada",
                     latestExamRequestStatusByQuarter: "Nunca realizado",
+                    homeVisitStatusByQuarter: "Nunca realizado",
+                    weightHeightStatusByQuarter: "Nunca realizado",
                 },
             ];
 
