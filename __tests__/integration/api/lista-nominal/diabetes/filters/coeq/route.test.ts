@@ -29,14 +29,14 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
 
     describe("GET /api/lista-nominal/diabetes/filters/coeq", () => {
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(false);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COEQ] },
-                    })
-                );
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(false);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
@@ -49,14 +49,14 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COAPS] },
-                    })
-                );
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
             dbHelpers.mockPrismaClient();
 
             const { GET } = await import(
@@ -69,7 +69,9 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
             authHelpers
                 .mockDecodeToken()
                 .mockRejectedValue(new Error("Erro genérico"));
@@ -85,14 +87,14 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         });
 
         it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
-            flagHelpers.mockDiabetesNewProgram().mockResolvedValue(true);
-            authHelpers
-                .mockDecodeToken()
-                .mockResolvedValue(
-                    authHelpers.decodedToken({
-                        payload: { perfis: [PROFILE_ID.COEQ] },
-                    })
-                );
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
 
             const mockedPrisma = dbHelpers.mockPrismaClient();
 

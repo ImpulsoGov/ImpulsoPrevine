@@ -11,26 +11,16 @@ import * as authHelpers from "@tests/helpers/auth";
 import * as flagHelpers from "@tests/helpers/flag";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 
-const coapsUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coaps/0`;
+const coeqUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coeq/0`;
 const user = {
     municipalitySusId: "111111",
     teamIne: "123",
-    profiles: [PROFILE_ID.COAPS],
+    profiles: [PROFILE_ID.COEQ],
 } satisfies interceptors.User;
-const body = {
-    filters: {
-        communityHealthWorker: ["ACS Teste"],
-        conditionIdentifiedBy: ["Autorreferida"],
-        patientStatus: ["Apenas a consulta a fazer"],
-        patientAgeRange: ["Menos de 17 anos"],
-        careTeamName: ["Equipe Teste"],
-    },
-    sorting: { field: "patientName", sort: "asc" },
-    search: "Paciente Teste",
-} satisfies schema.CoapsPageRequestBody;
+const body = {} satisfies schema.CoeqPageRequestBody;
 const stringfiedBody = JSON.stringify(body);
 
-describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
+describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetModules();
@@ -40,23 +30,23 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
         jest.restoreAllMocks();
     });
 
-    describe(`POST /api/lista-nominal/diabetes/pages/coaps/[page]`, () => {
+    describe(`POST /api/lista-nominal/diabetes/pages/coeq/[page]`, () => {
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
             flagHelpers
                 .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
                 .mockResolvedValue(false);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
-                    payload: { perfis: [PROFILE_ID.COAPS] },
+                    payload: { perfis: [PROFILE_ID.COEQ] },
                 })
             );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", {
+            const request = httpHelpers.request(coeqUrl, "POST", {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
@@ -74,16 +64,16 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
-                    payload: { perfis: [PROFILE_ID.COEQ] },
+                    payload: { perfis: [PROFILE_ID.COAPS] },
                 })
             );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", {
+            const request = httpHelpers.request(coeqUrl, "POST", {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
@@ -101,22 +91,22 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
-                    payload: { perfis: [PROFILE_ID.COAPS] },
+                    payload: { perfis: [PROFILE_ID.COEQ] },
                 })
             );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", {
+            const request = httpHelpers.request(coeqUrl, "POST", {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
                 user: user,
                 parsedBody: body,
-                params: Promise.resolve({ page: "0A" }),
+                params: Promise.resolve({ page: "A1" }),
             });
 
             expect(response.status).toBe(400);
@@ -128,18 +118,18 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
-                    payload: { perfis: [PROFILE_ID.COAPS] },
+                    payload: { perfis: [PROFILE_ID.COEQ] },
                 })
             );
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const bodyWithInvalidSearch = { ...body, search: 20 };
-            const request = httpHelpers.request(coapsUrl, "POST", {
-                body: JSON.stringify(bodyWithInvalidSearch),
+            const bodyWithInvalidFilters = { ...body, filters: "" };
+            const request = httpHelpers.request(coeqUrl, "POST", {
+                body: JSON.stringify(bodyWithInvalidFilters),
             });
             const response = await POST(request, {
                 user: user,
@@ -160,10 +150,10 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
             dbHelpers.mockPrismaClient();
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", {
+            const request = httpHelpers.request(coeqUrl, "POST", {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
@@ -181,21 +171,19 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 .mockResolvedValue(true);
             authHelpers.mockDecodeToken().mockResolvedValue(
                 authHelpers.decodedToken({
-                    payload: { perfis: [PROFILE_ID.COAPS] },
+                    payload: { perfis: [PROFILE_ID.COEQ] },
                 })
             );
 
             const mockPrisma = dbHelpers.mockPrismaClient();
             const baseDbItem = dbHelpers.diabetesItem();
-            const totalRows = 4;
+            const totalRows = 7;
 
             mockPrisma.diabetesAcfItem.findMany.mockResolvedValue([
                 {
                     ...baseDbItem,
                     patientName: "Paciente A",
-                    patientCpfOrBirthday: "12345678901",
-                    hemoglobinTestDueDate: "2023-01-05",
-                    nextAppointmentDueDate: "2023-06-05",
+                    patientCpfOrBirthday: "31-01-1999",
                 },
                 {
                     ...baseDbItem,
@@ -206,10 +194,10 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
             mockPrisma.diabetesAcfItem.count.mockResolvedValue(totalRows);
 
             const { POST } = await import(
-                "@/app/api/lista-nominal/diabetes/pages/coaps/[page]/route"
+                "@/app/api/lista-nominal/diabetes/pages/coeq/[page]/route"
             );
 
-            const request = httpHelpers.request(coapsUrl, "POST", {
+            const request = httpHelpers.request(coeqUrl, "POST", {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
@@ -223,10 +211,10 @@ describe(`/api/lista-nominal/diabetes/pages/coaps/[page] Route Handler`, () => {
                 page: [
                     {
                         ...basePageItem,
-                        hemoglobinTestDueDate: "2023-01-05",
-                        nextAppointmentDueDate: "2023-06-05",
                         patientName: "Paciente A",
-                        patientCpfOrBirthday: "12345678901",
+                        patientCpfOrBirthday: "31-01-1999",
+                        hemoglobinTestDueDate: "",
+                        nextAppointmentDueDate: "",
                         mostRecentProductionRecordDate:
                             basePageItem.mostRecentProductionRecordDate.toISOString(),
                     },
