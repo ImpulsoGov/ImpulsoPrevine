@@ -198,6 +198,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                     patientCpf: "12345678901",
                     appointmentStatusByQuarter: 10,
                     latestExamRequestStatusByQuarter: 40,
+                    homeVisitStatusByQuarter: 20,
+                    weightHeightStatusByQuarter: 10,
                 },
                 {
                     ...baseDbItem,
@@ -206,6 +208,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                     patientCns: "123456789012345",
                     appointmentStatusByQuarter: 20,
                     latestExamRequestStatusByQuarter: 40,
+                    homeVisitStatusByQuarter: 40,
+                    weightHeightStatusByQuarter: 20,
                 },
             ]);
             mockPrisma.hypertensionAcfItem.count.mockResolvedValue(totalRows);
@@ -228,6 +232,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 patientAgeRange: _patientAgeRange,
                 careTeamIne: _careTeamIne,
                 goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
                 isMedicalRecordUpdated: _isMedicalRecordUpdated,
                 ...basePageItem
             } = baseDbItem;
@@ -239,6 +244,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                         patientCpf: "12345678901",
                         appointmentStatusByQuarter: "Nunca realizado",
                         latestExamRequestStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Atrasada",
+                        weightHeightStatusByQuarter: "Nunca realizado",
                     },
                     {
                         ...basePageItem,
@@ -247,6 +254,8 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                         patientCns: "123456789012345",
                         appointmentStatusByQuarter: "Atrasada",
                         latestExamRequestStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Em dia",
+                        weightHeightStatusByQuarter: "Atrasada",
                     },
                 ],
                 totalRows,
