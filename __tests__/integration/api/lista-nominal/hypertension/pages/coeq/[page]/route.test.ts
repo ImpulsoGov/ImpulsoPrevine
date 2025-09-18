@@ -18,12 +18,6 @@ const user = {
     profiles: [PROFILE_ID.COEQ],
 } satisfies interceptors.User;
 const body = {
-    filters: {
-        patientAgeRange: ["20 a 59 (Adulto)"],
-        microAreaName: [null],
-        appointmentStatusByQuarter: ["Atrasada"],
-        latestExamRequestStatusByQuarter: ["Nunca realizado"],
-    },
     sorting: { field: "patientName", sort: "asc" },
     search: "Paciente Teste",
 } satisfies schema.CoeqPageRequestBody;
@@ -224,6 +218,9 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                 patientId: _patientId,
                 patientAgeRange: _patientAgeRange,
                 careTeamIne: _careTeamIne,
+                goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                isMedicalRecordUpdated: _isMedicalRecordUpdated,
                 ...basePageItem
             } = baseDbItem;
             const expectedResponseBody = {
@@ -235,6 +232,8 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                         patientCns: "123456789012345",
                         appointmentStatusByQuarter: "Nunca realizado",
                         latestExamRequestStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Nunca realizado",
+                        weightHeightStatusByQuarter: "Nunca realizado",
                     },
                     {
                         ...basePageItem,
@@ -242,6 +241,8 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                         patientCpf: "12345678901",
                         appointmentStatusByQuarter: "Atrasada",
                         latestExamRequestStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Nunca realizado",
+                        weightHeightStatusByQuarter: "Nunca realizado",
                     },
                 ],
                 totalRows,
