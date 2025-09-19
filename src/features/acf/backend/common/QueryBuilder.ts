@@ -6,16 +6,26 @@ type BaseWhereInput = {
 };
 type BaseFilters = Record<string, ReadonlyArray<unknown>>;
 
+//TODO: Refatorar essa função para usar menos if e melhorar a manutenabilidade
 export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     where: TPrismaWhereInput,
     filter: TFilters,
     field: keyof TFilters
 ): TPrismaWhereInput => {
-    const values = filter[field] as ReadonlyArray<string | null | number>;
+    const values = filter[field] as ReadonlyArray<
+        string | null | number | boolean
+    >;
     if (values.length === 0) {
         return where;
     }
-
+    if (typeof filter[field][0] === "boolean") {
+        return {
+            ...where,
+            [field]: {
+                equals: filter[field][0],
+            },
+        };
+    }
     const nonNulls = values.filter((value) => value !== null);
 
     const hasNull = values.includes(null);
