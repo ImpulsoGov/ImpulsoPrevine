@@ -2,16 +2,16 @@
 import * as service from "./service";
 import { DataTable } from "@features/acf/frontend/common/DataTable";
 import { Caption } from "@/features/acf/frontend/common/Caption";
-import { captionData, coapsColumns } from "./consts";
+import { captionData, coapsColumns, coapsColumnsBeta } from "./consts";
 
 export type { CoapsAppliedFilters } from "./model";
 export { coapsColumns, service };
-
-export const CoapsDataTable: React.FC = () => {
+type Props = { isPrintEnabled: boolean };
+export const CoapsDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
     return (
         <>
             <DataTable
-                columns={coapsColumns}
+                columns={isPrintEnabled ? coapsColumnsBeta : coapsColumns}
                 serviceGetPage={service.getCoapsPage}
             />
             <Caption title={captionData.title} items={captionData.items} />
