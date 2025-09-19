@@ -68,7 +68,7 @@ export const coeqFilterOptions = async (
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
         goodPracticesStatusByQuarter:
             goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,
-        medicalRecordUpdated: isMedicalRecordUpdated,
+        isMedicalRecordUpdated: isMedicalRecordUpdated,
     };
 };
 
@@ -110,6 +110,6 @@ export const coapsFilterOptions = async (
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
         goodPracticesStatusByQuarter:
             goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,
-        medicalRecordUpdated: isMedicalRecordUpdated,
+        isMedicalRecordUpdated: isMedicalRecordUpdated,
     };
 };

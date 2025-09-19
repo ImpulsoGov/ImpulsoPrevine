@@ -12,6 +12,7 @@ import {
     goodPracticesStatusByQuarterCodeToText,
     homeVisitStatusByQuarterCodeToText,
     latestExamRequestStatusByQuarterCodeToText,
+    medicalRecordUpdatedCodeToText,
     weightHeightStatusByQuarterCodeToText,
 } from "@/features/acf/shared/hypertension/model";
 import type { PageItem } from "./model";
@@ -38,6 +39,7 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
     const updatedWeightHeightStatusByQuarterCodeToText = updateQuarterText(
         weightHeightStatusByQuarterCodeToText
     );
+
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
@@ -68,6 +70,10 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         weightHeightStatusByQuarter:
             updatedWeightHeightStatusByQuarterCodeToText[
                 hypertensionRow.weightHeightStatusByQuarter as WeightHeightStatusByQuarterCode
+            ],
+        medicalRecordUpdated:
+            medicalRecordUpdatedCodeToText[
+                hypertensionRow.isMedicalRecordUpdated ? "true" : "false"
             ],
     };
 };
@@ -129,7 +135,7 @@ const sharedFiltersModelToDb = (
             filters.goodPracticesStatusByQuarter,
             goodPracticesStatusByQuarterCodeToText
         ),
-        medicalRecordUpdated: filters.medicalRecordUpdated.map(
+        isMedicalRecordUpdated: filters.medicalRecordUpdated.map(
             (value) => value === "Atualizada"
         ),
     };
