@@ -48,7 +48,7 @@ export const dbToModelCoeq = (
             filtersOptions.goodPracticesStatusByQuarter.map(
                 (code) => goodPracticesStatusByQuarterCodeToText[code]
             ),
-        medicalRecordUpdated: filtersOptions.medicalRecordUpdated.map(
+        medicalRecordUpdated: filtersOptions.isMedicalRecordUpdated.map(
             (code: boolean) =>
                 medicalRecordUpdatedCodeToText[
                     code.toString() as "true" | "false"
