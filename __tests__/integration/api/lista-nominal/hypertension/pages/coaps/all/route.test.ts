@@ -165,6 +165,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     latestExamRequestStatusByQuarter: 10,
                     homeVisitStatusByQuarter: 20,
                     weightHeightStatusByQuarter: 20,
+                    isMedicalRecordUpdated: false,
                 },
                 {
                     ...baseDbItem,
@@ -174,6 +175,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     patientCpf: null,
                     homeVisitStatusByQuarter: 20,
                     weightHeightStatusByQuarter: 20,
+                    isMedicalRecordUpdated: false,
                 },
             ]);
 
@@ -207,6 +209,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     latestExamRequestStatusByQuarter: "Nunca realizado",
                     homeVisitStatusByQuarter: "Atrasada",
                     weightHeightStatusByQuarter: "Atrasada",
+                    medicalRecordUpdated: "Atualização pendente",
                 },
                 {
                     ...basePageItem,
@@ -216,6 +219,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/all Route Handler`, () => 
                     latestExamRequestStatusByQuarter: "Em dia",
                     homeVisitStatusByQuarter: "Atrasada",
                     weightHeightStatusByQuarter: "Atrasada",
+                    medicalRecordUpdated: "Atualização pendente",
                 },
             ];
 
