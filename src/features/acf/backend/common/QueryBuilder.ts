@@ -92,9 +92,15 @@ export const orderByNullable = <TSort>(
 export const orderByNotNullable = <TSort>(
     field: keyof TSort,
     sort: "asc" | "desc"
-): Record<string, Prisma.SortOrder> => ({
-    [field]: sort,
-});
+):
+    | Record<string, Prisma.SortOrder>
+    | Array<Record<string, Prisma.SortOrder>> => {
+    return field === "goodPracticesSum"
+        ? [{ [field]: sort }, { isMedicalRecordUpdated: sort }]
+        : {
+              [field]: sort,
+          };
+};
 
 export type NullableFields<TPrismaModel> = AreKeysNullable<
     Omit<TPrismaModel, "municipalitySusId" | "municipalityName">
