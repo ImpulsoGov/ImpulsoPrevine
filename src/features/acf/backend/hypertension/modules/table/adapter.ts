@@ -135,7 +135,7 @@ const sharedFiltersModelToDb = (
             filters.goodPracticesStatusByQuarter,
             goodPracticesStatusByQuarterCodeToText
         ),
-        medicalRecordUpdated: filters.medicalRecordUpdated.map(
+        isMedicalRecordUpdated: filters.medicalRecordUpdated.map(
             (value) => value === "Atualizada"
         ),
     };
