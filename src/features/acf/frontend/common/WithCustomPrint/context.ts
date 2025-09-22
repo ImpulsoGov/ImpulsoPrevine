@@ -14,12 +14,6 @@ export type CustomPrintContextType = {
     setCustomization: Dispatch<SetStateAction<CustomPrintState>>;
 };
 
-export const defaultCustomization = {
-    grouping: true,
-    splitGroupPerPage: false,
-    order: false,
-    orderGroup: (): number => 0,
-};
 export const CustomPrintContext = createContext<CustomPrintContextType>({
     customization: {
         grouping: true,
