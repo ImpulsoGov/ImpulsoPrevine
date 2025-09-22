@@ -36,7 +36,7 @@ export const printListProps: PrintListProps<
     HypertensionAcfItem,
     CoeqAppliedFilters
 > = {
-    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    listTitle: "LISTA NOMINAL CUIDADO DA PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
             <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
