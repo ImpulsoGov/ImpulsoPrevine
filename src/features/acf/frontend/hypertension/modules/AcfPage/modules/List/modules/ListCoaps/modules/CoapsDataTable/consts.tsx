@@ -237,7 +237,21 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
-        renderCell: goodPracticesSumFormatter,
+        renderCell: ({
+            row,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            number
+        >): React.ReactNode => {
+            return (
+                <div>
+                    {goodPracticesSumFormatter(
+                        row.medicalRecordUpdated,
+                        row.goodPracticesSum
+                    )}
+                </div>
+            );
+        },
     },
     {
         field: "latestAppointmentDate",
