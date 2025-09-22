@@ -1,8 +1,10 @@
 import { useContext, useEffect, useRef, type PropsWithChildren } from "react";
 import { Print } from "../../RenderPrint";
-import { WithPrintModalContext } from "../../../WithPrintModal";
-import { CustomPrintContext } from "../../../WithCustomPrint";
-import { defaultCustomization } from "../../../WithCustomPrint/context";
+import { WithPrintModalContext } from "@features/acf/frontend/common/WithPrintModal/";
+import {
+    CustomPrintContext,
+    defaultCustomization,
+} from "@features/acf/frontend/common/WithCustomPrint";
 
 export type PrintTableProps = PropsWithChildren<{
     setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
