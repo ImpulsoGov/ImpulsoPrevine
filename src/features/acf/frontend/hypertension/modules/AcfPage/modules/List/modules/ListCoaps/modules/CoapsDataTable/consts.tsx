@@ -12,7 +12,7 @@ import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/mod
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 
-export const coapsColumns: Array<GridColDef> = [
+export const coapsColumnsAlpha: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",

@@ -10,16 +10,19 @@ import {
 type FiltersBarProps<TAppliedFilters> = {
     selectedValues: TAppliedFilters;
     setSelectedValues: Dispatch<SetStateAction<TAppliedFilters>>;
+    isPrintEnabled: boolean;
 };
 
 type WithFiltersProps<TAppliedFilters extends AppliedFilters> =
     React.PropsWithChildren<{
         FiltersBar: React.FC<FiltersBarProps<TAppliedFilters>>;
+        isPrintEnabled: boolean;
     }>;
 
 export const WithFiltersBar = <TAppliedFilters extends AppliedFilters>({
     FiltersBar,
     children,
+    isPrintEnabled,
 }: WithFiltersProps<TAppliedFilters>): React.ReactNode => {
     const { selectedValues, setSelectedValues } = useContext(
         FiltersContext
@@ -31,6 +34,7 @@ export const WithFiltersBar = <TAppliedFilters extends AppliedFilters>({
                 <FiltersBar
                     selectedValues={selectedValues}
                     setSelectedValues={setSelectedValues}
+                    isPrintEnabled={isPrintEnabled}
                 />
                 {children}
             </>

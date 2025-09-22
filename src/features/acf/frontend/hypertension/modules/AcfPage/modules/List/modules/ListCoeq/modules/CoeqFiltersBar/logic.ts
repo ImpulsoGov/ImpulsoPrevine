@@ -1,9 +1,18 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
-import { toSelectConfigsShared } from "../../../common/SharedSelectConfigs";
+import {
+    toSelectConfigsSharedAlpha,
+    toSelectConfigsSharedBeta,
+} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/SharedSelectConfigs";
 
-export const toSelectConfigsCoeq = (
+export const toSelectConfigsCoeqAlpha = (
     filtersValues: schema.CoeqFilters
 ): Array<SelectConfig> => {
-    return [...toSelectConfigsShared(filtersValues)];
+    return [...toSelectConfigsSharedAlpha(filtersValues)];
+};
+
+export const toSelectConfigsCoeqBeta = (
+    filtersValues: schema.CoeqFilters
+): Array<SelectConfig> => {
+    return [...toSelectConfigsSharedBeta(filtersValues)];
 };

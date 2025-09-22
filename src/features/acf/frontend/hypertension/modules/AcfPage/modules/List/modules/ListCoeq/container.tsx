@@ -67,7 +67,10 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
                                     <FilterHint />
-                                    <WithFiltersBar FiltersBar={CoeqFiltersBar}>
+                                    <WithFiltersBar
+                                        FiltersBar={CoeqFiltersBar}
+                                        isPrintEnabled={isPrintEnabled}
+                                    >
                                         <WithPagination>
                                             <CoeqDataTable
                                                 isPrintEnabled={isPrintEnabled}
