@@ -3,7 +3,6 @@
  */
 
 import { PROFILE_ID } from "@/types/profile";
-import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
 import * as dbHelpers from "@tests/helpers/db";
 import * as httpHelpers from "@tests/helpers/http";
@@ -12,11 +11,6 @@ import * as flagHelpers from "@tests/helpers/flag";
 
 const coapsUrl =
     "http://localhost:3000/api/lista-nominal/hypertension/filters/coaps";
-const user = {
-    municipalitySusId: "111111",
-    teamIne: "123",
-    profiles: [PROFILE_ID.COAPS],
-} satisfies interceptors.User;
 
 describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
     beforeEach(() => {
@@ -45,7 +39,7 @@ describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
             );
 
             const request = httpHelpers.request(coapsUrl, "GET");
-            const response = await GET(request, { user: user });
+            const response = await GET(request, {});
             expect(response.status).toBe(404);
         });
 
@@ -65,7 +59,7 @@ describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
             );
 
             const request = httpHelpers.request(coapsUrl, "GET");
-            const response = await GET(request, { user: user });
+            const response = await GET(request, {});
             expect(response.status).toBe(403);
         });
 
@@ -83,7 +77,7 @@ describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
             );
 
             const request = httpHelpers.request(coapsUrl, "GET");
-            const response = await GET(request, { user: user });
+            const response = await GET(request, {});
             expect(response.status).toBe(500);
         });
 
@@ -180,7 +174,7 @@ describe("/api/lista-nominal/hypertension/filters/coaps Route Handler", () => {
             };
 
             const request = httpHelpers.request(coapsUrl, "GET");
-            const response = await GET(request, { user: user });
+            const response = await GET(request, {});
 
             expect(response.status).toBe(200);
             expect(await response.json()).toEqual(expectedBody);
