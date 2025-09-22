@@ -82,7 +82,10 @@ const ContentCoaps: React.FC<ContentCoeqProps> = ({
                         {" "}
                         <hr style={{ width: "100%" }} />
                         <WithSorting>
-                            <WithFiltersBar FiltersBar={CoapsFiltersBar}>
+                            <WithFiltersBar
+                                FiltersBar={CoapsFiltersBar}
+                                isPrintEnabled={isPrintEnabled}
+                            >
                                 <WithPagination>
                                     <CoapsDataTable />
                                 </WithPagination>
@@ -123,7 +126,10 @@ const ContentCoeq: React.FC<ContentCoeqProps> = ({
                     >
                         <hr style={{ width: "100%" }} />
                         <WithSorting>
-                            <WithFiltersBar FiltersBar={CoeqFiltersBar}>
+                            <WithFiltersBar
+                                FiltersBar={CoeqFiltersBar}
+                                isPrintEnabled={isPrintEnabled}
+                            >
                                 <WithPagination>
                                     <CoeqDataTable />
                                 </WithPagination>

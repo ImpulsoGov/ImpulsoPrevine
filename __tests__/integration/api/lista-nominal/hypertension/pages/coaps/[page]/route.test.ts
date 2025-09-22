@@ -200,6 +200,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                     latestExamRequestStatusByQuarter: 40,
                     homeVisitStatusByQuarter: 20,
                     weightHeightStatusByQuarter: 10,
+                    isMedicalRecordUpdated: true,
                 },
                 {
                     ...baseDbItem,
@@ -210,6 +211,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                     latestExamRequestStatusByQuarter: 40,
                     homeVisitStatusByQuarter: 40,
                     weightHeightStatusByQuarter: 20,
+                    isMedicalRecordUpdated: true,
                 },
             ]);
             mockPrisma.hypertensionAcfItem.count.mockResolvedValue(totalRows);
@@ -246,6 +248,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                         latestExamRequestStatusByQuarter: "Em dia",
                         homeVisitStatusByQuarter: "Atrasada",
                         weightHeightStatusByQuarter: "Nunca realizado",
+                        medicalRecordUpdated: "Atualizada",
                     },
                     {
                         ...basePageItem,
@@ -256,6 +259,7 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                         latestExamRequestStatusByQuarter: "Em dia",
                         homeVisitStatusByQuarter: "Em dia",
                         weightHeightStatusByQuarter: "Atrasada",
+                        medicalRecordUpdated: "Atualizada",
                     },
                 ],
                 totalRows,

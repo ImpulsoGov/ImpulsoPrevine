@@ -190,6 +190,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                     patientCns: "123456789012345",
                     appointmentStatusByQuarter: 10,
                     latestExamRequestStatusByQuarter: 40,
+                    isMedicalRecordUpdated: true,
                 },
                 {
                     ...baseDbItem,
@@ -197,6 +198,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                     patientCpf: "12345678901",
                     appointmentStatusByQuarter: 20,
                     latestExamRequestStatusByQuarter: 40,
+                    isMedicalRecordUpdated: false,
                 },
             ]);
             mockPrisma.hypertensionAcfItem.count.mockResolvedValue(totalRows);
@@ -234,6 +236,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                         latestExamRequestStatusByQuarter: "Em dia",
                         homeVisitStatusByQuarter: "Nunca realizado",
                         weightHeightStatusByQuarter: "Nunca realizado",
+                        medicalRecordUpdated: "Atualizada",
                     },
                     {
                         ...basePageItem,
@@ -243,6 +246,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/[page] Route Handler`, () =
                         latestExamRequestStatusByQuarter: "Em dia",
                         homeVisitStatusByQuarter: "Nunca realizado",
                         weightHeightStatusByQuarter: "Nunca realizado",
+                        medicalRecordUpdated: "Atualização pendente",
                     },
                 ],
                 totalRows,

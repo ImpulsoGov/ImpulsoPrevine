@@ -2,15 +2,16 @@
 import * as service from "./service";
 import { Caption } from "@/features/acf/frontend/common/Caption";
 import { DataTable } from "@features/acf/frontend/common/DataTable";
-import { coeqColumns, captionData } from "./consts";
+import { coeqColumnsAlpha, captionData, coeqColumnsBeta } from "./consts";
 
 export type { CoeqAppliedFilters } from "./model";
-export { coeqColumns };
-export const CoeqDataTable: React.FC = () => {
+export { coeqColumnsAlpha as coeqColumns };
+type Props = { isPrintEnabled: boolean };
+export const CoeqDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
     return (
         <>
             <DataTable
-                columns={coeqColumns}
+                columns={isPrintEnabled ? coeqColumnsBeta : coeqColumnsAlpha}
                 serviceGetPage={service.getCoeqPage}
             />
             <Caption title={captionData.title} items={captionData.items} />

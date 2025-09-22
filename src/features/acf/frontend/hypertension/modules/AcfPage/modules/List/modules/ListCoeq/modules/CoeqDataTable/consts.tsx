@@ -5,12 +5,13 @@ import type {
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
 import { DataGridRenderDate } from "@/features/acf/frontend/common/RenderDate";
-import { phoneNumberFormatter } from "../../../common/PhoneNumberFormatter";
-import { RenderPatientNameCpfCns } from "../../../common/RenderPatientNameCpfCns";
-import { RenderStatusByQuarterTag } from "../../../common/RenderStatusByQuarterTag";
-import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
+import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
+import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
+import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
+import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 
-export const coeqColumns: Array<GridColDef> = [
+export const coeqColumnsAlpha: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
@@ -106,6 +107,193 @@ export const coeqColumns: Array<GridColDef> = [
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
             <span>{phoneNumberFormatter(value)}</span>
+        ),
+    },
+    {
+        field: "patientAge",
+        headerName: "Idade",
+        width: 103,
+        headerAlign: "left",
+        align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span>{value}</span>
+        ),
+    },
+];
+
+export const coeqColumnsBeta: Array<GridColDef> = [
+    {
+        field: "patientName",
+        headerName: "Nome e CPF/CNS",
+        width: 211,
+        headerAlign: "left",
+        align: "left",
+        renderCell: RenderPatientNameCpfCns,
+        cellClassName: "breakable-content",
+    },
+    {
+        field: "goodPracticesSum",
+        headerName: "Soma boas práticas*",
+        width: 131,
+        headerAlign: "left",
+        align: "left",
+        cellClassName: "breakable-content",
+        renderCell: goodPracticesSumFormatter,
+    },
+    {
+        field: "latestAppointmentDate",
+        width: 135,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Data última <br />
+                consulta
+            </span>
+        ),
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+    },
+    {
+        field: "appointmentStatusByQuarter",
+        width: 207,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Situação consulta <br />
+                no quadrimestre
+            </span>
+        ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            AppointmentStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
+    },
+    {
+        field: "latestExamRequestDate",
+        width: 156,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Data da última
+                <br />
+                aferição de PA
+            </span>
+        ),
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+    },
+    {
+        field: "latestExamRequestStatusByQuarter",
+        width: 209,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Situação aferição de
+                <br />
+                PA no quadrimestre
+            </span>
+        ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            LatestExamRequestStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
+    },
+    {
+        field: "latestHomeVisitDate",
+        width: 156,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Data da última
+                <br />
+                Visita Domiciliar
+            </span>
+        ),
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+    },
+    {
+        field: "homeVisitStatusByQuarter",
+        width: 209,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Situação Visita
+                <br />
+                Domiciliar no quadrimestre
+            </span>
+        ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            LatestExamRequestStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
+    },
+    {
+        field: "latestWeightHeightDate",
+        width: 156,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Data do último
+                <br />
+                registro de peso e altura
+            </span>
+        ),
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+    },
+    {
+        field: "weightHeightStatusByQuarter",
+        width: 209,
+        headerAlign: "left",
+        align: "left",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Situação registro
+                <br />
+                de peso e altura no quadrimestre
+            </span>
+        ),
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<
+            HypertensionAcfItem,
+            LatestExamRequestStatusByQuarterText
+        >) => <RenderStatusByQuarterTag value={value} />,
+    },
+    {
+        field: "microAreaName",
+        width: 144,
+        headerAlign: "left",
+        align: "left",
+        headerName: "Microárea",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {microAreaFormatter(value)}</span>
+        ),
+    },
+    {
+        field: "patientPhoneNumber",
+        headerName: "Telefone",
+        width: 145,
+        headerAlign: "left",
+        align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span> {phoneNumberFormatter(value)}</span>
         ),
     },
     {

@@ -36,7 +36,7 @@ export const printListProps: PrintListProps<
     HypertensionAcfItem,
     CoeqAppliedFilters
 > = {
-    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    listTitle: "LISTA NOMINAL CUIDADO DA PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
             <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
@@ -82,7 +82,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 135,
             portrait: 135,
         },
-        headerName: "Consulta: Data e situação",
+        headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (

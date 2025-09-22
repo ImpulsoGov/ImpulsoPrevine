@@ -7,7 +7,7 @@ export type SharedFiltersOptionsDb = {
     latestExamRequestStatusByQuarter: ReadonlyArray<model.LatestExamRequestStatusByQuarterCode>;
     patientAgeRange: ReadonlyArray<model.PatientAgeRangeCode>;
     goodPracticesStatusByQuarter: ReadonlyArray<model.GoodPracticesStatusByQuarterCode>;
-    medicalRecordUpdated: ReadonlyArray<
+    isMedicalRecordUpdated: ReadonlyArray<
         db.HypertensionAcfItem["isMedicalRecordUpdated"]
     >;
 };

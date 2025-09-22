@@ -14,7 +14,10 @@ import {
     cnsFormatter,
 } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import {
+    nameFormatter,
+    teamNameFormatter,
+} from "@/features/acf/frontend/common/NameFormatter";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const apsLabelsModal: ModalLabels = {
@@ -40,7 +43,7 @@ export const printListProps: PrintListProps<
     HypertensionAcfItem,
     CoapsAppliedFilters
 > = {
-    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    listTitle: "LISTA NOMINAL CUIDADO DA PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
             <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
@@ -88,7 +91,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 135,
             portrait: 135,
         },
-        headerName: "Consulta: Data e situação",
+        headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -132,7 +135,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [careTeamName, microAreaName] = param as [string, string];
             return (
                 <>
-                    <div>{careTeamName}</div>
+                    <div>{teamNameFormatter(careTeamName)}</div>
                     <div>{microAreaFormatter(microAreaName)}</div>
                 </>
             );

@@ -159,6 +159,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     latestExamRequestStatusByQuarter: 40,
                     homeVisitStatusByQuarter: 10,
                     weightHeightStatusByQuarter: 10,
+                    isMedicalRecordUpdated: false,
                 },
                 {
                     ...baseDbItem,
@@ -167,6 +168,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     latestExamRequestStatusByQuarter: 10,
                     homeVisitStatusByQuarter: 10,
                     weightHeightStatusByQuarter: 10,
+                    isMedicalRecordUpdated: true,
                 },
             ]);
 
@@ -200,6 +202,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     latestExamRequestStatusByQuarter: "Em dia",
                     homeVisitStatusByQuarter: "Nunca realizado",
                     weightHeightStatusByQuarter: "Nunca realizado",
+                    medicalRecordUpdated: "Atualização pendente",
                 },
                 {
                     ...basePageItem,
@@ -208,6 +211,7 @@ describe(`/api/lista-nominal/hypertension/pages/coeq/all Route Handler`, () => {
                     latestExamRequestStatusByQuarter: "Nunca realizado",
                     homeVisitStatusByQuarter: "Nunca realizado",
                     weightHeightStatusByQuarter: "Nunca realizado",
+                    medicalRecordUpdated: "Atualizada",
                 },
             ];
 
