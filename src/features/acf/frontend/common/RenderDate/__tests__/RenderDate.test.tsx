@@ -9,9 +9,9 @@ describe("RenderDate", () => {
         render(<RenderDate value={isoString} />);
         expect(screen.getByText(expectedDate)).toBeInTheDocument();
     });
-    it("Deve renderizar a string - quando receber null", () => {
+    it("Nao deve renderizar nada quando receber null", () => {
         const nullValue = null;
         render(<RenderDate value={nullValue} />);
-        expect(screen.getByText("-")).toBeInTheDocument();
+        expect(screen.getByTestId("invalid-date")).toBeInTheDocument();
     });
 });

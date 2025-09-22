@@ -16,7 +16,7 @@ export const RenderDate = ({
 }: {
     value: string | null;
 }): JSX.Element => {
-    if (!value) return <div></div>;
+    if (!value) return <div data-testid="invalid-date"></div>;
     const date = parseDate(value);
     return <div>{formatDate(date)}</div>;
 };
