@@ -90,8 +90,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["goodPracticesSum", "medicalRecordUpdated"],
         headerName: "Soma Boas Práticas",
         width: {
-            landscape: 33,
-            portrait: 33,
+            landscape: 38,
+            portrait: 38,
         },
         verticalDivider: true,
         renderCell: (param: unknown): React.ReactNode => {
@@ -134,7 +134,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
         width: {
             landscape: 156,
-            portrait: 156,
+            portrait: 71,
         },
         headerName: "Aferição de PA: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -194,7 +194,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 144,
             portrait: 144,
         },
-        headerName: "Equipe e Microárea",
+        headerName: "Equipe e \nMicroárea",
         renderCell: (param: unknown): React.ReactNode => {
             const [careTeamName, microAreaName] = param as [string, string];
             return (
