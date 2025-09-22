@@ -87,20 +87,6 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
         >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
-        field: "latestWeightHeightDate",
-        width: 156,
-        headerAlign: "left",
-        align: "left",
-        renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data do último
-                <br />
-                registro de peso e altura
-            </span>
-        ),
-        renderCell: RenderDate<HypertensionAcfItem>,
-    },
-    {
         field: "careTeamName",
         width: 150,
         headerAlign: "left",
