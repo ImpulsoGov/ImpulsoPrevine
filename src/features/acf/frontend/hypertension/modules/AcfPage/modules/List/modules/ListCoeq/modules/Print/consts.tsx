@@ -106,7 +106,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
             landscape: 135,
-            portrait: 135,
+            portrait: 60,
         },
         headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -120,7 +120,6 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
                 </>
             );
         },
-        verticalDivider: true,
     },
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
