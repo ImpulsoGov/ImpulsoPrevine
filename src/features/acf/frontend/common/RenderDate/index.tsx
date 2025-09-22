@@ -16,7 +16,7 @@ export const RenderDate = ({
 }: {
     value: string | null;
 }): JSX.Element => {
-    if (!value) return <span>-</span>;
+    if (!value) return <div></div>;
     const date = parseDate(value);
     return <div>{formatDate(date)}</div>;
 };
