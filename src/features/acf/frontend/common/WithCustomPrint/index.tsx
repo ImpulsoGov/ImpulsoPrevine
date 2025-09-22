@@ -2,12 +2,13 @@
 import type { ReactNode } from "react";
 import React, { useState } from "react";
 import { CustomPrintContext, type CustomPrintState } from "./context";
+import { defaultCustomization } from "./consts";
 import type { SortCallback } from "../Print/modules/PrintTable/model";
 
 type WithCustomPrintProps = React.PropsWithChildren<{
     orderGroup: SortCallback<string>;
 }>;
-export { CustomPrintContext };
+export { CustomPrintContext, defaultCustomization };
 
 export const WithCustomPrint = ({
     orderGroup,
