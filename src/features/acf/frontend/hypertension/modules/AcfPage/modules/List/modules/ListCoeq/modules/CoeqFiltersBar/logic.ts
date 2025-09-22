@@ -3,7 +3,7 @@ import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import {
     toSelectConfigsSharedAlpha,
     toSelectConfigsSharedBeta,
-} from "../../../common/SharedSelectConfigs";
+} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/SharedSelectConfigs";
 
 export const toSelectConfigsCoeqAlpha = (
     filtersValues: schema.CoeqFilters
