@@ -21,20 +21,20 @@ export const toSelectConfigsSharedAlpha = (
         },
         {
             options: toHtmlSelectOptions(
-                filtersValues.goodPracticesStatusByQuarter
+                filtersValues.appointmentStatusByQuarter
             ),
-            label: "Situação da Boas Práticas",
-            id: "goodPracticesStatusByQuarter",
-            isMultiSelect: false,
-            width: "290px",
+            label: "Consulta",
+            id: "appointmentStatusByQuarter",
+            isMultiSelect: true,
+            width: "299px",
         },
         {
             options: toHtmlSelectOptions(
-                filtersValues.medicalRecordUpdated
-            ).reverse(),
-            label: "Situação Cadastral FCI",
-            id: "medicalRecordUpdated",
-            isMultiSelect: false,
+                filtersValues.latestExamRequestStatusByQuarter
+            ),
+            label: "Aferição de PA",
+            id: "latestExamRequestStatusByQuarter",
+            isMultiSelect: true,
             width: "282px",
         },
         {
