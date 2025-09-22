@@ -25,5 +25,5 @@ const composed = interceptors.compose(
     interceptors.allowProfiles([PROFILE_ID.COAPS]),
     interceptors.catchErrors
 );
-//TODO: Criar um teste de integração para esta rota
+
 export const GET = composed(handler);

@@ -28,5 +28,4 @@ const composed = interceptors.compose(
     interceptors.catchErrors
 );
 
-//TODO: Criar um teste de integração para esta rota
 export const POST = composed(handler);
