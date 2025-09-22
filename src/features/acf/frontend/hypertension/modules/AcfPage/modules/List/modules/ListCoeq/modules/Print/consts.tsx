@@ -3,7 +3,6 @@ import type {
     ColumnsProps,
     PrintListProps,
 } from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
-import { formatDate, parseDate } from "@/features/common/shared/time";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoeq";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
@@ -12,6 +11,7 @@ import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
 import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
 import { cpfFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { GenericRenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR MICROÁREA",
@@ -87,7 +87,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<GenericRenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -104,10 +104,10 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
         headerName: "Aferição de PA: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string, StatusByQuarter];
+            const [date, status] = param as [string | null, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<GenericRenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -141,7 +141,10 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             portrait: 145,
         },
         renderCell: (param: unknown): React.ReactNode => {
-            const [patientPhoneNumber, patientAge] = param as [string, string];
+            const [patientPhoneNumber, patientAge] = param as [
+                string | null,
+                string,
+            ];
             return (
                 <>
                     <div>{phoneNumberFormatter(patientPhoneNumber)}</div>

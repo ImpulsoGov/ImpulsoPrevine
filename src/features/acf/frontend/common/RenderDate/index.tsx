@@ -10,3 +10,13 @@ export const RenderDate = <TModel extends GridValidRowModel>({
     const date = parseDate(value);
     return <span>{formatDate(date)}</span>;
 };
+
+export const GenericRenderDate = ({
+    value,
+}: {
+    value: string | null;
+}): JSX.Element => {
+    if (!value) return <span>-</span>;
+    const date = parseDate(value);
+    return <div>{formatDate(date)}</div>;
+};
