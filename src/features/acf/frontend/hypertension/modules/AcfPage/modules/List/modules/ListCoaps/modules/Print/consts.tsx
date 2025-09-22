@@ -15,7 +15,7 @@ import {
 } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
 import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import { GenericRenderDate } from "@/features/acf/frontend/common/RenderDate";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -93,7 +93,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<GenericRenderDate value={date} />}
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -113,7 +113,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<GenericRenderDate value={date} />}
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>

@@ -4,7 +4,7 @@ import type {
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
-import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import { DataGridRenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { teamNameFormatter } from "@/features/acf/frontend/common/NameFormatter";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
@@ -32,7 +32,7 @@ export const coapsColumns: Array<GridColDef> = [
                 consulta
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -64,7 +64,7 @@ export const coapsColumns: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
