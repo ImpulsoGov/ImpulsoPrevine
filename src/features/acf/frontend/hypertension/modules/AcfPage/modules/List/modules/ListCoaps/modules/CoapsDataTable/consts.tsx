@@ -23,21 +23,6 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
         cellClassName: "breakable-content",
     },
     {
-        field: "goodPracticesSum",
-        headerName: "Soma boas práticas*",
-        width: 131,
-        headerAlign: "left",
-        align: "left",
-        cellClassName: "breakable-content",
-        renderCell: ({
-            row,
-        }: GridRenderCellParams<HypertensionAcfItem, number>) =>
-            goodPracticesSumFormatter(
-                row.medicalRecordUpdated,
-                row.goodPracticesSum
-            ),
-    },
-    {
         field: "latestAppointmentDate",
         width: 135,
         headerAlign: "left",
@@ -102,39 +87,6 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
         >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
-        field: "latestHomeVisitDate",
-        width: 156,
-        headerAlign: "left",
-        align: "left",
-        renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data da última
-                <br />
-                Visita Domiciliar
-            </span>
-        ),
-        renderCell: RenderDate<HypertensionAcfItem>,
-    },
-    {
-        field: "homeVisitStatusByQuarter",
-        width: 209,
-        headerAlign: "left",
-        align: "left",
-        renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Situação Visita
-                <br />
-                Domiciliar no quadrimestre
-            </span>
-        ),
-        renderCell: ({
-            value,
-        }: GridRenderCellParams<
-            HypertensionAcfItem,
-            LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
-    },
-    {
         field: "latestWeightHeightDate",
         width: 156,
         headerAlign: "left",
@@ -147,25 +99,6 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
             </span>
         ),
         renderCell: RenderDate<HypertensionAcfItem>,
-    },
-    {
-        field: "weightHeightStatusByQuarter",
-        width: 209,
-        headerAlign: "left",
-        align: "left",
-        renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Situação registro
-                <br />
-                de peso e altura no quadrimestre
-            </span>
-        ),
-        renderCell: ({
-            value,
-        }: GridRenderCellParams<
-            HypertensionAcfItem,
-            LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
     },
     {
         field: "careTeamName",
