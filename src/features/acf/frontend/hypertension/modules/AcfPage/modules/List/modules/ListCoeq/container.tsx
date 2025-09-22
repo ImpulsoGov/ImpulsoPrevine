@@ -69,7 +69,9 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                     <FilterHint />
                                     <WithFiltersBar FiltersBar={CoeqFiltersBar}>
                                         <WithPagination>
-                                            <CoeqDataTable />
+                                            <CoeqDataTable
+                                                isPrintEnabled={isPrintEnabled}
+                                            />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
                                                 setShouldRenderPrintTable={
