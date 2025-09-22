@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { GenericRenderDate } from "..";
 
-describe("RenderDate", () => {
+describe("GenericRenderDate", () => {
     it("Deve chamar formatDate e renderizar uma data formatada quando o value for uma string válida", () => {
         const isoString = "2000-10-17T08:30:00.000Z";
         const expectedDate = "17/10/00";

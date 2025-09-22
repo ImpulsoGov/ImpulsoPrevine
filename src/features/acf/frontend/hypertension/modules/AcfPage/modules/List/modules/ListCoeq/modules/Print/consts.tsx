@@ -104,7 +104,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
         headerName: "Aferição de PA: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string | null, StatusByQuarter];
+            const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
                     {<GenericRenderDate value={date} />}
@@ -141,10 +141,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             portrait: 145,
         },
         renderCell: (param: unknown): React.ReactNode => {
-            const [patientPhoneNumber, patientAge] = param as [
-                string | null,
-                string,
-            ];
+            const [patientPhoneNumber, patientAge] = param as [string, string];
             return (
                 <>
                     <div>{phoneNumberFormatter(patientPhoneNumber)}</div>
