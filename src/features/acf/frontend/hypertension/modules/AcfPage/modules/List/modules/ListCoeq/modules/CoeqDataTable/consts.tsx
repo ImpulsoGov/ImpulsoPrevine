@@ -11,7 +11,7 @@ import { RenderStatusByQuarterTag } from "../../../common/RenderStatusByQuarterT
 import { microAreaFormatter } from "../../../common/MicroAreaFormatter";
 import { goodPracticesSumFormatter } from "../../../common/GoodPracticesSumFormatter";
 
-export const coeqColumns: Array<GridColDef> = [
+export const coeqColumnsAlpha: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
