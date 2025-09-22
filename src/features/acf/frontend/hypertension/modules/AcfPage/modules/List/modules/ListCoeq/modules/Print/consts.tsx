@@ -12,7 +12,7 @@ import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
 import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
 import { cpfFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
-import { goodPracticesSumFormatter } from "../../../common/GoodPracticesSumFormatter";
+import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR MICROÁREA",
