@@ -88,7 +88,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 135,
             portrait: 135,
         },
-        headerName: "Consulta: Data e situação",
+        headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (

@@ -42,7 +42,9 @@ export const Thead = <TAcfItem extends AcfItem>({
                         }}
                         key={`${column.headerName}${index.toString()}`}
                     >
-                        <div>{column.headerName}</div>
+                        <div style={{ whiteSpace: "pre-line" }}>
+                            {column.headerName}
+                        </div>
                     </th>
                 );
             })}
