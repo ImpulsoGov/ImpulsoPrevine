@@ -62,7 +62,7 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     danger: {
         backgroundColor: "#FAD2D2",
         color: "#991B1B",
-        width: "60px",
+        width: "90px",
     },
     warning: {
         backgroundColor: "#FFE2B8",
@@ -77,7 +77,7 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     attention: {
         backgroundColor: "#FFF2A6",
         color: "#654F00",
-        width: "70px",
+        width: "96px",
     },
 };
 

@@ -73,7 +73,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",
         width: {
-            landscape: 211,
+            landscape: 190,
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
@@ -90,7 +90,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["goodPracticesSum", "medicalRecordUpdated"],
         headerName: "Soma Boas Práticas",
         width: {
-            landscape: 38,
+            landscape: 80,
             portrait: 38,
         },
         verticalDivider: true,
@@ -114,29 +114,29 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
-            landscape: 135,
+            landscape: 100,
             portrait: 55,
         },
         headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
-                <>
+                <div style={{ paddingLeft: "7px" }}>
                     <div>{formatDate(parseDate(date))}</div>
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
-                </>
+                </div>
             );
         },
     },
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
         width: {
-            landscape: 156,
+            landscape: 100,
             portrait: 71,
         },
-        headerName: "Aferição de PA: Data e situação",
+        headerName: "Aferição de PA: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -152,10 +152,10 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
         width: {
-            landscape: 99,
-            portrait: 85,
+            landscape: 110,
+            portrait: 96,
         },
-        headerName: "Visitas Domiciliares: Data e situação",
+        headerName: "Visitas Domiciliares: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -170,9 +170,9 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     },
     {
         fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
-        headerName: "Reg. peso e altura: Data e situação",
+        headerName: "Reg. peso e altura: \nData e situação",
         width: {
-            landscape: 71,
+            landscape: 110,
             portrait: 59,
         },
         verticalDivider: true,
@@ -198,10 +198,10 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         renderCell: (param: unknown): React.ReactNode => {
             const [careTeamName, microAreaName] = param as [string, string];
             return (
-                <>
+                <div style={{ paddingLeft: "7px" }}>
                     <div>{teamNameFormatter(careTeamName)}</div>
                     <div>{microAreaFormatter(microAreaName)}</div>
-                </>
+                </div>
             );
         },
     },
@@ -210,7 +210,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         headerName: "Telefone e Idade",
         width: {
             landscape: 145,
-            portrait: 145,
+            portrait: 160,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientPhoneNumber, patientAge] = param as [string, string];
