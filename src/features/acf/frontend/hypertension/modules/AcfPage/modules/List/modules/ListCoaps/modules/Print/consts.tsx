@@ -15,7 +15,10 @@ import {
     cnsFormatter,
 } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import {
+    nameFormatter,
+    teamNameFormatter,
+} from "@/features/acf/frontend/common/NameFormatter";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -132,7 +135,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [careTeamName, microAreaName] = param as [string, string];
             return (
                 <>
-                    <div>{careTeamName}</div>
+                    <div>{teamNameFormatter(careTeamName)}</div>
                     <div>{microAreaFormatter(microAreaName)}</div>
                 </>
             );
