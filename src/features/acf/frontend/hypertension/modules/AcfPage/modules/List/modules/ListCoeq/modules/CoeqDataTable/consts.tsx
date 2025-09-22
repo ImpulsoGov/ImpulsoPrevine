@@ -140,7 +140,13 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
-        renderCell: goodPracticesSumFormatter,
+        renderCell: (
+            params: GridRenderCellParams<HypertensionAcfItem, number>
+        ) =>
+            goodPracticesSumFormatter(
+                params.row.medicalRecordUpdated,
+                params.value as number
+            ),
     },
     {
         field: "latestAppointmentDate",
