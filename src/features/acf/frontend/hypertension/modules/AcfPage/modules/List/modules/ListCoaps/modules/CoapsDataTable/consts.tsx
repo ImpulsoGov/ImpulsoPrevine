@@ -29,7 +29,13 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
-        renderCell: goodPracticesSumFormatter,
+        renderCell: ({
+            row,
+        }: GridRenderCellParams<HypertensionAcfItem, number>) =>
+            goodPracticesSumFormatter(
+                row.medicalRecordUpdated,
+                row.goodPracticesSum
+            ),
     },
     {
         field: "latestAppointmentDate",
