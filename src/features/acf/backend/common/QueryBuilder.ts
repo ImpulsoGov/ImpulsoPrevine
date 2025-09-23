@@ -6,19 +6,27 @@ type BaseWhereInput = {
 };
 type BaseFilters = Record<string, ReadonlyArray<unknown>>;
 
+//TODO: Refatorar essa função para usar menos if e melhorar a manutenabilidade
 export const addFilterField = <TPrismaWhereInput, TFilters extends BaseFilters>(
     where: TPrismaWhereInput,
     filter: TFilters,
     field: keyof TFilters
 ): TPrismaWhereInput => {
-    const values = filter[field] as ReadonlyArray<string | null>;
+    const values = filter[field] as ReadonlyArray<
+        string | null | number | boolean
+    >;
     if (values.length === 0) {
         return where;
     }
-
-    const nonNulls = values.filter(
-        (value): value is string => typeof value === "string"
-    );
+    if (typeof filter[field][0] === "boolean") {
+        return {
+            ...where,
+            [field]: {
+                equals: filter[field][0],
+            },
+        };
+    }
+    const nonNulls = values.filter((value) => value !== null);
 
     const hasNull = values.includes(null);
 
@@ -94,9 +102,15 @@ export const orderByNullable = <TSort>(
 export const orderByNotNullable = <TSort>(
     field: keyof TSort,
     sort: "asc" | "desc"
-): Record<string, Prisma.SortOrder> => ({
-    [field]: sort,
-});
+):
+    | Record<string, Prisma.SortOrder>
+    | Array<Record<string, Prisma.SortOrder>> => {
+    return field === "goodPracticesSum"
+        ? [{ [field]: sort }, { isMedicalRecordUpdated: sort }]
+        : {
+              [field]: sort,
+          };
+};
 
 export type NullableFields<TPrismaModel> = AreKeysNullable<
     Omit<TPrismaModel, "municipalitySusId" | "municipalityName">

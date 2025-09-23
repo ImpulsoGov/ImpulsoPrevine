@@ -1,7 +1,9 @@
 import {
     ageRangeCodeToText,
     appointmentStatusByQuarterCodeToText,
+    goodPracticesStatusByQuarterCodeToText,
     latestExamRequestStatusByQuarterCodeToText,
+    medicalRecordUpdatedCodeToText,
 } from "@/features/acf/shared/hypertension/model";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
 import type {
@@ -41,6 +43,16 @@ export const dbToModelCoeq = (
         microAreaName: filtersOptions.microAreaName,
         patientAgeRange: filtersOptions.patientAgeRange.map(
             (code) => ageRangeCodeToText[code]
+        ),
+        goodPracticesStatusByQuarter:
+            filtersOptions.goodPracticesStatusByQuarter.map(
+                (code) => goodPracticesStatusByQuarterCodeToText[code]
+            ),
+        medicalRecordUpdated: filtersOptions.isMedicalRecordUpdated.map(
+            (code: boolean) =>
+                medicalRecordUpdatedCodeToText[
+                    code.toString() as "true" | "false"
+                ]
         ),
     };
 };

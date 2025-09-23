@@ -1,12 +1,11 @@
 import type { PropsWithChildren } from "react";
 import React, { useContext } from "react";
-import { ButtonColorSubmitIcon } from "@impulsogov/design-system";
 import style from "./CustomPrint.module.css";
 //TODO: Ajustar imports relativos
 import type { ModalLabels } from "../../model";
 import { CustomPrintContext } from "../../../WithCustomPrint/context";
-import { Print } from "../../../Print/RenderPrint";
 import { PrintModalContent } from "./modules/PrintModalContent";
+import { Button } from "@impulsogov/design-system";
 
 const DEFAULT_LABELS: ModalLabels = {
     title: "",
@@ -28,30 +27,28 @@ const DEFAULT_LABELS: ModalLabels = {
 type Props = PropsWithChildren<{
     labels?: ModalLabels;
     handleClose: () => void;
-    ref: React.RefObject<HTMLDivElement | null>;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export const CustomPrint: React.FC<Props> = ({
     labels = DEFAULT_LABELS,
     handleClose,
-    ref,
     children,
+    setShouldRenderPrintTable,
 }) => {
     const { customization, setCustomization } = useContext(CustomPrintContext);
 
     const onPrintClick = (): void => {
-        const htmlString = ref.current?.innerHTML || "";
-        Print(htmlString);
+        setShouldRenderPrintTable(true);
     };
-
     return (
         <>
             <div className={style.Container}>
-                <CloseModal handleClose={handleClose} />
                 <PrintModalContent
                     labels={labels}
                     customization={customization}
                     setCustomization={setCustomization}
+                    handleClose={handleClose}
                 />
                 <PrintButton
                     label={labels.button}
@@ -71,15 +68,7 @@ type PrintButtonProps = {
 const PrintButton: React.FC<PrintButtonProps> = ({ label, onPrintClick }) => {
     return (
         <div className={style.ContainerButton}>
-            <ButtonColorSubmitIcon label={label} submit={onPrintClick} />
-        </div>
-    );
-};
-
-const CloseModal: React.FC<{ handleClose: () => void }> = ({ handleClose }) => {
-    return (
-        <div className={style.Close}>
-            <a className={style.ModalExit} onClick={handleClose} />
+            <Button onClick={onPrintClick}>{label}</Button>
         </div>
     );
 };

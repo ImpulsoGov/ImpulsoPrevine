@@ -1,27 +1,29 @@
 import { sanitize } from "@utils/sanitize";
 import type { ReactElement } from "react";
 import { useContext } from "react";
-import type { AppliedFilters } from "../../../../WithFilters";
-import { FiltersContext } from "../../../../WithFilters/context";
+import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
+import {
+    FiltersContext,
+    type FiltersContextType,
+} from "@features/acf/frontend/common/WithFilters/context";
 
 export type PageHeaderProps = {
     // latestProductionDate: string;
     listTitle: string;
     printCaption?: Array<ReactElement>;
-    // equipesDivididas?: boolean;
     filtersLabels: Record<string, string>;
 };
 
 export const PageHeader: React.FC<PageHeaderProps> = ({
-    // appliedFilters, //essa prop pode vir via context
     filtersLabels,
     // latestProductionDate, não vamos usar agora
     listTitle,
     printCaption = [],
-    // equipesDivididas = false,
 }) => {
-    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const appliedFilters = filtersContext || {};
+    const { selectedValues } = useContext(
+        FiltersContext
+    ) as FiltersContextType<AppliedFilters>;
+    const appliedFilters = selectedValues ?? {};
     return (
         <div>
             <div
@@ -128,7 +130,6 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
                         fontFamily: `Inter, sans-serif`,
                         lineHeight: "15px",
                         marginTop: "16px",
-                        // marginBottom: equipesDivididas ? "40px" : "15px",
                         display: "flex",
                         flexDirection: "column",
                         gap: "10px",

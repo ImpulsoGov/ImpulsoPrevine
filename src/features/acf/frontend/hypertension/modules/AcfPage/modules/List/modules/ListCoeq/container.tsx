@@ -3,7 +3,7 @@ import { WithFilters } from "@/features/acf/frontend/common/WithFilters";
 import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
@@ -22,6 +22,8 @@ import {
 import { getCoeqData } from "./modules/Print/service";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
+import { orderPrintGroups } from "./logic";
+import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoeqProps = {
     list: AcfDashboardType;
@@ -34,49 +36,68 @@ const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     appointmentStatusByQuarter: [],
     latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
+    goodPracticesStatusByQuarter: "",
+    medicalRecordUpdated: "",
 };
 
 export const ContentCoeq: React.FC<ContentCoeqProps> = ({
     list,
     isPrintEnabled,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
+    const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
             <ListCoeq list={list}>
                 <WithPrintModal>
-                    <WithCustomPrint>
+                    <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
-                        <WithSearch
-                            SearchComponent={SearchToolBar}
-                            isPrintEnabled={isPrintEnabled}
+                        <WithFilters
+                            initialSelectedValues={initialSelectedValuesCoeq}
                         >
-                            <hr style={{ width: "100%" }} />
-                            <WithSorting>
-                                <FilterHint />
-                                <WithFilters
-                                    initialSelectedValues={
-                                        initialSelectedValuesCoeq
-                                    }
-                                    FiltersBar={CoeqFiltersBar}
-                                >
-                                    <WithPagination>
-                                        <CoeqDataTable />
-                                        <PrintModal
-                                            modalLabels={coeqLabelsModal}
-                                            ref={ref}
-                                        >
-                                            <PrintTable
-                                                columns={coeqColumns}
-                                                serviceGetData={getCoeqData}
-                                                ref={ref}
-                                                printListProps={printListProps}
+                            <WithSearch
+                                SearchComponent={SearchToolBar}
+                                isPrintEnabled={isPrintEnabled}
+                                propTriggerPrintWithoutModal={
+                                    printListProps.propTriggerPrintWithoutModal
+                                }
+                                setShouldRenderPrintTable={
+                                    setShouldRenderPrintTable
+                                }
+                            >
+                                <hr style={{ width: "100%" }} />
+                                <WithSorting>
+                                    <FilterHint />
+                                    <WithFiltersBar
+                                        FiltersBar={CoeqFiltersBar}
+                                        isPrintEnabled={isPrintEnabled}
+                                    >
+                                        <WithPagination>
+                                            <CoeqDataTable
+                                                isPrintEnabled={isPrintEnabled}
                                             />
-                                        </PrintModal>
-                                    </WithPagination>
-                                </WithFilters>
-                            </WithSorting>
-                        </WithSearch>
+                                            <PrintModal
+                                                modalLabels={coeqLabelsModal}
+                                                setShouldRenderPrintTable={
+                                                    setShouldRenderPrintTable
+                                                }
+                                            />
+                                            {shouldRenderPrintTable && (
+                                                <PrintTable
+                                                    columns={coeqColumns}
+                                                    serviceGetData={getCoeqData}
+                                                    setShouldRenderPrintTable={
+                                                        setShouldRenderPrintTable
+                                                    }
+                                                    printListProps={
+                                                        printListProps
+                                                    }
+                                                />
+                                            )}
+                                        </WithPagination>
+                                    </WithFiltersBar>
+                                </WithSorting>
+                            </WithSearch>
+                        </WithFilters>
                     </WithCustomPrint>
                 </WithPrintModal>
             </ListCoeq>

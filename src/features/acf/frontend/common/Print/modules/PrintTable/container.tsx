@@ -1,78 +1,20 @@
 "use client";
 import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { FiltersContext } from "@/features/acf/frontend/common/WithFilters/context";
 import { PrintTable } from "./presentation";
-import type { Session } from "next-auth";
-import type { AxiosError, AxiosResponse } from "axios";
 import { isAxiosError } from "axios";
-import type { GridSortItem } from "@mui/x-data-grid";
-import {
-    useContext,
-    useEffect,
-    useState,
-    type Dispatch,
-    type SetStateAction,
-} from "react";
-import { useSession } from "next-auth/react";
-import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
-import { SortingContext } from "@/features/acf/frontend/common/WithSorting";
-import type { SearchModel } from "@/features/acf/frontend/common/WithSearch";
-import { SearchContext } from "@/features/acf/frontend/common/WithSearch";
 import type { AcfItem } from "@/features/acf/shared/schema";
-import type { GetDataParams } from "./service";
 import type { ColumnsProps, PrintListProps } from "./model";
-
-export type ServiceGetData<
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends AcfItem,
-> = (
-    params: GetDataParams<TAppliedFilters>
-) => Promise<AxiosResponse<Array<TResponse>>>;
-
-const fetchData = <
-    TAppliedFilters extends AppliedFilters,
-    TResponse extends AcfItem,
->(
-    session: Session | null,
-    gridSortingModel: GridSortItem,
-    searchString: string,
-    filters: TAppliedFilters | null,
-    serviceGetData: ServiceGetData<TAppliedFilters, TResponse>,
-    setResponse: Dispatch<
-        SetStateAction<AxiosResponse<Array<TResponse>> | AxiosError | null>
-    >
-): void => {
-    if (!session?.user) {
-        return;
-    }
-
-    const getDataParams = Object.assign(
-        {
-            token: session.user.access_token,
-            sorting: {
-                field: gridSortingModel.field,
-                sort: gridSortingModel.sort,
-            },
-            search: searchString,
-        },
-        !filters ? {} : { filters: filters }
-    );
-
-    serviceGetData(getDataParams)
-        .then((res) => {
-            setResponse(res);
-        })
-        .catch((error: unknown) => {
-            //TODO: generalizar esse error handling e reutilizar
-            if (isAxiosError(error)) {
-                setResponse(error);
-            }
-            if (error instanceof Error) {
-                setResponse(null);
-                console.error(`Erro ao buscar a página. Razão: ${error}`);
-            }
-        });
-};
+import type { ServiceGetData } from "@features/acf/frontend/common/useAcfData";
+import { useAcfData } from "@features/acf/frontend/common/useAcfData";
+import { SplitByPropWithOptionalOrder } from "./modules/SplitByProp";
+import { useContext } from "react";
+import { CustomPrintContext } from "@features/acf/frontend/common/WithCustomPrint";
+import { MultipleGroupsPerBlock } from "./modules/MultipleGroupsPerBlock";
+import { NoSplit } from "./modules/NoSplit";
+import { PageHeader } from "./modules/PageHeader";
+import { SingleGroupPerBlock } from "./modules/SingleGroupPerBlock";
+import { UnitTable } from "./modules/UnitTable";
+import { SortingContext } from "@features/acf/frontend/common/WithSorting";
 
 type Props<
     TAppliedFilters extends AppliedFilters,
@@ -80,7 +22,7 @@ type Props<
 > = {
     columns: Array<ColumnsProps<TResponse>>;
     serviceGetData: ServiceGetData<TAppliedFilters, TResponse>;
-    ref: React.RefObject<HTMLDivElement | null>;
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
     printListProps: PrintListProps<TResponse, TAppliedFilters>;
 };
 
@@ -90,29 +32,18 @@ export const Container = <
 >({
     columns,
     serviceGetData,
-    ref,
     printListProps,
+    setShouldRenderPrintTable,
 }: Props<TAppliedFilters, TResponse>): React.ReactNode => {
-    const { data: session } = useSession();
-    //TODO: adicionar um type guard aqui para garantir que o context é do tipo CoapsAppliedFilters
-    const filtersContext = useContext<AppliedFilters | null>(FiltersContext);
-    const filters = filtersContext as TAppliedFilters | null;
-    const { gridSortingModel } = useContext<SortingModel>(SortingContext);
-    const { searchString } = useContext<SearchModel>(SearchContext);
-    const [response, setResponse] = useState<
-        AxiosResponse<Array<TResponse>> | AxiosError | null
-    >(null);
-
-    useEffect(() => {
-        fetchData(
-            session,
-            gridSortingModel,
-            searchString,
-            filters,
-            serviceGetData,
-            setResponse
-        );
-    }, [session, filters, gridSortingModel, searchString]);
+    const { response } = useAcfData({
+        serviceGetData,
+    });
+    const { customization } = useContext(CustomPrintContext);
+    const { gridSortingModel } = useContext(SortingContext);
+    const orderGroup = customization.orderGroup;
+    const isDataSplitEnabled = customization.grouping;
+    const isPageSplitEnabled = customization.splitGroupPerPage;
+    const isSplitOrderedByProp = customization.order;
 
     if (isAxiosError(response)) {
         return (
@@ -125,13 +56,59 @@ export const Container = <
         );
     }
 
-    if (response !== null)
+    if (response !== null) {
+        const data = response.data as Array<TResponse>;
+        if (isDataSplitEnabled) {
+            const splitData = SplitByPropWithOptionalOrder(
+                data,
+                printListProps.splitBy,
+                printListProps.orderBy,
+                columns,
+                isSplitOrderedByProp,
+                gridSortingModel
+            );
+            const sortedKeys = Object.keys(splitData).sort(orderGroup) as Array<
+                keyof TResponse
+            >;
+
+            const dataSplitProps = {
+                data: splitData,
+                columns,
+                sortedKeys,
+            };
+            return (
+                <PrintTable
+                    setShouldRenderPrintTable={setShouldRenderPrintTable}
+                >
+                    {isPageSplitEnabled ? (
+                        <SingleGroupPerBlock {...dataSplitProps}>
+                            <PageHeader {...printListProps} />
+                        </SingleGroupPerBlock>
+                    ) : (
+                        <MultipleGroupsPerBlock {...dataSplitProps}>
+                            <PageHeader {...printListProps} />
+                        </MultipleGroupsPerBlock>
+                    )}
+                </PrintTable>
+            );
+        }
+
         return (
-            <PrintTable
-                data={response.data}
-                columns={columns}
-                ref={ref}
-                printListProps={printListProps}
-            />
+            <PrintTable setShouldRenderPrintTable={setShouldRenderPrintTable}>
+                <NoSplit>
+                    <PageHeader {...printListProps} />
+                    <UnitTable
+                        data={data}
+                        columns={columns}
+                        layoutOrientation="landscape"
+                    />
+                    <UnitTable
+                        data={data}
+                        columns={columns}
+                        layoutOrientation="portrait"
+                    />
+                </NoSplit>
+            </PrintTable>
         );
+    }
 };

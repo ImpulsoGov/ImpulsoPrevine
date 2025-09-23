@@ -1,12 +1,26 @@
-import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal/model";
+import type { ModalLabels } from "@/features/acf/frontend/common/PrintModal";
 import type {
     ColumnsProps,
     PrintListProps,
-} from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
-import type { CoapsAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoaps";
-import { formatDate, parseDate } from "@/features/common/shared/time";
+} from "@/features/acf/frontend/common/Print";
+import type { CoapsAppliedFilters } from "../CoapsDataTable";
 import React from "react";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
+import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
+import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
+import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
+import {
+    cpfFormatter,
+    cnsFormatter,
+} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
+import {
+    nameFormatter,
+    teamNameFormatter,
+} from "@/features/acf/frontend/common/NameFormatter";
+
+import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -22,7 +36,7 @@ export const apsLabelsModal: ModalLabels = {
         recommendation:
             "Ideal para distribuir listas para coordenadoras de equipe",
         splitGroupPerPage: "Também dividir equipes em folhas separadas",
-        ordering: "Também ordenar listas por profissional responsável",
+        ordering: "Também ordenar listas por microárea",
     },
     button: "IMPRIMIR LISTA",
 };
@@ -31,14 +45,14 @@ export const printListProps: PrintListProps<
     HypertensionAcfItem,
     CoapsAppliedFilters
 > = {
-    listTitle: "LISTA NOMINAL PESSOA COM HIPERTENSÃO",
+    listTitle: "LISTA NOMINAL CUIDADO DA PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
-            <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
-            do cidadão.
+            <b>PA:</b> Pressão Arterial
         </div>,
         <div>
-            <b>PA:</b> Pressão Arterial
+            *Cidadãos com FCI desatualizada. Cadastro não atualizado nos últimos
+            dois anos (24 meses).
         </div>,
     ],
     filtersLabels: {
@@ -47,8 +61,12 @@ export const printListProps: PrintListProps<
         latestExamRequestStatusByQuarter: "Afericão de PA",
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
+        goodPracticesStatusByQuarter: "Situação Boas Práticas",
+        medicalRecordUpdated: "Situação Cadastral FCI",
     },
     splitBy: "careTeamName",
+    orderBy: "microAreaName",
+    propTriggerPrintWithoutModal: "careTeamName",
 };
 
 export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
@@ -56,41 +74,121 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",
         width: {
-            landscape: 211,
+            landscape: 190,
             portrait: 135,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [name, cpf, cns] = param as [string, string, string];
+            return (
+                <>
+                    <div>{nameFormatter(name)}</div>
+                    <div>{cpfFormatter(cpf) || cnsFormatter(cns)}</div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["goodPracticesSum", "medicalRecordUpdated"],
+        headerName: "Soma Boas Práticas",
+        width: {
+            landscape: 80,
+            portrait: 38,
+        },
+        verticalDivider: true,
+        renderCell: (param: unknown): React.ReactNode => {
+            const [goodPracticesSum, medicalRecordUpdated] = param as [
+                number,
+                string,
+            ];
+            return (
+                <>
+                    <div>
+                        {goodPracticesSumFormatter(
+                            medicalRecordUpdated,
+                            goodPracticesSum
+                        )}
+                    </div>
+                </>
+            );
         },
     },
     {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
-            landscape: 135,
-            portrait: 135,
+            landscape: 100,
+            portrait: 55,
         },
-        headerName: "Consulta: Data e situação",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                {"Consulta: \nData e situação"}
+            </div>
+        ),
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string, string];
+            const [date, status] = param as [string, StatusByQuarter];
             return (
-                <>
-                    <div>{formatDate(parseDate(date))}</div>
-                    <div>{status}</div>
-                </>
+                <div style={{ paddingLeft: "7px" }}>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </div>
             );
         },
-        verticalDivider: true,
     },
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
         width: {
-            landscape: 156,
-            portrait: 156,
+            landscape: 100,
+            portrait: 71,
         },
-        headerName: "Aferição de PA: Data e situação",
+        headerName: "Aferição de PA: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
-            const [date, status] = param as [string, string];
+            const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
-                    <div>{status}</div>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
+        width: {
+            landscape: 110,
+            portrait: 96,
+        },
+        headerName: "Visitas Domiciliares: \nData e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
+        headerName: "Reg. peso e altura: \nData e situação",
+        width: {
+            landscape: 110,
+            portrait: 59,
+        },
+        verticalDivider: true,
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
                 </>
             );
         },
@@ -101,14 +199,37 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 144,
             portrait: 144,
         },
-        headerName: "Equipe e Microárea",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                {"Equipe e \nMicroárea"}
+            </div>
+        ),
+
+        renderCell: (param: unknown): React.ReactNode => {
+            const [careTeamName, microAreaName] = param as [string, string];
+            return (
+                <div style={{ paddingLeft: "7px" }}>
+                    <div>{teamNameFormatter(careTeamName)}</div>
+                    <div>{microAreaFormatter(microAreaName)}</div>
+                </div>
+            );
+        },
     },
     {
         fields: ["patientPhoneNumber", "patientAge"],
         headerName: "Telefone e Idade",
         width: {
             landscape: 145,
-            portrait: 145,
+            portrait: 160,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [patientPhoneNumber, patientAge] = param as [string, string];
+            return (
+                <>
+                    <div>{phoneNumberFormatter(patientPhoneNumber)}</div>
+                    <div>{patientAge} anos</div>
+                </>
+            );
         },
     },
 ];

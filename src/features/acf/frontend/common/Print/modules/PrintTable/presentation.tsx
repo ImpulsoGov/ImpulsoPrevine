@@ -1,39 +1,33 @@
-import { useContext } from "react";
-import { CustomPrintContext } from "@/features/acf/frontend/common/WithCustomPrint";
-import type { ColumnsProps, PrintListProps } from "./model";
-import { MultipleTeamsPerPage } from "./modules/MultipleTeamsPerPage";
-import { NoSplit } from "./modules/NoSplit";
-import { PageHeader } from "./modules/PageHeader";
-import { UnitTable } from "./modules/UnitTable";
-import type { AcfItem } from "@/features/acf/shared/schema";
-import type { AppliedFilters } from "@/features/acf/frontend/common/WithFilters";
-import { SingleTeamPerPage } from "./modules/SingleTeamPerPage";
+import { useContext, useEffect, useRef, type PropsWithChildren } from "react";
+import { Print } from "../../RenderPrint";
+import { WithPrintModalContext } from "@features/acf/frontend/common/WithPrintModal/";
+import {
+    CustomPrintContext,
+    defaultCustomization,
+} from "@features/acf/frontend/common/WithCustomPrint";
 
-export type PrintTableProps<
-    TAcfItem extends AcfItem,
-    TFilters extends AppliedFilters,
-> = {
-    data: Array<TAcfItem>;
-    columns: Array<ColumnsProps<TAcfItem>>;
-    ref: React.RefObject<HTMLDivElement | null>;
-    printListProps: PrintListProps<TAcfItem, TFilters>;
-};
+export type PrintTableProps = PropsWithChildren<{
+    setShouldRenderPrintTable: React.Dispatch<React.SetStateAction<boolean>>;
+}>;
 
-export const PrintTable = <
-    TAcfItem extends AcfItem,
-    TFilters extends AppliedFilters,
->({
-    data,
-    columns,
-    ref,
-    printListProps,
-}: PrintTableProps<TAcfItem, TFilters>): React.ReactNode => {
-    const { listTitle, printCaption, filtersLabels, splitBy } = printListProps;
-    const { customization } = useContext(CustomPrintContext);
-    const isDataSplitEnabled = customization.grouping;
-    const isPageSplitEnabled = customization.splitGroupPerPage;
-    // const isSplitOrderedByProp = customization.order;
-
+export const PrintTable = ({
+    children,
+    setShouldRenderPrintTable,
+}: PrintTableProps): React.ReactNode => {
+    const ref = useRef<HTMLDivElement>(null);
+    const { setIsPrintModalVisible } = useContext(WithPrintModalContext);
+    const { setCustomization } = useContext(CustomPrintContext);
+    useEffect(() => {
+        if (ref.current?.innerHTML) {
+            const htmlString = ref.current.innerHTML;
+            if (htmlString.length > 0) {
+                Print(htmlString);
+                setShouldRenderPrintTable(false);
+                setIsPrintModalVisible(false);
+                setCustomization(defaultCustomization);
+            }
+        }
+    }, []);
     return (
         <div
             key="print-table"
@@ -44,53 +38,7 @@ export const PrintTable = <
                 fontFamily: `Inter, sans-serif`,
             }}
         >
-            {isDataSplitEnabled && !isPageSplitEnabled && (
-                <MultipleTeamsPerPage
-                    data={data}
-                    columns={columns}
-                    splitBy={splitBy}
-                >
-                    <PageHeader
-                        filtersLabels={filtersLabels}
-                        listTitle={listTitle}
-                        printCaption={printCaption}
-                    />
-                </MultipleTeamsPerPage>
-            )}
-            {isPageSplitEnabled && isDataSplitEnabled && (
-                <SingleTeamPerPage
-                    data={data}
-                    columns={columns}
-                    splitBy={splitBy}
-                >
-                    <PageHeader
-                        filtersLabels={filtersLabels}
-                        listTitle={listTitle}
-                        printCaption={printCaption}
-                    />
-                </SingleTeamPerPage>
-            )}
-            {!(isDataSplitEnabled || isPageSplitEnabled) && (
-                <>
-                    <NoSplit>
-                        <PageHeader
-                            filtersLabels={filtersLabels}
-                            listTitle={listTitle}
-                            printCaption={printCaption}
-                        />
-                        <UnitTable
-                            data={data}
-                            columns={columns}
-                            layoutOrientation="landscape"
-                        />
-                        <UnitTable
-                            data={data}
-                            columns={columns}
-                            layoutOrientation="portrait"
-                        />
-                    </NoSplit>
-                </>
-            )}
+            {children}
         </div>
     );
 };

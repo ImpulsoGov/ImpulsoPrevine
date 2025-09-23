@@ -7,6 +7,14 @@ export type TheadProps<TAcfItem extends AcfItem> = {
     layoutOrientation: LayoutOrientation;
 };
 
+const DefaultHeader = ({
+    headerName,
+}: {
+    headerName: string;
+}): React.JSX.Element => {
+    return <div style={{ whiteSpace: "pre-line" }}>{headerName}</div>;
+};
+
 export const Thead = <TAcfItem extends AcfItem>({
     columns,
     layoutOrientation,
@@ -40,9 +48,15 @@ export const Thead = <TAcfItem extends AcfItem>({
                             textAlign: "left",
                             boxSizing: "border-box",
                         }}
-                        key={`${column.headerName}${index.toString()}`}
+                        key={`Thead-${index.toString()}`}
                     >
-                        <div>{column.headerName}</div>
+                        {column.renderHeader ? (
+                            column.renderHeader()
+                        ) : (
+                            <DefaultHeader
+                                headerName={column.headerName ?? ""}
+                            />
+                        )}
                     </th>
                 );
             })}

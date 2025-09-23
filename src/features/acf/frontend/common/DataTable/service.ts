@@ -4,6 +4,7 @@ import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFilters } from "../WithFilters";
+import type { GetDataParams } from "../useAcfData";
 
 //TODO: rever este tipo
 type CoordinatorProfile = "coaps" | "coeq";
@@ -17,16 +18,8 @@ export type BodyBuilder<
     search: string | null
 ) => TRequestBody;
 
-export type GetPageParams<TAppliedFilters extends AppliedFilters> = {
-    token: string;
-    page: number;
-    sorting?: GridSortItem;
-    filters?: TAppliedFilters;
-    search?: string;
-};
-
 export type GetPage<TAppliedFilters extends AppliedFilters, TResponse> = (
-    params: GetPageParams<TAppliedFilters>
+    params: GetDataParams<TAppliedFilters>
 ) => Promise<AxiosResponse<TResponse>>;
 
 export const getPageBuilder = <
@@ -39,12 +32,12 @@ export const getPageBuilder = <
     bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody>
 ): GetPage<TAppliedFilters, TResponse> => {
     return async ({
-        page,
+        page = 0,
         sorting,
         filters,
         search,
         token,
-    }: GetPageParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
+    }: GetDataParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
         if (!token) throw new Error("Token de autenticação é obrigatório");
         const currentURL = new URL(window.location.href);
         const url = `${currentURL.origin}/api/lista-nominal/${acfDashboardType.toLowerCase()}/pages/${coordinatorProfile}/${page.toString()}`;

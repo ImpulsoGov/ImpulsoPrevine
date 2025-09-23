@@ -1,10 +1,12 @@
 "use client";
 import { createContext, type Dispatch, type SetStateAction } from "react";
+import type { SortCallback } from "../Print/modules/PrintTable/model";
 
 export type CustomPrintState = {
     grouping: boolean;
     splitGroupPerPage: boolean;
     order: boolean;
+    orderGroup: SortCallback<string>;
 };
 
 export type CustomPrintContextType = {
@@ -17,6 +19,7 @@ export const CustomPrintContext = createContext<CustomPrintContextType>({
         grouping: true,
         splitGroupPerPage: false,
         order: false,
+        orderGroup: () => 0,
     },
     setCustomization: () => {},
 });

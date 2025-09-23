@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  font-family: Inter, sans-serif;
+  white-space: nowrap;
+}
+
+.spacing-status {
+  gap: 5px;
+  padding: 3px 10px;
+}
+
+.spacing-info {
+  gap: 8px;
+  padding: 10px;
+}
+
+.typography-status {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.typography-info {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.12px;
+}
+
+.theme-danger {
+  background-color: #FAD2D2;
+  color: #991B1B;
+}
+
+.theme-warning {
+  background-color: #FFE2B8;
+  color: #B45309;
+}
+
+.theme-success {
+  background-color: #D0F5DB;
+  color: #00923D;
+}
+
+.theme-attention {
+  background-color: #FFF2A6;
+  color: #654F00;
+}
+
+.theme-pending {
+  background-color: #EFF5F9;
+  color: #606E78;
+}
+
+.theme-normal {
+  background-color: #F0F4F6;
+  color: #1F1F1F;
+}
+
+.shape-rounded-status {
+  border-radius: 8px;
+}
+
+.shape-rounded-info {
+  border-radius: 10px;
+}
+
+.shape-square-status,
+.shape-square-info {
+  border-radius: 0;
+}

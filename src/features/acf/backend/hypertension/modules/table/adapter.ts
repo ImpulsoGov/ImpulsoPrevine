@@ -1,13 +1,19 @@
 import type * as db from "@prisma/client";
 import type {
     AppointmentStatusByQuarterCode,
+    HomeVisitStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,
     PatientAgeRangeCode,
+    WeightHeightStatusByQuarterCode,
 } from "@/features/acf/shared/hypertension/model";
 import {
     ageRangeCodeToText,
     appointmentStatusByQuarterCodeToText,
+    goodPracticesStatusByQuarterCodeToText,
+    homeVisitStatusByQuarterCodeToText,
     latestExamRequestStatusByQuarterCodeToText,
+    medicalRecordUpdatedCodeToText,
+    weightHeightStatusByQuarterCodeToText,
 } from "@/features/acf/shared/hypertension/model";
 import type { PageItem } from "./model";
 import type {
@@ -21,12 +27,19 @@ import type {
 import { updateQuarterText } from "../common/UpdateQuarterText";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
-    const updatedAppointmentStatusByQuarter = updateQuarterText(
+    const updatedAppointmentStatusByQuarterCodeToText = updateQuarterText(
         appointmentStatusByQuarterCodeToText
     );
-    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
+    const updatedLatestExamRequestStatusByQuarterCodeToText = updateQuarterText(
         latestExamRequestStatusByQuarterCodeToText
     );
+    const updatedHomeVisitStatusByQuarterCodeToText = updateQuarterText(
+        homeVisitStatusByQuarterCodeToText
+    );
+    const updatedWeightHeightStatusByQuarterCodeToText = updateQuarterText(
+        weightHeightStatusByQuarterCodeToText
+    );
+
     return {
         municipalitySusId: hypertensionRow.municipalitySusId,
         municipalityName: hypertensionRow.municipalityName,
@@ -35,18 +48,33 @@ const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
         patientCns: hypertensionRow.patientCns,
         latestAppointmentDate: hypertensionRow.latestAppointmentDate,
         appointmentStatusByQuarter:
-            updatedAppointmentStatusByQuarter[
+            updatedAppointmentStatusByQuarterCodeToText[
                 hypertensionRow.appointmentStatusByQuarter as AppointmentStatusByQuarterCode
             ],
         latestExamRequestDate: hypertensionRow.latestExamRequestDate,
         latestExamRequestStatusByQuarter:
-            updatedLatestExamRequestStatusByQuarter[
+            updatedLatestExamRequestStatusByQuarterCodeToText[
                 hypertensionRow.latestExamRequestStatusByQuarter as LatestExamRequestStatusByQuarterCode
             ],
         careTeamName: hypertensionRow.careTeamName,
         microAreaName: hypertensionRow.microAreaName,
         patientPhoneNumber: hypertensionRow.patientPhoneNumber,
         patientAge: hypertensionRow.patientAge,
+        goodPracticesSum: hypertensionRow.goodPracticesSum,
+        latestHomeVisitDate: hypertensionRow.latestHomeVisitDate,
+        homeVisitStatusByQuarter:
+            updatedHomeVisitStatusByQuarterCodeToText[
+                hypertensionRow.homeVisitStatusByQuarter as HomeVisitStatusByQuarterCode
+            ],
+        latestWeightHeightDate: hypertensionRow.latestWeightHeightDate,
+        weightHeightStatusByQuarter:
+            updatedWeightHeightStatusByQuarterCodeToText[
+                hypertensionRow.weightHeightStatusByQuarter as WeightHeightStatusByQuarterCode
+            ],
+        medicalRecordUpdated:
+            medicalRecordUpdatedCodeToText[
+                hypertensionRow.isMedicalRecordUpdated ? "true" : "false"
+            ],
     };
 };
 
@@ -103,6 +131,13 @@ const sharedFiltersModelToDb = (
             ageRangeCodeToText
         ),
         microAreaName: filters.microAreaName,
+        goodPracticesStatusByQuarter: filterOptionsModelToDb(
+            filters.goodPracticesStatusByQuarter,
+            goodPracticesStatusByQuarterCodeToText
+        ),
+        isMedicalRecordUpdated: filters.medicalRecordUpdated.map(
+            (value) => value === "Atualizada"
+        ),
     };
 };
 

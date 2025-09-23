@@ -1,0 +1,160 @@
+/**
+ * @jest-environment node
+ */
+
+import { PROFILE_ID } from "@/types/profile";
+import { describe, jest } from "@jest/globals";
+import * as dbHelpers from "@tests/helpers/db";
+import * as httpHelpers from "@tests/helpers/http";
+import * as authHelpers from "@tests/helpers/auth";
+import * as flagHelpers from "@tests/helpers/flag";
+
+const coapsUrl =
+    "http://localhost:3000/api/lista-nominal/diabetes/filters/coaps";
+
+describe("/api/lista-nominal/diabetes/filters/coaps Route Handler", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+        jest.resetModules();
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    describe("GET /api/lista-nominal/diabetes/filters/coaps", () => {
+        it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(false);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
+            dbHelpers.mockPrismaClient();
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coaps/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "GET");
+            const response = await GET(request, {});
+            expect(response.status).toBe(404);
+        });
+
+        it("Deve retornar 403 se o usuário não possuir o perfil permitido na rota", async () => {
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COEQ] },
+                })
+            );
+            dbHelpers.mockPrismaClient();
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coaps/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "GET");
+            const response = await GET(request, {});
+            expect(response.status).toBe(403);
+        });
+
+        it("Deve retornar 500 se um erro inesperado for lançado na rota", async () => {
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
+            authHelpers
+                .mockDecodeToken()
+                .mockRejectedValue(new Error("Erro genérico"));
+            dbHelpers.mockPrismaClient();
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coaps/route"
+            );
+
+            const request = httpHelpers.request(coapsUrl, "GET");
+            const response = await GET(request, {});
+            expect(response.status).toBe(500);
+        });
+
+        it("Deve retornar 200 e as opções de filtro se o request chegar no handler", async () => {
+            flagHelpers
+                .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
+                .mockResolvedValue(true);
+            authHelpers.mockDecodeToken().mockResolvedValue(
+                authHelpers.decodedToken({
+                    payload: { perfis: [PROFILE_ID.COAPS] },
+                })
+            );
+
+            const mockedPrisma = dbHelpers.mockPrismaClient();
+
+            const mockCommunityHealthWorkers = [
+                dbHelpers.diabetesItem({
+                    communityHealthWorker: "ACS João",
+                }),
+                dbHelpers.diabetesItem({
+                    communityHealthWorker: "ACS Maria",
+                }),
+            ];
+
+            const mockPatientStatuses = [
+                dbHelpers.diabetesItem({ patientStatus: "Ativo" }),
+                dbHelpers.diabetesItem({ patientStatus: "Inativo" }),
+            ];
+
+            const mockConditionIdentifiedBy = [
+                dbHelpers.diabetesItem({
+                    conditionIdentifiedBy: "Exame laboratorial",
+                }),
+                dbHelpers.diabetesItem({
+                    conditionIdentifiedBy: "Diagnóstico clínico",
+                }),
+            ];
+
+            const mockPatientAgeRanges = [
+                dbHelpers.diabetesItem({ patientAgeRange: "40-49" }),
+                dbHelpers.diabetesItem({ patientAgeRange: "50-59" }),
+            ];
+
+            const mockCareTeamNames = [
+                dbHelpers.diabetesItem({ careTeamName: "Equipe 1" }),
+                dbHelpers.diabetesItem({ careTeamName: "Equipe 2" }),
+            ];
+
+            mockedPrisma.diabetesAcfItem.findMany
+                .mockResolvedValueOnce(mockCommunityHealthWorkers)
+                .mockResolvedValueOnce(mockPatientStatuses)
+                .mockResolvedValueOnce(mockConditionIdentifiedBy)
+                .mockResolvedValueOnce(mockPatientAgeRanges)
+                .mockResolvedValueOnce(mockCareTeamNames);
+
+            const { GET } = await import(
+                "@/app/api/lista-nominal/diabetes/filters/coaps/route"
+            );
+
+            const expectedBody = {
+                filters: {
+                    communityHealthWorker: ["ACS João", "ACS Maria"],
+                    patientStatus: ["Ativo", "Inativo"],
+                    conditionIdentifiedBy: [
+                        "Exame laboratorial",
+                        "Diagnóstico clínico",
+                    ],
+                    patientAgeRange: ["40-49", "50-59"],
+                    careTeamName: ["Equipe 1", "Equipe 2"],
+                },
+            };
+
+            const request = httpHelpers.request(coapsUrl, "GET");
+            const response = await GET(request, {});
+
+            expect(response.status).toBe(200);
+            expect(await response.json()).toEqual(expectedBody);
+        });
+    });
+});
