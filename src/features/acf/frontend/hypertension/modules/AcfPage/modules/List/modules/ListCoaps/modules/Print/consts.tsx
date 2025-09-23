@@ -4,7 +4,6 @@ import type {
     PrintListProps,
 } from "@/features/acf/frontend/common/Print";
 import type { CoapsAppliedFilters } from "../CoapsDataTable";
-import { formatDate, parseDate } from "@/features/common/shared/time";
 import React from "react";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
@@ -19,7 +18,10 @@ import {
     nameFormatter,
     teamNameFormatter,
 } from "@/features/acf/frontend/common/NameFormatter";
+
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
+import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -141,7 +143,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -180,7 +182,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>

@@ -4,7 +4,7 @@ import type {
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
-import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import { DataGridRenderDate } from "@/features/acf/frontend/common/RenderDate";
 import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
 import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
 import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
@@ -32,7 +32,7 @@ export const coeqColumnsAlpha: Array<GridColDef> = [
                 consulta
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -64,7 +64,7 @@ export const coeqColumnsAlpha: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
@@ -159,7 +159,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 consulta
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -191,7 +191,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 aferição de PA
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
@@ -224,7 +224,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 Visita Domiciliar
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "homeVisitStatusByQuarter",
@@ -257,7 +257,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 registro de peso e altura
             </span>
         ),
-        renderCell: RenderDate<HypertensionAcfItem>,
+        renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "weightHeightStatusByQuarter",
