@@ -18,6 +18,8 @@ import {
     nameFormatter,
     teamNameFormatter,
 } from "@/features/acf/frontend/common/NameFormatter";
+
+import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const apsLabelsModal: ModalLabels = {
@@ -72,7 +74,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",
         width: {
-            landscape: 211,
+            landscape: 190,
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
@@ -86,12 +88,56 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
     },
     {
+        fields: ["goodPracticesSum", "medicalRecordUpdated"],
+        headerName: "Soma Boas Práticas",
+        width: {
+            landscape: 80,
+            portrait: 38,
+        },
+        verticalDivider: true,
+        renderCell: (param: unknown): React.ReactNode => {
+            const [goodPracticesSum, medicalRecordUpdated] = param as [
+                number,
+                string,
+            ];
+            return (
+                <>
+                    <div>
+                        {goodPracticesSumFormatter(
+                            medicalRecordUpdated,
+                            goodPracticesSum
+                        )}
+                    </div>
+                </>
+            );
+        },
+    },
+    {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
-            landscape: 135,
-            portrait: 135,
+            landscape: 100,
+            portrait: 55,
         },
         headerName: "Consulta: \nData e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <div style={{ paddingLeft: "7px" }}>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </div>
+            );
+        },
+    },
+    {
+        fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
+        width: {
+            landscape: 100,
+            portrait: 71,
+        },
+        headerName: "Aferição de PA: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -103,15 +149,34 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
                 </>
             );
         },
-        verticalDivider: true,
     },
     {
-        fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
+        fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
         width: {
-            landscape: 156,
-            portrait: 156,
+            landscape: 110,
+            portrait: 96,
         },
-        headerName: "Aferição de PA: Data e situação",
+        headerName: "Visitas Domiciliares: \nData e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
+        headerName: "Reg. peso e altura: \nData e situação",
+        width: {
+            landscape: 110,
+            portrait: 59,
+        },
+        verticalDivider: true,
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -130,14 +195,14 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 144,
             portrait: 144,
         },
-        headerName: "Equipe e Microárea",
+        headerName: "Equipe e \nMicroárea",
         renderCell: (param: unknown): React.ReactNode => {
             const [careTeamName, microAreaName] = param as [string, string];
             return (
-                <>
+                <div style={{ paddingLeft: "7px" }}>
                     <div>{teamNameFormatter(careTeamName)}</div>
                     <div>{microAreaFormatter(microAreaName)}</div>
-                </>
+                </div>
             );
         },
     },
@@ -146,7 +211,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         headerName: "Telefone e Idade",
         width: {
             landscape: 145,
-            portrait: 145,
+            portrait: 160,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientPhoneNumber, patientAge] = param as [string, string];

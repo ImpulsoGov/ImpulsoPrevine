@@ -11,6 +11,8 @@ import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
 import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
 import { cpfFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
+
+import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
 
 export const coeqLabelsModal: ModalLabels = {
@@ -77,10 +79,35 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
     },
     {
+        fields: ["goodPracticesSum"],
+        headerName: "Soma Boas Práticas",
+        width: {
+            landscape: 33,
+            portrait: 33,
+        },
+        verticalDivider: true,
+        renderCell: (param: unknown): React.ReactNode => {
+            const [goodPracticesSum, medicalRecordUpdated] = param as [
+                number,
+                string,
+            ];
+            return (
+                <>
+                    <div>
+                        {goodPracticesSumFormatter(
+                            medicalRecordUpdated,
+                            goodPracticesSum
+                        )}
+                    </div>
+                </>
+            );
+        },
+    },
+    {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
             landscape: 135,
-            portrait: 135,
+            portrait: 60,
         },
         headerName: "Consulta: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -94,7 +121,6 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
                 </>
             );
         },
-        verticalDivider: true,
     },
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
@@ -103,6 +129,45 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             portrait: 156,
         },
         headerName: "Aferição de PA: Data e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
+        width: {
+            landscape: 99,
+            portrait: 85,
+        },
+        headerName: "Visitas Domiciliares: Data e situação",
+        renderCell: (param: unknown): React.ReactNode => {
+            const [date, status] = param as [string, StatusByQuarter];
+            return (
+                <>
+                    {<RenderDate value={date} />}
+                    <div>
+                        <RenderStatusByQuarterTag value={status} />
+                    </div>
+                </>
+            );
+        },
+    },
+    {
+        fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
+        headerName: "Reg. peso e altura: Data e situação",
+        width: {
+            landscape: 71,
+            portrait: 59,
+        },
+        verticalDivider: true,
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
