@@ -118,7 +118,11 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 100,
             portrait: 55,
         },
-        headerName: "Consulta: \nData e situação",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                {"Consulta: \nData e situação"}
+            </div>
+        ),
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
@@ -195,7 +199,12 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 144,
             portrait: 144,
         },
-        headerName: "Equipe e \nMicroárea",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                {"Equipe e \nMicroárea"}
+            </div>
+        ),
+
         renderCell: (param: unknown): React.ReactNode => {
             const [careTeamName, microAreaName] = param as [string, string];
             return (

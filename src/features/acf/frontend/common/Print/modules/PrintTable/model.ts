@@ -23,7 +23,7 @@ type RenderCell = (param: unknown) => React.ReactNode;
 
 export type ColumnsProps<TAcfItem extends AcfItem> = {
     fields: Array<keyof TAcfItem>;
-    headerName: string;
+    headerName?: string;
     width: {
         portrait: number;
         landscape: number;
@@ -31,6 +31,7 @@ export type ColumnsProps<TAcfItem extends AcfItem> = {
     verticalDivider?: boolean;
     renderCell?: RenderCell;
     titleFormatter?: (value: unknown) => string;
+    renderHeader?: () => React.ReactNode;
 };
 
 export type LayoutOrientation = "landscape" | "portrait";
