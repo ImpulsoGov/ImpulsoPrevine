@@ -1,5 +1,5 @@
 type CaptionProps = {
-    title: string;
+    title: React.ReactNode;
     items: CaptionItemProps;
 };
 

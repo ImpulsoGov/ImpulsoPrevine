@@ -388,3 +388,17 @@ export const captionData = {
         },
     ],
 };
+
+export const fciCaptionData = {
+    title: (
+        <i
+            style={{
+                fontWeight: 400,
+            }}
+        >
+            *Cidadãos com FCI desatualizada. Cadastro não atualizado nos últimos
+            dois anos (24 meses).
+        </i>
+    ),
+    items: [],
+};

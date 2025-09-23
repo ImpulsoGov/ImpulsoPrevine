@@ -41,11 +41,11 @@ export const printListProps: PrintListProps<
     listTitle: "LISTA NOMINAL CUIDADO DA PESSOA COM HIPERTENSÃO",
     printCaption: [
         <div>
-            <b>CPF:</b> Quando o CPF não constar no cadastro, mostraremos o CNS
-            do cidadão.
+            <b>PA:</b> Pressão Arterial
         </div>,
         <div>
-            <b>PA:</b> Pressão Arterial
+            *Cidadãos com FCI desatualizada. Cadastro não atualizado nos últimos
+            dois anos (24 meses).
         </div>,
     ],
     filtersLabels: {
