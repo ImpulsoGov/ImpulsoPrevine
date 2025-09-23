@@ -38,7 +38,7 @@
         "libphonenumber-js": "^1.12.12",
         "lodash.merge": "^4.6.2",
         "mixpanel-browser": "^2.55.1",
-        "next": "^15.3.2",
+        "next": "^15.5.0",
         "next-auth": "^4.24.10",
         "next-transpile-modules": "^10.0.1",
         "papaparse": "^5.4.1",

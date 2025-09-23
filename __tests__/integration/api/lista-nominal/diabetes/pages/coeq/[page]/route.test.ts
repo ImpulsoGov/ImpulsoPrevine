@@ -3,7 +3,6 @@
  */
 
 import { PROFILE_ID } from "@/types/profile";
-import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
 import * as dbHelpers from "@tests/helpers/db";
 import * as httpHelpers from "@tests/helpers/http";
@@ -12,11 +11,6 @@ import * as flagHelpers from "@tests/helpers/flag";
 import type * as schema from "@/features/acf/shared/diabetes/schema";
 
 const coeqUrl = `http://localhost:3000/api/lista-nominal/diabetes/pages/coeq/0`;
-const user = {
-    municipalitySusId: "111111",
-    teamIne: "123",
-    profiles: [PROFILE_ID.COEQ],
-} satisfies interceptors.User;
 const body = {} satisfies schema.CoeqPageRequestBody;
 const stringfiedBody = JSON.stringify(body);
 
@@ -50,8 +44,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -77,8 +69,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -104,8 +94,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "A1" }),
             });
 
@@ -132,8 +120,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: JSON.stringify(bodyWithInvalidFilters),
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: {},
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -157,8 +143,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -201,8 +185,6 @@ describe(`/api/lista-nominal/diabetes/pages/coeq/[page] Route Handler`, () => {
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 

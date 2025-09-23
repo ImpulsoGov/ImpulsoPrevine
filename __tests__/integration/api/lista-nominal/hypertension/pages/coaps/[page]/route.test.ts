@@ -3,7 +3,6 @@
  */
 
 import { PROFILE_ID } from "@/types/profile";
-import type * as interceptors from "@features/interceptors/backend/index";
 import { describe, jest } from "@jest/globals";
 import * as dbHelpers from "@tests/helpers/db";
 import * as httpHelpers from "@tests/helpers/http";
@@ -12,11 +11,6 @@ import * as flagHelpers from "@tests/helpers/flag";
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 
 const coapsUrl = `http://localhost:3000/api/lista-nominal/hypertension/pages/coaps/0`;
-const user = {
-    municipalitySusId: "111111",
-    teamIne: "123",
-    profiles: [PROFILE_ID.COAPS],
-} satisfies interceptors.User;
 const body = {
     filters: {
         patientAgeRange: ["20 a 59 (Adulto)"],
@@ -62,8 +56,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -89,8 +81,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -116,8 +106,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "A" }),
             });
 
@@ -144,8 +132,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: JSON.stringify(bodyWithInvalidSearch),
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: {},
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -169,8 +155,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
@@ -224,8 +208,6 @@ describe(`/api/lista-nominal/hypertension/pages/coaps/[page] Route Handler`, () 
                 body: stringfiedBody,
             });
             const response = await POST(request, {
-                user: user,
-                parsedBody: body,
                 params: Promise.resolve({ page: "0" }),
             });
 
