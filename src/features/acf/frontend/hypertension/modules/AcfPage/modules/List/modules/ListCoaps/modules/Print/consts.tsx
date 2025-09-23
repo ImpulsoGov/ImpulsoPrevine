@@ -124,7 +124,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <div style={{ paddingLeft: "7px" }}>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -143,7 +143,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -162,7 +162,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    <div>{formatDate(parseDate(date))}</div>
+                    {<RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
