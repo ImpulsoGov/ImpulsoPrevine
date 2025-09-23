@@ -27,6 +27,7 @@
         "@vercel/otel": "^1.10.1",
         "@vercel/toolbar": "^0.1.38",
         "axios": "^1.7.7",
+        "core-js": "^3.45.1",
         "cpf-cnpj-validator": "^1.0.3",
         "dompurify": "^3.1.6",
         "flags": "^4.0.1",
@@ -50,7 +51,6 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.26.0",
-        "@playwright/test": "^1.51.1",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
