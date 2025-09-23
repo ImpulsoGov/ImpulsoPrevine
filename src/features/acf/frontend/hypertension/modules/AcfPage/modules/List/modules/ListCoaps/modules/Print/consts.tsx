@@ -21,7 +21,7 @@ import {
 
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
-
+import { formatDate, parseDate } from "@/features/common/shared/time";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -143,7 +143,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    <div>{formatDate(parseDate(date))}</div>
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>

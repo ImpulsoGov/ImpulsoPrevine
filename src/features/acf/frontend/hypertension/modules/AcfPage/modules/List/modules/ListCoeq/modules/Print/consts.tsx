@@ -14,7 +14,7 @@ import { cpfFormatter } from "@features/acf/frontend/hypertension/modules/AcfPag
 
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
-
+import { formatDate, parseDate } from "@/features/common/shared/time";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR MICROÁREA",
@@ -134,7 +134,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    <div>{formatDate(parseDate(date))}</div>
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
