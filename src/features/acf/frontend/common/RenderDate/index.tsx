@@ -1,3 +1,4 @@
+import React from "react";
 import { parseDate, formatDate } from "@/features/common/shared/time";
 import type { JSX } from "react";
 import type { GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";

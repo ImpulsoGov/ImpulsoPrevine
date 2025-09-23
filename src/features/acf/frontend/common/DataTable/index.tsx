@@ -4,11 +4,11 @@ import type { PaginationModel } from "@/features/acf/frontend/common/WithPaginat
 import { PaginationContext } from "@/features/acf/frontend/common/WithPagination";
 import type { SortingModel } from "@/features/acf/frontend/common/WithSorting";
 import { SortingContext } from "@/features/acf/frontend/common/WithSorting/context";
-import { Table } from "@impulsogov/design-system";
+import { Table } from "@/features/acf/frontend/common/Table";
 import { isAxiosError } from "axios";
 import React, { useContext } from "react";
 import { EmptyTableMessage } from "./modules/EmptyTableMessage";
-import type { GridColDef } from "@mui/x-data-grid";
+import type { GridColDef, GridColumnGroupingModel } from "@mui/x-data-grid";
 import type { DataResponses, PageResponse } from "@/features/acf/shared/schema";
 import type { ServiceGetData } from "../useAcfData";
 import { useAcfData } from "../useAcfData";
@@ -21,6 +21,7 @@ type DataTableProps<
     TResponse extends DataResponses,
 > = {
     columns: Array<GridColDef>;
+    columnGroupingModel?: GridColumnGroupingModel;
     serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
 };
 export const DataTable = <
@@ -28,6 +29,7 @@ export const DataTable = <
     TResponse extends PageResponse,
 >({
     columns,
+    columnGroupingModel,
     serviceGetPage,
 }: DataTableProps<TAppliedFilters, TResponse>): React.ReactNode => {
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
@@ -66,13 +68,14 @@ export const DataTable = <
             isLoading={isLoading}
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
-            customSx={{
-                "& .breakable-content": {
-                    whiteSpace: "break-spaces",
-                    paddingTop: "8px",
-                    paddingBottom: "8px",
-                },
-            }}
+            columnGroupingModel={columnGroupingModel}
+            // customSx={{
+            //     "& .breakable-content": {
+            //         whiteSpace: "break-spaces",
+            //         paddingTop: "8px",
+            //         paddingBottom: "8px",
+            //     },
+            // }}
         />
     );
 };

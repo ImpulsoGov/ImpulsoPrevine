@@ -1,4 +1,9 @@
-import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import type {
+    GridColDef,
+    GridColumnGroupHeaderParams,
+    GridColumnGroupingModel,
+    GridRenderCellParams,
+} from "@mui/x-data-grid";
 import type {
     AppointmentStatusByQuarterText,
     HypertensionAcfItem,
@@ -11,6 +16,7 @@ import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/module
 import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
+import { Icon } from "@impulsogov/design-system/dist/atoms/Icon";
 
 export const coapsColumnsAlpha: Array<GridColDef> = [
     {
@@ -154,14 +160,16 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         align: "left",
         renderCell: RenderPatientNameCpfCns,
         cellClassName: "breakable-content",
+        headerClassName: "LowerHeader",
     },
     {
         field: "goodPracticesSum",
         headerName: "Soma boas práticas*",
-        width: 131,
+        width: 145,
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
+        headerClassName: "LowerHeader",
         renderCell: ({
             row,
         }: GridRenderCellParams<
@@ -179,15 +187,31 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         },
     },
     {
+        field: "patientAge",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Idade <br />
+                (anos)
+            </span>
+        ),
+        headerClassName: "LowerHeader",
+        width: 103,
+        headerAlign: "left",
+        align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <span>{value}</span>
+        ),
+    },
+    {
         field: "latestAppointmentDate",
         width: 135,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data última <br />
-                consulta
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -195,11 +219,12 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "appointmentStatusByQuarter",
         width: 207,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação consulta <br />
-                no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -213,13 +238,10 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "latestExamRequestDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data da última
-                <br />
-                aferição de PA
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -227,12 +249,12 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "latestExamRequestStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação aferição de
-                <br />
-                PA no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -246,13 +268,10 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "latestHomeVisitDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data da última
-                <br />
-                Visita Domiciliar
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -260,12 +279,12 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "homeVisitStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação Visita
-                <br />
-                Domiciliar no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -279,13 +298,10 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "latestWeightHeightDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data do último
-                <br />
-                registro de peso e altura
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data último</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -293,12 +309,12 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "weightHeightStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação registro
-                <br />
-                de peso e altura no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -312,6 +328,7 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "careTeamName",
         width: 150,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         headerName: "Equipe",
         cellClassName: "breakable-content",
@@ -333,6 +350,7 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         field: "microAreaName",
         width: 144,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         headerName: "Microárea",
         renderCell: ({
@@ -346,6 +364,7 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         headerName: "Telefone",
         width: 145,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderCell: ({
             value,
@@ -353,17 +372,185 @@ export const coapsColumnsBeta: Array<GridColDef> = [
             <span> {phoneNumberFormatter(value)}</span>
         ),
     },
+];
+
+export const columnGroupingModel: GridColumnGroupingModel = [
     {
-        field: "patientAge",
-        headerName: "Idade",
-        width: 103,
-        headerAlign: "left",
-        align: "left",
-        renderCell: ({
-            value,
-        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span>{value}</span>
-        ),
+        groupId: "Informações gerais",
+        headerName: "Informações gerais",
+        children: [
+            { field: "patientName" },
+            { field: "goodPracticesSum" },
+            { field: "patientAge" },
+        ],
+        headerClassName: "UpperHeader",
+        // TODO: mover para um componente
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+    },
+    {
+        groupId: "Consulta",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+
+        children: [
+            { field: "latestAppointmentDate" },
+            { field: "appointmentStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "Aferição de Pressão Arterial (PA)",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+
+        children: [
+            { field: "latestExamRequestDate" },
+            { field: "latestExamRequestStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "Visita domiciliar",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+
+        children: [
+            { field: "latestHomeVisitDate" },
+            { field: "homeVisitStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "Registro de peso e altura",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+
+        children: [
+            { field: "latestWeightHeightDate" },
+            { field: "weightHeightStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "Informações complementares",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return (
+                <div style={{ width: "100%" }}>
+                    {params.headerName}
+                    <Icon
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                        alt="Ícone de informação"
+                        width={16}
+                        height={16}
+                        style={{
+                            marginLeft: 4,
+                            verticalAlign: "middle",
+                            marginTop: -2,
+                        }}
+                    />
+                </div>
+            );
+        },
+
+        children: [
+            { field: "careTeamName" },
+            { field: "microAreaName" },
+            { field: "patientPhoneNumber" },
+        ],
     },
 ];
 
