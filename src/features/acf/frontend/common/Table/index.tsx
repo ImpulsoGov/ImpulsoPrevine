@@ -10,10 +10,9 @@ import type {
 } from "@mui/x-data-grid";
 import { ptBR } from "@mui/x-data-grid/locales";
 
-// import type { SxProps, Theme } from "@mui/system";
-
 import { sx } from "./sx";
 import type { AcfItem } from "@/features/acf/shared/schema";
+import type { SystemStyleObject } from "@mui/system";
 
 export type TableProps = {
     columns: Array<GridColDef>;
@@ -34,7 +33,7 @@ export type TableProps = {
     noRowsContent?: React.ReactNode;
     sortModel?: GridSortModel;
     slots?: object;
-    customSx?: object;
+    customSx?: SystemStyleObject;
     columnGroupingModel?: GridColumnGroupingModel;
 };
 

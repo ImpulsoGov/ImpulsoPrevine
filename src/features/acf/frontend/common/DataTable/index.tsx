@@ -12,6 +12,7 @@ import type { GridColDef, GridColumnGroupingModel } from "@mui/x-data-grid";
 import type { DataResponses, PageResponse } from "@/features/acf/shared/schema";
 import type { ServiceGetData } from "../useAcfData";
 import { useAcfData } from "../useAcfData";
+import type { SystemStyleObject } from "@mui/system";
 
 export { getPageBuilder } from "./service";
 export type { BodyBuilder } from "./service";
@@ -23,7 +24,7 @@ type DataTableProps<
     columns: Array<GridColDef>;
     columnGroupingModel?: GridColumnGroupingModel;
     serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
-    customSx?: object;
+    customSx?: SystemStyleObject;
 };
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,

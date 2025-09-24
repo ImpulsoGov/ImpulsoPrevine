@@ -10,10 +10,6 @@ export const sx = {
         paddingBottom: "15px",
         height: "85px",
     },
-    // "& .LowerHeader[aria-colindex='3'],& .LowerHeader[aria-colindex='5'],& .LowerHeader[aria-colindex='7'],& .LowerHeader[aria-colindex='9'],& .LowerHeader[aria-colindex='11']":
-    //     {
-    //         borderRight: "1px solid #ACACAC",
-    //     },
     "& .UpperHeader": {
         backgroundColor: "#CBD7DE",
         color: "#535C63",
