@@ -19,10 +19,12 @@ export const CoapsDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
                 columns={isPrintEnabled ? coapsColumnsBeta : coapsColumnsAlpha}
                 serviceGetPage={service.getCoapsPage}
             />
-            <Caption
-                title={fciCaptionData.title}
-                items={fciCaptionData.items}
-            />
+            {isPrintEnabled && (
+                <Caption
+                    title={fciCaptionData.title}
+                    items={fciCaptionData.items}
+                />
+            )}
             <Caption title={captionData.title} items={captionData.items} />
         </>
     );
