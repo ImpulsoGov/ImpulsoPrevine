@@ -345,8 +345,9 @@ export const fciCaptionData = {
                 fontWeight: 400,
             }}
         >
-            *Cidadãos com FCI desatualizada. Cadastro não atualizado nos últimos
-            dois anos (24 meses).
+            *Cidadãos que a FCI está ou estará desatualizada até o fim do
+            quadrimestre. Cadastro completará dois anos (24 meses) desde última
+            atualização.
         </i>
     ),
     items: [],
