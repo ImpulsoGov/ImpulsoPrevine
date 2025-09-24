@@ -164,7 +164,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "patientAge",
-        headerName: "Idade",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Idade <br />
+                (anos)
+            </span>
+        ),
         width: 103,
         headerAlign: "left",
         headerClassName: "LowerHeader",
@@ -218,9 +223,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data da última
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },

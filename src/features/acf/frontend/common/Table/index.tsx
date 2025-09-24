@@ -60,9 +60,6 @@ export const Table: React.FC<TableProps> = ({
                     columnGroupingModel={columnGroupingModel}
                     initialState={{
                         pagination: { paginationModel: { pageSize: 8 } },
-                        sorting: {
-                            sortModel: [{ field: "nome", sort: "asc" }],
-                        },
                     }}
                     getRowId={(row: AcfItem & { id: number }) => row.id}
                     getRowHeight={() => "auto"}
