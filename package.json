@@ -20,6 +20,7 @@
         "@impulsogov/design-system": "^1.0.369",
         "@mui/icons-material": "^7.1.2",
         "@mui/material": "^7.3.1",
+        "@mui/system": "^7.3.2",
         "@mui/x-data-grid": "^7.17.0",
         "@prisma/client": "5.22.0",
         "@sentry/nextjs": "8",

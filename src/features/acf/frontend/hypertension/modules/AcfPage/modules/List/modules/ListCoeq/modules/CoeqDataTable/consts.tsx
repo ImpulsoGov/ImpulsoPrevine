@@ -1,4 +1,9 @@
-import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import type {
+    GridColDef,
+    GridColumnGroupHeaderParams,
+    GridColumnGroupingModel,
+    GridRenderCellParams,
+} from "@mui/x-data-grid";
 import type {
     AppointmentStatusByQuarterText,
     HypertensionAcfItem,
@@ -10,6 +15,8 @@ import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/module
 import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
+import { CellWithDivider } from "../../../common/CellWithDivider";
+import { HeaderWithTooltip } from "@/features/acf/frontend/common/HeaderWithTooltip";
 
 export const coeqColumnsAlpha: Array<GridColDef> = [
     {
@@ -129,15 +136,22 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         headerName: "Nome e CPF/CNS",
         width: 211,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
         cellClassName: "breakable-content",
     },
     {
         field: "goodPracticesSum",
-        headerName: "Soma boas práticas*",
-        width: 131,
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Soma boas <br />
+                práticas*
+            </span>
+        ),
+        width: 145,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         cellClassName: "breakable-content",
         renderCell: (
@@ -149,15 +163,33 @@ export const coeqColumnsBeta: Array<GridColDef> = [
             ),
     },
     {
+        field: "patientAge",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Idade <br />
+                (anos)
+            </span>
+        ),
+        width: 103,
+        headerAlign: "left",
+        headerClassName: "LowerHeader",
+        align: "left",
+        renderCell: ({
+            value,
+        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
+            <CellWithDivider>
+                <span>{value}</span>
+            </CellWithDivider>
+        ),
+    },
+    {
         field: "latestAppointmentDate",
         width: 135,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data última <br />
-                consulta
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -165,11 +197,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         field: "appointmentStatusByQuarter",
         width: 207,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação consulta <br />
-                no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -177,19 +210,20 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             AppointmentStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestExamRequestDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data da última
-                <br />
-                aferição de PA
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -197,12 +231,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         field: "latestExamRequestStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação aferição de
-                <br />
-                PA no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -210,18 +244,21 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestHomeVisitDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última
-                <br />
-                Visita Domiciliar
             </span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
@@ -230,12 +267,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         field: "homeVisitStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação Visita
-                <br />
-                Domiciliar no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -243,18 +280,21 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestWeightHeightDate",
         width: 156,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data do último
-                <br />
-                registro de peso e altura
             </span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
@@ -263,12 +303,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         field: "weightHeightStatusByQuarter",
         width: 209,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação registro
-                <br />
-                de peso e altura no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -276,12 +316,17 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "microAreaName",
-        width: 144,
+        width: 150,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         headerName: "Microárea",
         renderCell: ({
@@ -293,8 +338,9 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 145,
+        width: 150,
         headerAlign: "left",
+        headerClassName: "LowerHeader",
         align: "left",
         renderCell: ({
             value,
@@ -302,20 +348,103 @@ export const coeqColumnsBeta: Array<GridColDef> = [
             <span> {phoneNumberFormatter(value)}</span>
         ),
     },
+];
+export const columnGroupingModel: GridColumnGroupingModel = [
     {
-        field: "patientAge",
-        headerName: "Idade",
-        width: 103,
-        headerAlign: "left",
-        align: "left",
-        renderCell: ({
-            value,
-        }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span>{value}</span>
+        groupId: "#01",
+        headerName: "Informações gerais",
+        children: [
+            { field: "patientName" },
+            { field: "goodPracticesSum" },
+            { field: "patientAge" },
+        ],
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => (
+            <HeaderWithTooltip headerName={params.headerName ?? ""} />
         ),
+    },
+    {
+        groupId: "#02",
+        headerName: "Consulta",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+        },
+
+        children: [
+            { field: "latestAppointmentDate" },
+            { field: "appointmentStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "#03",
+        headerName: "Aferição de Pressão Arterial (PA)",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+        },
+
+        children: [
+            { field: "latestExamRequestDate" },
+            { field: "latestExamRequestStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "#04",
+        headerName: "Visita domiciliar",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+        },
+
+        children: [
+            { field: "latestHomeVisitDate" },
+            { field: "homeVisitStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "#05",
+        headerName: "Registro de peso e altura",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+        },
+
+        children: [
+            { field: "latestWeightHeightDate" },
+            { field: "weightHeightStatusByQuarter" },
+        ],
+    },
+    {
+        groupId: "#06",
+        headerName: "Informações complementares",
+        headerClassName: "UpperHeader",
+        renderHeaderGroup: (
+            params: GridColumnGroupHeaderParams
+        ): React.ReactNode => {
+            return <div style={{ width: "100%" }}>{params.headerName}</div>;
+        },
+
+        children: [{ field: "microAreaName" }, { field: "patientPhoneNumber" }],
     },
 ];
 
+export const customSx = {
+    "& .LowerHeader[aria-colindex='3'],& .LowerHeader[aria-colindex='5'],& .LowerHeader[aria-colindex='7'],& .LowerHeader[aria-colindex='9'],& .LowerHeader[aria-colindex='11']":
+        {
+            borderRight: "1px solid #ACACAC",
+        },
+};
 export const captionData = {
     title: "Tags de situação",
     items: [

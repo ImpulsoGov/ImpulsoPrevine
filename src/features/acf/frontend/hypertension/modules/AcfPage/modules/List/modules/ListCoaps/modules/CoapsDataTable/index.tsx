@@ -7,6 +7,8 @@ import {
     coapsColumnsAlpha,
     coapsColumnsBeta,
     fciCaptionData,
+    columnGroupingModel,
+    customSx,
 } from "./consts";
 
 export type { CoapsAppliedFilters } from "./model";
@@ -17,7 +19,11 @@ export const CoapsDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
         <>
             <DataTable
                 columns={isPrintEnabled ? coapsColumnsBeta : coapsColumnsAlpha}
+                columnGroupingModel={
+                    isPrintEnabled ? columnGroupingModel : undefined
+                }
                 serviceGetPage={service.getCoapsPage}
+                customSx={customSx}
             />
             {isPrintEnabled && (
                 <Caption
