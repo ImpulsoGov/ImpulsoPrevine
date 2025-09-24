@@ -144,7 +144,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     {
         field: "goodPracticesSum",
         headerName: "Soma boas práticas*",
-        width: 131,
+        width: 145,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",

@@ -84,6 +84,10 @@ export const sx = {
         visibility: "visible",
         width: "30px",
     },
+    "& .MuiDataGrid-columnHeader:not(.MuiDataGrid-columnHeader--sorted) .MuiDataGrid-sortButton":
+        {
+            opacity: "1",
+        },
     ".MuiDataGrid-sortIcon": {
         opacity: "1 !important",
         display: "inline-flex",
