@@ -16,8 +16,8 @@ import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/module
 import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
-import { Icon } from "@impulsogov/design-system/dist/atoms/Icon";
 import { CellWithDivider } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/CellWithDivider";
+import { HeaderWithTooltip } from "@/features/acf/frontend/common/HeaderWithTooltip";
 
 export const coapsColumnsAlpha: Array<GridColDef> = [
     {
@@ -165,7 +165,12 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "goodPracticesSum",
-        headerName: "Soma boas práticas*",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Soma boas <br />
+                práticas*
+            </span>
+        ),
         width: 145,
         headerAlign: "left",
         align: "left",
@@ -401,26 +406,10 @@ export const columnGroupingModel: GridColumnGroupingModel = [
             { field: "patientAge" },
         ],
         headerClassName: "UpperHeader",
-        // TODO: mover para um componente
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
     },
     {
@@ -429,22 +418,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -458,22 +432,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -487,22 +446,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -516,22 +460,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -545,22 +474,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <div style={{ width: "100%" }}>{params.headerName}</div>;
         },
 
         children: [

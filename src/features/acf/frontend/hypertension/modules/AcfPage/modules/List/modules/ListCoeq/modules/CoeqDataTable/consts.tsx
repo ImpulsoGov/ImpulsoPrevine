@@ -15,8 +15,8 @@ import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/module
 import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
-import { Icon } from "@features/common/frontend/atoms/Icon";
 import { CellWithDivider } from "../../../common/CellWithDivider";
+import { HeaderWithTooltip } from "@/features/acf/frontend/common/HeaderWithTooltip";
 
 export const coeqColumnsAlpha: Array<GridColDef> = [
     {
@@ -143,7 +143,12 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "goodPracticesSum",
-        headerName: "Soma boas práticas*",
+        renderHeader: () => (
+            <span className="MuiDataGrid-columnHeaderTitle">
+                Soma boas <br />
+                práticas*
+            </span>
+        ),
         width: 145,
         headerAlign: "left",
         headerClassName: "LowerHeader",
@@ -179,10 +184,7 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         headerClassName: "LowerHeader",
         align: "left",
         renderHeader: () => (
-            <span className="MuiDataGrid-columnHeaderTitle">
-                Data última <br />
-                consulta
-            </span>
+            <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
     },
@@ -194,8 +196,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação consulta <br />
-                no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -218,8 +220,6 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última
-                <br />
-                aferição de PA
             </span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
@@ -232,9 +232,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação aferição de
-                <br />
-                PA no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -257,8 +256,6 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data da última
-                <br />
-                Visita Domiciliar
             </span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
@@ -271,9 +268,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação Visita
-                <br />
-                Domiciliar no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -296,8 +292,6 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
                 Data do último
-                <br />
-                registro de peso e altura
             </span>
         ),
         renderCell: DataGridRenderDate<HypertensionAcfItem>,
@@ -310,9 +304,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
         align: "left",
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">
-                Situação registro
-                <br />
-                de peso e altura no quadrimestre
+                Situação no <br />
+                quadrimestre
             </span>
         ),
         renderCell: ({
@@ -363,27 +356,11 @@ export const columnGroupingModel: GridColumnGroupingModel = [
             { field: "patientAge" },
         ],
         headerClassName: "UpperHeader",
-        // TODO: mover para um componente
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
-        ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
-        },
+        ): React.ReactNode => (
+            <HeaderWithTooltip headerName={params.headerName ?? ""} />
+        ),
     },
     {
         groupId: "Consulta",
@@ -391,22 +368,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -420,22 +382,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -449,22 +396,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [
@@ -478,22 +410,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return (
-                <div style={{ width: "100%" }}>
-                    {params.headerName}
-                    <Icon
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                        alt="Ícone de informação"
-                        width={16}
-                        height={16}
-                        style={{
-                            marginLeft: 4,
-                            verticalAlign: "middle",
-                            marginTop: -2,
-                        }}
-                    />
-                </div>
-            );
+            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
         },
 
         children: [

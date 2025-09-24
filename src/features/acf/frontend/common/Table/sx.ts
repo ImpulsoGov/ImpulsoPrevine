@@ -51,9 +51,11 @@ export const sx = {
         whiteSpace: "normal",
     },
     "& .MuiDataGrid-columnHeaderTitleContainerContent": {
+        width: "fit-content",
+    },
+    "& .UpperHeader .MuiDataGrid-columnHeaderTitleContainerContent": {
         width: "100%",
     },
-
     "& .MuiDataGrid-columnHeaders": {
         backgroundColor: "#F0F4F6",
         borderBottom: "1px solid #0000001F",
