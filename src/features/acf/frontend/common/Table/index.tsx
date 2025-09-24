@@ -10,7 +10,7 @@ import type {
 } from "@mui/x-data-grid";
 import { ptBR } from "@mui/x-data-grid/locales";
 
-import type { SxProps, Theme } from "@mui/system";
+// import type { SxProps, Theme } from "@mui/system";
 
 import { sx } from "./sx";
 import type { AcfItem } from "@/features/acf/shared/schema";
@@ -34,7 +34,7 @@ export type TableProps = {
     noRowsContent?: React.ReactNode;
     sortModel?: GridSortModel;
     slots?: object;
-    customSx?: SxProps<Theme>;
+    customSx?: object;
     columnGroupingModel?: GridColumnGroupingModel;
 };
 
@@ -44,6 +44,7 @@ export const Table: React.FC<TableProps> = ({
     isLoading = false,
     noRowsContent = "Nenhum registro para exibir",
     columnGroupingModel,
+    customSx = {},
     ...props
 }) => {
     const rowsWithID = data.map((row: AcfItem, index: number) => ({
@@ -71,7 +72,7 @@ export const Table: React.FC<TableProps> = ({
                     localeText={
                         ptBR.components.MuiDataGrid.defaultProps.localeText
                     }
-                    sx={sx}
+                    sx={{ ...sx, ...customSx }}
                     loading={isLoading}
                     slots={{
                         noRowsOverlay: () => noRowsContent,

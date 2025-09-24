@@ -151,6 +151,24 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
     },
 ];
 
+const CellWithDivider = ({
+    children,
+}: {
+    children: React.ReactNode;
+}): React.ReactElement => (
+    <div
+        style={{
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            borderRight: "1px solid #ACACAC",
+        }}
+    >
+        {children}
+    </div>
+);
+
 export const coapsColumnsBeta: Array<GridColDef> = [
     {
         field: "patientName",
@@ -201,7 +219,7 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span>{value}</span>
+            <CellWithDivider>{value}</CellWithDivider>
         ),
     },
     {
@@ -232,7 +250,11 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             AppointmentStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestExamRequestDate",
@@ -262,7 +284,11 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestHomeVisitDate",
@@ -292,7 +318,11 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "latestWeightHeightDate",
@@ -322,7 +352,11 @@ export const coapsColumnsBeta: Array<GridColDef> = [
         }: GridRenderCellParams<
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
-        >) => <RenderStatusByQuarterTag value={value} />,
+        >) => (
+            <CellWithDivider>
+                <RenderStatusByQuarterTag value={value} />
+            </CellWithDivider>
+        ),
     },
     {
         field: "careTeamName",

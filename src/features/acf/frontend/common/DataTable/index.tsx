@@ -23,6 +23,7 @@ type DataTableProps<
     columns: Array<GridColDef>;
     columnGroupingModel?: GridColumnGroupingModel;
     serviceGetPage: ServiceGetData<TAppliedFilters, TResponse>;
+    customSx?: object;
 };
 export const DataTable = <
     TAppliedFilters extends AppliedFilters,
@@ -31,6 +32,7 @@ export const DataTable = <
     columns,
     columnGroupingModel,
     serviceGetPage,
+    customSx,
 }: DataTableProps<TAppliedFilters, TResponse>): React.ReactNode => {
     const { gridPaginationModel, onPaginationModelChange, resetPagination } =
         useContext<PaginationModel>(PaginationContext);
@@ -69,13 +71,7 @@ export const DataTable = <
             slots={{ noRowsOverlay: EmptyTableMessage }}
             data-testid="list-table"
             columnGroupingModel={columnGroupingModel}
-            // customSx={{
-            //     "& .breakable-content": {
-            //         whiteSpace: "break-spaces",
-            //         paddingTop: "8px",
-            //         paddingBottom: "8px",
-            //     },
-            // }}
+            customSx={customSx}
         />
     );
 };
