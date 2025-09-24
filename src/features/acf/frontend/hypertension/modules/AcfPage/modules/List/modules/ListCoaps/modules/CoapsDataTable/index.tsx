@@ -19,7 +19,9 @@ export const CoapsDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
         <>
             <DataTable
                 columns={isPrintEnabled ? coapsColumnsBeta : coapsColumnsAlpha}
-                columnGroupingModel={columnGroupingModel}
+                columnGroupingModel={
+                    isPrintEnabled ? columnGroupingModel : undefined
+                }
                 serviceGetPage={service.getCoapsPage}
                 customSx={customSx}
             />

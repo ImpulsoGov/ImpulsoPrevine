@@ -20,7 +20,9 @@ export const CoeqDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
             <DataTable
                 columns={isPrintEnabled ? coeqColumnsBeta : coeqColumnsAlpha}
                 serviceGetPage={service.getCoeqPage}
-                columnGroupingModel={columnGroupingModel}
+                columnGroupingModel={
+                    isPrintEnabled ? columnGroupingModel : undefined
+                }
                 customSx={customSx}
             />
             <Caption
