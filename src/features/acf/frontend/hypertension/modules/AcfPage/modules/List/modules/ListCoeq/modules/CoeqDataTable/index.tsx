@@ -19,10 +19,12 @@ export const CoeqDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
                 columns={isPrintEnabled ? coeqColumnsBeta : coeqColumnsAlpha}
                 serviceGetPage={service.getCoeqPage}
             />
-            <Caption
-                title={fciCaptionData.title}
-                items={fciCaptionData.items}
-            />
+            {isPrintEnabled && (
+                <Caption
+                    title={fciCaptionData.title}
+                    items={fciCaptionData.items}
+                />
+            )}
             <Caption title={captionData.title} items={captionData.items} />
         </>
     );
