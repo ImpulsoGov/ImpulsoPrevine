@@ -398,7 +398,7 @@ export const coapsColumnsBeta: Array<GridColDef> = [
 
 export const columnGroupingModel: GridColumnGroupingModel = [
     {
-        groupId: "Informações gerais",
+        groupId: "#01",
         headerName: "Informações gerais",
         children: [
             { field: "patientName" },
@@ -413,7 +413,8 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         },
     },
     {
-        groupId: "Consulta",
+        groupId: "#02",
+        headerName: "Consulta",
         headerClassName: "UpperHeader",
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
@@ -427,7 +428,8 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         ],
     },
     {
-        groupId: "Aferição de Pressão Arterial (PA)",
+        groupId: "#03",
+        headerName: "Aferição de Pressão Arterial (PA)",
         headerClassName: "UpperHeader",
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
@@ -441,7 +443,8 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         ],
     },
     {
-        groupId: "Visita domiciliar",
+        groupId: "#04",
+        headerName: "Visita domiciliar",
         headerClassName: "UpperHeader",
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
@@ -455,7 +458,8 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         ],
     },
     {
-        groupId: "Registro de peso e altura",
+        groupId: "#05",
+        headerName: "Registro de peso e altura",
         headerClassName: "UpperHeader",
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
@@ -469,7 +473,8 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         ],
     },
     {
-        groupId: "Informações complementares",
+        groupId: "#06",
+        headerName: "Informações complementares",
         headerClassName: "UpperHeader",
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
