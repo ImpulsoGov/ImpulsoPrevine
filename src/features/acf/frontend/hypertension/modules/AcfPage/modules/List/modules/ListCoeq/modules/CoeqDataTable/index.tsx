@@ -7,6 +7,8 @@ import {
     captionData,
     coeqColumnsBeta,
     fciCaptionData,
+    columnGroupingModel,
+    customSx,
 } from "./consts";
 
 export type { CoeqAppliedFilters } from "./model";
@@ -18,6 +20,8 @@ export const CoeqDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
             <DataTable
                 columns={isPrintEnabled ? coeqColumnsBeta : coeqColumnsAlpha}
                 serviceGetPage={service.getCoeqPage}
+                columnGroupingModel={columnGroupingModel}
+                customSx={customSx}
             />
             <Caption
                 title={fciCaptionData.title}

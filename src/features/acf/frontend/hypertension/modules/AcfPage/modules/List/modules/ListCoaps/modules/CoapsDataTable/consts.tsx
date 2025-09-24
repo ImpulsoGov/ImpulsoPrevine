@@ -17,6 +17,7 @@ import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/mod
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
 import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
 import { Icon } from "@impulsogov/design-system/dist/atoms/Icon";
+import { CellWithDivider } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/CellWithDivider";
 
 export const coapsColumnsAlpha: Array<GridColDef> = [
     {
@@ -150,24 +151,6 @@ export const coapsColumnsAlpha: Array<GridColDef> = [
         ),
     },
 ];
-
-const CellWithDivider = ({
-    children,
-}: {
-    children: React.ReactNode;
-}): React.ReactElement => (
-    <div
-        style={{
-            display: "flex",
-            alignItems: "center",
-            height: "100%",
-            width: "100%",
-            borderRight: "1px solid #ACACAC",
-        }}
-    >
-        {children}
-    </div>
-);
 
 export const coapsColumnsBeta: Array<GridColDef> = [
     {
@@ -587,6 +570,13 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         ],
     },
 ];
+
+export const customSx = {
+    "& .LowerHeader[aria-colindex='3'],& .LowerHeader[aria-colindex='5'],& .LowerHeader[aria-colindex='7'],& .LowerHeader[aria-colindex='9'],& .LowerHeader[aria-colindex='11']":
+        {
+            borderRight: "1px solid #ACACAC",
+        },
+};
 
 export const captionData = {
     title: "Tags de situação",

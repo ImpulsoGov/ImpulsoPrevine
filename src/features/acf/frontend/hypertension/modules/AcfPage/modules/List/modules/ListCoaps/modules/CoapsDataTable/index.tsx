@@ -8,6 +8,7 @@ import {
     coapsColumnsBeta,
     fciCaptionData,
     columnGroupingModel,
+    customSx,
 } from "./consts";
 
 export type { CoapsAppliedFilters } from "./model";
@@ -20,12 +21,7 @@ export const CoapsDataTable: React.FC<Props> = ({ isPrintEnabled }) => {
                 columns={isPrintEnabled ? coapsColumnsBeta : coapsColumnsAlpha}
                 columnGroupingModel={columnGroupingModel}
                 serviceGetPage={service.getCoapsPage}
-                customSx={{
-                    "& .LowerHeader[aria-colindex='3'],& .LowerHeader[aria-colindex='5'],& .LowerHeader[aria-colindex='7'],& .LowerHeader[aria-colindex='9'],& .LowerHeader[aria-colindex='11']":
-                        {
-                            borderRight: "1px solid #ACACAC",
-                        },
-                }}
+                customSx={customSx}
             />
             <Caption
                 title={fciCaptionData.title}
