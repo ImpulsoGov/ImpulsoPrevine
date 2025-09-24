@@ -38,4 +38,4 @@ export const getCoapsPage = getPageBuilder<
     schema.CoapsPageRequestBody,
     schema.PageResponse,
     CoapsAppliedFilters
->("hypertension", "coaps", bodyBuilder);
+>("cuidado_da_pessoa_com_hipertensao", "coaps", bodyBuilder);

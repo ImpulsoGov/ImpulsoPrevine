@@ -38,4 +38,4 @@ export const getCoeqData = getDataBuilder<
     schema.CoeqPageRequestBody,
     schema.DataResponse,
     CoeqAppliedFilters
->("hypertension", "coeq", bodyBuilder);
+>("cuidado_da_pessoa_com_hipertensao", "coeq", bodyBuilder);

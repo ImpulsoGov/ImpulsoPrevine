@@ -39,7 +39,7 @@ export const getDataBuilder = <
     }: GetDataParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
         if (!token) throw new Error("Token de autenticação é obrigatório");
         const currentURL = new URL(window.location.href);
-        const url = `${currentURL.origin}/api/lista-nominal/${acfDashboardType.toLowerCase()}/pages/${coordinatorProfile}/all`;
+        const url = `${currentURL.origin}/api/cofin25/indicadores/${acfDashboardType.toLowerCase()}/${coordinatorProfile}/dados`;
         const body = bodyBuilder(
             sorting || null,
             filters || null,

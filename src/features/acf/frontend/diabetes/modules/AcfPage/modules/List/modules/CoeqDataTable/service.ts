@@ -33,4 +33,4 @@ export const getCoeqPage = getPageBuilder<
     schema.CoeqPageRequestBody,
     schema.PageResponse,
     CoeqAppliedFilters
->("diabetes", "coeq", bodyBuilder);
+>("cuidado_da_pessoa_com_diabetes", "coeq", bodyBuilder);
