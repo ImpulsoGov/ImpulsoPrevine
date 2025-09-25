@@ -6,8 +6,8 @@ import style from "./style.module.css";
 
 export const HeaderWithTooltip: React.FC<{
     headerName: string;
-    tooltipText: ReactNode;
-}> = ({ headerName, tooltipText }) => {
+    tooltipContent: ReactNode;
+}> = ({ headerName, tooltipContent }) => {
     const [isOpen, setIsOpen] = useState(false);
     const handleTooltipClose = (): void => {
         setIsOpen(false);
@@ -32,7 +32,7 @@ export const HeaderWithTooltip: React.FC<{
                         open={isOpen}
                         onClose={handleTooltipClose}
                         onOpen={handleTooltipOpen}
-                        title={tooltipText}
+                        title={tooltipContent}
                         placement="top"
                         arrow
                         disableFocusListener

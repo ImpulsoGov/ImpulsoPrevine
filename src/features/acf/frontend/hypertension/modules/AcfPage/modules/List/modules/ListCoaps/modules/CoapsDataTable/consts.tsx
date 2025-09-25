@@ -462,7 +462,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
                 return (
                     <HeaderWithTooltip
                         headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
                     />
                 );
         },
@@ -480,7 +480,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
                 return (
                     <HeaderWithTooltip
                         headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
                     />
                 );
         },
@@ -503,7 +503,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
                 return (
                     <HeaderWithTooltip
                         headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
                     />
                 );
         },
@@ -526,7 +526,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
                 return (
                     <HeaderWithTooltip
                         headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
                     />
                 );
         },
@@ -549,7 +549,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
                 return (
                     <HeaderWithTooltip
                         headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
                     />
                 );
         },
