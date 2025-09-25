@@ -26,6 +26,7 @@ export const HeaderWithTooltip: React.FC<{
                 onClose={handleTooltipClose}
                 onOpen={handleTooltipOpen}
                 title={tooltipText}
+                placement="top"
                 arrow
             >
                 <Icon
