@@ -134,7 +134,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
-        width: 211,
+        minWidth: 211,
+        flex: 1,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -149,7 +150,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 práticas*
             </span>
         ),
-        width: 145,
+        minWidth: 145,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -170,7 +172,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
                 (anos)
             </span>
         ),
-        width: 103,
+        minWidth: 103,
+        flex: 0.4,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -184,7 +187,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
-        width: 135,
+        minWidth: 135,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -195,7 +199,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "appointmentStatusByQuarter",
-        width: 207,
+        minWidth: 207,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -218,7 +223,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -229,7 +235,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -252,7 +259,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestHomeVisitDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -265,7 +273,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "homeVisitStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -288,7 +297,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestWeightHeightDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -301,7 +311,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "weightHeightStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -324,7 +335,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "microAreaName",
-        width: 150,
+        minWidth: 150,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -338,7 +350,8 @@ export const coeqColumnsBeta: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 150,
+        minWidth: 150,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
