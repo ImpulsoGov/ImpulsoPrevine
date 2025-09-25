@@ -520,15 +520,7 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            const groupId =
-                params.groupId as keyof typeof tooltipContentByGroupId;
-            if (params.groupId)
-                return (
-                    <HeaderWithTooltip
-                        headerName={params.headerName ?? ""}
-                        tooltipText={tooltipContentByGroupId[groupId]}
-                    />
-                );
+            return <div style={{ width: "100%" }}>{params.headerName}</div>;
         },
 
         children: [{ field: "microAreaName" }, { field: "patientPhoneNumber" }],
