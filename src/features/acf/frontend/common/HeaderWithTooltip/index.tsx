@@ -34,6 +34,8 @@ export const HeaderWithTooltip: React.FC<{
                         title={tooltipText}
                         placement="top"
                         arrow
+                        disableFocusListener
+                        disableTouchListener
                     >
                         <Icon
                             src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
