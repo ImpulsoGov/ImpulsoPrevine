@@ -4,17 +4,17 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { GridSortModel } from "@mui/x-data-grid";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 // import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "../AcfDashboard";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListProps = {
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     // title: string;
 };
 export type PrintStatesType = {
     value: FilterItem;
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     sorting: GridSortModel;
     search: string;
 };

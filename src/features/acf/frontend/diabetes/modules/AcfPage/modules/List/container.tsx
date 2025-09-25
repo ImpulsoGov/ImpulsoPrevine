@@ -7,7 +7,7 @@ import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import {
     CoapsDataTable,
     type CoapsAppliedFilters,
@@ -24,7 +24,7 @@ import { printListProps } from "@/features/acf/frontend/hypertension/modules/Acf
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 export type ListContainerProps = {
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     municipalitySusId: string;
     teamIne: string;
     userProfile: ProfileIdValue;
@@ -34,7 +34,7 @@ export type ListContainerProps = {
 type ContentCoeqProps = {
     municipalitySusId: string;
     teamIne: string;
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     isPrintEnabled: boolean;
 };
 

@@ -1,20 +1,20 @@
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 export const propPrintGroupingCoapsFunction = (
-    listName: AcfDashboardType
+    listName: keyof AcfDashboardType
 ): string => {
     const propPrintGroupingByDashboardType = {
-        cuidado_da_pessoa_com_diabetes: "equipe_nome",
-        cuidado_da_pessoa_com_hipertensao: "equipe_nome",
+        diabetes: "equipe_nome",
+        hypertension: "equipe_nome",
     };
     return propPrintGroupingByDashboardType[listName];
 };
 export const propPrintGroupingCoeqFunction = (
-    listName: AcfDashboardType
+    listName: keyof AcfDashboardType
 ): string => {
     const propPrintGroupingByDashboardType = {
-        cuidado_da_pessoa_com_diabetes: "acs_nome_cadastro",
-        cuidado_da_pessoa_com_hipertensao: "acs_nome_cadastro",
+        diabetes: "acs_nome_cadastro",
+        hypertension: "acs_nome_cadastro",
     };
     return propPrintGroupingByDashboardType[listName];
 };

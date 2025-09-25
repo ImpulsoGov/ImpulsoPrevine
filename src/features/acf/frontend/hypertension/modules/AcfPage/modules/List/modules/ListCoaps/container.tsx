@@ -5,7 +5,7 @@ import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
@@ -23,7 +23,7 @@ import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoapsProps = {
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     isPrintEnabled: boolean;
 };
 

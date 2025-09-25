@@ -1,5 +1,6 @@
 "use client";
-import type { AcfDashboardType } from "../DashboardType";
+import { acfDashboardMap } from "../AcfDashboard";
+import { type AcfDashboardType } from "../AcfDashboard";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
@@ -27,7 +28,7 @@ export const getPageBuilder = <
     TResponse,
     TAppliedFilters extends AppliedFilters,
 >(
-    acfDashboardType: AcfDashboardType,
+    acfDashboardType: keyof AcfDashboardType,
     coordinatorProfile: CoordinatorProfile,
     bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody>
 ): GetPage<TAppliedFilters, TResponse> => {
@@ -40,7 +41,7 @@ export const getPageBuilder = <
     }: GetDataParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
         if (!token) throw new Error("Token de autenticação é obrigatório");
         const currentURL = new URL(window.location.href);
-        const url = `${currentURL.origin}/api/cofin25/indicadores/${acfDashboardType.toLowerCase()}/${coordinatorProfile}/dados/pagina/${page.toString()}`;
+        const url = `${currentURL.origin}/api/cofin25/indicadores/${acfDashboardMap[acfDashboardType].toLowerCase()}/${coordinatorProfile}/dados/pagina/${page.toString()}`;
         const body = bodyBuilder(
             sorting || null,
             filters || null,

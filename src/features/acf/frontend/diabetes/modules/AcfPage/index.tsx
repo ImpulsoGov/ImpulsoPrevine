@@ -3,7 +3,7 @@ import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "@features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "../../../common/AcfDashboard";
 import { ErrorPage } from "@features/acf/frontend/common/ErrorPage";
 import { diabetesNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
@@ -25,8 +25,8 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const resolvedSearchParams = await searchParams;
     const initialTabId = resolvedSearchParams.tabID || "charts";
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
-    const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
-        "DIABETES") as AcfDashboardType;
+    const acfDashboardType: keyof AcfDashboardType =
+        (resolvedSearchParams.list || "DIABETES") as keyof AcfDashboardType;
 
     const municipalityName = getMunicipalityName(
         session?.user.municipio_id_sus ?? ""

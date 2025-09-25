@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type {
     AcfExternalCardsDescription,
     ExternalCardDataItem,
@@ -10,7 +10,7 @@ export const externalCardsDbToModel = (
 ): Array<ExternalCardDataItem> => {
     return data.map((item) => ({
         value: item.valor,
-        acfDashboardType: item.lista as AcfDashboardType,
+        acfDashboardType: item.lista as keyof AcfDashboardType,
         acfExternalCardsDescription:
             item.descricao as AcfExternalCardsDescription,
     }));

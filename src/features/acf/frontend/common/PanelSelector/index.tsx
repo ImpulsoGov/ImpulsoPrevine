@@ -1,5 +1,5 @@
 "use client";
-import type { AcfDashboardType } from "../DashboardType";
+import type { AcfDashboardType } from "../AcfDashboard";
 import type {
     // CoordinatorProfile,
     ProfileIdValue,
@@ -89,7 +89,7 @@ type BreadcrumbItem = {
 };
 
 type PanelSelectorProps = {
-    acfDashboardType: AcfDashboardType;
+    acfDashboardType: keyof AcfDashboardType;
     tabID: string;
     subTabID: string;
     externalCardsProps: Array<CardProps>;

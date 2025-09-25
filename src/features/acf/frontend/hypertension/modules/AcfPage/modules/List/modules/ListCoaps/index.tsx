@@ -1,10 +1,10 @@
 "use client";
 export { ContentCoaps } from "./container";
 export type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 export type ListProps = {
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     // title: string;
 };
 

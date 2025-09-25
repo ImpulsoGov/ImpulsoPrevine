@@ -4,7 +4,7 @@ import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
@@ -26,7 +26,7 @@ import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoeqProps = {
-    list: AcfDashboardType;
+    list: keyof AcfDashboardType;
     isPrintEnabled: boolean;
 };
 

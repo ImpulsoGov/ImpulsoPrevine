@@ -39,4 +39,4 @@ export const getCoapsData = getDataBuilder<
     schema.CoapsPageRequestBody,
     schema.DataResponse,
     CoapsAppliedFilters
->("cuidado_da_pessoa_com_hipertensao", "coaps", bodyBuilder);
+>("hypertension", "coaps", bodyBuilder);

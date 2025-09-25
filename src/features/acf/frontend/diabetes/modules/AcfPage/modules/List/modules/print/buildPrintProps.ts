@@ -1,5 +1,5 @@
 import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import {
     larguraColunasHipertensaoEquipePaisagem,
     larguraColunasHipertensaoEquipeRetrato,
@@ -13,7 +13,7 @@ import { filtersLabels } from "../CoeqFiltersBar/consts";
 import { coeqColumns } from "../CoeqDataTable/consts";
 
 export const buildPrintProps = (
-    list: AcfDashboardType,
+    list: keyof AcfDashboardType,
     tableData: Array<DiabetesAcfPrintItem>,
     userProfiles: Array<ProfileIdValue>,
     //eslint-disable-next-line @typescript-eslint/no-deprecated

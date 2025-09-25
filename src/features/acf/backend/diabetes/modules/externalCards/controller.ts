@@ -1,10 +1,10 @@
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import { externalCardsDbToModel } from "./adapter";
 import type { ExternalCardDataItem } from "./model";
 import { externalCardsDataForTeam } from "./repository";
 
 export const externalCardsAcfDashboardDataControllerForTeam = (
-    listName: AcfDashboardType,
+    listName: keyof AcfDashboardType,
     municipalitySusId: string,
     teamIne: string
 ): Array<ExternalCardDataItem> => {

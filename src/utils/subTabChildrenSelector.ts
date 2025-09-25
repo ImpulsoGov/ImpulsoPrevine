@@ -4,7 +4,7 @@ import type {
     ExtendedPanelSelectorWithCardsProps,
     ExtendedsubTabsWithChildrenAndChildrenDataProps,
 } from "@/features/acf/frontend/common/PanelSelector";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 //TODO: Remover daqui
 /**
@@ -23,7 +23,7 @@ export const subTabChildrenSelector = (
     selectorProps: ExtendedPanelSelectorWithCardsProps,
     subTabChildrenID: Record<
         string,
-        React.ComponentType<{ title: string; list: AcfDashboardType }>
+        React.ComponentType<{ title: string; list: keyof AcfDashboardType }>
     >,
     subTabChildren: Record<string, string>
 ): Record<string, React.ReactNode> => {
@@ -38,7 +38,9 @@ export const subTabChildrenSelector = (
                     subTabChildrenID[subTabChildren[subTab.subTabID]];
                 result[subTab.subTabID] = React.createElement(Component, {
                     title: subTab.title,
-                    list: selectorProps.listaNominalID,
+                    list: Object.keys(
+                        selectorProps.listaNominalID
+                    )[0] as keyof AcfDashboardType,
                 });
                 return result;
             },
