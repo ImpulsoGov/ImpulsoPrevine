@@ -10,7 +10,7 @@ export const externalCardsDbToModel = (
 ): Array<ExternalCardDataItem> => {
     return data.map((item) => ({
         value: item.valor,
-        acfDashboardType: item.lista as keyof AcfDashboardType,
+        acfDashboardType: item.lista as AcfDashboardType,
         acfExternalCardsDescription:
             item.descricao as AcfExternalCardsDescription,
     }));

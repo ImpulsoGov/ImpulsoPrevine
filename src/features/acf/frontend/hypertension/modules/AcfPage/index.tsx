@@ -30,8 +30,8 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const resolvedSearchParams = await searchParams;
     const initialTabId = resolvedSearchParams.tabID || "charts";
     const initialSubTabId = resolvedSearchParams.subTabID || "ChartSubTabID1";
-    const acfDashboardType: keyof AcfDashboardType =
-        (resolvedSearchParams.list || "hypertension") as keyof AcfDashboardType;
+    const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
+        "hypertension") as AcfDashboardType;
     const municipalityName = getMunicipalityName(
         session?.user.municipio_id_sus ?? ""
     );

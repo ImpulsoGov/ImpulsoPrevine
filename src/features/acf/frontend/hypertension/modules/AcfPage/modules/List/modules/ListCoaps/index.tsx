@@ -4,7 +4,7 @@ export type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 export type ListProps = {
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     // title: string;
 };
 

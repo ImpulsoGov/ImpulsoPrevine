@@ -24,7 +24,7 @@ import { printListProps } from "@/features/acf/frontend/hypertension/modules/Acf
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 export type ListContainerProps = {
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     municipalitySusId: string;
     teamIne: string;
     userProfile: ProfileIdValue;
@@ -34,7 +34,7 @@ export type ListContainerProps = {
 type ContentCoeqProps = {
     municipalitySusId: string;
     teamIne: string;
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     isPrintEnabled: boolean;
 };
 

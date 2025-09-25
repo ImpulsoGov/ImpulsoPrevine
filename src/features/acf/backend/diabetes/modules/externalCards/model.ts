@@ -5,7 +5,7 @@ export type AcfExternalCardsDescription =
     | "DIAGNOSTICO_CLINICO";
 
 export type ExternalCardDataItem = {
-    acfDashboardType: keyof AcfDashboardType;
+    acfDashboardType: AcfDashboardType;
     acfExternalCardsDescription: AcfExternalCardsDescription;
     value: number;
 };

@@ -13,7 +13,7 @@ import { filtersLabels } from "../CoeqFiltersBar/consts";
 import { coeqColumns } from "../CoeqDataTable/consts";
 
 export const buildPrintProps = (
-    list: keyof AcfDashboardType,
+    list: AcfDashboardType,
     tableData: Array<DiabetesAcfPrintItem>,
     userProfiles: Array<ProfileIdValue>,
     //eslint-disable-next-line @typescript-eslint/no-deprecated

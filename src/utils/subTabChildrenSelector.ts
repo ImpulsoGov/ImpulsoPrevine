@@ -23,7 +23,7 @@ export const subTabChildrenSelector = (
     selectorProps: ExtendedPanelSelectorWithCardsProps,
     subTabChildrenID: Record<
         string,
-        React.ComponentType<{ title: string; list: keyof AcfDashboardType }>
+        React.ComponentType<{ title: string; list: AcfDashboardType }>
     >,
     subTabChildren: Record<string, string>
 ): Record<string, React.ReactNode> => {
@@ -40,7 +40,7 @@ export const subTabChildrenSelector = (
                     title: subTab.title,
                     list: Object.keys(
                         selectorProps.listaNominalID
-                    )[0] as keyof AcfDashboardType,
+                    )[0] as AcfDashboardType,
                 });
                 return result;
             },

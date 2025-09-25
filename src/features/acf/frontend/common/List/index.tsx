@@ -9,12 +9,12 @@ import type { AcfDashboardType } from "../AcfDashboard";
 
 // Adicionar união de valores quando soubermos as listas que teremos
 export type ListProps = {
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     // title: string;
 };
 export type PrintStatesType = {
     value: FilterItem;
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     sorting: GridSortModel;
     search: string;
 };

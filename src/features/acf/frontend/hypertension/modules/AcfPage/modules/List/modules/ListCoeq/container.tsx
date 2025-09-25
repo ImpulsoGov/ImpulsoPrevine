@@ -26,7 +26,7 @@ import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
 
 type ContentCoeqProps = {
-    list: keyof AcfDashboardType;
+    list: AcfDashboardType;
     isPrintEnabled: boolean;
 };
 

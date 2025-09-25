@@ -1,7 +1,7 @@
 import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 export const propPrintGroupingCoapsFunction = (
-    listName: keyof AcfDashboardType
+    listName: AcfDashboardType
 ): string => {
     const propPrintGroupingByDashboardType = {
         diabetes: "equipe_nome",
@@ -10,7 +10,7 @@ export const propPrintGroupingCoapsFunction = (
     return propPrintGroupingByDashboardType[listName];
 };
 export const propPrintGroupingCoeqFunction = (
-    listName: keyof AcfDashboardType
+    listName: AcfDashboardType
 ): string => {
     const propPrintGroupingByDashboardType = {
         diabetes: "acs_nome_cadastro",

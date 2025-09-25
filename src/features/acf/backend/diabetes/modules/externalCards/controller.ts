@@ -4,7 +4,7 @@ import type { ExternalCardDataItem } from "./model";
 import { externalCardsDataForTeam } from "./repository";
 
 export const externalCardsAcfDashboardDataControllerForTeam = (
-    listName: keyof AcfDashboardType,
+    listName: AcfDashboardType,
     municipalitySusId: string,
     teamIne: string
 ): Array<ExternalCardDataItem> => {

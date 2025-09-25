@@ -28,7 +28,7 @@ export const getDataBuilder = <
     TResponse,
     TAppliedFilters extends AppliedFilters,
 >(
-    acfDashboardType: keyof AcfDashboardType,
+    acfDashboardType: AcfDashboardType,
     coordinatorProfile: CoordinatorProfile,
     bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody>
 ): GetData<TAppliedFilters, TResponse> => {

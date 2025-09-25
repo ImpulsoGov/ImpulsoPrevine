@@ -89,7 +89,7 @@ type BreadcrumbItem = {
 };
 
 type PanelSelectorProps = {
-    acfDashboardType: keyof AcfDashboardType;
+    acfDashboardType: AcfDashboardType;
     tabID: string;
     subTabID: string;
     externalCardsProps: Array<CardProps>;

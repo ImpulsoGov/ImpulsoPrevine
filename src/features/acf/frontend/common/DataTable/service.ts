@@ -28,7 +28,7 @@ export const getPageBuilder = <
     TResponse,
     TAppliedFilters extends AppliedFilters,
 >(
-    acfDashboardType: keyof AcfDashboardType,
+    acfDashboardType: AcfDashboardType,
     coordinatorProfile: CoordinatorProfile,
     bodyBuilder: BodyBuilder<TAppliedFilters, TRequestBody>
 ): GetPage<TAppliedFilters, TResponse> => {
