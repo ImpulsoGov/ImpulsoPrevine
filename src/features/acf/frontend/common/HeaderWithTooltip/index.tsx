@@ -1,5 +1,6 @@
 import { Icon } from "@/features/common/frontend/atoms";
 import { Tooltip } from "@mui/material";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useState, type ReactNode } from "react";
 
 export const HeaderWithTooltip: React.FC<{
@@ -21,26 +22,31 @@ export const HeaderWithTooltip: React.FC<{
             }}
         >
             {headerName}
-            <Tooltip
-                open={isOpen}
-                onClose={handleTooltipClose}
-                onOpen={handleTooltipOpen}
-                title={tooltipText}
-                placement="top"
-                arrow
-            >
-                <Icon
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
-                    alt="Ícone de informação"
-                    width={16}
-                    height={16}
-                    style={{
-                        marginLeft: 4,
-                        verticalAlign: "middle",
-                        marginTop: -2,
-                    }}
-                />
-            </Tooltip>
+            <ClickAwayListener onClickAway={handleTooltipClose}>
+                <div>
+                    <Tooltip
+                        open={isOpen}
+                        onClose={handleTooltipClose}
+                        onOpen={handleTooltipOpen}
+                        title={tooltipText}
+                        placement="top"
+                        arrow
+                    >
+                        <Icon
+                            src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmfwxvq1608u307ked86rl4v1"
+                            alt="Ícone de informação"
+                            width={16}
+                            height={16}
+                            style={{
+                                marginLeft: 4,
+                                verticalAlign: "middle",
+                                marginTop: -2,
+                            }}
+                            onClick={handleTooltipOpen}
+                        />
+                    </Tooltip>
+                </div>
+            </ClickAwayListener>
         </div>
     );
 };
