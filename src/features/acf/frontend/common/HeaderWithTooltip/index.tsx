@@ -19,6 +19,9 @@ export const HeaderWithTooltip: React.FC<{
         <div
             style={{
                 width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
             {headerName}
