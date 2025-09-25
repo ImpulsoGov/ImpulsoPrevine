@@ -2,6 +2,7 @@ import { Icon } from "@/features/common/frontend/atoms";
 import { Tooltip } from "@mui/material";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useState, type ReactNode } from "react";
+import style from "./style.module.css";
 
 export const HeaderWithTooltip: React.FC<{
     headerName: string;
@@ -48,6 +49,7 @@ export const HeaderWithTooltip: React.FC<{
                                 marginTop: -2,
                             }}
                             onClick={handleTooltipOpen}
+                            className={style.Icon}
                         />
                     </Tooltip>
                 </div>
