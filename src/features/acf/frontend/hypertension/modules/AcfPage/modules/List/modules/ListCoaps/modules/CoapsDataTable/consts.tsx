@@ -396,6 +396,53 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
 ];
 
+const tooltipContentByGroupId = {
+    "#01": (
+        <div>
+            Aqui estão apenas cidadãos com FCI e que possuem diagnóstico
+            clínico.
+            <br />
+            <br />A soma das boas práticas é a estimativa da pontuação de
+            cidadãos. Cada prática marcada como “em dia” soma 25 pontos, podendo
+            chegar a até 100 no total.
+        </div>
+    ),
+    "#02": (
+        <div>
+            Ter realizado pelo menos 01 consulta presencial ou remota por
+            profissional médica(o) ou enfermeira(o), nos últimos 6 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#03": (
+        <div>
+            Ter pelo menos 01 registro de aferição da pressão arterial,
+            realizado nos últimos 6 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#04": (
+        <div>
+            Ter pelo menos 2 visitas domiciliares nos últimos 12 meses, feitas
+            por ACS ou TACS, com intervalo mínimo de 30 dias entre elas. Só
+            contam as visitas registradas como acompanhamento de pessoa com
+            hipertensão.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#05": (
+        <div>
+            Ter realizado pelo menos 01 (um) registro de peso e altura, nos
+            últimos 12 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+};
+
 export const columnGroupingModel: GridColumnGroupingModel = [
     {
         groupId: "#01",
@@ -409,7 +456,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipText={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
     },
     {
@@ -419,7 +474,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipText={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -434,7 +497,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipText={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -449,7 +520,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipText={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -464,7 +543,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipText={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
