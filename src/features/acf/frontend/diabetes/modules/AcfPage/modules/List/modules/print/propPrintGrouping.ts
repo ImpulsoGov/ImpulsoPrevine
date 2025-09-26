@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 
 export const propPrintGroupingCoapsFunction = (
     listName: AcfDashboardType

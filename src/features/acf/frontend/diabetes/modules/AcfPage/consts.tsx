@@ -1,5 +1,5 @@
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type {
     PanelSelectorWithCardsProps,
     subTabsWithChildrenProps,

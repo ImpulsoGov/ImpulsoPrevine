@@ -1,5 +1,5 @@
 import type { PrintTableProps } from "@/componentes/unmounted/lista-nominal/print/PrintTable";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import {
     larguraColunasHipertensaoEquipePaisagem,
     larguraColunasHipertensaoEquipeRetrato,

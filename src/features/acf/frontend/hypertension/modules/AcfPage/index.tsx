@@ -4,7 +4,7 @@ import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import type { ProfileIdValue } from "@/types/profile";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "../../../common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import { ErrorPage } from "../../../common/ErrorPage";
 import { PanelSelector } from "../../../common/PanelSelector";
 import { print } from "@/features/common/shared/flags";
