@@ -38,9 +38,7 @@ export const subTabChildrenSelector = (
                     subTabChildrenID[subTabChildren[subTab.subTabID]];
                 result[subTab.subTabID] = React.createElement(Component, {
                     title: subTab.title,
-                    list: Object.keys(
-                        selectorProps.listaNominalID
-                    )[0] as AcfDashboardType,
+                    list: selectorProps.listaNominalID,
                 });
                 return result;
             },
