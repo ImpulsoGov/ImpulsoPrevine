@@ -156,7 +156,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
-        width: 211,
+        minWidth: 211,
+        flex: 1,
         headerAlign: "left",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
@@ -171,7 +172,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
                 práticas*
             </span>
         ),
-        width: 145,
+        minWidth: 145,
+        flex: 0.5,
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
@@ -201,7 +203,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
             </span>
         ),
         headerClassName: "LowerHeader",
-        width: 103,
+        minWidth: 103,
+        flex: 0.4,
         headerAlign: "left",
         align: "left",
         renderCell: ({
@@ -212,7 +215,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
-        width: 135,
+        minWidth: 135,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -223,7 +227,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "appointmentStatusByQuarter",
-        width: 207,
+        minWidth: 207,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -246,7 +251,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -257,7 +263,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -280,7 +287,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestHomeVisitDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -291,7 +299,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "homeVisitStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -314,7 +323,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "latestWeightHeightDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -325,7 +335,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "weightHeightStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -348,7 +359,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "careTeamName",
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -370,7 +382,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     },
     {
         field: "microAreaName",
-        width: 144,
+        minWidth: 144,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -384,7 +397,8 @@ export const coapsColumnsBeta: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 145,
+        minWidth: 145,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
