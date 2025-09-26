@@ -1,5 +1,5 @@
 "use client";
-import type { AcfDashboardType } from "../AcfDashboard";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type {
     // CoordinatorProfile,
     ProfileIdValue,

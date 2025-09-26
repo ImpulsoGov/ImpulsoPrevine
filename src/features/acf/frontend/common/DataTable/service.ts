@@ -1,6 +1,6 @@
 "use client";
-import { acfDashboardMap } from "../AcfDashboard";
-import { type AcfDashboardType } from "../AcfDashboard";
+import { acfDashboardMap } from "@/features/acf/frontend/common/AcfDashboard";
+import { type AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";

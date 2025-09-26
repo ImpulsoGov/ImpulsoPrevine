@@ -4,7 +4,7 @@ import type { FilterItem } from "@/services/lista-nominal/ListaNominal";
 import type { GridSortModel } from "@mui/x-data-grid";
 // import { clearFiltersArgs } from "./modules/filters/clearFiltersArgs";
 // import { urlSearchParamsHook } from "./modules/urlSearchParams.hook";
-import type { AcfDashboardType } from "../AcfDashboard";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 // import { buildPrintProps } from "./modules/print/buildPrintProps";
 
 // Adicionar união de valores quando soubermos as listas que teremos
