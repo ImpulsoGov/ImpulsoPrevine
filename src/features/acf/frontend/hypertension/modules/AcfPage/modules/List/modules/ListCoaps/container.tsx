@@ -68,12 +68,9 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                     <FilterHint />
                                     <WithFiltersBar
                                         FiltersBar={CoapsFiltersBar}
-                                        isPrintEnabled={isPrintEnabled}
                                     >
                                         <WithPagination>
-                                            <CoapsDataTable
-                                                isPrintEnabled={isPrintEnabled}
-                                            />
+                                            <CoapsDataTable />
                                             <PrintModal
                                                 modalLabels={apsLabelsModal}
                                                 setShouldRenderPrintTable={
