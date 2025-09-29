@@ -1,19 +1,17 @@
-import type * as model from "@/features/acf/shared/hypertension/model";
+import type * as model from "@/features/acf/shared/diabetes/model";
 import type * as db from "@prisma/client";
 
 export type SharedFiltersOptionsDb = {
-    microAreaName: ReadonlyArray<db.HypertensionAcfItem["microAreaName"]>;
-    appointmentStatusByQuarter: ReadonlyArray<model.AppointmentStatusByQuarterCode>;
-    latestExamRequestStatusByQuarter: ReadonlyArray<model.LatestExamRequestStatusByQuarterCode>;
+    microAreaName: ReadonlyArray<db.DiabetesAcfItem["microAreaName"]>;
     patientAgeRange: ReadonlyArray<model.PatientAgeRangeCode>;
     goodPracticesStatusByQuarter: ReadonlyArray<model.GoodPracticesStatusByQuarterCode>;
     isMedicalRecordUpdated: ReadonlyArray<
-        db.HypertensionAcfItem["isMedicalRecordUpdated"]
+        db.DiabetesAcfItem["isMedicalRecordUpdated"]
     >;
 };
 
 export type FiltersOptionsDbCoeq = SharedFiltersOptionsDb;
 
 export type FiltersOptionsDbCoaps = SharedFiltersOptionsDb & {
-    careTeamName: ReadonlyArray<db.HypertensionAcfItem["careTeamName"]>;
+    careTeamName: ReadonlyArray<db.DiabetesAcfItem["careTeamName"]>;
 };

@@ -10,11 +10,7 @@ import { z } from "zod/v4";
 
 const handler = async (
     req: NextRequest,
-    {
-        params,
-    }: {
-        params: Promise<{ page: string }>;
-    }
+    { params }: { params: Promise<{ page: string }> }
 ): Promise<Response> => {
     const user = await getUser(req);
 
