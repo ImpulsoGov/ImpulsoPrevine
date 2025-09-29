@@ -1,25 +1,22 @@
-import type { DiabetesAcfItem } from "@features/acf/shared/diabetes/model";
+import type {
+    MedicalRecordUpdatedText,
+    GoodPracticesStatusByQuarterText,
+    HypertensionAcfItem,
+    PatientAgeRangeText,
+} from "@features/acf/shared/hypertension/model";
 
-//TODO: sumir com esse arquivo, esses tipos podem ir pra dentro dos módulos
+// TODO: criar tipos com os campos em comum entre coaps e coeq e reaproveitar
 export type FiltersOptionsCoeq = {
-    communityHealthWorker: ReadonlyArray<
-        DiabetesAcfItem["communityHealthWorker"]
-    >;
-    patientStatus: ReadonlyArray<DiabetesAcfItem["patientStatus"]>;
-    conditionIdentifiedBy: ReadonlyArray<
-        DiabetesAcfItem["conditionIdentifiedBy"]
-    >;
-    patientAgeRange: ReadonlyArray<DiabetesAcfItem["patientAgeRange"]>;
+    microAreaName: ReadonlyArray<HypertensionAcfItem["microAreaName"]>;
+    patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
+    goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
+    medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
 };
 
 export type FiltersOptionsCoaps = {
-    communityHealthWorker: ReadonlyArray<
-        DiabetesAcfItem["communityHealthWorker"]
-    >;
-    patientStatus: ReadonlyArray<DiabetesAcfItem["patientStatus"]>;
-    conditionIdentifiedBy: ReadonlyArray<
-        DiabetesAcfItem["conditionIdentifiedBy"]
-    >;
-    patientAgeRange: ReadonlyArray<DiabetesAcfItem["patientAgeRange"]>;
-    careTeamName: ReadonlyArray<DiabetesAcfItem["careTeamName"]>;
+    careTeamName: ReadonlyArray<HypertensionAcfItem["careTeamName"]>;
+    microAreaName: ReadonlyArray<HypertensionAcfItem["microAreaName"]>;
+    patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
+    goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
+    medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
 };
