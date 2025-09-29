@@ -12,7 +12,7 @@ import * as flagHelpers from "@tests/helpers/flag";
 const coeqUrl =
     "http://localhost:3000/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coeq/filtros";
 
-describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
+describe("/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coeq/filtros/route Route Handler", () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetModules();
@@ -22,7 +22,7 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
         jest.restoreAllMocks();
     });
 
-    describe("GET /api/lista-nominal/diabetes/filters/coeq", () => {
+    describe("GET /api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coeq/filtros/route", () => {
         it("Deve retornar 404 se a feature flag diabetesNewProgram não estiver habilitada", async () => {
             flagHelpers
                 .mockFlag(flagHelpers.DIABETES_NEW_PROGRAM)
@@ -93,39 +93,34 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
 
             const mockedPrisma = dbHelpers.mockPrismaClient();
 
-            const mockCommunityHealthWorkers = [
-                dbHelpers.diabetesItem({
-                    communityHealthWorker: "ACS João",
-                }),
-                dbHelpers.diabetesItem({
-                    communityHealthWorker: "ACS Maria",
-                }),
-            ];
-
-            const mockPatientStatuses = [
-                dbHelpers.diabetesItem({ patientStatus: "Ativo" }),
-                dbHelpers.diabetesItem({ patientStatus: "Inativo" }),
-            ];
-
-            const mockConditionIdentifiedBy = [
-                dbHelpers.diabetesItem({
-                    conditionIdentifiedBy: "Exame laboratorial",
-                }),
-                dbHelpers.diabetesItem({
-                    conditionIdentifiedBy: "Diagnóstico clínico",
-                }),
+            const mockMicroAreaNames = [
+                dbHelpers.diabetesItem({ microAreaName: "01" }),
+                dbHelpers.diabetesItem({ microAreaName: "02" }),
             ];
 
             const mockPatientAgeRanges = [
-                dbHelpers.diabetesItem({ patientAgeRange: "40-49" }),
-                dbHelpers.diabetesItem({ patientAgeRange: "50-59" }),
+                dbHelpers.diabetesItem({ patientAgeRange: 20 }),
+                dbHelpers.diabetesItem({ patientAgeRange: 30 }),
+            ];
+
+            const mockGoodPracticesStatusByQuarter = [
+                dbHelpers.diabetesItem({
+                    goodPracticesStatusByQuarter: 20,
+                }),
+                dbHelpers.diabetesItem({
+                    goodPracticesStatusByQuarter: 10,
+                }),
+            ];
+            const mockIsMedicalRecordUpdated = [
+                dbHelpers.diabetesItem({ isMedicalRecordUpdated: true }),
+                dbHelpers.diabetesItem({ isMedicalRecordUpdated: false }),
             ];
 
             mockedPrisma.diabetesAcfItem.findMany
-                .mockResolvedValueOnce(mockCommunityHealthWorkers)
-                .mockResolvedValueOnce(mockPatientStatuses)
-                .mockResolvedValueOnce(mockConditionIdentifiedBy)
-                .mockResolvedValueOnce(mockPatientAgeRanges);
+                .mockResolvedValueOnce(mockMicroAreaNames)
+                .mockResolvedValueOnce(mockPatientAgeRanges)
+                .mockResolvedValueOnce(mockGoodPracticesStatusByQuarter)
+                .mockResolvedValueOnce(mockIsMedicalRecordUpdated);
 
             const { GET } = await import(
                 "@/app/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coeq/filtros/route"
@@ -133,13 +128,19 @@ describe("/api/lista-nominal/diabetes/filters/coeq Route Handler", () => {
 
             const expectedBody = {
                 filters: {
-                    communityHealthWorker: ["ACS João", "ACS Maria"],
-                    patientStatus: ["Ativo", "Inativo"],
-                    conditionIdentifiedBy: [
-                        "Exame laboratorial",
-                        "Diagnóstico clínico",
+                    microAreaName: ["01", "02"],
+                    patientAgeRange: [
+                        "11 a 19 (Adolescente)",
+                        "20 a 59 (Adulto)",
                     ],
-                    patientAgeRange: ["40-49", "50-59"],
+                    goodPracticesStatusByQuarter: [
+                        "Todas em dia",
+                        "Pelo menos uma a fazer",
+                    ],
+                    medicalRecordUpdated: [
+                        "Atualizada",
+                        "Atualização pendente",
+                    ],
                 },
             };
 
