@@ -1,8 +1,6 @@
 import {
     ageRangeCodeToText,
-    appointmentStatusByQuarterCodeToText,
     goodPracticesStatusByQuarterCodeToText,
-    latestExamRequestStatusByQuarterCodeToText,
     medicalRecordUpdatedCodeToText,
 } from "@/features/acf/shared/hypertension/model";
 import type { FiltersOptionsCoaps, FiltersOptionsCoeq } from "./model";
@@ -10,7 +8,6 @@ import type {
     FiltersOptionsDbCoaps,
     FiltersOptionsDbCoeq,
 } from "../common/FiltersOptionsDb";
-import { updateQuarterText } from "@features/acf/backend/common/UpdateQuarterText";
 
 // TODO: criar função que adapta os campos em comum entre coaps e coeq
 export const dbToModelCoaps = (
@@ -25,21 +22,7 @@ export const dbToModelCoaps = (
 export const dbToModelCoeq = (
     filtersOptions: FiltersOptionsDbCoeq
 ): FiltersOptionsCoeq => {
-    const updatedAppointmentStatusByQuarter = updateQuarterText(
-        appointmentStatusByQuarterCodeToText
-    );
-    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
-        latestExamRequestStatusByQuarterCodeToText
-    );
     return {
-        appointmentStatusByQuarter:
-            filtersOptions.appointmentStatusByQuarter.map(
-                (code) => updatedAppointmentStatusByQuarter[code]
-            ),
-        latestExamRequestStatusByQuarter:
-            filtersOptions.latestExamRequestStatusByQuarter.map(
-                (code) => updatedLatestExamRequestStatusByQuarter[code]
-            ),
         microAreaName: filtersOptions.microAreaName,
         patientAgeRange: filtersOptions.patientAgeRange.map(
             (code) => ageRangeCodeToText[code]

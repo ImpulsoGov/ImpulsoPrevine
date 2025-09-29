@@ -110,22 +110,7 @@ const filterOptionsModelToDb = <
 const sharedFiltersModelToDb = (
     filters: SharedFilters
 ): SharedFiltersOptionsDb => {
-    const updatedAppointmentStatusByQuarter = updateQuarterText(
-        appointmentStatusByQuarterCodeToText
-    );
-    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
-        latestExamRequestStatusByQuarterCodeToText
-    );
-
     return {
-        appointmentStatusByQuarter: filterOptionsModelToDb(
-            filters.appointmentStatusByQuarter,
-            updatedAppointmentStatusByQuarter
-        ),
-        latestExamRequestStatusByQuarter: filterOptionsModelToDb(
-            filters.latestExamRequestStatusByQuarter,
-            updatedLatestExamRequestStatusByQuarter
-        ),
         patientAgeRange: filterOptionsModelToDb(
             filters.patientAgeRange,
             ageRangeCodeToText

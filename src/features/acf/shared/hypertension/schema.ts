@@ -34,8 +34,6 @@ export type GoodPracticesStatusByQuarter = z.infer<
 
 export const sharedFilters = z.object({
     microAreaName: z.array(microArea),
-    appointmentStatusByQuarter: z.array(appointmentStatusByQuarter),
-    latestExamRequestStatusByQuarter: z.array(latestExamRequestStatusByQuarter),
     patientAgeRange: z.array(patientAgeRange),
     goodPracticesStatusByQuarter: z.array(goodPracticesStatusByQuarter),
     medicalRecordUpdated: z.array(medicalRecordUpdated),
