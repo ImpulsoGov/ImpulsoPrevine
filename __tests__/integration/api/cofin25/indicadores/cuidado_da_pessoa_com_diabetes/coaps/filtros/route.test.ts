@@ -10,9 +10,9 @@ import * as authHelpers from "@tests/helpers/auth";
 import * as flagHelpers from "@tests/helpers/flag";
 
 const coapsUrl =
-    "http://localhost:3000/api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coaps/filtros";
+    "http://localhost:3000/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coaps/filtros";
 
-describe("/api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coaps/filtros Route Handler", () => {
+describe("/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coaps/filtros Route Handler", () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetModules();
