@@ -3,8 +3,6 @@ import type * as db from "@prisma/client";
 
 export type SharedFiltersOptionsDb = {
     microAreaName: ReadonlyArray<db.HypertensionAcfItem["microAreaName"]>;
-    appointmentStatusByQuarter: ReadonlyArray<model.AppointmentStatusByQuarterCode>;
-    latestExamRequestStatusByQuarter: ReadonlyArray<model.LatestExamRequestStatusByQuarterCode>;
     patientAgeRange: ReadonlyArray<model.PatientAgeRangeCode>;
     goodPracticesStatusByQuarter: ReadonlyArray<model.GoodPracticesStatusByQuarterCode>;
     isMedicalRecordUpdated: ReadonlyArray<

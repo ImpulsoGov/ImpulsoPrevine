@@ -33,8 +33,6 @@ type ContentCoeqProps = {
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
 const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",

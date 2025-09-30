@@ -102,21 +102,6 @@ describe("api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coaps/filtro
                 dbHelpers.hypertensionItem({ microAreaName: "01" }),
                 dbHelpers.hypertensionItem({ microAreaName: "02" }),
             ];
-
-            const mockAppointmentStatusesByQuarter = [
-                dbHelpers.hypertensionItem({ appointmentStatusByQuarter: 20 }),
-                dbHelpers.hypertensionItem({ appointmentStatusByQuarter: 40 }),
-            ];
-
-            const mockLatestExamRequestStatusesByQuarter = [
-                dbHelpers.hypertensionItem({
-                    latestExamRequestStatusByQuarter: 10,
-                }),
-                dbHelpers.hypertensionItem({
-                    latestExamRequestStatusByQuarter: 20,
-                }),
-            ];
-
             const mockPatientAgeRanges = [
                 dbHelpers.hypertensionItem({ patientAgeRange: 20 }),
                 dbHelpers.hypertensionItem({ patientAgeRange: 30 }),
@@ -139,8 +124,6 @@ describe("api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coaps/filtro
             mockedPrisma.hypertensionAcfItem.findMany
                 .mockResolvedValueOnce(mockCareTeamNames)
                 .mockResolvedValueOnce(mockMicroAreaNames)
-                .mockResolvedValueOnce(mockAppointmentStatusesByQuarter)
-                .mockResolvedValueOnce(mockLatestExamRequestStatusesByQuarter)
                 .mockResolvedValueOnce(mockPatientAgeRanges)
                 .mockResolvedValueOnce(mockGoodPracticesStatusByQuarter)
                 .mockResolvedValueOnce(mockIsMedicalRecordUpdated);
@@ -152,11 +135,6 @@ describe("api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coaps/filtro
             const expectedBody = {
                 filters: {
                     microAreaName: ["01", "02"],
-                    appointmentStatusByQuarter: ["Atrasada", "Em dia"],
-                    latestExamRequestStatusByQuarter: [
-                        "Nunca realizado",
-                        "Atrasada",
-                    ],
                     patientAgeRange: [
                         "11 a 19 (Adolescente)",
                         "20 a 59 (Adulto)",

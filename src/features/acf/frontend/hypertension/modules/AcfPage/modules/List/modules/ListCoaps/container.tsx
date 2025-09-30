@@ -31,8 +31,6 @@ type ContentCoapsProps = {
 const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     careTeamName: [],
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",

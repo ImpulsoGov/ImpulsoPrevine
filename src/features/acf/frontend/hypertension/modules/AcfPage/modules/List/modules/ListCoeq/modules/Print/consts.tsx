@@ -50,8 +50,6 @@ export const printListProps: PrintListProps<
         </div>,
     ],
     filtersLabels: {
-        appointmentStatusByQuarter: "Consulta",
-        latestExamRequestStatusByQuarter: "Afericão de PA",
         microAreaName: "Microárea",
         patientAgeRange: "Faixa Etária",
         goodPracticesStatusByQuarter: "Situação Boas Práticas",
