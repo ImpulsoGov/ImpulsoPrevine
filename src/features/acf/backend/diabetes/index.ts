@@ -1,9 +1,10 @@
-export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";
-export { getCoeq as getInternalCardsCoeq } from "./modules/internalCards";
-export type { InternalCardDataItem } from "./modules/internalCards";
 export {
     pageCoeq as getPageCoeq,
     pageCoaps as getPageCoaps,
     rowCountCoaps as getRowCountCoaps,
     rowCountCoeq as getRowCountCoeq,
+    allDataCoaps as getAllDataCoaps,
+    allDataCoeq as getAllDataCoeq,
 } from "./modules/table";
+
+export { filterOptionsCoeq, filterOptionsCoaps } from "./modules/filters";

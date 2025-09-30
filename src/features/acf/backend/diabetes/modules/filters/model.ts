@@ -1,25 +1,19 @@
-import type { DiabetesAcfItem } from "@features/acf/shared/diabetes/model";
+import type {
+    MedicalRecordUpdatedText,
+    GoodPracticesStatusByQuarterText,
+    DiabetesAcfItem,
+    PatientAgeRangeText,
+} from "@features/acf/shared/diabetes/model";
 
-//TODO: sumir com esse arquivo, esses tipos podem ir pra dentro dos módulos
-export type FiltersOptionsCoeq = {
-    communityHealthWorker: ReadonlyArray<
-        DiabetesAcfItem["communityHealthWorker"]
-    >;
-    patientStatus: ReadonlyArray<DiabetesAcfItem["patientStatus"]>;
-    conditionIdentifiedBy: ReadonlyArray<
-        DiabetesAcfItem["conditionIdentifiedBy"]
-    >;
-    patientAgeRange: ReadonlyArray<DiabetesAcfItem["patientAgeRange"]>;
+type SharedFiltersOptions = {
+    microAreaName: ReadonlyArray<DiabetesAcfItem["microAreaName"]>;
+    patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
+    goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
+    medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
 };
 
-export type FiltersOptionsCoaps = {
-    communityHealthWorker: ReadonlyArray<
-        DiabetesAcfItem["communityHealthWorker"]
-    >;
-    patientStatus: ReadonlyArray<DiabetesAcfItem["patientStatus"]>;
-    conditionIdentifiedBy: ReadonlyArray<
-        DiabetesAcfItem["conditionIdentifiedBy"]
-    >;
-    patientAgeRange: ReadonlyArray<DiabetesAcfItem["patientAgeRange"]>;
+export type FiltersOptionsCoeq = SharedFiltersOptions;
+
+export type FiltersOptionsCoaps = SharedFiltersOptions & {
     careTeamName: ReadonlyArray<DiabetesAcfItem["careTeamName"]>;
 };

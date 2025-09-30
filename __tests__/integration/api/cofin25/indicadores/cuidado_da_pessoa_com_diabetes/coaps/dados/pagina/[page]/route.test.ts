@@ -13,10 +13,10 @@ import type * as schema from "@/features/acf/shared/diabetes/schema";
 const coapsUrl = `http://localhost:3000/api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coaps/dados/pagina/0`;
 const body = {
     filters: {
-        communityHealthWorker: ["ACS Teste"],
-        conditionIdentifiedBy: ["Autorreferida"],
-        patientStatus: ["Apenas a consulta a fazer"],
-        patientAgeRange: ["Menos de 17 anos"],
+        microAreaName: [null],
+        goodPracticesStatusByQuarter: ["Todas em dia"],
+        medicalRecordUpdated: ["Atualizada"],
+        patientAgeRange: ["11 a 19 (Adolescente)"],
         careTeamName: ["Equipe Teste"],
     },
     sorting: { field: "patientName", sort: "asc" },
@@ -177,14 +177,23 @@ describe(`api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coaps/dados/pag
                 {
                     ...baseDbItem,
                     patientName: "Paciente A",
-                    patientCpfOrBirthday: "12345678901",
-                    hemoglobinTestDueDate: "2023-01-05",
-                    nextAppointmentDueDate: "2023-06-05",
+                    patientCpf: "12345678901",
+                    appointmentStatusByQuarter: 10,
+                    bloodPressureExamStatusByQuarter: 40,
+                    homeVisitStatusByQuarter: 20,
+                    weightHeightStatusByQuarter: 10,
+                    isMedicalRecordUpdated: true,
                 },
                 {
                     ...baseDbItem,
                     patientName: "Paciente B",
-                    patientCpfOrBirthday: "10987654321",
+                    patientCpf: null,
+                    patientCns: "123456789012345",
+                    appointmentStatusByQuarter: 20,
+                    bloodPressureExamStatusByQuarter: 40,
+                    homeVisitStatusByQuarter: 40,
+                    weightHeightStatusByQuarter: 20,
+                    isMedicalRecordUpdated: true,
                 },
             ]);
             mockPrisma.diabetesAcfItem.count.mockResolvedValue(totalRows);
@@ -200,26 +209,42 @@ describe(`api/cofin25/indicadores/cuidado_da_pessoa_com_diabetes/coaps/dados/pag
                 params: Promise.resolve({ page: "0" }),
             });
 
-            const { id: _, ...basePageItem } = baseDbItem;
+            const {
+                patientId: _patientId,
+                patientAgeRange: _patientAgeRange,
+                careTeamIne: _careTeamIne,
+                goodPracticesStatusByQuarter: _goodPracticesStatusByQuarter,
+                isMedicalRecordUpdated: _isMedicalRecordUpdated,
+                ...basePageItem
+            } = baseDbItem;
             const expectedResponseBody = {
                 page: [
                     {
                         ...basePageItem,
-                        hemoglobinTestDueDate: "2023-01-05",
-                        nextAppointmentDueDate: "2023-06-05",
                         patientName: "Paciente A",
-                        patientCpfOrBirthday: "12345678901",
-                        mostRecentProductionRecordDate:
-                            basePageItem.mostRecentProductionRecordDate.toISOString(),
+                        patientCpf: "12345678901",
+                        appointmentStatusByQuarter: "Nunca realizado",
+                        bloodPressureExamStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Atrasada",
+                        weightHeightStatusByQuarter: "Nunca realizado",
+                        medicalRecordUpdated: "Atualizada",
+                        feetExamStatusByQuarter: "Nunca realizado",
+                        glycatedHemoglobinExamStatusByQuarter:
+                            "Nunca realizado",
                     },
                     {
                         ...basePageItem,
-                        hemoglobinTestDueDate: "",
-                        nextAppointmentDueDate: "",
                         patientName: "Paciente B",
-                        patientCpfOrBirthday: "10987654321",
-                        mostRecentProductionRecordDate:
-                            basePageItem.mostRecentProductionRecordDate.toISOString(),
+                        patientCpf: null,
+                        patientCns: "123456789012345",
+                        appointmentStatusByQuarter: "Atrasada",
+                        bloodPressureExamStatusByQuarter: "Em dia",
+                        homeVisitStatusByQuarter: "Em dia",
+                        weightHeightStatusByQuarter: "Atrasada",
+                        medicalRecordUpdated: "Atualizada",
+                        feetExamStatusByQuarter: "Nunca realizado",
+                        glycatedHemoglobinExamStatusByQuarter:
+                            "Nunca realizado",
                     },
                 ],
                 totalRows,

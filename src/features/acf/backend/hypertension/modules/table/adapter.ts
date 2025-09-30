@@ -24,7 +24,7 @@ import type {
     FiltersOptionsDbCoaps,
     SharedFiltersOptionsDb,
 } from "../common/FiltersOptionsDb";
-import { updateQuarterText } from "../common/UpdateQuarterText";
+import { updateQuarterText } from "@features/acf/backend/common/UpdateQuarterText";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
     const updatedAppointmentStatusByQuarterCodeToText = updateQuarterText(
