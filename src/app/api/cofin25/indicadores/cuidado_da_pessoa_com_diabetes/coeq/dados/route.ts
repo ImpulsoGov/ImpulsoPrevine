@@ -1,4 +1,4 @@
-import { coapsPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
+import { coeqPageRequestBody as queryParamsSchema } from "@/features/acf/shared/diabetes/schema";
 import { parseBody } from "@/features/common/backend/Schema";
 import { getUser } from "@/features/common/backend/User";
 import * as flags from "@/features/common/shared/flags";
