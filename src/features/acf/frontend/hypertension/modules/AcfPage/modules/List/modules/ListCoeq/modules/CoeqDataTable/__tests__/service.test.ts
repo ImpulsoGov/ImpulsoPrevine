@@ -36,11 +36,6 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
-            latestExamRequestStatusByQuarter: [
-                "Vence dentro do Q1",
-                "Atrasada",
-            ],
             patientAgeRange: "60 ou mais (Idoso)",
             goodPracticesStatusByQuarter: "Todas em dia",
             medicalRecordUpdated: "Atualizada",
@@ -61,8 +56,6 @@ describe("bodyBuilder", () => {
     it("deve traduzir patientAgeRange vazia como []", () => {
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: [],
-            appointmentStatusByQuarter: [],
-            latestExamRequestStatusByQuarter: [],
             patientAgeRange: "",
             goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
             medicalRecordUpdated: "Atualização pendente",
@@ -87,11 +80,6 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
-            latestExamRequestStatusByQuarter: [
-                "Vence dentro do Q1",
-                "Atrasada",
-            ],
             patientAgeRange: "60 ou mais (Idoso)",
             goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
             medicalRecordUpdated: "Atualizada",

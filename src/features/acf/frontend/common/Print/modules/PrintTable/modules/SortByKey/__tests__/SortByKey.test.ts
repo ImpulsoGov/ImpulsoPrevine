@@ -16,6 +16,13 @@ const base: HypertensionAcfItem = {
     patientPhoneNumber: null,
     patientAge: 40,
     patientAgeRange: "20 a 59 (Adulto)",
+    goodPracticesSum: 25,
+    goodPracticesStatusByQuarter: "Todas em dia",
+    medicalRecordUpdated: "Atualizada",
+    latestHomeVisitDate: new Date("2023-01-01"),
+    homeVisitStatusByQuarter: "Em dia",
+    latestWeightHeightDate: new Date("2023-01-01"),
+    weightHeightStatusByQuarter: "Em dia",
 };
 
 describe("SortByKey", () => {

@@ -1,6 +1,7 @@
 import type * as db from "@prisma/client";
 import type {
     AppointmentStatusByQuarterCode,
+    GoodPracticesStatusByQuarterCode,
     HomeVisitStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,
     PatientAgeRangeCode,
@@ -87,11 +88,7 @@ export const hypertensionPageDbToModel = (
 // TODO: mover para algum common porque essa função está genérica
 const filterOptionsModelToDb = <
     TFilterText extends string,
-    TFilterCode extends
-        | PatientAgeRangeCode
-        | AppointmentStatusByQuarterCode
-        // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents
-        | LatestExamRequestStatusByQuarterCode,
+    TFilterCode extends PatientAgeRangeCode | GoodPracticesStatusByQuarterCode,
 >(
     options: ReadonlyArray<TFilterText>,
     filterCodeToText: Record<TFilterCode, TFilterText>
