@@ -82,6 +82,7 @@ export const coapsPageRequestBody = z.object({
 
 export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;
 
+// TODO: usar PageItem no lugar de DiabetesAcfItem
 export type PageResponse = {
     page: Array<model.DiabetesAcfItem>;
     totalRows: number;
