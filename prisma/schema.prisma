@@ -10,26 +10,37 @@ datasource db {
 }
 
 model DiabetesAcfItem {
-  id                                               String    @id(map: "painel_diabeticos_pk")
-  municipalitySusId                                String?   @db.VarChar @map("municipio_id_sus")
-  municipalityState                                String?   @map("municipio_uf")
-  latestExamRequestDate                            String?   @db.VarChar(11) @map("dt_solicitacao_hemoglobina_glicada_mais_recente")
-  mostRecentAppointmentDate                        DateTime? @db.Date @map("dt_consulta_mais_recente")
-  hemoglobinTestDueDate                            String?   @map("prazo_proxima_solicitacao_hemoglobina")
-  nextAppointmentDueDate                           String?   @map("prazo_proxima_consulta") 
-  patientStatus                                    String?   @map("status_usuario")
-  conditionIdentifiedBy                            String?   @map("identificacao_condicao_diabetes")
-  patientCpfOrBirthday                             String?   @map("cidadao_cpf_dt_nascimento")
-  patientName                                      String?   @map("cidadao_nome")
-  patientAge                                       Int?      @map("cidadao_idade")
-  patientAgeRange                                  String?   @map("cidadao_faixa_etaria")
-  careTeamIne                                      String?   @map("equipe_ine_cadastro")
-  careTeamName                                     String?   @map("equipe_nome_cadastro")
-  communityHealthWorker                            String?   @map("acs_nome_cadastro")
-  mostRecentProductionRecordDate                   DateTime  @db.Date @map("dt_registro_producao_mais_recente")
+  municipalitySusId                        String    @db.VarChar(6) @map("municipio_id_sus")
+  municipalityName                         String    @map("municipio_nome")
+  patientId                                String    @map("cidadao_ip_id")
+  patientName                              String    @map("cidadao_nome")
+  patientCpf                               String?   @db.VarChar(14) @map("cidadao_cpf")
+  patientCns                               String?   @db.VarChar(32) @map("cidadao_cns")
+  patientAge                               Int       @map("cidadao_idade")
+  patientAgeRange                          Int       @map("cidadao_faixa_etaria")
+  patientPhoneNumber                       String?   @map("cidadao_telefone")
+  careTeamIne                              String?   @map("equipe_ine")
+  careTeamName                             String?   @map("equipe_nome")
+  microAreaName                            String?   @map("micro_area")
+  latestAppointmentDate                    DateTime? @db.Date @map("data_ultima_consulta_diabetes")
+  appointmentStatusByQuarter               Int       @db.SmallInt @map("situacao_quadrimestre_consulta_diabetes")
+  latestBloodPressureExamRequestDate       DateTime? @db.Date @map("data_ultima_afericao_pa")
+  bloodPressureExamStatusByQuarter         Int       @db.SmallInt @map("situacao_quadrimestre_afericao_pa")
+	goodPracticesSum                         Int       @db.SmallInt @map("soma_boas_praticas")
+	latestHomeVisitDate                      DateTime? @db.Date @map("data_ultima_visita_domiciliar")
+	homeVisitStatusByQuarter                 Int       @db.SmallInt @map("situacao_quadrimestre_visita_domiciliar")
+	latestWeightHeightDate                   DateTime? @db.Date @map("data_ultimo_peso_altura")
+	weightHeightStatusByQuarter              Int       @db.SmallInt @map("situacao_quadrimestre_peso_altura")
+  goodPracticesStatusByQuarter             Int       @db.SmallInt @map("situacao_quadrimestre_boas_praticas")
+	isMedicalRecordUpdated                   Boolean   @map("st_cadastro_atualizado")
+  latestGlycatedHemoglobinExamRequestDate  DateTime? @db.Date @map("data_ultima_hemoglobina_glicada")
+  glycatedHemoglobinExamStatusByQuarter    Int       @db.SmallInt @map("situacao_quadrimestre_hemoglobina_glicada")
+  latestFeetExamRequestDate                DateTime? @db.Date @map("data_ultima_avaliacao_pes")
+  feetExamStatusByQuarter                  Int       @db.SmallInt @map("situacao_quadrimestre_avaliacao_pes")
 
-  @@map("__painel_enfermeiras_lista_nominal_diabeticos")
+  @@id([patientId, municipalitySusId], map: "lista_nominal_diabetes_pkey")
   @@schema("dados_nominais_datalake")
+  @@map("lista_nominal_diabetes")
 }
 
 model dados_agregados_area_logada {
@@ -43,7 +54,7 @@ model dados_agregados_area_logada {
   @@id([municipio_id_sus, equipe_ine, indicador, parametro_descricao], map: "dados_agregados_area_logada_pk")
   @@schema("dados_nominais_datalake")
 }
-
+// TODO: alterar nome dos campos de aferição de PA para padronizar com DiabetesAcfItem
 model HypertensionAcfItem {
   municipalitySusId                  String    @db.VarChar(6) @map("municipio_id_sus")
   municipalityName                   String    @map("municipio_nome")

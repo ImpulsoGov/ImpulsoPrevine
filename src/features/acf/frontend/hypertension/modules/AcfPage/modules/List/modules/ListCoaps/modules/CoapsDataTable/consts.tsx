@@ -23,7 +23,8 @@ export const coapsColumns: Array<GridColDef> = [
     {
         field: "patientName",
         headerName: "Nome e CPF/CNS",
-        width: 211,
+        minWidth: 211,
+        flex: 1,
         headerAlign: "left",
         align: "left",
         renderCell: RenderPatientNameCpfCns,
@@ -38,7 +39,8 @@ export const coapsColumns: Array<GridColDef> = [
                 práticas*
             </span>
         ),
-        width: 145,
+        minWidth: 145,
+        flex: 0.5,
         headerAlign: "left",
         align: "left",
         cellClassName: "breakable-content",
@@ -68,7 +70,8 @@ export const coapsColumns: Array<GridColDef> = [
             </span>
         ),
         headerClassName: "LowerHeader",
-        width: 103,
+        minWidth: 103,
+        flex: 0.4,
         headerAlign: "left",
         align: "left",
         renderCell: ({
@@ -79,7 +82,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestAppointmentDate",
-        width: 135,
+        minWidth: 135,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -90,7 +94,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "appointmentStatusByQuarter",
-        width: 207,
+        minWidth: 207,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -113,7 +118,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -124,7 +130,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestExamRequestStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -147,7 +154,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestHomeVisitDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -158,7 +166,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "homeVisitStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -181,7 +190,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "latestWeightHeightDate",
-        width: 156,
+        minWidth: 156,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -192,7 +202,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "weightHeightStatusByQuarter",
-        width: 209,
+        minWidth: 209,
+        flex: 0.7,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -215,7 +226,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "careTeamName",
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -237,7 +249,8 @@ export const coapsColumns: Array<GridColDef> = [
     },
     {
         field: "microAreaName",
-        width: 144,
+        minWidth: 144,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -251,7 +264,8 @@ export const coapsColumns: Array<GridColDef> = [
     {
         field: "patientPhoneNumber",
         headerName: "Telefone",
-        width: 145,
+        minWidth: 145,
+        flex: 0.5,
         headerAlign: "left",
         headerClassName: "LowerHeader",
         align: "left",
@@ -262,6 +276,53 @@ export const coapsColumns: Array<GridColDef> = [
         ),
     },
 ];
+
+const tooltipContentByGroupId = {
+    "#01": (
+        <div>
+            Aqui estão apenas cidadãos com FCI e que possuem diagnóstico
+            clínico.
+            <br />
+            <br />A soma das boas práticas é a estimativa da pontuação de
+            cidadãos. Cada prática marcada como “em dia” soma 25 pontos, podendo
+            chegar a até 100 no total.
+        </div>
+    ),
+    "#02": (
+        <div>
+            Ter realizado pelo menos 01 consulta presencial ou remota por
+            profissional médica(o) ou enfermeira(o), nos últimos 6 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#03": (
+        <div>
+            Ter pelo menos 01 registro de aferição da pressão arterial,
+            realizado nos últimos 6 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#04": (
+        <div>
+            Ter pelo menos 2 visitas domiciliares nos últimos 12 meses, feitas
+            por ACS ou TACS, com intervalo mínimo de 30 dias entre elas. Só
+            contam as visitas registradas como acompanhamento de pessoa com
+            hipertensão.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+    "#05": (
+        <div>
+            Ter realizado pelo menos 01 (um) registro de peso e altura, nos
+            últimos 12 meses.
+            <br />
+            <span style={{ color: "#FFFACF" }}>25 pontos</span>.
+        </div>
+    ),
+};
 
 export const columnGroupingModel: GridColumnGroupingModel = [
     {
@@ -276,7 +337,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
     },
     {
@@ -286,7 +355,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -301,7 +378,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -316,7 +401,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
@@ -331,7 +424,15 @@ export const columnGroupingModel: GridColumnGroupingModel = [
         renderHeaderGroup: (
             params: GridColumnGroupHeaderParams
         ): React.ReactNode => {
-            return <HeaderWithTooltip headerName={params.headerName ?? ""} />;
+            const groupId =
+                params.groupId as keyof typeof tooltipContentByGroupId;
+            if (params.groupId)
+                return (
+                    <HeaderWithTooltip
+                        headerName={params.headerName ?? ""}
+                        tooltipContent={tooltipContentByGroupId[groupId]}
+                    />
+                );
         },
 
         children: [
