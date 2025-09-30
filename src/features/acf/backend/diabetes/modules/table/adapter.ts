@@ -1,25 +1,5 @@
 import type * as db from "@prisma/client";
-import type {
-    AppointmentStatusByQuarterCode,
-    HomeVisitStatusByQuarterCode,
-    PatientAgeRangeCode,
-    WeightHeightStatusByQuarterCode,
-    BloodPressureExamStatusByQuarterCode,
-    GlycatedHemoglobinExamStatusByQuarterCode,
-    FeetExamStatusByQuarterCode,
-    GoodPracticesStatusByQuarterCode,
-} from "@/features/acf/shared/diabetes/model";
-import {
-    ageRangeCodeToText,
-    appointmentStatusByQuarterCodeToText,
-    goodPracticesStatusByQuarterCodeToText,
-    homeVisitStatusByQuarterCodeToText,
-    medicalRecordUpdatedCodeToText,
-    weightHeightStatusByQuarterCodeToText,
-    bloodPressureExamStatusByQuarterCodeToText,
-    glycatedHemoglobinExamStatusByQuarterCodeToText,
-    feetExamStatusByQuarterCodeToText,
-} from "@/features/acf/shared/diabetes/model";
+import * as model from "@/features/acf/shared/diabetes/model";
 import type { PageItem } from "./model";
 import type {
     CoapsFilters,
@@ -33,21 +13,23 @@ import { updateQuarterText } from "@features/acf/backend/common/UpdateQuarterTex
 
 const dbToModel = (diabetesRow: db.DiabetesAcfItem): PageItem => {
     const updatedAppointmentStatusByQuarterCodeToText = updateQuarterText(
-        appointmentStatusByQuarterCodeToText
+        model.appointmentStatusByQuarterCodeToText
     );
     const updatedBloodPressureExamStatusByQuarterCodeToText = updateQuarterText(
-        bloodPressureExamStatusByQuarterCodeToText
+        model.bloodPressureExamStatusByQuarterCodeToText
     );
     const updatedHomeVisitStatusByQuarterCodeToText = updateQuarterText(
-        homeVisitStatusByQuarterCodeToText
+        model.homeVisitStatusByQuarterCodeToText
     );
     const updatedWeightHeightStatusByQuarterCodeToText = updateQuarterText(
-        weightHeightStatusByQuarterCodeToText
+        model.weightHeightStatusByQuarterCodeToText
     );
     const updatedGlycatedHemoglobinExamStatusByQuarterCodeToText =
-        updateQuarterText(glycatedHemoglobinExamStatusByQuarterCodeToText);
+        updateQuarterText(
+            model.glycatedHemoglobinExamStatusByQuarterCodeToText
+        );
     const updatedFeetExamStatusByQuarterCodeToText = updateQuarterText(
-        feetExamStatusByQuarterCodeToText
+        model.feetExamStatusByQuarterCodeToText
     );
 
     return {
@@ -59,24 +41,24 @@ const dbToModel = (diabetesRow: db.DiabetesAcfItem): PageItem => {
         latestAppointmentDate: diabetesRow.latestAppointmentDate,
         appointmentStatusByQuarter:
             updatedAppointmentStatusByQuarterCodeToText[
-                diabetesRow.appointmentStatusByQuarter as AppointmentStatusByQuarterCode
+                diabetesRow.appointmentStatusByQuarter as model.AppointmentStatusByQuarterCode
             ],
         latestBloodPressureExamRequestDate:
             diabetesRow.latestBloodPressureExamRequestDate,
         bloodPressureExamStatusByQuarter:
             updatedBloodPressureExamStatusByQuarterCodeToText[
-                diabetesRow.bloodPressureExamStatusByQuarter as BloodPressureExamStatusByQuarterCode
+                diabetesRow.bloodPressureExamStatusByQuarter as model.BloodPressureExamStatusByQuarterCode
             ],
         latestGlycatedHemoglobinExamRequestDate:
             diabetesRow.latestGlycatedHemoglobinExamRequestDate,
         glycatedHemoglobinExamStatusByQuarter:
             updatedGlycatedHemoglobinExamStatusByQuarterCodeToText[
-                diabetesRow.glycatedHemoglobinExamStatusByQuarter as GlycatedHemoglobinExamStatusByQuarterCode
+                diabetesRow.glycatedHemoglobinExamStatusByQuarter as model.GlycatedHemoglobinExamStatusByQuarterCode
             ],
         latestFeetExamRequestDate: diabetesRow.latestFeetExamRequestDate,
         feetExamStatusByQuarter:
             updatedFeetExamStatusByQuarterCodeToText[
-                diabetesRow.feetExamStatusByQuarter as FeetExamStatusByQuarterCode
+                diabetesRow.feetExamStatusByQuarter as model.FeetExamStatusByQuarterCode
             ],
         careTeamName: diabetesRow.careTeamName,
         microAreaName: diabetesRow.microAreaName,
@@ -86,15 +68,15 @@ const dbToModel = (diabetesRow: db.DiabetesAcfItem): PageItem => {
         latestHomeVisitDate: diabetesRow.latestHomeVisitDate,
         homeVisitStatusByQuarter:
             updatedHomeVisitStatusByQuarterCodeToText[
-                diabetesRow.homeVisitStatusByQuarter as HomeVisitStatusByQuarterCode
+                diabetesRow.homeVisitStatusByQuarter as model.HomeVisitStatusByQuarterCode
             ],
         latestWeightHeightDate: diabetesRow.latestWeightHeightDate,
         weightHeightStatusByQuarter:
             updatedWeightHeightStatusByQuarterCodeToText[
-                diabetesRow.weightHeightStatusByQuarter as WeightHeightStatusByQuarterCode
+                diabetesRow.weightHeightStatusByQuarter as model.WeightHeightStatusByQuarterCode
             ],
         medicalRecordUpdated:
-            medicalRecordUpdatedCodeToText[
+            model.medicalRecordUpdatedCodeToText[
                 diabetesRow.isMedicalRecordUpdated ? "true" : "false"
             ],
     };
@@ -109,7 +91,9 @@ export const diabetesPageDbToModel = (
 // TODO: mover para algum common porque essa função está genérica
 const filterOptionsModelToDb = <
     TFilterText extends string,
-    TFilterCode extends PatientAgeRangeCode | GoodPracticesStatusByQuarterCode,
+    TFilterCode extends
+        | model.PatientAgeRangeCode
+        | model.GoodPracticesStatusByQuarterCode,
 >(
     options: ReadonlyArray<TFilterText>,
     filterCodeToText: Record<TFilterCode, TFilterText>
@@ -131,12 +115,12 @@ const sharedFiltersModelToDb = (
     return {
         patientAgeRange: filterOptionsModelToDb(
             filters.patientAgeRange,
-            ageRangeCodeToText
+            model.ageRangeCodeToText
         ),
         microAreaName: filters.microAreaName,
         goodPracticesStatusByQuarter: filterOptionsModelToDb(
             filters.goodPracticesStatusByQuarter,
-            goodPracticesStatusByQuarterCodeToText
+            model.goodPracticesStatusByQuarterCodeToText
         ),
         isMedicalRecordUpdated: filters.medicalRecordUpdated.map(
             (value) => value === "Atualizada"
