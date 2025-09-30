@@ -14,20 +14,12 @@ import type { PropTriggerPrintWithoutModal } from "../Print/modules/PrintTable/m
 
 type Props = {
     onSearchTriggered: Dispatch<SetStateAction<string>>;
-    isPrintEnabled?: boolean;
     propTriggerPrintWithoutModal: PropTriggerPrintWithoutModal;
     setShouldRenderPrintTable: Dispatch<SetStateAction<boolean>>;
 };
 
-const showBackdoorGuide = (): void => {
-    if (typeof window.userGuiding !== "undefined") {
-        window.userGuiding.previewGuide(150481);
-    }
-};
-
 export const SearchToolBar: React.FC<Props> = ({
     onSearchTriggered,
-    isPrintEnabled,
     propTriggerPrintWithoutModal,
     setShouldRenderPrintTable,
 }) => {
@@ -52,9 +44,7 @@ export const SearchToolBar: React.FC<Props> = ({
             <>
                 {/* <LastUpdatedCard /> */}
                 <SearchBar onSearchTriggered={onSearchTriggered} />
-                <PrintButton
-                    print={isPrintEnabled ? triggerPrint : showBackdoorGuide}
-                />
+                <PrintButton print={triggerPrint} />
             </>
         </ListToolBar>
     );
