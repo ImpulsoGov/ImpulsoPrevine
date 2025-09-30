@@ -1,12 +1,12 @@
 import type {
     MedicalRecordUpdatedText,
     GoodPracticesStatusByQuarterText,
-    HypertensionAcfItem,
+    DiabetesAcfItem,
     PatientAgeRangeText,
-} from "@features/acf/shared/hypertension/model";
+} from "@features/acf/shared/diabetes/model";
 
-export type SharedFiltersOptions = {
-    microAreaName: ReadonlyArray<HypertensionAcfItem["microAreaName"]>;
+type SharedFiltersOptions = {
+    microAreaName: ReadonlyArray<DiabetesAcfItem["microAreaName"]>;
     patientAgeRange: ReadonlyArray<PatientAgeRangeText>;
     goodPracticesStatusByQuarter: ReadonlyArray<GoodPracticesStatusByQuarterText>;
     medicalRecordUpdated: ReadonlyArray<MedicalRecordUpdatedText>;
@@ -15,5 +15,5 @@ export type SharedFiltersOptions = {
 export type FiltersOptionsCoeq = SharedFiltersOptions;
 
 export type FiltersOptionsCoaps = SharedFiltersOptions & {
-    careTeamName: ReadonlyArray<HypertensionAcfItem["careTeamName"]>;
+    careTeamName: ReadonlyArray<DiabetesAcfItem["careTeamName"]>;
 };
