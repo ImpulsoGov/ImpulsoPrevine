@@ -10,7 +10,7 @@ import type {
     FiltersOptionsDbCoaps,
     FiltersOptionsDbCoeq,
 } from "../common/FiltersOptionsDb";
-import { updateQuarterText } from "../common/UpdateQuarterText";
+import { updateQuarterText } from "@features/acf/backend/common/UpdateQuarterText";
 
 // TODO: criar função que adapta os campos em comum entre coaps e coeq
 export const dbToModelCoaps = (

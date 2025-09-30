@@ -1,31 +1,30 @@
-import { z } from "zod/v4";
-import type { DiabetesAcfItem } from "./model";
 import * as model from "./model";
+import { z } from "zod/v4";
 
-export const patientStatus = z.enum(model.patientStatus);
-export type PatientStatus = z.infer<typeof patientStatus>;
+export const careTeamName = z.string();
+export type CareTeamName = z.infer<typeof careTeamName>;
 
-export const conditionIdentifiedBy = z.enum(model.conditionIdentifiedBy);
-export type ConditionIdentifiedBy = z.infer<typeof conditionIdentifiedBy>;
+export const microArea = z.string().nullable();
+export type MicroArea = z.infer<typeof microArea>;
 
-export const sortableFieldsCoeq = z.enum(model.sortableFieldCoeq);
-export const sortableFieldsCoaps = z.enum(model.sortableFieldCoaps);
+export const medicalRecordUpdated = z.enum(model.medicalRecordUpdatedTexts);
+export type MedicalRecordUpdated = z.infer<typeof medicalRecordUpdated>;
 
-export type SortableFieldsCoeq = z.infer<typeof sortableFieldsCoeq>;
-
-export type SortableFieldsCoaps = z.infer<typeof sortableFieldsCoaps>;
-
-export const patientAgeRange = z.enum(model.patientAgeRange);
+export const patientAgeRange = z.enum(model.patientAgeRangeTexts);
 export type PatientAgeRange = z.infer<typeof patientAgeRange>;
 
-export const communityHealthWorker = z.string();
-export type CommunityHealthWorker = z.infer<typeof communityHealthWorker>;
+export const goodPracticesStatusByQuarter = z.enum(
+    model.goodPracticesStatusByQuarterTexts
+);
+export type GoodPracticesStatusByQuarter = z.infer<
+    typeof goodPracticesStatusByQuarter
+>;
 
 export const sharedFilters = z.object({
-    patientStatus: z.array(patientStatus),
-    conditionIdentifiedBy: z.array(conditionIdentifiedBy),
-    communityHealthWorker: z.array(communityHealthWorker),
+    microAreaName: z.array(microArea),
     patientAgeRange: z.array(patientAgeRange),
+    goodPracticesStatusByQuarter: z.array(goodPracticesStatusByQuarter),
+    medicalRecordUpdated: z.array(medicalRecordUpdated),
 });
 
 export type SharedFilters = z.infer<typeof sharedFilters>;
@@ -36,10 +35,21 @@ export type CoeqFilters = z.infer<typeof coeqFilters>;
 
 export const coapsFilters = z.object({
     ...sharedFilters.shape,
-    careTeamName: z.array(z.string()),
+    careTeamName: z.array(careTeamName),
 });
 
 export type CoapsFilters = z.infer<typeof coapsFilters>;
+
+export type CoeqFiltersResponse = {
+    filters: CoeqFilters;
+};
+
+export type CoapsFiltersResponse = {
+    filters: CoapsFilters;
+};
+
+export const sortableFieldsCoeq = z.enum(model.sortableFieldCoeq);
+export const sortableFieldsCoaps = z.enum(model.sortableFieldCoaps);
 
 export const coeqSort = z.object({
     field: sortableFieldsCoeq,
@@ -72,16 +82,10 @@ export const coapsPageRequestBody = z.object({
 
 export type CoapsPageRequestBody = z.infer<typeof coapsPageRequestBody>;
 
-//TODO: Retornar tamanho da página, e alterar o front para usar esse campo
+// TODO: usar PageItem no lugar de DiabetesAcfItem
 export type PageResponse = {
-    page: Array<DiabetesAcfItem>;
+    page: Array<model.DiabetesAcfItem>;
     totalRows: number;
 };
 
-export type CoeqFiltersResponse = {
-    filters: CoeqFilters;
-};
-
-export type CoapsFiltersResponse = {
-    filters: CoapsFilters;
-};
+export type DataResponse = Array<model.DiabetesAcfItem>;
