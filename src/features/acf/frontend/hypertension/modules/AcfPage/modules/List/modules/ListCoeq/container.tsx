@@ -33,8 +33,6 @@ type ContentCoeqProps = {
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
 const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",
@@ -67,14 +65,9 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
                                     <FilterHint />
-                                    <WithFiltersBar
-                                        FiltersBar={CoeqFiltersBar}
-                                        isPrintEnabled={isPrintEnabled}
-                                    >
+                                    <WithFiltersBar FiltersBar={CoeqFiltersBar}>
                                         <WithPagination>
-                                            <CoeqDataTable
-                                                isPrintEnabled={isPrintEnabled}
-                                            />
+                                            <CoeqDataTable />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
                                                 setShouldRenderPrintTable={

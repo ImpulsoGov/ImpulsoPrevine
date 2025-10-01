@@ -31,8 +31,6 @@ type ContentCoapsProps = {
 const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     careTeamName: [],
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",
@@ -68,12 +66,9 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                                     <FilterHint />
                                     <WithFiltersBar
                                         FiltersBar={CoapsFiltersBar}
-                                        isPrintEnabled={isPrintEnabled}
                                     >
                                         <WithPagination>
-                                            <CoapsDataTable
-                                                isPrintEnabled={isPrintEnabled}
-                                            />
+                                            <CoapsDataTable />
                                             <PrintModal
                                                 modalLabels={apsLabelsModal}
                                                 setShouldRenderPrintTable={

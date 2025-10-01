@@ -36,11 +36,6 @@ describe("bodyBuilder", () => {
     it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
-            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
-            latestExamRequestStatusByQuarter: [
-                "Vence dentro do Q1",
-                "Atrasada",
-            ],
             patientAgeRange: "20 a 59 (Adulto)",
             careTeamName: ["team1", "team2"],
             goodPracticesStatusByQuarter: "",
@@ -62,8 +57,6 @@ describe("bodyBuilder", () => {
     it("deve traduzir patientAgeRange vazia como []", () => {
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: [],
-            appointmentStatusByQuarter: [],
-            latestExamRequestStatusByQuarter: [],
             patientAgeRange: "",
             careTeamName: [],
             goodPracticesStatusByQuarter: "Pelo menos uma a fazer",
@@ -89,11 +82,6 @@ describe("bodyBuilder", () => {
         };
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: ["Abdias"],
-            appointmentStatusByQuarter: ["Nunca realizado", "Em dia"],
-            latestExamRequestStatusByQuarter: [
-                "Vence dentro do Q1",
-                "Atrasada",
-            ],
             patientAgeRange: "60 ou mais (Idoso)",
             careTeamName: ["Rosa"],
             goodPracticesStatusByQuarter: "Pelo menos uma a fazer",

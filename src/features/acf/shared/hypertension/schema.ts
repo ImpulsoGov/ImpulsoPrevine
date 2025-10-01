@@ -7,19 +7,6 @@ export type CareTeamName = z.infer<typeof careTeamName>;
 export const microArea = z.string().nullable();
 export type MicroArea = z.infer<typeof microArea>;
 
-export const appointmentStatusByQuarter = z.enum(
-    model.appointmentStatusByQuarterTexts
-);
-export type AppointmentStatusByQuarter = z.infer<
-    typeof appointmentStatusByQuarter
->;
-
-export const latestExamRequestStatusByQuarter = z.enum(
-    model.latestExamRequestStatusByQuarterTexts
-);
-export type LatestExamRequestStatusByQuarter = z.infer<
-    typeof latestExamRequestStatusByQuarter
->;
 export const medicalRecordUpdated = z.enum(model.medicalRecordUpdatedTexts);
 export type MedicalRecordUpdated = z.infer<typeof medicalRecordUpdated>;
 export const patientAgeRange = z.enum(model.patientAgeRangeTexts);
@@ -34,8 +21,6 @@ export type GoodPracticesStatusByQuarter = z.infer<
 
 export const sharedFilters = z.object({
     microAreaName: z.array(microArea),
-    appointmentStatusByQuarter: z.array(appointmentStatusByQuarter),
-    latestExamRequestStatusByQuarter: z.array(latestExamRequestStatusByQuarter),
     patientAgeRange: z.array(patientAgeRange),
     goodPracticesStatusByQuarter: z.array(goodPracticesStatusByQuarter),
     medicalRecordUpdated: z.array(medicalRecordUpdated),

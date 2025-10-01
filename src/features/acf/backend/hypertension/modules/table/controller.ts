@@ -19,8 +19,6 @@ import type { PageItem } from "./model";
 
 const defaultCoeqFilters: CoeqFilters = {
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: [],
     goodPracticesStatusByQuarter: [],
     medicalRecordUpdated: [],
