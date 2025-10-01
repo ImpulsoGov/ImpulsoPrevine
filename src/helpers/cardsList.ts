@@ -1,4 +1,4 @@
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 
 // TODO excluir esses tipos quando movermos getExternalCardsProps para dentro de features

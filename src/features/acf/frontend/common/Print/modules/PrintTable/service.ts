@@ -2,9 +2,10 @@
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { AppliedFilters } from "../../../WithFilters";
-import type { AcfDashboardType } from "../../../DashboardType";
-import type { GetDataParams } from "@features/acf/frontend/common//useAcfData";
+import type { AppliedFilters } from "@features/acf/frontend/common/WithFilters";
+import { acfDashboardMap } from "@/features/acf/frontend/common/AcfDashboard";
+import { type AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
+import type { GetDataParams } from "@features/acf/frontend/common/useAcfData";
 
 //TODO: rever este tipo
 type CoordinatorProfile = "coaps" | "coeq";
@@ -39,7 +40,7 @@ export const getDataBuilder = <
     }: GetDataParams<TAppliedFilters>): Promise<AxiosResponse<TResponse>> => {
         if (!token) throw new Error("Token de autenticação é obrigatório");
         const currentURL = new URL(window.location.href);
-        const url = `${currentURL.origin}/api/lista-nominal/${acfDashboardType.toLowerCase()}/pages/${coordinatorProfile}/all`;
+        const url = `${currentURL.origin}/api/cofin25/indicadores/${acfDashboardMap[acfDashboardType].toLowerCase()}/${coordinatorProfile}/dados`;
         const body = bodyBuilder(
             sorting || null,
             filters || null,

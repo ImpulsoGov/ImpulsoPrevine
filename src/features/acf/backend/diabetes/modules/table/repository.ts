@@ -1,46 +1,58 @@
 import type { DiabetesAcfItem, Prisma } from "@prisma/client";
-import type {
-    CoapsFilters,
-    CoapsSort,
-    CoeqFilters,
-    CoeqSort,
-} from "@/features/acf/shared/diabetes/schema";
+
+import type { NullableFields } from "@/features/acf/backend/common/QueryBuilder";
 import {
     isFieldNullable,
     orderByNotNullable,
     orderByNullable,
     whereInput,
-    type NullableFields,
-} from "@features/acf/backend/common/QueryBuilder";
+} from "@/features/acf/backend/common/QueryBuilder";
+import type {
+    CoapsSort,
+    CoeqSort,
+} from "@/features/acf/shared/diabetes/schema";
 import { prisma } from "@prisma/prismaClient";
+import type {
+    FiltersOptionsDbCoaps,
+    FiltersOptionsDbCoeq,
+} from "../common/FiltersOptionsDb";
 
 const pageSize = 8;
 
 //TODO: Essa foi a melhor forma que encontramos de passar a informação "quais campos do model são nullable?"
 //      do sistema de tipos para runtime. Se algum dia descobrirmos uma forma melhor, podemos remover isso.
 const nullableFields: NullableFields<DiabetesAcfItem> = {
-    id: false,
-    municipalityState: true,
-    latestExamRequestDate: true,
-    mostRecentAppointmentDate: true,
-    hemoglobinTestDueDate: true,
-    nextAppointmentDueDate: true,
-    patientStatus: true,
-    conditionIdentifiedBy: true,
-    patientCpfOrBirthday: true,
-    patientName: true,
-    patientAge: true,
-    patientAgeRange: true,
-    careTeamIne: true,
+    patientId: false,
+    patientName: false,
+    patientCpf: true,
+    patientCns: true,
+    latestAppointmentDate: true,
+    appointmentStatusByQuarter: false,
+    latestBloodPressureExamRequestDate: true,
+    bloodPressureExamStatusByQuarter: false,
+    latestGlycatedHemoglobinExamRequestDate: true,
+    glycatedHemoglobinExamStatusByQuarter: false,
     careTeamName: true,
-    communityHealthWorker: true,
-    mostRecentProductionRecordDate: false,
+    careTeamIne: true,
+    microAreaName: true,
+    patientPhoneNumber: true,
+    patientAge: false,
+    patientAgeRange: false,
+    goodPracticesSum: false,
+    latestHomeVisitDate: true,
+    homeVisitStatusByQuarter: false,
+    latestWeightHeightDate: true,
+    weightHeightStatusByQuarter: false,
+    isMedicalRecordUpdated: false,
+    goodPracticesStatusByQuarter: false,
+    latestFeetExamRequestDate: true,
+    feetExamStatusByQuarter: false,
 };
 
 const whereInputCoaps = whereInput;
 
 const whereInputCoeq = (
-    filter: CoeqFilters,
+    filter: FiltersOptionsDbCoeq,
     municipalitySusId: string,
     teamIne: string,
     search: string
@@ -55,7 +67,7 @@ export const pageCoeq = async (
     municipalitySusId: string,
     teamIne: string,
     page: number,
-    filters: CoeqFilters,
+    filters: FiltersOptionsDbCoeq,
     sorting: CoeqSort,
     searchString: string
 ): Promise<ReadonlyArray<DiabetesAcfItem>> => {
@@ -66,6 +78,7 @@ export const pageCoeq = async (
             teamIne,
             searchString.toLocaleUpperCase()
         ),
+        //TODO: Extrair essa expressão pro QueryBuilder
         orderBy: isFieldNullable(
             nullableFields,
             sorting.field as keyof typeof nullableFields
@@ -80,7 +93,7 @@ export const pageCoeq = async (
 export const pageCoaps = async (
     municipalitySusId: string,
     page: number,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     sorting: CoapsSort,
     searchString: string
 ): Promise<ReadonlyArray<DiabetesAcfItem>> => {
@@ -103,7 +116,7 @@ export const pageCoaps = async (
 
 export const rowCountCoaps = async (
     municipalitySusId: string,
-    filters: CoapsFilters,
+    filters: FiltersOptionsDbCoaps,
     search: string
 ): Promise<number> => {
     return await prisma.diabetesAcfItem.count({
@@ -118,7 +131,7 @@ export const rowCountCoaps = async (
 export const rowCountCoeq = async (
     municipalitySusId: string,
     teamIne: string,
-    filters: CoeqFilters,
+    filters: FiltersOptionsDbCoeq,
     search: string
 ): Promise<number> => {
     return await prisma.diabetesAcfItem.count({
@@ -128,5 +141,50 @@ export const rowCountCoeq = async (
             teamIne,
             search.toLocaleUpperCase()
         ),
+    });
+};
+
+export const allDataCoeq = async (
+    municipalitySusId: string,
+    teamIne: string,
+    filters: FiltersOptionsDbCoeq,
+    sorting: CoeqSort,
+    searchString: string
+): Promise<ReadonlyArray<DiabetesAcfItem>> => {
+    return await prisma.diabetesAcfItem.findMany({
+        where: whereInputCoeq(
+            filters,
+            municipalitySusId,
+            teamIne,
+            searchString.toLocaleUpperCase()
+        ),
+        //TODO: Extrair essa expressão pro QueryBuilder
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
+    });
+};
+
+export const allDataCoaps = async (
+    municipalitySusId: string,
+    filters: FiltersOptionsDbCoaps,
+    sorting: CoapsSort,
+    searchString: string
+): Promise<ReadonlyArray<DiabetesAcfItem>> => {
+    return await prisma.diabetesAcfItem.findMany({
+        where: whereInputCoaps(
+            filters,
+            municipalitySusId,
+            searchString.toLocaleUpperCase()
+        ),
+        orderBy: isFieldNullable(
+            nullableFields,
+            sorting.field as keyof typeof nullableFields
+        )
+            ? orderByNullable(sorting.field, sorting.sort)
+            : orderByNotNullable(sorting.field, sorting.sort),
     });
 };

@@ -8,7 +8,7 @@ export const getFiltersCoeq = async (
     access_token: string
 ): Promise<AxiosResponse<schema.CoeqFiltersResponse>> => {
     const currentURL = new URL(window.location.href);
-    const url = `${currentURL.origin}/api/lista-nominal/hypertension/filters/coeq`;
+    const url = `${currentURL.origin}/api/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao/coeq/filtros`;
     //TODO: Criar uma camada de abstração fina entre nosso código e o axios, colocar os headers e maxBodyLength lá ao invés de duplicar
     return axios.request({
         method: "GET",

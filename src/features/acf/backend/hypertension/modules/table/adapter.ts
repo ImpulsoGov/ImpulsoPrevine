@@ -1,6 +1,7 @@
 import type * as db from "@prisma/client";
 import type {
     AppointmentStatusByQuarterCode,
+    GoodPracticesStatusByQuarterCode,
     HomeVisitStatusByQuarterCode,
     LatestExamRequestStatusByQuarterCode,
     PatientAgeRangeCode,
@@ -24,7 +25,7 @@ import type {
     FiltersOptionsDbCoaps,
     SharedFiltersOptionsDb,
 } from "../common/FiltersOptionsDb";
-import { updateQuarterText } from "../common/UpdateQuarterText";
+import { updateQuarterText } from "@features/acf/backend/common/UpdateQuarterText";
 
 const dbToModel = (hypertensionRow: db.HypertensionAcfItem): PageItem => {
     const updatedAppointmentStatusByQuarterCodeToText = updateQuarterText(
@@ -87,11 +88,7 @@ export const hypertensionPageDbToModel = (
 // TODO: mover para algum common porque essa função está genérica
 const filterOptionsModelToDb = <
     TFilterText extends string,
-    TFilterCode extends
-        | PatientAgeRangeCode
-        | AppointmentStatusByQuarterCode
-        // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents
-        | LatestExamRequestStatusByQuarterCode,
+    TFilterCode extends PatientAgeRangeCode | GoodPracticesStatusByQuarterCode,
 >(
     options: ReadonlyArray<TFilterText>,
     filterCodeToText: Record<TFilterCode, TFilterText>
@@ -110,22 +107,7 @@ const filterOptionsModelToDb = <
 const sharedFiltersModelToDb = (
     filters: SharedFilters
 ): SharedFiltersOptionsDb => {
-    const updatedAppointmentStatusByQuarter = updateQuarterText(
-        appointmentStatusByQuarterCodeToText
-    );
-    const updatedLatestExamRequestStatusByQuarter = updateQuarterText(
-        latestExamRequestStatusByQuarterCodeToText
-    );
-
     return {
-        appointmentStatusByQuarter: filterOptionsModelToDb(
-            filters.appointmentStatusByQuarter,
-            updatedAppointmentStatusByQuarter
-        ),
-        latestExamRequestStatusByQuarter: filterOptionsModelToDb(
-            filters.latestExamRequestStatusByQuarter,
-            updatedLatestExamRequestStatusByQuarter
-        ),
         patientAgeRange: filterOptionsModelToDb(
             filters.patientAgeRange,
             ageRangeCodeToText

@@ -5,9 +5,7 @@ import type {
     FiltersOptionsDbCoeq,
 } from "../common/FiltersOptionsDb";
 import type {
-    AppointmentStatusByQuarterCode,
     GoodPracticesStatusByQuarterCode,
-    LatestExamRequestStatusByQuarterCode,
     PatientAgeRangeCode,
 } from "@/features/acf/shared/hypertension/model";
 
@@ -39,16 +37,6 @@ export const coeqFilterOptions = async (
 
     const microAreaName = await fieldOptions("microAreaName", whereFields);
 
-    const appointmentStatusByQuarter = await fieldOptions(
-        "appointmentStatusByQuarter",
-        whereFields
-    );
-
-    const latestExamRequestStatusByQuarter = await fieldOptions(
-        "latestExamRequestStatusByQuarter",
-        whereFields
-    );
-
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
     const goodPracticesStatusByQuarter = await fieldOptions(
         "goodPracticesStatusByQuarter",
@@ -61,10 +49,6 @@ export const coeqFilterOptions = async (
 
     return {
         microAreaName: microAreaName,
-        appointmentStatusByQuarter:
-            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
-        latestExamRequestStatusByQuarter:
-            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
         goodPracticesStatusByQuarter:
             goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,
@@ -80,14 +64,6 @@ export const coapsFilterOptions = async (
     };
     const careTeamName = await fieldOptions("careTeamName", whereFields);
     const microAreaName = await fieldOptions("microAreaName", whereFields);
-    const appointmentStatusByQuarter = await fieldOptions(
-        "appointmentStatusByQuarter",
-        whereFields
-    );
-    const latestExamRequestStatusByQuarter = await fieldOptions(
-        "latestExamRequestStatusByQuarter",
-        whereFields
-    );
     const patientAgeRange = await fieldOptions("patientAgeRange", whereFields);
 
     const goodPracticesStatusByQuarter = await fieldOptions(
@@ -103,10 +79,6 @@ export const coapsFilterOptions = async (
     return {
         careTeamName: careTeamName,
         microAreaName: microAreaName,
-        appointmentStatusByQuarter:
-            appointmentStatusByQuarter as ReadonlyArray<AppointmentStatusByQuarterCode>,
-        latestExamRequestStatusByQuarter:
-            latestExamRequestStatusByQuarter as ReadonlyArray<LatestExamRequestStatusByQuarterCode>,
         patientAgeRange: patientAgeRange as ReadonlyArray<PatientAgeRangeCode>,
         goodPracticesStatusByQuarter:
             goodPracticesStatusByQuarter as ReadonlyArray<GoodPracticesStatusByQuarterCode>,

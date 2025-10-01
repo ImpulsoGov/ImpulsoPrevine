@@ -4,7 +4,7 @@ import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/DashboardType";
+import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
@@ -33,8 +33,6 @@ type ContentCoeqProps = {
 //TODO: Pensar se faz sentido que isso fique aqui mesmo
 const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     microAreaName: [],
-    appointmentStatusByQuarter: [],
-    latestExamRequestStatusByQuarter: [],
     patientAgeRange: "",
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",
@@ -67,14 +65,9 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
                                     <FilterHint />
-                                    <WithFiltersBar
-                                        FiltersBar={CoeqFiltersBar}
-                                        isPrintEnabled={isPrintEnabled}
-                                    >
+                                    <WithFiltersBar FiltersBar={CoeqFiltersBar}>
                                         <WithPagination>
-                                            <CoeqDataTable
-                                                isPrintEnabled={isPrintEnabled}
-                                            />
+                                            <CoeqDataTable />
                                             <PrintModal
                                                 modalLabels={coeqLabelsModal}
                                                 setShouldRenderPrintTable={
