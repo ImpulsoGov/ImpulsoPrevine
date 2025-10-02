@@ -1,6 +1,7 @@
 import React from "react";
 import { getCurrentQuadrimester } from "@/features/acf/shared/GetCurrentQuadrimester";
 
+// TODO: subir para common do frontend e usar em diabetes e hipertensão
 export const CurrentQuadrimester: React.FC<{ date?: Date }> = ({
     date = new Date(),
 }) => {
