@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from "react";
 
-export const TooltipContentWrapper: React.FC<PropsWithChildren> = ({
+// TODO: rever nome (porque é muito genérico) e localização (porque está
+// atrelado ao HeaderWithTooltip) desse componente
+export const TooltipContentWithStyle: React.FC<PropsWithChildren> = ({
     children,
 }) => {
     return (
