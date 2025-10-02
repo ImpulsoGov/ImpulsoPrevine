@@ -5,15 +5,11 @@ import type {
 } from "@/features/acf/frontend/common/Print/modules/PrintTable/model";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/ListCoeq";
-import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import { cnsFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
-import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
-import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
-import { cpfFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
 
-import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
-import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import * as Formatters from "@features/acf/frontend/common/Formatters";
+import { RenderDate } from "@/features/acf/frontend/common/Formatters/modules/RenderDate";
+import { RenderStatusByQuarterTag } from "@features/acf/frontend/common/Print";
 
 export const coeqLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR MICROÁREA",
@@ -70,10 +66,11 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         renderCell: (param: unknown): React.ReactNode => {
             const [name, cpf, cns] = param as [string, string, string];
             return (
-                <>
-                    <div>{name}</div>
-                    <div>{cpfFormatter(cpf) || cnsFormatter(cns)}</div>
-                </>
+                <Formatters.RenderPatientNameCpfCns
+                    name={name}
+                    cpf={cpf}
+                    cns={cns}
+                />
             );
         },
     },
@@ -93,10 +90,10 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             return (
                 <>
                     <div>
-                        {goodPracticesSumFormatter(
-                            medicalRecordUpdated,
-                            goodPracticesSum
-                        )}
+                        <Formatters.GoodPracticesSumFormatter
+                            medicalRecordUpdated={medicalRecordUpdated}
+                            goodPracticesSum={goodPracticesSum}
+                        />
                     </div>
                 </>
             );
@@ -187,12 +184,12 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
         headerName: "Microárea",
         titleFormatter: (value: unknown): string =>
-            microAreaFormatter(value as string),
+            Formatters.microAreaFormatter(value as string),
         renderCell: (param: unknown): React.ReactNode => {
             const [microAreaName] = param as [string, string];
             return (
                 <>
-                    <div>{microAreaFormatter(microAreaName)}</div>
+                    <div>{Formatters.microAreaFormatter(microAreaName)}</div>
                 </>
             );
         },
@@ -208,7 +205,9 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [patientPhoneNumber, patientAge] = param as [string, string];
             return (
                 <>
-                    <div>{phoneNumberFormatter(patientPhoneNumber)}</div>
+                    <div>
+                        {Formatters.phoneNumberFormatter(patientPhoneNumber)}
+                    </div>
                     <div>{patientAge} anos</div>
                 </>
             );

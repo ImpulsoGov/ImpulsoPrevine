@@ -1,7 +1,7 @@
 import type * as schema from "@/features/acf/shared/hypertension/schema";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
-import { microAreaFormatter } from "./MicroAreaFormatter";
+import * as Formatters from "@features/acf/frontend/common/Formatters";
 
 export const toSelectConfigsShared = (
     filtersValues: schema.SharedFilters
@@ -11,7 +11,7 @@ export const toSelectConfigsShared = (
             options: toHtmlSelectOptions(filtersValues.microAreaName).map(
                 (item) => ({
                     ...item,
-                    label: microAreaFormatter(item.label),
+                    label: Formatters.microAreaFormatter(item.label),
                 })
             ),
             label: "Microárea",

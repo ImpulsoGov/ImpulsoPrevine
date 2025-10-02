@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import type { BaseRow } from "..";
 import { RenderPatientNameCpfCns } from "..";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import { nameFormatter } from "@/features/acf/frontend/common/Formatters/modules/NameFormatter";
 import { cnsFormatter } from "../modules/Formatters/CnsFormatter";
 import { cpfFormatter } from "../modules/Formatters/CpfFormatter";
 

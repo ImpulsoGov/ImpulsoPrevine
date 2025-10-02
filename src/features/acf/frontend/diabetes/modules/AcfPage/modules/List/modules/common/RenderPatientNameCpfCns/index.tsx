@@ -1,4 +1,4 @@
-import { nameFormatter } from "@/features/acf/frontend/common/NameFormatter";
+import { nameFormatter } from "@/features/acf/frontend/common/Formatters/modules/NameFormatter";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
 import type { JSX } from "react";
