@@ -16,7 +16,9 @@ export const RenderPatientNameCpfCns: React.FC<Props> = ({
 }) => {
     return (
         <div>
-            <span data-testid="patient-name">{nameFormatter(name)}</span>
+            <b>
+                <span data-testid="patient-name">{nameFormatter(name)}</span>
+            </b>
             <br />
             <span data-testid="patient-cpf-cns">
                 {cpfFormatter(cpf) || cnsFormatter(cns) || "-"}

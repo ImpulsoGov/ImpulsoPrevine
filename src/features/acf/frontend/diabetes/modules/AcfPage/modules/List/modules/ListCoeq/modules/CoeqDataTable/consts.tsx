@@ -7,6 +7,7 @@ import type {
 import type * as model from "@/features/acf/shared/diabetes/model";
 import { HeaderWithTooltip } from "@/features/acf/frontend/common/HeaderWithTooltip";
 import * as Formatters from "@/features/acf/frontend/common/Formatters";
+import { TooltipContentWrapper } from "@/features/acf/frontend/common/TooltipContentWrapper";
 
 export const coeqColumns: Array<GridColDef> = [
     {
@@ -325,64 +326,64 @@ export const coeqColumns: Array<GridColDef> = [
 
 const tooltipContentByGroupId = {
     "#01": (
-        <div>
+        <TooltipContentWrapper>
             Aqui estão apenas cidadãos com FCI e que possuem diagnóstico
             clínico.
             <br />
             <br />A soma das boas práticas é a estimativa da pontuação de
             cidadãos. Cada prática marcada como “em dia” soma 25 pontos, podendo
             chegar a até 100 no total.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#02": (
-        <div>
+        <TooltipContentWrapper>
             Ter realizado pelo menos 01 consulta presencial ou remota por
             profissional médica(o) ou enfermeira(o), nos últimos 6 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>20 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#03": (
-        <div>
+        <TooltipContentWrapper>
             Ter pelo menos 01 registro de aferição da pressão arterial,
             realizado nos últimos 6 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>15 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#04": (
-        <div>
+        <TooltipContentWrapper>
             Ter pelo menos 01 registro de hemoglobina glicada, solicitada ou
             avaliada, nos últimos 6 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>15 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#05": (
-        <div>
+        <TooltipContentWrapper>
             Ter realizado pelo menos 01 (um) registro de peso e altura, nos
             últimos 12 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>15 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#06": (
-        <div>
+        <TooltipContentWrapper>
             Ter pelo menos 2 visitas domiciliares nos últimos 12 meses, feitas
             por ACS ou TACS, com intervalo mínimo de 30 dias entre elas. Só
             contam as visitas registradas como acompanhamento de pessoa com
             hipertensão.
             <br />
             <span style={{ color: "#FFFACF" }}>20 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
     "#07": (
-        <div>
+        <TooltipContentWrapper>
             Ter realizado pelo menos 01 (um) registro de avaliação dos pés,
             realizado nos últimos 12 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>15 pontos</span>.
-        </div>
+        </TooltipContentWrapper>
     ),
 };
 

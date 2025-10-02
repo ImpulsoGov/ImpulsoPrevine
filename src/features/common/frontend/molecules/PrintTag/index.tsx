@@ -56,7 +56,7 @@ const typography: Record<PrintTagType, CSSProperties> = {
         fontSize: "9px",
         fontStyle: "normal",
         fontWeight: 600,
-        lineHeight: "130%",
+        lineHeight: "120%",
     },
 };
 

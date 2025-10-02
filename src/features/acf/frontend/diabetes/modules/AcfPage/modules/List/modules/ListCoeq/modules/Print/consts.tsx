@@ -38,7 +38,7 @@ export const printListProps: PrintListProps<
             <b>PA:</b> Pressão Arterial
         </div>,
         <div>
-            <b>HG:</b> Hemoglobina Glicada
+            <b>HbA1c:</b> Hemoglobina Glicada
         </div>,
 
         <div>
@@ -155,7 +155,7 @@ export const coeqColumns: Array<ColumnsProps<DiabetesAcfItem>> = [
             landscape: 156,
             portrait: 110,
         },
-        headerName: "Aferição de HG: Data e situação",
+        headerName: "HbA1c: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
