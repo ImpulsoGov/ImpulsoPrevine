@@ -1,4 +1,4 @@
-import { microAreaFormatter } from "@/features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
+import { microAreaFormatter } from "@/features/acf/frontend/common/Formatters";
 import type { ColumnsProps } from "@features/acf/frontend/common/Print/modules/PrintTable//model";
 import { formatDate, parseDate } from "@/features/common/shared/time";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";

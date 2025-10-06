@@ -11,7 +11,7 @@ export const nameFormatter = (value: string | undefined): string => {
     return formattedNames.join(" ");
 };
 
-export const teamNameFormatter = (value: string | undefined): string => {
+export const teamNameFormatter = (value: string | null | undefined): string => {
     if (!value) return "-";
 
     const commonPrepositions = ["da", "de", "do", "dos", "das", "e", "e/"];

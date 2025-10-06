@@ -31,7 +31,8 @@
             "@data/*": ["./src/data/*"],
             "@app/*": ["./src/app/*"],
             "@features/*": ["./src/features/*"],
-            "@tests/*": ["./__tests__/*"]
+            "@tests/*": ["./__tests__/*"],
+            "@CommomFrontend/*": ["./src/features/frontend/common/*"]
         },
         "target": "ES2017"
     },

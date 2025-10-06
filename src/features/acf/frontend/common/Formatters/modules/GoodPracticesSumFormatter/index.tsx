@@ -1,7 +1,12 @@
-export const goodPracticesSumFormatter = (
-    medicalRecordUpdated: string,
-    goodPracticesSum: number
-): React.ReactNode => {
+type Props = {
+    medicalRecordUpdated: string;
+    goodPracticesSum: number;
+};
+
+export const GoodPracticesSumFormatter: React.FC<Props> = ({
+    medicalRecordUpdated,
+    goodPracticesSum,
+}) => {
     const isMedicalRecordUpdated = medicalRecordUpdated === "Atualizada";
     return isMedicalRecordUpdated ? (
         <span>{goodPracticesSum}/100</span>

@@ -22,6 +22,7 @@ export const PrintTag: React.FC<TagProps> = ({
 }) => {
     return (
         <div
+            className="print-tag"
             style={{
                 ...container,
                 ...spacing[type],
@@ -40,6 +41,7 @@ const container: CSSProperties = {
     justifyContent: "center",
     alignItems: "center",
     fontFamily: "Inter, sans-serif",
+    width: "fit-content",
 };
 
 const spacing: Record<PrintTagType, CSSProperties> = {
@@ -54,7 +56,7 @@ const typography: Record<PrintTagType, CSSProperties> = {
         fontSize: "9px",
         fontStyle: "normal",
         fontWeight: 600,
-        lineHeight: "150%",
+        lineHeight: "120%",
     },
 };
 
@@ -62,12 +64,10 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     danger: {
         backgroundColor: "#FAD2D2",
         color: "#991B1B",
-        width: "90px",
     },
     warning: {
         backgroundColor: "#FFE2B8",
         color: "#B45309",
-        width: "55px",
     },
     success: {
         backgroundColor: "#D0F5DB",
@@ -77,7 +77,6 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     attention: {
         backgroundColor: "#FFF2A6",
         color: "#654F00",
-        width: "96px",
     },
 };
 

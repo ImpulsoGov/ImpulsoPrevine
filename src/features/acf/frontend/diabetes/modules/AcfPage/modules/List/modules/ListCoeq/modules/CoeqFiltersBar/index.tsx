@@ -1,0 +1,1 @@
+export { CoeqFiltersBar } from "./container";

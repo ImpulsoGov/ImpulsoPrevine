@@ -9,15 +9,8 @@ import type {
     HypertensionAcfItem,
     LatestExamRequestStatusByQuarterText,
 } from "@/features/acf/shared/hypertension/model";
-import { DataGridRenderDate } from "@/features/acf/frontend/common/RenderDate";
-import { teamNameFormatter } from "@/features/acf/frontend/common/NameFormatter";
-import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
-import { RenderPatientNameCpfCns } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
-import { RenderStatusByQuarterTag } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderStatusByQuarterTag";
-import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
-import { CellWithDivider } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/CellWithDivider";
 import { HeaderWithTooltip } from "@/features/acf/frontend/common/HeaderWithTooltip";
+import * as Formatters from "@features/acf/frontend/common/Formatters";
 
 export const coapsColumns: Array<GridColDef> = [
     {
@@ -27,7 +20,13 @@ export const coapsColumns: Array<GridColDef> = [
         flex: 1,
         headerAlign: "left",
         align: "left",
-        renderCell: RenderPatientNameCpfCns,
+        renderCell: (params: GridRenderCellParams<HypertensionAcfItem>) => (
+            <Formatters.RenderPatientNameCpfCns
+                name={params.row.patientName}
+                cpf={params.row.patientCpf}
+                cns={params.row.patientCns}
+            />
+        ),
         cellClassName: "breakable-content",
         headerClassName: "LowerHeader",
     },
@@ -45,21 +44,14 @@ export const coapsColumns: Array<GridColDef> = [
         align: "left",
         cellClassName: "breakable-content",
         headerClassName: "LowerHeader",
-        renderCell: ({
-            row,
-        }: GridRenderCellParams<
-            HypertensionAcfItem,
-            number
-        >): React.ReactNode => {
-            return (
-                <div>
-                    {goodPracticesSumFormatter(
-                        row.medicalRecordUpdated,
-                        row.goodPracticesSum
-                    )}
-                </div>
-            );
-        },
+        renderCell: (
+            params: GridRenderCellParams<HypertensionAcfItem, number>
+        ) => (
+            <Formatters.GoodPracticesSumFormatter
+                medicalRecordUpdated={params.row.medicalRecordUpdated}
+                goodPracticesSum={params.value as number}
+            />
+        ),
     },
     {
         field: "patientAge",
@@ -77,7 +69,9 @@ export const coapsColumns: Array<GridColDef> = [
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <CellWithDivider>{value}</CellWithDivider>
+            <Formatters.CellWithDivider>
+                <span>{value}</span>
+            </Formatters.CellWithDivider>
         ),
     },
     {
@@ -90,7 +84,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
-        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+        renderCell: Formatters.DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "appointmentStatusByQuarter",
@@ -111,9 +105,9 @@ export const coapsColumns: Array<GridColDef> = [
             HypertensionAcfItem,
             AppointmentStatusByQuarterText
         >) => (
-            <CellWithDivider>
-                <RenderStatusByQuarterTag value={value} />
-            </CellWithDivider>
+            <Formatters.CellWithDivider>
+                <Formatters.RenderStatusByQuarterTag value={value} />
+            </Formatters.CellWithDivider>
         ),
     },
     {
@@ -126,7 +120,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
-        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+        renderCell: Formatters.DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "latestExamRequestStatusByQuarter",
@@ -147,9 +141,9 @@ export const coapsColumns: Array<GridColDef> = [
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
         >) => (
-            <CellWithDivider>
-                <RenderStatusByQuarterTag value={value} />
-            </CellWithDivider>
+            <Formatters.CellWithDivider>
+                <Formatters.RenderStatusByQuarterTag value={value} />
+            </Formatters.CellWithDivider>
         ),
     },
     {
@@ -162,7 +156,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">Data última</span>
         ),
-        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+        renderCell: Formatters.DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "homeVisitStatusByQuarter",
@@ -183,9 +177,9 @@ export const coapsColumns: Array<GridColDef> = [
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
         >) => (
-            <CellWithDivider>
-                <RenderStatusByQuarterTag value={value} />
-            </CellWithDivider>
+            <Formatters.CellWithDivider>
+                <Formatters.RenderStatusByQuarterTag value={value} />
+            </Formatters.CellWithDivider>
         ),
     },
     {
@@ -198,7 +192,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderHeader: () => (
             <span className="MuiDataGrid-columnHeaderTitle">Data último</span>
         ),
-        renderCell: DataGridRenderDate<HypertensionAcfItem>,
+        renderCell: Formatters.DataGridRenderDate<HypertensionAcfItem>,
     },
     {
         field: "weightHeightStatusByQuarter",
@@ -219,9 +213,9 @@ export const coapsColumns: Array<GridColDef> = [
             HypertensionAcfItem,
             LatestExamRequestStatusByQuarterText
         >) => (
-            <CellWithDivider>
-                <RenderStatusByQuarterTag value={value} />
-            </CellWithDivider>
+            <Formatters.CellWithDivider>
+                <Formatters.RenderStatusByQuarterTag value={value} />
+            </Formatters.CellWithDivider>
         ),
     },
     {
@@ -243,7 +237,7 @@ export const coapsColumns: Array<GridColDef> = [
                     wordBreak: "break-word",
                 }}
             >
-                {teamNameFormatter(value)}
+                {Formatters.teamNameFormatter(value)}
             </div>
         ),
     },
@@ -258,7 +252,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span> {microAreaFormatter(value)}</span>
+            <span> {Formatters.microAreaFormatter(value)}</span>
         ),
     },
     {
@@ -272,7 +266,7 @@ export const coapsColumns: Array<GridColDef> = [
         renderCell: ({
             value,
         }: GridRenderCellParams<HypertensionAcfItem, string>) => (
-            <span> {phoneNumberFormatter(value)}</span>
+            <span> {Formatters.phoneNumberFormatter(value)}</span>
         ),
     },
 ];

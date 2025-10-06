@@ -1,8 +1,7 @@
 const FORA_DE_AREA = "FA";
 const SEM_MICROAREA = "NULL";
 
-// TODO: usar a função de @/features/acf/frontend/common/OrderMicroarea
-export const orderPrintGroups = (current: string, next: string): number => {
+export const orderMicroarea = (current: string, next: string): number => {
     const currentValueUppercase = current.toUpperCase();
     const nextValueUppercase = next.toUpperCase();
 

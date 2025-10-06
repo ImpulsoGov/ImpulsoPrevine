@@ -1,8 +1,8 @@
-import type * as schema from "@/features/acf/shared/hypertension/schema";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { nameFormatter } from "@/features/acf/frontend/common/Formatters/modules/NameFormatter";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
-import { toSelectConfigsShared } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/SharedSelectConfigs";
+import { toSelectConfigsShared } from "@features/acf/frontend/diabetes/modules/AcfPage/modules/List/modules/common/SharedSelectConfigs";
 
 export const toSelectConfigsCoaps = (
     filtersValues: schema.CoapsFilters

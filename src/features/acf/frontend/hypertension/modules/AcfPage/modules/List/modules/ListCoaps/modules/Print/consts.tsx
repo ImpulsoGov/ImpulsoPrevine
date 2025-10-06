@@ -7,20 +7,8 @@ import type { CoapsAppliedFilters } from "../CoapsDataTable";
 import React from "react";
 import type { HypertensionAcfItem } from "@/features/acf/shared/hypertension/model";
 import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
-import { RenderStatusByQuarterTag } from "@/features/acf/frontend/common/Print";
-import { phoneNumberFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/PhoneNumberFormatter";
-import {
-    cpfFormatter,
-    cnsFormatter,
-} from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/RenderPatientNameCpfCns";
-import { microAreaFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/MicroAreaFormatter";
-import {
-    nameFormatter,
-    teamNameFormatter,
-} from "@/features/acf/frontend/common/NameFormatter";
-
-import { goodPracticesSumFormatter } from "@features/acf/frontend/hypertension/modules/AcfPage/modules/List/modules/common/GoodPracticesSumFormatter";
-import { RenderDate } from "@/features/acf/frontend/common/RenderDate";
+import * as Formatters from "@features/acf/frontend/common/Formatters";
+import { RenderStatusByQuarterTag } from "@features/acf/frontend/common/Print";
 
 export const apsLabelsModal: ModalLabels = {
     title: "IMPRESSÃO POR EQUIPES",
@@ -79,10 +67,11 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         renderCell: (param: unknown): React.ReactNode => {
             const [name, cpf, cns] = param as [string, string, string];
             return (
-                <>
-                    <div>{nameFormatter(name)}</div>
-                    <div>{cpfFormatter(cpf) || cnsFormatter(cns)}</div>
-                </>
+                <Formatters.RenderPatientNameCpfCns
+                    name={name}
+                    cpf={cpf}
+                    cns={cns}
+                />
             );
         },
     },
@@ -100,14 +89,10 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
                 string,
             ];
             return (
-                <>
-                    <div>
-                        {goodPracticesSumFormatter(
-                            medicalRecordUpdated,
-                            goodPracticesSum
-                        )}
-                    </div>
-                </>
+                <Formatters.GoodPracticesSumFormatter
+                    goodPracticesSum={goodPracticesSum}
+                    medicalRecordUpdated={medicalRecordUpdated}
+                />
             );
         },
     },
@@ -126,7 +111,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <div style={{ paddingLeft: "7px" }}>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -145,7 +130,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -164,7 +149,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -184,7 +169,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -208,8 +193,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [careTeamName, microAreaName] = param as [string, string];
             return (
                 <div style={{ paddingLeft: "7px" }}>
-                    <div>{teamNameFormatter(careTeamName)}</div>
-                    <div>{microAreaFormatter(microAreaName)}</div>
+                    <div>{Formatters.teamNameFormatter(careTeamName)}</div>
+                    <div>{Formatters.microAreaFormatter(microAreaName)}</div>
                 </div>
             );
         },
@@ -225,7 +210,9 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [patientPhoneNumber, patientAge] = param as [string, string];
             return (
                 <>
-                    <div>{phoneNumberFormatter(patientPhoneNumber)}</div>
+                    <div>
+                        {Formatters.phoneNumberFormatter(patientPhoneNumber)}
+                    </div>
                     <div>{patientAge} anos</div>
                 </>
             );
