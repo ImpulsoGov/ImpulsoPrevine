@@ -1,0 +1,38 @@
+#ig-wrap{font:14px/1.45 ui-sans-serif,system-ui}
+.ig-card{border:1px solid #d1d5db;border-radius:12px;padding:16px;background:#fff;max-width:960px;margin:8px auto;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.ig-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ig-row + .ig-row{margin-top:12px}
+input[type=file],button{font:inherit}
+.ig-btn{padding:8px 12px;border-radius:10px;border:1px solid #cbd5e1;background:#f8fafc;cursor:pointer;transition:filter .12s, transform .02s}
+.ig-btn:active{transform:translateY(1px)}
+.ig-primary{background:#0E9F6E;color:#fff;border-color:#0E9F6E}
+.ig-primary:hover{filter:brightness(0.95)}
+.ig-success{background:#0E9F6E;color:#fff;border-color:#0E9F6E}
+.ig-success:hover{filter:brightness(0.95)}
+.ig-btn:disabled{opacity:1;filter:none;cursor:default}
+.ig-primary:disabled{background:#0E9F6E;color:#fff;border-color:#0E9F6E}
+.ig-success:disabled{background:#16a34a;color:#fff;border-color:#16a34a}
+.ig-hint{color:#64748b;font-size:12px}
+.ig-ok{color:#059669}.ig-warn{color:#b45309}.ig-muted{color:#6b7280}
+progress{width:180px;height:8px}
+.ig-badge{display:inline-flex;align-items:center;gap:8px;background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0;border-radius:999px;padding:6px 10px;font-size:12px}
+.ig-badge svg{width:16px;height:16px}
+.ig-spacer{flex:1}
+.ig-actions{display:flex; gap:10px; align-items:center}
+.ig-ddcol{display:flex; flex-direction:column; gap:8px}
+
+.ig-dd{position:relative; min-width:260px}
+.ig-dd-trigger{display:flex; align-items:center; justify-content:space-between; gap:10px;width:100%; background:#fff; color:#111827;border:1px solid #cbd5e1; border-radius:10px; padding:8px 12px; cursor:pointer}
+.ig-dd-label{font-size:14px}
+.ig-dd-right{display:flex; align-items:center; gap:8px}
+.ig-dd-badge{background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; border-radius:999px; padding:2px 8px; font-size:11px; display:none}
+.ig-dd-chev{width:14px;height:14px; transition:transform .15s}
+.ig-dd.open .ig-dd-chev{transform:rotate(180deg)}
+.ig-dd-panel{position:absolute; z-index:30; top:110%; right:0;min-width:260px; background:#fff; border:1px solid #e5e7eb; border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.12); padding:10px; display:none}
+.ig-dd.open .ig-dd-panel{display:block}
+.ig-dd-title{font-size:12px; color:#374151; margin-bottom:8px}
+.ig-dd-opt{display:flex; align-items:center; gap:8px; padding:6px 4px}
+.ig-dd-opt input{width:16px;height:16px}
+.ig-dd-actions{display:flex; gap:8px; justify-content:flex-end; margin-top:8px}
+.ig-dd-apply{border:1px solid #2563eb; background:#2563eb; color:#fff; border-radius:8px; padding:6px 10px; cursor:pointer}
+.ig-dd-clear{border:1px solid #e5e7eb; background:#fff; color:#111827; border-radius:8px; padding:6px 10px; cursor:pointer}
