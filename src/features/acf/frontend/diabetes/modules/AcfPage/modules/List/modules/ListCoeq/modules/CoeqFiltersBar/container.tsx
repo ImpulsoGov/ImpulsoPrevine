@@ -1,5 +1,5 @@
 "use client";
-import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension";
+import type { CoeqAppliedFilters } from "@/features/acf/frontend/diabetes";
 import { FiltersBar } from "@features/acf/frontend/common/FiltersBar";
 import { type Dispatch, type SetStateAction } from "react";
 import { toSelectConfigsCoeq } from "./logic";

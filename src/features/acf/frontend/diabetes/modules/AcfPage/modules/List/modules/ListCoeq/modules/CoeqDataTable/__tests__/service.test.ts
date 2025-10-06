@@ -1,4 +1,4 @@
-import type * as schema from "@/features/acf/shared/hypertension/schema";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import { describe, expect, it } from "@jest/globals";
 import type { GridSortItem } from "@mui/x-data-grid";
 import type { CoeqAppliedFilters } from "../model";

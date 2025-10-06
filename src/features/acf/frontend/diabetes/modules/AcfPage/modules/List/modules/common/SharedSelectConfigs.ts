@@ -1,4 +1,4 @@
-import type * as schema from "@/features/acf/shared/hypertension/schema";
+import type * as schema from "@/features/acf/shared/diabetes/schema";
 import type { SelectConfig } from "@/features/acf/frontend/common/SelectConfig";
 import { toHtmlSelectOptions } from "@/features/acf/frontend/common/HtmlSelectOptions";
 import { microAreaFormatter } from "@/features/acf/frontend/common/Formatters";
