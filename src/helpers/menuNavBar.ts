@@ -1,4 +1,7 @@
-import { hypertensionNewProgram } from "@/features/common/shared/flags";
+import {
+    diabetesNewProgram,
+    hypertensionNewProgram,
+} from "@/features/common/shared/flags";
 
 export type Menu = {
     label: string;
@@ -12,6 +15,7 @@ type Profile = "aps" | "equipe" | "";
 
 const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     return [
         {
             label: "Citopatológico",
@@ -35,6 +39,16 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
                       url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
                       telemetryEvent:
                           "acessar_lista_cuidado_da_pessoa_com_hipertensao",
+                  },
+              ]
+            : []),
+        ...(isDiabetesNewProgramEnabled
+            ? [
+                  {
+                      label: "👉 Cuidado da pessoa com Diabetes [BETA]",
+                      url: `/cofin25/indicadores/cuidado_da_pessoa_com_diabetes`,
+                      telemetryEvent:
+                          "acessar_lista_cuidado_da_pessoa_com_diabetes",
                   },
               ]
             : []),
