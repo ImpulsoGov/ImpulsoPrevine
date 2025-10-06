@@ -7,6 +7,8 @@ export const orderMicroAreas = (current: string, next: string): number => {
 
     if (currentValueUppercase === SEM_MICROAREA) return 1;
 
+    if (nextValueUppercase === SEM_MICROAREA) return -1;
+
     if (currentValueUppercase === FORA_DE_AREA.toUpperCase()) return 1;
 
     if (nextValueUppercase === FORA_DE_AREA.toUpperCase()) return -1;

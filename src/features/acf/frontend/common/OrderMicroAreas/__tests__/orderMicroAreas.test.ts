@@ -45,7 +45,37 @@ describe("orderMicroAreas", () => {
     });
 
     it("Deve pôr as microáreas em ordem alfabética, deixando 'FA' antes de 'null'", () => {
+        const list = ["null", ...microAreas, "FA"];
+        const sortedList = list.sort(orderMicroAreas);
+
+        expect(sortedList).toEqual([
+            "Área 01",
+            "Área 2",
+            "Área 03",
+            "área 12",
+            "Área B",
+            "FA",
+            "null",
+        ]);
+    });
+
+    it("Deve pôr as microáreas em ordem alfabética, deixando 'FA' antes de 'null'", () => {
         const list = ["FA", ...microAreas, "null"];
+        const sortedList = list.sort(orderMicroAreas);
+
+        expect(sortedList).toEqual([
+            "Área 01",
+            "Área 2",
+            "Área 03",
+            "área 12",
+            "Área B",
+            "FA",
+            "null",
+        ]);
+    });
+
+    it("Deve pôr as microáreas em ordem alfabética, deixando 'FA' antes de 'null'", () => {
+        const list = ["null", "FA", ...microAreas];
         const sortedList = list.sort(orderMicroAreas);
 
         expect(sortedList).toEqual([
