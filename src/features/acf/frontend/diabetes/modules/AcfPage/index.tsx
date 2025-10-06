@@ -22,7 +22,6 @@ type Props = {
     }>;
 };
 export const AcfPage: React.FC<Props> = async () => {
-    //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
     const municipalityName = getMunicipalityName(
         session?.user.municipio_id_sus ?? ""
