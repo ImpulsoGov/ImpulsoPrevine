@@ -1,7 +1,7 @@
 const FORA_DE_AREA = "FA";
 const SEM_MICROAREA = "NULL";
 
-export const orderMicroarea = (current: string, next: string): number => {
+export const orderMicroAreas = (current: string, next: string): number => {
     const currentValueUppercase = current.toUpperCase();
     const nextValueUppercase = next.toUpperCase();
 
