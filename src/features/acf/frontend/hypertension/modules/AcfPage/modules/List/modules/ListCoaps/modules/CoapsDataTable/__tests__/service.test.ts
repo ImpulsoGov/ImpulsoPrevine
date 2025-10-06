@@ -33,7 +33,7 @@ describe("bodyBuilder", () => {
         });
     });
 
-    it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
+    it("deve incluir filtros, traduzindo patientAgeRange, goodPracticesStatusByQuarter e medicalRecordUpdate para um Array", () => {
         const appliedFilters: CoapsAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
             patientAgeRange: "20 a 59 (Adulto)",

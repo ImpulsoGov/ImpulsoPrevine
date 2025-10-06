@@ -33,7 +33,7 @@ describe("bodyBuilder", () => {
         });
     });
 
-    it("deve incluir filtros, traduzindo patientAgeRange para um Array", () => {
+    it("deve incluir filtros, traduzindo patientAgeRange, goodPracticesStatusByQuarter e medicalRecordUpdate para um Array", () => {
         const appliedFilters: CoeqAppliedFilters = {
             microAreaName: ["worker1", "worker2"],
             patientAgeRange: "60 ou mais (Idoso)",
