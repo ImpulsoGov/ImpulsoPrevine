@@ -7,8 +7,8 @@ import React, { useState } from "react";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
-import { CurrentQuadrimester } from "../common/CurrentQuadrimester";
-import { FilterHint } from "../common/FilterHint";
+import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
+import { FilterHint } from "@features/acf/frontend/common/FilterHint";
 
 import { ListCoeq } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
@@ -59,7 +59,10 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
-                                    <FilterHint />
+                                    <FilterHint
+                                        title="Filtrar lista"
+                                        description="selecione filtros para refinar a busca de cidadãos"
+                                    />
                                     <WithFiltersBar FiltersBar={CoeqFiltersBar}>
                                         <WithPagination>
                                             <CoeqDataTable />

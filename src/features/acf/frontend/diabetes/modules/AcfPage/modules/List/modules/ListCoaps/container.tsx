@@ -8,8 +8,8 @@ import React, { useState } from "react";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
-import { CurrentQuadrimester } from "../common/CurrentQuadrimester";
-import { FilterHint } from "../common/FilterHint";
+import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
+import { FilterHint } from "@features/acf/frontend/common/FilterHint";
 import { ListCoaps } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
@@ -60,7 +60,10 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                             >
                                 <hr style={{ width: "100%" }} />
                                 <WithSorting>
-                                    <FilterHint />
+                                    <FilterHint
+                                        title="Filtrar lista"
+                                        description="selecione filtros para refinar a busca de cidadãos"
+                                    />
                                     <WithFiltersBar
                                         FiltersBar={CoapsFiltersBar}
                                     >

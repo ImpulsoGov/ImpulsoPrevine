@@ -1,6 +1,11 @@
 import React from "react";
 
-export const FilterHint: React.FC = () => {
+type Props = {
+    title: string;
+    description: string;
+};
+
+export const FilterHint: React.FC<Props> = ({ title, description }) => {
     return (
         <div
             style={{
@@ -16,10 +21,8 @@ export const FilterHint: React.FC = () => {
                 alt="Ícone de filtro"
                 style={{ marginRight: "6px" }}
             />
-            <span style={{ color: "#1F1F1F", fontWeight: 700 }}>
-                Filtrar lista
-            </span>{" "}
-            selecione filtros pata refinar a busca de cidadãos
+            <span style={{ color: "#1F1F1F", fontWeight: 700 }}>{title}</span>{" "}
+            {description}
         </div>
     );
 };

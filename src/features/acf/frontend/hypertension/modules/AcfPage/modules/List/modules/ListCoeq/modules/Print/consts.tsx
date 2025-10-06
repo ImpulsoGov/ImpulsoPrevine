@@ -8,7 +8,6 @@ import type { CoeqAppliedFilters } from "@/features/acf/frontend/hypertension/mo
 import type { StatusByQuarter } from "@/features/acf/frontend/common/Print";
 
 import * as Formatters from "@features/acf/frontend/common/Formatters";
-import { RenderDate } from "@/features/acf/frontend/common/Formatters/modules/RenderDate";
 import { RenderStatusByQuarterTag } from "@features/acf/frontend/common/Print";
 
 export const coeqLabelsModal: ModalLabels = {
@@ -110,7 +109,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -129,7 +128,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -148,7 +147,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
@@ -168,7 +167,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             const [date, status] = param as [string, StatusByQuarter];
             return (
                 <>
-                    {<RenderDate value={date} />}
+                    {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
