@@ -13,6 +13,7 @@ export const rotasPublicas = [
     "/blog",
     "/blog/artigos",
     "/teste",
+    "/busca-mais",
 ];
 
 export const rotasProtegidas = [
