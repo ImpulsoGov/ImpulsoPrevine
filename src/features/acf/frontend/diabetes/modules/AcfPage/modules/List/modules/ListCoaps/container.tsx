@@ -10,7 +10,6 @@ import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
 import { FilterHint } from "@features/acf/frontend/common/FilterHint";
-import { ListCoaps } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
@@ -20,6 +19,7 @@ import { getCoapsData } from "./modules/Print/service";
 import { printListProps } from "./modules/Print/consts";
 import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
+import { List } from "@/features/acf/frontend/common/List";
 
 type ContentCoapsProps = {
     isPrintEnabled: boolean;
@@ -41,7 +41,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
 
     return (
         <>
-            <ListCoaps>
+            <List>
                 <WithPrintModal>
                     <WithFilters
                         initialSelectedValues={initialSelectedValuesCoaps}
@@ -96,7 +96,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                         </WithCustomPrint>
                     </WithFilters>
                 </WithPrintModal>
-            </ListCoaps>
+            </List>
         </>
     );
 };

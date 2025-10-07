@@ -10,7 +10,6 @@ import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
 import { FilterHint } from "@features/acf/frontend/common/FilterHint";
 
-import { ListCoeq } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import {
@@ -23,6 +22,7 @@ import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint"
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
+import { List } from "@/features/acf/frontend/common/List";
 
 type ContentCoeqProps = {
     isPrintEnabled: boolean;
@@ -40,7 +40,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
-            <ListCoeq>
+            <List>
                 <WithPrintModal>
                     <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
@@ -91,7 +91,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
                         </WithFilters>
                     </WithCustomPrint>
                 </WithPrintModal>
-            </ListCoeq>
+            </List>
         </>
     );
 };
