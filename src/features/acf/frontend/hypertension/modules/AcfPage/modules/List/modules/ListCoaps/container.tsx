@@ -5,13 +5,11 @@ import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CoapsAppliedFilters } from "./modules/CoapsDataTable";
 import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
 import { FilterHint } from "@features/acf/frontend/common/FilterHint";
-import { ListCoaps } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint";
@@ -21,9 +19,9 @@ import { getCoapsData } from "./modules/Print/service";
 import { printListProps } from "./modules/Print/consts";
 import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
+import { List } from "@/features/acf/frontend/common/List";
 
 type ContentCoapsProps = {
-    list: AcfDashboardType;
     isPrintEnabled: boolean;
 };
 
@@ -37,14 +35,13 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
 };
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
 export const ContentCoaps: React.FC<ContentCoapsProps> = ({
-    list,
     isPrintEnabled,
 }) => {
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
 
     return (
         <>
-            <ListCoaps list={list}>
+            <List>
                 <WithPrintModal>
                     <WithFilters
                         initialSelectedValues={initialSelectedValuesCoaps}
@@ -99,7 +96,7 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                         </WithCustomPrint>
                     </WithFilters>
                 </WithPrintModal>
-            </ListCoaps>
+            </List>
         </>
     );
 };

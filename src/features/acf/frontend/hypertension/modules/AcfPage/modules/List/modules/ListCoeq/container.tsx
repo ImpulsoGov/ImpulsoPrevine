@@ -4,14 +4,12 @@ import { WithPagination } from "@/features/acf/frontend/common/WithPagination";
 import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
 import type { CoeqAppliedFilters } from "./modules/CoeqDataTable";
 import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import { CurrentQuadrimester } from "@/features/acf/frontend/common/CurrentQuadrimester";
 import { FilterHint } from "@features/acf/frontend/common/FilterHint";
 
-import { ListCoeq } from ".";
 import { PrintTable } from "@/features/acf/frontend/common/Print";
 import { PrintModal } from "@/features/acf/frontend/common/PrintModal";
 import {
@@ -24,9 +22,9 @@ import { WithCustomPrint } from "@/features/acf/frontend/common/WithCustomPrint"
 import { WithPrintModal } from "@/features/acf/frontend/common/WithPrintModal";
 import { orderPrintGroups } from "./logic";
 import { WithFiltersBar } from "@/features/acf/frontend/common/WithFiltersBar";
+import { List } from "@/features/acf/frontend/common/List";
 
 type ContentCoeqProps = {
-    list: AcfDashboardType;
     isPrintEnabled: boolean;
 };
 
@@ -38,14 +36,11 @@ const initialSelectedValuesCoeq: CoeqAppliedFilters = {
     medicalRecordUpdated: "",
 };
 
-export const ContentCoeq: React.FC<ContentCoeqProps> = ({
-    list,
-    isPrintEnabled,
-}) => {
+export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
-            <ListCoeq list={list}>
+            <List>
                 <WithPrintModal>
                     <WithCustomPrint orderGroup={orderPrintGroups}>
                         <CurrentQuadrimester />
@@ -96,7 +91,7 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({
                         </WithFilters>
                     </WithCustomPrint>
                 </WithPrintModal>
-            </ListCoeq>
+            </List>
         </>
     );
 };
