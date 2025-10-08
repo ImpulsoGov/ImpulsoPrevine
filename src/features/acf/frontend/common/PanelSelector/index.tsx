@@ -1,5 +1,5 @@
 "use client";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
+import type { AcfDashboardType } from "@/features/acf/shared/AcfDashboard";
 import { PanelSelectorWithCards } from "@impulsogov/design-system";
 import type { CardProps } from "@impulsogov/design-system/dist/molecules/Card/Card";
 import type {

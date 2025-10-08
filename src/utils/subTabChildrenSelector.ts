@@ -4,7 +4,7 @@ import type {
     ExtendedPanelSelectorWithCardsProps,
     ExtendedsubTabsWithChildrenAndChildrenDataProps,
 } from "@/features/acf/frontend/common/PanelSelector";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
+import type { AcfDashboardType } from "@/features/acf/shared/AcfDashboard";
 
 //TODO: Remover daqui
 /**
