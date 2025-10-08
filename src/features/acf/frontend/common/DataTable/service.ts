@@ -6,9 +6,7 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFilters } from "../WithFilters";
 import type { GetDataParams } from "../useAcfData";
-
-//TODO: rever este tipo
-type CoordinatorProfile = "coaps" | "coeq";
+import type { CoordinatorProfile } from "../CoordinatorProfile";
 
 export type BodyBuilder<
     TAppliedFilters extends AppliedFilters,

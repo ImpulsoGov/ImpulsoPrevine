@@ -33,7 +33,6 @@ const initialSelectedValuesCoaps: CoapsAppliedFilters = {
     goodPracticesStatusByQuarter: "",
     medicalRecordUpdated: "",
 };
-//TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
 export const ContentCoaps: React.FC<ContentCoapsProps> = ({
     isPrintEnabled,
 }) => {

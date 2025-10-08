@@ -13,7 +13,7 @@ import type { SelectConfig } from "../SelectConfig";
 import type { AppliedFilters } from "../WithFilters";
 import * as Presentation from "./presentation";
 
-type ServiceGetFilters<TResponse> = (
+export type ServiceGetFilters<TResponse> = (
     access_token: string
 ) => Promise<AxiosResponse<TResponse>>;
 
