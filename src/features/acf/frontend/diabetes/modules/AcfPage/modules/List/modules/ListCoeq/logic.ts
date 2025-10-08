@@ -1,3 +1,3 @@
-import { orderMicroarea } from "@/features/acf/frontend/common/OrderMicroarea";
+import { orderMicroAreas } from "@/features/acf/frontend/common/OrderMicroAreas";
 
-export const orderPrintGroups = orderMicroarea;
+export const orderPrintGroups = orderMicroAreas;
