@@ -1,4 +1,4 @@
-import type { DiabetesSharedAppliedFilters } from ".";
+import type { DiabetesSharedAppliedFilters } from "./model";
 
 export const sharedInitialSelectedValues: DiabetesSharedAppliedFilters = {
     microAreaName: [],
