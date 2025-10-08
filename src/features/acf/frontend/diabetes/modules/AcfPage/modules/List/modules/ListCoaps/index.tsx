@@ -14,10 +14,7 @@ import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
 import { orderPrintGroups } from "./logic";
-import {
-    type CoapsAppliedFilters,
-    CoapsDataTable,
-} from "./modules/CoapsDataTable";
+import { CoapsDataTable } from "./modules/CoapsDataTable";
 import { CoapsFiltersBar } from "./modules/CoapsFiltersBar";
 import {
     printListProps,
@@ -25,18 +22,10 @@ import {
     columns,
 } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
+import { initialSelectedValuesCoaps } from "./consts";
 
 type ContentCoapsProps = {
     isPrintEnabled: boolean;
-};
-
-//TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValuesCoaps: CoapsAppliedFilters = {
-    careTeamName: [],
-    microAreaName: [],
-    patientAgeRange: "",
-    goodPracticesStatusByQuarter: "",
-    medicalRecordUpdated: "",
 };
 
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.

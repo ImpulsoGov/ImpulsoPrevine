@@ -14,10 +14,7 @@ import { WithSearch } from "@/features/acf/frontend/common/WithSearch";
 import { WithSorting } from "@/features/acf/frontend/common/WithSorting";
 import React, { useState } from "react";
 import { orderPrintGroups } from "./logic";
-import {
-    type CoeqAppliedFilters,
-    CoeqDataTable,
-} from "./modules/CoeqDataTable";
+import { CoeqDataTable } from "./modules/CoeqDataTable";
 import { CoeqFiltersBar } from "./modules/CoeqFiltersBar";
 import {
     printListProps,
@@ -25,17 +22,10 @@ import {
     coeqColumns,
 } from "./modules/Print/consts";
 import { getCoeqData } from "./modules/Print/service";
+import { initialSelectedValuesCoeq } from "./consts";
 
 type ContentCoeqProps = {
     isPrintEnabled: boolean;
-};
-
-//TODO: Pensar se faz sentido que isso fique aqui mesmo
-const initialSelectedValuesCoeq: CoeqAppliedFilters = {
-    microAreaName: [],
-    patientAgeRange: "",
-    goodPracticesStatusByQuarter: "",
-    medicalRecordUpdated: "",
 };
 
 export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
