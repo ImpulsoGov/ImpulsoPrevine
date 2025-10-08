@@ -24,8 +24,7 @@ export const textCoaps = (
         avaliação de peso e altura, visitas domiciliares e registro de avaliação
         dos pés. A lista mostra, com base{" "}
         <b>nos registros da base local do município</b>, como anda o cuidado das
-        pessoas com diabetes nas diferentes equipes do território. Para saber
-        mais detalhes, clique no ícone de interrogação acima.
+        pessoas com diabetes nas diferentes equipes do território.
     </div>
 );
 
@@ -38,7 +37,6 @@ export const textCoeq = (
         avaliação de peso e altura, visitas domiciliares e registro de avaliação
         dos pés. A lista mostra, com base{" "}
         <b>nos registros da base local do município</b>, como anda o cuidado das
-        pessoas com diabetes nas diferentes equipes do território. Para saber
-        mais detalhes, clique no ícone de interrogação acima.
+        pessoas com diabetes nas diferentes equipes do território.
     </div>
 );

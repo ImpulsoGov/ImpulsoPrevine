@@ -3,14 +3,13 @@ import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import { SessionGuard } from "@/features/common/frontend/SessionGuard";
 import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
-import type { AcfDashboardType } from "@/features/acf/frontend/common/AcfDashboard";
-import { ErrorPage } from "../../../common/ErrorPage";
-import { PanelSelector } from "../../../common/PanelSelector";
+import { ErrorPage } from "@features/acf/frontend/common/ErrorPage";
+import { PanelSelector } from "@features/acf/frontend/common/PanelSelector";
 import { print } from "@/features/common/shared/flags";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 import { ContentCoeq, ContentCoaps } from "./modules/List";
-import { getMunicipalityName } from "../../../common/MunicipalityName";
+import { getMunicipalityName } from "@features/acf/frontend/common/MunicipalityName";
 import { sharedHeader, breadcrumb, textCoaps, textCoeq } from "./consts";
 
 export type {
@@ -23,12 +22,9 @@ type Props = {
         [key: string]: string | undefined;
     }>;
 };
-export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
+export const AcfPage: React.FC<Props> = async () => {
     //TODO: Descobrir uma forma de remover essa chamada daqui
     const session = await getServerSession(nextAuthOptions);
-    const resolvedSearchParams = await searchParams;
-    const acfDashboardType: AcfDashboardType = (resolvedSearchParams.list ||
-        "hypertension") as AcfDashboardType;
     const municipalityName = getMunicipalityName(
         session?.user.municipio_id_sus ?? ""
     );
@@ -36,9 +32,9 @@ export const AcfPage: React.FC<Props> = async ({ searchParams }) => {
     const isPrintEnabled = await print();
 
     const content = isCoeq ? (
-        <ContentCoeq list={acfDashboardType} isPrintEnabled={isPrintEnabled} />
+        <ContentCoeq isPrintEnabled={isPrintEnabled} />
     ) : (
-        <ContentCoaps list={acfDashboardType} isPrintEnabled={isPrintEnabled} />
+        <ContentCoaps isPrintEnabled={isPrintEnabled} />
     );
     const header = {
         ...sharedHeader,
