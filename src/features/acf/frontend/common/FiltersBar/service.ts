@@ -2,8 +2,8 @@
 import type * as schema from "@/features/acf/shared/schema";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
-import type { AcfDashboardType } from "../AcfDashboard";
-import { acfDashboardMap } from "../AcfDashboard";
+import type { AcfDashboardType } from "@/features/acf/shared/AcfDashboard";
+import { acfDashboardMap } from "@/features/acf/shared/AcfDashboard";
 import type { ServiceGetFilters } from "./container";
 import type { CoordinatorProfile } from "@/features/acf/shared/model";
 
