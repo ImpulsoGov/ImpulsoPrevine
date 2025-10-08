@@ -5,7 +5,7 @@ import axios from "axios";
 import type { AcfDashboardType } from "../AcfDashboard";
 import { acfDashboardMap } from "../AcfDashboard";
 import type { ServiceGetFilters } from "./container";
-import type { CoordinatorProfile } from "../CoordinatorProfile";
+import type { CoordinatorProfile } from "@/features/acf/shared/model";
 
 export const getFiltersBuilder = <
     TResponse extends { filters: schema.FilterResponses },

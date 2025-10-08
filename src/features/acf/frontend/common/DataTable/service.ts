@@ -6,7 +6,7 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { AppliedFilters } from "../WithFilters";
 import type { GetDataParams } from "../useAcfData";
-import type { CoordinatorProfile } from "../CoordinatorProfile";
+import type { CoordinatorProfile } from "@/features/acf/shared/model";
 
 export type BodyBuilder<
     TAppliedFilters extends AppliedFilters,
