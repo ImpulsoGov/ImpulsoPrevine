@@ -11,7 +11,8 @@ import mixpanel from "mixpanel-browser";
 import type React from "react";
 import { DetailInfoError } from "@componentes/unmounted/Inicio/DetailInfoError";
 import type { CSSProperties } from "react";
-import { Icon } from "@impulsogov/design-system/dist/atoms/Icon";
+import { Tag } from "@/features/common/frontend/molecules";
+import { Text } from "@/features/common/frontend/atoms";
 
 type CardListaChild = {
     indicador: Indicadores;
@@ -77,7 +78,7 @@ const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
                     titulo: "Diabetes",
                     descricao:
                         "Pessoas que possuem o diagnóstico clínico de diabestes.",
-                    height: "fit-content",
+                    height: "50%",
                     link: {
                         url: `/cofin25/indicadores/cuidado_da_pessoa_com_diabetes`,
                         newTab: false,
@@ -140,7 +141,7 @@ const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
                     titulo: "Hipertensão",
                     descricao:
                         "Pessoas que possuem o diagnóstico clínico de hipertensão.",
-                    height: "fit-content",
+                    height: "50%",
                     link: {
                         url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
                         newTab: false,
@@ -358,12 +359,17 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         onHeaderClick={cardList.wrapper.handleHeaderClick}
                     >
                         {cardList.child === undefined ? (
-                            <Icon
-                                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmgjsxh4v08t907kp8nni0jfw"
-                                alt="Ícone de novidade"
-                                width={100}
-                                height={50}
-                            />
+                            <Tag theme="purple" style={{ borderRadius: "5px" }}>
+                                <Text
+                                    style={{
+                                        fontSize: "11px",
+                                        fontWeight: 700,
+                                        lineHeight: "130%",
+                                    }}
+                                >
+                                    NOVIDADE
+                                </Text>
+                            </Tag>
                         ) : isValid(
                               situacaoPorIndicador,
                               cardList.child.indicador
