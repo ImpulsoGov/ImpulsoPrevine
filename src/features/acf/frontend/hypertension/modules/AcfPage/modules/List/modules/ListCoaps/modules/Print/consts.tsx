@@ -99,8 +99,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
-            landscape: 100,
-            portrait: 55,
+            landscape: 130,
+            portrait: 106,
         },
         renderHeader: () => (
             <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
@@ -122,8 +122,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
         width: {
-            landscape: 100,
-            portrait: 71,
+            landscape: 130,
+            portrait: 106,
         },
         headerName: "Aferição de PA: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -141,8 +141,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
         width: {
-            landscape: 110,
-            portrait: 96,
+            landscape: 130,
+            portrait: 106,
         },
         headerName: "Visitas Domiciliares: \nData e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -161,8 +161,8 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
         headerName: "Reg. peso e altura: \nData e situação",
         width: {
-            landscape: 110,
-            portrait: 59,
+            landscape: 130,
+            portrait: 106,
         },
         verticalDivider: true,
         renderCell: (param: unknown): React.ReactNode => {
@@ -204,7 +204,7 @@ export const columns: Array<ColumnsProps<HypertensionAcfItem>> = [
         headerName: "Telefone e Idade",
         width: {
             landscape: 145,
-            portrait: 160,
+            portrait: 120,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientPhoneNumber, patientAge] = param as [string, string];
