@@ -10,10 +10,16 @@ import type { SituacaoPorIndicador } from "@/types/inicio";
 import { getServerSession } from "next-auth";
 import { AuthErrorPage } from "./AuthError";
 import { SupportError } from "./SupportError";
+import {
+    diabetesNewProgram,
+    hypertensionNewProgram,
+} from "@/features/common/shared/flags";
 
 const InicioPage = async () => {
     const session = await getServerSession(nextAuthOptions);
     let situacaoIndicadores = [];
+    const hasDiabetesNewProgramEnabled = await diabetesNewProgram();
+    const hasHypertensionNewProgramEnabled = await hypertensionNewProgram();
 
     if (session?.user) {
         if (
@@ -42,6 +48,10 @@ const InicioPage = async () => {
             <Inicio
                 situacaoPorIndicador={situacaoPorIndicador}
                 data-testid="inicio-component"
+                hasDiabetesNewProgramEnabled={hasDiabetesNewProgramEnabled}
+                hasHypertensionNewProgramEnabled={
+                    hasHypertensionNewProgramEnabled
+                }
             />
         );
     }
