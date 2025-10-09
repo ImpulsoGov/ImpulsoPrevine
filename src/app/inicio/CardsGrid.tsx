@@ -44,6 +44,7 @@ type CardListaWrapper = {
 export type CardsGridProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
+    // TODO: rever nome dessa prop
     isAlfa: {
         hasDiabetesNewProgramEnabled: boolean;
         hasHypertensionNewProgramEnabled: boolean;
@@ -58,6 +59,8 @@ type CardListaType = {
     wrapper: CardListaWrapper;
     child?: CardListaChild;
 };
+
+// TODO: discutir se faz sentido retornar somente as infos de diabetes
 const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
     return {
         div: {
@@ -121,6 +124,8 @@ const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
         ],
     };
 };
+
+// TODO: discutir se faz sentido retornar somente as infos de hipertensao
 const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
     return {
         div: {
