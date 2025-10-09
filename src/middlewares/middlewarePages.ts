@@ -38,6 +38,7 @@ export const rotasProtegidas = [
     "/termos-uso-e-privacidade",
     "/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao",
     "/cofin25/indicadores/cuidado_da_pessoa_com_diabetes",
+    "/cofin25/busca_mais/cuidado_da_pessoa_com_hipertensao",
 ];
 
 const ExibirURL = [
