@@ -8,6 +8,10 @@ import { Greeting } from "@impulsogov/design-system";
 import { Texto } from "@impulsogov/design-system";
 
 const CardsGrid = dynamic<{
+    isAlfa: {
+        hasDiabetesNewProgramEnabled: boolean;
+        hasHypertensionNewProgramEnabled: boolean;
+    };
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
 }>(() => import("./CardsGrid").then((mod) => mod.CardsGrid), { ssr: false });
@@ -16,10 +20,14 @@ import style from "./Inicio.module.css";
 
 type InicioProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
+    hasDiabetesNewProgramEnabled: boolean;
+    hasHypertensionNewProgramEnabled: boolean;
 };
 
 export const Inicio: React.FC<InicioProps> = ({
     situacaoPorIndicador = null,
+    hasDiabetesNewProgramEnabled,
+    hasHypertensionNewProgramEnabled,
 }) => {
     const { data: session } = useSession();
     if (session && situacaoPorIndicador) {
@@ -56,6 +64,12 @@ export const Inicio: React.FC<InicioProps> = ({
 
                 <div style={{ paddingTop: "20px" }}>
                     <CardsGrid
+                        isAlfa={{
+                            hasDiabetesNewProgramEnabled:
+                                hasDiabetesNewProgramEnabled,
+                            hasHypertensionNewProgramEnabled:
+                                hasHypertensionNewProgramEnabled,
+                        }}
                         situacaoPorIndicador={situacaoPorIndicador}
                         visao={
                             session.user.perfis.includes(5) ||

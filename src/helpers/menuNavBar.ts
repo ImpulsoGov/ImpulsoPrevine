@@ -18,11 +18,6 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     return [
         {
-            label: "Citopatológico",
-            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
-            telemetryEvent: "acessar_lista_citopatologico",
-        },
-        {
             label: "Diabetes",
             url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
             telemetryEvent: "acessar_lista_diabetes",
@@ -35,7 +30,7 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
         ...(isHypertensionNewProgramEnabled
             ? [
                   {
-                      label: "👉 Cuidado da pessoa com Hipertensão [BETA]",
+                      label: "⭐ [NOVO] Hipertensão",
                       url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
                       telemetryEvent:
                           "acessar_lista_cuidado_da_pessoa_com_hipertensao",
@@ -45,7 +40,7 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
         ...(isDiabetesNewProgramEnabled
             ? [
                   {
-                      label: "👉 Cuidado da pessoa com Diabetes [BETA]",
+                      label: "⭐ [NOVO] Diabetes",
                       url: `/cofin25/indicadores/cuidado_da_pessoa_com_diabetes`,
                       telemetryEvent:
                           "acessar_lista_cuidado_da_pessoa_com_diabetes",
@@ -61,6 +56,11 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
             label: "Vacinação",
             url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
             telemetryEvent: "acessar_lista_vacinacao",
+        },
+        {
+            label: "Citopatológico",
+            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+            telemetryEvent: "acessar_lista_citopatologico",
         },
     ];
 };

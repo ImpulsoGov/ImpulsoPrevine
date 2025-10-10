@@ -64,6 +64,11 @@
   color: #1F1F1F;
 }
 
+.theme-purple {
+  background-color: #DCDDFB;
+  color: #5367C9;
+}
+
 .shape-rounded-status {
   border-radius: 8px;
 }

@@ -11,6 +11,8 @@ import mixpanel from "mixpanel-browser";
 import type React from "react";
 import { DetailInfoError } from "@componentes/unmounted/Inicio/DetailInfoError";
 import type { CSSProperties } from "react";
+import { Tag } from "@/features/common/frontend/molecules";
+import { Text } from "@/features/common/frontend/atoms";
 
 type CardListaChild = {
     indicador: Indicadores;
@@ -36,6 +38,11 @@ type CardListaWrapper = {
 export type CardsGridProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
     visao: string;
+    // TODO: rever nome dessa prop
+    isAlfa: {
+        hasDiabetesNewProgramEnabled: boolean;
+        hasHypertensionNewProgramEnabled: boolean;
+    };
 };
 
 export type CardIndicatorType =
@@ -44,158 +51,297 @@ export type CardIndicatorType =
 
 type CardListaType = {
     wrapper: CardListaWrapper;
-    child: CardListaChild;
+    child?: CardListaChild;
 };
 
-export type CardsGridDataType = {
-    [Key in CardIndicatorType]: {
+// TODO: discutir se faz sentido retornar somente as infos de diabetes
+const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
+    return {
         div: {
-            style: CSSProperties;
-        };
-        cardLista: Array<CardListaType>;
+            style: {
+                display: "flex",
+                flexDirection: "column",
+                gap: "24px",
+                height: "100%",
+            },
+        },
+        cardLista: [
+            {
+                wrapper: {
+                    icone: {
+                        src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmgjo9sri06tq07kpstw9b4tx",
+                        alt: "Ícone de uma estrela",
+                    },
+                    titulo: "Diabetes",
+                    descricao:
+                        "Veja aqui a lista de Cuidado da Pessoa com Diabetes do novo programa de cofinanciamento do governo e as boas práticas vinculadas a esse indicador.",
+                    height: "50%",
+                    link: {
+                        url: `/cofin25/indicadores/cuidado_da_pessoa_com_diabetes`,
+                        newTab: false,
+                    },
+                    handleHeaderClick: (): void => {
+                        mixpanel.track("card_click", {
+                            card_action: "acessar_lista_diabetes",
+                            card_page: "pg_inicio",
+                        });
+                    },
+                },
+            },
+            {
+                wrapper: {
+                    icone: {
+                        src: "https://media.graphassets.com/hXdEtm9qRDm47poV0Udr",
+                        alt: "Ícone de uma seringa",
+                    },
+                    titulo: "Vacinação",
+                    descricao:
+                        "Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
+                    height: "50%",
+                    link: {
+                        url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
+                        newTab: false,
+                    },
+                    handleHeaderClick: (): void => {
+                        mixpanel.track("card_click", {
+                            card_action: "acessar_lista_vacinacao",
+                            card_page: "pg_inicio",
+                        });
+                    },
+                },
+                child: {
+                    indicador: Indicadores.VACINACAO,
+                    descricao: "Crianças com pelo menos uma dose em atraso",
+                    error: "Não foi possível carregar os dados do indicador",
+                },
+            },
+        ],
     };
 };
 
+// TODO: discutir se faz sentido retornar somente as infos de hipertensao
+const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
+    return {
+        div: {
+            style: {
+                display: "flex",
+                flexDirection: "column",
+                gap: "24px",
+                height: "100%",
+            },
+        },
+        cardLista: [
+            {
+                wrapper: {
+                    icone: {
+                        src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmgjo9sri06tq07kpstw9b4tx",
+                        alt: "Ícone de uma estrela",
+                    },
+                    titulo: "Hipertensão",
+                    descricao:
+                        "Veja aqui a lista de Cuidado da Pessoa com Hipertensão do novo programa de cofinanciamento do governo e as boas práticas vinculadas a esse indicador.",
+                    height: "50%",
+                    link: {
+                        url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
+                        newTab: false,
+                    },
+                    handleHeaderClick: (): void => {
+                        mixpanel.track("card_click", {
+                            card_action: "acessar_lista_hipertensao",
+                            card_page: "pg_inicio",
+                        });
+                    },
+                },
+            },
+            {
+                wrapper: {
+                    icone: {
+                        src: "https://media.graphassets.com/6H2CeiquR0KEiDAee4iz",
+                        alt: "Ícone de um tubo de ensaio meio cheio",
+                    },
+                    titulo: "Citopatológico",
+                    descricao:
+                        "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
+                    height: "50%",
+                    link: {
+                        url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+                        newTab: false,
+                    },
+                    handleHeaderClick: (): void => {
+                        mixpanel.track("card_click", {
+                            card_action: "acessar_lista_citopatologico",
+                            card_page: "pg_inicio",
+                        });
+                    },
+                },
+                child: {
+                    indicador: Indicadores.CITOPATOLOGICO,
+                    descricao: "Pessoas com coleta de citopatológico a fazer",
+                    error: "Não foi possível carregar os dados do indicador",
+                },
+            },
+        ],
+    };
+};
+
+type CardGridDataTypeContent = {
+    div: {
+        style: CSSProperties;
+    };
+    cardLista: Array<CardListaType>;
+};
+
+export type CardsGridDataType = {
+    [Key in CardIndicatorType]: CardGridDataTypeContent;
+};
+
 export const CardsGrid: React.FC<CardsGridProps> = ({
+    isAlfa,
     situacaoPorIndicador,
     visao,
 }) => {
     const CardsGridData: CardsGridDataType = {
-        cardsDiabetesEVacinacao: {
-            div: {
-                style: {
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "24px",
-                    height: "100%",
-                },
-            },
-            cardLista: [
-                {
-                    wrapper: {
-                        icone: {
-                            src: "https://media.graphassets.com/wKizPRr0T2eZhDSOxZ4n",
-                            alt: "Ícone de um estômago",
-                        },
-                        titulo: "Diabetes",
-                        descricao:
-                            "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
-                        height: "50%",
-                        link: {
-                            url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
-                            newTab: false,
-                        },
-                        handleHeaderClick: (): void => {
-                            mixpanel.track("card_click", {
-                                card_action: "acessar_lista_diabetes",
-                                card_page: "pg_inicio",
-                            });
-                        },
-                    },
-                    child: {
-                        indicador: Indicadores.DIABETES,
-                        descricao:
-                            "Pessoas com consulta ou solicitação de hemoglobina a fazer",
-                        error: "Não foi possível carregar os dados do indicador",
-                    },
-                },
-                {
-                    wrapper: {
-                        icone: {
-                            src: "https://media.graphassets.com/hXdEtm9qRDm47poV0Udr",
-                            alt: "Ícone de uma seringa",
-                        },
-                        titulo: "Vacinação",
-                        descricao:
-                            "Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
-                        height: "50%",
-                        link: {
-                            url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
-                            newTab: false,
-                        },
-                        handleHeaderClick: (): void => {
-                            mixpanel.track("card_click", {
-                                card_action: "acessar_lista_vacinacao",
-                                card_page: "pg_inicio",
-                            });
-                        },
-                    },
-                    child: {
-                        indicador: Indicadores.VACINACAO,
-                        descricao: "Crianças com pelo menos uma dose em atraso",
-                        error: "Não foi possível carregar os dados do indicador",
-                    },
-                },
-            ],
-        },
-        cardsHipertensaoECito: {
-            div: {
-                style: {
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "24px",
-                    height: "100%",
-                },
-            },
-            cardLista: [
-                {
-                    wrapper: {
-                        icone: {
-                            src: "https://media.graphassets.com/d2BJhIM2TVy2gTMqM4BC",
-                            alt: "Ícone de um estetoscópio",
-                        },
-                        titulo: "Hipertensão",
-                        descricao:
-                            "Cidadãos que possuem a condição e o status de consulta e aferição de pressão.",
-                        height: "50%",
-                        link: {
-                            url: `busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
-                            newTab: false,
-                        },
-                        handleHeaderClick: (): void => {
-                            mixpanel.track("card_click", {
-                                card_action: "acessar_lista_hipertensao",
-                                card_page: "pg_inicio",
-                            });
-                        },
-                    },
-                    child: {
-                        indicador: Indicadores.HIPERTENSOS,
-                        descricao:
-                            "Pessoas com consulta ou aferição de pressão a fazer",
-                        error: "Não foi possível carregar os dados do indicador",
-                    },
-                },
-                {
-                    wrapper: {
-                        icone: {
-                            src: "https://media.graphassets.com/6H2CeiquR0KEiDAee4iz",
-                            alt: "Ícone de um tubo de ensaio meio cheio",
-                        },
-                        titulo: "Citopatológico",
-                        descricao:
-                            "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
-                        height: "50%",
-                        link: {
-                            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
-                            newTab: false,
-                        },
-                        handleHeaderClick: (): void => {
-                            mixpanel.track("card_click", {
-                                card_action: "acessar_lista_citopatologico",
-                                card_page: "pg_inicio",
-                            });
-                        },
-                    },
-                    child: {
-                        indicador: Indicadores.CITOPATOLOGICO,
-                        descricao:
-                            "Pessoas com coleta de citopatológico a fazer",
-                        error: "Não foi possível carregar os dados do indicador",
-                    },
-                },
-            ],
-        },
+        cardsDiabetesEVacinacao: isAlfa.hasDiabetesNewProgramEnabled
+            ? diabetesAndVaccinationAlfa(visao)
+            : {
+                  div: {
+                      style: {
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "24px",
+                          height: "100%",
+                      },
+                  },
+                  cardLista: [
+                      {
+                          wrapper: {
+                              icone: {
+                                  src: "https://media.graphassets.com/wKizPRr0T2eZhDSOxZ4n",
+                                  alt: "Ícone de um estômago",
+                              },
+                              titulo: "Diabetes",
+                              descricao:
+                                  "Cidadãos que possuem a condição e o status de consulta e solicitação de hemoglobina.",
+                              height: "50%",
+                              link: {
+                                  url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
+                                  newTab: false,
+                              },
+                              handleHeaderClick: (): void => {
+                                  mixpanel.track("card_click", {
+                                      card_action: "acessar_lista_diabetes",
+                                      card_page: "pg_inicio",
+                                  });
+                              },
+                          },
+                          child: {
+                              indicador: Indicadores.DIABETES,
+                              descricao:
+                                  "Pessoas com consulta ou solicitação de hemoglobina a fazer",
+                              error: "Não foi possível carregar os dados do indicador",
+                          },
+                      },
+                      {
+                          wrapper: {
+                              icone: {
+                                  src: "https://media.graphassets.com/hXdEtm9qRDm47poV0Udr",
+                                  alt: "Ícone de uma seringa",
+                              },
+                              titulo: "Vacinação",
+                              descricao:
+                                  "Contempla os esquemas vacinais de poliomielite e pentavalente em crianças de zero a um ano e meio.",
+                              height: "50%",
+                              link: {
+                                  url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
+                                  newTab: false,
+                              },
+                              handleHeaderClick: (): void => {
+                                  mixpanel.track("card_click", {
+                                      card_action: "acessar_lista_vacinacao",
+                                      card_page: "pg_inicio",
+                                  });
+                              },
+                          },
+                          child: {
+                              indicador: Indicadores.VACINACAO,
+                              descricao:
+                                  "Crianças com pelo menos uma dose em atraso",
+                              error: "Não foi possível carregar os dados do indicador",
+                          },
+                      },
+                  ],
+              },
+        cardsHipertensaoECito: isAlfa.hasHypertensionNewProgramEnabled
+            ? hypertensionAndCitoAlfa(visao)
+            : {
+                  div: {
+                      style: {
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "24px",
+                          height: "100%",
+                      },
+                  },
+                  cardLista: [
+                      {
+                          wrapper: {
+                              icone: {
+                                  src: "https://media.graphassets.com/d2BJhIM2TVy2gTMqM4BC",
+                                  alt: "Ícone de um estetoscópio",
+                              },
+                              titulo: "Hipertensão",
+                              descricao:
+                                  "Cidadãos que possuem a condição e o status de consulta e aferição de pressão.",
+                              height: "50%",
+                              link: {
+                                  url: `busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
+                                  newTab: false,
+                              },
+                              handleHeaderClick: (): void => {
+                                  mixpanel.track("card_click", {
+                                      card_action: "acessar_lista_hipertensao",
+                                      card_page: "pg_inicio",
+                                  });
+                              },
+                          },
+                          child: {
+                              indicador: Indicadores.HIPERTENSOS,
+                              descricao:
+                                  "Pessoas com consulta ou aferição de pressão a fazer",
+                              error: "Não foi possível carregar os dados do indicador",
+                          },
+                      },
+                      {
+                          wrapper: {
+                              icone: {
+                                  src: "https://media.graphassets.com/6H2CeiquR0KEiDAee4iz",
+                                  alt: "Ícone de um tubo de ensaio meio cheio",
+                              },
+                              titulo: "Citopatológico",
+                              descricao:
+                                  "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
+                              height: "50%",
+                              link: {
+                                  url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+                                  newTab: false,
+                              },
+                              handleHeaderClick: (): void => {
+                                  mixpanel.track("card_click", {
+                                      card_action:
+                                          "acessar_lista_citopatologico",
+                                      card_page: "pg_inicio",
+                                  });
+                              },
+                          },
+                          child: {
+                              indicador: Indicadores.CITOPATOLOGICO,
+                              descricao:
+                                  "Pessoas com coleta de citopatológico a fazer",
+                              error: "Não foi possível carregar os dados do indicador",
+                          },
+                      },
+                  ],
+              },
     };
 
     const cardsExceptPregnant = Object.keys(CardsGridData).map((key) => {
@@ -211,10 +357,22 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         link={cardList.wrapper.link}
                         onHeaderClick={cardList.wrapper.handleHeaderClick}
                     >
-                        {isValid(
-                            situacaoPorIndicador,
-                            cardList.child.indicador
-                        ) ? (
+                        {cardList.child === undefined ? (
+                            <Tag theme="purple" style={{ borderRadius: "5px" }}>
+                                <Text
+                                    style={{
+                                        fontSize: "11px",
+                                        fontWeight: 700,
+                                        lineHeight: "130%",
+                                    }}
+                                >
+                                    NOVIDADE
+                                </Text>
+                            </Tag>
+                        ) : isValid(
+                              situacaoPorIndicador,
+                              cardList.child.indicador
+                          ) ? (
                             <>
                                 <DetailedInfo
                                     descricao={cardList.child.descricao}

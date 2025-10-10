@@ -8,6 +8,7 @@ export type TagTheme =
     | "success"
     | "pending"
     | "normal"
+    | "purple"
     | "attention";
 export type TagShape = "rounded" | "square";
 export type TagType = "status" | "info";
@@ -17,6 +18,7 @@ export type TagProps = {
     theme?: TagTheme;
     shape?: TagShape;
     type?: TagType;
+    style?: React.CSSProperties;
 };
 
 export const Tag: React.FC<TagProps> = ({
@@ -24,6 +26,7 @@ export const Tag: React.FC<TagProps> = ({
     theme = "danger",
     shape = "rounded",
     type = "status",
+    style,
 }) => {
     return (
         <div
@@ -34,6 +37,7 @@ export const Tag: React.FC<TagProps> = ({
                 styles[`theme-${theme}`],
                 styles[`shape-${shape}-${type}`]
             )}
+            style={style}
         >
             {children}
         </div>
