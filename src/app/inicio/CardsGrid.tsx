@@ -80,7 +80,7 @@ const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
                     },
                     titulo: "Diabetes",
                     descricao:
-                        "Pessoas que possuem o diagnóstico clínico de diabestes.",
+                        "Veja aqui a lista de Cuidado da Pessoa com Diabetes do novo programa de cofinanciamento do governo e as boas práticas vinculadas a esse indicador.",
                     height: "50%",
                     link: {
                         url: `/cofin25/indicadores/cuidado_da_pessoa_com_diabetes`,
@@ -145,7 +145,7 @@ const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
                     },
                     titulo: "Hipertensão",
                     descricao:
-                        "Pessoas que possuem o diagnóstico clínico de hipertensão.",
+                        "Veja aqui a lista de Cuidado da Pessoa com Hipertensão do novo programa de cofinanciamento do governo e as boas práticas vinculadas a esse indicador.",
                     height: "50%",
                     link: {
                         url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
