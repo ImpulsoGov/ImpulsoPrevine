@@ -9,7 +9,6 @@ import dynamic from "next/dynamic";
 const Diabetes = dynamic(() =>
     import("./Diabetes").then((mod) => mod.Diabetes)
 );
-
 const DiabetesPage = async () => {
     const session = await getServerSession(nextAuthOptions);
     let DiabetesTabelaDataAPS: TabelaResponse | null = null;

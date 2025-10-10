@@ -18,12 +18,6 @@ type CardListaChild = {
     indicador: Indicadores;
     descricao: string;
     error: string;
-    icon?: {
-        src: string;
-        alt: string;
-        width?: number;
-        height?: number;
-    };
 };
 
 type CardListaWrapper = {
