@@ -6,9 +6,14 @@ import {
 import type { TabelaResponse } from "@/services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import { Hipertensao } from "./Hipertensao";
+import { notFound } from "next/navigation";
+import { hypertensionNewProgram } from "@/features/common/shared/flags";
 
-const DiabetesPage = async () => {
+const HypertensionPage = async () => {
     const session = await getServerSession(nextAuthOptions);
+    const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
+
+    if (isHypertensionNewProgramEnabled) notFound();
     let diabetesTabelaDataAps: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         diabetesTabelaDataAps = await tabelaHipertensaoAPS(
@@ -31,4 +36,4 @@ const DiabetesPage = async () => {
     );
 };
 
-export default DiabetesPage;
+export default HypertensionPage;

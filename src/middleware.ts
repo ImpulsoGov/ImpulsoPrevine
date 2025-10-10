@@ -1,16 +1,10 @@
 import { type NextRequest } from "next/server";
 import { middlewareAPIRoutes } from "./middlewares/middlewareAPIRoutes";
 import { middlewarePages } from "./middlewares/middlewarePages";
-import {
-    diabetesNewProgram,
-    hypertensionNewProgram,
-} from "@/features/common/shared/flags";
+
 export const middleware = async (request: NextRequest): Promise<Response> => {
     const url = request.nextUrl;
     return url.pathname.startsWith("/api")
         ? middlewareAPIRoutes(request)
-        : middlewarePages(request, {
-              diabetes: await diabetesNewProgram(),
-              hypertension: await hypertensionNewProgram(),
-          });
+        : middlewarePages(request);
 };

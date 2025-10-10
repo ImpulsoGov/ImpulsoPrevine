@@ -6,12 +6,18 @@ import type { TabelaResponse } from "@services/busca_ativa/Cito";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/nextAuthOptions";
 import dynamic from "next/dynamic";
+import { diabetesNewProgram } from "@/features/common/shared/flags";
+import { notFound } from "next/navigation";
+
 const Diabetes = dynamic(() =>
     import("./Diabetes").then((mod) => mod.Diabetes)
 );
 
 const DiabetesPage = async () => {
     const session = await getServerSession(nextAuthOptions);
+    const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+
+    if (isDiabetesNewProgramEnabled) notFound();
     let DiabetesTabelaDataAPS: TabelaResponse | null = null;
     if (session?.user?.perfis.includes(5) || session?.user?.perfis.includes(8))
         DiabetesTabelaDataAPS = await tabelaDiabetesAPS(
