@@ -13,6 +13,11 @@ jest.mock("next/dynamic", () => () => {
     return mod.Inicio;
 });
 
+jest.mock("@features/common/shared/flags", () => ({
+    diabetesNewProgram: jest.fn(),
+    hypertensionNewProgram: jest.fn(),
+}));
+
 jest.mock("next-auth", () => ({
     getServerSession: jest.fn(),
 }));

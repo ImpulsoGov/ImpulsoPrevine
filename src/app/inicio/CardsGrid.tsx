@@ -141,7 +141,7 @@ const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
                 wrapper: {
                     icone: {
                         src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmgjo9sri06tq07kpstw9b4tx",
-                        alt: "Ícone de um estetoscópio",
+                        alt: "Ícone de uma estrela",
                     },
                     titulo: "Hipertensão",
                     descricao:
