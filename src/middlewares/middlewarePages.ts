@@ -40,6 +40,13 @@ export const rotasProtegidas = [
     "/cofin25/indicadores/cuidado_da_pessoa_com_diabetes",
 ];
 
+const isNotAllowedToAccessList = (
+    currentPath: string,
+    flag: boolean,
+    listPath: string
+): boolean => {
+    return flag && matchesRoute([listPath], currentPath);
+};
 const ExibirURL = [
     "/capacitacao",
     "/conteudo",
@@ -47,9 +54,15 @@ const ExibirURL = [
     "/dadosPublicos",
 ];
 const secret = process.env.NEXTAUTH_SECRET;
+type Flags = { diabetes: boolean; hypertension: boolean };
 
+// const flagToListMap = {
+//     diabetes: "/busca-ativa/diabeticos",
+//     hypertension: "/busca-ativa/hipertensos",
+// };
 export const middlewarePages = async (
-    request: NextRequest
+    request: NextRequest,
+    flags: Flags
 ): Promise<NextResponse> => {
     const url = request.nextUrl;
     const headers = new Headers(request.headers);
@@ -72,6 +85,20 @@ export const middlewarePages = async (
         matchesRoute(rotasPublicas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
+    if (
+        isNotAllowedToAccessList(
+            url.pathname,
+            flags.diabetes,
+            "/busca-ativa/diabeticos"
+        ) ||
+        isNotAllowedToAccessList(
+            url.pathname,
+            flags.hypertension,
+            "/busca-ativa/hipertensos"
+        )
+    )
+        return NextResponse.redirect(new URL("/inicio", request.url));
+
     if (ExibirURL.includes(url.pathname)) {
         headers.set("x-current-url", url.href);
         response = NextResponse.next({ headers });
