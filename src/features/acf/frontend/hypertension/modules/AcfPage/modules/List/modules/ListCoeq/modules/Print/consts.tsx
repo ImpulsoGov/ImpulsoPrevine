@@ -101,27 +101,31 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestAppointmentDate", "appointmentStatusByQuarter"],
         width: {
-            landscape: 135,
-            portrait: 60,
+            landscape: 130,
+            portrait: 106,
         },
-        headerName: "Consulta: \nData e situação",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                {"Consulta: \nData e situação"}
+            </div>
+        ),
         renderCell: (param: unknown): React.ReactNode => {
             const [date, status] = param as [string, StatusByQuarter];
             return (
-                <>
+                <div style={{ paddingLeft: "7px" }}>
                     {<Formatters.RenderDate value={date} />}
                     <div>
                         <RenderStatusByQuarterTag value={status} />
                     </div>
-                </>
+                </div>
             );
         },
     },
     {
         fields: ["latestExamRequestDate", "latestExamRequestStatusByQuarter"],
         width: {
-            landscape: 156,
-            portrait: 156,
+            landscape: 130,
+            portrait: 106,
         },
         headerName: "Aferição de PA: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -139,8 +143,8 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
     {
         fields: ["latestHomeVisitDate", "homeVisitStatusByQuarter"],
         width: {
-            landscape: 99,
-            portrait: 85,
+            landscape: 130,
+            portrait: 106,
         },
         headerName: "Visitas Domiciliares: Data e situação",
         renderCell: (param: unknown): React.ReactNode => {
@@ -159,8 +163,8 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         fields: ["latestWeightHeightDate", "weightHeightStatusByQuarter"],
         headerName: "Reg. peso e altura: Data e situação",
         width: {
-            landscape: 71,
-            portrait: 59,
+            landscape: 130,
+            portrait: 106,
         },
         verticalDivider: true,
         renderCell: (param: unknown): React.ReactNode => {
@@ -181,15 +185,19 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
             landscape: 144,
             portrait: 144,
         },
-        headerName: "Microárea",
+        renderHeader: () => (
+            <div style={{ whiteSpace: "pre-line", paddingLeft: "6px" }}>
+                Microárea
+            </div>
+        ),
         titleFormatter: (value: unknown): string =>
             Formatters.microAreaFormatter(value as string),
         renderCell: (param: unknown): React.ReactNode => {
             const [microAreaName] = param as [string, string];
             return (
-                <>
+                <div style={{ paddingLeft: "7px" }}>
                     <div>{Formatters.microAreaFormatter(microAreaName)}</div>
-                </>
+                </div>
             );
         },
     },
@@ -198,7 +206,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         headerName: "Telefone e Idade",
         width: {
             landscape: 145,
-            portrait: 145,
+            portrait: 120,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientPhoneNumber, patientAge] = param as [string, string];
