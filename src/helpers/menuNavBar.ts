@@ -17,26 +17,6 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
     return [
-        {
-            label: "Diabetes",
-            url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
-            telemetryEvent: "acessar_lista_diabetes",
-        },
-        {
-            label: "Hipertensão",
-            url: `/busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
-            telemetryEvent: "acessar_lista_hipertensao",
-        },
-        ...(isHypertensionNewProgramEnabled
-            ? [
-                  {
-                      label: "⭐ [NOVO] Hipertensão",
-                      url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
-                      telemetryEvent:
-                          "acessar_lista_cuidado_da_pessoa_com_hipertensao",
-                  },
-              ]
-            : []),
         ...(isDiabetesNewProgramEnabled
             ? [
                   {
@@ -46,7 +26,29 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
                           "acessar_lista_cuidado_da_pessoa_com_diabetes",
                   },
               ]
-            : []),
+            : [
+                  {
+                      label: "Diabetes",
+                      url: `/busca-ativa/diabeticos?aba=&sub_aba=&visao=${visao}`,
+                      telemetryEvent: "acessar_lista_diabetes",
+                  },
+              ]),
+        ...(isHypertensionNewProgramEnabled
+            ? [
+                  {
+                      label: "⭐ [NOVO] Hipertensão",
+                      url: `/cofin25/indicadores/cuidado_da_pessoa_com_hipertensao`,
+                      telemetryEvent:
+                          "acessar_lista_cuidado_da_pessoa_com_hipertensao",
+                  },
+              ]
+            : [
+                  {
+                      label: "Hipertensão",
+                      url: `/busca-ativa/hipertensos?aba=&sub_aba=&visao=${visao}`,
+                      telemetryEvent: "acessar_lista_hipertensao",
+                  },
+              ]),
         {
             label: "Pré-Natal",
             url: `/busca-ativa/gestantes?aba=0&sub_aba=0&visao=${visao}`,
