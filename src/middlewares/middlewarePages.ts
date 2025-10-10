@@ -72,6 +72,7 @@ export const middlewarePages = async (
         matchesRoute(rotasPublicas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
+
     if (ExibirURL.includes(url.pathname)) {
         headers.set("x-current-url", url.href);
         response = NextResponse.next({ headers });
