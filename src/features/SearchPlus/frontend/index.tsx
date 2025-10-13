@@ -1,0 +1,1 @@
+export { SearchPlusPage } from "./SearchPlusPage";

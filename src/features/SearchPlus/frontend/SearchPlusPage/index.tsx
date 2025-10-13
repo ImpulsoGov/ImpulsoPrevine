@@ -1,4 +1,4 @@
-import { CsvDropzone } from "./modules/CsvDropZone";
+import { CsvDropzone } from "./common/CsvDropZone";
 
 export const SearchPlusPage: React.FC = () => {
     return (
