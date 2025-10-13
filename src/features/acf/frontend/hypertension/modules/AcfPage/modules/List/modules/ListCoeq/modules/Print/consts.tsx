@@ -74,7 +74,7 @@ export const coeqColumns: Array<ColumnsProps<HypertensionAcfItem>> = [
         },
     },
     {
-        fields: ["goodPracticesSum"],
+        fields: ["goodPracticesSum", "medicalRecordUpdated"],
         headerName: "Soma Boas Práticas",
         width: {
             landscape: 33,
