@@ -28,7 +28,7 @@ abstract class GoodPracticeCalculator {
 
     public calculate(): CalculationResult {
         const params = this.extractParameters();
-        const lastDate = this.computeLastDate(params);
+        const lastDate = this.computeLastDate();
         const status = this.computeStatus(params, lastDate);
         return { lastDate, status };
     }
