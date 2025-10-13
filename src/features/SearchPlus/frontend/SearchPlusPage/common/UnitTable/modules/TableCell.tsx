@@ -1,8 +1,5 @@
-import type {
-    ColumnsProps,
-    LayoutOrientation,
-    SearchPlusItem,
-} from "../../../model";
+import type { ColumnsProps, SearchPlusItem } from "../../ResultContent";
+import type { LayoutOrientation } from "../model";
 import React from "react";
 
 export type TableCellProps<TSearchPlusItem extends SearchPlusItem> = {
