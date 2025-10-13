@@ -1,9 +1,6 @@
-import type {
-    BreastAndUterusCareCsvRow,
-    PatientData,
-} from "../../breastAndUterusCare";
+import type { BreastAndUterusCareItem } from "../../breastAndUterusCare";
 
-export type CsvRow = BreastAndUterusCareCsvRow;
+type RenderCell = (param: unknown) => React.ReactNode;
 
 export type ColumnsProps<TSearchPlusItem extends SearchPlusItem> = {
     fields: Array<keyof TSearchPlusItem>;
@@ -18,8 +15,5 @@ export type ColumnsProps<TSearchPlusItem extends SearchPlusItem> = {
     renderHeader?: () => React.ReactNode;
 };
 
-export type LayoutOrientation = "landscape" | "portrait";
-
-type RenderCell = (param: unknown) => React.ReactNode;
-
-export type SearchPlusItem = PatientData;
+//TODO: tornar polimórfico
+export type SearchPlusItem = BreastAndUterusCareItem;

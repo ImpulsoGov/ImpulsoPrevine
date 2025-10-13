@@ -1,14 +1,17 @@
+"use client";
 import { Button } from "@/features/common/frontend/atoms";
 import { UnitTable } from "../UnitTable";
-import { columns } from "../../consts";
-import type { SearchPlusItem } from "../../model";
+import { columns } from "./consts";
+import type { SearchPlusItem, ColumnsProps } from "./model";
+
+export { SearchPlusItem, ColumnsProps };
 
 type NominalListProps = {
     jsonData: Array<SearchPlusItem>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
 };
 
-export const NominalList: React.FC<NominalListProps> = ({
+export const ResultContent: React.FC<NominalListProps> = ({
     jsonData,
     setJsonData,
 }) => {

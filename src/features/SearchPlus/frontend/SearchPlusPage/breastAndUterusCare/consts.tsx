@@ -1,5 +1,6 @@
-import type { ColumnsProps, SearchPlusItem } from "../common/CsvDropZone/model";
-import * as Formatters from "../common/CsvDropZone/modules/Formatters";
+//TODO: Jogar estes tipos pra um módulo separado ao invés de importar de ResultContent
+import type { ColumnsProps, SearchPlusItem } from "../common/ResultContent";
+import * as Formatters from "../common/ResultContent/modules/Formatters";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
     {
