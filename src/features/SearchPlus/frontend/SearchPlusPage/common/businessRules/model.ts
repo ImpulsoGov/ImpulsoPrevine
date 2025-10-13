@@ -1,4 +1,4 @@
-import type { BreastAndUterusCareItem } from "../../breastAndUterusCare";
+import type { BreastAndUterusCareItem } from "./modules/breastAndUterusCare";
 
 type RenderCell = (param: unknown) => React.ReactNode;
 

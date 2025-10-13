@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { ResultContent, type SearchPlusItem } from "./common/ResultContent";
-import { InputContent } from "./common/InputContent";
+import { ResultContent } from "./ResultContent";
+import { InputContent } from "./InputContent";
+import type { SearchPlusItem } from "./common/businessRules";
 
 export const SearchPlusPage: React.FC = () => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);

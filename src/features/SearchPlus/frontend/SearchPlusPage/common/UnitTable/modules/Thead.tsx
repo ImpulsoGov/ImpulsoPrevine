@@ -1,4 +1,7 @@
-import type { ColumnsProps, SearchPlusItem } from "../../ResultContent";
+import type {
+    ColumnsProps,
+    SearchPlusItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
 import type { LayoutOrientation } from "../model";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import { Thead } from "./modules/Thead";
 import { TableCell } from "./modules/TableCell";
 import type { LayoutOrientation } from "./model";
-import type { SearchPlusItem, ColumnsProps } from "../ResultContent";
+import type { ColumnsProps, SearchPlusItem } from "../businessRules";
 
 export type UnitTableProps<TSearchPlusItem extends SearchPlusItem> = {
     data: Array<TSearchPlusItem>;

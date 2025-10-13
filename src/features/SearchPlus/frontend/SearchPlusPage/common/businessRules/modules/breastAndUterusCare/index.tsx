@@ -1,6 +1,6 @@
 export type {
     BreastAndUterusCareCsvRow,
-    BreastAndUterusCareItem as PatientData,
+    BreastAndUterusCareItem,
 } from "./model";
 
 export { breastAndUterusCareColumns } from "./consts";

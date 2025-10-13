@@ -2,8 +2,8 @@ import {
     adaptersMap,
     csvListTitleToListKey,
     type ListTitles,
-} from "../adaptersMap";
-import type { SearchPlusItem } from "../ResultContent";
+    type SearchPlusItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
 import { useCallback } from "react";
 import { parse } from "papaparse";
 import type { CsvRow } from "./model";

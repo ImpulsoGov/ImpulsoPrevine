@@ -1,4 +1,7 @@
-import type { ColumnsProps, SearchPlusItem } from "../../ResultContent";
+import type {
+    ColumnsProps,
+    SearchPlusItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
 import type { LayoutOrientation } from "../model";
 import React from "react";
 
@@ -8,6 +11,7 @@ export type TableCellProps<TSearchPlusItem extends SearchPlusItem> = {
     layoutOrientation: LayoutOrientation;
 };
 
+//TODO: Esse componente deveria se chamar TableRow
 export const TableCell = <TSearchPlusItem extends SearchPlusItem>({
     item,
     columns,

@@ -1,6 +1,7 @@
 //TODO: Jogar estes tipos pra um módulo separado ao invés de importar de ResultContent
-import type { ColumnsProps, SearchPlusItem } from "../common/ResultContent";
-import * as Formatters from "../common/ResultContent/modules/Formatters";
+import type { ColumnsProps, SearchPlusItem } from "../../model";
+//TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
+import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/common/UnitTable/modules/Formatters";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
     {

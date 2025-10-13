@@ -1,10 +1,8 @@
 "use client";
 import { Button } from "@/features/common/frontend/atoms";
-import { UnitTable } from "../UnitTable";
-import { columns } from "./consts";
-import type { SearchPlusItem, ColumnsProps } from "./model";
-
-export { SearchPlusItem, ColumnsProps };
+import { UnitTable } from "../common/UnitTable";
+import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
 
 type NominalListProps = {
     jsonData: Array<SearchPlusItem>;
