@@ -3,6 +3,8 @@ import { Button } from "@/features/common/frontend/atoms";
 import { UnitTable } from "../common/UnitTable";
 import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+import { useRef, useState, useEffect } from "react";
+import { Print } from "./modules/PrintTable";
 
 type NominalListProps = {
     jsonData: Array<SearchPlusItem>;
@@ -13,6 +15,19 @@ export const ResultContent: React.FC<NominalListProps> = ({
     jsonData,
     setJsonData,
 }) => {
+    const tableRef = useRef<HTMLDivElement>(null);
+    const [isTableVisible, setIsTableVisible] = useState(false);
+    const [shouldOpenWindowWithPrint, setShouldOpenWindowWithPrint] =
+        useState(false);
+    useEffect(() => {
+        if (tableRef.current?.innerHTML && isTableVisible) {
+            const htmlString = tableRef.current.innerHTML;
+            if (htmlString.length > 0) {
+                Print(htmlString, shouldOpenWindowWithPrint);
+                setIsTableVisible(false);
+            }
+        }
+    }, [isTableVisible]);
     return (
         <div
             style={{
@@ -23,21 +38,41 @@ export const ResultContent: React.FC<NominalListProps> = ({
                 alignItems: "center",
             }}
         >
-            <Button
-                onClick={() => {
-                    setJsonData([]);
-                }}
-            >
-                Usar outro arquivo
-            </Button>
-            <h2>Lista Nominal</h2>
-            <div>
-                <UnitTable
-                    data={jsonData}
-                    columns={columns["breastAndUterusCare"]}
-                    layoutOrientation="landscape"
-                />
+            <div style={{ display: "flex", gap: "8px", marginBottom: "82px" }}>
+                <Button
+                    onClick={() => {
+                        setJsonData([]);
+                    }}
+                >
+                    Usar outro arquivo
+                </Button>
+                <Button
+                    onClick={() => {
+                        setIsTableVisible(true);
+                        setShouldOpenWindowWithPrint(false);
+                    }}
+                >
+                    Visualizar
+                </Button>
+                <Button
+                    onClick={() => {
+                        setIsTableVisible(true);
+                        setShouldOpenWindowWithPrint(true);
+                    }}
+                >
+                    Imprimir
+                </Button>
             </div>
+            {isTableVisible && (
+                <div>
+                    <UnitTable
+                        tableRef={tableRef}
+                        data={jsonData}
+                        columns={columns["breastAndUterusCare"]}
+                        layoutOrientation="landscape"
+                    />
+                </div>
+            )}
         </div>
     );
 };

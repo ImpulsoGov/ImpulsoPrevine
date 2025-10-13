@@ -7,15 +7,18 @@ export type UnitTableProps<TSearchPlusItem extends SearchPlusItem> = {
     data: Array<TSearchPlusItem>;
     columns: Array<ColumnsProps<TSearchPlusItem>>;
     layoutOrientation: LayoutOrientation;
+    tableRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export const UnitTable = <TSearchPlusItem extends SearchPlusItem>({
     data,
     columns,
     layoutOrientation,
+    tableRef,
 }: UnitTableProps<TSearchPlusItem>): React.ReactNode => {
     return (
         <div
+            ref={tableRef}
             className={
                 layoutOrientation === "landscape" ? "landscape" : "portrait"
             }
