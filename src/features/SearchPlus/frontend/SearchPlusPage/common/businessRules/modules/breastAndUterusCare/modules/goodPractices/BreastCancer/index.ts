@@ -69,7 +69,7 @@ export class BreastCancerCalculator {
         return lastExamDate.getTime() - birthDate.getTime();
     }
 
-    #isDateBiggerThanCurrentDate = (date: Date | null): boolean => {
+    #isDateBiggerThanOrEqualToCurrentDate = (date: Date | null): boolean => {
         if (!date) return false;
         const currentDate = new Date();
         return date >= currentDate;
@@ -111,7 +111,7 @@ export class BreastCancerCalculator {
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
         const isGoodPracticeLessThanDueDate =
-            this.#isDateBiggerThanCurrentDate(dueDate);
+            this.#isDateBiggerThanOrEqualToCurrentDate(dueDate);
         if (!isGoodPracticeLessThanDueDate) return "Atrasada";
 
         // O prazo desta boa prática vence no quadrimestre atual ?
