@@ -38,7 +38,7 @@ export const getDueDate = (
     return newDate;
 };
 export const cervixCancerRule = (age: number): boolean => {
-    return 64 >= age && age >= 25;
+    return age >= 25 && age <= 64;
 };
 export const breastCancerRule = (age: number): boolean => {
     return 69 >= age && age >= 50;
@@ -72,7 +72,8 @@ export const isDateNotNull = (date: Date | null): boolean => {
     return date !== null;
 };
 
-export const isDateBiggerThanCurrentDate = (date: Date): boolean => {
+export const isDateBiggerThanCurrentDate = (date: Date | null): boolean => {
+    if (!date) return false;
     const currentDate = new Date();
     return date >= currentDate;
 };

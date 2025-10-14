@@ -1,13 +1,16 @@
 import {
+    cervixCancerRule,
     getAgeInExam,
     getDueDate,
     getLastExamDate,
+    isDateBiggerThanCurrentDate,
     isDateLessThanEndQuadrimester,
+    isGoodPracticeApplicable,
 } from "./logic";
 
 type CalculationResult = {
     lastDate: Date | null;
-    status: "upToDate" | "pending";
+    status: "upToDate" | "pending"; //atualizar
 };
 
 type InputData = {
@@ -22,6 +25,14 @@ type GoodPractices =
     | "cervixCancer"
     | "breastCancer"
     | "sexualAndReproductiveHealthConsultation";
+
+type CervixCancer = {
+    papTestLastDate: Date | null;
+    age: number;
+    dueDate: Date | null;
+    goodPracticeExpiresInCurrentQuadrimester: boolean | null;
+    isExamDateLessThanGoodPracticeDueDate: number | null;
+};
 
 abstract class GoodPracticeCalculator {
     constructor(protected data: InputData) {}
@@ -43,7 +54,7 @@ abstract class GoodPracticeCalculator {
 }
 
 class CervixCancerCalculator extends GoodPracticeCalculator {
-    protected extractParameters(): Record<string, unknown> {
+    protected extractParameters(): CervixCancer {
         const currentDate = new Date();
         const dueDate = getDueDate(this.data.papTestLastRequestDate, 36);
         const papTestLastDate = getLastExamDate(
@@ -58,29 +69,44 @@ class CervixCancerCalculator extends GoodPracticeCalculator {
             dueDate: dueDate,
             goodPracticeExpiresInCurrentQuadrimester:
                 isDateLessThanEndQuadrimester(dueDate),
-            isExamDateLessThanGoodPPracticeDueDate: getAgeInExam(
+            isExamDateLessThanGoodPracticeDueDate: getAgeInExam(
                 papTestLastDate,
                 this.data.birthDay
             ),
         };
     }
 
-    protected computeLastDate(): Date | null {
+    protected statusParameters() {
+        const params = this.extractParameters();
+        return {
+            isGoodPracticeApplicable: isGoodPracticeApplicable(
+                params.age,
+                cervixCancerRule
+            ),
+            hasLastDate: params.papTestLastDate !== null,
+            isGoodPracticeLessThanDueDate: isDateBiggerThanCurrentDate(
+                params.dueDate
+            ),
+            goodPracticeExpiresInCurrentQuadrimester:
+                params.goodPracticeExpiresInCurrentQuadrimester,
+            isExamDateLessThanGoodPracticeDueDate:
+                params.isExamDateLessThanGoodPracticeDueDate,
+        };
+    }
+
+    protected computeLastDate(): CalculationResult["lastDate"] {
         return this.extractParameters().papTestLastDate;
     }
 
-    protected computeStatus(
-        params: Record<string, unknown>,
-        lastDate: Date | null
-    ): CalculationResult["status"] {
-        statusCalculate(this.extractParameters());
+    protected computeStatus(): CalculationResult["status"] {
+        return statusCalculate(this.statusParameters());
     }
 }
 
-function createGoodPracticeCalculator(
+const createGoodPracticeCalculator = (
     type: GoodPractices,
     data: InputData
-): GoodPracticeCalculator {
+): GoodPracticeCalculator => {
     switch (type) {
         case "hpvVaccine":
             return new HpvVaccineCalculator(data);
@@ -93,12 +119,18 @@ function createGoodPracticeCalculator(
         default:
             throw new Error("Unsupported good practice type");
     }
-}
-
-const data = {
-    patient: { birthDay: new Date("2008-01-01") },
 };
 
+//isso simula a saida do adapter
+const data = {
+    birthDay: new Date("2008-01-01"),
+    papTestLastRequestDate: new Date("2025-01-01"),
+    papTestLastEvaluationDate: new Date("2025-08-01"),
+};
+
+//exemplo de consumo
 const calculator = createGoodPracticeCalculator("hpvVaccine", data);
 const hpvVaccine = calculator.calculate();
 console.log(hpvVaccine.lastDate, hpvVaccine.status);
+
+const statusCalculate = () => {};
