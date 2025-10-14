@@ -18,13 +18,9 @@ export const getLastExamDate = (
     );
 };
 
-export const getAgeInExam = (
-    lastExamDate: Date | null,
-    birthDate: Date
-): number | null => {
-    if (!lastExamDate) return null;
-    return lastExamDate.getTime() - birthDate.getTime();
-};
+// export const getAgeInExam = (lastExamDate: Date, birthDate: Date): number => {
+//     return lastExamDate.getTime() - birthDate.getTime();
+// };
 
 export const getDueDate = (
     lastExamDate: Date | null,
@@ -44,39 +40,39 @@ export const breastCancerRule = (age: number): boolean => {
     return 69 >= age && age >= 50;
 };
 
-export const isGoodPracticeApplicable = (
+export const isGoodPracticeApplicableForPatient = (
     age: number,
     rule: (age: number) => boolean
 ): boolean => {
     return rule(age);
 };
 
-export const getEndQuadrimester = (quadri: 1 | 2 | 3): Date => {
-    const currentYear = new Date().getFullYear().toString();
-    const endOfQuadrimester = {
-        1: `30/04/${currentYear}`,
-        2: `31/08/${currentYear}`,
-        3: `31/12/${currentYear}`,
-    };
-    return new Date(endOfQuadrimester[quadri]);
-};
+// export const getEndQuadrimester = (quadri: 1 | 2 | 3): Date => {
+//     const currentYear = new Date().getFullYear().toString();
+//     const endOfQuadrimester = {
+//         1: `30/04/${currentYear}`,
+//         2: `31/08/${currentYear}`,
+//         3: `31/12/${currentYear}`,
+//     };
+//     return new Date(endOfQuadrimester[quadri]);
+// };
 
-export const isDateLessThanEndQuadrimester = (
-    dueDate: Date | null
-): boolean | null => {
-    if (!dueDate) return null;
-    const current = getCurrentQuadrimester(new Date());
-    return dueDate <= getEndQuadrimester(current);
-};
+// export const isDateLessThanEndQuadrimester = (
+//     dueDate: Date | null
+// ): boolean | null => {
+//     if (!dueDate) return null;
+//     const current = getCurrentQuadrimester(new Date());
+//     return dueDate <= getEndQuadrimester(current);
+// };
 export const isDateNotNull = (date: Date | null): boolean => {
     return date !== null;
 };
 
-export const isDateBiggerThanCurrentDate = (date: Date | null): boolean => {
-    if (!date) return false;
-    const currentDate = new Date();
-    return date >= currentDate;
-};
+// export const isDateBiggerThanCurrentDate = (date: Date | null): boolean => {
+//     if (!date) return false;
+//     const currentDate = new Date();
+//     return date >= currentDate;
+// };
 
 export const isAgeSmallerThan = (age: number, limit: number): boolean => {
     return age < limit;
