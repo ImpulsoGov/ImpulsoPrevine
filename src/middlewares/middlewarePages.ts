@@ -40,6 +40,8 @@ export const rotasProtegidas = [
     "/cofin25/indicadores/cuidado_da_pessoa_com_diabetes",
 ];
 
+export const rotasHibridas = ["/analise", "/dadoPublicos"];
+
 const ExibirURL = [
     "/capacitacao",
     "/conteudo",
@@ -69,7 +71,8 @@ export const middlewarePages = async (
     if (
         token &&
         matchesRoute(rotasProtegidas, url.pathname) &&
-        matchesRoute(rotasPublicas, url.pathname)
+        matchesRoute(rotasPublicas, url.pathname) &&
+        !matchesRoute(rotasHibridas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
 
