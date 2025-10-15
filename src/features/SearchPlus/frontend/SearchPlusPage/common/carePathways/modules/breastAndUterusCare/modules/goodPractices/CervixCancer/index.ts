@@ -1,5 +1,3 @@
-import { getCurrentQuadrimester } from "@/features/acf/shared/GetCurrentQuadrimester";
-
 type Quadrimester = "1" | "2" | "3";
 type Status =
     | "Não aplica"
@@ -9,19 +7,25 @@ type Status =
     | "Em dia";
 
 type InputData = {
-    [key: string]: unknown;
-    birthDay: Date;
+    birthDate: Date;
     papTestLastRequestDate: Date | null;
     papTestLastEvaluationDate: Date | null;
+    mammographyLastRequestDate: Date | null;
+    mammographyLastEvaluationDate: Date | null;
+    createdAt: Date;
 };
 
 export class CervixCancerCalculator {
-    data: InputData;
+    #data: InputData;
 
     constructor(data: InputData) {
-        this.data = data;
+        this.#data = data;
     }
 
+    #getCurrentQuadrimester = (date = new Date()): 1 | 2 | 3 => {
+        const month = date.getUTCMonth() + 1;
+        return Math.ceil(month / 4) as 1 | 2 | 3;
+    };
     #getLastExamDate = (
         lastExamRequestDate: Date | null,
         lastEvaluationDate: Date | null
@@ -45,12 +49,12 @@ export class CervixCancerCalculator {
             return null;
         }
         const newDate = new Date(lastExamDate);
-        newDate.setMonth(newDate.getMonth() + months);
+        newDate.setUTCMonth(newDate.getUTCMonth() + months);
         return newDate;
     };
 
     #getEndQuadrimester(quadri: 1 | 2 | 3): Date {
-        const currentYear = new Date().getFullYear().toString();
+        const currentYear = new Date().getUTCFullYear().toString();
         const endOfQuadrimester = {
             1: `${currentYear}-04-30`,
             2: `${currentYear}-08-31`,
@@ -61,15 +65,15 @@ export class CervixCancerCalculator {
 
     #isDateLessThanEndQuadrimester(dueDate: Date | null): boolean | null {
         if (!dueDate) return null;
-        const current = getCurrentQuadrimester(new Date());
+        const current = this.#getCurrentQuadrimester(new Date());
         return dueDate <= this.#getEndQuadrimester(current);
     }
 
-    #getAgeInExam(lastExamDate: Date, birthDate: Date): number {
-        return lastExamDate.getTime() - birthDate.getTime();
+    #getYearBetweenDates(biggerDate: Date, smallerDate: Date): number {
+        return biggerDate.getUTCFullYear() - smallerDate.getUTCFullYear();
     }
 
-    #isDateBiggerThanCurrentDate = (date: Date | null): boolean => {
+    #isDateGreaterThanOrEqualToCurrentDate = (date: Date | null): boolean => {
         if (!date) return false;
         const currentDate = new Date();
         return date >= currentDate;
@@ -80,22 +84,24 @@ export class CervixCancerCalculator {
 
     public computeLastDate(): Date | null {
         return this.#getLastExamDate(
-            this.data.papTestLastRequestDate,
-            this.data.papTestLastEvaluationDate
+            this.#data.papTestLastRequestDate,
+            this.#data.papTestLastEvaluationDate
         );
     }
 
     public computeStatus(): Status {
-        const currentDate = new Date();
-        const currentQuadrimester = getCurrentQuadrimester(
+        const currentDate = this.#data.createdAt;
+        const currentQuadrimester = this.#getCurrentQuadrimester(
             currentDate
         ).toString() as Quadrimester;
-        const age =
-            currentDate.getUTCFullYear() - this.data.birthDay.getUTCFullYear();
+        const age = this.#getYearBetweenDates(
+            currentDate,
+            this.#data.birthDate
+        );
 
         const papTestLastDate = this.#getLastExamDate(
-            this.data.papTestLastRequestDate,
-            this.data.papTestLastEvaluationDate
+            this.#data.papTestLastRequestDate,
+            this.#data.papTestLastEvaluationDate
         );
 
         const dueDate = this.#getDueDate(papTestLastDate, 36);
@@ -111,7 +117,7 @@ export class CervixCancerCalculator {
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
         const isGoodPracticeLessThanDueDate =
-            this.#isDateBiggerThanCurrentDate(dueDate);
+            this.#isDateGreaterThanOrEqualToCurrentDate(dueDate);
         if (!isGoodPracticeLessThanDueDate) return "Atrasada";
 
         // O prazo desta boa prática vence no quadrimestre atual ?
@@ -122,7 +128,8 @@ export class CervixCancerCalculator {
 
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
-            this.#getAgeInExam(papTestLastDate, this.data.birthDay) < 25;
+            this.#getYearBetweenDates(papTestLastDate, this.#data.birthDate) <
+            25;
         if (isExamDateLessThanGoodPracticeDueDate)
             return `Vence dentro do Q${currentQuadrimester}`;
 

@@ -1,5 +1,3 @@
-import { getCurrentQuadrimester } from "@/features/acf/shared/GetCurrentQuadrimester";
-
 type Quadrimester = "1" | "2" | "3";
 type Status =
     | "Não aplica"
@@ -9,19 +7,28 @@ type Status =
     | "Em dia";
 
 type InputData = {
-    [key: string]: unknown;
     birthDay: Date;
     mammographyLastRequestDate: Date | null;
     mammographyLastEvaluationDate: Date | null;
+    createdAt: Date;
+    papTestLastRequestDate: Date | null;
+    papTestLastEvaluationDate: Date | null;
 };
 
 export class BreastCancerCalculator {
-    data: InputData;
+    #data: InputData;
 
     constructor(data: InputData) {
-        this.data = data;
+        this.#data = data;
     }
 
+    #getCurrentQuadrimester = (date = new Date()): 1 | 2 | 3 => {
+        const month = date.getUTCMonth() + 1;
+        return Math.ceil(month / 4) as 1 | 2 | 3;
+    };
+
+    // ? As datas são comparadas em epoc, por isso não convertemos elas para BRT,
+    // já que a diferença entre elas seria equivalente mesmo em timezones diferentes.
     #getLastExamDate = (
         lastExamRequestDate: Date | null,
         lastEvaluationDate: Date | null
@@ -45,12 +52,12 @@ export class BreastCancerCalculator {
             return null;
         }
         const newDate = new Date(lastExamDate);
-        newDate.setMonth(newDate.getMonth() + months);
+        newDate.setUTCMonth(newDate.getUTCMonth() + months);
         return newDate;
     };
 
     #getEndQuadrimester(quadri: 1 | 2 | 3): Date {
-        const currentYear = new Date().getFullYear().toString();
+        const currentYear = this.#data.createdAt.getUTCFullYear().toString();
         const endOfQuadrimester = {
             1: `${currentYear}-04-30`,
             2: `${currentYear}-08-31`,
@@ -61,41 +68,42 @@ export class BreastCancerCalculator {
 
     #isDateLessThanEndQuadrimester(dueDate: Date | null): boolean | null {
         if (!dueDate) return null;
-        const current = getCurrentQuadrimester(new Date());
+        const current = this.#getCurrentQuadrimester(this.#data.createdAt);
         return dueDate <= this.#getEndQuadrimester(current);
     }
 
-    #getAgeInExam(lastExamDate: Date, birthDate: Date): number {
-        return lastExamDate.getTime() - birthDate.getTime();
+    #getYearBetweenDates(biggerDate: Date, smallerDate: Date): number {
+        return biggerDate.getUTCFullYear() - smallerDate.getUTCFullYear();
     }
 
-    #isDateBiggerThanOrEqualToCurrentDate = (date: Date | null): boolean => {
+    #isDateGreaterThanOrEqualToCurrentDate = (date: Date | null): boolean => {
         if (!date) return false;
-        const currentDate = new Date();
+        const currentDate = this.#data.createdAt;
         return date >= currentDate;
     };
+
     #isGoodPracticeApplicableForPatient = (age: number): boolean => {
         return age >= 50 && age <= 69; //Regra para cancer de mama
     };
 
     public computeLastDate(): Date | null {
         return this.#getLastExamDate(
-            this.data.mammographyLastRequestDate,
-            this.data.mammographyLastEvaluationDate
+            this.#data.mammographyLastRequestDate,
+            this.#data.mammographyLastEvaluationDate
         );
     }
-
+    //Todas as datas para fins de calulos são consideradas em UTC, no formatter quando for exibir para o usuário convertemos para BRT
     public computeStatus(): Status {
-        const currentDate = new Date();
-        const currentQuadrimester = getCurrentQuadrimester(
+        const currentDate = this.#data.createdAt;
+        const currentQuadrimester = this.#getCurrentQuadrimester(
             currentDate
         ).toString() as Quadrimester;
-        const age =
-            currentDate.getUTCFullYear() - this.data.birthDay.getUTCFullYear();
+
+        const age = this.#getYearBetweenDates(currentDate, this.#data.birthDay);
 
         const mammographyLastDate = this.#getLastExamDate(
-            this.data.mammographyLastRequestDate,
-            this.data.mammographyLastEvaluationDate
+            this.#data.mammographyLastRequestDate,
+            this.#data.mammographyLastEvaluationDate
         );
 
         const dueDate = this.#getDueDate(mammographyLastDate, 24);
@@ -106,12 +114,13 @@ export class BreastCancerCalculator {
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data do último exame?
-        const hasDateOfLastMedicalEvent = mammographyLastDate !== null;
-        if (!hasDateOfLastMedicalEvent) return "Nunca realizado";
+        if (mammographyLastDate === null) return "Nunca realizado";
+        if (isNaN(new Date(mammographyLastDate).getTime()))
+            return "Nunca realizado";
 
-        //Essa boa prática ainda está no prazo preconizado no indicador?
+        //Essa boa prática ainda está dentro do prazo preconizado no indicador?
         const isGoodPracticeLessThanDueDate =
-            this.#isDateBiggerThanOrEqualToCurrentDate(dueDate);
+            this.#isDateGreaterThanOrEqualToCurrentDate(dueDate);
         if (!isGoodPracticeLessThanDueDate) return "Atrasada";
 
         // O prazo desta boa prática vence no quadrimestre atual ?
@@ -122,7 +131,10 @@ export class BreastCancerCalculator {
 
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
-            this.#getAgeInExam(mammographyLastDate, this.data.birthDay) < 50;
+            this.#getYearBetweenDates(
+                mammographyLastDate,
+                this.#data.birthDay
+            ) < 50;
         if (isExamDateLessThanGoodPracticeDueDate)
             return `Vence dentro do Q${currentQuadrimester}`;
 
