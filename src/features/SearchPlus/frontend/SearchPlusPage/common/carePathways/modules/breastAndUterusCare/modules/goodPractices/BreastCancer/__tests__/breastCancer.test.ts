@@ -8,11 +8,12 @@ describe("BreastCancerCalculator", () => {
     });
 
     const baseData = {
-        birthDay: new Date("1974-01-01"),
+        birthDate: new Date("1974-01-01"),
         mammographyLastRequestDate: new Date("2022-01-01"),
         mammographyLastEvaluationDate: new Date("2022-02-01"),
         papTestLastRequestDate: new Date("2022-01-01"),
         papTestLastEvaluationDate: new Date("2022-01-01"),
+        lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
         createdAt: new Date("2025-10-10"),
     };
 
@@ -57,7 +58,7 @@ describe("BreastCancerCalculator", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 50)', () => {
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDay: new Date("2010-01-01"), // 15 anos
+                    birthDate: new Date("2010-01-01"), // 15 anos
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -65,7 +66,7 @@ describe("BreastCancerCalculator", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDay: new Date("1950-01-01"), // 75 anos
+                    birthDate: new Date("1950-01-01"), // 75 anos
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -105,7 +106,7 @@ describe("BreastCancerCalculator", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 50 anos', () => {
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDay: new Date("1975-01-01"),
+                    birthDate: new Date("1975-01-01"),
                     mammographyLastRequestDate: new Date("2023-10-25"),
                     mammographyLastEvaluationDate: new Date("2023-10-25"),
                 });

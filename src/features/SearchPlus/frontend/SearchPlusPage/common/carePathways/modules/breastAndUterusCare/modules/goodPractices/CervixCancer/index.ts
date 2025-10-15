@@ -12,6 +12,7 @@ type InputData = {
     papTestLastEvaluationDate: Date | null;
     mammographyLastRequestDate: Date | null;
     mammographyLastEvaluationDate: Date | null;
+    lastSexualAndReproductiveHealthAppointmentDate: Date | null;
     createdAt: Date;
 };
 
@@ -106,14 +107,17 @@ export class CervixCancerCalculator {
 
         const dueDate = this.#getDueDate(papTestLastDate, 36);
 
+        const ageLimit = 25;
+
         //A boa prática se aplica para essa pessoa?
         const isGoodPracticeApplicable =
             this.#isGoodPracticeApplicableForPatient(age);
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data do último exame?
-        const hasDateOfLastMedicalEvent = papTestLastDate !== null;
-        if (!hasDateOfLastMedicalEvent) return "Nunca realizado";
+        if (papTestLastDate === null) return "Nunca realizado";
+        if (isNaN(new Date(papTestLastDate).getTime()))
+            return "Nunca realizado";
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
         const isGoodPracticeLessThanDueDate =
@@ -129,7 +133,7 @@ export class CervixCancerCalculator {
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
             this.#getYearBetweenDates(papTestLastDate, this.#data.birthDate) <
-            25;
+            ageLimit;
         if (isExamDateLessThanGoodPracticeDueDate)
             return `Vence dentro do Q${currentQuadrimester}`;
 

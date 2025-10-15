@@ -7,12 +7,13 @@ type Status =
     | "Em dia";
 
 type InputData = {
-    birthDay: Date;
-    mammographyLastRequestDate: Date | null;
-    mammographyLastEvaluationDate: Date | null;
-    createdAt: Date;
+    birthDate: Date;
     papTestLastRequestDate: Date | null;
     papTestLastEvaluationDate: Date | null;
+    mammographyLastRequestDate: Date | null;
+    mammographyLastEvaluationDate: Date | null;
+    lastSexualAndReproductiveHealthAppointmentDate: Date | null;
+    createdAt: Date;
 };
 
 export class BreastCancerCalculator {
@@ -99,7 +100,10 @@ export class BreastCancerCalculator {
             currentDate
         ).toString() as Quadrimester;
 
-        const age = this.#getYearBetweenDates(currentDate, this.#data.birthDay);
+        const age = this.#getYearBetweenDates(
+            currentDate,
+            this.#data.birthDate
+        );
 
         const mammographyLastDate = this.#getLastExamDate(
             this.#data.mammographyLastRequestDate,
@@ -107,6 +111,8 @@ export class BreastCancerCalculator {
         );
 
         const dueDate = this.#getDueDate(mammographyLastDate, 24);
+
+        const ageLimit = 50;
 
         //A boa prática se aplica para essa pessoa?
         const isGoodPracticeApplicable =
@@ -133,8 +139,8 @@ export class BreastCancerCalculator {
         const isExamDateLessThanGoodPracticeDueDate =
             this.#getYearBetweenDates(
                 mammographyLastDate,
-                this.#data.birthDay
-            ) < 50;
+                this.#data.birthDate
+            ) < ageLimit;
         if (isExamDateLessThanGoodPracticeDueDate)
             return `Vence dentro do Q${currentQuadrimester}`;
 

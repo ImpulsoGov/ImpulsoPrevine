@@ -13,6 +13,7 @@ describe("CervixCancerCalculator", () => {
         papTestLastEvaluationDate: new Date("2022-02-01"),
         mammographyLastRequestDate: new Date("2022-01-01"),
         mammographyLastEvaluationDate: new Date("2022-02-01"),
+        lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
         createdAt: new Date("2025-10-10"),
     };
 
