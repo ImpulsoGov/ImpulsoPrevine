@@ -11,8 +11,7 @@ export type TableCellProps<TSearchPlusItem extends SearchPlusItem> = {
     layoutOrientation: LayoutOrientation;
 };
 
-//TODO: Esse componente deveria se chamar TableRow
-export const TableCell = <TSearchPlusItem extends SearchPlusItem>({
+export const TableRow = <TSearchPlusItem extends SearchPlusItem>({
     item,
     columns,
     layoutOrientation,

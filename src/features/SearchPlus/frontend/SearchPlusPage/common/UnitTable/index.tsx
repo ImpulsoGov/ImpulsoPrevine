@@ -1,5 +1,5 @@
 import { Thead } from "./modules/Thead";
-import { TableCell } from "./modules/TableCell";
+import { TableRow } from "./modules/TableCell";
 import type { LayoutOrientation } from "./model";
 import type { ColumnsProps, SearchPlusItem } from "../carePathways";
 
@@ -51,7 +51,7 @@ export const UnitTable = <TSearchPlusItem extends SearchPlusItem>({
                                     borderBottom: "solid 1px #757574",
                                 }}
                             >
-                                <TableCell
+                                <TableRow
                                     item={item}
                                     columns={columns}
                                     layoutOrientation={layoutOrientation}
