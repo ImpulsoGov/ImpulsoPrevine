@@ -3,7 +3,7 @@ import {
     csvListTitleToListKey,
     type ListTitles,
     type SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+} from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { useCallback } from "react";
 import { parse } from "papaparse";
 import type { CsvRow } from "./model";

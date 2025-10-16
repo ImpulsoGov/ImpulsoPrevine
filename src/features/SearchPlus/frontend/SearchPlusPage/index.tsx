@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ResultContent } from "./ResultContent";
 import { InputContent } from "./InputContent";
-import type { SearchPlusItem } from "./common/businessRules";
+import type { SearchPlusItem } from "./common/carePathways";
 
 export const SearchPlusPage: React.FC = () => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);

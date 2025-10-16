@@ -1,7 +1,7 @@
 import type {
     ColumnsProps,
     SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+} from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import type { LayoutOrientation } from "../model";
 import React from "react";
 

@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/features/common/frontend/atoms";
 import { UnitTable } from "../common/UnitTable";
-import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
+import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
 

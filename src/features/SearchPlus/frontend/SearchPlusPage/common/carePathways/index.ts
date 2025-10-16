@@ -6,11 +6,7 @@ import {
     breastAndUterusCareColumns,
     csvRowToBreastAndUterusCareItem,
 } from "./modules/breastAndUterusCare";
-
-import type {
-    ColumnsProps,
-    SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/common/businessRules";
+import type { ColumnsProps, SearchPlusItem } from "./model";
 
 export { breastAndUterusCareColumns };
 export type { ColumnsProps, SearchPlusItem } from "./model";
