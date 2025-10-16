@@ -1,5 +1,5 @@
 import { Thead } from "./modules/Thead";
-import { TableRow } from "./modules/TableCell";
+import { TableRow } from "./modules/TableRow";
 import type { LayoutOrientation } from "./model";
 import type { ColumnsProps, SearchPlusItem } from "../carePathways";
 
