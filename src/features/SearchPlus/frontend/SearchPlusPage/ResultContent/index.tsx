@@ -6,12 +6,12 @@ import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPag
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
 
-type NominalListProps = {
+type ResultContentProps = {
     jsonData: Array<SearchPlusItem>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
 };
 
-export const ResultContent: React.FC<NominalListProps> = ({
+export const ResultContent: React.FC<ResultContentProps> = ({
     jsonData,
     setJsonData,
 }) => {
