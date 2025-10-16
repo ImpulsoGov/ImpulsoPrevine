@@ -1,7 +1,3 @@
-//TODO: o nome businessRules não é final, e sabemos que ele não é bom.
-//  Estamos usando ele por enquanto para destravar e ver se encontramos um nome novo melhor
-//  depois.
-
 import {
     breastAndUterusCareColumns,
     csvRowToBreastAndUterusCareItem,
