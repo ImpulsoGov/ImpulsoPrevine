@@ -7,10 +7,12 @@ describe("BreastCancerCalculator", () => {
         jest.useFakeTimers().setSystemTime(new Date("2025-10-10"));
     });
 
+    const mammographyLastRequestDate = new Date("2022-01-01");
+    const mammographyLastEvaluationDate = new Date("2022-02-01");
     const baseData = {
         birthDate: new Date("1974-01-01"),
-        mammographyLastRequestDate: new Date("2022-01-01"),
-        mammographyLastEvaluationDate: new Date("2022-02-01"),
+        mammographyLastRequestDate: mammographyLastRequestDate,
+        mammographyLastEvaluationDate: mammographyLastEvaluationDate,
         papTestLastRequestDate: new Date("2022-01-01"),
         papTestLastEvaluationDate: new Date("2022-01-01"),
         lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
@@ -21,7 +23,7 @@ describe("BreastCancerCalculator", () => {
         it("deve retornar a data mais recente entre request e evaluation", () => {
             const calc = new BreastCancerCalculator(baseData);
             const result = calc.computeLastDate();
-            expect(result).toEqual(new Date("2022-02-01"));
+            expect(result).toEqual(mammographyLastEvaluationDate);
         });
 
         it("deve retornar a data de request quando evaluation é null", () => {
@@ -30,7 +32,7 @@ describe("BreastCancerCalculator", () => {
                 mammographyLastEvaluationDate: null,
             });
             const result = calc.computeLastDate();
-            expect(result).toEqual(new Date("2022-01-01"));
+            expect(result).toEqual(mammographyLastRequestDate);
         });
 
         it("deve retornar a data de evaluation quando request é null", () => {
@@ -39,7 +41,7 @@ describe("BreastCancerCalculator", () => {
                 mammographyLastRequestDate: null,
             });
             const result = calc.computeLastDate();
-            expect(result).toEqual(new Date("2022-02-01"));
+            expect(result).toEqual(mammographyLastEvaluationDate);
         });
 
         it("deve retornar null quando ambas são null", () => {
@@ -56,17 +58,19 @@ describe("BreastCancerCalculator", () => {
     describe("computeStatus", () => {
         describe("A boa prática se aplica para essa pessoa?", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 50)', () => {
+                const birthDateFor15YearsOld = new Date("2010-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: new Date("2010-01-01"), // 15 anos
+                    birthDate: birthDateFor15YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
 
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
+                const birthDateFor75YearsOld = new Date("1950-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: new Date("1950-01-01"), // 75 anos
+                    birthDate: birthDateFor75YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -92,10 +96,13 @@ describe("BreastCancerCalculator", () => {
 
         describe("O prazo dessa boa prática vence no quadrimestre atual?", () => {
             it('retorna "Vence dentro do Q3" quando o prazo vence no quadrimestre atual', () => {
+                //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
+                const validDateSmallerThanEndOfQ3 = new Date("2023-10-15");
+                const unselectedDate = new Date("2023-10-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    mammographyLastRequestDate: new Date("2023-10-01"), // vence antes de 31/12
-                    mammographyLastEvaluationDate: new Date("2023-10-15"),
+                    mammographyLastRequestDate: unselectedDate,
+                    mammographyLastEvaluationDate: validDateSmallerThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -104,11 +111,16 @@ describe("BreastCancerCalculator", () => {
 
         describe("O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática? ", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 50 anos', () => {
+                // Essa data gera uma idade na data da consulta de 48 anos
+                const birthDateFor50YearOld = new Date("1975-01-01");
+                //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
+                const validDateSmallerThanEndOfQ3 = new Date("2023-10-25");
+                const unselectedDate = new Date("2023-10-24");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: new Date("1975-01-01"),
-                    mammographyLastRequestDate: new Date("2023-10-25"),
-                    mammographyLastEvaluationDate: new Date("2023-10-25"),
+                    birthDate: birthDateFor50YearOld,
+                    mammographyLastRequestDate: validDateSmallerThanEndOfQ3,
+                    mammographyLastEvaluationDate: unselectedDate,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -116,10 +128,13 @@ describe("BreastCancerCalculator", () => {
         });
 
         it('retorna "Em dia" quando todos os critérios são atendidos', () => {
+            //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
+            const validDateSmallerThanEndOfQ3 = new Date("2024-02-01");
+            const unselectedDate = new Date("2024-01-01");
             const calc = new BreastCancerCalculator({
                 ...baseData,
-                mammographyLastRequestDate: new Date("2024-01-01"),
-                mammographyLastEvaluationDate: new Date("2024-02-01"),
+                mammographyLastRequestDate: unselectedDate,
+                mammographyLastEvaluationDate: validDateSmallerThanEndOfQ3,
             });
             expect(calc.computeStatus()).toBe("Em dia");
         });
