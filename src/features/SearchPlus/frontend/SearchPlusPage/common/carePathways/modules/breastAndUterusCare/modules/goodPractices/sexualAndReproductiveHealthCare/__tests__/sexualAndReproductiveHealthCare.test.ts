@@ -6,6 +6,9 @@ describe("SexualAndReproductiveCare", () => {
         // Fixa a criação de datas com new Date() para 10 de outubro de 2025
         jest.useFakeTimers().setSystemTime(new Date("2025-10-10"));
     });
+    const lastSexualAndReproductiveHealthAppointmentDate = new Date(
+        "2022-01-01"
+    );
 
     const baseData = {
         birthDate: new Date("1990-01-01"),
@@ -13,7 +16,8 @@ describe("SexualAndReproductiveCare", () => {
         papTestLastEvaluationDate: new Date("2022-02-01"),
         mammographyLastRequestDate: new Date("2022-01-01"),
         mammographyLastEvaluationDate: new Date("2022-02-01"),
-        lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
+        lastSexualAndReproductiveHealthAppointmentDate:
+            lastSexualAndReproductiveHealthAppointmentDate,
         createdAt: new Date("2025-10-10"),
     };
 
@@ -23,7 +27,9 @@ describe("SexualAndReproductiveCare", () => {
                 baseData
             );
             const result = calc.computeLastDate();
-            expect(result).toEqual(new Date("2022-02-01"));
+            expect(result).toEqual(
+                lastSexualAndReproductiveHealthAppointmentDate
+            );
         });
 
         it("deve retornar null quando a data da última consulta é null", () => {
@@ -39,17 +45,20 @@ describe("SexualAndReproductiveCare", () => {
     describe("computeStatus", () => {
         describe("A boa prática se aplica para essa pessoa?", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 14)', () => {
+                const birthDateFor10YearOld = new Date("2015-01-01");
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    birthDate: new Date("2015-01-01"), // 10 anos
+                    birthDate: birthDateFor10YearOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
 
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
+                const birthDateFor75YearOld = new Date("1950-01-01");
+
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    birthDate: new Date("1950-01-01"), // 75 anos
+                    birthDate: birthDateFor75YearOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -76,11 +85,12 @@ describe("SexualAndReproductiveCare", () => {
 
         describe("O prazo dessa boa prática vence no quadrimestre atual?", () => {
             it('retorna "Vence dentro do Q3" quando o prazo vence no quadrimestre atual', () => {
+                //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
+                const validDateSmallerThanEndOfQ3 = new Date("2024-10-15");
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    lastSexualAndReproductiveHealthAppointmentDate: new Date(
-                        "2024-10-15"
-                    ),
+                    lastSexualAndReproductiveHealthAppointmentDate:
+                        validDateSmallerThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -88,13 +98,17 @@ describe("SexualAndReproductiveCare", () => {
         });
 
         describe("O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática?", () => {
-            it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 25 anos', () => {
+            it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 14 anos', () => {
+                // Essa data gera uma idade na data da consulta de 13 anos
+                const birthDateFor14YearOld = new Date("2011-01-01");
+                //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e > final do Q3 (31/12/2025)
+                const validDateGreaterThanEndOfQ3 = new Date("2024-12-01"); //Data prazo 2025-12-01
+
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    birthDate: new Date("2014-01-01"),
-                    lastSexualAndReproductiveHealthAppointmentDate: new Date(
-                        "2025-01-01"
-                    ),
+                    birthDate: birthDateFor14YearOld,
+                    lastSexualAndReproductiveHealthAppointmentDate:
+                        validDateGreaterThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -102,12 +116,16 @@ describe("SexualAndReproductiveCare", () => {
         });
 
         it('retorna "Em dia" quando todos os critérios são atendidos', () => {
+            // Essa data gera uma idade na data da consulta de 15 anos
+            const birthDateFor15YearOld = new Date("2010-01-01");
+            //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e > final do Q3 (31/12/2025)
+            const validDateGreaterThanEndOfQ3 = new Date("2025-01-01"); //Data prazo 2026-01-01
+
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,
-                birthDate: new Date("2010-01-01"),
-                lastSexualAndReproductiveHealthAppointmentDate: new Date(
-                    "2025-01-01"
-                ),
+                birthDate: birthDateFor15YearOld,
+                lastSexualAndReproductiveHealthAppointmentDate:
+                    validDateGreaterThanEndOfQ3,
             });
             expect(calc.computeStatus()).toBe("Em dia");
         });
