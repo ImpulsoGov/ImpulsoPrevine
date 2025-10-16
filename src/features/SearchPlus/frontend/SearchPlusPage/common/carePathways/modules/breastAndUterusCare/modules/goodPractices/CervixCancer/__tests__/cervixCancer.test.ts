@@ -1,50 +1,52 @@
 import { CervixCancerCalculator } from "..";
 
 describe("CervixCancerCalculator", () => {
-    const papTestLastRequestDate = new Date("2022-01-01");
-    const papTestLastEvaluationDate = new Date("2022-02-01");
+    const papTestLatestRequestDate = new Date("2022-01-01");
+    const papTestLatestEvaluationDate = new Date("2022-02-01");
     const baseData = {
         birthDate: new Date("1990-01-01"),
-        papTestLastRequestDate: papTestLastRequestDate,
-        papTestLastEvaluationDate: papTestLastEvaluationDate,
-        mammographyLastRequestDate: new Date("2022-01-01"),
-        mammographyLastEvaluationDate: new Date("2022-02-01"),
-        lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
+        papTestLatestRequestDate: papTestLatestRequestDate,
+        papTestLatestEvaluationDate: papTestLatestEvaluationDate,
+        mammographyLatestRequestDate: new Date("2022-01-01"),
+        mammographyLatestEvaluationDate: new Date("2022-02-01"),
+        latestSexualAndReproductiveHealthAppointmentDate: new Date(
+            "2022-01-01"
+        ),
         createdAt: new Date("2025-10-10"),
     };
 
-    describe("computeLastDate", () => {
+    describe("computelatestDate", () => {
         it("deve retornar a data mais recente entre request e evaluation", () => {
             const calc = new CervixCancerCalculator(baseData);
-            const result = calc.computeLastDate();
-            expect(result).toEqual(papTestLastEvaluationDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(papTestLatestEvaluationDate);
         });
 
         it("deve retornar a data de request quando evaluation é null", () => {
             const calc = new CervixCancerCalculator({
                 ...baseData,
-                papTestLastEvaluationDate: null,
+                papTestLatestEvaluationDate: null,
             });
-            const result = calc.computeLastDate();
-            expect(result).toEqual(papTestLastRequestDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(papTestLatestRequestDate);
         });
 
         it("deve retornar a data de evaluation quando request é null", () => {
             const calc = new CervixCancerCalculator({
                 ...baseData,
-                papTestLastRequestDate: null,
+                papTestLatestRequestDate: null,
             });
-            const result = calc.computeLastDate();
-            expect(result).toEqual(papTestLastEvaluationDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(papTestLatestEvaluationDate);
         });
 
         it("deve retornar null quando ambas são null", () => {
             const calc = new CervixCancerCalculator({
                 ...baseData,
-                papTestLastRequestDate: null,
-                papTestLastEvaluationDate: null,
+                papTestLatestRequestDate: null,
+                papTestLatestEvaluationDate: null,
             });
-            const result = calc.computeLastDate();
+            const result = calc.computelatestDate();
             expect(result).toBeNull();
         });
     });
@@ -74,8 +76,8 @@ describe("CervixCancerCalculator", () => {
             it('retorna "Nunca realizado" quando não há data de exame', () => {
                 const calc = new CervixCancerCalculator({
                     ...baseData,
-                    papTestLastRequestDate: null,
-                    papTestLastEvaluationDate: null,
+                    papTestLatestRequestDate: null,
+                    papTestLatestEvaluationDate: null,
                 });
                 expect(calc.computeStatus()).toBe("Nunca realizado");
             });
@@ -97,8 +99,8 @@ describe("CervixCancerCalculator", () => {
                 const unselectedDate = new Date("2021-10-01");
                 const calc = new CervixCancerCalculator({
                     ...baseData,
-                    papTestLastRequestDate: unselectedDate,
-                    papTestLastEvaluationDate: validDateSmallerThanEndOfQ3,
+                    papTestLatestRequestDate: unselectedDate,
+                    papTestLatestEvaluationDate: validDateSmallerThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -115,8 +117,8 @@ describe("CervixCancerCalculator", () => {
                 const calc = new CervixCancerCalculator({
                     ...baseData,
                     birthDate: birthDateFor25YearOld,
-                    papTestLastRequestDate: unselectedDate,
-                    papTestLastEvaluationDate: validDateSmallerThanEndOfQ3,
+                    papTestLatestRequestDate: unselectedDate,
+                    papTestLatestEvaluationDate: validDateSmallerThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -129,8 +131,8 @@ describe("CervixCancerCalculator", () => {
             const unselectedDate = new Date("2024-01-01");
             const calc = new CervixCancerCalculator({
                 ...baseData,
-                papTestLastRequestDate: unselectedDate,
-                papTestLastEvaluationDate: validDateSmallerThanEndOfQ3,
+                papTestLatestRequestDate: unselectedDate,
+                papTestLatestEvaluationDate: validDateSmallerThanEndOfQ3,
             });
             expect(calc.computeStatus()).toBe("Em dia");
         });

@@ -8,11 +8,11 @@ type Status =
 
 type InputData = {
     birthDate: Date;
-    papTestLastRequestDate: Date | null;
-    papTestLastEvaluationDate: Date | null;
-    mammographyLastRequestDate: Date | null;
-    mammographyLastEvaluationDate: Date | null;
-    lastSexualAndReproductiveHealthAppointmentDate: Date | null;
+    papTestLatestRequestDate: Date | null;
+    papTestLatestEvaluationDate: Date | null;
+    mammographyLatestRequestDate: Date | null;
+    mammographyLatestEvaluationDate: Date | null;
+    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
     createdAt: Date;
 };
 
@@ -30,29 +30,32 @@ export class BreastCancerCalculator {
 
     // ? As datas são comparadas em epoc, por isso não convertemos elas para BRT,
     // já que a diferença entre elas seria equivalente mesmo em timezones diferentes.
-    #getLastExamDate = (
-        lastExamRequestDate: Date | null,
-        lastEvaluationDate: Date | null
+    #getlatestExamDate = (
+        latestestExamRequestDate: Date | null,
+        latestEvaluationDate: Date | null
     ): Date | null => {
-        if (!lastExamRequestDate && !lastEvaluationDate) {
+        if (!latestestExamRequestDate && !latestEvaluationDate) {
             return null;
         }
-        if (!lastExamRequestDate) {
-            return lastEvaluationDate;
+        if (!latestestExamRequestDate) {
+            return latestEvaluationDate;
         }
-        if (!lastEvaluationDate) {
-            return lastExamRequestDate;
+        if (!latestEvaluationDate) {
+            return latestestExamRequestDate;
         }
-        return lastExamRequestDate > lastEvaluationDate
-            ? lastExamRequestDate
-            : lastEvaluationDate;
+        return latestestExamRequestDate > latestEvaluationDate
+            ? latestestExamRequestDate
+            : latestEvaluationDate;
     };
 
-    #getDueDate = (lastExamDate: Date | null, months: number): Date | null => {
-        if (!lastExamDate) {
+    #getDueDate = (
+        latestExamDate: Date | null,
+        months: number
+    ): Date | null => {
+        if (!latestExamDate) {
             return null;
         }
-        const newDate = new Date(lastExamDate);
+        const newDate = new Date(latestExamDate);
         newDate.setUTCMonth(newDate.getUTCMonth() + months);
         return newDate;
     };
@@ -87,10 +90,10 @@ export class BreastCancerCalculator {
         return age >= 50 && age <= 69; //Regra para cancer de mama
     };
 
-    public computeLastDate(): Date | null {
-        return this.#getLastExamDate(
-            this.#data.mammographyLastRequestDate,
-            this.#data.mammographyLastEvaluationDate
+    public computelatestDate(): Date | null {
+        return this.#getlatestExamDate(
+            this.#data.mammographyLatestRequestDate,
+            this.#data.mammographyLatestEvaluationDate
         );
     }
     //Todas as datas para fins de calulos são consideradas em UTC, no formatter quando for exibir para o usuário convertemos para BRT
@@ -105,12 +108,12 @@ export class BreastCancerCalculator {
             this.#data.birthDate
         );
 
-        const mammographyLastDate = this.#getLastExamDate(
-            this.#data.mammographyLastRequestDate,
-            this.#data.mammographyLastEvaluationDate
+        const mammographylatestDate = this.#getlatestExamDate(
+            this.#data.mammographyLatestRequestDate,
+            this.#data.mammographyLatestEvaluationDate
         );
 
-        const dueDate = this.#getDueDate(mammographyLastDate, 24);
+        const dueDate = this.#getDueDate(mammographylatestDate, 24);
 
         const ageLimit = 50;
 
@@ -120,8 +123,8 @@ export class BreastCancerCalculator {
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data do último exame?
-        if (mammographyLastDate === null) return "Nunca realizado";
-        if (isNaN(new Date(mammographyLastDate).getTime()))
+        if (mammographylatestDate === null) return "Nunca realizado";
+        if (isNaN(new Date(mammographylatestDate).getTime()))
             return "Nunca realizado";
 
         //Essa boa prática ainda está dentro do prazo preconizado no indicador?
@@ -138,7 +141,7 @@ export class BreastCancerCalculator {
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
             this.#getYearBetweenDates(
-                mammographyLastDate,
+                mammographylatestDate,
                 this.#data.birthDate
             ) < ageLimit;
         if (isExamDateLessThanGoodPracticeDueDate)

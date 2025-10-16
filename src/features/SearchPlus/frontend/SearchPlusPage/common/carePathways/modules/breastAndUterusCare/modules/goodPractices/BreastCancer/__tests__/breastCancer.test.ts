@@ -1,50 +1,52 @@
 import { BreastCancerCalculator } from "..";
 
 describe("BreastCancerCalculator", () => {
-    const mammographyLastRequestDate = new Date("2022-01-01");
-    const mammographyLastEvaluationDate = new Date("2022-02-01");
+    const mammographyLatestRequestDate = new Date("2022-01-01");
+    const mammographyLatestEvaluationDate = new Date("2022-02-01");
     const baseData = {
         birthDate: new Date("1974-01-01"),
-        mammographyLastRequestDate: mammographyLastRequestDate,
-        mammographyLastEvaluationDate: mammographyLastEvaluationDate,
-        papTestLastRequestDate: new Date("2022-01-01"),
-        papTestLastEvaluationDate: new Date("2022-01-01"),
-        lastSexualAndReproductiveHealthAppointmentDate: new Date("2022-01-01"),
+        mammographyLatestRequestDate: mammographyLatestRequestDate,
+        mammographyLatestEvaluationDate: mammographyLatestEvaluationDate,
+        papTestLatestRequestDate: new Date("2022-01-01"),
+        papTestLatestEvaluationDate: new Date("2022-01-01"),
+        latestSexualAndReproductiveHealthAppointmentDate: new Date(
+            "2022-01-01"
+        ),
         createdAt: new Date("2025-10-10"),
     };
 
-    describe("computeLastDate", () => {
+    describe("computelatestDate", () => {
         it("deve retornar a data mais recente entre request e evaluation", () => {
             const calc = new BreastCancerCalculator(baseData);
-            const result = calc.computeLastDate();
-            expect(result).toEqual(mammographyLastEvaluationDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(mammographyLatestEvaluationDate);
         });
 
         it("deve retornar a data de request quando evaluation é null", () => {
             const calc = new BreastCancerCalculator({
                 ...baseData,
-                mammographyLastEvaluationDate: null,
+                mammographyLatestEvaluationDate: null,
             });
-            const result = calc.computeLastDate();
-            expect(result).toEqual(mammographyLastRequestDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(mammographyLatestRequestDate);
         });
 
         it("deve retornar a data de evaluation quando request é null", () => {
             const calc = new BreastCancerCalculator({
                 ...baseData,
-                mammographyLastRequestDate: null,
+                mammographyLatestRequestDate: null,
             });
-            const result = calc.computeLastDate();
-            expect(result).toEqual(mammographyLastEvaluationDate);
+            const result = calc.computelatestDate();
+            expect(result).toEqual(mammographyLatestEvaluationDate);
         });
 
         it("deve retornar null quando ambas são null", () => {
             const calc = new BreastCancerCalculator({
                 ...baseData,
-                mammographyLastRequestDate: null,
-                mammographyLastEvaluationDate: null,
+                mammographyLatestRequestDate: null,
+                mammographyLatestEvaluationDate: null,
             });
-            const result = calc.computeLastDate();
+            const result = calc.computelatestDate();
             expect(result).toBeNull();
         });
     });
@@ -74,8 +76,8 @@ describe("BreastCancerCalculator", () => {
             it('retorna "Nunca realizado" quando não há data de exame', () => {
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    mammographyLastRequestDate: null,
-                    mammographyLastEvaluationDate: null,
+                    mammographyLatestRequestDate: null,
+                    mammographyLatestEvaluationDate: null,
                 });
                 expect(calc.computeStatus()).toBe("Nunca realizado");
             });
@@ -95,8 +97,9 @@ describe("BreastCancerCalculator", () => {
                 const unselectedDate = new Date("2023-10-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    mammographyLastRequestDate: unselectedDate,
-                    mammographyLastEvaluationDate: validDateSmallerThanEndOfQ3,
+                    mammographyLatestRequestDate: unselectedDate,
+                    mammographyLatestEvaluationDate:
+                        validDateSmallerThanEndOfQ3,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -113,8 +116,8 @@ describe("BreastCancerCalculator", () => {
                 const calc = new BreastCancerCalculator({
                     ...baseData,
                     birthDate: birthDateFor50YearOld,
-                    mammographyLastRequestDate: validDateSmallerThanEndOfQ3,
-                    mammographyLastEvaluationDate: unselectedDate,
+                    mammographyLatestRequestDate: validDateSmallerThanEndOfQ3,
+                    mammographyLatestEvaluationDate: unselectedDate,
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -127,8 +130,8 @@ describe("BreastCancerCalculator", () => {
             const unselectedDate = new Date("2024-01-01");
             const calc = new BreastCancerCalculator({
                 ...baseData,
-                mammographyLastRequestDate: unselectedDate,
-                mammographyLastEvaluationDate: validDateSmallerThanEndOfQ3,
+                mammographyLatestRequestDate: unselectedDate,
+                mammographyLatestEvaluationDate: validDateSmallerThanEndOfQ3,
             });
             expect(calc.computeStatus()).toBe("Em dia");
         });

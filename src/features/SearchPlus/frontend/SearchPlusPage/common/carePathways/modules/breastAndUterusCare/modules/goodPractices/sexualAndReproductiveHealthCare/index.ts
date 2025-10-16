@@ -8,11 +8,11 @@ type Status =
 
 type InputData = {
     birthDate: Date;
-    papTestLastRequestDate: Date | null;
-    papTestLastEvaluationDate: Date | null;
-    mammographyLastRequestDate: Date | null;
-    mammographyLastEvaluationDate: Date | null;
-    lastSexualAndReproductiveHealthAppointmentDate: Date | null;
+    papTestLatestRequestDate: Date | null;
+    papTestLatestEvaluationDate: Date | null;
+    mammographyLatestRequestDate: Date | null;
+    mammographyLatestEvaluationDate: Date | null;
+    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
     createdAt: Date;
 };
 
@@ -28,11 +28,14 @@ export class SexualAndReproductiveHealthCareCalculator {
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
 
-    #getDueDate = (lastExamDate: Date | null, months: number): Date | null => {
-        if (!lastExamDate) {
+    #getDueDate = (
+        latestExamDate: Date | null,
+        months: number
+    ): Date | null => {
+        if (!latestExamDate) {
             return null;
         }
-        const newDate = new Date(lastExamDate);
+        const newDate = new Date(latestExamDate);
         newDate.setUTCMonth(newDate.getUTCMonth() + months);
         return newDate;
     };
@@ -66,8 +69,8 @@ export class SexualAndReproductiveHealthCareCalculator {
         return age >= 14 && age <= 69; //Regra para CONSULTA SAÚDE SEXUAL E REPRODUTIVA
     };
 
-    public computeLastDate(): Date | null {
-        return this.#data.lastSexualAndReproductiveHealthAppointmentDate;
+    public computelatestDate(): Date | null {
+        return this.#data.latestSexualAndReproductiveHealthAppointmentDate;
     }
 
     public computeStatus(): Status {
@@ -80,10 +83,10 @@ export class SexualAndReproductiveHealthCareCalculator {
             this.#data.birthDate
         );
 
-        const lastAppointmentDate =
-            this.#data.lastSexualAndReproductiveHealthAppointmentDate;
+        const latestAppointmentDate =
+            this.#data.latestSexualAndReproductiveHealthAppointmentDate;
 
-        const dueDate = this.#getDueDate(lastAppointmentDate, 12);
+        const dueDate = this.#getDueDate(latestAppointmentDate, 12);
 
         const ageLimit = 14;
 
@@ -93,8 +96,8 @@ export class SexualAndReproductiveHealthCareCalculator {
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data da última consulta?
-        if (lastAppointmentDate === null) return "Nunca realizado";
-        if (isNaN(new Date(lastAppointmentDate).getTime()))
+        if (latestAppointmentDate === null) return "Nunca realizado";
+        if (isNaN(new Date(latestAppointmentDate).getTime()))
             return "Nunca realizado";
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
@@ -111,7 +114,7 @@ export class SexualAndReproductiveHealthCareCalculator {
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
             this.#getYearBetweenDates(
-                lastAppointmentDate,
+                latestAppointmentDate,
                 this.#data.birthDate
             ) < ageLimit;
         if (isExamDateLessThanGoodPracticeDueDate)

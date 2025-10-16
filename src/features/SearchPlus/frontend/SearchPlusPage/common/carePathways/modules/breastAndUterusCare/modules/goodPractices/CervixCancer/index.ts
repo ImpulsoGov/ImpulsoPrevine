@@ -8,11 +8,11 @@ type Status =
 
 type InputData = {
     birthDate: Date;
-    papTestLastRequestDate: Date | null;
-    papTestLastEvaluationDate: Date | null;
-    mammographyLastRequestDate: Date | null;
-    mammographyLastEvaluationDate: Date | null;
-    lastSexualAndReproductiveHealthAppointmentDate: Date | null;
+    papTestLatestRequestDate: Date | null;
+    papTestLatestEvaluationDate: Date | null;
+    mammographyLatestRequestDate: Date | null;
+    mammographyLatestEvaluationDate: Date | null;
+    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
     createdAt: Date;
 };
 
@@ -27,29 +27,32 @@ export class CervixCancerCalculator {
         const month = date.getUTCMonth() + 1;
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
-    #getLastExamDate = (
-        lastExamRequestDate: Date | null,
-        lastEvaluationDate: Date | null
+    #getlatestExamDate = (
+        latestExamRequestDate: Date | null,
+        latestEvaluationDate: Date | null
     ): Date | null => {
-        if (!lastExamRequestDate && !lastEvaluationDate) {
+        if (!latestExamRequestDate && !latestEvaluationDate) {
             return null;
         }
-        if (!lastExamRequestDate) {
-            return lastEvaluationDate;
+        if (!latestExamRequestDate) {
+            return latestEvaluationDate;
         }
-        if (!lastEvaluationDate) {
-            return lastExamRequestDate;
+        if (!latestEvaluationDate) {
+            return latestExamRequestDate;
         }
-        return lastExamRequestDate > lastEvaluationDate
-            ? lastExamRequestDate
-            : lastEvaluationDate;
+        return latestExamRequestDate > latestEvaluationDate
+            ? latestExamRequestDate
+            : latestEvaluationDate;
     };
 
-    #getDueDate = (lastExamDate: Date | null, months: number): Date | null => {
-        if (!lastExamDate) {
+    #getDueDate = (
+        latestExamDate: Date | null,
+        months: number
+    ): Date | null => {
+        if (!latestExamDate) {
             return null;
         }
-        const newDate = new Date(lastExamDate);
+        const newDate = new Date(latestExamDate);
         newDate.setUTCMonth(newDate.getUTCMonth() + months);
         return newDate;
     };
@@ -83,10 +86,10 @@ export class CervixCancerCalculator {
         return age >= 25 && age <= 64; //Regra para cancer do colo de utero
     };
 
-    public computeLastDate(): Date | null {
-        return this.#getLastExamDate(
-            this.#data.papTestLastRequestDate,
-            this.#data.papTestLastEvaluationDate
+    public computelatestDate(): Date | null {
+        return this.#getlatestExamDate(
+            this.#data.papTestLatestRequestDate,
+            this.#data.papTestLatestEvaluationDate
         );
     }
 
@@ -100,12 +103,12 @@ export class CervixCancerCalculator {
             this.#data.birthDate
         );
 
-        const papTestLastDate = this.#getLastExamDate(
-            this.#data.papTestLastRequestDate,
-            this.#data.papTestLastEvaluationDate
+        const papTestlatestDate = this.#getlatestExamDate(
+            this.#data.papTestLatestRequestDate,
+            this.#data.papTestLatestEvaluationDate
         );
 
-        const dueDate = this.#getDueDate(papTestLastDate, 36);
+        const dueDate = this.#getDueDate(papTestlatestDate, 36);
 
         const ageLimit = 25;
 
@@ -115,8 +118,8 @@ export class CervixCancerCalculator {
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data do último exame?
-        if (papTestLastDate === null) return "Nunca realizado";
-        if (isNaN(new Date(papTestLastDate).getTime()))
+        if (papTestlatestDate === null) return "Nunca realizado";
+        if (isNaN(new Date(papTestlatestDate).getTime()))
             return "Nunca realizado";
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
@@ -132,7 +135,7 @@ export class CervixCancerCalculator {
 
         // O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática ?
         const isExamDateLessThanGoodPracticeDueDate =
-            this.#getYearBetweenDates(papTestLastDate, this.#data.birthDate) <
+            this.#getYearBetweenDates(papTestlatestDate, this.#data.birthDate) <
             ageLimit;
         if (isExamDateLessThanGoodPracticeDueDate)
             return `Vence dentro do Q${currentQuadrimester}`;

@@ -1,38 +1,38 @@
 import { SexualAndReproductiveHealthCareCalculator } from "..";
 
 describe("SexualAndReproductiveCare", () => {
-    const lastSexualAndReproductiveHealthAppointmentDate = new Date(
+    const latestSexualAndReproductiveHealthAppointmentDate = new Date(
         "2022-01-01"
     );
 
     const baseData = {
         birthDate: new Date("1990-01-01"),
-        papTestLastRequestDate: new Date("2022-01-01"),
-        papTestLastEvaluationDate: new Date("2022-02-01"),
-        mammographyLastRequestDate: new Date("2022-01-01"),
-        mammographyLastEvaluationDate: new Date("2022-02-01"),
-        lastSexualAndReproductiveHealthAppointmentDate:
-            lastSexualAndReproductiveHealthAppointmentDate,
+        papTestLatestRequestDate: new Date("2022-01-01"),
+        papTestLatestEvaluationDate: new Date("2022-02-01"),
+        mammographyLatestRequestDate: new Date("2022-01-01"),
+        mammographyLatestEvaluationDate: new Date("2022-02-01"),
+        latestSexualAndReproductiveHealthAppointmentDate:
+            latestSexualAndReproductiveHealthAppointmentDate,
         createdAt: new Date("2025-10-10"),
     };
 
-    describe("computeLastDate", () => {
+    describe("computelatestDate", () => {
         it("deve retornar a data da última consulta", () => {
             const calc = new SexualAndReproductiveHealthCareCalculator(
                 baseData
             );
-            const result = calc.computeLastDate();
+            const result = calc.computelatestDate();
             expect(result).toEqual(
-                lastSexualAndReproductiveHealthAppointmentDate
+                latestSexualAndReproductiveHealthAppointmentDate
             );
         });
 
         it("deve retornar null quando a data da última consulta é null", () => {
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,
-                lastSexualAndReproductiveHealthAppointmentDate: null,
+                latestSexualAndReproductiveHealthAppointmentDate: null,
             });
-            const result = calc.computeLastDate();
+            const result = calc.computelatestDate();
             expect(result).toBeNull();
         });
     });
@@ -63,7 +63,7 @@ describe("SexualAndReproductiveCare", () => {
             it('retorna "Nunca realizado" quando não há data de exame', () => {
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    lastSexualAndReproductiveHealthAppointmentDate: null,
+                    latestSexualAndReproductiveHealthAppointmentDate: null,
                 });
                 expect(calc.computeStatus()).toBe("Nunca realizado");
             });
@@ -84,7 +84,7 @@ describe("SexualAndReproductiveCare", () => {
                 const validDateSmallerThanEndOfQ3 = new Date("2024-10-15");
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    lastSexualAndReproductiveHealthAppointmentDate:
+                    latestSexualAndReproductiveHealthAppointmentDate:
                         validDateSmallerThanEndOfQ3,
                 });
 
@@ -102,7 +102,7 @@ describe("SexualAndReproductiveCare", () => {
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
                     birthDate: birthDateFor14YearOld,
-                    lastSexualAndReproductiveHealthAppointmentDate:
+                    latestSexualAndReproductiveHealthAppointmentDate:
                         validDateGreaterThanEndOfQ3,
                 });
 
@@ -119,7 +119,7 @@ describe("SexualAndReproductiveCare", () => {
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,
                 birthDate: birthDateFor15YearOld,
-                lastSexualAndReproductiveHealthAppointmentDate:
+                latestSexualAndReproductiveHealthAppointmentDate:
                     validDateGreaterThanEndOfQ3,
             });
             expect(calc.computeStatus()).toBe("Em dia");
