@@ -5,7 +5,7 @@ import type {
 import type { LayoutOrientation } from "../model";
 import React from "react";
 
-export type TableCellProps<TSearchPlusItem extends SearchPlusItem> = {
+export type TableRowProps<TSearchPlusItem extends SearchPlusItem> = {
     item: TSearchPlusItem;
     columns: Array<ColumnsProps<TSearchPlusItem>>;
     layoutOrientation: LayoutOrientation;
@@ -15,7 +15,7 @@ export const TableRow = <TSearchPlusItem extends SearchPlusItem>({
     item,
     columns,
     layoutOrientation,
-}: TableCellProps<TSearchPlusItem>): React.ReactNode => {
+}: TableRowProps<TSearchPlusItem>): React.ReactNode => {
     return columns.map((column, index) => {
         return (
             <td
