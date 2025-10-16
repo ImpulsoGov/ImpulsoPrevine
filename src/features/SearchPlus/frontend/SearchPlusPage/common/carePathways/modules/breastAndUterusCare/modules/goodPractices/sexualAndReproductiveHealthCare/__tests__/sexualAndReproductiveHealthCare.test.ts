@@ -26,24 +26,6 @@ describe("SexualAndReproductiveCare", () => {
             expect(result).toEqual(new Date("2022-02-01"));
         });
 
-        // it("deve retornar a data de request quando evaluation é null", () => {
-        //     const calc = new SexualAndReproductiveHealthCareCalculator({
-        //         ...baseData,
-        //         papTestLastEvaluationDate: null,
-        //     });
-        //     const result = calc.computeLastDate();
-        //     expect(result).toEqual(new Date("2022-01-01"));
-        // });
-
-        // it("deve retornar a data de evaluation quando request é null", () => {
-        //     const calc = new SexualAndReproductiveHealthCareCalculator({
-        //         ...baseData,
-        //         papTestLastRequestDate: null,
-        //     });
-        //     const result = calc.computeLastDate();
-        //     expect(result).toEqual(new Date("2022-02-01"));
-        // });
-
         it("deve retornar null quando a data da última consulta é null", () => {
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,
@@ -96,8 +78,9 @@ describe("SexualAndReproductiveCare", () => {
             it('retorna "Vence dentro do Q3" quando o prazo vence no quadrimestre atual', () => {
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    papTestLastRequestDate: new Date("2021-10-01"), // vence antes de 31/12
-                    papTestLastEvaluationDate: new Date("2022-10-15"),
+                    lastSexualAndReproductiveHealthAppointmentDate: new Date(
+                        "2024-10-15"
+                    ),
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -108,9 +91,10 @@ describe("SexualAndReproductiveCare", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 25 anos', () => {
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
-                    birthDate: new Date("2000-01-01"),
-                    papTestLastRequestDate: new Date("2022-10-25"),
-                    papTestLastEvaluationDate: new Date("2022-10-25"),
+                    birthDate: new Date("2014-01-01"),
+                    lastSexualAndReproductiveHealthAppointmentDate: new Date(
+                        "2025-01-01"
+                    ),
                 });
 
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -120,8 +104,10 @@ describe("SexualAndReproductiveCare", () => {
         it('retorna "Em dia" quando todos os critérios são atendidos', () => {
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,
-                papTestLastRequestDate: new Date("2024-01-01"),
-                papTestLastEvaluationDate: new Date("2024-02-01"),
+                birthDate: new Date("2010-01-01"),
+                lastSexualAndReproductiveHealthAppointmentDate: new Date(
+                    "2025-01-01"
+                ),
             });
             expect(calc.computeStatus()).toBe("Em dia");
         });
