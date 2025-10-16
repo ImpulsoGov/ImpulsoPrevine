@@ -23,7 +23,7 @@ export class CervixCancerCalculator {
         this.#data = data;
     }
 
-    #getCurrentQuadrimester = (date = new Date()): 1 | 2 | 3 => {
+    #getCurrentQuadrimester = (date: Date): 1 | 2 | 3 => {
         const month = date.getUTCMonth() + 1;
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
@@ -55,7 +55,7 @@ export class CervixCancerCalculator {
     };
 
     #getEndQuadrimester(quadri: 1 | 2 | 3): Date {
-        const currentYear = new Date().getUTCFullYear().toString();
+        const currentYear = this.#data.createdAt.getUTCFullYear().toString();
         const endOfQuadrimester = {
             1: `${currentYear}-04-30`,
             2: `${currentYear}-08-31`,
@@ -66,7 +66,7 @@ export class CervixCancerCalculator {
 
     #isDateLessThanEndQuadrimester(dueDate: Date | null): boolean | null {
         if (!dueDate) return null;
-        const current = this.#getCurrentQuadrimester(new Date());
+        const current = this.#getCurrentQuadrimester(this.#data.createdAt);
         return dueDate <= this.#getEndQuadrimester(current);
     }
 
@@ -76,7 +76,7 @@ export class CervixCancerCalculator {
 
     #isDateGreaterThanOrEqualToCurrentDate = (date: Date | null): boolean => {
         if (!date) return false;
-        const currentDate = new Date();
+        const currentDate = this.#data.createdAt;
         return date >= currentDate;
     };
     #isGoodPracticeApplicableForPatient = (age: number): boolean => {

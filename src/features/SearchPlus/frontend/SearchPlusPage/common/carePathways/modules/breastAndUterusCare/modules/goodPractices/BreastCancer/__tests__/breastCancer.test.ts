@@ -1,12 +1,6 @@
 import { BreastCancerCalculator } from "..";
 
 describe("BreastCancerCalculator", () => {
-    beforeEach(() => {
-        jest.restoreAllMocks();
-        // Fixa a criação de datas com new Date() para 10 de outubro de 2025
-        jest.useFakeTimers().setSystemTime(new Date("2025-10-10"));
-    });
-
     const mammographyLastRequestDate = new Date("2022-01-01");
     const mammographyLastEvaluationDate = new Date("2022-02-01");
     const baseData = {

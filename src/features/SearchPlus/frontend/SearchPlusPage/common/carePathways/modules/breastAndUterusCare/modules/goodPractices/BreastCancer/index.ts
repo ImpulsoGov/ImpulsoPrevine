@@ -23,7 +23,7 @@ export class BreastCancerCalculator {
         this.#data = data;
     }
 
-    #getCurrentQuadrimester = (date = new Date()): 1 | 2 | 3 => {
+    #getCurrentQuadrimester = (date: Date): 1 | 2 | 3 => {
         const month = date.getUTCMonth() + 1;
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
