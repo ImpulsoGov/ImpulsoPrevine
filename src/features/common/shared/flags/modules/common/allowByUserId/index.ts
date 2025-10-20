@@ -3,6 +3,7 @@ import { propertyFromCookie } from "@/features/common/shared/auth";
 import type { UserId } from "./model";
 import { safePropertyFromHeader } from "../safePropertyFromHeader";
 export { buildDecide } from "../buildDecide";
+export { UserId };
 
 export const identify = async ({
     headers,
