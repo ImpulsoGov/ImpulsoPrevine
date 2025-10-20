@@ -24,6 +24,8 @@ type FourDigitYear = `${"19" | "20"}${Digit}${Digit}`;
 
 export type DateString = `${Day}/${Month}/${Year}`;
 
+export type DateStringWithFullYear = `${Day}/${Month}/${FourDigitYear}`;
+
 export type ISODateString = `${FourDigitYear}-${Month}-${Day}`;
 
 const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime());
@@ -48,4 +50,16 @@ export const parseDate = (date: string): Date => new Date(date);
 
 export const isDate = (date: string): boolean => {
     return isDateValid(parseDate(date));
+};
+
+/**
+ * Converte uma data no formato não padrão dd/mm/yyyy para o formato ISO yyyy-mm-dd
+ * @param date Data no formato dd/mm/yyyy
+ * @returns Data no formato ISO yyyy-mm-dd
+ */
+export const nonStandardToISO = (
+    date: DateStringWithFullYear
+): ISODateString => {
+    const [day, month, year] = date.split("/");
+    return `${year as FourDigitYear}-${month as Month}-${day as Day}`;
 };
