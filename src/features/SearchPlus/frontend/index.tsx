@@ -1,1 +1,1 @@
-export { SearchPlusPage } from "./SearchPlusPage";
+export { SearchPlusPage as SearchPlus } from "./SearchPlusPage";
