@@ -24,9 +24,30 @@ type FourDigitYear = `${"19" | "20"}${Digit}${Digit}`;
 
 export type DateString = `${Day}/${Month}/${Year}`;
 
-export type DateStringWithFullYear = `${Day}/${Month}/${FourDigitYear}`;
+export type BRTDateString = `${Day}/${Month}/${FourDigitYear}`;
 
-export type ISODateString = `${FourDigitYear}-${Month}-${Day}`;
+type RangeInternal<
+    TNum extends number,
+    TResult extends Array<unknown> = [],
+> = TResult["length"] extends TNum
+    ? TResult[number]
+    : RangeInternal<TNum, [...TResult, TResult["length"]]>;
+
+// Remove o 0 e gera um range de 1 até N
+type Range<TFrom extends number, TTo extends number> = Exclude<
+    RangeInternal<TTo>,
+    RangeInternal<TFrom>
+>;
+
+// Exemplo: 1 a 31
+type DayOfMonth = Range<1, 32>;
+type MonthOfYear = Range<1, 13>;
+
+type ParsedDate = {
+    day: DayOfMonth;
+    month: MonthOfYear;
+    year: number;
+};
 
 const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime());
 
@@ -53,13 +74,21 @@ export const isDate = (date: string): boolean => {
 };
 
 /**
- * Converte uma data no formato não padrão dd/mm/yyyy para o formato ISO yyyy-mm-dd
+ * Converte uma string de data no formato BRT dd/mm/yyyy para um objeto com dia, mês e ano.
  * @param date Data no formato dd/mm/yyyy
- * @returns Data no formato ISO yyyy-mm-dd
+ * @returns Objeto no formato { day, month, year }
  */
-export const nonStandardToISO = (
-    date: DateStringWithFullYear
-): ISODateString => {
+export const brtStringDateParser = (date: BRTDateString): ParsedDate => {
     const [day, month, year] = date.split("/");
-    return `${year as FourDigitYear}-${month as Month}-${day as Day}`;
+    return {
+        day: Number(day) as DayOfMonth,
+        month: Number(month) as MonthOfYear,
+        year: Number(year),
+    };
+};
+
+export const brtStringToUtcDate = (date: BRTDateString): Date => {
+    const { day, month, year } = brtStringDateParser(date);
+    const hourForBrt = 3;
+    return new Date(year, month - 1, day, hourForBrt);
 };

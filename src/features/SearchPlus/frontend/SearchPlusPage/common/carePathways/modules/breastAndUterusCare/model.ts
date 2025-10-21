@@ -1,5 +1,7 @@
 import type * as time from "@/features/common/shared/time";
 
+export type BRTDateStringOrDash = time.BRTDateString | "-";
+
 //Esse tipo esta em portugues para ficar igual ao cabeçalho do CSV
 export type BreastAndUterusCareCsvRow = {
     Nome: string;
@@ -10,22 +12,12 @@ export type BreastAndUterusCareCsvRow = {
     "Telefone residencial": string;
     "Telefone de contato": string;
     Microárea: string;
-    "Data de nascimento": time.DateStringWithFullYear;
-    "Exame de rastreamento de câncer de colo de útero data última solicitação":
-        | time.DateStringWithFullYear
-        | "-";
-    "Exame de rastreamento de câncer de colo de útero data última avaliação":
-        | time.DateStringWithFullYear
-        | "-";
-    "Exame de rastreamento de câncer de mama data Última solicitação":
-        | time.DateStringWithFullYear
-        | "-";
-    "Exame de rastreamento de câncer de mama data Última avaliação":
-        | time.DateStringWithFullYear
-        | "-";
-    "Data da última consulta de saúde sexual e reprodutiva":
-        | time.DateStringWithFullYear
-        | "-";
+    "Data de nascimento": time.BRTDateString;
+    "Exame de rastreamento de câncer de colo de útero data última solicitação": BRTDateStringOrDash;
+    "Exame de rastreamento de câncer de colo de útero data última avaliação": BRTDateStringOrDash;
+    "Exame de rastreamento de câncer de mama data Última solicitação": BRTDateStringOrDash;
+    "Exame de rastreamento de câncer de mama data Última avaliação": BRTDateStringOrDash;
+    "Data da última consulta de saúde sexual e reprodutiva": BRTDateStringOrDash;
     // "Gerado em": time.DateStringWithFullYear;
 };
 

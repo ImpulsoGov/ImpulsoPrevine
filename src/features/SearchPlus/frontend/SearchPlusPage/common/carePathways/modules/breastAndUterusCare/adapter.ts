@@ -2,7 +2,12 @@ import * as time from "@/features/common/shared/time";
 import type {
     BreastAndUterusCareCsvRow,
     BreastAndUterusCareItem,
+    BRTDateStringOrDash,
 } from "./model";
+
+const dateOrNull = (dateString: BRTDateStringOrDash): Date | null => {
+    return dateString === "-" ? null : time.brtStringToUtcDate(dateString);
+};
 
 export const csvRowToBreastAndUterusCareItem = (
     csvRows: Array<BreastAndUterusCareCsvRow>
@@ -37,40 +42,23 @@ export const csvRowToBreastAndUterusCareItem = (
                 row["Telefone residencial"] ||
                 row["Telefone de contato"],
             microAreaName: row["Microárea"],
-            patientBirthDate: new Date(
-                time.nonStandardToISO(row["Data de nascimento"])
+            patientBirthDate: time.brtStringToUtcDate(
+                row["Data de nascimento"]
             ),
             // createdAt: new Date(time.nonStandardToISO(row["Gerado em"])),
-            papTestLatestRequestDate:
-                papTestLatestRequestDate === "-"
-                    ? null
-                    : new Date(time.nonStandardToISO(papTestLatestRequestDate)),
-            papTestLatestEvaluationDate:
-                papTestLatestEvaluationDate === "-"
-                    ? null
-                    : new Date(
-                          time.nonStandardToISO(papTestLatestEvaluationDate)
-                      ),
-            mammographyLatestRequestDate:
-                mammographyLatestRequestDate === "-"
-                    ? null
-                    : new Date(
-                          time.nonStandardToISO(mammographyLatestRequestDate)
-                      ),
-            mammographyLatestEvaluationDate:
-                mammographyLatestEvaluationDate === "-"
-                    ? null
-                    : new Date(
-                          time.nonStandardToISO(mammographyLatestEvaluationDate)
-                      ),
-            latestSexualAndReproductiveHealthAppointmentDate:
-                latestSexualAndReproductiveHealthAppointmentDate === "-"
-                    ? null
-                    : new Date(
-                          time.nonStandardToISO(
-                              latestSexualAndReproductiveHealthAppointmentDate
-                          )
-                      ),
+            papTestLatestRequestDate: dateOrNull(papTestLatestRequestDate),
+            papTestLatestEvaluationDate: dateOrNull(
+                papTestLatestEvaluationDate
+            ),
+            mammographyLatestRequestDate: dateOrNull(
+                mammographyLatestRequestDate
+            ),
+            mammographyLatestEvaluationDate: dateOrNull(
+                mammographyLatestEvaluationDate
+            ),
+            latestSexualAndReproductiveHealthAppointmentDate: dateOrNull(
+                latestSexualAndReproductiveHealthAppointmentDate
+            ),
         };
     });
 };
