@@ -41,6 +41,8 @@ export const rotasProtegidas = [
     "/cofin25/busca_mais",
 ];
 
+export const rotasHibridas = ["/analise", "/dadoPublicos"];
+
 const ExibirURL = [
     "/capacitacao",
     "/conteudo",
@@ -70,7 +72,8 @@ export const middlewarePages = async (
     if (
         token &&
         matchesRoute(rotasProtegidas, url.pathname) &&
-        matchesRoute(rotasPublicas, url.pathname)
+        matchesRoute(rotasPublicas, url.pathname) &&
+        !matchesRoute(rotasHibridas, url.pathname)
     )
         return NextResponse.redirect(new URL("/inicio", request.url));
 
