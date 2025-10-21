@@ -1,5 +1,5 @@
 import type { Status, InputData } from ".";
-import { CervixCancerCalculator } from "./CervixCancerCalculator";
+import { CervixCancerCalculator } from "./cervixCancerCalculator";
 
 type CervixCancerResult = {
     latestDate: Date | null;
