@@ -4,6 +4,7 @@ import type { ColumnsProps, SearchPlusItem } from "../../model";
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/common/UnitTable/modules/Formatters";
 import { formatUtcToBrt } from "@/features/common/shared/time";
 import * as goodPractices from "./modules/goodPractices";
+import { TagByStatus } from "../../../Tags";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
     {
@@ -46,7 +47,9 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             return (
                 <div>
                     <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
-                    <div>{status}</div>
+                    <div>
+                        <TagByStatus content={status} />
+                    </div>
                 </div>
             );
         },
@@ -73,7 +76,9 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             return (
                 <div>
                     <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
-                    <div>{status}</div>
+                    <div>
+                        <TagByStatus content={status} />
+                    </div>
                 </div>
             );
         },
@@ -100,7 +105,9 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             return (
                 <div>
                     <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
-                    <div>{status}</div>
+                    <div>
+                        <TagByStatus content={status} />
+                    </div>
                 </div>
             );
         },

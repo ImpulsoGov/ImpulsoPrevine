@@ -1,7 +1,12 @@
 import type { CSSProperties } from "react";
 import React from "react";
 
-export type PrintTagTheme = "danger" | "warning" | "success" | "attention";
+export type PrintTagTheme =
+    | "danger"
+    | "warning"
+    | "success"
+    | "attention"
+    | "disabled";
 
 export type PrintTagShape = "rounded" | "square";
 
@@ -72,11 +77,14 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
     success: {
         backgroundColor: "#D0F5DB",
         color: "#00923D",
-        width: "45px",
     },
     attention: {
         backgroundColor: "#FFF2A6",
         color: "#654F00",
+    },
+    disabled: {
+        backgroundColor: "#E0E6EE",
+        color: "#2E3B4E",
     },
 };
 
