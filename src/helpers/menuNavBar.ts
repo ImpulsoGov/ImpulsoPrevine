@@ -1,6 +1,7 @@
 import {
     diabetesNewProgram,
     hypertensionNewProgram,
+    searchPlus,
 } from "@/features/common/shared/flags";
 
 export type Menu = {
@@ -76,6 +77,15 @@ const loggedMenu = async (
             url: "/inicio",
             telemetryEvent: "acessar_pg_inicio",
         },
+        ...((await searchPlus())
+            ? [
+                  {
+                      label: "busca+mais",
+                      url: "/cofin25/busca_mais",
+                      telemetryEvent: "acessar_pg_busca_mais",
+                  },
+              ]
+            : []),
         {
             label: "Listas Nominais",
             url: "",
