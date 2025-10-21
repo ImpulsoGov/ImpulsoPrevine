@@ -3,7 +3,7 @@ import type { ColumnsProps, SearchPlusItem } from "../../model";
 //TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/common/UnitTable/modules/Formatters";
 import { formatUtcToBrt } from "@/features/common/shared/time";
-import { cervixCancerResult } from "./modules/goodPractices/CervixCancer";
+import { cervixCancerResult } from "./modules/goodPractices";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
     {
