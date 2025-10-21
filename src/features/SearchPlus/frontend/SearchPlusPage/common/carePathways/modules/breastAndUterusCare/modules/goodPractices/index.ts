@@ -1,3 +1,3 @@
-export { BreastCancerCalculator } from "./BreastCancer";
+export { breastCancerResult } from "./BreastCancer";
 export { cervixCancerResult } from "./CervixCancer";
-export { SexualAndReproductiveHealthCareCalculator } from "./sexualAndReproductiveHealthCare";
+export { sexualAndReproductiveHealthCareResult } from "./sexualAndReproductiveHealthCare";
