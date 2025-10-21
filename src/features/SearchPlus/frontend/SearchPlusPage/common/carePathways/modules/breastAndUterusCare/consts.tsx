@@ -2,7 +2,8 @@
 import type { ColumnsProps, SearchPlusItem } from "../../model";
 //TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/common/UnitTable/modules/Formatters";
-import { CervixCancerCalculator } from "./modules/goodPractices";
+import { formatUtcToBrt } from "@/features/common/shared/time";
+import { cervixCancerResult } from "./modules/goodPractices/CervixCancer";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
     {
@@ -39,50 +40,12 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
-            const [
-                patientBirthDate,
-                papTestLatestRequestDate,
-                papTestLatestEvaluationDate,
-                mammographyLatestRequestDate,
-                mammographyLatestEvaluationDate,
-                latestSexualAndReproductiveHealthAppointmentDate,
-            ] = param as [
-                Date,
-                Date | null,
-                Date | null,
-                Date | null,
-                Date | null,
-                Date | null,
-            ];
-            const data = {
-                birthDate: patientBirthDate,
-                papTestLatestRequestDate,
-                papTestLatestEvaluationDate,
-                mammographyLatestRequestDate,
-                mammographyLatestEvaluationDate,
-                latestSexualAndReproductiveHealthAppointmentDate,
-                // TODO: trocar pela data de criação do CSV
-                createdAt: new Date(),
-            };
-            // TODO: usar factory para criar os calculadores
-            const cervixCancerCalc = new CervixCancerCalculator({ ...data });
-            const latestDate = cervixCancerCalc.computelatestDate();
-            // TODO: mover para um módulo para reutilizar
-            const ptBrDateFormatter = new Intl.DateTimeFormat("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "2-digit",
-                timeZone: "America/Sao_Paulo",
-            });
+            const { latestDate, status } = cervixCancerResult(param);
 
             return (
                 <div>
-                    <div>
-                        {latestDate
-                            ? ptBrDateFormatter.format(latestDate)
-                            : "-"}
-                    </div>
-                    <div>{cervixCancerCalc.computeStatus()}</div>
+                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+                    <div>{status}</div>
                 </div>
             );
         },

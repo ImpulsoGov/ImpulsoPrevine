@@ -22,7 +22,7 @@ type Year = `${Digit}${Digit}`;
 
 type FourDigitYear = `${"19" | "20"}${Digit}${Digit}`;
 
-export type DateString = `${Day}/${Month}/${Year}`;
+export type BRTDateString2DigitYear = `${Day}/${Month}/${Year}`;
 
 export type BRTDateString = `${Day}/${Month}/${FourDigitYear}`;
 
@@ -56,14 +56,14 @@ const isDateValid = (date: Date): boolean => !Number.isNaN(date.getTime());
  * @param date - Data a ser formatada
  * @returns DateString se isDateValid(date) === true, ou null em caso contrário
  */
-export const formatDate = (date: Date): DateString | null => {
+export const formatDate = (date: Date): BRTDateString2DigitYear | null => {
     if (!isDateValid(date)) return null;
 
     const day = date.getUTCDate().toString().padStart(2, "0") as Day;
     // O mês é 0-indexado, por isso adicionamos 1
     const month = (date.getUTCMonth() + 1).toString().padStart(2, "0") as Month;
     const year = date.getUTCFullYear().toString().slice(2) as Year;
-    const result: DateString = `${day}/${month}/${year}`;
+    const result: BRTDateString2DigitYear = `${day}/${month}/${year}`;
     return result;
 };
 
@@ -91,4 +91,13 @@ export const brtStringToUtcDate = (date: BRTDateString): Date => {
     const { day, month, year } = brtStringDateParser(date);
     const hourForBrt = 3;
     return new Date(year, month - 1, day, hourForBrt);
+};
+
+export const formatUtcToBrt = (date: Date): BRTDateString2DigitYear => {
+    return new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+        timeZone: "America/Sao_Paulo",
+    }).format(date) as BRTDateString2DigitYear;
 };
