@@ -8,12 +8,12 @@ import { useCallback } from "react";
 import { parse } from "papaparse";
 import type { CsvRow } from "./model";
 import * as time from "@/features/common/shared/time";
-import type { HeaderProps } from "..";
+import type { HeaderData } from "..";
 
 type DropZoneProps = {
     setError: React.Dispatch<React.SetStateAction<string | null>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
-    setHeader: React.Dispatch<React.SetStateAction<HeaderProps>>;
+    setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
 };
 
 export const InputContent: React.FC<DropZoneProps> = ({

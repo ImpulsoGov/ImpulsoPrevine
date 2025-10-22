@@ -1,8 +1,8 @@
 import { ListTitles } from "../carePathways";
-import type { HeaderProps } from "../..";
 import Image from "next/image";
+import type { HeaderData } from "../..";
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header: React.FC<HeaderData> = ({
     thematicList,
     createdAtDate,
     createdAtTime,

@@ -5,7 +5,7 @@ import { InputContent } from "./InputContent";
 import type { ThematicList, SearchPlusItem } from "./common/carePathways";
 import type * as time from "@/features/common/shared/time";
 
-export type HeaderProps = {
+export type HeaderData = {
     thematicList: ThematicList | null;
     createdAtDate: time.BRTDateString;
     createdAtTime: time.BRTTimeString;
@@ -14,7 +14,7 @@ export type HeaderProps = {
 export const SearchPlusPage: React.FC = () => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [error, setError] = useState<string | null>(null);
-    const [header, setHeader] = useState<HeaderProps>({
+    const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
         createdAtDate: "01/01/1970",
         createdAtTime: "00:00",

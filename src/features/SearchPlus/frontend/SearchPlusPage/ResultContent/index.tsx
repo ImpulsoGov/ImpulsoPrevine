@@ -5,13 +5,13 @@ import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/ca
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
-import type { HeaderProps } from "..";
+import type { HeaderData } from "..";
 import { Header } from "../common/Header";
 
 type ResultContentProps = {
     jsonData: Array<SearchPlusItem>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
-    header: HeaderProps;
+    header: HeaderData;
 };
 
 export const ResultContent: React.FC<ResultContentProps> = ({
