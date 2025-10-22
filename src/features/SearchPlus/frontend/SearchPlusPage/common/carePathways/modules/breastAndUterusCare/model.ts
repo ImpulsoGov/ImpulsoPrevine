@@ -34,5 +34,5 @@ export type BreastAndUterusCareItem = {
     mammographyLatestRequestDate: Date | null;
     mammographyLatestEvaluationDate: Date | null;
     latestSexualAndReproductiveHealthAppointmentDate: Date | null;
-    // createdAt: Date;
+    createdAt: Date | null;
 };

@@ -17,6 +17,7 @@ const modelToTable = (params: unknown): InputData => {
         mammographyLatestRequestDate,
         mammographyLatestEvaluationDate,
         latestSexualAndReproductiveHealthAppointmentDate,
+        createdAt,
     ] = params as [
         Date,
         Date | null,
@@ -24,6 +25,7 @@ const modelToTable = (params: unknown): InputData => {
         Date | null,
         Date | null,
         Date | null,
+        Date,
     ];
     return {
         patientBirthDate,
@@ -32,8 +34,7 @@ const modelToTable = (params: unknown): InputData => {
         mammographyLatestRequestDate,
         mammographyLatestEvaluationDate,
         latestSexualAndReproductiveHealthAppointmentDate,
-        // TODO: trocar pela data de criação do CSV
-        createdAt: new Date(),
+        createdAt: createdAt,
     };
 };
 
