@@ -87,10 +87,33 @@ export const brtStringDateParser = (date: BRTDateString): ParsedDate => {
     };
 };
 
-export const brtStringToUtcDate = (date: BRTDateString): Date => {
+type Hour = Range<0, 24>;
+
+type Minute = Range<0, 61>;
+
+type ParsedTime = {
+    hours: Hour;
+    minutes: Minute;
+};
+
+type StringHour = `0${Range<0, 10>}` | `${Range<10, 24>}`;
+
+type StringMinute = `0${Range<0, 10>}` | `${Range<10, 60>}`;
+
+export type BRTTimeString = `${StringHour}:${StringMinute}`;
+
+export const parseTimeString = (timeString: BRTTimeString): ParsedTime => {
+    const [hours, minutes] = timeString.split(":").map(Number);
+    return { hours, minutes } as ParsedTime;
+};
+
+export const brtStringToUtcDate = (
+    date: BRTDateString,
+    time: BRTTimeString = "03:00"
+): Date => {
     const { day, month, year } = brtStringDateParser(date);
-    const hourForBrt = 3;
-    return new Date(year, month - 1, day, hourForBrt);
+    const { hours, minutes } = parseTimeString(time);
+    return new Date(year, month - 1, day, hours, minutes);
 };
 
 export const formatUtcToBrt = (date: Date): BRTDateString2DigitYear => {
@@ -100,4 +123,14 @@ export const formatUtcToBrt = (date: Date): BRTDateString2DigitYear => {
         year: "2-digit",
         timeZone: "America/Sao_Paulo",
     }).format(date) as BRTDateString2DigitYear;
+};
+
+export const isBrtDateStringValid = (dateString: string): boolean => {
+    const brtDateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    return brtDateRegex.test(dateString);
+};
+
+export const isBrtTimeStringValid = (timeString: string): boolean => {
+    const brtTimeRegex = /^(0[\d]|1[\d]|2[0-3]):([0-5][\d])/;
+    return brtTimeRegex.test(timeString);
 };

@@ -9,9 +9,20 @@ const dateOrNull = (dateString: BRTDateStringOrDash): Date | null => {
     return dateString === "-" ? null : time.brtStringToUtcDate(dateString);
 };
 
+type HeaderData = {
+    createdAtDate: time.BRTDateString;
+    createdAtTime: time.BRTTimeString;
+};
+
 export const csvRowToBreastAndUterusCareItem = (
-    csvRows: Array<BreastAndUterusCareCsvRow>
+    csvRows: Array<BreastAndUterusCareCsvRow>,
+    headerData: HeaderData
 ): Array<BreastAndUterusCareItem> => {
+    const createdAt = time.brtStringToUtcDate(
+        headerData.createdAtDate,
+        headerData.createdAtTime
+    );
+
     return csvRows.map((row) => {
         const papTestLatestRequestDate =
             row[
@@ -45,7 +56,7 @@ export const csvRowToBreastAndUterusCareItem = (
             patientBirthDate: time.brtStringToUtcDate(
                 row["Data de nascimento"]
             ),
-            // createdAt: new Date(time.nonStandardToISO(row["Gerado em"])),
+            createdAt: createdAt,
             papTestLatestRequestDate: dateOrNull(papTestLatestRequestDate),
             papTestLatestEvaluationDate: dateOrNull(
                 papTestLatestEvaluationDate

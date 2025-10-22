@@ -7,6 +7,7 @@ import {
 import { useCallback } from "react";
 import { parse } from "papaparse";
 import type { CsvRow } from "./model";
+import * as time from "@/features/common/shared/time";
 
 type DropZoneProps = {
     setError: React.Dispatch<React.SetStateAction<string | null>>;
@@ -49,12 +50,23 @@ export const InputContent: React.FC<DropZoneProps> = ({
                         | ListTitles
                         | undefined;
 
-                    // const createdAtRowIndex = lines.findIndex((line) =>
-                    //     line.startsWith("Gerado em")
-                    // );
-                    // const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
-                    // const createdAtDate = splitCreatedAt[1];
-                    // const createdAtTime = splitCreatedAt[3];
+                    const createdAtRowIndex = lines.findIndex((line) =>
+                        line.startsWith("Gerado em")
+                    );
+                    const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
+
+                    const createdAtDate = splitCreatedAt[1];
+                    const createdAtTime = splitCreatedAt[3];
+
+                    if (
+                        !time.isBrtDateStringValid(createdAtDate) ||
+                        !time.isBrtTimeStringValid(createdAtTime)
+                    ) {
+                        setError(
+                            "Data de geração do arquivo inválida ou em formato incorreto."
+                        );
+                        return;
+                    }
 
                     const headerIndex = lines.findIndex((line) =>
                         line.startsWith("Nome;Data de nascimento;")
@@ -86,7 +98,14 @@ export const InputContent: React.FC<DropZoneProps> = ({
                                 list
                             ] as keyof typeof adaptersMap
                         ];
-                    const data: Array<SearchPlusItem> = adapter(result.data);
+                    const header = {
+                        createdAtDate: createdAtDate as time.BRTDateString,
+                        createdAtTime: createdAtTime as time.BRTTimeString,
+                    };
+                    const data: Array<SearchPlusItem> = adapter(
+                        result.data,
+                        header
+                    );
 
                     setJsonData(data);
                 } catch (err) {

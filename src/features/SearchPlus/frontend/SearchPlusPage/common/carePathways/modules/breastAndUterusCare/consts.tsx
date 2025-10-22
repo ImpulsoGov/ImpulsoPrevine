@@ -33,7 +33,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             "mammographyLatestRequestDate",
             "mammographyLatestEvaluationDate",
             "latestSexualAndReproductiveHealthAppointmentDate",
-            // "createdAt",
+            "createdAt",
         ],
         headerName: "Exame câncer de colo de útero\nData e situação",
         width: {
@@ -62,7 +62,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             "mammographyLatestRequestDate",
             "mammographyLatestEvaluationDate",
             "latestSexualAndReproductiveHealthAppointmentDate",
-            // "createdAt",
+            "createdAt",
         ],
         headerName: "Consulta saúde sexual e reprodutiva\nData e situação",
         width: {
@@ -91,7 +91,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             "mammographyLatestRequestDate",
             "mammographyLatestEvaluationDate",
             "latestSexualAndReproductiveHealthAppointmentDate",
-            // "createdAt",
+            "createdAt",
         ],
         headerName: "Exame câncer de mama\nData e situação",
         width: {
