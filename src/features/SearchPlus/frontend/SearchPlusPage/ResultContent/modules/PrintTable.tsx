@@ -21,14 +21,12 @@ const loadImages = (
         } else {
             images[i].onload = images[i].onerror = (): void => {
                 loads++;
-                console.log("inner load", loads, imagesTotal, withPrintModal);
                 if (loads === imagesTotal && withPrintModal) {
                     printWindow.print();
                 }
             };
         }
     }
-    console.log("outter load", loads, imagesTotal, withPrintModal);
 
     if (loads === imagesTotal && withPrintModal) printWindow.print();
 };
