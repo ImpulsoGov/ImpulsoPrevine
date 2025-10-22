@@ -1,22 +1,25 @@
 import {
     adaptersMap,
     csvListTitleToListKey,
-    type ListTitles,
+    type ThematicList,
     type SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { useCallback } from "react";
 import { parse } from "papaparse";
 import type { CsvRow } from "./model";
 import * as time from "@/features/common/shared/time";
+import type { HeaderData } from "..";
 
 type DropZoneProps = {
     setError: React.Dispatch<React.SetStateAction<string | null>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
 };
 
 export const InputContent: React.FC<DropZoneProps> = ({
     setError,
     setJsonData,
+    setHeader,
 }) => {
     //Todo: pensar onde colocar essa lógica, aqui no meio tá muito grande
     const handleDrop = useCallback(
@@ -46,9 +49,10 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     const listRowIndex = lines.findIndex((line) =>
                         line.startsWith("Lista temática")
                     );
-                    const list = lines[listRowIndex]?.split(";")[1] as
-                        | ListTitles
-                        | undefined;
+
+                    const list = lines[listRowIndex]?.split(
+                        ";"
+                    )[1] as ThematicList | null;
 
                     const createdAtRowIndex = lines.findIndex((line) =>
                         line.startsWith("Gerado em")
@@ -86,11 +90,23 @@ export const InputContent: React.FC<DropZoneProps> = ({
                         skipEmptyLines: true,
                         delimiter: ";",
                     });
+
+                    const header = {
+                        thematicList: list as ThematicList,
+                        createdAtDate: createdAtDate as time.BRTDateString,
+                        createdAtTime: createdAtTime as time.BRTTimeString,
+                    };
+
                     if (!list || !(list in csvListTitleToListKey)) {
                         setError(
                             "Lista temática não reconhecida ou não suportada."
                         );
                         return;
+                    } else {
+                        setHeader((prev) => ({
+                            ...prev,
+                            ...header,
+                        }));
                     }
                     const adapter =
                         adaptersMap[
@@ -98,10 +114,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
                                 list
                             ] as keyof typeof adaptersMap
                         ];
-                    const header = {
-                        createdAtDate: createdAtDate as time.BRTDateString,
-                        createdAtTime: createdAtTime as time.BRTTimeString,
-                    };
+
                     const data: Array<SearchPlusItem> = adapter(
                         result.data,
                         header

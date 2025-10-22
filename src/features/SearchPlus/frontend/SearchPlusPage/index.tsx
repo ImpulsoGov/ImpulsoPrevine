@@ -2,12 +2,23 @@
 import { useState } from "react";
 import { ResultContent } from "./ResultContent";
 import { InputContent } from "./InputContent";
-import type { SearchPlusItem } from "./common/carePathways";
+import type { ThematicList, SearchPlusItem } from "./common/carePathways";
+import type * as time from "@/features/common/shared/time";
+
+export type HeaderData = {
+    thematicList: ThematicList | null;
+    createdAtDate: time.BRTDateString;
+    createdAtTime: time.BRTTimeString;
+};
 
 export const SearchPlusPage: React.FC = () => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [error, setError] = useState<string | null>(null);
-
+    const [header, setHeader] = useState<HeaderData>({
+        thematicList: null,
+        createdAtDate: "01/01/1970",
+        createdAtTime: "00:00",
+    });
     return (
         <>
             <div
@@ -34,11 +45,13 @@ export const SearchPlusPage: React.FC = () => {
                     <ResultContent
                         jsonData={jsonData}
                         setJsonData={setJsonData}
+                        header={header}
                     />
                 ) : (
                     <InputContent
                         setError={setError}
                         setJsonData={setJsonData}
+                        setHeader={setHeader}
                     />
                 )}
             </div>

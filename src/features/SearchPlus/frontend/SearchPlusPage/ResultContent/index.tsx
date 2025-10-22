@@ -5,15 +5,19 @@ import { columns } from "@/features/SearchPlus/frontend/SearchPlusPage/common/ca
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
+import type { HeaderData } from "..";
+import { Header } from "../common/Header";
 
 type ResultContentProps = {
     jsonData: Array<SearchPlusItem>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    header: HeaderData;
 };
 
 export const ResultContent: React.FC<ResultContentProps> = ({
     jsonData,
     setJsonData,
+    header,
 }) => {
     const tableRef = useRef<HTMLDivElement>(null);
     const [isTableVisible, setIsTableVisible] = useState(false);
@@ -63,13 +67,22 @@ export const ResultContent: React.FC<ResultContentProps> = ({
                     Imprimir
                 </Button>
             </div>
-            {isTableVisible && (
-                <div>
+            {isTableVisible && header.thematicList && (
+                <div ref={tableRef}>
+                    <Header
+                        thematicList={header.thematicList}
+                        createdAtDate={header.createdAtDate}
+                        createdAtTime={header.createdAtTime}
+                    />
                     <UnitTable
-                        tableRef={tableRef}
                         data={jsonData}
-                        columns={columns["breastAndUterusCare"]}
+                        columns={columns[header.thematicList]}
                         layoutOrientation="landscape"
+                    />
+                    <UnitTable
+                        data={jsonData}
+                        columns={columns[header.thematicList]}
+                        layoutOrientation="portrait"
                     />
                 </div>
             )}

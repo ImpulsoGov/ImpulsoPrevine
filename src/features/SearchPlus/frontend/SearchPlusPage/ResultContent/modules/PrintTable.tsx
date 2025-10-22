@@ -27,6 +27,7 @@ const loadImages = (
             };
         }
     }
+
     if (loads === imagesTotal && withPrintModal) printWindow.print();
 };
 
