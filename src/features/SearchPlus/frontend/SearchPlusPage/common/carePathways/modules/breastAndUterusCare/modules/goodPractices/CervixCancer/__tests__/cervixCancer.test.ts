@@ -1,10 +1,10 @@
-import { CervixCancerCalculator } from "..";
+import { CervixCancerCalculator } from "../cervixCancerCalculator";
 
 describe("CervixCancerCalculator", () => {
     const papTestLatestRequestDate = new Date("2022-01-01");
     const papTestLatestEvaluationDate = new Date("2022-02-01");
     const baseData = {
-        birthDate: new Date("1990-01-01"),
+        patientBirthDate: new Date("1990-01-01"),
         papTestLatestRequestDate: papTestLatestRequestDate,
         papTestLatestEvaluationDate: papTestLatestEvaluationDate,
         mammographyLatestRequestDate: new Date("2022-01-01"),
@@ -57,7 +57,7 @@ describe("CervixCancerCalculator", () => {
                 const birthDateFor15YearsOld = new Date("2010-01-01");
                 const calc = new CervixCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor15YearsOld,
+                    patientBirthDate: birthDateFor15YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -66,7 +66,7 @@ describe("CervixCancerCalculator", () => {
                 const birthDateFor75YearsOld = new Date("1950-01-01");
                 const calc = new CervixCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor75YearsOld,
+                    patientBirthDate: birthDateFor75YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -116,7 +116,7 @@ describe("CervixCancerCalculator", () => {
                 const unselectedDate = new Date("2022-10-24");
                 const calc = new CervixCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor25YearOld,
+                    patientBirthDate: birthDateFor25YearOld,
                     papTestLatestRequestDate: unselectedDate,
                     papTestLatestEvaluationDate: validDateSmallerThanEndOfQ3,
                 });

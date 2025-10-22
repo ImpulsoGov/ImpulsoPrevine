@@ -49,6 +49,13 @@ export const InputContent: React.FC<DropZoneProps> = ({
                         | ListTitles
                         | undefined;
 
+                    // const createdAtRowIndex = lines.findIndex((line) =>
+                    //     line.startsWith("Gerado em")
+                    // );
+                    // const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
+                    // const createdAtDate = splitCreatedAt[1];
+                    // const createdAtTime = splitCreatedAt[3];
+
                     const headerIndex = lines.findIndex((line) =>
                         line.startsWith("Nome;Data de nascimento;")
                     );

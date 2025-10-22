@@ -22,3 +22,5 @@ export const columns: Record<Lists, Array<ColumnsProps<SearchPlusItem>>> = {
 export const csvListTitleToListKey: Record<ListTitles, Lists> = {
     "Saúde da mulher": "breastAndUterusCare",
 };
+
+export type { Status } from "./modules/breastAndUterusCare/modules/goodPractices";

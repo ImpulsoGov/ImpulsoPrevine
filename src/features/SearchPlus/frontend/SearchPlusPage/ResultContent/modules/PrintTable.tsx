@@ -21,7 +21,7 @@ const loadImages = (
         } else {
             images[i].onload = images[i].onerror = (): void => {
                 loads++;
-                if (loads === imagesTotal) {
+                if (loads === imagesTotal && withPrintModal) {
                     printWindow.print();
                 }
             };

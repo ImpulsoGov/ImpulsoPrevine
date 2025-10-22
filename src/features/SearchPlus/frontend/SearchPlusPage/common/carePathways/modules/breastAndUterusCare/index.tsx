@@ -6,3 +6,5 @@ export type {
 export { breastAndUterusCareColumns } from "./consts";
 
 export { csvRowToBreastAndUterusCareItem } from "./adapter";
+
+export type { Status } from "./modules/goodPractices";

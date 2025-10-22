@@ -1,10 +1,10 @@
-import { BreastCancerCalculator } from "..";
+import { BreastCancerCalculator } from "../breastCancerCalculator";
 
 describe("BreastCancerCalculator", () => {
     const mammographyLatestRequestDate = new Date("2022-01-01");
     const mammographyLatestEvaluationDate = new Date("2022-02-01");
     const baseData = {
-        birthDate: new Date("1974-01-01"),
+        patientBirthDate: new Date("1974-01-01"),
         mammographyLatestRequestDate: mammographyLatestRequestDate,
         mammographyLatestEvaluationDate: mammographyLatestEvaluationDate,
         papTestLatestRequestDate: new Date("2022-01-01"),
@@ -54,19 +54,19 @@ describe("BreastCancerCalculator", () => {
     describe("computeStatus", () => {
         describe("A boa prática se aplica para essa pessoa?", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 50)', () => {
-                const birthDateFor15YearsOld = new Date("2010-01-01");
+                const patientBirthDateFor15YearsOld = new Date("2010-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor15YearsOld,
+                    patientBirthDate: patientBirthDateFor15YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
 
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
-                const birthDateFor75YearsOld = new Date("1950-01-01");
+                const patientBirthDateFor75YearsOld = new Date("1950-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor75YearsOld,
+                    patientBirthDate: patientBirthDateFor75YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Não aplica");
             });
@@ -109,13 +109,13 @@ describe("BreastCancerCalculator", () => {
         describe("O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática? ", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 50 anos', () => {
                 // Essa data gera uma idade na data da consulta de 48 anos
-                const birthDateFor50YearOld = new Date("1975-01-01");
+                const patientBirthDateFor50YearOld = new Date("1975-01-01");
                 //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
                 const validDateSmallerThanEndOfQ3 = new Date("2023-10-25");
                 const unselectedDate = new Date("2023-10-24");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
-                    birthDate: birthDateFor50YearOld,
+                    patientBirthDate: patientBirthDateFor50YearOld,
                     mammographyLatestRequestDate: validDateSmallerThanEndOfQ3,
                     mammographyLatestEvaluationDate: unselectedDate,
                 });
