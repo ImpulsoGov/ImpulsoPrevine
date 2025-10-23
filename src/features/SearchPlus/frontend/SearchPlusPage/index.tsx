@@ -36,6 +36,11 @@ export const SearchPlusPage: React.FC = () => {
         createdAtTime: "00:00",
     });
     const [isOpen, setIsOpen] = useState(true);
+
+    const closeSnackbar = (): void => {
+        setIsOpen(false);
+    };
+
     return (
         <div
             style={{
@@ -44,7 +49,7 @@ export const SearchPlusPage: React.FC = () => {
                 alignItems: "center",
             }}
         >
-            //TODO componentizar
+            {/* TODO componentizar */}
             <div
                 style={{
                     padding: "20px",
@@ -89,28 +94,7 @@ export const SearchPlusPage: React.FC = () => {
                 open={isOpen && error.message.length > 0}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 sx={{ width: "80%" }}
-                action={
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        sx={{ p: 0.5 }}
-                        onClick={() => {
-                            setIsOpen(false);
-                        }}
-                    >
-                        <Image
-                            src={
-                                "https://media.graphassets.com/cvo7ewTTTTKXgWHRd6g1"
-                            }
-                            alt="Close-icon"
-                            width={20}
-                            height={20}
-                        />
-                    </IconButton>
-                }
-                onClose={() => {
-                    setIsOpen(false);
-                }}
+                onClose={closeSnackbar}
             >
                 <div
                     style={{
@@ -153,6 +137,18 @@ export const SearchPlusPage: React.FC = () => {
                             {error.message}
                         </div>
                     </div>
+                    <IconButton
+                        aria-label="close"
+                        sx={{
+                            padding: "4px",
+                            width: "fit-content",
+                            height: "fit-content",
+                            color: "#5F2120",
+                        }}
+                        onClick={closeSnackbar}
+                    >
+                        <CloseIcon fontSize="small" />
+                    </IconButton>
                 </div>
             </Snackbar>
             <div
