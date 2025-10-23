@@ -10,7 +10,8 @@ import {
 import type * as time from "@/features/common/shared/time";
 import Image from "next/image";
 import { nameFormatter } from "./common/UnitTable/modules/Formatters";
-import { Snackbar, SnackbarCloseReason } from "@mui/material";
+import { IconButton, Snackbar } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 export type HeaderData = {
     thematicList: ThematicList | null;
@@ -34,7 +35,7 @@ export const SearchPlusPage: React.FC = () => {
         createdAtDate: "01/01/1970",
         createdAtTime: "00:00",
     });
-    const [open, setOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(true);
     return (
         <div
             style={{
@@ -43,6 +44,7 @@ export const SearchPlusPage: React.FC = () => {
                 alignItems: "center",
             }}
         >
+            //TODO componentizar
             <div
                 style={{
                     padding: "20px",
@@ -61,7 +63,6 @@ export const SearchPlusPage: React.FC = () => {
                 </span>{" "}
                 Busca+Mais
             </div>
-
             <div
                 style={{
                     display: "flex",
@@ -85,14 +86,30 @@ export const SearchPlusPage: React.FC = () => {
                 )}
             </div>
             <Snackbar
-                open={open && error.message.length > 0}
+                open={isOpen && error.message.length > 0}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 sx={{ width: "80%" }}
-                onClose={(
-                    event?: React.SyntheticEvent | Event,
-                    reason?: SnackbarCloseReason
-                ) => {
-                    setOpen(false);
+                action={
+                    <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        sx={{ p: 0.5 }}
+                        onClick={() => {
+                            setIsOpen(false);
+                        }}
+                    >
+                        <Image
+                            src={
+                                "https://media.graphassets.com/cvo7ewTTTTKXgWHRd6g1"
+                            }
+                            alt="Close-icon"
+                            width={20}
+                            height={20}
+                        />
+                    </IconButton>
+                }
+                onClose={() => {
+                    setIsOpen(false);
                 }}
             >
                 <div
