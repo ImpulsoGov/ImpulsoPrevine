@@ -105,6 +105,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                 </div>
             </div>
             <Button
+                disabled={!areTermsAccepted}
                 onClick={() => {
                     handleClick(file, setError, setJsonData, setHeader, header);
                 }}
