@@ -354,7 +354,7 @@ const tooltipContentByGroupId = {
     "#04": (
         <TooltipContentWithStyle>
             Ter pelo menos 01 registro de hemoglobina glicada, solicitada ou
-            avaliada, nos últimos 6 meses.
+            avaliada, nos últimos 12 meses.
             <br />
             <span style={{ color: "#FFFACF" }}>15 pontos</span>.
         </TooltipContentWithStyle>
