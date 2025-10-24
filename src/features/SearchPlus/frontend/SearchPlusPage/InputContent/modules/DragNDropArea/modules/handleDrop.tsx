@@ -1,3 +1,4 @@
+// TODO: Talvez esse arquivo devesse ser um logic
 import {
     adaptersMap,
     csvListTitleToListKey,
@@ -12,6 +13,7 @@ import type {
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 
+// TODO: essa função só é usada no módulo TermsOfUse, faria sentido mover ela pra lá
 export const handleClick = (
     file: File,
     setError: React.Dispatch<React.SetStateAction<ErrorData>>,
