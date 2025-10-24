@@ -69,11 +69,7 @@ export const ResultContent: React.FC<ResultContentProps> = ({
             </div>
             {isTableVisible && header.thematicList && (
                 <div ref={tableRef}>
-                    <Header
-                        thematicList={header.thematicList}
-                        createdAtDate={header.createdAtDate}
-                        createdAtTime={header.createdAtTime}
-                    />
+                    <Header headerData={header} />
                     <UnitTable
                         data={jsonData}
                         columns={columns[header.thematicList]}

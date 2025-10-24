@@ -1,163 +1,55 @@
 import {
-    adaptersMap,
-    csvListTitleToListKey,
-    type ThematicList,
+    ListTitles,
     type SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
-import { useCallback } from "react";
-import { parse } from "papaparse";
-import type { CsvRow } from "./model";
-import * as time from "@/features/common/shared/time";
-import type { HeaderData } from "..";
+import type { ErrorData, HeaderData } from "..";
+import { DragNDropArea } from "./modules/DragNDropArea";
+import { useState } from "react";
+import { TermsOfUse } from "./modules/TermsOfUse";
 
 type DropZoneProps = {
-    setError: React.Dispatch<React.SetStateAction<string | null>>;
+    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
+    header: HeaderData;
 };
 
 export const InputContent: React.FC<DropZoneProps> = ({
     setError,
     setJsonData,
     setHeader,
+    header,
 }) => {
-    //Todo: pensar onde colocar essa lógica, aqui no meio tá muito grande
-    const handleDrop = useCallback(
-        (
-            event: React.DragEvent<HTMLDivElement>,
-            setError: React.Dispatch<React.SetStateAction<string | null>>,
-            setJsonData: React.Dispatch<
-                React.SetStateAction<Array<SearchPlusItem>>
-            >
-        ): void => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const file = event.dataTransfer.files[0];
-
-            if (!file.name.endsWith(".csv")) {
-                setError("Por favor envie um arquivo CSV válido.");
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = (): void => {
-                try {
-                    const text =
-                        typeof reader.result === "string" ? reader.result : "";
-
-                    const lines = text.split(/\r?\n/);
-                    const listRowIndex = lines.findIndex((line) =>
-                        line.startsWith("Lista temática")
-                    );
-
-                    const list = lines[listRowIndex]?.split(
-                        ";"
-                    )[1] as ThematicList | null;
-
-                    const createdAtRowIndex = lines.findIndex((line) =>
-                        line.startsWith("Gerado em")
-                    );
-                    const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
-
-                    const createdAtDate = splitCreatedAt[1];
-                    const createdAtTime = splitCreatedAt[3];
-
-                    if (
-                        !time.isBrtDateStringValid(createdAtDate) ||
-                        !time.isBrtTimeStringValid(createdAtTime)
-                    ) {
-                        setError(
-                            "Data de geração do arquivo inválida ou em formato incorreto."
-                        );
-                        return;
-                    }
-
-                    const headerIndex = lines.findIndex((line) =>
-                        line.startsWith("Nome;Data de nascimento;")
-                    );
-
-                    if (headerIndex === -1) {
-                        setError(
-                            "Não foi possível encontrar o cabeçalho da tabela."
-                        );
-                        return;
-                    }
-
-                    const cleanedText = lines.slice(headerIndex).join("\n");
-
-                    const result = parse<CsvRow>(cleanedText, {
-                        header: true,
-                        skipEmptyLines: true,
-                        delimiter: ";",
-                    });
-
-                    const header = {
-                        thematicList: list as ThematicList,
-                        createdAtDate: createdAtDate as time.BRTDateString,
-                        createdAtTime: createdAtTime as time.BRTTimeString,
-                    };
-
-                    if (!list || !(list in csvListTitleToListKey)) {
-                        setError(
-                            "Lista temática não reconhecida ou não suportada."
-                        );
-                        return;
-                    } else {
-                        setHeader((prev) => ({
-                            ...prev,
-                            ...header,
-                        }));
-                    }
-                    const adapter =
-                        adaptersMap[
-                            csvListTitleToListKey[
-                                list
-                            ] as keyof typeof adaptersMap
-                        ];
-
-                    const data: Array<SearchPlusItem> = adapter(
-                        result.data,
-                        header
-                    );
-
-                    setJsonData(data);
-                } catch (err) {
-                    if (err instanceof Error) {
-                        setError(`Erro ao processar arquivo: ${err.message}`);
-                    } else {
-                        setError("Erro desconhecido ao processar arquivo.");
-                    }
-                }
-            };
-
-            reader.onerror = (): void => {
-                setError("Erro ao ler o arquivo.");
-            };
-            //TODO: verificar encoding oficial do CSV originario do PEC
-            reader.readAsText(file, "ISO-8859-1");
-        },
-        []
-    );
-
-    const handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
-        event.preventDefault();
-    };
+    const [rawFileContent, setRawFileContent] = useState<File | null>(null);
     return (
         <div
-            onDrop={(event) => {
-                handleDrop(event, setError, setJsonData);
-            }}
-            onDragOver={handleDragOver}
             style={{
-                border: "2px dashed #ccc",
-                borderRadius: "10px",
-                padding: "80px",
-                margin: "30px",
-                width: "80%",
-                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
             }}
         >
-            <p>Arraste e solte um arquivo CSV aqui</p>
+            <p style={{ width: "51%" }}>
+                Converta seus relatórios do PEC em segundos, e tenha listas
+                prontas para distribuir aos ACS e simplificar o acompanhamento
+                dos cidadãos.
+            </p>
+            {rawFileContent && header.thematicList ? (
+                <TermsOfUse
+                    file={rawFileContent}
+                    setError={setError}
+                    setJsonData={setJsonData}
+                    setHeader={setHeader}
+                    header={header}
+                    thematicList={ListTitles[header.thematicList]}
+                />
+            ) : (
+                <DragNDropArea
+                    setError={setError}
+                    setRawFileContent={setRawFileContent}
+                    setHeader={setHeader}
+                />
+            )}
         </div>
     );
 };

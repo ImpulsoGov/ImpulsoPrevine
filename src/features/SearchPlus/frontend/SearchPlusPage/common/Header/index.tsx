@@ -2,10 +2,8 @@ import { ListTitles } from "../carePathways";
 import Image from "next/image";
 import type { HeaderData } from "../..";
 
-export const Header: React.FC<HeaderData> = ({
-    thematicList,
-    createdAtDate,
-    createdAtTime,
+export const Header: React.FC<{ headerData: HeaderData }> = ({
+    headerData,
 }) => {
     const now = new Date();
     const nowDate = now.toLocaleDateString("pt-BR");
@@ -14,7 +12,7 @@ export const Header: React.FC<HeaderData> = ({
         minute: "2-digit",
     });
 
-    if (thematicList)
+    if (headerData.thematicList)
         return (
             <div
                 style={{
@@ -27,14 +25,14 @@ export const Header: React.FC<HeaderData> = ({
             >
                 <div>
                     <div style={{ fontWeight: 600 }}>
-                        {ListTitles[thematicList]}
+                        {ListTitles[headerData.thematicList]}
                     </div>
                     <div style={{ fontStyle: "italic", fontWeight: 400 }}>
                         Lista convertida em {nowDate} - às {nowTime}
                     </div>
                     <div style={{ fontStyle: "italic", fontWeight: 400 }}>
-                        Relatório exportado do PEC em {createdAtDate} - às{" "}
-                        {createdAtTime}
+                        Relatório exportado do PEC em {headerData.createdAtDate}{" "}
+                        - às {headerData.createdAtTime}
                     </div>
                 </div>
                 <div
