@@ -30,8 +30,8 @@ export const DragNDropArea: React.FC<Props> = ({
             }}
             onDragOver={handleDragOver}
             style={{
-                backgroundColor: "#FFF3CB",
-                border: "3px dashed #EABF2E",
+                backgroundColor: "#F8BCAE",
+                border: "3px dashed #CF4047",
                 borderRadius: "16px",
                 padding: "32px 0px 21px 0px",
                 margin: "30px",
@@ -44,7 +44,7 @@ export const DragNDropArea: React.FC<Props> = ({
             }}
         >
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6j102jq06ly15md71az"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861ix03l107kn7m7bg796"
                 alt="Drag and drop"
                 width={60}
                 height={60}
@@ -53,7 +53,7 @@ export const DragNDropArea: React.FC<Props> = ({
                 htmlFor="upload-file"
                 style={{
                     borderRadius: "100px",
-                    backgroundColor: "#916A20",
+                    backgroundColor: "#88181D",
                     padding: "16px 30px",
                     color: "#FFF",
                     fontSize: "14px",

@@ -1,17 +1,18 @@
 "use client";
 import { useState } from "react";
-import { ResultContent } from "./ResultContent";
-import { InputContent } from "./InputContent";
+import { ResultContent } from "./modules/ResultContent";
+import { InputContent } from "./modules/InputContent";
 import {
     type ThematicList,
     type SearchPlusItem,
     ListTitles,
-} from "./common/carePathways";
+} from "./modules/common/carePathways";
 import type * as time from "@/features/common/shared/time";
 import Image from "next/image";
-import { nameFormatter } from "./common/UnitTable/modules/Formatters";
+import { nameFormatter } from "./modules/common/UnitTable/modules/Formatters";
 import { IconButton, Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Error } from "@features/SearchPlus/frontend/SearchPlusPage/modules/ErrorPage";
 
 export type HeaderData = {
     thematicList: ThematicList | null;
@@ -24,22 +25,132 @@ export type ErrorData = {
     message: string;
 };
 
-export const SearchPlusPage: React.FC = () => {
+type ContentProps = {
+    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
+};
+
+const Content: React.FC<ContentProps> = ({ setError }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
-    const [error, setError] = useState<ErrorData>({
-        title: "",
-        message: "",
-    });
+    const [isError, setIsError] = useState<string>("");
+
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
         createdAtDate: "01/01/1970",
         createdAtTime: "00:00",
     });
+
+    if (isError.length > 0) {
+        return <Error setJsonData={setJsonData} setIsError={setIsError} />;
+    }
+
+    if (jsonData.length > 0)
+        return (
+            <ResultContent
+                jsonData={jsonData}
+                setJsonData={setJsonData}
+                header={header}
+            />
+        );
+
+    return (
+        <InputContent
+            setError={setError}
+            setJsonData={setJsonData}
+            setHeader={setHeader}
+            header={header}
+            setIsError={setIsError}
+        />
+    );
+};
+
+export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
+    error,
+}) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const closeSnackbar = (): void => {
         setIsOpen(false);
     };
+
+    return (
+        <Snackbar
+            open={isOpen && error.message.length > 0}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            sx={{ width: "80%" }}
+            onClose={closeSnackbar}
+        >
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "12px",
+                    backgroundColor: "#FDEDED",
+                    borderRadius: "4px",
+                    padding: "12px 32px",
+                    width: "80%",
+                    justifyContent: "space-between",
+                }}
+            >
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "8px",
+                        alignItems: "flex-start",
+                    }}
+                >
+                    <Image
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3vfms808eg08lxa9z4ud74"
+                        alt="Error Icon"
+                        width={18}
+                        height={18}
+                    />
+                    <div
+                        style={{
+                            color: "#5F2120",
+                        }}
+                    >
+                        <div
+                            style={{
+                                fontSize: "16px",
+                                fontWeight: 500,
+                                lineHeight: "125%",
+                            }}
+                        >
+                            {error.title}
+                        </div>
+                        <div
+                            style={{
+                                fontSize: "14px",
+                                fontWeight: 400,
+                                lineHeight: "143%",
+                            }}
+                        >
+                            {error.message}
+                        </div>
+                    </div>
+                </div>
+                <IconButton
+                    aria-label="close"
+                    sx={{
+                        padding: "4px",
+                        width: "fit-content",
+                        height: "fit-content",
+                        color: "#5F2120",
+                    }}
+                    onClick={closeSnackbar}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>
+            </div>
+        </Snackbar>
+    );
+};
+
+export const SearchPlusPage: React.FC = () => {
+    const [error, setError] = useState<ErrorData>({
+        title: "",
+        message: "",
+    });
 
     return (
         <div
@@ -60,7 +171,7 @@ export const SearchPlusPage: React.FC = () => {
             >
                 <span>
                     <Image
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6j802jv06lyyxoe9eip"
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jj03hp07kc08jyagdz"
                         alt="Busca+Mais Logo"
                         width={56}
                         height={28}
@@ -75,87 +186,14 @@ export const SearchPlusPage: React.FC = () => {
                     alignItems: "center",
                 }}
             >
-                {jsonData.length > 0 ? (
-                    <ResultContent
-                        jsonData={jsonData}
-                        setJsonData={setJsonData}
-                        header={header}
-                    />
-                ) : (
-                    <InputContent
-                        setError={setError}
-                        setJsonData={setJsonData}
-                        setHeader={setHeader}
-                        header={header}
-                    />
-                )}
+                <Content setError={setError} />
             </div>
-            <Snackbar
-                open={isOpen && error.message.length > 0}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                sx={{ width: "80%" }}
-                onClose={closeSnackbar}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "12px",
-                        backgroundColor: "#FDEDED",
-                        borderRadius: "4px",
-                        padding: "12px 32px",
-                        width: "80%",
-                    }}
-                >
-                    <Image
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3vfms808eg08lxa9z4ud74"
-                        alt="Error Icon"
-                        width={18}
-                        height={18}
-                    />
-                    <div
-                        style={{
-                            color: "#5F2120",
-                        }}
-                    >
-                        <div
-                            style={{
-                                fontSize: "16px",
-                                fontWeight: 500,
-                                lineHeight: "150%",
-                            }}
-                        >
-                            {error.title}
-                        </div>
-                        <div
-                            style={{
-                                fontSize: "14px",
-                                fontWeight: 400,
-                                lineHeight: "143%",
-                            }}
-                        >
-                            {error.message}
-                        </div>
-                    </div>
-                    <IconButton
-                        aria-label="close"
-                        sx={{
-                            padding: "4px",
-                            width: "fit-content",
-                            height: "fit-content",
-                            color: "#5F2120",
-                        }}
-                        onClick={closeSnackbar}
-                    >
-                        <CloseIcon fontSize="small" />
-                    </IconButton>
-                </div>
-            </Snackbar>
+            <SearchPlusSnackbar error={error} />
             <div
                 style={{
-                    backgroundColor: "#EABF2E",
+                    backgroundColor: "#CF4047",
                     width: "100%",
-                    color: "#4F3D0C",
+                    color: "#FFF",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -184,7 +222,7 @@ export const SearchPlusPage: React.FC = () => {
                             key={list}
                             style={{
                                 borderRadius: "8px",
-                                border: "1px solid #4F3D0C",
+                                border: "1px solid #FFF",
                                 fontSize: "14px",
                                 fontWeight: 500,
                                 letterSpacing: "-0.3px",
