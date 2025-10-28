@@ -73,7 +73,7 @@ export const handleClick = (
                 setError({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com as lista de hipertensão, diabetes e saúde da mulher e do homem trans.",
+                        "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
                 });
                 return;
             }
@@ -114,7 +114,7 @@ export const handleFileUpload = (
         setError({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:
-                "O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, clique aqui.",
+                "<div>O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, <a href='www.google.com' style='text-decoration: underline;' >clique aqui.</a></div>",
         });
         return;
     }
@@ -148,7 +148,7 @@ export const handleFileUpload = (
                 setError({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com as lista de hipertensão, diabetes e saúde da mulher e do homem trans.",
+                        "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
                 });
                 return;
             } else {
