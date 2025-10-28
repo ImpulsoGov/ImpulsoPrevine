@@ -7,13 +7,9 @@ import type {
     ErrorData,
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
-<<<<<<< HEAD:src/features/SearchPlus/frontend/SearchPlusPage/modules/InputContent/modules/TermsOfUse/index.tsx
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
-=======
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
->>>>>>> dd8e9625 (feat: permite remover arquivo selecionado na pagina de aceite dos termos):src/features/SearchPlus/frontend/SearchPlusPage/InputContent/modules/TermsOfUse/index.tsx
 
 type TermsOfUseProps = {
     file: File;
