@@ -69,6 +69,7 @@ export const DragNDropArea: React.FC<Props> = ({
             <input
                 id="upload-file"
                 type="file"
+                accept=".csv"
                 onChange={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
