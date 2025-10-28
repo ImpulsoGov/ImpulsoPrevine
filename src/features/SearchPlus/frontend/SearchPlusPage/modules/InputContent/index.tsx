@@ -26,6 +26,11 @@ export const InputContent: React.FC<DropZoneProps> = ({
     header,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
+
+    const showDragNDropArea = (): void => {
+        setRawFileContent(null);
+    };
+
     return (
         <div
             style={{
@@ -48,6 +53,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     header={header}
                     thematicList={ListTitles[header.thematicList]}
                     setIsError={setIsError}
+                    onRemoveFileClick={showDragNDropArea}
                 />
             ) : (
                 <DragNDropArea
