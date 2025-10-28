@@ -8,6 +8,8 @@ import type {
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 type TermsOfUseProps = {
     file: File;
@@ -17,6 +19,7 @@ type TermsOfUseProps = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setIsError: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
+    onRemoveFileClick: React.DispatchWithoutAction;
 };
 
 export const TermsOfUse: React.FC<TermsOfUseProps> = ({
@@ -27,6 +30,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     setHeader,
     setIsError,
     header,
+    onRemoveFileClick,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
     return (
@@ -48,6 +52,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     border: "1px solid #CF4047",
                     borderRadius: "60px",
                     padding: "15px 30px",
+                    alignItems: "center",
                 }}
             >
                 <Image
@@ -81,6 +86,18 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                         ARQUIVO CSV • {thematicList.toUpperCase()}
                     </div>
                 </div>
+                <IconButton
+                    aria-label="remover"
+                    sx={{
+                        padding: "10px",
+                        width: "40px",
+                        height: "40px",
+                        color: "#777777",
+                    }}
+                    onClick={onRemoveFileClick}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>
             </div>
             <div style={{ width: "60%", display: "flex", gap: "12px" }}>
                 <div>
@@ -125,6 +142,18 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
             >
                 CONVERTER ARQUIVO
             </Button>
+            <u
+                style={{
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    lineHeight: "130%",
+                    color: "#1F1F1F",
+                    cursor: "pointer",
+                }}
+                onClick={onRemoveFileClick}
+            >
+                selecionar um arquivo diferente
+            </u>
         </div>
     );
 };
