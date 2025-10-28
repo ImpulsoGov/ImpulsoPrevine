@@ -73,7 +73,7 @@ export const handleClick = (
                 setError({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com as lista de saúde da mulher e do homem trans.",
+                        "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
                 });
                 return;
             }
