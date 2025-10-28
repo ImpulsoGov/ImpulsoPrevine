@@ -22,7 +22,7 @@ export type HeaderData = {
 
 export type ErrorData = {
     title: string;
-    message: string;
+    message: string | null;
 };
 
 type ContentProps = {
@@ -75,7 +75,7 @@ export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
 
     return (
         <Snackbar
-            open={isOpen && error.message.length > 0}
+            open={isOpen && !!error.message}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             sx={{ width: "80%" }}
             onClose={closeSnackbar}
@@ -124,9 +124,16 @@ export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
                                 fontSize: "14px",
                                 fontWeight: 400,
                                 lineHeight: "143%",
+                                marginTop: "4px",
                             }}
                         >
-                            {error.message}
+                            {error.message && (
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: error.message,
+                                    }}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -150,7 +157,7 @@ export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
 export const SearchPlusPage: React.FC = () => {
     const [error, setError] = useState<ErrorData>({
         title: "",
-        message: "",
+        message: null,
     });
 
     return (
