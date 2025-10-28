@@ -38,7 +38,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     setJsonData([]);
                 }}
             >
-                Usar outro arquivo
+                Converter nova lista
             </Button>
             <Button
                 style={{
@@ -51,7 +51,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     setShouldOpenWindowWithPrint(false);
                 }}
             >
-                Visualizar
+                Visualizar prévia da lista
             </Button>
             <Button
                 style={{
@@ -70,7 +70,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     height={16}
                     style={{ marginRight: "8px" }}
                 />
-                Imprimir
+                Imprimir lista
             </Button>
         </div>
     );
