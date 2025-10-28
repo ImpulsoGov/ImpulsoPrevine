@@ -44,31 +44,33 @@ export class HpvVaccinationCalculator {
         return new Date(endOfQuadrimester[quadri]);
     }
     #WillTurn15ThisQuadrimester(birthDate: Date): boolean {
-        const now = new Date();
-        const currentQuadrimester = this.#getCurrentQuadrimester(now);
-
         // inicio e fim
-        const startMonth = (currentQuadrimester - 1) * 4; // 0, 4, ou 8
-        const start = new Date(now.getFullYear(), startMonth, 1);
-        const end = this.#getEndQuadrimester(currentQuadrimester);
+        const currentQuad = this.#getCurrentQuadrimester(this.#data.createdAt);
+        const startMonth = (currentQuad - 1) * 4;
+        const start = new Date(
+            this.#data.createdAt.getFullYear(),
+            startMonth,
+            1
+        );
+        const end = this.#getEndQuadrimester(currentQuad);
         // aniversario de 15 anos
         const fifteenthBirthday = new Date(birthDate);
         fifteenthBirthday.setFullYear(fifteenthBirthday.getFullYear() + 15);
 
-        // verifica se ela completa 15 anos depois do inicio e antes do fim do quadri
+        // verifica se ela completa 15 anos depois do inicio e ate o fim do quadri
         return fifteenthBirthday >= start && fifteenthBirthday <= end;
     }
-    #getAgeAtDate(birthDate: Date, atDate: Date): number {
-        const diff = atDate.getTime() - birthDate.getTime();
-        const ageDate = new Date(diff);
-        return Math.abs(ageDate.getUTCFullYear() - 1970);
-    }
     #getAgeAtStartOfQuadrimester(birthDate: Date): number {
-        const now = new Date();
-        const currentQuadrimester = this.#getCurrentQuadrimester(now);
+        const currentQuadrimester = this.#getCurrentQuadrimester(
+            this.#data.createdAt
+        );
         const startMonth = (currentQuadrimester - 1) * 4;
-        const start = new Date(now.getFullYear(), startMonth, 1);
-        return this.#getAgeAtDate(birthDate, start);
+        const start = new Date(
+            this.#data.createdAt.getFullYear(),
+            startMonth,
+            1
+        );
+        return this.#getYearBetweenDates(start, birthDate);
     }
     #getYearBetweenDates(biggerDate: Date, smallerDate: Date): number {
         return biggerDate.getUTCFullYear() - smallerDate.getUTCFullYear();
@@ -98,6 +100,7 @@ export class HpvVaccinationCalculator {
             currentDate,
             this.#data.patientBirthDate
         );
+        const ageLimit = 9;
 
         //A boa prática se aplica para essa pessoa?
         const isGoodPracticeApplicable =
@@ -106,7 +109,7 @@ export class HpvVaccinationCalculator {
 
         // Essa pessoa possui data da última vacina?
         if (this.#data.latestHpvVaccinationDate === null) {
-            //Essa pessoa completou 15 anos nesse quadri?
+            //Essa pessoa JÁ completou 15 anos nesse quadri?
             if (currentAge >= 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
             if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
@@ -115,16 +118,17 @@ export class HpvVaccinationCalculator {
             return `Vence dentro do Q${currentQuadrimester}`;
         }
 
-        //A vacinacao foi realizada ANTES da pessoa estar na faixa etaria?
+        //A vacinacao foi realizada ANTES da pessoa estar na faixa etaria da boa pratica?
         const hasVaccinationOccurredBeforeGoodPracticeAge =
             this.#getYearBetweenDates(
                 this.#data.latestHpvVaccinationDate,
                 this.#data.patientBirthDate
-            ) < 9;
+            ) < ageLimit;
+
         if (!hasVaccinationOccurredBeforeGoodPracticeAge) {
             return "Em dia";
         } else {
-            //Essa pessoa completou 15 anos nesse quadri?
+            //Essa pessoa JÁ completou 15 anos nesse quadri?
             if (currentAge >= 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
             if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
