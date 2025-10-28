@@ -20,7 +20,14 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
     setShouldOpenWindowWithPrint,
 }) => {
     return (
-        <div style={{ display: "flex", gap: "8px", marginBottom: "82px" }}>
+        <div
+            style={{
+                display: "flex",
+                gap: "32px",
+                marginBottom: "82px",
+                flexWrap: "wrap",
+            }}
+        >
             <Button
                 style={{
                     backgroundColor: "#FFF",
@@ -111,7 +118,13 @@ export const Success: React.FC<SuccessProps> = ({
                     width={135}
                     height={180}
                 />
-                <p style={{ color: "#88181D", width: "70%" }}>
+                <p
+                    style={{
+                        color: "#88181D",
+                        width: "70%",
+                        marginBottom: "56px",
+                    }}
+                >
                     Prontinho! Sua lista foi <b>convertida com sucesso.</b>
                 </p>
             </div>
