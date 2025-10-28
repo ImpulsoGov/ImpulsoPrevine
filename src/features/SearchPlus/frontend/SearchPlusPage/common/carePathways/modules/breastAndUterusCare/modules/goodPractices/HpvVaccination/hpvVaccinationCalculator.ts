@@ -5,7 +5,7 @@ export type Status =
     | "Nunca realizado"
     | "Atrasada"
     | `Vence dentro do Q${Quadrimester}`
-    | `última chance no Q${Quadrimester}`
+    | `Última chance no Q${Quadrimester}`
     | "Em dia";
 
 export type InputData = {
@@ -43,7 +43,7 @@ export class HpvVaccinationCalculator {
         };
         return new Date(endOfQuadrimester[quadri]);
     }
-    #didTurn15ThisQuadrimester(birthDate: Date): boolean {
+    #WillTurn15ThisQuadrimester(birthDate: Date): boolean {
         const now = new Date();
         const currentQuadrimester = this.#getCurrentQuadrimester(now);
 
@@ -94,30 +94,23 @@ export class HpvVaccinationCalculator {
             currentDate
         ).toString() as Quadrimester;
 
-        const age = this.#getYearBetweenDates(
+        const currentAge = this.#getYearBetweenDates(
             currentDate,
             this.#data.patientBirthDate
         );
 
         //A boa prática se aplica para essa pessoa?
         const isGoodPracticeApplicable =
-            this.#isGoodPracticeApplicableForPatient(age);
+            this.#isGoodPracticeApplicableForPatient(currentAge);
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data da última vacina?
         if (this.#data.latestHpvVaccinationDate === null) {
             //Essa pessoa completou 15 anos nesse quadri?
-            if (age >= 15) return "Perdido";
+            if (currentAge >= 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
-            if (
-                this.#getYearBetweenDates(
-                    this.#getEndQuadrimester(
-                        this.#getCurrentQuadrimester(currentDate)
-                    ),
-                    this.#data.patientBirthDate
-                ) >= 15
-            ) {
-                return `última chance no Q${currentQuadrimester}`;
+            if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
+                return `Última chance no Q${currentQuadrimester}`;
             }
             return `Vence dentro do Q${currentQuadrimester}`;
         }
@@ -132,17 +125,10 @@ export class HpvVaccinationCalculator {
             return "Em dia";
         } else {
             //Essa pessoa completou 15 anos nesse quadri?
-            if (age >= 15) return "Perdido";
+            if (currentAge >= 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
-            if (
-                this.#getYearBetweenDates(
-                    this.#getEndQuadrimester(
-                        this.#getCurrentQuadrimester(currentDate)
-                    ),
-                    this.#data.patientBirthDate
-                ) >= 15
-            ) {
-                return `última chance no Q${currentQuadrimester}`;
+            if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
+                return `Última chance no Q${currentQuadrimester}`;
             }
             return `Vence dentro do Q${currentQuadrimester}`;
         }
