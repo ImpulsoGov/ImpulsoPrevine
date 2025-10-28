@@ -31,6 +31,7 @@ type ContentProps = {
 
 const Content: React.FC<ContentProps> = ({ setError }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
+    // TODO: rever tipo desse estado, poderia ser um boolean
     const [isError, setIsError] = useState<string>("");
 
     const [header, setHeader] = useState<HeaderData>({

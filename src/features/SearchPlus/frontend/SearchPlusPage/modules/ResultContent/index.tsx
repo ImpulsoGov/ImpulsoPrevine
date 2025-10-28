@@ -2,7 +2,7 @@
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
-import type { HeaderData } from "../..";
+import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Success } from "./modules/Success";
 
 type ResultContentProps = {
@@ -16,6 +16,7 @@ export const ResultContent: React.FC<ResultContentProps> = ({
     setJsonData,
     header,
 }) => {
+    // TODO: rever nome, a ref é adicionada no cabeçalho+tabela
     const tableRef = useRef<HTMLDivElement>(null);
     const [isTableVisible, setIsTableVisible] = useState(false);
     const [shouldOpenWindowWithPrint, setShouldOpenWindowWithPrint] =

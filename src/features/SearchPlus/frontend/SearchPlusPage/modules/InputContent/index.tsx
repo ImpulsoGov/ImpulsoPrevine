@@ -2,7 +2,10 @@ import {
     ListTitles,
     type SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
-import type { ErrorData, HeaderData } from "../..";
+import type {
+    ErrorData,
+    HeaderData,
+} from "@features/SearchPlus/frontend/SearchPlusPage";
 import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
