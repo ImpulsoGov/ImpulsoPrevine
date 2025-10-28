@@ -1,8 +1,11 @@
 import {
     ListTitles,
     type SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
-import type { ErrorData, HeaderData } from "..";
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type {
+    ErrorData,
+    HeaderData,
+} from "@features/SearchPlus/frontend/SearchPlusPage";
 import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
@@ -11,6 +14,7 @@ type DropZoneProps = {
     setError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
+    setIsError: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
 };
 
@@ -18,6 +22,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
     setError,
     setJsonData,
     setHeader,
+    setIsError,
     header,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
@@ -42,6 +47,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     setHeader={setHeader}
                     header={header}
                     thematicList={ListTitles[header.thematicList]}
+                    setIsError={setIsError}
                 />
             ) : (
                 <DragNDropArea

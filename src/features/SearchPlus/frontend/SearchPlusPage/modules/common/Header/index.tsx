@@ -1,6 +1,6 @@
+import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { ListTitles } from "../carePathways";
 import Image from "next/image";
-import type { HeaderData } from "../..";
 
 export const Header: React.FC<{ headerData: HeaderData }> = ({
     headerData,

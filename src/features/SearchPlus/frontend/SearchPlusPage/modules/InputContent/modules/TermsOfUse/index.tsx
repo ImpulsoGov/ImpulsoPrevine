@@ -7,7 +7,7 @@ import type {
     ErrorData,
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
+import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 
 type TermsOfUseProps = {
     file: File;
@@ -15,6 +15,7 @@ type TermsOfUseProps = {
     setError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
+    setIsError: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
 };
 
@@ -24,6 +25,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     setError,
     setJsonData,
     setHeader,
+    setIsError,
     header,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
@@ -43,13 +45,13 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     flexDirection: "row",
                     gap: "16px",
                     backgroundColor: "#FFF",
-                    border: "1px solid #916A20",
+                    border: "1px solid #CF4047",
                     borderRadius: "60px",
                     padding: "15px 30px",
                 }}
             >
                 <Image
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6j702k606kcg9jmvkqk"
+                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jl03em07kildthfzbj"
                     alt="Terms of Use"
                     width={34}
                     height={38}
@@ -88,7 +90,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                             setAreTermsAccepted(event.target.checked);
                         }}
                         style={{
-                            accentColor: "#916A20",
+                            accentColor: "#CF4047",
                             width: "18px",
                             height: "18px",
                         }}
@@ -107,11 +109,18 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
             <Button
                 disabled={!areTermsAccepted}
                 onClick={() => {
-                    handleClick(file, setError, setJsonData, setHeader, header);
+                    handleClick(
+                        file,
+                        setError,
+                        setJsonData,
+                        setHeader,
+                        setIsError,
+                        header
+                    );
                 }}
                 style={{
                     padding: "32px",
-                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#916A20",
+                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#88181D",
                 }}
             >
                 CONVERTER ARQUIVO
