@@ -4,9 +4,9 @@ import {
     csvListTitleToListKey,
     type ThematicList,
     type SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/common/carePathways";
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { parse } from "papaparse";
-import type { CsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/InputContent/model";
+import type { CsvRow } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/InputContent/model";
 import * as time from "@/features/common/shared/time";
 import type {
     ErrorData,
@@ -19,6 +19,7 @@ export const handleClick = (
     setError: React.Dispatch<React.SetStateAction<ErrorData>>,
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
+    setIsError: React.Dispatch<React.SetStateAction<string>>,
     header: HeaderData
 ): void => {
     const reader = new FileReader();
@@ -50,16 +51,6 @@ export const handleClick = (
             const headerIndex = lines.findIndex((line) =>
                 line.startsWith("Nome;Data de nascimento;")
             );
-
-            if (headerIndex === -1) {
-                setError({
-                    title: "Ops, parece que algo não funcionou!",
-                    message:
-                        "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
-                });
-                return;
-            }
-
             const cleanedText = lines.slice(headerIndex).join("\n");
 
             const result = parse<CsvRow>(cleanedText, {
@@ -78,7 +69,6 @@ export const handleClick = (
                 createdAtDate: createdAt.createdAtDate,
                 createdAtTime: createdAt.createdAtTime,
             }));
-
             if (!header.thematicList) {
                 setError({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
@@ -98,25 +88,17 @@ export const handleClick = (
 
             setJsonData(data);
         } catch (err) {
-            if (err instanceof Error) {
-                setError({
-                    title: "Ops, parece que algo não funcionou!",
-                    message: `Erro ao processar arquivo: ${err.message}`,
-                });
-            } else {
-                setError({
-                    title: "Ops, parece que algo não funcionou!",
-                    message: "Erro desconhecido ao processar arquivo.",
-                });
-            }
+            console.error(err);
+            setIsError(
+                "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
+            );
         }
     };
 
     reader.onerror = (): void => {
-        setError({
-            title: "Ops, parece que algo não funcionou!",
-            message: "Erro desconhecido ao processar arquivo.",
-        });
+        setIsError(
+            "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
+        );
     };
     //TODO: verificar encoding oficial do CSV originario do PEC
     reader.readAsText(file, "ISO-8859-1");
@@ -146,7 +128,18 @@ export const handleFileUpload = (
             const listRowIndex = lines.findIndex((line) =>
                 line.startsWith("Lista temática")
             );
+            const headerIndex = lines.findIndex((line) =>
+                line.startsWith("Nome;Data de nascimento;")
+            );
 
+            if (headerIndex === -1) {
+                setError({
+                    title: "Ops, parece que algo não funcionou!",
+                    message:
+                        "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
+                });
+                return;
+            }
             const list = lines[listRowIndex]?.split(
                 ";"
             )[1] as ThematicList | null;
