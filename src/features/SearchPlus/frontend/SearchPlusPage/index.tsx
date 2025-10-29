@@ -69,18 +69,18 @@ const Content: React.FC<ContentProps> = ({ setSnackbarError }) => {
     );
 };
 
-export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
-    error,
-}) => {
-    const [isOpen, setIsOpen] = useState(true);
-
+export const SearchPlusSnackbar: React.FC<{
+    error: ErrorData;
+    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
+}> = ({ error, setSnackbarError }) => {
     const closeSnackbar = (): void => {
-        setIsOpen(false);
+        setSnackbarError({ title: "", message: null });
     };
+    const isOpen = Boolean(error.message);
 
     return (
         <Snackbar
-            open={isOpen && !!error.message}
+            open={isOpen}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             sx={{ width: "80%" }}
             onClose={closeSnackbar}
@@ -201,7 +201,10 @@ export const SearchPlusPage: React.FC = () => {
             >
                 <Content setSnackbarError={setSnackbarError} />
             </div>
-            <SearchPlusSnackbar error={snackbarError} />
+            <SearchPlusSnackbar
+                error={snackbarError}
+                setSnackbarError={setSnackbarError}
+            />
             <div
                 style={{
                     backgroundColor: "#CF4047",

@@ -29,6 +29,11 @@ export const InputContent: React.FC<DropZoneProps> = ({
 
     const showDragNDropArea = (): void => {
         setRawFileContent(null);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
     };
 
     return (
@@ -52,6 +57,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     header={header}
                     thematicList={ListTitles[header.thematicList]}
                     setErrorMessage={setErrorMessage}
+                    setRawFileContent={setRawFileContent}
                     onRemoveFileClick={showDragNDropArea}
                 />
             ) : (

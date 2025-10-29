@@ -15,6 +15,13 @@ export const handleFileUpload = (
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
     if (!file.name.endsWith(".csv")) {
+        //TODO: criar funcao para resetar estados, que se repete em varios lugares
+        setRawFileContent(null);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
         setSnackbarError({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:
@@ -37,6 +44,12 @@ export const handleFileUpload = (
             );
 
             if (headerIndex === -1) {
+                setRawFileContent(null);
+                setHeader({
+                    thematicList: null,
+                    createdAtDate: "01/01/1970",
+                    createdAtTime: "00:00",
+                });
                 setSnackbarError({
                     title: "Ops, parece que algo não funcionou!",
                     message:
@@ -49,6 +62,12 @@ export const handleFileUpload = (
             )[1] as ThematicList | null;
 
             if (!list || !(list in csvListTitleToListKey)) {
+                setRawFileContent(null);
+                setHeader({
+                    thematicList: null,
+                    createdAtDate: "01/01/1970",
+                    createdAtTime: "00:00",
+                });
                 setSnackbarError({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
@@ -75,6 +94,12 @@ export const handleFileUpload = (
                 !time.isBrtDateStringValid(createdAtDate) ||
                 !time.isBrtTimeStringValid(createdAtTime)
             ) {
+                setRawFileContent(null);
+                setHeader({
+                    thematicList: null,
+                    createdAtDate: "01/01/1970",
+                    createdAtTime: "00:00",
+                });
                 setSnackbarError({
                     title: "Ops, parece que algo não funcionou!",
                     message:
@@ -82,8 +107,15 @@ export const handleFileUpload = (
                 });
                 return;
             }
+
             setRawFileContent(file);
         } catch (err) {
+            setRawFileContent(null);
+            setHeader({
+                thematicList: null,
+                createdAtDate: "01/01/1970",
+                createdAtTime: "00:00",
+            });
             if (err instanceof Error) {
                 setSnackbarError({
                     title: "Ops, parece que algo não funcionou!",
@@ -99,6 +131,13 @@ export const handleFileUpload = (
     };
 
     reader.onerror = (): void => {
+        setRawFileContent(null);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
+
         setSnackbarError({
             title: "Ops, parece que algo não funcionou!",
             message: "Erro desconhecido ao processar arquivo.",
