@@ -2,11 +2,8 @@ import { Button } from "@/features/common/frontend/atoms";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { handleClick } from "../DragNDropArea/modules/handleDrop";
-import type {
-    ErrorData,
-    HeaderData,
-} from "@features/SearchPlus/frontend/SearchPlusPage";
+import { handleClick } from "./logic";
+import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -14,10 +11,9 @@ import CloseIcon from "@mui/icons-material/Close";
 type TermsOfUseProps = {
     file: File;
     thematicList: string;
-    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
-    setIsError: React.Dispatch<React.SetStateAction<string>>;
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
     onRemoveFileClick: React.DispatchWithoutAction;
 };
@@ -25,10 +21,9 @@ type TermsOfUseProps = {
 export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     file,
     thematicList,
-    setError,
     setJsonData,
     setHeader,
-    setIsError,
+    setErrorMessage,
     header,
     onRemoveFileClick,
 }) => {
@@ -128,10 +123,9 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                 onClick={() => {
                     handleClick(
                         file,
-                        setError,
                         setJsonData,
                         setHeader,
-                        setIsError,
+                        setErrorMessage,
                         header
                     );
                 }}
