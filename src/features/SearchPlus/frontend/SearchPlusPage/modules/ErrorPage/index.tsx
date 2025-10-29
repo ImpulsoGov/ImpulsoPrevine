@@ -4,10 +4,15 @@ import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPag
 
 type Props = {
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
-    setIsError: React.Dispatch<React.SetStateAction<string>>;
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+    error: string;
 };
 
-export const Error: React.FC<Props> = ({ setJsonData, setIsError }) => {
+export const Error: React.FC<Props> = ({
+    setJsonData,
+    setErrorMessage,
+    error,
+}) => {
     return (
         <div
             style={{
@@ -34,7 +39,7 @@ export const Error: React.FC<Props> = ({ setJsonData, setIsError }) => {
                     fontWeight: 400,
                 }}
             >
-                Ops, parece que algo não funcionou!
+                {error}
                 <div style={{ fontWeight: 700 }}>
                     Tente enviar um novo arquivo
                 </div>
@@ -47,7 +52,7 @@ export const Error: React.FC<Props> = ({ setJsonData, setIsError }) => {
                 }}
                 onClick={() => {
                     setJsonData([]);
-                    setIsError("");
+                    setErrorMessage("");
                 }}
             >
                 <Text

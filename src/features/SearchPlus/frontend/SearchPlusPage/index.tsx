@@ -26,13 +26,12 @@ export type ErrorData = {
 };
 
 type ContentProps = {
-    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
 };
 
-const Content: React.FC<ContentProps> = ({ setError }) => {
+const Content: React.FC<ContentProps> = ({ setSnackbarError }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
-    // TODO: rever tipo desse estado, poderia ser um boolean
-    const [isError, setIsError] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
@@ -40,8 +39,14 @@ const Content: React.FC<ContentProps> = ({ setError }) => {
         createdAtTime: "00:00",
     });
 
-    if (isError.length > 0) {
-        return <Error setJsonData={setJsonData} setIsError={setIsError} />;
+    if (errorMessage.length > 0) {
+        return (
+            <Error
+                setJsonData={setJsonData}
+                setErrorMessage={setErrorMessage}
+                error={errorMessage}
+            />
+        );
     }
 
     if (jsonData.length > 0)
@@ -55,11 +60,11 @@ const Content: React.FC<ContentProps> = ({ setError }) => {
 
     return (
         <InputContent
-            setError={setError}
+            setSnackbarError={setSnackbarError}
             setJsonData={setJsonData}
             setHeader={setHeader}
             header={header}
-            setIsError={setIsError}
+            setErrorMessage={setErrorMessage}
         />
     );
 };
@@ -155,7 +160,7 @@ export const SearchPlusSnackbar: React.FC<{ error: ErrorData }> = ({
 };
 
 export const SearchPlusPage: React.FC = () => {
-    const [error, setError] = useState<ErrorData>({
+    const [snackbarError, setSnackbarError] = useState<ErrorData>({
         title: "",
         message: null,
     });
@@ -194,9 +199,9 @@ export const SearchPlusPage: React.FC = () => {
                     alignItems: "center",
                 }}
             >
-                <Content setError={setError} />
+                <Content setSnackbarError={setSnackbarError} />
             </div>
-            <SearchPlusSnackbar error={error} />
+            <SearchPlusSnackbar error={snackbarError} />
             <div
                 style={{
                     backgroundColor: "#CF4047",
