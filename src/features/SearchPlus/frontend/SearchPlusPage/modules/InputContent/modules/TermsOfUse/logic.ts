@@ -12,6 +12,7 @@ export const handleClick = (
     file: File,
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
+    setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
     header: HeaderData
 ): void => {
@@ -51,6 +52,13 @@ export const handleClick = (
                 createdAtTime: createdAt.createdAtTime,
             }));
             if (!header.thematicList) {
+                setJsonData([]);
+                setRawFileContent(null);
+                setHeader({
+                    thematicList: null,
+                    createdAtDate: "01/01/1970",
+                    createdAtTime: "00:00",
+                });
                 setErrorMessage(
                     "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans."
                 );
@@ -68,6 +76,13 @@ export const handleClick = (
             setJsonData(data);
         } catch (err) {
             console.error(err);
+            setJsonData([]);
+            setRawFileContent(null);
+            setHeader({
+                thematicList: null,
+                createdAtDate: "01/01/1970",
+                createdAtTime: "00:00",
+            });
             setErrorMessage(
                 "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
             );
@@ -75,6 +90,14 @@ export const handleClick = (
     };
 
     reader.onerror = (): void => {
+        setRawFileContent(null);
+        setJsonData([]);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
+
         setErrorMessage(
             "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
         );
