@@ -15,6 +15,7 @@ export const handleFileUpload = (
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
     if (!file.name.endsWith(".csv")) {
+        //TODO: criar funcao para resetar estados, que se repete em varios lugares
         setRawFileContent(null);
         setHeader({
             thematicList: null,
@@ -106,7 +107,7 @@ export const handleFileUpload = (
                 });
                 return;
             }
-            console.log("file processed successfully", file.name);
+
             setRawFileContent(file);
         } catch (err) {
             setRawFileContent(null);
