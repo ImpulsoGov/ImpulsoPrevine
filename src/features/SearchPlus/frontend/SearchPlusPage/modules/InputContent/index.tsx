@@ -11,7 +11,7 @@ import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
 
 type DropZoneProps = {
-    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
@@ -19,7 +19,7 @@ type DropZoneProps = {
 };
 
 export const InputContent: React.FC<DropZoneProps> = ({
-    setError,
+    setSnackbarError,
     setJsonData,
     setHeader,
     setErrorMessage,
@@ -56,7 +56,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
                 />
             ) : (
                 <DragNDropArea
-                    setError={setError}
+                    setSnackbarError={setSnackbarError}
                     setRawFileContent={setRawFileContent}
                     setHeader={setHeader}
                 />
