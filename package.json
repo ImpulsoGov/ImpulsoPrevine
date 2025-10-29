@@ -41,7 +41,7 @@
         "lodash.merge": "^4.6.2",
         "mixpanel-browser": "^2.55.1",
         "next": "^15.5.0",
-        "next-auth": "^4.24.10",
+        "next-auth": "^4.24.12",
         "papaparse": "^5.4.1",
         "prisma": "5.22.0",
         "react": "19.0.0",
