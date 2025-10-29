@@ -25,6 +25,8 @@ export const DragNDropArea: React.FC<Props> = ({
             onDrop={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
+                setSnackbarError({ title: "", message: null });
+
                 const file = event.dataTransfer.files[0];
                 handleFileUpload(
                     file,
@@ -80,7 +82,6 @@ export const DragNDropArea: React.FC<Props> = ({
                     event.stopPropagation();
 
                     const files = event.target.files;
-
                     if (files) {
                         handleFileUpload(
                             files[0],
@@ -89,6 +90,7 @@ export const DragNDropArea: React.FC<Props> = ({
                             setHeader
                         );
                     }
+                    event.target.value = "";
                 }}
                 style={{ display: "none" }}
             />

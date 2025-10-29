@@ -16,6 +16,7 @@ type TermsOfUseProps = {
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
     onRemoveFileClick: React.DispatchWithoutAction;
+    setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
 };
 
 export const TermsOfUse: React.FC<TermsOfUseProps> = ({
@@ -26,6 +27,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     setErrorMessage,
     header,
     onRemoveFileClick,
+    setRawFileContent,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
     return (
@@ -125,6 +127,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                         file,
                         setJsonData,
                         setHeader,
+                        setRawFileContent,
                         setErrorMessage,
                         header
                     );
