@@ -25,6 +25,7 @@ export const DragNDropArea: React.FC<Props> = ({
             onDrop={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
+                //TODO: Trocar o reset do snackbar error para uma funcao mais semantica
                 setSnackbarError({ title: "", message: null });
 
                 const file = event.dataTransfer.files[0];

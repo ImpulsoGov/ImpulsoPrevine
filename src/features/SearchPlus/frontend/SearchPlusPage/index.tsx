@@ -76,10 +76,11 @@ export const SearchPlusSnackbar: React.FC<{
     const closeSnackbar = (): void => {
         setSnackbarError({ title: "", message: null });
     };
+    const isOpen = Boolean(error.message);
 
     return (
         <Snackbar
-            open={!!error.message}
+            open={isOpen}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             sx={{ width: "80%" }}
             onClose={closeSnackbar}
