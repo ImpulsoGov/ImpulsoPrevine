@@ -14,7 +14,7 @@ type DropZoneProps = {
     setError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
-    setIsError: React.Dispatch<React.SetStateAction<string>>;
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
 };
 
@@ -22,7 +22,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
     setError,
     setJsonData,
     setHeader,
-    setIsError,
+    setErrorMessage,
     header,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
@@ -47,12 +47,11 @@ export const InputContent: React.FC<DropZoneProps> = ({
             {rawFileContent && header.thematicList ? (
                 <TermsOfUse
                     file={rawFileContent}
-                    setError={setError}
                     setJsonData={setJsonData}
                     setHeader={setHeader}
                     header={header}
                     thematicList={ListTitles[header.thematicList]}
-                    setIsError={setIsError}
+                    setErrorMessage={setErrorMessage}
                     onRemoveFileClick={showDragNDropArea}
                 />
             ) : (

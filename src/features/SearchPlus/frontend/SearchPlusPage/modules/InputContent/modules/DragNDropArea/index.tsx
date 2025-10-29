@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { handleFileUpload } from "./modules/handleDrop";
+import { handleFileUpload } from "./logic";
 import type {
     ErrorData,
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 
 type Props = {
-    setError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
-    setError,
+    setSnackbarError,
     setHeader,
     setRawFileContent,
 }) => {
@@ -26,7 +26,12 @@ export const DragNDropArea: React.FC<Props> = ({
                 event.preventDefault();
                 event.stopPropagation();
                 const file = event.dataTransfer.files[0];
-                handleFileUpload(file, setError, setRawFileContent, setHeader);
+                handleFileUpload(
+                    file,
+                    setSnackbarError,
+                    setRawFileContent,
+                    setHeader
+                );
             }}
             onDragOver={handleDragOver}
             style={{
@@ -79,7 +84,7 @@ export const DragNDropArea: React.FC<Props> = ({
                     if (files) {
                         handleFileUpload(
                             files[0],
-                            setError,
+                            setSnackbarError,
                             setRawFileContent,
                             setHeader
                         );
