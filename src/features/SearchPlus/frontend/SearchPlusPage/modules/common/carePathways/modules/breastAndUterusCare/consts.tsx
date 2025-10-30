@@ -2,7 +2,7 @@
 import type { ColumnsProps, SearchPlusItem } from "../../model";
 //TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
-import { formatUtcToBrt } from "@/features/common/shared/time";
+import * as time from "@/features/common/shared/time";
 import * as goodPractices from "./modules/goodPractices";
 import { TagByStatus } from "../../../Tags";
 
@@ -25,64 +25,64 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
             );
         },
     },
-    {
-        fields: [
-            "patientBirthDate",
-            "papTestLatestRequestDate",
-            "papTestLatestEvaluationDate",
-            "mammographyLatestRequestDate",
-            "mammographyLatestEvaluationDate",
-            "latestSexualAndReproductiveHealthAppointmentDate",
-            "createdAt",
-        ],
-        headerName: "Exame câncer de colo de útero\nData e situação",
-        width: {
-            landscape: 150,
-            portrait: 135,
-        },
-        renderCell: (param: unknown): React.ReactNode => {
-            const { latestDate, status } =
-                goodPractices.cervixCancerResult(param);
+    // {
+    //     fields: [
+    //         "patientBirthDate",
+    //         "papTestLatestRequestDate",
+    //         "papTestLatestEvaluationDate",
+    //         "mammographyLatestRequestDate",
+    //         "mammographyLatestEvaluationDate",
+    //         "latestSexualAndReproductiveHealthAppointmentDate",
+    //         "createdAt",
+    //     ],
+    //     headerName: "Exame câncer de colo de útero\nData e situação",
+    //     width: {
+    //         landscape: 150,
+    //         portrait: 135,
+    //     },
+    //     renderCell: (param: unknown): React.ReactNode => {
+    //         const { latestDate, status } =
+    //             goodPractices.cervixCancerResult(param);
 
-            return (
-                <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
-                    <div>
-                        <TagByStatus content={status} />
-                    </div>
-                </div>
-            );
-        },
-    },
-    {
-        fields: [
-            "patientBirthDate",
-            "papTestLatestRequestDate",
-            "papTestLatestEvaluationDate",
-            "mammographyLatestRequestDate",
-            "mammographyLatestEvaluationDate",
-            "latestSexualAndReproductiveHealthAppointmentDate",
-            "createdAt",
-        ],
-        headerName: "Consulta saúde sexual e reprodutiva\nData e situação",
-        width: {
-            landscape: 150,
-            portrait: 135,
-        },
-        renderCell: (param: unknown): React.ReactNode => {
-            const { latestDate, status } =
-                goodPractices.sexualAndReproductiveHealthCareResult(param);
+    //         return (
+    //             <div>
+    //                 <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+    //                 <div>
+    //                     <TagByStatus content={status} />
+    //                 </div>
+    //             </div>
+    //         );
+    //     },
+    // },
+    // {
+    //     fields: [
+    //         "patientBirthDate",
+    //         "papTestLatestRequestDate",
+    //         "papTestLatestEvaluationDate",
+    //         "mammographyLatestRequestDate",
+    //         "mammographyLatestEvaluationDate",
+    //         "latestSexualAndReproductiveHealthAppointmentDate",
+    //         "createdAt",
+    //     ],
+    //     headerName: "Consulta saúde sexual e reprodutiva\nData e situação",
+    //     width: {
+    //         landscape: 150,
+    //         portrait: 135,
+    //     },
+    //     renderCell: (param: unknown): React.ReactNode => {
+    //         const { latestDate, status } =
+    //             goodPractices.sexualAndReproductiveHealthCareResult(param);
 
-            return (
-                <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
-                    <div>
-                        <TagByStatus content={status} />
-                    </div>
-                </div>
-            );
-        },
-    },
+    //         return (
+    //             <div>
+    //                 <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+    //                 <div>
+    //                     <TagByStatus content={status} />
+    //                 </div>
+    //             </div>
+    //         );
+    //     },
+    // },
     {
         fields: [
             "patientBirthDate",
@@ -104,7 +104,11 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
 
             return (
                 <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+                    <div>
+                        {latestDate
+                            ? time.localDateToBrtString2DigitYear(latestDate)
+                            : "-"}
+                    </div>
                     <div>
                         <TagByStatus content={status} />
                     </div>

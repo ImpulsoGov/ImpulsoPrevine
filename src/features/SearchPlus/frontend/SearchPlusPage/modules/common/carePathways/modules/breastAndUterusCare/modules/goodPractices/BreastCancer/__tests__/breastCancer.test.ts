@@ -1,18 +1,18 @@
 import { BreastCancerCalculator } from "../breastCancerCalculator";
+import { LocalDate } from "@js-joda/core";
 
 describe("BreastCancerCalculator", () => {
-    const mammographyLatestRequestDate = new Date("2022-01-01");
-    const mammographyLatestEvaluationDate = new Date("2022-02-01");
+    const mammographyLatestRequestDate = LocalDate.parse("2022-01-01");
+    const mammographyLatestEvaluationDate = LocalDate.parse("2022-02-01");
     const baseData = {
-        patientBirthDate: new Date("1974-01-01"),
+        patientBirthDate: LocalDate.parse("1974-01-01"),
         mammographyLatestRequestDate: mammographyLatestRequestDate,
         mammographyLatestEvaluationDate: mammographyLatestEvaluationDate,
-        papTestLatestRequestDate: new Date("2022-01-01"),
-        papTestLatestEvaluationDate: new Date("2022-01-01"),
-        latestSexualAndReproductiveHealthAppointmentDate: new Date(
-            "2022-01-01"
-        ),
-        createdAt: new Date("2025-10-10"),
+        papTestLatestRequestDate: LocalDate.parse("2022-01-01"),
+        papTestLatestEvaluationDate: LocalDate.parse("2022-01-01"),
+        latestSexualAndReproductiveHealthAppointmentDate:
+            LocalDate.parse("2022-01-01"),
+        createdAt: LocalDate.parse("2025-10-10"),
     };
 
     describe("computelatestDate", () => {
@@ -54,7 +54,8 @@ describe("BreastCancerCalculator", () => {
     describe("computeStatus", () => {
         describe("A boa prática se aplica para essa pessoa?", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 50)', () => {
-                const patientBirthDateFor15YearsOld = new Date("2010-01-01");
+                const patientBirthDateFor15YearsOld =
+                    LocalDate.parse("2010-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
                     patientBirthDate: patientBirthDateFor15YearsOld,
@@ -63,7 +64,8 @@ describe("BreastCancerCalculator", () => {
             });
 
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
-                const patientBirthDateFor75YearsOld = new Date("1950-01-01");
+                const patientBirthDateFor75YearsOld =
+                    LocalDate.parse("1950-01-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
                     patientBirthDate: patientBirthDateFor75YearsOld,
@@ -93,8 +95,9 @@ describe("BreastCancerCalculator", () => {
         describe("O prazo dessa boa prática vence no quadrimestre atual?", () => {
             it('retorna "Vence dentro do Q3" quando o prazo vence no quadrimestre atual', () => {
                 //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
-                const validDateSmallerThanEndOfQ3 = new Date("2023-10-15");
-                const unselectedDate = new Date("2023-10-01");
+                const validDateSmallerThanEndOfQ3 =
+                    LocalDate.parse("2023-10-15");
+                const unselectedDate = LocalDate.parse("2023-10-01");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
                     mammographyLatestRequestDate: unselectedDate,
@@ -109,10 +112,12 @@ describe("BreastCancerCalculator", () => {
         describe("O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática? ", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 50 anos', () => {
                 // Essa data gera uma idade na data da consulta de 48 anos
-                const patientBirthDateFor50YearOld = new Date("1975-01-01");
+                const patientBirthDateFor50YearOld =
+                    LocalDate.parse("1975-01-01");
                 //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
-                const validDateSmallerThanEndOfQ3 = new Date("2023-10-25");
-                const unselectedDate = new Date("2023-10-24");
+                const validDateSmallerThanEndOfQ3 =
+                    LocalDate.parse("2023-10-25");
+                const unselectedDate = LocalDate.parse("2023-10-24");
                 const calc = new BreastCancerCalculator({
                     ...baseData,
                     patientBirthDate: patientBirthDateFor50YearOld,
@@ -126,8 +131,8 @@ describe("BreastCancerCalculator", () => {
 
         it('retorna "Em dia" quando todos os critérios são atendidos', () => {
             //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
-            const validDateSmallerThanEndOfQ3 = new Date("2024-02-01");
-            const unselectedDate = new Date("2024-01-01");
+            const validDateSmallerThanEndOfQ3 = LocalDate.parse("2024-02-01");
+            const unselectedDate = LocalDate.parse("2024-01-01");
             const calc = new BreastCancerCalculator({
                 ...baseData,
                 mammographyLatestRequestDate: unselectedDate,
