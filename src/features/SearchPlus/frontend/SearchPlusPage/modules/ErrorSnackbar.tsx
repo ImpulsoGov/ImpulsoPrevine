@@ -1,7 +1,7 @@
 import { IconButton, Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import type { ErrorData } from "..";
+import type { ErrorData } from "@features/SearchPlus/frontend/SearchPlusPage";
 
 export const ErrorSnackbar: React.FC<{
     error: ErrorData;
