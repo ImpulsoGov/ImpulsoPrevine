@@ -4,7 +4,7 @@ import {
     type SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { parse } from "papaparse";
-import type { CsvRow } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/InputContent/model";
+import type { CsvRow } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/Content";
 import type * as time from "@/features/common/shared/time";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 
