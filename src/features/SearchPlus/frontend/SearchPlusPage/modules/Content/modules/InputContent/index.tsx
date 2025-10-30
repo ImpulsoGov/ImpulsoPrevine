@@ -9,6 +9,7 @@ import type {
 import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
+import { FileDetails } from "./modules/FileDetails";
 
 export type { CsvRow } from "./model";
 
@@ -38,6 +39,17 @@ export const InputContent: React.FC<DropZoneProps> = ({
         });
     };
 
+    const resetStateAndSetErrorMessage = (message: string): void => {
+        setJsonData([]);
+        setRawFileContent(null);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
+        setErrorMessage(message);
+    };
+
     return (
         <div
             style={{
@@ -57,11 +69,15 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     setJsonData={setJsonData}
                     setHeader={setHeader}
                     header={header}
-                    thematicList={ListTitles[header.thematicList]}
-                    setErrorMessage={setErrorMessage}
-                    setRawFileContent={setRawFileContent}
                     onRemoveFileClick={showDragNDropArea}
-                />
+                    resetStates={resetStateAndSetErrorMessage}
+                >
+                    <FileDetails
+                        file={rawFileContent}
+                        onRemoveFileClick={showDragNDropArea}
+                        thematicList={ListTitles[header.thematicList]}
+                    />
+                </TermsOfUse>
             ) : (
                 <DragNDropArea
                     setSnackbarError={setSnackbarError}
