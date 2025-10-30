@@ -13,7 +13,7 @@ import { FileDetails } from "./modules/FileDetails";
 
 export type { CsvRow } from "./model";
 
-type DropZoneProps = {
+type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
@@ -21,7 +21,7 @@ type DropZoneProps = {
     header: HeaderData;
 };
 
-export const InputContent: React.FC<DropZoneProps> = ({
+export const InputContent: React.FC<Props> = ({
     setSnackbarError,
     setJsonData,
     setHeader,
