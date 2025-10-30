@@ -1,5 +1,8 @@
 import { useState } from "react";
-import type { ErrorData, HeaderData } from "../..";
+import type {
+    ErrorData,
+    HeaderData,
+} from "@features/SearchPlus/frontend/SearchPlusPage";
 import type { SearchPlusItem } from "../common/carePathways";
 import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
@@ -21,7 +24,7 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         createdAtTime: "00:00",
     });
 
-    if (errorMessage.length > 0) {
+    if (errorMessage.length > 0)
         return (
             <Error
                 setJsonData={setJsonData}
@@ -29,7 +32,6 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
                 error={errorMessage}
             />
         );
-    }
 
     if (jsonData.length > 0)
         return (
