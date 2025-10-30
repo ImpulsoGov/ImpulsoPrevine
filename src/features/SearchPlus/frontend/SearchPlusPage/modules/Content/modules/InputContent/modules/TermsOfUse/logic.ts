@@ -36,13 +36,12 @@ export const handleClick = (
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
     header: HeaderData,
-    resetStates: (message: string) => void
+    errorHandler: (message: string) => void
 ): void => {
     const reader = new FileReader();
     reader.onload = (): void => {
         try {
             const text = typeof reader.result === "string" ? reader.result : "";
-
             const lines = text.split(/\r?\n/);
 
             const { createdAtDate, createdAtTime } = createdAt(lines);
@@ -61,7 +60,7 @@ export const handleClick = (
                 createdAtTime: createdAtTime,
             }));
             if (!header.thematicList) {
-                resetStates(
+                errorHandler(
                     "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans."
                 );
                 return;
@@ -81,14 +80,14 @@ export const handleClick = (
             setJsonData(data);
         } catch (err) {
             console.error(err);
-            resetStates(
+            errorHandler(
                 "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
             );
         }
     };
 
     reader.onerror = (): void => {
-        resetStates(
+        errorHandler(
             "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
         );
     };

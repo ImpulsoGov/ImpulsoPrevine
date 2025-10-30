@@ -10,19 +10,13 @@ import * as time from "@/features/common/shared/time";
 
 export const handleFileUpload = (
     file: File,
-    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>,
+    errorHandler: (message: ErrorData) => void,
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
     if (!file.name.endsWith(".csv")) {
         //TODO: criar funcao para resetar estados, que se repete em varios lugares
-        setRawFileContent(null);
-        setHeader({
-            thematicList: null,
-            createdAtDate: "01/01/1970",
-            createdAtTime: "00:00",
-        });
-        setSnackbarError({
+        errorHandler({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:
                 "<div>O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, <a href='www.google.com' style='text-decoration: underline;' >clique aqui.</a></div>",
@@ -44,13 +38,7 @@ export const handleFileUpload = (
             );
 
             if (headerIndex === -1) {
-                setRawFileContent(null);
-                setHeader({
-                    thematicList: null,
-                    createdAtDate: "01/01/1970",
-                    createdAtTime: "00:00",
-                });
-                setSnackbarError({
+                errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message:
                         "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
@@ -62,13 +50,7 @@ export const handleFileUpload = (
             )[1] as ThematicList | null;
 
             if (!list || !(list in csvListTitleToListKey)) {
-                setRawFileContent(null);
-                setHeader({
-                    thematicList: null,
-                    createdAtDate: "01/01/1970",
-                    createdAtTime: "00:00",
-                });
-                setSnackbarError({
+                errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
                         "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
@@ -94,13 +76,7 @@ export const handleFileUpload = (
                 !time.isBrtDateStringValid(createdAtDate) ||
                 !time.isBrtTimeStringValid(createdAtTime)
             ) {
-                setRawFileContent(null);
-                setHeader({
-                    thematicList: null,
-                    createdAtDate: "01/01/1970",
-                    createdAtTime: "00:00",
-                });
-                setSnackbarError({
+                errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message:
                         "Data de geração do arquivo inválida ou em formato incorreto.",
@@ -110,19 +86,13 @@ export const handleFileUpload = (
 
             setRawFileContent(file);
         } catch (err) {
-            setRawFileContent(null);
-            setHeader({
-                thematicList: null,
-                createdAtDate: "01/01/1970",
-                createdAtTime: "00:00",
-            });
             if (err instanceof Error) {
-                setSnackbarError({
+                errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message: `Erro ao processar arquivo: ${err.message}`,
                 });
             } else {
-                setSnackbarError({
+                errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message: "Erro desconhecido ao processar arquivo.",
                 });
@@ -131,14 +101,7 @@ export const handleFileUpload = (
     };
 
     reader.onerror = (): void => {
-        setRawFileContent(null);
-        setHeader({
-            thematicList: null,
-            createdAtDate: "01/01/1970",
-            createdAtTime: "00:00",
-        });
-
-        setSnackbarError({
+        errorHandler({
             title: "Ops, parece que algo não funcionou!",
             message: "Erro desconhecido ao processar arquivo.",
         });

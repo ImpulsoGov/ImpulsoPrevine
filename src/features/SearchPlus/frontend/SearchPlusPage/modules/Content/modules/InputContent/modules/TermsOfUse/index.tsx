@@ -11,7 +11,7 @@ type TermsOfUseProps = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     header: HeaderData;
     onRemoveFileClick: React.DispatchWithoutAction;
-    resetStates: (message: string) => void;
+    errorHandler: (message: string) => void;
 };
 
 export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
@@ -20,7 +20,7 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
     setHeader,
     header,
     onRemoveFileClick,
-    resetStates,
+    errorHandler,
     children,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
@@ -67,7 +67,7 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                         setJsonData,
                         setHeader,
                         header,
-                        resetStates
+                        errorHandler
                     );
                 }}
                 style={{

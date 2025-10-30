@@ -39,7 +39,10 @@ export const InputContent: React.FC<DropZoneProps> = ({
         });
     };
 
-    const resetStateAndSetErrorMessage = (message: string): void => {
+    const resetContentStatesAndSetErrorMessage = <TMessage,>(
+        message: TMessage,
+        setError: React.Dispatch<React.SetStateAction<TMessage>>
+    ): void => {
         setJsonData([]);
         setRawFileContent(null);
         setHeader({
@@ -47,7 +50,7 @@ export const InputContent: React.FC<DropZoneProps> = ({
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
         });
-        setErrorMessage(message);
+        setError(message);
     };
 
     return (
@@ -70,7 +73,12 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     setHeader={setHeader}
                     header={header}
                     onRemoveFileClick={showDragNDropArea}
-                    resetStates={resetStateAndSetErrorMessage}
+                    errorHandler={(message: string) => {
+                        resetContentStatesAndSetErrorMessage(
+                            message,
+                            setErrorMessage
+                        );
+                    }}
                 >
                     <FileDetails
                         file={rawFileContent}
@@ -80,9 +88,14 @@ export const InputContent: React.FC<DropZoneProps> = ({
                 </TermsOfUse>
             ) : (
                 <DragNDropArea
-                    setSnackbarError={setSnackbarError}
                     setRawFileContent={setRawFileContent}
                     setHeader={setHeader}
+                    errorHandler={(message: ErrorData) => {
+                        resetContentStatesAndSetErrorMessage(
+                            message,
+                            setSnackbarError
+                        );
+                    }}
                 />
             )}
         </div>
