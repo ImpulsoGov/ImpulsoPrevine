@@ -5,6 +5,8 @@ import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
 import { Error } from "./modules/ErrorPage";
 
+export type { CsvRow } from "./modules/InputContent";
+
 type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
 };

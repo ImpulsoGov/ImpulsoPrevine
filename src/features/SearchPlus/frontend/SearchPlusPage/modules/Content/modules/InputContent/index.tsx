@@ -10,6 +10,8 @@ import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
 
+export type { CsvRow } from "./model";
+
 type DropZoneProps = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
