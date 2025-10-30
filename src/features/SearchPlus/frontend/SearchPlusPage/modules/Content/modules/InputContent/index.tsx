@@ -9,10 +9,11 @@ import type {
 import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
+import { FileDetails } from "./modules/FileDetails";
 
 export type { CsvRow } from "./model";
 
-type DropZoneProps = {
+type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
@@ -20,7 +21,7 @@ type DropZoneProps = {
     header: HeaderData;
 };
 
-export const InputContent: React.FC<DropZoneProps> = ({
+export const InputContent: React.FC<Props> = ({
     setSnackbarError,
     setJsonData,
     setHeader,
@@ -36,6 +37,21 @@ export const InputContent: React.FC<DropZoneProps> = ({
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
         });
+    };
+
+    // TODO: adicionar num context
+    const resetContentStatesAndSetErrorMessage = <TMessage,>(
+        message: TMessage,
+        setError: React.Dispatch<React.SetStateAction<TMessage>>
+    ): void => {
+        setJsonData([]);
+        setRawFileContent(null);
+        setHeader({
+            thematicList: null,
+            createdAtDate: "01/01/1970",
+            createdAtTime: "00:00",
+        });
+        setError(message);
     };
 
     return (
@@ -57,16 +73,30 @@ export const InputContent: React.FC<DropZoneProps> = ({
                     setJsonData={setJsonData}
                     setHeader={setHeader}
                     header={header}
-                    thematicList={ListTitles[header.thematicList]}
-                    setErrorMessage={setErrorMessage}
-                    setRawFileContent={setRawFileContent}
                     onRemoveFileClick={showDragNDropArea}
-                />
+                    errorHandler={(message: string) => {
+                        resetContentStatesAndSetErrorMessage(
+                            message,
+                            setErrorMessage
+                        );
+                    }}
+                >
+                    <FileDetails
+                        file={rawFileContent}
+                        onRemoveFileClick={showDragNDropArea}
+                        thematicList={ListTitles[header.thematicList]}
+                    />
+                </TermsOfUse>
             ) : (
                 <DragNDropArea
-                    setSnackbarError={setSnackbarError}
                     setRawFileContent={setRawFileContent}
                     setHeader={setHeader}
+                    errorHandler={(message: ErrorData) => {
+                        resetContentStatesAndSetErrorMessage(
+                            message,
+                            setSnackbarError
+                        );
+                    }}
                 />
             )}
         </div>
