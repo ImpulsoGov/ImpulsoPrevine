@@ -1,33 +1,27 @@
 import { Button } from "@/features/common/frontend/atoms";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { handleClick } from "./logic";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
-import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 
 type TermsOfUseProps = {
     file: File;
-    thematicList: string;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
-    setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
     onRemoveFileClick: React.DispatchWithoutAction;
-    setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
+    errorHandler: (message: string) => void;
 };
 
-export const TermsOfUse: React.FC<TermsOfUseProps> = ({
+export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
     file,
-    thematicList,
     setJsonData,
     setHeader,
-    setErrorMessage,
     header,
     onRemoveFileClick,
-    setRawFileContent,
+    errorHandler,
+    children,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
     return (
@@ -40,62 +34,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                 marginBottom: "87px",
             }}
         >
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "16px",
-                    backgroundColor: "#FFF",
-                    border: "1px solid #CF4047",
-                    borderRadius: "60px",
-                    padding: "15px 30px",
-                    alignItems: "center",
-                }}
-            >
-                <Image
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jl03em07kildthfzbj"
-                    alt="Terms of Use"
-                    width={34}
-                    height={38}
-                />
-                <div
-                    style={{
-                        fontFamily: "Inter, sans-serif",
-                        lineHeight: "130%",
-                    }}
-                >
-                    <div
-                        style={{
-                            fontSize: "16px",
-                            fontWeight: 600,
-                            color: "#1F1F1F",
-                        }}
-                    >
-                        {file.name}
-                    </div>
-                    <div
-                        style={{
-                            fontSize: "13px",
-                            fontWeight: 500,
-                            color: "#777777",
-                        }}
-                    >
-                        ARQUIVO CSV • {thematicList.toUpperCase()}
-                    </div>
-                </div>
-                <IconButton
-                    aria-label="remover"
-                    sx={{
-                        padding: "10px",
-                        width: "40px",
-                        height: "40px",
-                        color: "#777777",
-                    }}
-                    onClick={onRemoveFileClick}
-                >
-                    <CloseIcon fontSize="small" />
-                </IconButton>
-            </div>
+            {children}
             <div style={{ width: "60%", display: "flex", gap: "12px" }}>
                 <div>
                     <input
@@ -127,9 +66,8 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                         file,
                         setJsonData,
                         setHeader,
-                        setRawFileContent,
-                        setErrorMessage,
-                        header
+                        header,
+                        errorHandler
                     );
                 }}
                 style={{

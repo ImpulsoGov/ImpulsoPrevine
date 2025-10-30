@@ -6,13 +6,13 @@ import type {
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 
 type Props = {
-    setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    errorHandler: (message: ErrorData) => void;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
-    setSnackbarError,
+    errorHandler,
     setHeader,
     setRawFileContent,
 }) => {
@@ -26,12 +26,12 @@ export const DragNDropArea: React.FC<Props> = ({
                 event.preventDefault();
                 event.stopPropagation();
                 //TODO: Trocar o reset do snackbar error para uma funcao mais semantica
-                setSnackbarError({ title: "", message: null });
+                errorHandler({ title: "", message: null });
 
                 const file = event.dataTransfer.files[0];
                 handleFileUpload(
                     file,
-                    setSnackbarError,
+                    errorHandler,
                     setRawFileContent,
                     setHeader
                 );
@@ -86,7 +86,7 @@ export const DragNDropArea: React.FC<Props> = ({
                     if (files) {
                         handleFileUpload(
                             files[0],
-                            setSnackbarError,
+                            errorHandler,
                             setRawFileContent,
                             setHeader
                         );
