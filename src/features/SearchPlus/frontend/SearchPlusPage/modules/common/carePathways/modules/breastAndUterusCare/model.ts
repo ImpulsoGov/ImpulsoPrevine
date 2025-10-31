@@ -29,7 +29,7 @@ export type BreastAndUterusCareItem = {
     patientCns: string;
     patientPhoneNumber: string;
     microAreaName: string;
-    patientBirthDate: LocalDate;
+    patientBirthDate: LocalDate | null;
     papTestLatestRequestDate: LocalDate | null;
     papTestLatestEvaluationDate: LocalDate | null;
     mammographyLatestRequestDate: LocalDate | null;

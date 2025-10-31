@@ -1,3 +1,5 @@
+import { LocalDate, Period } from "@js-joda/core";
+
 type Quadrimester = "1" | "2" | "3";
 export type Status =
     | "Não aplica"
@@ -7,13 +9,13 @@ export type Status =
     | "Em dia";
 
 export type InputData = {
-    patientBirthDate: Date;
-    papTestLatestRequestDate: Date | null;
-    papTestLatestEvaluationDate: Date | null;
-    mammographyLatestRequestDate: Date | null;
-    mammographyLatestEvaluationDate: Date | null;
-    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
-    createdAt: Date;
+    patientBirthDate: LocalDate;
+    papTestLatestRequestDate: LocalDate | null;
+    papTestLatestEvaluationDate: LocalDate | null;
+    mammographyLatestRequestDate: LocalDate | null;
+    mammographyLatestEvaluationDate: LocalDate | null;
+    latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
+    createdAt: LocalDate;
 };
 
 export class SexualAndReproductiveHealthCareCalculator {
@@ -23,53 +25,61 @@ export class SexualAndReproductiveHealthCareCalculator {
         this.#data = data;
     }
 
-    #getCurrentQuadrimester = (date: Date): 1 | 2 | 3 => {
-        const month = date.getUTCMonth() + 1;
+    #getCurrentQuadrimester = (date: LocalDate): 1 | 2 | 3 => {
+        const month = date.monthValue();
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
 
     #getDueDate = (
-        latestExamDate: Date | null,
+        latestExamDate: LocalDate | null,
         months: number
-    ): Date | null => {
+    ): LocalDate | null => {
         if (!latestExamDate) {
             return null;
         }
-        const newDate = new Date(latestExamDate);
-        newDate.setUTCMonth(newDate.getUTCMonth() + months);
-        return newDate;
+        return latestExamDate.plusMonths(months);
     };
 
-    #getEndQuadrimester(quadri: 1 | 2 | 3): Date {
-        const currentYear = this.#data.createdAt.getUTCFullYear().toString();
+    #getEndQuadrimester(quadri: 1 | 2 | 3): LocalDate {
+        const currentYear = this.#data.createdAt.year().toString();
         const endOfQuadrimester = {
             1: `${currentYear}-04-30`,
             2: `${currentYear}-08-31`,
             3: `${currentYear}-12-31`,
         };
-        return new Date(endOfQuadrimester[quadri]);
+        return LocalDate.parse(endOfQuadrimester[quadri]);
     }
 
-    #isDateLessThanEndQuadrimester(dueDate: Date | null): boolean | null {
+    #isDateLessThanEndQuadrimester(dueDate: LocalDate | null): boolean | null {
         if (!dueDate) return null;
         const current = this.#getCurrentQuadrimester(this.#data.createdAt);
-        return dueDate <= this.#getEndQuadrimester(current);
+        const endOfCurrentQuadri = this.#getEndQuadrimester(current);
+        return (
+            dueDate.isBefore(endOfCurrentQuadri) ||
+            dueDate.equals(endOfCurrentQuadri)
+        );
     }
 
-    #getYearBetweenDates(biggerDate: Date, smallerDate: Date): number {
-        return biggerDate.getUTCFullYear() - smallerDate.getUTCFullYear();
+    #getYearBetweenDates(
+        biggerDate: LocalDate,
+        smallerDate: LocalDate
+    ): number {
+        return Period.between(smallerDate, biggerDate).years();
     }
 
-    #isDateGreaterThanOrEqualToCurrentDate = (date: Date | null): boolean => {
+    #isDateGreaterThanOrEqualToCurrentDate = (
+        date: LocalDate | null
+    ): boolean => {
         if (!date) return false;
         const currentDate = this.#data.createdAt;
-        return date >= currentDate;
+        return date.isAfter(currentDate) || date.equals(currentDate);
     };
+
     #isGoodPracticeApplicableForPatient = (age: number): boolean => {
         return age >= 14 && age <= 69; //Regra para CONSULTA SAÚDE SEXUAL E REPRODUTIVA
     };
 
-    public computelatestDate(): Date | null {
+    public computelatestDate(): LocalDate | null {
         return this.#data.latestSexualAndReproductiveHealthAppointmentDate;
     }
 
@@ -97,8 +107,6 @@ export class SexualAndReproductiveHealthCareCalculator {
 
         // Essa pessoa possui data da última consulta?
         if (latestAppointmentDate === null) return "Nunca realizado";
-        if (isNaN(new Date(latestAppointmentDate).getTime()))
-            return "Nunca realizado";
 
         //Essa boa prática ainda está no prazo preconizado no indicador?
         const isGoodPracticeLessThanDueDate =

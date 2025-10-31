@@ -95,9 +95,13 @@ type StringMinute = `0${Range<0, 10>}` | `${Range<10, 60>}`;
 
 export type BRTTimeString = `${StringHour}:${StringMinute}`;
 
-export const brtStringToLocalDate = (date: BRTDateString): LocalDate => {
+export const brtStringToLocalDate = (date: BRTDateString): LocalDate | null => {
     const { day, month, year } = brtStringDateParser(date);
-    return LocalDate.of(year, month, day);
+    try {
+        return LocalDate.of(year, month, day);
+    } catch {
+        return null;
+    }
 };
 
 export const localDateToBrtString2DigitYear = (
