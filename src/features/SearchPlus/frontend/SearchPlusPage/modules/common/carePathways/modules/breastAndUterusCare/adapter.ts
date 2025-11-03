@@ -1,12 +1,13 @@
 import * as time from "@/features/common/shared/time";
+import type { LocalDate } from "@js-joda/core";
 import type {
     BreastAndUterusCareCsvRow,
     BreastAndUterusCareItem,
     BRTDateStringOrDash,
 } from "./model";
 
-const dateOrNull = (dateString: BRTDateStringOrDash): Date | null => {
-    return dateString === "-" ? null : time.brtStringToUtcDate(dateString);
+const dateOrNull = (dateString: BRTDateStringOrDash): LocalDate | null => {
+    return dateString === "-" ? null : time.brtStringToLocalDate(dateString);
 };
 
 type HeaderData = {
@@ -18,10 +19,7 @@ export const csvRowToBreastAndUterusCareItem = (
     csvRows: Array<BreastAndUterusCareCsvRow>,
     headerData: HeaderData
 ): Array<BreastAndUterusCareItem> => {
-    const createdAt = time.brtStringToUtcDate(
-        headerData.createdAtDate,
-        headerData.createdAtTime
-    );
+    const createdAt = time.brtStringToLocalDate(headerData.createdAtDate);
 
     return csvRows.map((row) => {
         const papTestLatestRequestDate =
@@ -53,7 +51,7 @@ export const csvRowToBreastAndUterusCareItem = (
                 row["Telefone residencial"] ||
                 row["Telefone de contato"],
             microAreaName: row["Microárea"],
-            patientBirthDate: time.brtStringToUtcDate(
+            patientBirthDate: time.brtStringToLocalDate(
                 row["Data de nascimento"]
             ),
             createdAt: createdAt,

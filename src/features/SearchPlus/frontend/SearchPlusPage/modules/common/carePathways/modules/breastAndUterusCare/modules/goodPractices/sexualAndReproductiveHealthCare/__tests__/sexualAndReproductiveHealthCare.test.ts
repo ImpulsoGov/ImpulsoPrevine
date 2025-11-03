@@ -1,19 +1,18 @@
 import { SexualAndReproductiveHealthCareCalculator } from "../sexualAndReproductiveHealthCareCalculator";
-
+import { LocalDate } from "@js-joda/core";
 describe("SexualAndReproductiveCare", () => {
-    const latestSexualAndReproductiveHealthAppointmentDate = new Date(
-        "2022-01-01"
-    );
+    const latestSexualAndReproductiveHealthAppointmentDate =
+        LocalDate.parse("2022-01-01");
 
     const baseData = {
-        patientBirthDate: new Date("1990-01-01"),
-        papTestLatestRequestDate: new Date("2022-01-01"),
-        papTestLatestEvaluationDate: new Date("2022-02-01"),
-        mammographyLatestRequestDate: new Date("2022-01-01"),
-        mammographyLatestEvaluationDate: new Date("2022-02-01"),
+        patientBirthDate: LocalDate.parse("1990-01-01"),
+        papTestLatestRequestDate: LocalDate.parse("2022-01-01"),
+        papTestLatestEvaluationDate: LocalDate.parse("2022-02-01"),
+        mammographyLatestRequestDate: LocalDate.parse("2022-01-01"),
+        mammographyLatestEvaluationDate: LocalDate.parse("2022-02-01"),
         latestSexualAndReproductiveHealthAppointmentDate:
             latestSexualAndReproductiveHealthAppointmentDate,
-        createdAt: new Date("2025-10-10"),
+        createdAt: LocalDate.parse("2025-10-10"),
     };
 
     describe("computelatestDate", () => {
@@ -40,7 +39,8 @@ describe("SexualAndReproductiveCare", () => {
     describe("computeStatus", () => {
         describe("A boa prática se aplica para essa pessoa?", () => {
             it('retorna "Não aplica" quando idade está fora da faixa (menor de 14)', () => {
-                const patientBirthDateFor10YearOld = new Date("2015-01-01");
+                const patientBirthDateFor10YearOld =
+                    LocalDate.parse("2015-01-01");
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
                     patientBirthDate: patientBirthDateFor10YearOld,
@@ -49,7 +49,8 @@ describe("SexualAndReproductiveCare", () => {
             });
 
             it('retorna "Não aplica" quando idade está fora da faixa (maior de 69)', () => {
-                const patientBirthDateFor75YearOld = new Date("1950-01-01");
+                const patientBirthDateFor75YearOld =
+                    LocalDate.parse("1950-01-01");
 
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
@@ -81,7 +82,8 @@ describe("SexualAndReproductiveCare", () => {
         describe("O prazo dessa boa prática vence no quadrimestre atual?", () => {
             it('retorna "Vence dentro do Q3" quando o prazo vence no quadrimestre atual', () => {
                 //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e <= final do Q3 (31/12/2025)
-                const validDateSmallerThanEndOfQ3 = new Date("2024-10-15");
+                const validDateSmallerThanEndOfQ3 =
+                    LocalDate.parse("2024-10-15");
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
                     latestSexualAndReproductiveHealthAppointmentDate:
@@ -95,9 +97,11 @@ describe("SexualAndReproductiveCare", () => {
         describe("O exame foi realizado ANTES da pessoa estar na faixa etária da boa prática?", () => {
             it('retorna "Vence dentro do Q3" quando idade no Exame é menor que 14 anos', () => {
                 // Essa data gera uma idade na data da consulta de 13 anos
-                const patientBirthDateFor14YearOld = new Date("2011-01-01");
+                const patientBirthDateFor14YearOld =
+                    LocalDate.parse("2011-01-01");
                 //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e > final do Q3 (31/12/2025)
-                const validDateGreaterThanEndOfQ3 = new Date("2024-12-01"); //Data prazo 2025-12-01
+                const validDateGreaterThanEndOfQ3 =
+                    LocalDate.parse("2024-12-01"); //Data prazo 2025-12-01
 
                 const calc = new SexualAndReproductiveHealthCareCalculator({
                     ...baseData,
@@ -112,9 +116,9 @@ describe("SexualAndReproductiveCare", () => {
 
         it('retorna "Em dia" quando todos os critérios são atendidos', () => {
             // Essa data gera uma idade na data da consulta de 15 anos
-            const patientBirthDateFor15YearOld = new Date("2010-01-01");
+            const patientBirthDateFor15YearOld = LocalDate.parse("2010-01-01");
             //Essa data de consulta resulta em uma data prazo >= data atual (createdAt) e > final do Q3 (31/12/2025)
-            const validDateGreaterThanEndOfQ3 = new Date("2025-01-01"); //Data prazo 2026-01-01
+            const validDateGreaterThanEndOfQ3 = LocalDate.parse("2025-01-01"); //Data prazo 2026-01-01
 
             const calc = new SexualAndReproductiveHealthCareCalculator({
                 ...baseData,

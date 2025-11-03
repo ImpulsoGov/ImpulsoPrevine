@@ -2,7 +2,7 @@
 import type { ColumnsProps, SearchPlusItem } from "../../model";
 //TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
-import { formatUtcToBrt } from "@/features/common/shared/time";
+import * as time from "@/features/common/shared/time";
 import * as goodPractices from "./modules/goodPractices";
 import { TagByStatus } from "../../../Tags";
 
@@ -46,7 +46,11 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
 
             return (
                 <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+                    <div>
+                        {latestDate
+                            ? time.localDateToBrtString2DigitYear(latestDate)
+                            : "-"}
+                    </div>
                     <div>
                         <TagByStatus content={status} />
                     </div>
@@ -75,7 +79,11 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
 
             return (
                 <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+                    <div>
+                        {latestDate
+                            ? time.localDateToBrtString2DigitYear(latestDate)
+                            : "-"}
+                    </div>
                     <div>
                         <TagByStatus content={status} />
                     </div>
@@ -104,7 +112,11 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
 
             return (
                 <div>
-                    <div>{latestDate ? formatUtcToBrt(latestDate) : "-"}</div>
+                    <div>
+                        {latestDate
+                            ? time.localDateToBrtString2DigitYear(latestDate)
+                            : "-"}
+                    </div>
                     <div>
                         <TagByStatus content={status} />
                     </div>
