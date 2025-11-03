@@ -127,7 +127,6 @@ export class BreastCancerCalculator {
         //A boa prática se aplica para essa pessoa?
         const isGoodPracticeApplicable =
             this.#isGoodPracticeApplicableForPatient(age);
-        console.log(age);
         if (!isGoodPracticeApplicable) return "Não aplica";
         // Essa pessoa possui data do último exame?
         if (mammographylatestDate === null) return "Nunca realizado";
