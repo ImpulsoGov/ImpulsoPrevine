@@ -3,9 +3,9 @@ import type {
     InputData,
 } from "./sexualAndReproductiveHealthCareCalculator";
 import { SexualAndReproductiveHealthCareCalculator } from "./sexualAndReproductiveHealthCareCalculator";
-
+import type { LocalDate } from "@js-joda/core";
 type SexualAndReproductiveHealthCareResult = {
-    latestDate: Date | null;
+    latestDate: LocalDate | null;
     status: Status;
 };
 
@@ -19,13 +19,13 @@ const modelToTable = (params: unknown): InputData => {
         latestSexualAndReproductiveHealthAppointmentDate,
         createdAt,
     ] = params as [
-        Date,
-        Date | null,
-        Date | null,
-        Date | null,
-        Date | null,
-        Date | null,
-        Date,
+        LocalDate,
+        LocalDate | null,
+        LocalDate | null,
+        LocalDate | null,
+        LocalDate | null,
+        LocalDate | null,
+        LocalDate,
     ];
     return {
         patientBirthDate,

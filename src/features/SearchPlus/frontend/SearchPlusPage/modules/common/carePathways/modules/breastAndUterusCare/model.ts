@@ -1,4 +1,5 @@
 import type * as time from "@/features/common/shared/time";
+import type { LocalDate } from "@js-joda/core";
 
 export type BRTDateStringOrDash = time.BRTDateString | "-";
 
@@ -28,11 +29,11 @@ export type BreastAndUterusCareItem = {
     patientCns: string;
     patientPhoneNumber: string;
     microAreaName: string;
-    patientBirthDate: Date;
-    papTestLatestRequestDate: Date | null;
-    papTestLatestEvaluationDate: Date | null;
-    mammographyLatestRequestDate: Date | null;
-    mammographyLatestEvaluationDate: Date | null;
-    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
-    createdAt: Date | null;
+    patientBirthDate: LocalDate | null;
+    papTestLatestRequestDate: LocalDate | null;
+    papTestLatestEvaluationDate: LocalDate | null;
+    mammographyLatestRequestDate: LocalDate | null;
+    mammographyLatestEvaluationDate: LocalDate | null;
+    latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
+    createdAt: LocalDate | null;
 };

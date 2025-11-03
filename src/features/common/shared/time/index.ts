@@ -1,3 +1,5 @@
+import { LocalDate } from "@js-joda/core";
+
 type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 type NonZeroDigit = Exclude<Digit, "0">;
 
@@ -87,42 +89,28 @@ export const brtStringDateParser = (date: BRTDateString): ParsedDate => {
     };
 };
 
-type Hour = Range<0, 24>;
-
-type Minute = Range<0, 61>;
-
-type ParsedTime = {
-    hours: Hour;
-    minutes: Minute;
-};
-
 type StringHour = `0${Range<0, 10>}` | `${Range<10, 24>}`;
 
 type StringMinute = `0${Range<0, 10>}` | `${Range<10, 60>}`;
 
 export type BRTTimeString = `${StringHour}:${StringMinute}`;
 
-export const parseTimeString = (timeString: BRTTimeString): ParsedTime => {
-    const [hours, minutes] = timeString.split(":").map(Number);
-    return { hours, minutes } as ParsedTime;
-};
-
-export const brtStringToUtcDate = (
-    date: BRTDateString,
-    time: BRTTimeString = "03:00"
-): Date => {
+export const brtStringToLocalDate = (date: BRTDateString): LocalDate | null => {
     const { day, month, year } = brtStringDateParser(date);
-    const { hours, minutes } = parseTimeString(time);
-    return new Date(year, month - 1, day, hours, minutes);
+    try {
+        return LocalDate.of(year, month, day);
+    } catch {
+        return null;
+    }
 };
 
-export const formatUtcToBrt = (date: Date): BRTDateString2DigitYear => {
-    return new Intl.DateTimeFormat("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "2-digit",
-        timeZone: "America/Sao_Paulo",
-    }).format(date) as BRTDateString2DigitYear;
+export const localDateToBrtString2DigitYear = (
+    date: LocalDate
+): BRTDateString2DigitYear => {
+    const day = date.dayOfMonth().toString().padStart(2, "0") as Day;
+    const month = date.monthValue().toString().padStart(2, "0") as Month;
+    const year = date.year().toString().slice(2) as Year;
+    return `${day}/${month}/${year}`;
 };
 
 export const isBrtDateStringValid = (dateString: string): boolean => {
