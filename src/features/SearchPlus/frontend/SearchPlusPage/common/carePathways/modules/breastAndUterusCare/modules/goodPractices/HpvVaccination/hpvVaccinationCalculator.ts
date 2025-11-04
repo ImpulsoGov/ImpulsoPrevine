@@ -1,3 +1,5 @@
+import { LocalDate, Period } from "@js-joda/core";
+
 type Quadrimester = "1" | "2" | "3";
 export type Status =
     | "Não aplica"
@@ -9,14 +11,16 @@ export type Status =
     | "Em dia";
 
 export type InputData = {
-    patientBirthDate: Date;
-    papTestLatestRequestDate: Date | null;
-    papTestLatestEvaluationDate: Date | null;
-    mammographyLatestRequestDate: Date | null;
-    mammographyLatestEvaluationDate: Date | null;
-    latestSexualAndReproductiveHealthAppointmentDate: Date | null;
-    latestHpvVaccinationDate: Date | null;
-    createdAt: Date;
+    // TODO: esse campo pode ser nulo, atualizar aqui e nas outras calculadoras (não troquei agora porque vai quebrar a implementação atual)
+    patientBirthDate: LocalDate;
+    papTestLatestRequestDate: LocalDate | null;
+    papTestLatestEvaluationDate: LocalDate | null;
+    mammographyLatestRequestDate: LocalDate | null;
+    mammographyLatestEvaluationDate: LocalDate | null;
+    latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
+    latestHpvVaccinationDate: LocalDate | null;
+    // TODO: acho que esse tbm pode ser nulo, verificar no model e atualizar nas outras calculadoras
+    createdAt: LocalDate;
 };
 
 export class HpvVaccinationCalculator {
@@ -26,75 +30,86 @@ export class HpvVaccinationCalculator {
         this.#data = data;
     }
 
-    #getCurrentQuadrimester = (date: Date): 1 | 2 | 3 => {
-        const month = date.getUTCMonth() + 1;
+    #getCurrentQuadrimester = (date: LocalDate): 1 | 2 | 3 => {
+        const month = date.monthValue() + 1;
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
 
     // ? As datas são comparadas em epoc, por isso não convertemos elas para BRT,
     // já que a diferença entre elas seria equivalente mesmo em timezones diferentes.
 
-    #getEndQuadrimester(quadri: 1 | 2 | 3): Date {
-        const currentYear = this.#data.createdAt.getUTCFullYear().toString();
+    #getEndOfQuadrimester(quadri: 1 | 2 | 3): LocalDate {
+        const currentYear = this.#data.createdAt.year().toString();
         const endOfQuadrimester = {
             1: `${currentYear}-04-30`,
             2: `${currentYear}-08-31`,
             3: `${currentYear}-12-31`,
         };
-        return new Date(endOfQuadrimester[quadri]);
+        return LocalDate.parse(endOfQuadrimester[quadri]);
     }
-    #WillTurn15ThisQuadrimester(birthDate: Date): boolean {
-        // inicio e fim
-        const currentQuad = this.#getCurrentQuadrimester(this.#data.createdAt);
-        const startMonth = (currentQuad - 1) * 4;
-        const start = new Date(
-            this.#data.createdAt.getFullYear(),
-            startMonth,
-            1
-        );
-        const end = this.#getEndQuadrimester(currentQuad);
-        // aniversario de 15 anos
-        const fifteenthBirthday = new Date(birthDate);
-        fifteenthBirthday.setFullYear(fifteenthBirthday.getFullYear() + 15);
 
-        // verifica se ela completa 15 anos depois do inicio e ate o fim do quadri
-        return fifteenthBirthday >= start && fifteenthBirthday <= end;
+    #isFifteenAtEndOfQuadri(birthDate: LocalDate): boolean {
+        const endOfQuadri = this.#getEndOfQuadrimester(
+            this.#getCurrentQuadrimester(this.#data.createdAt)
+        );
+
+        return this.#getYearBetweenDates(endOfQuadri, birthDate) === 15;
     }
-    #getAgeAtStartOfQuadrimester(birthDate: Date): number {
+    #getYearBetweenDates(
+        biggerDate: LocalDate,
+        smallerDate: LocalDate
+    ): number {
+        return Period.between(smallerDate, biggerDate).years();
+    }
+    #getAgeAtStartOfQuadrimester(birthDate: LocalDate): number {
         const currentQuadrimester = this.#getCurrentQuadrimester(
             this.#data.createdAt
         );
-        const startMonth = (currentQuadrimester - 1) * 4;
-        const start = new Date(
-            this.#data.createdAt.getFullYear(),
+        const startMonth = currentQuadrimester * 4;
+        const startOfQuadriDate = LocalDate.of(
+            this.#data.createdAt.year(),
             startMonth,
             1
         );
-        return this.#getYearBetweenDates(start, birthDate);
+        return this.#getYearBetweenDates(birthDate, startOfQuadriDate);
     }
-    #getYearBetweenDates(biggerDate: Date, smallerDate: Date): number {
-        return biggerDate.getUTCFullYear() - smallerDate.getUTCFullYear();
-    }
+    #isFifteenBeforeQuadrimesterStart = (
+        birthDate: LocalDate,
+        currentQuadrimester: 1 | 2 | 3
+    ): boolean => {
+        let endOfPreviousQuadri: LocalDate;
 
+        if (currentQuadrimester === 2 || currentQuadrimester === 3) {
+            endOfPreviousQuadri = this.#getEndOfQuadrimester(
+                (currentQuadrimester - 1) as 1 | 2 | 3
+            );
+        } else {
+            endOfPreviousQuadri = this.#getEndOfQuadrimester(3).minusYears(1);
+        }
+        const age = this.#getYearBetweenDates(endOfPreviousQuadri, birthDate);
+        return age === 15;
+    };
     #isGoodPracticeApplicableForPatient = (age: number): boolean => {
         const ageAtStartOfQuadri = this.#getAgeAtStartOfQuadrimester(
             this.#data.patientBirthDate
         );
-        return (
-            (age >= 9 && age <= 14) ||
-            (ageAtStartOfQuadri >= 9 && ageAtStartOfQuadri <= 14)
-        ); //Regra para vacina de HPV
+
+        if (age >= 9 && age <= 15) return true;
+        if (ageAtStartOfQuadri >= 9 && ageAtStartOfQuadri <= 14) return true;
+
+        return false;
     };
 
-    public computelatestDate(): Date | null {
+    public computelatestDate(): LocalDate | null {
         return this.#data.latestHpvVaccinationDate;
     }
     //Todas as datas para fins de calulos são consideradas em UTC, no formatter quando for exibir para o usuário convertemos para BRT
     public computeStatus(): Status {
         const currentDate = this.#data.createdAt;
-        const currentQuadrimester = this.#getCurrentQuadrimester(
-            currentDate
-        ).toString() as Quadrimester;
+        const currentQuadrimesterNumber =
+            this.#getCurrentQuadrimester(currentDate);
+        const currentQuadrimesterString =
+            currentQuadrimesterNumber.toString() as Quadrimester;
 
         const currentAge = this.#getYearBetweenDates(
             currentDate,
@@ -103,6 +118,13 @@ export class HpvVaccinationCalculator {
         const ageLimit = 9;
 
         //A boa prática se aplica para essa pessoa?
+        if (
+            this.#isFifteenBeforeQuadrimesterStart(
+                this.#data.patientBirthDate,
+                currentQuadrimesterNumber
+            )
+        )
+            return "Não aplica";
         const isGoodPracticeApplicable =
             this.#isGoodPracticeApplicableForPatient(currentAge);
         if (!isGoodPracticeApplicable) return "Não aplica";
@@ -110,12 +132,12 @@ export class HpvVaccinationCalculator {
         // Essa pessoa possui data da última vacina?
         if (this.#data.latestHpvVaccinationDate === null) {
             //Essa pessoa JÁ completou 15 anos nesse quadri?
-            if (currentAge >= 15) return "Perdido";
+            if (currentAge === 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
-            if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
-                return `Última chance no Q${currentQuadrimester}`;
+            if (this.#isFifteenAtEndOfQuadri(this.#data.patientBirthDate)) {
+                return `Última chance no Q${currentQuadrimesterString}`;
             }
-            return `Vence dentro do Q${currentQuadrimester}`;
+            return `Vence dentro do Q${currentQuadrimesterString}`;
         }
 
         //A vacinacao foi realizada ANTES da pessoa estar na faixa etaria da boa pratica?
@@ -129,12 +151,12 @@ export class HpvVaccinationCalculator {
             return "Em dia";
         } else {
             //Essa pessoa JÁ completou 15 anos nesse quadri?
-            if (currentAge >= 15) return "Perdido";
+            if (currentAge === 15) return "Perdido";
             // Essa pessoa ira completar 15 anos nesse quadri?
-            if (this.#WillTurn15ThisQuadrimester(this.#data.patientBirthDate)) {
-                return `Última chance no Q${currentQuadrimester}`;
+            if (this.#isFifteenAtEndOfQuadri(this.#data.patientBirthDate)) {
+                return `Última chance no Q${currentQuadrimesterString}`;
             }
-            return `Vence dentro do Q${currentQuadrimester}`;
+            return `Vence dentro do Q${currentQuadrimesterString}`;
         }
     }
 }
