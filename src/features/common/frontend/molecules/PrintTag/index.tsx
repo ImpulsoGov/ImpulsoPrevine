@@ -88,8 +88,8 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
         color: "#2E3B4E",
     },
     losted: {
-        backgroundColor: "#E0E6EE", //atualizar cor quando tiver definida
-        color: "#2E3B4E", //atualizar cor quando tiver definida
+        backgroundColor: "#E0E6EE",
+        color: "#2E3B4E",
     },
 };
 
