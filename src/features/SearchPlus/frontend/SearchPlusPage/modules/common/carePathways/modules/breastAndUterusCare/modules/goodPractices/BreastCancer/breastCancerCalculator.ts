@@ -6,7 +6,9 @@ export type Status =
     | "Nunca realizado"
     | "Atrasada"
     | `Vence dentro do Q${Quadrimester}`
-    | "Em dia";
+    | "Em dia"
+    | "Perdido"
+    | `Última chance no Q${Quadrimester}`;
 
 export type InputData = {
     patientBirthDate: LocalDate;

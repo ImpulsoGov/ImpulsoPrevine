@@ -13,11 +13,6 @@ export type Status =
 export type InputData = {
     // TODO: esse campo pode ser nulo, atualizar aqui e nas outras calculadoras (não troquei agora porque vai quebrar a implementação atual)
     patientBirthDate: LocalDate;
-    papTestLatestRequestDate: LocalDate | null;
-    papTestLatestEvaluationDate: LocalDate | null;
-    mammographyLatestRequestDate: LocalDate | null;
-    mammographyLatestEvaluationDate: LocalDate | null;
-    latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
     latestHpvVaccinationDate: LocalDate | null;
     // TODO: acho que esse tbm pode ser nulo, verificar no model e atualizar nas outras calculadoras
     createdAt: LocalDate;
@@ -30,8 +25,8 @@ export class HpvVaccinationCalculator {
 
     constructor(data: InputData) {
         this.#data = data;
+        console.log(this.#data);
     }
-
     #getCurrentQuadrimester = (date: LocalDate): 1 | 2 | 3 => {
         const month = date.monthValue() + 1;
         return Math.ceil(month / 4) as 1 | 2 | 3;

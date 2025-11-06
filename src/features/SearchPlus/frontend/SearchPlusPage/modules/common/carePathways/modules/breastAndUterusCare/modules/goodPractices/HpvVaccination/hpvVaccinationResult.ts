@@ -8,32 +8,13 @@ type HpvVaccinationResult = {
 };
 
 const modelToTable = (params: unknown): InputData => {
-    const [
-        patientBirthDate,
-        papTestLatestRequestDate,
-        papTestLatestEvaluationDate,
-        mammographyLatestRequestDate,
-        mammographyLatestEvaluationDate,
-        latestSexualAndReproductiveHealthAppointmentDate,
-        latestHpvVaccinationDate,
-        createdAt,
-    ] = params as [
+    const [patientBirthDate, latestHpvVaccinationDate, createdAt] = params as [
         LocalDate,
-        LocalDate | null,
-        LocalDate | null,
-        LocalDate | null,
-        LocalDate | null,
-        LocalDate | null,
         LocalDate | null,
         LocalDate,
     ];
     return {
         patientBirthDate,
-        papTestLatestRequestDate,
-        papTestLatestEvaluationDate,
-        mammographyLatestRequestDate,
-        mammographyLatestEvaluationDate,
-        latestSexualAndReproductiveHealthAppointmentDate,
         latestHpvVaccinationDate,
         createdAt: createdAt,
     };

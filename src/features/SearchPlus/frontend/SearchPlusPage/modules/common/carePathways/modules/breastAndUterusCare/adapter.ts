@@ -9,6 +9,26 @@ import type {
 const dateOrNull = (dateString: BRTDateStringOrDash): LocalDate | null => {
     return dateString === "-" ? null : time.brtStringToLocalDate(dateString);
 };
+const latestDate = (dates: Array<time.BRTDateString>): BRTDateStringOrDash => {
+    const latestDate = dates.reduce<BRTDateStringOrDash>(
+        (previousDate, currentDate) => {
+            const date1 = time.brtStringToLocalDate(
+                previousDate as time.BRTDateString
+            );
+            const date2 = time.brtStringToLocalDate(currentDate);
+            if (!date1 || !date2) return "-";
+            return date2.isAfter(date1) ? previousDate : currentDate;
+        },
+        "-"
+    );
+    return latestDate;
+};
+
+const getLatestHpvVaccinationDate = (field: string): BRTDateStringOrDash => {
+    const regex = time.brtDateRegex;
+    const dates = (field.match(regex) || []) as Array<time.BRTDateString>;
+    return latestDate(dates);
+};
 
 type HeaderData = {
     createdAtDate: time.BRTDateString;
@@ -40,6 +60,7 @@ export const csvRowToBreastAndUterusCareItem = (
             ];
         const latestSexualAndReproductiveHealthAppointmentDate =
             row["Data da última consulta de saúde sexual e reprodutiva"];
+        const latestHpvVaccinationDate = row["HPV"];
 
         return {
             patientName: row["Nome"],
@@ -67,6 +88,9 @@ export const csvRowToBreastAndUterusCareItem = (
             ),
             latestSexualAndReproductiveHealthAppointmentDate: dateOrNull(
                 latestSexualAndReproductiveHealthAppointmentDate
+            ),
+            latestHpvVaccinationDate: dateOrNull(
+                getLatestHpvVaccinationDate(latestHpvVaccinationDate)
             ),
         };
     });
