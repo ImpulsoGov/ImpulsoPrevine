@@ -34,9 +34,6 @@ export class HpvVaccinationCalculator {
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
 
-    // ? As datas são comparadas em epoc, por isso não convertemos elas para BRT,
-    // já que a diferença entre elas seria equivalente mesmo em timezones diferentes.
-
     #getEndOfQuadrimester(quadri: 1 | 2 | 3): LocalDate {
         const currentYear = this.#data.createdAt.year().toString();
         const endOfQuadrimester = {
@@ -165,62 +162,46 @@ export class HpvVaccinationCalculator {
     public computelatestDate(): LocalDate | null {
         return this.#latestDate(this.#data.hpvVaccinationDates);
     }
-    //Todas as datas para fins de calulos são consideradas em UTC, no formatter quando for exibir para o usuário convertemos para BRT
+
     public computeStatus(): Status {
         const currentDate = this.#data.createdAt;
-        const currentQuadrimesterNumber =
-            this.#getCurrentQuadrimester(currentDate);
-        const currentQuadrimesterString =
-            currentQuadrimesterNumber.toString() as Quadrimester;
+        const quadrimester = this.#getCurrentQuadrimester(currentDate);
+        const quadrimesterStr = quadrimester.toString() as Quadrimester;
 
-        const currentAge = this.#getYearBetweenDates(
-            currentDate,
-            this.#data.patientBirthDate
-        );
+        const birthDate = this.#data.patientBirthDate;
+        const vaccinationDates = this.#data.hpvVaccinationDates;
+        const age = this.#getYearBetweenDates(currentDate, birthDate);
 
-        //A boa prática se aplica para essa pessoa?
-        if (
-            this.#isFifteenBeforeQuadrimesterStart(
-                this.#data.patientBirthDate,
-                currentQuadrimesterNumber
-            )
-        )
-            return "Não aplica";
+        //Essa pessoa iniciou o quadrimestre ou está hoje dentro da faixa etária da boa prática?
         const isGoodPracticeApplicable =
-            this.#isGoodPracticeApplicableForPatient(currentAge);
+            this.#isGoodPracticeApplicableForPatient(age) &&
+            !this.#isFifteenBeforeQuadrimesterStart(birthDate, quadrimester);
+
         if (!isGoodPracticeApplicable) return "Não aplica";
 
-        // Essa pessoa possui data da última vacina?
-        if (this.#data.hpvVaccinationDates.length === 0) {
-            //Essa pessoa JÁ completou this.#upperAgeLimit anos nesse quadrimestre?
-            if (
+        const hasVaccination = vaccinationDates.length > 0;
+
+        //Essa pessoa possui data da última vacinação?
+        if (!hasVaccination) {
+            const didTurnFifteenBeforeYesterday =
                 this.#isFifteenBetweenQuadrimesterStartAndYesterday(
-                    this.#data.patientBirthDate,
-                    currentQuadrimesterNumber
-                )
-            )
-                return "Perdido";
-            // Essa pessoa ira completar 15 anos nesse quadrimestre?
-            if (
-                this.#willBeFifteenAtEndOfQuadri(
-                    this.#data.patientBirthDate,
-                    currentQuadrimesterNumber
-                )
-            ) {
-                return `Última chance no Q${currentQuadrimesterString}`;
-            }
-            return `Vence dentro do Q${currentQuadrimesterString}`;
+                    birthDate,
+                    quadrimester
+                );
+            //Essa pessoa completou 15 anos neste quadrimestre? (prazo venceu)
+            if (didTurnFifteenBeforeYesterday) return "Perdido";
+            //Essa pessoa irá completar 15 anos na/após a data atual e antes do final do quadrimestre (inclusivo)?
+            const willTurnFifteenThisQuadrimester =
+                this.#willBeFifteenAtEndOfQuadri(birthDate, quadrimester);
+
+            return willTurnFifteenThisQuadrimester
+                ? `Última chance no Q${quadrimesterStr}`
+                : `Vence dentro do Q${quadrimesterStr}`;
         }
+        //A vacinação foi realizada ANTES da pessoa estar na faixa etária da boa prática ?
+        const hasVaccinationWithinGoodPracticeAge =
+            this.#hasAtLeastOneDateInAgeRange(vaccinationDates, birthDate);
 
-        //A vacinacao foi realizada ANTES da pessoa estar na faixa etaria da boa pratica?
-        const hasVaccinationOccurredInGoodPracticeAgeRange =
-            this.#hasAtLeastOneDateInAgeRange(
-                this.#data.hpvVaccinationDates,
-                this.#data.patientBirthDate
-            );
-
-        return hasVaccinationOccurredInGoodPracticeAgeRange
-            ? "Em dia"
-            : "Perdido";
+        return hasVaccinationWithinGoodPracticeAge ? "Em dia" : "Perdido";
     }
 }
