@@ -20,7 +20,6 @@ export type BreastAndUterusCareCsvRow = {
     "Exame de rastreamento de câncer de mama data Última avaliação": BRTDateStringOrDash;
     "Data da última consulta de saúde sexual e reprodutiva": BRTDateStringOrDash;
     HPV: string;
-    // "Gerado em": time.DateStringWithFullYear;
 };
 
 export type BreastAndUterusCareItem = {
