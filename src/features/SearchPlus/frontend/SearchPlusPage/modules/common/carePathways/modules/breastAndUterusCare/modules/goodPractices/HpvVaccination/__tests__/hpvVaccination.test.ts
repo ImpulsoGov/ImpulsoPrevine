@@ -118,7 +118,7 @@ describe("HpvVaccinationCalculator", () => {
                 expect(calc.computeStatus()).toBe("Em dia");
             });
             it("retorna Perdido quando a pessoa realizou todas as vacinações antes da faixa etária da boa prática", () => {
-                //completou 6 anos na data da vacinação
+                //completou 6 anos na data da vacinação mais recente
                 const birthDateFor6YearsOldAtVaccination =
                     LocalDate.parse("2014-11-30");
                 const calc = new HpvVaccinationCalculator({
