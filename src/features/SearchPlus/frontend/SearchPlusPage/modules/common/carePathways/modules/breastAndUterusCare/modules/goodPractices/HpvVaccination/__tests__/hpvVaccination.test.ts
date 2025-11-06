@@ -102,7 +102,38 @@ describe("HpvVaccinationCalculator", () => {
             });
         });
 
-        describe("A vacinação foi realizada ANTES da pessoa estar na faixa etária da boa prática ?", () => {
+        describe("A vacinação foi realizada em dose múltipla ANTES da pessoa estar na faixa etária da boa prática ?", () => {
+            it("retorna Em dia quando a pessoa realizou pelo menos uma vacinação dentro da faixa etária da boa prática", () => {
+                //completou 10 anos na data da vacinação
+                const birthDateFor10YearsOldAtVaccination =
+                    LocalDate.parse("2014-11-30");
+                const calc = new HpvVaccinationCalculator({
+                    ...baseData,
+                    hpvVaccinationDates: [
+                        LocalDate.parse("2024-12-01"),
+                        LocalDate.parse("2022-12-01"),
+                    ],
+                    patientBirthDate: birthDateFor10YearsOldAtVaccination,
+                });
+                expect(calc.computeStatus()).toBe("Em dia");
+            });
+            it("retorna Perdido quando a pessoa realizou todas as vacinações antes da faixa etária da boa prática", () => {
+                //completou 6 anos na data da vacinação
+                const birthDateFor6YearsOldAtVaccination =
+                    LocalDate.parse("2014-11-30");
+                const calc = new HpvVaccinationCalculator({
+                    ...baseData,
+                    hpvVaccinationDates: [
+                        LocalDate.parse("2020-12-01"),
+                        LocalDate.parse("2019-12-01"),
+                    ],
+                    patientBirthDate: birthDateFor6YearsOldAtVaccination,
+                });
+                expect(calc.computeStatus()).toBe("Perdido");
+            });
+        });
+
+        describe("A vacinação foi realizada em dose única ANTES da pessoa estar na faixa etária da boa prática ?", () => {
             it("retorna Em dia quando a pessoa realizou a vacinação dentro da faixa etária da boa prática", () => {
                 //completou 10 anos na data da vacinação
                 const birthDateFor10YearsOldAtVaccination =
