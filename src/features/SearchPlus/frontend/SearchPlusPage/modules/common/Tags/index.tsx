@@ -52,10 +52,10 @@ export const DisabledTag: React.FC<TagProps> = ({ content }) => {
 };
 export const LostedTag: React.FC<TagProps> = ({ content }) => {
     return (
-        <PrintTag theme="losted">
+        <PrintTag theme="disabled">
             <Icon
                 loading="eager"
-                src="" //colocar a imagem quando tiver definida
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmhnoilrs2vlh07keu437gdcq"
                 alt="Ícone de um x dentro de um círculo"
                 width={8}
                 height={8}

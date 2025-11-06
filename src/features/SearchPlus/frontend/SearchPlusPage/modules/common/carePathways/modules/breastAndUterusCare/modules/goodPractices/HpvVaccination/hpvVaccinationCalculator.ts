@@ -13,7 +13,7 @@ export type Status =
 export type InputData = {
     // TODO: esse campo pode ser nulo, atualizar aqui e nas outras calculadoras (não troquei agora porque vai quebrar a implementação atual)
     patientBirthDate: LocalDate;
-    latestHpvVaccinationDate: LocalDate | null;
+    hpvVaccinationDates: Array<LocalDate | null>;
     // TODO: acho que esse tbm pode ser nulo, verificar no model e atualizar nas outras calculadoras
     createdAt: LocalDate;
 };
@@ -22,13 +22,15 @@ type QuadrimesterNumber = 1 | 2 | 3;
 
 export class HpvVaccinationCalculator {
     #data: InputData;
+    #lowerAgeLimit = 9;
+    #upperAgeLimit = 15;
+    #exclusiveUpperAgeLimit = 14;
 
     constructor(data: InputData) {
         this.#data = data;
-        console.log(this.#data);
     }
     #getCurrentQuadrimester = (date: LocalDate): 1 | 2 | 3 => {
-        const month = date.monthValue() + 1;
+        const month = date.monthValue();
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
 
@@ -61,13 +63,14 @@ export class HpvVaccinationCalculator {
     ): boolean {
         const yesterday = this.#data.createdAt.minusDays(1);
         const isFifteenBeforeToday =
-            this.#getYearBetweenDates(yesterday, birthDate) === 15;
+            this.#getYearBetweenDates(yesterday, birthDate) ===
+            this.#upperAgeLimit;
 
         const currentQuadrimesterStart =
             this.#getStartOfQuadrimester(currentQuadrimester);
         const isFifteenAtQuadrimesterStart =
             this.#getYearBetweenDates(currentQuadrimesterStart, birthDate) ===
-            15;
+            this.#upperAgeLimit;
 
         return isFifteenAtQuadrimesterStart || isFifteenBeforeToday;
     }
@@ -77,7 +80,10 @@ export class HpvVaccinationCalculator {
     ): boolean {
         const endOfQuadri = this.#getEndOfQuadrimester(currentQuadrimester);
 
-        return this.#getYearBetweenDates(endOfQuadri, birthDate) === 15;
+        return (
+            this.#getYearBetweenDates(endOfQuadri, birthDate) ===
+            this.#upperAgeLimit
+        );
     }
     #getYearBetweenDates(
         biggerDate: LocalDate,
@@ -111,21 +117,53 @@ export class HpvVaccinationCalculator {
             endOfPreviousQuadri = this.#getEndOfQuadrimester(3).minusYears(1);
         }
         const age = this.#getYearBetweenDates(endOfPreviousQuadri, birthDate);
-        return age === 15;
+        return age === this.#upperAgeLimit;
     };
     #isGoodPracticeApplicableForPatient = (age: number): boolean => {
         const ageAtStartOfQuadri = this.#getAgeAtStartOfQuadrimester(
             this.#data.patientBirthDate
         );
 
-        if (age >= 9 && age <= 15) return true;
-        if (ageAtStartOfQuadri >= 9 && ageAtStartOfQuadri <= 14) return true;
+        if (age >= this.#lowerAgeLimit && age <= this.#upperAgeLimit)
+            return true;
+        if (
+            ageAtStartOfQuadri >= this.#lowerAgeLimit &&
+            ageAtStartOfQuadri <= this.#exclusiveUpperAgeLimit
+        )
+            return true;
 
         return false;
     };
 
+    #removeNullDates = (dates: Array<LocalDate | null>): Array<LocalDate> => {
+        return dates.filter((date): date is LocalDate => date !== null);
+    };
+
+    #latestDate = (dates: Array<LocalDate | null>): LocalDate | null => {
+        if (dates.length === 0) return null;
+        const datesFiltered = this.#removeNullDates(dates);
+        const latestDate = datesFiltered.reduce((previousDate, currentDate) => {
+            return previousDate.isAfter(currentDate)
+                ? previousDate
+                : currentDate;
+        }, datesFiltered[0]);
+        return latestDate;
+    };
+
+    #hasAtLeastOneDateInAgeRange = (
+        dates: Array<LocalDate | null>,
+        birthDate: LocalDate
+    ): boolean => {
+        const filteredDates = this.#removeNullDates(dates);
+        return filteredDates.some(
+            (date) =>
+                this.#getYearBetweenDates(date, birthDate) >=
+                this.#lowerAgeLimit
+        );
+    };
+
     public computelatestDate(): LocalDate | null {
-        return this.#data.latestHpvVaccinationDate;
+        return this.#latestDate(this.#data.hpvVaccinationDates);
     }
     //Todas as datas para fins de calulos são consideradas em UTC, no formatter quando for exibir para o usuário convertemos para BRT
     public computeStatus(): Status {
@@ -139,7 +177,6 @@ export class HpvVaccinationCalculator {
             currentDate,
             this.#data.patientBirthDate
         );
-        const ageLimit = 9;
 
         //A boa prática se aplica para essa pessoa?
         if (
@@ -154,8 +191,8 @@ export class HpvVaccinationCalculator {
         if (!isGoodPracticeApplicable) return "Não aplica";
 
         // Essa pessoa possui data da última vacina?
-        if (this.#data.latestHpvVaccinationDate === null) {
-            //Essa pessoa JÁ completou 15 anos nesse quadrimestre?
+        if (this.#data.hpvVaccinationDates.length === 0) {
+            //Essa pessoa JÁ completou this.#upperAgeLimit anos nesse quadrimestre?
             if (
                 this.#isFifteenBetweenQuadrimesterStartAndYesterday(
                     this.#data.patientBirthDate,
@@ -176,14 +213,14 @@ export class HpvVaccinationCalculator {
         }
 
         //A vacinacao foi realizada ANTES da pessoa estar na faixa etaria da boa pratica?
-        const hasVaccinationOccurredBeforeGoodPracticeAge =
-            this.#getYearBetweenDates(
-                this.#data.latestHpvVaccinationDate,
+        const hasVaccinationOccurredInGoodPracticeAgeRange =
+            this.#hasAtLeastOneDateInAgeRange(
+                this.#data.hpvVaccinationDates,
                 this.#data.patientBirthDate
-            ) < ageLimit;
+            );
 
-        return hasVaccinationOccurredBeforeGoodPracticeAge
-            ? "Perdido"
-            : "Em dia";
+        return hasVaccinationOccurredInGoodPracticeAgeRange
+            ? "Em dia"
+            : "Perdido";
     }
 }

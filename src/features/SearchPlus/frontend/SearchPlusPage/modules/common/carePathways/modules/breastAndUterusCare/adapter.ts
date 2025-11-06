@@ -9,25 +9,11 @@ import type {
 const dateOrNull = (dateString: BRTDateStringOrDash): LocalDate | null => {
     return dateString === "-" ? null : time.brtStringToLocalDate(dateString);
 };
-const latestDate = (dates: Array<time.BRTDateString>): BRTDateStringOrDash => {
-    const latestDate = dates.reduce<BRTDateStringOrDash>(
-        (previousDate, currentDate) => {
-            const date1 = time.brtStringToLocalDate(
-                previousDate as time.BRTDateString
-            );
-            const date2 = time.brtStringToLocalDate(currentDate);
-            if (!date1 || !date2) return "-";
-            return date2.isAfter(date1) ? previousDate : currentDate;
-        },
-        "-"
-    );
-    return latestDate;
-};
 
-const getLatestHpvVaccinationDate = (field: string): BRTDateStringOrDash => {
+const getHpvVaccinationDates = (field: string): Array<LocalDate | null> => {
     const regex = time.brtDateRegex;
     const dates = (field.match(regex) || []) as Array<time.BRTDateString>;
-    return latestDate(dates);
+    return dates.map((date) => time.brtStringToLocalDate(date));
 };
 
 type HeaderData = {
@@ -89,8 +75,8 @@ export const csvRowToBreastAndUterusCareItem = (
             latestSexualAndReproductiveHealthAppointmentDate: dateOrNull(
                 latestSexualAndReproductiveHealthAppointmentDate
             ),
-            latestHpvVaccinationDate: dateOrNull(
-                getLatestHpvVaccinationDate(latestHpvVaccinationDate)
+            latestHpvVaccinationDate: getHpvVaccinationDates(
+                latestHpvVaccinationDate
             ),
         };
     });

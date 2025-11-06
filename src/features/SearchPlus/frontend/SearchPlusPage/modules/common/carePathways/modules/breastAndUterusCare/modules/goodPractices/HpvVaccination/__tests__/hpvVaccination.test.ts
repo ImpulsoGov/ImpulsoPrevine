@@ -10,21 +10,25 @@ describe("HpvVaccinationCalculator", () => {
         mammographyLatestEvaluationDate: LocalDate.parse("2022-02-01"),
         latestSexualAndReproductiveHealthAppointmentDate:
             LocalDate.parse("2022-01-01"),
-        latestHpvVaccinationDate: LocalDate.parse("2022-02-01"),
+        hpvVaccinationDates: [
+            LocalDate.parse("2022-02-01"),
+            LocalDate.parse("2021-02-01"),
+            LocalDate.parse("2020-02-01"),
+        ],
         createdAt: LocalDate.parse("2025-10-10"),
     };
 
     describe("computelatestDate", () => {
-        it("deve retornar a data de ultima vacinacao", () => {
+        it("deve retornar a data de ultima vacinacao mais recente", () => {
             const calc = new HpvVaccinationCalculator(baseData);
             const result = calc.computelatestDate();
-            expect(result).toEqual(baseData.latestHpvVaccinationDate);
+            expect(result).toEqual(baseData.hpvVaccinationDates[0]);
         });
 
         it("deve retornar null quando nao houver data de ultima vacinacao", () => {
             const calc = new HpvVaccinationCalculator({
                 ...baseData,
-                latestHpvVaccinationDate: null,
+                hpvVaccinationDates: [],
             });
             const result = calc.computelatestDate();
             expect(result).toBeNull();
@@ -66,7 +70,7 @@ describe("HpvVaccinationCalculator", () => {
                 const birthDateFor15YearsOld = LocalDate.parse("2010-10-05");
                 const calc = new HpvVaccinationCalculator({
                     ...baseData,
-                    latestHpvVaccinationDate: null,
+                    hpvVaccinationDates: [],
                     patientBirthDate: birthDateFor15YearsOld,
                 });
                 expect(calc.computeStatus()).toBe("Perdido");
@@ -80,7 +84,7 @@ describe("HpvVaccinationCalculator", () => {
                     LocalDate.parse("2010-11-20");
                 const calc = new HpvVaccinationCalculator({
                     ...baseData,
-                    latestHpvVaccinationDate: null,
+                    hpvVaccinationDates: [],
                     patientBirthDate: birthDateFor15YearsOldThisQuadri,
                 });
                 expect(calc.computeStatus()).toBe("Última chance no Q3");
@@ -91,7 +95,7 @@ describe("HpvVaccinationCalculator", () => {
                     LocalDate.parse("2011-01-01");
                 const calc = new HpvVaccinationCalculator({
                     ...baseData,
-                    latestHpvVaccinationDate: null,
+                    hpvVaccinationDates: [],
                     patientBirthDate: birthDateFor15YearsOldAfterEndOfQuadri,
                 });
                 expect(calc.computeStatus()).toBe("Vence dentro do Q3");
@@ -105,7 +109,7 @@ describe("HpvVaccinationCalculator", () => {
                     LocalDate.parse("2014-11-30");
                 const calc = new HpvVaccinationCalculator({
                     ...baseData,
-                    latestHpvVaccinationDate: LocalDate.parse("2024-12-01"),
+                    hpvVaccinationDates: [LocalDate.parse("2024-12-01")],
                     patientBirthDate: birthDateFor10YearsOldAtVaccination,
                 });
                 expect(calc.computeStatus()).toBe("Em dia");
@@ -116,7 +120,7 @@ describe("HpvVaccinationCalculator", () => {
                     LocalDate.parse("2014-11-30");
                 const calc = new HpvVaccinationCalculator({
                     ...baseData,
-                    latestHpvVaccinationDate: LocalDate.parse("2020-12-01"),
+                    hpvVaccinationDates: [LocalDate.parse("2020-12-01")],
                     patientBirthDate: birthDateFor6YearsOldAtVaccination,
                 });
                 expect(calc.computeStatus()).toBe("Perdido");
