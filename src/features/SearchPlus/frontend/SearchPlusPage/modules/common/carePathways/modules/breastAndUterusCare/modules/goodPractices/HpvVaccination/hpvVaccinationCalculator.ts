@@ -13,7 +13,7 @@ export type Status =
 export type InputData = {
     // TODO: esse campo pode ser nulo, atualizar aqui e nas outras calculadoras (não troquei agora porque vai quebrar a implementação atual)
     patientBirthDate: LocalDate;
-    hpvVaccinationDates: Array<LocalDate | null>;
+    hpvVaccinationDates: Array<LocalDate>;
     // TODO: acho que esse tbm pode ser nulo, verificar no model e atualizar nas outras calculadoras
     createdAt: LocalDate;
 };
@@ -132,27 +132,21 @@ export class HpvVaccinationCalculator {
         return false;
     };
 
-    #removeNullDates = (dates: Array<LocalDate | null>): Array<LocalDate> => {
-        return dates.filter((date): date is LocalDate => date !== null);
-    };
-
-    #latestDate = (dates: Array<LocalDate | null>): LocalDate | null => {
+    #latestDate = (dates: Array<LocalDate>): LocalDate | null => {
         if (dates.length === 0) return null;
-        const datesFiltered = this.#removeNullDates(dates);
-        const latestDate = datesFiltered.reduce((previousDate, currentDate) => {
+        const latestDate = dates.reduce((previousDate, currentDate) => {
             return previousDate.isAfter(currentDate)
                 ? previousDate
                 : currentDate;
-        }, datesFiltered[0]);
+        }, dates[0]);
         return latestDate;
     };
 
     #hasAtLeastOneDateInAgeRange = (
-        dates: Array<LocalDate | null>,
+        dates: Array<LocalDate>,
         birthDate: LocalDate
     ): boolean => {
-        const filteredDates = this.#removeNullDates(dates);
-        return filteredDates.some(
+        return dates.some(
             (date) =>
                 this.#getYearBetweenDates(date, birthDate) >=
                 this.#lowerAgeLimit

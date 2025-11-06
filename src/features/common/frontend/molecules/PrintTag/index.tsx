@@ -6,8 +6,7 @@ export type PrintTagTheme =
     | "warning"
     | "success"
     | "attention"
-    | "disabled"
-    | "losted";
+    | "disabled";
 
 export type PrintTagShape = "rounded" | "square";
 
@@ -84,10 +83,6 @@ const themes: Record<PrintTagTheme, CSSProperties> = {
         color: "#654F00",
     },
     disabled: {
-        backgroundColor: "#E0E6EE",
-        color: "#2E3B4E",
-    },
-    losted: {
         backgroundColor: "#E0E6EE",
         color: "#2E3B4E",
     },

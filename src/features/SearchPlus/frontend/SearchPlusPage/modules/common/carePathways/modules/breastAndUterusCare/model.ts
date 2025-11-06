@@ -35,6 +35,6 @@ export type BreastAndUterusCareItem = {
     mammographyLatestRequestDate: LocalDate | null;
     mammographyLatestEvaluationDate: LocalDate | null;
     latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
-    latestHpvVaccinationDate: Array<LocalDate | null>;
+    hpvVaccinationDates: Array<LocalDate>;
     createdAt: LocalDate | null;
 };

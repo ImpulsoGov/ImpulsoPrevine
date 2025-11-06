@@ -59,7 +59,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
         },
     },
     {
-        fields: ["patientBirthDate", "latestHpvVaccinationDate", "createdAt"],
+        fields: ["patientBirthDate", "hpvVaccinationDates", "createdAt"],
         headerName: "Vacinação contra HPV\nData e situação",
         width: {
             landscape: 150,
