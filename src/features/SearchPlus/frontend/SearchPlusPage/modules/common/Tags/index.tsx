@@ -50,7 +50,7 @@ export const DisabledTag: React.FC<TagProps> = ({ content }) => {
         </PrintTag>
     );
 };
-export const LostedTag: React.FC<TagProps> = ({ content }) => {
+export const LostTag: React.FC<TagProps> = ({ content }) => {
     return (
         <PrintTag theme="disabled">
             <Icon
@@ -103,7 +103,7 @@ export const TagByStatus: React.FC<TagProps> = ({ content }) => {
         "Vence dentro do Q2": AttentionTag,
         "Vence dentro do Q3": AttentionTag,
         "Em dia": SuccessTag,
-        Perdido: LostedTag,
+        Perdido: LostTag,
         "Última chance no Q1": DangerTag,
         "Última chance no Q2": DangerTag,
         "Última chance no Q3": DangerTag,
