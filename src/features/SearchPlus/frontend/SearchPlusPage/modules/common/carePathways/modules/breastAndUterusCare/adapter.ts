@@ -10,6 +10,14 @@ const dateOrNull = (dateString: BRTDateStringOrDash): LocalDate | null => {
     return dateString === "-" ? null : time.brtStringToLocalDate(dateString);
 };
 
+const getHpvVaccinationDates = (field: string): Array<LocalDate> => {
+    const regex = time.brtDateRegex;
+    const dates = (field.match(regex) || []) as Array<time.BRTDateString>;
+    return dates
+        .map((date) => time.brtStringToLocalDate(date))
+        .filter((date) => date !== null);
+};
+
 type HeaderData = {
     createdAtDate: time.BRTDateString;
     createdAtTime: time.BRTTimeString;
@@ -40,6 +48,7 @@ export const csvRowToBreastAndUterusCareItem = (
             ];
         const latestSexualAndReproductiveHealthAppointmentDate =
             row["Data da última consulta de saúde sexual e reprodutiva"];
+        const hpvVaccinationDates = row["HPV"];
 
         return {
             patientName: row["Nome"],
@@ -68,6 +77,7 @@ export const csvRowToBreastAndUterusCareItem = (
             latestSexualAndReproductiveHealthAppointmentDate: dateOrNull(
                 latestSexualAndReproductiveHealthAppointmentDate
             ),
+            hpvVaccinationDates: getHpvVaccinationDates(hpvVaccinationDates),
         };
     });
 };

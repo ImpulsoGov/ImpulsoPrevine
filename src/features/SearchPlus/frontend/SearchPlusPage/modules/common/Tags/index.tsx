@@ -50,7 +50,20 @@ export const DisabledTag: React.FC<TagProps> = ({ content }) => {
         </PrintTag>
     );
 };
-
+export const LostTag: React.FC<TagProps> = ({ content }) => {
+    return (
+        <PrintTag theme="disabled">
+            <Icon
+                loading="eager"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmhnoilrs2vlh07keu437gdcq"
+                alt="Ícone de um x dentro de um círculo"
+                width={8}
+                height={8}
+            />
+            <Text>{content}</Text>
+        </PrintTag>
+    );
+};
 export const AttentionTag: React.FC<TagProps> = ({ content }) => {
     return (
         <PrintTag theme="attention">
@@ -90,6 +103,10 @@ export const TagByStatus: React.FC<TagProps> = ({ content }) => {
         "Vence dentro do Q2": AttentionTag,
         "Vence dentro do Q3": AttentionTag,
         "Em dia": SuccessTag,
+        Perdido: LostTag,
+        "Última chance no Q1": DangerTag,
+        "Última chance no Q2": DangerTag,
+        "Última chance no Q3": DangerTag,
     };
 
     const TagComponent = statusTagMap[content];

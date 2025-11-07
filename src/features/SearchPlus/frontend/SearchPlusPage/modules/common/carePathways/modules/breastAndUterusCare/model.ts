@@ -19,7 +19,7 @@ export type BreastAndUterusCareCsvRow = {
     "Exame de rastreamento de câncer de mama data Última solicitação": BRTDateStringOrDash;
     "Exame de rastreamento de câncer de mama data Última avaliação": BRTDateStringOrDash;
     "Data da última consulta de saúde sexual e reprodutiva": BRTDateStringOrDash;
-    // "Gerado em": time.DateStringWithFullYear;
+    HPV: string;
 };
 
 export type BreastAndUterusCareItem = {
@@ -35,5 +35,6 @@ export type BreastAndUterusCareItem = {
     mammographyLatestRequestDate: LocalDate | null;
     mammographyLatestEvaluationDate: LocalDate | null;
     latestSexualAndReproductiveHealthAppointmentDate: LocalDate | null;
+    hpvVaccinationDates: Array<LocalDate>;
     createdAt: LocalDate | null;
 };

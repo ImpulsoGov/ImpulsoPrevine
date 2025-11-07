@@ -59,6 +59,31 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
         },
     },
     {
+        fields: ["patientBirthDate", "hpvVaccinationDates", "createdAt"],
+        headerName: "Vacinação contra HPV\nData e situação",
+        width: {
+            landscape: 150,
+            portrait: 135,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const { latestDate, status } =
+                goodPractices.hpvVaccinationResult(param);
+
+            return (
+                <div>
+                    <div>
+                        {latestDate
+                            ? time.localDateToBrtString2DigitYear(latestDate)
+                            : "-"}
+                    </div>
+                    <div>
+                        <TagByStatus content={status} />
+                    </div>
+                </div>
+            );
+        },
+    },
+    {
         fields: [
             "patientBirthDate",
             "papTestLatestRequestDate",
