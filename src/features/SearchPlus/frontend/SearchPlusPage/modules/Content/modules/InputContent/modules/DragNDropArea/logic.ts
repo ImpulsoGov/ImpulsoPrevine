@@ -76,7 +76,7 @@ export const handleFileUpload = (
             let createdAtDate;
             let createdAtTime;
 
-            if (splitCreatedAt.length >= 3) {
+            if (splitCreatedAt.length >= 4) {
                 createdAtDate = splitCreatedAt[1];
                 createdAtTime = splitCreatedAt[3];
             }
