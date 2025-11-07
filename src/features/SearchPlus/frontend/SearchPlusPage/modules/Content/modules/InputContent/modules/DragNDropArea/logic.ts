@@ -48,7 +48,6 @@ export const handleFileUpload = (
             const list = lines[listRowIndex]?.split(
                 ";"
             )[1] as ThematicList | null;
-
             if (!list || !(list in csvListTitleToListKey)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
@@ -66,20 +65,31 @@ export const handleFileUpload = (
             const createdAtRowIndex = lines.findIndex((line) =>
                 line.startsWith("Gerado em")
             );
-
+            if (createdAtRowIndex === -1) {
+                errorHandler({
+                    title: "Ops, parece que algo não funcionou!",
+                    message: "Data de geração do arquivo não encontrada",
+                });
+                return;
+            }
             const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
+            let createdAtDate;
+            let createdAtTime;
 
-            const createdAtDate = splitCreatedAt[1];
-            const createdAtTime = splitCreatedAt[3];
+            if (splitCreatedAt.length >= 3) {
+                createdAtDate = splitCreatedAt[1];
+                createdAtTime = splitCreatedAt[3];
+            }
 
             if (
-                !time.isBrtDateStringValid(createdAtDate) ||
-                !time.isBrtTimeStringValid(createdAtTime)
+                createdAtDate &&
+                createdAtTime &&
+                (!time.isBrtDateStringValid(createdAtDate) ||
+                    !time.isBrtTimeStringValid(createdAtTime))
             ) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message:
-                        "Data de geração do arquivo inválida ou em formato incorreto.",
+                    message: "Data de geração em formato incorreto.",
                 });
                 return;
             }
