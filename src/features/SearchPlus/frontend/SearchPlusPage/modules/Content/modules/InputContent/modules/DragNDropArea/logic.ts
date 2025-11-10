@@ -8,12 +8,19 @@ import type {
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 import * as time from "@/features/common/shared/time";
 
+const hasInvalidEncoding = (content: string): boolean => {
+    // Caracteres e combinações típicas de UTF-8 lido como ISO-8859-1
+    const suspiciousPatterns = /[�Ã¢ÃªÃ©Ã£Ã³ÃºÃ±]|Ã./;
+    return suspiciousPatterns.test(content);
+};
+
 export const handleFileUpload = (
     file: File,
     errorHandler: (message: ErrorData) => void,
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
+    console.log("Uploading file:", file);
     if (!file.name.endsWith(".csv")) {
         //TODO: criar funcao para resetar estados, que se repete em varios lugares
         errorHandler({
@@ -28,6 +35,15 @@ export const handleFileUpload = (
         try {
             const rawFile =
                 typeof reader.result === "string" ? reader.result : "";
+
+            if (hasInvalidEncoding(rawFile)) {
+                errorHandler({
+                    title: "Ops! Parece que esse arquivo está em formato incorreto.",
+                    message:
+                        "O arquivo não parece estar em ISO-8859-1. Baixe novamente o CSV diretamente do PEC antes de tentar novamente, não edite ou abra o arquivo em outros editores.",
+                });
+                return;
+            }
 
             const lines = rawFile.split(/\r?\n/);
             const listRowIndex = lines.findIndex((line) =>
