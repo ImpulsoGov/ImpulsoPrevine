@@ -179,12 +179,13 @@ export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientPhoneNumber, patientAge] = param as [string, string];
+            const age = patientAge.slice(0, 2);
             return (
                 <>
                     <div>
                         {Formatters.phoneNumberFormatter(patientPhoneNumber)}
                     </div>
-                    <div>{patientAge} anos</div>
+                    <div>{age} anos</div>
                 </>
             );
         },
