@@ -20,7 +20,6 @@ export const handleFileUpload = (
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
-    console.log("Uploading file:", file);
     if (!file.name.endsWith(".csv")) {
         //TODO: criar funcao para resetar estados, que se repete em varios lugares
         errorHandler({
