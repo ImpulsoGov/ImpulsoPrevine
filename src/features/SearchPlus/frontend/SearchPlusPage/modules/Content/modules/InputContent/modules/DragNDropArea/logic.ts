@@ -21,7 +21,6 @@ export const handleFileUpload = (
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
 ): void => {
     if (!file.name.endsWith(".csv")) {
-        //TODO: criar funcao para resetar estados, que se repete em varios lugares
         errorHandler({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:

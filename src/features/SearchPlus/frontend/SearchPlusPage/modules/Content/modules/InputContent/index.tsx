@@ -39,7 +39,6 @@ export const InputContent: React.FC<Props> = ({
         });
     };
 
-    // TODO: adicionar num context
     const resetContentStatesAndSetErrorMessage = <TMessage,>(
         message: TMessage,
         setError: React.Dispatch<React.SetStateAction<TMessage>>
