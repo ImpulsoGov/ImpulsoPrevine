@@ -76,6 +76,17 @@ export const handleFileUpload = (
                 }));
             }
 
+            const teamRowIndex = lines.findIndex((line) =>
+                line.startsWith("Equipe responsável (Nome/INE)")
+            );
+            if (teamRowIndex === -1) {
+                errorHandler({
+                    title: "Ops, parece que algo não funcionou!",
+                    message: "Equipe responsável não encontrada",
+                });
+                return;
+            }
+
             const createdAtRowIndex = lines.findIndex((line) =>
                 line.startsWith("Gerado em")
             );

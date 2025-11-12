@@ -11,6 +11,7 @@ export type HeaderData = {
     thematicList: ThematicList | null;
     createdAtDate: time.BRTDateString;
     createdAtTime: time.BRTTimeString;
+    teamName: string | undefined;
 };
 
 export type ErrorData = {

@@ -24,6 +24,20 @@ const createdAt = (
     };
 };
 
+const getTeamName = (lines: Array<string>): string | undefined => {
+    const teamRowIndex = lines.findIndex((line) =>
+        line.startsWith("Equipe responsável (Nome/INE)")
+    );
+
+    const teamIneAndName = lines[teamRowIndex]?.split(";")[1]?.split(",");
+
+    let teamName;
+    if (teamIneAndName[0].length >= 2) {
+        teamName = teamIneAndName[0];
+    }
+    return teamName;
+};
+
 const csvContent = (lines: Array<string>): string => {
     const headerIndex = lines.findIndex((line) =>
         line.startsWith("Nome;Data de nascimento;")
@@ -45,6 +59,7 @@ export const handleClick = (
             const lines = text.split(/\r?\n/);
 
             const { createdAtDate, createdAtTime } = createdAt(lines);
+            const teamName = getTeamName(lines);
 
             const cleanedText = csvContent(lines);
 
@@ -58,6 +73,7 @@ export const handleClick = (
                 ...prev,
                 createdAtDate: createdAtDate,
                 createdAtTime: createdAtTime,
+                teamName: teamName,
             }));
             if (!header.thematicList) {
                 errorHandler(
