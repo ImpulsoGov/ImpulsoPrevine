@@ -36,6 +36,7 @@ export const InputContent: React.FC<Props> = ({
             thematicList: null,
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
+            filters: {},
         });
     };
 
@@ -49,6 +50,7 @@ export const InputContent: React.FC<Props> = ({
             thematicList: null,
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
+            filters: {},
         });
         setError(message);
     };
