@@ -36,6 +36,7 @@ export const InputContent: React.FC<Props> = ({
             thematicList: null,
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
+            filters: {},
             teamName: undefined,
         });
     };
@@ -50,6 +51,7 @@ export const InputContent: React.FC<Props> = ({
             thematicList: null,
             createdAtDate: "01/01/1970",
             createdAtTime: "00:00",
+            filters: {},
             teamName: undefined,
         });
         setError(message);

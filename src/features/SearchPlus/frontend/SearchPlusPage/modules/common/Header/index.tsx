@@ -37,6 +37,22 @@ export const Header: React.FC<{ headerData: HeaderData }> = ({
                         Relatório exportado do PEC em {headerData.createdAtDate}{" "}
                         - às {headerData.createdAtTime}
                     </div>
+                    <div style={{ marginTop: "8px" }}>
+                        <span style={{ fontWeight: 600 }}>
+                            Filtros aplicados:{" "}
+                        </span>
+                        {Object.entries(headerData.filters).map(
+                            ([key, value], index, array) => (
+                                <span key={key}>
+                                    <span style={{ fontWeight: 600 }}>
+                                        {key}:{" "}
+                                    </span>
+                                    {value}
+                                    {index < array.length - 1 && " | "}
+                                </span>
+                            )
+                        )}
+                    </div>
                 </div>
                 <div
                     style={{

@@ -24,6 +24,33 @@ const createdAt = (
     };
 };
 
+const getFilter = (lines: Array<string>, filter: string): string | null => {
+    const filterRowIndex = lines.findIndex((line) => line.startsWith(filter));
+    if (filterRowIndex === -1) return null;
+    const splitFilter = lines[filterRowIndex]?.split(";");
+    return splitFilter[1] || null;
+};
+
+const getFilters = (lines: Array<string>): Record<string, string | null> => {
+    //chave: nome do filtro no CSV, valor: nome do filtro no objeto de filtros
+    const filtersToGet = {
+        Microárea: "Microárea",
+        "Grupo de condições prioritários": "Grupo de condições prioritários",
+        "Buscar problemas/condições": "Problemas/condições",
+        "CIAP2 e CID10": "CIAP2 e CID10",
+        Sexo: "Sexo",
+        "Identidade de gênero": "Identidade de gênero",
+        "Faixa etária": "Faixa etária",
+        "Raça/cor": "Raça/cor",
+        "Período do último atendimento": "Período do último atendimento",
+    };
+    const filters: Record<string, string | null> = {};
+    Object.entries(filtersToGet).forEach(([key, value]) => {
+        filters[value] = getFilter(lines, key);
+    });
+    return filters;
+};
+
 const getTeamName = (lines: Array<string>): string | undefined => {
     const teamRowIndex = lines.findIndex((line) =>
         line.startsWith("Equipe responsável (Nome/INE)")
@@ -59,6 +86,7 @@ export const handleClick = (
             const lines = text.split(/\r?\n/);
 
             const { createdAtDate, createdAtTime } = createdAt(lines);
+            const filters = getFilters(lines);
             const teamName = getTeamName(lines);
 
             const cleanedText = csvContent(lines);
@@ -73,6 +101,7 @@ export const handleClick = (
                 ...prev,
                 createdAtDate: createdAtDate,
                 createdAtTime: createdAtTime,
+                filters: filters,
                 teamName: teamName,
             }));
             if (!header.thematicList) {
