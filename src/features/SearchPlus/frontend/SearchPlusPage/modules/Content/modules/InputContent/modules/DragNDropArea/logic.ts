@@ -134,8 +134,7 @@ export const handleFileUpload = (
             if (hasNullBirthDate) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message:
-                        "Um paciente não possui data de nascimento válida.",
+                    message: "Um paciente possui data de nascimento inválida.",
                 });
                 return;
             }
