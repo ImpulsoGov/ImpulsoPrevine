@@ -49,6 +49,7 @@ const getFilters = (lines: Array<string>): Record<string, string | null> => {
         filters[value] = getFilter(lines, key);
     });
     return filters;
+};
 
 const getTeamName = (lines: Array<string>): string | undefined => {
     const teamRowIndex = lines.findIndex((line) =>
