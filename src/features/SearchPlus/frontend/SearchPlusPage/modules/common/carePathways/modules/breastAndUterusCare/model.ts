@@ -13,7 +13,7 @@ export type BreastAndUterusCareCsvRow = {
     "Telefone residencial": string;
     "Telefone de contato": string;
     Microárea: string;
-    "Data de nascimento": time.BRTDateString;
+    "Data de nascimento": time.BRTDateString | "" | null;
     "Exame de rastreamento de câncer de colo de útero data última solicitação": BRTDateStringOrDash;
     "Exame de rastreamento de câncer de colo de útero data última avaliação": BRTDateStringOrDash;
     "Exame de rastreamento de câncer de mama data Última solicitação": BRTDateStringOrDash;

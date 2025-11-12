@@ -7,11 +7,19 @@ import type {
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
 import * as time from "@/features/common/shared/time";
+import { parse } from "papaparse";
+import type { CsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/Content/modules/InputContent/model";
 
 const hasInvalidEncoding = (content: string): boolean => {
     // Caracteres e combinações típicas de UTF-8 lido como ISO-8859-1
     const suspiciousPatterns = /[�Ã¢ÃªÃ©Ã£Ã³ÃºÃ±]|Ã./;
     return suspiciousPatterns.test(content);
+};
+const csvContent = (lines: Array<string>): string => {
+    const headerIndex = lines.findIndex((line) =>
+        line.startsWith("Nome;Data de nascimento;")
+    );
+    return lines.slice(headerIndex).join("\n");
 };
 
 export const handleFileUpload = (
@@ -59,6 +67,7 @@ export const handleFileUpload = (
                 });
                 return;
             }
+
             const list = lines[listRowIndex]?.split(
                 ";"
             )[1] as ThematicList | null;
@@ -115,6 +124,28 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message: "Data de geração em formato incorreto.",
+                });
+                return;
+            }
+
+            const cleanedText = csvContent(lines);
+            const result = parse<CsvRow>(cleanedText, {
+                header: true,
+                skipEmptyLines: true,
+                delimiter: ";",
+            });
+
+            const hasNullBirthDate = result.data.some((item) => {
+                return (
+                    item["Data de nascimento"] === null ||
+                    !item["Data de nascimento"]
+                );
+            });
+
+            if (hasNullBirthDate) {
+                errorHandler({
+                    title: "Ops, parece que algo não funcionou!",
+                    message: "Um paciente possui data de nascimento inválida.",
                 });
                 return;
             }
