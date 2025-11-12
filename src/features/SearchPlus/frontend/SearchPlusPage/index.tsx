@@ -12,6 +12,7 @@ export type HeaderData = {
     createdAtDate: time.BRTDateString;
     createdAtTime: time.BRTTimeString;
     filters: Record<string, string | null>;
+    teamName: string | undefined;
 };
 
 export type ErrorData = {

@@ -49,6 +49,19 @@ const getFilters = (lines: Array<string>): Record<string, string | null> => {
         filters[value] = getFilter(lines, key);
     });
     return filters;
+
+const getTeamName = (lines: Array<string>): string | undefined => {
+    const teamRowIndex = lines.findIndex((line) =>
+        line.startsWith("Equipe responsável (Nome/INE)")
+    );
+
+    const teamIneAndName = lines[teamRowIndex]?.split(";")[1]?.split(",");
+
+    let teamName;
+    if (teamIneAndName[0].length >= 2) {
+        teamName = teamIneAndName[0];
+    }
+    return teamName;
 };
 
 const csvContent = (lines: Array<string>): string => {
@@ -73,6 +86,7 @@ export const handleClick = (
 
             const { createdAtDate, createdAtTime } = createdAt(lines);
             const filters = getFilters(lines);
+            const teamName = getTeamName(lines);
 
             const cleanedText = csvContent(lines);
 
@@ -87,6 +101,7 @@ export const handleClick = (
                 createdAtDate: createdAtDate,
                 createdAtTime: createdAtTime,
                 filters: filters,
+                teamName: teamName,
             }));
             if (!header.thematicList) {
                 errorHandler(

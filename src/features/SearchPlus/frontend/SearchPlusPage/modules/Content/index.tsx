@@ -23,6 +23,7 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         createdAtDate: "01/01/1970",
         createdAtTime: "00:00",
         filters: {},
+        teamName: undefined,
     });
 
     if (errorMessage.length > 0)

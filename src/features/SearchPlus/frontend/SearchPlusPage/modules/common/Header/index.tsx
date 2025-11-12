@@ -27,6 +27,9 @@ export const Header: React.FC<{ headerData: HeaderData }> = ({
                     <div style={{ fontWeight: 600 }}>
                         {ListTitles[headerData.thematicList]}
                     </div>
+                    <div style={{ fontWeight: 600 }}>
+                        Equipe responsável: {headerData.teamName}
+                    </div>
                     <div style={{ fontStyle: "italic", fontWeight: 400 }}>
                         Lista convertida em {nowDate} - às {nowTime}
                     </div>
