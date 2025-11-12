@@ -11,6 +11,7 @@ export type HeaderData = {
     thematicList: ThematicList | null;
     createdAtDate: time.BRTDateString;
     createdAtTime: time.BRTTimeString;
+    filters: Record<string, string | null>;
 };
 
 export type ErrorData = {

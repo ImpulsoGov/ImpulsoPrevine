@@ -24,6 +24,32 @@ const createdAt = (
     };
 };
 
+const getFilter = (lines: Array<string>, filter: string): string | null => {
+    const filterRowIndex = lines.findIndex((line) => line.startsWith(filter));
+    if (filterRowIndex === -1) return null;
+    const splitFilter = lines[filterRowIndex]?.split(";");
+    return splitFilter[1] || null;
+};
+
+const getFilters = (lines: Array<string>): Record<string, string | null> => {
+    const filtersToGet = [
+        "Microárea",
+        "Grupo de condições prioritários",
+        "Buscar problemas/condições",
+        "CIAP2 e CID10",
+        "Sexo",
+        "Identidade de gênero",
+        "Faixa etária",
+        "Raça/Cor",
+        "Período do último atendimento",
+    ];
+    const filters: Record<string, string | null> = {};
+    filtersToGet.forEach((filter) => {
+        filters[filter] = getFilter(lines, filter);
+    });
+    return filters;
+};
+
 const csvContent = (lines: Array<string>): string => {
     const headerIndex = lines.findIndex((line) =>
         line.startsWith("Nome;Data de nascimento;")
@@ -45,6 +71,7 @@ export const handleClick = (
             const lines = text.split(/\r?\n/);
 
             const { createdAtDate, createdAtTime } = createdAt(lines);
+            const filters = getFilters(lines);
 
             const cleanedText = csvContent(lines);
 
@@ -58,6 +85,7 @@ export const handleClick = (
                 ...prev,
                 createdAtDate: createdAtDate,
                 createdAtTime: createdAtTime,
+                filters: filters,
             }));
             if (!header.thematicList) {
                 errorHandler(
