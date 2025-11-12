@@ -6,8 +6,11 @@ import type {
     BRTDateStringOrDash,
 } from "./model";
 
-const dateOrNull = (dateString: BRTDateStringOrDash): LocalDate | null => {
-    return dateString === "-" ? null : time.brtStringToLocalDate(dateString);
+const dateOrNull = (
+    dateString: BRTDateStringOrDash | null | ""
+): LocalDate | null => {
+    if (!dateString || dateString === "-") return null;
+    return time.brtStringToLocalDate(dateString);
 };
 
 const getHpvVaccinationDates = (field: string): Array<LocalDate> => {
@@ -60,9 +63,7 @@ export const csvRowToBreastAndUterusCareItem = (
                 row["Telefone residencial"] ||
                 row["Telefone de contato"],
             microAreaName: row["Microárea"],
-            patientBirthDate: time.brtStringToLocalDate(
-                row["Data de nascimento"]
-            ),
+            patientBirthDate: dateOrNull(row["Data de nascimento"]),
             createdAt: createdAt,
             papTestLatestRequestDate: dateOrNull(papTestLatestRequestDate),
             papTestLatestEvaluationDate: dateOrNull(
