@@ -32,20 +32,21 @@ const getFilter = (lines: Array<string>, filter: string): string | null => {
 };
 
 const getFilters = (lines: Array<string>): Record<string, string | null> => {
-    const filtersToGet = [
-        "Microárea",
-        "Grupo de condições prioritários",
-        "Buscar problemas/condições",
-        "CIAP2 e CID10",
-        "Sexo",
-        "Identidade de gênero",
-        "Faixa etária",
-        "Raça/Cor",
-        "Período do último atendimento",
-    ];
+    //chave: nome do filtro no CSV, valor: nome do filtro no objeto de filtros
+    const filtersToGet = {
+        Microárea: "Microárea",
+        "Grupo de condições prioritários": "Grupo de condições prioritários",
+        "Buscar problemas/condições": "Problemas/condições",
+        "CIAP2 e CID10": "CIAP2 e CID10",
+        Sexo: "Sexo",
+        "Identidade de gênero": "Identidade de gênero",
+        "Faixa etária": "Faixa etária",
+        "Raça/cor": "Raça/cor",
+        "Período do último atendimento": "Período do último atendimento",
+    };
     const filters: Record<string, string | null> = {};
-    filtersToGet.forEach((filter) => {
-        filters[filter] = getFilter(lines, filter);
+    Object.entries(filtersToGet).forEach(([key, value]) => {
+        filters[value] = getFilter(lines, key);
     });
     return filters;
 };
