@@ -16,14 +16,13 @@ export const ResultContent: React.FC<ResultContentProps> = ({
     setJsonData,
     header,
 }) => {
-    // TODO: rever nome, a ref é adicionada no cabeçalho+tabela
-    const tableRef = useRef<HTMLDivElement>(null);
+    const printContentRef = useRef<HTMLDivElement>(null);
     const [isTableVisible, setIsTableVisible] = useState(false);
     const [shouldOpenWindowWithPrint, setShouldOpenWindowWithPrint] =
         useState(false);
     useEffect(() => {
-        if (tableRef.current?.innerHTML && isTableVisible) {
-            const htmlString = tableRef.current.innerHTML;
+        if (printContentRef.current?.innerHTML && isTableVisible) {
+            const htmlString = printContentRef.current.innerHTML;
             if (htmlString.length > 0) {
                 Print(htmlString, shouldOpenWindowWithPrint);
                 setIsTableVisible(false);
@@ -39,7 +38,7 @@ export const ResultContent: React.FC<ResultContentProps> = ({
             setIsTableVisible={setIsTableVisible}
             setShouldOpenWindowWithPrint={setShouldOpenWindowWithPrint}
             header={header}
-            tableRef={tableRef}
+            printContentRef={printContentRef}
         />
     );
 };

@@ -83,7 +83,7 @@ type SuccessProps = {
     setIsTableVisible: React.Dispatch<React.SetStateAction<boolean>>;
     setShouldOpenWindowWithPrint: React.Dispatch<React.SetStateAction<boolean>>;
     header: HeaderData;
-    tableRef: React.RefObject<HTMLDivElement | null>;
+    printContentRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export const Success: React.FC<SuccessProps> = ({
@@ -93,7 +93,7 @@ export const Success: React.FC<SuccessProps> = ({
     setIsTableVisible,
     setShouldOpenWindowWithPrint,
     header,
-    tableRef,
+    printContentRef,
 }) => {
     return (
         <div
@@ -134,7 +134,7 @@ export const Success: React.FC<SuccessProps> = ({
                 setShouldOpenWindowWithPrint={setShouldOpenWindowWithPrint}
             />
             {isTableVisible && header.thematicList && (
-                <div ref={tableRef}>
+                <div ref={printContentRef}>
                     <Header headerData={header} />
                     <UnitTable
                         data={jsonData}
