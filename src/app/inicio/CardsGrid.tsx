@@ -43,6 +43,7 @@ export type CardsGridProps = {
         hasDiabetesNewProgramEnabled: boolean;
         hasHypertensionNewProgramEnabled: boolean;
     };
+    hasSearchPlusEnabled: boolean;
 };
 
 export type CardIndicatorType =
@@ -199,6 +200,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
     isAlfa,
     situacaoPorIndicador,
     visao,
+    hasSearchPlusEnabled,
 }) => {
     const CardsGridData: CardsGridDataType = {
         cardsDiabetesEVacinacao: isAlfa.hasDiabetesNewProgramEnabled
@@ -509,40 +511,77 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                         }}
                     />
                 </div>,
-                <Banner
-                    key="bannerGuiasEDicas"
-                    descricao={{
-                        content:
-                            "Converta seus relatórios do PEC em segundos, e tenha listas prontas para distribuir aos ACS e simplificar o acompanhamento dos cidadãos.",
-                        color: "#88181D",
-                    }}
-                    icone={{
-                        alt: "Ícone bastão brilhante",
-                        src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmhyvsqvb012607m0j4azkw1w",
-                        width: "33px",
-                        height: "40px",
-                    }}
-                    link={{
-                        newTab: true,
-                        url: "https://bit.ly/contruibua-tela-inicial",
-                    }}
-                    botao={{
-                        label: "VER FERRAMENTA",
-                        backgroundColor: "#88181D",
-                        backgroundColorOnHover: "#88181D",
-                    }}
-                    titulo={{
-                        content: "Busca+mais",
-                        color: "#88181D",
-                    }}
-                    onClick={(): void => {
-                        mixpanel.track("card_click", {
-                            card_action: "enviar_feedback_novidade",
-                            card_page: "pg_inicio",
-                        });
-                    }}
-                    backgroundColor="#F8BCAE"
-                />,
+                hasSearchPlusEnabled ? (
+                    <Banner
+                        key="bannerGuiasEDicas"
+                        descricao={{
+                            content:
+                                "Converta seus relatórios do PEC em segundos, e tenha listas prontas para distribuir aos ACS e simplificar o acompanhamento dos cidadãos.",
+                            color: "#88181D",
+                        }}
+                        icone={{
+                            alt: "Ícone bastão brilhante",
+                            src: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmhyvsqvb012607m0j4azkw1w",
+                            width: "33px",
+                            height: "40px",
+                        }}
+                        link={{
+                            newTab: true,
+                            url: "https://bit.ly/contruibua-tela-inicial",
+                        }}
+                        botao={{
+                            label: "VER FERRAMENTA",
+                            backgroundColor: "#88181D",
+                            backgroundColorOnHover: "#88181D",
+                        }}
+                        titulo={{
+                            content: "Busca+mais",
+                            color: "#88181D",
+                        }}
+                        onClick={(): void => {
+                            mixpanel.track("card_click", {
+                                card_action: "enviar_feedback_novidade",
+                                card_page: "pg_inicio",
+                            });
+                        }}
+                        backgroundColor="#F8BCAE"
+                    />
+                ) : (
+                    <Banner
+                        key="bannerGuiasEDicas"
+                        descricao={{
+                            content:
+                                "Estamos adaptando o Impulso Previne às novas regras da APS. <p>Quer ser um dos primeiros a testar e ajudar a construir essa nova fase? 👀 </p>",
+                            color: "#1F7A99",
+                        }}
+                        icone={{
+                            alt: "Ícone de uma lâmpada",
+                            src: "https://media.graphassets.com/czfiUThpQWWTmUNquGAR",
+                            width: "33px",
+                            height: "40px",
+                        }}
+                        link={{
+                            newTab: true,
+                            url: "https://bit.ly/contruibua-tela-inicial",
+                        }}
+                        botao={{
+                            label: "QUERO PARTICIPAR",
+                            backgroundColor: "#1F7A99",
+                            backgroundColorOnHover: "#1F7A99",
+                        }}
+                        titulo={{
+                            content: "Novos indicadores",
+                            color: "#1F7A99",
+                        }}
+                        onClick={(): void => {
+                            mixpanel.track("card_click", {
+                                card_action: "enviar_feedback_novidade",
+                                card_page: "pg_inicio",
+                            });
+                        }}
+                        backgroundColor="#B5E4E9"
+                    />
+                ),
             ]}
         />
     );
