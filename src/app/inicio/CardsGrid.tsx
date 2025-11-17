@@ -526,8 +526,8 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                             height: "40px",
                         }}
                         link={{
-                            newTab: true,
-                            url: "https://bit.ly/contruibua-tela-inicial",
+                            newTab: false,
+                            url: "/cofin25/busca_mais",
                         }}
                         botao={{
                             label: "VER FERRAMENTA",
