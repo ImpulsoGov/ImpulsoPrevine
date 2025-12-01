@@ -2,7 +2,7 @@ import { baseURL } from "@/utils/baseURL";
 import axios from "axios";
 import { type SituacaoIndicador } from "@/types/inicio";
 
-export const InicioEquipeRequest = async (
+export const InicioEquipeRequest = (
     municipioIdSus: string,
     equipe: string,
     token: string

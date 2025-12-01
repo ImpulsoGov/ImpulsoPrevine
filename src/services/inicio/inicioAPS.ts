@@ -2,7 +2,7 @@ import { baseURL } from "@/utils/baseURL";
 import axios from "axios";
 import { type SituacaoIndicador } from "@/types/inicio";
 
-export const InicioAPSRequest = async (
+export const InicioAPSRequest = (
     municipioIdSus: string,
     token: string
 ): Promise<Array<SituacaoIndicador> | null> => {
@@ -15,7 +15,7 @@ export const InicioAPSRequest = async (
         },
     };
 
-    const res = await axios
+    const res = axios
         .request<Array<SituacaoIndicador>>(config)
         .then((response) => {
             return response.data;
