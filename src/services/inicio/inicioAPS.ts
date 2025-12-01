@@ -1,10 +1,11 @@
 import { baseURL } from "@/utils/baseURL";
 import axios from "axios";
+import { type SituacaoIndicador } from "@/types/inicio";
 
-export const InicioAPSRequest = async (
+export const InicioAPSRequest = (
     municipioIdSus: string,
     token: string
-) => {
+): Promise<Array<SituacaoIndicador> | null> => {
     const config = {
         method: "get",
         maxBodyLength: Number.POSITIVE_INFINITY,
@@ -15,13 +16,17 @@ export const InicioAPSRequest = async (
     };
 
     const res = axios
-        .request(config)
+        .request<Array<SituacaoIndicador>>(config)
         .then((response) => {
             return response.data;
         })
-        .catch((error) => {
-            console.error((error as Error).message);
-            return (error as Error).message;
+        .catch((error: unknown) => {
+            if (error instanceof Error) {
+                console.error(error.message);
+            } else {
+                console.error("An unknown error occurred");
+            }
+            return null;
         });
 
     return res;

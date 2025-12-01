@@ -16,6 +16,7 @@ jest.mock("next/dynamic", () => () => {
 jest.mock("@features/common/shared/flags", () => ({
     diabetesNewProgram: jest.fn(),
     hypertensionNewProgram: jest.fn(),
+    searchPlus: jest.fn(),
 }));
 
 jest.mock("next-auth", () => ({
@@ -66,7 +67,7 @@ describe("InicioPage", () => {
         // Simula ausência de sessão
         (getServerSession as jest.Mock).mockResolvedValue(null);
 
-        const pageElement = await InicioPage();
+        const pageElement = await InicioPage({});
         render(pageElement);
 
         expect(screen.getByTestId("auth-error")).toBeInTheDocument();
@@ -79,9 +80,9 @@ describe("InicioPage", () => {
         });
         (InicioAPSRequest as jest.Mock).mockResolvedValue([{ some: "data" }]);
         // Simula falha ao unificar dados
-        (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(null);
+        (unificarSituacaoPorIndicadores as jest.Mock).mockReturnValue(null);
 
-        const pageElement = await InicioPage();
+        const pageElement = await InicioPage({});
         render(pageElement);
 
         expect(screen.getByTestId("support-error")).toBeInTheDocument();
@@ -109,11 +110,11 @@ describe("InicioPage", () => {
             expires: "1",
         };
         (InicioAPSRequest as jest.Mock).mockResolvedValue([{ some: "data" }]);
-        (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(
+        (unificarSituacaoPorIndicadores as jest.Mock).mockReturnValue(
             validData
         );
 
-        const pageElement = await InicioPage();
+        const pageElement = await InicioPage({});
         render(
             <SessionProvider session={clientSession}>
                 {pageElement}
@@ -132,11 +133,11 @@ describe("InicioPage", () => {
         (InicioEquipeRequest as jest.Mock).mockResolvedValue([
             { some: "data" },
         ]);
-        (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue(
+        (unificarSituacaoPorIndicadores as jest.Mock).mockReturnValue(
             validData
         );
 
-        const pageElement = await InicioPage();
+        const pageElement = await InicioPage({});
         render(pageElement);
 
         expect(screen.getByTestId("inicio-component")).toBeInTheDocument();
@@ -152,10 +153,10 @@ describe("InicioPage", () => {
         (InicioAPSRequest as jest.Mock).mockResolvedValue([{ some: "data" }]);
 
         // Simula que unificarSituacaoPorIndicadores retorna um objeto vazio
-        (unificarSituacaoPorIndicadores as jest.Mock).mockResolvedValue({});
+        (unificarSituacaoPorIndicadores as jest.Mock).mockReturnValue({});
 
         // Obtém o elemento retornado pela função assíncrona
-        const pageElement = await InicioPage();
+        const pageElement = await InicioPage({});
         render(pageElement);
 
         // Verifica se o componente SupportError foi renderizado

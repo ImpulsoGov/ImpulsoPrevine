@@ -6,15 +6,12 @@ import dynamic from "next/dynamic";
 import { AlertSnackBar } from "@/componentes/mounted/inicio/snackbar/AlertSnackBar";
 import { Greeting } from "@impulsogov/design-system";
 import { Texto } from "@impulsogov/design-system";
+import type { CardsGridProps } from "./CardsGrid";
 
-const CardsGrid = dynamic<{
-    isAlfa: {
-        hasDiabetesNewProgramEnabled: boolean;
-        hasHypertensionNewProgramEnabled: boolean;
-    };
-    situacaoPorIndicador: SituacaoPorIndicador;
-    visao: string;
-}>(() => import("./CardsGrid").then((mod) => mod.CardsGrid), { ssr: false });
+const CardsGrid = dynamic<CardsGridProps>(
+    () => import("./CardsGrid").then((mod) => mod.CardsGrid),
+    { ssr: false }
+);
 
 import style from "./Inicio.module.css";
 
@@ -22,12 +19,14 @@ type InicioProps = {
     situacaoPorIndicador: SituacaoPorIndicador;
     hasDiabetesNewProgramEnabled: boolean;
     hasHypertensionNewProgramEnabled: boolean;
+    hasSearchPlusEnabled: boolean;
 };
 
 export const Inicio: React.FC<InicioProps> = ({
     situacaoPorIndicador = null,
     hasDiabetesNewProgramEnabled,
     hasHypertensionNewProgramEnabled,
+    hasSearchPlusEnabled,
 }) => {
     const { data: session } = useSession();
     if (session && situacaoPorIndicador) {
@@ -70,6 +69,7 @@ export const Inicio: React.FC<InicioProps> = ({
                             hasHypertensionNewProgramEnabled:
                                 hasHypertensionNewProgramEnabled,
                         }}
+                        hasSearchPlusEnabled={hasSearchPlusEnabled}
                         situacaoPorIndicador={situacaoPorIndicador}
                         visao={
                             session.user.perfis.includes(5) ||
