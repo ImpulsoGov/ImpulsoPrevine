@@ -11,7 +11,6 @@ import { parse } from "papaparse";
 import type { CsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/Content/modules/InputContent/model";
 import mixpanel from "mixpanel-browser";
 
-type Status = "success" | "error";
 // TODO: revisar os tipos de erro
 type ErrorType =
     | "invalid_file_extension"
@@ -25,13 +24,19 @@ type ErrorType =
     | "unknown_error";
 
 // TODO: pensar se faz sentido que errorType seja errorCode
-export const trackFileUpload = (
-    status: Status,
-    errorType: ErrorType | null = null
-): void => {
+const trackFileUploadWithError = (errorType: ErrorType | null = null): void => {
     mixpanel.track("file_upload", {
-        status,
+        status: "error",
         error_type: errorType,
+        thematic_list: null,
+    });
+};
+
+const trackFileUploadWithSuccess = (thematicList: ThematicList): void => {
+    mixpanel.track("file_upload", {
+        status: "success",
+        error_type: null,
+        thematic_list: thematicList,
     });
 };
 
@@ -59,7 +64,7 @@ export const handleFileUpload = (
             message:
                 "<div>O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, <a href='www.google.com' style='text-decoration: underline;' >clique aqui.</a></div>",
         });
-        trackFileUpload("error", "invalid_file_extension");
+        trackFileUploadWithError("invalid_file_extension");
         return;
     }
     const reader = new FileReader();
@@ -74,7 +79,7 @@ export const handleFileUpload = (
                     message:
                         "O arquivo não parece estar em ISO-8859-1. Baixe novamente o CSV diretamente do PEC antes de tentar novamente, não edite ou abra o arquivo em outros editores.",
                 });
-                trackFileUpload("error", "invalid_file_encoding");
+                trackFileUploadWithError("invalid_file_encoding");
                 return;
             }
 
@@ -92,7 +97,7 @@ export const handleFileUpload = (
                     message:
                         "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
                 });
-                trackFileUpload("error", "invalid_file_header");
+                trackFileUploadWithError("invalid_file_header");
                 return;
             }
 
@@ -105,7 +110,7 @@ export const handleFileUpload = (
                     message:
                         "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
                 });
-                trackFileUpload("error", "invalid_thematic_list");
+                trackFileUploadWithError("invalid_thematic_list");
                 return;
             } else {
                 setHeader((prev) => ({
@@ -122,7 +127,7 @@ export const handleFileUpload = (
                     title: "Ops, parece que algo não funcionou!",
                     message: "Equipe responsável não encontrada",
                 });
-                trackFileUpload("error", "team_name_not_found");
+                trackFileUploadWithError("team_name_not_found");
                 return;
             }
 
@@ -134,7 +139,7 @@ export const handleFileUpload = (
                     title: "Ops, parece que algo não funcionou!",
                     message: "Data de geração do arquivo não encontrada",
                 });
-                trackFileUpload("error", "creation_date_not_found");
+                trackFileUploadWithError("creation_date_not_found");
                 return;
             }
             const splitCreatedAt = lines[createdAtRowIndex]?.split(";");
@@ -156,7 +161,7 @@ export const handleFileUpload = (
                     title: "Ops, parece que algo não funcionou!",
                     message: "Data de geração em formato incorreto.",
                 });
-                trackFileUpload("error", "invalid_creation_date");
+                trackFileUploadWithError("invalid_creation_date");
                 return;
             }
 
@@ -179,12 +184,12 @@ export const handleFileUpload = (
                     title: "Ops, parece que algo não funcionou!",
                     message: "Um paciente possui data de nascimento inválida.",
                 });
-                trackFileUpload("error", "invalid_patient_birth_date");
+                trackFileUploadWithError("invalid_patient_birth_date");
                 return;
             }
 
             setRawFileContent(file);
-            trackFileUpload("success");
+            trackFileUploadWithSuccess(list);
         } catch (err) {
             if (err instanceof Error) {
                 errorHandler({
@@ -197,7 +202,7 @@ export const handleFileUpload = (
                     message: "Erro desconhecido ao processar arquivo.",
                 });
             }
-            trackFileUpload("error", "unknown_error");
+            trackFileUploadWithError("unknown_error");
         }
     };
 
@@ -206,7 +211,7 @@ export const handleFileUpload = (
             title: "Ops, parece que algo não funcionou!",
             message: "Erro desconhecido ao processar arquivo.",
         });
-        trackFileUpload("error", "unknown_error");
+        trackFileUploadWithError("unknown_error");
     };
     //TODO: verificar encoding oficial do CSV originario do PEC
     reader.readAsText(file, "ISO-8859-1");
