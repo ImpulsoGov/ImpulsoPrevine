@@ -7,6 +7,7 @@ import type { SearchPlusItem } from "../common/carePathways";
 import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
 import { Error } from "./modules/ErrorPage";
+import mixpanel from "mixpanel-browser";
 
 export type { CsvRow } from "./modules/InputContent";
 
@@ -26,7 +27,13 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         teamName: undefined,
     });
 
-    if (errorMessage.length > 0)
+    if (errorMessage.length > 0) {
+        mixpanel.track("file_transform", {
+            status: "error",
+            thematic_list: header.thematicList,
+            error_type: "unknown_error",
+        });
+
         return (
             <Error
                 setJsonData={setJsonData}
@@ -34,8 +41,15 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
                 error={errorMessage}
             />
         );
+    }
 
-    if (jsonData.length > 0)
+    if (jsonData.length > 0) {
+        mixpanel.track("file_transform", {
+            status: "success",
+            thematic_list: header.thematicList,
+            error_type: null,
+        });
+
         return (
             <ResultContent
                 jsonData={jsonData}
@@ -43,6 +57,7 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
                 header={header}
             />
         );
+    }
 
     return (
         <InputContent
