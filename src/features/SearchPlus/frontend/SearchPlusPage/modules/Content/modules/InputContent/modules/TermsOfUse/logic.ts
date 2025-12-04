@@ -82,7 +82,6 @@ export const handleClick = (
     const reader = new FileReader();
     reader.onload = (): void => {
         try {
-            // throw new Error("Teste de erro");
             const text = typeof reader.result === "string" ? reader.result : "";
             const lines = text.split(/\r?\n/);
 

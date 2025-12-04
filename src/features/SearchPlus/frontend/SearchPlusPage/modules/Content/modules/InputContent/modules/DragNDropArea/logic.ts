@@ -40,11 +40,11 @@ const trackFileUploadWithSuccess = (thematicList: ThematicList): void => {
     });
 };
 
-// const hasInvalidEncoding = (content: string): boolean => {
-//     // Caracteres e combinações típicas de UTF-8 lido como ISO-8859-1
-//     const suspiciousPatterns = /[�Ã¢ÃªÃ©Ã£Ã³ÃºÃ±]|Ã./;
-//     return suspiciousPatterns.test(content);
-// };
+const hasInvalidEncoding = (content: string): boolean => {
+    // Caracteres e combinações típicas de UTF-8 lido como ISO-8859-1
+    const suspiciousPatterns = /[�Ã¢ÃªÃ©Ã£Ã³ÃºÃ±]|Ã./;
+    return suspiciousPatterns.test(content);
+};
 const csvContent = (lines: Array<string>): string => {
     const headerIndex = lines.findIndex((line) =>
         line.startsWith("Nome;Data de nascimento;")
@@ -73,15 +73,15 @@ export const handleFileUpload = (
             const rawFile =
                 typeof reader.result === "string" ? reader.result : "";
 
-            // if (hasInvalidEncoding(rawFile)) {
-            //     errorHandler({
-            //         title: "Ops! Parece que esse arquivo está em formato incorreto.",
-            //         message:
-            //             "O arquivo não parece estar em ISO-8859-1. Baixe novamente o CSV diretamente do PEC antes de tentar novamente, não edite ou abra o arquivo em outros editores.",
-            //     });
-            //     trackFileUploadWithError("invalid_file_encoding");
-            //     return;
-            // }
+            if (hasInvalidEncoding(rawFile)) {
+                errorHandler({
+                    title: "Ops! Parece que esse arquivo está em formato incorreto.",
+                    message:
+                        "O arquivo não parece estar em ISO-8859-1. Baixe novamente o CSV diretamente do PEC antes de tentar novamente, não edite ou abra o arquivo em outros editores.",
+                });
+                trackFileUploadWithError("invalid_file_encoding");
+                return;
+            }
 
             const lines = rawFile.split(/\r?\n/);
             const listRowIndex = lines.findIndex((line) =>
