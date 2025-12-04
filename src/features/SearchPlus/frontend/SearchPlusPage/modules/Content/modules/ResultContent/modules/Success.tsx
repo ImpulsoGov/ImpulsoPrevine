@@ -51,11 +51,11 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     color: "#1F1F1F",
                 }}
                 onClick={() => {
-                    setIsTableVisible(true);
-                    setShouldOpenWindowWithPrint(false);
                     mixpanel.track("result_list_view", {
                         thematic_list: thematicList,
                     });
+                    setIsTableVisible(true);
+                    setShouldOpenWindowWithPrint(false);
                 }}
             >
                 Visualizar prévia da lista
@@ -66,11 +66,11 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     color: "#FFF",
                 }}
                 onClick={() => {
-                    setIsTableVisible(true);
-                    setShouldOpenWindowWithPrint(true);
                     mixpanel.track("result_list_print", {
                         thematic_list: thematicList,
                     });
+                    setIsTableVisible(true);
+                    setShouldOpenWindowWithPrint(true);
                 }}
             >
                 <Image
