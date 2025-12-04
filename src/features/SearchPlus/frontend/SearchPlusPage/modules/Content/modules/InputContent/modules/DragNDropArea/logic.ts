@@ -137,8 +137,9 @@ export const handleFileUpload = (
 
             const hasInvalidBirthDate = result.data.some((item) => {
                 return (
-                    !item["Data de nascimento"] ||
-                    !time.isBrtDateStringValid(item["Data de nascimento"])
+                    item["Data de nascimento"] === null ||
+                    !time.isBrtDateStringValid(item["Data de nascimento"]) ||
+                    !item["Data de nascimento"]
                 );
             });
 
