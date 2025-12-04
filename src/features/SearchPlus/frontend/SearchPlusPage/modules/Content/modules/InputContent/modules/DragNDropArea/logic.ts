@@ -135,14 +135,14 @@ export const handleFileUpload = (
                 delimiter: ";",
             });
 
-            const hasNullBirthDate = result.data.some((item) => {
+            const hasInvalidBirthDate = result.data.some((item) => {
                 return (
-                    item["Data de nascimento"] === null ||
-                    !item["Data de nascimento"]
+                    !item["Data de nascimento"] ||
+                    !time.isBrtDateStringValid(item["Data de nascimento"])
                 );
             });
 
-            if (hasNullBirthDate) {
+            if (hasInvalidBirthDate) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message: "Um paciente possui data de nascimento inválida.",
