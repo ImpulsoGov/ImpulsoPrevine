@@ -1,23 +1,27 @@
 import { Button } from "@/features/common/frontend/atoms";
 import Image from "next/image";
-import {
-    columns,
-    type SearchPlusItem,
+import type {
+    ThematicList,
+    SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import { columns } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { UnitTable } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Header } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Header";
+import mixpanel from "mixpanel-browser";
 
 type ButtonBarProps = {
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setIsTableVisible: React.Dispatch<React.SetStateAction<boolean>>;
     setShouldOpenWindowWithPrint: React.Dispatch<React.SetStateAction<boolean>>;
+    thematicList: ThematicList | null;
 };
 
 const ButtonBar: React.FC<ButtonBarProps> = ({
     setJsonData,
     setIsTableVisible,
     setShouldOpenWindowWithPrint,
+    thematicList,
 }) => {
     return (
         <div
@@ -47,6 +51,9 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     color: "#1F1F1F",
                 }}
                 onClick={() => {
+                    mixpanel.track("result_list_view", {
+                        thematic_list: thematicList,
+                    });
                     setIsTableVisible(true);
                     setShouldOpenWindowWithPrint(false);
                 }}
@@ -59,6 +66,9 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     color: "#FFF",
                 }}
                 onClick={() => {
+                    mixpanel.track("result_list_print", {
+                        thematic_list: thematicList,
+                    });
                     setIsTableVisible(true);
                     setShouldOpenWindowWithPrint(true);
                 }}
@@ -132,6 +142,7 @@ export const Success: React.FC<SuccessProps> = ({
                 setJsonData={setJsonData}
                 setIsTableVisible={setIsTableVisible}
                 setShouldOpenWindowWithPrint={setShouldOpenWindowWithPrint}
+                thematicList={header.thematicList}
             />
             {isTableVisible && header.thematicList && (
                 <div ref={printContentRef}>
