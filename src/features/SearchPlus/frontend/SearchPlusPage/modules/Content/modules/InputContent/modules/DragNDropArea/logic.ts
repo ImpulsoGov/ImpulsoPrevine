@@ -11,7 +11,6 @@ import { parse } from "papaparse";
 import type { CsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/Content/modules/InputContent/model";
 import mixpanel from "mixpanel-browser";
 
-// TODO: revisar os tipos de erro
 type ErrorType =
     | "invalid_file_extension"
     | "invalid_thematic_list"
@@ -23,7 +22,6 @@ type ErrorType =
     | "creation_date_not_found"
     | "unknown_error";
 
-// TODO: pensar se faz sentido que errorType seja errorCode
 const trackFileUploadWithError = (errorType: ErrorType | null = null): void => {
     mixpanel.track("file_upload", {
         status: "error",
