@@ -104,10 +104,7 @@ export const handleFileUpload = (
             const list = lines[listRowIndex]?.split(
                 ";"
             )[1] as ThematicList | null;
-            console.log("lines", lines);
-            console.log("listRowIndex", listRowIndex);
-            console.log("");
-            console.log("list", list);
+
             if (!list || !(list in csvListTitleToListKey)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
