@@ -58,9 +58,8 @@ export class HpvVaccinationCalculator {
         birthDate: LocalDate,
         currentQuadrimester: QuadrimesterNumber
     ): boolean {
-        const yesterday = this.#data.createdAt.minusDays(1);
-        const isFifteenBeforeToday =
-            this.#getYearBetweenDates(yesterday, birthDate) ===
+        const isFifteenToday =
+            this.#getYearBetweenDates(this.#data.createdAt, birthDate) ===
             this.#upperAgeLimit;
 
         const currentQuadrimesterStart =
@@ -69,7 +68,7 @@ export class HpvVaccinationCalculator {
             this.#getYearBetweenDates(currentQuadrimesterStart, birthDate) ===
             this.#upperAgeLimit;
 
-        return isFifteenAtQuadrimesterStart || isFifteenBeforeToday;
+        return isFifteenAtQuadrimesterStart || isFifteenToday;
     }
     #willBeFifteenAtEndOfQuadri(
         birthDate: LocalDate,

@@ -75,6 +75,18 @@ describe("HpvVaccinationCalculator", () => {
                 });
                 expect(calc.computeStatus()).toBe("Perdido");
             });
+
+            it('retorna "Perdido" quando a pessoa não possui data da última vacinação e COMPLETOU 15 anos depois do ínicio do quadrimestre e no dia da exportação da lista do PEC', () => {
+                //hoje é 14 de novembro, no dia 14 de novembro a pessoa já completou 15 anos
+                const birthDateFor15YearsOld = LocalDate.parse("2010-11-14");
+                const calc = new HpvVaccinationCalculator({
+                    ...baseData,
+                    hpvVaccinationDates: [],
+                    patientBirthDate: birthDateFor15YearsOld,
+                    createdAt: LocalDate.parse("2025-11-14"),
+                });
+                expect(calc.computeStatus()).toBe("Perdido");
+            });
         });
 
         describe("Essa pessoa irá completar 15 anos este quadrimestre?", () => {
