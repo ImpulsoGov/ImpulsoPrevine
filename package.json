@@ -52,7 +52,7 @@
         "react": "19.0.1",
         "react-dom": "19.0.1",
         "react-gtm-module": "^2.0.11",
-        "validator": "^13.12.0",
+        "validator": "^13.15.22",
         "zod": "^3.25.0"
     },
     "devDependencies": {
