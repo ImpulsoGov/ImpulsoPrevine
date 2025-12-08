@@ -25,10 +25,10 @@ export const Error: React.FC<Props> = ({
             }}
         >
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6k102kb06kc0hkkpzzp"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmixipnaw02ql07kizjrfimg1"
                 alt="Ícone de uma placa de atenção"
                 width={240}
-                height={171}
+                height={180}
             />
             <div
                 style={{
@@ -41,9 +41,8 @@ export const Error: React.FC<Props> = ({
             >
                 {error}
                 <div style={{ fontWeight: 700 }}>
-                    Tente enviar um novo arquivo
+                    Tente enviar um novo arquivo.
                 </div>
-                .
             </div>
             <Button
                 style={{

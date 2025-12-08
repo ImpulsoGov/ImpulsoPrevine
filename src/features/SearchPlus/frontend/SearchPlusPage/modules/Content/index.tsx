@@ -26,7 +26,6 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         filters: {},
         teamName: undefined,
     });
-
     if (errorMessage.length > 0) {
         mixpanel.track("file_transform", {
             status: "error",

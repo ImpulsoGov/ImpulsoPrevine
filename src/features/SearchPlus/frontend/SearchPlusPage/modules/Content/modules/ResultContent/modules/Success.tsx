@@ -123,9 +123,9 @@ export const Success: React.FC<SuccessProps> = ({
                 }}
             >
                 <Image
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6k302p408lxo84xz8tk"
+                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmixini0502p807kibpc2ckao"
                     alt="Pasta com documentos"
-                    width={135}
+                    width={195}
                     height={180}
                 />
                 <p
