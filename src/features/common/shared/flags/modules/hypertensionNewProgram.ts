@@ -121,6 +121,12 @@ const allowedMunicipalities = [
     "521975",
     "150720",
     "316970",
+    "250073",
+    "91260",
+    "313060",
+    "313400",
+    "150549",
+    "231100",
 ];
 
 export const hypertensionNewProgram = flag<
