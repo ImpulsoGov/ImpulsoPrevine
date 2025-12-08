@@ -16,6 +16,8 @@
         "test:unit": "jest --testPathIgnorePatterns=__tests__/integration"
     },
     "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
         "@hotjar/browser": "^1.0.9",
         "@impulsogov/design-system": "^1.0.369",
         "@js-joda/core": "^5.6.5",
@@ -32,6 +34,8 @@
         "core-js": "^3.45.1",
         "cpf-cnpj-validator": "^1.0.3",
         "dompurify": "^3.1.6",
+        "echarts": "^6.0.0",
+        "echarts-for-react": "^3.0.5",
         "flags": "^4.0.1",
         "form-data": "^4.0.0",
         "graphql": "^16.9.0",
@@ -41,12 +45,12 @@
         "libphonenumber-js": "^1.12.12",
         "lodash.merge": "^4.6.2",
         "mixpanel-browser": "^2.55.1",
-        "next": "^15.5.0",
+        "next": "15.5.7",
         "next-auth": "^4.24.10",
         "papaparse": "^5.4.1",
         "prisma": "5.22.0",
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
+        "react": "19.0.1",
+        "react-dom": "19.0.1",
         "react-gtm-module": "^2.0.11",
         "validator": "^13.12.0",
         "zod": "^3.25.0"
