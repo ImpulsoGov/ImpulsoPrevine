@@ -39,19 +39,33 @@ export const DragNDropArea: React.FC<Props> = ({
             onDragOver={handleDragOver}
             style={{
                 backgroundColor: "#ADE3F4",
+                color: "#1F1F1F",
                 border: "3px dashed #58B3FE",
                 borderRadius: "16px",
-                padding: "32px 0px 21px 0px",
+                padding: "21px 80px",
                 width: "48%",
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "8px",
+                justifyContent: "center",
+                alignSelf: "stretch",
+                gap: "16px",
             }}
         >
+            <p
+                style={{
+                    fontSize: "22px",
+                    fontWeight: 500,
+                    lineHeight: "130%",
+                    marginBottom: "16px",
+                    marginTop: "0px",
+                }}
+            >
+                Suba o seu arquivo do PEC
+            </p>
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861ix03l107kn7m7bg796"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmiz1tm3104fg07kdw3tudy88"
                 alt="Drag and drop"
                 width={60}
                 height={60}
@@ -68,10 +82,9 @@ export const DragNDropArea: React.FC<Props> = ({
                     lineHeight: "130%",
                     letterSpacing: "-0.3px",
                     cursor: "pointer",
-                    marginTop: "16px",
                 }}
             >
-                SELECIONAR ARQUIVO
+                Selecionar arquivo
             </label>
             <input
                 id="upload-file"
@@ -94,7 +107,9 @@ export const DragNDropArea: React.FC<Props> = ({
                 }}
                 style={{ display: "none" }}
             />
-            <div>ou arraste e solte um arquivo CSV aqui</div>
+            <div style={{ fontWeight: 400, lineHeight: "130%" }}>
+                ou arraste e solte um arquivo CSV aqui
+            </div>
         </div>
     );
 };
