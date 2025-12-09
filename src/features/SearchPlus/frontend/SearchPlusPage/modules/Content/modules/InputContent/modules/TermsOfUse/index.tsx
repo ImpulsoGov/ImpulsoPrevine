@@ -35,7 +35,14 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
             }}
         >
             {children}
-            <div style={{ width: "60%", display: "flex", gap: "12px" }}>
+            <div
+                style={{
+                    width: "45%",
+                    display: "flex",
+                    gap: "12px",
+                    justifySelf: "stretch",
+                }}
+            >
                 <div>
                     <input
                         type="checkbox"
@@ -43,7 +50,7 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                             setAreTermsAccepted(event.target.checked);
                         }}
                         style={{
-                            accentColor: "#CF4047",
+                            accentColor: "#2196F3",
                             width: "18px",
                             height: "18px",
                         }}
@@ -71,11 +78,15 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                     );
                 }}
                 style={{
+                    marginTop: "16px",
                     padding: "32px",
-                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#88181D",
+                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#4294D8",
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    color: "#FFF",
                 }}
             >
-                CONVERTER ARQUIVO
+                Converter arquivo
             </Button>
             <u
                 style={{

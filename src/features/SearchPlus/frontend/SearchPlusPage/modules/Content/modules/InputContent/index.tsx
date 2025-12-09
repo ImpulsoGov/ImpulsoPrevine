@@ -61,13 +61,11 @@ export const InputContent: React.FC<Props> = ({
     return (
         <div
             style={{
-                // display: "flex",
-                // flexDirection: "column",
-                // alignItems: "center",
                 width: "100%",
             }}
         >
             {rawFileContent && header.thematicList ? (
+                // TODO: FileDetails é independente de TermsOfUse e não precisa ser children dele
                 <TermsOfUse
                     file={rawFileContent}
                     setJsonData={setJsonData}

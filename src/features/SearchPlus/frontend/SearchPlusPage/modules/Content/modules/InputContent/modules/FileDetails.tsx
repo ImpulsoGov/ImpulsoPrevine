@@ -18,16 +18,16 @@ export const FileDetails: React.FC<FileDetailsProps> = ({
             style={{
                 display: "flex",
                 flexDirection: "row",
-                gap: "16px",
+                gap: "20px",
                 backgroundColor: "#FFF",
-                border: "1px solid #CF4047",
+                border: "1px solid #4294D8",
                 borderRadius: "60px",
                 padding: "15px 30px",
                 alignItems: "center",
             }}
         >
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jl03em07kildthfzbj"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmiz1tm0504a808kipsau19g8"
                 alt="Terms of Use"
                 width={34}
                 height={38}
