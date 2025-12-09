@@ -10,6 +10,7 @@ import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
+import { Overview } from "./modules/Overview";
 
 export type { CsvRow } from "./model";
 
@@ -60,16 +61,12 @@ export const InputContent: React.FC<Props> = ({
     return (
         <div
             style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                // display: "flex",
+                // flexDirection: "column",
+                // alignItems: "center",
+                width: "100%",
             }}
         >
-            <p style={{ width: "51%" }}>
-                Converta seus relatórios do PEC em segundos, e tenha listas
-                prontas para distribuir aos ACS e simplificar o acompanhamento
-                dos cidadãos.
-            </p>
             {rawFileContent && header.thematicList ? (
                 <TermsOfUse
                     file={rawFileContent}
@@ -91,16 +88,27 @@ export const InputContent: React.FC<Props> = ({
                     />
                 </TermsOfUse>
             ) : (
-                <DragNDropArea
-                    setRawFileContent={setRawFileContent}
-                    setHeader={setHeader}
-                    errorHandler={(message: ErrorData) => {
-                        resetContentStatesAndSetErrorMessage(
-                            message,
-                            setSnackbarError
-                        );
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        padding: "0px 80px",
                     }}
-                />
+                >
+                    <Overview />
+                    <DragNDropArea
+                        setRawFileContent={setRawFileContent}
+                        setHeader={setHeader}
+                        errorHandler={(message: ErrorData) => {
+                            resetContentStatesAndSetErrorMessage(
+                                message,
+                                setSnackbarError
+                            );
+                        }}
+                    />
+                </div>
             )}
         </div>
     );

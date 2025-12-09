@@ -15,6 +15,13 @@ type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
 };
 
+// TODO: rever se esse componente é a melhor solução para o espaçamento e, se sim, mover para outror arquivo
+const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
+    return (
+        <div style={{ width: "100%", marginBottom: "100px" }}>{children}</div>
+    );
+};
+
 export const Content: React.FC<Props> = ({ setSnackbarError }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
@@ -34,11 +41,13 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         });
 
         return (
-            <Error
-                setJsonData={setJsonData}
-                setErrorMessage={setErrorMessage}
-                error={errorMessage}
-            />
+            <Container>
+                <Error
+                    setJsonData={setJsonData}
+                    setErrorMessage={setErrorMessage}
+                    error={errorMessage}
+                />
+            </Container>
         );
     }
 
@@ -50,21 +59,25 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         });
 
         return (
-            <ResultContent
-                jsonData={jsonData}
-                setJsonData={setJsonData}
-                header={header}
-            />
+            <Container>
+                <ResultContent
+                    jsonData={jsonData}
+                    setJsonData={setJsonData}
+                    header={header}
+                />
+            </Container>
         );
     }
 
     return (
-        <InputContent
-            setSnackbarError={setSnackbarError}
-            setJsonData={setJsonData}
-            setHeader={setHeader}
-            header={header}
-            setErrorMessage={setErrorMessage}
-        />
+        <Container>
+            <InputContent
+                setSnackbarError={setSnackbarError}
+                setJsonData={setJsonData}
+                setHeader={setHeader}
+                header={header}
+                setErrorMessage={setErrorMessage}
+            />
+        </Container>
     );
 };

@@ -1,25 +1,21 @@
-import { ListTitles } from "./common/carePathways";
-import { nameFormatter } from "./common/UnitTable/modules/Formatters";
+import { ListTitles } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import { nameFormatter } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 
 export const AvailableLists: React.FC = () => {
     return (
         <div
             style={{
-                backgroundColor: "#CF4047",
-                width: "100%",
-                color: "#FFF",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                padding: "42px 118px 118px 118px",
-                lineHeight: "130%",
+                marginBottom: "24px",
             }}
         >
             <p
                 style={{
-                    fontSize: "21px",
-                    fontWeight: 700,
-                    letterSpacing: "-0.4px",
+                    fontSize: "18px",
+                    fontWeight: 600,
+                    letterSpacing: "-0.36px",
+                    marginBottom: "12px",
                 }}
             >
                 Listas disponíveis para conversão
@@ -36,11 +32,12 @@ export const AvailableLists: React.FC = () => {
                         key={list}
                         style={{
                             borderRadius: "8px",
-                            border: "1px solid #FFF",
+                            padding: "6px 12px",
+                            backgroundColor: "#ADE3F4",
+                            color: "#3679B1",
                             fontSize: "14px",
                             fontWeight: 500,
-                            letterSpacing: "-0.3px",
-                            padding: "6px 12px",
+                            letterSpacing: "-0.28px",
                         }}
                     >
                         {nameFormatter(list)}

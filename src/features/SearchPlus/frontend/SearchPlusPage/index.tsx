@@ -3,7 +3,6 @@ import { useState } from "react";
 import type { ThematicList } from "./modules/common/carePathways";
 import type * as time from "@/features/common/shared/time";
 import { ErrorSnackbar } from "./modules/ErrorSnackbar";
-import { AvailableLists } from "./modules/AvailableLists";
 import { Content } from "./modules/Content";
 import { PageHeader } from "./modules/PageHeader";
 
@@ -36,20 +35,17 @@ export const SearchPlusPage: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                marginTop: "40px",
             }}
         >
             <PageHeader />
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                }}
-            >
-                <Content setSnackbarError={setSnackbarError} />
-            </div>
+            <p style={{ width: "51%", fontSize: "20px", marginBottom: "48px" }}>
+                Converta seus relatórios do PEC em segundos, e tenha listas
+                prontas para distribuir aos ACS e simplificar o acompanhamento
+                dos cidadãos.
+            </p>
+            <Content setSnackbarError={setSnackbarError} />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
-            <AvailableLists />
         </div>
     );
 };
