@@ -75,7 +75,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     marginTop: "16px",
                     padding: "32px",
                     backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#4294D8",
-                    fontSize: "15px",
+                    fontSize: "16px",
                     fontWeight: 500,
                     color: "#FFF",
                 }}

@@ -39,11 +39,6 @@ export const SearchPlusPage: React.FC = () => {
             }}
         >
             <PageHeader />
-            <p style={{ width: "51%", fontSize: "20px", marginBottom: "48px" }}>
-                Converta seus relatórios do PEC em segundos, e tenha listas
-                prontas para distribuir aos ACS e simplificar o acompanhamento
-                dos cidadãos.
-            </p>
             <Content setSnackbarError={setSnackbarError} />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
         </div>

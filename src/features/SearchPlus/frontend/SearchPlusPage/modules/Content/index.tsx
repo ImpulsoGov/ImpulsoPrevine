@@ -71,6 +71,20 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
 
     return (
         <Container>
+            <p
+                style={{
+                    width: "51%",
+                    fontSize: "20px",
+                    marginBottom: "48px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "center",
+                }}
+            >
+                Converta seus relatórios do PEC em segundos, e tenha listas
+                prontas para distribuir aos ACS e simplificar o acompanhamento
+                dos cidadãos.
+            </p>
             <InputContent
                 setSnackbarError={setSnackbarError}
                 setJsonData={setJsonData}
