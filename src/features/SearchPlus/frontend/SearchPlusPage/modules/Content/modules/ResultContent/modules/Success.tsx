@@ -24,65 +24,75 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
     thematicList,
 }) => {
     return (
-        <div
-            style={{
-                display: "flex",
-                gap: "32px",
-                marginBottom: "82px",
-                flexWrap: "wrap",
-            }}
-        >
-            <Button
+        <>
+            <div
                 style={{
-                    backgroundColor: "#FFF",
-                    border: "1px solid #A6B5BE",
-                    color: "#1F1F1F",
+                    display: "flex",
+                    gap: "15px",
+                    flexWrap: "wrap",
+                }}
+            >
+                <Button
+                    style={{
+                        fontSize: "16px",
+                        fontWeight: 500,
+                        backgroundColor: "#4294D8",
+                        color: "#FFF",
+                        padding: "0 45px",
+                    }}
+                    onClick={() => {
+                        mixpanel.track("result_list_print", {
+                            thematic_list: thematicList,
+                        });
+                        setIsTableVisible(true);
+                        setShouldOpenWindowWithPrint(true);
+                    }}
+                >
+                    <Image
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh97w35003b107ki8aqbufrg"
+                        alt="Ícone de uma impressora"
+                        width={16}
+                        height={16}
+                        style={{ marginRight: "8px" }}
+                    />
+                    Imprimir lista
+                </Button>
+                <Button
+                    style={{
+                        fontSize: "16px",
+                        fontWeight: 500,
+                        backgroundColor: "#FFF",
+                        border: "1px solid #A6B5BE",
+                        color: "#1F1F1F",
+                        padding: "0 20px",
+                    }}
+                    onClick={() => {
+                        mixpanel.track("result_list_view", {
+                            thematic_list: thematicList,
+                        });
+                        setIsTableVisible(true);
+                        setShouldOpenWindowWithPrint(false);
+                    }}
+                >
+                    Visualizar prévia da lista
+                </Button>
+            </div>
+            <u
+                style={{
+                    color: "#3679B1",
+                    marginTop: "38px",
+                    marginBottom: "82px",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    cursor: "pointer",
                 }}
                 onClick={() => {
                     setJsonData([]);
                 }}
             >
                 Converter nova lista
-            </Button>
-            <Button
-                style={{
-                    backgroundColor: "#FFF",
-                    border: "1px solid #A6B5BE",
-                    color: "#1F1F1F",
-                }}
-                onClick={() => {
-                    mixpanel.track("result_list_view", {
-                        thematic_list: thematicList,
-                    });
-                    setIsTableVisible(true);
-                    setShouldOpenWindowWithPrint(false);
-                }}
-            >
-                Visualizar prévia da lista
-            </Button>
-            <Button
-                style={{
-                    backgroundColor: "#88181D",
-                    color: "#FFF",
-                }}
-                onClick={() => {
-                    mixpanel.track("result_list_print", {
-                        thematic_list: thematicList,
-                    });
-                    setIsTableVisible(true);
-                    setShouldOpenWindowWithPrint(true);
-                }}
-            >
-                <Image
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh97w35003b107ki8aqbufrg"
-                    alt="Ícone de uma impressora"
-                    width={16}
-                    height={16}
-                    style={{ marginRight: "8px" }}
-                />
-                Imprimir lista
-            </Button>
-        </div>
+            </u>
+        </>
     );
 };
 
@@ -130,9 +140,12 @@ export const Success: React.FC<SuccessProps> = ({
                 />
                 <p
                     style={{
-                        color: "#88181D",
+                        color: "#1F1F1F",
+                        fontSize: "20px",
+                        fontWeight: 400,
                         width: "70%",
-                        marginBottom: "56px",
+                        marginBottom: "55px",
+                        marginTop: "30px",
                     }}
                 >
                     Prontinho! Sua lista foi <b>convertida com sucesso.</b>
