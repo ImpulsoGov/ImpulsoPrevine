@@ -14,33 +14,22 @@ type TermsOfUseProps = {
     errorHandler: (message: string) => void;
 };
 
-export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
+export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     file,
     setJsonData,
     setHeader,
     header,
     onRemoveFileClick,
     errorHandler,
-    children,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "24px",
-                marginBottom: "87px",
-            }}
-        >
-            {children}
+        <>
             <div
                 style={{
-                    width: "45%",
+                    width: "100%",
                     display: "flex",
                     gap: "12px",
-                    justifySelf: "stretch",
                 }}
             >
                 <div>
@@ -56,7 +45,12 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                         }}
                     />
                 </div>
-                <div>
+                <div
+                    style={{
+                        lineHeight: "130%",
+                        fontWeight: 400,
+                    }}
+                >
                     Declaro que li e concordo que a veracidade do documento é de
                     minha inteira responsabilidade de acordo com os termos
                     descritos {/* TODO: pegar url desse link */}
@@ -100,6 +94,6 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
             >
                 selecionar um arquivo diferente
             </u>
-        </div>
+        </>
     );
 };

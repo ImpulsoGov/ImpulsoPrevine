@@ -59,24 +59,18 @@ export const InputContent: React.FC<Props> = ({
     };
 
     return (
-        <div
-            style={{
-                width: "100%",
-            }}
-        >
+        <>
             {rawFileContent && header.thematicList ? (
-                // TODO: FileDetails é independente de TermsOfUse e não precisa ser children dele
-                <TermsOfUse
-                    file={rawFileContent}
-                    setJsonData={setJsonData}
-                    setHeader={setHeader}
-                    header={header}
-                    onRemoveFileClick={showDragNDropArea}
-                    errorHandler={(message: string) => {
-                        resetContentStatesAndSetErrorMessage(
-                            message,
-                            setErrorMessage
-                        );
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "24px",
+                        marginBottom: "87px",
+                        width: "50%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
                     }}
                 >
                     <FileDetails
@@ -84,7 +78,20 @@ export const InputContent: React.FC<Props> = ({
                         onRemoveFileClick={showDragNDropArea}
                         thematicList={ListTitles[header.thematicList]}
                     />
-                </TermsOfUse>
+                    <TermsOfUse
+                        file={rawFileContent}
+                        setJsonData={setJsonData}
+                        setHeader={setHeader}
+                        header={header}
+                        onRemoveFileClick={showDragNDropArea}
+                        errorHandler={(message: string) => {
+                            resetContentStatesAndSetErrorMessage(
+                                message,
+                                setErrorMessage
+                            );
+                        }}
+                    />
+                </div>
             ) : (
                 <div
                     style={{
@@ -108,6 +115,6 @@ export const InputContent: React.FC<Props> = ({
                     />
                 </div>
             )}
-        </div>
+        </>
     );
 };
