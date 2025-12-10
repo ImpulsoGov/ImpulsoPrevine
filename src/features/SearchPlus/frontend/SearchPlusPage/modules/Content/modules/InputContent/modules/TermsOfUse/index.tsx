@@ -49,6 +49,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     style={{
                         lineHeight: "130%",
                         fontWeight: 400,
+                        fontSize: "14px",
                     }}
                 >
                     Declaro que li e concordo que a veracidade do documento é de
@@ -75,7 +76,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     marginTop: "16px",
                     padding: "32px",
                     backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#4294D8",
-                    fontSize: "16px",
+                    fontSize: "15px",
                     fontWeight: 500,
                     color: "#FFF",
                 }}
@@ -84,7 +85,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
             </Button>
             <u
                 style={{
-                    fontSize: "16px",
+                    fontSize: "14px",
                     fontWeight: 400,
                     lineHeight: "130%",
                     color: "#1F1F1F",

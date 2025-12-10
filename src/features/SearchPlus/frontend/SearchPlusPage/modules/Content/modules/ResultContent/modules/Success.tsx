@@ -34,7 +34,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
             >
                 <Button
                     style={{
-                        fontSize: "16px",
+                        fontSize: "15px",
                         fontWeight: 500,
                         backgroundColor: "#4294D8",
                         color: "#FFF",
@@ -59,7 +59,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                 </Button>
                 <Button
                     style={{
-                        fontSize: "16px",
+                        fontSize: "15px",
                         fontWeight: 500,
                         backgroundColor: "#FFF",
                         border: "1px solid #A6B5BE",
@@ -82,7 +82,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     color: "#3679B1",
                     marginTop: "38px",
                     marginBottom: "82px",
-                    fontSize: "16px",
+                    fontSize: "15px",
                     fontWeight: 500,
                     cursor: "pointer",
                 }}
@@ -137,6 +137,7 @@ export const Success: React.FC<SuccessProps> = ({
                     alt="Pasta com documentos"
                     width={195}
                     height={180}
+                    style={{ marginTop: "63px" }}
                 />
                 <p
                     style={{
