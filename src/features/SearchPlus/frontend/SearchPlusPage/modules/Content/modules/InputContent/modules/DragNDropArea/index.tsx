@@ -9,12 +9,14 @@ type Props = {
     errorHandler: (message: ErrorData) => void;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
     errorHandler,
     setHeader,
     setRawFileContent,
+    setSuccessSnackbar,
 }) => {
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
         event.preventDefault();
@@ -33,7 +35,8 @@ export const DragNDropArea: React.FC<Props> = ({
                     file,
                     errorHandler,
                     setRawFileContent,
-                    setHeader
+                    setHeader,
+                    setSuccessSnackbar
                 );
             }}
             onDragOver={handleDragOver}
@@ -100,7 +103,8 @@ export const DragNDropArea: React.FC<Props> = ({
                             files[0],
                             errorHandler,
                             setRawFileContent,
-                            setHeader
+                            setHeader,
+                            setSuccessSnackbar
                         );
                     }
                     event.target.value = "";

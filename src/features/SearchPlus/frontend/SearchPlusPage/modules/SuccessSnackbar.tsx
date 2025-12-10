@@ -1,21 +1,19 @@
 import { IconButton, Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import { useState } from "react";
 
-export const SuccessSnackbar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(true);
+type Props = {
+    isOpen: boolean;
+    onClose: React.DispatchWithoutAction;
+};
 
-    const close = (): void => {
-        setIsOpen(false);
-    };
-
+export const SuccessSnackbar: React.FC<Props> = ({ isOpen, onClose }) => {
     return (
         <Snackbar
             open={isOpen}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             sx={{ width: "80%" }}
-            onClose={close}
+            onClose={onClose}
         >
             <div
                 style={{
@@ -66,7 +64,7 @@ export const SuccessSnackbar: React.FC = () => {
                         height: "fit-content",
                         color: "#1E4620",
                     }}
-                    onClick={close}
+                    onClick={onClose}
                 >
                     <CloseIcon fontSize="small" />
                 </IconButton>

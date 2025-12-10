@@ -54,8 +54,11 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                 >
                     Declaro que li e concordo que a veracidade do documento é de
                     minha inteira responsabilidade de acordo com os termos
-                    descritos
-                    <Link href="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj0gcu6008s207lwew9uxf1o#">
+                    descritos{" "}
+                    <Link
+                        target="_blank"
+                        href="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj0gcu6008s207lwew9uxf1o#"
+                    >
                         <u>aqui</u>
                     </Link>
                     .

@@ -15,6 +15,7 @@ import { Overview } from "./modules/Overview";
 export type { CsvRow } from "./model";
 
 type Props = {
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
@@ -28,6 +29,7 @@ export const InputContent: React.FC<Props> = ({
     setHeader,
     setErrorMessage,
     header,
+    setSuccessSnackbar,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -112,6 +114,7 @@ export const InputContent: React.FC<Props> = ({
                                 setSnackbarError
                             );
                         }}
+                        setSuccessSnackbar={setSuccessSnackbar}
                     />
                 </div>
             )}

@@ -13,6 +13,7 @@ export type { CsvRow } from "./modules/InputContent";
 
 type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 // TODO: rever se esse componente é a melhor solução para o espaçamento e, se sim, mover para outror arquivo
@@ -22,7 +23,10 @@ const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
     );
 };
 
-export const Content: React.FC<Props> = ({ setSnackbarError }) => {
+export const Content: React.FC<Props> = ({
+    setSnackbarError,
+    setSuccessSnackbar,
+}) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -91,6 +95,7 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
                 setHeader={setHeader}
                 header={header}
                 setErrorMessage={setErrorMessage}
+                setSuccessSnackbar={setSuccessSnackbar}
             />
         </Container>
     );
