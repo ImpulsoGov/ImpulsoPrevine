@@ -20,7 +20,7 @@ export const Error: React.FC<Props> = ({
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "40px",
+                marginTop: "65px",
                 marginBottom: "87px",
             }}
         >
@@ -32,11 +32,12 @@ export const Error: React.FC<Props> = ({
             />
             <div
                 style={{
-                    color: "#88181D",
+                    color: "#1F1F1F",
                     textAlign: "center",
                     fontSize: "20px",
                     lineHeight: "100%",
                     fontWeight: 400,
+                    marginTop: "35px",
                 }}
             >
                 {error}
@@ -47,7 +48,8 @@ export const Error: React.FC<Props> = ({
             <Button
                 style={{
                     padding: "0 20px",
-                    backgroundColor: "#88181D",
+                    backgroundColor: "#4294D8",
+                    marginTop: "53px",
                 }}
                 onClick={() => {
                     setJsonData([]);
