@@ -53,16 +53,15 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                         fontSize: "14px",
                     }}
                 >
-                    Declaro que li e concordo que a veracidade do documento é de
-                    minha inteira responsabilidade de acordo com os termos
-                    descritos{" "}
+                    Declaro que li, entendi e concordo integralmente com este{" "}
                     <Link
                         target="_blank"
                         href="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj0gcu6008s207lwew9uxf1o#"
                     >
-                        <u>aqui</u>
-                    </Link>
-                    .
+                        <u>termo</u>
+                    </Link>{" "}
+                    e que sou o(a) responsável pelos dados contidos nos arquivos
+                    que envio.
                 </div>
             </div>
             <Button
