@@ -7,6 +7,7 @@ type Props = {
     onClose: React.DispatchWithoutAction;
 };
 
+// TODO: criar uma snackbar genérica para erro e sucesso
 export const SuccessSnackbar: React.FC<Props> = ({ isOpen, onClose }) => {
     return (
         <Snackbar

@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import type { ErrorData } from "@features/SearchPlus/frontend/SearchPlusPage";
 
+// TODO: criar uma snackbar genérica para erro e sucesso
 export const ErrorSnackbar: React.FC<{
     error: ErrorData;
     onClose: React.DispatchWithoutAction;
