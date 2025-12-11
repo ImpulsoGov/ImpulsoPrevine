@@ -29,7 +29,8 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                 style={{
                     width: "100%",
                     display: "flex",
-                    gap: "12px",
+                    alignItems: "flex-start",
+                    gap: "8px",
                 }}
             >
                 <div>
