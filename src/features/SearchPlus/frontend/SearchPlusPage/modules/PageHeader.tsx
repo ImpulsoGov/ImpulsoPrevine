@@ -22,6 +22,3 @@ export const PageHeader: React.FC = () => {
         </div>
     );
 };
-
-("Ops, parece que algo deu errado!");
-("Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.");
