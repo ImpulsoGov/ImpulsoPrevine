@@ -121,7 +121,7 @@ export const handleFileUpload = (
             if (createdAtRowIndex === -1) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração do arquivo não encontrada",
+                    message: "Data de geração do CSV não encontrada",
                 });
                 trackFileUploadWithError("creation_date_not_found");
                 return;
@@ -143,7 +143,7 @@ export const handleFileUpload = (
             ) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração em formato incorreto.",
+                    message: "Data de geração do CSV em formato incorreto.",
                 });
                 trackFileUploadWithError("invalid_creation_date");
                 return;
@@ -167,7 +167,8 @@ export const handleFileUpload = (
             if (hasInvalidBirthDate) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Um paciente possui data de nascimento inválida.",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_patient_birth_date");
                 return;

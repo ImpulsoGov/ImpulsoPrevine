@@ -22,11 +22,12 @@ export const ErrorSnackbar: React.FC<{
                     display: "flex",
                     flexDirection: "row",
                     gap: "12px",
-                    backgroundColor: "#FDEDED",
+                    backgroundColor: "#FED2C9",
                     borderRadius: "4px",
-                    padding: "12px 32px",
+                    padding: "16px",
                     width: "80%",
                     justifyContent: "space-between",
+                    border: "1px solid #BB1019",
                 }}
             >
                 <div
@@ -44,7 +45,7 @@ export const ErrorSnackbar: React.FC<{
                     />
                     <div
                         style={{
-                            color: "#5F2120",
+                            color: "#BB1019",
                         }}
                     >
                         <div
@@ -80,7 +81,7 @@ export const ErrorSnackbar: React.FC<{
                         padding: "4px",
                         width: "fit-content",
                         height: "fit-content",
-                        color: "#5F2120",
+                        color: "#BB1019",
                     }}
                     onClick={onClose}
                 >

@@ -83,6 +83,8 @@ export const Content: React.FC<Props> = ({
                     marginLeft: "auto",
                     marginRight: "auto",
                     textAlign: "center",
+                    marginTop: "0px",
+                    paddingTop: "0px",
                 }}
             >
                 Converta seus relatórios do PEC em segundos, e tenha listas
