@@ -112,7 +112,7 @@ export const DragNDropArea: React.FC<Props> = ({
                 style={{ display: "none" }}
             />
             <div style={{ fontWeight: 400, lineHeight: "130%" }}>
-                ou arraste e solte um arquivo CSV aqui
+                ou arraste e solte o CSV aqui.
             </div>
         </div>
     );

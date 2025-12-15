@@ -77,19 +77,18 @@ export const Content: React.FC<Props> = ({
         <Container>
             <p
                 style={{
-                    width: "51%",
+                    width: "100%",
                     fontSize: "20px",
                     marginBottom: "48px",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    textAlign: "center",
+                    textAlign: "left",
                     marginTop: "0px",
                     paddingTop: "0px",
                 }}
             >
-                Converta seus relatórios do PEC em segundos, e tenha listas
-                prontas para distribuir aos ACS e simplificar o acompanhamento
-                dos cidadãos.
+                Uma ferramenta exclusiva para conversão dos relatórios do PEC em
+                listas nominais do programa de <br></br> cofinanciamento do
+                governo federal, prontas para impressão e distribuição para os
+                agentes comunitários de saúde.
             </p>
             <InputContent
                 setSnackbarError={setSnackbarError}

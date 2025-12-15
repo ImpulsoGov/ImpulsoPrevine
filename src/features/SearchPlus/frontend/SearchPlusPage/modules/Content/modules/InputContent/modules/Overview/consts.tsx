@@ -1,8 +1,18 @@
 export const csvDownloadInstructions = [
     {
         title: "Exporte o arquivo do PEC",
-        description:
-            "No PEC, navegue até acompanhamento e depois condições de saúde. Selecione a lista temática e exporte em CSV. Em caso de dúvida, assista o vídeo abaixo com o tutorial completo.",
+        description: (
+            <>
+                No PEC, navegue até acompanhamento e depois condições de saúde.
+                Selecione a lista de Saúde da Mulher e altere o filtro de faixa
+                etária padrão para{" "}
+                <b>
+                    ’Todas as faixas’, para garantir que todas as boas práticas
+                    desse indicador sejam contempladas.
+                </b>{" "}
+                Depois, exporte em CSV.
+            </>
+        ),
     },
     {
         title: "Suba o arquivo no Busca+",

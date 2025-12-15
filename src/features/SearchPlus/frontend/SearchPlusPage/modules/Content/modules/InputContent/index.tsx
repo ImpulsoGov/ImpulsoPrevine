@@ -101,7 +101,6 @@ export const InputContent: React.FC<Props> = ({
                         alignItems: "flex-start",
                         justifyContent: "space-between",
                         width: "100%",
-                        padding: "0px 80px",
                     }}
                 >
                     <Overview />

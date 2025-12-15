@@ -4,10 +4,11 @@ export const PageHeader: React.FC = () => {
     return (
         <div
             style={{
-                padding: "20px",
+                padding: "20px 0px",
                 fontSize: "48px",
                 fontWeight: "bold",
-                textAlign: "center",
+                textAlign: "left",
+                alignSelf: "flex-start",
             }}
         >
             <span>

@@ -21,7 +21,7 @@ export const AvailableLists: React.FC = () => {
                         marginBottom: "12px",
                     }}
                 >
-                    Listas disponíveis para conversão
+                    Lista disponível para conversão
                 </p>
                 <Tooltip
                     title={

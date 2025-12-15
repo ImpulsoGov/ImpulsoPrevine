@@ -1,6 +1,6 @@
 type Instruction = {
     title: string;
-    description: string;
+    description: React.ReactNode;
 };
 
 export const Instructions: React.FC<{ data: Array<Instruction> }> = ({
