@@ -60,7 +60,7 @@ export const Header: React.FC<{ headerData: HeaderData }> = ({
                     }}
                 >
                     <Image
-                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh2d70kq05ml07m11ofiz7eh"
+                        src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj7hsw2a058l07kb6oenbeoy"
                         alt="logo"
                         width={127}
                         height={24}
