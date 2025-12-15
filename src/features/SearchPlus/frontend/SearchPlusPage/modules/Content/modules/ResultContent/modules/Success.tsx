@@ -9,6 +9,7 @@ import { UnitTable } from "@features/SearchPlus/frontend/SearchPlusPage/modules/
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Header } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Header";
 import mixpanel from "mixpanel-browser";
+import { useRef } from "react";
 
 type ButtonBarProps = {
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
@@ -23,6 +24,8 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
     setShouldOpenWindowWithPrint,
     thematicList,
 }) => {
+    const hasPrinted = useRef<boolean>(false);
+
     return (
         <>
             <div
@@ -44,6 +47,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                         mixpanel.track("result_list_print", {
                             thematic_list: thematicList,
                         });
+                        hasPrinted.current = true;
                         setIsTableVisible(true);
                         setShouldOpenWindowWithPrint(true);
                     }}
@@ -87,7 +91,11 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                     cursor: "pointer",
                 }}
                 onClick={() => {
-                    setJsonData([]);
+                    if (!hasPrinted.current) {
+                        alert("Você ainda não imprimiu a lista.");
+                    } else {
+                        setJsonData([]);
+                    }
                 }}
             >
                 Converter nova lista
