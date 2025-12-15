@@ -21,7 +21,7 @@ export const PageHeader: React.FC = () => {
                     height={28}
                 />
             </span>{" "}
-            Busca+Mais
+            busca+mais
         </div>
     );
 };

@@ -55,7 +55,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                         height={16}
                         style={{ marginRight: "8px" }}
                     />
-                    Imprimir lista
+                    IMPRIMIR LISTA
                 </Button>
                 <Button
                     style={{
@@ -74,7 +74,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                         setShouldOpenWindowWithPrint(false);
                     }}
                 >
-                    Visualizar prévia da lista
+                    VISUALIZAR PRÉVIA DA LISTA
                 </Button>
             </div>
             <u

@@ -67,8 +67,9 @@ export const Content: React.FC<Props> = ({
             <p
                 style={{
                     width: "100%",
-                    fontSize: "20px",
-                    marginBottom: "48px",
+                    fontSize: "24px",
+                    fontWeight: 400,
+                    marginBottom: "54px",
                     textAlign: "left",
                     paddingLeft: "80px",
                     paddingRight: "80px",

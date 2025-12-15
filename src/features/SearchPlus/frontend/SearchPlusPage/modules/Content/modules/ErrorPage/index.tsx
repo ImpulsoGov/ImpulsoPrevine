@@ -65,7 +65,7 @@ export const Error: React.FC<Props> = ({
                         color: "#FFF",
                     }}
                 >
-                    Enviar novo arquivo
+                    ENVIAR NOVO ARQUIVO
                 </Text>
             </Button>
         </div>

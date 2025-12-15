@@ -50,7 +50,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     style={{
                         lineHeight: "130%",
                         fontWeight: 400,
-                        fontSize: "14px",
+                        fontSize: "16px",
                     }}
                 >
                     Declaro que li, entendi e concordo integralmente com este{" "}
@@ -84,7 +84,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     color: "#FFF",
                 }}
             >
-                Converter arquivo
+                CONVERTER ARQUIVO
             </Button>
             <u
                 style={{

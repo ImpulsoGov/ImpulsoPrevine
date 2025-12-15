@@ -56,7 +56,7 @@ export const handleFileUpload = (
         errorHandler({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:
-                "<div>O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, <a href='www.google.com' style='text-decoration: underline;' >clique aqui.</a></div>",
+                "O busca+mais funciona apenas com arquivos no formato CSV, baixados diretamente do PEC. Tente novamente.",
         });
         trackFileUploadWithError("invalid_file_extension");
         return;
@@ -78,7 +78,7 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message:
-                        "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_file_header");
                 return;
@@ -92,7 +92,7 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
+                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
                 });
                 trackFileUploadWithError("invalid_thematic_list");
                 return;
@@ -109,7 +109,8 @@ export const handleFileUpload = (
             if (teamRowIndex === -1) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Equipe responsável não encontrada",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("team_name_not_found");
                 return;
@@ -121,7 +122,8 @@ export const handleFileUpload = (
             if (createdAtRowIndex === -1) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração do CSV não encontrada",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("creation_date_not_found");
                 return;
@@ -143,7 +145,8 @@ export const handleFileUpload = (
             ) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração do CSV em formato incorreto.",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_creation_date");
                 return;

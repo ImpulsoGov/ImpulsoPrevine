@@ -19,7 +19,7 @@ export const Overview: React.FC = () => {
                 style={{
                     margin: "16px 0px",
                     color: "#4294D8",
-                    fontSize: "17px",
+                    fontSize: "19px",
                     fontWeight: 700,
                     letterSpacing: "-0.32px",
                 }}

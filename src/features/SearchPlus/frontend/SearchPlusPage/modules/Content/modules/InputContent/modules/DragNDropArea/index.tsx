@@ -58,14 +58,14 @@ export const DragNDropArea: React.FC<Props> = ({
         >
             <p
                 style={{
-                    fontSize: "22px",
+                    fontSize: "24px",
                     fontWeight: 500,
                     lineHeight: "130%",
                     marginBottom: "16px",
                     marginTop: "0px",
                 }}
             >
-                Suba o seu arquivo do PEC
+                Suba o seu arquivo CSV do PEC
             </p>
             <Image
                 src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmiz1tm3104fg07kdw3tudy88"
@@ -87,7 +87,7 @@ export const DragNDropArea: React.FC<Props> = ({
                     cursor: "pointer",
                 }}
             >
-                Selecionar arquivo
+                SELECIONAR ARQUIVO
             </label>
             <input
                 id="upload-file"

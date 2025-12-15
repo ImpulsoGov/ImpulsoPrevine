@@ -12,7 +12,7 @@ export const SuccessSnackbar: React.FC<Props> = ({ isOpen, onClose }) => {
     return (
         <Snackbar
             open={isOpen}
-            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
             sx={{ width: "80%" }}
             onClose={onClose}
         >
@@ -26,6 +26,7 @@ export const SuccessSnackbar: React.FC<Props> = ({ isOpen, onClose }) => {
                     padding: "12px 32px",
                     width: "80%",
                     justifyContent: "space-between",
+                    border: "1px solid #1E4620",
                 }}
             >
                 <div

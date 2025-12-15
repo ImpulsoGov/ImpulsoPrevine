@@ -15,7 +15,7 @@ export const AvailableLists: React.FC = () => {
             <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                 <p
                     style={{
-                        fontSize: "18px",
+                        fontSize: "20px",
                         fontWeight: 600,
                         letterSpacing: "-0.36px",
                         marginBottom: "12px",
@@ -60,8 +60,8 @@ export const AvailableLists: React.FC = () => {
                             padding: "6px 12px",
                             backgroundColor: "#ADE3F4",
                             color: "#3679B1",
-                            fontSize: "14px",
-                            fontWeight: 500,
+                            fontSize: "17px",
+                            fontWeight: 600,
                             letterSpacing: "-0.28px",
                         }}
                     >
