@@ -70,9 +70,9 @@ export const Content: React.FC<Props> = ({
                     fontSize: "24px",
                     fontWeight: 400,
                     marginBottom: "54px",
-                    textAlign: "left",
-                    paddingLeft: "80px",
-                    paddingRight: "80px",
+                    textAlign: "center",
+                    paddingLeft: "auto",
+                    paddingRight: "auto",
                     marginTop: "0px",
                     paddingTop: "0px",
                 }}
