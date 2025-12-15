@@ -9,7 +9,6 @@ export const HelpSection: React.FC = () => {
                 paddingTop: "80px",
                 paddingLeft: "80px",
                 paddingRight: "80px",
-                paddingBottom: "196px",
             }}
         >
             <Image
