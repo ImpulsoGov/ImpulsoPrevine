@@ -11,7 +11,7 @@ import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
 import { Overview } from "./modules/Overview";
-import Image from "next/image";
+import { HelpSection } from "./modules/HelpSection";
 
 export type { CsvRow } from "./model";
 
@@ -121,39 +121,7 @@ export const InputContent: React.FC<Props> = ({
                             setSuccessSnackbar={setSuccessSnackbar}
                         />
                     </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            backgroundColor: "#3679B1",
-                            paddingTop: "80px",
-                            paddingLeft: "80px",
-                            paddingRight: "80px",
-                            paddingBottom: "196px",
-                        }}
-                    >
-                        <Image
-                            src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj79dwo802g307khdui3x9ky"
-                            alt="Ícone do busca mais"
-                            width={129}
-                            height={22}
-                        />
-                        <p
-                            style={{
-                                paddingTop: "50px",
-                                paddingBottom: "36px",
-                                margin: "0px",
-                                color: "#ADE3F4",
-                                fontSize: "32px",
-                                fontWeight: 400,
-                                lineHeight: "130%",
-                            }}
-                        >
-                            Ainda tem dúvidas sobre como usar o busca+mais?
-                            Confira o <br></br>
-                            vídeo abaixo com mais instruções ou veja as
-                            perguntas frequentes.
-                        </p>
-                    </div>
+                    <HelpSection />
                 </>
             )}
         </>
