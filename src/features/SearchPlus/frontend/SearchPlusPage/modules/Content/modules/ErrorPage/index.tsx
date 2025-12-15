@@ -21,7 +21,8 @@ export const Error: React.FC<Props> = ({
                 justifyContent: "center",
                 alignItems: "center",
                 marginTop: "65px",
-                marginBottom: "87px",
+                marginBottom: "187px",
+                width: "100%",
             }}
         >
             <Image

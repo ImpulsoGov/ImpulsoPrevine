@@ -9,6 +9,8 @@ export const PageHeader: React.FC = () => {
                 fontWeight: "bold",
                 textAlign: "left",
                 alignSelf: "flex-start",
+                paddingLeft: "80px",
+                paddingRight: "80px",
             }}
         >
             <span>

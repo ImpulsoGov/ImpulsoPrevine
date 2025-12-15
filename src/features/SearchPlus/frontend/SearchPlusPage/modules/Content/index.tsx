@@ -16,13 +16,6 @@ type Props = {
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// TODO: rever se esse componente é a melhor solução para o espaçamento e, se sim, mover para outror arquivo
-const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
-    return (
-        <div style={{ width: "100%", marginBottom: "100px" }}>{children}</div>
-    );
-};
-
 export const Content: React.FC<Props> = ({
     setSnackbarError,
     setSuccessSnackbar,
@@ -45,13 +38,11 @@ export const Content: React.FC<Props> = ({
         });
 
         return (
-            <Container>
-                <Error
-                    setJsonData={setJsonData}
-                    setErrorMessage={setErrorMessage}
-                    error={errorMessage}
-                />
-            </Container>
+            <Error
+                setJsonData={setJsonData}
+                setErrorMessage={setErrorMessage}
+                error={errorMessage}
+            />
         );
     }
 
@@ -63,24 +54,24 @@ export const Content: React.FC<Props> = ({
         });
 
         return (
-            <Container>
-                <ResultContent
-                    jsonData={jsonData}
-                    setJsonData={setJsonData}
-                    header={header}
-                />
-            </Container>
+            <ResultContent
+                jsonData={jsonData}
+                setJsonData={setJsonData}
+                header={header}
+            />
         );
     }
 
     return (
-        <Container>
+        <div style={{ width: "100%" }}>
             <p
                 style={{
                     width: "100%",
                     fontSize: "20px",
                     marginBottom: "48px",
                     textAlign: "left",
+                    paddingLeft: "80px",
+                    paddingRight: "80px",
                     marginTop: "0px",
                     paddingTop: "0px",
                 }}
@@ -98,6 +89,6 @@ export const Content: React.FC<Props> = ({
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
             />
-        </Container>
+        </div>
     );
 };

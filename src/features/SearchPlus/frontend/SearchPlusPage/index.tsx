@@ -39,8 +39,6 @@ export const SearchPlusPage: React.FC = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 marginTop: "40px",
-                marginLeft: "80px",
-                marginRight: "80px",
             }}
         >
             <PageHeader />

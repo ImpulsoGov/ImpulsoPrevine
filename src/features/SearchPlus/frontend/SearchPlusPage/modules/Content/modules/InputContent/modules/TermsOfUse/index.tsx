@@ -93,6 +93,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({
                     lineHeight: "130%",
                     color: "#1F1F1F",
                     cursor: "pointer",
+                    marginBottom: "100px",
                 }}
                 onClick={onRemoveFileClick}
             >
