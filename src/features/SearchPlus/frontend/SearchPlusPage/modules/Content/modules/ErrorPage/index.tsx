@@ -20,35 +20,37 @@ export const Error: React.FC<Props> = ({
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "40px",
-                marginBottom: "87px",
+                marginTop: "65px",
+                marginBottom: "187px",
+                width: "100%",
             }}
         >
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh3gw6k102kb06kc0hkkpzzp"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmixipnaw02ql07kizjrfimg1"
                 alt="Ícone de uma placa de atenção"
                 width={240}
-                height={171}
+                height={180}
             />
             <div
                 style={{
-                    color: "#88181D",
+                    color: "#1F1F1F",
                     textAlign: "center",
                     fontSize: "20px",
                     lineHeight: "100%",
                     fontWeight: 400,
+                    marginTop: "35px",
                 }}
             >
                 {error}
                 <div style={{ fontWeight: 700 }}>
-                    Tente enviar um novo arquivo
+                    Tente enviar um novo arquivo.
                 </div>
-                .
             </div>
             <Button
                 style={{
                     padding: "0 20px",
-                    backgroundColor: "#88181D",
+                    backgroundColor: "#4294D8",
+                    marginTop: "53px",
                 }}
                 onClick={() => {
                     setJsonData([]);
@@ -63,7 +65,7 @@ export const Error: React.FC<Props> = ({
                         color: "#FFF",
                     }}
                 >
-                    Enviar novo arquivo
+                    ENVIAR NOVO ARQUIVO
                 </Text>
             </Button>
         </div>

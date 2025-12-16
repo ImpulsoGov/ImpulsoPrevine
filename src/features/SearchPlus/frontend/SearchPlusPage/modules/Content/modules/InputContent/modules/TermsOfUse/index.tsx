@@ -14,28 +14,25 @@ type TermsOfUseProps = {
     errorHandler: (message: string) => void;
 };
 
-export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
+export const TermsOfUse: React.FC<TermsOfUseProps> = ({
     file,
     setJsonData,
     setHeader,
     header,
     onRemoveFileClick,
     errorHandler,
-    children,
 }) => {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "24px",
-                marginBottom: "87px",
-            }}
-        >
-            {children}
-            <div style={{ width: "60%", display: "flex", gap: "12px" }}>
+        <>
+            <div
+                style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "8px",
+                }}
+            >
                 <div>
                     <input
                         type="checkbox"
@@ -43,20 +40,28 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                             setAreTermsAccepted(event.target.checked);
                         }}
                         style={{
-                            accentColor: "#CF4047",
+                            accentColor: "#2196F3",
                             width: "18px",
                             height: "18px",
                         }}
                     />
                 </div>
-                <div>
-                    Declaro que li e concordo que a veracidade do documento é de
-                    minha inteira responsabilidade de acordo com os termos
-                    descritos {/* TODO: pegar url desse link */}
-                    <Link href="#">
-                        <u>aqui</u>
-                    </Link>
-                    .
+                <div
+                    style={{
+                        lineHeight: "130%",
+                        fontWeight: 400,
+                        fontSize: "16px",
+                    }}
+                >
+                    Declaro que li, entendi e concordo integralmente com este{" "}
+                    <Link
+                        target="_blank"
+                        href="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmj0gcu6008s207lwew9uxf1o#"
+                    >
+                        <u>termo</u>
+                    </Link>{" "}
+                    e que sou o(a) responsável pelos dados contidos nos arquivos
+                    que envio.
                 </div>
             </div>
             <Button
@@ -71,24 +76,29 @@ export const TermsOfUse: React.FC<React.PropsWithChildren<TermsOfUseProps>> = ({
                     );
                 }}
                 style={{
+                    marginTop: "16px",
                     padding: "32px",
-                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#88181D",
+                    backgroundColor: !areTermsAccepted ? "#A6B5BE" : "#4294D8",
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    color: "#FFF",
                 }}
             >
                 CONVERTER ARQUIVO
             </Button>
             <u
                 style={{
-                    fontSize: "16px",
+                    fontSize: "14px",
                     fontWeight: 400,
                     lineHeight: "130%",
                     color: "#1F1F1F",
                     cursor: "pointer",
+                    marginBottom: "100px",
                 }}
                 onClick={onRemoveFileClick}
             >
                 selecionar um arquivo diferente
             </u>
-        </div>
+        </>
     );
 };

@@ -31,14 +31,16 @@ export const ResultContent: React.FC<ResultContentProps> = ({
     }, [isTableVisible]);
 
     return (
-        <Success
-            jsonData={jsonData}
-            setJsonData={setJsonData}
-            isTableVisible={isTableVisible}
-            setIsTableVisible={setIsTableVisible}
-            setShouldOpenWindowWithPrint={setShouldOpenWindowWithPrint}
-            header={header}
-            printContentRef={printContentRef}
-        />
+        <div style={{ width: "100%", marginBottom: "100px" }}>
+            <Success
+                jsonData={jsonData}
+                setJsonData={setJsonData}
+                isTableVisible={isTableVisible}
+                setIsTableVisible={setIsTableVisible}
+                setShouldOpenWindowWithPrint={setShouldOpenWindowWithPrint}
+                header={header}
+                printContentRef={printContentRef}
+            />
+        </div>
     );
 };

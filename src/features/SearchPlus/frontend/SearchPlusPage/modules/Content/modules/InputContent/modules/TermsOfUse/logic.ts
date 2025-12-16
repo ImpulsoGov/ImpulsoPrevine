@@ -125,16 +125,12 @@ export const handleClick = (
             setJsonData(data);
         } catch (err) {
             console.error(err);
-            errorHandler(
-                "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
-            );
+            errorHandler("Ops, parece que algo não funcionou!");
         }
     };
 
     reader.onerror = (): void => {
-        errorHandler(
-            "Ops, parece que algo não funcionou! tente enviar um novo arquivo."
-        );
+        errorHandler("Ops, parece que algo não funcionou!");
     };
     //TODO: verificar encoding oficial do CSV originario do PEC
     reader.readAsText(file, "ISO-8859-1");

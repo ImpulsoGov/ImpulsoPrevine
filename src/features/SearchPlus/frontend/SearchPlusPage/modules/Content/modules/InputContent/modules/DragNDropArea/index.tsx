@@ -9,12 +9,14 @@ type Props = {
     errorHandler: (message: ErrorData) => void;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
     errorHandler,
     setHeader,
     setRawFileContent,
+    setSuccessSnackbar,
 }) => {
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
         event.preventDefault();
@@ -33,26 +35,40 @@ export const DragNDropArea: React.FC<Props> = ({
                     file,
                     errorHandler,
                     setRawFileContent,
-                    setHeader
+                    setHeader,
+                    setSuccessSnackbar
                 );
             }}
             onDragOver={handleDragOver}
             style={{
-                backgroundColor: "#F8BCAE",
-                border: "3px dashed #CF4047",
+                backgroundColor: "#ADE3F4",
+                color: "#1F1F1F",
+                border: "3px dashed #58B3FE",
                 borderRadius: "16px",
-                padding: "32px 0px 21px 0px",
-                margin: "30px",
-                width: "80%",
+                padding: "21px 80px",
+                width: "48%",
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "8px",
+                justifyContent: "center",
+                alignSelf: "stretch",
+                gap: "16px",
             }}
         >
+            <p
+                style={{
+                    fontSize: "24px",
+                    fontWeight: 500,
+                    lineHeight: "130%",
+                    marginBottom: "16px",
+                    marginTop: "0px",
+                }}
+            >
+                Suba o seu arquivo CSV do PEC
+            </p>
             <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861ix03l107kn7m7bg796"
+                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmiz1tm3104fg07kdw3tudy88"
                 alt="Drag and drop"
                 width={60}
                 height={60}
@@ -61,7 +77,7 @@ export const DragNDropArea: React.FC<Props> = ({
                 htmlFor="upload-file"
                 style={{
                     borderRadius: "100px",
-                    backgroundColor: "#88181D",
+                    backgroundColor: "#3679B1",
                     padding: "16px 30px",
                     color: "#FFF",
                     fontSize: "14px",
@@ -69,7 +85,6 @@ export const DragNDropArea: React.FC<Props> = ({
                     lineHeight: "130%",
                     letterSpacing: "-0.3px",
                     cursor: "pointer",
-                    marginTop: "16px",
                 }}
             >
                 SELECIONAR ARQUIVO
@@ -88,14 +103,17 @@ export const DragNDropArea: React.FC<Props> = ({
                             files[0],
                             errorHandler,
                             setRawFileContent,
-                            setHeader
+                            setHeader,
+                            setSuccessSnackbar
                         );
                     }
                     event.target.value = "";
                 }}
                 style={{ display: "none" }}
             />
-            <div>ou arraste e solte um arquivo CSV aqui</div>
+            <div style={{ fontWeight: 400, lineHeight: "130%" }}>
+                ou arraste e solte o CSV aqui.
+            </div>
         </div>
     );
 };

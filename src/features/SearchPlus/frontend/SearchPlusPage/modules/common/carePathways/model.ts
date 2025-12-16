@@ -28,7 +28,7 @@ export type ThematicList = (typeof THEMATIC_LISTS)[number];
 
 export const ListTitles = {
     "Saúde da mulher":
-        "LISTA NOMINAL CUIDADO DA MULHER E DO HOMEM TRANSGENERO NA PREVENÇÃO DO CÂNCER",
+        "CUIDADO DA MULHER E DO HOMEM TRANSGÊNERO NA PREVENÇÃO DO CÂNCER",
 };
 
 export type Lists = "breastAndUterusCare";

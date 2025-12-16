@@ -18,43 +18,53 @@ export const FileDetails: React.FC<FileDetailsProps> = ({
             style={{
                 display: "flex",
                 flexDirection: "row",
-                gap: "16px",
+                gap: "20px",
+                justifyContent: "space-between",
                 backgroundColor: "#FFF",
-                border: "1px solid #CF4047",
+                border: "1px solid #4294D8",
                 borderRadius: "60px",
                 padding: "15px 30px",
                 alignItems: "center",
+                width: "100%",
             }}
         >
-            <Image
-                src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jl03em07kildthfzbj"
-                alt="Terms of Use"
-                width={34}
-                height={38}
-            />
             <div
                 style={{
-                    fontFamily: "Inter, sans-serif",
-                    lineHeight: "130%",
+                    display: "flex",
+                    gap: "20px",
+                    alignItems: "center",
                 }}
             >
+                <Image
+                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmiz1tm0504a808kipsau19g8"
+                    alt="Terms of Use"
+                    width={34}
+                    height={38}
+                />
                 <div
                     style={{
-                        fontSize: "16px",
-                        fontWeight: 600,
-                        color: "#1F1F1F",
+                        fontFamily: "Inter, sans-serif",
+                        lineHeight: "130%",
                     }}
                 >
-                    {file.name}
-                </div>
-                <div
-                    style={{
-                        fontSize: "13px",
-                        fontWeight: 500,
-                        color: "#777777",
-                    }}
-                >
-                    ARQUIVO CSV • {thematicList.toUpperCase()}
+                    <div
+                        style={{
+                            fontSize: "16px",
+                            fontWeight: 600,
+                            color: "#1F1F1F",
+                        }}
+                    >
+                        {file.name}
+                    </div>
+                    <div
+                        style={{
+                            fontSize: "13px",
+                            fontWeight: 500,
+                            color: "#777777",
+                        }}
+                    >
+                        ARQUIVO CSV • {thematicList.toUpperCase()}
+                    </div>
                 </div>
             </div>
             <IconButton

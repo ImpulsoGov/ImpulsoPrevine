@@ -38,11 +38,6 @@ const trackFileUploadWithSuccess = (thematicList: ThematicList): void => {
     });
 };
 
-const hasInvalidEncoding = (content: string): boolean => {
-    // Caracteres e combinações típicas de UTF-8 lido como ISO-8859-1
-    const suspiciousPatterns = /[�Ã¢ÃªÃ©Ã£Ã³ÃºÃ±]|Ã./;
-    return suspiciousPatterns.test(content);
-};
 const csvContent = (lines: Array<string>): string => {
     const headerIndex = lines.findIndex((line) =>
         line.startsWith("Nome;Data de nascimento;")
@@ -54,13 +49,14 @@ export const handleFileUpload = (
     file: File,
     errorHandler: (message: ErrorData) => void,
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
-    setHeader: React.Dispatch<React.SetStateAction<HeaderData>>
+    setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>
 ): void => {
     if (!file.name.endsWith(".csv")) {
         errorHandler({
             title: "Ops! Parece que esse arquivo não é compatível.",
             message:
-                "<div>O busca+mais funciona apenas com arquivos CSV baixados diretamente do PEC. Para saber como encontrar e baixar o arquivo certo, <a href='www.google.com' style='text-decoration: underline;' >clique aqui.</a></div>",
+                "O busca+mais funciona apenas com arquivos no formato CSV, baixados diretamente do PEC. Tente novamente.",
         });
         trackFileUploadWithError("invalid_file_extension");
         return;
@@ -70,17 +66,6 @@ export const handleFileUpload = (
         try {
             const rawFile =
                 typeof reader.result === "string" ? reader.result : "";
-
-            if (hasInvalidEncoding(rawFile)) {
-                errorHandler({
-                    title: "Ops! Parece que esse arquivo está em formato incorreto.",
-                    message:
-                        "O arquivo não parece estar em ISO-8859-1. Baixe novamente o CSV diretamente do PEC antes de tentar novamente, não edite ou abra o arquivo em outros editores.",
-                });
-                trackFileUploadWithError("invalid_file_encoding");
-                return;
-            }
-
             const lines = rawFile.split(/\r?\n/);
             const listRowIndex = lines.findIndex((line) =>
                 line.startsWith("Lista temática")
@@ -93,7 +78,7 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
                     message:
-                        "Cabeçalho do arquivo CSV não encontrado ou em formato incorreto.",
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_file_header");
                 return;
@@ -107,7 +92,7 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com a lista de saúde da mulher e do homem trans.",
+                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
                 });
                 trackFileUploadWithError("invalid_thematic_list");
                 return;
@@ -124,7 +109,8 @@ export const handleFileUpload = (
             if (teamRowIndex === -1) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Equipe responsável não encontrada",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("team_name_not_found");
                 return;
@@ -136,7 +122,8 @@ export const handleFileUpload = (
             if (createdAtRowIndex === -1) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração do arquivo não encontrada",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("creation_date_not_found");
                 return;
@@ -158,7 +145,8 @@ export const handleFileUpload = (
             ) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Data de geração em formato incorreto.",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_creation_date");
                 return;
@@ -182,13 +170,15 @@ export const handleFileUpload = (
             if (hasInvalidBirthDate) {
                 errorHandler({
                     title: "Ops, parece que algo não funcionou!",
-                    message: "Um paciente possui data de nascimento inválida.",
+                    message:
+                        "Possivelmente esse arquivo foi modificado e possui dados inválidos. Tente novamente e selecione um arquivo CSV baixado diretamente do PEC.",
                 });
                 trackFileUploadWithError("invalid_patient_birth_date");
                 return;
             }
 
             setRawFileContent(file);
+            setSuccessSnackbar(true);
             trackFileUploadWithSuccess(list);
         } catch (err) {
             if (err instanceof Error) {

@@ -3,10 +3,9 @@ import { useState } from "react";
 import type { ThematicList } from "./modules/common/carePathways";
 import type * as time from "@/features/common/shared/time";
 import { ErrorSnackbar } from "./modules/ErrorSnackbar";
-import { AvailableLists } from "./modules/AvailableLists";
 import { Content } from "./modules/Content";
 import { PageHeader } from "./modules/PageHeader";
-
+import { SuccessSnackbar } from "./modules/SuccessSnackbar";
 export type HeaderData = {
     thematicList: ThematicList | null;
     createdAtDate: time.BRTDateString;
@@ -25,31 +24,33 @@ export const SearchPlusPage: React.FC = () => {
         title: "",
         message: null,
     });
+    const [isSuccessSnackbarOpen, setIsSuccessSnackbarOpen] = useState(false);
 
     const resetSnackbarError = (): void => {
         setSnackbarError({ title: "", message: null });
     };
-
+    const resetSuccessSnackbar = (): void => {
+        setIsSuccessSnackbarOpen(false);
+    };
     return (
         <div
             style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                marginTop: "40px",
             }}
         >
             <PageHeader />
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                }}
-            >
-                <Content setSnackbarError={setSnackbarError} />
-            </div>
+            <Content
+                setSnackbarError={setSnackbarError}
+                setSuccessSnackbar={setIsSuccessSnackbarOpen}
+            />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
-            <AvailableLists />
+            <SuccessSnackbar
+                isOpen={isSuccessSnackbarOpen}
+                onClose={resetSuccessSnackbar}
+            />
         </div>
     );
 };

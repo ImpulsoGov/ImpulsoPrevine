@@ -4,21 +4,23 @@ export const PageHeader: React.FC = () => {
     return (
         <div
             style={{
-                padding: "20px",
+                padding: "20px 0px",
                 fontSize: "48px",
                 fontWeight: "bold",
-                textAlign: "center",
+                textAlign: "left",
+                paddingLeft: "auto",
+                paddingRight: "auto",
             }}
         >
             <span>
                 <Image
-                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh9861jj03hp07kc08jyagdz"
+                    src="https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmixjv0d303b707lv69ps3j30"
                     alt="Busca+Mais Logo"
                     width={56}
                     height={28}
                 />
             </span>{" "}
-            Busca+Mais
+            busca+mais
         </div>
     );
 };

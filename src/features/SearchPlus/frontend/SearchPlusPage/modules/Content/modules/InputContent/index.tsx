@@ -10,10 +10,13 @@ import { DragNDropArea } from "./modules/DragNDropArea";
 import { useState } from "react";
 import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
+import { Overview } from "./modules/Overview";
+import { HelpSection } from "./modules/HelpSection";
 
 export type { CsvRow } from "./model";
 
 type Props = {
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
@@ -27,6 +30,7 @@ export const InputContent: React.FC<Props> = ({
     setHeader,
     setErrorMessage,
     header,
+    setSuccessSnackbar,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -58,30 +62,18 @@ export const InputContent: React.FC<Props> = ({
     };
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-            }}
-        >
-            <p style={{ width: "51%" }}>
-                Converta seus relatórios do PEC em segundos, e tenha listas
-                prontas para distribuir aos ACS e simplificar o acompanhamento
-                dos cidadãos.
-            </p>
+        <>
             {rawFileContent && header.thematicList ? (
-                <TermsOfUse
-                    file={rawFileContent}
-                    setJsonData={setJsonData}
-                    setHeader={setHeader}
-                    header={header}
-                    onRemoveFileClick={showDragNDropArea}
-                    errorHandler={(message: string) => {
-                        resetContentStatesAndSetErrorMessage(
-                            message,
-                            setErrorMessage
-                        );
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "24px",
+                        marginBottom: "87px",
+                        width: "50%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
                     }}
                 >
                     <FileDetails
@@ -89,19 +81,49 @@ export const InputContent: React.FC<Props> = ({
                         onRemoveFileClick={showDragNDropArea}
                         thematicList={ListTitles[header.thematicList]}
                     />
-                </TermsOfUse>
+                    <TermsOfUse
+                        file={rawFileContent}
+                        setJsonData={setJsonData}
+                        setHeader={setHeader}
+                        header={header}
+                        onRemoveFileClick={showDragNDropArea}
+                        errorHandler={(message: string) => {
+                            resetContentStatesAndSetErrorMessage(
+                                message,
+                                setErrorMessage
+                            );
+                        }}
+                    />
+                </div>
             ) : (
-                <DragNDropArea
-                    setRawFileContent={setRawFileContent}
-                    setHeader={setHeader}
-                    errorHandler={(message: ErrorData) => {
-                        resetContentStatesAndSetErrorMessage(
-                            message,
-                            setSnackbarError
-                        );
-                    }}
-                />
+                <>
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            paddingRight: "80px",
+                            paddingLeft: "80px",
+                            paddingBottom: "80px",
+                        }}
+                    >
+                        <Overview />
+                        <DragNDropArea
+                            setRawFileContent={setRawFileContent}
+                            setHeader={setHeader}
+                            errorHandler={(message: ErrorData) => {
+                                resetContentStatesAndSetErrorMessage(
+                                    message,
+                                    setSnackbarError
+                                );
+                            }}
+                            setSuccessSnackbar={setSuccessSnackbar}
+                        />
+                    </div>
+                    <HelpSection />
+                </>
             )}
-        </div>
+        </>
     );
 };

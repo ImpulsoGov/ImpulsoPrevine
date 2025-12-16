@@ -13,9 +13,13 @@ export type { CsvRow } from "./modules/InputContent";
 
 type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Content: React.FC<Props> = ({ setSnackbarError }) => {
+export const Content: React.FC<Props> = ({
+    setSnackbarError,
+    setSuccessSnackbar,
+}) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -26,7 +30,6 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
         filters: {},
         teamName: undefined,
     });
-
     if (errorMessage.length > 0) {
         mixpanel.track("file_transform", {
             status: "error",
@@ -60,12 +63,33 @@ export const Content: React.FC<Props> = ({ setSnackbarError }) => {
     }
 
     return (
-        <InputContent
-            setSnackbarError={setSnackbarError}
-            setJsonData={setJsonData}
-            setHeader={setHeader}
-            header={header}
-            setErrorMessage={setErrorMessage}
-        />
+        <div style={{ width: "100%" }}>
+            <p
+                style={{
+                    width: "100%",
+                    fontSize: "24px",
+                    fontWeight: 400,
+                    marginBottom: "54px",
+                    textAlign: "center",
+                    paddingLeft: "auto",
+                    paddingRight: "auto",
+                    marginTop: "0px",
+                    paddingTop: "0px",
+                }}
+            >
+                Uma ferramenta exclusiva para conversão dos relatórios do PEC em
+                listas nominais do programa de <br></br> cofinanciamento do
+                governo federal, prontas para impressão e distribuição para os
+                agentes comunitários de saúde.
+            </p>
+            <InputContent
+                setSnackbarError={setSnackbarError}
+                setJsonData={setJsonData}
+                setHeader={setHeader}
+                header={header}
+                setErrorMessage={setErrorMessage}
+                setSuccessSnackbar={setSuccessSnackbar}
+            />
+        </div>
     );
 };
