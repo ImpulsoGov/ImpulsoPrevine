@@ -9,6 +9,7 @@ export const HelpSection: React.FC = () => {
                 paddingTop: "80px",
                 paddingLeft: "80px",
                 paddingRight: "80px",
+                paddingBottom: "196px",
             }}
         >
             <Image
@@ -32,22 +33,16 @@ export const HelpSection: React.FC = () => {
                 <br></br>
                 vídeo abaixo com mais instruções.
             </p>
-            <div style={{ padding: "54.16% 0 0 0", position: "relative" }}>
-                <iframe
-                    src="https://player.vimeo.com/video/1146719361?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "60%",
-                        height: "60%",
-                        border: "none",
-                    }}
-                ></iframe>
-            </div>
-            <script src="https://player.vimeo.com/api/player.js"></script>
+            <iframe
+                width="800"
+                height="486"
+                src="https://www.youtube.com/embed/DvGX3BiwgUw?si=FdmXOdw6ZvSWOhw3"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{ border: "none" }}
+            ></iframe>
         </div>
     );
 };
