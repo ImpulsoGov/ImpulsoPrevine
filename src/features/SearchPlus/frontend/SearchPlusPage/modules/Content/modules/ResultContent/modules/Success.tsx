@@ -9,6 +9,7 @@ import { UnitTable } from "@features/SearchPlus/frontend/SearchPlusPage/modules/
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Header } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Header";
 import mixpanel from "mixpanel-browser";
+import { useRouter } from "next/navigation";
 
 type ButtonBarProps = {
     setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
@@ -23,6 +24,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
     setShouldOpenWindowWithPrint,
     thematicList,
 }) => {
+    const router = useRouter();
     return (
         <>
             <div
@@ -46,6 +48,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                         });
                         setIsTableVisible(true);
                         setShouldOpenWindowWithPrint(true);
+                        router.push("/cofin25/busca_mais?result=true");
                     }}
                 >
                     <Image
@@ -72,6 +75,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                         });
                         setIsTableVisible(true);
                         setShouldOpenWindowWithPrint(false);
+                        router.push("/cofin25/busca_mais?result=true");
                     }}
                 >
                     VISUALIZAR PRÉVIA DA LISTA
@@ -88,6 +92,7 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
                 }}
                 onClick={() => {
                     setJsonData([]);
+                    router.push("/cofin25/busca_mais");
                 }}
             >
                 Converter nova lista

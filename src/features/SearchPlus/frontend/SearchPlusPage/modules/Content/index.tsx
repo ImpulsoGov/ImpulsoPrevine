@@ -52,7 +52,6 @@ export const Content: React.FC<Props> = ({
             thematic_list: header.thematicList,
             error_type: null,
         });
-
         return (
             <ResultContent
                 jsonData={jsonData}
