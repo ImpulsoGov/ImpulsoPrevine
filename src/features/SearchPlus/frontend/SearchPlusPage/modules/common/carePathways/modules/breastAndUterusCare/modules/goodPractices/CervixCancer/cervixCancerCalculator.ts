@@ -26,7 +26,7 @@ export class CervixCancerCalculator {
     }
 
     #getCurrentQuadrimester = (date: LocalDate): 1 | 2 | 3 => {
-        const month = date.monthValue() + 1;
+        const month = date.monthValue();
         return Math.ceil(month / 4) as 1 | 2 | 3;
     };
     #getlatestExamDate = (
