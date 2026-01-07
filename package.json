@@ -44,7 +44,7 @@
         "jsonwebtoken": "^9.0.2",
         "libphonenumber-js": "^1.12.12",
         "lodash.merge": "^4.6.2",
-        "mixpanel-browser": "^2.55.1",
+        "mixpanel-browser": "^2.73.0",
         "next": "15.5.7",
         "next-auth": "^4.24.10",
         "papaparse": "^5.4.1",
