@@ -68,9 +68,10 @@ export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
             Number(process.env.NEXT_PUBLIC_HOTJAR_SITE_ID),
             hotjarVersion
         );
-        mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
     }
     useEffect(() => {
+        mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
+
         if (typeof window !== "undefined") window.mixpanel = mixpanel;
     }, []);
     useEffect(() => TagManager.initialize(tagManagerArgs), []);
@@ -153,10 +154,10 @@ const SessionWrapper = ({
     useEffect(() => {
         identifyUserGuiding(session.data);
     }, [session]);
+
     useEffect(() => {
         sessionIdentifyMixPanel(mixpanel, Hotjar, session.data);
-    }, [session]);
-    useEffect(() => {
+
         const isNewRoute = path.startsWith("/cofin25");
 
         if (isNewRoute) {
