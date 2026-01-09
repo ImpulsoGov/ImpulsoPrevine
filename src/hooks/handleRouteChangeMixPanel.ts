@@ -5,9 +5,9 @@ export const handleRouteChangeMixPanel = (
     sessionStatus: string,
     pathname?: string,
     search?: string | null
-) => {
-    if (mixpanel?.track && sessionStatus !== "loading") {
-        mixpanel.track("Page View", {
+): void => {
+    if (sessionStatus !== "loading") {
+        mixpanel.track_pageview({
             Logged: sessionStatus === "authenticated",
             path: pathname?.replace(/\/+$/, "") ?? "",
             search: search ?? "",
