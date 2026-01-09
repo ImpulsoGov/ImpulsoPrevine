@@ -291,6 +291,22 @@ const allowedUsersIds = [
     "f1567fed-19d6-41a9-ae32-7687549f8da5",
     "0ee8d6af-3e34-4a77-89f7-9cd310760719",
     "1d8afb7d-082f-47f1-8e9e-af01c5832aa1",
+    //usuarios teste mixpanel
+    "0e9eefb8-76fb-47ff-9538-ec85a81401e4",
+    "8b232dfe-9334-4caa-a983-928450dd461c",
+    "dbe22e39-4d1b-4f04-a59d-6ad026dc1624",
+    "248ed873-a116-4419-abaf-16ff01fec7f3",
+    "af35e28f-a8ef-409e-bae0-843aea7ed00e",
+    "a5b91d1e-7c7b-4ae7-a048-53e803c0a41b",
+    "04b4c9a8-6583-41d6-9ea6-b65ddbab3fb0",
+    "fe8c84c3-4ab8-4d21-8580-14668e83c5a0",
+    "7e94e8fa-adcb-4dc5-875b-4e6ace95f08f",
+    "000a32ec-9e67-4d55-83b5-d085880d708d",
+    "8b19c235-4c79-411c-81ab-bbb4557405d1",
+    "d33fad9b-5bb4-4c6a-91b7-b8e7a75ed394",
+    "ccfd4d0c-c8f3-4d68-b535-b18c723ba9ed",
+    "14b7b814-3294-4830-bfb9-a561df2142cf",
+    "a62869e6-74f1-4fe9-b623-99a4277d4d56",
 ];
 
 export const searchPlus = flag<boolean, allowByUserId.UserId>({
