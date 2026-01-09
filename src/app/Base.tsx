@@ -70,7 +70,9 @@ export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
         );
     }
     useEffect(() => {
-        mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "");
+        mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "", {
+            debug: true,
+        });
 
         if (typeof window !== "undefined") window.mixpanel = mixpanel;
     }, []);
