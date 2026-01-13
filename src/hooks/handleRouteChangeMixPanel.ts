@@ -6,12 +6,10 @@ export const handleRouteChangeMixPanel = (
     pathname?: string,
     search?: string | null
 ): void => {
-    if (sessionStatus !== "loading") {
-        mixpanel.track_pageview({
-            Logged: sessionStatus === "authenticated",
-            path: pathname?.replace(/\/+$/, "") ?? "",
-            search: search ?? "",
-            url: typeof window !== "undefined" ? window.location.href : "",
-        });
-    }
+    mixpanel.track_pageview({
+        Logged: sessionStatus === "authenticated",
+        path: pathname?.replace(/\/+$/, "") ?? "",
+        search: search ?? "",
+        url: typeof window !== "undefined" ? window.location.href : "",
+    });
 };

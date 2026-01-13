@@ -159,14 +159,7 @@ const SessionWrapper = ({
 
     useEffect(() => {
         sessionIdentifyMixPanel(mixpanel, Hotjar, session.data);
-
-        const isNewRoute = path.startsWith("/cofin25");
-
-        if (isNewRoute) {
-            handleRouteChangeMixPanel(mixpanel, session.status, path);
-        } else {
-            handleRouteChangeMixPanel(mixpanel, session.status, path, search);
-        }
+        handleRouteChangeMixPanel(mixpanel, session.status, path, search);
     }, [session, path, search]);
     useEffect(() => {
         addUserDataLayer(session.data);
