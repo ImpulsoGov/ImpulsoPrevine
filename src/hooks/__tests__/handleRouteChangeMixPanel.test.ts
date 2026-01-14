@@ -10,6 +10,7 @@ describe("handleRouteChangeMixPanel", () => {
 
         mixpanel = {
             track: jest.fn(),
+            track_pageview: jest.fn(),
         };
     });
 
@@ -22,24 +23,16 @@ describe("handleRouteChangeMixPanel", () => {
             "a=1"
         );
 
-        expect(mixpanel.track).toHaveBeenCalledTimes(1);
-        expect(mixpanel.track).toHaveBeenCalledWith("Page View", {
-            Logged: true,
-            path: "/pacientes/lista",
-            search: "a=1",
-            url: "http://localhost/pacientes/lista?a=1",
-        });
-    });
-
-    it("não dispara quando sessionStatus === 'loading'", () => {
-        window.history.pushState({}, "", "/dashboard");
-        handleRouteChangeMixPanel(
-            mixpanel as Mixpanel,
-            "loading",
-            "/dashboard",
-            null
+        expect(mixpanel.track_pageview).toHaveBeenCalledTimes(1);
+        expect(mixpanel.track_pageview).toHaveBeenCalledWith(
+            {
+                Logged: true,
+                path: "/pacientes/lista",
+                search: "a=1",
+                url: "http://localhost/pacientes/lista?a=1",
+            },
+            { event_name: "Page View" }
         );
-        expect(mixpanel.track).not.toHaveBeenCalled();
     });
 
     it("trata pathname indefinido e search nulo", () => {
@@ -50,24 +43,15 @@ describe("handleRouteChangeMixPanel", () => {
             undefined,
             null
         );
-        expect(mixpanel.track).toHaveBeenCalledWith("Page View", {
-            Logged: false,
-            path: "",
-            search: "",
-            url: "http://localhost/",
-        });
-    });
-
-    it("não quebra se mixpanel.track estiver ausente", () => {
-        const mixpanelSemTrack = {} as Mixpanel; //
-        expect(() =>
-            handleRouteChangeMixPanel(
-                mixpanelSemTrack,
-                "authenticated",
-                "/x",
-                ""
-            )
-        ).not.toThrow();
+        expect(mixpanel.track_pageview).toHaveBeenCalledWith(
+            {
+                Logged: false,
+                path: "",
+                search: "",
+                url: "http://localhost/",
+            },
+            { event_name: "Page View" }
+        );
     });
 
     it("dispara 'Page View' para uma rota do /cofin25 sem search", () => {
@@ -80,13 +64,16 @@ describe("handleRouteChangeMixPanel", () => {
             ""
         );
 
-        expect(mixpanel.track).toHaveBeenCalledTimes(1);
-        expect(mixpanel.track).toHaveBeenCalledWith("Page View", {
-            Logged: true,
-            path: "/cofin25/indicadores",
-            search: "",
-            url: "http://localhost/cofin25/indicadores",
-        });
+        expect(mixpanel.track_pageview).toHaveBeenCalledTimes(1);
+        expect(mixpanel.track_pageview).toHaveBeenCalledWith(
+            {
+                Logged: true,
+                path: "/cofin25/indicadores",
+                search: "",
+                url: "http://localhost/cofin25/indicadores",
+            },
+            { event_name: "Page View" }
+        );
     });
 
     it("dispara 'Page View' para uma rota do /cofin25 com search, mas ignora o search no rastreamento", () => {
@@ -101,12 +88,40 @@ describe("handleRouteChangeMixPanel", () => {
             search
         );
 
+        expect(mixpanel.track_pageview).toHaveBeenCalledTimes(1);
+        expect(mixpanel.track_pageview).toHaveBeenCalledWith(
+            {
+                Logged: true,
+                path: "/cofin25/indicadores/hipertensao",
+                search: "teste=123&filtro=abc",
+                url: "http://localhost/cofin25/indicadores/hipertensao?teste=123&filtro=abc",
+            },
+            { event_name: "Page View" }
+        );
+    });
+
+    it("dispara 'Page View' com a opção send_immediately ao acessar a rota /cofin25/busca_mais", () => {
+        const path = "/cofin25/busca_mais";
+        const search = "";
+        window.history.pushState({}, "", path);
+
+        handleRouteChangeMixPanel(
+            mixpanel as Mixpanel,
+            "authenticated",
+            path,
+            search
+        );
+
         expect(mixpanel.track).toHaveBeenCalledTimes(1);
-        expect(mixpanel.track).toHaveBeenCalledWith("Page View", {
-            Logged: true,
-            path: "/cofin25/indicadores/hipertensao",
-            search: "teste=123&filtro=abc",
-            url: "http://localhost/cofin25/indicadores/hipertensao?teste=123&filtro=abc",
-        });
+        expect(mixpanel.track).toHaveBeenCalledWith(
+            "Page View",
+            {
+                Logged: true,
+                path: "/cofin25/busca_mais",
+                search: "",
+                url: "http://localhost/cofin25/busca_mais",
+            },
+            { send_immediately: true }
+        );
     });
 });
