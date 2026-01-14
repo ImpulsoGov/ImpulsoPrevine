@@ -76,9 +76,15 @@ export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
 
         if (typeof window !== "undefined") window.mixpanel = mixpanel;
     }, []);
-    useEffect(() => TagManager.initialize(tagManagerArgs), []);
-    useEffect(() => rotaDinamica(path.toString()), [path]);
-    useEffect(() => setMode(true), [dynamicRoute]);
+    useEffect(() => {
+        TagManager.initialize(tagManagerArgs);
+    }, []);
+    useEffect(() => {
+        rotaDinamica(path);
+    }, [path]);
+    useEffect(() => {
+        setMode(true);
+    }, [dynamicRoute]);
     useEffect(() => {
         getLayoutDataHook(setRes);
     }, []);
@@ -102,7 +108,7 @@ export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
                         <NavBarMounted
                             mixpanel={mixpanel}
                             session={session}
-                            nome={session?.user?.nome || ""}
+                            nome={session?.user.nome || ""}
                             path={path}
                             cidade={cidade}
                             setCidade={setCidade}
