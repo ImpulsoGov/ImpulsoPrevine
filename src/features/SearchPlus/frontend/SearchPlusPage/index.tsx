@@ -19,13 +19,16 @@ export type ErrorData = {
     message: string | null;
 };
 
-export const SearchPlusPage: React.FC = () => {
+type Props = {
+    isSearchPlusABEnabled: boolean;
+};
+
+export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
     const [snackbarError, setSnackbarError] = useState<ErrorData>({
         title: "",
         message: null,
     });
     const [isSuccessSnackbarOpen, setIsSuccessSnackbarOpen] = useState(false);
-
     const resetSnackbarError = (): void => {
         setSnackbarError({ title: "", message: null });
     };
@@ -41,10 +44,11 @@ export const SearchPlusPage: React.FC = () => {
                 marginTop: "40px",
             }}
         >
-            <PageHeader />
+            <PageHeader isSearchPlusABEnabled={isSearchPlusABEnabled} />
             <Content
                 setSnackbarError={setSnackbarError}
                 setSuccessSnackbar={setIsSuccessSnackbarOpen}
+                isSearchPlusABEnabled={isSearchPlusABEnabled}
             />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
             <SuccessSnackbar

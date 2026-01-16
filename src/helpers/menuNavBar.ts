@@ -2,6 +2,7 @@ import {
     diabetesNewProgram,
     hypertensionNewProgram,
     searchPlus,
+    searchPlusAB,
 } from "@/features/common/shared/flags";
 
 export type Menu = {
@@ -17,6 +18,7 @@ type Profile = "aps" | "equipe" | "";
 const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
     const isHypertensionNewProgramEnabled = await hypertensionNewProgram();
     const isDiabetesNewProgramEnabled = await diabetesNewProgram();
+    const isSearchPlusABEnabled = await searchPlusAB();
     return [
         ...(isDiabetesNewProgramEnabled
             ? [
@@ -60,16 +62,28 @@ const subMenuListasNominais = async (visao: Profile): Promise<Array<Menu>> => {
             url: `/busca-ativa/vacinacao?aba=0&sub_aba=0&visao=${visao}`,
             telemetryEvent: "acessar_lista_vacinacao",
         },
-        {
-            label: "Citopatológico",
-            url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
-            telemetryEvent: "acessar_lista_citopatologico",
-        },
+
+        ...(isSearchPlusABEnabled
+            ? [
+                  {
+                      label: "Citopatológico",
+                      url: `/cofin25/busca_mais`,
+                      telemetryEvent: "acessar_pg_busca_mais",
+                  },
+              ]
+            : [
+                  {
+                      label: "Citopatológico",
+                      url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+                      telemetryEvent: "acessar_lista_citopatologico",
+                  },
+              ]),
     ];
 };
 
 const loggedMenu = async (
-    view: "aps" | "equipe" | null
+    view: "aps" | "equipe" | null,
+    isSearchPlusEnabled: boolean
 ): Promise<Array<Menu>> => {
     const menus: Array<Menu> = [
         {
@@ -77,7 +91,7 @@ const loggedMenu = async (
             url: "/inicio",
             telemetryEvent: "acessar_pg_inicio",
         },
-        ...((await searchPlus())
+        ...(isSearchPlusEnabled
             ? [
                   {
                       label: "busca+mais",
@@ -119,6 +133,7 @@ const notLoggedMenu = (): Array<Menu> => {
 export const menuNavBar = async (
     view: "aps" | "equipe" | null
 ): Promise<Array<Menu>> => {
-    const loggedMenuOptions = await loggedMenu(view);
+    const isSearchPlusEnabled = await searchPlus();
+    const loggedMenuOptions = await loggedMenu(view, isSearchPlusEnabled);
     return view ? loggedMenuOptions : notLoggedMenu();
 };

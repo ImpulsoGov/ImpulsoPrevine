@@ -14,15 +14,16 @@ export type { CsvRow } from "./modules/InputContent";
 type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
+    isSearchPlusABEnabled: boolean;
 };
 
 export const Content: React.FC<Props> = ({
     setSnackbarError,
     setSuccessSnackbar,
+    isSearchPlusABEnabled,
 }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
-
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
         createdAtDate: "01/01/1970",
@@ -88,6 +89,7 @@ export const Content: React.FC<Props> = ({
                 header={header}
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
+                isSearchPlusABEnabled={isSearchPlusABEnabled}
             />
         </div>
     );

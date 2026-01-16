@@ -22,6 +22,7 @@ type Props = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
+    isSearchPlusABEnabled: boolean;
 };
 
 export const InputContent: React.FC<Props> = ({
@@ -31,6 +32,7 @@ export const InputContent: React.FC<Props> = ({
     setErrorMessage,
     header,
     setSuccessSnackbar,
+    isSearchPlusABEnabled,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 

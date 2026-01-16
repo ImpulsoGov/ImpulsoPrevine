@@ -1,6 +1,8 @@
 import Image from "next/image";
-
-export const PageHeader: React.FC = () => {
+type Props = {
+    isSearchPlusABEnabled: boolean;
+};
+export const PageHeader: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
     return (
         <div
             style={{

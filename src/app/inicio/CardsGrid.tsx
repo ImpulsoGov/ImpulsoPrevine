@@ -43,6 +43,7 @@ export type CardsGridProps = {
         hasDiabetesNewProgramEnabled: boolean;
         hasHypertensionNewProgramEnabled: boolean;
     };
+    hasSearchPlusABEnabled: boolean;
     hasSearchPlusEnabled: boolean;
 };
 
@@ -121,7 +122,10 @@ const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
 };
 
 // TODO: discutir se faz sentido retornar somente as infos de hipertensao
-const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
+const hypertensionAndCitoAlfa = (
+    visao: string,
+    hasSearchPlusABEnabled: boolean
+): CardGridDataTypeContent => {
     return {
         div: {
             style: {
@@ -165,12 +169,14 @@ const hypertensionAndCitoAlfa = (visao: string): CardGridDataTypeContent => {
                         "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                     height: "50%",
                     link: {
-                        url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+                        url: hasSearchPlusABEnabled
+                            ? `/cofin25/busca_mais`
+                            : `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
                         newTab: false,
                     },
                     handleHeaderClick: (): void => {
                         mixpanel.track("card_click", {
-                            card_action: "acessar_lista_citopatologico",
+                            card_action: "acessar_pg_busca_mais",
                             card_page: "pg_inicio",
                         });
                     },
@@ -200,6 +206,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
     isAlfa,
     situacaoPorIndicador,
     visao,
+    hasSearchPlusABEnabled,
     hasSearchPlusEnabled,
 }) => {
     const CardsGridData: CardsGridDataType = {
@@ -274,7 +281,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                   ],
               },
         cardsHipertensaoECito: isAlfa.hasHypertensionNewProgramEnabled
-            ? hypertensionAndCitoAlfa(visao)
+            ? hypertensionAndCitoAlfa(visao, hasSearchPlusABEnabled)
             : {
                   div: {
                       style: {
@@ -324,13 +331,16 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                   "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                               height: "50%",
                               link: {
-                                  url: `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
+                                  url: hasSearchPlusABEnabled
+                                      ? `/cofin25/busca_mais`
+                                      : `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
                                   newTab: false,
                               },
                               handleHeaderClick: (): void => {
                                   mixpanel.track("card_click", {
-                                      card_action:
-                                          "acessar_lista_citopatologico",
+                                      card_action: hasSearchPlusABEnabled
+                                          ? "acessar_pg_busca_mais"
+                                          : "acessar_lista_citopatologico",
                                       card_page: "pg_inicio",
                                   });
                               },
