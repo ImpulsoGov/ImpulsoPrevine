@@ -1,3 +1,4 @@
+import { searchPlusAB } from "@/features/common/shared/flags";
 import { unificarSituacaoPorIndicadores } from "@/helpers/inicio/unificarSituacaoPorIndicadores";
 import { InicioAPSRequest } from "@/services/inicio/inicioAPS";
 import { InicioEquipeRequest } from "@/services/inicio/inicioEquipe";
@@ -17,6 +18,7 @@ jest.mock("@features/common/shared/flags", () => ({
     diabetesNewProgram: jest.fn(),
     hypertensionNewProgram: jest.fn(),
     searchPlus: jest.fn(),
+    searchPlusAB: jest.fn(),
 }));
 
 jest.mock("next-auth", () => ({
