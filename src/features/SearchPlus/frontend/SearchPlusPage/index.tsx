@@ -40,7 +40,7 @@ export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
             style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+                alignItems: "stretch",
                 marginTop: "40px",
             }}
         >

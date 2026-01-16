@@ -23,7 +23,7 @@ const InicioPage: React.FC = async () => {
     const hasDiabetesNewProgramEnabled = await diabetesNewProgram();
     const hasHypertensionNewProgramEnabled = await hypertensionNewProgram();
     const hasSearchPlusEnabled = await searchPlus();
-    const hasSearchPlusABEnabled = await searchPlusAB();
+    const isSearchPlusABEnabled = await searchPlusAB();
 
     if (session?.user) {
         if (
@@ -59,7 +59,7 @@ const InicioPage: React.FC = async () => {
                     hasHypertensionNewProgramEnabled
                 }
                 hasSearchPlusEnabled={hasSearchPlusEnabled}
-                hasSearchPlusABEnabled={hasSearchPlusABEnabled}
+                isSearchPlusABEnabled={isSearchPlusABEnabled}
             />
         );
     }

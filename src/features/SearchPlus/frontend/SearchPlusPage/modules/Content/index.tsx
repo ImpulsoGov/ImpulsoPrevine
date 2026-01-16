@@ -63,18 +63,22 @@ export const Content: React.FC<Props> = ({
     }
 
     return (
-        <div style={{ width: "100%" }}>
+        <div
+            style={{
+                width: "100%",
+                paddingLeft: 80,
+                paddingRight: 80,
+                boxSizing: "border-box",
+            }}
+        >
             <p
                 style={{
                     width: "100%",
                     fontSize: "24px",
                     fontWeight: 400,
                     marginBottom: "54px",
-                    textAlign: "center",
-                    paddingLeft: "auto",
-                    paddingRight: "auto",
+                    textAlign: isSearchPlusABEnabled ? "left" : "center",
                     marginTop: "0px",
-                    paddingTop: "0px",
                 }}
             >
                 Uma ferramenta exclusiva para conversão dos relatórios do PEC em

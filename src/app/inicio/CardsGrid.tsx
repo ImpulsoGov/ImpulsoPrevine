@@ -43,7 +43,7 @@ export type CardsGridProps = {
         hasDiabetesNewProgramEnabled: boolean;
         hasHypertensionNewProgramEnabled: boolean;
     };
-    hasSearchPlusABEnabled: boolean;
+    isSearchPlusABEnabled: boolean;
     hasSearchPlusEnabled: boolean;
 };
 
@@ -124,7 +124,7 @@ const diabetesAndVaccinationAlfa = (visao: string): CardGridDataTypeContent => {
 // TODO: discutir se faz sentido retornar somente as infos de hipertensao
 const hypertensionAndCitoAlfa = (
     visao: string,
-    hasSearchPlusABEnabled: boolean
+    isSearchPlusABEnabled: boolean
 ): CardGridDataTypeContent => {
     return {
         div: {
@@ -169,7 +169,7 @@ const hypertensionAndCitoAlfa = (
                         "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                     height: "50%",
                     link: {
-                        url: hasSearchPlusABEnabled
+                        url: isSearchPlusABEnabled
                             ? `/cofin25/busca_mais`
                             : `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
                         newTab: false,
@@ -206,7 +206,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
     isAlfa,
     situacaoPorIndicador,
     visao,
-    hasSearchPlusABEnabled,
+    isSearchPlusABEnabled,
     hasSearchPlusEnabled,
 }) => {
     const CardsGridData: CardsGridDataType = {
@@ -281,7 +281,7 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                   ],
               },
         cardsHipertensaoECito: isAlfa.hasHypertensionNewProgramEnabled
-            ? hypertensionAndCitoAlfa(visao, hasSearchPlusABEnabled)
+            ? hypertensionAndCitoAlfa(visao, isSearchPlusABEnabled)
             : {
                   div: {
                       style: {
@@ -331,14 +331,14 @@ export const CardsGrid: React.FC<CardsGridProps> = ({
                                   "Mostra o status de todas as pessoas entre 25 e 64 anos que têm a coleta em dia, em atraso ou que nunca a realizaram.",
                               height: "50%",
                               link: {
-                                  url: hasSearchPlusABEnabled
+                                  url: isSearchPlusABEnabled
                                       ? `/cofin25/busca_mais`
                                       : `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=${visao}`,
                                   newTab: false,
                               },
                               handleHeaderClick: (): void => {
                                   mixpanel.track("card_click", {
-                                      card_action: hasSearchPlusABEnabled
+                                      card_action: isSearchPlusABEnabled
                                           ? "acessar_pg_busca_mais"
                                           : "acessar_lista_citopatologico",
                                       card_page: "pg_inicio",
