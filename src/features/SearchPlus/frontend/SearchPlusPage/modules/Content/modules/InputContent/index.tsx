@@ -103,8 +103,6 @@ export const InputContent: React.FC<Props> = ({
                             alignItems: "flex-start",
                             justifyContent: "space-between",
                             width: "100%",
-                            // paddingRight: "80px",
-                            // paddingLeft: "80px",
                             paddingBottom: "80px",
                             gap: "48px",
                         }}
