@@ -7,8 +7,8 @@ export const PageHeader: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
         <div
             style={{
                 width: "100%",
-                paddingLeft: 80,
-                paddingRight: 80,
+                // paddingLeft: 80,
+                // paddingRight: 80,
                 boxSizing: "border-box",
             }}
         >
