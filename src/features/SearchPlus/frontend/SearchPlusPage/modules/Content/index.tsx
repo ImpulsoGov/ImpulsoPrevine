@@ -93,7 +93,6 @@ export const Content: React.FC<Props> = ({
                 header={header}
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
-                isSearchPlusABEnabled={isSearchPlusABEnabled}
             />
         </div>
     );

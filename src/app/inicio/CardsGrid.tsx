@@ -176,7 +176,9 @@ const hypertensionAndCitoAlfa = (
                     },
                     handleHeaderClick: (): void => {
                         mixpanel.track("card_click", {
-                            card_action: "acessar_pg_busca_mais",
+                            card_action: isSearchPlusABEnabled
+                                ? "acessar_pg_busca_mais"
+                                : "acessar_lista_citopatologico",
                             card_page: "pg_inicio",
                         });
                     },
