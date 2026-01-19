@@ -20,6 +20,7 @@ type InicioProps = {
     hasDiabetesNewProgramEnabled: boolean;
     hasHypertensionNewProgramEnabled: boolean;
     hasSearchPlusEnabled: boolean;
+    isSearchPlusABEnabled: boolean;
 };
 
 export const Inicio: React.FC<InicioProps> = ({
@@ -27,6 +28,7 @@ export const Inicio: React.FC<InicioProps> = ({
     hasDiabetesNewProgramEnabled,
     hasHypertensionNewProgramEnabled,
     hasSearchPlusEnabled,
+    isSearchPlusABEnabled,
 }) => {
     const { data: session } = useSession();
     if (session && situacaoPorIndicador) {
@@ -77,6 +79,7 @@ export const Inicio: React.FC<InicioProps> = ({
                                 ? "aps"
                                 : "equipe"
                         }
+                        isSearchPlusABEnabled={isSearchPlusABEnabled}
                     />
                 </div>
 

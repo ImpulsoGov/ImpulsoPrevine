@@ -14,15 +14,16 @@ export type { CsvRow } from "./modules/InputContent";
 type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
+    isSearchPlusABEnabled: boolean;
 };
 
 export const Content: React.FC<Props> = ({
     setSnackbarError,
     setSuccessSnackbar,
+    isSearchPlusABEnabled,
 }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
-
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
         createdAtDate: "01/01/1970",
@@ -62,18 +63,22 @@ export const Content: React.FC<Props> = ({
     }
 
     return (
-        <div style={{ width: "100%" }}>
+        <div
+            style={{
+                width: "100%",
+                paddingLeft: 80,
+                paddingRight: 80,
+                boxSizing: "border-box",
+            }}
+        >
             <p
                 style={{
                     width: "100%",
                     fontSize: "24px",
                     fontWeight: 400,
                     marginBottom: "54px",
-                    textAlign: "center",
-                    paddingLeft: "auto",
-                    paddingRight: "auto",
+                    textAlign: isSearchPlusABEnabled ? "left" : "center",
                     marginTop: "0px",
-                    paddingTop: "0px",
                 }}
             >
                 Uma ferramenta exclusiva para conversão dos relatórios do PEC em
