@@ -3,6 +3,11 @@ import {
     breastAndUterusCareColumns,
     csvRowToBreastAndUterusCareItem,
 } from "./modules/breastAndUterusCare";
+import {
+    type PregnancyAndPuerperiumCareItem,
+    csvRowToPregnancyAndPuerperiumCareItem,
+    pregnancyAndPuerperiumCareColumns,
+} from "./modules/pregnancyAndPuerperiumCare";
 
 type RenderCell = (param: unknown) => React.ReactNode;
 
@@ -20,30 +25,43 @@ export type ColumnsProps<TSearchPlusItem extends SearchPlusItem> = {
 };
 
 //TODO: tornar polimórfico
-export type SearchPlusItem = BreastAndUterusCareItem;
+export type SearchPlusItem =
+    | BreastAndUterusCareItem
+    | PregnancyAndPuerperiumCareItem;
 
-export const THEMATIC_LISTS = ["Saúde da mulher"] as const;
+export const THEMATIC_LISTS = [
+    "Saúde da mulher",
+    "Gestantes e puérperas",
+] as const;
 
 export type ThematicList = (typeof THEMATIC_LISTS)[number];
 
 export const ListTitles = {
     "Saúde da mulher":
         "CUIDADO DA MULHER E DO HOMEM TRANSGÊNERO NA PREVENÇÃO DO CÂNCER",
+    "Gestantes e puérperas": "CUIDADO DA GESTANTE E PUÉRPERA",
 };
 
-export type Lists = "breastAndUterusCare";
+export type Lists = "breastAndUterusCare" | "pregnancyAndPuerperiumCare";
 
 export const adaptersMap = {
     breastAndUterusCare: csvRowToBreastAndUterusCareItem,
+    pregnancyAndPuerperiumCare: csvRowToPregnancyAndPuerperiumCareItem,
 };
 
-export const columns: Record<
-    ThematicList,
-    Array<ColumnsProps<SearchPlusItem>>
-> = {
+type ColumnsByThematicList = {
+    "Saúde da mulher": Array<ColumnsProps<BreastAndUterusCareItem>>;
+    "Gestantes e puérperas": Array<
+        ColumnsProps<PregnancyAndPuerperiumCareItem>
+    >;
+};
+
+export const columns: ColumnsByThematicList = {
     "Saúde da mulher": breastAndUterusCareColumns,
+    "Gestantes e puérperas": pregnancyAndPuerperiumCareColumns,
 };
 
 export const csvListTitleToListKey: Record<ThematicList, Lists> = {
     "Saúde da mulher": "breastAndUterusCare",
+    "Gestantes e puérperas": "pregnancyAndPuerperiumCare",
 };
