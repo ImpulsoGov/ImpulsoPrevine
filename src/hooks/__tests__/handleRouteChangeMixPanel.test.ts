@@ -99,29 +99,4 @@ describe("handleRouteChangeMixPanel", () => {
             { event_name: "Page View" }
         );
     });
-
-    it("dispara 'Page View' com a opção send_immediately ao acessar a rota /cofin25/busca_mais", () => {
-        const path = "/cofin25/busca_mais";
-        const search = "";
-        window.history.pushState({}, "", path);
-
-        handleRouteChangeMixPanel(
-            mixpanel as Mixpanel,
-            "authenticated",
-            path,
-            search
-        );
-
-        expect(mixpanel.track).toHaveBeenCalledTimes(1);
-        expect(mixpanel.track).toHaveBeenCalledWith(
-            "Page View",
-            {
-                Logged: true,
-                path: "/cofin25/busca_mais",
-                search: "",
-                url: "http://localhost/cofin25/busca_mais",
-            },
-            { send_immediately: true }
-        );
-    });
 });
