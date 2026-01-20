@@ -92,7 +92,7 @@ export const handleFileUpload = (
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
-                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
+                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer e Cuidado da Gestante e Puérpera.",
                 });
                 trackFileUploadWithError("invalid_thematic_list");
                 return;
