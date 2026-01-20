@@ -26,6 +26,7 @@ type Props = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
+    isSearchPlusNewGoodPracticeEnabled: boolean;
 };
 
 export const InputContent: React.FC<Props> = ({
@@ -35,6 +36,7 @@ export const InputContent: React.FC<Props> = ({
     setErrorMessage,
     header,
     setSuccessSnackbar,
+    isSearchPlusNewGoodPracticeEnabled,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -111,7 +113,11 @@ export const InputContent: React.FC<Props> = ({
                             gap: "48px",
                         }}
                     >
-                        <Overview />
+                        <Overview
+                            isSearchPlusNewGoodPracticeEnabled={
+                                isSearchPlusNewGoodPracticeEnabled
+                            }
+                        />
                         <DragNDropArea
                             setRawFileContent={setRawFileContent}
                             setHeader={setHeader}
@@ -122,6 +128,9 @@ export const InputContent: React.FC<Props> = ({
                                 );
                             }}
                             setSuccessSnackbar={setSuccessSnackbar}
+                            isSearchPlusNewGoodPracticeEnabled={
+                                isSearchPlusNewGoodPracticeEnabled
+                            }
                         />
                     </div>
                     <HelpSection />

@@ -50,7 +50,8 @@ export const handleFileUpload = (
     errorHandler: (message: ErrorData) => void,
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
-    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>,
+    isSearchPlusNewGoodPracticeEnabled: boolean
 ): void => {
     if (!file.name.endsWith(".csv")) {
         errorHandler({
@@ -88,7 +89,15 @@ export const handleFileUpload = (
                 ";"
             )[1] as ThematicList | null;
 
-            if (!list || !(list in csvListTitleToListKey)) {
+            const availableLists = (
+                isSearchPlusNewGoodPracticeEnabled
+                    ? Object.keys(csvListTitleToListKey)
+                    : Object.keys(csvListTitleToListKey).slice(0, 1)
+            ) as Array<ThematicList>;
+            console.log("availableLists", availableLists);
+            console.log("list", list);
+
+            if (!list || !(list in availableLists)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
                     message:
