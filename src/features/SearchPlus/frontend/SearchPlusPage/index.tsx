@@ -25,6 +25,7 @@ export type ErrorData = {
 
 type Props = {
     isSearchPlusABEnabled: boolean;
+    isSearchPlusNewGoodPracticeEnabled: boolean;
 };
 const buildUrl = (profiles: Array<number>): string => {
     const baseUrl = `/busca-ativa/citopatologico?aba=&sub_aba=0&visao=`;
@@ -33,7 +34,10 @@ const buildUrl = (profiles: Array<number>): string => {
     }
     return `${baseUrl}equipe`;
 };
-export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
+export const SearchPlusPage: React.FC<Props> = ({
+    isSearchPlusABEnabled,
+    isSearchPlusNewGoodPracticeEnabled,
+}) => {
     const session = useSession();
     const [snackbarError, setSnackbarError] = useState<ErrorData>({
         title: "",
@@ -89,6 +93,9 @@ export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
                 setSuccessSnackbar={setIsSuccessSnackbarOpen}
                 isSearchPlusABEnabled={isSearchPlusABEnabled}
                 isMobile={isMobile}
+                isSearchPlusNewGoodPracticeEnabled={
+                    isSearchPlusNewGoodPracticeEnabled
+                }
             />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
             <SuccessSnackbar

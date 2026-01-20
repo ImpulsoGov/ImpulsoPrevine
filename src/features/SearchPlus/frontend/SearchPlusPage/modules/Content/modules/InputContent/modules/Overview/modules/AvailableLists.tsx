@@ -3,7 +3,13 @@ import { nameFormatter } from "@/features/SearchPlus/frontend/SearchPlusPage/mod
 import { Tooltip } from "@mui/material";
 import Image from "next/image";
 
-export const AvailableLists: React.FC = () => {
+export const AvailableLists: React.FC<{
+    isSearchPlusNewGoodPracticeEnabled: boolean;
+}> = ({ isSearchPlusNewGoodPracticeEnabled }) => {
+    const availableLists = isSearchPlusNewGoodPracticeEnabled
+        ? Object.values(ListTitles)
+        : Object.values(ListTitles).slice(0, 1);
+
     return (
         <div
             style={{
@@ -21,7 +27,10 @@ export const AvailableLists: React.FC = () => {
                         marginBottom: "12px",
                     }}
                 >
-                    Lista disponível para conversão
+                    {isSearchPlusNewGoodPracticeEnabled
+                        ? "Listas disponíveis"
+                        : "Lista disponível"}{" "}
+                    para conversão
                 </p>
                 <Tooltip
                     title={
@@ -52,7 +61,7 @@ export const AvailableLists: React.FC = () => {
                     flexWrap: "wrap",
                 }}
             >
-                {Object.values(ListTitles).map((list: string) => (
+                {availableLists.map((list: string) => (
                     <div
                         key={list}
                         style={{

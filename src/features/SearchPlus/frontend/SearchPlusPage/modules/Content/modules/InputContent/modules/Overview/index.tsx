@@ -3,7 +3,9 @@ import { AvailableLists } from "./modules/AvailableLists";
 import { Instructions } from "./modules/Instructions";
 
 // TODO: rever nome deste componente
-export const Overview: React.FC = () => {
+export const Overview: React.FC<{
+    isSearchPlusNewGoodPracticeEnabled: boolean;
+}> = ({ isSearchPlusNewGoodPracticeEnabled }) => {
     return (
         <div
             style={{
@@ -14,7 +16,11 @@ export const Overview: React.FC = () => {
                 lineHeight: "130%",
             }}
         >
-            <AvailableLists />
+            <AvailableLists
+                isSearchPlusNewGoodPracticeEnabled={
+                    isSearchPlusNewGoodPracticeEnabled
+                }
+            />
             <p
                 style={{
                     margin: "16px 0px",

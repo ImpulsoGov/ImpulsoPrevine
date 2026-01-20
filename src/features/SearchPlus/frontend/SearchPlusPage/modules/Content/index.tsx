@@ -17,6 +17,7 @@ type Props = {
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     isSearchPlusABEnabled: boolean;
     isMobile: boolean;
+    isSearchPlusNewGoodPracticeEnabled: boolean;
 };
 
 export const Content: React.FC<Props> = ({
@@ -24,6 +25,7 @@ export const Content: React.FC<Props> = ({
     setSuccessSnackbar,
     isSearchPlusABEnabled,
     isMobile,
+    isSearchPlusNewGoodPracticeEnabled,
 }) => {
     const [jsonData, setJsonData] = useState<
         Array<BreastAndUterusCareItem> | Array<PregnancyAndPuerperiumCareItem>
@@ -100,6 +102,9 @@ export const Content: React.FC<Props> = ({
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
                 isMobile={isMobile}
+                isSearchPlusNewGoodPracticeEnabled={
+                    isSearchPlusNewGoodPracticeEnabled
+                }
             />
         </div>
     );
