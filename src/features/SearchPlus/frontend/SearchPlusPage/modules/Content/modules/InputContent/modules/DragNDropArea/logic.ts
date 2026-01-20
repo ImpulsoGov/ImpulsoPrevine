@@ -94,14 +94,12 @@ export const handleFileUpload = (
                     ? Object.keys(csvListTitleToListKey)
                     : Object.keys(csvListTitleToListKey).slice(0, 1)
             ) as Array<ThematicList>;
-            console.log("availableLists", availableLists);
-            console.log("list", list);
-
-            if (!list || !(list in availableLists)) {
+            if (!list || !availableLists.includes(list)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
-                    message:
-                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer e Cuidado da Gestante e Puérpera.",
+                    message: isSearchPlusNewGoodPracticeEnabled
+                        ? "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer e Cuidado da Gestante e Puérpera."
+                        : "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
                 });
                 trackFileUploadWithError("invalid_thematic_list");
                 return;
