@@ -13,8 +13,8 @@ const allowedUsersIds = [
     "93fdf574-4c52-4392-a319-d3e1f3e40c52",
 ];
 
-export const searchPlusNewGoodPractice = flag<boolean, allowByUserId.UserId>({
-    key: "searchPlusNewGoodPractice",
+export const searchPlusNewCarePathway = flag<boolean, allowByUserId.UserId>({
+    key: "searchPlusNewCarePathway",
     identify: allowByUserId.identify,
     decide: allowByUserId.buildDecide(allowedUsersIds),
 });

@@ -51,7 +51,7 @@ export const handleFileUpload = (
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>,
-    isSearchPlusNewGoodPracticeEnabled: boolean
+    isSearchPlusNewCarePathwayEnabled: boolean
 ): void => {
     if (!file.name.endsWith(".csv")) {
         errorHandler({
@@ -90,14 +90,14 @@ export const handleFileUpload = (
             )[1] as ThematicList | null;
 
             const availableLists = (
-                isSearchPlusNewGoodPracticeEnabled
+                isSearchPlusNewCarePathwayEnabled
                     ? Object.keys(csvListTitleToListKey)
                     : Object.keys(csvListTitleToListKey).slice(0, 1)
             ) as Array<ThematicList>;
             if (!list || !availableLists.includes(list)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
-                    message: isSearchPlusNewGoodPracticeEnabled
+                    message: isSearchPlusNewCarePathwayEnabled
                         ? "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer e Cuidado da Gestante e Puérpera."
                         : "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
                 });

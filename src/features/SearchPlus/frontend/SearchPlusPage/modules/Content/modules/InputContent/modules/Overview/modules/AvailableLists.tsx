@@ -4,9 +4,9 @@ import { Tooltip } from "@mui/material";
 import Image from "next/image";
 
 export const AvailableLists: React.FC<{
-    isSearchPlusNewGoodPracticeEnabled: boolean;
-}> = ({ isSearchPlusNewGoodPracticeEnabled }) => {
-    const availableLists = isSearchPlusNewGoodPracticeEnabled
+    isSearchPlusNewCarePathwayEnabled: boolean;
+}> = ({ isSearchPlusNewCarePathwayEnabled }) => {
+    const availableLists = isSearchPlusNewCarePathwayEnabled
         ? Object.values(ListTitles)
         : Object.values(ListTitles).slice(0, 1);
 
@@ -27,7 +27,7 @@ export const AvailableLists: React.FC<{
                         marginBottom: "12px",
                     }}
                 >
-                    {isSearchPlusNewGoodPracticeEnabled
+                    {isSearchPlusNewCarePathwayEnabled
                         ? "Listas disponíveis"
                         : "Lista disponível"}{" "}
                     para conversão

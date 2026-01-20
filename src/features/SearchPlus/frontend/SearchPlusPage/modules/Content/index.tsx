@@ -16,14 +16,14 @@ type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     isSearchPlusABEnabled: boolean;
-    isSearchPlusNewGoodPracticeEnabled: boolean;
+    isSearchPlusNewCarePathwayEnabled: boolean;
 };
 
 export const Content: React.FC<Props> = ({
     setSnackbarError,
     setSuccessSnackbar,
     isSearchPlusABEnabled,
-    isSearchPlusNewGoodPracticeEnabled,
+    isSearchPlusNewCarePathwayEnabled,
 }) => {
     const [jsonData, setJsonData] = useState<
         Array<BreastAndUterusCareItem> | Array<PregnancyAndPuerperiumCareItem>
@@ -98,8 +98,8 @@ export const Content: React.FC<Props> = ({
                 header={header}
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
-                isSearchPlusNewGoodPracticeEnabled={
-                    isSearchPlusNewGoodPracticeEnabled
+                isSearchPlusNewCarePathwayEnabled={
+                    isSearchPlusNewCarePathwayEnabled
                 }
             />
         </div>
