@@ -7,16 +7,12 @@ export const handleRouteChangeMixPanel = (
     search?: string | null
 ): void => {
     if (pathname === "/cofin25/busca_mais") {
-        mixpanel.track(
-            "Page View",
-            {
-                Logged: sessionStatus === "authenticated",
-                path: pathname.replace(/\/+$/, ""),
-                search: search ?? "",
-                url: typeof window !== "undefined" ? window.location.href : "",
-            },
-            { send_immediately: true }
-        );
+        mixpanel.track("Page View", {
+            Logged: sessionStatus === "authenticated",
+            path: pathname.replace(/\/+$/, ""),
+            search: search ?? "",
+            url: typeof window !== "undefined" ? window.location.href : "",
+        });
     } else {
         mixpanel.track_pageview(
             {
