@@ -3,11 +3,17 @@ import Link from "next/link";
 import { useState } from "react";
 import { handleClick } from "./logic";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type { BreastAndUterusCareItem } from "../../../../../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 type TermsOfUseProps = {
     file: File;
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     header: HeaderData;
     onRemoveFileClick: React.DispatchWithoutAction;

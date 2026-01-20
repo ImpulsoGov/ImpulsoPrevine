@@ -1,13 +1,21 @@
 "use client";
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Success } from "./modules/Success";
+import type { BreastAndUterusCareItem } from "../../../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 type ResultContentProps = {
-    jsonData: Array<SearchPlusItem>;
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    jsonData:
+        | Array<BreastAndUterusCareItem>
+        | Array<PregnancyAndPuerperiumCareItem>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     header: HeaderData;
 };
 

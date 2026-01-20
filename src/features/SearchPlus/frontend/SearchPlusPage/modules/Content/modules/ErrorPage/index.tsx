@@ -1,9 +1,15 @@
 import { Button, Text } from "@/features/common/frontend/atoms";
 import Image from "next/image";
-import type { SearchPlusItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type { BreastAndUterusCareItem } from "../../../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 type Props = {
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     error: string;
 };

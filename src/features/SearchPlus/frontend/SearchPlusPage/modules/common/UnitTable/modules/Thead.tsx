@@ -1,12 +1,9 @@
-import type {
-    ColumnsProps,
-    SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import type { LayoutOrientation } from "../model";
 import React from "react";
 
-export type TheadProps<TSearchPlusItem extends SearchPlusItem> = {
-    columns: Array<ColumnsProps<TSearchPlusItem>>;
+export type TheadProps = {
+    columns: Array<ColumnsProps>;
     layoutOrientation: LayoutOrientation;
 };
 
@@ -18,10 +15,10 @@ const DefaultHeader = ({
     return <div style={{ whiteSpace: "pre-line" }}>{headerName}</div>;
 };
 
-export const Thead = <TSearchPlusItem extends SearchPlusItem>({
+export const Thead = ({
     columns,
     layoutOrientation,
-}: TheadProps<TSearchPlusItem>): React.ReactNode => (
+}: TheadProps): React.ReactNode => (
     <thead>
         <tr
             className="largura"

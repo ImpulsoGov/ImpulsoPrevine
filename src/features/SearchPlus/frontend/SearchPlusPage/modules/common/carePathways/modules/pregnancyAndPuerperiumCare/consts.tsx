@@ -1,11 +1,8 @@
 //TODO: Jogar estes tipos pra um módulo separado ao invés de importar de ResultContent
 import type { ColumnsProps } from "../../model";
-import type { PregnancyAndPuerperiumCareItem } from "./model";
 import * as goodPractices from "./modules/goodPractices";
 
-export const pregnancyAndPuerperiumCareColumns: Array<
-    ColumnsProps<PregnancyAndPuerperiumCareItem>
-> = [
+export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
     {
         fields: ["appointmentsUntil12thWeek"],
         headerName: "Consultas até a 12ª semana",

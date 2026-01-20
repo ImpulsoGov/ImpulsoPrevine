@@ -1,7 +1,4 @@
-import {
-    ListTitles,
-    type SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import { ListTitles } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import type {
     ErrorData,
     HeaderData,
@@ -12,13 +9,20 @@ import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
 import { Overview } from "./modules/Overview";
 import { HelpSection } from "./modules/HelpSection";
+import type { BreastAndUterusCareItem } from "../../../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./model";
 
 type Props = {
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
