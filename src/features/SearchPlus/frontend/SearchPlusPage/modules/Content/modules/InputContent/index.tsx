@@ -27,7 +27,7 @@ type Props = {
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
     isMobile: boolean;
-    isSearchPlusNewGoodPracticeEnabled: boolean;
+    isSearchPlusNewCarePathwayEnabled: boolean;
 };
 
 export const InputContent: React.FC<Props> = ({
@@ -38,7 +38,7 @@ export const InputContent: React.FC<Props> = ({
     header,
     setSuccessSnackbar,
     isMobile,
-    isSearchPlusNewGoodPracticeEnabled,
+    isSearchPlusNewCarePathwayEnabled,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -118,8 +118,8 @@ export const InputContent: React.FC<Props> = ({
                         }}
                     >
                         <Overview
-                            isSearchPlusNewGoodPracticeEnabled={
-                                isSearchPlusNewGoodPracticeEnabled
+                            isSearchPlusNewCarePathwayEnabled={
+                                isSearchPlusNewCarePathwayEnabled
                             }
                         />
                         <DragNDropArea
@@ -133,8 +133,8 @@ export const InputContent: React.FC<Props> = ({
                             }}
                             setSuccessSnackbar={setSuccessSnackbar}
                             isMobile={isMobile}
-                            isSearchPlusNewGoodPracticeEnabled={
-                                isSearchPlusNewGoodPracticeEnabled
+                            isSearchPlusNewCarePathwayEnabled={
+                                isSearchPlusNewCarePathwayEnabled
                             }
                         />
                     </div>

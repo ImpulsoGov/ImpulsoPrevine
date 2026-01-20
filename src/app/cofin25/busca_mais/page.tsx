@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 const SearchPlusPage: React.FC = async () => {
     const isSearchPlusEnabled = await flags.searchPlus();
     const isSearchPlusABEnabled = await flags.searchPlusAB();
-    const isSearchPlusNewGoodPracticeEnabled =
-        await flags.searchPlusNewGoodPractice();
+    const isSearchPlusNewCarePathwayEnabled =
+        await flags.searchPlusNewCarePathway();
     if (!isSearchPlusEnabled && !isSearchPlusABEnabled) {
         return notFound();
     }
@@ -14,8 +14,8 @@ const SearchPlusPage: React.FC = async () => {
     return (
         <SearchPlus
             isSearchPlusABEnabled={isSearchPlusABEnabled}
-            isSearchPlusNewGoodPracticeEnabled={
-                isSearchPlusNewGoodPracticeEnabled
+            isSearchPlusNewCarePathwayEnabled={
+                isSearchPlusNewCarePathwayEnabled
             }
         />
     );

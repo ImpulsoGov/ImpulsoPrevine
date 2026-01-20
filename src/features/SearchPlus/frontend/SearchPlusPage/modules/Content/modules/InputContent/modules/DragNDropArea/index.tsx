@@ -11,7 +11,7 @@ type Props = {
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     isMobile: boolean;
-    isSearchPlusNewGoodPracticeEnabled: boolean;
+    isSearchPlusNewCarePathwayEnabled: boolean;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
@@ -20,7 +20,7 @@ export const DragNDropArea: React.FC<Props> = ({
     setRawFileContent,
     setSuccessSnackbar,
     isMobile,
-    isSearchPlusNewGoodPracticeEnabled,
+    isSearchPlusNewCarePathwayEnabled,
 }) => {
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
         event.preventDefault();
@@ -41,7 +41,7 @@ export const DragNDropArea: React.FC<Props> = ({
                     setRawFileContent,
                     setHeader,
                     setSuccessSnackbar,
-                    isSearchPlusNewGoodPracticeEnabled
+                    isSearchPlusNewCarePathwayEnabled
                 );
             }}
             onDragOver={handleDragOver}
@@ -110,7 +110,7 @@ export const DragNDropArea: React.FC<Props> = ({
                             setRawFileContent,
                             setHeader,
                             setSuccessSnackbar,
-                            isSearchPlusNewGoodPracticeEnabled
+                            isSearchPlusNewCarePathwayEnabled
                         );
                     }
                     event.target.value = "";

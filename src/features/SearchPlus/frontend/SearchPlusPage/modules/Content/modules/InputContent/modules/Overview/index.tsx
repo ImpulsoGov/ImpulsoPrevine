@@ -4,8 +4,8 @@ import { Instructions } from "./modules/Instructions";
 
 // TODO: rever nome deste componente
 export const Overview: React.FC<{
-    isSearchPlusNewGoodPracticeEnabled: boolean;
-}> = ({ isSearchPlusNewGoodPracticeEnabled }) => {
+    isSearchPlusNewCarePathwayEnabled: boolean;
+}> = ({ isSearchPlusNewCarePathwayEnabled }) => {
     return (
         <div
             style={{
@@ -17,8 +17,8 @@ export const Overview: React.FC<{
             }}
         >
             <AvailableLists
-                isSearchPlusNewGoodPracticeEnabled={
-                    isSearchPlusNewGoodPracticeEnabled
+                isSearchPlusNewCarePathwayEnabled={
+                    isSearchPlusNewCarePathwayEnabled
                 }
             />
             <p
