@@ -1,12 +1,7 @@
 import { breastAndUterusCareColumns } from "./modules/breastAndUterusCare";
 
 export { breastAndUterusCareColumns };
-export type {
-    ColumnsProps,
-    ThematicList,
-    SearchPlusItem,
-    Lists,
-} from "./model";
+export type { ColumnsProps, ThematicList, Lists } from "./model";
 export {
     csvListTitleToListKey,
     columns,

@@ -1,19 +1,23 @@
 import { Thead } from "./modules/Thead";
 import { TableRow } from "./modules/TableRow";
 import type { LayoutOrientation } from "./model";
-import type { ColumnsProps, SearchPlusItem } from "../carePathways";
+import type { ColumnsProps } from "../carePathways";
+import type { BreastAndUterusCareItem } from "../carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../carePathways/modules/pregnancyAndPuerperiumCare";
 
-export type UnitTableProps<TSearchPlusItem extends SearchPlusItem> = {
-    data: Array<TSearchPlusItem>;
-    columns: Array<ColumnsProps<TSearchPlusItem>>;
+export type UnitTableProps = {
+    data:
+        | Array<BreastAndUterusCareItem>
+        | Array<PregnancyAndPuerperiumCareItem>;
+    columns: Array<ColumnsProps>;
     layoutOrientation: LayoutOrientation;
 };
 
-export const UnitTable = <TSearchPlusItem extends SearchPlusItem>({
+export const UnitTable = ({
     data,
     columns,
     layoutOrientation,
-}: UnitTableProps<TSearchPlusItem>): React.ReactNode => {
+}: UnitTableProps): React.ReactNode => {
     return (
         <div
             className={

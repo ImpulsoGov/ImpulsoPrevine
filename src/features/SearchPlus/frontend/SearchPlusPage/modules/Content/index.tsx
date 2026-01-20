@@ -3,11 +3,12 @@ import type {
     ErrorData,
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
-import type { SearchPlusItem } from "../common/carePathways";
 import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
 import { Error } from "./modules/ErrorPage";
 import mixpanel from "mixpanel-browser";
+import type { BreastAndUterusCareItem } from "../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./modules/InputContent";
 
@@ -22,7 +23,9 @@ export const Content: React.FC<Props> = ({
     setSuccessSnackbar,
     isSearchPlusABEnabled,
 }) => {
-    const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
+    const [jsonData, setJsonData] = useState<
+        Array<BreastAndUterusCareItem> | Array<PregnancyAndPuerperiumCareItem>
+    >([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
