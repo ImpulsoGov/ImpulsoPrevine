@@ -1,8 +1,8 @@
 import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import type { LayoutOrientation } from "../model";
 import React from "react";
-import type { BreastAndUterusCareItem } from "../../carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../../carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type TableRowProps = {
     item: BreastAndUterusCareItem | PregnancyAndPuerperiumCareItem;
