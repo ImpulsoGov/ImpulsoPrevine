@@ -10,13 +10,11 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
-            // TODO: o tipo aqui deveria ser number (tipo da saída do adapter)
-            const [appointments] = param as [0 | 1];
-            // TODO: usar AppointmentsUntil12thWeekResult para computar o status da boa prática antes de passar para a tag
+            const [appointments] = param as [number];
+            const { status } =
+                goodPractices.appointmentsUntil12thWeekResult(appointments);
             return (
-                <goodPractices.AppointmentsUntil12thWeekTag
-                    content={appointments}
-                />
+                <goodPractices.AppointmentsUntil12thWeekTag content={status} />
             );
         },
     },

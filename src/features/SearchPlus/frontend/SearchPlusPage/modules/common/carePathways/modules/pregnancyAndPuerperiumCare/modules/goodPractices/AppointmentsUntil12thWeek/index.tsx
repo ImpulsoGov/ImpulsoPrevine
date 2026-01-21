@@ -1,2 +1,2 @@
 export { Tag } from "./tags";
-export { AppointmentsUntil12thWeekResult } from "./logic";
+export { appointmentsUntil12thWeekResult } from "./logic";

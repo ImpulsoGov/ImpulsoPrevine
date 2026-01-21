@@ -1,1 +1,1 @@
-export { AppointmentsUntil12thWeekResult } from "./AppointmentsUntil12thWeekResult";
+export { appointmentsUntil12thWeekResult } from "./AppointmentsUntil12thWeekResult";
