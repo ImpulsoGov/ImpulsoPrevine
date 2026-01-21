@@ -1,7 +1,7 @@
 import { Button, Text } from "@/features/common/frontend/atoms";
 import Image from "next/image";
-import type { BreastAndUterusCareItem } from "../../../common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 type Props = {
     setJsonData: React.Dispatch<
