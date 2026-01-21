@@ -8,8 +8,9 @@ import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import type {
     BreastAndUterusCareCsvRow,
     BreastAndUterusCareItem,
-} from "../../../../../common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+//TODO: não utilizar caminhos relativos acima de um nivel, nesse caso usar caminhos absolutos com alias como no import acima
 import type { PregnancyAndPuerperiumCareCsvRow } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare/model";
 
 const createdAt = (
