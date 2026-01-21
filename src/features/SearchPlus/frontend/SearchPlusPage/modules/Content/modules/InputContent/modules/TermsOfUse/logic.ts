@@ -10,8 +10,7 @@ import type {
     BreastAndUterusCareItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
 import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
-//TODO: não utilizar caminhos relativos acima de um nivel, nesse caso usar caminhos absolutos com alias como no import acima
-import type { PregnancyAndPuerperiumCareCsvRow } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare/model";
+import type { PregnancyAndPuerperiumCareCsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare/model";
 
 const createdAt = (
     lines: Array<string>
