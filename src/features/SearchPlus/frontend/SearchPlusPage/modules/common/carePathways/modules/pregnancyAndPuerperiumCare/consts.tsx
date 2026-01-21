@@ -10,6 +10,7 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
+            // TODO: usar o type Status aqui
             const [appointments] = param as [0 | 1];
             return (
                 <goodPractices.AppointmentsUntil12thWeekTag
