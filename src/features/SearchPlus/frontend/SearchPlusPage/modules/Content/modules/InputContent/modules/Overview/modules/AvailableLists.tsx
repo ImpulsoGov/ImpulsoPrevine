@@ -6,6 +6,7 @@ import Image from "next/image";
 export const AvailableLists: React.FC<{
     isSearchPlusNewCarePathwayEnabled: boolean;
 }> = ({ isSearchPlusNewCarePathwayEnabled }) => {
+    //Lembrete: essa solucao vai para de funcionar quando tivermos mais de duas linhas de cuidado disponiveis
     const availableLists = isSearchPlusNewCarePathwayEnabled
         ? Object.values(ListTitles)
         : Object.values(ListTitles).slice(0, 1);
