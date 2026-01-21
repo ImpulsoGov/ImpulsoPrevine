@@ -8,9 +8,9 @@ import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import type {
     BreastAndUterusCareCsvRow,
     BreastAndUterusCareItem,
-} from "../../../../../common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
-import type { PregnancyAndPuerperiumCareCsvRow } from "../../../../../common/carePathways/modules/pregnancyAndPuerperiumCare/model";
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { PregnancyAndPuerperiumCareCsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare/model";
 
 const createdAt = (
     lines: Array<string>

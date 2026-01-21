@@ -1,4 +1,3 @@
-// import type { LocalDate } from "@js-joda/core";
 import type * as time from "@/features/common/shared/time";
 
 //Esse tipo esta em portugues para ficar igual ao cabeçalho do CSV
