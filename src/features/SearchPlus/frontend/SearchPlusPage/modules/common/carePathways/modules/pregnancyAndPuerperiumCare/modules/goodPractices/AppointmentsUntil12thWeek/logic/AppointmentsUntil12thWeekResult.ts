@@ -1,6 +1,5 @@
 import type { Status, InputData } from "./AppointmentsUntil12thWeekCalculator";
 import { AppointmentsUntil12thWeekCalculator } from "./AppointmentsUntil12thWeekCalculator";
-// import type { LocalDate } from "@js-joda/core";
 
 type AppointmentsUntil12thWeekResult = {
     status: Status;

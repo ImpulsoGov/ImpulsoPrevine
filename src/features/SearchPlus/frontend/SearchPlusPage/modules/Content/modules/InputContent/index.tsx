@@ -9,8 +9,8 @@ import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
 import { Overview } from "./modules/Overview";
 import { HelpSection } from "./modules/HelpSection";
-import type { BreastAndUterusCareItem } from "../../../common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../../../common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./model";
 
