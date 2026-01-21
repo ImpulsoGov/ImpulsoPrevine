@@ -1,4 +1,3 @@
-//TODO: Jogar estes tipos pra um módulo separado ao invés de importar de ResultContent
 import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/model";
 import * as goodPractices from "./modules/goodPractices";
 
