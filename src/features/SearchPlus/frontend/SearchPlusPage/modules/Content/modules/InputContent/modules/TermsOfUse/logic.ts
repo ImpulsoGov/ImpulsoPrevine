@@ -114,7 +114,7 @@ export const handleClick = (
                 return;
             }
             const listKey = csvListTitleToListKey[header.thematicList];
-
+            //TODO: no futuro se formos adicionar novas linhas de cuidado, podemos abstrair esse trecho, para evitar muitos ifs
             if (listKey === "breastAndUterusCare") {
                 const result = parse<BreastAndUterusCareCsvRow>(cleanedText, {
                     header: true,

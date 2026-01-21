@@ -6,6 +6,7 @@ import type { BreastAndUterusCareItem } from "../carePathways/modules/breastAndU
 import type { PregnancyAndPuerperiumCareItem } from "../carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type UnitTableProps = {
+    // TODO: criar type alias para esse union e usar nos locais onde aparece
     data:
         | Array<BreastAndUterusCareItem>
         | Array<PregnancyAndPuerperiumCareItem>;
