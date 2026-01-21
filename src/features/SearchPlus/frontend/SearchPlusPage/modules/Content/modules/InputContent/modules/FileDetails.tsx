@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { flex, gap, padding } from "@mui/system";
 
 type FileDetailsProps = {
     file: File;
