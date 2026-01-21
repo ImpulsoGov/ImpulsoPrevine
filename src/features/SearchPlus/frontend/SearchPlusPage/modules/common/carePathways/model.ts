@@ -33,13 +33,6 @@ export const THEMATIC_LISTS = [
 
 export type ThematicList = (typeof THEMATIC_LISTS)[number];
 
-//TODO: Alterar antes do lançamento
-export const ListTitlesDev = {
-    "Saúde da mulher":
-        "CUIDADO DA MULHER E DO HOMEM TRANSGÊNERO NA PREVENÇÃO DO CÂNCER",
-    "Gestação e puerpério": "CUIDADO DA GESTANTE E PUÉRPERA",
-};
-
 export const ListTitles = {
     "Saúde da mulher":
         "CUIDADO DA MULHER E DO HOMEM TRANSGÊNERO NA PREVENÇÃO DO CÂNCER",
