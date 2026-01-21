@@ -5,6 +5,7 @@ import {
 import { parse } from "papaparse";
 import type * as time from "@/features/common/shared/time";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
+// TODO: exportar tudo de breastAndUterusCare e pregnancyAndPuerperiumCare que é usado fora de carePathway a partir do index do módulo carePathway
 import type {
     BreastAndUterusCareCsvRow,
     BreastAndUterusCareItem,
