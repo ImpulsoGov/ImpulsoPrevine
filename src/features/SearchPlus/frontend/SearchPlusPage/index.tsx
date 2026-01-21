@@ -6,8 +6,10 @@ import { ErrorSnackbar } from "./modules/ErrorSnackbar";
 import { Content } from "./modules/Content";
 import { PageHeader } from "./modules/PageHeader";
 import { SuccessSnackbar } from "./modules/SuccessSnackbar";
-import { ButtonLight } from "@impulsogov/design-system";
 import { useSession } from "next-auth/react";
+import { useMediaQuery } from "@mui/material";
+import { ButtonLight } from "./modules/ButtonLight";
+
 export type HeaderData = {
     thematicList: ThematicList | null;
     createdAtDate: time.BRTDateString;
@@ -44,6 +46,7 @@ export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
     const resetSuccessSnackbar = (): void => {
         setIsSuccessSnackbarOpen(false);
     };
+    const isMobile = useMediaQuery("(max-width:600px)");
     return (
         <div
             style={{
@@ -57,14 +60,26 @@ export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "center",
                     padding: "0 80px",
+                    ...(isMobile
+                        ? {
+                              alignItems: isSearchPlusABEnabled
+                                  ? "center"
+                                  : "flex-start",
+                              flexDirection: "column",
+                              fontSize: "15px",
+                              marginBottom: "16px",
+                          }
+                        : { alignItems: "center" }),
                 }}
             >
-                <PageHeader isSearchPlusABEnabled={isSearchPlusABEnabled} />
+                <PageHeader
+                    isSearchPlusABEnabled={isSearchPlusABEnabled}
+                    isMobile={isMobile}
+                />
                 {isSearchPlusABEnabled && (
                     <ButtonLight
-                        link={buildUrl(session.data?.user.perfis || [])}
+                        url={buildUrl(session.data?.user.perfis || [])}
                         label={"Ver lista de Citopatológico no antigo formato"}
                     />
                 )}
@@ -73,6 +88,7 @@ export const SearchPlusPage: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
                 setSnackbarError={setSnackbarError}
                 setSuccessSnackbar={setIsSuccessSnackbarOpen}
                 isSearchPlusABEnabled={isSearchPlusABEnabled}
+                isMobile={isMobile}
             />
             <ErrorSnackbar error={snackbarError} onClose={resetSnackbarError} />
             <SuccessSnackbar
