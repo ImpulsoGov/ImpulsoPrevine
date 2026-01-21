@@ -1,23 +1,26 @@
 import Image from "next/image";
 type Props = {
     isSearchPlusABEnabled: boolean;
+    isMobile: boolean;
 };
-export const PageHeader: React.FC<Props> = ({ isSearchPlusABEnabled }) => {
+export const PageHeader: React.FC<Props> = ({
+    isSearchPlusABEnabled,
+    isMobile,
+}) => {
     return (
         <div
             style={{
                 width: "100%",
-                // paddingLeft: 80,
-                // paddingRight: 80,
                 boxSizing: "border-box",
             }}
         >
             <div
                 style={{
                     display: "flex",
-                    justifyContent: isSearchPlusABEnabled
-                        ? "flex-start"
-                        : "center",
+                    justifyContent:
+                        isSearchPlusABEnabled && !isMobile
+                            ? "flex-start"
+                            : "center",
                     alignItems: "center",
                     padding: "20px 0",
                     fontSize: "48px",

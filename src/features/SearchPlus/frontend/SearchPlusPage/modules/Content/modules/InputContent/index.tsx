@@ -22,6 +22,7 @@ type Props = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
+    isMobile: boolean;
 };
 
 export const InputContent: React.FC<Props> = ({
@@ -31,6 +32,7 @@ export const InputContent: React.FC<Props> = ({
     setErrorMessage,
     header,
     setSuccessSnackbar,
+    isMobile,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -80,6 +82,7 @@ export const InputContent: React.FC<Props> = ({
                         file={rawFileContent}
                         onRemoveFileClick={showDragNDropArea}
                         thematicList={ListTitles[header.thematicList]}
+                        isMobile={isMobile}
                     />
                     <TermsOfUse
                         file={rawFileContent}
@@ -105,6 +108,7 @@ export const InputContent: React.FC<Props> = ({
                             width: "100%",
                             paddingBottom: "80px",
                             gap: "48px",
+                            flexDirection: isMobile ? "column" : "row",
                         }}
                     >
                         <Overview />
@@ -118,6 +122,7 @@ export const InputContent: React.FC<Props> = ({
                                 );
                             }}
                             setSuccessSnackbar={setSuccessSnackbar}
+                            isMobile={isMobile}
                         />
                     </div>
                     <HelpSection />

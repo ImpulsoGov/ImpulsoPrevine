@@ -15,12 +15,14 @@ type Props = {
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     isSearchPlusABEnabled: boolean;
+    isMobile: boolean;
 };
 
 export const Content: React.FC<Props> = ({
     setSnackbarError,
     setSuccessSnackbar,
     isSearchPlusABEnabled,
+    isMobile,
 }) => {
     const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
@@ -77,7 +79,8 @@ export const Content: React.FC<Props> = ({
                     fontSize: "24px",
                     fontWeight: 400,
                     marginBottom: "54px",
-                    textAlign: isSearchPlusABEnabled ? "left" : "center",
+                    textAlign:
+                        isSearchPlusABEnabled && !isMobile ? "left" : "center",
                     marginTop: "0px",
                 }}
             >
@@ -93,6 +96,7 @@ export const Content: React.FC<Props> = ({
                 header={header}
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
+                isMobile={isMobile}
             />
         </div>
     );

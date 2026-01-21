@@ -10,6 +10,7 @@ type Props = {
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>;
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
+    isMobile: boolean;
 };
 
 export const DragNDropArea: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const DragNDropArea: React.FC<Props> = ({
     setHeader,
     setRawFileContent,
     setSuccessSnackbar,
+    isMobile,
 }) => {
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
         event.preventDefault();
@@ -46,7 +48,7 @@ export const DragNDropArea: React.FC<Props> = ({
                 border: "3px dashed #58B3FE",
                 borderRadius: "16px",
                 padding: "21px 80px",
-                width: "48%",
+                width: isMobile ? "auto" : "48%",
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",

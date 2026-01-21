@@ -1,0 +1,42 @@
+.HelpSection {
+    width: 100%;
+    background-color: #3679B1;
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 196px;
+}
+.HelpText {
+    padding-top: 50px;
+    padding-bottom: 36px;
+    margin: 0;
+    color: #ade3f4;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 130%;
+}
+.HelpVideo {
+    margin: 0;
+    width: 800px;
+    height: 486px;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .HelpSection {
+        padding: 40px 10px 80px;
+        box-sizing: "border-box";
+        display: "flex";
+        flex-direction: "column";
+        align-items: "center";
+        justify-content: "center";
+    }
+    .HelpText {
+        font-size: 20px;
+    }
+    .HelpVideo {
+        max-width: 100%; 
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
