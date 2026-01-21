@@ -10,8 +10,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
-            // TODO: usar o type Status aqui
+            // TODO: o tipo aqui deveria ser number (tipo da saída do adapter)
             const [appointments] = param as [0 | 1];
+            // TODO: usar AppointmentsUntil12thWeekResult para computar o status da boa prática antes de passar para a tag
             return (
                 <goodPractices.AppointmentsUntil12thWeekTag
                     content={appointments}
