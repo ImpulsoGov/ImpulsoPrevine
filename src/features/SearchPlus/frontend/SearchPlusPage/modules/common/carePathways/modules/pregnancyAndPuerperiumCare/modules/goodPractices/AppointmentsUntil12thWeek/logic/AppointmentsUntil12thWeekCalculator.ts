@@ -14,10 +14,6 @@ export class AppointmentsUntil12thWeekCalculator {
 
     public computeStatus(): Status {
         const appointmentsUntil12thWeek = this.#data.appointmentsUntil12thWeek;
-        if (appointmentsUntil12thWeek == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return appointmentsUntil12thWeek == 0 ? 0 : 1;
     }
 }
