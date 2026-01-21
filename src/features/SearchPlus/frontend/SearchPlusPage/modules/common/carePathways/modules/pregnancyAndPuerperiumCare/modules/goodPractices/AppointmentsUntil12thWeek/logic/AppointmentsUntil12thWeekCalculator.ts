@@ -1,6 +1,4 @@
-// import type { LocalDate } from "@js-joda/core";
-//TODO : atualizar import para caminho absoluto
-import type { PregnancyAndPuerperiumCareItem } from "../../../../model";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare/model";
 
 export type InputData = {
     appointmentsUntil12thWeek: PregnancyAndPuerperiumCareItem["appointmentsUntil12thWeek"];
