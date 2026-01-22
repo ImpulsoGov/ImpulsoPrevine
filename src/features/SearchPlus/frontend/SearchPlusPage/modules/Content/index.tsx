@@ -3,11 +3,12 @@ import type {
     ErrorData,
     HeaderData,
 } from "@features/SearchPlus/frontend/SearchPlusPage";
-import type { SearchPlusItem } from "../common/carePathways";
 import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
 import { Error } from "./modules/ErrorPage";
 import mixpanel from "mixpanel-browser";
+import type { BreastAndUterusCareItem } from "../common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./modules/InputContent";
 
@@ -16,6 +17,7 @@ type Props = {
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     isSearchPlusABEnabled: boolean;
     isMobile: boolean;
+    isSearchPlusNewCarePathwayEnabled: boolean;
 };
 
 export const Content: React.FC<Props> = ({
@@ -23,8 +25,11 @@ export const Content: React.FC<Props> = ({
     setSuccessSnackbar,
     isSearchPlusABEnabled,
     isMobile,
+    isSearchPlusNewCarePathwayEnabled,
 }) => {
-    const [jsonData, setJsonData] = useState<Array<SearchPlusItem>>([]);
+    const [jsonData, setJsonData] = useState<
+        Array<BreastAndUterusCareItem> | Array<PregnancyAndPuerperiumCareItem>
+    >([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [header, setHeader] = useState<HeaderData>({
         thematicList: null,
@@ -97,6 +102,9 @@ export const Content: React.FC<Props> = ({
                 setErrorMessage={setErrorMessage}
                 setSuccessSnackbar={setSuccessSnackbar}
                 isMobile={isMobile}
+                isSearchPlusNewCarePathwayEnabled={
+                    isSearchPlusNewCarePathwayEnabled
+                }
             />
         </div>
     );

@@ -3,11 +3,18 @@ import {
     breastAndUterusCareColumns,
     csvRowToBreastAndUterusCareItem,
 } from "./modules/breastAndUterusCare";
+import {
+    type PregnancyAndPuerperiumCareItem,
+    csvRowToPregnancyAndPuerperiumCareItem,
+    pregnancyAndPuerperiumCareColumns,
+} from "./modules/pregnancyAndPuerperiumCare";
 
 type RenderCell = (param: unknown) => React.ReactNode;
 
-export type ColumnsProps<TSearchPlusItem extends SearchPlusItem> = {
-    fields: Array<keyof TSearchPlusItem>;
+export type ColumnsProps = {
+    fields: Array<
+        keyof BreastAndUterusCareItem | keyof PregnancyAndPuerperiumCareItem
+    >;
     headerName?: string;
     width: {
         portrait: number;
@@ -19,31 +26,42 @@ export type ColumnsProps<TSearchPlusItem extends SearchPlusItem> = {
     renderHeader?: () => React.ReactNode;
 };
 
-//TODO: tornar polimórfico
-export type SearchPlusItem = BreastAndUterusCareItem;
-
-export const THEMATIC_LISTS = ["Saúde da mulher"] as const;
+export const THEMATIC_LISTS = [
+    "Saúde da mulher",
+    "Gestação e puerpério",
+] as const;
 
 export type ThematicList = (typeof THEMATIC_LISTS)[number];
 
 export const ListTitles = {
     "Saúde da mulher":
         "CUIDADO DA MULHER E DO HOMEM TRANSGÊNERO NA PREVENÇÃO DO CÂNCER",
+    "Gestação e puerpério": "CUIDADO DA GESTANTE E PUÉRPERA",
 };
 
-export type Lists = "breastAndUterusCare";
+export type Lists = "breastAndUterusCare" | "pregnancyAndPuerperiumCare";
 
-export const adaptersMap = {
+type AdaptersByList = {
+    breastAndUterusCare: typeof csvRowToBreastAndUterusCareItem;
+    pregnancyAndPuerperiumCare: typeof csvRowToPregnancyAndPuerperiumCareItem;
+};
+
+export const adaptersMap: AdaptersByList = {
     breastAndUterusCare: csvRowToBreastAndUterusCareItem,
+    pregnancyAndPuerperiumCare: csvRowToPregnancyAndPuerperiumCareItem,
 };
 
-export const columns: Record<
-    ThematicList,
-    Array<ColumnsProps<SearchPlusItem>>
-> = {
+type ColumnsByThematicList = {
+    "Saúde da mulher": Array<ColumnsProps>;
+    "Gestação e puerpério": Array<ColumnsProps>;
+};
+
+export const columns: ColumnsByThematicList = {
     "Saúde da mulher": breastAndUterusCareColumns,
+    "Gestação e puerpério": pregnancyAndPuerperiumCareColumns,
 };
 
 export const csvListTitleToListKey: Record<ThematicList, Lists> = {
     "Saúde da mulher": "breastAndUterusCare",
+    "Gestação e puerpério": "pregnancyAndPuerperiumCare",
 };

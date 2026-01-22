@@ -1,21 +1,20 @@
-import type {
-    ColumnsProps,
-    SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import type { LayoutOrientation } from "../model";
 import React from "react";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
-export type TableRowProps<TSearchPlusItem extends SearchPlusItem> = {
-    item: TSearchPlusItem;
-    columns: Array<ColumnsProps<TSearchPlusItem>>;
+export type TableRowProps = {
+    item: BreastAndUterusCareItem | PregnancyAndPuerperiumCareItem;
+    columns: Array<ColumnsProps>;
     layoutOrientation: LayoutOrientation;
 };
 
-export const TableRow = <TSearchPlusItem extends SearchPlusItem>({
+export const TableRow = ({
     item,
     columns,
     layoutOrientation,
-}: TableRowProps<TSearchPlusItem>): React.ReactNode => {
+}: TableRowProps): React.ReactNode => {
     return columns.map((column, index) => {
         return (
             <td
@@ -42,12 +41,27 @@ export const TableRow = <TSearchPlusItem extends SearchPlusItem>({
                     {column.renderCell
                         ? column.renderCell(
                               column.fields.map(
-                                  (field: keyof typeof item) => item[field]
+                                  (field) =>
+                                      item[
+                                          field as keyof (
+                                              | BreastAndUterusCareItem
+                                              | PregnancyAndPuerperiumCareItem
+                                          )
+                                      ]
                               )
                           )
                         : column.fields.map((field, index) => (
                               <div key={index}>
-                                  <>{item[field]}</>
+                                  <>
+                                      {
+                                          item[
+                                              field as keyof (
+                                                  | BreastAndUterusCareItem
+                                                  | PregnancyAndPuerperiumCareItem
+                                              )
+                                          ]
+                                      }
+                                  </>
                               </div>
                           ))}
                 </>

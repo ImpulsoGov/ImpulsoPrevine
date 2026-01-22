@@ -1,18 +1,22 @@
 import { Button } from "@/features/common/frontend/atoms";
 import Image from "next/image";
-import type {
-    ThematicList,
-    SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import type { ThematicList } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { columns } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { UnitTable } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Header } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Header";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from "next/navigation";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 type ButtonBarProps = {
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     setIsTableVisible: React.Dispatch<React.SetStateAction<boolean>>;
     setShouldOpenWindowWithPrint: React.Dispatch<React.SetStateAction<boolean>>;
     thematicList: ThematicList | null;
@@ -102,8 +106,15 @@ const ButtonBar: React.FC<ButtonBarProps> = ({
 };
 
 type SuccessProps = {
-    jsonData: Array<SearchPlusItem>;
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    jsonData:
+        | Array<BreastAndUterusCareItem>
+        | Array<PregnancyAndPuerperiumCareItem>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     isTableVisible: boolean;
     setIsTableVisible: React.Dispatch<React.SetStateAction<boolean>>;
     setShouldOpenWindowWithPrint: React.Dispatch<React.SetStateAction<boolean>>;

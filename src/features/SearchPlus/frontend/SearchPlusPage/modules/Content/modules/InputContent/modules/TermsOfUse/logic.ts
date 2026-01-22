@@ -1,12 +1,17 @@
 import {
     adaptersMap,
     csvListTitleToListKey,
-    type SearchPlusItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import { parse } from "papaparse";
-import type { CsvRow } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/Content";
 import type * as time from "@/features/common/shared/time";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
+// TODO: exportar tudo de breastAndUterusCare e pregnancyAndPuerperiumCare que é usado fora de carePathway a partir do index do módulo carePathway
+import type {
+    BreastAndUterusCareCsvRow,
+    BreastAndUterusCareItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { PregnancyAndPuerperiumCareCsvRow } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare/model";
 
 const createdAt = (
     lines: Array<string>
@@ -74,7 +79,12 @@ const csvContent = (lines: Array<string>): string => {
 
 export const handleClick = (
     file: File,
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>,
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
     header: HeaderData,
     errorHandler: (message: string) => void
@@ -91,12 +101,6 @@ export const handleClick = (
 
             const cleanedText = csvContent(lines);
 
-            const result = parse<CsvRow>(cleanedText, {
-                header: true,
-                skipEmptyLines: true,
-                delimiter: ";",
-            });
-
             setHeader((prev) => ({
                 ...prev,
                 createdAtDate: createdAtDate,
@@ -110,19 +114,34 @@ export const handleClick = (
                 );
                 return;
             }
-            const adapter =
-                adaptersMap[
-                    csvListTitleToListKey[
-                        header.thematicList
-                    ] as keyof typeof adaptersMap
-                ];
-
-            const data: Array<SearchPlusItem> = adapter(result.data, {
-                createdAtDate,
-                createdAtTime,
-            });
-
-            setJsonData(data);
+            const listKey = csvListTitleToListKey[header.thematicList];
+            //TODO: no futuro se formos adicionar novas linhas de cuidado, podemos abstrair esse trecho, para evitar muitos ifs
+            if (listKey === "breastAndUterusCare") {
+                const result = parse<BreastAndUterusCareCsvRow>(cleanedText, {
+                    header: true,
+                    skipEmptyLines: true,
+                    delimiter: ";",
+                });
+                const data: Array<BreastAndUterusCareItem> =
+                    adaptersMap.breastAndUterusCare(result.data, {
+                        createdAtDate,
+                        createdAtTime,
+                    });
+                setJsonData(data);
+            }
+            if (listKey === "pregnancyAndPuerperiumCare") {
+                const result = parse<PregnancyAndPuerperiumCareCsvRow>(
+                    cleanedText,
+                    {
+                        header: true,
+                        skipEmptyLines: true,
+                        delimiter: ";",
+                    }
+                );
+                const data: Array<PregnancyAndPuerperiumCareItem> =
+                    adaptersMap.pregnancyAndPuerperiumCare(result.data);
+                setJsonData(data);
+            }
         } catch (err) {
             console.error(err);
             errorHandler("Ops, parece que algo não funcionou!");

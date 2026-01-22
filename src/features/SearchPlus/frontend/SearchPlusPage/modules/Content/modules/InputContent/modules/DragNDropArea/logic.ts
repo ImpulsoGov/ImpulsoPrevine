@@ -50,7 +50,8 @@ export const handleFileUpload = (
     errorHandler: (message: ErrorData) => void,
     setRawFileContent: React.Dispatch<React.SetStateAction<File | null>>,
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>,
-    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>
+    setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>,
+    isSearchPlusNewCarePathwayEnabled: boolean
 ): void => {
     if (!file.name.endsWith(".csv")) {
         errorHandler({
@@ -88,11 +89,17 @@ export const handleFileUpload = (
                 ";"
             )[1] as ThematicList | null;
 
-            if (!list || !(list in csvListTitleToListKey)) {
+            const availableLists = (
+                isSearchPlusNewCarePathwayEnabled
+                    ? Object.keys(csvListTitleToListKey)
+                    : Object.keys(csvListTitleToListKey).slice(0, 1)
+            ) as Array<ThematicList>;
+            if (!list || !availableLists.includes(list)) {
                 errorHandler({
                     title: "Ops! Parece que essa lista temática ainda não está disponível",
-                    message:
-                        "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
+                    message: isSearchPlusNewCarePathwayEnabled
+                        ? "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer e Cuidado da Gestante e Puérpera."
+                        : "Por enquanto busca+mais funciona apenas com a lista temática de Cuidado da Mulher e do Homem Transgênero Na Prevenção do Câncer.",
                 });
                 trackFileUploadWithError("invalid_thematic_list");
                 return;

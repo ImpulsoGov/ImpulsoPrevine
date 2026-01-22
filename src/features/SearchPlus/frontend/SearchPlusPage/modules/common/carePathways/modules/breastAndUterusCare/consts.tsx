@@ -1,12 +1,12 @@
 //TODO: Jogar estes tipos pra um módulo separado ao invés de importar de ResultContent
-import type { ColumnsProps, SearchPlusItem } from "../../model";
+import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/model";
 //TODO: Este módulo não deveria depender dos formatters. Talvez este arquivo devesse estar na UnitTable?
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 import * as time from "@/features/common/shared/time";
 import * as goodPractices from "./modules/goodPractices";
-import { TagByStatus } from "../../../Tags";
+import { TagByStatus } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Tags";
 
-export const breastAndUterusCareColumns: Array<ColumnsProps<SearchPlusItem>> = [
+export const breastAndUterusCareColumns: Array<ColumnsProps> = [
     {
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",

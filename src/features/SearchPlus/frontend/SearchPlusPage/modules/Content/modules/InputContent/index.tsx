@@ -1,7 +1,4 @@
-import {
-    ListTitles,
-    type SearchPlusItem,
-} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
+import { ListTitles } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 import type {
     ErrorData,
     HeaderData,
@@ -12,17 +9,25 @@ import { TermsOfUse } from "./modules/TermsOfUse";
 import { FileDetails } from "./modules/FileDetails";
 import { Overview } from "./modules/Overview";
 import { HelpSection } from "./modules/HelpSection";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./model";
 
 type Props = {
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
     setSnackbarError: React.Dispatch<React.SetStateAction<ErrorData>>;
-    setJsonData: React.Dispatch<React.SetStateAction<Array<SearchPlusItem>>>;
+    setJsonData: React.Dispatch<
+        React.SetStateAction<
+            | Array<BreastAndUterusCareItem>
+            | Array<PregnancyAndPuerperiumCareItem>
+        >
+    >;
     setHeader: React.Dispatch<React.SetStateAction<HeaderData>>;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     header: HeaderData;
     isMobile: boolean;
+    isSearchPlusNewCarePathwayEnabled: boolean;
 };
 
 export const InputContent: React.FC<Props> = ({
@@ -33,6 +38,7 @@ export const InputContent: React.FC<Props> = ({
     header,
     setSuccessSnackbar,
     isMobile,
+    isSearchPlusNewCarePathwayEnabled,
 }) => {
     const [rawFileContent, setRawFileContent] = useState<File | null>(null);
 
@@ -111,7 +117,11 @@ export const InputContent: React.FC<Props> = ({
                             flexDirection: isMobile ? "column" : "row",
                         }}
                     >
-                        <Overview />
+                        <Overview
+                            isSearchPlusNewCarePathwayEnabled={
+                                isSearchPlusNewCarePathwayEnabled
+                            }
+                        />
                         <DragNDropArea
                             setRawFileContent={setRawFileContent}
                             setHeader={setHeader}
@@ -123,6 +133,9 @@ export const InputContent: React.FC<Props> = ({
                             }}
                             setSuccessSnackbar={setSuccessSnackbar}
                             isMobile={isMobile}
+                            isSearchPlusNewCarePathwayEnabled={
+                                isSearchPlusNewCarePathwayEnabled
+                            }
                         />
                     </div>
                     <HelpSection />
