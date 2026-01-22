@@ -1,4 +1,4 @@
 export {
     Tag as AppointmentsUntil12thWeekTag,
-    AppointmentsUntil12thWeekResult,
+    appointmentsUntil12thWeekResult,
 } from "./AppointmentsUntil12thWeek";
