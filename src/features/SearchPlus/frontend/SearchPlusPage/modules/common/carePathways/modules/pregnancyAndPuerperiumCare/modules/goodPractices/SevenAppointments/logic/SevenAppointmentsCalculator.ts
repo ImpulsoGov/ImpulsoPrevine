@@ -50,7 +50,7 @@ export class SevenAppointmentsCalculator {
         return appointmentsDuringPrenatal;
     }
 
-    #StatusCalcInPrenatalPeriod(): Status {
+    #statusCalcInPrenatalPeriod(): Status {
         const appointmentsDuringPrenatal =
             this.#data.appointmentsDuringPrenatal;
         if (appointmentsDuringPrenatal == ZERO_APPOINTMENTS) {
@@ -73,6 +73,15 @@ export class SevenAppointmentsCalculator {
         };
     }
 
+    #statusCalcInPuerperalPeriod(): Status {
+        const disable: Status = { tagStatus: "disabled" };
+        const success: Status = { tagStatus: "success" };
+        return this.#data.appointmentsDuringPrenatal <
+            TARGET_NUMBER_OF_APPOINTMENTS
+            ? disable
+            : success;
+    }
+
     public computeStatus(): Status {
         const gestationalAgeByLastMenstrualPeriodWeeks =
             this.#data.gestationalAgeByLastMenstrualPeriodWeeks;
@@ -82,8 +91,6 @@ export class SevenAppointmentsCalculator {
             this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
         const gestationalAgeByObstreticalUltrasoundDays =
             this.#data.gestationalAgeByObstreticalUltrasoundDays;
-        const appointmentsDuringPrenatal =
-            this.#data.appointmentsDuringPrenatal;
 
         let gestationalAge: GestationalAge = {
             weeks: null,
@@ -112,24 +119,19 @@ export class SevenAppointmentsCalculator {
         const isPuerperalPeriod =
             this.#data.homeVisitsDuringPuerperium > 0 ||
             this.#data.appointmentsDuringPuerperium > 0;
-        const hasGestationalAgeExceedsMaximumWeeks =
+        const isGestationalAgeAtOrAboveMaxWeeks =
             gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS;
-        const hasGestationalAgeExceedsMaximumDays =
+        const isGestationalAgeAboveMaxDays =
             gestationalAge["days"] > MAX_GESTATIONAL_AGE_DAYS;
 
-        const StatusCalcInPuerperalPeriod: Status =
-            appointmentsDuringPrenatal < TARGET_NUMBER_OF_APPOINTMENTS
-                ? { tagStatus: "disabled" }
-                : { tagStatus: "success" };
+        if (isPuerperalPeriod) return this.#statusCalcInPuerperalPeriod();
 
-        if (isPuerperalPeriod) return StatusCalcInPuerperalPeriod;
-
-        if (hasGestationalAgeExceedsMaximumWeeks) {
-            if (hasGestationalAgeExceedsMaximumDays) {
-                return StatusCalcInPuerperalPeriod;
+        if (isGestationalAgeAtOrAboveMaxWeeks) {
+            if (isGestationalAgeAboveMaxDays) {
+                return this.#statusCalcInPuerperalPeriod();
             }
         }
 
-        return this.#StatusCalcInPrenatalPeriod();
+        return this.#statusCalcInPrenatalPeriod();
     }
 }
