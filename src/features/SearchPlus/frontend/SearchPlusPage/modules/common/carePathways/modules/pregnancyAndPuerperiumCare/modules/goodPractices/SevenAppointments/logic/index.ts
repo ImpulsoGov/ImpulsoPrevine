@@ -1,0 +1,1 @@
+export { SevenAppointmentsResult } from "./SevenAppointmentsResult";
