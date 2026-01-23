@@ -13,6 +13,8 @@ export type InputData = {
     gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
     gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
     appointmentsDuringPrenatal: PregnancyAndPuerperiumCareItem["appointmentsDuringPrenatal"];
+    homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
+    appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
 };
 
 export type Status = {
@@ -107,21 +109,27 @@ export class SevenAppointmentsCalculator {
                 tagStatus: "disabled",
             };
         }
-        if (gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS) {
-            if (gestationalAge["days"] > MAX_GESTATIONAL_AGE_DAYS) {
-                if (
-                    appointmentsDuringPrenatal < TARGET_NUMBER_OF_APPOINTMENTS
-                ) {
-                    return {
-                        tagStatus: "disabled",
-                    };
-                } else {
-                    return {
-                        tagStatus: "success",
-                    };
-                }
+        const isPuerperalPeriod =
+            this.#data.homeVisitsDuringPuerperium > 0 ||
+            this.#data.appointmentsDuringPuerperium > 0;
+        const hasGestationalAgeExceedsMaximumWeeks =
+            gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS;
+        const hasGestationalAgeExceedsMaximumDays =
+            gestationalAge["days"] > MAX_GESTATIONAL_AGE_DAYS;
+
+        const StatusCalcInPuerperalPeriod: Status =
+            appointmentsDuringPrenatal < TARGET_NUMBER_OF_APPOINTMENTS
+                ? { tagStatus: "disabled" }
+                : { tagStatus: "success" };
+
+        if (isPuerperalPeriod) return StatusCalcInPuerperalPeriod;
+
+        if (hasGestationalAgeExceedsMaximumWeeks) {
+            if (hasGestationalAgeExceedsMaximumDays) {
+                return StatusCalcInPuerperalPeriod;
             }
         }
+
         return this.#StatusCalcInPrenatalPeriod();
     }
 }

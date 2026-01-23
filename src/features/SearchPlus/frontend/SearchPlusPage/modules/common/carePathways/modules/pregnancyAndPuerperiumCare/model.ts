@@ -9,6 +9,8 @@ export type PregnancyAndPuerperiumCareCsvRow = {
     "IG (ecografia obstétrica) (semanas)": string;
     "IG (ecografia obstétrica) (dias)": string;
     "Quantidade de atendimentos no pré-natal": string;
+    "Quantidade de visitas domiciliares no puerpério": string;
+    "Quantidade de atendimentos no puerpério": string;
 };
 
 export type PregnancyAndPuerperiumCareItem = {
@@ -18,4 +20,6 @@ export type PregnancyAndPuerperiumCareItem = {
     gestationalAgeByObstreticalUltrasoundWeeks: number | null;
     gestationalAgeByObstreticalUltrasoundDays: number | null;
     appointmentsDuringPrenatal: number;
+    homeVisitsDuringPuerperium: number;
+    appointmentsDuringPuerperium: number;
 };

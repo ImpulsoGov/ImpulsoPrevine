@@ -7,6 +7,8 @@ const baseInput = (): InputData => ({
     gestationalAgeByObstreticalUltrasoundWeeks: null,
     gestationalAgeByObstreticalUltrasoundDays: null,
     appointmentsDuringPrenatal: 0,
+    appointmentsDuringPuerperium: 0,
+    homeVisitsDuringPuerperium: 0,
 });
 
 describe("SevenAppointmentsCalculator", () => {
@@ -152,6 +154,45 @@ describe("SevenAppointmentsCalculator", () => {
             const calc = new SevenAppointmentsCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+        });
+    });
+
+    describe("computeStatus - há consulta ou visita feita durante o purpério", () => {
+        it("retorna 'disabled' quando a quantidade de consultas no pré-natal é menor que 7", () => {
+            const data = {
+                ...baseInput(),
+                appointmentsDuringPrenatal: 6,
+                appointmentsDuringPuerperium: 1,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+        });
+
+        it("retorna 'success' quando a quantidade de consultas no pré-natal é 7", () => {
+            const data = {
+                ...baseInput(),
+                appointmentsDuringPrenatal: 7,
+                homeVisitsDuringPuerperium: 1,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+        });
+
+        it("retorna 'success' quando a quantidade de consultas no pré-natal é maior que 7", () => {
+            const data = {
+                ...baseInput(),
+                appointmentsDuringPrenatal: 8,
+                homeVisitsDuringPuerperium: 1,
+                appointmentsDuringPuerperium: 2,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
     });
 });

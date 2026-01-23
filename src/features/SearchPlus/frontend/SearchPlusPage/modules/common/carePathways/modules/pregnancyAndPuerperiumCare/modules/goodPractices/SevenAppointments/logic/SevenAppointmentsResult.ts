@@ -12,6 +12,8 @@ export const SevenAppointmentsResult = ({
     gestationalAgeByObstreticalUltrasoundWeeks,
     gestationalAgeByObstreticalUltrasoundDays,
     appointmentsDuringPrenatal,
+    homeVisitsDuringPuerperium,
+    appointmentsDuringPuerperium,
 }: InputData): SevenAppointmentsResult => {
     // TODO: usar factory para criar os calculadores
     const SevenAppointmentsCalc = new SevenAppointmentsCalculator({
@@ -20,6 +22,8 @@ export const SevenAppointmentsResult = ({
         gestationalAgeByObstreticalUltrasoundWeeks,
         gestationalAgeByObstreticalUltrasoundDays,
         appointmentsDuringPrenatal,
+        homeVisitsDuringPuerperium,
+        appointmentsDuringPuerperium,
     });
     return {
         status: SevenAppointmentsCalc.computeStatus(),
