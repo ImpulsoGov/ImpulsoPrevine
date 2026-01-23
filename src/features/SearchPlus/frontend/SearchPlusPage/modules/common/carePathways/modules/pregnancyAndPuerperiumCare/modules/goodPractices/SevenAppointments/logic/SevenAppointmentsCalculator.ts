@@ -74,12 +74,10 @@ export class SevenAppointmentsCalculator {
     }
 
     #statusCalcInPuerperalPeriod(): Status {
-        const disable: Status = { tagStatus: "disabled" };
-        const success: Status = { tagStatus: "success" };
         return this.#data.appointmentsDuringPrenatal <
             TARGET_NUMBER_OF_APPOINTMENTS
-            ? disable
-            : success;
+            ? { tagStatus: "disabled" }
+            : { tagStatus: "success" };
     }
 
     public computeStatus(): Status {
