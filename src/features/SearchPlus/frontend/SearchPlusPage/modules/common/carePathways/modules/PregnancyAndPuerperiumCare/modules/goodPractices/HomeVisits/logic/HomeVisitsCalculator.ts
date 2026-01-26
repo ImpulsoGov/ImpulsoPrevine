@@ -4,7 +4,7 @@ import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/fronte
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
 const TARGET_HOME_VISITS_DURING_PREGNANCY = 3;
-const ZERO_APPOINTMENTS = 0;
+const ZERO_HOME_VISIT_DURING_PREGNANCY = 0;
 const ONE_HOME_VISIT_DURING_PREGNANCY = 1;
 const TWO_HOME_VISITS_DURING_PREGNANCY = 2;
 
@@ -52,7 +52,7 @@ export class HomeVisitsCalculator {
 
     #statusCalcInPrenatalPeriod(): Status {
         const homeVisitsDuringPregnancy = this.#data.homeVisitsDuringPregnancy;
-        if (homeVisitsDuringPregnancy == ZERO_APPOINTMENTS) {
+        if (homeVisitsDuringPregnancy == ZERO_HOME_VISIT_DURING_PREGNANCY) {
             return {
                 tagStatus: "danger",
             };
