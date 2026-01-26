@@ -2,8 +2,8 @@ import { Thead } from "./modules/Thead";
 import { TableRow } from "./modules/TableRow";
 import type { LayoutOrientation } from "./model";
 import type { ColumnsProps } from "../carePathways";
-import type { BreastAndUterusCareItem } from "../carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "../carePathways/modules/BreastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../carePathways/modules/PregnancyAndPuerperiumCare";
 
 export type UnitTableProps = {
     // TODO: criar type alias para esse union e usar nos locais onde aparece

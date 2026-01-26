@@ -7,8 +7,8 @@ import { ResultContent } from "./modules/ResultContent";
 import { InputContent } from "./modules/InputContent";
 import { Error } from "./modules/ErrorPage";
 import mixpanel from "mixpanel-browser";
-import type { BreastAndUterusCareItem } from "../common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "../common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "../common/carePathways/modules/BreastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "../common/carePathways/modules/PregnancyAndPuerperiumCare";
 
 export type { CsvRow } from "./modules/InputContent";
 

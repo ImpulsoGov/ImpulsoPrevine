@@ -1,4 +1,4 @@
-import { breastAndUterusCareColumns } from "./modules/breastAndUterusCare";
+import { breastAndUterusCareColumns } from "./modules/BreastAndUterusCare";
 
 export { breastAndUterusCareColumns };
 export type { ColumnsProps, ThematicList, Lists } from "./model";
@@ -9,4 +9,4 @@ export {
     adaptersMap,
 } from "./model";
 
-export type { Status } from "./modules/breastAndUterusCare/modules/goodPractices";
+export type { Status } from "./modules/BreastAndUterusCare/modules/goodPractices";
