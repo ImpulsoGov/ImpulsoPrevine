@@ -35,6 +35,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const appointmentsDuringPuerperium = Number(
             row["Quantidade de atendimentos no puerpério"]
         );
+        const bloodPressureMeasurements = Number(
+            row["Quantidade de medições de pressão arterial"]
+        );
 
         return {
             appointmentsUntil12thWeek,
@@ -45,6 +48,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             appointmentsDuringPrenatal,
             homeVisitsDuringPuerperium,
             appointmentsDuringPuerperium,
+            bloodPressureMeasurements,
         };
     });
 };
