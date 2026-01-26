@@ -7,8 +7,8 @@ import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Header } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Header";
 import mixpanel from "mixpanel-browser";
 import { useRouter } from "next/navigation";
-import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/BreastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
 
 type ButtonBarProps = {
     setJsonData: React.Dispatch<

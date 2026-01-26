@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { handleClick } from "./logic";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
-import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/BreastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
 
 type TermsOfUseProps = {
     file: File;

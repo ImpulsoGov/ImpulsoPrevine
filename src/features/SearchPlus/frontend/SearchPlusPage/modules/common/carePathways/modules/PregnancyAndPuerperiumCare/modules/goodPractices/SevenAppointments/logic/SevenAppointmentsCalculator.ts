@@ -1,5 +1,5 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare/model";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;

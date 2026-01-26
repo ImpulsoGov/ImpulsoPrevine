@@ -42,7 +42,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps> = [
         },
         renderCell: (param: unknown): React.ReactNode => {
             const { latestDate, status } =
-                goodPractices.cervixCancerResult(param);
+                goodPractices.CervixCancerResult(param);
 
             return (
                 <div>
@@ -67,7 +67,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps> = [
         },
         renderCell: (param: unknown): React.ReactNode => {
             const { latestDate, status } =
-                goodPractices.hpvVaccinationResult(param);
+                goodPractices.HpvVaccinationResult(param);
 
             return (
                 <div>
@@ -100,7 +100,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps> = [
         },
         renderCell: (param: unknown): React.ReactNode => {
             const { latestDate, status } =
-                goodPractices.sexualAndReproductiveHealthCareResult(param);
+                goodPractices.SexualAndReproductiveHealthCareResult(param);
 
             return (
                 <div>
@@ -133,7 +133,7 @@ export const breastAndUterusCareColumns: Array<ColumnsProps> = [
         },
         renderCell: (param: unknown): React.ReactNode => {
             const { latestDate, status } =
-                goodPractices.breastCancerResult(param);
+                goodPractices.BreastCancerResult(param);
 
             return (
                 <div>

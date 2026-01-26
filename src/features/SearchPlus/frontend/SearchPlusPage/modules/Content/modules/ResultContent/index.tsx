@@ -3,8 +3,8 @@ import { useRef, useState, useEffect } from "react";
 import { Print } from "./modules/PrintTable";
 import type { HeaderData } from "@features/SearchPlus/frontend/SearchPlusPage";
 import { Success } from "./modules/Success";
-import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/breastAndUterusCare";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/pregnancyAndPuerperiumCare";
+import type { BreastAndUterusCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/BreastAndUterusCare";
+import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
 
 type ResultContentProps = {
     jsonData:
