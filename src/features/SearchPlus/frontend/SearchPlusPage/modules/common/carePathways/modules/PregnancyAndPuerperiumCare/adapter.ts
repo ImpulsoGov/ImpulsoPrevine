@@ -35,6 +35,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const appointmentsDuringPuerperium = Number(
             row["Quantidade de atendimentos no puerpério"]
         );
+        const homeVisitsDuringPregnancy = Number(
+            row["Quantidade de visitas domiciliares no pré-natal"]
+        );
 
         return {
             appointmentsUntil12thWeek,
@@ -45,6 +48,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             appointmentsDuringPrenatal,
             homeVisitsDuringPuerperium,
             appointmentsDuringPuerperium,
+            homeVisitsDuringPregnancy,
         };
     });
 };
