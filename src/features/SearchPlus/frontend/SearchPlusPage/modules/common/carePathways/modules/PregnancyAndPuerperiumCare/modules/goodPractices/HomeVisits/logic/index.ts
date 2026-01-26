@@ -1,0 +1,1 @@
+export { HomeVisitsResult } from "./HomeVisitsResult";
