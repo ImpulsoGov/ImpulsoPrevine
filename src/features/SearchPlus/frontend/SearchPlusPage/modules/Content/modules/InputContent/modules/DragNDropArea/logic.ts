@@ -173,6 +173,7 @@ export const handleFileUpload = (
                     !item["Data de nascimento"]
                 );
             });
+            //TODO: adicionar validacao de numero e nao deixar o csv ser valido quando o numero estiver errado (NaN) ou for um -
 
             if (hasInvalidBirthDate) {
                 errorHandler({
