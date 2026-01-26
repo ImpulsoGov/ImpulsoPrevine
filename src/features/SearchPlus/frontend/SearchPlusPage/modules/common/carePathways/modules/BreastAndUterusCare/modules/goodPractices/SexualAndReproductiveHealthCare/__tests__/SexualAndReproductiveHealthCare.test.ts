@@ -1,4 +1,4 @@
-import { SexualAndReproductiveHealthCareCalculator } from "../sexualAndReproductiveHealthCareCalculator";
+import { SexualAndReproductiveHealthCareCalculator } from "../SexualAndReproductiveHealthCareCalculator";
 import { LocalDate } from "@js-joda/core";
 describe("SexualAndReproductiveCare", () => {
     const latestSexualAndReproductiveHealthAppointmentDate =

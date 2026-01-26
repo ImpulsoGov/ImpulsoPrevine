@@ -1,6 +1,6 @@
 import type { LocalDate } from "@js-joda/core";
-import type { Status, InputData } from "./hpvVaccinationCalculator";
-import { HpvVaccinationCalculator } from "./hpvVaccinationCalculator";
+import type { Status, InputData } from "./HpvVaccinationCalculator";
+import { HpvVaccinationCalculator } from "./HpvVaccinationCalculator";
 
 type HpvVaccinationResult = {
     latestDate: LocalDate | null;
@@ -20,7 +20,7 @@ const modelToTable = (params: unknown): InputData => {
     };
 };
 
-export const hpvVaccinationResult = (params: unknown): HpvVaccinationResult => {
+export const HpvVaccinationResult = (params: unknown): HpvVaccinationResult => {
     const data = modelToTable(params);
     // TODO: usar factory para criar os calculadores
     const hpvVaccinationCalculator = new HpvVaccinationCalculator({ ...data });

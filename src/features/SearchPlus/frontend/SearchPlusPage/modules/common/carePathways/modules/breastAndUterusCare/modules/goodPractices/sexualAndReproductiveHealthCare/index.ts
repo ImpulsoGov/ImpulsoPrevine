@@ -1,1 +1,0 @@
-export { sexualAndReproductiveHealthCareResult } from "./sexualAndReproductiveHealthCareResult";

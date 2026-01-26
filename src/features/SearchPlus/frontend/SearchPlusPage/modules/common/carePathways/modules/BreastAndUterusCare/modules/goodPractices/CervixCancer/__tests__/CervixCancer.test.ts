@@ -1,4 +1,4 @@
-import { CervixCancerCalculator } from "../cervixCancerCalculator";
+import { CervixCancerCalculator } from "../CervixCancerCalculator";
 import { LocalDate } from "@js-joda/core";
 describe("CervixCancerCalculator", () => {
     const papTestLatestRequestDate = LocalDate.parse("2022-01-01");

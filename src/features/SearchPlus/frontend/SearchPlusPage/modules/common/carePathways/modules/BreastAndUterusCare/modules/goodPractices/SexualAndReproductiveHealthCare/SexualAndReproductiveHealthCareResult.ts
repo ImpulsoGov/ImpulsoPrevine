@@ -1,8 +1,10 @@
-import type { Status, InputData } from "./breastCancerCalculator";
-import { BreastCancerCalculator } from "./breastCancerCalculator";
+import type {
+    Status,
+    InputData,
+} from "./SexualAndReproductiveHealthCareCalculator";
+import { SexualAndReproductiveHealthCareCalculator } from "./SexualAndReproductiveHealthCareCalculator";
 import type { LocalDate } from "@js-joda/core";
-
-type BreastCancerResult = {
+type SexualAndReproductiveHealthCareResult = {
     latestDate: LocalDate | null;
     status: Status;
 };
@@ -36,12 +38,15 @@ const modelToTable = (params: unknown): InputData => {
     };
 };
 
-export const breastCancerResult = (params: unknown): BreastCancerResult => {
+export const SexualAndReproductiveHealthCareResult = (
+    params: unknown
+): SexualAndReproductiveHealthCareResult => {
     const data = modelToTable(params);
     // TODO: usar factory para criar os calculadores
-    const breastCancerCalc = new BreastCancerCalculator({ ...data });
+    const sexualAndReproductiveHealthCareCalc =
+        new SexualAndReproductiveHealthCareCalculator({ ...data });
     return {
-        latestDate: breastCancerCalc.computelatestDate(),
-        status: breastCancerCalc.computeStatus(),
+        latestDate: sexualAndReproductiveHealthCareCalc.computelatestDate(),
+        status: sexualAndReproductiveHealthCareCalc.computeStatus(),
     };
 };

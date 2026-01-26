@@ -1,4 +1,4 @@
-import { BreastCancerCalculator } from "../breastCancerCalculator";
+import { BreastCancerCalculator } from "../BreastCancerCalculator";
 import { LocalDate } from "@js-joda/core";
 
 describe("BreastCancerCalculator", () => {

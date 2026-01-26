@@ -1,4 +1,4 @@
-import { HpvVaccinationCalculator } from "../hpvVaccinationCalculator";
+import { HpvVaccinationCalculator } from "../HpvVaccinationCalculator";
 import { LocalDate } from "@js-joda/core";
 
 describe("HpvVaccinationCalculator", () => {
