@@ -2,7 +2,7 @@ import {
     BloodPressureMeasurementCalculator,
     type InputData,
     type Status,
-} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurements/logic.ts/BloodPressureMeasurementCalculator";
+} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurement/logic.ts/BloodPressureMeasurementCalculator";
 
 type BloodPressureMeasurementResult = {
     status: Status;
