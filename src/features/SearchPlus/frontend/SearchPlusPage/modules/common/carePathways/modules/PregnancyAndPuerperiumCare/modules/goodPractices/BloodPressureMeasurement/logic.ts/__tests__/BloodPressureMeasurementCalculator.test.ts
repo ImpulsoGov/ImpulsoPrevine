@@ -1,5 +1,5 @@
-import { BloodPressureMeasurementsCalculator } from "../BloodPressureMeasurementsCalculator";
-import type { InputData } from "../BloodPressureMeasurementsCalculator";
+import { BloodPressureMeasurementCalculator } from "../BloodPressureMeasurementCalculator";
+import type { InputData } from "../BloodPressureMeasurementCalculator";
 
 const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -19,7 +19,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 5,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeNumberOfBloodPressureMeasurements()).toBe(5);
         });
@@ -34,7 +34,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
@@ -47,7 +47,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
@@ -60,7 +60,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 0,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
         });
@@ -71,7 +71,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 3,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "warning" });
         });
@@ -82,7 +82,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 5,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "attention" });
         });
@@ -93,7 +93,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 7,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
@@ -110,7 +110,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 0,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
         });
@@ -125,7 +125,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 6,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
@@ -138,7 +138,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 7,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
@@ -151,7 +151,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 0,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
         });
@@ -165,7 +165,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 6,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
@@ -177,7 +177,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 homeVisitsDuringPuerperium: 1,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
@@ -190,7 +190,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 appointmentsDuringPuerperium: 2,
             };
 
-            const calc = new BloodPressureMeasurementsCalculator(data);
+            const calc = new BloodPressureMeasurementCalculator(data);
 
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });

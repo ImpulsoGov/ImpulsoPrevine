@@ -1,15 +1,15 @@
 import {
-    BloodPressureMeasurementsCalculator,
+    BloodPressureMeasurementCalculator,
     type InputData,
     type Status,
-} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurements/logic.ts/BloodPressureMeasurementsCalculator";
+} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurements/logic.ts/BloodPressureMeasurementCalculator";
 
-type BloodPressureMeasurementsResult = {
+type BloodPressureMeasurementResult = {
     status: Status;
     index: number;
 };
 
-export const BloodPressureMeasurementsResult = ({
+export const BloodPressureMeasurementResult = ({
     gestationalAgeByLastMenstrualPeriodWeeks,
     gestationalAgeByLastMenstrualPeriodDays,
     gestationalAgeByObstreticalUltrasoundWeeks,
@@ -17,10 +17,10 @@ export const BloodPressureMeasurementsResult = ({
     homeVisitsDuringPuerperium,
     appointmentsDuringPuerperium,
     bloodPressureMeasurements,
-}: InputData): BloodPressureMeasurementsResult => {
+}: InputData): BloodPressureMeasurementResult => {
     // TODO: usar factory para criar os calculadores
     const BloodPressureMeasurementsCalc =
-        new BloodPressureMeasurementsCalculator({
+        new BloodPressureMeasurementCalculator({
             gestationalAgeByLastMenstrualPeriodWeeks,
             gestationalAgeByLastMenstrualPeriodDays,
             gestationalAgeByObstreticalUltrasoundWeeks,

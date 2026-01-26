@@ -1,1 +1,0 @@
-export { BloodPressureMeasurementsResult } from "./BloodPressureMeasurementsResult";

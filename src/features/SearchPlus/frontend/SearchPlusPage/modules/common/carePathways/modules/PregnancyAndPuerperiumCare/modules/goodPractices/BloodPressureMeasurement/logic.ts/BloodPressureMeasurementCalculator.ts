@@ -26,7 +26,7 @@ type GestationalAge = {
     days: number | null;
 };
 
-export class BloodPressureMeasurementsCalculator {
+export class BloodPressureMeasurementCalculator {
     #data: InputData;
 
     constructor(data: InputData) {
