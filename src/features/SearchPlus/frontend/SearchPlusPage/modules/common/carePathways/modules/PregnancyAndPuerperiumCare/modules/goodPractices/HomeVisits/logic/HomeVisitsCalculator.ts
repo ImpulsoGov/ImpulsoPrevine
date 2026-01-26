@@ -3,18 +3,19 @@ import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/fronte
 
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
-const TARGET_NUMBER_OF_APPOINTMENTS = 7;
+const TARGET_HOME_VISITS_DURING_PREGNANCY = 3;
 const ZERO_APPOINTMENTS = 0;
-const FOUR_APPOINTMENTS = 4;
+const ONE_HOME_VISIT_DURING_PREGNANCY = 1;
+const TWO_HOME_VISITS_DURING_PREGNANCY = 2;
 
 export type InputData = {
     gestationalAgeByLastMenstrualPeriodWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodWeeks"];
     gestationalAgeByLastMenstrualPeriodDays: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodDays"];
     gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
     gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
-    appointmentsDuringPrenatal: PregnancyAndPuerperiumCareItem["appointmentsDuringPrenatal"];
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     homeVisitsDuringPregnancy: PregnancyAndPuerperiumCareItem["homeVisitsDuringPregnancy"];
+    appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
 };
 
 export type Status = {
@@ -50,19 +51,18 @@ export class HomeVisitsCalculator {
     }
 
     #statusCalcInPrenatalPeriod(): Status {
-        const appointmentsDuringPrenatal =
-            this.#data.appointmentsDuringPrenatal;
-        if (appointmentsDuringPrenatal == ZERO_APPOINTMENTS) {
+        const homeVisitsDuringPregnancy = this.#data.homeVisitsDuringPregnancy;
+        if (homeVisitsDuringPregnancy == ZERO_APPOINTMENTS) {
             return {
                 tagStatus: "danger",
             };
         }
-        if (appointmentsDuringPrenatal < FOUR_APPOINTMENTS) {
+        if (homeVisitsDuringPregnancy === ONE_HOME_VISIT_DURING_PREGNANCY) {
             return {
                 tagStatus: "warning",
             };
         }
-        if (appointmentsDuringPrenatal < TARGET_NUMBER_OF_APPOINTMENTS) {
+        if (homeVisitsDuringPregnancy === TWO_HOME_VISITS_DURING_PREGNANCY) {
             return {
                 tagStatus: "attention",
             };
@@ -73,8 +73,8 @@ export class HomeVisitsCalculator {
     }
 
     #statusCalcInPuerperalPeriod(): Status {
-        return this.#data.appointmentsDuringPrenatal <
-            TARGET_NUMBER_OF_APPOINTMENTS
+        return this.#data.homeVisitsDuringPregnancy <
+            TARGET_HOME_VISITS_DURING_PREGNANCY
             ? { tagStatus: "disabled" }
             : { tagStatus: "success" };
     }
@@ -115,7 +115,7 @@ export class HomeVisitsCalculator {
         }
         const isPuerperalPeriod =
             this.#data.homeVisitsDuringPuerperium > 0 ||
-            this.#data.homeVisitsDuringPregnancy > 0;
+            this.#data.appointmentsDuringPuerperium > 0;
         const isGestationalAgeAtOrAboveMaxWeeks =
             gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS;
         const isGestationalAgeAboveMaxDays =

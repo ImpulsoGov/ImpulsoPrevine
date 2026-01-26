@@ -6,9 +6,9 @@ const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodDays: 0,
     gestationalAgeByObstreticalUltrasoundWeeks: null,
     gestationalAgeByObstreticalUltrasoundDays: null,
-    appointmentsDuringPrenatal: 0,
     homeVisitsDuringPuerperium: 0,
     homeVisitsDuringPregnancy: 0,
+    appointmentsDuringPuerperium: 0,
 });
 
 describe("HomeVisitsCalculator", () => {
@@ -54,10 +54,10 @@ describe("HomeVisitsCalculator", () => {
     });
 
     describe("computeStatus - cálculo durante o pré-natal", () => {
-        it("retorna 'danger' quando não há consultas e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'danger' quando não há visitas e IG maior que 42 semanas e 0 dias", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 0,
+                homeVisitsDuringPregnancy: 0,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -65,10 +65,10 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
         });
 
-        it("retorna 'warning' quando tem menos de 4 consultas e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'warning' quando tem menos de 1 visita domiciliar e IG maior que 42 semanas e 0 dias", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 3,
+                homeVisitsDuringPregnancy: 1,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -76,10 +76,10 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "warning" });
         });
 
-        it("retorna 'attention' quando tem entre 4 e 6 consultas e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'attention' quando tem 2 visitas domiciliares e IG maior que 42 semanas e 0 dias", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 5,
+                homeVisitsDuringPregnancy: 2,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -87,10 +87,10 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "attention" });
         });
 
-        it("retorna 'success' quando tem 7 ou mais consultas e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'success' quando tem 3 ou mais visitas domiciliar e IG maior que 42 semanas e 0 dias", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 7,
+                homeVisitsDuringPregnancy: 3,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -107,7 +107,7 @@ describe("HomeVisitsCalculator", () => {
                 gestationalAgeByLastMenstrualPeriodDays: 0,
                 gestationalAgeByObstreticalUltrasoundWeeks: 30,
                 gestationalAgeByObstreticalUltrasoundDays: 0,
-                appointmentsDuringPrenatal: 0,
+                homeVisitsDuringPregnancy: 0,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -117,12 +117,12 @@ describe("HomeVisitsCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando >= 42 semanas + dias > 0 e consultas < 7", () => {
+        it("retorna 'disabled' quando >= 42 semanas + dias > 0 e visitas domiciliares < 3", () => {
             const data = {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 1,
-                appointmentsDuringPrenatal: 6,
+                homeVisitsDuringPregnancy: 2,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -130,12 +130,12 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
 
-        it("retorna 'success' quando >= 42 semanas + dias > 0 e consultas >= 7", () => {
+        it("retorna 'success' quando >= 42 semanas + dias > 0 e visitas domiciliares >= 3", () => {
             const data = {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 1,
-                appointmentsDuringPrenatal: 7,
+                homeVisitsDuringPregnancy: 3,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -148,7 +148,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 0,
-                appointmentsDuringPrenatal: 0,
+                homeVisitsDuringPregnancy: 0,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -157,11 +157,12 @@ describe("HomeVisitsCalculator", () => {
         });
     });
 
-    describe("computeStatus - há consulta ou visita feita durante o purpério", () => {
-        it("retorna 'disabled' quando a quantidade de consultas no pré-natal é menor que 7", () => {
+    describe("computeStatus - há consulta ou visita domiciliar feita durante o puerpério", () => {
+        it("retorna 'disabled' quando a quantidade de visitas domiciliares no pré-natal é menor que 3", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 6,
+                homeVisitsDuringPregnancy: 0,
+                homeVisitsDuringPuerperium: 1,
                 appointmentsDuringPuerperium: 1,
             };
 
@@ -170,11 +171,12 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
 
-        it("retorna 'success' quando a quantidade de consultas no pré-natal é 7", () => {
+        it("retorna 'success' quando a quantidade de visitas domiciliares no pré-natal é 3", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 7,
+                homeVisitsDuringPregnancy: 3,
                 homeVisitsDuringPuerperium: 1,
+                appointmentsDuringPuerperium: 1,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -182,12 +184,10 @@ describe("HomeVisitsCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
 
-        it("retorna 'success' quando a quantidade de consultas no pré-natal é maior que 7", () => {
+        it("retorna 'success' quando a quantidade de visitas domiciliares no pré-natal é maior que 3", () => {
             const data = {
                 ...baseInput(),
-                appointmentsDuringPrenatal: 8,
-                homeVisitsDuringPuerperium: 1,
-                appointmentsDuringPuerperium: 2,
+                homeVisitsDuringPregnancy: 4,
             };
 
             const calc = new HomeVisitsCalculator(data);

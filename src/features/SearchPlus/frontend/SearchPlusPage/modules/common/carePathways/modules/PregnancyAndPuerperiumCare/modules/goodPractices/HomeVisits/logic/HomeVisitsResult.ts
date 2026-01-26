@@ -11,9 +11,9 @@ export const HomeVisitsResult = ({
     gestationalAgeByLastMenstrualPeriodDays,
     gestationalAgeByObstreticalUltrasoundWeeks,
     gestationalAgeByObstreticalUltrasoundDays,
-    appointmentsDuringPrenatal,
     homeVisitsDuringPuerperium,
     homeVisitsDuringPregnancy: homeVisitsDuringPrenatal,
+    appointmentsDuringPuerperium,
 }: InputData): HomeVisitsResult => {
     // TODO: usar factory para criar os calculadores
     const HomeVisitsCalc = new HomeVisitsCalculator({
@@ -21,9 +21,9 @@ export const HomeVisitsResult = ({
         gestationalAgeByLastMenstrualPeriodDays,
         gestationalAgeByObstreticalUltrasoundWeeks,
         gestationalAgeByObstreticalUltrasoundDays,
-        appointmentsDuringPrenatal,
         homeVisitsDuringPuerperium,
         homeVisitsDuringPregnancy: homeVisitsDuringPrenatal,
+        appointmentsDuringPuerperium,
     });
     return {
         status: HomeVisitsCalc.computeStatus(),
