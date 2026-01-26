@@ -38,6 +38,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const homeVisitsDuringPregnancy = Number(
             row["Quantidade de visitas domiciliares no pré-natal"]
         );
+        const weightAndHeightMeasurements = Number(
+            row["Quantidade de medições simultâneas de peso e altura"]
+        );
 
         return {
             appointmentsUntil12thWeek,
@@ -49,6 +52,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             homeVisitsDuringPuerperium,
             appointmentsDuringPuerperium,
             homeVisitsDuringPregnancy,
+            weightAndHeightMeasurements,
         };
     });
 };
