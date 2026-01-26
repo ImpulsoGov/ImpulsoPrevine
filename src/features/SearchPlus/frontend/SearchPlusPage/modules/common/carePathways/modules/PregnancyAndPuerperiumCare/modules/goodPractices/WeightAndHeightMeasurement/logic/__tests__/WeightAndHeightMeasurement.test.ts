@@ -13,10 +13,10 @@ const baseInput = (): InputData => ({
 
 describe("WeightAndHeightMeasurementCalculator", () => {
     describe("computeMeasurements", () => {
-        it("retorna o número de medições simultâneas informado", () => {
+        it("retorna o número de medições informado", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 5,
+                weightAndHeightMeasurements: 5,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -54,10 +54,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
     });
 
     describe("computeStatus - cálculo durante o pré-natal (IG <= 42 semanas e 0 dias)", () => {
-        it("retorna 'danger' quando não há medições simultâneas", () => {
+        it("retorna 'danger' quando não há medições", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 0,
+                weightAndHeightMeasurements: 0,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -65,10 +65,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
         });
 
-        it("retorna 'warning' quando foram feitas menos de 4 medições simultâneas", () => {
+        it("retorna 'warning' quando foram feitas menos de 4 medições", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 3,
+                weightAndHeightMeasurements: 3,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -76,10 +76,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "warning" });
         });
 
-        it("retorna 'attention' quando foram feitas entre 4 e 6 medições simultâneas", () => {
+        it("retorna 'attention' quando foram feitas entre 4 e 6 medições", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 5,
+                weightAndHeightMeasurements: 5,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -87,10 +87,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "attention" });
         });
 
-        it("retorna 'success' quando foram feitas 7 ou mais medições simultâneas", () => {
+        it("retorna 'success' quando foram feitas 7 ou mais medições", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 7,
+                weightAndHeightMeasurements: 7,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -107,7 +107,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 gestationalAgeByLastMenstrualPeriodDays: 0,
                 gestationalAgeByObstreticalUltrasoundWeeks: 30,
                 gestationalAgeByObstreticalUltrasoundDays: 0,
-                weightAndHeightSimultaneousMeasurements: 0,
+                weightAndHeightMeasurements: 0,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -117,12 +117,12 @@ describe("WeightAndHeightMeasurementCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando IG >= 42 semanas + 0 dias e medições simultâneas < 7", () => {
+        it("retorna 'disabled' quando IG >= 42 semanas + 0 dias e medições < 7", () => {
             const data = {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 1,
-                weightAndHeightSimultaneousMeasurements: 6,
+                weightAndHeightMeasurements: 6,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -130,12 +130,12 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
 
-        it("retorna 'success' quando IG >= 42 semanas + 0 dias e medições simultâneas >= 7", () => {
+        it("retorna 'success' quando IG >= 42 semanas + 0 dias e medições >= 7", () => {
             const data = {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 1,
-                weightAndHeightSimultaneousMeasurements: 7,
+                weightAndHeightMeasurements: 7,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -143,12 +143,12 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
 
-        it("retorna 'danger' quando IG = 42 semanas + 0 dias e medições simultâneas = 0", () => {
+        it("retorna 'danger' quando IG = 42 semanas + 0 dias e medições = 0", () => {
             const data = {
                 ...baseInput(),
                 gestationalAgeByLastMenstrualPeriodWeeks: 42,
                 gestationalAgeByLastMenstrualPeriodDays: 0,
-                weightAndHeightSimultaneousMeasurements: 0,
+                weightAndHeightMeasurements: 0,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -158,10 +158,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
     });
 
     describe("computeStatus - há consulta ou visita feita durante o purpério", () => {
-        it("retorna 'disabled' quando a quantidade de medições simultâneas é menor que 7", () => {
+        it("retorna 'disabled' quando a quantidade de medições é menor que 7", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 6,
+                weightAndHeightMeasurements: 6,
                 appointmentsDuringPuerperium: 1,
             };
 
@@ -170,10 +170,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
         });
 
-        it("retorna 'success' quando a quantidade de medições simultâneas é 7", () => {
+        it("retorna 'success' quando a quantidade de medições é 7", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 7,
+                weightAndHeightMeasurements: 7,
                 homeVisitsDuringPuerperium: 1,
             };
 
@@ -182,10 +182,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
         });
 
-        it("retorna 'success' quando a quantidade de medições simultâneas é maior que 7", () => {
+        it("retorna 'success' quando a quantidade de medições é maior que 7", () => {
             const data = {
                 ...baseInput(),
-                weightAndHeightSimultaneousMeasurements: 8,
+                weightAndHeightMeasurements: 8,
                 homeVisitsDuringPuerperium: 1,
                 appointmentsDuringPuerperium: 2,
             };
