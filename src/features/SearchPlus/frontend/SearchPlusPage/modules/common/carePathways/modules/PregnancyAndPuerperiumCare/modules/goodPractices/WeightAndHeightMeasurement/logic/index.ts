@@ -1,0 +1,1 @@
+export { WeightAndHeightMeasurementResult } from "./WeightAndHeightMeasurementResult";
