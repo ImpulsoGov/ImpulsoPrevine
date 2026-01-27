@@ -1,0 +1,1 @@
+export { OralHealthResult } from "./OralHealthResult";
