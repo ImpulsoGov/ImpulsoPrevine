@@ -44,7 +44,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const weightAndHeightMeasurements = Number(
             row["Quantidade de medições simultâneas de peso e altura"]
         );
-
+        const dentalAppointmentsDuringPrenatal = Number(
+            row["Quantidade de atendimentos odontológicos no pré-natal"]
+        );
         return {
             appointmentsUntil12thWeek,
             gestationalAgeByLastMenstrualPeriodWeeks,
@@ -57,6 +59,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             bloodPressureMeasurements,
             homeVisitsDuringPregnancy,
             weightAndHeightMeasurements,
+            dentalAppointmentsDuringPrenatal,
         };
     });
 };
