@@ -35,6 +35,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const appointmentsDuringPuerperium = Number(
             row["Quantidade de atendimentos no puerpério"]
         );
+        const bloodPressureMeasurements = Number(
+            row["Quantidade de medições de pressão arterial"]
+        );
         const homeVisitsDuringPregnancy = Number(
             row["Quantidade de visitas domiciliares no pré-natal"]
         );
@@ -51,6 +54,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             appointmentsDuringPrenatal,
             homeVisitsDuringPuerperium,
             appointmentsDuringPuerperium,
+            bloodPressureMeasurements,
             homeVisitsDuringPregnancy,
             weightAndHeightMeasurements,
         };

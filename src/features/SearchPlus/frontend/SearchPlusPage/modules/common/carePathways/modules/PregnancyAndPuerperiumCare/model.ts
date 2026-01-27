@@ -11,6 +11,7 @@ export type PregnancyAndPuerperiumCareCsvRow = {
     "Quantidade de atendimentos no pré-natal": string;
     "Quantidade de visitas domiciliares no puerpério": string;
     "Quantidade de atendimentos no puerpério": string;
+    "Quantidade de medições de pressão arterial": string;
     "Quantidade de visitas domiciliares no pré-natal": string;
     "Quantidade de medições simultâneas de peso e altura": string;
 };
@@ -24,6 +25,7 @@ export type PregnancyAndPuerperiumCareItem = {
     appointmentsDuringPrenatal: number;
     homeVisitsDuringPuerperium: number;
     appointmentsDuringPuerperium: number;
+    bloodPressureMeasurements: number;
     homeVisitsDuringPregnancy: number;
     weightAndHeightMeasurements: number;
 };
