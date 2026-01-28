@@ -1,4 +1,4 @@
-// import type * as time from "@/features/common/shared/time";
+import type * as time from "@/features/common/shared/time";
 
 export type Count = {
     current: number;
@@ -16,7 +16,13 @@ export type PregnancyAndPuerperiumCareCsvRow = {
     "Telefone residencial": string;
     "Telefone de contato": string;
     "Quantidade de atendimentos até 12 semanas no pré-natal": string;
-    // "Data de nascimento": time.BRTDateString | "" | null;
+    // TODO: esse campo não é usado para cálculo de boas práticas nem na exibição
+    // de dados na tabela, mas é necessário estar aqui porque sua remoção gera erro
+    //  no build já que, durante o upload do CSV, checamos se alguma data de nascimento
+    // é inválida para todas as listas, mesmo essa checagem sendo importante só para
+    // a lista de saúde da mulher até então. Precisamos pensar numa maneira de
+    // eliminar essa dependência.
+    "Data de nascimento": time.BRTDateString | "" | null;
     "IG (DUM) (semanas)": string;
     "IG (DUM) (dias)": string;
     "IG (ecografia obstétrica) (semanas)": string;
