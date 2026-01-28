@@ -46,6 +46,11 @@ const withMixpanelTrack = (item: Menu): Menu => {
     };
 };
 
+const signOutAndResetMixPanel = async (): Promise<void> => {
+    mixpanel.reset();
+    await signOut();
+};
+
 export const NavBarMounted: React.FC<NavBarMountedType> = ({
     mixpanel,
     session,
@@ -80,7 +85,7 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                         : nome?.[0],
                 equipe: session?.user.equipe,
                 login: signIn,
-                logout: signOut,
+                logout: signOutAndResetMixPanel,
                 validarCredencial: validateCredentials,
                 validacao: validacao,
                 botaoAuxiliar: session?.user.perfis.includes(2)
