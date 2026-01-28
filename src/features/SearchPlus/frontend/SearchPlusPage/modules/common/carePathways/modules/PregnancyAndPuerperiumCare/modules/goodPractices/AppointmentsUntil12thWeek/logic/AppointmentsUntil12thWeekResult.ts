@@ -1,11 +1,13 @@
 import type { Status } from "./AppointmentsUntil12thWeekCalculator";
 import { AppointmentsUntil12thWeekCalculator } from "./AppointmentsUntil12thWeekCalculator";
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 type AppointmentsUntil12thWeekResult = {
     status: Status;
+    count: Count;
 };
 
-export const appointmentsUntil12thWeekResult = (
+export const AppointmentsUntil12thWeekResult = (
     appointments: number
 ): AppointmentsUntil12thWeekResult => {
     // TODO: usar factory para criar os calculadores
@@ -15,5 +17,6 @@ export const appointmentsUntil12thWeekResult = (
         });
     return {
         status: appointmentsUntil12thWeekCalc.computeStatus(),
+        count: appointmentsUntil12thWeekCalc.computeAppointmentsUntil12thWeek(),
     };
 };

@@ -47,6 +47,16 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const dentalAppointmentsDuringPrenatal = Number(
             row["Quantidade de atendimentos odontológicos no pré-natal"]
         );
+        const patientName = row["Nome"];
+        const patientCpf = row["CPF"];
+        const patientCns = row["CNS"];
+        const patientPhoneNumber =
+            row["Telefone celular"] ||
+            row["Telefone residencial"] ||
+            row["Telefone de contato"];
+        const patientAge = row["Idade"];
+        const microAreaName = row["Microárea"];
+
         return {
             appointmentsUntil12thWeek,
             gestationalAgeByLastMenstrualPeriodWeeks,
@@ -60,6 +70,12 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             homeVisitsDuringPregnancy,
             weightAndHeightMeasurements,
             dentalAppointmentsDuringPrenatal,
+            patientName,
+            patientCpf,
+            patientCns,
+            patientPhoneNumber,
+            patientAge,
+            microAreaName,
         };
     });
 };

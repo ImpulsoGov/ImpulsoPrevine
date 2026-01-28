@@ -1,5 +1,6 @@
 import { OralHealthCalculator } from "../OralHealthCalculator";
 import type { InputData } from "../OralHealthCalculator";
+const TARGET_NUMBER_OF_DENTAL_APPOINTMENTS = 1;
 
 const baseInput: InputData = {
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -19,7 +20,10 @@ describe("OralHealthCalculator", () => {
                 dentalAppointmentsDuringPrenatal: 2,
             });
 
-            expect(calculator.computeAppointmentsDuringPrenatal()).toBe(2);
+            expect(calculator.computeAppointmentsDuringPrenatal()).toEqual({
+                current: 2,
+                total: TARGET_NUMBER_OF_DENTAL_APPOINTMENTS,
+            });
         });
     });
 
