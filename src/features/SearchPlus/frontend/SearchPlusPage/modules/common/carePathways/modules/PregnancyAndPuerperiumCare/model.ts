@@ -1,9 +1,22 @@
-import type * as time from "@/features/common/shared/time";
+// import type * as time from "@/features/common/shared/time";
+
+export type Count = {
+    current: number;
+    total: number;
+};
 
 //Esse tipo esta em portugues para ficar igual ao cabeçalho do CSV
 export type PregnancyAndPuerperiumCareCsvRow = {
+    Nome: string;
+    CPF: string;
+    CNS: string;
+    Idade: string;
+    Microárea: string;
+    "Telefone celular": string;
+    "Telefone residencial": string;
+    "Telefone de contato": string;
     "Quantidade de atendimentos até 12 semanas no pré-natal": string;
-    "Data de nascimento": time.BRTDateString | "" | null;
+    // "Data de nascimento": time.BRTDateString | "" | null;
     "IG (DUM) (semanas)": string;
     "IG (DUM) (dias)": string;
     "IG (ecografia obstétrica) (semanas)": string;
@@ -18,6 +31,12 @@ export type PregnancyAndPuerperiumCareCsvRow = {
 };
 
 export type PregnancyAndPuerperiumCareItem = {
+    patientName: string;
+    patientCpf: string;
+    patientCns: string;
+    patientAge: string;
+    microAreaName: string;
+    patientPhoneNumber: string;
     appointmentsUntil12thWeek: number;
     gestationalAgeByLastMenstrualPeriodWeeks: number | null;
     gestationalAgeByLastMenstrualPeriodDays: number | null;

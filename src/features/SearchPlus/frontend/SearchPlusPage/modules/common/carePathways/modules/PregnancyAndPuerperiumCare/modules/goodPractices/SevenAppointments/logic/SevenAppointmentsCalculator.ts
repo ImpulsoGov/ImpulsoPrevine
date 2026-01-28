@@ -1,5 +1,8 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
+import type {
+    Count,
+    PregnancyAndPuerperiumCareItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
@@ -44,10 +47,13 @@ export class SevenAppointmentsCalculator {
         );
     }
 
-    public computeAppointmentsDuringPrenatal(): number {
+    public computeAppointmentsDuringPrenatal(): Count {
         const appointmentsDuringPrenatal =
             this.#data.appointmentsDuringPrenatal;
-        return appointmentsDuringPrenatal;
+        return {
+            current: appointmentsDuringPrenatal,
+            total: TARGET_NUMBER_OF_APPOINTMENTS,
+        };
     }
 
     #statusCalcInPrenatalPeriod(): Status {

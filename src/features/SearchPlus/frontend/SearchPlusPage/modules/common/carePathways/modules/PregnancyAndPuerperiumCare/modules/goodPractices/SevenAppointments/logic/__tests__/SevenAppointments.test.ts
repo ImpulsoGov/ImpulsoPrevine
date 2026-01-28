@@ -1,5 +1,6 @@
 import { SevenAppointmentsCalculator } from "../SevenAppointmentsCalculator";
 import type { InputData } from "../SevenAppointmentsCalculator";
+const TARGET_NUMBER_OF_APPOINTMENTS = 7;
 
 const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -13,7 +14,7 @@ const baseInput = (): InputData => ({
 
 describe("SevenAppointmentsCalculator", () => {
     describe("computeAppointmentsDuringPrenatal", () => {
-        it("retorna o número de consultas informado", () => {
+        it("retorna o número de consultas informado e o total", () => {
             const data = {
                 ...baseInput(),
                 appointmentsDuringPrenatal: 5,
@@ -21,7 +22,10 @@ describe("SevenAppointmentsCalculator", () => {
 
             const calc = new SevenAppointmentsCalculator(data);
 
-            expect(calc.computeAppointmentsDuringPrenatal()).toBe(5);
+            expect(calc.computeAppointmentsDuringPrenatal()).toEqual({
+                current: 5,
+                total: TARGET_NUMBER_OF_APPOINTMENTS,
+            });
         });
     });
 

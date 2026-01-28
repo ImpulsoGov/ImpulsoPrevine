@@ -44,7 +44,8 @@
         "src/global.d.ts",
         "src/app/.well-known/vercel/flags/route.ts",
         "node_modules/.prisma/serviceLayerClient",
-        "node_modules/.prisma/productionClient"
+        "node_modules/.prisma/productionClient",
+        "src/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurement/logic"
     ],
     "exclude": ["node_modules"]
 }

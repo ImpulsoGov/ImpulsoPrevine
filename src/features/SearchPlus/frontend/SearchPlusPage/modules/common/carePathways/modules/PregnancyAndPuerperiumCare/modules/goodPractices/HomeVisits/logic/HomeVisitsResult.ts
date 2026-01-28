@@ -1,9 +1,10 @@
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import type { Status, InputData } from "./HomeVisitsCalculator";
 import { HomeVisitsCalculator } from "./HomeVisitsCalculator";
 
 type HomeVisitsResult = {
     status: Status;
-    index: number;
+    count: Count;
 };
 
 export const HomeVisitsResult = ({
@@ -27,6 +28,6 @@ export const HomeVisitsResult = ({
     });
     return {
         status: HomeVisitsCalc.computeStatus(),
-        index: HomeVisitsCalc.computeHomeVisitsDuringPrenatal(),
+        count: HomeVisitsCalc.computeHomeVisitsDuringPrenatal(),
     };
 };

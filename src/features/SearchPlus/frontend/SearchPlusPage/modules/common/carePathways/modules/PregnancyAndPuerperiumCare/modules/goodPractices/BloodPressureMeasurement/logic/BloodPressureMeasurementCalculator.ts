@@ -1,5 +1,6 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
 import type { PregnancyAndPuerperiumCareItem } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
@@ -44,9 +45,12 @@ export class BloodPressureMeasurementCalculator {
         );
     }
 
-    public computeNumberOfBloodPressureMeasurements(): number {
+    public computeNumberOfBloodPressureMeasurements(): Count {
         const bloodPressureMeasurements = this.#data.bloodPressureMeasurements;
-        return bloodPressureMeasurements;
+        return {
+            current: bloodPressureMeasurements,
+            total: TARGET_NUMBER_OF_MEASUREMENTS,
+        };
     }
 
     #statusCalcInPrenatalPeriod(): Status {
