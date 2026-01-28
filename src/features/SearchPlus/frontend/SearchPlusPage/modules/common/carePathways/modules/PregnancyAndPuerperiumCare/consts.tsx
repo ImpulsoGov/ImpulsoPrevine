@@ -22,33 +22,33 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             );
         },
     },
-    {
-        fields: [
-            "gestationalAgeByLastMenstrualPeriodWeeks",
-            "gestationalAgeByLastMenstrualPeriodDays",
-            "gestationalAgeByObstreticalUltrasoundWeeks",
-            "gestationalAgeByObstreticalUltrasoundDays",
-        ],
-        headerName: "IG",
-        width: {
-            landscape: 95,
-            portrait: 74,
-        },
-        renderCell: (param: unknown): React.ReactNode => {
-            const [
-                gestationalAgeByLastMenstrualPeriodWeeks,
-                gestationalAgeByLastMenstrualPeriodDays,
-                gestationalAgeByObstreticalUltrasoundWeeks,
-                gestationalAgeByObstreticalUltrasoundDays,
-            ] = param as [
-                number | null,
-                number | null,
-                number | null,
-                number | null,
-            ];
-            return <div></div>;
-        },
-    },
+    // {
+    //     fields: [
+    //         "gestationalAgeByLastMenstrualPeriodWeeks",
+    //         "gestationalAgeByLastMenstrualPeriodDays",
+    //         "gestationalAgeByObstreticalUltrasoundWeeks",
+    //         "gestationalAgeByObstreticalUltrasoundDays",
+    //     ],
+    //     headerName: "IG",
+    //     width: {
+    //         landscape: 95,
+    //         portrait: 74,
+    //     },
+    //     renderCell: (param: unknown): React.ReactNode => {
+    //         const [
+    //             gestationalAgeByLastMenstrualPeriodWeeks,
+    //             gestationalAgeByLastMenstrualPeriodDays,
+    //             gestationalAgeByObstreticalUltrasoundWeeks,
+    //             gestationalAgeByObstreticalUltrasoundDays,
+    //         ] = param as [
+    //             number | null,
+    //             number | null,
+    //             number | null,
+    //             number | null,
+    //         ];
+    //         return <div></div>;
+    //     },
+    // },
     {
         fields: ["patientAge", "patientPhoneNumber", "microAreaName"],
         headerName: "Idade, telefone e microárea",

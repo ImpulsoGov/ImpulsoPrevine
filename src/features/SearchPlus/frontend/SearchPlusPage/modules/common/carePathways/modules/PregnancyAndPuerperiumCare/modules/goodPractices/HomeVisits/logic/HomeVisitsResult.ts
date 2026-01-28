@@ -13,7 +13,7 @@ export const HomeVisitsResult = ({
     gestationalAgeByObstreticalUltrasoundWeeks,
     gestationalAgeByObstreticalUltrasoundDays,
     homeVisitsDuringPuerperium,
-    homeVisitsDuringPregnancy: homeVisitsDuringPrenatal,
+    homeVisitsDuringPregnancy,
     appointmentsDuringPuerperium,
 }: InputData): HomeVisitsResult => {
     // TODO: usar factory para criar os calculadores
@@ -23,7 +23,7 @@ export const HomeVisitsResult = ({
         gestationalAgeByObstreticalUltrasoundWeeks,
         gestationalAgeByObstreticalUltrasoundDays,
         homeVisitsDuringPuerperium,
-        homeVisitsDuringPregnancy: homeVisitsDuringPrenatal,
+        homeVisitsDuringPregnancy,
         appointmentsDuringPuerperium,
     });
     return {
