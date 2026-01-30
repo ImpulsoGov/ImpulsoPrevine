@@ -1,9 +1,10 @@
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import type { Status, InputData } from "./OralHealthCalculator";
 import { OralHealthCalculator } from "./OralHealthCalculator";
 
 type OralHealthResult = {
     status: Status;
-    index: number;
+    count: Count;
 };
 
 export const OralHealthResult = ({
@@ -27,6 +28,6 @@ export const OralHealthResult = ({
     });
     return {
         status: oralHealthCalc.computeStatus(),
-        index: oralHealthCalc.computeAppointmentsDuringPrenatal(),
+        count: oralHealthCalc.computeAppointmentsDuringPrenatal(),
     };
 };

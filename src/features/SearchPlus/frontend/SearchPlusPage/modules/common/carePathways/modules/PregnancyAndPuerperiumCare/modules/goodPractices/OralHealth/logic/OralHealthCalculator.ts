@@ -1,5 +1,8 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
+import type {
+    Count,
+    PregnancyAndPuerperiumCareItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
@@ -42,10 +45,13 @@ export class OralHealthCalculator {
         );
     }
 
-    public computeAppointmentsDuringPrenatal(): number {
+    public computeAppointmentsDuringPrenatal(): Count {
         const dentalAppointmentsDuringPrenatal =
             this.#data.dentalAppointmentsDuringPrenatal;
-        return dentalAppointmentsDuringPrenatal;
+        return {
+            current: dentalAppointmentsDuringPrenatal,
+            total: TARGET_NUMBER_OF_DENTAL_APPOINTMENTS,
+        };
     }
 
     public computeStatus(): Status {
