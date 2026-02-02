@@ -1,5 +1,6 @@
 import { HomeVisitsCalculator } from "../HomeVisitsCalculator";
 import type { InputData } from "../HomeVisitsCalculator";
+const TARGET_HOME_VISITS_DURING_PREGNANCY = 3;
 
 const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -21,7 +22,10 @@ describe("HomeVisitsCalculator", () => {
 
             const calc = new HomeVisitsCalculator(data);
 
-            expect(calc.computeHomeVisitsDuringPrenatal()).toBe(5);
+            expect(calc.computeHomeVisitsDuringPrenatal()).toEqual({
+                current: 5,
+                total: TARGET_HOME_VISITS_DURING_PREGNANCY,
+            });
         });
     });
 

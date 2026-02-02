@@ -1,12 +1,13 @@
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import {
     BloodPressureMeasurementCalculator,
     type InputData,
     type Status,
-} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurement/logic.ts/BloodPressureMeasurementCalculator";
+} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/goodPractices/BloodPressureMeasurement/logic/BloodPressureMeasurementCalculator";
 
 type BloodPressureMeasurementResult = {
     status: Status;
-    index: number;
+    count: Count;
 };
 
 export const BloodPressureMeasurementResult = ({
@@ -31,6 +32,6 @@ export const BloodPressureMeasurementResult = ({
         });
     return {
         status: BloodPressureMeasurementsCalc.computeStatus(),
-        index: BloodPressureMeasurementsCalc.computeNumberOfBloodPressureMeasurements(),
+        count: BloodPressureMeasurementsCalc.computeNumberOfBloodPressureMeasurements(),
     };
 };

@@ -1,5 +1,6 @@
 import { WeightAndHeightMeasurementCalculator } from "../WeightAndHeightMeasurementCalculator";
 import type { InputData } from "../WeightAndHeightMeasurementCalculator";
+const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 
 const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -21,7 +22,10 @@ describe("WeightAndHeightMeasurementCalculator", () => {
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeMeasurements()).toBe(5);
+            expect(calc.computeMeasurements()).toEqual({
+                current: 5,
+                total: TARGET_NUMBER_OF_MEASUREMENTS,
+            });
         });
     });
 

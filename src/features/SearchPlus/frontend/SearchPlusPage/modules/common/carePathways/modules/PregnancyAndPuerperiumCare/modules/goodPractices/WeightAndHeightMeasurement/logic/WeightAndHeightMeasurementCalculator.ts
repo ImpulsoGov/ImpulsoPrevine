@@ -1,5 +1,8 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
-import type { PregnancyAndPuerperiumCareItem } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
+import type {
+    Count,
+    PregnancyAndPuerperiumCareItem,
+} from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 // TODO: mover as constantes de MAX_GESTATIONAL_AGE para um arquivo comum
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
@@ -46,9 +49,9 @@ export class WeightAndHeightMeasurementCalculator {
         );
     }
 
-    public computeMeasurements(): number {
+    public computeMeasurements(): Count {
         const measurements = this.#data.weightAndHeightMeasurements;
-        return measurements;
+        return { current: measurements, total: TARGET_NUMBER_OF_MEASUREMENTS };
     }
 
     #statusCalcInPrenatalPeriod(): Status {

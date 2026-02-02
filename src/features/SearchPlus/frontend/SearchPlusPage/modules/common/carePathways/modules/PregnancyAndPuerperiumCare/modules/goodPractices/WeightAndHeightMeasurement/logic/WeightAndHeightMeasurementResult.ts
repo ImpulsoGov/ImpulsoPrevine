@@ -1,9 +1,10 @@
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import type { Status, InputData } from "./WeightAndHeightMeasurementCalculator";
 import { WeightAndHeightMeasurementCalculator } from "./WeightAndHeightMeasurementCalculator";
 
 type WeightAndHeightMeasurementResult = {
     status: Status;
-    index: number;
+    count: Count;
 };
 
 // TODO: desfazer desestruturação das propriedades e receber o objeto completo
@@ -29,6 +30,6 @@ export const WeightAndHeightMeasurementResult = ({
         });
     return {
         status: weightAndHeightMeasurementCalc.computeStatus(),
-        index: weightAndHeightMeasurementCalc.computeMeasurements(),
+        count: weightAndHeightMeasurementCalc.computeMeasurements(),
     };
 };

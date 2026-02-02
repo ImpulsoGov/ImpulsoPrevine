@@ -1,5 +1,6 @@
 import { BloodPressureMeasurementCalculator } from "../BloodPressureMeasurementCalculator";
 import type { InputData } from "../BloodPressureMeasurementCalculator";
+const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 
 const baseInput = (): InputData => ({
     gestationalAgeByLastMenstrualPeriodWeeks: 20,
@@ -13,7 +14,7 @@ const baseInput = (): InputData => ({
 
 describe("BloodPressureMeasurementsCalculator", () => {
     describe("computeAppointmentsDuringPrenatal", () => {
-        it("retorna o número de aferições de pressão arterial informado", () => {
+        it("retorna o número de aferições de pressão arterial informado e o total", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 5,
@@ -21,7 +22,10 @@ describe("BloodPressureMeasurementsCalculator", () => {
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeNumberOfBloodPressureMeasurements()).toBe(5);
+            expect(calc.computeNumberOfBloodPressureMeasurements()).toEqual({
+                current: 5,
+                total: TARGET_NUMBER_OF_MEASUREMENTS,
+            });
         });
     });
 

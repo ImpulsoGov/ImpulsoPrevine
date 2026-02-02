@@ -1,9 +1,10 @@
+import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import type { Status, InputData } from "./SevenAppointmentsCalculator";
 import { SevenAppointmentsCalculator } from "./SevenAppointmentsCalculator";
 
 type SevenAppointmentsResult = {
     status: Status;
-    index: number;
+    count: Count;
 };
 
 export const SevenAppointmentsResult = ({
@@ -27,6 +28,6 @@ export const SevenAppointmentsResult = ({
     });
     return {
         status: SevenAppointmentsCalc.computeStatus(),
-        index: SevenAppointmentsCalc.computeAppointmentsDuringPrenatal(),
+        count: SevenAppointmentsCalc.computeAppointmentsDuringPrenatal(),
     };
 };
