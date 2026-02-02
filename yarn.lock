@@ -6785,10 +6785,10 @@ mixpanel-browser@*:
   dependencies:
     rrweb "2.0.0-alpha.18"
 
-mixpanel-browser@^2.55.1:
-  version "2.73.0"
-  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.73.0.tgz#ca27983ea18fd08af28965df9781ce1ca0a89b6f"
-  integrity sha512-Ny+6BVeWJozZoyrzB+5/6LTqBZ0gDY1pwcs7PQLQVGPKMTdL8qAz0yV4H8ykGQEA5KrW2Ky/KZ3uMEHGjE7oSA==
+mixpanel-browser@^2.73.0:
+  version "2.74.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.74.0.tgz#c66767fb82fa4a928e4c1ba1603db4a23199ddac"
+  integrity sha512-FWifdAaI+8zKEROb9T+gy0NRZB0gaCC5iy20rDjZ3C+KCwCsJcITT6lAYErWbwwmk3Ei34JBjLsnrDLPYj+hOw==
   dependencies:
     "@mixpanel/rrweb" "2.0.0-alpha.18.2"
     "@mixpanel/rrweb-plugin-console-record" "2.0.0-alpha.18.2"
