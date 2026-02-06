@@ -5,7 +5,6 @@ import { PROFILE_ID } from "@/types/profile";
 import { getServerSession } from "next-auth";
 import { ErrorPage } from "@features/acf/frontend/common/ErrorPage";
 import { PanelSelector } from "@features/acf/frontend/common/PanelSelector";
-import { print } from "@/features/common/shared/flags";
 import { hypertensionNewProgram } from "@/features/common/shared/flags";
 import { notFound } from "next/navigation";
 import { ContentCoeq, ContentCoaps } from "./modules/List";
@@ -29,13 +28,8 @@ export const AcfPage: React.FC<Props> = async () => {
         session?.user.municipio_id_sus ?? ""
     );
     const isCoeq = session?.user.perfis.includes(PROFILE_ID.COEQ);
-    const isPrintEnabled = await print();
 
-    const content = isCoeq ? (
-        <ContentCoeq isPrintEnabled={isPrintEnabled} />
-    ) : (
-        <ContentCoaps isPrintEnabled={isPrintEnabled} />
-    );
+    const content = isCoeq ? <ContentCoeq /> : <ContentCoaps />;
     const header = {
         ...sharedHeader,
         text: isCoeq ? textCoeq : textCoaps,

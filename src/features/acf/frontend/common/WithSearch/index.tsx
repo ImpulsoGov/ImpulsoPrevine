@@ -24,7 +24,7 @@ type WithSearchProps = React.PropsWithChildren<Props>;
 
 export const WithSearch: React.FC<WithSearchProps> = ({
     SearchComponent,
-    isPrintEnabled,
+    isPrintEnabled = true,
     propTriggerPrintWithoutModal,
     setShouldRenderPrintTable,
     children,
