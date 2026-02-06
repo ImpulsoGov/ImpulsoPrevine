@@ -23,12 +23,13 @@ import {
 } from "./modules/Print/consts";
 import { getCoeqData } from "./modules/Print/service";
 import { initialSelectedValuesCoeq } from "./consts";
+// Decidimos desabilitar esse tipo porque no momento todos os lançamentos estão sendo feitos com a funcionalidade da impressão disponível.
+// Se no futuro houver necessidade podemos voltar a utiliza-lo.
+// type ContentCoeqProps = {
+//     isPrintEnabled: boolean;
+// };
 
-type ContentCoeqProps = {
-    isPrintEnabled: boolean;
-};
-
-export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
+export const ContentCoeq: React.FC = () => {
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
     return (
         <>
@@ -41,7 +42,6 @@ export const ContentCoeq: React.FC<ContentCoeqProps> = ({ isPrintEnabled }) => {
                         >
                             <WithSearch
                                 SearchComponent={SearchToolBar}
-                                isPrintEnabled={isPrintEnabled}
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }

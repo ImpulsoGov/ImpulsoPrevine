@@ -23,15 +23,14 @@ import {
 } from "./modules/Print/consts";
 import { getCoapsData } from "./modules/Print/service";
 import { initialSelectedValuesCoaps } from "./consts";
-
-type ContentCoapsProps = {
-    isPrintEnabled: boolean;
-};
+// Decidimos desabilitar esse tipo porque no momento todos os lançamentos estão sendo feitos com a funcionalidade da impressão disponível.
+// Se no futuro houver necessidade podemos voltar a utiliza-lo.
+// type ContentCoapsProps = {
+//     isPrintEnabled: boolean;
+// };
 
 //TODO: Escrever um componente que engloba o conteúdo compartilhado entre os perfis de coordenação.
-export const ContentCoaps: React.FC<ContentCoapsProps> = ({
-    isPrintEnabled,
-}) => {
+export const ContentCoaps: React.FC = () => {
     const [shouldRenderPrintTable, setShouldRenderPrintTable] = useState(false);
 
     return (
@@ -45,7 +44,6 @@ export const ContentCoaps: React.FC<ContentCoapsProps> = ({
                             <CurrentQuadrimester />
                             <WithSearch
                                 SearchComponent={SearchToolBar}
-                                isPrintEnabled={isPrintEnabled}
                                 propTriggerPrintWithoutModal={
                                     printListProps.propTriggerPrintWithoutModal
                                 }
