@@ -2115,10 +2115,10 @@
   resolved "https://registry.npmjs.org/@next/env/-/env-15.1.6.tgz"
   integrity sha512-d9AFQVPEYNr+aqokIiPLNK/MTyt3DWa/dpKveiAaVccUadFbhFEvY6FXYX2LJO2Hv7PHnLBu2oWwB4uBuHjr/w==
 
-"@next/env@15.5.7":
-  version "15.5.7"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-15.5.7.tgz#4168db34ae3bc9fd9ad3b951d327f4cfc38d4362"
-  integrity sha512-4h6Y2NyEkIEN7Z8YxkA27pq6zTkS09bUSYC0xjd0NpwFxjnIKeZEeH591o5WECSmjpUhLn3H2QLJcDye3Uzcvg==
+"@next/env@15.5.10":
+  version "15.5.10"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-15.5.10.tgz#3b0506c57d0977e60726a1663f36bc96d42c295b"
+  integrity sha512-plg+9A/KoZcTS26fe15LHg+QxReTazrIOoKKUC3Uz4leGGeNPgLHdevVraAAOX0snnUs3WkRx3eUQpj9mreG6A==
 
 "@next/eslint-plugin-next@15.1.6":
   version "15.1.6"
@@ -6785,10 +6785,10 @@ mixpanel-browser@*:
   dependencies:
     rrweb "2.0.0-alpha.18"
 
-mixpanel-browser@^2.55.1:
-  version "2.73.0"
-  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.73.0.tgz#ca27983ea18fd08af28965df9781ce1ca0a89b6f"
-  integrity sha512-Ny+6BVeWJozZoyrzB+5/6LTqBZ0gDY1pwcs7PQLQVGPKMTdL8qAz0yV4H8ykGQEA5KrW2Ky/KZ3uMEHGjE7oSA==
+mixpanel-browser@^2.73.0:
+  version "2.74.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.74.0.tgz#c66767fb82fa4a928e4c1ba1603db4a23199ddac"
+  integrity sha512-FWifdAaI+8zKEROb9T+gy0NRZB0gaCC5iy20rDjZ3C+KCwCsJcITT6lAYErWbwwmk3Ei34JBjLsnrDLPYj+hOw==
   dependencies:
     "@mixpanel/rrweb" "2.0.0-alpha.18.2"
     "@mixpanel/rrweb-plugin-console-record" "2.0.0-alpha.18.2"
@@ -6861,12 +6861,12 @@ next@15.1.6:
     "@next/swc-win32-x64-msvc" "15.1.6"
     sharp "^0.33.5"
 
-next@15.5.7:
-  version "15.5.7"
-  resolved "https://registry.yarnpkg.com/next/-/next-15.5.7.tgz#4507700b2bbcaf2c9fb7a9ad25c0dac2ba4a9a75"
-  integrity sha512-+t2/0jIJ48kUpGKkdlhgkv+zPTEOoXyr60qXe68eB/pl3CMJaLeIGjzp5D6Oqt25hCBiBTt8wEeeAzfJvUKnPQ==
+next@15.5.10:
+  version "15.5.10"
+  resolved "https://registry.yarnpkg.com/next/-/next-15.5.10.tgz#5e3824d8f00dcd66ca4e79c38834f766976116bd"
+  integrity sha512-r0X65PNwyDDyOrWNKpQoZvOatw7BcsTPRKdwEqtc9cj3wv7mbBIk9tKed4klRaFXJdX0rugpuMTHslDrAU1bBg==
   dependencies:
-    "@next/env" "15.5.7"
+    "@next/env" "15.5.10"
     "@swc/helpers" "0.5.15"
     caniuse-lite "^1.0.30001579"
     postcss "8.4.31"
