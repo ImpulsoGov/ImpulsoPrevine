@@ -1,6 +1,9 @@
-import type { InputData, GestationalAge } from "../../model";
+import type {
+    GestationalAge,
+    InputData,
+} from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge/model";
 
-export class GestacionalAgeCalculator {
+export class GestationalAgeCalculator {
     #data: InputData;
 
     constructor(data: InputData) {

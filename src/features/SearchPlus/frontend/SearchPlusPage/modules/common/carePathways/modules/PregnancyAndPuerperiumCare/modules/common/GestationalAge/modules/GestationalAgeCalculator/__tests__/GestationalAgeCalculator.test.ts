@@ -1,5 +1,5 @@
-import { GestacionalAgeCalculator } from "..";
-import type { InputData } from "../../../model";
+import type { InputData } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge/model";
+import { GestationalAgeCalculator } from "..";
 
 describe("GestacionalAgeCalculator", () => {
     describe("computeGestacionalAge", () => {
@@ -10,7 +10,7 @@ describe("GestacionalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundWeeks: 12,
                 gestationalAgeByObstreticalUltrasoundDays: 1,
             };
-            const calculator = new GestacionalAgeCalculator(input);
+            const calculator = new GestationalAgeCalculator(input);
             const result = calculator.computeGestacionalAge();
             expect(result).toEqual({ weeks: 12, days: 1 });
         });
@@ -22,7 +22,7 @@ describe("GestacionalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundWeeks: null,
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
-            const calculator = new GestacionalAgeCalculator(input);
+            const calculator = new GestationalAgeCalculator(input);
             const result = calculator.computeGestacionalAge();
             expect(result).toEqual({ weeks: 9, days: 5 });
         });
@@ -34,7 +34,7 @@ describe("GestacionalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundWeeks: null,
                 gestationalAgeByObstreticalUltrasoundDays: 6,
             };
-            const calculator = new GestacionalAgeCalculator(input);
+            const calculator = new GestationalAgeCalculator(input);
             const result = calculator.computeGestacionalAge();
             expect(result).toEqual({ weeks: 8, days: 2 });
         });
@@ -46,7 +46,7 @@ describe("GestacionalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundWeeks: null,
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
-            const calculator = new GestacionalAgeCalculator(input);
+            const calculator = new GestationalAgeCalculator(input);
             const result = calculator.computeGestacionalAge();
             expect(result).toEqual({ weeks: null, days: null });
         });
