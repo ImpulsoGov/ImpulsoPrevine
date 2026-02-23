@@ -1,8 +1,8 @@
 import type { InputData } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge/model";
 import { GestationalAgeCalculator } from "..";
 
-describe("GestacionalAgeCalculator", () => {
-    describe("computeGestacionalAge", () => {
+describe("GestationalAgeCalculator", () => {
+    describe("computeGestationalAge", () => {
         it("deve retornar idade gestacional baseada no ultrassom quando disponível", () => {
             const input: InputData = {
                 gestationalAgeByLastMenstrualPeriodWeeks: 10,
