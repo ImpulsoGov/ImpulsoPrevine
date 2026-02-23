@@ -11,7 +11,7 @@ describe("GestationalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: 1,
             };
             const calculator = new GestationalAgeCalculator(input);
-            const result = calculator.computeGestacionalAge();
+            const result = calculator.computeGestationalAge();
             expect(result).toEqual({ weeks: 12, days: 1 });
         });
 
@@ -23,7 +23,7 @@ describe("GestationalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
             const calculator = new GestationalAgeCalculator(input);
-            const result = calculator.computeGestacionalAge();
+            const result = calculator.computeGestationalAge();
             expect(result).toEqual({ weeks: 9, days: 5 });
         });
 
@@ -35,7 +35,7 @@ describe("GestationalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: 6,
             };
             const calculator = new GestationalAgeCalculator(input);
-            const result = calculator.computeGestacionalAge();
+            const result = calculator.computeGestationalAge();
             expect(result).toEqual({ weeks: 8, days: 2 });
         });
 
@@ -47,7 +47,7 @@ describe("GestationalAgeCalculator", () => {
                 gestationalAgeByObstreticalUltrasoundDays: null,
             };
             const calculator = new GestationalAgeCalculator(input);
-            const result = calculator.computeGestacionalAge();
+            const result = calculator.computeGestationalAge();
             expect(result).toEqual({ weeks: null, days: null });
         });
     });

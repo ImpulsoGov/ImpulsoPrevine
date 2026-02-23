@@ -21,7 +21,7 @@ export class GestationalAgeCalculator {
         );
     }
 
-    public computeGestacionalAge(): GestationalAge {
+    public computeGestationalAge(): GestationalAge {
         const gestationalAgeByLastMenstrualPeriodWeeks =
             this.#data.gestationalAgeByLastMenstrualPeriodWeeks;
         const gestationalAgeByLastMenstrualPeriodDays =
