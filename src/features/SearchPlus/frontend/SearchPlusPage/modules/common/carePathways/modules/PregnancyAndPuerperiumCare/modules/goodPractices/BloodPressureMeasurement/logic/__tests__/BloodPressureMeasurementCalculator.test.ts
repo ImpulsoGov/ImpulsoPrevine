@@ -1,16 +1,18 @@
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import { BloodPressureMeasurementCalculator } from "../BloodPressureMeasurementCalculator";
 import type { InputData } from "../BloodPressureMeasurementCalculator";
 const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 
 const baseInput = (): InputData => ({
-    gestationalAgeByLastMenstrualPeriodWeeks: 20,
-    gestationalAgeByLastMenstrualPeriodDays: 0,
-    gestationalAgeByObstreticalUltrasoundWeeks: null,
-    gestationalAgeByObstreticalUltrasoundDays: null,
     appointmentsDuringPuerperium: 0,
     homeVisitsDuringPuerperium: 0,
     bloodPressureMeasurements: 0,
 });
+
+const baseGestationalAge: GestationalAge = {
+    weeks: 20,
+    days: 0,
+};
 
 describe("BloodPressureMeasurementsCalculator", () => {
     describe("computeAppointmentsDuringPrenatal", () => {
@@ -33,90 +35,100 @@ describe("BloodPressureMeasurementsCalculator", () => {
         it("retorna 'disabled' quando semanas são null", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: null,
-                gestationalAgeByObstreticalUltrasoundWeeks: null,
-                gestationalAgeByObstreticalUltrasoundDays: null,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: null,
+                days: 1,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'disabled' quando dias são null", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodDays: null,
-                gestationalAgeByObstreticalUltrasoundWeeks: null,
-                gestationalAgeByObstreticalUltrasoundDays: null,
             };
-
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 40,
+                days: null,
+            };
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
     });
 
     describe("computeStatus - cálculo durante o pré-natal", () => {
-        it("retorna 'danger' quando não há aferições de pressão arterial e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'danger' quando não há aferições de pressão arterial", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 0,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "danger",
+            });
         });
 
-        it("retorna 'warning' quando tem menos de 4 aferições de pressão arterial e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'warning' quando tem menos de 4 aferições de pressão arterial", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 3,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "warning" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "warning",
+            });
         });
 
-        it("retorna 'attention' quando tem entre 4 e 6 aferições de pressão arterial e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'attention' quando tem entre 4 e 6 aferições de pressão arterial", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 5,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "attention" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "attention",
+            });
         });
 
-        it("retorna 'success' quando tem 7 ou mais aferições de pressão arterial e IG maior que 42 semanas e 0 dias", () => {
+        it("retorna 'success' quando tem 7 ou mais aferições de pressão arterial", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 7,
             };
-
-            const calc = new BloodPressureMeasurementCalculator(data);
-
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
-        });
-    });
-
-    describe("computeStatus - uso de ultrassom obstétrico", () => {
-        it("prioriza idade gestacional por ultrassom quando disponível", () => {
-            const data = {
-                ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 10,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
-                gestationalAgeByObstreticalUltrasoundWeeks: 30,
-                gestationalAgeByObstreticalUltrasoundDays: 0,
-                bloodPressureMeasurements: 0,
+            const gestationalAge = {
+                ...baseGestationalAge,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
     });
 
@@ -124,40 +136,55 @@ describe("BloodPressureMeasurementsCalculator", () => {
         it("retorna 'disabled' quando >= 42 semanas + dias > 0 e aferições < 7", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 1,
                 bloodPressureMeasurements: 6,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'success' quando >= 42 semanas + dias > 0 e aferições >= 7", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 1,
                 bloodPressureMeasurements: 7,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
 
         it("não entra na regra especial quando semanas = 42 e dias = 0", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
                 bloodPressureMeasurements: 0,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 0,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "danger",
+            });
         });
     });
 
@@ -168,10 +195,15 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 appointmentsDuringPuerperium: 1,
                 bloodPressureMeasurements: 6,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'success' quando a quantidade de aferições de pressão arterial no pré-natal é 7", () => {
@@ -180,10 +212,15 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 bloodPressureMeasurements: 7,
                 homeVisitsDuringPuerperium: 1,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
 
         it("retorna 'success' quando a quantidade de aferições de pressão arterial no pré-natal é maior que 7", () => {
@@ -193,10 +230,15 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 homeVisitsDuringPuerperium: 1,
                 appointmentsDuringPuerperium: 2,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new BloodPressureMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
     });
 });
