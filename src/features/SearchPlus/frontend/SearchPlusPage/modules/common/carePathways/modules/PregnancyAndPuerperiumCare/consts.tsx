@@ -1,6 +1,7 @@
 import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/model";
 import * as goodPractices from "./modules/goodPractices";
 import { Tag } from "./modules/common/tags";
+import { GestationalAgeFactory } from "./modules/common/GestationalAge";
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 
 export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
@@ -22,33 +23,48 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             );
         },
     },
-    // {
-    //     fields: [
-    //         "gestationalAgeByLastMenstrualPeriodWeeks",
-    //         "gestationalAgeByLastMenstrualPeriodDays",
-    //         "gestationalAgeByObstreticalUltrasoundWeeks",
-    //         "gestationalAgeByObstreticalUltrasoundDays",
-    //     ],
-    //     headerName: "IG",
-    //     width: {
-    //         landscape: 95,
-    //         portrait: 74,
-    //     },
-    //     renderCell: (param: unknown): React.ReactNode => {
-    //         const [
-    //             gestationalAgeByLastMenstrualPeriodWeeks,
-    //             gestationalAgeByLastMenstrualPeriodDays,
-    //             gestationalAgeByObstreticalUltrasoundWeeks,
-    //             gestationalAgeByObstreticalUltrasoundDays,
-    //         ] = param as [
-    //             number | null,
-    //             number | null,
-    //             number | null,
-    //             number | null,
-    //         ];
-    //         return <div></div>;
-    //     },
-    // },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+        ],
+        headerName: "IG",
+        width: {
+            landscape: 95,
+            portrait: 74,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+            ] = param as [
+                number | null,
+                number | null,
+                number | null,
+                number | null,
+            ];
+            const { weeks, days } = GestationalAgeFactory({
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+            }).computeGestationalAge();
+
+            return (
+                // TODO: adicionar validação da idade gestacional no upload do arquivo
+                // para que, após o upload, não haja possibilidade dela ser nula
+                <div>
+                    {weeks === null || days === null
+                        ? "-"
+                        : `${weeks.toString()} sem. ${days > 0 ? `e ${days.toString()} dias` : ""}`}
+                </div>
+            );
+        },
+    },
     {
         fields: ["patientAge", "patientPhoneNumber", "microAreaName"],
         headerName: "Idade, telefone e microárea",
