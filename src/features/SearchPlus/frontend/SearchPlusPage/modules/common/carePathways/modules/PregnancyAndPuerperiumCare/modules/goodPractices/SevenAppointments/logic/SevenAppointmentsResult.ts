@@ -2,7 +2,7 @@ import type {
     Count,
     PregnancyAndPuerperiumCareItem,
 } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
-import type { Status, CalculatorInput } from "./SevenAppointmentsCalculator";
+import type { Status } from "./SevenAppointmentsCalculator";
 import { SevenAppointmentsCalculator } from "./SevenAppointmentsCalculator";
 import { GestationalAgeFactory } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 
