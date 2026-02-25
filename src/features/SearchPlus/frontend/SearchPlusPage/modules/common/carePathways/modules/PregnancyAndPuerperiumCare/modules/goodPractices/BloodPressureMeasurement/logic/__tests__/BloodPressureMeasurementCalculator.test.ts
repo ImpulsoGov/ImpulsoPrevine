@@ -1,9 +1,9 @@
 import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import { BloodPressureMeasurementCalculator } from "../BloodPressureMeasurementCalculator";
-import type { InputData } from "../BloodPressureMeasurementCalculator";
+import type { CalculatorInput } from "../BloodPressureMeasurementCalculator";
 const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 
-const baseInput = (): InputData => ({
+const baseInput = (): CalculatorInput => ({
     appointmentsDuringPuerperium: 0,
     homeVisitsDuringPuerperium: 0,
     bloodPressureMeasurements: 0,

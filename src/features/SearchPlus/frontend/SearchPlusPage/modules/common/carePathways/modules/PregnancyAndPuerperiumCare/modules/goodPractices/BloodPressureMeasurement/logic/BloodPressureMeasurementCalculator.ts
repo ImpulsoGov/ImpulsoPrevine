@@ -9,7 +9,7 @@ const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 const ZERO_MEASUREMENTS = 0;
 const FOUR_MEASUREMENTS = 4;
 
-export type InputData = {
+export type CalculatorInput = {
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
     bloodPressureMeasurements: PregnancyAndPuerperiumCareItem["bloodPressureMeasurements"];
@@ -20,9 +20,9 @@ export type Status = {
 };
 
 export class BloodPressureMeasurementCalculator {
-    #data: InputData;
+    #data: CalculatorInput;
 
-    constructor(data: InputData) {
+    constructor(data: CalculatorInput) {
         this.#data = data;
     }
 

@@ -11,7 +11,7 @@ type BloodPressureMeasurementResult = {
     count: Count;
 };
 
-type InputResult = Pick<
+type Data = Pick<
     PregnancyAndPuerperiumCareItem,
     | "gestationalAgeByLastMenstrualPeriodWeeks"
     | "gestationalAgeByLastMenstrualPeriodDays"
@@ -30,7 +30,7 @@ export const BloodPressureMeasurementResult = ({
     homeVisitsDuringPuerperium,
     appointmentsDuringPuerperium,
     bloodPressureMeasurements,
-}: InputResult): BloodPressureMeasurementResult => {
+}: Data): BloodPressureMeasurementResult => {
     const gestationalAge = GestationalAgeFactory({
         gestationalAgeByLastMenstrualPeriodWeeks,
         gestationalAgeByLastMenstrualPeriodDays,
