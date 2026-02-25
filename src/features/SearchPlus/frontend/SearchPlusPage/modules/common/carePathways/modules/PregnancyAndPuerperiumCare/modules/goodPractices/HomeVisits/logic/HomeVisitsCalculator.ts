@@ -1,4 +1,5 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import type {
     Count,
     PregnancyAndPuerperiumCareItem,
@@ -12,10 +13,6 @@ const ONE_HOME_VISIT_DURING_PREGNANCY = 1;
 const TWO_HOME_VISITS_DURING_PREGNANCY = 2;
 
 export type InputData = {
-    gestationalAgeByLastMenstrualPeriodWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodWeeks"];
-    gestationalAgeByLastMenstrualPeriodDays: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodDays"];
-    gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
-    gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     homeVisitsDuringPregnancy: PregnancyAndPuerperiumCareItem["homeVisitsDuringPregnancy"];
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
@@ -25,27 +22,11 @@ export type Status = {
     tagStatus: PrintTagTheme;
 };
 
-type GestationalAge = {
-    weeks: number | null;
-    days: number | null;
-};
-
 export class HomeVisitsCalculator {
     #data: InputData;
 
     constructor(data: InputData) {
         this.#data = data;
-    }
-
-    #isObstreticalUltrasoundAvailable(): boolean {
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
-        return (
-            gestationalAgeByObstreticalUltrasoundWeeks !== null &&
-            gestationalAgeByObstreticalUltrasoundDays !== null
-        );
     }
 
     public computeHomeVisitsDuringPrenatal(): Count {
@@ -85,32 +66,7 @@ export class HomeVisitsCalculator {
             : { tagStatus: "success" };
     }
 
-    public computeStatus(): Status {
-        const gestationalAgeByLastMenstrualPeriodWeeks =
-            this.#data.gestationalAgeByLastMenstrualPeriodWeeks;
-        const gestationalAgeByLastMenstrualPeriodDays =
-            this.#data.gestationalAgeByLastMenstrualPeriodDays;
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
-
-        let gestationalAge: GestationalAge = {
-            weeks: null,
-            days: null,
-        };
-
-        if (this.#isObstreticalUltrasoundAvailable()) {
-            gestationalAge = {
-                weeks: gestationalAgeByObstreticalUltrasoundWeeks,
-                days: gestationalAgeByObstreticalUltrasoundDays,
-            };
-        } else {
-            gestationalAge = {
-                weeks: gestationalAgeByLastMenstrualPeriodWeeks,
-                days: gestationalAgeByLastMenstrualPeriodDays,
-            };
-        }
+    public computeStatus(gestationalAge: GestationalAge): Status {
         if (
             gestationalAge["weeks"] === null ||
             gestationalAge["days"] === null
