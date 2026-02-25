@@ -1,9 +1,10 @@
 import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import { HomeVisitsCalculator } from "../HomeVisitsCalculator";
-import type { InputData } from "../HomeVisitsCalculator";
+import type { CalculatorInput } from "../HomeVisitsCalculator";
+
 const TARGET_HOME_VISITS_DURING_PREGNANCY = 3;
 
-const baseInput = (): InputData => ({
+const baseInput = (): CalculatorInput => ({
     homeVisitsDuringPuerperium: 0,
     homeVisitsDuringPregnancy: 0,
     appointmentsDuringPuerperium: 0,

@@ -12,7 +12,7 @@ const ZERO_HOME_VISIT_DURING_PREGNANCY = 0;
 const ONE_HOME_VISIT_DURING_PREGNANCY = 1;
 const TWO_HOME_VISITS_DURING_PREGNANCY = 2;
 
-export type InputData = {
+export type CalculatorInput = {
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     homeVisitsDuringPregnancy: PregnancyAndPuerperiumCareItem["homeVisitsDuringPregnancy"];
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
@@ -23,9 +23,9 @@ export type Status = {
 };
 
 export class HomeVisitsCalculator {
-    #data: InputData;
+    #data: CalculatorInput;
 
-    constructor(data: InputData) {
+    constructor(data: CalculatorInput) {
         this.#data = data;
     }
 

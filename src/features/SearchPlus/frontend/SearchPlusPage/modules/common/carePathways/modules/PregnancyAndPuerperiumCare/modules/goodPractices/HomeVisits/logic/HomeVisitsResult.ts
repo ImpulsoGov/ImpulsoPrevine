@@ -11,7 +11,7 @@ type HomeVisitsResult = {
     count: Count;
 };
 
-type InputData = Pick<
+type Data = Pick<
     PregnancyAndPuerperiumCareItem,
     | "gestationalAgeByLastMenstrualPeriodWeeks"
     | "gestationalAgeByLastMenstrualPeriodDays"
@@ -30,7 +30,7 @@ export const HomeVisitsResult = ({
     homeVisitsDuringPuerperium,
     homeVisitsDuringPregnancy,
     appointmentsDuringPuerperium,
-}: InputData): HomeVisitsResult => {
+}: Data): HomeVisitsResult => {
     const gestationalAge = GestationalAgeFactory({
         gestationalAgeByLastMenstrualPeriodWeeks,
         gestationalAgeByLastMenstrualPeriodDays,
