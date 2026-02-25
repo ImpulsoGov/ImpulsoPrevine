@@ -1,16 +1,18 @@
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import { WeightAndHeightMeasurementCalculator } from "../WeightAndHeightMeasurementCalculator";
-import type { InputData } from "../WeightAndHeightMeasurementCalculator";
+import type { CalculatorInput } from "../WeightAndHeightMeasurementCalculator";
 const TARGET_NUMBER_OF_MEASUREMENTS = 7;
 
-const baseInput = (): InputData => ({
-    gestationalAgeByLastMenstrualPeriodWeeks: 20,
-    gestationalAgeByLastMenstrualPeriodDays: 0,
-    gestationalAgeByObstreticalUltrasoundWeeks: null,
-    gestationalAgeByObstreticalUltrasoundDays: null,
+const baseInput = (): CalculatorInput => ({
     weightAndHeightMeasurements: 0,
     appointmentsDuringPuerperium: 0,
     homeVisitsDuringPuerperium: 0,
 });
+
+const baseGestationalAge: GestationalAge = {
+    weeks: 20,
+    days: 0,
+};
 
 describe("WeightAndHeightMeasurementCalculator", () => {
     describe("computeMeasurements", () => {
@@ -33,27 +35,34 @@ describe("WeightAndHeightMeasurementCalculator", () => {
         it("retorna 'disabled' quando semanas da gestação são null", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: null,
-                gestationalAgeByObstreticalUltrasoundWeeks: null,
-                gestationalAgeByObstreticalUltrasoundDays: null,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: null,
+                days: 1,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'disabled' quando dias da gestação são null", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodDays: null,
-                gestationalAgeByObstreticalUltrasoundWeeks: null,
-                gestationalAgeByObstreticalUltrasoundDays: null,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                days: null,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
     });
 
@@ -63,10 +72,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 0,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "danger",
+            });
         });
 
         it("retorna 'warning' quando foram feitas menos de 4 medições", () => {
@@ -74,10 +88,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 3,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "warning" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "warning",
+            });
         });
 
         it("retorna 'attention' quando foram feitas entre 4 e 6 medições", () => {
@@ -85,10 +104,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 5,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "attention" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "attention",
+            });
         });
 
         it("retorna 'success' quando foram feitas 7 ou mais medições", () => {
@@ -96,27 +120,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 7,
             };
-
-            const calc = new WeightAndHeightMeasurementCalculator(data);
-
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
-        });
-    });
-
-    describe("computeStatus - uso de ultrassom obstétrico", () => {
-        it("prioriza idade gestacional por ultrassom quando disponível", () => {
-            const data = {
-                ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 10,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
-                gestationalAgeByObstreticalUltrasoundWeeks: 30,
-                gestationalAgeByObstreticalUltrasoundDays: 0,
-                weightAndHeightMeasurements: 0,
+            const gestationalAge = {
+                ...baseGestationalAge,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
     });
 
@@ -124,40 +136,55 @@ describe("WeightAndHeightMeasurementCalculator", () => {
         it("retorna 'disabled' quando IG >= 42 semanas + 0 dias e medições < 7", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 1,
                 weightAndHeightMeasurements: 6,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'success' quando IG >= 42 semanas + 0 dias e medições >= 7", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 1,
                 weightAndHeightMeasurements: 7,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
 
         it("retorna 'danger' quando IG = 42 semanas + 0 dias e medições = 0", () => {
             const data = {
                 ...baseInput(),
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
                 weightAndHeightMeasurements: 0,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 0,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "danger" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "danger",
+            });
         });
     });
 
@@ -168,10 +195,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 weightAndHeightMeasurements: 6,
                 appointmentsDuringPuerperium: 1,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "disabled" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
         });
 
         it("retorna 'success' quando a quantidade de medições é 7", () => {
@@ -180,10 +212,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 weightAndHeightMeasurements: 7,
                 homeVisitsDuringPuerperium: 1,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
 
         it("retorna 'success' quando a quantidade de medições é maior que 7", () => {
@@ -193,10 +230,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 homeVisitsDuringPuerperium: 1,
                 appointmentsDuringPuerperium: 2,
             };
+            const gestationalAge = {
+                ...baseGestationalAge,
+            };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
 
-            expect(calc.computeStatus()).toEqual({ tagStatus: "success" });
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
         });
     });
 });
