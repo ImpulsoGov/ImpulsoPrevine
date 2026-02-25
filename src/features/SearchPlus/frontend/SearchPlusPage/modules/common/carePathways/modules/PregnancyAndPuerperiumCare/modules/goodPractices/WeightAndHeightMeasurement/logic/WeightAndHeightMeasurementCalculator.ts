@@ -1,4 +1,5 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import type {
     Count,
     PregnancyAndPuerperiumCareItem,
@@ -12,11 +13,7 @@ const ZERO_MEASUREMENTS = 0;
 const FOUR_MEASUREMENTS = 4;
 
 // TODO: usar Pick para selecionar os campos necessários ao invés de repetir a definição
-export type InputData = {
-    gestationalAgeByLastMenstrualPeriodWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodWeeks"];
-    gestationalAgeByLastMenstrualPeriodDays: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodDays"];
-    gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
-    gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
+export type CalculatorInput = {
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
     weightAndHeightMeasurements: PregnancyAndPuerperiumCareItem["weightAndHeightMeasurements"];
@@ -26,27 +23,11 @@ export type Status = {
     tagStatus: PrintTagTheme;
 };
 
-type GestationalAge = {
-    weeks: number | null;
-    days: number | null;
-};
-
 export class WeightAndHeightMeasurementCalculator {
-    #data: InputData;
+    #data: CalculatorInput;
 
-    constructor(data: InputData) {
+    constructor(data: CalculatorInput) {
         this.#data = data;
-    }
-
-    #isObstreticalUltrasoundAvailable(): boolean {
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
-        return (
-            gestationalAgeByObstreticalUltrasoundWeeks !== null &&
-            gestationalAgeByObstreticalUltrasoundDays !== null
-        );
     }
 
     public computeMeasurements(): Count {
@@ -83,33 +64,7 @@ export class WeightAndHeightMeasurementCalculator {
             : { tagStatus: "success" };
     }
 
-    public computeStatus(): Status {
-        const gestationalAgeByLastMenstrualPeriodWeeks =
-            this.#data.gestationalAgeByLastMenstrualPeriodWeeks;
-        const gestationalAgeByLastMenstrualPeriodDays =
-            this.#data.gestationalAgeByLastMenstrualPeriodDays;
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
-
-        // TODO: mover a lógica de seleção da idade gestacional para um método separado
-        let gestationalAge: GestationalAge = {
-            weeks: null,
-            days: null,
-        };
-
-        if (this.#isObstreticalUltrasoundAvailable()) {
-            gestationalAge = {
-                weeks: gestationalAgeByObstreticalUltrasoundWeeks,
-                days: gestationalAgeByObstreticalUltrasoundDays,
-            };
-        } else {
-            gestationalAge = {
-                weeks: gestationalAgeByLastMenstrualPeriodWeeks,
-                days: gestationalAgeByLastMenstrualPeriodDays,
-            };
-        }
+    public computeStatus(gestationalAge: GestationalAge): Status {
         if (
             gestationalAge["weeks"] === null ||
             gestationalAge["days"] === null
