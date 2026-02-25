@@ -3,16 +3,12 @@ import type {
     Count,
     PregnancyAndPuerperiumCareItem,
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
-
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
 const TARGET_NUMBER_OF_DENTAL_APPOINTMENTS = 1;
 
-export type InputData = {
-    gestationalAgeByLastMenstrualPeriodWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodWeeks"];
-    gestationalAgeByLastMenstrualPeriodDays: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodDays"];
-    gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
-    gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
+export type CalculatorInput = {
     homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
     dentalAppointmentsDuringPrenatal: PregnancyAndPuerperiumCareItem["dentalAppointmentsDuringPrenatal"];
@@ -22,27 +18,11 @@ export type Status = {
     tagStatus: PrintTagTheme;
 };
 
-type GestationalAge = {
-    weeks: number | null;
-    days: number | null;
-};
-
 export class OralHealthCalculator {
-    #data: InputData;
+    #data: CalculatorInput;
 
-    constructor(data: InputData) {
+    constructor(data: CalculatorInput) {
         this.#data = data;
-    }
-
-    #isObstreticalUltrasoundAvailable(): boolean {
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
-        return (
-            gestationalAgeByObstreticalUltrasoundWeeks !== null &&
-            gestationalAgeByObstreticalUltrasoundDays !== null
-        );
     }
 
     public computeAppointmentsDuringPrenatal(): Count {
@@ -54,33 +34,10 @@ export class OralHealthCalculator {
         };
     }
 
-    public computeStatus(): Status {
-        const gestationalAgeByLastMenstrualPeriodWeeks =
-            this.#data.gestationalAgeByLastMenstrualPeriodWeeks;
-        const gestationalAgeByLastMenstrualPeriodDays =
-            this.#data.gestationalAgeByLastMenstrualPeriodDays;
-        const gestationalAgeByObstreticalUltrasoundWeeks =
-            this.#data.gestationalAgeByObstreticalUltrasoundWeeks;
-        const gestationalAgeByObstreticalUltrasoundDays =
-            this.#data.gestationalAgeByObstreticalUltrasoundDays;
+    public computeStatus(gestationalAge: GestationalAge): Status {
         const dentalAppointmentsDuringPrenatal =
             this.#data.dentalAppointmentsDuringPrenatal;
-        let gestationalAge: GestationalAge = {
-            weeks: null,
-            days: null,
-        };
 
-        if (this.#isObstreticalUltrasoundAvailable()) {
-            gestationalAge = {
-                weeks: gestationalAgeByObstreticalUltrasoundWeeks,
-                days: gestationalAgeByObstreticalUltrasoundDays,
-            };
-        } else {
-            gestationalAge = {
-                weeks: gestationalAgeByLastMenstrualPeriodWeeks,
-                days: gestationalAgeByLastMenstrualPeriodDays,
-            };
-        }
         if (
             gestationalAge["weeks"] === null ||
             gestationalAge["days"] === null
