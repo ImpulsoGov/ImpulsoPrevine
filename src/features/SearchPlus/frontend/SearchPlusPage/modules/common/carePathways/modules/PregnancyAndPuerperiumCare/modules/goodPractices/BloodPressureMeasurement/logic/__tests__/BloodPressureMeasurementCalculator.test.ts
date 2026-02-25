@@ -133,7 +133,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando >= 42 semanas + dias > 0 e aferições < 7", () => {
+        it("retorna 'disabled' quando semanas >= 42 + dias > 0 e aferições < 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 6,
@@ -151,7 +151,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando >= 42 semanas + dias > 0 e aferições >= 7", () => {
+        it("retorna 'success' quando semanas >= 42 + dias > 0 e aferições >= 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 7,
