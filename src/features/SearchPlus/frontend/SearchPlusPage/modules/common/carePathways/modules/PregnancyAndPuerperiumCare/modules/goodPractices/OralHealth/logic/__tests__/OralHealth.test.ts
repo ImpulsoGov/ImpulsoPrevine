@@ -1,15 +1,17 @@
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import { OralHealthCalculator } from "../OralHealthCalculator";
-import type { InputData } from "../OralHealthCalculator";
+import type { CalculatorInput } from "../OralHealthCalculator";
 const TARGET_NUMBER_OF_DENTAL_APPOINTMENTS = 1;
 
-const baseInput: InputData = {
-    gestationalAgeByLastMenstrualPeriodWeeks: 20,
-    gestationalAgeByLastMenstrualPeriodDays: 0,
-    gestationalAgeByObstreticalUltrasoundWeeks: null,
-    gestationalAgeByObstreticalUltrasoundDays: null,
+const baseInput: CalculatorInput = {
     homeVisitsDuringPuerperium: 0,
     appointmentsDuringPuerperium: 0,
     dentalAppointmentsDuringPrenatal: 0,
+};
+
+const baseGestationalAge: GestationalAge = {
+    weeks: 20,
+    days: 0,
 };
 
 describe("OralHealthCalculator", () => {
@@ -31,25 +33,15 @@ describe("OralHealthCalculator", () => {
         it("deve retornar 'disabled' quando os dados de idade gestacional não estiverem disponíveis", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
-                gestationalAgeByLastMenstrualPeriodWeeks: null,
-                gestationalAgeByLastMenstrualPeriodDays: null,
             });
 
-            expect(calculator.computeStatus()).toEqual({
-                tagStatus: "disabled",
-            });
-        });
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: null,
+                days: null,
+            };
 
-        it("deve priorizar a idade gestacional do ultrassom obstétrico quando disponível", () => {
-            const calculator = new OralHealthCalculator({
-                ...baseInput,
-                gestationalAgeByLastMenstrualPeriodWeeks: 10,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
-                gestationalAgeByObstreticalUltrasoundWeeks: 42,
-                gestationalAgeByObstreticalUltrasoundDays: 1,
-            });
-
-            expect(calculator.computeStatus()).toEqual({
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "disabled",
             });
         });
@@ -60,7 +52,7 @@ describe("OralHealthCalculator", () => {
                 dentalAppointmentsDuringPrenatal: 1,
             });
 
-            expect(calculator.computeStatus()).toEqual({
+            expect(calculator.computeStatus(baseGestationalAge)).toEqual({
                 tagStatus: "success",
             });
         });
@@ -72,7 +64,7 @@ describe("OralHealthCalculator", () => {
                 dentalAppointmentsDuringPrenatal: 0,
             });
 
-            expect(calculator.computeStatus()).toEqual({
+            expect(calculator.computeStatus(baseGestationalAge)).toEqual({
                 tagStatus: "disabled",
             });
         });
@@ -80,11 +72,15 @@ describe("OralHealthCalculator", () => {
         it("deve retornar 'disabled' quando a idade gestacional ultrapassar o limite máximo de semanas e dias", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 1,
             });
 
-            expect(calculator.computeStatus()).toEqual({
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "disabled",
             });
         });
@@ -92,12 +88,14 @@ describe("OralHealthCalculator", () => {
         it("deve retornar 'danger' quando não atingir o número alvo de consultas e estiver dentro do limite gestacional", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
-                gestationalAgeByLastMenstrualPeriodWeeks: 30,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
                 dentalAppointmentsDuringPrenatal: 0,
             });
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 30,
+            };
 
-            expect(calculator.computeStatus()).toEqual({
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "danger",
             });
         });
@@ -105,11 +103,12 @@ describe("OralHealthCalculator", () => {
         it("deve retornar 'danger' quando estiver exatamente no limite máximo de semanas gestacionais sem dias excedentes", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
-                gestationalAgeByLastMenstrualPeriodWeeks: 42,
-                gestationalAgeByLastMenstrualPeriodDays: 0,
             });
-
-            expect(calculator.computeStatus()).toEqual({
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+            };
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "danger",
             });
         });
