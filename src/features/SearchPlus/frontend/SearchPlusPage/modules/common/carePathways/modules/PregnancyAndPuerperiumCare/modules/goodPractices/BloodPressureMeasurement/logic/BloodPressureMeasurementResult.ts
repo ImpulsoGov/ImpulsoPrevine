@@ -11,15 +11,16 @@ type BloodPressureMeasurementResult = {
     count: Count;
 };
 
-type InputResult = {
-    gestationalAgeByLastMenstrualPeriodWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodWeeks"];
-    gestationalAgeByLastMenstrualPeriodDays: PregnancyAndPuerperiumCareItem["gestationalAgeByLastMenstrualPeriodDays"];
-    gestationalAgeByObstreticalUltrasoundWeeks: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundWeeks"];
-    gestationalAgeByObstreticalUltrasoundDays: PregnancyAndPuerperiumCareItem["gestationalAgeByObstreticalUltrasoundDays"];
-    homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
-    appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
-    bloodPressureMeasurements: PregnancyAndPuerperiumCareItem["bloodPressureMeasurements"];
-};
+type InputResult = Pick<
+    PregnancyAndPuerperiumCareItem,
+    | "gestationalAgeByLastMenstrualPeriodWeeks"
+    | "gestationalAgeByLastMenstrualPeriodDays"
+    | "gestationalAgeByObstreticalUltrasoundWeeks"
+    | "gestationalAgeByObstreticalUltrasoundDays"
+    | "homeVisitsDuringPuerperium"
+    | "appointmentsDuringPuerperium"
+    | "bloodPressureMeasurements"
+>;
 
 export const BloodPressureMeasurementResult = ({
     gestationalAgeByLastMenstrualPeriodWeeks,
