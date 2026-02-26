@@ -118,7 +118,7 @@ describe("SevenAppointmentsCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando semanas >= 42  + dias > 0 e consultas < 7", () => {
+        it("retorna 'disabled' quando semanas = 42 + dias = 1 e consultas < 7", () => {
             const data = {
                 ...baseInput(),
 
@@ -137,7 +137,7 @@ describe("SevenAppointmentsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas >= 42  + dias > 0 e consultas >= 7", () => {
+        it("retorna 'success' quando semanas = 42 + dias = 1 e consultas >= 7", () => {
             const data = {
                 ...baseInput(),
 
@@ -172,6 +172,82 @@ describe("SevenAppointmentsCalculator", () => {
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "danger",
+            });
+        });
+
+        it("retorna 'disabled' quando semanas = 43 + dias = 0 e consultas < 7", () => {
+            const data = {
+                ...baseInput(),
+
+                appointmentsDuringPrenatal: 5,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 0 e consultas >= 7", () => {
+            const data = {
+                ...baseInput(),
+
+                appointmentsDuringPrenatal: 8,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando semanas = 43 + dias = 15 e consultas < 7", () => {
+            const data = {
+                ...baseInput(),
+
+                appointmentsDuringPrenatal: 4,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 15 e consultas >= 7", () => {
+            const data = {
+                ...baseInput(),
+
+                appointmentsDuringPrenatal: 7,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new SevenAppointmentsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
             });
         });
     });
