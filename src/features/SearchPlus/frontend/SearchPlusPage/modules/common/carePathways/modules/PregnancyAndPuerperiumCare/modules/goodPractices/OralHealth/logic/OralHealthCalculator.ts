@@ -49,6 +49,7 @@ export class OralHealthCalculator {
         const isPuerperalPeriod =
             this.#data.homeVisitsDuringPuerperium > 0 ||
             this.#data.appointmentsDuringPuerperium > 0;
+
         const isGestationalAgeAtMaxWeeks =
             gestationalAge["weeks"] === MAX_GESTATIONAL_AGE_WEEKS;
         const isGestationalAgeAboveMaxDays =
