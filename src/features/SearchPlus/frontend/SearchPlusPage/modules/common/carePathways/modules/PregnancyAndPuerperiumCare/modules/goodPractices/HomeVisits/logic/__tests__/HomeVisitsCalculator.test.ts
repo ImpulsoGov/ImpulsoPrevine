@@ -170,42 +170,6 @@ describe("HomeVisitsCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando semanas = 42 + dias = 15 e visitas domiciliares < 3", () => {
-            const data = {
-                ...baseInput(),
-                homeVisitsDuringPregnancy: 2,
-            };
-            const gestationalAge = {
-                ...baseGestationalAge,
-                weeks: 42,
-                days: 15,
-            };
-
-            const calc = new HomeVisitsCalculator(data);
-
-            expect(calc.computeStatus(gestationalAge)).toEqual({
-                tagStatus: "disabled",
-            });
-        });
-
-        it("retorna 'success' quando semanas = 42 + dias = 15 e visitas domiciliares >= 3", () => {
-            const data = {
-                ...baseInput(),
-                homeVisitsDuringPregnancy: 3,
-            };
-            const gestationalAge = {
-                ...baseGestationalAge,
-                weeks: 42,
-                days: 15,
-            };
-
-            const calc = new HomeVisitsCalculator(data);
-
-            expect(calc.computeStatus(gestationalAge)).toEqual({
-                tagStatus: "success",
-            });
-        });
-
         it("não entra na regra especial quando semanas = 42 e dias = 0", () => {
             const data = {
                 ...baseInput(),
@@ -224,7 +188,25 @@ describe("HomeVisitsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas = 43 + dias = 0 e visitas domiciliares > 3", () => {
+        it("retorna 'disabled' quando semanas = 43 + dias = 0 e visitas domiciliares < 3", () => {
+            const data = {
+                ...baseInput(),
+                homeVisitsDuringPregnancy: 2,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new HomeVisitsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 0 e visitas domiciliares >= 3", () => {
             const data = {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 4,
@@ -242,7 +224,7 @@ describe("HomeVisitsCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando semanas = 43 + dias = 0 e visitas domiciliares < 3", () => {
+        it("retorna 'disabled' quando semanas = 43 + dias = 15 e visitas domiciliares < 3", () => {
             const data = {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 2,
@@ -250,13 +232,31 @@ describe("HomeVisitsCalculator", () => {
             const gestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 0,
+                days: 15,
             };
 
             const calc = new HomeVisitsCalculator(data);
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 15 e visitas domiciliares >= 3", () => {
+            const data = {
+                ...baseInput(),
+                homeVisitsDuringPregnancy: 3,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new HomeVisitsCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
             });
         });
     });
