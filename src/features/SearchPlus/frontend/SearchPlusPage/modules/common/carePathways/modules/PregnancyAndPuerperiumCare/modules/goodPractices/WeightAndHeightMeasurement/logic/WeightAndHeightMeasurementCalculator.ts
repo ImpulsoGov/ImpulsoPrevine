@@ -77,17 +77,23 @@ export class WeightAndHeightMeasurementCalculator {
             this.#data.homeVisitsDuringPuerperium > 0 ||
             this.#data.appointmentsDuringPuerperium > 0;
         // TODO: criar essas variáveis apenas caso isPuerperalPeriod seja false
-        const isGestationalAgeAtOrAboveMaxWeeks =
-            gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS;
+        const isGestationalAgeAtMaxWeeks =
+            gestationalAge["weeks"] === MAX_GESTATIONAL_AGE_WEEKS;
         const isGestationalAgeAboveMaxDays =
             gestationalAge["days"] > MAX_GESTATIONAL_AGE_DAYS;
+        const isGestationalAgeAboveMaxWeeks =
+            gestationalAge["weeks"] > MAX_GESTATIONAL_AGE_WEEKS;
 
         if (isPuerperalPeriod) return this.#statusCalcInPuerperalPeriod();
 
-        if (isGestationalAgeAtOrAboveMaxWeeks) {
+        if (isGestationalAgeAtMaxWeeks) {
             if (isGestationalAgeAboveMaxDays) {
                 return this.#statusCalcInPuerperalPeriod();
             }
+        }
+
+        if (isGestationalAgeAboveMaxWeeks) {
+            return this.#statusCalcInPuerperalPeriod();
         }
 
         return this.#statusCalcInPrenatalPeriod();
