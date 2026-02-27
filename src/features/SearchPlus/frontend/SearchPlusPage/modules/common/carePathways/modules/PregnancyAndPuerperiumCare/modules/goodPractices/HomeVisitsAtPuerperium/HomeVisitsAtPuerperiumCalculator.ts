@@ -11,10 +11,10 @@ const TARGET_HOME_VISITS_DURING_PUERPERIUM = 1;
 const ZERO_HOME_VISITS_DURING_PUERPERIUM = 0;
 const ZERO_APPOINTMENTS_DURING_PUERPERIUM = 0;
 
-export type CalculatorInput = {
-    homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
-    appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
-};
+export type CalculatorInput = Pick<
+    PregnancyAndPuerperiumCareItem,
+    "homeVisitsDuringPuerperium" | "appointmentsDuringPuerperium"
+>;
 
 export type Status = {
     tagStatus: PrintTagTheme;
