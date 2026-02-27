@@ -69,7 +69,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
     });
 
     describe("computeStatus - no pré-natal (IG <= 42 semanas + 0 dias)", () => {
-        it("retorna 'disabled' quando IG = 0 semanas + 3 dias", () => {
+        it("retorna 'inapplicable' quando IG = 0 semanas + 3 dias", () => {
             const data = {
                 ...baseInput,
             };
@@ -82,11 +82,11 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const calc = new HomeVisitsAtPuerperiumCalculator(data);
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
-                tagStatus: "disabled",
+                tagStatus: "inapplicable",
             });
         });
 
-        it("retorna 'disabled' quando IG = 30 semanas + 0 dias", () => {
+        it("retorna 'inapplicable' quando IG = 30 semanas + 0 dias", () => {
             const data = {
                 ...baseInput,
             };
@@ -99,11 +99,11 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const calc = new HomeVisitsAtPuerperiumCalculator(data);
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
-                tagStatus: "disabled",
+                tagStatus: "inapplicable",
             });
         });
 
-        it("retorna 'disabled' quando IG = 42 semanas + 0 dias", () => {
+        it("retorna 'inapplicable' quando IG = 42 semanas + 0 dias", () => {
             const data = {
                 ...baseInput,
             };
@@ -116,7 +116,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const calc = new HomeVisitsAtPuerperiumCalculator(data);
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
-                tagStatus: "disabled",
+                tagStatus: "inapplicable",
             });
         });
     });

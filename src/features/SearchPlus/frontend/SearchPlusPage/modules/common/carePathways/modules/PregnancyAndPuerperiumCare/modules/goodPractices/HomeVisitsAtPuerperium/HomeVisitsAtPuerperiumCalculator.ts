@@ -17,7 +17,7 @@ export type CalculatorInput = Pick<
 >;
 
 export type Status = {
-    tagStatus: PrintTagTheme;
+    tagStatus: PrintTagTheme | "inapplicable";
 };
 
 export class HomeVisitsAtPuerperiumCalculator {
@@ -67,12 +67,12 @@ export class HomeVisitsAtPuerperiumCalculator {
 
         if (isGestationalAgeAtMaxWeeks) {
             if (isGestationalAgeAtMaxDays) {
-                return { tagStatus: "disabled" };
+                return { tagStatus: "inapplicable" };
             }
         }
 
         if (isGestationalAgeUnderMaxWeeks) {
-            return { tagStatus: "disabled" };
+            return { tagStatus: "inapplicable" };
         }
 
         return { tagStatus: "danger" };
