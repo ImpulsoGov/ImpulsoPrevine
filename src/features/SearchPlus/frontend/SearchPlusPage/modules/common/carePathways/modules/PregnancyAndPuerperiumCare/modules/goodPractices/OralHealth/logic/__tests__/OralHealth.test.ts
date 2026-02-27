@@ -57,6 +57,54 @@ describe("OralHealthCalculator", () => {
             });
         });
 
+        it("deve retornar 'success' quando idade gestacional = 42 semanas e 1 dia e número de consultas odontológicas no pré-natal >= 1", () => {
+            const calculator = new OralHealthCalculator({
+                ...baseInput,
+                dentalAppointmentsDuringPrenatal: 2,
+            });
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("deve retornar 'success' quando idade gestacional = 43 semanas e 0 dias e número de consultas odontológicas no pré-natal >= 1", () => {
+            const calculator = new OralHealthCalculator({
+                ...baseInput,
+                dentalAppointmentsDuringPrenatal: 5,
+            });
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("deve retornar 'success' quando idade gestacional = 43 semanas e 15 dias e número de consultas odontológicas no pré-natal >= 1", () => {
+            const calculator = new OralHealthCalculator({
+                ...baseInput,
+                dentalAppointmentsDuringPrenatal: 1,
+            });
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
         it("deve retornar 'disabled' quando estiver no período puerperal, mesmo sem consultas odontológicas", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
@@ -69,7 +117,7 @@ describe("OralHealthCalculator", () => {
             });
         });
 
-        it("deve retornar 'disabled' quando a idade gestacional ultrapassar o limite máximo de semanas e dias", () => {
+        it("deve retornar 'disabled' quando não há consultas odontológicas e a idade gestacional = 42 semanas e 1 dia", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
             });
@@ -78,6 +126,38 @@ describe("OralHealthCalculator", () => {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("deve retornar 'disabled' quando não há consultas odontológicas e a idade gestacional = 43 semanas e 0 dias", () => {
+            const calculator = new OralHealthCalculator({
+                ...baseInput,
+            });
+
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            expect(calculator.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("deve retornar 'disabled' quando não há consultas odontológicas e a idade gestacional = 43 semanas e 15 dias", () => {
+            const calculator = new OralHealthCalculator({
+                ...baseInput,
+            });
+
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
             };
 
             expect(calculator.computeStatus(gestationalAge)).toEqual({

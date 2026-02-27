@@ -50,10 +50,12 @@ export class OralHealthCalculator {
             this.#data.homeVisitsDuringPuerperium > 0 ||
             this.#data.appointmentsDuringPuerperium > 0;
 
-        const isGestationalAgeAtOrAboveMaxWeeks =
-            gestationalAge["weeks"] >= MAX_GESTATIONAL_AGE_WEEKS;
+        const isGestationalAgeAtMaxWeeks =
+            gestationalAge["weeks"] === MAX_GESTATIONAL_AGE_WEEKS;
         const isGestationalAgeAboveMaxDays =
             gestationalAge["days"] > MAX_GESTATIONAL_AGE_DAYS;
+        const isGestationalAgeAboveMaxWeeks =
+            gestationalAge["weeks"] > MAX_GESTATIONAL_AGE_WEEKS;
 
         if (
             dentalAppointmentsDuringPrenatal >=
@@ -66,10 +68,14 @@ export class OralHealthCalculator {
 
         if (isPuerperalPeriod) return { tagStatus: "disabled" };
 
-        if (isGestationalAgeAtOrAboveMaxWeeks) {
+        if (isGestationalAgeAtMaxWeeks) {
             if (isGestationalAgeAboveMaxDays) {
                 return { tagStatus: "disabled" };
             }
+        }
+
+        if (isGestationalAgeAboveMaxWeeks) {
+            return { tagStatus: "disabled" };
         }
 
         return { tagStatus: "danger" };

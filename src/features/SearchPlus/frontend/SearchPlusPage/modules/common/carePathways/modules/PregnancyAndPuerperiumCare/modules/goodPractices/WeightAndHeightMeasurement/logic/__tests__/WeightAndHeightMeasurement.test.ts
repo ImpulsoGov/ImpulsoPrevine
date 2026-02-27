@@ -133,7 +133,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando IG >= 42 semanas + 0 dias e medições < 7", () => {
+        it("retorna 'disabled' quando IG = 42 semanas + 1 dia e medições < 7", () => {
             const data = {
                 ...baseInput(),
                 weightAndHeightMeasurements: 6,
@@ -151,7 +151,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando IG >= 42 semanas + 0 dias e medições >= 7", () => {
+        it("retorna 'success' quando IG = 42 semanas + 1 dia e medições >= 7", () => {
             const data = {
                 ...baseInput(),
                 weightAndHeightMeasurements: 7,
@@ -184,6 +184,78 @@ describe("WeightAndHeightMeasurementCalculator", () => {
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "danger",
+            });
+        });
+
+        it("retorna 'disabled' quando IG = 43 semanas + 0 dias e medições < 7", () => {
+            const data = {
+                ...baseInput(),
+                weightAndHeightMeasurements: 3,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new WeightAndHeightMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando IG = 43 semanas + 0 dias e medições >= 7", () => {
+            const data = {
+                ...baseInput(),
+                weightAndHeightMeasurements: 9,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new WeightAndHeightMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando IG = 43 semanas + 15 dias e medições < 7", () => {
+            const data = {
+                ...baseInput(),
+                weightAndHeightMeasurements: 5,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new WeightAndHeightMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando IG = 43 semanas + 15 dias e medições >= 7", () => {
+            const data = {
+                ...baseInput(),
+                weightAndHeightMeasurements: 7,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new WeightAndHeightMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
             });
         });
     });

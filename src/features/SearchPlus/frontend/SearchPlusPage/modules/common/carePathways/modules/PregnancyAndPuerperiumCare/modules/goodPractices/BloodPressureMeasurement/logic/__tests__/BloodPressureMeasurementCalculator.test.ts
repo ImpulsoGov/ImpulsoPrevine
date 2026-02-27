@@ -133,7 +133,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
     });
 
     describe("computeStatus - limite máximo de idade gestacional", () => {
-        it("retorna 'disabled' quando semanas >= 42 + dias > 0 e aferições < 7", () => {
+        it("retorna 'disabled' quando semanas = 42 + dias = 1 e aferições < 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 6,
@@ -151,7 +151,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas >= 42 + dias > 0 e aferições >= 7", () => {
+        it("retorna 'success' quando semanas = 42 + dias = 1 e aferições >= 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 7,
@@ -184,6 +184,78 @@ describe("BloodPressureMeasurementsCalculator", () => {
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "danger",
+            });
+        });
+
+        it("retorna 'disabled' quando semanas = 43 + dias = 0 e aferições < 7", () => {
+            const data = {
+                ...baseInput(),
+                bloodPressureMeasurements: 5,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new BloodPressureMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 0 e aferições >= 7", () => {
+            const data = {
+                ...baseInput(),
+                bloodPressureMeasurements: 7,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+
+            const calc = new BloodPressureMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando semanas = 43 + dias = 15 e aferições < 7", () => {
+            const data = {
+                ...baseInput(),
+                bloodPressureMeasurements: 2,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new BloodPressureMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando semanas = 43 + dias = 15 e aferições >= 7", () => {
+            const data = {
+                ...baseInput(),
+                bloodPressureMeasurements: 9,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 15,
+            };
+
+            const calc = new BloodPressureMeasurementCalculator(data);
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
             });
         });
     });
