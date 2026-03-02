@@ -144,8 +144,8 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             };
             const gestationalAge = {
                 ...baseGestationalAge,
-                weeks: 30,
-                days: 0,
+                weeks: 28,
+                days: 3,
             };
             const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
                 data
@@ -165,7 +165,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             const gestationalAge = {
                 ...baseGestationalAge,
                 weeks: 35,
-                days: 5,
+                days: 0,
             };
             const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
                 data
@@ -193,6 +193,40 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
 
             expect(calc.computeStatus(gestationalAge)).toEqual({
                 tagStatus: "success",
+            });
+        });
+    });
+
+    describe("computeStatus - antes do 3º trimestre (IG < 28 semanas e 0 dias)", () => {
+        it("retorna 'inapplicable' quando IG = 0 semanas e 3 dias", () => {
+            const data = { ...baseInput };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 0,
+                days: 3,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "inapplicable",
+            });
+        });
+
+        it("retorna 'inapplicable' quando IG = 27 semanas e 6 dias", () => {
+            const data = { ...baseInput };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 27,
+                days: 6,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "inapplicable",
             });
         });
     });
