@@ -1,3 +1,4 @@
+import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import {
     SyphilisAndHivExamsAtThirdTrimesterCalculator,
     type CalculatorInput,
@@ -10,6 +11,11 @@ const baseInput: CalculatorInput = {
     appointmentsDuringPuerperium: 0,
     didHivExamAtThirdTrimester: false,
     didSyphilisExamAtThirdTrimester: false,
+};
+
+const baseGestationalAge: GestationalAge = {
+    weeks: 20,
+    days: 0,
 };
 
 describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
@@ -75,6 +81,43 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             expect(calc.computeTotalExamsDoneAtThirdTrimester()).toEqual({
                 current: 2,
                 total: TARGET_NUMBER_OF_EXAMS,
+            });
+        });
+    });
+
+    describe("computeStatus - idade gestacional (IG) inválida", () => {
+        it("retorna 'disabled' quando semanas são null", () => {
+            const data = {
+                ...baseInput,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: null,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'disabled' quando dias são null", () => {
+            const data = {
+                ...baseInput,
+            };
+
+            const gestationalAge = {
+                ...baseGestationalAge,
+                days: null,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
             });
         });
     });
