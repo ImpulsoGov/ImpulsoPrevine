@@ -62,7 +62,7 @@ export class HomeVisitsAtPuerperiumCalculator {
             gestationalAge["weeks"] === MAX_GESTATIONAL_AGE_WEEKS;
         const isGestationalAgeAtMaxDays =
             gestationalAge["days"] === MAX_GESTATIONAL_AGE_DAYS;
-        const isGestationalAgeUnderMaxWeeks =
+        const isGestationalAgeBelowMaxWeeks =
             gestationalAge["weeks"] < MAX_GESTATIONAL_AGE_WEEKS;
 
         if (isGestationalAgeAtMaxWeeks) {
@@ -71,7 +71,7 @@ export class HomeVisitsAtPuerperiumCalculator {
             }
         }
 
-        if (isGestationalAgeUnderMaxWeeks) {
+        if (isGestationalAgeBelowMaxWeeks) {
             return { tagStatus: "inapplicable" };
         }
 
