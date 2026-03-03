@@ -230,4 +230,137 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             });
         });
     });
+
+    describe("computeStatus - limite máximo de idade gestacional", () => {
+        it("retorna 'success' quando ambos os exames foram feitos e IG = 42 semanas e 1 dia", () => {
+            const data = {
+                ...baseInput,
+                didHivExamAtThirdTrimester: true,
+                didSyphilisExamAtThirdTrimester: true,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando nenhum exame foi feito e IG = 42 semanas e 1 dia", () => {
+            const data = {
+                ...baseInput,
+                didHivExamAtThirdTrimester: false,
+                didSyphilisExamAtThirdTrimester: false,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 42,
+                days: 1,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'success' quando ambos os exames foram feitos e IG = 43 semanas e 0 dias", () => {
+            const data = {
+                ...baseInput,
+                didHivExamAtThirdTrimester: true,
+                didSyphilisExamAtThirdTrimester: true,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando apenas um exame foi feito e IG = 43 semanas e 0 dias", () => {
+            const data = {
+                ...baseInput,
+                didHivExamAtThirdTrimester: false,
+                didSyphilisExamAtThirdTrimester: true,
+            };
+            const gestationalAge = {
+                ...baseGestationalAge,
+                weeks: 43,
+                days: 0,
+            };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+    });
+
+    describe("computeStatus - há consulta ou visita domiciliar feita durante o purpério", () => {
+        it("retorna 'success' quando ambos os exames foram feitos no 3º trimestre", () => {
+            const data = {
+                ...baseInput,
+                homeVisitsDuringPuerperium: 1,
+                didHivExamAtThirdTrimester: true,
+                didSyphilisExamAtThirdTrimester: true,
+            };
+            const gestationalAge = { ...baseGestationalAge };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "success",
+            });
+        });
+
+        it("retorna 'disabled' quando apenas um exame foi feito no 3º trimestre", () => {
+            const data = {
+                ...baseInput,
+                appointmentsDuringPuerperium: 1,
+                didHivExamAtThirdTrimester: true,
+            };
+            const gestationalAge = { ...baseGestationalAge };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+
+        it("retorna 'disabled' quando nenhum exame foi feito no 3º trimestre", () => {
+            const data = {
+                ...baseInput,
+                homeVisitsDuringPuerperium: 2,
+                appointmentsDuringPuerperium: 1,
+            };
+            const gestationalAge = { ...baseGestationalAge };
+            const calc = new SyphilisAndHivExamsAtThirdTrimesterCalculator(
+                data
+            );
+
+            expect(calc.computeStatus(gestationalAge)).toEqual({
+                tagStatus: "disabled",
+            });
+        });
+    });
 });
