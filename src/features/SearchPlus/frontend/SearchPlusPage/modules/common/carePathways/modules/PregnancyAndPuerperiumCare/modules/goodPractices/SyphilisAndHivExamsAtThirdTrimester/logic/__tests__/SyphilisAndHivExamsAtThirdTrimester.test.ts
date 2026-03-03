@@ -150,7 +150,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
     });
 
     describe("computeStatus - no 3º trimestre (28 semanas e 0 dias <= IG <= 42 semanas e 0 dias)", () => {
-        it("retorna 'danger' quando nenhum exame foi feito ainda", () => {
+        it("retorna 'danger' quando nenhum exame foi feito e IG = 28 semanas e 0 dias", () => {
             const data = { ...baseInput };
             const gestationalAge = {
                 ...baseGestationalAge,
@@ -166,7 +166,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             });
         });
 
-        it("retorna 'warning' quando apenas um exame foi feito", () => {
+        it("retorna 'warning' quando apenas um exame foi feito e IG = 28 semanas e 3 dias", () => {
             const data = {
                 ...baseInput,
                 didHivExamAtThirdTrimester: true,
@@ -185,7 +185,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando ambos os exames foram feitos", () => {
+        it("retorna 'success' quando ambos os exames foram feitos e IG = 42 semanas e 0 dias", () => {
             const data = {
                 ...baseInput,
                 didHivExamAtThirdTrimester: true,
