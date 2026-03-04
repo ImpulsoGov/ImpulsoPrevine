@@ -17,8 +17,6 @@ type Data = Pick<
     | "gestationalAgeByLastMenstrualPeriodDays"
     | "gestationalAgeByObstreticalUltrasoundWeeks"
     | "gestationalAgeByObstreticalUltrasoundDays"
-    | "dentalAppointmentsDuringPrenatal"
-    | "homeVisitsDuringPuerperium"
     | "appointmentsDuringPuerperium"
 >;
 
