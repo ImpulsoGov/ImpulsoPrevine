@@ -6,6 +6,9 @@ import type {
 } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 const TARGET_NUMBER_OF_APPOINTMENTS = 1;
+const ZERO_APPOINTMENTS_DURING_PUERPERIUM = 0;
+const MAX_GESTATIONAL_AGE_WEEKS = 42;
+const MAX_GESTATIONAL_AGE_DAYS = 0;
 
 export type Status = {
     tagStatus: PrintTagTheme;
@@ -20,6 +23,21 @@ export class AppointmentsAtPuerperiumCalculator {
     constructor(data: InputData) {
         this.#data = data;
     }
+
+    #isGestationalPeriodCompleted(gestationalAge: GestationalAge): boolean {
+        if (gestationalAge.weeks === null || gestationalAge.days === null)
+            return true;
+
+        if (gestationalAge.weeks < MAX_GESTATIONAL_AGE_WEEKS) return true;
+
+        if (
+            gestationalAge.weeks === MAX_GESTATIONAL_AGE_WEEKS &&
+            gestationalAge.days === MAX_GESTATIONAL_AGE_DAYS
+        )
+            return true;
+        return false;
+    }
+
     public computeAppointmentsAtPuerperium(): Count {
         const appointmentsDuringPuerperium =
             this.#data.appointmentsDuringPuerperium;
@@ -32,21 +50,14 @@ export class AppointmentsAtPuerperiumCalculator {
         const appointmentsDuringPuerperium =
             this.#data.appointmentsDuringPuerperium;
 
-        if (
-            gestationalAge["weeks"] === null ||
-            gestationalAge["days"] === null
-        ) {
+        if (!this.#isGestationalPeriodCompleted(gestationalAge))
             return { tagStatus: "disabled" };
-        }
+
         if (appointmentsDuringPuerperium >= TARGET_NUMBER_OF_APPOINTMENTS)
             return { tagStatus: "success" };
 
-        if (appointmentsDuringPuerperium > 0) return { tagStatus: "danger" };
-
-        if (gestationalAge.weeks < 42) return { tagStatus: "disabled" };
-
-        if (gestationalAge.weeks === 42 && gestationalAge.days === 0)
-            return { tagStatus: "disabled" };
+        if (appointmentsDuringPuerperium == ZERO_APPOINTMENTS_DURING_PUERPERIUM)
+            return { tagStatus: "danger" };
 
         return { tagStatus: "danger" };
     }
