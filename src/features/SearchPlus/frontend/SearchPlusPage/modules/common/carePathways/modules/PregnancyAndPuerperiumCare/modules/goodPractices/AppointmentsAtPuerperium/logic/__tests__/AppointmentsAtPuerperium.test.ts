@@ -1,6 +1,19 @@
 import { AppointmentsAtPuerperiumCalculator } from "../AppointmentsAtPuerperiumCalculator";
 import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 
+type TestInput = {
+    appointmentsDuringPuerperium: number;
+    visitsDuringPuerperium: number;
+};
+
+const createCalculator = (
+    data: TestInput
+): AppointmentsAtPuerperiumCalculator =>
+    new AppointmentsAtPuerperiumCalculator({
+        appointmentsDuringPuerperium: data.appointmentsDuringPuerperium,
+        visitsDuringPuerperium: data.visitsDuringPuerperium,
+    });
+
 const createGestationalAge = (
     weeks: number | null,
     days: number | null
@@ -10,107 +23,87 @@ const createGestationalAge = (
         days,
     }) as GestationalAge;
 
-const createCalculator = (
-    appointmentsDuringPuerperium: number
-): AppointmentsAtPuerperiumCalculator =>
-    new AppointmentsAtPuerperiumCalculator({
-        appointmentsDuringPuerperium,
-    });
-
-describe("AppointmentsAtPuerperiumCalculator", (): void => {
-    describe("computeAppointmentsAtPuerperium", (): void => {
-        it("deve retornar current e total corretamente", (): void => {
-            const calculator = createCalculator(0);
-
-            const result = calculator.computeAppointmentsAtPuerperium();
-
-            expect(result).toEqual({
-                current: 0,
-                total: 1,
+describe("AppointmentsAtPuerperiumCalculator", () => {
+    describe("computeAppointmentsAtPuerperium", () => {
+        it("deve retornar a quantidade atual de consultas e o total esperado", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 1,
+                visitsDuringPuerperium: 0,
             });
-        });
-
-        it("deve refletir o número de consultas realizadas", (): void => {
-            const calculator = createCalculator(2);
 
             const result = calculator.computeAppointmentsAtPuerperium();
 
             expect(result).toEqual({
-                current: 2,
+                current: 1,
                 total: 1,
             });
         });
     });
 
-    describe("computeStatus", (): void => {
-        it("deve retornar disabled quando a idade gestacional for maior que 42 semanas", (): void => {
-            const calculator = createCalculator(1);
+    describe("computeStatus", () => {
+        it("deve retornar success quando existir pelo menos uma visita domiciliar", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                visitsDuringPuerperium: 1,
+            });
 
-            const result = calculator.computeStatus(
-                createGestationalAge(42, 1)
-            );
+            const gestationalAge = createGestationalAge(40, 0);
 
-            expect(result).toEqual({ tagStatus: "disabled" });
+            const result = calculator.computeStatus(gestationalAge);
+
+            expect(result.tagStatus).toBe("success");
         });
 
-        it("deve retornar disabled quando a idade gestacional for maior que 42 semanas independentemente do número de consultas", (): void => {
-            const calculator = createCalculator(0);
+        it("deve retornar danger quando não houver consultas nem visitas no puerpério", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                visitsDuringPuerperium: 0,
+            });
 
-            const result = calculator.computeStatus(
-                createGestationalAge(43, 0)
-            );
+            const gestationalAge = createGestationalAge(40, 0);
 
-            expect(result).toEqual({ tagStatus: "disabled" });
+            const result = calculator.computeStatus(gestationalAge);
+
+            expect(result.tagStatus).toBe("danger");
         });
 
-        it("deve retornar success quando o período estiver concluído e houver pelo menos uma consulta", (): void => {
-            const calculator = createCalculator(1);
+        it("deve retornar danger quando não houver consultas nem visitas domiciliares", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                visitsDuringPuerperium: 0,
+            });
 
-            const result = calculator.computeStatus(
-                createGestationalAge(40, 3)
-            );
+            const gestationalAge = createGestationalAge(40, 0);
 
-            expect(result).toEqual({ tagStatus: "success" });
+            const result = calculator.computeStatus(gestationalAge);
+
+            expect(result.tagStatus).toBe("danger");
         });
 
-        it("deve retornar danger quando o período estiver concluído e não houver consultas", (): void => {
-            const calculator = createCalculator(0);
+        it("deve retornar disabled quando semanas ou dias forem nulos", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                visitsDuringPuerperium: 1,
+            });
 
-            const result = calculator.computeStatus(
-                createGestationalAge(41, 6)
-            );
+            const gestationalAge = createGestationalAge(null, null);
 
-            expect(result).toEqual({ tagStatus: "danger" });
+            const result = calculator.computeStatus(gestationalAge);
+
+            expect(result.tagStatus).toBe("disabled");
         });
 
-        it("deve considerar o período concluído quando weeks for null", (): void => {
-            const calculator = createCalculator(1);
+        it("deve retornar danger quando o período gestacional estiver concluído e não houver consultas nem visitas domiciliares", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                visitsDuringPuerperium: 0,
+            });
 
-            const result = calculator.computeStatus(
-                createGestationalAge(null, 0)
-            );
+            const gestationalAge = createGestationalAge(42, 1);
 
-            expect(result).toEqual({ tagStatus: "success" });
-        });
+            const result = calculator.computeStatus(gestationalAge);
 
-        it("deve considerar o período concluído quando days for null", (): void => {
-            const calculator = createCalculator(0);
-
-            const result = calculator.computeStatus(
-                createGestationalAge(40, null)
-            );
-
-            expect(result).toEqual({ tagStatus: "danger" });
-        });
-
-        it("deve considerar o período concluído quando for exatamente 42 semanas e 0 dias", (): void => {
-            const calculator = createCalculator(1);
-
-            const result = calculator.computeStatus(
-                createGestationalAge(42, 0)
-            );
-
-            expect(result).toEqual({ tagStatus: "success" });
+            expect(result.tagStatus).toBe("danger");
         });
     });
 });

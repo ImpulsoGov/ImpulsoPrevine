@@ -7,6 +7,7 @@ import type {
 
 const TARGET_NUMBER_OF_APPOINTMENTS = 1;
 const ZERO_APPOINTMENTS_DURING_PUERPERIUM = 0;
+const ZERO_HOME_VISITS_DURING_PUERPERIUM = 0;
 const MAX_GESTATIONAL_AGE_WEEKS = 42;
 const MAX_GESTATIONAL_AGE_DAYS = 0;
 
@@ -15,6 +16,7 @@ export type Status = {
 };
 export type InputData = {
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
+    visitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
 };
 
 export class AppointmentsAtPuerperiumCalculator {
@@ -22,6 +24,10 @@ export class AppointmentsAtPuerperiumCalculator {
 
     constructor(data: InputData) {
         this.#data = data;
+    }
+
+    #isGestationalAgeUnavailable(gestationalAge: GestationalAge): boolean {
+        return gestationalAge.weeks === null || gestationalAge.days === null;
     }
 
     #isGestationalPeriodCompleted(gestationalAge: GestationalAge): boolean {
@@ -49,15 +55,19 @@ export class AppointmentsAtPuerperiumCalculator {
     public computeStatus(gestationalAge: GestationalAge): Status {
         const appointmentsDuringPuerperium =
             this.#data.appointmentsDuringPuerperium;
+        const visitsDuringPuerperium = this.#data.visitsDuringPuerperium;
 
-        if (!this.#isGestationalPeriodCompleted(gestationalAge))
+        if (this.#isGestationalAgeUnavailable(gestationalAge))
             return { tagStatus: "disabled" };
 
-        if (appointmentsDuringPuerperium >= TARGET_NUMBER_OF_APPOINTMENTS)
+        if (visitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM)
             return { tagStatus: "success" };
 
         if (appointmentsDuringPuerperium == ZERO_APPOINTMENTS_DURING_PUERPERIUM)
             return { tagStatus: "danger" };
+
+        if (this.#isGestationalPeriodCompleted(gestationalAge))
+            return { tagStatus: "disabled" };
 
         return { tagStatus: "danger" };
     }
