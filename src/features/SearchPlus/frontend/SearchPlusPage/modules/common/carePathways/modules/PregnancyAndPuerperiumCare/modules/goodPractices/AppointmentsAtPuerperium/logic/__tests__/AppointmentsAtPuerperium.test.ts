@@ -41,10 +41,10 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
     });
 
     describe("computeStatus", () => {
-        it("deve retornar success quando existir pelo menos uma visita domiciliar", () => {
+        it("deve retornar success quando existir pelo menos um atendimento durante o puerpério", () => {
             const calculator = createCalculator({
-                appointmentsDuringPuerperium: 0,
-                homeVisitsDuringPuerperium: 1,
+                appointmentsDuringPuerperium: 1,
+                homeVisitsDuringPuerperium: 0,
             });
 
             const gestationalAge = createGestationalAge(40, 0);
@@ -54,23 +54,10 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
             expect(result.tagStatus).toBe("success");
         });
 
-        it("deve retornar danger quando não houver consultas nem visitas no puerpério", () => {
+        it("deve retornar danger quando houver visitas domiciliares", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                homeVisitsDuringPuerperium: 0,
-            });
-
-            const gestationalAge = createGestationalAge(40, 0);
-
-            const result = calculator.computeStatus(gestationalAge);
-
-            expect(result.tagStatus).toBe("danger");
-        });
-
-        it("deve retornar danger quando não houver consultas nem visitas domiciliares", () => {
-            const calculator = createCalculator({
-                appointmentsDuringPuerperium: 0,
-                homeVisitsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 1,
             });
 
             const gestationalAge = createGestationalAge(40, 0);
