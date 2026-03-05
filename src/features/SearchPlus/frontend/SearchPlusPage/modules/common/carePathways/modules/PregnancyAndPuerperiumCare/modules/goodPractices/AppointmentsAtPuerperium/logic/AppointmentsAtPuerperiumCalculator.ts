@@ -30,7 +30,7 @@ export class AppointmentsAtPuerperiumCalculator {
         return gestationalAge.weeks === null || gestationalAge.days === null;
     }
 
-    #isGestationalPeriodCompleted(gestationalAge: GestationalAge): boolean {
+    #isGestationalPeriod(gestationalAge: GestationalAge): boolean {
         if (gestationalAge.weeks === null || gestationalAge.days === null)
             return true;
 
@@ -67,7 +67,7 @@ export class AppointmentsAtPuerperiumCalculator {
         if (appointmentsDuringPuerperium == ZERO_APPOINTMENTS_DURING_PUERPERIUM)
             return { tagStatus: "danger" };
 
-        if (this.#isGestationalPeriodCompleted(gestationalAge))
+        if (this.#isGestationalPeriod(gestationalAge))
             return { tagStatus: "disabled" };
 
         return { tagStatus: "danger" };
