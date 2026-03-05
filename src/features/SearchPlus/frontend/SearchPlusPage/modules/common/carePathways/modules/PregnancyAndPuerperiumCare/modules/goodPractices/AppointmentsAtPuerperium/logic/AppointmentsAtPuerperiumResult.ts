@@ -18,6 +18,7 @@ type Data = Pick<
     | "gestationalAgeByObstreticalUltrasoundWeeks"
     | "gestationalAgeByObstreticalUltrasoundDays"
     | "appointmentsDuringPuerperium"
+    | "homeVisitsDuringPuerperium"
 >;
 
 export const AppointmentsAtPuerperiumResult = ({
@@ -26,6 +27,7 @@ export const AppointmentsAtPuerperiumResult = ({
     gestationalAgeByObstreticalUltrasoundWeeks,
     gestationalAgeByObstreticalUltrasoundDays,
     appointmentsDuringPuerperium,
+    homeVisitsDuringPuerperium,
 }: Data): AppointmentsAtPuerperiumResult => {
     const gestationalAge = GestationalAgeFactory({
         gestationalAgeByLastMenstrualPeriodDays,
@@ -37,6 +39,7 @@ export const AppointmentsAtPuerperiumResult = ({
     const appointmentsAtPuerperiumCalc = new AppointmentsAtPuerperiumCalculator(
         {
             appointmentsDuringPuerperium,
+            homeVisitsDuringPuerperium,
         }
     );
 

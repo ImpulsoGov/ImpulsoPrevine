@@ -3,7 +3,7 @@ import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPa
 
 type TestInput = {
     appointmentsDuringPuerperium: number;
-    visitsDuringPuerperium: number;
+    homeVisitsDuringPuerperium: number;
 };
 
 const createCalculator = (
@@ -11,7 +11,7 @@ const createCalculator = (
 ): AppointmentsAtPuerperiumCalculator =>
     new AppointmentsAtPuerperiumCalculator({
         appointmentsDuringPuerperium: data.appointmentsDuringPuerperium,
-        visitsDuringPuerperium: data.visitsDuringPuerperium,
+        homeVisitsDuringPuerperium: data.homeVisitsDuringPuerperium,
     });
 
 const createGestationalAge = (
@@ -28,7 +28,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar a quantidade atual de consultas e o total esperado", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 1,
-                visitsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 0,
             });
 
             const result = calculator.computeAppointmentsAtPuerperium();
@@ -44,7 +44,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar success quando existir pelo menos uma visita domiciliar", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                visitsDuringPuerperium: 1,
+                homeVisitsDuringPuerperium: 1,
             });
 
             const gestationalAge = createGestationalAge(40, 0);
@@ -57,7 +57,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar danger quando não houver consultas nem visitas no puerpério", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                visitsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 0,
             });
 
             const gestationalAge = createGestationalAge(40, 0);
@@ -70,7 +70,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar danger quando não houver consultas nem visitas domiciliares", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                visitsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 0,
             });
 
             const gestationalAge = createGestationalAge(40, 0);
@@ -83,7 +83,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar disabled quando semanas ou dias forem nulos", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                visitsDuringPuerperium: 1,
+                homeVisitsDuringPuerperium: 1,
             });
 
             const gestationalAge = createGestationalAge(null, null);
@@ -96,7 +96,7 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
         it("deve retornar danger quando o período gestacional estiver concluído e não houver consultas nem visitas domiciliares", () => {
             const calculator = createCalculator({
                 appointmentsDuringPuerperium: 0,
-                visitsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 0,
             });
 
             const gestationalAge = createGestationalAge(42, 1);

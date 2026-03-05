@@ -16,7 +16,7 @@ export type Status = {
 };
 export type InputData = {
     appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
-    visitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
+    homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
 };
 
 export class AppointmentsAtPuerperiumCalculator {
@@ -55,12 +55,13 @@ export class AppointmentsAtPuerperiumCalculator {
     public computeStatus(gestationalAge: GestationalAge): Status {
         const appointmentsDuringPuerperium =
             this.#data.appointmentsDuringPuerperium;
-        const visitsDuringPuerperium = this.#data.visitsDuringPuerperium;
+        const homeVisitsDuringPuerperium =
+            this.#data.homeVisitsDuringPuerperium;
 
         if (this.#isGestationalAgeUnavailable(gestationalAge))
             return { tagStatus: "disabled" };
 
-        if (visitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM)
+        if (homeVisitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM)
             return { tagStatus: "success" };
 
         if (appointmentsDuringPuerperium == ZERO_APPOINTMENTS_DURING_PUERPERIUM)
