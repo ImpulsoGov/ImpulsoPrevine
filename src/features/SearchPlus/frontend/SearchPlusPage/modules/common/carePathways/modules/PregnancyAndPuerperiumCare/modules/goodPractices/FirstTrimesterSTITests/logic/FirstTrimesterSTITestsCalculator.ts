@@ -2,8 +2,7 @@ import type { PrintTagTheme } from "@/features/common/frontend/molecules";
 import type { PregnancyAndPuerperiumCareItem } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
 import type { Count } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
-const MAX_GESTATIONAL_AGE_WEEKS = 42;
-const MAX_GESTATIONAL_AGE_DAYS = 0;
+
 const FIRST_TRIMESTER_WEEKS = 13;
 const FIRST_TRIMESTER_DAYS = 6;
 const TARGET_NUMBER_OF_TESTS = 4;
@@ -84,6 +83,7 @@ export class FirstTrimesterSTITestsCalculator {
         if (isGestationalAgeAfterFirstTrimester) {
             return this.#statusCalcAfterFirstTrimester();
         }
+
         return this.#statusCalcDuringFirstTrimester();
     }
 }

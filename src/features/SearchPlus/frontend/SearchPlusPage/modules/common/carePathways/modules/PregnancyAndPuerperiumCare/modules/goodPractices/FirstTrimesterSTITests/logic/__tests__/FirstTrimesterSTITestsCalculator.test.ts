@@ -21,7 +21,7 @@ const baseGestationalAge: GestationalAge = {
 
 describe("FirstTrimesterSTITestsCalculator", () => {
     describe("computeSTITestsDuringFirstTrimester", () => {
-        it("Retorna o número de exames de DST realizados no primeiro trimestre", () => {
+        it("Retorna o número de exames de DST realizados no primeiro trimestre e o total", () => {
             const data = {
                 ...baseInput,
                 didHivTestDuringFirstTrimester: true,
@@ -36,7 +36,7 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             });
         });
     });
-    describe("computeStatus - dados inválidos", () => {
+    describe("computeStatus - IG inválidos", () => {
         it("Retorna 'disabled' quando semanas são null", () => {
             const data = {
                 ...baseInput,
@@ -60,7 +60,8 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             });
         });
     });
-    describe("computeStatus - durante o primeiro tri", () => {
+
+    describe("computeStatus - durante o primeiro tri (IG <= 13 semanas e 6 dias)", () => {
         it("Retorna 'danger' quando nenhum exame de DST foi realizado", () => {
             const data = {
                 ...baseInput,
@@ -85,7 +86,7 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             expect(
                 calc.computeStatus({
                     weeks: FIRST_TRIMESTER_WEEKS,
-                    days: FIRST_TRIMESTER_DAYS,
+                    days: FIRST_TRIMESTER_DAYS - 1,
                 })
             ).toEqual({ tagStatus: "warning" });
         });
@@ -122,7 +123,7 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             ).toEqual({ tagStatus: "success" });
         });
     });
-    describe("computeStatus - após o primeiro trimestre", () => {
+    describe("computeStatus - após o primeiro trimestre (IG > 13 semanas e 6 dias e IG < 42 semanas e 1 dia)", () => {
         it("Retorna 'disabled' quando menos de 4 exames de DST foram realizados", () => {
             const data = {
                 ...baseInput,
@@ -150,9 +151,7 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             });
         });
     });
-    //Esse é outro caso de após o primeiro trimestre, mas achei que fazia sentido ter um describe específico para o puerpério,
-    //para gente prestar atenção e acompanhar
-    describe("computeStatus - durante o puerpério", () => {
+    describe("computeStatus - durante o puerpério (IG > 42 semanas e 0 dias)", () => {
         it("Retorna 'disabled' quando menos de 4 exames de DST foram realizados", () => {
             const data = {
                 ...baseInput,
