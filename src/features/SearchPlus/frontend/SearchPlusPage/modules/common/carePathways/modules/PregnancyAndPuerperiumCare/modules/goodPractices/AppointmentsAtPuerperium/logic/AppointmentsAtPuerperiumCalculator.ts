@@ -61,10 +61,10 @@ export class AppointmentsAtPuerperiumCalculator {
         if (this.#isGestationalAgeUnavailable(gestationalAge))
             return { tagStatus: "disabled" };
 
-        if (homeVisitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM)
+        if (appointmentsDuringPuerperium > ZERO_APPOINTMENTS_DURING_PUERPERIUM)
             return { tagStatus: "success" };
 
-        if (appointmentsDuringPuerperium == ZERO_APPOINTMENTS_DURING_PUERPERIUM)
+        if (homeVisitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM)
             return { tagStatus: "danger" };
 
         if (this.#isGestationalPeriod(gestationalAge))
