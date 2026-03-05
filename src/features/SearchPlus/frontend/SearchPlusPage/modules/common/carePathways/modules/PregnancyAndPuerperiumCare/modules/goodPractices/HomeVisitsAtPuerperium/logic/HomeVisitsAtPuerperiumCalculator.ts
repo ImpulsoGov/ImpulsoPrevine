@@ -17,7 +17,7 @@ export type CalculatorInput = Pick<
 >;
 
 export type Status = {
-    tagStatus: PrintTagTheme | "inapplicable";
+    tagStatus: PrintTagTheme | "inapplicable"; //Rever esse uso
 };
 
 export class HomeVisitsAtPuerperiumCalculator {
