@@ -13,8 +13,6 @@ export type CalculatorInput = {
     didSyphilisTestDuringFirstTrimester: PregnancyAndPuerperiumCareItem["didSyphilisTestDuringFirstTrimester"];
     didHepatitisBTestDuringFirstTrimester: PregnancyAndPuerperiumCareItem["didHepatitisBTestDuringFirstTrimester"];
     didHepatitisCTestDuringFirstTrimester: PregnancyAndPuerperiumCareItem["didHepatitisCTestDuringFirstTrimester"];
-    homeVisitsDuringPuerperium: PregnancyAndPuerperiumCareItem["homeVisitsDuringPuerperium"];
-    appointmentsDuringPuerperium: PregnancyAndPuerperiumCareItem["appointmentsDuringPuerperium"];
 };
 
 export type Status = {

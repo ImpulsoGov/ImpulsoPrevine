@@ -11,8 +11,6 @@ const baseInput: CalculatorInput = {
     didSyphilisTestDuringFirstTrimester: false,
     didHepatitisBTestDuringFirstTrimester: false,
     didHepatitisCTestDuringFirstTrimester: false,
-    homeVisitsDuringPuerperium: 0,
-    appointmentsDuringPuerperium: 0,
 };
 const baseGestationalAge: GestationalAge = {
     weeks: 20,
@@ -159,7 +157,6 @@ describe("FirstTrimesterSTITestsCalculator", () => {
                 didSyphilisTestDuringFirstTrimester: true,
                 didHepatitisBTestDuringFirstTrimester: false,
                 didHepatitisCTestDuringFirstTrimester: true,
-                homeVisitsDuringPuerperium: 1,
             };
             const calc = new FirstTrimesterSTITestsCalculator(data);
             expect(calc.computeStatus({ weeks: 44, days: 1 })).toEqual({
@@ -173,7 +170,6 @@ describe("FirstTrimesterSTITestsCalculator", () => {
                 didSyphilisTestDuringFirstTrimester: true,
                 didHepatitisBTestDuringFirstTrimester: true,
                 didHepatitisCTestDuringFirstTrimester: true,
-                appointmentsDuringPuerperium: 1,
             };
             const calc = new FirstTrimesterSTITestsCalculator(data);
             expect(calc.computeStatus({ weeks: 42, days: 5 })).toEqual({
