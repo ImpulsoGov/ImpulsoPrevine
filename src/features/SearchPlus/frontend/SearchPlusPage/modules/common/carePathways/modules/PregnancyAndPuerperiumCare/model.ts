@@ -36,6 +36,10 @@ export type PregnancyAndPuerperiumCareCsvRow = {
     "Quantidade de atendimentos odontológicos no pré-natal": string;
     "Exame de HIV no terceiro trimestre": string;
     "Exame de Sifilis no terceiro trimestre": string;
+    "Exame de HIV no primeiro trimestre": string;
+    "Exame de Sífilis no primeiro trimestre": string;
+    "Exame de Hepatite B no primeiro trimestre": string;
+    "Exame de Hepatite C no primeiro trimestre": string;
 };
 
 export type PregnancyAndPuerperiumCareItem = {
@@ -59,4 +63,8 @@ export type PregnancyAndPuerperiumCareItem = {
     dentalAppointmentsDuringPrenatal: number;
     didHivExamAtThirdTrimester: boolean;
     didSyphilisExamAtThirdTrimester: boolean;
+    didHivTestDuringFirstTrimester: boolean;
+    didSyphilisTestDuringFirstTrimester: boolean;
+    didHepatitisBTestDuringFirstTrimester: boolean;
+    didHepatitisCTestDuringFirstTrimester: boolean;
 };

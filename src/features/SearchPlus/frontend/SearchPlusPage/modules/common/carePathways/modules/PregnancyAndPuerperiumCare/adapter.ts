@@ -9,6 +9,10 @@ const numberOrNull = (value: string): number | null => {
     return Number.isNaN(Number(value)) ? null : Number(value);
 };
 
+const isStringYes = (value: string): boolean => {
+    return value.toLowerCase() === "sim";
+};
+
 export const csvRowToPregnancyAndPuerperiumCareItem = (
     csvRows: Array<PregnancyAndPuerperiumCareCsvRow>
 ): Array<PregnancyAndPuerperiumCareItem> => {
@@ -49,6 +53,18 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const dentalAppointmentsDuringPrenatal = Number(
             row["Quantidade de atendimentos odontológicos no pré-natal"]
         );
+        const didHivTestDuringFirstTrimester = isStringYes(
+            row["Exame de HIV no primeiro trimestre"]
+        );
+        const didSyphilisTestDuringFirstTrimester = isStringYes(
+            row["Exame de Sífilis no primeiro trimestre"]
+        );
+        const didHepatitisBTestDuringFirstTrimester = isStringYes(
+            row["Exame de Hepatite B no primeiro trimestre"]
+        );
+        const didHepatitisCTestDuringFirstTrimester = isStringYes(
+            row["Exame de Hepatite C no primeiro trimestre"]
+        );
         const patientName = row["Nome"];
         const patientCpf = row["CPF"];
         const patientCns = row["CNS"];
@@ -66,6 +82,10 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             EXAM_DONE_AT_THIRD_TRIMESTER;
 
         return {
+            didHivTestDuringFirstTrimester,
+            didSyphilisTestDuringFirstTrimester,
+            didHepatitisBTestDuringFirstTrimester,
+            didHepatitisCTestDuringFirstTrimester,
             appointmentsUntil12thWeek,
             gestationalAgeByLastMenstrualPeriodWeeks,
             gestationalAgeByLastMenstrualPeriodDays,
