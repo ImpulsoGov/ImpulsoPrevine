@@ -43,9 +43,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 gestationalAgeByObstreticalUltrasoundDays,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
             ];
             const { weeks, days } = GestationalAgeFactory({
                 gestationalAgeByLastMenstrualPeriodWeeks,
@@ -129,9 +129,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number,
                 number,
                 number,
@@ -174,9 +174,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number,
                 number,
                 number,
@@ -220,9 +220,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number,
                 number,
                 number,
@@ -266,9 +266,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number,
                 number,
                 number,
@@ -311,9 +311,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number | null,
-                number | null,
-                number | null,
+                0 | 1 | 2 | 3 | 4 | 5 | 6 | null,
                 number,
                 number,
                 number,

@@ -1,7 +1,10 @@
+import type { BRTDateString } from "@/features/common/shared/time";
+import { brtStringToLocalDate } from "@/features/common/shared/time";
 import type {
     PregnancyAndPuerperiumCareCsvRow,
     PregnancyAndPuerperiumCareItem,
 } from "./model";
+import type { LocalDate } from "@js-joda/core";
 
 const EXAM_DONE_AT_THIRD_TRIMESTER = "sim";
 
@@ -13,9 +16,24 @@ const isStringYes = (value: string): boolean => {
     return value.toLowerCase() === "sim";
 };
 
+const gestationalAgeDayOrNull = (
+    value: string
+): 0 | 1 | 2 | 3 | 4 | 5 | 6 | null => {
+    const number = numberOrNull(value);
+    if (number === null || (number >= 0 && number <= 6)) {
+        return number as 0 | 1 | 2 | 3 | 4 | 5 | 6 | null;
+    }
+    return null;
+};
+
 export const csvRowToPregnancyAndPuerperiumCareItem = (
-    csvRows: Array<PregnancyAndPuerperiumCareCsvRow>
+    csvRows: Array<PregnancyAndPuerperiumCareCsvRow>,
+    createdAtString: string
 ): Array<PregnancyAndPuerperiumCareItem> => {
+    const createdAt = brtStringToLocalDate(
+        createdAtString as BRTDateString
+    ) as LocalDate;
+
     return csvRows.map((row) => {
         const appointmentsUntil12thWeek = Number(
             row["Quantidade de atendimentos até 12 semanas no pré-natal"]
@@ -23,15 +41,14 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const gestationalAgeByLastMenstrualPeriodWeeks = numberOrNull(
             row["IG (DUM) (semanas)"]
         );
-        const gestationalAgeByLastMenstrualPeriodDays = numberOrNull(
+        const gestationalAgeByLastMenstrualPeriodDays = gestationalAgeDayOrNull(
             row["IG (DUM) (dias)"]
         );
         const gestationalAgeByObstreticalUltrasoundWeeks = numberOrNull(
             row["IG (ecografia obstétrica) (semanas)"]
         );
-        const gestationalAgeByObstreticalUltrasoundDays = numberOrNull(
-            row["IG (ecografia obstétrica) (dias)"]
-        );
+        const gestationalAgeByObstreticalUltrasoundDays =
+            gestationalAgeDayOrNull(row["IG (ecografia obstétrica) (dias)"]);
         const appointmentsDuringPrenatal = Number(
             row["Quantidade de atendimentos no pré-natal"]
         );
@@ -80,6 +97,7 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const didSyphilisExamAtThirdTrimester =
             row["Exame de Sifilis no terceiro trimestre"].toLowerCase() ===
             EXAM_DONE_AT_THIRD_TRIMESTER;
+        const tetanusDiphtheriaPertussisVaccineDoses = row["dTpa"];
 
         return {
             didHivTestDuringFirstTrimester,
@@ -106,6 +124,8 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             microAreaName,
             didHivExamAtThirdTrimester,
             didSyphilisExamAtThirdTrimester,
+            tetanusDiphtheriaPertussisVaccineDoses,
+            createdAt,
         };
     });
 };
