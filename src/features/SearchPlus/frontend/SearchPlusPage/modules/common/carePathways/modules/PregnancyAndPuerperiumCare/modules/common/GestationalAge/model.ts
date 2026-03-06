@@ -10,5 +10,5 @@ export type InputData = Pick<
 
 export type GestationalAge = {
     weeks: number | null;
-    days: number | null;
+    days: 0 | 1 | 2 | 3 | 4 | 5 | 6 | null;
 };
