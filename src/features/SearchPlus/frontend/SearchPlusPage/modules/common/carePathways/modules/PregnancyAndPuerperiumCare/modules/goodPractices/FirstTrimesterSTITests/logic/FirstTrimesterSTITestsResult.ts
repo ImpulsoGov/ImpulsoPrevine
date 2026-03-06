@@ -17,8 +17,6 @@ type Data = Pick<
     | "gestationalAgeByLastMenstrualPeriodDays"
     | "gestationalAgeByObstreticalUltrasoundWeeks"
     | "gestationalAgeByObstreticalUltrasoundDays"
-    | "homeVisitsDuringPuerperium"
-    | "appointmentsDuringPuerperium"
     | "didHepatitisBTestDuringFirstTrimester"
     | "didHepatitisCTestDuringFirstTrimester"
     | "didHivTestDuringFirstTrimester"
@@ -30,8 +28,6 @@ export const FirstTrimesterSTITestsResult = ({
     gestationalAgeByLastMenstrualPeriodDays,
     gestationalAgeByObstreticalUltrasoundWeeks,
     gestationalAgeByObstreticalUltrasoundDays,
-    homeVisitsDuringPuerperium,
-    appointmentsDuringPuerperium,
     didHepatitisBTestDuringFirstTrimester,
     didHepatitisCTestDuringFirstTrimester,
     didHivTestDuringFirstTrimester,
@@ -45,8 +41,6 @@ export const FirstTrimesterSTITestsResult = ({
     }).computeGestationalAge();
     // TODO: usar factory para criar os calculadores
     const FirstTrimesterSTITestsCalc = new FirstTrimesterSTITestsCalculator({
-        homeVisitsDuringPuerperium,
-        appointmentsDuringPuerperium,
         didHepatitisBTestDuringFirstTrimester,
         didHepatitisCTestDuringFirstTrimester,
         didHivTestDuringFirstTrimester,
