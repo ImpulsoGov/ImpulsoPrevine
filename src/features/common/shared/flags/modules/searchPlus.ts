@@ -377,6 +377,8 @@ const allowedUsersIds = [
     "1492dc89-3684-47a1-958a-eb06782b9cac",
     "0d78915f-3482-4349-ba5b-6f161223a6b2",
     "74adafb6-3775-4e33-b53a-0deb2f19c193",
+    "269a4bd7-2a9d-4d8c-bc0c-c2619d4c4be6",
+    "4b00090f-b11c-4293-9dff-89a419265530",
 ];
 
 export const searchPlus = flag<boolean, allowByUserId.UserId>({
