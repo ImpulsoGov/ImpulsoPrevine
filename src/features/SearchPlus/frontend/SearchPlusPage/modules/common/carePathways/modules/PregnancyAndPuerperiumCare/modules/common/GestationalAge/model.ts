@@ -1,4 +1,5 @@
 import type { PregnancyAndPuerperiumCareItem } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare";
+import type { WeekDayIndex } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 export type InputData = Pick<
     PregnancyAndPuerperiumCareItem,
@@ -10,5 +11,5 @@ export type InputData = Pick<
 
 export type GestationalAge = {
     weeks: number | null;
-    days: 0 | 1 | 2 | 3 | 4 | 5 | 6 | null;
+    days: WeekDayIndex | null;
 };

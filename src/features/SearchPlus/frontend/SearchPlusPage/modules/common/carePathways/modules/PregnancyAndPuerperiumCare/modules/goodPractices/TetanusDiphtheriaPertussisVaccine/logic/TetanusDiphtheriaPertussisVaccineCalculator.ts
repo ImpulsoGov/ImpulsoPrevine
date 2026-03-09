@@ -56,7 +56,6 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
             .minusDays(gestationalAge.days);
         const validDoseDateLimit = gestationStartDate.plusWeeks(20);
         const doses = tetanusDiphtheriaPertussisVaccineDoses.split("|");
-        console.log("doses", doses);
         if (doses.length === 1 && doses[0].trim() === "") return false;
         if (doses.length === 0) return false;
         if (doses.some((dose) => !dose.includes("-") || !dose.includes("/")))
@@ -67,7 +66,6 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
                     dose.split("-")[1].trim() as BRTDateString
                 ) as LocalDate
         );
-        console.log("dosesDates", dosesDates);
         return dosesDates.some((doseDate) =>
             doseDate.isAfter(validDoseDateLimit)
         );

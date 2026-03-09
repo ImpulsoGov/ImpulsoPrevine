@@ -3,6 +3,7 @@ import { brtStringToLocalDate } from "@/features/common/shared/time";
 import type {
     PregnancyAndPuerperiumCareCsvRow,
     PregnancyAndPuerperiumCareItem,
+    WeekDayIndex,
 } from "./model";
 import type { LocalDate } from "@js-joda/core";
 
@@ -16,12 +17,10 @@ const isStringYes = (value: string): boolean => {
     return value.toLowerCase() === "sim";
 };
 
-const gestationalAgeDayOrNull = (
-    value: string
-): 0 | 1 | 2 | 3 | 4 | 5 | 6 | null => {
+const gestationalAgeDayOrNull = (value: string): WeekDayIndex | null => {
     const number = numberOrNull(value);
     if (number === null || (number >= 0 && number <= 6)) {
-        return number as 0 | 1 | 2 | 3 | 4 | 5 | 6 | null;
+        return number as WeekDayIndex | null;
     }
     return null;
 };
