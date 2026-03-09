@@ -20,7 +20,7 @@ export type CalculatorInput = Pick<
 >;
 
 export type Status = {
-    tagStatus: PrintTagTheme | "inapplicable";
+    tagStatus: PrintTagTheme;
 };
 
 export class SyphilisAndHivExamsAtThirdTrimesterCalculator {
