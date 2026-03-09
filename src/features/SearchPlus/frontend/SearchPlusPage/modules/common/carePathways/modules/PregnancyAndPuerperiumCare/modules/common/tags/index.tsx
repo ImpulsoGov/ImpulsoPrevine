@@ -24,6 +24,10 @@ const IconThemeAlt: Record<PrintTagTheme, { icon: string; alt: string }> = {
         icon: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmecx3h9e006a07lpnnvguact",
         alt: "Ícone de três círculos preenchidos em vermelho",
     },
+    inapplicable: {
+        icon: "https://sa-east-1.graphassets.com/AH0lIsPT8QrCidoSKZ1cPz/cmh0ukoui072608lr7z492lil",
+        alt: "Ícone de conjunto vazio",
+    },
 };
 
 export const Tag: React.FC<{
