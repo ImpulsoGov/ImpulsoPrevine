@@ -139,7 +139,10 @@ export const handleClick = (
                     }
                 );
                 const data: Array<PregnancyAndPuerperiumCareItem> =
-                    adaptersMap.pregnancyAndPuerperiumCare(result.data);
+                    adaptersMap.pregnancyAndPuerperiumCare(
+                        result.data,
+                        createdAtDate
+                    );
                 setJsonData(data);
             }
         } catch (err) {

@@ -1,4 +1,5 @@
 import type * as time from "@/features/common/shared/time";
+import type { LocalDate } from "@js-joda/core";
 
 export type Count = {
     current: number;
@@ -40,7 +41,10 @@ export type PregnancyAndPuerperiumCareCsvRow = {
     "Exame de Sífilis no primeiro trimestre": string;
     "Exame de Hepatite B no primeiro trimestre": string;
     "Exame de Hepatite C no primeiro trimestre": string;
+    dTpa: string;
 };
+
+export type WeekDayIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export type PregnancyAndPuerperiumCareItem = {
     patientName: string;
@@ -51,9 +55,9 @@ export type PregnancyAndPuerperiumCareItem = {
     patientPhoneNumber: string;
     appointmentsUntil12thWeek: number;
     gestationalAgeByLastMenstrualPeriodWeeks: number | null;
-    gestationalAgeByLastMenstrualPeriodDays: number | null;
+    gestationalAgeByLastMenstrualPeriodDays: WeekDayIndex | null;
     gestationalAgeByObstreticalUltrasoundWeeks: number | null;
-    gestationalAgeByObstreticalUltrasoundDays: number | null;
+    gestationalAgeByObstreticalUltrasoundDays: WeekDayIndex | null;
     appointmentsDuringPrenatal: number;
     homeVisitsDuringPuerperium: number;
     appointmentsDuringPuerperium: number;
@@ -67,4 +71,6 @@ export type PregnancyAndPuerperiumCareItem = {
     didSyphilisTestDuringFirstTrimester: boolean;
     didHepatitisBTestDuringFirstTrimester: boolean;
     didHepatitisCTestDuringFirstTrimester: boolean;
+    tetanusDiphtheriaPertussisVaccineDoses: Array<LocalDate>;
+    createdAt: LocalDate;
 };

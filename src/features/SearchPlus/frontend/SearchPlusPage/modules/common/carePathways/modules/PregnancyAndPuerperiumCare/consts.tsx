@@ -3,6 +3,7 @@ import * as goodPractices from "./modules/goodPractices";
 import { Tag } from "./modules/common/tags";
 import { GestationalAgeFactory } from "./modules/common/GestationalAge";
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
+import type { WeekDayIndex } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
 
 export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
     {
@@ -43,9 +44,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 gestationalAgeByObstreticalUltrasoundDays,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
             ];
             const { weeks, days } = GestationalAgeFactory({
                 gestationalAgeByLastMenstrualPeriodWeeks,
@@ -129,9 +130,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
                 number,
                 number,
                 number,
@@ -174,9 +175,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
                 number,
                 number,
                 number,
@@ -220,9 +221,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
                 number,
                 number,
                 number,
@@ -266,9 +267,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
                 number,
                 number,
                 number,
@@ -311,9 +312,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
+                WeekDayIndex | null,
                 number | null,
-                number | null,
-                number | null,
+                WeekDayIndex | null,
                 number,
                 number,
                 number,
