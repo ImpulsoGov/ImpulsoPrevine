@@ -109,7 +109,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
             expect(result.tagStatus).toBe("inapplicable");
         });
 
-        it("deve retornar danger quando gestação tem 20 semanas e zero dia", () => {
+        it("deve retornar danger quando gestação tem 20 semanas e zero dia e não existe dose válida", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator(
                 baseInput
             );
