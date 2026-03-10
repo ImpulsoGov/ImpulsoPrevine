@@ -88,7 +88,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
             this.#data.tetanusDiphtheriaPertussisVaccineDoses;
 
         if (this.#isGestationalAgeUnavailable(gestationalAge))
-            return { tagStatus: "disabled" };
+            return { tagStatus: "inapplicable" };
         const gestationalAgeNonNullable =
             gestationalAge as GestationalAgeNonNullable;
         if (
@@ -105,7 +105,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
                 : { tagStatus: "danger" };
 
         if (this.#isGestationalUnder20weeks(gestationalAgeNonNullable))
-            return { tagStatus: "disabled" };
+            return { tagStatus: "inapplicable" };
 
         return this.#hasValidTetanusDiphtheriaPertussisVaccineDose(
             tetanusDiphtheriaPertussisVaccineDoses,
