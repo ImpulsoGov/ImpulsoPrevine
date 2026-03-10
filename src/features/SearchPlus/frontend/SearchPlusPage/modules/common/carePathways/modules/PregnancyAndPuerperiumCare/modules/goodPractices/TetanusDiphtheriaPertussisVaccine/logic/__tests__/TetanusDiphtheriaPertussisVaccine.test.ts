@@ -109,6 +109,35 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
             expect(result.tagStatus).toBe("inapplicable");
         });
 
+        it("deve retornar danger quando gestação tem 20 semanas e zero dia", () => {
+            const calculator = new TetanusDiphtheriaPertussisVaccineCalculator(
+                baseInput
+            );
+
+            const result = calculator.computeStatus(
+                { weeks: 20, days: 0 },
+                createdAt
+            );
+
+            expect(result.tagStatus).toBe("danger");
+        });
+
+        it("deve retornar success quando gestação tem 20 semanas e zero dia e dose válida", () => {
+            const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
+                ...baseInput,
+                tetanusDiphtheriaPertussisVaccineDoses: [
+                    LocalDate.parse("2026-08-21"),
+                ],
+            });
+
+            const result = calculator.computeStatus(
+                { weeks: 20, days: 0 },
+                createdAt
+            );
+
+            expect(result.tagStatus).toBe("success");
+        });
+
         it("deve retornar success quando existe dose válida", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
                 ...baseInput,
