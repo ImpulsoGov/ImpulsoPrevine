@@ -1,6 +1,6 @@
 import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/model";
 import * as goodPractices from "./modules/goodPractices";
-import { Tag } from "./modules/common/tags";
+import { Tag } from "./modules/common/Tags";
 import { GestationalAgeFactory } from "./modules/common/GestationalAge";
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 import type { WeekDayIndex } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
