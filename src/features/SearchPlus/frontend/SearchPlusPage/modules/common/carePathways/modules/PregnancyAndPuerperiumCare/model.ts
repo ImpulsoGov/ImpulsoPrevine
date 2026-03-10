@@ -71,6 +71,6 @@ export type PregnancyAndPuerperiumCareItem = {
     didSyphilisTestDuringFirstTrimester: boolean;
     didHepatitisBTestDuringFirstTrimester: boolean;
     didHepatitisCTestDuringFirstTrimester: boolean;
-    tetanusDiphtheriaPertussisVaccineDoses: string;
+    tetanusDiphtheriaPertussisVaccineDoses: Array<LocalDate>;
     createdAt: LocalDate;
 };
