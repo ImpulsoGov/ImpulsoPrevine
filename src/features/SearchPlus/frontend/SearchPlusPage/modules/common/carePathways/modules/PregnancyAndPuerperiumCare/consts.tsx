@@ -423,4 +423,54 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             return <Tag theme={status.tagStatus} count={count} />;
         },
     },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+            "didHivExamAtThirdTrimester",
+            "didSyphilisExamAtThirdTrimester",
+        ],
+        headerName: "Exames\n(até 3º tri.)",
+        width: {
+            landscape: 60,
+            portrait: 44,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+                didHivExamAtThirdTrimester,
+                didSyphilisExamAtThirdTrimester,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+                boolean,
+                boolean,
+            ];
+            const { status, count } =
+                goodPractices.SyphilisAndHivExamsAtThirdTrimesterResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                    didHivExamAtThirdTrimester,
+                    didSyphilisExamAtThirdTrimester,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
 ];
