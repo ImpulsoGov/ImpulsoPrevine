@@ -24,6 +24,23 @@ const gestationalAgeDayOrNull = (value: string): WeekDayIndex | null => {
     }
     return null;
 };
+//TODO: criar testes unitários para essa função
+const parseDtpaDoseDates = (
+    tetanusDiphtheriaPertussisVaccineDoses: string
+): Array<LocalDate> => {
+    const doses = tetanusDiphtheriaPertussisVaccineDoses.split("|");
+    if (doses.length === 1 && doses[0].trim() === "") return [];
+    if (doses.length === 0) return [];
+    if (doses.some((dose) => !dose.includes("-") || !dose.includes("/")))
+        return [];
+    const dosesDates = doses.map(
+        (dose) =>
+            brtStringToLocalDate(
+                dose.split("-")[1].trim() as BRTDateString
+            ) as LocalDate
+    );
+    return dosesDates;
+};
 
 export const csvRowToPregnancyAndPuerperiumCareItem = (
     csvRows: Array<PregnancyAndPuerperiumCareCsvRow>,
@@ -96,7 +113,9 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
         const didSyphilisExamAtThirdTrimester =
             row["Exame de Sifilis no terceiro trimestre"].toLowerCase() ===
             EXAM_DONE_AT_THIRD_TRIMESTER;
-        const tetanusDiphtheriaPertussisVaccineDoses = row["dTpa"];
+        const tetanusDiphtheriaPertussisVaccineDoses = parseDtpaDoseDates(
+            row["dTpa"]
+        );
 
         return {
             didHivTestDuringFirstTrimester,

@@ -7,13 +7,15 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
     const baseInput = {
         appointmentsDuringPuerperium: 0,
         homeVisitsDuringPuerperium: 0,
-        tetanusDiphtheriaPertussisVaccineDoses: "",
+        tetanusDiphtheriaPertussisVaccineDoses: [],
     };
 
-    const validDose = "D - 21/01/2026 - Vacina dTpa adulto (dTpa)";
+    const validDose = [LocalDate.parse("2026-01-21")];
 
-    const multipleDoses =
-        "D - 21/08/2026 - Vacina dTpa adulto (dTpa) | REF - 22/08/2026 - Vacina dTpa adulto (dTpa)";
+    const multipleDoses = [
+        LocalDate.parse("2026-08-21"),
+        LocalDate.parse("2026-08-22"),
+    ];
 
     describe("computeTetanusDiphtheriaPertussisVaccine", () => {
         it("deve retornar 0 quando não há doses registradas", () => {
@@ -35,7 +37,9 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
         it("deve retornar 1 quando existe dose válida após 20 semanas", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
                 ...baseInput,
-                tetanusDiphtheriaPertussisVaccineDoses: validDose,
+                tetanusDiphtheriaPertussisVaccineDoses: [
+                    LocalDate.parse("2026-01-21"),
+                ],
             });
 
             const result = calculator.computeTetanusDiphtheriaPertussisVaccine(
@@ -66,7 +70,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
         it("deve retornar 0 quando formato de dose é inválido", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
                 ...baseInput,
-                tetanusDiphtheriaPertussisVaccineDoses: "dose sem data válida",
+                tetanusDiphtheriaPertussisVaccineDoses: [],
             });
 
             const result = calculator.computeTetanusDiphtheriaPertussisVaccine(
@@ -151,7 +155,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
                 appointmentsDuringPuerperium: 1,
                 homeVisitsDuringPuerperium: 0,
-                tetanusDiphtheriaPertussisVaccineDoses: "",
+                tetanusDiphtheriaPertussisVaccineDoses: [],
             });
 
             const result = calculator.computeStatus(

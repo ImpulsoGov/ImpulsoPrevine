@@ -1,6 +1,4 @@
 import type { PrintTagTheme } from "@/features/common/frontend/molecules";
-import type { BRTDateString } from "@/features/common/shared/time";
-import { brtStringToLocalDate } from "@/features/common/shared/time";
 import type { GestationalAge } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/common/GestationalAge";
 import type {
     Count,
@@ -47,7 +45,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
     }
 
     #hasValidTetanusDiphtheriaPertussisVaccineDose(
-        tetanusDiphtheriaPertussisVaccineDoses: string,
+        tetanusDiphtheriaPertussisVaccineDoses: Array<LocalDate>,
         gestationalAge: GestationalAgeNonNullable,
         createdAt: LocalDate
     ): boolean {
@@ -55,18 +53,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
             .minusWeeks(gestationalAge.weeks)
             .minusDays(gestationalAge.days);
         const validDoseDateLimit = gestationStartDate.plusWeeks(20);
-        const doses = tetanusDiphtheriaPertussisVaccineDoses.split("|");
-        if (doses.length === 1 && doses[0].trim() === "") return false;
-        if (doses.length === 0) return false;
-        if (doses.some((dose) => !dose.includes("-") || !dose.includes("/")))
-            return false;
-        const dosesDates = doses.map(
-            (dose) =>
-                brtStringToLocalDate(
-                    dose.split("-")[1].trim() as BRTDateString
-                ) as LocalDate
-        );
-        return dosesDates.some((doseDate) =>
+        return tetanusDiphtheriaPertussisVaccineDoses.some((doseDate) =>
             doseDate.isAfter(validDoseDateLimit)
         );
     }
