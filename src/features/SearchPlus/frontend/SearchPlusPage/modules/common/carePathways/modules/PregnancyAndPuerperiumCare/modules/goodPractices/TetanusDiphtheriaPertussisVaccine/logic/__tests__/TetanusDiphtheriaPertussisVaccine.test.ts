@@ -93,10 +93,10 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
                 createdAt
             );
 
-            expect(result.tagStatus).toBe("disabled");
+            expect(result.tagStatus).toBe("inapplicable");
         });
 
-        it("deve retornar disabled quando gestação tem menos de 20 semanas", () => {
+        it("deve retornar inapplicable quando gestação tem menos de 20 semanas", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator(
                 baseInput
             );
@@ -106,7 +106,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
                 createdAt
             );
 
-            expect(result.tagStatus).toBe("disabled");
+            expect(result.tagStatus).toBe("inapplicable");
         });
 
         it("deve retornar success quando existe dose válida", () => {
