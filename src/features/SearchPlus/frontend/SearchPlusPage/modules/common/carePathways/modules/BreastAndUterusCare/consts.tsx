@@ -4,7 +4,7 @@ import type { ColumnsProps } from "@features/SearchPlus/frontend/SearchPlusPage/
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 import * as time from "@/features/common/shared/time";
 import * as goodPractices from "./modules/goodPractices";
-import { TagByStatus } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/Tags";
+import { TagByStatus } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/BreastAndUterusCare/modules/common/Tags";
 
 export const breastAndUterusCareColumns: Array<ColumnsProps> = [
     {

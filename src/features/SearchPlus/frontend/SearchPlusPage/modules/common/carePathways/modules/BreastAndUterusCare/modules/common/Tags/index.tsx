@@ -1,6 +1,6 @@
 import { Icon, Text } from "@/features/common/frontend/atoms";
 import { PrintTag } from "@/features/common/frontend/molecules";
-import type { Status } from "../carePathways";
+import type { Status } from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways";
 
 type TagProps = {
     content: Status;
