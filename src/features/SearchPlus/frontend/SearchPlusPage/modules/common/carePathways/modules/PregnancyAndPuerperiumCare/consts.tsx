@@ -337,7 +337,6 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             "gestationalAgeByLastMenstrualPeriodDays",
             "gestationalAgeByObstreticalUltrasoundWeeks",
             "gestationalAgeByObstreticalUltrasoundDays",
-            "dentalAppointmentsDuringPrenatal",
             "homeVisitsDuringPuerperium",
             "appointmentsDuringPuerperium",
         ],
