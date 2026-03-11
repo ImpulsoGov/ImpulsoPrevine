@@ -331,4 +331,47 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             return <Tag theme={status.tagStatus} count={count} />;
         },
     },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "dentalAppointmentsDuringPrenatal",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+        ],
+        headerName: "Consulta puerpério\n(até 42d pós parto)",
+        width: {
+            landscape: 150,
+            portrait: 135,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+            ];
+            const { status, count } =
+                goodPractices.AppointmentsAtPuerperiumResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
 ];
