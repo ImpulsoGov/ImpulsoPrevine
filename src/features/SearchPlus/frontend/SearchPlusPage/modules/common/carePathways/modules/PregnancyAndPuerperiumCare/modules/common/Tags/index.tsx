@@ -44,7 +44,9 @@ export const Tag: React.FC<{
                 height={8}
             />
             <Text>
-                {count.current}/{count.total}
+                {theme === "inapplicable"
+                    ? "N. aplica"
+                    : `${count.current.toString()}/${count.total.toString()}`}
             </Text>
         </PrintTag>
     );
