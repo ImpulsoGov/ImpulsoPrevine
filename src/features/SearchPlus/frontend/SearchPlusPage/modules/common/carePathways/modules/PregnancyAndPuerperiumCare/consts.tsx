@@ -346,6 +346,13 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         width: {
             landscape: 48,
             portrait: 44,
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+        ],
+        headerName: "Consulta puerpério\n(até 42d pós parto)",
+        width: {
+            landscape: 150,
+            portrait: 135,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -357,6 +364,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 didSyphilisTestDuringFirstTrimester,
                 didHepatitisBTestDuringFirstTrimester,
                 didHepatitisCTestDuringFirstTrimester,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
             ] = param as [
                 number | null,
                 WeekDayIndex | null,
@@ -369,6 +378,11 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             ];
             const { status, count } =
                 goodPractices.FirstTrimesterSTITestsResult({
+                number,
+                number,
+            ];
+            const { status, count } =
+                goodPractices.AppointmentsAtPuerperiumResult({
                     gestationalAgeByLastMenstrualPeriodWeeks,
                     gestationalAgeByLastMenstrualPeriodDays,
                     gestationalAgeByObstreticalUltrasoundWeeks,
@@ -377,6 +391,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                     didHepatitisCTestDuringFirstTrimester,
                     didHivTestDuringFirstTrimester,
                     didSyphilisTestDuringFirstTrimester,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
                 });
             return <Tag theme={status.tagStatus} count={count} />;
         },

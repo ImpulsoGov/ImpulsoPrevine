@@ -1,0 +1,1 @@
+export { AppointmentsAtPuerperiumResult } from "./AppointmentsAtPuerperiumResult";
