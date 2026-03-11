@@ -389,48 +389,6 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             "gestationalAgeByObstreticalUltrasoundDays",
             "homeVisitsDuringPuerperium",
             "appointmentsDuringPuerperium",
-        ],
-        headerName: "VD puerpério (até 42d pós parto)",
-        width: {
-            landscape: 70,
-            portrait: 50,
-        },
-        renderCell: (param: unknown): React.ReactNode => {
-            const [
-                gestationalAgeByLastMenstrualPeriodWeeks,
-                gestationalAgeByLastMenstrualPeriodDays,
-                gestationalAgeByObstreticalUltrasoundWeeks,
-                gestationalAgeByObstreticalUltrasoundDays,
-                homeVisitsDuringPuerperium,
-                appointmentsDuringPuerperium,
-            ] = param as [
-                number | null,
-                WeekDayIndex | null,
-                number | null,
-                WeekDayIndex | null,
-                number,
-                number,
-            ];
-            const { status, count } =
-                goodPractices.HomeVisitsAtPuerperiumResult({
-                    gestationalAgeByLastMenstrualPeriodWeeks,
-                    gestationalAgeByLastMenstrualPeriodDays,
-                    gestationalAgeByObstreticalUltrasoundWeeks,
-                    gestationalAgeByObstreticalUltrasoundDays,
-                    homeVisitsDuringPuerperium,
-                    appointmentsDuringPuerperium,
-                });
-            return <Tag theme={status.tagStatus} count={count} />;
-        },
-    },
-    {
-        fields: [
-            "gestationalAgeByLastMenstrualPeriodWeeks",
-            "gestationalAgeByLastMenstrualPeriodDays",
-            "gestationalAgeByObstreticalUltrasoundWeeks",
-            "gestationalAgeByObstreticalUltrasoundDays",
-            "homeVisitsDuringPuerperium",
-            "appointmentsDuringPuerperium",
             "didHivExamAtThirdTrimester",
             "didSyphilisExamAtThirdTrimester",
         ],
@@ -505,6 +463,48 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             ];
             const { status, count } =
                 goodPractices.AppointmentsAtPuerperiumResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+        ],
+        headerName: "VD puerpério (até 42d pós parto)",
+        width: {
+            landscape: 70,
+            portrait: 50,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+            ];
+            const { status, count } =
+                goodPractices.HomeVisitsAtPuerperiumResult({
                     gestationalAgeByLastMenstrualPeriodWeeks,
                     gestationalAgeByLastMenstrualPeriodDays,
                     gestationalAgeByObstreticalUltrasoundWeeks,
