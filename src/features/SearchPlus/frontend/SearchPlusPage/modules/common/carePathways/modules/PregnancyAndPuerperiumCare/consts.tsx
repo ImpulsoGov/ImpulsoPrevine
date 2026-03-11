@@ -337,13 +337,15 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             "gestationalAgeByLastMenstrualPeriodDays",
             "gestationalAgeByObstreticalUltrasoundWeeks",
             "gestationalAgeByObstreticalUltrasoundDays",
-            "homeVisitsDuringPuerperium",
-            "appointmentsDuringPuerperium",
+            "didHivTestDuringFirstTrimester",
+            "didSyphilisTestDuringFirstTrimester",
+            "didHepatitisBTestDuringFirstTrimester",
+            "didHepatitisCTestDuringFirstTrimester",
         ],
-        headerName: "Consulta puerpério\n(até 42d pós parto)",
+        headerName: "Exames\n(1º tri.)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 48,
+            portrait: 44,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -351,24 +353,30 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                 gestationalAgeByLastMenstrualPeriodDays,
                 gestationalAgeByObstreticalUltrasoundWeeks,
                 gestationalAgeByObstreticalUltrasoundDays,
-                homeVisitsDuringPuerperium,
-                appointmentsDuringPuerperium,
+                didHivTestDuringFirstTrimester,
+                didSyphilisTestDuringFirstTrimester,
+                didHepatitisBTestDuringFirstTrimester,
+                didHepatitisCTestDuringFirstTrimester,
             ] = param as [
                 number | null,
                 WeekDayIndex | null,
                 number | null,
                 WeekDayIndex | null,
-                number,
-                number,
+                boolean,
+                boolean,
+                boolean,
+                boolean,
             ];
             const { status, count } =
-                goodPractices.AppointmentsAtPuerperiumResult({
+                goodPractices.FirstTrimesterSTITestsResult({
                     gestationalAgeByLastMenstrualPeriodWeeks,
                     gestationalAgeByLastMenstrualPeriodDays,
                     gestationalAgeByObstreticalUltrasoundWeeks,
                     gestationalAgeByObstreticalUltrasoundDays,
-                    homeVisitsDuringPuerperium,
-                    appointmentsDuringPuerperium,
+                    didHepatitisBTestDuringFirstTrimester,
+                    didHepatitisCTestDuringFirstTrimester,
+                    didHivTestDuringFirstTrimester,
+                    didSyphilisTestDuringFirstTrimester,
                 });
             return <Tag theme={status.tagStatus} count={count} />;
         },
