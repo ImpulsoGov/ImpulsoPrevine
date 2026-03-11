@@ -331,4 +331,54 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             return <Tag theme={status.tagStatus} count={count} />;
         },
     },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "didHivTestDuringFirstTrimester",
+            "didSyphilisTestDuringFirstTrimester",
+            "didHepatitisBTestDuringFirstTrimester",
+            "didHepatitisCTestDuringFirstTrimester",
+        ],
+        headerName: "Exames\n(até 1º tri.)",
+        width: {
+            landscape: 60,
+            portrait: 44,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                didHivTestDuringFirstTrimester,
+                didSyphilisTestDuringFirstTrimester,
+                didHepatitisBTestDuringFirstTrimester,
+                didHepatitisCTestDuringFirstTrimester,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                boolean,
+                boolean,
+                boolean,
+                boolean,
+            ];
+            const { status, count } =
+                goodPractices.FirstTrimesterSTITestsResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    didHepatitisBTestDuringFirstTrimester,
+                    didHepatitisCTestDuringFirstTrimester,
+                    didHivTestDuringFirstTrimester,
+                    didSyphilisTestDuringFirstTrimester,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
 ];
