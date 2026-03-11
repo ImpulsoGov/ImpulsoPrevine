@@ -434,9 +434,9 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             "didHivExamAtThirdTrimester",
             "didSyphilisExamAtThirdTrimester",
         ],
-        headerName: "Exames\n(até 3º tri.)",
+        headerName: "Exames\n(3º tri.)",
         width: {
-            landscape: 60,
+            landscape: 48,
             portrait: 44,
         },
         renderCell: (param: unknown): React.ReactNode => {
