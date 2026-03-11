@@ -12,3 +12,5 @@ export { OralHealthResult } from "./OralHealth";
 
 export { FirstTrimesterSTITestsResult } from "./FirstTrimesterSTITests";
 export { AppointmentsAtPuerperiumResult } from "./AppointmentsAtPuerperium";
+
+export { HomeVisitsAtPuerperiumResult } from "./HomeVisitsAtPuerperium";
