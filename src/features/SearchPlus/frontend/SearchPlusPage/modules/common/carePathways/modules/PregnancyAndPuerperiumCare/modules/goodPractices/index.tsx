@@ -9,3 +9,5 @@ export { WeightAndHeightMeasurementResult } from "./WeightAndHeightMeasurement";
 export { HomeVisitsResult } from "./HomeVisits";
 
 export { OralHealthResult } from "./OralHealth";
+
+export { AppointmentsAtPuerperiumResult } from "./AppointmentsAtPuerperium";
