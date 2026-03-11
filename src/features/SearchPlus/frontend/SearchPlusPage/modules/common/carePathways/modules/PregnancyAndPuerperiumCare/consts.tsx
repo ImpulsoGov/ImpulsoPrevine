@@ -394,7 +394,7 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Exames\n(3º tri.)",
         width: {
-            landscape: 48,
+            landscape: 70,
             portrait: 44,
         },
         renderCell: (param: unknown): React.ReactNode => {
@@ -484,7 +484,7 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "VD puerpério (até 42d pós parto)",
         width: {
-            landscape: 70,
+            landscape: 100,
             portrait: 50,
         },
         renderCell: (param: unknown): React.ReactNode => {
