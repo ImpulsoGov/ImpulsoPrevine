@@ -101,7 +101,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
 
         it("retorna 'disabled' quando dias são null", () => {
             const data = { ...baseInput };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 days: null,
             };
@@ -118,7 +118,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
     describe("computeStatus - antes do 3º trimestre (IG < 28 semanas e 0 dias)", () => {
         it("retorna 'inapplicable' quando IG = 0 semanas e 3 dias", () => {
             const data = { ...baseInput };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 0,
                 days: 3,
@@ -134,7 +134,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
 
         it("retorna 'inapplicable' quando IG = 27 semanas e 6 dias", () => {
             const data = { ...baseInput };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 27,
                 days: 6,
@@ -152,7 +152,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
     describe("computeStatus - no 3º trimestre (28 semanas e 0 dias <= IG <= 42 semanas e 0 dias)", () => {
         it("retorna 'danger' quando nenhum exame foi feito e IG = 28 semanas e 0 dias", () => {
             const data = { ...baseInput };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 28,
                 days: 0,
@@ -171,7 +171,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
                 ...baseInput,
                 didHivExamAtThirdTrimester: true,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 28,
                 days: 3,
@@ -191,7 +191,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
                 didHivExamAtThirdTrimester: true,
                 didSyphilisExamAtThirdTrimester: true,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -213,7 +213,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
                 didHivExamAtThirdTrimester: true,
                 didSyphilisExamAtThirdTrimester: true,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -229,7 +229,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
 
         it("retorna 'disabled' quando nenhum exame foi feito e IG = 42 semanas e 1 dia", () => {
             const data = { ...baseInput };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -249,7 +249,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
                 didHivExamAtThirdTrimester: true,
                 didSyphilisExamAtThirdTrimester: true,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -268,7 +268,7 @@ describe("SyphilisAndHivExamsAtThirdTrimesterCalculator", () => {
                 ...baseInput,
                 didSyphilisExamAtThirdTrimester: true,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,

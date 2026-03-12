@@ -1,0 +1,1 @@
+export { SyphilisAndHivExamsAtThirdTrimesterResult } from "./SyphilisAndHivExamsAtThirdTrimesterResult";

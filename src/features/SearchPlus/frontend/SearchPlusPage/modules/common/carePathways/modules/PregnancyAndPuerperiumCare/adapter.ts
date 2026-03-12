@@ -7,8 +7,6 @@ import type {
 } from "./model";
 import type { LocalDate } from "@js-joda/core";
 
-const EXAM_DONE_AT_THIRD_TRIMESTER = "sim";
-
 const numberOrNull = (value: string): number | null => {
     return Number.isNaN(Number(value)) ? null : Number(value);
 };
@@ -107,12 +105,12 @@ export const csvRowToPregnancyAndPuerperiumCareItem = (
             row["Telefone de contato"];
         const patientAge = row["Idade"];
         const microAreaName = row["Microárea"];
-        const didHivExamAtThirdTrimester =
-            row["Exame de HIV no terceiro trimestre"].toLowerCase() ===
-            EXAM_DONE_AT_THIRD_TRIMESTER;
-        const didSyphilisExamAtThirdTrimester =
-            row["Exame de Sifilis no terceiro trimestre"].toLowerCase() ===
-            EXAM_DONE_AT_THIRD_TRIMESTER;
+        const didHivExamAtThirdTrimester = isStringYes(
+            row["Exame de HIV no terceiro trimestre"]
+        );
+        const didSyphilisExamAtThirdTrimester = isStringYes(
+            row["Exame de Sifilis no terceiro trimestre"]
+        );
         const tetanusDiphtheriaPertussisVaccineDoses = parseDtpaDoseDates(
             row["dTpa"]
         );

@@ -331,4 +331,188 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
             return <Tag theme={status.tagStatus} count={count} />;
         },
     },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "didHivTestDuringFirstTrimester",
+            "didSyphilisTestDuringFirstTrimester",
+            "didHepatitisBTestDuringFirstTrimester",
+            "didHepatitisCTestDuringFirstTrimester",
+        ],
+        headerName: "Exames\n(1º tri.)",
+        width: {
+            landscape: 48,
+            portrait: 44,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                didHivTestDuringFirstTrimester,
+                didSyphilisTestDuringFirstTrimester,
+                didHepatitisBTestDuringFirstTrimester,
+                didHepatitisCTestDuringFirstTrimester,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                boolean,
+                boolean,
+                boolean,
+                boolean,
+            ];
+            const { status, count } =
+                goodPractices.FirstTrimesterSTITestsResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    didHepatitisBTestDuringFirstTrimester,
+                    didHepatitisCTestDuringFirstTrimester,
+                    didHivTestDuringFirstTrimester,
+                    didSyphilisTestDuringFirstTrimester,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+            "didHivExamAtThirdTrimester",
+            "didSyphilisExamAtThirdTrimester",
+        ],
+        headerName: "Exames\n(3º tri.)",
+        width: {
+            landscape: 70,
+            portrait: 44,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+                didHivExamAtThirdTrimester,
+                didSyphilisExamAtThirdTrimester,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+                boolean,
+                boolean,
+            ];
+            const { status, count } =
+                goodPractices.SyphilisAndHivExamsAtThirdTrimesterResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                    didHivExamAtThirdTrimester,
+                    didSyphilisExamAtThirdTrimester,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+        ],
+        headerName: "Consulta puerpério\n(até 42d pós parto)",
+        width: {
+            landscape: 150,
+            portrait: 135,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+            ];
+            const { status, count } =
+                goodPractices.AppointmentsAtPuerperiumResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+        ],
+        headerName: "VD puerpério (até 42d pós parto)",
+        width: {
+            landscape: 100,
+            portrait: 50,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                homeVisitsDuringPuerperium,
+                appointmentsDuringPuerperium,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+            ];
+            const { status, count } =
+                goodPractices.HomeVisitsAtPuerperiumResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    homeVisitsDuringPuerperium,
+                    appointmentsDuringPuerperium,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
 ];
