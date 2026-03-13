@@ -68,7 +68,7 @@ export class AppointmentsAtPuerperiumCalculator {
             return { tagStatus: "danger" };
 
         if (this.#isGestationalPeriod(gestationalAge))
-            return { tagStatus: "disabled" };
+            return { tagStatus: "inapplicable" };
 
         return { tagStatus: "danger" };
     }
