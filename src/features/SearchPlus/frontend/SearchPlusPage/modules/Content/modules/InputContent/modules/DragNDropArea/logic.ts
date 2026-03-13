@@ -38,13 +38,11 @@ export const handleFileUpload = (
             const listRowIndex = lines.findIndex((line) =>
                 line.startsWith("Lista temática")
             );
-
             validations.isHeaderValid(lines, errorHandler);
 
             const list = lines[listRowIndex]?.split(
                 ";"
             )[1] as ThematicList | null;
-
             if (
                 validations.isThematicListAvailable(
                     list,
@@ -52,20 +50,18 @@ export const handleFileUpload = (
                     errorHandler
                 )
             ) {
-                return;
-            } else {
                 setHeader((prev) => ({
                     ...prev,
                     thematicList: list,
                 }));
+            } else {
+                return;
             }
-
             if (!validations.isTeamLineAvailable(lines, errorHandler)) return;
 
             const createdAtRowIndex = lines.findIndex((line) =>
                 line.startsWith("Gerado em")
             );
-
             if (
                 !validations.isCreationDateAvailable(
                     createdAtRowIndex,
@@ -73,7 +69,6 @@ export const handleFileUpload = (
                 )
             )
                 return;
-
             if (
                 !validations.isCreationDateValid(
                     createdAtRowIndex,
@@ -89,17 +84,14 @@ export const handleFileUpload = (
                 skipEmptyLines: true,
                 delimiter: ";",
             });
-
             if (validations.hasInvalidBirthDate(result, errorHandler)) return;
 
             //TODO: adicionar validacao de numero e nao deixar o csv ser valido quando o numero estiver errado (NaN) ou for um -
-
             if (list === "Gestação e puerpério")
                 validations.validationsPregnancyAndPuerperium(
                     result.data as Array<PregnancyAndPuerperiumCareCsvRow>,
                     errorHandler
                 );
-
             setRawFileContent(file);
             setSuccessSnackbar(true);
             trackFileUploadWithSuccess(list as ThematicList);
