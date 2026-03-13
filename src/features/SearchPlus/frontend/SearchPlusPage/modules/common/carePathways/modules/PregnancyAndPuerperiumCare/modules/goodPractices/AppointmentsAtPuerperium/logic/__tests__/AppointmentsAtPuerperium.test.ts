@@ -92,5 +92,18 @@ describe("AppointmentsAtPuerperiumCalculator", () => {
 
             expect(result.tagStatus).toBe("danger");
         });
+
+        it("deve retornar inapplicable quando estiver no último dia do período gestacional", () => {
+            const calculator = createCalculator({
+                appointmentsDuringPuerperium: 0,
+                homeVisitsDuringPuerperium: 0,
+            });
+
+            const gestationalAge = createGestationalAge(42, 0);
+
+            const result = calculator.computeStatus(gestationalAge);
+
+            expect(result.tagStatus).toBe("inapplicable");
+        });
     });
 });
