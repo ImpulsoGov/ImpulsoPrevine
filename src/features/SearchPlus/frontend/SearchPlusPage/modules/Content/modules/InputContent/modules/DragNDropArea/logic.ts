@@ -27,7 +27,7 @@ export const handleFileUpload = (
     setSuccessSnackbar: React.Dispatch<React.SetStateAction<boolean>>,
     isSearchPlusNewCarePathwayEnabled: boolean
 ): void => {
-    if (validations.isFileExtensionValid(file.name, errorHandler)) return;
+    if (validations.isFileExtensionInvalid(file.name, errorHandler)) return;
 
     const reader = new FileReader();
     reader.onload = (): void => {
@@ -38,7 +38,7 @@ export const handleFileUpload = (
             const listRowIndex = lines.findIndex((line) =>
                 line.startsWith("Lista temática")
             );
-            validations.isHeaderValid(lines, errorHandler);
+            if (!validations.isHeaderValid(lines, errorHandler)) return;
 
             const list = lines[listRowIndex]?.split(
                 ";"
@@ -87,11 +87,15 @@ export const handleFileUpload = (
             if (validations.hasInvalidBirthDate(result, errorHandler)) return;
 
             //TODO: adicionar validacao de numero e nao deixar o csv ser valido quando o numero estiver errado (NaN) ou for um -
-            if (list === "Gestação e puerpério")
-                validations.validationsPregnancyAndPuerperium(
-                    result.data as Array<PregnancyAndPuerperiumCareCsvRow>,
-                    errorHandler
-                );
+            if (list === "Gestação e puerpério") {
+                if (
+                    !validations.hasPregnancyAndPuerperiumValidations(
+                        result.data as Array<PregnancyAndPuerperiumCareCsvRow>,
+                        errorHandler
+                    )
+                )
+                    return;
+            }
             setRawFileContent(file);
             setSuccessSnackbar(true);
             trackFileUploadWithSuccess(list as ThematicList);
