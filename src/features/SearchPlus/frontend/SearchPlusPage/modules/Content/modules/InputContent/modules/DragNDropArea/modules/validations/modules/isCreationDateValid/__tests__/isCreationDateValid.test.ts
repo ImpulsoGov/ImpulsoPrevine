@@ -69,22 +69,22 @@ describe("isCreationDateValid", () => {
         );
     });
 
-    it("deve retornar true quando a linha não possuir colunas suficientes", (): void => {
+    it("deve retornar false quando a linha não possuir colunas suficientes", (): void => {
         const lines: Array<string> = ["col1;01/01/2024"];
 
         const isValid = isCreationDateValid(0, lines, errorHandler);
 
-        expect(isValid).toBe(true);
+        expect(isValid).toBe(false);
         expect(errorHandler).not.toHaveBeenCalled();
         expect(trackFileUploadWithError).not.toHaveBeenCalled();
     });
 
-    it("deve retornar true quando o índice da linha não existir", (): void => {
+    it("deve retornar false quando o índice da linha não existir", (): void => {
         const lines: Array<string> = [];
 
         const isValid = isCreationDateValid(2, lines, errorHandler);
 
-        expect(isValid).toBe(true);
+        expect(isValid).toBe(false);
         expect(errorHandler).not.toHaveBeenCalled();
         expect(trackFileUploadWithError).not.toHaveBeenCalled();
     });

@@ -13,7 +13,7 @@ export const isCreationDateValid = (
     const splitCreatedAt = lines[createdAtRowIndex]?.split(";") ?? [];
 
     if (splitCreatedAt.length <= CREATED_AT_TIME_INDEX) {
-        return true;
+        return false;
     }
 
     const createdAtDate = splitCreatedAt[CREATED_AT_DATE_INDEX];
