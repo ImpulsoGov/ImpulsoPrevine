@@ -35,7 +35,7 @@ describe("SevenAppointmentsCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: null,
             };
@@ -51,7 +51,7 @@ describe("SevenAppointmentsCalculator", () => {
                 ...baseInput(),
             };
 
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 days: null,
             };
@@ -124,7 +124,7 @@ describe("SevenAppointmentsCalculator", () => {
 
                 appointmentsDuringPrenatal: 6,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -143,7 +143,7 @@ describe("SevenAppointmentsCalculator", () => {
 
                 appointmentsDuringPrenatal: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -162,7 +162,7 @@ describe("SevenAppointmentsCalculator", () => {
 
                 appointmentsDuringPrenatal: 0,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -181,7 +181,7 @@ describe("SevenAppointmentsCalculator", () => {
 
                 appointmentsDuringPrenatal: 5,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -200,7 +200,7 @@ describe("SevenAppointmentsCalculator", () => {
 
                 appointmentsDuringPrenatal: 8,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -213,16 +213,16 @@ describe("SevenAppointmentsCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando semanas = 43 + dias = 15 e consultas < 7", () => {
+        it("retorna 'disabled' quando semanas = 43 + dias = 5 e consultas < 7", () => {
             const data = {
                 ...baseInput(),
 
                 appointmentsDuringPrenatal: 4,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new SevenAppointmentsCalculator(data);
@@ -232,16 +232,16 @@ describe("SevenAppointmentsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas = 43 + dias = 15 e consultas >= 7", () => {
+        it("retorna 'success' quando semanas = 43 + dias = 5 e consultas >= 7", () => {
             const data = {
                 ...baseInput(),
 
                 appointmentsDuringPrenatal: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new SevenAppointmentsCalculator(data);

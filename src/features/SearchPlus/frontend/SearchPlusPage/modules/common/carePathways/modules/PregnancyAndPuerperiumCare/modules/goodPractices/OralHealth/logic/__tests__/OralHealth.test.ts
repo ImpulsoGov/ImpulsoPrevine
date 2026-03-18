@@ -62,7 +62,7 @@ describe("OralHealthCalculator", () => {
                 ...baseInput,
                 dentalAppointmentsDuringPrenatal: 2,
             });
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -78,7 +78,7 @@ describe("OralHealthCalculator", () => {
                 ...baseInput,
                 dentalAppointmentsDuringPrenatal: 5,
             });
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -89,15 +89,15 @@ describe("OralHealthCalculator", () => {
             });
         });
 
-        it("deve retornar 'success' quando idade gestacional = 43 semanas e 15 dias e número de consultas odontológicas no pré-natal >= 1", () => {
+        it("deve retornar 'success' quando idade gestacional = 43 semanas e 5 dias e número de consultas odontológicas no pré-natal >= 1", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
                 dentalAppointmentsDuringPrenatal: 1,
             });
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             expect(calculator.computeStatus(gestationalAge)).toEqual({
@@ -122,7 +122,7 @@ describe("OralHealthCalculator", () => {
                 ...baseInput,
             });
 
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -138,7 +138,7 @@ describe("OralHealthCalculator", () => {
                 ...baseInput,
             });
 
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -149,15 +149,15 @@ describe("OralHealthCalculator", () => {
             });
         });
 
-        it("deve retornar 'disabled' quando não há consultas odontológicas e a idade gestacional = 43 semanas e 15 dias", () => {
+        it("deve retornar 'disabled' quando não há consultas odontológicas e a idade gestacional = 43 semanas e 5 dias", () => {
             const calculator = new OralHealthCalculator({
                 ...baseInput,
             });
 
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             expect(calculator.computeStatus(gestationalAge)).toEqual({

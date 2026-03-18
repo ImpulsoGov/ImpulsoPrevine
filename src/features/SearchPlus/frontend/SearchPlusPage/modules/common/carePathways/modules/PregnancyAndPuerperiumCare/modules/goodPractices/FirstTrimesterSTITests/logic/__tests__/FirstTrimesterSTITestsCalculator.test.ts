@@ -84,7 +84,7 @@ describe("FirstTrimesterSTITestsCalculator", () => {
             expect(
                 calc.computeStatus({
                     weeks: FIRST_TRIMESTER_WEEKS,
-                    days: FIRST_TRIMESTER_DAYS - 1,
+                    days: (FIRST_TRIMESTER_DAYS - 1) as GestationalAge["days"],
                 })
             ).toEqual({ tagStatus: "warning" });
         });
