@@ -37,7 +37,7 @@ describe("HomeVisitsCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: null,
                 days: 1,
@@ -54,7 +54,7 @@ describe("HomeVisitsCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 days: null,
             };
@@ -139,7 +139,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 2,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -157,7 +157,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 3,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -175,7 +175,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 0,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -193,7 +193,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 2,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -211,7 +211,7 @@ describe("HomeVisitsCalculator", () => {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 4,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -224,15 +224,15 @@ describe("HomeVisitsCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando semanas = 43 + dias = 15 e visitas domiciliares < 3", () => {
+        it("retorna 'disabled' quando semanas = 43 + dias = 5 e visitas domiciliares < 3", () => {
             const data = {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 2,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new HomeVisitsCalculator(data);
@@ -242,15 +242,15 @@ describe("HomeVisitsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas = 43 + dias = 15 e visitas domiciliares >= 3", () => {
+        it("retorna 'success' quando semanas = 43 + dias = 5 e visitas domiciliares >= 3", () => {
             const data = {
                 ...baseInput(),
                 homeVisitsDuringPregnancy: 3,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new HomeVisitsCalculator(data);

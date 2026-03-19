@@ -36,7 +36,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: null,
                 days: 1,
@@ -53,7 +53,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 40,
                 days: null,
@@ -138,7 +138,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 ...baseInput(),
                 bloodPressureMeasurements: 6,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -156,7 +156,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 ...baseInput(),
                 bloodPressureMeasurements: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -174,7 +174,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 ...baseInput(),
                 bloodPressureMeasurements: 0,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -192,7 +192,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 ...baseInput(),
                 bloodPressureMeasurements: 5,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -210,7 +210,7 @@ describe("BloodPressureMeasurementsCalculator", () => {
                 ...baseInput(),
                 bloodPressureMeasurements: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -223,15 +223,15 @@ describe("BloodPressureMeasurementsCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando semanas = 43 + dias = 15 e aferições < 7", () => {
+        it("retorna 'disabled' quando semanas = 43 + dias = 5 e aferições < 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 2,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);
@@ -241,15 +241,15 @@ describe("BloodPressureMeasurementsCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando semanas = 43 + dias = 15 e aferições >= 7", () => {
+        it("retorna 'success' quando semanas = 43 + dias = 5 e aferições >= 7", () => {
             const data = {
                 ...baseInput(),
                 bloodPressureMeasurements: 9,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new BloodPressureMeasurementCalculator(data);

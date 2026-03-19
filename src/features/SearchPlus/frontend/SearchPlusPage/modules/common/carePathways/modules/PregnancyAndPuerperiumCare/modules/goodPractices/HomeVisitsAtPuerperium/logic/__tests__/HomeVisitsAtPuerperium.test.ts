@@ -38,7 +38,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const data = {
                 ...baseInput,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: null,
                 days: 1,
@@ -73,7 +73,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const data = {
                 ...baseInput,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 0,
                 days: 3,
@@ -90,7 +90,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const data = {
                 ...baseInput,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 30,
                 days: 0,
@@ -107,7 +107,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
             const data = {
                 ...baseInput,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -181,7 +181,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
                     ...baseInput,
                     homeVisitsDuringPuerperium: 0,
                 };
-                const gestationalAge = {
+                const gestationalAge: GestationalAge = {
                     ...baseGestationalAge,
                     weeks: 42,
                     days: 1,
@@ -199,7 +199,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
                     ...baseInput,
                     homeVisitsDuringPuerperium: 0,
                 };
-                const gestationalAge = {
+                const gestationalAge: GestationalAge = {
                     ...baseGestationalAge,
                     weeks: 43,
                     days: 0,
@@ -217,7 +217,7 @@ describe("HomeVisitsAtPuerperiumCalculator", () => {
                     ...baseInput,
                     homeVisitsDuringPuerperium: 0,
                 };
-                const gestationalAge = {
+                const gestationalAge: GestationalAge = {
                     ...baseGestationalAge,
                     weeks: 43,
                     days: 5,

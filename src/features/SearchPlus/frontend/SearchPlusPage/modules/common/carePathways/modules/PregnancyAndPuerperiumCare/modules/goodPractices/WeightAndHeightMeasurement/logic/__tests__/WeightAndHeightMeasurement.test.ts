@@ -36,7 +36,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             const data = {
                 ...baseInput(),
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: null,
                 days: 1,
@@ -138,7 +138,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 6,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -156,7 +156,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 1,
@@ -174,7 +174,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 0,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 42,
                 days: 0,
@@ -192,7 +192,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 3,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -210,7 +210,7 @@ describe("WeightAndHeightMeasurementCalculator", () => {
                 ...baseInput(),
                 weightAndHeightMeasurements: 9,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
                 days: 0,
@@ -223,15 +223,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             });
         });
 
-        it("retorna 'disabled' quando IG = 43 semanas + 15 dias e medições < 7", () => {
+        it("retorna 'disabled' quando IG = 43 semanas + 5 dias e medições < 7", () => {
             const data = {
                 ...baseInput(),
                 weightAndHeightMeasurements: 5,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
@@ -241,15 +241,15 @@ describe("WeightAndHeightMeasurementCalculator", () => {
             });
         });
 
-        it("retorna 'success' quando IG = 43 semanas + 15 dias e medições >= 7", () => {
+        it("retorna 'success' quando IG = 43 semanas + 5 dias e medições >= 7", () => {
             const data = {
                 ...baseInput(),
                 weightAndHeightMeasurements: 7,
             };
-            const gestationalAge = {
+            const gestationalAge: GestationalAge = {
                 ...baseGestationalAge,
                 weeks: 43,
-                days: 15,
+                days: 5,
             };
 
             const calc = new WeightAndHeightMeasurementCalculator(data);
