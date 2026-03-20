@@ -20,8 +20,8 @@ describe("hasPregnancyAndPuerperiumValidations", () => {
             "Quantidade de atendimentos no puerpério": "1",
             "IG (DUM) (semanas)": "20",
             "IG (DUM) (dias)": "3",
-            "IG (ecografia obstétrica) (semanas)": "",
-            "IG (ecografia obstétrica) (dias)": "",
+            "IG (ecografia obstétrica) (semanas)": "-",
+            "IG (ecografia obstétrica) (dias)": "-",
         } as PregnancyAndPuerperiumCareCsvRow;
     };
 

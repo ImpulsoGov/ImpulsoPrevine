@@ -6,6 +6,7 @@ const hasValidValue = (value: string | null | undefined): boolean => {
     if (value === "-") return false;
     if (value === "") return false;
     if (value === " ") return false;
+    if (typeof value === "string" && value.trim() === "") return false;
     if (Number.isNaN(Number(value))) return false;
     if (Number(value) < 0) return false;
     return true;
@@ -44,6 +45,19 @@ const hasGestationalAge = (
     return false;
 };
 
+const CSV_COLUMNS = {
+    appointmentsUntil12thWeek:
+        "Quantidade de atendimentos até 12 semanas no pré-natal",
+    appointmentsDuringPrenatal: "Quantidade de atendimentos no pré-natal",
+    homeVisitsDuringPuerperium:
+        "Quantidade de visitas domiciliares no puerpério",
+    appointmentsDuringPuerperium: "Quantidade de atendimentos no puerpério",
+    gestationalAgeByLastMenstrualPeriodWeeks: "IG (DUM) (semanas)",
+    gestationalAgeByLastMenstrualPeriodDays: "IG (DUM) (dias)",
+    gestationalAgeByUltrasoundWeeks: "IG (ecografia obstétrica) (semanas)",
+    gestationalAgeByUltrasoundDays: "IG (ecografia obstétrica) (dias)",
+} as const;
+
 export const hasPregnancyAndPuerperiumValidations = (
     data: Array<PregnancyAndPuerperiumCareCsvRow>,
     errorHandler: (message: ErrorData) => void
@@ -56,28 +70,25 @@ export const hasPregnancyAndPuerperiumValidations = (
         });
     };
 
+    if (data.length === 0) {
+        raiseError();
+        return false;
+    }
+
     if (
         data.some((item) => {
             return (
-                hasValidValue(
-                    item[
-                        "Quantidade de atendimentos até 12 semanas no pré-natal"
-                    ]
-                ) ||
-                hasValidValue(
-                    item["Quantidade de atendimentos no pré-natal"]
-                ) ||
-                hasValidValue(
-                    item["Quantidade de visitas domiciliares no puerpério"]
-                ) ||
-                hasValidValue(
-                    item["Quantidade de atendimentos no puerpério"]
+                !hasValidValue(item[CSV_COLUMNS.appointmentsUntil12thWeek]) ||
+                !hasValidValue(item[CSV_COLUMNS.appointmentsDuringPrenatal]) ||
+                !hasValidValue(item[CSV_COLUMNS.homeVisitsDuringPuerperium]) ||
+                !hasValidValue(
+                    item[CSV_COLUMNS.appointmentsDuringPuerperium]
                 ) ||
                 !hasGestationalAge(
-                    item["IG (DUM) (semanas)"],
-                    item["IG (DUM) (dias)"],
-                    item["IG (ecografia obstétrica) (semanas)"],
-                    item["IG (ecografia obstétrica) (dias)"]
+                    item[CSV_COLUMNS.gestationalAgeByLastMenstrualPeriodWeeks],
+                    item[CSV_COLUMNS.gestationalAgeByLastMenstrualPeriodDays],
+                    item[CSV_COLUMNS.gestationalAgeByUltrasoundWeeks],
+                    item[CSV_COLUMNS.gestationalAgeByUltrasoundDays]
                 )
             );
         })
