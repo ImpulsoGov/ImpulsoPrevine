@@ -6,7 +6,7 @@ import type {
     WeekDayIndex,
 } from "./model";
 import type { LocalDate } from "@js-joda/core";
-import { parseDtpaDoseDates } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/parsers/parseDtpaDoseDates/parseDtpaDoseDates";
+import { parseDtpaDoseDates } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/modules/parsers/parseDtpaDoseDates";
 
 const numberOrNull = (value: string): number | null => {
     return Number.isNaN(Number(value)) ? null : Number(value);

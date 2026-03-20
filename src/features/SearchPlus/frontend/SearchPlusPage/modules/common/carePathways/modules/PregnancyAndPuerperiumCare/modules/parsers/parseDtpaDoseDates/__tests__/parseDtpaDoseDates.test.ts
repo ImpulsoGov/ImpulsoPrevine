@@ -1,5 +1,5 @@
 import { LocalDate } from "@js-joda/core";
-import { parseDtpaDoseDates } from "../parseDtpaDoseDates";
+import { parseDtpaDoseDates } from "..";
 
 describe("parseDtpaDoseDates", () => {
     it("deve retornar um array vazio quando a string de doses estiver vazia", () => {
