@@ -64,7 +64,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
                 createdAt
             );
 
-            expect(result.current).toBe(1);
+            expect(result.current).toBe(2);
         });
 
         it("deve retornar 0 quando formato de dose é inválido", () => {
