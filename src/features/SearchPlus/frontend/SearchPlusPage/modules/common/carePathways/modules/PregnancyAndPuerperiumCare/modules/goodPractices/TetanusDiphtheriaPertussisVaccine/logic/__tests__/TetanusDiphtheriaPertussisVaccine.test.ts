@@ -53,7 +53,7 @@ describe("TetanusDiphtheriaPertussisVaccineCalculator", () => {
             });
         });
 
-        it("deve considerar válido quando há múltiplas doses", () => {
+        it("deve retornar o número de doses válidas quando há múltiplas doses", () => {
             const calculator = new TetanusDiphtheriaPertussisVaccineCalculator({
                 ...baseInput,
                 tetanusDiphtheriaPertussisVaccineDoses: multipleDoses,
