@@ -44,18 +44,19 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
         return false;
     }
 
-    #hasValidTetanusDiphtheriaPertussisVaccineDose(
+    #computeValidTetanusDiphtheriaPertussisVaccineDose(
         tetanusDiphtheriaPertussisVaccineDoses: Array<LocalDate>,
         gestationalAge: GestationalAgeNonNullable,
         createdAt: LocalDate
-    ): boolean {
+    ): number {
         const gestationStartDate = createdAt
             .minusWeeks(gestationalAge.weeks)
             .minusDays(gestationalAge.days);
-        const validDoseDateLimit = gestationStartDate.plusWeeks(20);
-        return tetanusDiphtheriaPertussisVaccineDoses.some((doseDate) =>
-            doseDate.isAfter(validDoseDateLimit)
-        );
+        // é a data mínima para que a dose seja valida.
+        const minDateForValidDose = gestationStartDate.plusWeeks(20);
+        return tetanusDiphtheriaPertussisVaccineDoses
+            .map((doseDate) => doseDate.isAfter(minDateForValidDose))
+            .filter(Boolean).length;
     }
 
     public computeTetanusDiphtheriaPertussisVaccine(
@@ -65,14 +66,14 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
         const tetanusDiphtheriaPertussisVaccineDoses =
             this.#data.tetanusDiphtheriaPertussisVaccineDoses;
 
-        const isTetanusDiphtheriaPertussisVaccineDosesValid =
-            this.#hasValidTetanusDiphtheriaPertussisVaccineDose(
+        const validDoses =
+            this.#computeValidTetanusDiphtheriaPertussisVaccineDose(
                 tetanusDiphtheriaPertussisVaccineDoses,
                 gestationalAgeNonNullable,
                 createdAtDate
             );
         return {
-            current: isTetanusDiphtheriaPertussisVaccineDosesValid ? 1 : 0,
+            current: validDoses,
             total: TARGET_NUMBER_OF_DOSES,
         };
     }
@@ -96,7 +97,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
                 ZERO_APPOINTMENTS_DURING_PUERPERIUM ||
             homeVisitsDuringPuerperium > ZERO_HOME_VISITS_DURING_PUERPERIUM
         )
-            return this.#hasValidTetanusDiphtheriaPertussisVaccineDose(
+            return this.#computeValidTetanusDiphtheriaPertussisVaccineDose(
                 tetanusDiphtheriaPertussisVaccineDoses,
                 gestationalAgeNonNullable,
                 createdAtDate
@@ -107,7 +108,7 @@ export class TetanusDiphtheriaPertussisVaccineCalculator {
         if (this.#isGestationalUnder20weeks(gestationalAgeNonNullable))
             return { tagStatus: "inapplicable" };
 
-        return this.#hasValidTetanusDiphtheriaPertussisVaccineDose(
+        return this.#computeValidTetanusDiphtheriaPertussisVaccineDose(
             tetanusDiphtheriaPertussisVaccineDoses,
             gestationalAgeNonNullable,
             createdAtDate
