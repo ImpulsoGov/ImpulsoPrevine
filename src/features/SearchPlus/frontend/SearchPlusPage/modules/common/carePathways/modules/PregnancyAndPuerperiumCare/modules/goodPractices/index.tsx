@@ -17,3 +17,4 @@ export { AppointmentsAtPuerperiumResult } from "./AppointmentsAtPuerperium";
 export { HomeVisitsAtPuerperiumResult } from "./HomeVisitsAtPuerperium";
 
 export { SyphilisAndHivExamsAtThirdTrimesterResult } from "./SyphilisAndHivExamsAtThirdTrimester";
+export { TetanusDiphtheriaPertussisVaccineResult } from "./TetanusDiphtheriaPertussisVaccine";

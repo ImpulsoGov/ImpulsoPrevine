@@ -4,6 +4,7 @@ import { Tag } from "./modules/common/Tags";
 import { GestationalAgeFactory } from "./modules/common/GestationalAge";
 import * as Formatters from "@features/SearchPlus/frontend/SearchPlusPage/modules/common/UnitTable/modules/Formatters";
 import type { WeekDayIndex } from "@/features/SearchPlus/frontend/SearchPlusPage/modules/common/carePathways/modules/PregnancyAndPuerperiumCare/model";
+import type { LocalDate } from "@js-joda/core";
 
 export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
     {
@@ -427,6 +428,56 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
                     appointmentsDuringPuerperium,
                     didHivExamAtThirdTrimester,
                     didSyphilisExamAtThirdTrimester,
+                });
+            return <Tag theme={status.tagStatus} count={count} />;
+        },
+    },
+    {
+        fields: [
+            "gestationalAgeByLastMenstrualPeriodWeeks",
+            "gestationalAgeByLastMenstrualPeriodDays",
+            "gestationalAgeByObstreticalUltrasoundWeeks",
+            "gestationalAgeByObstreticalUltrasoundDays",
+            "homeVisitsDuringPuerperium",
+            "appointmentsDuringPuerperium",
+            "tetanusDiphtheriaPertussisVaccineDoses",
+            "createdAt",
+        ],
+        headerName: "Vacina acelular (>20 semanas)",
+        width: {
+            landscape: 70,
+            portrait: 44,
+        },
+        renderCell: (param: unknown): React.ReactNode => {
+            const [
+                gestationalAgeByLastMenstrualPeriodWeeks,
+                gestationalAgeByLastMenstrualPeriodDays,
+                gestationalAgeByObstreticalUltrasoundWeeks,
+                gestationalAgeByObstreticalUltrasoundDays,
+                appointmentsDuringPuerperium,
+                homeVisitsDuringPuerperium,
+                tetanusDiphtheriaPertussisVaccineDoses,
+                createdAt,
+            ] = param as [
+                number | null,
+                WeekDayIndex | null,
+                number | null,
+                WeekDayIndex | null,
+                number,
+                number,
+                Array<LocalDate>,
+                LocalDate,
+            ];
+            const { status, count } =
+                goodPractices.TetanusDiphtheriaPertussisVaccineResult({
+                    gestationalAgeByLastMenstrualPeriodWeeks,
+                    gestationalAgeByLastMenstrualPeriodDays,
+                    gestationalAgeByObstreticalUltrasoundWeeks,
+                    gestationalAgeByObstreticalUltrasoundDays,
+                    appointmentsDuringPuerperium,
+                    homeVisitsDuringPuerperium,
+                    tetanusDiphtheriaPertussisVaccineDoses,
+                    createdAt,
                 });
             return <Tag theme={status.tagStatus} count={count} />;
         },
