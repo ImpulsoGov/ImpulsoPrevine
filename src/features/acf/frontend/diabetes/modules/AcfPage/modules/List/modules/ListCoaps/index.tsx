@@ -57,6 +57,9 @@ export const ContentCoaps: React.FC = () => {
                                         title="Filtrar lista"
                                         description="selecione filtros para refinar a busca de cidadãos"
                                     />
+                                    <h1 className="text-4xl font-bold bg-red-100">
+                                        Teste da Shadcn
+                                    </h1>
                                     <WithFiltersBar
                                         FiltersBar={CoapsFiltersBar}
                                     >

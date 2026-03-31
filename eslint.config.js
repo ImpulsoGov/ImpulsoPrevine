@@ -107,6 +107,7 @@ export default tseslint.config([
             "**/__snapshots__/**",
             "package-lock.json",
             "public/",
+            // "postcss.config.mjs",
         ],
     },
 ]);
