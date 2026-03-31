@@ -6,6 +6,10 @@ import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "./api/auth/[...nextauth]/nextAuthOptions";
 import { menuNavBar } from "@/helpers/menuNavBar";
 import { PROFILE_ID } from "@/types/profile";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const Base = dynamic(() => import("./Base").then((mod) => mod.Base));
 
@@ -24,7 +28,7 @@ export default async function RootLayout({
     }
     const menuNavBarOptions = await menuNavBar(userView);
     return (
-        <html lang="pt-BR">
+        <html lang="pt-BR" className={cn("font-sans", geist.variable)}>
             <body>
                 <SessionWrapperLayout>
                     <Base menuNavBarOptions={menuNavBarOptions}>
