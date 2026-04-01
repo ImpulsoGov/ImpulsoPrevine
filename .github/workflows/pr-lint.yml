@@ -20,7 +20,7 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  yarn install
+                  yarn install --frozen-lockfile
             - name: Run Prisma Generate
               run: yarn prisma generate
             - name: Check Prisma Client is generated for Production
