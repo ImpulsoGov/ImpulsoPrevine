@@ -11,8 +11,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         fields: ["patientName", "patientCpf", "patientCns"],
         headerName: "Nome e CPF/CNS",
         width: {
-            landscape: 95,
-            portrait: 74,
+            landscape: 120,
+            portrait: 70,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [name, cpf, cns] = param as [string, string, string];
@@ -34,8 +34,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "IG",
         width: {
-            landscape: 95,
-            portrait: 74,
+            landscape: 50,
+            portrait: 32,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -71,8 +71,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         fields: ["patientAge", "patientPhoneNumber", "microAreaName"],
         headerName: "Idade, telefone e microárea",
         width: {
-            landscape: 95,
-            portrait: 74,
+            landscape: 80,
+            portrait: 60,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [patientAge, patientPhoneNumber, microAreaName] = param as [
@@ -95,8 +95,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         fields: ["appointmentsUntil12thWeek"],
         headerName: "Consultas até a 12ª semana",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 75,
+            portrait: 38,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [appointments] = param as [number];
@@ -117,8 +117,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Consultas \n(até o parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 70,
+            portrait: 30,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -162,8 +162,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Aferição PA\n(até parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 70,
+            portrait: 30,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -208,8 +208,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Peso+Altura\n(até parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 70,
+            portrait: 25,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -254,8 +254,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "VD\n(até parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 70,
+            portrait: 50,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -299,8 +299,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Saúde Bucal\n(até parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 70,
+            portrait: 50,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -345,8 +345,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Exames\n(1º tri.)",
         width: {
-            landscape: 48,
-            portrait: 44,
+            landscape: 70,
+            portrait: 25,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -396,7 +396,7 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         headerName: "Exames\n(3º tri.)",
         width: {
             landscape: 70,
-            portrait: 44,
+            portrait: 58,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -445,8 +445,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Vacina acelular (>20 semanas)",
         width: {
-            landscape: 70,
-            portrait: 44,
+            landscape: 85,
+            portrait: 58,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -493,8 +493,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "Consulta puerpério\n(até 42d pós parto)",
         width: {
-            landscape: 150,
-            portrait: 135,
+            landscape: 100,
+            portrait: 58,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
@@ -535,8 +535,8 @@ export const pregnancyAndPuerperiumCareColumns: Array<ColumnsProps> = [
         ],
         headerName: "VD puerpério (até 42d pós parto)",
         width: {
-            landscape: 100,
-            portrait: 50,
+            landscape: 95,
+            portrait: 58,
         },
         renderCell: (param: unknown): React.ReactNode => {
             const [
