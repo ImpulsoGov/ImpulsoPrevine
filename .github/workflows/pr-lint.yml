@@ -19,8 +19,17 @@ jobs:
                   node-version: "22"
 
             - name: Install dependencies
-              run: |
-                  yarn install --frozen-lockfile
+              run: yarn install --frozen-lockfile --check-files --verbose
+
+            - name: Log dependencies
+              run: yarn list > deps.txt
+
+            - name: Upload dependencies log
+              uses: actions/upload-artifact@v2
+              with:
+                  name: dependencies-log
+                  path: deps.txt
+
             - name: Run Prisma Generate
               run: yarn prisma generate
             - name: Check Prisma Client is generated for Production
