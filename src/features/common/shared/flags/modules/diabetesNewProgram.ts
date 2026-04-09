@@ -202,6 +202,10 @@ const allowedMunicipalities = [
     "270750",
     "211300",
     "312650",
+    "221130",
+    "230860",
+    "313660",
+    "130140",
 ];
 
 export const diabetesNewProgram = flag<
