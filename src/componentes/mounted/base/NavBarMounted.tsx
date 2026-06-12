@@ -74,6 +74,7 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
         <NavBar
             projeto="IP"
             trackObject={mixpanel}
+            ocultarEsqueciMinhaSenha={true}
             login={{ titulo: "Faça o login para ver os dados restritos." }}
             user={{
                 nome: nome,
