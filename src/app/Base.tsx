@@ -123,9 +123,7 @@ export const Base: React.FC<BaseProps> = ({ children, menuNavBarOptions }) => {
                                     ? "76px"
                                     : path === "/"
                                       ? "0px"
-                                      : path === "/apoio"
-                                        ? "0px"
-                                        : "30px",
+                                      : "30px",
                             height: "100%",
                         }}
                     >

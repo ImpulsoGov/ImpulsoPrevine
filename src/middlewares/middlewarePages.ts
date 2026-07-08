@@ -5,7 +5,6 @@ import { type NextRequest, NextResponse } from "next/server";
 export const rotasPublicas = [
     "/",
     "/quem-somos",
-    "/apoio",
     "/faq",
     "/dadoPublicos",
     "/analise",
