@@ -108,7 +108,6 @@ export const NavBarMounted: React.FC<NavBarMountedType> = ({
                         : "https://sa-east-1.graphassets.com/Ajb3KTNmSbWA8v0BEfU1Nz/U6v7lsQNRMKVWBQVCXTL",
                 cor:
                     path === "/" ||
-                    path === "/apoio" ||
                     path === "/analise" ||
                     path === "/quem-somos"
                         ? "Cinza"
