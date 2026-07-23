@@ -110,11 +110,6 @@ const loggedMenu = async (
             url: "/analise",
             telemetryEvent: "acessar_pg_dados_sisab",
         },
-        {
-            label: "Entenda os Novos Indicadores",
-            url: "https://impulsogov-2jxn.help.userguiding.com/pt/categories/3587-novos-indicadores-da-aps",
-            telemetryEvent: "acessar_pg_faq_novos_indicadores",
-        },
     ];
 
     return menus;
@@ -124,7 +119,6 @@ const notLoggedMenu = (): Array<Menu> => {
     return [
         { label: "Quem Somos", url: "/quem-somos" },
         { label: "Dados do SISAB", url: "/analise" },
-        { label: "FAQ", url: "/faq" },
         { label: "Blog", url: "/blog" },
     ];
 };
