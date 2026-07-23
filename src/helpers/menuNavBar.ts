@@ -119,7 +119,6 @@ const notLoggedMenu = (): Array<Menu> => {
     return [
         { label: "Quem Somos", url: "/quem-somos" },
         { label: "Dados do SISAB", url: "/analise" },
-        { label: "FAQ", url: "/faq" },
         { label: "Blog", url: "/blog" },
     ];
 };
