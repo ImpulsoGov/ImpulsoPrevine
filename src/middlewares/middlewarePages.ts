@@ -1,6 +1,11 @@
 import { matchesRoute } from "@/features/common/frontend/path";
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
+import {
+    buildPortalImpulsoUrl,
+    isMunicipioMigrado,
+    isNavigation,
+} from "./portalImpulsoRedirect";
 
 export const rotasPublicas = [
     "/",
@@ -67,6 +72,19 @@ export const middlewarePages = async (
         };
     } | null;
     let response = NextResponse.next();
+
+    if (
+        token &&
+        isNavigation(request) &&
+        matchesRoute(rotasProtegidas, url.pathname) &&
+        isMunicipioMigrado(token.user.municipio_id_sus)
+    ) {
+        const target = buildPortalImpulsoUrl(
+            process.env.PORTAL_IMPULSO_URL ?? ""
+        );
+        if (target && target.origin !== url.origin)
+            return NextResponse.redirect(target);
+    }
 
     if (
         token &&
