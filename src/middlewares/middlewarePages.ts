@@ -77,6 +77,7 @@ export const middlewarePages = async (
         token &&
         isNavigation(request) &&
         matchesRoute(rotasProtegidas, url.pathname) &&
+        matchesRoute(rotasPublicas, url.pathname) &&
         isMunicipioMigrado(token.user.municipio_id_sus)
     ) {
         const target = buildPortalImpulsoUrl(
