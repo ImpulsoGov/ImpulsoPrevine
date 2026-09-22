@@ -1,4 +1,4 @@
-import { captureMessage } from "@sentry/nextjs";
+import { captureException, captureMessage } from "@sentry/nextjs";
 import { obterCliente } from "./growthbook";
 import { loteSchema, mapaDeOndasSchema } from "./model";
 
@@ -24,7 +24,19 @@ const quemJaMigrou = async (): Promise<ReadonlySet<string>> => {
 
     // A feature não tem regra de targeting — o valor é o mapa inteiro —, então
     // avaliar com contexto vazio deixa explícito que o usuário é irrelevante.
-    const { value, source } = cliente.evalFeature<unknown>(FEATURE, {});
+    //
+    // Sob try porque uma exceção aqui não pararia no redirect: subiria até o
+    // middleware e viraria erro em TODA navegação, inclusive a de quem não é de
+    // município migrado.
+    let avaliacao: { value: unknown; source: string };
+    try {
+        avaliacao = cliente.evalFeature<unknown>(FEATURE, {});
+    } catch (erro) {
+        captureException(erro);
+        return NENHUM;
+    }
+
+    const { value, source } = avaliacao;
     if (source === "unknownFeature") {
         captureMessage(
             `growthbook: feature ${FEATURE} não encontrada — ninguém será redirecionado ao Portal`,

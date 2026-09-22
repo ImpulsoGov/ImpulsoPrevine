@@ -99,6 +99,16 @@ describe("isMunicipioMigrado", () => {
         await expect(isMunicipioMigrado("350190")).resolves.toBe(false);
     });
 
+    it("não deixa exceção do SDK subir para o middleware", async () => {
+        obterClienteMock.mockResolvedValue({
+            evalFeature: jest.fn(() => {
+                throw new Error("o SDK explodiu");
+            }),
+        } as unknown as Awaited<ReturnType<typeof obterCliente>>);
+
+        await expect(isMunicipioMigrado("350190")).resolves.toBe(false);
+    });
+
     it("nem consulta o GrowthBook sem código de município", async () => {
         await expect(isMunicipioMigrado(undefined)).resolves.toBe(false);
         expect(obterClienteMock).not.toHaveBeenCalled();
