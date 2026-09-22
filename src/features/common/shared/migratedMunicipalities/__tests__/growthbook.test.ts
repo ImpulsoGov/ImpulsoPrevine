@@ -9,78 +9,75 @@ jest.mock("@growthbook/growthbook", () => ({
         return { init, refreshFeatures };
     }),
 }));
-// As jest.fn() vivem fora da factory porque o resetModules abaixo faz a
-// factory rodar de novo: se elas nascessem lá dentro, o módulo recarregado
-// chamaria uma instância diferente da que o teste inspeciona.
+// As jest.fn() ficam fora da factory porque o resetModules abaixo faz a factory
+// rodar de novo: nascendo lá dentro, o módulo recarregado chamaria uma
+// instância diferente da que o teste inspeciona.
 jest.mock("@sentry/nextjs", () => ({
     captureMessage,
     captureException: jest.fn(),
 }));
 
-// O módulo guarda cliente, inicialização e bloqueio em escopo de módulo — cada
-// teste precisa de um registro limpo.
 const carregar = async (): Promise<typeof import("../growthbook")> => {
     jest.resetModules();
     return import("../growthbook");
 };
 
-describe("obterCliente", () => {
+describe("getClient", () => {
     beforeEach(() => {
         process.env.GROWTHBOOK_CLIENT_KEY = "sdk-de-teste";
         init.mockResolvedValue({ success: true, source: "network" });
         refreshFeatures.mockResolvedValue(undefined);
     });
 
-    it("desiste sem GROWTHBOOK_CLIENT_KEY, e avisa", async () => {
+    it("Deve desistir e avisar quando falta GROWTHBOOK_CLIENT_KEY", async () => {
         delete process.env.GROWTHBOOK_CLIENT_KEY;
-        const { obterCliente } = await carregar();
+        const { getClient } = await carregar();
 
-        await expect(obterCliente()).resolves.toBeUndefined();
+        await expect(getClient()).resolves.toBeUndefined();
         expect(captureMessage).toHaveBeenCalledWith(
             expect.stringContaining("GROWTHBOOK_CLIENT_KEY ausente"),
             "error"
         );
     });
 
-    it("inicializa uma vez só e reaproveita o cliente", async () => {
-        const { obterCliente } = await carregar();
+    it("Deve inicializar uma vez só e reaproveitar o cliente", async () => {
+        const { getClient } = await carregar();
 
-        const primeiro = await obterCliente();
-        const segundo = await obterCliente();
+        const primeiro = await getClient();
+        const segundo = await getClient();
 
         expect(primeiro).toBe(segundo);
         expect(init).toHaveBeenCalledTimes(1);
         expect(construtor).toHaveBeenCalledTimes(1);
     });
 
-    it("pede o payload sem streaming e com teto de tempo", async () => {
-        const { obterCliente } = await carregar();
+    it("Deve pedir o payload sem streaming e com teto de tempo", async () => {
+        const { getClient } = await carregar();
 
-        await obterCliente();
+        await getClient();
 
         expect(init).toHaveBeenCalledWith({ timeout: 1500, streaming: false });
         expect(refreshFeatures).toHaveBeenCalledWith({ timeout: 1500 });
     });
 
-    it("para de tentar por um tempo quando o init falha", async () => {
+    it("Deve parar de tentar por um tempo quando o init falha", async () => {
         init.mockResolvedValue({
             success: false,
             source: "timeout",
             error: new Error("timeout"),
         });
-        const { obterCliente } = await carregar();
+        const { getClient } = await carregar();
 
-        await expect(obterCliente()).resolves.toBeUndefined();
-        await expect(obterCliente()).resolves.toBeUndefined();
+        await expect(getClient()).resolves.toBeUndefined();
+        await expect(getClient()).resolves.toBeUndefined();
 
-        // A segunda chamada cai no bloqueio: não paga o timeout de novo.
         expect(init).toHaveBeenCalledTimes(1);
     });
 
-    it("segue com o último payload bom quando o refresh falha", async () => {
+    it("Deve seguir com o último payload bom quando o refresh falha", async () => {
         refreshFeatures.mockRejectedValue(new Error("cdn fora"));
-        const { obterCliente } = await carregar();
+        const { getClient } = await carregar();
 
-        await expect(obterCliente()).resolves.toBeDefined();
+        await expect(getClient()).resolves.toBeDefined();
     });
 });
