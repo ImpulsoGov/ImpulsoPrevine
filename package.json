@@ -18,6 +18,7 @@
     "dependencies": {
         "@emotion/react": "11.14.0",
         "@emotion/styled": "11.14.1",
+        "@growthbook/growthbook": "^1.7.0",
         "@hotjar/browser": "1.0.9",
         "@impulsogov/design-system": "1.0.371",
         "@js-joda/core": "5.6.5",
