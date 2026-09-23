@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import type { JSX } from "react";
+import { ModalNovoPortalMounted } from "@/componentes/mounted/banner/ModalNovoPortal";
 
 const FormConsultoria = dynamic<{
     title: string;
@@ -46,9 +47,10 @@ const Margem = dynamic<{
     componente: JSX.Element;
 }>(() => import("@impulsogov/design-system").then((mod) => mod.Margem));
 
-export const Home = () => {
+export const Home = ({ portalImpulsoUrl }: { portalImpulsoUrl: string }) => {
     return (
         <div style={{ backgroundColor: "#E6ECF0" }}>
+            <ModalNovoPortalMounted portalUrl={portalImpulsoUrl} />
             <Margem
                 componente={
                     <>
