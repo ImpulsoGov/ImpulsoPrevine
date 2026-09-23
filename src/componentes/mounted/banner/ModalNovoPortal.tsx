@@ -33,7 +33,7 @@ const CardNovoPortal = ({ refModal, props }: CardNovoPortalProps) => (
         <img className={styles.imagem} src={IMAGEM_URL} alt="" />
         <div className={styles.conteudo}>
             <h2 id="modal-novo-portal-titulo" className={styles.titulo}>
-                Nossa área logada foi atualizada!
+                O Impulso Previne agora é Portal Impulso
             </h2>
             <p className={styles.texto}>
                 Se você é um profissional de saúde de um município parceiro, que
