@@ -1,11 +1,10 @@
 "use client";
 import { ModalAlertDisplay } from "@impulsogov/design-system";
-import { type RefObject, useEffect, useState } from "react";
+import { type RefObject, useState } from "react";
 import styles from "./ModalNovoPortal.module.css";
 
 // Copy e imagem seguem o guia "Modal IP área aberta - aviso de novo portal"
 // (UserGuiding 171998); as cores vêm do tema padrão do UserGuiding.
-const STORAGE_KEY = "DisplayModalNovoPortal";
 const IMAGEM_URL = "/modal-novo-portal.png";
 
 type CardNovoPortalProps = {
@@ -62,20 +61,11 @@ export const ModalNovoPortalMounted = ({
 }: {
     portalUrl: string;
 }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    useEffect(() => {
-        if (!localStorage.getItem(STORAGE_KEY)) setIsOpen(true);
-    }, []);
-
-    const fechar = (valor: boolean) => {
-        if (!valor) localStorage.setItem(STORAGE_KEY, "false");
-        setIsOpen(valor);
-    };
+    const [isOpen, setIsOpen] = useState(true);
 
     return (
         <ModalAlertDisplay
-            displayStates={{ display: isOpen, setDisplay: fechar }}
+            displayStates={{ display: isOpen, setDisplay: setIsOpen }}
             Child={CardNovoPortal}
             childProps={{ portalUrl }}
         />
