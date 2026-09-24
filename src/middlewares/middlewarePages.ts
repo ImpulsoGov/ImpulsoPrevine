@@ -1,11 +1,8 @@
 import { matchesRoute } from "@/features/common/frontend/path";
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
-import {
-    buildPortalImpulsoUrl,
-    isMunicipioMigrado,
-    isNavigation,
-} from "./portalImpulsoRedirect";
+import { isMigratedMunicipality } from "@features/common/shared/migratedMunicipalities";
+import { buildPortalImpulsoUrl, isNavigation } from "./portalImpulsoRedirect";
 
 export const rotasPublicas = [
     "/",
@@ -78,7 +75,7 @@ export const middlewarePages = async (
         isNavigation(request) &&
         (matchesRoute(rotasProtegidas, url.pathname) ||
             matchesRoute(rotasPublicas, url.pathname)) &&
-        isMunicipioMigrado(token.user.municipio_id_sus)
+        (await isMigratedMunicipality(token.user.municipio_id_sus))
     ) {
         const target = buildPortalImpulsoUrl(
             process.env.PORTAL_IMPULSO_URL ?? ""
